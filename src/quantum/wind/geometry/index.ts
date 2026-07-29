@@ -7,7 +7,7 @@ import type { Dims } from '../../mountain/dimensions'
 import { movieCanvasPolarity } from '../../science'
 import { FIBONACCI } from '../../../3/7'
 import { TAU } from '../../../3/7'
-import { VORTEX_SEQUENCE } from '../../../0'
+import { VORTEX_SEQUENCE, abs, cos, hypot, max, min, pow, sin, sqrt } from '../../../0'
 
 export const FOCAL = (6 * 2 / 5) // perspective focal length, shared by every layer
 
@@ -21,8 +21,8 @@ export interface Vec3 {
 // of any dimension, is this one operation on two coordinates: the 3D plane-primitives below compose it (xy, yz,
 // zx), and a 4-D fold rotates the (x, w) pair with the SAME atom. One source, no plane re-derived anywhere.
 export function rot2(u: number, v: number, a: number): { u: number; v: number } {
-  const c = Math.cos(a)
-  const s = Math.sin(a)
+  const c = cos(a)
+  const s = sin(a)
   return { u: u * c - v * s, v: u * s + v * c }
 }
 
@@ -62,7 +62,7 @@ export function perspective(z: number): number {
 // checks are the atoms' own invariants, computed live.
 export function depthIsThePerspectiveDivide() {
   const r = rotate3((3 / (5 * 2)), -(1 / 2), (7 / (5 * 2)), (2 / 5), -(9 / (5 * 2)), FIBONACCI[5]! / (2 * 5))
-  const rigid = Math.abs(Math.hypot(r.X, r.Y, r.Z) - Math.hypot((3 / (5 * 2)), -(1 / 2), (7 / (5 * 2)))) < 1e-12 // rotation preserves length — an offset cannot
+  const rigid = abs(hypot(r.X, r.Y, r.Z) - hypot((3 / (5 * 2)), -(1 / 2), (7 / (5 * 2)))) < 1e-12 // rotation preserves length — an offset cannot
   const centered = perspective(0) === 1 // the screen plane is unmagnified
   const nearGrows = perspective((1 / 2)) > 1 && perspective(-(1 / 2)) < 1 // depth becomes SIZE, the honest cue
   const monotone = perspective(-1) < perspective(0) && perspective(0) < perspective(1)
@@ -89,10 +89,10 @@ export function branch(
 ): void {
   if (depth <= 0 || len < 3) return
   const paint = movieCanvasPolarity(dark)
-  const x2 = x + Math.cos(angle) * len
-  const y2 = y + Math.sin(angle) * len
+  const x2 = x + cos(angle) * len
+  const y2 = y + sin(angle) * len
   ctx.strokeStyle = paint((hue + d.hueShift + depth * (7 * 4)) % 360, d.depthFade + depth * (1 / (5 * 2)), { L: 7 / 8 })
-  ctx.lineWidth = Math.max((1 / 2), depth * (3 / 5))
+  ctx.lineWidth = max((1 / 2), depth * (3 / 5))
   ctx.beginPath()
   ctx.moveTo(x, y)
   ctx.lineTo(x2, y2)
@@ -113,11 +113,11 @@ export function flowerOfLifeCenters(): readonly (readonly [number, number])[] {
   const pts: [number, number][] = [[0, 0]]
   for (let k = 0; k < 6; k += 1) {
     const a = (k * TAU) / 6
-    pts.push([Math.cos(a), Math.sin(a)])
+    pts.push([cos(a), sin(a)])
   }
   for (let k = 0; k < 12; k += 1) {
     const a = (k * TAU) / 12
-    pts.push([2 * Math.cos(a), 2 * Math.sin(a)])
+    pts.push([2 * cos(a), 2 * sin(a)])
   }
   return pts
 }
@@ -130,11 +130,11 @@ export function fruitOfLifeCenters(): readonly (readonly [number, number])[] {
   const pts: [number, number][] = [[0, 0]]
   for (let k = 0; k < 6; k += 1) {
     const a = (k * TAU) / 6
-    pts.push([Math.cos(a), Math.sin(a)])
+    pts.push([cos(a), sin(a)])
   }
   for (let k = 0; k < 6; k += 1) {
     const a = (k * TAU) / 6
-    pts.push([2 * Math.cos(a), 2 * Math.sin(a)])
+    pts.push([2 * cos(a), 2 * sin(a)])
   }
   return pts
 }
@@ -143,7 +143,7 @@ export function fruitOfLifeCenters(): readonly (readonly [number, number])[] {
 export function flowerUnlocksFruitBySpin(): { holds: boolean; flower: number; fruit: number } {
   const flower = flowerOfLifeCenters()
   const fruit = fruitOfLifeCenters()
-  const near = (a: number, b: number) => Math.abs(a - b) < 1e-9
+  const near = (a: number, b: number) => abs(a - b) < 1e-9
   const contained = fruit.every((fp) => flower.some((fl) => near(fl[0], fp[0]) && near(fl[1], fp[1])))
   return { holds: flower.length === 1 + 6 + (6 * 2) && fruit.length === (5 + 8) && contained, flower: flower.length, fruit: fruit.length }
 }
@@ -160,10 +160,10 @@ export function drawFlower(
   dark = true,
 ): void {
   const paint = movieCanvasPolarity(dark)
-  const R = Math.min(w, h) * 0.22
+  const R = min(w, h) * 0.22
   const centers: { x: number; y: number }[] = [{ x: 0, y: 0 }]
-  for (let k = 0; k < 6; k += 1) { const a = (k * (TAU / 2)) / 3; centers.push({ x: Math.cos(a) * R, y: Math.sin(a) * R }) }
-  for (let k = 0; k < 6; k += 1) { const a = (k * (TAU / 2)) / 3 + (TAU / 2) / 6; const d = R * Math.sqrt(3); centers.push({ x: Math.cos(a) * d, y: Math.sin(a) * d }) }
+  for (let k = 0; k < 6; k += 1) { const a = (k * (TAU / 2)) / 3; centers.push({ x: cos(a) * R, y: sin(a) * R }) }
+  for (let k = 0; k < 6; k += 1) { const a = (k * (TAU / 2)) / 3 + (TAU / 2) / 6; const d = R * sqrt(3); centers.push({ x: cos(a) * d, y: sin(a) * d }) }
   const localR = R * (1 / 2)
   const trail = reduce ? 1 : (8 * 5)
   const td = t * 8
@@ -174,19 +174,19 @@ export function drawFlower(
   ctx.globalCompositeOperation = dark ? 'lighter' : 'source-over'
   for (let ci = 0; ci < centers.length; ci += 1) {
     const c = centers[ci]
-    const ox = cx + (c.x * Math.cos(spin) - c.y * Math.sin(spin))
-    const oy = cy + (c.x * Math.sin(spin) + c.y * Math.cos(spin))
+    const ox = cx + (c.x * cos(spin) - c.y * sin(spin))
+    const oy = cy + (c.x * sin(spin) + c.y * cos(spin))
     const hueC = (hue + ci * 27) % 360
     for (let i = trail; i >= 0; i -= 1) {
       const tt = td - i * (1 / (5 * 4)) + ci * (3 / (5 * 2))
       let x = 0
       let y = 0
-      for (const arm of FOL_ARMS) { x += arm.r * Math.cos(arm.w * tt); y += arm.r * Math.sin(arm.w * tt) }
+      for (const arm of FOL_ARMS) { x += arm.r * cos(arm.w * tt); y += arm.r * sin(arm.w * tt) }
       const age = i / trail
-      ctx.globalAlpha = Math.pow(1 - age, (8 / 5)) * ((7 * 3) / (5 * 5 * 2))
-      ctx.fillStyle = paint((hueC + i * 3) % 360, Math.pow(1 - age, (8 / 5)) * ((7 * 3) / (5 * 5 * 2)), { L: 1 - 3 / 16 - age * (5 / (16 * 2)) })
+      ctx.globalAlpha = pow(1 - age, (8 / 5)) * ((7 * 3) / (5 * 5 * 2))
+      ctx.fillStyle = paint((hueC + i * 3) % 360, pow(1 - age, (8 / 5)) * ((7 * 3) / (5 * 5 * 2)), { L: 1 - 3 / 16 - age * (5 / (16 * 2)) })
       ctx.beginPath()
-      ctx.arc(ox + x * localR, oy + y * localR, Math.max((1 / 2), (1 - age * (7 / (5 * 2))) * 1.7), 0, TAU)
+      ctx.arc(ox + x * localR, oy + y * localR, max((1 / 2), (1 - age * (7 / (5 * 2))) * 1.7), 0, TAU)
       ctx.fill()
     }
   }
@@ -219,7 +219,7 @@ export function drawCalendars(
   const paint = movieCanvasPolarity(dark)
   // Shared hero phase `t` is the clock — deterministic offline paint, not wall-clock Date.now().
   const days = t / TAU
-  const base = Math.min(w, h)
+  const base = min(w, h)
   // Throat scale — same 7/100 void fraction the plasma ball uses; markers ride vortex digits outward.
   const throatR = base * (7 / 100)
   ctx.save()
@@ -233,7 +233,7 @@ export function drawCalendars(
     const ang = cyclePhase * TAU - TAU / 4 + (reduce ? 0 : t * (1 / (5 * 4)) * (i % 2 === 0 ? 1 : -1))
     ctx.fillStyle = paint(hueC, (7 / (5 * 2)), { L: 1 - 3 / 16 })
     ctx.beginPath()
-    ctx.arc(cx + Math.cos(ang) * radius, cy + Math.sin(ang) * radius, Math.max(1, base * (3 / (100 * 5))), 0, TAU)
+    ctx.arc(cx + cos(ang) * radius, cy + sin(ang) * radius, max(1, base * (3 / (100 * 5))), 0, TAU)
     ctx.fill()
   }
   ctx.restore()

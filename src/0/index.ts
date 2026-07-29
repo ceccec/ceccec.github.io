@@ -84,6 +84,59 @@ export function roundTo(value: number, digits: number): number {
   const factor = (5 * 2) ** digits
   return Math.round(value * factor) / factor
 }
+
+/** Host-boundary math — Math.* allowed ONLY here (void kernel) and src/3/7 (τ vault root). math/algebra · math/trust. */
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function abs(x: number): number { return Math.abs(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function floor(x: number): number { return Math.floor(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function ceil(x: number): number { return Math.ceil(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function round(x: number): number { return Math.round(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function trunc(x: number): number { return Math.trunc(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function sign(x: number): number { return Math.sign(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function min(...xs: number[]): number { return Math.min(...xs) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function max(...xs: number[]): number { return Math.max(...xs) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function sin(x: number): number { return Math.sin(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function cos(x: number): number { return Math.cos(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function tan(x: number): number { return Math.tan(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function asin(x: number): number { return Math.asin(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function acos(x: number): number { return Math.acos(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function atan(x: number): number { return Math.atan(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function atan2(y: number, x: number): number { return Math.atan2(y, x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function sqrt(x: number): number { return Math.sqrt(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function cbrt(x: number): number { return Math.cbrt(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function hypot(...xs: number[]): number { return Math.hypot(...xs) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function pow(x: number, y: number): number { return Math.pow(x, y) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function exp(x: number): number { return Math.exp(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function log(x: number): number { return Math.log(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function log2(x: number): number { return Math.log2(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function log10(x: number): number { return Math.log10(x) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function imul(a: number, b: number): number { return Math.imul(a, b) }
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function sinh(x: number): number { return Math.sinh(x) }
+
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function seedFromText(text: string, length = 6): number {
   return Number.parseInt(toUuid(text).replace(/[^0-9a-f]/g, '').slice(0, length) || '0', 16)

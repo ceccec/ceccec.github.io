@@ -11,6 +11,7 @@ import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.v
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
+import { floor, max, min, round } from '../../0'
 
 const panel = shallowRef(quantumComputerLabComputes())
 const designVars = computed(() => panel.value.cssVars as Record<string, string>)
@@ -24,10 +25,10 @@ const result = computed(() => runQuantumCircuit({ n: n.value, ops: ops.value, sh
 const visibleAmps = computed(() => result.value.amplitudes.filter((a) => a.probability > 1e-6))
 const histogram = computed(() => {
   const s = result.value.samples
-  const max = Math.max(1, ...Object.values(s))
+  const maxCount = max(1, ...Object.values(s))
   return Object.entries(s)
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([basis, count]) => ({ basis, count, pct: Math.round((count / max) * 100) }))
+    .map(([basis, count]) => ({ basis, count, pct: round((count / maxCount) * 100) }))
 })
 
 function arityOf(gate: string): number {
@@ -35,7 +36,7 @@ function arityOf(gate: string): number {
 }
 function defaultTargets(gate: string): number[] {
   const arity = arityOf(gate)
-  return Array.from({ length: arity }, (_, i) => Math.min(i, n.value - 1))
+  return Array.from({ length: arity }, (_, i) => min(i, n.value - 1))
 }
 function addGate(gate: string) {
   const entry = palette.find((p) => p.gate === gate)
@@ -49,7 +50,7 @@ function clearCircuit() {
   ops.value = []
 }
 function setTarget(opIndex: number, slot: number, value: number) {
-  const clamped = Math.max(0, Math.min(n.value - 1, Math.floor(value) || 0))
+  const clamped = max(0, min(n.value - 1, floor(value) || 0))
   ops.value = ops.value.map((op, i) => {
     if (i !== opIndex) return op
     const targets = [...op.targets]
@@ -61,8 +62,8 @@ function setTheta(opIndex: number, value: number) {
   ops.value = ops.value.map((op, i) => (i === opIndex ? { ...op, theta: value } : op))
 }
 function setQubits(value: number) {
-  n.value = Math.max(1, Math.min(8, Math.floor(value) || 1))
-  ops.value = ops.value.map((op) => ({ ...op, targets: op.targets.map((t) => Math.min(t, n.value - 1)) }))
+  n.value = max(1, min(8, floor(value) || 1))
+  ops.value = ops.value.map((op) => ({ ...op, targets: op.targets.map((t) => min(t, n.value - 1)) }))
 }
 function hasParams(gate: string): boolean {
   return (palette.find((p) => p.gate === gate)?.params ?? 0) > 0
@@ -128,7 +129,7 @@ const honestRev = shallowRef(honestRevolutionComputerPanelComputes())
         <ul class="qc-lab__hist">
           <li v-for="r in honestRev.fleet.hitRatios" :key="r.receipt">
             <code>hit {{ r.hit }}</code>
-            <span class="qc-lab__bar" :style="{ width: Math.round(r.hit * 100) + '%' }"></span>
+            <span class="qc-lab__bar" :style="{ width: round(r.hit * 100) + '%' }"></span>
             <span class="qc-lab__count">{{ r.expectedJoules }}</span>
           </li>
         </ul>

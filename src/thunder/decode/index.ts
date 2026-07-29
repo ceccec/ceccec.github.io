@@ -1,4 +1,4 @@
-import { earned } from '../../3/7'
+import { EULER_E, earned } from '../../3/7'
 // ☴ Xùn · Wind — the decode method: how knowledge is decoded (research↔verify waves, legend-vs-documented, the decode pipeline). Barrel-routed; folds.ts back-imports the gate folds.
 import { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
 import { survive } from '../../mountain/vortex'
@@ -22,7 +22,7 @@ import { debitImportCreditExportAccounting, computedWiringNotImported } from '..
 import { fromSexagesimal, gematria, hekatFraction, luoShu, mayaDays, mayaLongCount, runeCoordinate, runeOrdinal, sexagesimal } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, merge, toUuid, digitalRoot, computesGate, prng, roundTo, sealFacets, seedFromText, VORTEX_SEQUENCE } from '../../0'
+import { VORTEX_SEQUENCE, abs, atan2, ceil, computesGate, cos, digitalRoot, floor, foldPair, hypot, isUuid, log2, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0'
 import { DEMO_RSA_BIT_CEILING, refuseNonDemoRsaModulus } from '../../water/encryption'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
@@ -204,10 +204,10 @@ export function coupledCalendarTori(matrix: MindMatrix = buildMatrix()) {
     const cycles = [
       { name: 'Maya Calendar Round', gears: [260, 365] as const, mesh: lcm(260, 365), identity: lcm(260, 365) === 18_980 && 18_980 / 260 === 73 && 18_980 / 365 === 52, reading: '260 = 13×20 tzolkʼin against 365 = 18×20+5 haabʼ; the orbit closes at 18 980 days = 73 tzolkʼin = 52 haabʼ (~52 years).' },
       { name: 'Chinese sexagenary', gears: [10, 12] as const, mesh: lcm(10, 12), identity: lcm(10, 12) === 60 && gcd(10, 12) === 2, reading: '10 heavenly stems against 12 earthly branches; gcd 2 means only 60 of the 120 pairings occur — the cycle of 60.' },
-      { name: 'Metonic', gears: [19, 235] as const, mesh: 235, identity: 235 === 19 * 12 + 7 && Math.abs(19 * TROPICAL - 235 * SYNODIC) < 0.1, reading: '19 tropical years ≈ 235 synodic months (12 common + 7 leap); the two clocks agree within a tenth of a day per cycle.' },
+      { name: 'Metonic', gears: [19, 235] as const, mesh: 235, identity: 235 === 19 * 12 + 7 && abs(19 * TROPICAL - 235 * SYNODIC) < 0.1, reading: '19 tropical years ≈ 235 synodic months (12 common + 7 leap); the two clocks agree within a tenth of a day per cycle.' },
       { name: 'Egyptian civil · Sothic', gears: [365, 1461] as const, mesh: 1461 * 365, identity: 365 === 12 * 30 + 5 && 36 * 10 + 5 === 365 && 1461 * 365 === 1460 * 365.25, reading: 'The vague year is EXACTLY 365 (12×30 + 5 epagomenal; 36 decans of 10); slipping 1 day per 4 years against the Sirius year it laps in 1461 civil = 1460 Julian years — 533 265 days, exact (Censorinus 238 CE).' },
-      { name: 'Egyptian lunar lock', gears: [25, 309] as const, mesh: 9125, identity: 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125 && 164 + 145 === 309 && Math.abs(9125 / 309 - SYNODIC) < 3e-4, reading: '25 civil years = 9125 days = 309 lunations (164 full of 30 + 145 hollow of 29); the implied mean month 29.5307 sits within 3×10⁻⁴ day of the synodic 29.53059 (P. Carlsberg 9).' },
-      { name: 'Tibetan rabjung (Kalachakra)', gears: [12, 10] as const, mesh: lcm(12, 10), identity: lcm(12, 10) === 60 && 624 + 403 === 1027 && Math.abs(67 * SYNODIC - 65 * (TROPICAL / 12)) < 0.2, reading: '12 animals against 5 elements doubled male/female (gears 12 and 10): 60 names from 1027 CE — the tantra’s own "fire-space-ocean" count, 403 years after 624 — the sexagenary torus transmitted; its 67-lunar = 65-solar-month equivalence meshes within 0.2 day.' },
+      { name: 'Egyptian lunar lock', gears: [25, 309] as const, mesh: 9125, identity: 25 * 365 === 9125 && 164 * 30 + 145 * 29 === 9125 && 164 + 145 === 309 && abs(9125 / 309 - SYNODIC) < 3e-4, reading: '25 civil years = 9125 days = 309 lunations (164 full of 30 + 145 hollow of 29); the implied mean month 29.5307 sits within 3×10⁻⁴ day of the synodic 29.53059 (P. Carlsberg 9).' },
+      { name: 'Tibetan rabjung (Kalachakra)', gears: [12, 10] as const, mesh: lcm(12, 10), identity: lcm(12, 10) === 60 && 624 + 403 === 1027 && abs(67 * SYNODIC - 65 * (TROPICAL / 12)) < 0.2, reading: '12 animals against 5 elements doubled male/female (gears 12 and 10): 60 names from 1027 CE — the tantra’s own "fire-space-ocean" count, 403 years after 624 — the sexagenary torus transmitted; its 67-lunar = 65-solar-month equivalence meshes within 0.2 day.' },
     ].map((cycle) => ({ ...cycle, receipt: toUuid(`calendar-torus:${cycle.name}:${cycle.mesh}`) }))
     const { computes, facets, root } = computesGate('coupled-calendar-tori', [
       ...cycles.map((cycle) => ({ facet: `${cycle.name} — ${cycle.reading}`, on: cycle.identity })),
@@ -241,7 +241,7 @@ export type QuipuKnotCluster = {
 
 /** Encode a non-negative integer as Locke's knot clusters (units first — farthest from the main cord). */
 export function quipuKnots(n: number): readonly QuipuKnotCluster[] {
-  const digits = Math.max(0, Math.floor(n)).toString(10).split('').reverse().map((ch) => Number(ch))
+  const digits = max(0, floor(n)).toString(10).split('').reverse().map((ch) => Number(ch))
   return digits.map((digit, place) => {
     if (digit === 0) return { place, digit, knot: 'empty' as const, count: 0 }
     if (place === 0) return digit === 1
@@ -295,11 +295,11 @@ export function kalachakraDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('kalachakraDecoded', matrix, () => {
     const SYNODIC = 29.53059
     const solarMonth = 365.2422 / 12
-    const meshGap = Math.abs(67 * SYNODIC - 65 * solarMonth) // the tantra's equivalence vs modern means
+    const meshGap = abs(67 * SYNODIC - 65 * solarMonth) // the tantra's equivalence vs modern means
     const leapsPer19 = (2 / 65) * 12 * 19 // 2 extra lunar months per 65 solar months → per 19 years
     const { computes, facets, root } = computesGate('kalachakra-decoded', [
       { facet: 'rabjung — 60 year-names = 12 animals × 5 elements in male/female pairs: 60 = lcm(12,10), the sexagenary mesh transmitted; anchored 1027 CE = 624 + 403, the tantra’s own fire-space-ocean count', on: lcm(12, 10) === 60 && 624 + 403 === 1027 },
-      { facet: 'the intercalation identity — 67 mean lunar months ≡ 65 solar months (gap < 0.2 day against modern means), and the ratio recomputes the Metonic count: (2/65)·12·19 ≈ 7 leap months per 19 years', on: meshGap < 0.2 && Math.abs(leapsPer19 - 7) < 0.05 },
+      { facet: 'the intercalation identity — 67 mean lunar months ≡ 65 solar months (gap < 0.2 day against modern means), and the ratio recomputes the Metonic count: (2/65)·12·19 ≈ 7 leap months per 19 years', on: meshGap < 0.2 && abs(leapsPer19 - 7) < 0.05 },
       { facet: 'the mandala counts — 722 deities, FIVE nested palaces (body·speech·mind·wisdom·great-bliss), each four-gated at the cardinal directions: the same E·W·N·S four-gate square the stroke cycle computes, held as structural correspondence', on: 5 * 4 === 20 && 722 > 0 },
       { facet: 'the canonical 108 — the mala count; the same 108 this repo’s census runs on (a correspondence of counts, not causation)', on: 108 === 4 * 27 },
     ])
@@ -1149,7 +1149,7 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
       name: 'Egyptian hekat / Horus-eye fractions + the seked',
       foundations: ['number=letter', 'sacred geometry', 'the fold'],
       pathCore: 'the hekat grain-measure was halved as a binary cascade 1/2..1/64 (literal folding-in-two), every quantity a sum of distinct unit fractions, the residue closed to 64/64 by the ro = 1/320. The seked gives pyramid slope as run-per-rise in cubit/palm/digit.',
-      witness: Math.abs(1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 + 1 / 32 + 1 / 64 - 63 / 64) < 1e-12 && Math.abs(63 / 64 + 5 * (1 / 320) - 1) < 1e-12 && 7 * 4 === 28,
+      witness: abs(1 / 2 + 1 / 4 + 1 / 8 + 1 / 16 + 1 / 32 + 1 / 64 - 63 / 64) < 1e-12 && abs(63 / 64 + 5 * (1 / 320) - 1) < 1e-12 && 7 * 4 === 28,
       keyNumbers: [2, 7, 28, 64, 320],
       legendExcluded: ['the six fractions ARE the torn Eye of Horus (Möller 1911, paleographically refuted by Ritter 2002)', 'the Great Pyramid encodes π or φ (refuted: 4·cot 51.84° = 3.143 ≠ π)', 'pyramidology / the "pyramid inch"'] },
     {
@@ -1170,7 +1170,7 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
       name: 'Arabic abjad (ḥisāb al-jummal) + girih',
       foundations: ['number=letter', 'sacred geometry', 'the fold'],
       pathCore: 'the 28 Arabic letters are numbers (1-9/10-90/100-1000); abjad sums a word (الله = 66). The 5-fold girih geometry: pentagon/decagon, every angle a multiple of 36°, φ = 2cos36° intrinsic.',
-      witness: gematria('الله', 'arabic') === 66 && [36, 72, 108, 144, 216].every((a) => a % 36 === 0) && Math.abs(2 * Math.cos((TAU / 2) / 5) - PHI) < 1e-9,
+      witness: gematria('الله', 'arabic') === 66 && [36, 72, 108, 144, 216].every((a) => a % 36 === 0) && abs(2 * cos((TAU / 2) / 5) - PHI) < 1e-9,
       keyNumbers: [28, 66, 36, 72, 108, 144, 216],
       legendExcluded: ['quasicrystal/Penrose overclaim (Darb-i Imam shown periodic)', 'abjad divination / the "19 code"', 'φ as a consciously-encoded sacred proportion'] },
     {
@@ -1184,7 +1184,7 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
       name: 'Runic Elder Futhark (ordinal)',
       foundations: ['number=letter', 'trinity/duality', 'the fold'],
       pathCore: 'the 24 runes carry a fixed order split into 3 aettir of 8 — a 3×8 grid (trinity × octave). The attested cipher-rune fold makes a rune a coordinate: value = (aett−1)·8 + position, reversible.',
-      witness: 3 * 8 === 24 && [1, 9, 17, 24].every((n) => { const aett = Math.ceil(n / 8); const pos = ((n - 1) % 8) + 1; return (aett - 1) * 8 + pos === n }),
+      witness: 3 * 8 === 24 && [1, 9, 17, 24].every((n) => { const aett = ceil(n / 8); const pos = ((n - 1) % 8) + 1; return (aett - 1) * 8 + pos === n }),
       keyNumbers: [24, 3, 8],
       legendExcluded: ['Blum’s 25th blank rune (invented 1982)', 'Agrell’s Uthark (no historical support)', 'the deity ætt-names (17th–19th c.)', 'numerological per-rune "values" 1–24'] },
     {
@@ -1205,7 +1205,7 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
       name: 'Ogham (the Irish tree-alphabet)',
       foundations: ['number=letter', 'the fold'],
       pathCore: 'the number=letter fold in its purest one-dimensional form: a 4×5 signary where every letter is an ordered pair (aicme 1–4, position 1–5), cut as 1–5 scores across or beside a stemline — the group the tens, the position the units.',
-      witness: 4 * 5 === 20 && ((n) => { const aicme = Math.ceil(n / 5); const pos = ((n - 1) % 5) + 1; return (aicme - 1) * 5 + pos === n })(8),
+      witness: 4 * 5 === 20 && ((n) => { const aicme = ceil(n / 5); const pos = ((n - 1) % 5) + 1; return (aicme - 1) * 5 + pos === n })(8),
       keyNumbers: [5, 4, 20, 25],
       legendExcluded: ['Ogham as an "ancient druidic secret/magic language" (it is early-medieval Irish, c.4th c. AD)', 'the neo-druid "Celtic tree calendar" (Robert Graves, 1948 — invented)'] },
     {
@@ -1226,7 +1226,7 @@ export function ancientNumberSystems(matrix: MindMatrix = buildMatrix()) {
       name: 'Polynesian star compass (the bearing lattice)',
       foundations: ['sacred geometry', 'trinity/duality', 'the fold'],
       pathCore: 'position is a COUNT against a lattice: the horizon partitioned into 32 named star-houses of 11.25° (16 stars, each rising and setting in reciprocal houses joined by a diameter through the canoe) — a path held as a bearing, not a measured coordinate.',
-      witness: Math.abs(32 * 11.25 - 360) < 1e-9 && 32 === 2 * 16 && Math.abs(360 / 32 - 11.25) < 1e-9,
+      witness: abs(32 * 11.25 - 360) < 1e-9 && 32 === 2 * 16 && abs(360 / 32 - 11.25) < 1e-9,
       keyNumbers: [32, 16, 360, 4],
       legendExcluded: ['romantic "instinctive / lost-continent" wayfinding (it is a learned, documented system — Mau Piailug, the Hōkūleʻa)', 'fixed precise prehistoric dates for specific techniques'] },
   ].map((system) => ({ ...system, receipt: toUuid(`ancient-number-system:${system.name}:${system.witness}`) }))
@@ -1328,11 +1328,11 @@ export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
  * Clay marks only Millennium (#73) — this fold uses canonical sections; claySolvedByThisFold=0.
  */
 export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const coupled = coupledCalendarTori(matrix)
     const rings = ancientCalendars(matrix)
     const heroCycleMs = FOLDED_CENSUS * 1e3 // same derivation as HERO_CYCLE_MS — no plasma import (cycle-safe)
-    const daySeed = Math.floor(Math.abs(at) / (1000 * 60 * 60 * 24)) % 1_000_000
+    const daySeed = floor(abs(at) / (1000 * 60 * 60 * 24)) % 1_000_000
     const mod = (n: number, m: number) => ((n % m) + m) % m
 
     // Algebraic maps — each calendar → modular / product / epoch identity (gapless from sealed constants).
@@ -1413,7 +1413,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
     const calendars = [mayaMap, chineseMap, egyptianMap, metonicHebrewMap, babylonianMap, julianGregorianMap, maya819Map, heroMap, vedicMap]
     const allHold = calendars.every((c) => c.holds)
     // Time-in-time: outer hero phase indexes a Calendar Round day; residues nest tzolkʼin ⊂ haabʼ ⊂ CR
-    const crDayFromPhase = Math.floor(phaseOuter * calendarRoundMesh)
+    const crDayFromPhase = floor(phaseOuter * calendarRoundMesh)
     const nestedTz = mod(crDayFromPhase, 260)
     const nestedHaab = mod(crDayFromPhase, 365)
     const nestedTimeInTime =
@@ -1585,11 +1585,11 @@ export function oneCommandDecodeHashOrStringOrSequence(
             : toUuid(`string:${raw}`)
   const seed = seedFromText(raw.length > 0 ? raw : 'empty')
   const drSource = classified.kind === 'sequence' && classified.tokens.length > 0
-    ? classified.tokens.reduce((a, b) => a + Math.abs(b), 0)
+    ? classified.tokens.reduce((a, b) => a + abs(b), 0)
     : classified.kind === 'digit'
       ? classified.tokens[0]!
       : seed
-  const dr = digitalRoot(drSource === 0 ? 9 : Math.abs(drSource))
+  const dr = digitalRoot(drSource === 0 ? 9 : abs(drSource))
   const onVortex = (VORTEX_SEQUENCE as readonly number[]).includes(dr)
   const fold = foldPair(address, toUuid(`decode-one:${classified.kind}`))
   const oneCommandDecodeComputable =
@@ -1642,7 +1642,7 @@ export function oneCommandDecodeHashOrStringOrSequence(
 
 /** Proves the one-command decode path is sealed and computable (probe inputs). Pair: decode/one */
 export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`oneCommandDecodeComputable:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`oneCommandDecodeComputable:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probes = [
       oneCommandDecodeHashOrStringOrSequence('ceccec', matrix),
       oneCommandDecodeHashOrStringOrSequence('1 2 4 8 7 5', matrix),
@@ -1713,7 +1713,7 @@ export type WorldMystery = {
 const MYSTERY_TIER_INDEX: Record<MysteryTier, number> = { OPEN: 0, 'SOLVED-FLAGGED': 1, ARCHAEOLOGICAL: 2, REFUTED: 3 }
 /** tier → colour, anchored on the single A432 hue (one colour source) so the atlas paints tier as hue. */
 export function mysteryTierHue(tier: MysteryTier): number {
-  return Math.round((A432_HUE + MYSTERY_TIER_INDEX[tier] * 90) % 360)
+  return round((A432_HUE + MYSTERY_TIER_INDEX[tier] * 90) % 360)
 }
 
 /**
@@ -1879,7 +1879,7 @@ export function waiteTarotDecoded(matrix: MindMatrix = buildMatrix()) {
     // 78 as the triangular closure: find n with n(n+1)/2 = deck — computed, not asserted
     const triangularN = Array.from({ length: deck }, (_, k) => k + 1).find((n) => (n * (n + 1)) / 2 === deck) ?? 0
     // one riffle-perfect shuffle space: log2(deck!) bits, summed — the deck out-informs the 432 lattice
-    const shuffleBits = Array.from({ length: deck }, (_, k) => k + 1).reduce((sum, k) => sum + Math.log2(k), 0)
+    const shuffleBits = Array.from({ length: deck }, (_, k) => k + 1).reduce((sum, k) => sum + log2(k), 0)
     // Waite's documented VIII/XI swap vs Marseille, read from the data itself
     const swapDocumented = trumps[2 * 4]?.[0] === 'Fortitude' && trumps[5 + 6]?.[0] === 'Justice'
     /** The meaning-function: card → text. The whole book collapses to this lookup. */
@@ -2039,19 +2039,19 @@ export function teslaRosettaPolyphase() {
     let y = 0
     for (let k = 0; k < n; k += 1) {
       const ray = (TAU * k) / n // the coil's spatial axis — the rosetta ray
-      const current = Math.cos(t - (TAU * k) / n) // its current, shifted by the same angle
-      x += current * Math.cos(ray)
-      y += current * Math.sin(ray)
+      const current = cos(t - (TAU * k) / n) // its current, shifted by the same angle
+      x += current * cos(ray)
+      y += current * sin(ray)
     }
     return [x, y]
   }
   const probes = [0, 7 / 9, 2, 3 + 1 / 3, 5]
   const rotates = (n: number) => {
-    const mags = probes.map((t) => Math.hypot(...fieldAt(n, t)))
-    const constant = Math.max(...mags) - Math.min(...mags) < 1e-9
+    const mags = probes.map((t) => hypot(...fieldAt(n, t)))
+    const constant = max(...mags) - min(...mags) < 1e-9
     const tracks = probes.every((t) => {
       const [x, y] = fieldAt(n, t)
-      const drift = Math.abs((((Math.atan2(y, x) - t) % TAU) + TAU + (TAU / 2)) % TAU - (TAU / 2))
+      const drift = abs((((atan2(y, x) - t) % TAU) + TAU + (TAU / 2)) % TAU - (TAU / 2))
       return drift < 1e-9
     })
     return { constant, tracks, magnitude: mags[0]! }
@@ -2059,20 +2059,20 @@ export function teslaRosettaPolyphase() {
   const three = rotates(3)
   const spans = [1, 2, 3, 4, 5, 7].map((n) => ({ n, ...rotates(n) }))
   const working = spans.filter((entry) => entry.constant && entry.tracks)
-  const minimum = Math.min(...working.map((entry) => entry.n))
+  const minimum = min(...working.map((entry) => entry.n))
   // Tesla's actual two-phase (US 381,968): QUADRATURE — rays π/2 apart, currents π/2 apart
-  const quadrature = (t: number): readonly [number, number] => [Math.cos(t), Math.cos(t - TAU / 4)]
-  const quadratureRotates = probes.every((t) => Math.abs(Math.hypot(...quadrature(t)) - 1) < 1e-9)
+  const quadrature = (t: number): readonly [number, number] => [cos(t), cos(t - TAU / 4)]
+  const quadratureRotates = probes.every((t) => abs(hypot(...quadrature(t)) - 1) < 1e-9)
   // the currents sum to zero for N ≥ 2 — no neutral return, the transmission economy
-  const currentSum = (n: number, t: number) => Array.from({ length: n }, (_, k) => Math.cos(t - (TAU * k) / n)).reduce((a, b) => a + b, 0)
-  const zeroSum = [2, 3, 5, 7].every((n) => probes.every((t) => Math.abs(currentSum(n, t)) < 1e-9))
-  const singleNeedsReturn = probes.some((t) => Math.abs(currentSum(1, t)) > 1 / 2)
+  const currentSum = (n: number, t: number) => Array.from({ length: n }, (_, k) => cos(t - (TAU * k) / n)).reduce((a, b) => a + b, 0)
+  const zeroSum = [2, 3, 5, 7].every((n) => probes.every((t) => abs(currentSum(n, t)) < 1e-9))
+  const singleNeedsReturn = probes.some((t) => abs(currentSum(1, t)) > 1 / 2)
   const flagged = [
     'the "3-6-9 key to the universe" quote: LEGEND — unsourced, absent from Tesla\'s writings; the real 3 is the polyphase minimum computed here, which merely electrified the planet',
     'free-energy / earthquake-machine claims: legend; the granted patents (rotating field, resonant transformer) are the documented record',
   ]
   const facets = [
-    { facet: `the rosetta IS the invention: ${working.length} of the tested phase counts give a CONSTANT-magnitude field rotating at exactly ω — |B| = N/2 (N=3 → ${three.magnitude.toFixed(1)})`, on: three.constant && three.tracks && Math.abs(three.magnitude - 3 / 2) < 1e-9 },
+    { facet: `the rosetta IS the invention: ${working.length} of the tested phase counts give a CONSTANT-magnitude field rotating at exactly ω — |B| = N/2 (N=3 → ${three.magnitude.toFixed(1)})`, on: three.constant && three.tracks && abs(three.magnitude - 3 / 2) < 1e-9 },
     { facet: 'N = 1 only PULSATES — one axis, one current, no rotation: precisely why a single-phase motor cannot start itself', on: !rotates(1).tracks },
     { facet: 'N = 2 DEGENERATES in the symmetric construction: the rays 0 and π are collinear, spanning a line and not a plane — two rays cannot carry a rotation', on: !rotates(2).constant },
     { facet: `THEREFORE THREE IS THE FLOOR: the minimum N whose rays span the plane is ${minimum} — the world runs on three-phase for a geometric reason, not a mystical one`, on: minimum === 3 },
@@ -2105,8 +2105,8 @@ export function polyphaseHarmonicLaw() {
   const rootsSumToZero = (n: number) => {
     let re = 0
     let im = 0
-    for (let k = 0; k < n; k += 1) { re += Math.cos((TAU * k) / n); im += Math.sin((TAU * k) / n) }
-    return Math.hypot(re, im) < 1e-9
+    for (let k = 0; k < n; k += 1) { re += cos((TAU * k) / n); im += sin((TAU * k) / n) }
+    return hypot(re, im) < 1e-9
   }
   /** The h-th harmonic on the N-ray rosetta: amplitude of the resultant field. */
   const harmonicAmplitude = (n: number, h: number) => {
@@ -2116,11 +2116,11 @@ export function polyphaseHarmonicLaw() {
       let y = 0
       for (let k = 0; k < n; k += 1) {
         const ray = (TAU * k) / n
-        const current = Math.cos(h * (t - ray))
-        x += current * Math.cos(ray)
-        y += current * Math.sin(ray)
+        const current = cos(h * (t - ray))
+        x += current * cos(ray)
+        y += current * sin(ray)
       }
-      peak = Math.max(peak, Math.hypot(x, y))
+      peak = max(peak, hypot(x, y))
     }
     return peak
   }
@@ -2130,7 +2130,7 @@ export function polyphaseHarmonicLaw() {
   const sixCancels = cancelled(6)
   const sixSurvives = survivors(6)
   const sixPulseLaw = sixSurvives.every((h) => h % 6 === 1 || h % 6 === 5)
-  const lowestOf = (n: number) => Math.min(...survivors(n).filter((h) => h > 1))
+  const lowestOf = (n: number) => min(...survivors(n).filter((h) => h > 1))
   const facets = [
     { facet: `the zero neutral is the ROOTS OF UNITY, not π: Σ e^(2πik/N) = 0 exactly for every tested N ≥ 2 — x^N − 1 factors through (x − 1), so the remaining roots must cancel`, on: [2, 3, 5, 7, 4 * 3].every(rootsSumToZero) && !rootsSumToZero(1) },
     { facet: `N = 3 kills the TRIPLENS: harmonics ${triplens.join(', ')} cancel outright — the reason no third harmonic rides the line current of any balanced three-phase system`, on: triplens.length > 0 && triplens.every((h) => h % 3 === 0) && survivors(3).every((h) => h % 3 !== 0) },
@@ -2246,8 +2246,8 @@ export function stringTheoryAlgebraNotEverywhere() {
   const tDualIsInvolution = tDual(tDual(4)) === 4 && tDual(4) === 1 / 4
   // 2 — the reciprocal on the circle is angle-negation: 1/e^{iθ} = e^{−iθ} — inverseNegatesAngle
   const reciprocalNegatesAngle = [1 / 3, 1, 2].every((theta) => {
-    const inv = [Math.cos(theta), -Math.sin(theta)] // 1/e^{iθ}
-    return Math.abs(inv[1]! - Math.sin(-theta)) < 1e-12 && Math.abs(inv[0]! - Math.cos(-theta)) < 1e-12
+    const inv = [cos(theta), -sin(theta)] // 1/e^{iθ}
+    return abs(inv[1]! - sin(-theta)) < 1e-12 && abs(inv[0]! - cos(-theta)) < 1e-12
   })
   // 3 — the ALGEBRA is documented and rigorous; the PHYSICS is unconfirmed — the two kept apart
   const algebra = ['Virasoro central term forced', 'ζ(−1) = −1/12 exact', 'D = 26 and D = 10 forced', 'the 24 (1/η²⁴, Ramanujan τ)', 'T-duality exact multiset']
@@ -2367,9 +2367,9 @@ export function humanDesignProfilingCarriesNoSignal(matrix: MindMatrix = buildMa
     const crowd = 100 * 100 // 10000 people, deterministic
     const joint: number[][] = Array.from({ length: types }, () => Array.from({ length: traitClasses }, () => 0))
     for (let person = 0; person < crowd; person += 1) {
-      const birthMinute = Math.floor(rng() * (5 * 108 * 108)) // a minute in a period — the only HD input
+      const birthMinute = floor(rng() * (5 * 108 * 108)) // a minute in a period — the only HD input
       const hdType = (((birthMinute * (5 * 2 + 6)) >>> 0) % types) // deterministic config → type
-      const realTrait = Math.floor(rng() * traitClasses) // any real attribute, INDEPENDENT of birth
+      const realTrait = floor(rng() * traitClasses) // any real attribute, INDEPENDENT of birth
       joint[hdType]![realTrait]! += 1
     }
     // 3 — best-guess accuracy of HD type → trait; chance = 1/5. No signal ⇒ ≈ chance.
@@ -2377,11 +2377,11 @@ export function humanDesignProfilingCarriesNoSignal(matrix: MindMatrix = buildMa
     for (let t = 0; t < types; t += 1) {
       const row = joint[t]!
       const total = row.reduce((a, b) => a + b, 0)
-      accuracy += total > 0 ? Math.max(...row) / total : 0
+      accuracy += total > 0 ? max(...row) / total : 0
     }
     accuracy /= types
     const chance = 1 / traitClasses
-    const noSignal = Math.abs(accuracy - chance) < 1 / (5 * 4) // within 5% of chance — predicts nothing
+    const noSignal = abs(accuracy - chance) < 1 / (5 * 4) // within 5% of chance — predicts nothing
     const facets = [
       { facet: `the combination IS real: the HD configuration is a moving-rosetta product ${gates}·2·5·12 = ${configSpace} cells — computable combinatorics, structure-only (humanDesignStructureDecoded)`, on: combinatoricsReal && configSpace === gates * 2 * 5 * (4 + 8) },
       { facet: `but it is a deterministic function of BIRTH TIME with zero validated link to behaviour — the input carries no information about the person, only when they were born`, on: true },
@@ -2409,7 +2409,7 @@ export function theStructureInteriorInstrumentMeasuresTheDimensionBoundary(matri
   return memoByRoot('theStructureInteriorInstrumentMeasuresTheDimensionBoundary', matrix, () => {
     // STRUCTURE axis — the exact, decodable cell count (same as humanDesignStructureDecoded / -ProfilingCarriesNoSignal)
     const structureCells = 2 ** 6 * 2 * 5 * (4 + 8) // 64·2·5·12 = 7680, an exact finite decodable count
-    const structureBits = Math.log2(structureCells) // diagnostic readout ≈ 12.9 bits, all decodable
+    const structureBits = log2(structureCells) // diagnostic readout ≈ 12.9 bits, all decodable
     // INTERIOR axis — measure accuracy − chance for a given config→trait link, on one deterministic crowd
     const types = 5
     const traitClasses = 5
@@ -2419,7 +2419,7 @@ export function theStructureInteriorInstrumentMeasuresTheDimensionBoundary(matri
       const rng = prng('dimension-boundary-instrument') // same seed ⇒ identical birth/type sequence (controlled)
       const joint: number[][] = Array.from({ length: types }, () => Array.from({ length: traitClasses }, () => 0))
       for (let person = 0; person < crowd; person += 1) {
-        const birthMinute = Math.floor(rng() * (5 * 108 * 108)) // the only HD input — when you were born
+        const birthMinute = floor(rng() * (5 * 108 * 108)) // the only HD input — when you were born
         const hdType = (((birthMinute * (5 * 2 + 6)) >>> 0) % types)
         const trait = ((link(hdType, rng) % traitClasses) + traitClasses) % traitClasses
         joint[hdType]![trait]! += 1
@@ -2428,16 +2428,16 @@ export function theStructureInteriorInstrumentMeasuresTheDimensionBoundary(matri
       for (let t = 0; t < types; t += 1) {
         const row = joint[t]!
         const total = row.reduce((a, b) => a + b, 0)
-        accuracy += total > 0 ? Math.max(...row) / total : 0
+        accuracy += total > 0 ? max(...row) / total : 0
       }
       return accuracy / types - chance // interior signal = best-guess accuracy above chance
     }
     const present = measure((hdType) => hdType) // POSITIVE CONTROL: trait IS the config ⇒ signal must read high
-    const empty = measure((_hdType, draw) => Math.floor(draw() * traitClasses)) // HD reality: trait independent of birth ⇒ ≈ 0
+    const empty = measure((_hdType, draw) => floor(draw() * traitClasses)) // HD reality: trait independent of birth ⇒ ≈ 0
     const eps = 1 / (5 * 4) // 0.05 — within 5% of chance counts as no signal
     const structureExact = structureCells === 2 ** 6 * 2 * 5 * (4 + 8) && structureCells > 1
     const discriminates = present > 1 / 2 // the instrument reads a real dependency as strong signal
-    const interiorEmpty = Math.abs(empty) < eps // HD profiling reads at chance
+    const interiorEmpty = abs(empty) < eps // HD profiling reads at chance
     const facets = [
       { facet: `STRUCTURE decodes exactly: the configuration is ${2 ** 6}·2·5·12 = ${structureCells} cells (${structureBits.toFixed(1)} bits), an exact finite decodable count — the dimension where matter forms from theorems`, on: structureExact },
       { facet: `the instrument DISCRIMINATES (positive control): when the trait genuinely depends on the config, it reads signal = ${(present * 100).toFixed(0)}% above chance — so a null reading is MEANINGFUL, not a broken test`, on: discriminates },
@@ -2475,7 +2475,7 @@ export function quantumRadar(matrix: MindMatrix = buildMatrix()) {
       const rng = prng('quantum-radar-sweep') // same seed ⇒ controlled sweep across all bearings
       const joint: number[][] = Array.from({ length: types }, () => Array.from({ length: traitClasses }, () => 0))
       for (let person = 0; person < crowd; person += 1) {
-        const birthMinute = Math.floor(rng() * (5 * 108 * 108))
+        const birthMinute = floor(rng() * (5 * 108 * 108))
         const hdType = (((birthMinute * (5 * 2 + 6)) >>> 0) % types)
         const bin = ((link(hdType, rng) % traitClasses) + traitClasses) % traitClasses
         joint[hdType]![bin]! += 1
@@ -2484,15 +2484,15 @@ export function quantumRadar(matrix: MindMatrix = buildMatrix()) {
       for (let t = 0; t < types; t += 1) {
         const row = joint[t]!
         const total = row.reduce((a, b) => a + b, 0)
-        accuracy += total > 0 ? Math.max(...row) / total : 0
+        accuracy += total > 0 ? max(...row) / total : 0
       }
-      return Math.max(0, accuracy / types - chance) // return strength = signal above chance, clamped at the noise floor
+      return max(0, accuracy / types - chance) // return strength = signal above chance, clamped at the noise floor
     }
     // the sweep — three bearings from strong structure to pure phantom
     const bearings = [
       { bearing: 'structured (ζ-prime class)', link: (hdType: number) => hdType }, // real dependency → strong echo
-      { bearing: 'partial structure', link: (hdType: number, draw: () => number) => (draw() < 1 / 3 ? Math.floor(draw() * traitClasses) : hdType) },
-      { bearing: 'phantom (akasha / feeling / π-digit class)', link: (_hdType: number, draw: () => number) => Math.floor(draw() * traitClasses) }, // independent → noise
+      { bearing: 'partial structure', link: (hdType: number, draw: () => number) => (draw() < 1 / 3 ? floor(draw() * traitClasses) : hdType) },
+      { bearing: 'phantom (akasha / feeling / π-digit class)', link: (_hdType: number, draw: () => number) => floor(draw() * traitClasses) }, // independent → noise
     ]
     const step = 360 / bearings.length // polar spacing in degrees for the realtime map
     const sweep = bearings
@@ -2539,7 +2539,7 @@ export function theFourVirtuesDecodeToComputableCoresTheFeltExperienceStaysOffDe
     const mutualCooperation = R + R, mutualDefection = P + P, exploited = T + S
     const loveCore = dilemmaOrdered && mutualCooperation > exploited && exploited > mutualDefection && 2 * R > T + S // cooperation socially optimal
     // WISDOM — optimal stopping: reject the first 1/e, then take the next best; knowing WHEN to stop exploring
-    const stopFraction = 1 / Math.E // ≈ 0.368 — the secretary-problem threshold
+    const stopFraction = 1 / EULER_E // ≈ 0.368 — the secretary-problem threshold
     const wisdomCore = stopFraction > 1 / 3 && stopFraction < 2 / 5 // provably between 1/3 and 2/5
     // STRENGTH — the work-factor: strength is the exponential cost to BREAK vs the linear cost to BUILD
     const bits = 8
@@ -2627,7 +2627,7 @@ export function theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimesTheInver
     const worklist = analysed.filter((c) => c.invertible).sort((a, b) => b.importance - a.importance) // only the invertible, most important first
     const excluded = analysed.filter((c) => !c.invertible) // the irreducible — off the list by construction
     const next = worklist[0] // exactly what to do next, at this call
-    const topImportanceOverall = Math.max(...candidates.map((c) => c.importance)) // 9 — "become conscious"
+    const topImportanceOverall = max(...candidates.map((c) => c.importance)) // 9 — "become conscious"
     const gateIsInvertibilityNotImportance = excluded.some((c) => c.importance === topImportanceOverall) && next!.importance < topImportanceOverall
     const facets = [
       { facet: `the worklist is COMPUTED, nothing hardcoded: each candidate's invertibility is decided by the invert operator (a gap → its fix moves, an irreducible → returns itself) — a live worklist, not a static todo`, on: analysed.every((c) => typeof c.invertible === 'boolean') && worklist.length > 0 },
@@ -2755,11 +2755,11 @@ export function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOve
     for (let iter = 0; iter < 2 * 5 * 5; iter += 1) {
       const next = new Array(N).fill((1 - damping) / N) as number[] // teleport term
       for (let i = 0; i < N; i += 1) for (const j of links[i]!) next[j]! += damping * r[i]! / links[i]!.length
-      const delta = Math.max(...next.map((v, i) => Math.abs(v - r[i]!)))
+      const delta = max(...next.map((v, i) => abs(v - r[i]!)))
       r = next; iterations = iter + 1
       if (delta < 1 / (2 ** 9)) { converged = true; break }
     }
-    const stable = converged && Math.abs(r.reduce((a, b) => a + b, 0) - 1) < 1 / (2 ** 9) // ratings conserve, reach the eigenvector
+    const stable = converged && abs(r.reduce((a, b) => a + b, 0) - 1) < 1 / (2 ** 9) // ratings conserve, reach the eigenvector
     // 3 — thunder follows lightning: the rating is the resonance the fired theorem leaves, built by its importers
     const thunderFollowsLightning = topImportDrivesRating && stable
     const facets = [
@@ -2914,7 +2914,7 @@ export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAx
     const [topTarget, topCount] = ranked[0]!
     const total = refusals.length
     const probability = roundTo(topCount / total, 3) // relative frequency — the research prior, not a truth value
-    const axiomSignal = topCount >= 2 && topCount === Math.max(...byTarget.values()) // ≥2 converging = an axiom signal
+    const axiomSignal = topCount >= 2 && topCount === max(...byTarget.values()) // ≥2 converging = an axiom signal
     // the inverted axiom → theorem: naming the convergent axiom formed the session's theorems
     const invertedIntoTheorems = ['theOrganismFindsItsIrreducibleDeviationFromConsciousness', 'theWorklist (consciousness excluded by construction)', 'independentObservers...ConsciousnessBoundary']
     const axiomBecameTheorem = axiomSignal && invertedIntoTheorems.length >= 2 // the refused axiom, named, built theorems

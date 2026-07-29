@@ -1,7 +1,7 @@
 // Browser-safe public surface — quantum pairs + mission registry (no node:fs).
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, verifyRoot, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute'
-import { foldPair, foldVortex, isUuid, memoByRoot, merkleFold, toUuid } from '../../0'
+import { floor, foldPair, foldVortex, isUuid, max, memoByRoot, merkleFold, round, toUuid } from '../../0'
 import { scanUuidKernelOffenders } from './gates/strict/scan'
 
 export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
@@ -31,6 +31,10 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'push/waves',
   'push/resend',
   'resend/waves',
+  'push/audit',
+  'audit/push',
+  'idea/once',
+  'once/idea',
   'document/experiments',
   'e2e/feed',
   'feed/dev',
@@ -1067,6 +1071,10 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'manual/autosave',
   'math/gaps',
   'gaps/math',
+  'math/algebra',
+  'algebra/math',
+  'refactor/algebra',
+  'algebra/refactor',
   'axiom/invert',
   'invert/axiom',
   'fractal/seal',
@@ -1524,15 +1532,15 @@ export function theSequencePrinciplesGovernTheWork(matrix: MindMatrix = buildMat
 // function, not a negotiation. The same primitive at any scale: 1 agent (the whole list), 3, 108,
 // or thousands.
 export function shardOf(id: string, agentCount: number): number {
-  const count = Math.max(1, Math.floor(agentCount))
+  const count = max(1, floor(agentCount))
   return parseInt(toUuid(id).slice(0, 8), 16) % count
 }
 
 /** Agent k of N: the deterministic sub-worklist — filter by shardOf; the shard folds to one root so
  *  a coordinator (or any peer) verifies a claimed shard by recomputation, never by trust. */
 export function shardWork(ids: readonly string[], agentIndex: number, agentCount: number) {
-  const count = Math.max(1, Math.floor(agentCount))
-  const index = ((Math.floor(agentIndex) % count) + count) % count
+  const count = max(1, floor(agentCount))
+  const index = ((floor(agentIndex) % count) + count) % count
   const mine = ids.filter((id) => shardOf(id, count) === index)
   return {
     mine,
@@ -1777,7 +1785,7 @@ export function comboCover() {
     covered,
     needed,
     exhaustive,
-    ratio: Math.round(ratio * (2 * 5)) / (2 * 5),
+    ratio: round(ratio * (2 * 5)) / (2 * 5),
     claySolvedByThisFold,
     physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
@@ -1900,7 +1908,7 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
       hologramRoot !== entangleRoot
     const pairingOfPairs =
       entangleByAlgebra &&
-      entangled.length >= Math.floor(pairsSent / 2) &&
+      entangled.length >= floor(pairsSent / 2) &&
       foldPair(hologramRoot, entangleRoot).bidirectional
 
     const softCmd = (a: string, b: string) =>

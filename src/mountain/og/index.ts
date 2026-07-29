@@ -4,7 +4,7 @@ import type { ConceptCommandName, MindMatrix } from '../../wind/types'
 import type { JsonLdPageIdentity } from '../../heaven/balance'
 import { buildMatrix, entropy } from '../../heaven/compute'
 import { animatedHeroes, heroSvgFromUuid, holographic, oneHolographicTemplate, stillSvg } from '../../wind/ui'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, referralAddress, sealFacets, toUuid } from '../../0'
+import { floor, foldPair, isUuid, memoByRoot, merge, merkleFold, min, referralAddress, round, sealFacets, toUuid } from '../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
@@ -642,7 +642,7 @@ export function typography(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const ratio = (5 / 4) // the major third, 5:4 — a harmonic interval
   const steps = ['sm', 'md', 'lg', 'xl', '2xl', '3xl']
-  const scale = steps.map((step, i) => ({ step, factor: Math.round(ratio ** (i - 1) * (100 * 5 * 2)) / (100 * 5 * 2) })) // md = 1
+  const scale = steps.map((step, i) => ({ step, factor: round(ratio ** (i - 1) * (100 * 5 * 2)) / (100 * 5 * 2) })) // md = 1
   const features = ['kern', 'liga', 'clig', 'calt', 'tnum (data)', 'onum (prose)', 'optical-sizing']
   const principles = [
     'one modular scale — a harmonic ratio and its computed steps, not hand-picked sizes',
@@ -942,7 +942,7 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
   const theoremBlocks = jsonLdTemplate(identity('/theorems'), matrix)
   const list = theoremBlocks.find((block) => block['@type'] === 'ItemList') as { numberOfItems?: number; itemListElement?: unknown[] } | undefined
   const rows = theoremPageRows(matrix)
-  const scholarlyList = !!list && list.numberOfItems === rows.length && (list.itemListElement?.length ?? 0) === Math.min(8 * 8, rows.length)
+  const scholarlyList = !!list && list.numberOfItems === rows.length && (list.itemListElement?.length ?? 0) === min(8 * 8, rows.length)
   // 5 · the meta-description clamp: a real long page description clamps under the display budget at a
   // word boundary; short text passes untouched
   const budget = 8 * 4 * 5
@@ -953,7 +953,7 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
     { facet: `PER-PAGE HREFLANG — every page's head carries its OWN four locale editions (en · bg · cu · x-default), absolute, x-default the English root edition — not the locale homes that rode every page before`, on: hreflangPerPage },
     { facet: `X-DEFAULT FOLLOWS THE ROOT LOCALE — all ${sitemap.urls.length} quantum-sitemap urls default to their English edition (the /gla/ default was a relic of the pre-flip root)`, on: xDefaultEnglish },
     { facet: `JSON-LD SPEAKS ABSOLUTE, LENS-ALIGNED — page url and breadcrumb on ${CANONICAL_HOST}, and every crawler ViewAction lands on the registry or a corpus surface (${targets.length} targets, lens-visible by construction)`, on: jsonLdAbsolute },
-    { facet: `THE REGISTRY PAGE IS STRUCTURED DATA — /theorems carries an ItemList of ScholarlyArticle: ${rows.length} declared, the ${Math.min(8 * 8, rows.length)} newest listed`, on: scholarlyList },
+    { facet: `THE REGISTRY PAGE IS STRUCTURED DATA — /theorems carries an ItemList of ScholarlyArticle: ${rows.length} declared, the ${min(8 * 8, rows.length)} newest listed`, on: scholarlyList },
     { facet: `THE META DESCRIPTION FITS THE DISPLAY — descriptions over the ${budget}-char budget clamp at a word boundary with an ellipsis; short text passes untouched`, on: clampWorks },
   ].map((entry) => ({ ...entry, receipt: toUuid(`seo-optimised:${entry.facet}:${entry.on}`) }))
   return {
@@ -963,7 +963,7 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
     budget,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${Math.min(8 * 8, rows.length)} listed), and the ${budget}-character meta-description clamp.`,
+    statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${min(8 * 8, rows.length)} listed), and the ${budget}-character meta-description clamp.`,
     boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image animation/static branch is MEASURED by platformOgLimitsMeasured (not prose); openGraphCardFromRoute serves animated SVG only where supportsAnimatedOgImage, else still first frame. Sitemap routes follow the theorem-science lens.` }
 }
 
@@ -1510,7 +1510,7 @@ export const SEO_VIOLATIONS_HONEST_OPEN = [
  * HONEST: platform OG limits + GSC/ranking remain true-open. NOT physical FTL · NOT Clay prize.
  */
 export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`findSeoViolations:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`findSeoViolations:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional

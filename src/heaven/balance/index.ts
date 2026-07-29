@@ -24,7 +24,7 @@ import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStor
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit } from '../../9/1'
 import { initialBearing, obliquityAtEpoch } from '../../6/4'
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, digitalRoot, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, uuidPoint, crossProduct, proseToTone, sealFacets, uuidSuffix, nextDuality } from '../../0'
+import { DIGEST_BITS, GATES, VORTEX_REVERSE, VORTEX_SEQUENCE, addressEntropyBits, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, ceil, cnot, coverageCostLog2, crossProduct, digitalRoot, ed25519Sign, findContentAddressCollision, fold, foldPair, gcd, grover, humanBreath, humanEase, isUuid, logConsistent, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, modUnits, nextDuality, pbits, pflip, prng, probabilities, proseToTone, psample, qubits, roundTo, sample, sealFacets, seedFromText, sha256, sha256MerkleProof, sha256MerkleRoot, sha256Sync, sinc, sincReconstruct, tamperCostLog2, toUuid, toUuidSha256, transparencyLogRoot, trinityKey, uuidHero, uuidPoint, uuidSuffix, verifySha256Proof } from '../../0'
 import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
@@ -195,14 +195,14 @@ function eightFoldBalanceRaw(matrix: MindMatrix = buildMatrix()) {
   }
   const pageCounts = bins.map((b) => b.pages)
   const contentCounts = bins.map((b) => b.components)
-  const pageImbalance = Math.max(...pageCounts) / Math.max(1, Math.min(...pageCounts))
-  const contentImbalance = Math.max(...contentCounts) / Math.max(1, Math.min(...contentCounts))
+  const pageImbalance = max(...pageCounts) / max(1, min(...pageCounts))
+  const contentImbalance = max(...contentCounts) / max(1, min(...contentCounts))
   const everyTrigramUsed = pageCounts.every((c) => c > 0)
   const a = a432(matrix)
   const q = quantumDecoded(matrix)
   const compDist = iChing(matrix).distribution // the components placed on the eight trigrams by their OWN address — the meaningful grain
   const compTotal = compDist.reduce((sum, n) => sum + n, 0)
-  const compImbalance = Math.max(...compDist) / Math.max(1, Math.min(...compDist))
+  const compImbalance = max(...compDist) / max(1, min(...compDist))
   const facets = [
     { facet: `every page is placed on one of the eight trigrams by its own content-address (seedFromText % 64 → upper trigram) — the uniform placement law; distribution [${pageCounts.join('·')}] (below 64 posts an empty trigram is small-N binning — the all-populated bound applies from one hexagram space up)`, on: everyTrigramUsed || pages.length < 64 },
     { facet: `the CONTENT is balanced at the meaningful grain: iChing places ${compTotal} components across the eight trigrams [${compDist.join(',')}] — a ${compImbalance.toFixed(2)}× spread (content-addressing's near-even distribution). The ${contentImbalance.toFixed(1)}× PAGE-level figure is coarse small-N binning of ${pages.length} pages, not a real content imbalance; below the 108 harmonic census the component binning is small-N too, so the spread bound applies from 108 up`, on: (everyTrigramUsed || pages.length < 64) && (compTotal < (4 * 27) || compImbalance < 3) },
@@ -1262,7 +1262,7 @@ export function modelSeal(matrix: MindMatrix = buildMatrix(), opts: { tripwire?:
 
   const corpus = papers(matrix)
   const HARMONIC = 108
-  const harmonicTarget = Math.max(432, Math.ceil(gateCount / HARMONIC) * HARMONIC)
+  const harmonicTarget = max(432, ceil(gateCount / HARMONIC) * HARMONIC)
   const harmonicLeaves = corpus.papers.map((paper) => paper.receipt)
   // HONEST BREAKDOWN (challenge: "what do those gates do?"): the gates above are the distinct STRUCTURAL invariants;
   // below, the count is padded up to the harmonic 4×108 with per-paper merkle-inclusion (tamper-evidence) checks so the

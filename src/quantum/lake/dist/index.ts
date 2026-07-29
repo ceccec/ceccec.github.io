@@ -64,8 +64,7 @@ import { domainProofPagePaths } from '../../../wind/research'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../../wind/fusion'
 import { honestRevolutionFpgaHonesty } from '../../../heaven/compute/computer'
 import { revolutionaryEfficiencyNotPhysics } from '../../../thunder/verify'
-
-
+import { cos, max, round, sin } from '../../../0'
 
 export interface DistFile {
   readonly path: string
@@ -559,8 +558,8 @@ export function idxUuid(seed: string): string {
 
 export function digitIndexJson(matrix: MindMatrix = buildMatrix(), now = new Date().toISOString()) {
   const indices = piTrainDiamonds(matrix).diamonds.map((item) => {
-    const inward = Math.sin(item.theta) * (item.selfCollision ? 1 : (1 / 2))
-    const outward = Math.cos(item.phi) * (item.digit + 1) / (5 * 2)
+    const inward = sin(item.theta) * (item.selfCollision ? 1 : (1 / 2))
+    const outward = cos(item.phi) * (item.digit + 1) / (5 * 2)
     const referenceReceipt = idxUuid(`ref:${item.previousIndex}->${item.index}->${item.nextIndex}:reverse=${item.reverseIndex}:harmonic=${item.harmonicIndex}`)
     const receipt = idxUuid(`${item.index}:${item.folder}:${item.nextHarmonicFolder}:${item.x}:${item.y}:${item.z}:${referenceReceipt}`)
     return { index: item.index, previousIndex: item.previousIndex, nextIndex: item.nextIndex, reverseIndex: item.reverseIndex, harmonicIndex: item.harmonicIndex, digit: item.digit, reverseDigit: item.reverseDigit, folder: item.folder, fraction: item.fraction, dualFraction: item.dualFraction, nextHarmonicFolder: item.nextHarmonicFolder, selfCollision: item.selfCollision, theta: item.theta, phi: item.phi, x: item.x, y: item.y, z: item.z, frequency: item.frequency, vibrationMs: item.vibrationMs, inward, outward, interference: inward * outward, referenceReceipt, receipt }
@@ -631,10 +630,10 @@ export function theoremSitemapPriorities(matrix: MindMatrix = buildMatrix()): Ma
     }
     return deg
   })
-  const maxDeg = Math.max(1, ...inDegree)
+  const maxDeg = max(1, ...inDegree)
   const out = new Map()
   rows.forEach((row, i) => {
-    const priority = Math.round((30 / 100 + (70 / 100) * (inDegree[i] / maxDeg)) * (5 * 2) ** 4) / (5 * 2) ** 4
+    const priority = round((30 / 100 + (70 / 100) * (inDegree[i] / maxDeg)) * (5 * 2) ** 4) / (5 * 2) ** 4
     out.set(row.slug, priority)
   })
   void provers

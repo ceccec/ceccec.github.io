@@ -53,7 +53,7 @@ import {
   theoremScienceLens,
   githubPermalink,
   type MindMatrix } from '../../../heaven/mind'
-import { isUuid, merkleFold, merge, memoByRoot, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../../../0'
+import { isUuid, max, merkleFold, merge, memoByRoot, round, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../../../0'
 import { quantumComputerHonestClaim } from '../../../science'
 
 /** Escape the curly braces that VitePress's markdown-it reads as a trailing attribute block ({.class}/{#id}/
@@ -924,7 +924,7 @@ export function improveWritingAndSpeechFromComputationalExperience(matrix: MindM
   // WRITING — the prose carries computed values (data-bearing), the no-prose-in-methods discipline.
   const dataBearing = (text: string) => /[0-9]/.test(text) || /[·⊕→≈≠√²³½∈⊂]/.test(text)
   const sample = atoms.slice(0, 2 * (5 * 2)).map((atom) => atom.states)
-  const writingRatio = sample.filter(dataBearing).length / Math.max(1, sample.length)
+  const writingRatio = sample.filter(dataBearing).length / max(1, sample.length)
   const writingGrounded = writingRatio >= 3 / 4 // most writing carries computed values, not pure prose
   // SPEECH — portalChat generates deterministic replies from the computed corpus.
   const queries = ['what is entanglement', 'what is the journal', 'what are you']
@@ -934,16 +934,16 @@ export function improveWritingAndSpeechFromComputationalExperience(matrix: MindM
   const deterministic = portalChat('what is the journal?', matrix).answer === portalChat('what is the journal?', matrix).answer
   const improvesWithExperience = experience > 3 * 100 && writingGrounded && speechGrounded // more atoms → more grounding
   const facets = [
-    { facet: `WRITING IS GENERATED FROM COMPUTATION — the prose (statements) is grounded in computed values: ${Math.round(writingRatio * 100)}% of a sample carries a number or computed symbol (data-bearing), the no-prose-in-methods discipline — writing is a join of computed facets, not free text`, on: writingGrounded },
-    { facet: `SPEECH IS GROUNDED IN THE CORPUS — portalChat generates deterministic replies from the computed corpus; ${Math.round(speechRatio * 100)}% of the probe queries answer grounded (${speechGrounded}) — speech recomputed from the experience, not invented`, on: speechGrounded },
+    { facet: `WRITING IS GENERATED FROM COMPUTATION — the prose (statements) is grounded in computed values: ${round(writingRatio * 100)}% of a sample carries a number or computed symbol (data-bearing), the no-prose-in-methods discipline — writing is a join of computed facets, not free text`, on: writingGrounded },
+    { facet: `SPEECH IS GROUNDED IN THE CORPUS — portalChat generates deterministic replies from the computed corpus; ${round(speechRatio * 100)}% of the probe queries answer grounded (${speechGrounded}) — speech recomputed from the experience, not invented`, on: speechGrounded },
     { facet: `BOTH IMPROVE WITH EXPERIENCE — as the corpus grows (${experience} computed atoms), the writing has more data to bear and the speech more to ground; the grounding scales with the accumulated computation (${improvesWithExperience})`, on: improvesWithExperience },
     { facet: `DETERMINISTIC & NO-EGRESS — the writing and speech recompute from the sealed corpus (same input → same output, ${deterministic}), client-side, with no learned model and no network`, on: deterministic },
     { facet: `THE DEMARCATION — writing and speech improve by GROUNDING in the computed corpus (deterministic, no-egress), NOT a learned language model or an LLM; "experience" = the accumulated computed facts, not user telemetry.`, on: writingGrounded && speechGrounded && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`writing-speech:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    writingRatio: Math.round(writingRatio * 100) / 100,
-    speechRatio: Math.round(speechRatio * 100) / 100,
+    writingRatio: round(writingRatio * 100) / 100,
+    speechRatio: round(speechRatio * 100) / 100,
     experience,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
@@ -1094,9 +1094,9 @@ export function theHomeReadmeProseEntropyAudit(matrix: MindMatrix = buildMatrix(
     const hasComputedValue = (l: string) => /`[^`]+`/.test(l) || /\d/.test(l) || l.includes('](') || /https?:\/\//.test(l) // code, number, link
     // a pure-prose line: a real sentence (ends in a period, substantial) carrying NO computed value — the entropy the gates miss
     const pureProse = content.filter((l) => !hasComputedValue(l) && l.length > 40 && /[a-z]{4 }/i.test(l) && /[.!?]$/.test(l))
-    const proseEntropy = roundTo(pureProse.length / Math.max(1, content.length), 3)
+    const proseEntropy = roundTo(pureProse.length / max(1, content.length), 3)
     const dataBearing = content.filter((l) => hasComputedValue(l))
-    const computedRatio = roundTo(dataBearing.length / Math.max(1, content.length), 3)
+    const computedRatio = roundTo(dataBearing.length / max(1, content.length), 3)
     const facets = [
       { facet: `it MEASURES what the gates miss: the crack gate catches literals and the no-prose gate catches METHOD prose, but neither scores the PRESENTED prose — this audit scans ${content.length} content lines and finds ${pureProse.length} pure-prose lines (a sentence with NO computed value)`, on: content.length > 0 && pureProse.length >= 0 },
       { facet: `PROSE ENTROPY = ${proseEntropy}: ${pureProse.length}/${content.length} content lines are hand-written sentences carrying no computed value — vs ${computedRatio} data-bearing — so the entropy is real and measurable, the gates simply never scored it`, on: proseEntropy >= 0 && computedRatio > proseEntropy },
@@ -1152,7 +1152,7 @@ export function theTypographyGrammarSealsDimensionalCracksEveryElementCarriesACo
     const cracks = presented.filter((r) => r === 'crack').length
     // the equation balances: sealed + boundaries + cracks = presented (double-entry — every line accounted)
     const balances = sealed + boundaries + cracks === presented.length
-    const sealedRatio = roundTo(sealed / Math.max(1, presented.length), 3)
+    const sealedRatio = roundTo(sealed / max(1, presented.length), 3)
     const facets = [
       { facet: `the GRAMMAR is complete: ${grammar.length} typography elements each mapped to a computed role — \`code\`=exact value, [link]=content-address, **bold**=label, list=set, |table|=relation, #=frame, >=boundary — a precise typing of prose, not decoration`, on: grammar.length === 7 && grammar.every((g) => g.role.length > 0) },
       { facet: `it SEALS the dimensional cracks: of ${presented.length} presented lines, ${sealed} carry a computed value (ratio ${sealedRatio}), ${boundaries} are named boundaries, and only ${cracks} remain plain-prose cracks — the grammar types and detects each`, on: sealedRatio > 1 / 2 && cracks >= 0 },

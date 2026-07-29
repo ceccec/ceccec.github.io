@@ -8,7 +8,7 @@ import {
   MATHOVERFLOW_SITE, stackExchangeUrl,
 } from '../compute'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
-import { sealFacets } from '../../0'
+import { abs, exp, floor, log, max, min, round, sealFacets, sqrt } from '../../0'
 import { selfHealing } from '../../mountain/geometry'
 import { collisionHealing } from '../../water/crypto'
 import { healingHarmonic } from '../../lake/music'
@@ -1320,18 +1320,18 @@ export function theGateAutoTightensInRealtimeTheThresholdRatchetsTowardBestNever
     const runs = [9, 7, 7, 5, 5, 3]
     // the gate threshold auto-tightens: T_next = min(T_current, metric) — the running minimum (the ratchet)
     let threshold = Infinity
-    const thresholds = runs.map((m) => { threshold = Math.min(threshold, m); return threshold })
+    const thresholds = runs.map((m) => { threshold = min(threshold, m); return threshold })
     // 1 — it tightens toward the best: the final threshold equals the best metric seen
-    const tightensToBest = thresholds[thresholds.length - 1] === Math.min(...runs)
+    const tightensToBest = thresholds[thresholds.length - 1] === min(...runs)
     // 2 — it NEVER loosens: the threshold sequence is monotone non-increasing (the ratchet property)
     const neverLoosens = thresholds.every((t, i) => i === 0 || t <= thresholds[i - 1]!)
     // 3 — it LOCKS improvements: once tightened, a regression above the threshold fails the gate
     const finalThreshold = thresholds[thresholds.length - 1]!
     const rejectsRegression = (finalThreshold + 1) > finalThreshold && runs[0]! > finalThreshold // a metric above the ratchet is rejected
     // 4 — the ratchet is idempotent-stable: re-running on the same best leaves the threshold unchanged (a fixed point)
-    const stable = Math.min(finalThreshold, Math.min(...runs)) === finalThreshold
+    const stable = min(finalThreshold, min(...runs)) === finalThreshold
     const facets = [
-      { facet: `the gate AUTO-TIGHTENS in realtime: the threshold recomputes each run as min(threshold, metric) — the running minimum [${thresholds.join(', ')}] — ratcheting toward the best (${Math.min(...runs)}), no manual bump`, on: tightensToBest },
+      { facet: `the gate AUTO-TIGHTENS in realtime: the threshold recomputes each run as min(threshold, metric) — the running minimum [${thresholds.join(', ')}] — ratcheting toward the best (${min(...runs)}), no manual bump`, on: tightensToBest },
       { facet: `it NEVER loosens: the threshold sequence is monotone non-increasing (min-composition is monotone) — once tightened it cannot regress, verified over all ${runs.length} runs`, on: neverLoosens },
       { facet: `it LOCKS improvements in: the moment the metric drops the threshold drops to match, so any later regression above ${finalThreshold} fails the gate — the improvement is enforced automatically`, on: rejectsRegression },
       { facet: `the ratchet is a stable FIXED POINT: re-running on the current best leaves the threshold unchanged (min(best,best)=best) — algebraic, monotone, idempotent; this models the auto-tightening gate (wiring it into the live trinity is the next step)`, on: stable && neverLoosens },
@@ -1485,7 +1485,7 @@ export function theGateValidatesByAlgebraicEqualisationLhsMinusRhsIsZeroSecurity
     const security = !equalisesOverRange(falseIdentity)
     // 3 — EFFICIENCY: verified in bounded (polynomial N²) ops, and the range ratchets (auto-tighten toward exhaustive)
     const opsBounded = N * N < (2 * 5) ** 3 // polynomial, not exponential
-    const efficiency = opsBounded && Math.min(N * N, (2 * 5) ** 3) === N * N // the check is the cheap side (the ratchet holds the min)
+    const efficiency = opsBounded && min(N * N, (2 * 5) ** 3) === N * N // the check is the cheap side (the ratchet holds the min)
     // 4 — USABILITY: a clear pass/fail, refutable by a SINGLE counterexample (a=b=1 falsifies the false identity)
     const usability = falseIdentity(1, 1) === 2 && trueIdentity(1, 1) === 0 // one input decides
     const facets = [
@@ -1657,7 +1657,7 @@ export function theoremsHandlingNastyInfinitiesTheProjectivePointTamesOneOverZer
     const grows = partialSum > N * N / 2 && partialSum > 2 * N // unbounded (quadratic in N)
     // a CONVERGENT series by contrast tames itself: Σ1/n² → π²/6 (finite)
     let basel = 0; for (let n = 1; n <= N; n += 1) basel += 1 / (n * n)
-    const converges = Math.abs(basel - ((TAU / 2) ** 2) / 6) < 1 / N // approaches the finite limit
+    const converges = abs(basel - ((TAU / 2) ** 2) / 6) < 1 / N // approaches the finite limit
     // 3 — REGULARISATION assigns a value but it is NOT the sum: ζ(−1) = −1/12, while the series → +∞
     const regularised = -1 / (6 * 2) // ζ(−1) = −1/12 (analytic continuation)
     const regularisationIsNotTheSum = regularised < 0 && partialSum > 0 && grows // −1/12 < 0 but partials → +∞
@@ -1956,7 +1956,7 @@ export function theTheoremAxiomAccountingProvesPairsInTrinitiesDoubleEntryBalanc
 export function optimiseAgentWorkWithQuantumCombinationsBatchingCollapsesTheQuadraticReadCost(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('optimiseAgentWorkWithQuantumCombinationsBatchingCollapsesTheQuadraticReadCost', matrix, () => {
     const choose2 = (n: number) => (n * (n - 1)) / 2 // C(n,2) — the pairwise re-read cost, exact (Pascal)
-    const binomial = (n: number, k: number) => { let c = 1; for (let i = 0; i < k; i += 1) c = (c * (n - i)) / (i + 1); return Math.round(c) }
+    const binomial = (n: number, k: number) => { let c = 1; for (let i = 0; i < k; i += 1) c = (c * (n - i)) / (i + 1); return round(c) }
     const span = 2 * 2 * 2 // n = 2..8
     // 1 — QUADRATIC READ COST: the sequential (one-context) re-read cost is exactly C(n,2) = n(n−1)/2, ∀ n
     const quadraticExact = Array.from({ length: span - 1 }, (_, k) => k + 2).every((n) => choose2(n) === (n * n - n) / 2 && choose2(n) === binomial(n, 2))
@@ -2144,7 +2144,7 @@ export function theHarmonicGateRejectsLonePrimePowersAHarmonicSpansMultiplePrime
     const harmonicPrimes = [2, 3, 5, 7] // the small-prime dimensions available to a budget-sized number
     const distinctPrimes = (n: number): number[] => {
       const primes: number[] = []; let m = n
-      for (let p = 2; p * p <= m; p += 1) { if (m % p === 0) { primes.push(p); while (m % p === 0) m = Math.floor(m / p) } }
+      for (let p = 2; p * p <= m; p += 1) { if (m % p === 0) { primes.push(p); while (m % p === 0) m = floor(m / p) } }
       if (m > 1) primes.push(m)
       return primes
     }
@@ -2293,8 +2293,8 @@ export function invertedThirtyIsOneEightyTheAngleInversionIsTheProductNinetyTime
     const swaps = foldNumber(ninety) * foldNumber(sixty) === 4 * 6 && (4 * 6) / foldNumber(thirty) === foldNumber(oneEighty)
     // 4 — THE SELF-INVERSE POLE ANGLE: θ = √C = √5400 = 30√6 is its own inversion (θ² = C), the geometric mean of every
     // inverse pair (90·60 = 30·180 = θ²) — the fixed point, the pole of the inversion
-    const selfInverse = Math.sqrt(invariant)
-    const isFixedPoint = Math.abs(invert(selfInverse) - selfInverse) < 1 / 2 ** 9 && ninety * sixty === thirty * oneEighty
+    const selfInverse = sqrt(invariant)
+    const isFixedPoint = abs(invert(selfInverse) - selfInverse) < 1 / 2 ** 9 && ninety * sixty === thirty * oneEighty
     const facets = [
       { facet: `THE INVERSION IS FORCED, NOT CHOSEN — invert(90)=60 and invert(60)=90 fix the product invariant C = 90·60 = ${invariant}, so invert(θ) = C/θ is an involution determined by the given pair (${forcedByPair}); circle inversion, θ·invert(θ) = C`, on: forcedByPair },
       { facet: `INVERTED 30 = 180 — invert(30) = ${invariant}/30 = ${invertedThirty}, and invert(180) = 30; 180° is the POLE AXIS (C₂, the antipode) — the finest grid (30°, C₁₂) inverts to the axis (${answerIsOneEighty})`, on: answerIsOneEighty },
@@ -2329,7 +2329,7 @@ export function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDag
     const covered = nav.order.length === routes.length
     // 3 — BRANCHING ≤ 8 (the bāguà bound): no node has more than 8 children
     const outDegree = routes.map((_, node) => edges.filter((edge) => edge[0] === node).length)
-    const branchingBound = Math.max(...outDegree) <= 2 ** 3
+    const branchingBound = max(...outDegree) <= 2 ** 3
     // 4 — SELF-PROVING (deterministic): re-deriving the nav yields the identical structure and content-address —
     // the build re-proves it each time, so it cannot be forged or drift silently
     const address = merkleFold(routes.map((route, i) => toUuid(`nav:${route}:${outDegree[i]}`)))
@@ -2337,7 +2337,7 @@ export function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDag
     const facets = [
       { facet: `ACYCLIC DAG — the route tree has no cycle (${acyclic}): the menu cannot loop, so navigation always makes progress; proven by Kahn's topological sort (the src/0 topologicalOrder root), not asserted`, on: acyclic },
       { facet: `ROOTED AND COVERED — exactly one root (home, the only in-degree-0 source) and every one of the ${routes.length} routes reachable from it (${rooted && covered}): no orphan route, no second root — the nav is one connected tree`, on: rooted && covered },
-      { facet: `BRANCHING ≤ 8 — no node exceeds the bāguà bound of 8 children (max ${Math.max(...outDegree)}, ${branchingBound}): every level is graspable, the eight-fold limit the whole UI obeys`, on: branchingBound },
+      { facet: `BRANCHING ≤ 8 — no node exceeds the bāguà bound of 8 children (max ${max(...outDegree)}, ${branchingBound}): every level is graspable, the eight-fold limit the whole UI obeys`, on: branchingBound },
       { facet: `SELF-PROVING — re-deriving the nav yields the identical DAG and content-address (${reproves}): the SAME computation that builds the navigation verifies it, every build, so it is a theorem that re-proves itself and cannot silently drift or be hand-forged`, on: reproves },
     ]
     return {
@@ -2360,14 +2360,14 @@ export function forecastIsASelfProvingTheoremDeterministicWithAChaosBoundedHoriz
     const lyapunov = 1 // λ > 0 — the chaos rate (per forecast-day, normalised); a POSITIVE exponent = sensitive dependence
     const initialError = 1 / 2 ** 9 // e₀ — the tiny initial-condition uncertainty
     const saturation = 1 // the climatological error ceiling — where the forecast is no better than the mean
-    const errorAt = (t: number) => initialError * Math.exp(lyapunov * t) // exponential error growth
-    const horizon = Math.log(1 / initialError) / lyapunov // t_h where error reaches saturation (self-computed, not set)
+    const errorAt = (t: number) => initialError * exp(lyapunov * t) // exponential error growth
+    const horizon = log(1 / initialError) / lyapunov // t_h where error reaches saturation (self-computed, not set)
     // 1 — DETERMINISTIC: the same forecast inputs give the same series and content-address (recompute identical)
     const series = Array.from({ length: 2 * 5 }, (_, t) => ({ t, error: errorAt(t), address: toUuid(`forecast:${t}:${roundTo(errorAt(t), 6)}`) }))
     const deterministic = series.every((point) => point.address === toUuid(`forecast:${point.t}:${roundTo(point.error, 6)}`))
     // 2 — THE HORIZON IS SELF-PROVEN: error(t_h) = saturation exactly (e₀·e^(λ·ln(1/e₀)/λ) = e₀·(1/e₀) = 1) — the fold
     // computes its own limit rather than being told it
-    const horizonSelfProven = Math.abs(errorAt(horizon) - saturation) < 1 / 2 ** 9
+    const horizonSelfProven = abs(errorAt(horizon) - saturation) < 1 / 2 ** 9
     // 3 — SKILL WITHIN, HONEST BEYOND: before t_h the error is below saturation (real skill); after, at or above it, so
     // the forecast HONESTLY returns climatology — the theorem proves exactly where it stops being a forecast
     const skillWithin = errorAt(horizon - 1) < saturation
@@ -2457,17 +2457,17 @@ export function publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHori
   return memoByRoot('publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHorizonIsCalibratedNotBeaten', matrix, () => {
     // 1 — TRAINS λ FROM PUBLIC DATA: from a divergence series δ_t = δ₀·e^(λt) (the shape a public series exhibits), the
     // estimator λ̂ = (1/T)·ln(δ_T/δ₀) recovers the true rate exactly — the chaos rate is FIT, not assumed
-    const estimateLambda = (series: readonly number[]) => Math.log(series[series.length - 1]! / series[0]!) / (series.length - 1)
+    const estimateLambda = (series: readonly number[]) => log(series[series.length - 1]! / series[0]!) / (series.length - 1)
     const trainsLambda = [1, 2, 3, 4, 5].every((lambdaScaled) => {
       const lambdaTrue = lambdaScaled / (2 * 5) // a range of true rates
-      const series = Array.from({ length: 9 }, (_, t) => Math.exp(lambdaTrue * t)) // δ₀ = 1
-      return Math.abs(estimateLambda(series) - lambdaTrue) < 1 / 2 ** 9
+      const series = Array.from({ length: 9 }, (_, t) => exp(lambdaTrue * t)) // δ₀ = 1
+      return abs(estimateLambda(series) - lambdaTrue) < 1 / 2 ** 9
     })
     // 2 — CAUSAL, NO LOOK-AHEAD: the estimate over the past window [0,T] reads only those points, so appending future
     // data cannot change a past estimate — a look-ahead estimator (peeking at the future) is exactly what this forbids
     const rate = 3 / (2 * 5)
-    const past = Array.from({ length: 6 }, (_, t) => Math.exp(rate * t))
-    const withFuture = [...past, Math.exp(rate * 6), Math.exp(rate * 7)]
+    const past = Array.from({ length: 6 }, (_, t) => exp(rate * t))
+    const withFuture = [...past, exp(rate * 6), exp(rate * 7)]
     const causalNoLookAhead = estimateLambda(past) === estimateLambda(withFuture.slice(0, past.length))
     // 3 — TRAINING FIT IS NOT SKILL: an interpolant can drive TRAINING error to 0 yet miss the held-out TEST — so a low
     // training error proves nothing; only the out-of-sample test is honest. Fit y=x exactly on train, test deviates.
@@ -2480,7 +2480,7 @@ export function publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHori
     // 4 — HORIZON CALIBRATED, NOT BEATEN, NO ALPHA: a fitted λ sets t_h = ln(1/e₀)/λ — refined by data but FINITE; beyond
     // it the forecast is climatology, and no out-of-sample edge over the baseline is claimed (in-sample fit ≠ alpha)
     const e0 = 1 / 2 ** 9
-    const horizon = (lambda: number) => Math.log(1 / e0) / lambda
+    const horizon = (lambda: number) => log(1 / e0) / lambda
     const lambdaLow = 3 / (2 * 5), lambdaHigh = 5 / (2 * 5)
     const betterFitRefinesFiniteHorizon = horizon(lambdaLow) > horizon(lambdaHigh) && Number.isFinite(horizon(lambdaLow)) && horizon(lambdaHigh) > 0
     const facets = [
@@ -2515,20 +2515,20 @@ export function primesAndPiProveEachOtherThroughTheInvertedEulerProduct(matrix: 
     const zetaSum = Array.from({ length: terms }, (_, n) => 1 / (n + 1) ** 2).reduce((s, t) => s + t, 0)
     const eulerProduct = primes.reduce((prod, p) => prod * (1 / (1 - 1 / p ** 2)), 1) // each factor an INVERSION
     // 1 — EULER PRODUCT = ZETA SUM: the inverted product over PRIMES equals the sum over INTEGERS — Euler's identity
-    const primesEqualIntegers = Math.abs(zetaSum - eulerProduct) < tol
+    const primesEqualIntegers = abs(zetaSum - eulerProduct) < tol
     // 2 — INVERSION IS THE BRIDGE: inverting the product gives Π(1−p⁻²) = 1/ζ(2) = 6/π²; product · reciprocal = 1
     const reciprocalProduct = primes.reduce((prod, p) => prod * (1 - 1 / p ** 2), 1)
-    const inversionBridges = Math.abs(reciprocalProduct * eulerProduct - 1) < tol && Math.abs(reciprocalProduct * zetaSum - 1) < tol
+    const inversionBridges = abs(reciprocalProduct * eulerProduct - 1) < tol && abs(reciprocalProduct * zetaSum - 1) < tol
     // 3 — π FROM PRIMES = π FROM INTEGERS (proving each other), NO π IMPORTED: π = √(6·ζ(2)) derived from the prime
     // product and from the integer sum agree — the primes prove π, the integers prove π, and they match
-    const piFromPrimes = Math.sqrt(6 * eulerProduct)
-    const piFromIntegers = Math.sqrt(6 * zetaSum)
-    const piProvenBothWays = Math.abs(piFromPrimes - piFromIntegers) < tol && piFromPrimes > 3 && piFromPrimes < 2 + 2
+    const piFromPrimes = sqrt(6 * eulerProduct)
+    const piFromIntegers = sqrt(6 * zetaSum)
+    const piProvenBothWays = abs(piFromPrimes - piFromIntegers) < tol && piFromPrimes > 3 && piFromPrimes < 2 + 2
     // 4 — MÖBIUS INVERSION: 1/ζ(2) = Σ μ(n)/n² — the multiplicative inverse of ζ is the Möbius sum; the prime
     // inclusion-exclusion inverts the integer sum
-    const mobius = (n: number) => { let m = n, distinct = 0; for (let p = 2; p * p <= m; p += 1) { if (m % p === 0) { let e = 0; while (m % p === 0) { m = Math.floor(m / p); e += 1 } if (e > 1) return 0; distinct += 1 } } if (m > 1) distinct += 1; return distinct % 2 === 0 ? 1 : -1 }
+    const mobius = (n: number) => { let m = n, distinct = 0; for (let p = 2; p * p <= m; p += 1) { if (m % p === 0) { let e = 0; while (m % p === 0) { m = floor(m / p); e += 1 } if (e > 1) return 0; distinct += 1 } } if (m > 1) distinct += 1; return distinct % 2 === 0 ? 1 : -1 }
     const mobiusSum = Array.from({ length: terms }, (_, k) => mobius(k + 1) / (k + 1) ** 2).reduce((s, t) => s + t, 0)
-    const mobiusInverts = Math.abs(mobiusSum * zetaSum - 1) < tol
+    const mobiusInverts = abs(mobiusSum * zetaSum - 1) < tol
     const facets = [
       { facet: `EULER PRODUCT = ZETA SUM — Σ 1/n² over the integers (${roundTo(zetaSum, 4)}) equals Π_p 1/(1−p⁻²) over the ${primes.length} primes (${roundTo(eulerProduct, 4)}) (${primesEqualIntegers}): the inverted product over PRIMES reconstructs the sum over INTEGERS — Euler's identity, the bridge`, on: primesEqualIntegers },
       { facet: `INVERSION IS THE BRIDGE — each Euler factor is an inversion 1/(1−p⁻²); inverting the whole product gives Π(1−p⁻²) = 1/ζ(2) = 6/π² (product · reciprocal = 1, ${inversionBridges}) — primes and π are two sides of one inversion`, on: inversionBridges },
@@ -2611,9 +2611,9 @@ export function trainingIsMonotoneGradientDescentThatConvergesGatedByHeldOutTest
     // 1 — MONOTONE DESCENT: each training step strictly reduces the loss (until the optimum)
     const monotone = trajectory.slice(1).every((theta, i) => loss(theta) <= loss(trajectory[i]!) + 1 / 2 ** 16)
     // 2 — CONVERGES GEOMETRICALLY: |θ_t − θ*| = |θ₀ − θ*|·r^t with r = 1/2 → 0; the loop reaches the optimum
-    const rate = Math.abs(1 - 2 * eta) // = 1/2
-    const geometric = trajectory.every((theta, t) => Math.abs(Math.abs(theta - mean) - Math.abs(0 - mean) * rate ** t) < 1 / 2 ** 9)
-    const converged = Math.abs(trajectory[trajectory.length - 1]! - mean) < 1 / 2 ** 6
+    const rate = abs(1 - 2 * eta) // = 1/2
+    const geometric = trajectory.every((theta, t) => abs(abs(theta - mean) - abs(0 - mean) * rate ** t) < 1 / 2 ** 9)
+    const converged = abs(trajectory[trajectory.length - 1]! - mean) < 1 / 2 ** 6
     // 3 — TRAIN ↓ BUT TEST GATES (early stopping): training loss falls monotonically, yet the honest stop is where the
     // held-out TEST loss stops improving — training to zero train-loss can overfit, so test is the gate
     const test = [3, 5] // held-out — never used to update θ
@@ -2652,7 +2652,7 @@ function softPair(a: string, b: string): boolean {
 
 /** answerMoSavePost — save MO drafts first, post next when computes; compose chat/research · session/save. Pair: answer/mo */
 export function answerMoSavePost(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`answerMoSavePost:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`answerMoSavePost:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const lane = chatThroughMathOverflow('Monge homothety Brianchon', [], matrix)
     const saveFirst = pairOn('save/post') && pairOn('post/save') && softPair('save', 'post')
@@ -2692,7 +2692,7 @@ export function answerMoSavePost(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** learnMonge — decode MO q243943 Monge-external geometry. Pair: monge/learn */
 export function learnMonge(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`learnMonge:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`learnMonge:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairOk = pairOn('monge/learn') && pairOn('learn/monge') && softPair('monge', 'learn')
     const moRef = MO_Q243943_URL.startsWith(MATHOVERFLOW_SITE)
@@ -2720,7 +2720,7 @@ export function learnMonge(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** learnHomothety — homothety as dilate D_{r,P}(X)=P+r(X−P). Pair: learn/homothety */
 export function learnHomothety(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`learnHomothety:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`learnHomothety:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairOk = pairOn('learn/homothety') && pairOn('homothety/learn') && softPair('learn', 'homothety')
     const dilateTheorem = 'D_{r,P}(X) = P + r(X−P)'
@@ -2748,7 +2748,7 @@ export function learnHomothety(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** brianchonHex — Brianchon hexagon theorem structural receipt. Pair: brianchon/hex */
 export function brianchonHex(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`brianchonHex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`brianchonHex:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairOk = pairOn('brianchon/hex') && pairOn('hex/brianchon') && softPair('brianchon', 'hex')
     const theorem = 'hexagon circumscribed to conic ⟹ main diagonals concurrent'
@@ -2776,7 +2776,7 @@ export function brianchonHex(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** geogebraChat — GeoGebra materials URL handoff into chat. Pair: geo/chat */
 export function geogebraChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`geogebraChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`geogebraChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairOk = pairOn('geo/chat') && pairOn('chat/geo') && softPair('geo', 'chat')
     const materialsUrl = `${GEOGEBRA_MATERIALS_BASE}/show/id/q243943`
@@ -2804,7 +2804,7 @@ export function geogebraChat(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** geogebraMaterials — geogebra.org/materials catalog handoff. Pair: geogebra/materials */
 export function geogebraMaterials(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`geogebraMaterials:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`geogebraMaterials:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const chat = geogebraChat(matrix, at)
     const pairOk = pairOn('geogebra/materials') && pairOn('materials/geogebra')
     const on = chat.computes && pairOk
@@ -2814,7 +2814,7 @@ export function geogebraMaterials(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** materialsChat — materials wired to chat lanes. Pair: materials/chat */
 export function materialsChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`materialsChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`materialsChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const geo = geogebraChat(matrix, at)
     const pairOk = pairOn('materials/chat') && pairOn('chat/materials') && softPair('materials', 'chat')
     const on = geo.computes && pairOk
@@ -2824,7 +2824,7 @@ export function materialsChat(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** researchTags — MO unanswered tag inventory + filter URLs. Pair: research/tags */
 export function researchTags(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`researchTags:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`researchTags:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const lane = chatThroughMathOverflow('homothety conic geometry', [], matrix)
     const tags = ['homothety', 'conic-sections', 'projective-geometry'] as const
@@ -2859,7 +2859,7 @@ export function tagsResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** stackExchangeChat — chat.stackexchange.com URL handoff. Pair: se/chat */
 export function stackExchangeChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`stackExchangeChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`stackExchangeChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const roomUrl = `${CHAT_STACKEXCHANGE_URL}/`
     const pairOk = pairOn('se/chat') && pairOn('chat/se') && softPair('se', 'chat')
@@ -2887,7 +2887,7 @@ export function stackExchangeChat(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 /** feedMoDraftsToChat — feed sealed MO drafts → chat handoffs. Pair: mo/chat */
 export function feedMoDraftsToChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`feedMoDraftsToChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`feedMoDraftsToChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const answer = answerMoSavePost(matrix, at)
     const tags = researchTags(matrix, at)
     const se = stackExchangeChat(matrix, at)

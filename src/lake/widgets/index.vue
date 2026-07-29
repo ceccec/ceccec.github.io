@@ -7,6 +7,7 @@ import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
 import UiProgress from '../../.vitepress/theme/components/ui/Progress.vue'
 import UiSeparator from '../../.vitepress/theme/components/ui/Separator.vue'
+import { min, round } from '../../0'
 
 const props = defineProps<{ at?: number }>()
 const panel = shallowRef(quantumWidgetsPanelComputes())
@@ -18,8 +19,8 @@ const lede = { en: 'Dashboard tile registry — sealed Vue mounts + compute pain
 const tierVariant = (tier: string) => (tier === 'core' ? 'default' : tier === 'modality' ? 'secondary' : 'outline')
 
 const progressValue = (paint: { phase?: number; score?: number } | undefined) => {
-  if (paint?.phase !== undefined) return Math.round(paint.phase * 100)
-  if (paint?.score !== undefined) return Math.min(100, Math.round(paint.score))
+  if (paint?.phase !== undefined) return round(paint.phase * 100)
+  if (paint?.score !== undefined) return min(100, round(paint.score))
   return 0
 }
 

@@ -14,7 +14,7 @@ import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2'
 import { LUNAR_NODAL_PERIOD_YEARS } from '../../../9/1'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../compute'
-import { VORTEX_SEQUENCE, computesGate, digitalRoot, isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, seedFromText, toUuid } from '../../../0'
+import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, digitalRoot, floor, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../../0'
 import { planetIsComputable, torusUuid } from '../../../fire/li'
 import { majorMoons, solarSystem } from '../../../water/cosmos'
 import { ROSETTA_RAYS } from '../../../water/digit'
@@ -71,7 +71,7 @@ function hologramGate(matrix: MindMatrix) {
 // Compute all known celestial bodies at call time — eight planets (solarSystem), Sun, Moon, and six major moons
 // (majorMoons) with per-body state and match receipts. Circular Keplerian model, not JPL ephemeris.
 export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
-  const round3 = (value: number) => Math.round(value * (100 * 5 * 2)) / (100 * 5 * 2)
+  const round3 = (value: number) => round(value * (100 * 5 * 2)) / (100 * 5 * 2)
   const timeDays = timeYears * 365.25
   const at0 = solarSystem(matrix, timeYears)
   const at1 = solarSystem(matrix, timeYears + 1)
@@ -80,8 +80,8 @@ export function computeAllKnownCelestialBodies(matrix: MindMatrix = buildMatrix(
   const planets = at0.planets.map((planet, index) => {
     const atPeriod = solarSystem(matrix, timeYears + planet.periodYr)
     const closed = atPeriod.planets.find((entry) => entry.name === planet.name)!
-    const radius = round3(Math.hypot(planet.x, planet.y))
-    const radiusDrift = Math.abs(radius - round3(planet.au))
+    const radius = round3(hypot(planet.x, planet.y))
+    const radiusDrift = abs(radius - round3(planet.au))
     const radiusMatch = radiusDrift <= (1 / (100 * 5 * 2))
     const auStable = planet.au === at1.planets[index].au
     const periodStable = planet.periodYr === at1.planets[index].periodYr
@@ -414,7 +414,7 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
 
 /** Astronomy decoded through VORTEX_SEQUENCE — deterministic addressing of celestial catalog at `at`. */
 export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`astronomyDecodedWithTheSequence:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`astronomyDecodedWithTheSequence:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const deep = computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched(matrix)
@@ -425,7 +425,7 @@ export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = bui
     const sun = __ns_up_sun.sunComputes(matrix, at)
     const moon = __ns_up_moon.moonComputes(matrix, at)
     const rosettaGate = __ns_up_learning.rosettaComputes(matrix)
-    const phaseIndex = Math.floor(at / 86_400_000) % VORTEX_SEQUENCE.length
+    const phaseIndex = floor(at / 86_400_000) % VORTEX_SEQUENCE.length
     const phaseDigit = VORTEX_SEQUENCE[phaseIndex]!
     const digitFolderDigit = vortexSaved.digits.sequence[phaseIndex % vortexSaved.digits.sequence.length] ?? phaseDigit
     const mappings = celestial.bodies.map((body, index) => {
@@ -495,7 +495,7 @@ export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = bui
 
 /** Celestial catalog + VORTEX_SEQUENCE decode — paint-ready orbit phase/hue at `at`. */
 export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()): AstronomySimulationPaint {
-  return memoByRoot(`astronomySimulationAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`astronomySimulationAt:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const sequence = astronomyDecodedWithTheSequence(at, matrix)
@@ -503,14 +503,14 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
       const mapping = sequence.mappings.find((entry) => entry.name === body.name)!
       const hasOrbit = 'x' in body && 'y' in body && typeof body.x === 'number'
       const orbitPhase = hasOrbit
-        ? roundTo(((Math.atan2(body.y, body.x) / (TAU)) + 1) % 1, 4)
+        ? roundTo(((atan2(body.y, body.x) / (TAU)) + 1) % 1, 4)
         : roundTo((sequence.phaseDigit / 9 + seedFromText(body.name) % 9 / (27 * 3)) % 1, 4)
       const hue = roundTo((mapping.vortexDigit * (8 * 5) + orbitPhase * 360) % 360, 2)
       return {
         name: body.name,
         kind: body.kind,
-        x: hasOrbit ? body.x : Math.cos(orbitPhase * TAU),
-        y: hasOrbit ? body.y : Math.sin(orbitPhase * TAU),
+        x: hasOrbit ? body.x : cos(orbitPhase * TAU),
+        y: hasOrbit ? body.y : sin(orbitPhase * TAU),
         orbitPhase,
         hue,
         vortexDigit: mapping.vortexDigit,
@@ -561,7 +561,7 @@ export function astronomySimulationAt(at = 0, matrix: MindMatrix = buildMatrix()
 
 /** Browser-safe panel — astronomy simulation + compute gates for Vue mount. */
 export function astronomySimulationPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`astronomySimulationPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`astronomySimulationPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sim = astronomySimulationAt(at, matrix)
     const computesAll = astronomyComputes(matrix, at)
     const { facets, root } = computesGate('astronomy-simulation-panel', [
@@ -591,13 +591,13 @@ export const decodeAstronomyThroughVortexSequence = astronomyDecodedWithTheSeque
 // Mercury/Venus/Earth, 2 = Mars/Jupiter/Saturn, 3 = Uranus/Neptune; every facet computed from the SAME
 // solarSystem Keplerian model (au · period · angle at time) plus paint (hue from the content-address).
 export function planetBatchFacetsComputes(batch: number, matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`planetBatchFacets:${batch}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`planetBatchFacets:${batch}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sys = solarSystem(matrix, at)
     const chunk = sys.planets.slice((batch - 1) * 3, batch * 3)
     const facets = chunk.map((p) => {
       const hue = (Number.parseInt(toUuid(`planet-paint:${p.name}`).slice(0, 2), 16) * 360) / (16 * 16)
       const on = Number.isFinite(p.angle) && Number.isFinite(p.x) && Number.isFinite(p.y) && p.periodYr > 0
-      return { facet: `${p.name} — ${p.au} au · ${p.periodYr} yr · angle ${p.angle} · hue ${Math.round(hue)}`, on, receipt: toUuid(`planet-batch:${batch}:${p.name}:${on}`) }
+      return { facet: `${p.name} — ${p.au} au · ${p.periodYr} yr · angle ${p.angle} · hue ${round(hue)}`, on, receipt: toUuid(`planet-batch:${batch}:${p.name}:${on}`) }
     })
     return {
       computes: facets.length > 0 && facets.every((entry) => entry.on),
@@ -643,9 +643,9 @@ export function julianDayFromCivil(year: number, month: number, day: number, hou
     y -= 1
     m += 12
   }
-  const A = Math.floor(y / 100)
-  const B = 2 - A + Math.floor(A / 4)
-  return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + day + B - 1524.5 + hourUt / 24
+  const A = floor(y / 100)
+  const B = 2 - A + floor(A / 4)
+  return floor(365.25 * (y + 4716)) + floor(30.6001 * (m + 1)) + day + B - 1524.5 + hourUt / 24
 }
 
 /** Julian centuries from J2000.0 (Meeus T). */
@@ -663,12 +663,12 @@ export function sunEclipticLongitudeDeg(jd: number): number {
   const M = normalizeEclipticDeg(357.52911 + 35999.05029 * T - 0.0001537 * T * T)
   const Mr = degToRad(M)
   const C =
-    (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(Mr) +
-    (0.019993 - 0.000101 * T) * Math.sin(2 * Mr) +
-    0.000289 * Math.sin(3 * Mr)
+    (1.914602 - 0.004817 * T - 0.000014 * T * T) * sin(Mr) +
+    (0.019993 - 0.000101 * T) * sin(2 * Mr) +
+    0.000289 * sin(3 * Mr)
   const trueLon = L0 + C
   const omega = normalizeEclipticDeg(125.04 - 1934.136 * T)
-  return normalizeEclipticDeg(trueLon - 0.00569 - 0.00478 * Math.sin(degToRad(omega)))
+  return normalizeEclipticDeg(trueLon - 0.00569 - 0.00478 * sin(degToRad(omega)))
 }
 
 /**
@@ -698,7 +698,7 @@ export function moonEclipticLongitudeDeg(jd: number): number {
     [-0.035, D],
     [-0.031, Mp + M],
   ]
-  const delta = terms.reduce((sum, [c, arg]) => sum + c * Math.sin(degToRad(normalizeEclipticDeg(arg))), 0)
+  const delta = terms.reduce((sum, [c, arg]) => sum + c * sin(degToRad(normalizeEclipticDeg(arg))), 0)
   return normalizeEclipticDeg(Lp + delta)
 }
 
@@ -732,7 +732,7 @@ function heliocentricLongitudeDeg(L0: number, nPerCentury: number, e: number, pe
   const M = normalizeEclipticDeg(L - peri)
   // Equation of center in degrees (Meeus-style small-e expansion).
   const Cdeg =
-    ((2 * e - (e * e * e) / 4) * Math.sin(degToRad(M)) + (5 / 4) * e * e * Math.sin(2 * degToRad(M))) *
+    ((2 * e - (e * e * e) / 4) * sin(degToRad(M)) + (5 / 4) * e * e * sin(2 * degToRad(M))) *
     (DEG_CIRCLE / TAU)
   return normalizeEclipticDeg(L + Cdeg)
 }
@@ -744,9 +744,9 @@ function heliocentricLongitudeDeg(L0: number, nPerCentury: number, e: number, pe
 function geocentricFromHeliocentric(helioLonDeg: number, au: number, sunLonDeg: number): number {
   const earthHelio = normalizeEclipticDeg(sunLonDeg + DEG_CIRCLE / 2)
   const earthAu = 1
-  const px = au * Math.cos(degToRad(helioLonDeg)) - earthAu * Math.cos(degToRad(earthHelio))
-  const py = au * Math.sin(degToRad(helioLonDeg)) - earthAu * Math.sin(degToRad(earthHelio))
-  return normalizeEclipticDeg((Math.atan2(py, px) * DEG_CIRCLE) / TAU)
+  const px = au * cos(degToRad(helioLonDeg)) - earthAu * cos(degToRad(earthHelio))
+  const py = au * sin(degToRad(helioLonDeg)) - earthAu * sin(degToRad(earthHelio))
+  return normalizeEclipticDeg((atan2(py, px) * DEG_CIRCLE) / TAU)
 }
 
 export type SealedMeeusBodyLongitude = {
@@ -822,7 +822,7 @@ export function designLayerFromNatalSun(birthJd: number): {
   }
   const designJd = (lo + hi) / 2
   const designSunDeg = sunEclipticLongitudeDeg(designJd)
-  const arcErrDeg = Math.abs(Math.abs(signedAngleDeg(designSunDeg, birthSunDeg)) - RAVE_DESIGN_SUN_ARC_DEG)
+  const arcErrDeg = abs(abs(signedAngleDeg(designSunDeg, birthSunDeg)) - RAVE_DESIGN_SUN_ARC_DEG)
   return {
     birthJd,
     designJd,
@@ -849,18 +849,18 @@ export function humanDesignEphemerisCore(matrix: MindMatrix = buildMatrix(), bir
     const L0 = normalizeEclipticDeg(280.46646 + 36000.76983 * T0 + 0.0003032 * T0 * T0)
     const M0 = normalizeEclipticDeg(357.52911 + 35999.05029 * T0 - 0.0001537 * T0 * T0)
     const C0 =
-      (1.914602 - 0.004817 * T0 - 0.000014 * T0 * T0) * Math.sin(degToRad(M0)) +
-      (0.019993 - 0.000101 * T0) * Math.sin(2 * degToRad(M0)) +
-      0.000289 * Math.sin(3 * degToRad(M0))
+      (1.914602 - 0.004817 * T0 - 0.000014 * T0 * T0) * sin(degToRad(M0)) +
+      (0.019993 - 0.000101 * T0) * sin(2 * degToRad(M0)) +
+      0.000289 * sin(3 * degToRad(M0))
     const true0 = L0 + C0
     const omega0 = normalizeEclipticDeg(125.04 - 1934.136 * T0)
-    const apparent0 = normalizeEclipticDeg(true0 - 0.00569 - 0.00478 * Math.sin(degToRad(omega0)))
-    const sunJ2000Ok = Math.abs(signedAngleDeg(apparent0, sunJ2000)) < 1e-9 && L0 === 280.46646
+    const apparent0 = normalizeEclipticDeg(true0 - 0.00569 - 0.00478 * sin(degToRad(omega0)))
+    const sunJ2000Ok = abs(signedAngleDeg(apparent0, sunJ2000)) < 1e-9 && L0 === 280.46646
     const sunDayAdvance = signedAngleDeg(sunEclipticLongitudeDeg(birthJd), sunEclipticLongitudeDeg(birthJd + 1))
-    const moonDayAdvance = Math.abs(signedAngleDeg(moonEclipticLongitudeDeg(birthJd), moonEclipticLongitudeDeg(birthJd + 1)))
-    const earthOpp = Math.abs(signedAngleDeg(eph.bodies.find((b) => b.name === 'Earth')!.longitudeDeg, normalizeEclipticDeg(eph.sun + DEG_CIRCLE / 2))) < 1e-9
+    const moonDayAdvance = abs(signedAngleDeg(moonEclipticLongitudeDeg(birthJd), moonEclipticLongitudeDeg(birthJd + 1)))
+    const earthOpp = abs(signedAngleDeg(eph.bodies.find((b) => b.name === 'Earth')!.longitudeDeg, normalizeEclipticDeg(eph.sun + DEG_CIRCLE / 2))) < 1e-9
     const nodeOpp =
-      Math.abs(
+      abs(
         signedAngleDeg(
           eph.bodies.find((b) => b.name === 'South Node')!.longitudeDeg,
           normalizeEclipticDeg(eph.bodies.find((b) => b.name === 'North Node')!.longitudeDeg + DEG_CIRCLE / 2),
@@ -912,7 +912,7 @@ export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), 
       bodies.map((body) => {
         const gl = raveMandalaGateLineAt(body.longitudeDeg)
         const within = ((body.longitudeDeg - gl.startDeg) % 360 + 360) % 360
-        const distToEdge = Math.min(within, RAVE_GATE_ARC_DEG - within)
+        const distToEdge = min(within, RAVE_GATE_ARC_DEG - within)
         const cusp = distToEdge < cuspBandDeg
         const fastMover = body.name === 'Moon' || body.name === 'Mercury'
         return {
@@ -1203,7 +1203,7 @@ export function drawHumanDesignBodyGraph(
   const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
   const accent = (alpha: number) => paint(A432_HUE + GOLDEN_ANGLE / (2 * 2), alpha, { L: (5 * 3) / 16, C: 1 / 32 })
   ctx.clearRect(0, 0, w, h)
-  const pad = Math.min(w, h) / (8 * 2)
+  const pad = min(w, h) / (8 * 2)
   const bw = w - pad * 2
   const bh = h - pad * 2
   const definedCh = new Set(panel.definedKeys)
@@ -1225,8 +1225,8 @@ export function drawHumanDesignBodyGraph(
     ctx.lineTo(b.x, b.y)
     ctx.stroke()
   }
-  const r = Math.min(w, h) / (8 * 3)
-  const labelPx = Math.max(9, Math.round(h / (8 * 4)))
+  const r = min(w, h) / (8 * 3)
+  const labelPx = max(9, round(h / (8 * 4)))
   for (const center of panel.lattice.centers) {
     const key = center as keyof typeof RAVE_CENTER_LAYOUT
     const p = xy(key)
@@ -1313,9 +1313,9 @@ export function humanDesignBodyGraphSvg(
       .slice(0, 4)
       .join('·')
     const shape = hdCenterShapeSvg(p.x, p.y, r, p.shape, on ? accent : mute, on ? accent : ink, on ? 2 : 1)
-    const label = `<text x="${p.x}" y="${p.y - r - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="${Math.max(9, Math.round(size / (8 * 4)))}" fill="${ink}">${center}</text>`
+    const label = `<text x="${p.x}" y="${p.y - r - 2}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="${max(9, round(size / (8 * 4)))}" fill="${ink}">${center}</text>`
     const gates = lit
-      ? `<text x="${p.x}" y="${p.y + r + Math.max(9, Math.round(size / (8 * 4)))}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="${Math.max(8, Math.round(size / (8 * 5)))}" fill="${ink}">${lit}</text>`
+      ? `<text x="${p.x}" y="${p.y + r + max(9, round(size / (8 * 4)))}" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="${max(8, round(size / (8 * 5)))}" fill="${ink}">${lit}</text>`
       : ''
     return `<g data-center="${center}" data-defined="${on ? 'true' : 'false'}" data-scale="${i}">${shape}${label}${gates}</g>`
   }).join('')
@@ -1404,7 +1404,7 @@ export function runHumanDesignBodyGraphSvgW7Exit(_root = '', argv: readonly stri
 }
 
 export function astronomyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`astronomyComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`astronomyComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const celestial = computeAllKnownCelestialBodies(matrix)
     const match = computeDiscoverExactMatchAllKnownCelestialBodies(matrix)
     const deep = computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched(matrix)
@@ -1474,9 +1474,9 @@ export function drawAstronomyProjection(
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
   const cy = h / 2
-  const labelPx = Math.max(9, Math.round(h / 27))
+  const labelPx = max(9, round(h / 27))
   // Scale breathes on the one clock — not a private rate.
-  const scale = Math.min(w, h) * ((2 / 5) - (1 / (5 * 5))) * ((1 - 1 / (5 * 5)) + (1 / (5 * 5)) * Math.sin(p * TAU))
+  const scale = min(w, h) * ((2 / 5) - (1 / (5 * 5))) * ((1 - 1 / (5 * 5)) + (1 / (5 * 5)) * sin(p * TAU))
   ctx.strokeStyle = ink(3 / (5 * 5 * 2))
   for (let ring = 1; ring <= 4; ring += 1) {
     ctx.beginPath()
@@ -1484,10 +1484,10 @@ export function drawAstronomyProjection(
     ctx.stroke()
   }
   sim.bodies.forEach((body) => {
-    const radius = body.kind === 'star' ? 0 : Math.hypot(body.x, body.y) * scale
-    const angle = Math.atan2(body.y, body.x)
-    const x = cx + Math.cos(angle) * radius
-    const y = cy + Math.sin(angle) * radius
+    const radius = body.kind === 'star' ? 0 : hypot(body.x, body.y) * scale
+    const angle = atan2(body.y, body.x)
+    const x = cx + cos(angle) * radius
+    const y = cy + sin(angle) * radius
     const size = body.kind === 'star' ? (5 * 2) : body.kind === 'satellite' ? 5 : 4
     ctx.fillStyle = paint(body.hue, 1 - 3 / (5 * 4))
     ctx.beginPath()

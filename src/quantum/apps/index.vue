@@ -207,6 +207,7 @@ import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
 import { statusBadgeKind, statusBadgeTokens, type StatusBadgeKind } from '../../../.vitepress/lib/status-badge'
+import { min } from '../../0'
 
 /** Session hub badge props — class uses sealed ui-badge--status-* → --status-* tokens. */
 function badgeProps(input: boolean | StatusBadgeKind | string) {
@@ -279,9 +280,9 @@ const qcTopOutcomes = computed(() => qcResult.value.amplitudes.filter((a) => a.p
 const qcSampleRows = computed(() => Object.entries(qcResult.value.samples).sort((a, b) => b[1] - a[1]).slice(0, 8))
 function qcAdd(gate: string) {
   const g = gate.toUpperCase()
-  const t = Math.min(qcTarget.value, qcN.value - 1)
-  if ((QC_TWO as readonly string[]).includes(g)) qcOps.value = [...qcOps.value, { gate: g, targets: [Math.min(qcControl.value, qcN.value - 1), t] }]
-  else if (g === 'TOFFOLI') qcOps.value = [...qcOps.value, { gate: g, targets: [Math.min(qcControl.value, qcN.value - 1), Math.min(qcControl2.value, qcN.value - 1), t] }]
+  const t = min(qcTarget.value, qcN.value - 1)
+  if ((QC_TWO as readonly string[]).includes(g)) qcOps.value = [...qcOps.value, { gate: g, targets: [min(qcControl.value, qcN.value - 1), t] }]
+  else if (g === 'TOFFOLI') qcOps.value = [...qcOps.value, { gate: g, targets: [min(qcControl.value, qcN.value - 1), min(qcControl2.value, qcN.value - 1), t] }]
   else if ((QC_ROT as readonly string[]).includes(g)) qcOps.value = [...qcOps.value, { gate: g, targets: [t], theta: qcTheta.value }]
   else qcOps.value = [...qcOps.value, { gate: g, targets: [t] }]
 }
@@ -5400,37 +5401,6 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'build-min'" @click="runTool('build-min')">
           {{ runningId === 'build-min' ? '…' : 'Run build-min measure' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="crypto-comparison-mesh">
-        <h3>Crypto comparison mesh</h3>
-        <p class="quantum-apps__meta">{{ cryptoMeshDry.mesh.boundary }}</p>
-        <UiBadge :variant="cryptoMeshDry.cryptoRelatedSurfacesAreDry ? 'default' : 'outline'">
-          relatedDry={{ cryptoMeshDry.cryptoRelatedSurfacesAreDry }}
-          · meshIsDry={{ cryptoMeshDry.cryptoComparisonMeshIsDry }}
-          · nodes={{ cryptoMeshDry.mesh.nodeCount }}
-          · edges={{ cryptoMeshDry.mesh.edgeCount }}
-          · residuals={{ cryptoMeshDry.residuals.length }}
-        </UiBadge>
-        <ul class="quantum-apps__facets">
-          <li v-for="node in cryptoMeshDry.mesh.nodes" :key="node.id">
-            <UiBadge variant="outline">{{ node.kind }}</UiBadge>
-            <strong>{{ node.id }}</strong>
-            — <a :href="node.route">{{ node.route }}</a>
-            <template v-if="node.proofRoute">
-              · <a :href="node.proofRoute">{{ node.proofRoute }}</a>
-            </template>
-          </li>
-        </ul>
-        <p class="quantum-apps__meta">
-          Edges:
-          <span v-for="(e, i) in cryptoMeshDry.mesh.edges" :key="e.id">
-            {{ i ? ' · ' : '' }}{{ e.from }}—{{ e.relation }}→{{ e.to }}
-          </span>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'crypto-comparison-mesh-dry'" @click="runTool('crypto-comparison-mesh-dry')">
-          {{ runningId === 'crypto-comparison-mesh-dry' ? '…' : 'Run crypto-comparison-mesh-dry' }}
         </UiButton>
       </section>
       <UiSeparator />

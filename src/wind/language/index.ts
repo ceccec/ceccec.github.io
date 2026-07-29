@@ -3,7 +3,7 @@ import { earned } from '../../3/7'
 import { survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../../heaven/compute'
-import { digitalRoot, ICHING_NUMBERS, isUuid, memoByRoot, merge, merkleFold, proseToTone, roundTo, toUuid, sealFacets } from '../../0'
+import { ICHING_NUMBERS, abs, digitalRoot, isUuid, log2, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid } from '../../0'
 import { hexDigitSum } from '../../8/2'
 import { GLAGOLITIC_GATES, GLAGOLITIC_LETTERS, GLAGOLITIC_MAP, GLAGOLITIC_OPCODES, glagoliticAcrosticMessage, glagoliticBits, glagoliticCircuit, glagoliticFromBits, glagoliticGate, glagoliticMeaning, glagoliticOpcode, glagoliticProgram, glagoliticValue, toGlagolitic, toGlagoliticNumber, toScript, decodeDialect, glossDialect, pivotLexicon, pivotTongues, selfTranslate } from '../../quantum/heaven/library'
 import { a432, bulgarianRosettaContentAddressUnlocksAll, autoSpeech, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, taxonomyIcons } from '../../fire/li'
@@ -102,7 +102,7 @@ export function glagoliticMapsToCodeAndQuantumDecoded(matrix: MindMatrix = build
     { facet: 'the documented map holds both ways — sound (toGlagolitic) AND number (the ladder): the alphabet decode passes', on: glagoliticAlphabetDecoded(matrix).decoded && /[Ⰰ-ⱟ]/.test(toGlagolitic('азъ')) },
     { facet: 'script → bit is REVERSIBLE — a letter’s position in bits reads straight back to the glyph', on: roundTrip === firstGlyph && glagoliticFromBits(glagoliticBits(GLAGOLITIC_LETTERS[0].glyph)) === GLAGOLITIC_LETTERS[0].glyph },
     { facet: 'the computer-language face RUNS, deterministic & total — a word compiles to a program and computes a number in 0..255', on: program.acc >= 0 && program.acc <= 255 && glagoliticProgram(word).acc === program.acc && program.ops.length === 6 },
-    { facet: 'the quantum face RUNS on the real simulator — a genuine superposition (≥2 sampled outcomes), Born-rule Σp = 1 over 2ⁿ states', on: Math.abs(probSum - 1) < 1e-3 && circuit.probabilities.length === circuitDim && Object.keys(circuit.sample).length >= 2 },
+    { facet: 'the quantum face RUNS on the real simulator — a genuine superposition (≥2 sampled outcomes), Born-rule Σp = 1 over 2ⁿ states', on: abs(probSum - 1) < 1e-3 && circuit.probabilities.length === circuitDim && Object.keys(circuit.sample).length >= 2 },
     { facet: 'one substrate, three faces — the SAME letter yields a bit-pattern, an opcode and a gate', on: bits.length === 6 && GLAGOLITIC_OPCODES.includes(glagoliticOpcode(firstGlyph).op) && GLAGOLITIC_GATES.includes(glagoliticGate(firstGlyph).gate) },
     { facet: 'the anachronism is flagged — "the ancients encoded code/qubits" & "folklore/architecture encode algorithms" kept separate, each with a reason', on: flagged.length === 4 && flagged.every((entry) => entry.why.length > 0) },
     { facet: 'composed with the alphabet decode and the alphabets genealogy — below every script, the one bit', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },
@@ -755,7 +755,7 @@ export function rosettaIsTheUuidQuantumMapsTheoremsByA432(matrix: MindMatrix = b
     const sig = seq[hexDigitSum(t.atom) % seq.length]!        // SIGNIFICANCE — a weight from the quantum sequence
     const meaning = __ns_lang_scan.computeProseTenDimensions(t.theorem).some((v: number) => v !== 0) // MEANING
     const soundHz = octaves[hexDigitSum(portalA) % octaves.length]! // A432 sound — a 432-octave
-    const isOctave = Number.isInteger(Math.log2(soundHz / base))    // proof it is a 432-octave
+    const isOctave = Number.isInteger(log2(soundHz / base))    // proof it is a 432-octave
     const colorThz = __ns_lang_37.frequencyToLight(soundHz).thz     // colour — the octave image in light
     const vibHz = soundHz > base * 2 ? soundHz / 2 : soundHz        // vibration — folded into the haptic band (≤ base·2)
     return { addressIsUuid, bound, sig, meaning, isOctave, colorThz, vibHz, placed: addressIsUuid && bound && meaning && isOctave && colorThz > 0 && vibHz > 0 }
@@ -802,7 +802,7 @@ export function theEncodingDecodingTrinityIsA432DecodingPiAndPrimeByTheSequence(
     const seqVal = seq[i]!                              // SEQUENCE: position → value
     const soundHz = octaves[seqVal % octaves.length]!   // A432 render — a 432-octave keyed by the sequence value
     const colorThz = __ns_lang_37.frequencyToLight(soundHz).thz
-    const rendered = primeInverts && piInRange && Number.isInteger(Math.log2(soundHz / seq[2 * 9]!)) && colorThz > 0
+    const rendered = primeInverts && piInRange && Number.isInteger(log2(soundHz / seq[2 * 9]!)) && colorThz > 0
     return { n, prime, primeInverts, piDigit, piInRange, seqVal, soundHz, colorThz, rendered }
   })
   const facets = [

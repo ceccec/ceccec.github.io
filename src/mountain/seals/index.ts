@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — seals & proofs: the proof registry, the gigabit/terabyte seal sets, the signed elements, the diamond completeness proofs. Barrel-routed; folds.ts back-imports the gate folds.
 import type { DigitalQuantumProof, MindMatrix, ProofBundle, SelfCompletionGate } from '../../wind/types'
 import { buildMatrix, entropy, proofReport } from '../../heaven/compute'
-import { fold, foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, trinityKey } from '../../0'
+import { abs, ceil, floor, fold, foldPair, isUuid, memoByRoot, merge, merkleFold, round, roundTo, toUuid, trinityKey } from '../../0'
 import { areaPairs, dna, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, vortexMath } from '../geometry'
 import { a432, animationEngineLivesInZero, buildEnforcementPipeline, contentAddressingHasRealPrecedent, crossFoldTrinity, enforcementTrinity, hammingThreeParityAddressesError, inHouse, metatronsCube, oneOpenGraphAll, plasmaContainment, quantumGreenPlanet, qubitTrinityPauliBloch, securityScan, torusUuid, taxonomyIcons } from '../../fire/li'
 // relocated trinity cluster deps (call-time bindings; no load cycle)
@@ -74,7 +74,7 @@ import {
   omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
-import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero, fasterThanLightExperimentChallenge, ftlExperimentDiscoveryWaves } from '../../fire/physics'
+import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
@@ -226,7 +226,7 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
   for (const leaf of leaves) if (merkleProof(leaves, leaf).verified) verified += 1
   const inclusion = verified / leaves.length
   const foldLayers: number[] = []
-  for (let size = leaves.length; size >= 1; size = size === 1 ? 0 : Math.ceil(size / 2)) foldLayers.push(size)
+  for (let size = leaves.length; size >= 1; size = size === 1 ? 0 : ceil(size / 2)) foldLayers.push(size)
 
   // 5) Collision-freedom: distinct seeds give distinct UUIDs across the whole set.
   const ids = livingTorus(matrix).coordinates.map((coordinate) => coordinate.receipt)
@@ -288,7 +288,7 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
   ]
   const proofs = blueprint.map((proof) => ({
     ...proof,
-    match: Math.abs(proof.measured - proof.predicted) <= proof.tol,
+    match: abs(proof.measured - proof.predicted) <= proof.tol,
     receipt: toUuid(`dproof:${proof.id}:${proof.predicted}:${proof.measured}`) }))
   return {
     proven: proofs.every((proof) => proof.match),
@@ -357,7 +357,7 @@ function sealCubeRaw(matrix: MindMatrix = buildMatrix()) {
     trinityRoot, // ONE shared root sealing all 262,144 cells
     forgeCost: cube, // to forge: reproduce every cell of the cube
     sealSize: trinity.length, // to seal: three numbers
-    compression: Math.round(cube / trinity.length), // 87,381 : 1
+    compression: round(cube / trinity.length), // 87,381 : 1
     factors: { codon: '4³', bits: '2⁶', hexagram: '8²', word: '2×32', cube: '64³ = 4⁹ = 2¹⁸' },
     root: trinityRoot,
     statement:
@@ -856,7 +856,7 @@ export function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix: MindMatr
   const assigned = theorems.map((entry) => rootOf(entry.slug))
   const folded = assigned.filter((index) => index >= 0).length
   const rootsUsed = new Set(assigned.filter((index) => index >= 0)).size
-  const compaction = Math.floor(theorems.length / THEOREM_ROOTS.length) // many → few
+  const compaction = floor(theorems.length / THEOREM_ROOTS.length) // many → few
   const compacts = THEOREM_ROOTS.length < theorems.length && rootsUsed === THEOREM_ROOTS.length
   const greaterSignificance = compaction >= 5 && folded >= theorems.length - THEOREM_ROOTS.length // each root generates many; few unmatched
   const facets = [

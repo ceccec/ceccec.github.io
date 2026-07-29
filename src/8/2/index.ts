@@ -1,7 +1,7 @@
 import { earned } from '../../3/7'
 import { haldaneLoad } from '../../3/7'
 import { TAU, demarcate } from '../../3/7'
-import { isUuid, toUuid } from '../../0'
+import { isUuid, min, sqrt, toUuid } from '../../0'
 // Pi-train station 8/2 — dissolution sequence order 3 (digit/reverse 8/2).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
@@ -31,7 +31,7 @@ export function hexDigitSum(uuid: string): number {
 
 /** Speed of sound in dry air at θ °C (m/s). */
 export function speedOfSoundAir(tempC: number): number {
-  return 331.3 * Math.sqrt(1 + tempC / 273.15)
+  return 331.3 * sqrt(1 + tempC / 273.15)
 }
 
 /** Isobaric counterdiffusion — peak supersaturation when fast gas enters, slow gas leaves. */
@@ -585,7 +585,7 @@ export function neuroscienceInTrueFormIsThreeMathematicalPillars() {
   const energyDescends = recalled.energy <= hopfieldEnergy(W, probe)
   // 3. SPACE IS A TORUS — ring attractor: integrating angular velocity over a full loop returns to the start
   const history = bumpEvolve(0, Array.from({ length: 9 }, () => TAU / 9)) // velocities summing to 2π
-  const end = history[history.length - 1]; const returnsToStart = Math.min(end, TAU - end) < 1e-6 // circle distance to start (0 ≡ 2π, toroidal)
+  const end = history[history.length - 1]; const returnsToStart = min(end, TAU - end) < 1e-6 // circle distance to start (0 ≡ 2π, toroidal)
   const facets = [
     { facet: `THE NEURON IS A DIFFERENTIAL EQUATION: a leaky integrate-and-fire membrane integrates its drive and fires when it clears threshold (spikes when driven = ${firesWhenDriven}) and stays silent when the drive is sub-threshold (${silentWhenWeak}) — the Hodgkin–Huxley / Lapicque ODE, not a metaphor`, on: firesWhenDriven && silentWhenWeak },
     { facet: `MEMORY IS AN ATTRACTOR: a Hopfield network stores a pattern as an energy minimum; a corrupted probe descends the energy (${energyDescends}) to complete the stored pattern (pattern completion = ${patternCompletion}) — associative memory as Lyapunov dynamics on fixed-point attractors`, on: patternCompletion && energyDescends },

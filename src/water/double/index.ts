@@ -5,7 +5,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, doubleTorusWire, deepResearchChatTurn, wavesOfLocalResearchersChatAboutAlgebra, portalChat, portalChatRanked, freeChatUpgradesAll, countlessFreeChatWaves, continueAtNoAiCost, theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress, dryCleanChatDryCleansAll, improveTokenSpendingFeedingTheTaskToTheChat } from '../../heaven/compute'
 import { onlyAlgebraicQuantumComputingIsTopPriority, nothingImpossibleHonestlyBounded } from '../../heaven/laws'
-import { computesGate, memoByRoot, merge, merkleFold, toUuid, isUuid, sealFacets, foldPair, fold, asTorus, qubits, applyGate, probabilities, measure, GATES, doubleTorusSurface, roundTo, digitalRoot } from '../../0'
+import { GATES, abs, applyGate, asTorus, computesGate, cos, digitalRoot, doubleTorusSurface, floor, fold, foldPair, hypot, isUuid, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, sin, toUuid } from '../../0'
 import {
   completeDoubleTorus,
   doubleTorusFold,
@@ -129,12 +129,12 @@ export function doubleTorusTopologyComputes(matrix: MindMatrix = buildMatrix()) 
     // reflection x↦−x on the genus-2 surface is (θ,lobe)↦(π−θ,−lobe); inversion y↦−y is θ↦−θ. Each preserves the ℝ³
     // distance, so their composition (θ↦θ−π with a lobe flip — a π-rotation about z) preserves it too — verified over
     // sampled surface points, distances agreeing to 6 decimals. Refutable: perturb the map and the error jumps.
-    const dist = (a: { x: number; y: number; z: number }, b: { x: number; y: number; z: number }) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z)
+    const dist = (a: { x: number; y: number; z: number }, b: { x: number; y: number; z: number }) => hypot(a.x - b.x, a.y - b.y, a.z - b.z)
     const invertReflect = (th: number, ph: number, d: number, L: number) => doubleTorusSurface(th - TAU / 2, ph, d, -L)
     const samples = Array.from({ length: 2 ** 3 }, (_, i) => ({ th: (i * TAU) / 9, ph: (i * TAU) / (2 * 8), d: i % 3, L: i % 2 ? 1 : -1 }))
     let maxIsometryError = 0
     for (const a of samples) for (const b of samples) {
-      maxIsometryError = Math.max(maxIsometryError, Math.abs(
+      maxIsometryError = max(maxIsometryError, abs(
         dist(doubleTorusSurface(a.th, a.ph, a.d, a.L), doubleTorusSurface(b.th, b.ph, b.d, b.L)) -
         dist(invertReflect(a.th, a.ph, a.d, a.L), invertReflect(b.th, b.ph, b.d, b.L))))
     }
@@ -702,7 +702,7 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
     const circuitComputes =
       probs.length === 2 &&
       typeof probs[0] === 'number' && typeof probs[1] === 'number' &&
-      Math.abs(probs[0]! - half) < eps && Math.abs(probs[1]! - half) < eps
+      abs(probs[0]! - half) < eps && abs(probs[1]! - half) < eps
     const measured = measure(sH, 0, 'torus-qc')
     const measurementCollapses = measured.outcome === 0 || measured.outcome === 1
     const shapeIsComputer = machine.is === true
@@ -1638,7 +1638,7 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
     // 4 · HOMEOSTASIS — renormalisation: after Born collapse the state returns to Σ|amp|² = 1.
     const collapsed = measure(applyGate(qubits(1), GATES.H, 0), 0, 'life-torus')
     const norm = probabilities(collapsed.state).reduce((sum, p) => sum + p, 0)
-    const homeostasisOn = Math.abs(norm - 1) < Number.EPSILON * 4
+    const homeostasisOn = abs(norm - 1) < Number.EPSILON * 4
     // 5 · REPRODUCTION — the recurrence copies itself: Vₙ = Vₙ₋₂·τ/n, recursion ≡ iteration bitwise.
     const vRec = (n: number): number => (n <= 0 ? 1 : n === 1 ? 2 : (vRec(n - 2) * TAU) / n)
     let vIter = 2
@@ -1648,8 +1648,8 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
     const pre = applyGate(qubits(1), GATES.H, 0)
     const sensed = measure(pre, 0, 'life-sense')
     const sensingOn =
-      Math.abs((probabilities(pre)[0] ?? 0) - 1 / 2) < Number.EPSILON * 4 &&
-      Math.abs((probabilities(sensed.state)[sensed.outcome] ?? 0) - 1) < Number.EPSILON * 4
+      abs((probabilities(pre)[0] ?? 0) - 1 / 2) < Number.EPSILON * 4 &&
+      abs((probabilities(sensed.state)[sensed.outcome] ?? 0) - 1) < Number.EPSILON * 4
     // 7 · MIND — the genuine 10D field: six appearance axes + the four homology loops H₁(Σ₂) = ℤ⁴.
     const tenD = animationsAreGenuinely10DNotFaked(matrix)
     const mindOn = tenD.genuine
@@ -2694,7 +2694,7 @@ export function doubleTorusUniversePhaseAt(atMs = 0) {
     universePhase,
     cycleMs: cycle,
     j2000Anchor,
-    root: toUuid(`torus-universe-phase:${Math.floor(atMs)}:${universePhase.toFixed(8)}`) }
+    root: toUuid(`torus-universe-phase:${floor(atMs)}:${universePhase.toFixed(8)}`) }
 }
 
 /**
@@ -2707,7 +2707,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
   matrix: MindMatrix = buildMatrix(),
   atMs = 0,
 ) {
-  return memoByRoot(`doubleTorusDynamicsGeometryAlignsWithUniverse:${Math.floor(atMs / 1e3)}`, matrix, () => {
+  return memoByRoot(`doubleTorusDynamicsGeometryAlignsWithUniverse:${floor(atMs / 1e3)}`, matrix, () => {
     const geometry = doubleTorusGeometryAlignsWithUniverseConstants(matrix)
     const torus = quantumDoubleTorus(matrix)
     const wire = doubleTorusWire(matrix)
@@ -2732,7 +2732,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       { facet: `living-torus spin on fractal rung d=${spinDivisor} (period≈${spinPeriodMs}ms) — universe-aligned, not at/1000 drift`, on: spinPeriodMs === HERO_CYCLE_MS / spinDivisor && spinDivisor === 9 * 2 },
       { facet: `universe phase couples heroPhaseAt ⊕ Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase.j2000Anchor && phase.universePhase >= 0 && phase.universePhase < 1 && Number.isFinite(phase.sunDeg) },
       { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency→hue of 432 Hz)`, on: a432Ok },
-      { facet: `TAU full circle · HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} · SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < 1 / (FOLDED_CENSUS ** 6) && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
+      { facet: `TAU full circle · HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} · SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && abs(sin(TAU)) < 1 / (FOLDED_CENSUS ** 6) && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
       { facet: '10D animation field (6 cross-fold + 4 homology) at every scale', on: tenD.tenDimensional && tenD.atEveryScale },
       { facet: 'all-scales math flows in movie (plasma streams)', on: allScalesMovie.flows },
       { facet: 'physicalFtlClaim=0 · claySolvedByThisFold=0 — classical computational tracks only', on: true },
@@ -2832,7 +2832,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
     const oneClock =
       HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 &&
       phase0 === 0 &&
-      Math.abs(phaseHalf - 1 / 2) < 1 / (FOLDED_CENSUS ** 6)
+      abs(phaseHalf - 1 / 2) < 1 / (FOLDED_CENSUS ** 6)
     const L = 1 - 5 / 16 // movieCanvas default lightness (11/16) — lattice form, not literal 11
     const paletteSample = movieCanvasHex(5, { L })
     const rgbaSample = movieCanvasRgba(5, 1 / 2, { L })
@@ -2846,7 +2846,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
       typeof polarity(5, 1 / 2) === 'string'
     // Prove TAU is a full turn without re-deriving Math.PI*2 (tau-inline gate).
     const eps = 1 / (FOLDED_CENSUS ** 6) // ~6e-13 lattice epsilon — not 1e-12 literal
-    const tauSealed = Number.isFinite(TAU) && Math.abs(Math.sin(TAU)) < eps && Math.abs(Math.cos(TAU) - 1) < eps
+    const tauSealed = Number.isFinite(TAU) && abs(sin(TAU)) < eps && abs(cos(TAU) - 1) < eps
     const contract = DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS
     const contractNamed =
       contract.length === (7 * 7) &&

@@ -19,7 +19,7 @@ import { modelSeal } from '../../../../heaven/balance'
 import { computedDistFiles, readmeMarkdown } from '../../../../quantum/lake/dist'
 import { theoremPageRows } from '../../../../wind/routes/corpus'
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops'
-import { merkleFold, toUuid } from '../../../../0'
+import { ceil, floor, log, log2, max, merkleFold, min, round, toUuid } from '../../../../0'
 import { buildForceFlag, canRespawnTrinity, docsBuildVerboseFlag, logDocsBuildPhase, slowBuildIsQuantumGapGate, writeSealedMerkle } from '../../script/shell'
 import { invisibleGapsCaughtByGates } from '../../gates'
 
@@ -118,8 +118,8 @@ export function auditFold(): { findings: Finding[]; report: string[] } {
   const findings: Finding[] = []
   for (const failure of seal.failures) {
     const index = failure.index || 0
-    const band = Math.floor(Math.max(0, index - 1) / 108)
-    const step = (Math.max(0, index - 1) % 108) + 1
+    const band = floor(max(0, index - 1) / 108)
+    const step = (max(0, index - 1) % 108) + 1
     const purpose = HARMONIC_PURPOSE[band] || 'extension — beyond the fifth harmonic'
     findings.push({
       wave: 'fold',
@@ -217,7 +217,7 @@ const files = [
 ]
 const distribution = files.map((entry, index) => {
   const overtone = index + 1
-  return { ...entry, overtone, frequency: Math.round(f0 * overtone), octave: Math.floor(Math.log2(overtone)) }
+  return { ...entry, overtone, frequency: round(f0 * overtone), octave: floor(log2(overtone)) }
 })
 
 // Folder distribution as harmonic numbers at all scales: the file count decomposes
@@ -500,9 +500,9 @@ const walkHarmony = (dir, depth) => {
   for (const sub of subs) walkHarmony(join(dir, sub.name), depth + 1)
 }
 if (existsSync(join(root, 'src'))) walkHarmony(join(root, 'src'), 0)
-const idealDepth = Math.max(1, Math.ceil(Math.log(Math.max(1, folderCount)) / Math.log(eightFold)))
-const singlePct = folderCount ? Math.round((100 * singleChild) / folderCount) : 0
-const noisePct = folderCount ? Math.round((100 * noiseLeaves) / folderCount) : 0
+const idealDepth = max(1, ceil(log(max(1, folderCount)) / log(eightFold)))
+const singlePct = folderCount ? round((100 * singleChild) / folderCount) : 0
+const noisePct = folderCount ? round((100 * noiseLeaves) / folderCount) : 0
 report.push(`Index harmony (live, book): ${folderCount} folders — ${singlePct}% single-child pass-through, ${noiseLeaves} pure re-export leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ⌈log${eightFold} N⌉ ≈ ${idealDepth}. A harmonic index is a balanced bāguà of crosses, not noise (book · cross · noise).`)
 if (singlePct > (5 * 5) || noisePct > (5 * 2) || maxFolderDepth > idealDepth * 2) {
   ratchetPush({ kind: 'index-harmony', harmonic: 'folder', detail: `the index is not yet harmonic — ${singlePct}% single-child pass-throughs + ${noiseLeaves} pure re-export noise leaves (${noisePct}%), depth ${maxFolderDepth} vs ideal ≈ ${idealDepth}; collapse the noise spread (single-child + forwarding leaves) and distribute the over-${eightFold} hubs until the index is a shallow, wide bāguà of real crossings (the book fold) — BLOCKING (folderLaw.ratchetsBlock), the deploy is red until it converges` })
@@ -669,7 +669,7 @@ if (barrel && existsSync(join(root, 'src'))) {
     ].join('\n')
     const distOut = join(root, '.vitepress', 'dist')
     if (existsSync(distOut)) writeFileSync(join(distOut, 'barrel.json'), JSON.stringify({ law: 'folder-only import (barrel) — enter a folder only through its index', enforcedTrees: enforced, count: violations.length, fix: barrel.fix, readyPrompt, violations }, null, 2))
-    gaps.push({ harmonic: 'barrel', kind: 'folder-only-import', detail: `${violations.length} import(s) violate the folder-only import law (enter a folder only through its index) on ${enforced.join(', ')}. WHAT & WHERE to move (first ${Math.min(8, violations.length)} of ${violations.length}; full list + ready prompt in .vitepress/dist/barrel.json):\n${sample}\n— why this fails: ${barrel.why.deep}\n\nREADY PROMPT (paste to an agent to fix all ${violations.length}):\n${readyPrompt}` })
+    gaps.push({ harmonic: 'barrel', kind: 'folder-only-import', detail: `${violations.length} import(s) violate the folder-only import law (enter a folder only through its index) on ${enforced.join(', ')}. WHAT & WHERE to move (first ${min(8, violations.length)} of ${violations.length}; full list + ready prompt in .vitepress/dist/barrel.json):\n${sample}\n— why this fails: ${barrel.why.deep}\n\nREADY PROMPT (paste to an agent to fix all ${violations.length}):\n${readyPrompt}` })
   }
   report.push(`Folder-only import law (enforced on ${enforced.join(', ')}): ${violations.length} violation(s)${violations.length ? ' — what/where + ready prompt in the finding and .vitepress/dist/barrel.json' : ' — every cross-folder import enters through its index'}.`)
 
@@ -684,7 +684,7 @@ if (barrel && existsSync(join(root, 'src'))) {
       reason: o.reason }))
     if (!facts && offenders.length) {
       const sample = offenders.slice(0, 8).map((o, i) => `  ${i + 1}. ${o.importer}: '${o.spec}' (${o.reason}) — import the folder only`).join('\n')
-      gaps.push({ harmonic: 'barrel', kind: 'import-extension', detail: `${offenders.length} import(s) violate folder-only law — never filename, extension, or /index (folderLaw.barrelImports.noExtensions; ALL of src, HARD, no exception). First ${Math.min(8, offenders.length)} of ${offenders.length}:\n${sample}\n— fix: dissolve <name>.ts into <name>/index.ts and import the folder — ${barrel.fixExtension}` })
+      gaps.push({ harmonic: 'barrel', kind: 'import-extension', detail: `${offenders.length} import(s) violate folder-only law — never filename, extension, or /index (folderLaw.barrelImports.noExtensions; ALL of src, HARD, no exception). First ${min(8, offenders.length)} of ${offenders.length}:\n${sample}\n— fix: dissolve <name>.ts into <name>/index.ts and import the folder — ${barrel.fixExtension}` })
     }
     report.push(
       `Folder-only import law (all of src, HARD): ${offenders.length} offender(s)${offenders.length ? '' : ' — every relative import targets a folder, never a filename'}.`,
@@ -698,7 +698,7 @@ if (barrel && existsSync(join(root, 'src'))) {
       gaps.push({
         harmonic: 'barrel',
         kind: 'hyphen-folder',
-        detail: `${hyphenOffenders.length} hyphenated folder(s) under src/ — one word per folder level, HARD (folderLaw.strict.oneWord). First ${Math.min(8, hyphenOffenders.length)}:\n${sample}` })
+        detail: `${hyphenOffenders.length} hyphenated folder(s) under src/ — one word per folder level, HARD (folderLaw.strict.oneWord). First ${min(8, hyphenOffenders.length)}:\n${sample}` })
     }
     report.push(
       `One-word folder law: ${hyphenOffenders.length} hyphenated folder(s)${hyphenOffenders.length ? '' : ' — every folder segment is a single word'}.`,
@@ -766,7 +766,7 @@ if (compClosure) {
   const componentCount = compClosure.composedExcluded
     ? graph.components.filter((name) => !globals.has(name) && !composedSet.has(name)).length
     : graph.components.length
-  const over = Math.max(0, componentCount - compClosure.limit)
+  const over = max(0, componentCount - compClosure.limit)
   if (over > 0) ratchetPush({ kind: 'component-64-ratchet', harmonic: 'component', detail: `${componentCount} components — the double torus is 2×32 = ${compClosure.limit} = 2⁶ = 4³ = 8²; fold the ${over} over the ${compClosure.limit} onto the renderer each is a variant of (${compClosure.why.count})` })
   report.push(`Component closure: ${componentCount} components toward the ${compClosure.limit}-component double torus (2×32 = 64); ${over} over — a ratchet while the surface folds onto the renderers (folderLaw.componentClosure).`)
 }
@@ -1176,7 +1176,7 @@ const payload = {
   generatedAt: new Date().toISOString(),
   fundamental: f0,
   count: distribution.length,
-  octaves: Math.max(...distribution.map((entry) => entry.octave)) + 1,
+  octaves: max(...distribution.map((entry) => entry.octave)) + 1,
   harmonicBands: harmonic.bands,
   harmonicScales: harmonic.scales,
   harmonicAssignment,

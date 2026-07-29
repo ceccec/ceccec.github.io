@@ -2,7 +2,7 @@
 import { HARMONICS_LADDER_LENGTH } from '../../pair/enforcement/gates/computational'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, entropy, fleetCacheEconomicsDecoded } from '../../heaven/compute'
-import { foldPair, measure, merge, merkleFold, roundTo, toUuid } from '../../0'
+import { abs, floor, foldPair, measure, merge, merkleFold, roundTo, toUuid } from '../../0'
 import { areaPairs } from '../../mountain/geometry'
 import { atoms, conceptCommands } from '../../heaven/atoms'
 import { pureDiamonds, quantumFoldedBlockchains } from '../../fire/diamonds'
@@ -41,7 +41,7 @@ export function analytics(matrix: MindMatrix = buildMatrix()) {
   const boards = [
     make('model', '◉', [
       { metric: 'areas', value: areaPairs().count },
-      { metric: 'pairs', value: Math.floor(areaPairs().count / 2) },
+      { metric: 'pairs', value: floor(areaPairs().count / 2) },
       { metric: 'commands', value: conceptCommands.length },
       { metric: 'components', value: componentGraph().components.length },
       { metric: 'atoms', value: atoms.length },
@@ -402,7 +402,7 @@ export function fleetScaleStatsFused(matrix: MindMatrix = buildMatrix()) {
     // one node misses (recompute), the rest hit the shared content-addressed root.
     const hit = nodes <= 1 ? 0 : roundTo((nodes - 1) / nodes, 6)
     const ladder = econ.hitRatios
-    const nearest = ladder.reduce((best, r) => (Math.abs(r.hit - hit) < Math.abs(best.hit - hit) ? r : best), ladder[0]!)
+    const nearest = ladder.reduce((best, r) => (abs(r.hit - hit) < abs(best.hit - hit) ? r : best), ladder[0]!)
     return {
       nodes,
       output: nodes * perBuild.count, // aggregate self-metrics emitted across the fleet

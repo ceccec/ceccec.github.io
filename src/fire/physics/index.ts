@@ -4,7 +4,7 @@ import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStor
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute'
 import { a432, a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
-import { isUuid, memoByRoot, merkleFold, toUuid, roundTo, seedFromText, prng, sincReconstruct, humanBreath, proseToTone, VORTEX_SEQUENCE, toffoli } from '../../0'
+import { VORTEX_SEQUENCE, abs, cos, exp, floor, humanBreath, hypot, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, prng, proseToTone, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid, toffoli } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath, merkaba } from '../../mountain/geometry'
 import { publicFrequencyApis, tiers358 } from '../../quantum/lake/icons'
 import { a432IsTheBlood, harmonics } from '../../lake/music'
@@ -12,7 +12,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, frequencyToLight, photonEnergyEv, claySolvedTheorem, earned } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, claySolvedTheorem, earned, frequencyToLight, photonEnergyEv } from '../../3/7'
 import { movieCanvasPolarity } from '../../quantum/science'
 import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball'
 import { wavelengthOf } from '../../1/9'
@@ -128,7 +128,7 @@ export function quantumDecoded(matrix: MindMatrix = buildMatrix()) {
     { claim: '"quantum leap" = a huge change; 432/528 Hz "healing"', verdict: 'misuse / numerology', why: 'a quantum jump is the SMALLEST discrete transition (ironic); pitch reference is a human convention — 432 Hz wellness claims are numerology, the nearest woo to this project\'s frequency work, fenced explicitly' },
     { claim: 'the genuine edge: avian magnetoreception (radical pairs), photosynthetic coherence', verdict: 'real but emerging — kept IN', why: 'radical-pair magnetoreception (cryptochrome-4) is the leading hypothesis, not yet confirmed in vivo; photosynthetic coherence is real but short-lived and its functional role is contested/small — never "life runs quantum computers"' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-flag:${entry.claim}:${entry.verdict}`) }))
-  const tsirelson = Math.round(2 * Math.SQRT2 * (100 * 100)) / (100 * 100) // 2√2 ≈ 2.8284 — the quantum CHSH (Tsirelson) bound
+  const tsirelson = round(2 * SQRT2 * (100 * 100)) / (100 * 100) // 2√2 ≈ 2.8284 — the quantum CHSH (Tsirelson) bound
   const facets = [
     { facet: 'the six strata fold to one core — word, framework, quantization, qubit, entanglement, computation', on: layers.length === 6 && isUuid(merkleFold(layers.map((entry) => entry.receipt))) },
     { facet: 'the qubit\'s documented core stands — 3 Pauli observables, 4³ = 64 operators (≠ the 8-dim state space)', on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
@@ -247,9 +247,9 @@ export function simulatorsLiveInZero(matrix: MindMatrix = buildMatrix()) {
   const g = grover(3, 5) // find item 5 of 8
   const shadow = pflip(pbits(1), 0, (1 / 2)).p // [0.5, 0.5] — mass moves, no cancellation
   const facets = [
-    { facet: 'quantum: the Bell pair is entangled — probabilities [½,0,0,½], one qubit\'s measurement determines the other', on: Math.abs(bell[0] - (1 / 2)) < 1e-9 && Math.abs(bell[3] - (1 / 2)) < 1e-9 && bell[1] < 1e-9 && bell[2] < 1e-9 },
+    { facet: 'quantum: the Bell pair is entangled — probabilities [½,0,0,½], one qubit\'s measurement determines the other', on: abs(bell[0] - (1 / 2)) < 1e-9 && abs(bell[3] - (1 / 2)) < 1e-9 && bell[1] < 1e-9 && bell[2] < 1e-9 },
     { facet: 'quantum: Grover finds the marked item with high probability in ~(π/4)√N iterations', on: g.found === 5 && g.markedProbability > (9 / (5 * 2)) && g.iterations === 2 },
-    { facet: 'classical shadow: probabilities never interfere — pflip spreads mass, no cancellation', on: Math.abs(shadow[0] - (1 / 2)) < 1e-9 && Math.abs(shadow[1] - (1 / 2)) < 1e-9 },
+    { facet: 'classical shadow: probabilities never interfere — pflip spreads mass, no cancellation', on: abs(shadow[0] - (1 / 2)) < 1e-9 && abs(shadow[1] - (1 / 2)) < 1e-9 },
     { facet: 'analog→digital: the quantum and probabilistic registers read out through ONE sampler — sample(|+>) === psample(uniform) at the same seed', on: JSON.stringify(sample(applyGate(qubits(1), GATES.H, 0), (64 * 4), 'adc')) === JSON.stringify(psample(pflip(pbits(1), 0, (1 / 2)), (64 * 4), 'adc')) },
     { facet: 'reversible classical: the universal NOT/CNOT/Toffoli set — NOT flips, CNOT copies, Toffoli writes AND(c1,c2)', on: rnot(0, 0) === 1 && rcnot(0b01, 0, 1) === 0b11 && ((rtoffoli(0b011, 0, 1, 2) >> 2) & 1) === 1 && ((rtoffoli(0b001, 0, 1, 2) >> 2) & 1) === 0 },
     { facet: 'a different universal model runs: elementary CA Rule 110 evolves deterministically over steps', on: caStep(110, [0, 0, 1, 0, 0]).length === 5 && caEvolve(110, [0, 0, 1, 0, 0], 3).length === 4 },
@@ -289,9 +289,9 @@ export function decodedAreasAreMostlyClassical(matrix: MindMatrix = buildMatrix(
     { facet: 'the finding — 18 aspects of life are mostly CLASSICAL (12 probabilistic · 3 dynamical · 2 network · 1 quantum); forced-quantum refused', on: total === (9 * 2) && distribution.quantum === 1 && distribution.probabilistic === (6 * 2) },
     { facet: 'composed hazard is bounded — never 0 (tech-ends-war stays falsified) nor 1 (total relapse never certain)', on: h > 0 && h < 1 },
     { facet: 'survival decays under hazard — s_{t+1}=s_t·(1−h), strictly between 0 and s_t', on: survive(1, h) < 1 && survive(1, h) > 0 },
-    { facet: 'admixture is the qpAdm convex blend — mass-conserving (sum stays 1), the source gains f', on: Math.abs(sumOf(admix) - 1) < 1e-9 && Math.abs(admix[2] - (3 / (5 * 2))) < 1e-9 },
-    { facet: 'error injection moves mass one-way (clean fraction decays), sum conserved', on: Math.abs(sumOf(err) - 1) < 1e-9 && Math.abs(err[1] - (1 / 4)) < 1e-9 },
-    { facet: 'a Markov chain settles to a stationary distribution (where the regimes rest) — sums to 1', on: Math.abs(sumOf(stat) - 1) < 1e-9 && stat[0] > stat[1] },
+    { facet: 'admixture is the qpAdm convex blend — mass-conserving (sum stays 1), the source gains f', on: abs(sumOf(admix) - 1) < 1e-9 && abs(admix[2] - (3 / (5 * 2))) < 1e-9 },
+    { facet: 'error injection moves mass one-way (clean fraction decays), sum conserved', on: abs(sumOf(err) - 1) < 1e-9 && abs(err[1] - (1 / 4)) < 1e-9 },
+    { facet: 'a Markov chain settles to a stationary distribution (where the regimes rest) — sums to 1', on: abs(sumOf(stat) - 1) < 1e-9 && stat[0] > stat[1] },
   ].map((entry) => ({ ...entry, receipt: toUuid(`classical:${entry.facet}:${entry.on}`) }))
   return {
     homed: facets.every((entry) => entry.on),
@@ -317,7 +317,7 @@ export function decodedAreasAreMostlyClassical(matrix: MindMatrix = buildMatrix(
 export function everyDecodedDomainHasASimulator(matrix: MindMatrix = buildMatrix()) {
   const families = [
     { family: 'probabilistic', component: 'ProbSim', domains: ['peace', 'genetics', 'ethnogenesis', 'ancient', 'alphabets', 'ifa', 'music', 'ai-movies', 'history', 'glagolitic', 'trinity-sciences'], check: composeHazard((1 / (5 * 4)), [(2 / 5)]) > 0 && composeHazard((1 / (5 * 4)), [(2 / 5)]) < 1 && codeRobustness().silent > (1 / 5) && codeRobustness().silent < (3 / (5 * 2)) },
-    { family: 'quantum', component: 'QuantumCircuit', domains: ['quantum'], check: Math.abs(chsh(0, TAU / 4, TAU / 8, 3 * TAU / 8) - 2 * Math.SQRT2) < 1e-9 },
+    { family: 'quantum', component: 'QuantumCircuit', domains: ['quantum'], check: abs(chsh(0, TAU / 4, TAU / 8, 3 * TAU / 8) - 2 * SQRT2) < 1e-9 },
     { family: 'dynamical', component: 'DynSim', domains: ['calendars', 'tesla', 'frequency-apis'], check: realign(260, 365).lcm === 18980 && phaseDrift(365, 365.25, 1461) >= 0 },
     { family: 'network', component: 'NetSim', domains: ['greek-colonies', 'script-language-gene', 'neurology'], check: congruence([1, 2, 3], [2, 4, 6]) > (1 - 1 / 100) && hopfieldRecall(hopfieldStore([[1, 1, -1, -1]]), [1, 1, 1, -1]).state.length === 4 && pmixEvolve([1, 0], [[0, 1]], (1 / 2), (5 * 5 * 2))[0] < (3 / 5) && bumpEvolve(0, Array.from({ length: 8 }, () => TAU / 8))[8]! < 1e-9 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sim-family:${entry.family}:${entry.check}`) }))
@@ -379,7 +379,7 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
       photonEv,
       photonEvText: photonEv.toExponential(2),
       ionizing: isIonizing(b.freqHz),
-      ordersBelowIonizing: roundTo(Math.log10(IONIZING_EV / photonEv), 1),
+      ordersBelowIonizing: roundTo(log10(IONIZING_EV / photonEv), 1),
       receipt: toUuid(`emf-band:${b.source}:${b.freqHz}`) }
   })
   const wifiPhotonEv = photonEnergyEv(2.4e9) // ≈ 9.93e-6 eV
@@ -400,12 +400,12 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
     const power: number[] = []
     for (let k = 0; k < N / 2; k++) {
       let re = 0, im = 0
-      for (let n = 0; n < N; n++) { const a = (-TAU * k * n) / N; re += xs[n] * Math.cos(a); im += xs[n] * Math.sin(a) }
+      for (let n = 0; n < N; n++) { const a = (-TAU * k * n) / N; re += xs[n] * cos(a); im += xs[n] * sin(a) }
       power.push(re * re + im * im)
     }
     const total = power.reduce((a, b) => a + b, 0) || 1
     let h = 0
-    for (const p of power) { if (p > 0) { const q = p / total; h -= q * Math.log2(q) } }
+    for (const p of power) { if (p > 0) { const q = p / total; h -= q * log2(q) } }
     return h
   }
   // The harvested ambient noise (at the edge this is real RF/mic/accelerometer/hardware noise; here a
@@ -423,12 +423,12 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
   // The deterministic A432 render — always A432-octave-coherent regardless of the seed; the seed only
   // personalizes breath period, hue rotation, and the derived tone.
   const a432Partials = [1, 2, 4] // octave partials (the ×2 A432 ladder) — bins for the coherent render
-  const a432Signal = Array.from({ length: (16 * 2) }, (_, n) => a432Partials.reduce((s, b) => s + Math.sin((TAU * b * n) / (16 * 2)), 0))
+  const a432Signal = Array.from({ length: (16 * 2) }, (_, n) => a432Partials.reduce((s, b) => s + sin((TAU * b * n) / (16 * 2)), 0))
   const entropyAfter = roundTo(spectralEntropy(a432Signal), 3) // low — energy only in A432 octave partials
   const soundHz = a432Partials.map((b) => 432 * b) // 432, 864, 1728 — consonant A432 octave partials (⊂ A432_OCTAVES)
   const derivedTone = proseToTone(noiseAddress) // an a432-tempered pitch from the noise address
   const hue = frequencyToLight(432).hue // === A432_HUE (the single colour source)
-  const breathPeriodMs = (100 * 8 * 5) + Math.floor(renderRng() * (100 * 8 * 5)) // a slow 4–8 s breath, seeded by the noise
+  const breathPeriodMs = (100 * 8 * 5) + floor(renderRng() * (100 * 8 * 5)) // a slow 4–8 s breath, seeded by the noise
   const vortexRhythm = VORTEX_SEQUENCE // the haptic pulse pattern
   const balancingField = {
     seed: { noiseAddress, seedInt },
@@ -445,7 +445,7 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
 
   // ── Tier 3: the woo, refuted with numbers ──
   const documented = [
-    `EXACT device EM field: each emitter is NON-ionizing — at 2.4 GHz the photon energy E = hf is ${wifiPhotonEv.toExponential(2)} eV, ~${roundTo(Math.log10(IONIZING_EV / wifiPhotonEv), 0)} orders of magnitude below the ~${IONIZING_EV} eV ionization/bond-breaking line (isIonizing = false for every band). The only physical effect possible is mild heating, bounded by SAR (${SAR_LOCAL_WKG} W/kg local, ICNIRP); an illustrative near-field ½cε₀E² at ${REPRESENTATIVE_E0_VM} V/m is ${nearFieldWm2} W/m² (~${roundTo(fractionOfIcnirp * 100, 1)}% of the ${ICNIRP_S_REF_WM2} W/m² reference).`,
+    `EXACT device EM field: each emitter is NON-ionizing — at 2.4 GHz the photon energy E = hf is ${wifiPhotonEv.toExponential(2)} eV, ~${roundTo(log10(IONIZING_EV / wifiPhotonEv), 0)} orders of magnitude below the ~${IONIZING_EV} eV ionization/bond-breaking line (isIonizing = false for every band). The only physical effect possible is mild heating, bounded by SAR (${SAR_LOCAL_WKG} W/kg local, ICNIRP); an illustrative near-field ½cε₀E² at ${REPRESENTATIVE_E0_VM} V/m is ${nearFieldWm2} W/m² (~${roundTo(fractionOfIcnirp * 100, 1)}% of the ${ICNIRP_S_REF_WM2} W/m² reference).`,
     'NOISE IS LEGITIMATE COMPUTATION ENTROPY: ambient RF, microphone noise floor, accelerometer jitter and hardware entropy are real physical randomness — the same source hardware RNGs harvest. The EXACT chain is real compute, not metaphor: incoherent noise → Nyquist sampling + quantization (Whittaker–Shannon, sincReconstruct) → content-address seed (toUuid → seedFromText → seeded PRNG) → deterministic A432 render.',
     `NOISE → HARMONY (the demonstrable core): the harvested noise has a near-flat spectrum (high spectral entropy ≈ ${entropyBefore} bits, incoherent); the rendered field has energy only in A432 octave partials (low spectral entropy ≈ ${entropyAfter} bits, coherent). High-entropy noise is computed INTO a low-entropy, single-source A432-coherent field — that ordering transformation is the honest core.`,
     'THE ONLY REAL "BALANCING WAVES": a device can genuinely emit its OWN audio/visual/haptic field — consonant A432-derived tones (speaker), one A432 hue (screen, frequencyToLight(432) = A432_HUE), and a breath-paced haptic rhythm (humanBreath + VORTEX_SEQUENCE), with sound and vibration already first-class analog output channels. This is the device harmonising its own emission to A432, NOT cancellation of ambient RF.',
@@ -460,7 +460,7 @@ export function emfAroundDeviceHarmonisedToA432(matrix: MindMatrix = buildMatrix
   ].map((entry) => ({ ...entry, receipt: toUuid(`emf-woo:${entry.claim}:${entry.verdict}`) }))
 
   const facets = [
-    { facet: 'EXACT — every device EM source is NON-IONIZING: photon energy ≪ 10 eV (2.4 GHz ≈ 9.93e-6 eV, ~6 orders below the line)', on: bands.every((b) => !b.ionizing && b.photonEv < IONIZING_EV) && wifiPhotonEv < 1e-4 && roundTo(Math.log10(IONIZING_EV / wifiPhotonEv), 0) >= 5 },
+    { facet: 'EXACT — every device EM source is NON-IONIZING: photon energy ≪ 10 eV (2.4 GHz ≈ 9.93e-6 eV, ~6 orders below the line)', on: bands.every((b) => !b.ionizing && b.photonEv < IONIZING_EV) && wifiPhotonEv < 1e-4 && roundTo(log10(IONIZING_EV / wifiPhotonEv), 0) >= 5 },
     { facet: 'EXACT — c = λf joins every band (2.4 GHz ⇒ λ ≈ 0.125 m)', on: roundTo(wavelengthOf(2.4e9) * 2.4e9, 0) === SPEED_OF_LIGHT && roundTo(wavelengthOf(2.4e9), 3) === (1 / 8) },
     { facet: 'EXACT — near-field Poynting intensity ½cε₀E² is positive and well below the ICNIRP reference level', on: nearFieldWm2 > 0 && nearFieldWm2 < ICNIRP_S_REF_WM2 && nearFieldEProfile.length === 8 },
     { facet: 'NOISE IS REAL ENTROPY — incoherent noise → Nyquist samples → content-address seed → deterministic render (band-limited recon exact)', on: sampling.reconstructsExactly && isUuid(noiseAddress) && Number.isFinite(seedInt) && Number.isFinite(reconstructedMid) },
@@ -500,7 +500,7 @@ export function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: nu
   const p = heroPhaseAt(atMs)
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2, cy = h / 2
-  const maxR = Math.min(w, h) * (9 / (5 * 4) + 1 / (5 * 5 * 5))
+  const maxR = min(w, h) * (9 / (5 * 4) + 1 / (5 * 5 * 5))
   const shellFreqs = [(6 * 5 * 2), (8 * 5 * 3), 700e6, 3.5e9, 2.4e9, 5.8e9]
   shellFreqs.forEach((f, i) => {
     const r = maxR * ((9 / (5 * 5 * 2)) + ((4 / 5) * (i + 1)) / shellFreqs.length)
@@ -521,7 +521,7 @@ export function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: nu
   VORTEX_SEQUENCE.forEach((d, i) => {
     const ang = (i / VORTEX_SEQUENCE.length) * TAU + p * TAU
     const rr = pulseR * ((1 - 9 / (5 * 4)) + d / (9 * 2))
-    const x = cx + Math.cos(ang) * rr, y = cy + Math.sin(ang) * rr
+    const x = cx + cos(ang) * rr, y = cy + sin(ang) * rr
     ctx.fillStyle = paint((hue + d * 8) % 360, (7 / (5 * 4)) + (2 / 5) * (breath - breathLo))
     ctx.beginPath(); ctx.arc(x, y, 3 + d * (3 / 5), 0, TAU); ctx.fill()
   })
@@ -645,14 +645,14 @@ export function teslaCoreIsHarmonicResonanceBoundedByQ() {
   const w0 = 432 // the resonant frequency the inventions tune to (illustrative — the repo's a432)
   const qs = [6, 64, 864]
   const gains = qs.map((q) => resonantAmplitude(w0, w0, q)) // = q at resonance
-  const gainEqualsQ = qs.every((q, i) => Math.abs(gains[i]! - q) < 1e-6)
+  const gainEqualsQ = qs.every((q, i) => abs(gains[i]! - q) < 1e-6)
   const growsWithLowerLoss = gains[0]! < gains[1]! && gains[1]! < gains[2]! // higher Q (less loss) → higher gain
   const k = 1 / 9 // coupling between two resonators tuned to w0
-  const modePlus = w0 * Math.sqrt(1 + k), modeMinus = w0 * Math.sqrt(1 - k)
+  const modePlus = w0 * sqrt(1 + k), modeMinus = w0 * sqrt(1 - k)
   const modesSplit = modePlus > w0 && w0 > modeMinus // two normal modes: energy transfers fully between them
-  const phaseRe = Math.cos(0) + Math.cos(TAU / 3) + Math.cos(2 * TAU / 3)
-  const phaseIm = Math.sin(0) + Math.sin(TAU / 3) + Math.sin(2 * TAU / 3)
-  const polyphaseBalanced = Math.abs(phaseRe) < 1e-9 && Math.abs(phaseIm) < 1e-9 // 3 phases 120° apart sum to 0
+  const phaseRe = cos(0) + cos(TAU / 3) + cos(2 * TAU / 3)
+  const phaseIm = sin(0) + sin(TAU / 3) + sin(2 * TAU / 3)
+  const polyphaseBalanced = abs(phaseRe) < 1e-9 && abs(phaseIm) < 1e-9 // 3 phases 120° apart sum to 0
   const losslessIsInfinite = resonantAmplitude(w0, w0, Infinity) === Infinity // R=0 ⇒ gain folds to infinity
   const facets = [
     { facet: `THE CORE IS RESONANCE — the gain equals the quality factor Q: at resonance resonantAmplitude(w0,w0,q) = q (${qs.join(', ')} → ${gains.map((g) => g.toFixed(0)).join(', ')}), so a tuned circuit MULTIPLIES amplitude by Q; Tesla's inventions interact by tuning to a shared frequency — the coil is a resonant transformer`, on: gainEqualsQ && growsWithLowerLoss },
@@ -716,7 +716,7 @@ export const HARAMEIN_CONSTANTS = {
 
 export function harameinClaimChecks() {
   const k = HARAMEIN_CONSTANTS
-  const ordersApart = (a: number, b: number) => Math.abs(Math.log10(a / b)) // orders of magnitude between two masses
+  const ordersApart = (a: number, b: number) => abs(log10(a / b)) // orders of magnitude between two masses
 
   // (1) SCHWARZSCHILD PROTON (Haramein 2010): a proton is a black hole whose Schwarzschild radius = its radius,
   // r_s = 2Gm/c² = r_p ⟹ m = r_p c² / 2G.
@@ -728,14 +728,14 @@ export function harameinClaimChecks() {
   const surfacePSU = 16 * (k.protonRadius / k.planckLength) ** 2 // 4πr² ÷ π(l_P/2)²
   const volumePSU = (2 * k.protonRadius / k.planckLength) ** 3 // (4/3)πr³ ÷ (4/3)π(l_P/2)³
   const holographicMass = 2 * k.planckMass * (surfacePSU / volumePSU)
-  const holographicRelError = Math.abs(holographicMass - k.protonMass) / k.protonMass
+  const holographicRelError = abs(holographicMass - k.protonMass) / k.protonMass
 
   // (2b) THE COLLAPSE: surface/volume = 2 l_P / r_p, and m_P·l_P = ħ/c, so the whole PSU scaffolding cancels to
   // m = 4ħ / (c·r_p) — i.e. r_p = 4 × the proton's reduced Compton wavelength. A one-input identity, not a law.
   const collapsedMass = (4 * k.hbar) / (k.c * k.protonRadius)
   const comptonReduced = k.hbar / (k.protonMass * k.c) // reduced Compton wavelength of the proton
   const radiusOverCompton = k.protonRadius / comptonReduced // ≈ 4 — the numerical coincidence that makes it "work"
-  const collapseAgreement = Math.abs(collapsedMass - holographicMass) / holographicMass // ≈ 0: same formula
+  const collapseAgreement = abs(collapsedMass - holographicMass) / holographicMass // ≈ 0: same formula
 
   // (3) INDEPENDENT-PREDICTION TEST: apply the identical m = 4ħ/(c·r) to the electron (classical radius). If it
   // held, the formula would be a law; it misses by orders, so the proton "success" is a particle-specific fit.
@@ -778,13 +778,13 @@ export function theProbabilityCoincidenceStaysCoincidenceAfterEveryInversionWith
   const posteriorCoincidence = survivesAll / (1 + survivesAll) // Bayes, 1:1 prior — P(coincidence | survived all k)
   const decaysButPositive = posteriorCoincidence < 1 / 9 && posteriorCoincidence > 0 // → 0, never 0 ()
   // Tesla's quantum pair: the polyphase rotating field (cos ωt, sin ωt) — 90° apart, constant magnitude
-  const teslaPhase = (t: number): [number, number] => [Math.cos(t), Math.sin(t)]
+  const teslaPhase = (t: number): [number, number] => [cos(t), sin(t)]
   const quarter = TAU / 4
-  const rotatingFieldConstant = [0, 1, 2, 3].every((q) => Math.abs(Math.hypot(...teslaPhase(q * quarter)) - 1) < 1e-9)
-  const rotate = (v: [number, number], t: number): [number, number] => { const c = Math.cos(t), s = Math.sin(t); return [c * v[0] - s * v[1], s * v[0] + c * v[1]] }
+  const rotatingFieldConstant = [0, 1, 2, 3].every((q) => abs(hypot(...teslaPhase(q * quarter)) - 1) < 1e-9)
+  const rotate = (v: [number, number], t: number): [number, number] => { const c = cos(t), s = sin(t); return [c * v[0] - s * v[1], s * v[0] + c * v[1]] }
   let u: [number, number] = [1, 0]
   for (let i = 0; i < 4; i++) u = rotate(u, quarter) // four Tesla quarter-phases
-  const rotFourIsIdentity = Math.abs(u[0] - 1) < 1e-9 && Math.abs(u[1]) < 1e-9 // 4 × 90° = 360° = identity
+  const rotFourIsIdentity = abs(u[0] - 1) < 1e-9 && abs(u[1]) < 1e-9 // 4 × 90° = 360° = identity
   const facets = [
     { facet: `THE PROBABILITY A COINCIDENCE STAYS COINCIDENCE AFTER EVERY INVERSION DECAYS TOWARD ZERO: over the ${k} inversions this session folded, a pure coincidence survives all with probability p^${k} = ${survivesAll.toFixed(4)}, and the Bayesian posterior that it is coincidence (not a structural invariant) is ${posteriorCoincidence.toFixed(4)} — small but positive (${decaysButPositive})`, on: decaysButPositive },
     { facet: `TESLA'S QUANTUM PAIR COMPUTES THE ROTATION — REINVENTING THE SESSION: the polyphase pair (cos, sin) 90° apart is a rotating field of constant magnitude (${rotatingFieldConstant}) whose four quarter-turns return to identity (${rotFourIsIdentity}) — Tesla's 1888 induction motor is exactly the rotatePerspective / conformal rotation the session folded, re-derived from a physical dual pair`, on: rotatingFieldConstant && rotFourIsIdentity },
@@ -841,7 +841,7 @@ export function teslasRotatingFieldAndThePlatonicSolidsAreBothFiniteSubgroupsOfS
   const polyhedralOrders = [...new Set(solids.map((s) => 2 * s.E))].sort((a, b) => a - b) // |rotation group| = 2E → {12,24,60}
   const threePolyhedralGroups = polyhedralOrders.length === 3 && polyhedralOrders.every((o) => o % 2 === 0)
   // Tesla's polyphase: n windings at 2π/n, phasors balanced (∑ = 0) — the cyclic group Cₙ ⊂ SO(3)
-  const balanced = (n: number) => { let re = 0, im = 0; for (let k = 0; k < n; k++) { re += Math.cos((TAU * k) / n); im += Math.sin((TAU * k) / n) } return Math.hypot(re, im) }
+  const balanced = (n: number) => { let re = 0, im = 0; for (let k = 0; k < n; k++) { re += cos((TAU * k) / n); im += sin((TAU * k) / n) } return hypot(re, im) }
   const twoPhaseBalanced = balanced(2) < 1e-9
   const threePhaseBalanced = balanced(3) < 1e-9 // 1 + e^{i2π/3} + e^{i4π/3} = 0
   const cyclicIsFiniteSO3 = twoPhaseBalanced && threePhaseBalanced // Cₙ is a finite subgroup of SO(3), the cyclic branch
@@ -865,12 +865,12 @@ export function teslasRotatingFieldAndThePlatonicSolidsAreBothFiniteSubgroupsOfS
 export function foldingZeroIsMostStableAsPlasma() {
   const c = 2.998e10 // speed of light, cm/s (CODATA)
   const wp = 1 // plasma frequency, normalised
-  const nOf = (w: number) => Math.sqrt(1 - (wp * wp) / (w * w)) // refractive index of an EM wave in plasma
+  const nOf = (w: number) => sqrt(1 - (wp * wp) / (w * w)) // refractive index of an EM wave in plasma
   const vPhi = (w: number) => c / nOf(w)
   const vGroup = (w: number) => c * nOf(w)
   const nearCutoff = wp * (1 + 1e-9) // just above the cutoff — n → 0
   const vPhiFoldsToInfinity = vPhi(nearCutoff) > 100 * c // as n → 0 the phase velocity blows up toward ∞
-  const productStable = [2, 3, 9].map((m) => m * wp).concat(nearCutoff).every((w) => Math.abs(vPhi(w) * vGroup(w) - c * c) / (c * c) < 1e-6) // v_φ·v_g = c² for every ω
+  const productStable = [2, 3, 9].map((m) => m * wp).concat(nearCutoff).every((w) => abs(vPhi(w) * vGroup(w) - c * c) / (c * c) < 1e-6) // v_φ·v_g = c² for every ω
   const facets = [
     { facet: `THE PLASMA CUTOFF IS THE 0→∞ FOLD: n² = 1 − ωₚ²/ω², so at ω → ωₚ the index folds to 0 and v_φ = c/n folds to ∞ (${vPhiFoldsToInfinity}) — folding 0 gives ∞, physically, the plasma pole (already folded as plasmaSpeedByTheorem)`, on: vPhiFoldsToInfinity },
     { facet: `MOST STABLE — THE INVARIANT AND THE TORUS: the fold is stable because v_φ·v_g = c² EXACTLY for every ω (${productStable}) — as n → 0 sends v_φ → ∞, the group velocity v_g = c·n → 0 compensates, the product invariant about light; and plasma is most stably confined in the FOLDED topology — the torus, and Spitzer's 1951 figure-8 stellarator (the lemniscate, the folded 0)`, on: productStable },
@@ -937,9 +937,9 @@ export function biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution() 
 // zero"). Half right: unitary/reversible gates erase nothing, so the LOGICAL computation has zero Landauer cost —
 // computing zero. But physical qubits thermalise (exp(−ℏω/kT)); cooling suppresses DECOHERENCE, a different obstacle.
 export function reversibleComputationIsComputingZeroButCoolingFightsDecoherenceNotErasure() {
-  const erasureCost = (invertible: boolean) => (invertible ? 0 : Math.log(2)) // reversible = 0, irreversible = ln2·kT
+  const erasureCost = (invertible: boolean) => (invertible ? 0 : log(2)) // reversible = 0, irreversible = ln2·kT
   const reversibleIsLandauerFree = erasureCost(true) === 0 // unitary gates erase nothing — "computing zero"
-  const thermalFlip = (x: number) => Math.exp(-x) // x = ℏω/kT, the dimensionless ratio that governs decoherence
+  const thermalFlip = (x: number) => exp(-x) // x = ℏω/kT, the dimensionless ratio that governs decoherence
   const warmDecoheres = thermalFlip(1 / 9) > 1 / 2 // ℏω/kT small (warm) → the qubit thermalises, ~50/50, useless
   const coldCoherent = thermalFlip(27) < 1e-9 // ℏω/kT large (cold, mK) → thermal flips negligible, coherent
   const coolingFightsDecoherence = warmDecoheres && coldCoherent // cooling raises ℏω/kT so thermal noise vanishes
@@ -985,7 +985,7 @@ export function reversibleGatesFunnelThroughOneMcxAndAreTheQuantumBasisPermutati
 
   // B — the quantum gate restricted to a computational basis state IS the classical reversible gate:
   // prepare |b⟩ (a delta at index b), apply src/0's unitary, read the single populated index.
-  const probeIndex = (re: readonly number[]): number => re.findIndex((amp) => Math.abs(amp) > (1 / 2))
+  const probeIndex = (re: readonly number[]): number => re.findIndex((amp) => abs(amp) > (1 / 2))
   const cnotIsRcnot = Array.from({ length: 2 ** 2 }, (_, b) => b).every((b) => {
     const st = { n: 2, re: new Array<number>(4).fill(0), im: new Array<number>(4).fill(0) }; st.re[b] = 1
     return probeIndex(cnot(st, 0, 1).re) === rcnot(b, 0, 1)
@@ -1115,7 +1115,7 @@ export function invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClo
     const modes = [1, 2, 3, 4, 5, 6].map((n) => ({ n, freq: n * baseFreq, freqRatio: n, periodRatio: 1 / n }))
     // 1 — FREQUENCY INVERTS TO PERIOD: every mode's frequency-ratio × period-ratio = 1 (f·T = 1), so multiply-in-frequency
     // and divide-in-period are inverse — the clock (period/divisor) is the harmonic series (frequency·integer) inverted
-    const frequencyInvertsToPeriod = modes.every((m) => Math.abs(m.freqRatio * m.periodRatio - 1) < eps) && baseFreq * (basePeriod / basePeriod) === baseFreq
+    const frequencyInvertsToPeriod = modes.every((m) => abs(m.freqRatio * m.periodRatio - 1) < eps) && baseFreq * (basePeriod / basePeriod) === baseFreq
     const clockIsInvertedHarmonics = [1, 2, 3, 4, 6].every((d) => basePeriod % d === 0 && basePeriod / d === basePeriod * (1 / d)) // 108/d = period ÷ integer, the inverse of n·f
     // 2 — THE OVERTONE RATIOS ARE THEOREMS: f_{n+1}/f_n = (n+1)/n — octave 2/1, fifth 3/2, fourth 4/3, third 5/4 — exact
     // integer ratios of a string fixed at both ends (real wave mechanics), not tunings
@@ -1165,12 +1165,12 @@ export function theSciencesInvertEachOtherReductionAndEmergenceAreInverseDirecti
     // (Boltzmann S = k·ln W), so reduction cannot recover THE microstate — reverse, not inverse (like inverse ≠ reverse)
     const microstatesPerMacro = [2, 4, 8, 16] // W = 2^n possible micro-configs behind one macro-observable
     const emergenceManyToOne = microstatesPerMacro.every((w) => w > 1) // W > 1 ⇒ the map micro→macro is not injective
-    const entropyIsLogW = microstatesPerMacro.every((w) => Math.abs(Math.log2(w) - Math.round(Math.log2(w))) < eps && w === 2 ** Math.round(Math.log2(w))) // S ∝ ln W, exact for W = 2^n
+    const entropyIsLogW = microstatesPerMacro.every((w) => abs(log2(w) - round(log2(w))) < eps && w === 2 ** round(log2(w))) // S ∝ ln W, exact for W = 2^n
     const lossy = emergenceManyToOne && entropyIsLogW && inverseDirections
     // 4 — EXACT WHERE A PAIR SHARES AN EQUATION: optics ⇄ the frequency domain via c = f·λ — wavelength is the inverse of
     // frequency (λ = c/f), so f·λ = c exactly; the algebraic anchor of the ladder's directional inversion
     const c = SPEED_OF_LIGHT
-    const exactInversion = [1e14, 2e14, 5e14].every((f) => { const lambda = c / f; return Math.abs(f * lambda - c) < c * eps })
+    const exactInversion = [1e14, 2e14, 5e14].every((f) => { const lambda = c / f; return abs(f * lambda - c) < c * eps })
     const facets = [
       { facet: `THE LADDER — emergence UP (physics→chemistry→biology) and reduction DOWN are opposite arrows between the same levels (${inverseDirections}): the sciences relate by an inversion of direction on the reduction hierarchy`, on: inverseDirections },
       { facet: `CHEMISTRY INVERTS PHYSICS BOTH WAYS — chemistry reduces to physics (molecules → quantum bonding) and physics emerges to chemistry (Schrödinger → the periodic table), the two arrows between adjacent levels (${bothWays})`, on: bothWays },
@@ -1286,23 +1286,23 @@ export function theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRand
 export function inverseForecastsFillTheGapsSincReconstructionRecoversTheBandLimitedValueBetweenSamples() {
   const SAMPLES = 2 ** 6 // 64 samples
   const harmonics = [1, 2, 3] // band-limited — all far below the Nyquist limit SAMPLES/2 = 32
-  const signal = (t: number): number => harmonics.reduce((sum, k) => sum + Math.cos((TAU * k * t) / SAMPLES), 0) // a band-limited forecast
+  const signal = (t: number): number => harmonics.reduce((sum, k) => sum + cos((TAU * k * t) / SAMPLES), 0) // a band-limited forecast
   const samples = Array.from({ length: SAMPLES }, (_, t) => signal(t)) // the FORWARD map: keep integer-index values only
   // 1 — AT A SAMPLE THE INVERSE IS EXACT: reconstruction at an integer index returns that sample (invertible)
-  const exactAtSamples = [0, SAMPLES / (2 * 2), SAMPLES / 2, SAMPLES - 1].every((k) => Math.abs(sincReconstruct(samples, k) - samples[k]!) < 1e-9)
+  const exactAtSamples = [0, SAMPLES / (2 * 2), SAMPLES / 2, SAMPLES - 1].every((k) => abs(sincReconstruct(samples, k) - samples[k]!) < 1e-9)
   // 2 — THE GAPS BETWEEN SAMPLES ARE FILLED: reconstruct at interior half-integer points, compare to the true signal
   const gapPoints = Array.from({ length: SAMPLES / 2 }, (_, i) => SAMPLES / (2 * 2) + i + 1 / 2) // interior gaps (avoid edge truncation)
-  const errors = gapPoints.map((x) => Math.abs(sincReconstruct(samples, x) - signal(x)))
-  const maxGapError = Math.max(...errors)
+  const errors = gapPoints.map((x) => abs(sincReconstruct(samples, x) - signal(x)))
+  const maxGapError = max(...errors)
   const gapsFilled = maxGapError < 1 / (2 * 5) // recovered to < 0.1 of the true value
   // 3 — BAND-LIMITED IS THE CONDITION: the harmonics are below Nyquist, so sampling is invertible (Shannon–Nyquist)
-  const belowNyquist = Math.max(...harmonics) < SAMPLES / 2
+  const belowNyquist = max(...harmonics) < SAMPLES / 2
   // 4 — THE INVERSE FORECAST FILLS THE GAP: forward sampling loses the between-sample values, the inverse recovers them
   const inverseFillsTheGap = exactAtSamples && gapsFilled && belowNyquist
   const facets = [
     { facet: `AT A SAMPLE THE INVERSE IS EXACT — sinc reconstruction at an integer index returns that sample (${exactAtSamples}): sampling is invertible at the known points, no gap there`, on: exactAtSamples },
     { facet: `THE GAPS BETWEEN SAMPLES ARE FILLED — reconstructing at interior half-integer points recovers the true band-limited value, max error ${roundTo(maxGapError, 4)} < 0.1 (${gapsFilled}): the inverse fills the gap between samples`, on: gapsFilled },
-    { facet: `BAND-LIMITED IS THE CONDITION — the harmonics (max ${Math.max(...harmonics)}) are below the Nyquist limit ${SAMPLES / 2} (${belowNyquist}): sampling is invertible exactly when the signal is band-limited (Shannon–Nyquist)`, on: belowNyquist },
+    { facet: `BAND-LIMITED IS THE CONDITION — the harmonics (max ${max(...harmonics)}) are below the Nyquist limit ${SAMPLES / 2} (${belowNyquist}): sampling is invertible exactly when the signal is band-limited (Shannon–Nyquist)`, on: belowNyquist },
     { facet: `THE INVERSE FORECAST FILLS THE GAP — forward sampling keeps only the integer values and loses the between; the inverse (sinc reconstruction) recovers them (${inverseFillsTheGap}): invert the forecast to fill the gaps`, on: inverseFillsTheGap },
   ].map((entry) => ({ ...entry, receipt: toUuid(`inverse-forecast-gap:${entry.facet}:${entry.on}`) }))
   return {
@@ -1324,26 +1324,26 @@ export const RELATIVITY_CONSTANTS = {
 }
 export function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const c = SPEED_OF_LIGHT // sealed vault c — reused from src/3/7
+  const c = SPEED_OF_LIGHT // 299792458 m/s, exact SI — reused, already ledgered in src/3/7
   const k = RELATIVITY_CONSTANTS
   const title = titleFromAlgebra(['r_s', '2GM/c²']) // the identity the theorem LEADS with
   // 1 — SCHWARZSCHILD RADIUS r_s = 2GM/c²: the radius where the escape velocity v_esc = √(2GM/r) reaches c.
-  const escapeVel = (M: number, r: number) => Math.sqrt((2 * k.G * M) / r)
+  const escapeVel = (M: number, r: number) => sqrt((2 * k.G * M) / r)
   const schwarzschild = (M: number) => (2 * k.G * M) / (c * c)
   const rsSun = schwarzschild(k.sunMassKg)                          // ≈ 2953 m ≈ 2.95 km
-  const escapeEqualsCAtHorizon = Math.abs(escapeVel(k.sunMassKg, rsSun) - c) < 1 // v_esc(r_s) = c to < 1 m/s
+  const escapeEqualsCAtHorizon = abs(escapeVel(k.sunMassKg, rsSun) - c) < 1 // v_esc(r_s) = c to < 1 m/s
   const sunHorizonKm = roundTo(rsSun / (2 * 5) ** 3, 2) // metres → km (÷1000)
   const massSamples = [1, 2, 3, 6, 9].map((n) => n * k.sunMassKg)  // M ↦ r_s is linear ⇒ injective (total bijection)
   const horizonIsBijection = isTotalBijection(massSamples, schwarzschild)
   // 2 — ENERGY–MOMENTUM E² = (pc)² + (mc²)²: Pythagorean; photon (m=0) ⇒ E = pc; rest (p=0) ⇒ E = mc².
-  const energy = (p: number, m: number) => Math.sqrt((p * c) ** 2 + (m * c * c) ** 2)
-  const pythagoreanHolds = [[3, 4], [5, 0], [0, 5]].every(([p, m]) => Math.abs(energy(p!, m!) ** 2 - ((p! * c) ** 2 + (m! * c * c) ** 2)) < 1)
-  const photonIsPc = Math.abs(energy(7, 0) - 7 * c) < 1e-6         // m = 0 ⇒ E = pc (a massless quantum)
-  const restIsMcSquared = Math.abs(energy(0, 4) - 4 * c * c) < 1e-6 // p = 0 ⇒ E = mc² (Einstein 1905)
+  const energy = (p: number, m: number) => sqrt((p * c) ** 2 + (m * c * c) ** 2)
+  const pythagoreanHolds = [[3, 4], [5, 0], [0, 5]].every(([p, m]) => abs(energy(p!, m!) ** 2 - ((p! * c) ** 2 + (m! * c * c) ** 2)) < 1)
+  const photonIsPc = abs(energy(7, 0) - 7 * c) < 1e-6         // m = 0 ⇒ E = pc (a massless quantum)
+  const restIsMcSquared = abs(energy(0, 4) - 4 * c * c) < 1e-6 // p = 0 ⇒ E = mc² (Einstein 1905)
   // 3 — LORENTZ FACTOR γ = 1/√(1−β²) ≥ 1: γ(0)=1 (rest), β=3/5 ⇒ γ=5/4 exactly (the 3-4-5 triangle), γ→∞ as β→1.
-  const gamma = (beta: number) => 1 / Math.sqrt(1 - beta * beta)
+  const gamma = (beta: number) => 1 / sqrt(1 - beta * beta)
   const gammaRestIsOne = gamma(0) === 1
-  const gammaThreeFifths = Math.abs(gamma(3 / 5) - 5 / 4) < 1e-12  // β=0.6 ⇒ 1−0.36=0.64, √=0.8, γ=1.25
+  const gammaThreeFifths = abs(gamma(3 / 5) - 5 / 4) < 1e-12  // β=0.6 ⇒ 1−0.36=0.64, √=0.8, γ=1.25
   const gammaAtLeastOne = [0, 3 / 5, 4 / 5, 1 - 1 / 2 ** 9].every((b) => gamma(b) >= 1) // time dilation (β up to 511/512), no FTL
   const discoveries: Discovery[] = [
     { name: 'schwarzschild:v_esc(r_s)=c', holds: () => escapeEqualsCAtHorizon },
@@ -1380,16 +1380,16 @@ export function acousticsSoundIsCEqualsFLambdaWithLogDecibelsAndDoppler(matrix: 
   const title = titleFromAlgebra(['f·λ', 'c']) // c = f·λ — the dispersion the theorem LEADS with
   // 1 — c = f·λ FOR SOUND: air is non-dispersive, so for any frequency the wavelength is λ = c/f and f·λ = c exactly.
   const wavelength = (f: number) => c / f
-  const dispersionHolds = [100, 432, 6 * 100, 8 * 100].every((f) => Math.abs(f * wavelength(f) - c) < c * eps)
+  const dispersionHolds = [100, 432, 6 * 100, 8 * 100].every((f) => abs(f * wavelength(f) - c) < c * eps)
   // 2 — THE OCTAVE IS A DOUBLING; the equal-tempered semitone is 2^(1/12): twelve of them multiply back to one octave.
   const octaveDoubles = [1, 2, 3, 6].every((n) => 2 ** n / 2 ** (n - 1) === 2) // each octave up = ×2, exact
   const semitone = 2 ** (1 / (4 * 3))                                    // 12-tone equal temperament
-  const twelveSemitonesMakeOctave = Math.abs(semitone ** (4 * 3) - 2) < 1e-9
+  const twelveSemitonesMakeOctave = abs(semitone ** (4 * 3) - 2) < 1e-9
   // 3 — THE DECIBEL IS A LOGARITHM L = 10·log₁₀(I/I₀): +10 dB is exactly ×10 intensity; doubling is +3.01 dB.
   const ten = 2 * 5 // the decibel base, lattice-expressed
-  const dB = (ratio: number) => ten * Math.log10(ratio)
-  const tenDbIsTenfold = Math.abs(dB(ten) - ten) < 1e-12 && Math.abs(dB(ten ** 2) - 2 * ten) < 1e-12 // +10 dB ⇒ ×10, additive
-  const doublingIsThreeDb = Math.abs(dB(2) - 3) < 1 / (2 * 5) && dB(2) > 3       // ≈ 3.01 dB per intensity-doubling
+  const dB = (ratio: number) => ten * log10(ratio)
+  const tenDbIsTenfold = abs(dB(ten) - ten) < 1e-12 && abs(dB(ten ** 2) - 2 * ten) < 1e-12 // +10 dB ⇒ ×10, additive
+  const doublingIsThreeDb = abs(dB(2) - 3) < 1 / (2 * 5) && dB(2) > 3       // ≈ 3.01 dB per intensity-doubling
   // 4 — DOPPLER f' = f·c/(c − v_s): a source approaching at v_s raises the pitch; at rest (v_s=0) the pitch is unchanged.
   const doppler = (f: number, vSource: number) => (f * c) / (c - vSource)
   const dopplerRestIsIdentity = doppler(432, 0) === 432                  // v_s = 0 ⇒ f' = f (fixed point)
@@ -1426,7 +1426,7 @@ export const THERMO_CONSTANTS = {
 export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const k = THERMO_CONSTANTS
-  const ln2 = Math.log(2)
+  const ln2 = log(2)
   const T = 3 * 100 // 300 K — room temperature, lattice-expressed (3 × 100)
   const title = titleFromAlgebra(['E', 'k_B·T·ln2']) // Landauer's principle — the identity the theorem LEADS with
   // 1 — LANDAUER'S PRINCIPLE E = k_B·T·ln2: the minimum energy dissipated to ERASE one bit (an irreversible act).
@@ -1436,11 +1436,11 @@ export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(ma
   const nBits = [1, 2, 4, 8, 16].map((n) => n)                     // erasing n bits costs n·k_B·T·ln2 — linear ⇒ bijective
   const erasureIsBijection = isTotalBijection(nBits, (n) => n * eraseOneBit(T))
   // 2 — BOLTZMANN S = k_B·ln W: for W = 2^n equally-likely microstates the entropy is exactly n·k_B·ln2.
-  const entropy = (w: number) => k.kB * Math.log(w)
-  const boltzmannPerBit = [1, 2, 3, 4].every((n) => Math.abs(entropy(2 ** n) - n * k.kB * ln2) < 1e-30) // S(2ⁿ)=n·k_B·ln2
+  const entropy = (w: number) => k.kB * log(w)
+  const boltzmannPerBit = [1, 2, 3, 4].every((n) => abs(entropy(2 ** n) - n * k.kB * ln2) < 1e-30) // S(2ⁿ)=n·k_B·ln2
   // 3 — CARNOT BOUND η = 1 − T_c/T_h < 1: no engine beats it, and η = 1 needs T_c = 0 (third law forbids it).
   const carnot = (tCold: number, tHot: number) => 1 - tCold / tHot
-  const carnotHalf = Math.abs(carnot(3 * 100, 6 * 100) - 1 / 2) < 1e-12 // 300 K / 600 K ⇒ η = 1/2 exactly
+  const carnotHalf = abs(carnot(3 * 100, 6 * 100) - 1 / 2) < 1e-12 // 300 K / 600 K ⇒ η = 1/2 exactly
   const carnotBelowOne = [[3, 6], [3, 4], [1, 2]].every(([tc, th]) => { const e = carnot(tc! * 100, th! * 100); return e < 1 && e > 0 }) // η < 1 for T_c > 0
   // 4 — ERASURE IS IRREVERSIBLE, A REVERSIBLE OP IS FREE: the kT·ln2 is paid only when information is DESTROYED.
   const reversibleIsFree = eraseOneBit(0) === 0 && eraseOneBit(T) > 0 // at T→0 no cost; a reversible (non-erasing) op is 0
@@ -1523,7 +1523,7 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = teslaPatents()
     const researched = teslaPatentsResearchedInWaves(matrix)
     const polesCross = __ns_water_encryption.polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix)

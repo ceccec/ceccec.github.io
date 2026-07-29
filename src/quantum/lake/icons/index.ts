@@ -6,7 +6,7 @@
 // ☶ Gèn · Mountain · keeping still · lower·yin · spread — type: sealed icon artifact shape
 import type { IconSeal } from '../../heaven/mind'
 // ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — uuid + merkle fold primitives
-import { toUuid, merkleFold } from '../../../0'
+import { floor, max, merkleFold, toUuid } from '../../../0'
 
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — exported constants and functions
 /** @rosetta ✦₀ · Mountain · stillness */
@@ -88,9 +88,9 @@ export function computerDesign() {
 // (e.g. 21+34+55) — adjacent scales, nothing skipped.
 /** @rosetta ✦₀ · Mountain · stillness */
 export function harmonicBands(total: number) {
-  const n = Math.max(0, Math.floor(total))
+  const n = max(0, floor(total))
   const fibonacci = [1, 2]
-  while (fibonacci[fibonacci.length - 1] < Math.max(n, 3) * 2) {
+  while (fibonacci[fibonacci.length - 1] < max(n, 3) * 2) {
     fibonacci.push(fibonacci[fibonacci.length - 1] + fibonacci[fibonacci.length - 2])
   }
   let best: { bands: number[] } | null = null

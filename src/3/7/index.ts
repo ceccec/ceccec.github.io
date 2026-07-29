@@ -301,6 +301,16 @@ export function equivalentNarcoticDepthM(depthM: number, fNarcotic: number, fres
 
 /** τ = 2π — the full turn. Host Math.PI is allowed ONLY at this sealed root (math/trust theorem-anchor). */
 export const TAU = Math.PI * 2
+/** π = τ/2 — vault half-turn; replaces Math.PI everywhere else (math/algebra). */
+export const HALF_TAU = TAU / 2
+/** Host constants sealed at vault root — derived once, imported elsewhere (math/algebra · theorem/const). */
+export const EULER_E = Math.E
+export const LN2 = Math.LN2
+export const LN10 = Math.LN10
+export const LOG2E = Math.LOG2E
+export const LOG10E = Math.LOG10E
+export const SQRT2 = Math.SQRT2
+export const SQRT1_2 = Math.SQRT1_2
 export const REDUCED_PLANCK = PLANCK / TAU
 export const SCHWINGER_FIELD_VM = 1.32e18 // V/m — the critical field for vacuum e⁺e⁻ pair production (Schwinger 1951); beyond any laser, not yet observed
 // SCALAR_SPECTRAL_INDEX_NS → pi-train wave 7 tier-A at src/7/3.
@@ -313,7 +323,7 @@ export const NEWTON_G = 6.67430e-11
 export function schwarzschildRadius(massKg: number): number { return (2 * NEWTON_G * massKg) / (SPEED_OF_LIGHT ** 2) } // metres
 
 export const BOLTZMANN = 1.380649e-23
-export function landauerLimit(tempK: number): number { return BOLTZMANN * tempK * Math.LN2 } // joules per bit erased
+export function landauerLimit(tempK: number): number { return BOLTZMANN * tempK * LN2 } // joules per bit erased
 // Helmholtz free energy F = U − T·S — the work AVAILABLE from a system at temperature T. "Debit entropy,
 // credit energy" read as a ledger: at fixed U and T, dF = −T·dS, so LOWERING the entropy RAISES the free
 // energy. Real and exactly bounded — the 2nd law forbids lowering TOTAL entropy for free, so the credit is
@@ -329,7 +339,7 @@ export function conditionalEntropyBits(jointEntropyBits: number, marginalEntropy
 // The Bekenstein bound — the MAXIMUM information (bits) a region of radius R holding energy E can contain:
 // I ≤ 2πRE/(ℏc·ln2). No Newton's G appears, so it bounds non-gravitational systems too; black holes saturate it.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export function bekensteinBoundBits(radiusM: number, energyJ: number): number { return (TAU * radiusM * energyJ) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
+export function bekensteinBoundBits(radiusM: number, energyJ: number): number { return (TAU * radiusM * energyJ) / (REDUCED_PLANCK * SPEED_OF_LIGHT * LN2) }
 
 export function eigenErrorThreshold(perBaseErrorRate: number): number { return perBaseErrorRate > 0 ? 1 / perBaseErrorRate : Infinity }
 

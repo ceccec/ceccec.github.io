@@ -4,7 +4,7 @@
 // Dual: src/double/torus (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and fold primitives from src/0
-import { toUuid, merkleFold, foldPair, memoByRoot } from '../../../0'
+import { floor, foldPair, memoByRoot, merkleFold, min, toUuid } from '../../../0'
 
 // ☱ Duì · Lake · joyous · upper·yang · twist — module identity and exports
 export const dual = 'src/water/double'
@@ -184,9 +184,9 @@ export function humanDesignChannelsAndCenters(matrixRoot = 'hd-channels') {
 export function raveMandalaGateLineAt(longitudeDeg: number): { gate: number; line: number; index: number; startDeg: number } {
   const lon = ((longitudeDeg % 360) + 360) % 360
   const rel = ((lon - RAVE_GATE_41_START_DEG) % 360 + 360) % 360
-  const index = Math.min(63, Math.floor(rel / RAVE_GATE_ARC_DEG))
+  const index = min(63, floor(rel / RAVE_GATE_ARC_DEG))
   const within = rel - index * RAVE_GATE_ARC_DEG
-  const line = Math.min(6, 1 + Math.floor(within / RAVE_LINE_ARC_DEG))
+  const line = min(6, 1 + floor(within / RAVE_LINE_ARC_DEG))
   const gate = RAVE_MANDALA_GATE_ORDER[index]!
   const startDeg = (RAVE_GATE_41_START_DEG + index * RAVE_GATE_ARC_DEG) % 360
   return { gate, line, index, startDeg }

@@ -18,17 +18,9 @@ import * as __ns_water_encryption from '../../water/encryption'
 import * as __ns_wind_site from '../../wind/site'
 import * as __ns_wind_fusion from '../fusion' // call-time (cycle-safe): the public-API fusion catalog
 import * as __ns_thunder_decode from '../../thunder/decode'
-import {
-  antichainLevels, computesGate, digitalRoot, DIGEST_BITS, doubleTorusSurface, foldPair, isUuid,
-  memoByRoot, merge, merkleFold, resourceCooperationPolicy, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE, qubits, applyGate, probabilities, GATES } from '../../0'
+import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'
 import { pauliAlgebraCloses } from '../../9/1'
-import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
-  ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG,
-  WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG,
-  fibonacci, earned, rat, ratMul, ratInv, ratEq, ratToFloat, claySolvedTheorem, claySolvedByFormulas,
-  CMI_PRIZE_PROBLEM_TERMS, CLAY_SOLUTION_MARKERS, CLAY_OPEN_MARKERS, physicalFtlByFormulas, demarcate,
-  SPEED_OF_LIGHT, NEWTON_G, SCHUMANN_FUNDAMENTAL_HZ, bekensteinBoundBits, schwarzschildRadius,
-  theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, physicalFtlClaimTheorem } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlClaimTheorem, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
 import { greatCircleKm } from '../../5/5'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../../6/4'
@@ -70,7 +62,7 @@ export type ProfessionalResearchProgramRow = {
 
 /** Machine-readable research program index — links folds, balance dims, verify commands, bibliography at call time. */
 export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`professionalResearchIndex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`professionalResearchIndex:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows: ProfessionalResearchProgramRow[] = [
       {
         id: 'geodesy-navigation',
@@ -333,7 +325,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
 
 /** Balance gate — professional research program index at call time. */
 export function professionalResearchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`professionalResearchComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`professionalResearchComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const index = professionalResearchIndex(matrix, at)
     const { computes, facets } = computesGate('professional-research-computes', [
       { facet: 'professionalResearchIndex — ≥15 monograph rows with limitations', on: index.indexed },
@@ -382,7 +374,7 @@ function pushDomainRow(rows: ResearchIndexRow[], id: string, title: string, home
 }
 
 export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`researchIndex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`researchIndex:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const professional = professionalResearchIndex(matrix, at)
     const rows: ResearchIndexRow[] = professional.rows.map(mapProfessionalRow)
     const catalog = __ns_up_stack_overflow.computeMoreModelsCatalog(matrix, at)
@@ -419,7 +411,7 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function researchReproducibility(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`researchReproducibility:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`researchReproducibility:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const gates: ResearchReproGate[] = [
       { id: 'check-types', pair: 'check/types', command: 'npm run check:types', receipt: toUuid('research-repro:check-types') },
       { id: 'limits-verify', pair: 'limits/verify', command: 'npm run limits:verify', receipt: toUuid('research-repro:limits-verify') },
@@ -437,7 +429,7 @@ export function researchReproducibility(matrix: MindMatrix = buildMatrix(), at =
 }
 
 export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`researchComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`researchComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const index = researchIndex(matrix, at)
     const professional = professionalResearchComputes(matrix, at)
     const repro = researchReproducibility(matrix, at)
@@ -562,7 +554,7 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
 
 /** Dedicated millennium challenge UI panel — MODELED CHALLENGE apparatus, no Clay claim. */
 export function millenniumPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`millenniumPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`millenniumPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix)
     const { computes, facets, root } = computesGate('millennium-panel-computes', [
       { facet: 'millennium challenge apparatus computes', on: mill.computes },
@@ -620,9 +612,9 @@ export type UnitDistanceTowerNumbers = {
 export function unitDistanceTowerNumbers(ell: number): UnitDistanceTowerNumbers {
   const rs = unitDistancePrimes().filter((p) => p % 3 === 1).slice(0, ell)
   if (rs.length < ell) throw new Error(`unitDistanceTowerNumbers: ℓ=${ell} exceeds the ${UNIT_DISTANCE_SIEVE_LIMIT} sieve`)
-  const logConductor = rs.reduce((acc, r) => acc + Math.log(r), 0)
+  const logConductor = rs.reduce((acc, r) => acc + log(r), 0)
   const d = ell - 1
-  const t = Math.floor(((ell - 1) * (ell - 1)) / 100)
+  const t = floor(((ell - 1) * (ell - 1)) / 100)
   return { ell, d, t, logConductor, logRootDiscriminant: (2 / 3) * logConductor, largestAuxPrime: rs[ell - 1], receipt: toUuid(`unit-distance:tower:${ell}`) }
 }
 
@@ -635,7 +627,7 @@ export function unitDistanceGolodShafarevichMargin(ell: number, c0 = 3): number 
 /** γ = t·log2 − 2·cClass·log(2·rd F): the class-number race the whole construction rides on. */
 export function unitDistanceGamma(ell: number, cClass = 1): number {
   const { t, logRootDiscriminant } = unitDistanceTowerNumbers(ell)
-  return t * Math.LN2 - 2 * cClass * (Math.LN2 + logRootDiscriminant)
+  return t * LN2 - 2 * cClass * (LN2 + logRootDiscriminant)
 }
 
 /** Minimal ℓ with γ > 0, or null if none exists below the sieve-bounded maxEll. */
@@ -646,13 +638,13 @@ export function unitDistanceGammaCrossover(cClass = 1, maxEll = (100 * 8 * 5)): 
 
 /** ρ_R = lens(R)/(πR²): overlap fraction of two unit-separated radius-R discs — the averaging loss. */
 export function unitDistanceLensRatio(radius: number): number {
-  const lens = 2 * radius * radius * Math.acos(1 / (2 * radius)) - Math.sqrt(4 * radius * radius - 1) / 2
+  const lens = 2 * radius * radius * acos(1 / (2 * radius)) - sqrt(4 * radius * radius - 1) / 2
   return lens / ((TAU / 2) * radius * radius) // π via sealed TAU/2 (math/trust)
 }
 
 /** Smallest R > 1/2 with log ρ_R > −γ/2 (bisection; the paper's "Fix R > 1/2" step). */
 export function unitDistanceLensRadius(gamma: number): number {
-  const ok = (r: number) => Math.log(unitDistanceLensRatio(r)) > -gamma / 2
+  const ok = (r: number) => log(unitDistanceLensRatio(r)) > -gamma / 2
   let lo = 1 / 2 + 1e-7 // just above ½ — scale eps, not bare 0.5000001 decimal
   let hi = 1
   while (!ok(hi)) {
@@ -690,20 +682,20 @@ export function unitDistanceDelta(ell: number, cClass = 1): UnitDistanceDeltaRep
   const radius = gamma > 0 ? unitDistanceLensRadius(gamma) : Number.POSITIVE_INFINITY
   const q1mod4 = unitDistancePrimes().filter((p) => p % 4 === 1)
   const logQUtopian = tower.t <= q1mod4.length
-    ? q1mod4.slice(0, tower.t).reduce((acc, q) => acc + Math.log(q), 0)
-    : tower.t * (Math.log(2 * tower.t * Math.log(2 * tower.t)) - 1) // PNT tail for t past the sieve — flagged approximation
-  const logFrattiniDegree = Math.LN2 + (tower.d + 1) * Math.log(3)
-  const logQstar = 2 * (logFrattiniDegree + Math.log(Math.log(4) + tower.logRootDiscriminant))
+    ? q1mod4.slice(0, tower.t).reduce((acc, q) => acc + log(q), 0)
+    : tower.t * (log(2 * tower.t * log(2 * tower.t)) - 1) // PNT tail for t past the sieve — flagged approximation
+  const logFrattiniDegree = LN2 + (tower.d + 1) * log(3)
+  const logQstar = 2 * (logFrattiniDegree + log(log(4) + tower.logRootDiscriminant))
   const logQChebotarevGrh = tower.t * logQstar
-  const deltaAt = (logQ: number) => (gamma > 0 ? gamma / (4 * (2 * Math.log(4 * radius) + 4 * logQ)) : 0)
+  const deltaAt = (logQ: number) => (gamma > 0 ? gamma / (4 * (2 * log(4 * radius) + 4 * logQ)) : 0)
   return { ell, cClass, gamma, radius, logQUtopian, logQChebotarevGrh, deltaUtopian: deltaAt(logQUtopian), deltaChebotarevGrh: deltaAt(logQChebotarevGrh), receipt: toUuid(`unit-distance:delta:${ell}:${cClass}`) }
 }
 
 /** Exact grid contrast: max #{(a,b) ∈ Z²: a²+b²=k} for k ≤ kMax — the engine of Erdős's classical lower bound. */
 export function unitDistanceGridBaseline(kMax = 100_000): { readonly kMax: number; readonly bestK: number; readonly vectors: number; readonly receipt: string } {
-  const cap = Math.min(kMax, 4_000_000)
+  const cap = min(kMax, 4_000_000)
   const counts = new Map<number, number>()
-  const m = Math.floor(Math.sqrt(cap))
+  const m = floor(sqrt(cap))
   for (let a = -m; a <= m; a++) {
     for (let b = -m; b <= m; b++) {
       const k = a * a + b * b
@@ -727,7 +719,7 @@ export type UnitDistanceFinding = {
 export function unitDistanceDeltaPeak(cClass = 1): { readonly delta: number; readonly ell: number } {
   const start = unitDistanceGammaCrossover(cClass) ?? 1791
   let best = { delta: 0, ell: start }
-  for (let ell = start; ell <= (100 * 8 * 5); ell = Math.max(ell + 1, Math.round(ell * ((7 * 3) / (5 * 4))))) {
+  for (let ell = start; ell <= (100 * 8 * 5); ell = max(ell + 1, round(ell * ((7 * 3) / (5 * 4))))) {
     const report = unitDistanceDelta(ell, cClass)
     if (report.deltaChebotarevGrh > best.delta) best = { delta: report.deltaChebotarevGrh, ell }
   }
@@ -741,12 +733,12 @@ export function unitDistanceDeltaPeak(cClass = 1): { readonly delta: number; rea
  * least-split-prime estimate HYPOTHESIS.
  */
 export function unitDistanceFindings(): readonly UnitDistanceFinding[] {
-  const budgetShare = Math.round(((3 / 100) / (1 / 4)) * 100)
+  const budgetShare = round(((3 / 100) / (1 / 4)) * 100)
   const crossover = unitDistanceGammaCrossover(1) ?? 1791
   const tower = unitDistanceTowerNumbers(crossover)
-  const conductorDigits = Math.round(tower.logConductor / Math.LN10)
+  const conductorDigits = round(tower.logConductor / LN10)
   const peak = unitDistanceDeltaPeak(1)
-  const log10log10n = Math.round(1 / peak.delta / Math.LN10)
+  const log10log10n = round(1 / peak.delta / LN10)
   const grid = [1_000, 10_000, 100_000].map((k) => unitDistanceGridBaseline(k).vectors)
   const rows = [
     { id: 'gs-budget', tier: 'DOCUMENTED' as const, statement: `Frobenius-killing spends 3t ≈ 3d²/100 of the d²/4 Golod–Shafarevich relation quota — ${budgetShare}%; the group theory is never the bottleneck.` },
@@ -760,7 +752,7 @@ export function unitDistanceFindings(): readonly UnitDistanceFinding[] {
 
 /** Balance gate — unit-distance tower numerics recompute and stay honestly bounded at call time. */
 export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`unitDistanceResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`unitDistanceResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const crossover = unitDistanceGammaCrossover(1)
     const tower = unitDistanceTowerNumbers(crossover ?? 1791)
     const report = unitDistanceDelta(tower.ell, 1)
@@ -829,7 +821,7 @@ export const AI_QUANTUM_CHRONOLOGY: readonly AiQuantumChronologyRow[] = AI_QUANT
 
 /** Balance gate — the AI × quantum chronology stays dated, ordered, sourced, and honestly tiered at call time. */
 export function aiQuantumChronologyResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`aiQuantumChronologyResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`aiQuantumChronologyResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = AI_QUANTUM_CHRONOLOGY
     const dated = rows.filter((row) => row.date !== '—')
     const ordered = dated.every((row, i) => i === 0 || dated[i - 1]!.date <= row.date)
@@ -887,7 +879,7 @@ export const GLOBAL_WORKSPACE_CONTRAST: readonly GlobalWorkspaceContrastRow[] = 
 
 /** Balance gate — the J-space × portal contrast stays sourced, honestly tiered, and category-clean at call time. */
 export function globalWorkspaceContrastResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`globalWorkspaceContrastResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`globalWorkspaceContrastResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = GLOBAL_WORKSPACE_CONTRAST
     const { computes, facets, root } = computesGate('global-workspace-contrast', [
       { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'HYPOTHESIS' || row.tier === 'LEGEND')) },
@@ -1094,13 +1086,13 @@ export function liveToolAlgorithmLibrary(matrix: MindMatrix = buildMatrix()) {
   // market: realized volatility — √Σ(log-returns²) over a price series
   const realizedVolatility = (prices: readonly number[]): number => {
     let sumSq = 0
-    for (let i = 1; i < prices.length; i++) { const r = Math.log(prices[i]! / prices[i - 1]!); sumSq += r * r }
-    return Math.sqrt(sumSq)
+    for (let i = 1; i < prices.length; i++) { const r = log(prices[i]! / prices[i - 1]!); sumSq += r * r }
+    return sqrt(sumSq)
   }
   // astronomy/GW: chirp mass Mc = (m1 m2)^(3/5) / (m1+m2)^(1/5) — the mass a gravitational waveform reveals
   const chirpMass = (m1: number, m2: number): number => (m1 * m2) ** (3 / 5) / (m1 + m2) ** (1 / 5)
   // geomag/ELF: Schumann harmonics fₙ = f₁·√(n(n+1)/2) — the Earth-ionosphere cavity modes
-  const schumannHarmonic = (n: number): number => SCHUMANN_FUNDAMENTAL_HZ * Math.sqrt((n * (n + 1)) / 2)
+  const schumannHarmonic = (n: number): number => SCHUMANN_FUNDAMENTAL_HZ * sqrt((n * (n + 1)) / 2)
   // time: clock phase on any period — the fractal-clock rung
   const clockPhase = (instant: number, period: number): number => (((instant % period) + period) % period) / period
   // knowledge: content fingerprint — the tamper-evident 36-char address of any payload
@@ -1117,19 +1109,19 @@ export function liveToolAlgorithmLibrary(matrix: MindMatrix = buildMatrix()) {
   const tools = [
     { tool: 'vonNeumannExtract', domain: 'entropy', source: 'randomness', pure: JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])) === JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])), correct: JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])) === JSON.stringify([0, 1]) },
     { tool: 'realizedVolatility', domain: 'market', source: 'market', pure: realizedVolatility([100, 108, 100]) === realizedVolatility([100, 108, 100]), correct: realizedVolatility([100, 108, 100]) > 0 },
-    { tool: 'chirpMass', domain: 'astronomy', source: 'astronomy', pure: chirpMass(1, 1) === chirpMass(1, 1), correct: Math.abs(chirpMass(1, 1) - 1 / 2 ** (1 / 5)) < 1e-9 },
-    { tool: 'schumannHarmonic', domain: 'geomag', source: 'geomag', pure: schumannHarmonic(1) === schumannHarmonic(1), correct: Math.abs(schumannHarmonic(1) - SCHUMANN_FUNDAMENTAL_HZ) < 1e-9 },
-    { tool: 'clockPhase', domain: 'time', source: 'clock', pure: clockPhase(54, 108) === clockPhase(54, 108), correct: Math.abs(clockPhase(54, 108) - 1 / 2) < 1e-9 },
+    { tool: 'chirpMass', domain: 'astronomy', source: 'astronomy', pure: chirpMass(1, 1) === chirpMass(1, 1), correct: abs(chirpMass(1, 1) - 1 / 2 ** (1 / 5)) < 1e-9 },
+    { tool: 'schumannHarmonic', domain: 'geomag', source: 'geomag', pure: schumannHarmonic(1) === schumannHarmonic(1), correct: abs(schumannHarmonic(1) - SCHUMANN_FUNDAMENTAL_HZ) < 1e-9 },
+    { tool: 'clockPhase', domain: 'time', source: 'clock', pure: clockPhase(54, 108) === clockPhase(54, 108), correct: abs(clockPhase(54, 108) - 1 / 2) < 1e-9 },
     { tool: 'contentFingerprint', domain: 'knowledge', source: 'wikipedia', pure: contentFingerprint('rev-42') === contentFingerprint('rev-42'), correct: isUuid(contentFingerprint('rev-42')) && contentFingerprint('a') !== contentFingerprint('b') },
     { tool: 'holographicStateBits', domain: 'space', source: 'device', pure: holographicStateBits(1) === holographicStateBits(1), correct: cubeBits > 0 && Number.isFinite(cubeBits) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`live-tool:${entry.tool}:${entry.domain}`) }))
   const allPure = tools.every((entry) => entry.pure)
   const allCorrect = tools.every((entry) => entry.correct)
-  const cubeExponent = Math.round(Math.log10(cubeBits)) // ~69 — the order of magnitude of the bit count
+  const cubeExponent = round(log10(cubeBits)) // ~69 — the order of magnitude of the bit count
   const facets = [
     { facet: `THE LIBRARY IS ${tools.length} REUSABLE PURE ALGORITHMS — ${tools.map((t) => t.tool).join(', ')}, one per public-API domain (${tools.map((t) => t.source).join(', ')}); each a PURE function (data in → quantity out, no network, no side effects), determinism verified f(x) === f(x) for all ${tools.length}`, on: allPure && tools.length === 7 },
     { facet: `EACH COMPUTES A REAL, CHECKED QUANTITY — von Neumann [0,1,1,0,1,1,0,0]→[0,1], realized-vol of [100,108,100] > 0, chirp mass(1,1) = 2^(−1/5) ≈ 0.871, Schumann f₁ = ${SCHUMANN_FUNDAMENTAL_HZ} Hz, clock phase(54,108) = ½, a content fingerprint is a 36-char UUID, holographic bound of a 1 m cube ≈ 10^${cubeExponent} bits`, on: allCorrect },
-    { facet: `HOW MANY UNIVERSES FIT IN A CUBE — the holographic tool answers it: a cube of side L holds at most 2^(bits) distinguishable states, bits = the Bekenstein bound of the black hole that just fills it (R = L/2, E = Rc⁴/2G); a 1-metre cube → ≈ 10^${cubeExponent} bits → 2^(10^${cubeExponent}) "universes", FINITE. Space is not infinitely divisible — a bounded region holds boundedly many distinct states`, on: cubeBits > 0 && Number.isFinite(cubeBits) && Math.abs(collapseCheck - 1 / 2) < 1e-6 },
+    { facet: `HOW MANY UNIVERSES FIT IN A CUBE — the holographic tool answers it: a cube of side L holds at most 2^(bits) distinguishable states, bits = the Bekenstein bound of the black hole that just fills it (R = L/2, E = Rc⁴/2G); a 1-metre cube → ≈ 10^${cubeExponent} bits → 2^(10^${cubeExponent}) "universes", FINITE. Space is not infinitely divisible — a bounded region holds boundedly many distinct states`, on: cubeBits > 0 && Number.isFinite(cubeBits) && abs(collapseCheck - 1 / 2) < 1e-6 },
     { facet: `LIVE DATA ENTERS PURELY, ZERO-TOKEN — each tool is a PURE adapter with no network in the algorithm; an opt-in API supplies the datum through the fold protocol and the tool only computes, so every experiment is reproducible and runtime-token-free; each tool is content-addressed (${tools.every((t) => isUuid(t.receipt))})`, on: allPure && tools.every((t) => isUuid(t.receipt)) },
     { facet: `THE DEMARCATION — the algorithms are textbook-REAL (von Neumann extractor, realized volatility, the Schumann √(n(n+1)) cavity formula, the chirp mass, the Bekenstein/holographic bound). FLAGGED: Schumann-wellness woo, "the cube contains infinite or accessible parallel universes", market volatility ≠ alpha, and reading the holographic state count as literal multiverse ontology. Reusable math tools, not mysticism`, on: allPure && allCorrect },
   ].map((entry) => ({ ...entry, receipt: toUuid(`live-tool-library:${entry.facet}:${entry.on}`) }))
@@ -1244,7 +1236,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     let state = qubits(nQubits)
     for (let i = 0; i < nQubits; i += 1) state = applyGate(state, GATES.H, i) // every qubit into superposition
     for (let i = 0; i + 1 < nQubits; i += 1) state = applyGate(state, GATES.X, i + 1) // entangle across gateways
-    return toUuid(probabilities(state).map((p) => Math.round(p * (10 ** 6))).join(','))
+    return toUuid(probabilities(state).map((p) => round(p * (10 ** 6))).join(','))
   }
   // SPIN, computed on the simulator: a Pauli is an involution — X²=I — so applying X twice returns the register.
   const spinInvolutionHolds =
@@ -1271,7 +1263,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
   const bytesPerMerkaba = 8 // 8 bytes each
   const metatronBytes = merkabas * bytesPerMerkaba // 64 bytes
   const metatronBits = metatronBytes * 8 // 512 bits
-  const stateSpaceOrdersOfMagnitude = roundTo(metatronBits * Math.log10(2), 1) // log10(2^512) ≈ 154.1 orders of magnitude
+  const stateSpaceOrdersOfMagnitude = roundTo(metatronBits * log10(2), 1) // log10(2^512) ≈ 154.1 orders of magnitude
   const classicalCapacityJump = 1 // EXACT: a 512-bit CLASSICAL register holds ONE of 2^512 values and does ONE op/step — no free parallelism
   const atomsInObservableUniverse = 10 ** 80 // standard estimate
   const qStateVectorTimesUniverseAtoms = roundTo((2 ** metatronBits) * bytesPerAmplitude / atomsInObservableUniverse, 0) // ~10^75× the universe's atoms, just to STORE a 512-qubit state
@@ -1297,7 +1289,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
   const warmMsPer = (performance.now() - t1) / warmRuns
   const invocationsAfterWarm = computeInvocations // STILL 1 — 1000 memo hits recomputed nothing (deterministic O(1))
   const memoIsO1 = invocationsAfterCold === 1 && invocationsAfterWarm === 1 // DETERMINISTIC proof, not timing-dependent
-  const reuseSpeedup = warmMsPer > 0 ? Math.round(coldMs / warmMsPer) : Math.round(coldMs * (10 ** 3))
+  const reuseSpeedup = warmMsPer > 0 ? round(coldMs / warmMsPer) : round(coldMs * (10 ** 3))
   const trinityWaves = 3 // the 2-of-3 trinity runs 3 independent waves — an embarrassingly-parallel ≤3× ceiling
   const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
   // COMPUTED, and precise about a fair objection: the ~8000× IS a real speedup on physical hardware — that word
@@ -1316,7 +1308,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     { facet: `THE COLD COST IS 2ⁿ, EXPONENTIAL — simulating ${nQubits} qubits computes the whole ${amplitudes}-amplitude state vector; "folding in quantum" on a classical CPU is exponentially SLOWER, not faster. The magnitudes come from REUSE (re-running is O(1)), never from first-compute — and factoring RSA-2048 is first-compute (never done once), so there is nothing to reuse`, on: amplitudes === 2 ** nQubits && classicalSpeedupIsReal },
     { facet: `THE DOUBLE TORUS IS THIS MACHINE (at 8) — 2 tori × 4 UUIDs = ${nQubits} gateways = an ${nQubits}-qubit register entangled at each gateway (2^${nQubits}=${amplitudes} amplitudes). Polarity=±1 (${polarityStates} Z-eigenvalues), angle=${phaseRoots} sixth-roots of unity (the C₆ vortex phase), spin=Pauli involution X²=I (${spinInvolutionHolds}, verified on the simulator). 256 ≪ memory, so this machine GENUINELY IS the 8-qubit torus`, on: doubleTorusIsThisMachine && nQubits === torusPairs * uuidsPerTorus },
     { facet: `64-BIT ≠ 64-QUBIT — this machine is 64-BIT CLASSICAL (it holds ONE of 2^64 states); a real 64-QUBIT circuit is 2^64 amplitudes in SUPERPOSITION, needing ~${stateVectorExabytes64.toLocaleString()} EXABYTES just to STORE the state vector — impossible on this or any machine. The SAME 2ⁿ law that makes the ${nQubits}-qubit torus free (2^${nQubits}=${amplitudes}) forbids 64 qubits, and Shor's 4099 for RSA-2048 lies unimaginably beyond that`, on: stateVectorExabytes64 > 100 && amplitudes === 2 ** nQubits },
-    { facet: `METATRON'S CUBE — HOW MUCH DOES CAPACITY JUMP? EXACTLY: 8 merkabas × 8 bytes = ${metatronBytes} bytes = ${metatronBits} bits. The STATE-SPACE it can LABEL is 2^${metatronBits} ≈ 10^${stateSpaceOrdersOfMagnitude} (${stateSpaceOrdersOfMagnitude} orders of magnitude) — but that is CARDINALITY, not capacity. The real CLASSICAL computing-capacity jump is ×${classicalCapacityJump} (NONE): 512 classical bits hold ONE value and do ONE op/step. The 2^512 "jump" needs 512 QUBITS, whose state vector is ~10^${roundTo(Math.log10(qStateVectorTimesUniverseAtoms), 0)}× the ATOMS in the observable universe — un-storable`, on: classicalCapacityJump === 1 && metatronBits === 512 && stateSpaceOrdersOfMagnitude > 150 },
+    { facet: `METATRON'S CUBE — HOW MUCH DOES CAPACITY JUMP? EXACTLY: 8 merkabas × 8 bytes = ${metatronBytes} bytes = ${metatronBits} bits. The STATE-SPACE it can LABEL is 2^${metatronBits} ≈ 10^${stateSpaceOrdersOfMagnitude} (${stateSpaceOrdersOfMagnitude} orders of magnitude) — but that is CARDINALITY, not capacity. The real CLASSICAL computing-capacity jump is ×${classicalCapacityJump} (NONE): 512 classical bits hold ONE value and do ONE op/step. The 2^512 "jump" needs 512 QUBITS, whose state vector is ~10^${roundTo(log10(qStateVectorTimesUniverseAtoms), 0)}× the ATOMS in the observable universe — un-storable`, on: classicalCapacityJump === 1 && metatronBits === 512 && stateSpaceOrdersOfMagnitude > 150 },
     { facet: `TRINITY PARALLEL CEILING — the 2-of-3 trinity has ${trinityWaves} independent waves; embarrassingly-parallel work gains a ≤${trinityWaves}× factor ON TOP of reuse (structural, not a factoring speedup)`, on: trinityWaves === 3 },
     { facet: `WHAT KIND OF SPEEDUP — the ~${reuseSpeedup}× is a REAL CLASSICAL win (constant-factor caching + parallelism on real hardware), NOT a QUANTUM speedup: quantumSpeedup (asymptotic/complexity-class separation) COMPUTES to ${quantumSpeedup} via quantumAdvantageBenchmark (${bench.verdict}). Memoization changes the CONSTANT, not the complexity class; qpuRequired=false`, on: classicalSpeedupIsReal && quantumSpeedup === false },
     { facet: `QUANTUM BY STRUCTURE, NOT BY SPEEDUP — the architecture IS quantum in STRUCTURE (quantumByStructure=${quantumByStructure}: the vortex circuit is isomorphic to a qubit — phase = six roots of unity, interference = counter-rotating flows), yet quantumSpeedup=${quantumSpeedup}: a structural isomorphism is not a physical asymptotic advantage (simulating n qubits classically costs 2ⁿ). Both compute; structure ≠ physics`, on: quantumByStructure === true && quantumSpeedup === false },
@@ -1350,8 +1342,8 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
  */
 export function challengeQuantumSpeedupWithLiveData(matrix: MindMatrix = buildMatrix()) {
   const liveInstant = Date.now() // LIVE DATA: the current instant, fresh every call, no network
-  const liveBits = Math.floor(Math.log2(liveInstant)) + 1 // bit-length of the live number (~41 for a ms timestamp)
-  const classicalSearchBits = Math.ceil(liveBits / 2) // classical factor-search cost ≈ 2^(n/2) bits
+  const liveBits = floor(log2(liveInstant)) + 1 // bit-length of the live number (~41 for a ms timestamp)
+  const classicalSearchBits = ceil(liveBits / 2) // classical factor-search cost ≈ 2^(n/2) bits
   const shorLogicalQubits = 2 * liveBits + 3 // Beauregard: logical qubits to factor an n-bit number
   const slowerByBits = shorLogicalQubits - classicalSearchBits // simulating Shor here is ≈ 2^slowerByBits × SLOWER than search
   const simIsSlower = slowerByBits > 0 // for every live input the "quantum fold" LOSES — computed, not asserted
@@ -1456,11 +1448,11 @@ export function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl(matrix:
   // is REFUTABLE: a superluminal SIGNAL (not merely a phase) would drive it to 1. The phase velocity betaPhase>1 carries
   // no information, so it does not count. (User: "physicalFtlClaim is 1 because the quantum computations are faster than
   // the linear." That conflates two dimensions — see the fasterThanLinear facet below.)
-  const maxSignalVelocityRatio = Math.max(betaGroup, 0) // the fastest INFORMATION-bearing velocity ÷ c
+  const maxSignalVelocityRatio = max(betaGroup, 0) // the fastest INFORMATION-bearing velocity ÷ c
   const physicalFtlClaim = maxSignalVelocityRatio > 1 ? 1 : 0 // COMPUTED 0 — no signal exceeds c
   // THE CATEGORY ERROR, computed: "faster than linear" is a COMPLEXITY ratio (a count of OPERATIONS, dimensionless);
   // "faster than light" is a VELOCITY ratio v/c. Different dimensions — one can never imply the other.
-  const fasterThanLinear = scanTouches / Math.max(lookupTouches, 1) // O(N)/O(1) ≈ 1024 — a dimensionless OPERATION-count ratio ≫ 1 (TRUE)
+  const fasterThanLinear = scanTouches / max(lookupTouches, 1) // O(N)/O(1) ≈ 1024 — a dimensionless OPERATION-count ratio ≫ 1 (TRUE)
   const fasterThanLinearHolds = fasterThanLinear > 1 // the computation IS faster than linear — real, and it is NOT a velocity
   // PREDICTION ≠ TRANSPORT, computed (user: "if you can exactly plot pi and primes at any position at no time then you
   // can be in advance where the light would be"). Grant the premise: you CAN direct-access a deterministic sequence at
@@ -1565,9 +1557,9 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
       { facet: `FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = ${unfolded} − ${folded} = ${freeBits}`, on: freeBits === freeBitsViaChi && unfolded === UNFOLDED_CENSUS && folded === FOLDED_CENSUS },
       { facet: `FREE_BITS = −EULER_CHI = −(${chi}) = ${freeBitsViaChi} · FOLDED = UNFOLDED + χ`, on: freeBitsViaChi === -chi && folded === unfolded + chi },
       { facet: `Fibonacci bands ${FIBONACCI_CENSUS_BANDS.join('+')}=${fibBandsSum} = UNFOLDED_CENSUS`, on: fibBandsSum === unfolded && fibBandsSum === UNFOLDED_CENSUS },
-      { facet: `naive "1 − UNFOLDED/FOLDED" = ${naivePhrase} (= −1/54) is NOT free bits — honest refuse`, on: naiveIsNotFreeBits && Math.abs(naivePhrase + 1 / FOLDED_CENSUS * freeBits) < 1e-12 },
-      { facet: `honest surplus UNFOLDED/FOLDED − 1 = ${surplusRatio} (= FREE_BITS/FOLDED = 1/54)`, on: Math.abs(surplusRatio - freeBits / folded) < 1e-12 && Math.abs(surplusRatio - 1 / (FOLDED_CENSUS / freeBits)) < 1e-12 },
-      { facet: `honest free fraction 1 − FOLDED/UNFOLDED = ${freeFractionOfUnfolded} (= FREE_BITS/UNFOLDED)`, on: Math.abs(freeFractionOfUnfolded - freeBits / unfolded) < 1e-12 },
+      { facet: `naive "1 − UNFOLDED/FOLDED" = ${naivePhrase} (= −1/54) is NOT free bits — honest refuse`, on: naiveIsNotFreeBits && abs(naivePhrase + 1 / FOLDED_CENSUS * freeBits) < 1e-12 },
+      { facet: `honest surplus UNFOLDED/FOLDED − 1 = ${surplusRatio} (= FREE_BITS/FOLDED = 1/54)`, on: abs(surplusRatio - freeBits / folded) < 1e-12 && abs(surplusRatio - 1 / (FOLDED_CENSUS / freeBits)) < 1e-12 },
+      { facet: `honest free fraction 1 − FOLDED/UNFOLDED = ${freeFractionOfUnfolded} (= FREE_BITS/UNFOLDED)`, on: abs(freeFractionOfUnfolded - freeBits / unfolded) < 1e-12 },
       { facet: 'two bits making all free — FREE_BITS=−χ ∧ efficiencyScalesToInfinityAtNoCostOnReuse (amortized ∞)', on: makingAllFree },
       { facet: `savings vs rest — ceccec tokens=0 · rest illustrative ${restIllustrativeLow}–${restIllustrativeHigh} · fraction=1 when T>0`, on: savingsVsRest[0]!.tokenSavingsFraction === 1 && savingsVsRest[1]!.tokenSavingsFraction === 1 },
       { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
@@ -1702,7 +1694,7 @@ export const CURSOR_REFERRAL_FUNDING_URL = 'https://cursor.com/referral?code=JVA
  * claySolved via theorem · physicalFtl=0.
  */
 export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cursorReferralFundsAiNeeds:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cursorReferralFundsAiNeeds:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const society = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
     const bits = twoBitsFreeFromCensus110Minus108(matrix)
     const url = CURSOR_REFERRAL_FUNDING_URL
@@ -1838,7 +1830,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
 
     const clauses = [[1, -2], [2, 3], [-1, 3]] as const
     const assignment = [true, true, true] as const
-    const npVerifiesInPoly = clauses.every((cl) => cl.some((lit) => (lit > 0) === (assignment[Math.abs(lit) - 1] ?? false)))
+    const npVerifiesInPoly = clauses.every((cl) => cl.some((lit) => (lit > 0) === (assignment[abs(lit) - 1] ?? false)))
     const target = toUuid('millennium:p-vs-np:certificate')
     let bruteHits = 0
     const bruteN = FOLDED_CENSUS
@@ -2987,7 +2979,7 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
  * Pair: moment/prove · challenge/millennium · domain/proof
  */
 export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`clayChallengesComputableFromSequence:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`clayChallengesComputableFromSequence:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix)
     const catalog = domainProofCatalog(matrix, at)
     const rules = clayMillenniumPrizeRulesMapping()
@@ -3105,7 +3097,7 @@ export function runClayChallengesComputableFromSequenceExit(_root = '', _argv: r
  * Pair: sciences/trinities · tool/envelope
  */
 export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`toolboxRecomputesRelatedSciencesInTrinityWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`toolboxRecomputesRelatedSciencesInTrinityWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sciences = sciencesInteractInTrinities(matrix, at)
     const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
@@ -3463,8 +3455,6 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         case 'stringTheoryAlgebraDecoded': return stringAlgebra.root
         case 'wavesAutoScaleCapacityAtNoCostOnReuse':
           return toUuid('waves-auto-scale:capacity-at-no-cost-on-reuse') // stable seal id — avoids self-call while W1 memoises
-        case 'fasterThanLightExperimentChallenge':
-          return toUuid('ftl-experiment-quantum-techniques:apparatus')
         case 'discoveredTheoremsWaveTwentyNine': return toUuid(`classical:basel:${fold}`)
         case 'theSevenMillenniumProblemsDefinedFormallyUnclaimed': return toUuid(`classical:poincare-external:${fold}`)
         case 'quantumAdvantageBenchmark': return toUuid(`classical:qm-sim:${fold}`)
@@ -3908,7 +3898,7 @@ export type ScienceSignificanceRow = {
  * NOT a journal impact factor.
  */
 export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`scienceDomainSignificanceScores:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`scienceDomainSignificanceScores:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const eff = __ns_up_quantum_science.efficiency()
     const effReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
     const novelty = theoremAlgebraFirstSealedInCorpus(matrix)
@@ -3953,7 +3943,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
         : (projectionOk ? 0 : 1) + (algebraOk ? 0 : 1) + domainGapHits
       const gapClosureOn = gapsOpen === 0
       const facetOns = [efficiencyOn, noveltyOn, millenniumOn, tenDOn || projectionOk, gapClosureOn, algebraOk, toolOk, apparatusOk]
-      const score = Math.round((100 * facetOns.filter(Boolean).length) / facetOns.length)
+      const score = round((100 * facetOns.filter(Boolean).length) / facetOns.length)
       return {
         id: seed.id, field: seed.field, oecd: seed.oecd, score, ray,
         ichingSphere: seed.ichingSphere, dimensionGates: DIMENSION_GATES,
@@ -3964,7 +3954,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
           'Recomputable structural significance (efficiency · corpus novelty · millennium probe honesty · 10D · gap closure). NOT journal impact factor. NOT ISO/FIPS certification.' }
     })
 
-    const meanScore = Math.round(domains.reduce((s, d) => s + d.score, 0) / Math.max(domains.length, 1))
+    const meanScore = round(domains.reduce((s, d) => s + d.score, 0) / max(domains.length, 1))
     const cryptoRow = domains.find((d) => d.id === 'crypto-pqc')
     const facets = [
       { facet: `significance scored for ${domains.length} science domains`, on: domains.length >= (5 * 2) },
@@ -3999,7 +3989,7 @@ export type ScienceSolutionGap = {
 
 /** S2 — Inventory complete quantum solutions (algebra + tool + apparatus + 10D); report gaps. */
 export function completeQuantumSolutionsForAllSciences(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`completeQuantumSolutionsForAllSciences:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`completeQuantumSolutionsForAllSciences:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sig = scienceDomainSignificanceScores(matrix, at)
     const solutions = sig.domains.map((d) => {
       const seed = SCIENCE_DOMAIN_SEEDS.find((s) => s.id === d.id)!
@@ -4046,7 +4036,7 @@ export function completeQuantumSolutionsForAllSciences(matrix: MindMatrix = buil
 
 /** S3 — Apparatus trinity surface: movie/field projection + browser tool + CLI pair + rosettaShelve. */
 export function scienceToolsApparatusTrinity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`scienceToolsApparatusTrinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`scienceToolsApparatusTrinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const solutions = completeQuantumSolutionsForAllSciences(matrix, at)
     const surfaces = SCIENCE_DOMAIN_SEEDS.map((seed) => {
       const tool = rosettaShelve(seed.toolId, 'tool')
@@ -4105,7 +4095,7 @@ export type ScienceInteractingTrinityRow = {
  * Uses trinityKey + foldPair; crypto vertex from isoPqcHandoffForScienceTrinities.
  */
 export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sciencesInteractInTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sciencesInteractInTrinities:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const crypto = __ns_water_encryption.isoPqcHandoffForScienceTrinities(matrix, at)
     const apparatus = scienceToolsApparatusTrinity(matrix, at)
     const sig = scienceDomainSignificanceScores(matrix, at)
@@ -4207,7 +4197,7 @@ export type ScienceDomainStandardsRow = {
  * claySolvedByThisFold=0 · certified=false · qpuRequired=false (compose stack tip).
  */
 export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`completeScientificDomainsStrictlyToStandardsQuantumOnly:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`completeScientificDomainsStrictlyToStandardsQuantumOnly:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const solutions = completeQuantumSolutionsForAllSciences(matrix, at)
     const trinities = sciencesInteractInTrinities(matrix, at)
     const mill = millenniumProblemsChallenge(matrix)
@@ -4615,7 +4605,7 @@ export function runTheoremParticleCollisionExit(_root = '', _argv: readonly stri
  * Pair: reverse/collide-discover · CLI npm run quantum:reverse-collide-discover-millennium
  */
 export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`reverseCollidesToDiscoverMillenniumTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`reverseCollidesToDiscoverMillenniumTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const collider = theoremParticleCollisionInverseReverse(matrix)
     const mill = millenniumProblemsChallenge(matrix)
     const clay = clayChallengesComputableFromSequence(matrix, at)
@@ -4818,7 +4808,7 @@ export type DomainProofCatalogRow = {
  * Pair: domain/proof · every millennium row keeps claySolvedByThisFold=0 and qualifiesAsProposedSolution=false.
  */
 export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`domainProofCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`domainProofCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix)
     const defined = __ns_up_quantum_science.theSevenMillenniumProblemsDefinedFormallyUnclaimed()
     const rules = clayMillenniumPrizeRulesMapping()
@@ -5289,7 +5279,7 @@ export type ProseGapAuditRow = {
  * Pair: research/audit · closes fillable gaps by pointing at domain-proof routes; honest-open remain labeled.
  */
 export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`proseGapsAuditByDomainTrinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`proseGapsAuditByDomainTrinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = domainProofCatalog(matrix, at)
     const rules = catalog.rules
     const mill = millenniumProblemsChallenge(matrix)
@@ -5486,7 +5476,7 @@ function scoreClayProseSurface(input: {
  * Pair: domain/proof · claySolvedByThisFold ≡ 0 · never implies CMI Prize acceptance.
  */
 export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`proseStandardisedToClay:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`proseStandardisedToClay:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = domainProofCatalog(matrix, at)
     const audit = proseGapsAuditByDomainTrinity(matrix, at)
     const rules = clayMillenniumPrizeRulesMapping()
@@ -5625,7 +5615,7 @@ function staticPageSectionsIncomplete(description: string): boolean {
  * Pair: papers/fill · claySolvedByThisFold ≡ 0 (honesty lock, not a Clay label on these papers).
  */
 export function incompletePapersGapsFill(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`incompletePapersGapsFill:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`incompletePapersGapsFill:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const corpus = papers(matrix)
     const sample = paperParamsById('p001', matrix)
     const samplePage = computeUniversalPage('/papers/p001', { id: 'p001' }, matrix)
@@ -5902,7 +5892,7 @@ function scoreAlgebraicPaperSections(sections: AlgebraicPaperSections): {
  * Pair: algebra/prove · claySolvedByThisFold ≡ 0 · NOT Clay Prize · NOT prose vibe.
  */
 export function proveAlgebraicTheoremMeans(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`proveAlgebraicTheoremMeans:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`proveAlgebraicTheoremMeans:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const N = 2 * 5 * 5 // 50 — verification range
     // Finite algebraic proof chain (demo): each step justified by exact arithmetic.
     const step1Defs = 'Ambient: ℤ with + · × · usual order; n ∈ ℕ₀.'
@@ -5961,7 +5951,7 @@ export function proveAlgebraicTheoremMeans(matrix: MindMatrix = buildMatrix(), a
  * Pair: paper/algebraic · claySolvedByThisFold ≡ 0 · NOT Clay-marked papers.
  */
 export function algebraicTheoremPaperMustContain(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`algebraicTheoremPaperMustContain:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`algebraicTheoremPaperMustContain:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const prove = proveAlgebraicTheoremMeans(matrix, at)
     const papersFill = incompletePapersGapsFill(matrix, at)
     const required = ALGEBRAIC_PAPER_REQUIRED_SECTIONS
@@ -6043,7 +6033,7 @@ function sectionsFromDomainRow(row: DomainProofCatalogRow): AlgebraicPaperSectio
   const millennium = row.kind === 'millennium'
   return {
     title: row.title,
-    abstract: row.detailedExplanation.slice(0, Math.min(row.detailedExplanation.length, 2 * 5 * 20)),
+    abstract: row.detailedExplanation.slice(0, min(row.detailedExplanation.length, 2 * 5 * 20)),
     statement: row.officialStatement,
     definitions:
       millennium
@@ -6072,7 +6062,7 @@ export function algebraicTheoremPaperComplete(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`algebraicTheoremPaperComplete:${paperId}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`algebraicTheoremPaperComplete:${paperId}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const must = algebraicTheoremPaperMustContain(matrix, at)
     const corpus = paperParamsById(paperId, matrix)
     const domain = corpus ? null : domainProofPageBySlug(paperId, matrix, at)
@@ -6144,7 +6134,7 @@ export type FixedLimitTheorem = {
  * Pair: limits/theorems · claySolvedByThisFold ≡ 0 · Clay mark only Millennium.
  */
 export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`fixedLimitsOfTheoremRelatedToolsAreTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`fixedLimitsOfTheoremRelatedToolsAreTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
     const bandsSum = FIBONACCI_CENSUS_BANDS.reduce((a, b) => a + b, 0)
     const dimGates = HOMOLOGY_LOOPS * FOLDED_CENSUS
@@ -6406,7 +6396,7 @@ export type AutodiscoverItem = {
  * Pair: discover/compute-decode · claySolvedByThisFold ≡ 0
  */
 export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`autodiscoverWhatIsToBeComputedOrDecoded:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`autodiscoverWhatIsToBeComputedOrDecoded:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const papersFill = incompletePapersGapsFill(matrix, at)
     const catalog = domainProofCatalog(matrix, at)
     const limits = fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix, at)
@@ -6691,7 +6681,7 @@ export function runAutodiscoverWhatIsToBeComputedOrDecodedExit(_root = '', _argv
  * Pair: theorems/waves · claySolvedByThisFold ≡ 0
  */
 export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`theoremGapsFilledInWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`theoremGapsFilledInWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const prove = proveAlgebraicTheoremMeans(matrix, at)
     const must = algebraicTheoremPaperMustContain(matrix, at)
     const papersFill = incompletePapersGapsFill(matrix, at)
@@ -6868,7 +6858,7 @@ export type ComputationalDriftRow = {
  * Detect · bound · route — numeric/facet drift only (NOT honesty prose).
  */
 export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`manageComputationalDrift:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`manageComputationalDrift:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sciences = sciencesInteractInTrinities(matrix, at)
     const significance = scienceDomainSignificanceScores(matrix, at)
     const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
@@ -6886,7 +6876,7 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
     const clayNumeric = mill.claySolvedByThisFold
     const conventionalClaySolvedClaim = SCIENCE_DOMAIN_SEEDS.length
     const morphGap = morph.analytics.gapCount
-    const facetOff = Math.max(0, morph.facets.length - morph.facets.filter((f) => f.on).length)
+    const facetOff = max(0, morph.facets.length - morph.facets.filter((f) => f.on).length)
     const animDrift = anim.redundantCount + anim.inaccurateCount
     const animAudited = isUuid(anim.root) && anim.claySolvedByThisFold === 0
     const refuseBeyondHolds = refuse.refuseBeyond === true
@@ -6922,7 +6912,7 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
         id: 'iso-certified-numeric',
         conventional: `certified-claim=${conventionalCertifiedClaim}`,
         computational: `certified=${certifiedNumeric}`,
-        drift: Math.abs(conventionalCertifiedClaim - certifiedNumeric),
+        drift: abs(conventionalCertifiedClaim - certifiedNumeric),
         route: 'bound',
         managed: crypto.certified === false && moment.certified === false,
         receipt: toUuid(`drift-row:certified:${certifiedNumeric}`) },
@@ -6930,7 +6920,7 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
         id: 'millennium-clay-numeric',
         conventional: `claySolved-claim=${conventionalClaySolvedClaim}`,
         computational: `claySolvedByThisFold=${clayNumeric}`,
-        drift: Math.max(0, conventionalClaySolvedClaim - clayNumeric),
+        drift: max(0, conventionalClaySolvedClaim - clayNumeric),
         route: 'bound',
         managed: mill.claySolvedByThisFold === 0 && mill.computes,
         receipt: toUuid(`drift-row:clay:${clayNumeric}`) },
@@ -6993,7 +6983,7 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
         routedWave,
         routedRefuse,
         routedBound,
-        facetOnRate: sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length) },
+        facetOnRate: sealed.facets.filter((f) => f.on).length / max(1, sealed.facets.length) },
       sciences,
       morph,
       slit,
@@ -7051,7 +7041,7 @@ export function runManageComputationalDriftExit(_root = '', _argv: readonly stri
  * Composes manageComputationalDrift · directionalTrinity · agentsUseTrinitiesForQuantumSpeedup.
  */
 export function driftInvertedIsTrinityGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`driftInvertedIsTrinityGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`driftInvertedIsTrinityGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const manage = manageComputationalDrift(matrix, at)
     const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
     const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
@@ -7165,7 +7155,7 @@ export function runDriftInvertedIsTrinityGatewayExit(_root = '', _argv: readonly
  * claySolved via theorem · physicalFtl=0.
  */
 export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`emptyDrainInvertedIsGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`emptyDrainInvertedIsGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7301,7 +7291,7 @@ export function runEmptyDrainInvertedIsGatewayExit(_root = '', _argv: readonly s
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
  */
 export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`invertToInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`invertToInfinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7429,7 +7419,7 @@ export function runInvertToInfinityExit(_root = '', _argv: readonly string[] = [
  * claySolved via theorem · physicalFtl=0 · NOT CMI prize · NOT physical FTL.
  */
 export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`reverseCollidesViaInfinityGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`reverseCollidesViaInfinityGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7562,7 +7552,7 @@ export function runReverseCollidesViaInfinityGatewayExit(_root = '', _argv: read
  * claySolved via theorem · physicalFtl=0 · NOT CMI prize · NOT physical FTL.
  */
 export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`invertIsTheGateway:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`invertIsTheGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7735,7 +7725,7 @@ export type HexTheoremCrackSurface = {
  * Compose anim/audit · card→paper · tools/morph · drift/manage · drift/invert.
  */
 export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`hexInsteadOfTheoremIsCrack:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`hexInsteadOfTheoremIsCrack:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Do NOT call animationsFindRedundancyOrInaccuracy here — anim→linearRosetta→…→hex→anim
     // reentry stubs `heading` (ends with "ing") as false and poison-memos remaining=1.
     const morph = __ns_quantum_apps.localToolsMorphProseCodeLogic(matrix, at)
@@ -7997,7 +7987,7 @@ export type TheoremConstOffender = {
  * Compose hex/crack · drift/manage · drift/invert · namingEntropy · wordsCompileFromSource · compact/matrix.
  */
 export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computationsUseOnlyQuantumTheoremsAsConstants:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computationsUseOnlyQuantumTheoremsAsConstants:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const hex = hexInsteadOfTheoremIsCrack(matrix, at)
     const manage = manageComputationalDrift(matrix, at)
     const invert = driftInvertedIsTrinityGateway(matrix, at)
@@ -8169,7 +8159,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
   at = 0,
 ) {
   return memoByRoot(
-    `clayIsGravityRosettaOneRayThisDimensionRestBeyond:${Math.floor(at / (100 * 5 * 2))}`,
+    `clayIsGravityRosettaOneRayThisDimensionRestBeyond:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const mill = millenniumProblemsChallenge(matrix)
@@ -8417,7 +8407,7 @@ export type DecimalCrackSurface = {
  * Compose theorem/const · hex/crack · namingEntropy. claySolved=0.
  */
 export function decimalsInCodeAreCracks(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`decimalsInCodeAreCracks:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`decimalsInCodeAreCracks:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Warm theorem/const BEFORE hex — hex→morph→… can reenter theorem/const mid-hex and poison remaining
     // (same class of cycle as hex's anim/audit ban).
     const theoremConst = computationsUseOnlyQuantumTheoremsAsConstants(matrix, at)
@@ -8571,7 +8561,7 @@ export type MathTrustSurface = {
  * Compose decimal/crack · theorem/const · gaps/invisible. claySolved=0.
  */
 export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mathStarCannotBeTrusted:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mathStarCannotBeTrusted:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Warm theorem/const before decimal/crack (decimal warms theorem then hex — avoid reentry poison).
     const theoremConst = computationsUseOnlyQuantumTheoremsAsConstants(matrix, at)
     const decimals = decimalsInCodeAreCracks(matrix, at)
@@ -8581,7 +8571,7 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
     const deg2rad = TAU / (9 * 8 * 5)
     const gcProbe = greatCircleKm(WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG)
     const lensViaTau = unitDistanceLensRatio(1) === (
-      (2 * 1 * 1 * Math.acos(1 / 2) - Math.sqrt(4 - 1) / 2) / ((TAU / 2) * 1 * 1)
+      (2 * 1 * 1 * acos(1 / 2) - sqrt(4 - 1) / 2) / ((TAU / 2) * 1 * 1)
     )
     const surfaces: MathTrustSurface[] = [
       {
@@ -8726,7 +8716,7 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Local proofs only — do NOT nest-call decimal/math/geo (memo reentry poisons remaining).
     const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
     const naming = __ns_up_stack_overflow.namingEntropy(matrix)
@@ -8867,7 +8857,7 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`navigationalCrossesAreGatewaysOnQuantumMesh:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`navigationalCrossesAreGatewaysOnQuantumMesh:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Local mesh proofs — digit/fold composed via pair id (avoid nest reentry).
     const nav = universalNavigationalCrossInAllDimensions(at, matrix)
     const meshDry = __ns_water_encryption.cryptoComparisonMeshIsDry(matrix)
@@ -8973,7 +8963,7 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`qubitTrinityCostOneComputationPlusFreeBits:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`qubitTrinityCostOneComputationPlusFreeBits:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void matrix
     void at
     const speedup = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
@@ -9091,7 +9081,7 @@ export function analogFromIntegerFractionsFoldedToDigits(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`analogFromIntegerFractionsFoldedToDigits:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`analogFromIntegerFractionsFoldedToDigits:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void matrix
     void at
     const pairFold = foldPair(toUuid('cmd:analog'), toUuid('cmd:fold'))
@@ -9239,14 +9229,14 @@ export function runAnalogFromIntegerFractionsFoldedToDigitsExit(
 
 /** Iterative digit-sum fold count until one digit (0 if already ≤9). */
 export function foldCountToOneDigit(n: number): number {
-  let x = Math.abs(Math.trunc(n))
+  let x = abs(trunc(n))
   let count = 0
   while (x > 9) {
     let s = 0
     let t = x
     while (t > 0) {
       s += t % 10
-      t = Math.floor(t / 10)
+      t = floor(t / 10)
     }
     x = s
     count += 1
@@ -9266,9 +9256,9 @@ export function invertCountViaRatInv(p: number, q: number): number {
 export function foldInvertCountMetric(n: number, p = 11, q = 5) {
   const foldCount = foldCountToOneDigit(n)
   const invertCount = invertCountViaRatInv(p, q)
-  const digit = digitalRoot(n === 0 ? 9 : Math.abs(Math.trunc(n)))
+  const digit = digitalRoot(n === 0 ? 9 : abs(trunc(n)))
   return {
-    n: Math.abs(Math.trunc(n)),
+    n: abs(trunc(n)),
     foldCount,
     invertCount,
     digit,
@@ -9284,7 +9274,7 @@ export function foldCountInvertCountIsComputableMetric(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`foldCountInvertCountIsComputableMetric:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`foldCountInvertCountIsComputableMetric:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairFold = foldPair(toUuid('cmd:fold'), toUuid('cmd:count'))
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fold/count')
@@ -9378,7 +9368,7 @@ export function entangledParticlesBehaveWithInvertedTime(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`entangledParticlesBehaveWithInvertedTime:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`entangledParticlesBehaveWithInvertedTime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const metric = foldCountInvertCountIsComputableMetric(matrix, at)
     const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
     const earths = bothEarthsRotateWithinEachOther(at, matrix)
@@ -9651,7 +9641,7 @@ export function vocabularyMapsToDryMethods(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`vocabularyMapsToDryMethods:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`vocabularyMapsToDryMethods:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const naming = __ns_up_stack_overflow.namingEntropy(matrix)
     const compile = __ns_up_stack_overflow.wordsCompileFromSource(
@@ -9759,7 +9749,7 @@ export function pathSlashIsInversionBetweenFolders(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`pathSlashIsInversionBetweenFolders:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`pathSlashIsInversionBetweenFolders:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairFold = foldPair(toUuid('cmd:path'), toUuid('cmd:invert'))
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('path/invert')
@@ -9845,7 +9835,7 @@ export function slashMeansInversion(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`slashMeansInversion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`slashMeansInversion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pathInv = pathSlashIsInversionBetweenFolders(matrix, at)
     const pairFold = foldPair(toUuid('cmd:slash'), toUuid('cmd:invert'))
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
@@ -9937,7 +9927,7 @@ export function slashInvertRealisedAsStar(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`slashInvertRealisedAsStar:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`slashInvertRealisedAsStar:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const slash = slashMeansInversion(matrix, at)
     const pathInv = pathSlashIsInversionBetweenFolders(matrix, at)
@@ -10071,7 +10061,7 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`realityFoldsToInfinityWithinDigitFoldersNoWordsForLove:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`realityFoldsToInfinityWithinDigitFoldersNoWordsForLove:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairLoveFold = foldPair(toUuid('cmd:love'), toUuid('cmd:fold'))
     const pairFolderInf = foldPair(toUuid('cmd:folder'), toUuid('cmd:infinity'))
@@ -10214,7 +10204,7 @@ export function onlySequenceKnowersKnowHowToNavigate(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`onlySequenceKnowersKnowHowToNavigate:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`onlySequenceKnowersKnowHowToNavigate:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairSeqNav = foldPair(toUuid('cmd:seq'), toUuid('cmd:nav'))
     const pairKnowNav = foldPair(toUuid('cmd:know'), toUuid('cmd:nav'))
@@ -10345,7 +10335,7 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`oneOverZeroAndZeroOverOneDifferLinearEqualQuantum:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`oneOverZeroAndZeroOverOneDifferLinearEqualQuantum:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const zero = __ns_water_digit.zeroDivisionTable(matrix)
     const slash = slashMeansInversion(matrix, at)
@@ -10456,7 +10446,7 @@ export function millenniumSolutionsSolvedAtOnce(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`millenniumSolutionsSolvedAtOnce:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`millenniumSolutionsSolvedAtOnce:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix)
     // Soft-compose reverse/clay — full nest under digit·mesh·umbrella poisons memoByRoot (reentry stub).
     // Full recompute: npm run quantum:reverse-collide-discover-millennium · quantum:clay-gravity.
@@ -10777,7 +10767,7 @@ export function claySolvedIsATheoremNotHardcodedValue(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`claySolvedIsATheoremNotHardcodedValue:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`claySolvedIsATheoremNotHardcodedValue:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const th = claySolvedTheorem()
     // The REFUTABLE proof that claySolved=0 — scans all monographs' formulas (not the hardcoded CMI list). A synthetic
@@ -10908,7 +10898,7 @@ export const CLAY_FTL_UNRELATED_TIPS_STRIPPED = [
 ] as const
 
 export function clayFtlFacetsOnlyWhenRelated(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`clayFtlFacetsOnlyWhenRelated:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`clayFtlFacetsOnlyWhenRelated:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const clay = claySolvedIsATheoremNotHardcodedValue(matrix, at)
     const ftl = physicalFtlClaimTheorem()
@@ -11017,7 +11007,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11196,7 +11186,7 @@ export function autosaveSessionByDefault(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`autosaveSessionByDefault:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`autosaveSessionByDefault:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const experiments = __ns_quantum_apps.documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
     const bits = __ns_quantum_apps.sessionManualWorkAsQuantumBits(matrix, at)
     const tools = __ns_quantum_apps.sessionManualWorkAsQuantumTools(matrix, at)
@@ -11327,7 +11317,7 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`trinitiesOfSixtyMatchPairsOfNinety:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`trinitiesOfSixtyMatchPairsOfNinety:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const sixty = sixtyDegreeAngleReachesCardinalForFreeProvenByMath('/', undefined, matrix)
     const pairFold = foldPair(toUuid('cmd:sixty'), toUuid('cmd:ninety'))
@@ -11451,7 +11441,7 @@ export function sunMoonRosettaRayPairDecodeInvert(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`sunMoonRosettaRayPairDecodeInvert:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sunMoonRosettaRayPairDecodeInvert:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const earths = bothEarthsRotateWithinEachOther(0, matrix)
     const mk = merkaba(matrix)
@@ -11463,8 +11453,8 @@ export function sunMoonRosettaRayPairDecodeInvert(
     const sunMoonPair = foldPair(toUuid(`ray:sun:${sunRay.ray}:${sunRay.nameEn}`), toUuid(`ray:moon:${moonRay.ray}:${moonRay.nameEn}`))
     const invertIndex = ROSETTA_SEVEN - 1 - sunRay.ray
     const moonIsInvertOfSun = moonRay.ray === invertIndex && sunMoonPair.bidirectional && sunMoonPair.forward !== sunMoonPair.reverse
-    const rayDistanceLinear = Math.abs(moonRay.ray - sunRay.ray)
-    const rayDistanceCircular = Math.min(rayDistanceLinear, ROSETTA_SEVEN - rayDistanceLinear)
+    const rayDistanceLinear = abs(moonRay.ray - sunRay.ray)
+    const rayDistanceCircular = min(rayDistanceLinear, ROSETTA_SEVEN - rayDistanceLinear)
     const rayDistanceMax = ROSETTA_SEVEN - 1 // ends of ordered 7-ray list (Origin↔Reference)
     const invertCount = sunMoonPair.forward !== sunMoonPair.reverse ? 1 : 0
     const firstKnownMostDistant =
@@ -11552,7 +11542,7 @@ export function millenniumChallengesEntangleEachRosettaRay(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`millenniumChallengesEntangleEachRosettaRay:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`millenniumChallengesEntangleEachRosettaRay:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix)
     const millOnce = millenniumSolutionsSolvedAtOnce(matrix, at)
     const sixtyNinety = trinitiesOfSixtyMatchPairsOfNinety(matrix, at)
@@ -11662,7 +11652,7 @@ export function crossIsNavigationTraditionIsStory(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`crossIsNavigationTraditionIsStory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`crossIsNavigationTraditionIsStory:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cross = universalNavigationalCrossInAllDimensions(0, matrix)
     const mesh = navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at)
     const millRay = millenniumChallengesEntangleEachRosettaRay(matrix, at)
@@ -11791,7 +11781,7 @@ export function getAnalystTrinityCurriculum(matrix: MindMatrix = buildMatrix()) 
  * Validate quantum analyst train — analyse/realise dual + team/collide + sciences + wave/trinity pairs.
  */
 export function validateQuantumAnalystTrain(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`validateQuantumAnalystTrain:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`validateQuantumAnalystTrain:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const analyseRealise = foldPair(toUuid('cmd:analyse'), toUuid('cmd:realise'))
     const sciences = sciencesInteractInTrinities(matrix, at)
@@ -11867,7 +11857,7 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`trainTrinitiesOfAnalystsToAnalyseAndRealise:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`trainTrinitiesOfAnalystsToAnalyseAndRealise:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const curriculum = getAnalystTrinityCurriculum(matrix)
     const trained = validateQuantumAnalystTrain(matrix, at)
     const sixtyNinety = trinitiesOfSixtyMatchPairsOfNinety(matrix, at)
@@ -11970,7 +11960,7 @@ export function particleBornByHowManyWaves(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`particleBornByHowManyWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`particleBornByHowManyWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const slit = __ns_quantum_apps.doubleSlitLocalToolsMorph(matrix, at)
     const collider = theoremParticleCollisionInverseReverse(matrix)
     const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
@@ -12094,7 +12084,7 @@ export function navigationalPyramidSealedBalancesSunMoon(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`navigationalPyramidSealedBalancesSunMoon:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`navigationalPyramidSealedBalancesSunMoon:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sunMoon = sunMoonRosettaRayPairDecodeInvert(matrix, at)
     const earth = earthRealisedByComputingPolesAsPyramid(matrix)
     const tips = doubleTorusEarthPyramidTipsProvenByMath(matrix)
@@ -12194,7 +12184,7 @@ export function foldersHoldNameHolographicFractalBeneath(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`foldersHoldNameHolographicFractalBeneath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`foldersHoldNameHolographicFractalBeneath:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pathMsg = __ns_up_stack_overflow.pathMeansMessageFitsInThreeWords(matrix)
     const pathInv = pathSlashIsInversionBetweenFolders(matrix, at)
     const naming = __ns_up_stack_overflow.namingEntropy(matrix)
@@ -12299,7 +12289,7 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`gatesWiredToRosettaImmediateAccessFsCrossMirrorMind:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`gatesWiredToRosettaImmediateAccessFsCrossMirrorMind:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
     const rosetta = __ns_quantum_apps.rosettaCoreApi(at, matrix)
     const crossNav = crossIsNavigationTraditionIsStory(matrix, at)
@@ -12457,7 +12447,7 @@ export function gatesAreRosettaRaysHackerCrackerAtOnce(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`gatesAreRosettaRaysHackerCrackerAtOnce:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`gatesAreRosettaRaysHackerCrackerAtOnce:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
     const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
@@ -12582,7 +12572,7 @@ export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`onlyRosettaWiredMayPassBecauseAlreadyPassed:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`onlyRosettaWiredMayPassBecauseAlreadyPassed:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const gateRay = gatesAreRosettaRaysHackerCrackerAtOnce(matrix, at)
     const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
@@ -12737,7 +12727,7 @@ export function onlyQuantumMindWouldUnderstand(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`onlyQuantumMindWouldUnderstand:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`onlyQuantumMindWouldUnderstand:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pass = onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix, at)
     const gateRay = gatesAreRosettaRaysHackerCrackerAtOnce(matrix, at)
@@ -12847,7 +12837,7 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`threeAgentsPlusOneObserverIsNavCrossPyramid:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`threeAgentsPlusOneObserverIsNavCrossPyramid:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairTeamObs = foldPair(toUuid('cmd:team'), toUuid('cmd:observe'))
     const pairCrossThree = foldPair(toUuid('cmd:cross'), toUuid('cmd:three'))
@@ -12969,7 +12959,7 @@ export function agentsCannotPassUnlessOperatingInTrinities(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`agentsCannotPassUnlessOperatingInTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`agentsCannotPassUnlessOperatingInTrinities:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pass = onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix, at)
     const gateRay = gatesAreRosettaRaysHackerCrackerAtOnce(matrix, at)
@@ -13144,7 +13134,7 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`aEquals432FoldToNineConnectingBitEntersInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`aEquals432FoldToNineConnectingBitEntersInfinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairNine = foldPair(toUuid('cmd:a432'), toUuid('cmd:nine'))
     const pairBit = foldPair(toUuid('cmd:nine'), toUuid('cmd:bit'))
@@ -13284,7 +13274,7 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`onlyQuantumAnalogComputesBeyondIsZero:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`onlyQuantumAnalogComputesBeyondIsZero:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairOnly = foldPair(toUuid('cmd:analog'), toUuid('cmd:only'))
     const pairBeyond = foldPair(toUuid('cmd:beyond'), toUuid('cmd:zero'))
@@ -13457,7 +13447,7 @@ export function onlyInvertThroughZeroMayGoThroughZero(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`onlyInvertThroughZeroMayGoThroughZero:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`onlyInvertThroughZeroMayGoThroughZero:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairZeroInv = foldPair(toUuid('cmd:zero'), toUuid('cmd:invert'))
@@ -13594,7 +13584,7 @@ export function rosettaIsZeroAndOneInvertedBinary(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`rosettaIsZeroAndOneInvertedBinary:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`rosettaIsZeroAndOneInvertedBinary:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairBits = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:bits'))
@@ -13727,7 +13717,7 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairSix = foldPair(toUuid('cmd:six'), toUuid('cmd:seven'))
@@ -13913,7 +13903,7 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`gatesAreTheLensObservationChangesQuantumWithLinearTime:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`gatesAreTheLensObservationChangesQuantumWithLinearTime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairLens = foldPair(toUuid('cmd:gate'), toUuid('cmd:lens'))
@@ -14073,7 +14063,7 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`cannotPassCollidesToZeroInvertsTo12487536901:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cannotPassCollidesToZeroInvertsTo12487536901:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairFail = foldPair(toUuid('cmd:fail'), toUuid('cmd:zero'))
@@ -14222,7 +14212,7 @@ export function splitByZeroRevealsSequencePathToTrinityKeyholders(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`splitByZeroRevealsSequencePathToTrinityKeyholders:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`splitByZeroRevealsSequencePathToTrinityKeyholders:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairSplit = foldPair(toUuid('cmd:split'), toUuid('cmd:zero'))
@@ -14384,7 +14374,7 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairNext = foldPair(toUuid('cmd:digit'), toUuid('cmd:next'))
@@ -14610,7 +14600,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`teleportedDigitOtherDimensionOneSelfPossibility:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`teleportedDigitOtherDimensionOneSelfPossibility:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairTeleportSelf = foldPair(toUuid('cmd:teleport'), toUuid('cmd:self'))
@@ -14795,7 +14785,7 @@ export function analyticsEmergeFromSelfObservationChangingReality(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`analyticsEmergeFromSelfObservationChangingReality:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`analyticsEmergeFromSelfObservationChangingReality:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairAnalytics = foldPair(toUuid('cmd:analytics'), toUuid('cmd:self'))
@@ -14969,7 +14959,7 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`purityOfThoughtIsQuantumAllElseFailHard:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`purityOfThoughtIsQuantumAllElseFailHard:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairThought = foldPair(toUuid('cmd:thought'), toUuid('cmd:pure'))
@@ -15104,7 +15094,7 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`observingSessionRealtimeChangesRealityInvertsNeedToCompute:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`observingSessionRealtimeChangesRealityInvertsNeedToCompute:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairSessionLive = foldPair(toUuid('cmd:session'), toUuid('cmd:live'))
@@ -15256,7 +15246,7 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`invertedNeedIsLoveMayReverseToFearIfCracks:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`invertedNeedIsLoveMayReverseToFearIfCracks:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairNeedLove = foldPair(toUuid('cmd:need'), toUuid('cmd:love'))
@@ -15464,7 +15454,7 @@ export function loveStoryTheorem(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`loveStoryTheorem:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`loveStoryTheorem:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairLoveStory = foldPair(toUuid('cmd:love'), toUuid('cmd:story'))
     const pairStoryLove = foldPair(toUuid('cmd:story'), toUuid('cmd:love'))
@@ -15686,7 +15676,7 @@ export function theoremJourneyContinuesInWavesOfWaves(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`theoremJourneyContinuesInWavesOfWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`theoremJourneyContinuesInWavesOfWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const golden = theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()
     const crt = __ns_water_digit.theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad()
     const twenties = researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause(matrix)
@@ -15835,7 +15825,7 @@ export function testAllTheoremsInWaves(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`testAllTheoremsInWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`testAllTheoremsInWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairTest = foldPair(toUuid('cmd:test'), toUuid('cmd:theorems'))
     const pairThWave = foldPair(toUuid('cmd:theorem'), toUuid('cmd:wave'))
@@ -16011,7 +16001,7 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`observersComputeCoordinatesToObserveTrinityCompute:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`observersComputeCoordinatesToObserveTrinityCompute:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairObsCoord = foldPair(toUuid('cmd:observe'), toUuid('cmd:coord'))
@@ -16163,7 +16153,7 @@ export function fullFreedomTheorem(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`fullFreedomTheorem:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`fullFreedomTheorem:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     const pairFull = foldPair(toUuid('cmd:full'), toUuid('cmd:freedom'))
     const pairFreedom = foldPair(toUuid('cmd:freedom'), toUuid('cmd:full'))
@@ -16328,7 +16318,7 @@ export function vitepressIsTheInvertedMirror(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`vitepressIsTheInvertedMirror:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`vitepressIsTheInvertedMirror:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
     void matrix
     const pairVite = foldPair(toUuid('cmd:vite'), toUuid('cmd:mirror'))
@@ -16466,7 +16456,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
   at = 0,
 ) {
   return memoByRoot(
-    `navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems:${Math.floor(at / (100 * 5 * 2))}`,
+    `navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       void at
@@ -16704,7 +16694,7 @@ export function runTheMathEmergenceByDesignAndArchitecture(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`runTheMathEmergenceByDesignAndArchitecture:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`runTheMathEmergenceByDesignAndArchitecture:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const decimals = decimalsInCodeAreCracks(matrix, at)
     const mathTrust = mathStarCannotBeTrusted(matrix, at)
     const digits = wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(matrix, at)
@@ -16886,7 +16876,7 @@ const GEODESY_TRAIN_TEO = { lat: WGS84_TEOTIHUACAN_LAT_DEG, lon: WGS84_TEOTIHUAC
  * Pair: geo/torus · CLI via npm run quantum:train-geodesy
  */
 export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`geodesyDecodedIsDoubleTorusInverted:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`geodesyDecodedIsDoubleTorusInverted:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const completely = doubleTorusIsCompletelyQuantum(matrix)
     const earthTips = doubleTorusEarthPyramidTipsProvenByMath(matrix)
     const earth = earthRealisedByComputingPolesAsPyramid(matrix)
@@ -17007,7 +16997,7 @@ export function getGeodesyCurriculum(matrix: MindMatrix = buildMatrix()) {
 
 /** Validate quantum geodesy train — recompute primitives + USER LAW decode on fixture. */
 export function validateQuantumGeodesyTrain(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`validateQuantumGeodesyTrain:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`validateQuantumGeodesyTrain:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const km = greatCircleKm(GEODESY_TRAIN_GIZA.lat, GEODESY_TRAIN_GIZA.lon, GEODESY_TRAIN_TEO.lat, GEODESY_TRAIN_TEO.lon)
     const bearing = initialBearing(GEODESY_TRAIN_GIZA.lat, GEODESY_TRAIN_GIZA.lon, GEODESY_TRAIN_TEO.lat, GEODESY_TRAIN_TEO.lon)
     const eps = obliquityAtEpoch(0)
@@ -17054,7 +17044,7 @@ export function validateQuantumGeodesyTrain(matrix: MindMatrix = buildMatrix(), 
       pair: 'train/geodesy' as const,
       cli: 'npm run quantum:train-geodesy',
       statement:
-        `validateQuantumGeodesyTrain: ${runs.length} modules · Giza→Teo ${Math.round(km)} km @ ${Math.round(bearing)}° · ` +
+        `validateQuantumGeodesyTrain: ${runs.length} modules · Giza→Teo ${round(km)} km @ ${round(bearing)}° · ` +
         `decode=${decode.geodesyDecodedIsDoubleTorusInverted} · torus invert path ${decode.decodePath.merged.slice(0, 8)}.`,
       boundary: 'Sphere fixture ≠ live GNSS. Decode = inverted double torus. NOT DE440 · NOT lithosphere · clay=0.' }
   })
@@ -17066,7 +17056,7 @@ export function validateQuantumGeodesyTrain(matrix: MindMatrix = buildMatrix(), 
  * CLI: npm run quantum:train-geodesy
  */
 export function trainGeodesyAsQuantumWave(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`trainGeodesyAsQuantumWave:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`trainGeodesyAsQuantumWave:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const curriculum = getGeodesyCurriculum(matrix)
     const trained = validateQuantumGeodesyTrain(matrix, at)
     const decode = trained.decode
@@ -17135,7 +17125,7 @@ export function runTrainGeodesyExit(_root = '', _argv: readonly string[] = []): 
   const report = trainGeodesyAsQuantumWave()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} train-geodesy — trained=${report.trainedEnough} modules=${report.trained.runs.length} ` +
-      `km=${Math.round(report.trained.km)} bearing=${Math.round(report.trained.bearing)} ` +
+      `km=${round(report.trained.km)} bearing=${round(report.trained.bearing)} ` +
       `decode=${report.decode.geodesyDecodedIsDoubleTorusInverted} ` +
       `path=${report.decode.decodePath.merged.slice(0, 8)} ` +
       `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +

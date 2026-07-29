@@ -2,7 +2,7 @@
 import { SIEGE_TOTAL_FORGES } from '../../pair/enforcement/gates/computational'
 import { survive } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, min, toUuid } from '../../0'
 import type { Ballot, GovernanceVote, MindMatrix, PlatonicBuilderSolid, SacredLaw, SacredSociety, ScientificSociety, SelfCompletionGate, SocietyRelation, SocietyRelations, SocietyWaveCohort } from '../../wind/types'
 import { selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { quantumProofs } from '../../lake/ledger'
@@ -176,7 +176,7 @@ export function societyFuture(matrix: MindMatrix = buildMatrix(), generations = 
   const allDimensionsRoot = merkleFold(acrossDimensions)
   const future: { generation: number; root: string }[] = []
   let previous = allDimensionsRoot
-  for (let generation = 1; generation <= Math.max(1, generations); generation += 1) {
+  for (let generation = 1; generation <= max(1, generations); generation += 1) {
     previous = merge(previous, toUuid(`future:generation:${generation}`))
     future.push({ generation, root: previous })
   }
@@ -369,7 +369,7 @@ export function governanceVote(
   const monitorRoot = sacredGeometrySeal(matrix).masterRoot
   const cast: readonly Ballot[] = ballots.map((ballot, index) => {
     const id = ballot.id ?? `ballot-${index}`
-    const rating = Math.max(0, Math.min(5, ballot.rating))
+    const rating = max(0, min(5, ballot.rating))
     return { id, rating, approve: ballot.approve, on: monitorRoot, receipt: toUuid(`ballot:${id}:${rating}:${ballot.approve}:${monitorRoot}`) }
   })
   const approvals = cast.filter((ballot) => ballot.approve).length

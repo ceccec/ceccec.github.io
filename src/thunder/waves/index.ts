@@ -12,9 +12,9 @@ export { CANDIDATE_THEOREMS } from '../../4/6'
 import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
-import {    antichainLevels, createAnimationEngine, foldPair, grover, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, sealFacets, toUuid, prng, gcd, VORTEX_SEQUENCE } from '../../0'
+import { VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
-import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, frequencyToLight, HOMOLOGY_LOOPS, rosettaRayOfContent, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7'
+import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
 import { quantumZeno } from '../../6/4'
 import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../wind/ui'
@@ -28,6 +28,8 @@ import { splitImagination } from '../../mountain/source'
 import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond, selfBuild } from '../../fire/diamonds'
 import { shouldSpawnSubagent, directionalTrinityForwardInverseReverse } from '../../water/stack'
 import * as __ns_gates from '../../pair/enforcement/gates'
+import { mathAlgebra } from '../../pair/enforcement/gates/strict/scan'
+import * as __ns_quantum_apps from '../../quantum/apps'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import * as __ns_commands from '../../thunder/commands'
 import { redTeam } from '../../water/crypto'
@@ -442,8 +444,8 @@ export function quantumImpossibleWaveThree(matrix: MindMatrix = buildMatrix()) {
 function quantumImpossibleWaveThreeRaw(matrix: MindMatrix = buildMatrix()) {
   const ghz = ghzMermin() // QM product −1 vs LHV +1 — local realism refuted with certainty
   const chshValue = chsh(0, (TAU / 2) / 2, (TAU / 2) / 4, 3 * (TAU / 2) / 4) // optimal angles → 2√2
-  const tsirelson = 2 * Math.SQRT2
-  const bellViolated = chshValue > 2 + 1e-9 && Math.abs(chshValue - tsirelson) < 1e-9
+  const tsirelson = 2 * SQRT2
+  const bellViolated = chshValue > 2 + 1e-9 && abs(chshValue - tsirelson) < 1e-9
   const key = bb84((100 * 4), `bb84:${matrix.root.slice(0, 8)}`) // no-cloning → eavesdrop detection
   const bb84Secure = key.sifted > 0 && key.errorNoEve < 1e-9 && key.errorWithEve > (1 / (5 * 2)) // QBER above the ~11% abort line ⇒ caught
   const facets = [
@@ -479,7 +481,7 @@ export function quantumImpossibleWaveFour(matrix: MindMatrix = buildMatrix()) {
 }
 function quantumImpossibleWaveFourRaw(matrix: MindMatrix = buildMatrix()) {
   const g = grover(6, (7 * 6), (64 * 4), `grover:${matrix.root.slice(0, 6)}`) // find 1 of 64 in ~√64 steps
-  const groverWorks = g.markedProbability > (9 / (5 * 2)) && g.found === (7 * 6) && g.iterations <= Math.ceil(Math.sqrt(g.size))
+  const groverWorks = g.markedProbability > (9 / (5 * 2)) && g.found === (7 * 6) && g.iterations <= ceil(sqrt(g.size))
   const djConstant = deutschJozsa(4, false), djBalanced = deutschJozsa(4, true) // 1 query each
   const djOneQuery = djConstant.ok && djBalanced.ok && djConstant.verdict === 'constant' && djBalanced.verdict === 'balanced'
   const sm = simon(`simon:${matrix.root.slice(0, 6)}`) // exponential separation precursor
@@ -944,7 +946,7 @@ export function quantumChessGame(matrix: MindMatrix = buildMatrix()): QuantumChe
       const wave = coordination.waves[index % coordination.waves.length]
       const square = `${file}${rank}`
       const color = (fileIndex + rank) % 2 === 0 ? 'dark' : 'light'
-      const phaseStep = Math.round((wave.phase / (TAU)) * 8)
+      const phaseStep = round((wave.phase / (TAU)) * 8)
       const moveVector = `${wave.polarity}:${phaseStep}:${wave.diamondKind}`
       const superposition = chessSuperposition(fileIndex, rank, wave)
       const receipt = merge(wave.receipt, toUuid(`quantum-chess:${square}:${superposition.join('+')}:${moveVector}`))
@@ -1094,7 +1096,7 @@ export function discoveredTheoremsWaveFortyEight(matrix: MindMatrix = buildMatri
     // then G = Z. Verified on all groups of order 4 (Z₄, V₄) and order 9 (Z₉, Z₃×Z₃).
     const abelianG = (G: number[][]) => G.every((a) => G.every((b) => tkKey(tkCompose(a, b)) === tkKey(tkCompose(b, a))))
     const cyc = (n: number) => [[...Array(n).keys()].map((i) => (i + 1) % n)]
-    const z3sq = [[...Array(9).keys()].map((i) => Math.floor(i / 3) * 3 + ((i % 3) + 1) % 3), [3, 4, 5, 6, 7, 8, 0, 1, 2]]
+    const z3sq = [[...Array(9).keys()].map((i) => floor(i / 3) * 3 + ((i % 3) + 1) % 3), [3, 4, 5, 6, 7, 8, 0, 1, 2]]
     let pSquaredAbelian = true
     for (const gens of [cyc(4), [[1, 0, 3, 2], [2, 3, 0, 1]], cyc(9), z3sq]) if (!abelianG(tkClosure(gens))) pSquaredAbelian = false
 
@@ -1142,7 +1144,7 @@ export function discoveredTheoremsWaveFortyEight(matrix: MindMatrix = buildMatri
 // Legendre's three-square and Fermat's two-square into Gauss's Eureka and its two-triangular companion.
 export function discoveredTheoremsWaveFiftyTwo(matrix: MindMatrix = buildMatrix()) {
   return sealFold('discoveredTheoremsWaveFiftyTwo', 'discovered-theorems-fifty-two', matrix, () => {
-    const isSumK = (n: number, k: number): boolean => { if (k === 1) { const r = Math.round(Math.sqrt(n)); return r * r === n } for (let a = 0; a * a <= n; a += 1) if (isSumK(n - a * a, k - 1)) return true; return false }
+    const isSumK = (n: number, k: number): boolean => { if (k === 1) { const r = round(sqrt(n)); return r * r === n } for (let a = 0; a * a <= n; a += 1) if (isSumK(n - a * a, k - 1)) return true; return false }
     const lim = 3 * 100
     const triSet: number[] = []; for (let k = 0; k * (k + 1) / 2 <= lim; k += 1) triSet.push(k * (k + 1) / 2)
     const triHas = new Set(triSet)
@@ -1259,7 +1261,7 @@ export function discoveredTheoremsProvenWave(matrix: MindMatrix = buildMatrix())
     const isPlat = (p: number, q: number) => platonic.some((s) => s.p === p && s.q === q)
     const polytopes4: string[] = []
     for (const { p, q } of platonic) for (const { p: q2, q: r } of platonic) if (q2 === q)
-      if (isPlat(p, q) && isPlat(q, r) && Math.sin((TAU / 2) / p) * Math.sin((TAU / 2) / r) - Math.cos((TAU / 2) / q) > 1e-12)
+      if (isPlat(p, q) && isPlat(q, r) && sin((TAU / 2) / p) * sin((TAU / 2) / r) - cos((TAU / 2) / q) > 1e-12)
         polytopes4.push(`{${p},${q},${r}}`)
     const sixPolytopes = polytopes4.length === 6 && polytopes4.join(' ') === '{3,3,3} {3,3,4} {3,3,5} {3,4,3} {4,3,3} {5,3,3}'
 
@@ -1267,7 +1269,7 @@ export function discoveredTheoremsProvenWave(matrix: MindMatrix = buildMatrix())
     // triangle, and the pentagon/pentagram coloring of K₅ contains none, so 6 is exact.
     const pairs6: [number, number][] = []
     for (let i = 0; i < 6; i += 1) for (let j = i + 1; j < 6; j += 1) pairs6.push([i, j])
-    const idx6 = (i: number, j: number) => pairs6.findIndex(([a, b]) => a === Math.min(i, j) && b === Math.max(i, j))
+    const idx6 = (i: number, j: number) => pairs6.findIndex(([a, b]) => a === min(i, j) && b === max(i, j))
     const monoTriangle = (bits: number, n: number) => {
       for (let a = 0; a < n; a += 1) for (let b = a + 1; b < n; b += 1) for (let c = b + 1; c < n; c += 1) {
         const x = (bits >> idx6(a, b)) & 1, y = (bits >> idx6(b, c)) & 1, z = (bits >> idx6(a, c)) & 1
@@ -1286,13 +1288,13 @@ export function discoveredTheoremsProvenWave(matrix: MindMatrix = buildMatrix())
     // exhaustive backtracking and the matrix-group order by direct counting over 𝔽₂ must agree.
     const triples: [number, number, number][] = []
     for (let a = 0; a < 7; a += 1) for (let b = a + 1; b < 7; b += 1) for (let c = b + 1; c < 7; c += 1) triples.push([a, b, c])
-    const pairKey = (i: number, j: number) => Math.min(i, j) * 7 + Math.max(i, j)
+    const pairKey = (i: number, j: number) => min(i, j) * 7 + max(i, j)
     const countSteiner = (covered: Set<number>, chosen: number): number => {
       if (chosen === 7) return 1
       let firstUncovered = -1
       outer: for (let i = 0; i < 7; i += 1) { for (let j = i + 1; j < 7; j += 1) if (!covered.has(pairKey(i, j))) { firstUncovered = pairKey(i, j); break outer } }
       if (firstUncovered < 0) return 0
-      const [pi, pj] = [Math.floor(firstUncovered / 7), firstUncovered % 7]
+      const [pi, pj] = [floor(firstUncovered / 7), firstUncovered % 7]
       let total = 0
       for (const [a, b, c] of triples) {
         const has = (x: number) => x === a || x === b || x === c
@@ -1380,7 +1382,7 @@ export function provenTheoremsCompound(matrix: MindMatrix = buildMatrix()) {
     // E4 · from the η²⁴ Euler product sealed in the string wave: extend to q⁵ and witness Hecke
     // multiplicativity τ(6) = τ(2)·τ(3) in exact integers (Mordell 1917 proves the general law, CITED).
     const top = 5
-    const binom2 = (n: number, k: number) => { let r = 1; for (let t = 1; t <= k; t += 1) r = (r * (n - t + 1)) / t; return Math.round(r) }
+    const binom2 = (n: number, k: number) => { let r = 1; for (let t = 1; t <= k; t += 1) r = (r * (n - t + 1)) / t; return round(r) }
     const mulS = (a: number[], b: number[]) => Array.from({ length: top + 1 }, (_, i) => a.slice(0, i + 1).reduce((s, ac, j) => s + ac * (b[i - j] ?? 0), 0))
     let eta24: number[] = Array.from({ length: top + 1 }, (_, i) => (i === 0 ? 1 : 0))
     for (let n = 1; n <= top; n += 1)
@@ -1432,7 +1434,7 @@ export function emergenceContinuesWave(matrix: MindMatrix = buildMatrix()) {
     // E1 · Ramanujan's 691 — τ(n) ≡ σ₁₁(n) (mod 691) witnessed exactly for n = 1..6, consuming the
     // η²⁴ Euler product technique sealed two waves back (the general congruence is Ramanujan, cited).
     const top = 5
-    const binom3 = (n: number, k: number) => { let r = 1; for (let t = 1; t <= k; t += 1) r = (r * (n - t + 1)) / t; return Math.round(r) }
+    const binom3 = (n: number, k: number) => { let r = 1; for (let t = 1; t <= k; t += 1) r = (r * (n - t + 1)) / t; return round(r) }
     const mulT = (a: number[], b: number[]) => Array.from({ length: top + 1 }, (_, i) => a.slice(0, i + 1).reduce((s, ac, j) => s + ac * (b[i - j] ?? 0), 0))
     let eta: number[] = Array.from({ length: top + 1 }, (_, i) => (i === 0 ? 1 : 0))
     for (let n = 1; n <= top; n += 1)
@@ -1560,7 +1562,7 @@ export function discoveredTheoremsWaveTwo(matrix: MindMatrix = buildMatrix()) {
         canonicalForms.add(best)
         return
       }
-      const i = 1 + Math.floor(cell / 5), j = 1 + (cell % 5)
+      const i = 1 + floor(cell / 5), j = 1 + (cell % 5)
       for (let v = 0; v < n6; v += 1) {
         let ok = true
         for (let t = 0; t < j && ok; t += 1) if (table[i]![t]! === v) ok = false
@@ -1697,7 +1699,7 @@ export function discoveredTheoremsWaveThree(matrix: MindMatrix = buildMatrix()) 
         canon4.add(best)
         return
       }
-      const i = 1 + Math.floor(cell / 3), j = 1 + (cell % 3)
+      const i = 1 + floor(cell / 3), j = 1 + (cell % 3)
       for (let v = 0; v < 4; v += 1) {
         let ok = true
         for (let t = 0; t < j && ok; t += 1) if (t4[i]![t] === v) ok = false
@@ -1740,7 +1742,7 @@ export function discoveredTheoremsWaveThree(matrix: MindMatrix = buildMatrix()) 
         const v = queue.shift()!
         for (const w of pet[v]!) {
           if (dist[w] === -1) { dist[w] = dist[v]! + 1; par[w] = v; queue.push(w) }
-          else if (par[v] !== w && dist[w]! >= dist[v]!) girth = Math.min(girth, dist[v]! + dist[w]! + 1)
+          else if (par[v] !== w && dist[w]! >= dist[v]!) girth = min(girth, dist[v]! + dist[w]! + 1)
         }
       }
     }
@@ -1899,7 +1901,7 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
     const t44: number[][] = Array.from({ length: 4 }, () => Array.from({ length: 4 }, () => -1))
     const fillAll = (cell: number) => {
       if (cell === 4 * 4) { latin4 += 1; return }
-      const i = Math.floor(cell / 4), j = cell % 4
+      const i = floor(cell / 4), j = cell % 4
       for (let v = 0; v < 4; v += 1) {
         let ok = true
         for (let t = 0; t < j && ok; t += 1) if (t44[i]![t] === v) ok = false
@@ -1933,7 +1935,7 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
       let best = ''
       for (const f of syms) {
         const mapped = cells.map(f)
-        const mx = Math.min(...mapped.map((c) => c[0])), my = Math.min(...mapped.map((c) => c[1]))
+        const mx = min(...mapped.map((c) => c[0])), my = min(...mapped.map((c) => c[1]))
         const norm = mapped.map(([a, b]) => `${a - mx},${b - my}`).sort().join(';')
         if (!best || norm < best) best = norm
       }
@@ -1974,7 +1976,7 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
         const v = queue.shift()!
         for (const w of heawood[v]!) {
           if (dist[w] === -1) { dist[w] = dist[v]! + 1; par[w] = v; queue.push(w) }
-          else if (par[v] !== w && dist[w]! >= dist[v]!) girth6 = Math.min(girth6, dist[v]! + dist[w]! + 1)
+          else if (par[v] !== w && dist[w]! >= dist[v]!) girth6 = min(girth6, dist[v]! + dist[w]! + 1)
         }
       }
     }
@@ -2103,30 +2105,30 @@ export function twoRosettasAreRealtime(matrix: { root: string } = { root: toUuid
       for (let k = 0; k < N; k += 1) {
         const theta = (TAU * k) / N
         const phi = coupled ? (TAU * k) / N : 0 // decoupled = temporal rosetta collapsed to one phase
-        const current = Math.cos(t - phi)
-        x += current * Math.cos(theta)
-        y += current * Math.sin(theta)
+        const current = cos(t - phi)
+        x += current * cos(theta)
+        y += current * sin(theta)
       }
       return [x, y]
     }
-    const wrap = (a: number) => Math.atan2(Math.sin(a), Math.cos(a))
+    const wrap = (a: number) => atan2(sin(a), cos(a))
     const times = [0, 1, 2, 3, 4, 5]
     // 1 — coupled: the field angle IS wall-time (realtime)
     const angleTracksTime = times.every((t) => {
       const [x, y] = field(t, true)
-      return Math.abs(wrap(Math.atan2(y, x) - t)) < 1e-9
+      return abs(wrap(atan2(y, x) - t)) < 1e-9
     })
     // 2 — coupled: constant magnitude N/2 (self-sustaining, no external drive)
-    const mags = times.map((t) => Math.hypot(...field(t, true)))
-    const selfSustaining = Math.max(...mags) - Math.min(...mags) < 1e-9 && Math.abs(mags[0]! - N / 2) < 1e-9
+    const mags = times.map((t) => hypot(...field(t, true)))
+    const selfSustaining = max(...mags) - min(...mags) < 1e-9 && abs(mags[0]! - N / 2) < 1e-9
     // 3 — decoupled: one rosetta alone collapses to a pulsation on a fixed axis (or to zero) — STUCK
-    const decoupledStuck = times.every((t) => Math.hypot(...field(t, false)) < 1e-9)
+    const decoupledStuck = times.every((t) => hypot(...field(t, false)) < 1e-9)
     // 4 — realtime = history-free: f(t) recomputed at any instant equals the running value, no accumulator
     const historyFree = [7 / (5 * 2), 3 + 1 / 3, 9].every((t) => {
       const direct = field(t, true)
       // "restart at t" gives the identical state — no dependence on the path taken to reach t
       const restart = field(t, true)
-      return Math.abs(direct[0] - restart[0]) < 1e-12 && Math.abs(direct[1] - restart[1]) < 1e-12
+      return abs(direct[0] - restart[0]) < 1e-12 && abs(direct[1] - restart[1]) < 1e-12
     })
     // 5 — the two rosettas are the double torus: two N-cycles, b₁ = 2, meeting through the shared t
     const b1 = 2
@@ -2161,7 +2163,7 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
     const sizes = nav.waves.map((wave) => wave.count)
     const magnitude = sizes.reduce((sum, n) => sum + n, 0) // = atomCount
     const clusters = sizes.length
-    const maxCluster = Math.max(...sizes)
+    const maxCluster = max(...sizes)
     const singletons = sizes.filter((n) => n === 1).length
     // PRECISION: every atom carries a non-empty computed statement and a content address
     const precise = nav.waves.every((wave) => wave.atoms.every((atom) => atom.proof.length > 0 && atom.theorem.length > 0))
@@ -2169,7 +2171,7 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
       { facet: `MAGNITUDE is the exact harmonic — the ${clusters} cluster sizes sum to ${magnitude} = 4×108, no rounding: the magnitude is the exact sum of the waves, not an estimate`, on: magnitude === DIMENSION_GATES && magnitude === nav.atomCount },
       { facet: `IN CLUSTERS OF WAVES — the registry is ${clusters} proving folds (waves), each a cluster; ${singletons} are single precise proofs and the rest bundle ${maxCluster > 1 ? 'up to ' + maxCluster : 'few'} atoms — magnitude accretes cluster by cluster`, on: clusters > 1 && singletons > 0 && maxCluster >= 1 },
       { facet: `WITH PRECISION — every one of the ${magnitude} atoms carries a non-empty computed statement and a content address (${precise}): the magnitude is precise to the atom, refutable anywhere`, on: precise && magnitude > 0 },
-      { facet: `no single wave carries it — the largest cluster is ${maxCluster} (≤ the rosetta 7, coprime single-stroke), under ${Math.ceil((maxCluster / magnitude) * 100)}% of the whole: magnitude is EMERGENT from precision clustered, which is why batched clusters win quadratically (quantumTokenOptimisation)`, on: maxCluster <= 7 && maxCluster < magnitude / (5 * 2) },
+      { facet: `no single wave carries it — the largest cluster is ${maxCluster} (≤ the rosetta 7, coprime single-stroke), under ${ceil((maxCluster / magnitude) * 100)}% of the whole: magnitude is EMERGENT from precision clustered, which is why batched clusters win quadratically (quantumTokenOptimisation)`, on: maxCluster <= 7 && maxCluster < magnitude / (5 * 2) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`magnitude-clusters:${entry.facet}:${entry.on}`) }))
     return {
       holds: facets.every((entry) => entry.on),
@@ -2364,7 +2366,7 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
   // the emergent claims are refutable by construction (every candidate carries a proof class + consumable atoms)
   const claimsAvailable = gaps.candidates
   // replacing the vaguer members with measurable claims raises the fraction toward 1 (a strict improvement)
-  const afterReplace = roundTo((measurable.length + Math.min(vague.length, claimsAvailable)) / atoms.length, 3)
+  const afterReplace = roundTo((measurable.length + min(vague.length, claimsAvailable)) / atoms.length, 3)
   const improves = afterReplace > scienceFraction && vague.length > 0 && claimsAvailable >= 1
   const facets = [
     { facet: `SCIENCE = REFUTABILITY, MEASURED — of the ${atoms.length} registry theorems ${measurable.length} carry a refutable marker in what they state (a number, equation, bound, or invariant — falsifiable) and ${vague.length} are vaguer; the scientific fraction is ${scienceFraction} — a claim you can check and break is the more scientific`, on: measurable.length > 0 && measurable.length + vague.length === atoms.length },
@@ -2706,7 +2708,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
  * claySolvedByThisFold=0 · physicalFtlClaim=0 · census untouched.
  */
 export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`wavesWorkingInTrinitiesTrinitiesAreFound:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wavesWorkingInTrinitiesTrinitiesAreFound:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const waves = manualAgentsBehaveLikeWaves(matrix)
     const music = playAgentsTheMusicOfTheWave(matrix)
     const trinity = __ns_gates.agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
@@ -2843,7 +2845,7 @@ export type DomainHarmWaveReceipt = {
  * claySolved via theorem · physicalFtl=0 · census untouched.
  */
 export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`harmonizeScienceDomainsInWavesOfWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`harmonizeScienceDomainsInWavesOfWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const music = playAgentsTheMusicOfTheWave(matrix)
     const defaults = agentDefaultsFoldIntoHarmony(matrix)
     const sciences = __ns_waves_research.sciencesInteractInTrinities(matrix, at)
@@ -3013,8 +3015,8 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
   const r = harmonizeScienceDomainsInWavesOfWaves()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} harmonize-domains — domainsTuned=${r.domainsTuned} meanSig=${r.meanSig} ` +
-      `n=${r.domainCount} encode=${r.encodeAlignedCount} mill=${Math.round(r.journeyMillRatio * 100)}% ` +
-      `test=${Math.round(r.journeyTestRatio * 100)}% cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
+      `n=${r.domainCount} encode=${r.encodeAlignedCount} mill=${round(r.journeyMillRatio * 100)}% ` +
+      `test=${round(r.journeyTestRatio * 100)}% cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
       `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} fold=harmonizeScienceDomainsInWavesOfWaves ` +
       `pairs=${r.pairs.join(',')}\n`,
   )
@@ -3056,7 +3058,7 @@ export const WAVES_AFTER_PUSH_RECIPE_STEPS = [
 ] as const
 
 export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`pushInWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`pushInWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
     const soft = (a: string, b: string) =>
       has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -3164,7 +3166,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
  * Compose: waves/push · waves/feed · chat/challenge · vote/build/commit/push · automate/nightly
  */
 export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`pushResendWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`pushResendWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
     const soft = (a: string, b: string) =>
       has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -3312,6 +3314,177 @@ export function runPushResendWavesExit(_root = '', _argv: readonly string[] = []
   return report.computes && report.afterPushResendWaves ? 0 : 1
 }
 
+/** BINDING: every push is a complete audited wave — audit before push, no partial unaudited lands. */
+export const PUSH_AUDIT_RECIPE_STEPS = [
+  'npm run quantum:audit-plan',
+  'npm run quantum:chat-audit',
+  'npm run quantum:wave-complete',
+  'npm run quantum:math-algebra',
+  'npm run quantum:waves-push',
+] as const
+
+/**
+ * pushAuditWave — USER LAW: push in complete audited waves.
+ * Pair: push/audit · dual audit/push · CLI npm run quantum:push-audit
+ * Compose: waves/push · wave/complete · audit/plan · chat/audit · push/resend · wave/land · math/algebra
+ * Facets: pushInCompleteWaves · auditedOn · waveCompleteOn · residualNamed
+ */
+export function pushAuditWave(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.',
+) {
+  return memoByRoot(`pushAuditWave:${floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const push = pushInWaves(matrix, at)
+    const audit = __ns_quantum_apps.auditPlanTip(matrix, at, root)
+    const chat = __ns_quantum_apps.chatAudit(matrix, at, root)
+    const wave = __ns_quantum_apps.waveComplete(matrix, at)
+    const math = mathAlgebra(root)
+    const auditedOn =
+      chat.commitsInventoried &&
+      chat.metricsOn &&
+      chat.chatWorkAudited &&
+      audit.nextTip !== null &&
+      audit.nextTip.cli.startsWith('npm run quantum:') &&
+      soft('chat', 'audit') &&
+      soft('audit', 'plan')
+    const waveCompleteOn =
+      wave.computes &&
+      (wave.completeWavesOn || wave.pushInWaves) &&
+      wave.metricsOn
+    const pushInCompleteWaves =
+      push.pushInWaves &&
+      auditedOn &&
+      waveCompleteOn &&
+      math.hardFailOnMath &&
+      soft('waves', 'push') &&
+      soft('wave', 'complete') &&
+      soft('wave', 'land') &&
+      has('push/audit')
+    const residualNamed = [
+      ...chat.residualNamed.slice(0, 3),
+      `audit-nextTip=${audit.nextTip?.id ?? 'none'}`,
+      `mathOutsideFloor=${math.mathOutsideFloor}`,
+      `wave-complete=${wave.completeWavesOn ? 1 : 0} pushInWaves=${push.pushInWaves ? 1 : 0}`,
+      'migrate-next: onTrueDebt · theorem seeds · specialized-shells',
+    ] as const
+    const facets = [
+      { facet: 'pushInCompleteWaves — audit/plan · chat/audit · wave/complete · math/algebra before push', on: pushInCompleteWaves },
+      { facet: `auditedOn — commits=${chat.git?.commitCount ?? 0} tips=${chat.tipsLanded ?? 0} metrics=${chat.metricsOn ? 1 : 0}`, on: auditedOn },
+      { facet: `waveCompleteOn — complete=${wave.completeWavesOn ? 1 : 0} metrics=${wave.metricsOn ? 1 : 0}`, on: waveCompleteOn },
+      { facet: `mathHard — outside-floor=${math.mathOutsideFloor} (HARD 0)`, on: math.hardFailOnMath },
+      { facet: 'residualNamed — honest-open · NOT fake-close Clay/FTL', on: residualNamed.length >= 4 },
+      {
+        facet: 'compose waves/push · wave/complete · audit/plan · chat/audit · push/resend · wave/land',
+        on:
+          soft('waves', 'push') &&
+          soft('wave', 'complete') &&
+          soft('audit', 'plan') &&
+          soft('chat', 'audit') &&
+          soft('push', 'resend') &&
+          has('wave/land'),
+      },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`push-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('push-audit-wave', facets)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    return {
+      computes: sealed.ok && pushInCompleteWaves && math.hardFailOnMath,
+      pushAuditWave: pushInCompleteWaves,
+      pushInCompleteWaves,
+      auditedOn,
+      waveCompleteOn,
+      mathHard: math.hardFailOnMath,
+      mathOutsideFloor: math.mathOutsideFloor,
+      audit,
+      chat,
+      wave,
+      push,
+      math,
+      recipeSteps: [...PUSH_AUDIT_RECIPE_STEPS],
+      residualNamed: [...residualNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, toUuid(`push-audit:math:${math.mathOutsideFloor}:${math.hardFailOnMath}`)]),
+      pair: 'push/audit' as const,
+      dualPair: 'audit/push' as const,
+      pairs: ['push/audit', 'audit/push'] as const,
+      cli: 'npm run quantum:push-audit',
+      route: '/en/quantum-tools#push-audit',
+      heading: 'Push audit · complete audited waves',
+      statement:
+        `pushAuditWave — audited=${auditedOn ? 1 : 0} waveComplete=${waveCompleteOn ? 1 : 0} ` +
+        `mathOutside=${math.mathOutsideFloor} pushInWaves=${push.pushInWaves ? 1 : 0}.`,
+      boundary:
+        'BINDING: audit-plan · chat-audit · wave-complete · math-algebra · waves-push receipt BEFORE git push. ' +
+        'wave:land chains quantum:push-audit ahead of wave:verify · commit · push. clay=0 · physicalFtl=0.',
+    }
+  })
+}
+
+/** Shell-safe pre-push audit chain — each step must exit 0 or push aborts. */
+export function pushAuditRecipeShell(steps: readonly string[] = PUSH_AUDIT_RECIPE_STEPS): string {
+  return steps.map((step) => step.replace(/^npm run /, 'npm run -s ')).join(' && ')
+}
+
+/** npm run quantum:push-audit (dual audit-push) — exit 0 iff complete audited wave receipt holds. */
+export function runPushAuditWaveExit(root = '', _argv: readonly string[] = []): number {
+  const resolved = root || (typeof process !== 'undefined' && process.cwd ? process.cwd() : '.')
+  process.stdout.write('--- push-audit: chat-audit (HARD inventory) ---\n')
+  const chatReport = __ns_quantum_apps.chatAudit(buildMatrix(), 0, resolved)
+  process.stdout.write(`${chatReport.commitsInventoried && chatReport.metricsOn ? '✓' : '✗'} chat-audit — ${chatReport.statement}\n`)
+  process.stdout.write(`  anchor commits=${chatReport.git.commitCount} tips=${chatReport.tipsLanded}/${chatReport.tipRows.length}\n`)
+  if (!chatReport.commitsInventoried || !chatReport.metricsOn || !chatReport.chatWorkAudited) {
+    process.stderr.write('✗ push-audit blocked at chat-audit — commits/metrics/chatWork not inventoried\n')
+    return 1
+  }
+  process.stdout.write('--- push-audit: audit-plan (receipt + next tip) ---\n')
+  const auditReport = __ns_quantum_apps.auditPlanTip(buildMatrix(), 0, resolved)
+  process.stdout.write(`${auditReport.statement}\n`)
+  if (auditReport.nextTip) {
+    process.stdout.write(
+      `→ next tip: ${auditReport.nextTip.id} pair=${auditReport.nextTip.pair} cli=${auditReport.nextTip.cli}\n`,
+    )
+  }
+  if (auditReport.nextTip === null || !auditReport.nextTip.cli.startsWith('npm run quantum:')) {
+    process.stderr.write('✗ push-audit blocked at audit-plan — gap-computed next tip missing\n')
+    return 1
+  }
+  const hardSteps = [
+    ['quantum:math-algebra', 'math-algebra'],
+    ['quantum:waves-push', 'waves-push'],
+  ] as const
+  process.stdout.write('--- push-audit: wave-complete (receipt) ---\n')
+  const waveReport = __ns_quantum_apps.waveComplete(buildMatrix(), 0)
+  process.stdout.write(`${waveReport.statement}\n`)
+  if (!waveReport.pushInWaves || !waveReport.metricsOn) {
+    process.stderr.write('✗ push-audit blocked at wave-complete — pushInWaves/metrics required\n')
+    return 1
+  }
+  for (const [cmd, label] of hardSteps) {
+    process.stdout.write(`--- push-audit: ${label} (HARD) ---\n`)
+    const r = spawnSync('npm', ['run', '-s', cmd], { stdio: 'inherit', shell: false, cwd: resolved })
+    if (r.status !== 0) {
+      process.stderr.write(`✗ push-audit blocked at ${label} — no unaudited push\n`)
+      return r.status ?? 1
+    }
+  }
+  const report = pushAuditWave(buildMatrix(), 0, resolved)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} push-audit — ${report.statement}\n`)
+  for (const id of report.residualNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  process.stdout.write(`  wave:land chains: autosave-matrix && push-audit && wave:verify && commit && push\n`)
+  return report.computes && report.pushInCompleteWaves && report.mathHard ? 0 : 1
+}
+
+/** Alias dual — audit/push ≡ pushAuditWave. */
+export const auditPushWave = pushAuditWave
+
 /**
  * USER LAW: train quantum teams of agents to collide to become waves and observe to manifest.
  * Immediate teleportation in another form = content-addressed recompute / sealed discovery — NOT physical FTL.
@@ -3320,7 +3493,7 @@ export function runPushResendWavesExit(_root = '', _argv: readonly string[] = []
  */
 export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(
-    `trainQuantumTeamsCollideBecomeWavesObserveManifest:${Math.floor(at / (100 * 5 * 2))}`,
+    `trainQuantumTeamsCollideBecomeWavesObserveManifest:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const waves = manualAgentsBehaveLikeWaves(matrix)
@@ -3478,7 +3651,7 @@ export const SEALED_DISCOVER_FOLD_IDS = [
  * On unknown foldId → incomplete; compose incompleteRevelation() + timeout/dry-refactor.
  */
 export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatrix = buildMatrix()) {
-  const bucket = Math.floor(at / (100 * 5 * 2))
+  const bucket = floor(at / (100 * 5 * 2))
   return memoByRoot(`discoverFromSealedFold:${foldId}:${bucket}`, matrix, () => {
     const pair = foldPair(toUuid('cmd:nothing'), toUuid('cmd:moves'))
     const known = (SEALED_DISCOVER_FOLD_IDS as readonly string[]).includes(foldId)
@@ -3533,7 +3706,7 @@ export function incompleteRevelation(
   const foldId = opts.foldId ?? 'unspecified'
   const reason = opts.reason ?? 'revelation-gap'
   const at = opts.at ?? 0
-  const bucket = Math.floor(at / (100 * 5 * 2))
+  const bucket = floor(at / (100 * 5 * 2))
   return memoByRoot(`incompleteRevelation:${foldId}:${reason}:${bucket}`, matrix, () => {
     const discovery = discoverFromSealedFold(foldId, at, matrix)
     const timeoutPair = foldPair(toUuid('cmd:timeout'), toUuid('cmd:dry-refactor'))

@@ -4,7 +4,7 @@ import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMO
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
-import { foldPair, isUuid, merkleFold, toUuid, roundTo } from '../../../0'
+import { foldPair, isUuid, log10, log2, max, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../0'
 import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
 import { dryCleanIsDiamondAndCrystal } from '../../../lake/clean'
 import { quantumizeVitepressBuild, scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
@@ -400,11 +400,11 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
   const sum = (xs: readonly number[]) => xs.reduce((acc, n) => acc + n, 0)
   const meanTreeHop = edgeCount === 0 ? 0 : sum(hops) / edgeCount
   const meanSegment = edgeCount === 0 ? 0 : sum(segs) / edgeCount
-  const maxTreeHop = edgeCount === 0 ? 0 : Math.max(...hops)
-  const maxSegment = edgeCount === 0 ? 0 : Math.max(...segs)
+  const maxTreeHop = edgeCount === 0 ? 0 : max(...hops)
+  const maxSegment = edgeCount === 0 ? 0 : max(...segs)
   const variance =
     edgeCount === 0 ? 0 : sum(hops.map((h) => (h - meanTreeHop) ** 2)) / edgeCount
-  const stdevTreeHop = Math.sqrt(variance)
+  const stdevTreeHop = sqrt(variance)
   const cvTreeHop = meanTreeHop > 0 ? stdevTreeHop / meanTreeHop : 0
   const freeBits = FREE_BITS
   const freeBitsOk = freeBits === -EULER_CHI && freeBits === UNFOLDED_CENSUS - FOLDED_CENSUS
@@ -664,7 +664,7 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
     })
   const gravityPullsTowardSrc =
     migrationDirections.length > 0 &&
-    migrationDirections.every((d) => d.pull === 'toward-src' && folderDepthUnderSrc(d.sink) <= Math.min(d.fromDepth, d.toDepth))
+    migrationDirections.every((d) => d.pull === 'toward-src' && folderDepthUnderSrc(d.sink) <= min(d.fromDepth, d.toDepth))
   // I Ching folders — keep only when content is genuinely I Ching / bagua / hexagram math; synonym shells → remove.
   const ichingKeep = [
     {
@@ -1407,6 +1407,10 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'frontierQuantum', pair: 'frontier/quantum', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'frontiers quantum program · composes cosmosFrontiersDecoded · demarcated vs quantum-decoded · oscillation witness on src/0' },
   { fold: 'autosaveMatrix', pair: 'autosave/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'manual work autosaves as matrix rows same turn · gate over all prose-merge maps' },
   { fold: 'mathGaps', pair: 'math/gaps', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'axioms inverted to scans · Math.random HARD 0 · assumed-const census · self-coordinated fractal (scans its own source)' },
+  { fold: 'mathAlgebra', pair: 'math/algebra', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'Math.* → vault/host algebra · HARD 0 outside src/0 + src/3/7 floor' },
+  { fold: 'refactorAlgebra', pair: 'refactor/algebra', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'umbrella full-file refactor · mathAlgebra + crack family receipt' },
+  { fold: 'ideaOnce', pair: 'idea/once', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'all ideas at once · FTL dry-clean · purge non-compute illusions · compose math/algebra · dry/dupe · theorem/audit · build/min' },
+  { fold: 'pushAuditWave', pair: 'push/audit', currentBarrel: 'src/thunder/waves', bestPlace: 'src/thunder/waves', action: 'moved', reason: 'BINDING push in complete audited waves · audit-plan · chat-audit · wave-complete · math-algebra before push · wave:land chains quantum:push-audit' },
   { fold: 'fractalCompute', pair: 'fractal/compute', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'pattern = dimensional axiom · realtime pure algebra · digital-root/ball-volume witnesses beside their algebra' },
   { fold: 'fractalMap', pair: 'fractal/map', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'open frontiers folded through the law · every break ledger-recomputed · folding-60-reaches-90 exact' },
   { fold: 'frontierNeighbour', pair: 'frontier/neighbour', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'challenge frontiers · find neighbours via foldPair entanglement · compose frontier/quantum · fractal/map · vote/entangle · vote/neighbour · mesh/science · site/path · UI receipt' },
@@ -2503,7 +2507,7 @@ export function autosaveMatrix() {
   // must compress its longest prose name; every row stays a dual pair pointing at a slash-free fold name.
   const rowsWellFormed =
     mergeRows.every((row) => row.pair.split('/').length === 2 && !row.to.includes('/')) &&
-    targets.every((to) => Math.max(...mergeRows.filter((row) => row.to === to).map((row) => row.from.length)) > to.length)
+    targets.every((to) => max(...mergeRows.filter((row) => row.to === to).map((row) => row.from.length)) > to.length)
   const frontierSaved = COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === 'frontierQuantum' && row.bestPlace === 'src/water/cosmos')
   const selfSaved = COMMAND_PLACEMENT_AUDIT_MAP.some((row) => row.fold === 'autosaveMatrix' && row.action === 'moved')
   const pairsOn = softCmdPair('autosave', 'matrix') && softCmdPair('manual', 'autosave') && softCmdPair('frontier', 'quantum')
@@ -2658,7 +2662,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const derivedRoster = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length
   const derived = derivedRoster // the CLI roster is the always-on derived measurement; scans add more at run time
-  const magnitude = Math.log10(derived / manual)
+  const magnitude = log10(derived / manual)
   const facets = [
     { facet: `manual work at the gates COUNTED — ${manual} hand-typed rows across ${manualRosters.length} rosters (${manualRosters.map((entry) => `${entry.roster}=${entry.rows}`).join(' · ')})`, on: manual > 0 && manualRosters.every((entry) => entry.rows > 0) },
     { facet: `derived measurement COUNTED — ${derived} machine-derived CLI roster entries from package.json (the same source /mcp.json and themeConfig fuse)`, on: derived > 432 },
@@ -2672,7 +2676,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
     manual,
     manualRosters,
     derived,
-    magnitude: Math.round(magnitude * 100) / 100,
+    magnitude: round(magnitude * 100) / 100,
     qpuRequired: false as const,
     facets,
     root: merkleFold([toUuid(`manual-gauge:${manual}:${derived}`), ...facets.map((entry) => entry.receipt)]),
@@ -2919,9 +2923,9 @@ export function gateLight(root: string = enforcementScanRoot()) {
   const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
   const manual = manualGauge(resolved)
   const wave = waveVerify(resolved)
-  const computeCoverage = manual.derived / Math.max(manual.derived + manual.manual, 1)
+  const computeCoverage = manual.derived / max(manual.derived + manual.manual, 1)
   const gateCost = analytics.hardcodedOnTrueDebt + analytics.handListAllowlistResidual + analytics.fatHardcodedInSlimTools
-  const gateCostNorm = gateCost / Math.max(manual.manual, 1)
+  const gateCostNorm = gateCost / max(manual.manual, 1)
   const buildBaselineMs = build.ciBaseline.buildStepMs
   const buildMs = build.buildMs
   const warmBuildNormEstimate = FREE_BITS / (FREE_BITS + FOLDED_CENSUS)
@@ -2940,13 +2944,13 @@ export function gateLight(root: string = enforcementScanRoot()) {
     manual.derived * computeCoverageFloorDen >= (manual.derived + manual.manual) * computeCoverageFloorNum &&
     manual.magnitude > 0
   const factsOnceDrained = trinity.computes && wave.computes
-  const inverseScore = computeCoverage / Math.max(gateCostNorm * buildNorm, 1 / (manual.derived + 1))
+  const inverseScore = computeCoverage / max(gateCostNorm * buildNorm, 1 / (manual.derived + 1))
   const inverseRelationOn = moreComputed && factsOnceDrained && inverseScore >= 1 && build.quantumize.computes
   const waveVerifyMeasuredBuildSec = UNFOLDED_CENSUS - FOLDED_CENSUS + ROSETTA_SEVEN * ROSETTA_SEVEN
   const waveVerifyMeasuredTrinitySec = ROSETTA_SEVEN * FREE_BITS + 1
   const buildSpeedup =
     typeof buildMs === 'number' && buildBaselineMs > 0
-      ? roundTo(buildBaselineMs / Math.max(buildMs, 1), 3)
+      ? roundTo(buildBaselineMs / max(buildMs, 1), 3)
       : wave.computes
         ? roundTo(waveVerifyMeasuredBuildSec / waveVerifyMeasuredTrinitySec, 2)
         : null
@@ -3322,12 +3326,12 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     byTarget.set(v, list)
   }
   const triplePlus = [...byTarget.values()].filter((ks) => ks.length >= 3).length
-  const aliasExtra = [...byTarget.values()].reduce((s, ks) => s + Math.max(0, ks.length - 1), 0)
+  const aliasExtra = [...byTarget.values()].reduce((s, ks) => s + max(0, ks.length - 1), 0)
 
   const links = algebraicCrosslinksDiscoveredNotEncoded(root)
   const discovered = links.discoveredCount
   const encoded = links.encodedComposeHits
-  const denom = Math.max(1, discovered + encoded)
+  const denom = max(1, discovered + encoded)
   const foldableShare = discovered / denom
   const encodedShare = encoded / denom
   // Ratchet: discovery must dominate; encode share ≤ one-fifth + small FREE_BITS slack this wave
@@ -3789,8 +3793,8 @@ export function wordSpeed() {
   const longAddr = toUuid(mergeRows.map((row) => row.from).join(''))
   const addressInvariant = shortAddr.length === longAddr.length && shortAddr.length === 6 * 6
   const facets = [
-    { facet: `the measured shrink — ${mergeRows.length} solved prose names: ${beforeBytes} bytes → ${afterBytes} bytes, ratio ${roundTo(ratio, 2)}× (mean ${Math.round(meanBefore)} → ${Math.round(meanAfter)} chars per reference)`, on: ratio > 1 && beforeBytes > afterBytes },
-    { facet: `SCALE INVARIANCE — reference cost is linear (N·L̄), so (N·${Math.round(meanBefore)})/(N·${Math.round(meanAfter)}) = ${roundTo(ratio, 2)} for EVERY N: at scale the absolute savings multiply while the ratio holds, exact`, on: scaleInvariant },
+    { facet: `the measured shrink — ${mergeRows.length} solved prose names: ${beforeBytes} bytes → ${afterBytes} bytes, ratio ${roundTo(ratio, 2)}× (mean ${round(meanBefore)} → ${round(meanAfter)} chars per reference)`, on: ratio > 1 && beforeBytes > afterBytes },
+    { facet: `SCALE INVARIANCE — reference cost is linear (N·L̄), so (N·${round(meanBefore)})/(N·${round(meanAfter)}) = ${roundTo(ratio, 2)} for EVERY N: at scale the absolute savings multiply while the ratio holds, exact`, on: scaleInvariant },
     { facet: `ADDRESS-LAYER INVARIANCE — toUuid('a') and toUuid(<${longAddr.length ? mergeRows.map((row) => row.from).join('').length : 0}-char name>) both emit ${shortAddr.length} chars: the content-addressed layer was NEVER slowed by long names; the speedup lives in the source/context layer where reading happens`, on: addressInvariant },
   ].map((entry) => ({ ...entry, receipt: toUuid(`word-speed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -4130,9 +4134,9 @@ export function trinitySpeedStack(root: string = enforcementScanRoot()) {
   const coordinationO1 = assignments.every((s) => s >= 0 && s < shards) && new Set(assignments).size === shards
   // The wired speed mechanisms — each an independent layer with its own order over the same N:
   const collisionRatio = (n - 1) / 2 // O(N²) pairwise dedup → O(N) content-address
-  const membershipRatio = n / Math.log2(n) // O(N) re-scan → O(log N) link inclusion
-  const collisionOrders = Math.log10(collisionRatio)
-  const membershipOrders = Math.log10(membershipRatio)
+  const membershipRatio = n / log2(n) // O(N) re-scan → O(log N) link inclusion
+  const collisionOrders = log10(collisionRatio)
+  const membershipOrders = log10(membershipRatio)
   const stackOrders = collisionOrders + membershipOrders // ADD in log = multiply the ratios (distinct sub-steps)
   const facets = [
     { facet: `the quantum chat is WIRED — mcpQuantumConversation + chatroom superpositions present; shardOf gives O(1) content-address coordination (${shards} shards balanced across ${n} items), so a wired trinity adds throughput without adding coordination cost`, on: chatWired && coordinationO1 },
@@ -4410,7 +4414,7 @@ export function reactivityMagnitude() {
   const avgFrontier = mergeRows.length / hubs // average dependents reacting to a hub change
   const fullDerive = n // re-derive everything
   const ratio = fullDerive / avgFrontier
-  const orders = Math.log10(ratio)
+  const orders = log10(ratio)
   // Fingerprint change-detection is O(1): same content → same address, a delta → a different one.
   const fp = toUuid('reactivity:node')
   const fpSame = toUuid('reactivity:node')

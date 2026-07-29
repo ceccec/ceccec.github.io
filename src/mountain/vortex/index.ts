@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, computesGate, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, vortexNext, vortexPrev, digitalRoot } from '../../0'
+import { VORTEX_SEQUENCE, abs, computesGate, cos, digitalRoot, doubleTorusSurface, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev } from '../../0'
 import { merkaba } from '../geometry'
 import { merkabaComputes, merkabasInDoubleTorus } from '../topology'
 import { TAU } from '../../3/7'
@@ -130,7 +130,7 @@ export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
       .map((v) => {
         const peak = v.incoming === '\\' && v.outgoing === '/'
         const angle = (v.i / tourSize) * TAU - (TAU / 2) / 2
-        return { digit: v.digit, peak, x: Math.cos(angle), y: Math.sin(angle), z: peak ? 1 : -1 }
+        return { digit: v.digit, peak, x: cos(angle), y: sin(angle), z: peak ? 1 : -1 }
       })
     const peaks = vertices.filter((v) => v.peak).map((v) => v.digit)
     const valleys = vertices.filter((v) => !v.peak).map((v) => v.digit)
@@ -151,8 +151,8 @@ export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
     const mkTorus = merkabasInDoubleTorus(matrix)
     const { computes, facets, root } = computesGate('vortex-gateway-pyramids', [
       { facet: 'the four gateways split by polarity — peaks 8·9 (\\→/) above the plane, valleys 3·0 (/→\\) below, computed from the strokes', on: peaks.join(',') === '8,9' && valleys.join(',') === '3,0' },
-      { facet: 'the lift is a genuine 3-solid — nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate', on: Math.abs(volume) > 1e-9 && vertices.length === 4 && faces === 4 },
-      { facet: 'the inverted pyramid is the polarity flip — equal magnitude, opposite orientation, signed volumes cancel exactly', on: Math.abs(volume + invertedVolume) < 1e-12 && Math.abs(invertedVolume) > 1e-9 },
+      { facet: 'the lift is a genuine 3-solid — nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate', on: abs(volume) > 1e-9 && vertices.length === 4 && faces === 4 },
+      { facet: 'the inverted pyramid is the polarity flip — equal magnitude, opposite orientation, signed volumes cancel exactly', on: abs(volume + invertedVolume) < 1e-12 && abs(invertedVolume) > 1e-9 },
       { facet: 'the two interact as the sealed merkaba — counter-rotation in mountain/geometry, the pairs inside the double torus in mountain/topology', on: mk.counterRotating && mkTorus.counted },
       { facet: 'NOT a geography correction — the 2D compass rose is a projection convention (geodesy keeps E/W/N/S as tangent directions on the sphere); the pyramid is the computed lift of the four reversal vertices, an organizing lens', on: true },
     ])
@@ -365,8 +365,8 @@ export function f(
   n: number,
 ): { p: number; q: number } {
   const base = 5 * 2 // radix 10 — derived, not a crack literal
-  const d = ((Math.trunc(digit) % base) + base) % base
-  const divisor = Math.trunc(n)
+  const d = ((trunc(digit) % base) + base) % base
+  const divisor = trunc(n)
   const dist = (lobe: number) => {
     const s = doubleTorusSurface(theta, phi, d, lobe)
     return (s.x - x) ** 2 + (s.y - y) ** 2 + (s.z - z) ** 2

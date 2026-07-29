@@ -4,7 +4,7 @@
 // Browse/display helpers inlined (formerly src/render/heritage/quantum). Pure, zero matrix dependency.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — core content-addressing primitives (toUuid, merkleFold)
-import { toUuid, merkleFold, type Entry } from '../../../0'
+import { floor, max, merkleFold, round, toUuid, type Entry } from '../../../0'
 
 export type { Entry }
 
@@ -166,7 +166,7 @@ export function erasByCentury(eras: readonly Era[]): Map<number, Era[]> {
   const out = new Map<number, Era[]>()
   for (const era of eras) {
     const year = Number.parseInt(era.span, (5 * 2)) || 0
-    const century = Math.floor(year / 100) * 100
+    const century = floor(year / 100) * 100
     const bucket = out.get(century) ?? []
     bucket.push(era)
     out.set(century, bucket)
@@ -186,7 +186,7 @@ export function parseSpan(span: string): { start: string; end: string } {
 export function legendDensity<T extends { documented: string; legend: string }>(items: readonly T[]): number {
   const totalDoc = items.reduce((s, e) => s + e.documented.length, 0)
   const totalLeg = items.reduce((s, e) => s + e.legend.length, 0)
-  return totalDoc > 0 ? Math.round((totalLeg / totalDoc) * 100) / 100 : 0
+  return totalDoc > 0 ? round((totalLeg / totalDoc) * 100) / 100 : 0
 }
 
 /** A browsable index: each item as { label, span?, documented, legend } for list/table display. */
@@ -237,7 +237,7 @@ export function isFibonacciGapless(bands: readonly number[]): boolean {
   if (bands.length <= 1) return true
   const sorted = [...bands].sort((a, b) => a - b)
   for (let i = 1; i < sorted.length; i++) {
-    if (sorted[i] !== sorted[i - 1] + sorted[Math.max(0, i - 2)]) return false
+    if (sorted[i] !== sorted[i - 1] + sorted[max(0, i - 2)]) return false
   }
   return true
 }
@@ -263,7 +263,7 @@ export type Shelved = { n: number; title: string }
 
 export function shelveSongs<T extends Shelved>(songs: readonly T[], count: number): T[][] {
   const ordered = [...songs].sort((a, b) => a.n - b.n)
-  const out: T[][] = Array.from({ length: Math.max(1, count) }, () => [])
+  const out: T[][] = Array.from({ length: max(1, count) }, () => [])
   ordered.forEach((song, i) => out[i % out.length].push(song))
   return out
 }

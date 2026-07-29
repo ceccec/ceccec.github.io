@@ -16,7 +16,7 @@ import { determinismProofs } from '../../mountain/seals'
 import { animationTamperingCost, redTeam, tamperProofFabric } from '../../water/crypto'
 import { scientists } from '../../wind/learning'
 import { holographic } from '../../wind/ui'
-import { computesGate, isUuid, merkleFold, roundTo, toUuid, merge, sealFacets } from '../../0'
+import { abs, computesGate, floor, isUuid, merge, merkleFold, roundTo, sealFacets, toUuid } from '../../0'
 import { hardyWeinbergGenotypes } from '../../7/3'
 import { PCI_CONSCIOUSNESS_THRESHOLD } from '../../8/2'
 import { society, societyRegulates } from '../governance'
@@ -195,7 +195,7 @@ export function mutations(matrix: MindMatrix = buildMatrix()) {
   // checkable property of the standard genetic code, not a claim about the strand.
   const redundant = silent > 0 && total > 0
   return {
-    classified: redundant && total === Math.floor(sense.length / 3) * 9 && g.covered,
+    classified: redundant && total === floor(sense.length / 3) * 9 && g.covered,
     total,
     silent,
     missense,
@@ -339,7 +339,7 @@ export function evolutionByNaturalSelectionDecoded(matrix: MindMatrix = buildMat
   const hw = hardyWeinbergGenotypes((1 / 2)) // p=0.5 → {AA:0.25, Aa:0.5, aa:0.25}, summing to 1 (the null)
   const hwSum = hw.AA + hw.Aa + hw.aa
   const facets = [
-    { facet: 'the MECHANISM and the modern synthesis — Darwin & Wallace (joint Linnean reading 1858; Origin 1859): natural selection is the deductive consequence of variation + heritability + differential reproductive success + time → descent with modification. The Modern Synthesis (1930s–40s: Fisher, Wright, Haldane reconciling Darwin with Mendel into population genetics; Dobzhansky/Mayr/Simpson; named by Huxley 1942) gives the FOUR forces — selection, genetic drift, mutation, gene flow — and the Hardy–Weinberg NULL (p²+2pq+q²=1; the genotype frequencies sum to ' + hwSum.toFixed(0) + '), whose violation is the operational signal a force is acting. NOTE: "survival of the fittest" is Spencer’s phrase (1864), a poor synonym', on: Math.abs(hwSum - 1) < 1e-9 },
+    { facet: 'the MECHANISM and the modern synthesis — Darwin & Wallace (joint Linnean reading 1858; Origin 1859): natural selection is the deductive consequence of variation + heritability + differential reproductive success + time → descent with modification. The Modern Synthesis (1930s–40s: Fisher, Wright, Haldane reconciling Darwin with Mendel into population genetics; Dobzhansky/Mayr/Simpson; named by Huxley 1942) gives the FOUR forces — selection, genetic drift, mutation, gene flow — and the Hardy–Weinberg NULL (p²+2pq+q²=1; the genotype frequencies sum to ' + hwSum.toFixed(0) + '), whose violation is the operational signal a force is acting. NOTE: "survival of the fittest" is Spencer’s phrase (1864), a poor synonym', on: abs(hwSum - 1) < 1e-9 },
     { facet: 'the EVIDENCE is overwhelming and multi-independent — they converge on ONE phylogeny: transitional FOSSILS (Tiktaalik ~375 Ma, found by stratigraphic prediction; Archaeopteryx; the Pakicetus→Ambulocetus→Basilosaurus whale series), MOLECULAR phylogenetics (the near-universal genetic code, shared pseudogenes and endogenous retroviruses as common-descent signatures), comparative embryology, biogeography, and DIRECTLY OBSERVED evolution (antibiotic/pesticide resistance; Lenski’s E. coli LTEE — the Cit+ innovation at generation ~31,000, now >80,000 generations since 1988; the Grants’ Galápagos finches)', on: demarcate('common descent') === 'documented' },
     { facet: 'the genuine FRONTIER — debated but scientific, NOT fringe: Kimura’s NEUTRAL THEORY (1968 — most molecular-level change is drift, not selection; the molecular clock), EVO-DEVO (Hox genes, deep homology, the genetic toolkit), punctuated equilibrium (Eldredge & Gould 1972), and the Extended Evolutionary Synthesis (niche construction, developmental plasticity, transgenerational epigenetic inheritance) — a real CONTESTED discussion, NOT a refutation of evolution; and the unit/level of selection (gene vs organism vs group) is an open conceptual question, not a settled fact', on: demarcate('extended evolutionary synthesis') === 'contested' },
     { facet: 'the MAJOR TRANSITIONS and the honest story of complexity — Maynard Smith & Szathmáry (1995): ~8 transitions in how information is stored and transmitted (replicating molecules → chromosomes → the genetic code → eukaryotic cells → sex → multicellularity → eusocial colonies → language), each making formerly independent replicators reproduce only as part of a larger whole; ENDOSYMBIOSIS (mitochondria and chloroplasts as engulfed bacteria — Margulis, confirmed by organelle genomes). CORRECTION: evolution is NOT progressive, directional or goal-seeking — there is no ladder and no telos, and most life has always been microbial', on: demarcate('endosymbiosis') === 'documented' },
@@ -534,7 +534,7 @@ export function movieIsNeuroscienceComputation(
   watchMs = 0,
 ) {
   return memoByRoot(
-    `movieIsNeuroscienceComputation:${Math.floor(at / (100 * 5 * 2))}:${Math.floor(watchMs / (100 * 5 * 2))}`,
+    `movieIsNeuroscienceComputation:${floor(at / (100 * 5 * 2))}:${floor(watchMs / (100 * 5 * 2))}`,
     matrix,
     () => {
       const brain = neuron(matrix)

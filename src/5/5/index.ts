@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { BOLTZMANN, EARTH_RADIUS_KM, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU } from '../../3/7'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
+import { asin, cos, foldPair, isUuid, merge, merkleFold, min, sin, sqrt, toUuid } from '../../0'
 import { riseAzimuthDeg } from '../../3/7'
 
 /** ΛCDM dark-matter density fraction Ω_c. */
@@ -18,8 +18,8 @@ export function greatCircleKm(lat1: number, lon1: number, lat2: number, lon2: nu
   const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare (TAU / 2))
   const dLat = (lat2 - lat1) * r
   const dLon = (lon2 - lon1) * r
-  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLon / 2) ** 2
-  return 2 * EARTH_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(a)))
+  const a = sin(dLat / 2) ** 2 + cos(lat1 * r) * cos(lat2 * r) * sin(dLon / 2) ** 2
+  return 2 * EARTH_RADIUS_KM * asin(min(1, sqrt(a)))
 }
 
 /** UUID duality — content (first four groups), sans link suffix. */

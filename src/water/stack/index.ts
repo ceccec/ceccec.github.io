@@ -36,9 +36,7 @@ import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
 import { congruence, markovStep } from '../../mountain/vortex'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation, portalChat, portalChatRanked, landauerFloorComputed } from '../../heaven/compute'
-import {
-  addressEntropyBits, applyGate, computesGate, digitalRoot, foldPair, GATES, humanEase, isUuid,
-  memoByRoot, merge, merkleFold, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, roundTo, sealFacets, toUuid } from '../../0'
+import { GATES, abs, addressEntropyBits, applyGate, ceil, computesGate, digitalRoot, floor, foldPair, humanEase, isUuid, max, memoByRoot, merge, merkleFold, min, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, round, roundTo, sealFacets, toUuid } from '../../0'
 import { discoverSrcIndexes, enforcementScanRoot } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
 import { harmonicBands } from '../../quantum/lake/icons'
@@ -50,7 +48,7 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { allComputedNoFiles } from '../../wind/fusion'
-import { PHI, rat, ratEq, ratInv, claySolvedTheorem, earned, physicalFtlClaimTheorem, BOLTZMANN, PLANCK, landauerLimit } from '../../3/7'
+import { BOLTZMANN, LN2, PHI, PLANCK, claySolvedTheorem, earned, landauerLimit, physicalFtlClaimTheorem, rat, ratEq, ratInv } from '../../3/7'
 import * as __ns_enforcement_scan from '../../pair/enforcement/gates/strict/scan'
 import * as __ns_water_encryption from '../encryption'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
@@ -489,7 +487,7 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
     const { computes, facets, root } = computesGate('src0-shared-computes', [
       { facet: 'digitalRoot — canonical src/0', on: digitalRoot((9 * 2)) === 9 },
       // easeInOutSine midpoint is 0.5 mathematically; cos(π/2) carries float dust, so compare within ULP tolerance
-      { facet: 'humanEase — canonical src/0', on: Math.abs(humanEase((1 / 2)) - (1 / 2)) < 1e-9 },
+      { facet: 'humanEase — canonical src/0', on: abs(humanEase((1 / 2)) - (1 / 2)) < 1e-9 },
       { facet: 'addressEntropyBits — canonical src/0', on: ae.effectiveBits === (2 * 7 + FOLDED_CENSUS) },
       { facet: 'NODE_MAX_OLD_SPACE_MB sealed in src/0 — resource cooperation policy at origin', on: resourceCooperationPolicy().heapCapMb === 64 * 16 * 2 && resourceCooperationPolicy().tiers.length === 4 },
     ])
@@ -1332,7 +1330,7 @@ export type ComputableModelEntry = {
 
 /** Registry — all computable models with honest boundaries and invoke receipts. */
 export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computeMoreModelsCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computeMoreModelsCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sealed: Omit<ComputableModelEntry, 'receipt'>[] = [
       { id: 'astronomy-sixteen', name: 'Sixteen-body Keplerian catalog', status: 'sealed', home: 'src/astronomy', invoke: 'astronomyComputes(matrix, at)', boundary: 'Circular orbits — NOT JPL ephemeris', censusImpact: 'neutral' },
       { id: 'resonance-schumann', name: 'Schumann ELF structural phase + a432', status: 'sealed', home: 'src/thunder/resonance', invoke: 'resonanceComputes(matrix, at)', boundary: 'Structural phase — NOT live magnetometer', censusImpact: 'neutral' },
@@ -1391,7 +1389,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
 
 /** Gate — compute.more.models.catalog balance facet. */
 export function computeMoreModelsCatalogComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computeMoreModelsCatalogComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computeMoreModelsCatalogComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = computeMoreModelsCatalog(matrix, at)
     const capstone = computeAllWithLocalMath(at, matrix)
     const schumannCoupling = __ns_up_up_fusion_gold.schumannGoldSiteCouplingComputes(matrix, at)
@@ -1511,7 +1509,7 @@ export function localMathComputesResearch(matrix: MindMatrix = buildMatrix()) {
 
 /** Capstone — all recent domain computes via local-math paths only; opt-in feeds catalogued and excluded. */
 export function computeAllWithLocalMath(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`computeAllWithLocalMath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computeAllWithLocalMath:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const schumannPhaseAt = __ns_up_up_lake_music.schumannPhaseAt
     const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = __ns_up_up_astronomy.computeAllKnownCelestialBodies(matrix, timeYears)
@@ -1616,7 +1614,7 @@ export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatr
     const goldenAngleDerived = 360 / (phi * phi) // 360°/φ² — the golden angle, recomputed
     const censusOs = __ns_up_up_quantum_os.CENSUS_FIBONACCI
     const checks = [
-      { id: 'golden-angle', expr: 'GOLDEN_ANGLE === 360 / φ²', on: Math.abs(__ns_up_up_quantum_science.GOLDEN_ANGLE - goldenAngleDerived) < 1e-9 },
+      { id: 'golden-angle', expr: 'GOLDEN_ANGLE === 360 / φ²', on: abs(__ns_up_up_quantum_science.GOLDEN_ANGLE - goldenAngleDerived) < 1e-9 },
       { id: 'a432-hue', expr: 'A432_HUE === frequencyToLight(432).hue', on: __ns_up_up_quantum_science.A432_HUE === __ns_up_up_quantum_science.frequencyToLight(432).hue },
       { id: 'census-bands', expr: 'quantum/os CENSUS_FIBONACCI === FIBONACCI_CENSUS_BANDS', on: censusOs.length === FIBONACCI_CENSUS_BANDS.length && censusOs.every((b, i) => b === FIBONACCI_CENSUS_BANDS[i]) },
       { id: 'census-sum', expr: 'Σ FIBONACCI_CENSUS_BANDS === UNFOLDED_CENSUS', on: FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0) === UNFOLDED_CENSUS },
@@ -1638,7 +1636,7 @@ export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatr
 
 /** Balance gate — compute.all.local.math capstone at call time. */
 export function localMathComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`localMathComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`localMathComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const capstone = computeAllWithLocalMath(at, matrix)
     const research = localMathComputesResearch(matrix)
     const catalogGate = computeMoreModelsCatalogComputes(matrix, at)
@@ -1696,7 +1694,7 @@ export function runLocalMathComputesGuardedExit(_root: string, _argv: readonly s
 
 /** Cross-driver research — browser vs Node vs SSR probe table at call time. */
 export function hardwareDriversResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`hardwareDriversResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`hardwareDriversResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probes = {
       cpu: __ns_up_up_computer.cpuDriverProbe(at),
       gpu: __ns_up_up_computer.gpuDriverProbe(at, matrix),
@@ -1724,7 +1722,7 @@ export function hardwareDriversResearch(matrix: MindMatrix = buildMatrix(), at =
 
 /** Capstone — cpu · gpu · memory · storage driver probes + *Computes compose at call time. */
 export function computeSubstrateDriversComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computeSubstrateDriversComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computeSubstrateDriversComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const goldFusion = __ns_up_up_fusion_gold.goldFusionComputes(matrix, at)
     const research = hardwareDriversResearch(matrix, at)
     const cpu = __ns_up_up_computer.cpuComputes(matrix, at)
@@ -1757,7 +1755,7 @@ export function computeSubstrateDriversComputes(matrix: MindMatrix = buildMatrix
 
 /** Capstone — list probe vs fallback for all four drivers (opt-in tier, separate from local-math default). */
 export function computeAllWithHardwareDrivers(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`computeAllWithHardwareDrivers:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computeAllWithHardwareDrivers:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const substrate = computeSubstrateDriversComputes(matrix, at)
     const local = computeAllWithLocalMath(at, matrix)
     const rows = (['cpu', 'gpu', 'memory', 'storage'] as const).map((id) => {
@@ -1785,7 +1783,7 @@ export function computeAllWithHardwareDrivers(at = 0, matrix: MindMatrix = build
 
 /** Capstone — hardware driver substrate composed through the system bus at call time. */
 export function computeSubstrateWithBus(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`computeSubstrateWithBus:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computeSubstrateWithBus:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     let bus = { computes: false, root: toUuid('bus:fallback'), transfers: [] as { edge: { from: string }; result: { routed: boolean } }[] }
     try {
       bus = __ns_up_up_computer.busComputes(matrix, at)
@@ -1821,7 +1819,7 @@ export const hardwareDriversComputes = computeSubstrateDriversComputes
 
 /** Compose display ↔ gpu (framebuffer) + terminal ↔ cpu (stdio) output drivers at call time. */
 export function displayTerminalComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`displayTerminalComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`displayTerminalComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     let display = { computes: false, root: toUuid('display:fallback'), busReceipt: toUuid('display:bus:fallback') }
     let terminal = { computes: false, root: toUuid('terminal:fallback'), busReceipt: toUuid('terminal:bus:fallback') }
     try {
@@ -1879,10 +1877,10 @@ export const SCALE_LADDER: readonly Omit<ScaleRung, 'receipt'>[] = [
 
 /** scaleLadderAt — the active rung of the descent at time `at`, one shared phase clock descending the ladder. */
 export function scaleLadderAt(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`scaleLadderAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`scaleLadderAt:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rungs: ScaleRung[] = SCALE_LADDER.map((r) => ({ ...r, receipt: toUuid(`scale-rung:${r.name}:${r.log10}`) }))
     const p = (((at % (100 * 16 * 5 * 2)) + (100 * 16 * 5 * 2)) % (100 * 16 * 5 * 2)) / (100 * 16 * 5 * 2) // 16s descent cycle
-    const index = Math.min(rungs.length - 1, Math.floor(p * rungs.length))
+    const index = min(rungs.length - 1, floor(p * rungs.length))
     const monotonic = rungs.every((r, i) => i === 0 || r.metres < rungs[i - 1]!.metres)
     return {
       descends: monotonic && rungs.length === 8,
@@ -1902,7 +1900,7 @@ export function scaleLadderAt(at = 0, matrix: MindMatrix = buildMatrix()) {
  * terminus where the boundary circle collapses to a single point — the limit the descent approaches.
  */
 export function humanDescendsSouthToQuantumAndBeyond(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`humanDescendsSouthToQuantumAndBeyond:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`humanDescendsSouthToQuantumAndBeyond:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const ladder = scaleLadderAt(at, matrix)
     const south = earthSouthPoleBoundaryCircleDecoded()
     const facets = [
@@ -1994,7 +1992,7 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
     const satisfiable = !measured || target * pigeonhole.census >= pigeonhole.corpusBytes // pigeonhole admits a zero-offender distribution
     const staticUnsatisfiable = !measured || (pigeonhole.computes && pigeonhole.corpusBytes > pigeonhole.capacityBytes)
     const followsTheMeasure = derive(pigeonhole.corpusBytes * 2, pigeonhole.census) >= target
-      && derive(Math.ceil(pigeonhole.corpusBytes / 2), pigeonhole.census) <= target // re-derives up under growth, down under compression
+      && derive(ceil(pigeonhole.corpusBytes / 2), pigeonhole.census) <= target // re-derives up under growth, down under compression
     const facets = [
       { facet: `THE TARGET DERIVES, NEVER ASSERTED: ${measured ? target : 'n/a (no fs)'} B is the least power of two ≥ the fair share ${measured ? average.toFixed(0) : 'n/a'} B (corpus ${pigeonhole.corpusBytes} / census ${pigeonhole.census}) — bracketed target/2 < average ≤ target, recomputed from the live walk at every scan`, on: bracketed },
       { facet: `SATISFIABLE WHERE THE STATIC TARGET WAS NOT: target × census = ${measured ? target * pigeonhole.census : 'n/a'} ≥ corpus ${pigeonhole.corpusBytes} — by pigeonhole a redistribution with zero offenders EXISTS, while the sealed 8192 floor stays unreachable (${staticUnsatisfiable}); offenders under the derived target are the true outlier monoliths, the honest direction`, on: satisfiable && staticUnsatisfiable },
@@ -2003,7 +2001,7 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
     return {
       computes: facets.every((entry) => entry.on),
       targetBytes: target,
-      averageBytes: Math.round(average),
+      averageBytes: round(average),
       census: pigeonhole.census,
       corpusBytes: pigeonhole.corpusBytes,
       facets,
@@ -2089,7 +2087,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
  * Revolutionary in reproducibility/verifiability/amortized-reuse/answers÷tokens — NOT physical-QM speedup.
  */
 export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`honestRevolutionClaim:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`honestRevolutionClaim:${floor(at / 1e3)}`, matrix, () => {
     const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix, at)
     const efficient = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
     const fusion = __ns_up_up_fusion.quantumFusionVerify(matrix)
@@ -2123,7 +2121,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
  * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /en/quantum-tools#honest-revolution-w2
  */
 export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`interferenceVsClassicalShadow:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`interferenceVsClassicalShadow:${floor(at / 1e3)}`, matrix, () => {
     const w1 = honestRevolutionClaim(matrix, at)
     const parallel = __ns_up_up_digit_two_eight.quantumParallelismIsNotTheSpeedupInterferenceIs()
     const sims = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)
@@ -2132,9 +2130,9 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
     // Local H² constructive peak vs pflip classical shadow (src/0) — amplitudes cancel; probabilities spread.
     const afterH2 = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0)
     const ampProbs = probabilities(afterH2)
-    const ampCancel = Math.abs(ampProbs[0]! - 1) < 1e-9 && Math.abs(ampProbs[1]!) < 1e-9
+    const ampCancel = abs(ampProbs[0]! - 1) < 1e-9 && abs(ampProbs[1]!) < 1e-9
     const shadow = pflip(pbits(1), 0, 1 / 2).p
-    const shadowNoCancel = Math.abs(shadow[0]! - 1 / 2) < 1e-9 && Math.abs(shadow[1]! - 1 / 2) < 1e-9
+    const shadowNoCancel = abs(shadow[0]! - 1 / 2) < 1e-9 && abs(shadow[1]! - 1 / 2) < 1e-9
     const tracksClassical = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated && w1.honest.noSpeedup
     const facets = [
       { facet: 'W1 honestRevolutionClaim holds at call time', on: w1.holds },
@@ -2194,7 +2192,7 @@ export function runHonestRevolutionW2Exit(_root = '', _argv: readonly string[] =
  * `on:` requires compareCeccecEfficiencyByVote().decided.
  */
 export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`oneQuantumModelFasterThanAll:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`oneQuantumModelFasterThanAll:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const vote = compareCeccecEfficiencyByVote(matrix)
     const core = __ns_up_up_quantum_apps.rosettaCoreApi(at, matrix)
     const learned = BEST_LEARNED_IN_CECCEC.map((row) => ({
@@ -2235,7 +2233,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
 
 /** learn/best compose — fold top patterns, forge/certify path named, win when vote.decided. */
 export function agentCeccecLearnsFromTheBestBecomesTheBest(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`agentCeccecLearnsFromTheBestBecomesTheBest:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`agentCeccecLearnsFromTheBestBecomesTheBest:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const one = oneQuantumModelFasterThanAll(matrix, at)
     const facets = [
       { facet: 'oneQuantumModelFasterThanAll computes when vote decided', on: one.computes === one.decided },
@@ -2365,7 +2363,7 @@ export function classical64BitEnvironmentAtCallTime(): Classical64BitEnvironment
  * NOT FLOPS vs GPUs/QPUs · NOT ISO certified · claySolvedByThisFold=0.
  */
 export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const vote = compareCeccecEfficiencyByVote(matrix)
     const one = oneQuantumModelFasterThanAll(matrix, at)
     const proven = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
@@ -2536,7 +2534,7 @@ const CPU_GPU_QUARTER = (UNFOLDED_CENSUS - FOLDED_CENSUS) / ((UNFOLDED_CENSUS - 
  * Compose: prove/no-qpu-64bit · build/min · measure/decide · mcp/hw · mcp/cpu · mcp/gpu · trinity/speedup · import/fractal
  */
 export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`qpuCpuGpu:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`qpuCpuGpu:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
     const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix, at)
     const hw = __ns_up_up_quantum_apps.mcpQuantumHardware(matrix, at)
@@ -2567,7 +2565,7 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
       honest.noSpeedup &&
       noQpu.noQuantumHardwareProved &&
       trinity.computes
-    const apparentFtlAudit = localAudit.suiteColdMs / Math.max(localAudit.suiteWarmMs, MS_FLOOR_QPU)
+    const apparentFtlAudit = localAudit.suiteColdMs / max(localAudit.suiteWarmMs, MS_FLOOR_QPU)
     const metrics: PhysicalFtlMetricRow[] = [
       {
         metric: 'memoByRoot audit suite',
@@ -2601,7 +2599,7 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
         cold: buildMinReport?.ciBaseline.buildStepMs ?? '—',
         warm: buildMinReport?.buildMs ?? '—',
         speedup: typeof buildMinReport?.buildMs === 'number' && buildMinReport.ciBaseline.buildStepMs > 0
-          ? `${roundTo(buildMinReport.ciBaseline.buildStepMs / Math.max(buildMinReport.buildMs, 1), 3)}× vs CI baseline`
+          ? `${roundTo(buildMinReport.ciBaseline.buildStepMs / max(buildMinReport.buildMs, 1), 3)}× vs CI baseline`
           : 'observer — run build/min locally',
         sourceFold: 'buildMin',
       },
@@ -2725,18 +2723,18 @@ export type ThermoMetricRow = {
  * Pair: thermo/quantum · dual quantum/thermo · CLI npm run quantum:thermo-quantum
  */
 export function thermoQuantumBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`thermoQuantumBalance:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`thermoQuantumBalance:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const T = 100 * 3
     const landauer = landauerFloorComputed(matrix)
     const dryCool = __ns_up_up_quantum_apps.dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix, at)
     const balance = __ns_up_up_quantum_apps.alwaysBalanceUsingRealtimeMetricsAndChat(matrix, at)
     const localAudit = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
-    const tauMll = PLANCK / (4 * Math.LN2 * BOLTZMANN * T)
+    const tauMll = PLANCK / (4 * LN2 * BOLTZMANN * T)
     const memoReuse = localAudit.suiteMemoHit
       ? 1
-      : localAudit.suiteWarmMs / Math.max(localAudit.suiteColdMs, MS_FLOOR_QPU)
-    const apparentSpeed = localAudit.suiteColdMs / Math.max(localAudit.suiteWarmMs, MS_FLOOR_QPU)
-    const heatProxy = landauer.realOpJoules * (1 - Math.min(1, memoReuse))
+      : localAudit.suiteWarmMs / max(localAudit.suiteColdMs, MS_FLOOR_QPU)
+    const apparentSpeed = localAudit.suiteColdMs / max(localAudit.suiteWarmMs, MS_FLOOR_QPU)
+    const heatProxy = landauer.realOpJoules * (1 - min(1, memoReuse))
     const heatNorm = heatProxy / landauer.realOpJoules
     const speedTempBalance = apparentSpeed / (1 + heatNorm)
     const metrics: ThermoMetricRow[] = [
@@ -2791,7 +2789,7 @@ export type CpuGpuBalanceMetric = {
  * Pair: cpu/gpu · dual gpu/cpu · CLI npm run quantum:cpu-gpu
  */
 export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cpuGpuSelfBalance:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cpuGpuSelfBalance:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const landauer = landauerFloorComputed(matrix)
     const cpu = __ns_up_up_quantum_apps.mcpQuantumCpu(matrix, at)
     const gpu = __ns_up_up_quantum_apps.mcpQuantumGpu(matrix, at)
@@ -2809,13 +2807,13 @@ export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
     }
     const memoReuse = localAudit.suiteMemoHit
       ? 1
-      : localAudit.suiteWarmMs / Math.max(localAudit.suiteColdMs, MS_FLOOR_QPU)
+      : localAudit.suiteWarmMs / max(localAudit.suiteColdMs, MS_FLOOR_QPU)
     const loadCpu =
       buildMinReport && buildMinReport.ciBaseline.buildStepMs > 0
-        ? Math.min(1, buildMinReport.buildMs / buildMinReport.ciBaseline.buildStepMs)
+        ? min(1, buildMinReport.buildMs / buildMinReport.ciBaseline.buildStepMs)
         : CPU_GPU_HALF
     const loadGpu = cooperation.policy.gpuSurface === 'browser-canvas-raf' ? 1 : 0
-    const queueDepth = Math.max(0, importFractal.roundTripTotal - importFractal.roundTripCount)
+    const queueDepth = max(0, importFractal.roundTripTotal - importFractal.roundTripCount)
     const queueNorm = importFractal.roundTripTotal > 0 ? queueDepth / importFractal.roundTripTotal : 0
     const heatProxy = landauer.realOpJoules * (1 - memoReuse)
     const heatNorm = heatProxy / landauer.realOpJoules
@@ -2833,7 +2831,7 @@ export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
       (1 / (1 + heatNorm)) *
       (1 - queueNorm * CPU_GPU_HALF) *
       (CPU_GPU_HALF + CPU_GPU_HALF * merkabaBalance)
-    const balanceIndex = Math.min(cpuWeight, gpuWeight) / Math.max(cpuWeight, gpuWeight, MS_FLOOR_QPU)
+    const balanceIndex = min(cpuWeight, gpuWeight) / max(cpuWeight, gpuWeight, MS_FLOOR_QPU)
     const cpuShare = cpuWeight / (cpuWeight + gpuWeight + MS_FLOOR_QPU)
     const gpuShare = gpuWeight / (cpuWeight + gpuWeight + MS_FLOOR_QPU)
     const cpuGpuSelfBalanceOn = balanceIndex >= 1 / PHI && cpu.kindOn && gpu.kindOn && hw.hardwareOn
@@ -2914,7 +2912,7 @@ export type QuantumClockSchema = {
  * Pair: clock/one · dual one/clock · CLI npm run quantum:clock-one
  */
 export function oneClockApi(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`oneClockApi:${Math.floor(at / HERO_CYCLE_MS)}`, matrix, () => {
+  return memoByRoot(`oneClockApi:${floor(at / HERO_CYCLE_MS)}`, matrix, () => {
     const clockDerived = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3
     const phasePeriodic = heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
     const phaseAt = (a = at): QuantumClockPhase => ({
@@ -3042,7 +3040,7 @@ export type ApiFuseMetricRow = {
  * Pair: api/fuse · dual fuse/api · CLI npm run quantum:api-fuse
  */
 export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`apiFuse:${Math.floor(at / HERO_CYCLE_MS)}`, matrix, () => {
+  return memoByRoot(`apiFuse:${floor(at / HERO_CYCLE_MS)}`, matrix, () => {
     const soft = (a: string, b: string) =>
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const toolbox = __ns_up_up_quantum_apps.standardToolboxIoCatalog(matrix, at)

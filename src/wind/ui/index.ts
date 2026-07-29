@@ -9,7 +9,7 @@ import { EIGHT_CURRICULUM_SCIENCES } from '../../pair/enforcement/gates/computat
 import { chsh } from '../../mountain/vortex'
 import { buildMatrix, matrixMemo } from '../../heaven/compute'
 import type { MindMatrix } from '../types'
-import {  applyGate, computesGate, digitalRoot, foldPair, GATES, gcd, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, prng, qubits, roundTo, sealFacets, topologicalOrder, toUuid, toUuidSha256, uuidHero, uuidPoint, VORTEX_SEQUENCE } from '../../0'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, probabilities, proseToTone, qubits, round, roundTo, sealFacets, sin, sqrt, toUuid, toUuidSha256, topologicalOrder, uuidHero, uuidPoint } from '../../0'
 import { merkleProof } from '../../lake/ledger'
 import { clownActQuantumSteps, harmonics } from '../../lake/music'
 import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
@@ -241,8 +241,8 @@ export function navigationAroundHero(matrix: MindMatrix = buildMatrix()) {
         label: item.label,
         route: item.route,
         angle,
-        x: radius * Math.cos(angle),
-        y: radius * Math.sin(angle),
+        x: radius * cos(angle),
+        y: radius * sin(angle),
         receipt: toUuid(`hero-shell:${tier.tier}:${item.route}`) }
     })
     return { tier: tier.tier, radius, name: tier.name, items, receipt: toUuid(`shell:${tier.tier}:${tier.name}`) }
@@ -745,11 +745,11 @@ export function heroSvgFromUuid(uuid: string, opts: { animate?: boolean } = {}):
   const byte = (k: number) => parseInt(hex.slice((k * 2) % (7 * 4), ((k * 2) % (7 * 4)) + 2), 16) || (64 * 2)
   const colors = heroSvgPaletteFromUuid(uuid)
   const W = 760, H = (64 * 6), cx = W / 2, cy = 176
-  const G0 = Math.round(byte((6 * 2)) * 360 / (64 * 4)), G1 = Math.round(byte(13) * 360 / (64 * 4))
+  const G0 = round(byte((6 * 2)) * 360 / (64 * 4)), G1 = round(byte(13) * 360 / (64 * 4))
   const LOOPS = [0, 1, 2, 3].map((k) => ({
     r: (16 * 6) + (byte(k) % 88),
-    dur: fractalClockS(Math.round(fractalClockS(1) / ((5 * 2) + (byte(k + 4) % 16)))),
-    hue: Math.round(byte(k + 8) * 360 / (64 * 4)) }))
+    dur: fractalClockS(round(fractalClockS(1) / ((5 * 2) + (byte(k + 4) % 16)))),
+    hue: round(byte(k + 8) * 360 / (64 * 4)) }))
   const torus = (sx: number, spin: string, off: string) =>
     `<g transform="translate(${sx} ${cy})"><animateTransform attributeName="transform" type="rotate" ${spin} dur="${fractalClockDur(4)}" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="scale" values="1 1;1 0.6;1 1" dur="${fractalClockDur(6 * 2)}" begin="${off}" repeatCount="indefinite" additive="sum"/><ellipse rx="104" ry="58"/><ellipse rx="44" ry="22"/></g>`
   const svg = [
@@ -798,11 +798,11 @@ function sacredCircleLatticeSvg(
   opacity: number,
   strokeWidth: number,
 ): string {
-  const r = Math.round(unit)
+  const r = round(unit)
   return centers
     .map((c, i) => {
-      const x = Math.round(cx + c[0] * unit)
-      const y = Math.round(cy + c[1] * unit)
+      const x = round(cx + c[0] * unit)
+      const y = round(cy + c[1] * unit)
       return `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${strokeWidth}" opacity="${opacity}" data-layer="${layer}" data-${layer === 'flower-of-life' ? 'fol' : 'fruit'}-i="${i}"/>`
     })
     .join('')
@@ -833,14 +833,14 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
       earths.counterRotating
       && mk.counterRotating
       && upSign * downSign === -1
-      && Math.abs(earths.merkabaUpSpin + earths.merkabaDownSpin) < 1e-6
+      && abs(earths.merkabaUpSpin + earths.merkabaDownSpin) < 1e-6
       && unlock.holds
     const spinDur = fractalClockDur(4)
     const expandDur = fractalClockDur(2)
     const W = 960, H = 540, cx = W / 2, cy = H / 2 - 12
-    const maxR = Math.min(cx, cy) - 36
+    const maxR = min(cx, cy) - 36
     // Unit spacing so FoL diameter (~4 units) fits maxR; avoid wet decorative seven-circle.
-    const unit = Math.max(9 * 2, Math.round(maxR / (2 + 1 / 2)))
+    const unit = max(9 * 2, round(maxR / (2 + 1 / 2)))
     const golden = (GOLDEN_ANGLE_DEG * (TAU / 2)) / 180
     const earthPoles = earthRealisedByComputingPolesAsPyramid(matrix)
     const pyramidTips = cardinalPyramidTipsProvenByMath(matrix)
@@ -872,8 +872,8 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
     const bags: LobeBag[] = CARDINAL_ROSETTA_SPINS.map(() => ({ homology: [], glyphs: [], spokes: [] }))
     for (let k = 0; k < HOMOLOGY_LOOPS; k += 1) {
       const a = (k / HOMOLOGY_LOOPS) * TAU - (TAU / 2) / 2
-      const x = Math.round(cx + Math.cos(a) * (maxR + 10))
-      const y = Math.round(cy + Math.sin(a) * (maxR + 10))
+      const x = round(cx + cos(a) * (maxR + 10))
+      const y = round(cy + sin(a) * (maxR + 10))
       const mark = `<circle cx="${x}" cy="${y}" r="3" fill="${movieCanvasHex((A432_HUE + k * (9 * 5 * 2)) % (9 * 5 * 8), { L: 11 / 16 })}" data-layer="homology" data-h1="${k}" data-cardinal="${CARDINAL_ROSETTA_SPINS[k]!.id}"/>`
       bags[k % 4]!.homology.push(mark)
     }
@@ -882,11 +882,11 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
       const hex = (atom.root + atom.root).replace(/[^0-9a-f]/gi, '')
       const b0 = parseInt(hex.slice(0, 2), 16) || 64
       const b1 = parseInt(hex.slice(2, 4), 16) || 64
-      const r = Math.round(18 + Math.sqrt(i + 1) * (maxR / Math.sqrt(n + 1)))
+      const r = round(18 + sqrt(i + 1) * (maxR / sqrt(n + 1)))
       const a = i * golden + (b0 / 255) * (TAU / 64)
-      const x = Math.round(cx + Math.cos(a) * Math.min(r, maxR - 4))
-      const y = Math.round(cy + Math.sin(a) * Math.min(r, maxR - 4))
-      const hue = Math.round((A432_HUE + i * GOLDEN_ANGLE_DEG + b1) % 360)
+      const x = round(cx + cos(a) * min(r, maxR - 4))
+      const y = round(cy + sin(a) * min(r, maxR - 4))
+      const hue = round((A432_HUE + i * GOLDEN_ANGLE_DEG + b1) % 360)
       const fill = movieCanvasHex(hue, { L: 9 / 16 + (b0 % 16) / 128 })
       const dur = fractalClockDur(FRACTAL_CLOCK_DIVISORS[digitalRoot(i + 1) % FRACTAL_CLOCK_DIVISORS.length]!)
       const begin = i === 0 ? '0s' : `${((i % 9) * (2 / 5)).toFixed(1)}s`
@@ -1024,7 +1024,7 @@ export function computedIconSvg(matrix: MindMatrix = buildMatrix(), opts: { anim
     earths.counterRotating
     && mk.counterRotating
     && upSign * downSign === -1
-    && Math.abs(earths.merkabaUpSpin + earths.merkabaDownSpin) < 1e-6
+    && abs(earths.merkabaUpSpin + earths.merkabaDownSpin) < 1e-6
     && unlock.holds
     && earthPoles.fourWayCounterRotating
   const spinDur = fractalClockDur(4)
@@ -1041,14 +1041,14 @@ export function computedIconSvg(matrix: MindMatrix = buildMatrix(), opts: { anim
   const R = 100 + 2 * 5
   const lobe = (card: typeof CARDINAL_ROSETTA_SPINS[number]) => {
     const rad = (card.bearing * TAU) / 360 - (TAU / 2) / 2
-    const ox = Math.round(cx + Math.cos(rad) * (R / 2))
-    const oy = Math.round(cy + Math.sin(rad) * (R / 2))
+    const ox = round(cx + cos(rad) * (R / 2))
+    const oy = round(cy + sin(rad) * (R / 2))
     const spin = animate ? merkabaRosettaSpinSmil(card.sign, spinDur, card.bearing) : ''
     const fol = flower
-      .map((p, i) => `<circle cx="${Math.round(p[0] * unit)}" cy="${Math.round(p[1] * unit)}" r="${unit}" fill="none" stroke="${c.themeColor}" stroke-width="2" opacity="${5 / 20}" data-layer="flower-of-life" data-fol-i="${i}"/>`)
+      .map((p, i) => `<circle cx="${round(p[0] * unit)}" cy="${round(p[1] * unit)}" r="${unit}" fill="none" stroke="${c.themeColor}" stroke-width="2" opacity="${5 / 20}" data-layer="flower-of-life" data-fol-i="${i}"/>`)
       .join('')
     const fruitLayer = fruit
-      .map((p, i) => `<circle cx="${Math.round(p[0] * unit)}" cy="${Math.round(p[1] * unit)}" r="${unit}" fill="none" stroke="${c.accentColor}" stroke-width="2" opacity="${14 / 20}" data-layer="fruit-of-life" data-fruit-i="${i}"/>`)
+      .map((p, i) => `<circle cx="${round(p[0] * unit)}" cy="${round(p[1] * unit)}" r="${unit}" fill="none" stroke="${c.accentColor}" stroke-width="2" opacity="${14 / 20}" data-layer="fruit-of-life" data-fruit-i="${i}"/>`)
       .join('')
     return (
       `<g transform="translate(${ox} ${oy})" data-layer="rosetta-${card.id}" data-tetra="${card.tetra}" data-spin="${card.sign > 0 ? '+1' : '-1'}" data-cardinal="${card.id}" data-bearing="${card.bearing}" data-four-direction="true" data-merkaba-isomorphic="${counterRotating ? 'true' : 'false'}" data-flower-of-life="computed">` +
@@ -1074,10 +1074,10 @@ export function computedIconSvg(matrix: MindMatrix = buildMatrix(), opts: { anim
 // fold itself — yin and yang are the two poles of one distinction (the sign = one bit = the fold), the seed the
 /** Non-linear yin↔yang exchange → degrees (smoothstep+sin+vortex+ray — NOT linear i/frames). */
 export function taijiRosettaExchangeDegrees(frameIndex: number, frames: number, d: Dims, ray: number): number {
-  const u = ((frameIndex % frames) + frames) % frames / Math.max(frames, 1)
+  const u = ((frameIndex % frames) + frames) % frames / max(frames, 1)
   const vortex = VORTEX_SEQUENCE[frameIndex % VORTEX_SEQUENCE.length]!
   const fold = u * u * (3 - 2 * u)
-  const exchange = fold + Math.sin(u * TAU) / TAU
+  const exchange = fold + sin(u * TAU) / TAU
   const rayTurn = (ray * GOLDEN_ANGLE_DEG) % 360
   const twistRock = (d.twist - (9 / (5 * 4))) * (8 * 5)
   const vortexBias = (vortex / 9) * GOLDEN_ANGLE_DEG
@@ -1086,8 +1086,8 @@ export function taijiRosettaExchangeDegrees(frameIndex: number, frames: number, 
 
 export function yinYangDimensionsSvg(opts: { frames?: number; scale?: number; animate?: boolean; size?: number } = {}): string {
   const { frames = (6 * 5), scale = 0, animate = true, size = (100 * 2) } = opts
-  const R = Math.round(size * (FIBONACCI[7]! / 100)), cx = size / 2, cy = size / 2, e = R / 6
-  const n = (x: number) => Math.round(x * 100) / 100
+  const R = round(size * (FIBONACCI[7]! / 100)), cx = size / 2, cy = size / 2, e = R / 6
+  const n = (x: number) => round(x * 100) / 100
   const ray = rosettaRayOf('taiji')
   const walk = Array.from({ length: frames + 1 }, (_, i) => dims((i % frames) / frames, scale))
   const list = (f: (d: Dims, i: number) => number | string) => walk.map((d, i) => `${f(d, i)}`).join(';')
@@ -1126,8 +1126,8 @@ export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()
   const dMid = dims(1 / 2, 0)
   const ray = rosettaRayOf('taiji')
   const linearMid = (1 / 2) * 360
-  const exchangeMid = taijiRosettaExchangeDegrees(Math.floor(frames / 2), frames, dMid, ray)
-  const notLinearRotate = Math.abs(exchangeMid - linearMid) > 1 // exchange ≠ linear midpoint
+  const exchangeMid = taijiRosettaExchangeDegrees(floor(frames / 2), frames, dMid, ray)
+  const notLinearRotate = abs(exchangeMid - linearMid) > 1 // exchange ≠ linear midpoint
   const shelvedAddress = toUuid(`rosetta-core:projection:taiji:${ray}:${ROSETTA_RAYS[ray]!.domain}`)
   const facets = [
     { facet: 'the taiji IS the fold — yin and yang are the two poles of one distinction (the sign = one bit = the fold), the seed the whole figure unfolds from, completed in the 3-5-8 tiers (三才·五行·八卦)', on: yy.complete },
@@ -1159,7 +1159,7 @@ export function yinYangFoldsThroughDimensions(matrix: MindMatrix = buildMatrix()
 
 /** A4 — animations driven by rosetta; yin-yang witness; linear i/frames = closed gap. */
 export function animationsDrivenByRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`animationsDrivenByRosetta:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`animationsDrivenByRosetta:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const yy = yinYangFoldsThroughDimensions(matrix)
     const taijiRay = rosettaRayOf('taiji')
     const taijiAddress = toUuid(`rosetta-core:projection:taiji:${taijiRay}:${ROSETTA_RAYS[taijiRay]!.domain}`)
@@ -1189,13 +1189,13 @@ export function animationsDrivenByRosetta(matrix: MindMatrix = buildMatrix(), at
 
 /** A1 — linear animation gaps (yin-yang first); closed when exchange ≠ linear midpoint + rosetta fold. */
 export function linearAnimationGapsInventory(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`linearAnimationGapsInventory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`linearAnimationGapsInventory:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const frames = 6 * 5
     const dMid = dims(1 / 2, 0)
     const ray = rosettaRayOf('taiji')
-    const exchangeMid = taijiRosettaExchangeDegrees(Math.floor(frames / 2), frames, dMid, ray)
+    const exchangeMid = taijiRosettaExchangeDegrees(floor(frames / 2), frames, dMid, ray)
     const linearMid = 360 / 2
-    const yinYangLinear = Math.abs(exchangeMid - linearMid) <= 1
+    const yinYangLinear = abs(exchangeMid - linearMid) <= 1
     const svg = yinYangDimensionsSvg({ frames, animate: true })
     const stamped = /data-drive="rosetta-vortex-exchange"/.test(svg)
     const living = livingIChingSvg([1, 0, 1, 0, 1, 0], { animate: true, scale: 0 })
@@ -1276,7 +1276,7 @@ export function runAnimationsRosettaGuardedExit(_root: string, _argv: readonly s
 export function livingIChingSvg(bits: number[], opts: { scale?: number; animate?: boolean; size?: number } = {}): string {
   const { scale = 0, animate = true, size = 64 } = opts
   const N = bits.length
-  const r = (x: number) => Math.round(x * 100) / 100
+  const r = (x: number) => round(x * 100) / 100
   const gap = size * (1 / (5 * 4))
   const lh = (size - gap * (N + 1)) / N // line height, N lines evenly spaced with gaps
   const pad = size * (4 / (5 * 5)), full = size - pad * 2 // horizontal inset, full bar width
@@ -1776,7 +1776,7 @@ export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 // Born snap at the self-crossing · Landauer receipt · Zeno tremble), and each step wears its Rosetta area glyph
 // from the sealed 42. CSS @keyframes only (no SMIL, no JS) — GitHub-animatable, reduced-motion safe.
 function clownLemniscate(t: number, a: number): { x: number; y: number } {
-  const s = Math.sin(t), c = Math.cos(t), d = 1 + s * s // Bernoulli — speed ratio √2, the smoothest figure-eight
+  const s = sin(t), c = cos(t), d = 1 + s * s // Bernoulli — speed ratio √2, the smoothest figure-eight
   return { x: (a * c) / d, y: (a * s * c) / d }
 }
 
@@ -1811,7 +1811,7 @@ function clownStage() {
   for (let i = 0; i <= N; i++) {
     const q = clownLemniscate((TAU / 2) / 2 + (i / N) * TAU, CLOWN_A)
     pts.push(q)
-    if (i > 0) arc.push(arc[i - 1]! + Math.hypot(q.x - pts[i - 1]!.x, q.y - pts[i - 1]!.y))
+    if (i > 0) arc.push(arc[i - 1]! + hypot(q.x - pts[i - 1]!.x, q.y - pts[i - 1]!.y))
   }
   const total = arc[N]!
   const atArc = (s: number): { x: number; y: number } => {
@@ -1834,11 +1834,11 @@ function clownStage() {
 // shown. DECLARED exaggeration: the Zeno excursion is rendered ×4 (2.8125° → 11.25°) or it would be invisible.
 const CLOWN_ZENO_EXAGGERATION = 4
 function clownBloch(k: number, u: number, bits: readonly number[]): { deg: number; len: number } {
-  const c = (x: number) => Math.round(x * 100) / 100
-  if (k === 0) return { deg: c((9 * 5 * 4) - (9 * 5 * 2) * Math.exp(-u / (9 / (5 * 5 * 2)))), len: 1 } // active reset — exponential pump to the pole
+  const c = (x: number) => round(x * 100) / 100
+  if (k === 0) return { deg: c((9 * 5 * 4) - (9 * 5 * 2) * exp(-u / (9 / (5 * 5 * 2)))), len: 1 } // active reset — exponential pump to the pole
   if (k === 1) return { deg: c((9 * 5 * 4) - (9 * 5 * 4) * u), len: 1 } // the resonant Rabi π-sweep, pole to pole
-  if (k === 2) return { deg: c((9 * 5 * 4) * (1 - Math.exp(-u / (9 / (5 * 4))))), len: c(((9 * 2) / (5 * 5)) + (7 / (5 * 5)) * Math.exp(-u / (1 / 2))) } // T1 drift to the pole, T2 shrink — never to the center
-  if (k === 3) return { deg: u < 1 / 16 ? c((9 * 5 * 4) * (1 - Math.exp(-1 / (9 / (5 * 4))))) : (9 * 5 * 4) * (1 - (bits[3] ?? 0)), len: 1 } // the Born SNAP at the crossing — the outcome IS the measured line-4 bit
+  if (k === 2) return { deg: c((9 * 5 * 4) * (1 - exp(-u / (9 / (5 * 4))))), len: c(((9 * 2) / (5 * 5)) + (7 / (5 * 5)) * exp(-u / (1 / 2))) } // T1 drift to the pole, T2 shrink — never to the center
+  if (k === 3) return { deg: u < 1 / 16 ? c((9 * 5 * 4) * (1 - exp(-1 / (9 / (5 * 4))))) : (9 * 5 * 4) * (1 - (bits[3] ?? 0)), len: 1 } // the Born SNAP at the crossing — the outcome IS the measured line-4 bit
   if (k === 4) return { deg: c(u < (1 / 2) ? (9 * 5 * 4) : (9 * 5 * 4) - (9 * 5 * 2) * ((u - (1 / 2)) / (1 / 2))), len: 1 } // after the median receipt — a NEW superposition woven to the equator
   return { deg: c((9 * 5 * 2) - ((9 * 5 * 4) / 64) * CLOWN_ZENO_EXAGGERATION * ((u * 8) % 1)), len: 1 } // Zeno — Itano π/64 excursions, snapped back each of the 8 = √64 intervals
 }
@@ -1851,19 +1851,19 @@ function clownBloch(k: number, u: number, bits: readonly number[]): { deg: numbe
  * physics of clownActQuantumSteps.
  */
 export function clownLiftState(phase: number, matrix: MindMatrix = buildMatrix(), atStep?: number) {
-  const p = Math.min(Math.max(phase, 0), 1 - 1e-9)
-  const k = atStep ?? Math.min(5, Math.floor(p * 6))
-  const u = Math.min(Math.max(p * 6 - k, 0), 1)
+  const p = min(max(phase, 0), 1 - 1e-9)
+  const k = atStep ?? min(5, floor(p * 6))
+  const u = min(max(p * 6 - k, 0), 1)
   const act = clownActQuantumSteps(matrix)
   const entry = act.steps[k]!
   const chans = CLOWN_DIM_LADDER[k]!
   const has = (channel: string) => chans.includes(channel)
-  const r = (x: number) => Math.round(x * 100) / 100
+  const r = (x: number) => round(x * 100) / 100
   const d = dims(p)
   const { atArc, total } = clownStage()
   const s0 = atArc(p * total)
   const ahead = atArc(p * total + (3 / 4))
-  const len = Math.hypot(ahead.x - s0.x, ahead.y - s0.y) || 1
+  const len = hypot(ahead.x - s0.x, ahead.y - s0.y) || 1
   const nx = -(ahead.y - s0.y) / len, ny = (ahead.x - s0.x) / len // in-plane unit normal to the centerline
   const TUBE = 7 // the genus-2 atom's tube radius (doubleTorusSurface, src/0)
   const ZLIFT = (8 / 5), ZUP = (1 - 3 / (5 * 4)) // z visibility gain · the fixed oblique screen tilt (one camera, never zoomed)
@@ -1873,13 +1873,13 @@ export function clownLiftState(phase: number, matrix: MindMatrix = buildMatrix()
   let oz = eps * ZLIFT * tube * (d.loopB1 + (has('loopB2') ? (1 - 9 / (5 * 4)) * d.loopB2 : 0))
   if (has('twist')) { const t = rot2(on, oz, eps * (d.twist - (1 / 5)) * (6 / 5)); on = t.u; oz = t.v } // ε-gated tube-frame precession
   const zn = oz / (ZLIFT * TUBE)
-  const scl = has('breath') ? Math.round(perspective(zn * (1 / 2)) * (100 * 5 * 2)) / (100 * 5 * 2) : 1 // perspective size attenuation
-  const fade = has('depthFade') ? Math.round(Math.max((7 / (5 * 4)), Math.min(1, 1 - ((1 / 2) - zn / 2) * d.depthFade * 4)) * 100) / 100 : 1 // aerial fade
+  const scl = has('breath') ? round(perspective(zn * (1 / 2)) * (100 * 5 * 2)) / (100 * 5 * 2) : 1 // perspective size attenuation
+  const fade = has('depthFade') ? round(max((7 / (5 * 4)), min(1, 1 - ((1 / 2) - zn / 2) * d.depthFade * 4)) * 100) / 100 : 1 // aerial fade
   const bloch = clownBloch(k, u, act.bits)
   const shadow = { x: r(CLOWN_CX + s0.x + nx * on), y: r(CLOWN_CY + s0.y + ny * on) } // z DROPPED
   const walker = { x: shadow.x, y: r(CLOWN_CY + s0.y + ny * on - oz * ZUP), scale: scl, fade } // z raised + perspective
   return {
-    p: Math.round(p * 1e6) / 1e6,
+    p: round(p * 1e6) / 1e6,
     step: k,
     name: entry.step,
     area: entry.area,
@@ -1890,14 +1890,14 @@ export function clownLiftState(phase: number, matrix: MindMatrix = buildMatrix()
     walker,
     z: r(oz),
     hue: has('hueShift') ? r(d.hueShift) : 0,
-    shrink: has('shrink') ? Math.round((d.shrink / (16 / (5 * 5))) * (100 * 5 * 2)) / (100 * 5 * 2) : 1,
+    shrink: has('shrink') ? round((d.shrink / (16 / (5 * 5))) * (100 * 5 * 2)) / (100 * 5 * 2) : 1,
     bloch,
-    receipt: toUuid(`clown-state:${Math.round(p * 1e6)}:${shadow.x}:${shadow.y}:${walker.y}:${scl}:${bloch.deg}`) }
+    receipt: toUuid(`clown-state:${round(p * 1e6)}:${shadow.x}:${shadow.y}:${walker.y}:${scl}:${bloch.deg}`) }
 }
 
 /** The computed act as a machine-readable timeline — 64 frames (the hexagram count) for agents; deterministic replay. */
 export function clownActTimeline(frames = 64, matrix: MindMatrix = buildMatrix()) {
-  const n = Math.max(2, Math.floor(frames))
+  const n = max(2, floor(frames))
   const states = Array.from({ length: n }, (_, i) => clownLiftState(i / n, matrix))
   return {
     frames: n,
@@ -1912,11 +1912,11 @@ export function clownActTimeline(frames = 64, matrix: MindMatrix = buildMatrix()
 // One golden-shifted lifted-path sample — shared by the bow's densification trace and the whole-life trace:
 // the same state math, phase-shifted by dims' own 1/φ per scale, so overlaid cycles never realign.
 function clownTracePoint(p: number, sc2: number): string {
-  const r = (x: number) => Math.round(x * 100) / 100
+  const r = (x: number) => round(x * 100) / 100
   const d = dims(p, sc2)
   const { atArc, total } = clownStage()
   const s0 = atArc(p * total), ahead = atArc(p * total + (3 / 4))
-  const nlen = Math.hypot(ahead.x - s0.x, ahead.y - s0.y) || 1
+  const nlen = hypot(ahead.x - s0.x, ahead.y - s0.y) || 1
   const nx = -(ahead.y - s0.y) / nlen, ny = (ahead.x - s0.x) / nlen
   const tube = 7 * ((7 / (5 * 2)) + (3 / (5 * 2)) * ((d.breath - (7 / (5 * 2))) / (3 / (5 * 2))))
   const eps = dimWalk(p)
@@ -1929,11 +1929,11 @@ function clownTracePoint(p: number, sc2: number): string {
 /** One clown step (0..5) as a self-contained CSS-@keyframes SVG — the UI computed from the I Ching + Rosetta. */
 export function clownStepSvg(step: number, opts: { animate?: boolean; size?: number } = {}): string {
   const { animate = true, size = (100 * 2) } = opts
-  const k = ((Math.floor(step) % 6) + 6) % 6
+  const k = ((floor(step) % 6) + 6) % 6
   const act = clownActQuantumSteps()
   const entry = act.steps[k]!
   const bits = act.bits
-  const r = (x: number) => Math.round(x * 100) / 100
+  const r = (x: number) => round(x * 100) / 100
   const cx = CLOWN_CX, cy = CLOWN_CY, a = CLOWN_A
   // ── COMPUTED, NOT ASSUMED ──────────────────────────────────────────────────────────────────────
   // This renderer AUTHORS NOTHING: every keyframe below is a sample of clownLiftState — the same exported
@@ -1951,7 +1951,7 @@ export function clownStepSvg(step: number, opts: { animate?: boolean; size?: num
   const first = stopAt(0)
   const last = stopAt(STOPS)
   const flatCoincident = !has('breath') // step 0 — walker ≡ shadow at every stop, the world is 2D
-  const landsOnShadow = k === 5 && Math.abs(last.walker.y - last.shadow.y) < (1 / 100) // the bow's end — ε = 0, the walker lands on its shadow
+  const landsOnShadow = k === 5 && abs(last.walker.y - last.shadow.y) < (1 / 100) // the bow's end — ε = 0, the walker lands on its shadow
   // the palette IS the hexagram: the act's pole-colour accent + the two trigram RGB-cube corner colours
   const pole = (n: number, len: number) => '#' + Array.from({ length: len }, (_, i) => (((n >> (len - 1 - i)) & 1) ? 'F' : '0')).join('')
   const accent = pole(act.hexagram, 6)
@@ -1990,7 +1990,7 @@ export function clownStepSvg(step: number, opts: { animate?: boolean; size?: num
   // computed event anchors — the Born snap happens AT the self-crossing (the segment's start, one sample
   // wide) and the fold/receipt at the segment's MEDIAN; the ghost fan grows by the same 1−e^(−u/T2) law the
   // Bloch vector decays by. No timing below is hand-picked.
-  const fanGrow = (u: number) => Math.round((1 - Math.exp(-u / (9 / (5 * 4)))) * 100) / 100
+  const fanGrow = (u: number) => round((1 - exp(-u / (9 / (5 * 4)))) * 100) / 100
   const beat = fractalClockDur(9 * 2) // one clown step = the d = 18 rung of the fractal clock — 6 s, 18 cycles per hero cycle
   const css = animate
     ? (has('shrink') ? `.${sc} .sy{transform-origin:179px 23px;animation:${sc}sy ${beat} ease-in-out infinite}@keyframes ${sc}sy{${Array.from({ length: 9 }, (_, j) => `${r(j * (5 * 5 / 2))}%{transform:scale(${stopAt(j * 2).shrink})}`).join('')}}` : '') +
@@ -2057,7 +2057,7 @@ export function clownActSvg(opts: { animate?: boolean; size?: number } = {}): st
   const { animate = true, size = (100 * 4) } = opts
   const act = clownActQuantumSteps()
   const bits = act.bits
-  const r = (x: number) => Math.round(x * 100) / 100
+  const r = (x: number) => round(x * 100) / 100
   const cx = CLOWN_CX, cy = CLOWN_CY, a = CLOWN_A
   const N = (16 * 6)
   const at = (j: number) => clownLiftState(j === N ? 0 : j / N) // stop 96 IS stop 0 — the re-entry
@@ -2076,9 +2076,9 @@ export function clownActSvg(opts: { animate?: boolean; size?: number } = {}): st
   const win = (from: number, to: number, on: number, permanent = false) => {
     const aPct = r((from * 100) / 6), bPct = r((to * 100) / 6)
     const head = aPct > 0 ? `0%,${aPct}%{opacity:0}` : ''
-    return permanent || bPct >= 100 ? `${head}${r(Math.min(aPct + (3 / 5), 99.9))}%,100%{opacity:${on}}` : `${head}${r(aPct + (3 / 5))}%,${bPct}%{opacity:${on}}${r(Math.min(bPct + (3 / 5), 100))}%,100%{opacity:0}`
+    return permanent || bPct >= 100 ? `${head}${r(min(aPct + (3 / 5), 99.9))}%,100%{opacity:${on}}` : `${head}${r(aPct + (3 / 5))}%,${bPct}%{opacity:${on}}${r(min(bPct + (3 / 5), 100))}%,100%{opacity:0}`
   }
-  const fanGrow = (u: number) => Math.round((1 - Math.exp(-u / (9 / (5 * 4)))) * 100) / 100
+  const fanGrow = (u: number) => round((1 - exp(-u / (9 / (5 * 4)))) * 100) / 100
   const life = fractalClockDur(3) // the whole act = 6 beats = the d = 3 rung of the fractal clock — 36 s, 3 cycles per hero cycle
   const badges = act.steps
     .map((s, k) => `<text class="b${k}" x="6" y="105" font-size="9" fill="${scaleColor(k * 6 + 2, { css: true })}" opacity="${animate ? 0 : k === 0 ? 1 : 0}" aria-hidden="true">${taxonomyIcons().entries.find((e) => e.area === s.area)?.icon ?? ''} ${s.area} · ${s.vortex} · ${CLOWN_DIM_LADDER[k]!.length}d</text>`)
@@ -2263,7 +2263,7 @@ export function describeUntilDensityRevealsGatewaysThenGraphInHue(matrix: MindMa
       ranked.slice(0, m).forEach(({ p }) => { parent[find(p[0]!)] = find(p[1]!) })
       const size = new Map<number, number>()
       for (let i = 0; i < n; i += 1) { const r = find(i); size.set(r, (size.get(r) ?? 0) + 1) }
-      return Math.max(...size.values())
+      return max(...size.values())
     }
     // describe until density: each level adds more described relations (edges)
     const levels = [2, 4, 2 * 5, 4 * 5].map((edges) => {
@@ -2311,7 +2311,7 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
       glyph: ray.glyph, // the Glagolitic rosetta glyph
       trigram: BAGUA[ray.ray + 1]!, // ray 0..6 → ☱..☷ (Home takes ☰) — 7 rays + Home = 8 trigrams
       route: ROSETTA_RAY_HUBS[ray.ray]!.route, // the real hub route (/origin../reference)
-      door: Math.floor(ray.hue / band), // 0 warm · 1 mid · 2 cool — the door from the ray's own hue
+      door: floor(ray.hue / band), // 0 warm · 1 mid · 2 cool — the door from the ray's own hue
       hue: ray.hue }))
     const doorNames = ['Ground', 'Work', 'Reach'] // the three doors (earth·human·heaven, the I Ching three powers)
     const doors = [0, 1, 2].map((d) => ({ door: d, name: doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
@@ -2323,7 +2323,7 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
     // 3 — NO REGEX CRACK, NO CATCH-ALL, NO EMPTY POLE: rays are ROSETTA_RAYS (computed), every door non-empty, all 7 rays present
     const everyDoorPopulated = doors.every((dr) => dr.rays.length > 0) && rays.length === 7 // vs the old empty-Axioms / 36-in-default
     // 4 — AGNOSTIC: the structure is computed from the rosetta tables (rays, hues, hubs) + the trigram map — path-independent
-    const agnostic = rays.every((r) => r.trigram === BAGUA[r.ray + 1] && r.door === Math.floor(r.hue / band) && r.name.length > 0)
+    const agnostic = rays.every((r) => r.trigram === BAGUA[r.ray + 1] && r.door === floor(r.hue / band) && r.name.length > 0)
     const facets = [
       { facet: `3 DOORS × 7 RAYS — the nav groups the 7 rosetta rays (${rays.map((r) => r.name).join(', ')}) into 3 doors (${doors.map((dr) => `${dr.name}:${dr.rays.length}`).join(', ')}), every ray a real hub route (${threeDoorsSevenRays}) — not 4 hardcoded poles`, on: threeDoorsSevenRays },
       { facet: `MATCHES THE I CHING — the 7 rays + Home map to the 8 bāguà trigrams (2³), each ray a distinct trigram (${rays.map((r) => r.trigram).join('')}, ${distinctTrigrams}): the nav is the rosetta (7 rays) and the I Ching (8 trigrams, 3 doors) at once`, on: distinctTrigrams },
@@ -2352,7 +2352,7 @@ export function rosettaIChingNavItems(): { en: unknown[]; bg: unknown[] } {
     nameBg: ray.nameBg,
     trigram: BAGUA[ray.ray + 1]!,
     route: ROSETTA_RAY_HUBS[ray.ray]!.route,
-    door: Math.floor(ray.hue / band) }))
+    door: floor(ray.hue / band) }))
   const doorNames = [{ en: 'Ground', bg: 'Земя' }, { en: 'Work', bg: 'Работа' }, { en: 'Reach', bg: 'Небе' }] // earth·human·heaven
   const doors = [0, 1, 2]
     .map((d) => ({ ...doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
@@ -2412,7 +2412,7 @@ export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFun
     const clock = FOLDED_CENSUS // 108 — the base to be derived, not asserted
     const factorize = (n: number): Record<number, number> => {
       const f: Record<number, number> = {}; let m = n
-      for (let p = 2; p * p <= m; p += 1) { while (m % p === 0) { f[p] = (f[p] ?? 0) + 1; m = Math.floor(m / p) } }
+      for (let p = 2; p * p <= m; p += 1) { while (m % p === 0) { f[p] = (f[p] ?? 0) + 1; m = floor(m / p) } }
       if (m > 1) f[m] = (f[m] ?? 0) + 1
       return f
     }
@@ -2459,15 +2459,15 @@ export function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryC
     const wheel = 360
     const rays = ROSETTA_RAYS.length // 7
     // 1 — THE 7 HUES ARE ⌊360·k/7⌋: each ray's sealed hue equals the 7-fold division of the wheel, exactly
-    const huesAreDivision = ROSETTA_RAYS.every((ray) => ray.hue === Math.floor((wheel * ray.ray) / rays))
+    const huesAreDivision = ROSETTA_RAYS.every((ray) => ray.hue === floor((wheel * ray.ray) / rays))
     // 2 — COPRIME 7-FOLD: gcd(7,6) = gcd(7,9) = gcd(7,10) = 1, so the 7-fold division never aliases with the vortex,
     // the digital root or the stations — the rosetta coprimality theorem
     const coprime = gcd(rays, 6) === 1 && gcd(rays, 9) === 1 && gcd(rays, 2 * 5) === 1
     // 3 — EVEN SPACING: consecutive hues differ by ⌊360/7⌋ = 51 or 52 (the regular 7-gon), never clustering
     const gaps = ROSETTA_RAYS.slice(1).map((ray, i) => ray.hue - ROSETTA_RAYS[i]!.hue)
-    const evenlySpaced = gaps.every((g) => g === Math.floor(wheel / rays) || g === Math.floor(wheel / rays) + 1) && gaps.length === rays - 1
+    const evenlySpaced = gaps.every((g) => g === floor(wheel / rays) || g === floor(wheel / rays) + 1) && gaps.length === rays - 1
     // 4 — DERIVED, NOT LISTED: recomputing the hues from 360k/7 reproduces the sealed table — change 7 and they all change
-    const derivedNotListed = huesAreDivision && ROSETTA_RAYS.map((r) => Math.floor((wheel * r.ray) / rays)).every((h, i) => h === ROSETTA_RAYS[i]!.hue)
+    const derivedNotListed = huesAreDivision && ROSETTA_RAYS.map((r) => floor((wheel * r.ray) / rays)).every((h, i) => h === ROSETTA_RAYS[i]!.hue)
     const facets = [
       { facet: `THE 7 HUES ARE ⌊360·k/7⌋ — each ray's hue (${ROSETTA_RAYS.map((r) => r.hue).join(', ')}) equals the 7-fold division of the colour wheel exactly (${huesAreDivision}): the regular 7-gon on the hue circle, a THEOREM, not arbitrary colours`, on: huesAreDivision },
       { facet: `COPRIME 7-FOLD — gcd(7,6)=gcd(7,9)=gcd(7,10)=1 (${coprime}), so the 7-fold division never aliases with the vortex (6), the digital root (9) or the stations (10) — the rosetta coprimality theorem`, on: coprime },
@@ -2529,7 +2529,7 @@ export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxio
 export function theGatesAndWaysBecomeTheNavigationAndLinks() {
   const pages = staticPages()
   const band = 360 / 3 // three hue-doors — the same partition rosettaIChingNavItems uses
-  const doorOfRay = (ray: number): number => Math.floor(ROSETTA_RAYS[ray]!.hue / band)
+  const doorOfRay = (ray: number): number => floor(ROSETTA_RAYS[ray]!.hue / band)
   const populatedRays = [...new Set(pages.map((page) => rosettaRayOfContent(page.slug, page.keywords)))] // the rays with content
   const doors = [...new Set(populatedRays.map(doorOfRay))] // the distinct hue-doors — the nav gates
   // node ids: doors, then ray-hubs, then pages — the link DAG
@@ -2584,7 +2584,7 @@ export function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnce
   let register = qubits(HEX_BITS)
   for (let q = 0; q < HEX_BITS; q += 1) register = applyGate(register, GATES.H, q) // H^⊗6 — every hexagram in superposition
   const probs = probabilities(register)
-  const allSixtyFourPresent = probs.length === HEXAGRAMS && probs.every((p) => Math.abs(p - 1 / HEXAGRAMS) < 1e-9) // each hexagram amplitude² = 1/64
+  const allSixtyFourPresent = probs.length === HEXAGRAMS && probs.every((p) => abs(p - 1 / HEXAGRAMS) < 1e-9) // each hexagram amplitude² = 1/64
   // 2 — THE ROSETTA IS THE TRIGRAM SUBSTRUCTURE: 8 bāguà (2³) → the 7 rosetta rays + Home; every hexagram carries two rays
   const rayOfTrigram = (trigram: number): string => (trigram === 0 ? 'Home' : ROSETTA_RAYS[(trigram - 1) % ROSETTA_RAYS.length]!.nameEn) // the nav's ray→trigram map, inverted
   const hexagrams = Array.from({ length: HEXAGRAMS }, (_, hex) => ({
@@ -2631,7 +2631,7 @@ export function theIChingChangingLinesAreQuantumGatesTheSixtyFourHexagramsFormTh
   const sampleHex = 2 * 5 // hexagram 10
   const changingLine = 2 // flip line 2
   const flippedProbs = probabilities(applyGate(prepare(sampleHex), GATES.X, changingLine))
-  const changingLineIsXGate = Math.abs(flippedProbs[flipLine(sampleHex, changingLine)]! - 1) < 1e-9 // the register is now the flipped hexagram
+  const changingLineIsXGate = abs(flippedProbs[flipLine(sampleHex, changingLine)]! - 1) < 1e-9 // the register is now the flipped hexagram
   // 2 — THE 64 FORM THE HYPERCUBE Q₆: each hexagram adjacent to exactly 6 others (one changing line), 6·64/2 edges
   const sixRegular = Array.from({ length: HEXAGRAMS }, (_, hex) => new Set(Array.from({ length: HEX_BITS }, (_, line) => flipLine(hex, line))).size === HEX_BITS).every(Boolean)
   const edgeCount = (HEXAGRAMS * HEX_BITS) / 2 // 192 changing-line edges
@@ -2710,13 +2710,13 @@ export function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTyp
   const rays = ROSETTA_RAYS.length // 7
   // 1 — PALETTE DERIVED: the hues are ⌊360k/rays⌋ — evenly spaced, not assumed
   const hues = ROSETTA_RAYS.map((ray) => ray.hue)
-  const paletteDerived = hues.every((hue, k) => hue === Math.floor((360 * k) / rays)) && new Set(hues).size === rays
+  const paletteDerived = hues.every((hue, k) => hue === floor((360 * k) / rays)) && new Set(hues).size === rays
   // 2 — TYPOGRAPHY DERIVED: a modular scale = powers of φ (each step ×φ), no assumed sizes
   const typeScale = [0, 1, 2, 3, 2 + 2].map((step) => PHI ** step)
-  const typographyDerived = typeScale.slice(1).every((size, i) => Math.abs(size / typeScale[i]! - PHI) < 1e-9)
+  const typographyDerived = typeScale.slice(1).every((size, i) => abs(size / typeScale[i]! - PHI) < 1e-9)
   // 3 — SPACING DERIVED: the base spacing unit and its steps are golden-ratio scaled, no hand-tuned pixels
   const spacing = [1, PHI, PHI ** 2].map((s) => roundTo(s, 4))
-  const spacingDerived = spacing.length === 3 && Math.abs(spacing[1]! / spacing[0]! - PHI) < 1e-2
+  const spacingDerived = spacing.length === 3 && abs(spacing[1]! / spacing[0]! - PHI) < 1e-2
   // 4 — NO ASSUMPTION: every design value derives from φ or the hue formula — the UI computes itself
   const noAssumption = paletteDerived && typographyDerived && spacingDerived
   const facets = [

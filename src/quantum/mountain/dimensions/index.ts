@@ -1,7 +1,7 @@
 // ☰ Qián · Heaven · creative (the 10 dimensions are the model) · upper·yang · shrink — continuous 10D hero axes: 6 cross-fold appearance + 4 genus-2 homology loops, self-similar at every scale
 import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../wind/types'
-import { merkleFold, toUuid, gcd } from '../../../0'
+import { abs, cos, gcd, max, merkleFold, min, round, sin, sqrt, toUuid } from '../../../0'
 import { buildMatrix } from '../../../heaven/compute'
 import { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7'
 export { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -50,24 +50,24 @@ export function dims(p: number, scale = 0): Dims {
   const tau = ps * TAU
   return {
     // the six cross-fold axes — identical to the original six when scale = 0 (backward compatible).
-    spread: (1 / 2) + (8 / (5 * 5)) * Math.sin(tau),
-    depthFade: (4 / (5 * 5)) + (3 / (5 * 5)) * ((1 / 2) + (1 / 2) * Math.cos(tau)),
+    spread: (1 / 2) + (8 / (5 * 5)) * sin(tau),
+    depthFade: (4 / (5 * 5)) + (3 / (5 * 5)) * ((1 / 2) + (1 / 2) * cos(tau)),
     hueShift: (ps * (4 + 216)) % 360,
-    twist: (1 / 5) + (1 / 2) * Math.sin(tau * 4 + GOLDEN_ANGLE_RAD), // rate 4 (free integer) — period-1, seamless at the loop; was rate 1/2 (broke periodicity)
-    shrink: (16 / (5 * 5)) + (2 / (5 * 5)) * Math.sin(tau * 6), // rate 6 (free integer) — period-1, seamless; was rate 3/2
-    breath: (1 - 3 / (5 * 4)) + (3 / (5 * 4)) * Math.sin(tau * 2),
+    twist: (1 / 5) + (1 / 2) * sin(tau * 4 + GOLDEN_ANGLE_RAD), // rate 4 (free integer) — period-1, seamless at the loop; was rate 1/2 (broke periodicity)
+    shrink: (16 / (5 * 5)) + (2 / (5 * 5)) * sin(tau * 6), // rate 6 (free integer) — period-1, seamless; was rate 3/2
+    breath: (1 - 3 / (5 * 4)) + (3 / (5 * 4)) * sin(tau * 2),
     // the four homology loops — two handles, meridian + longitude, at coprime rates (1,2 and 3,5) so the
     // genus-2 torus motion is quasiperiodic, in [-1, 1].
-    loopA1: Math.sin(tau + GOLDEN_ANGLE_RAD), // +φ-phase — was identical to the spread axis (the 10D fake)
-    loopB1: Math.cos(tau * 2),
-    loopA2: Math.sin(tau * 3),
-    loopB2: Math.cos(tau * 5) }
+    loopA1: sin(tau + GOLDEN_ANGLE_RAD), // +φ-phase — was identical to the spread axis (the 10D fake)
+    loopB1: cos(tau * 2),
+    loopA2: sin(tau * 3),
+    loopB2: cos(tau * 5) }
 }
 
 // The dimension walk: 0 at the ends (the figure collapses to a point), 1 at the middle (fully open).
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
 export function dimWalk(p: number): number {
-  return (1 / 2) - (1 / 2) * Math.cos(p * TAU)
+  return (1 / 2) - (1 / 2) * cos(p * TAU)
 }
 
 /** Ten dimensions at every scale — genus-2 homology + cross-fold axes (no ui require cycle). */
@@ -108,20 +108,20 @@ export function animationsAreGenuinely10DNotFaked(matrix: MindMatrix = buildMatr
   const channels: (keyof Dims)[] = ['spread', 'depthFade', 'hueShift', 'twist', 'shrink', 'breath', 'loopA1', 'loopB1', 'loopA2', 'loopB2']
   const samples = Array.from({ length: 64 }, (_unused, i) => dims(i / 64, 0))
   // (1) each channel is NON-CONSTANT — it actually moves (range above a threshold over the cycle)
-  const ranges = channels.map((key) => { const values = samples.map((s) => s[key]); return Math.max(...values) - Math.min(...values) })
+  const ranges = channels.map((key) => { const values = samples.map((s) => s[key]); return max(...values) - min(...values) })
   const allMove = ranges.every((range) => range > 1 / (5 * 5))
   // (2) the channels are INDEPENDENT — no two are near-identical (max abs correlation over the cycle < 0.99)
-  const corr = (a: number[], b: number[]) => { const n = a.length, ma = a.reduce((s, x) => s + x, 0) / n, mb = b.reduce((s, x) => s + x, 0) / n; let num = 0, da = 0, db = 0; for (let i = 0; i < n; i += 1) { const x = a[i]! - ma, y = b[i]! - mb; num += x * y; da += x * x; db += y * y } return da && db ? num / Math.sqrt(da * db) : 0 }
+  const corr = (a: number[], b: number[]) => { const n = a.length, ma = a.reduce((s, x) => s + x, 0) / n, mb = b.reduce((s, x) => s + x, 0) / n; let num = 0, da = 0, db = 0; for (let i = 0; i < n; i += 1) { const x = a[i]! - ma, y = b[i]! - mb; num += x * y; da += x * x; db += y * y } return da && db ? num / sqrt(da * db) : 0 }
   const series = channels.map((key) => samples.map((s) => s[key]))
   let maxOffDiag = 0
-  for (let i = 0; i < series.length; i += 1) for (let j = i + 1; j < series.length; j += 1) maxOffDiag = Math.max(maxOffDiag, Math.abs(corr(series[i]!, series[j]!)))
+  for (let i = 0; i < series.length; i += 1) for (let j = i + 1; j < series.length; j += 1) maxOffDiag = max(maxOffDiag, abs(corr(series[i]!, series[j]!)))
   const independent = maxOffDiag < (100 - 1) / 100
   // (3) the four loops are the genus-2 H₁ = ℤ⁴ — rank four, from the topology, not asserted
   const rank4 = homology(matrix).rank === 4 && channels.filter((key) => key.startsWith('loop')).length === 4
   // (4) quasiperiodic — the loop rates are coprime (1,2 and 3,5) so the joint motion never repeats
   const coprimeRates = gcd(1, 2) === 1 && gcd(3, 5) === 1
   const facets = [
-    { facet: `the 10D field is REAL — dims() yields ${channels.length} channels (6 cross-fold axes + 4 homology loops), and every one MOVES over the cycle (min range ${(Math.min(...ranges)).toFixed(3)} > threshold): not a padded 2D scene`, on: channels.length === (5 * 2) && allMove },
+    { facet: `the 10D field is REAL — dims() yields ${channels.length} channels (6 cross-fold axes + 4 homology loops), and every one MOVES over the cycle (min range ${(min(...ranges)).toFixed(3)} > threshold): not a padded 2D scene`, on: channels.length === (5 * 2) && allMove },
     { facet: `the ten channels are INDEPENDENT — the largest off-diagonal correlation is ${maxOffDiag.toFixed(3)} < 0.99: no channel is a copy of another, so all ten carry distinct information`, on: independent },
     { facet: 'the four loops ARE the genus-2 homology — H₁(Σ₂) = ℤ⁴, rank four from mountain/topology, not asserted: the loops are the torus, the axes are its appearance', on: rank4 },
     { facet: 'genuinely 10D means QUASIPERIODIC — the loop rates (1,2 and 3,5) are coprime, so the joint motion never exactly repeats: a real 10D field, not a short loop dressed up', on: coprimeRates },
@@ -130,7 +130,7 @@ export function animationsAreGenuinely10DNotFaked(matrix: MindMatrix = buildMatr
   return {
     genuine: facets.every((entry) => entry.on),
     channels: channels.length,
-    maxCorrelation: Math.round(maxOffDiag * (5 * 2) ** 3) / (5 * 2) ** 3,
+    maxCorrelation: round(maxOffDiag * (5 * 2) ** 3) / (5 * 2) ** 3,
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),

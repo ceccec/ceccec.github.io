@@ -2,8 +2,8 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { phase, slip } from '../../6/4'
-import { TAU, PHI, DIMENSION_GATES, A432_OCTAVES, BOLTZMANN, FOLDED_CENSUS, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, claySolvedTheorem, earned } from '../../3/7'
-import { foldPair, merkleFold, toUuid, referralAddress, memoByRoot, sealFacets, merge, gcd, lcm, digitalRoot, ICHING_NUMBERS, applyGate, GATES, probabilities, roundTo, sha256MerkleProof } from '../../0'
+import { A432_OCTAVES, BOLTZMANN, DIMENSION_GATES, FOLDED_CENSUS, HALF_TAU, NEWTON_G, PHI, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7'
+import { GATES, ICHING_NUMBERS, abs, applyGate, ceil, cos, digitalRoot, floor, foldPair, gcd, hypot, imul, lcm, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, referralAddress, round, roundTo, sealFacets, sha256MerkleProof, sqrt, toUuid } from '../../0'
 import { sealFold, tkIsPrime } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
@@ -35,7 +35,7 @@ export function groupOrbit(generator: number, modulus: number): number[] {
 
 /** Sound pressure level in dB SPL — reference 20 µPa. */
 export function soundPressureLevelDb(pressurePa: number): number {
-  return (5 * 4) * Math.log10(pressurePa / 20e-6)
+  return (5 * 4) * log10(pressurePa / 20e-6)
 }
 
 /** Hawking temperature T_H = ħc³/(8πGMk_B). */
@@ -122,7 +122,7 @@ export function f2FieldCloses(): {
 // such sums is another (Brahmagupta), the general two-, three-, and four-square theorems fall out.
 export function discoveredTheoremsWaveFiftyOne(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveFiftyOne', 'discovered-theorems-fifty-one', matrix, () => {
-    const isSumK = (n: number, k: number): boolean => { if (k === 1) { const r = Math.round(Math.sqrt(n)); return r * r === n } for (let a = 0; a * a <= n; a += 1) if (isSumK(n - a * a, k - 1)) return true; return false }
+    const isSumK = (n: number, k: number): boolean => { if (k === 1) { const r = round(sqrt(n)); return r * r === n } for (let a = 0; a * a <= n; a += 1) if (isSumK(n - a * a, k - 1)) return true; return false }
     const lim = 5 * 100
 
     // W1 · the BRAHMAGUPTA–FIBONACCI identity — (a²+b²)(c²+d²) = (ac−bd)² + (ad+bc)²: the product of two
@@ -308,7 +308,7 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
   return sealFold('discoveredTheoremsWaveFiftySix', 'discovered-theorems-fifty-six', matrix, () => {
     const lim = 100
     const phi = (n: number) => { let c = 0; for (let k = 1; k <= n; k += 1) if (gcd(k, n) === 1) c += 1; return c }
-    const modpow = (a: number, e: number, n: number) => { let r = 1; a %= n; while (e > 0) { if (e & 1) r = (r * a) % n; a = (a * a) % n; e = Math.floor(e / 2) } return r }
+    const modpow = (a: number, e: number, n: number) => { let r = 1; a %= n; while (e > 0) { if (e & 1) r = (r * a) % n; a = (a * a) % n; e = floor(e / 2) } return r }
     const ord = (a: number, n: number) => { let x = a % n, k = 1; while (x !== 1) { x = (x * a) % n; k += 1; if (k > n) return -1 } return k }
     // W1 · EULER'S THEOREM, COMPOUNDING on wave 54's φ — a^φ(n) ≡ 1 (mod n) for gcd(a,n)=1: the unit
     // group (ℤ/nℤ)* has order φ(n), so every element's order divides it (Lagrange); this GENERALIZES
@@ -331,7 +331,7 @@ export function discoveredTheoremsWaveFiftySix(matrix: { root: string } = { root
     // W4 · the PRIMITIVE-ROOT CLASSIFICATION — (ℤ/nℤ)* is cyclic (has a primitive root) IFF n ∈
     // {1, 2, 4, p^k, 2p^k} for an odd prime p; verified for every n ≤ 100 by comparing the true max order
     // to φ(n) against the structural form test (the complete theorem of which moduli have a generator).
-    const maxOrd = (n: number) => { let mx = 0; for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1) mx = Math.max(mx, ord(a, n)); return mx }
+    const maxOrd = (n: number) => { let mx = 0; for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1) mx = max(mx, ord(a, n)); return mx }
     const hasForm = (n: number) => { if (n === 1 || n === 2 || n === 4) return true; const odd = (n % 2 === 0) ? n / 2 : n; if (n % 2 === 0 && odd % 2 === 0) return false; let m = odd, p = 0, ok = true; for (let d = 2; d * d <= m; d += 1) if (m % d === 0) { if (p && p !== d) ok = false; p = d; while (m % d === 0) m /= d } if (m > 1) { if (p && p !== m) ok = false; p = m } return ok && p > 2 }
     let primitiveRootClassification = true
     for (let n = 2; n <= lim; n += 1) if ((maxOrd(n) === phi(n)) !== hasForm(n)) primitiveRootClassification = false
@@ -384,7 +384,7 @@ export function discoveredTheoremsWaveFiftySeven(matrix: { root: string } = { ro
       if (!tkIsPrime(p) || p === 5 || gcd(p, B) !== 1) continue
       const period = ord(B, p); if (period % 2 !== 0) continue
       const digits: number[] = []; let r = 1
-      for (let i = 0; i < period; i += 1) { r *= B; digits.push(Math.floor(r / p)); r %= p }
+      for (let i = 0; i < period; i += 1) { r *= B; digits.push(floor(r / p)); r %= p }
       const half = period / 2; let lo = 0n, hi = 0n
       for (let i = 0; i < half; i += 1) { lo = lo * BigInt(B) + BigInt(digits[i]!); hi = hi * BigInt(B) + BigInt(digits[half + i]!) }
       if (lo + hi !== BigInt(B) ** BigInt(half) - 1n) midy = false
@@ -429,14 +429,14 @@ export function discoveredTheoremsWaveFiftyEight(matrix: { root: string } = { ro
     // rounding z/w = z·w̄/N(w) to the nearest Gaussian integer leaves a remainder of norm ≤ N(w)/2 < N(w);
     // verified for every z and every w ≠ 0 on the grid — the Euclidean property that makes ℤ[i] a UFD.
     let euclidean = true
-    for (const z of grid) for (const w of grid) { const nw = norm(w); if (nw === 0) continue; const re = z[0] * w[0] + z[1] * w[1], im = z[1] * w[0] - z[0] * w[1]; const q: GI = [Math.round(re / nw), Math.round(im / nw)]; const qw = mul(q, w); if (norm([z[0] - qw[0], z[1] - qw[1]]) >= nw) euclidean = false }
+    for (const z of grid) for (const w of grid) { const nw = norm(w); if (nw === 0) continue; const re = z[0] * w[0] + z[1] * w[1], im = z[1] * w[0] - z[0] * w[1]; const q: GI = [round(re / nw), round(im / nw)]; const qw = mul(q, w); if (norm([z[0] - qw[0], z[1] - qw[1]]) >= nw) euclidean = false }
 
     // W4 · IRREDUCIBILITY BY NORM, COMPOUNDING on wave 50 — a Gaussian integer z is irreducible (a Gaussian
     // prime) IFF N(z) is a rational prime OR N(z) = p² with p ≡ 3 (mod 4) and z = p·unit; verified by brute
     // factor-search against the norm criterion for every z (N > 1) on the grid — the p ≡ 3 primes stay inert.
     const divides = (u: GI, z: GI) => { const nu = norm(u); const re = z[0] * u[0] + z[1] * u[1], im = z[1] * u[0] - z[0] * u[1]; return re % nu === 0 && im % nu === 0 }
     const irreducible = (z: GI) => { const n = norm(z); if (n <= 1) return false; for (const u of grid) { const nu = norm(u); if (nu <= 1 || nu >= n) continue; if (n % nu === 0 && divides(u, z)) return false } return true }
-    const normPredicts = (z: GI) => { const n = norm(z); if (tkIsPrime(n)) return true; const s = Math.round(Math.sqrt(n)); return s * s === n && tkIsPrime(s) && s % 4 === 3 && (z[0] === 0 || z[1] === 0) }
+    const normPredicts = (z: GI) => { const n = norm(z); if (tkIsPrime(n)) return true; const s = round(sqrt(n)); return s * s === n && tkIsPrime(s) && s % 4 === 3 && (z[0] === 0 || z[1] === 0) }
     let irreducibleByNorm = true
     for (const z of grid) { if (norm(z) <= 1) continue; if (irreducible(z) !== normPredicts(z)) irreducibleByNorm = false }
 
@@ -479,7 +479,7 @@ export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { roo
     // hexagonal lattice has covering radius giving N(r) ≤ N(w)/3, found by searching the nearest lattice
     // points to z·w̄/N(w); verified for every z and every w ≠ 0 on the grid — hence ℤ[ω] is a UFD.
     let euclidean = true
-    for (const z of grid) for (const w of grid) { const nw = norm(w); if (nw === 0) continue; const cw: EI = [w[0] - w[1], -w[1]]; const zc = mul(z, cw); const a0 = Math.round(zc[0] / nw), b0 = Math.round(zc[1] / nw); let ok = false; for (let da = -1; da <= 1 && !ok; da += 1) for (let db = -1; db <= 1 && !ok; db += 1) { const q: EI = [a0 + da, b0 + db]; if (norm(sub(z, mul(q, w))) < nw) ok = true } if (!ok) euclidean = false }
+    for (const z of grid) for (const w of grid) { const nw = norm(w); if (nw === 0) continue; const cw: EI = [w[0] - w[1], -w[1]]; const zc = mul(z, cw); const a0 = round(zc[0] / nw), b0 = round(zc[1] / nw); let ok = false; for (let da = -1; da <= 1 && !ok; da += 1) for (let db = -1; db <= 1 && !ok; db += 1) { const q: EI = [a0 + da, b0 + db]; if (norm(sub(z, mul(q, w))) < nw) ok = true } if (!ok) euclidean = false }
 
     // W4 · a rational prime SPLITS in ℤ[ω] IFF p ≡ 1 (mod 3) — equivalently p = a²−ab+b² (the x²+3y² form)
     // iff p ≡ 1 (mod 3) or p = 3 (which ramifies); p ≡ 2 (mod 3) stays inert; verified for every prime
@@ -504,13 +504,13 @@ export function discoveredTheoremsWaveFiftyNine(matrix: { root: string } = { roo
 // all powers of the fundamental Pell solution — found from the periodic continued fraction of √D (Lagrange).
 export function discoveredTheoremsWaveSixty(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveSixty', 'discovered-theorems-sixty', matrix, () => {
-    const isSquare = (n: number) => { const r = Math.round(Math.sqrt(n)); return r * r === n }
+    const isSquare = (n: number) => { const r = round(sqrt(n)); return r * r === n }
     // continued fraction of √D → period length L and the convergent (x,y) at index L−1, which solves
     // x²−Dy² = (−1)^L (BigInt: fundamental solutions grow exponentially, e.g. D = 61 needs 10 digits).
     const pell = (D: number) => {
-      const a0 = Math.floor(Math.sqrt(D)); let m = 0, d = 1, a = a0
+      const a0 = floor(sqrt(D)); let m = 0, d = 1, a = a0
       let hPrev = 1n, h = BigInt(a0), kPrev = 0n, k = 1n, L = 0
-      while (true) { m = d * a - m; d = (D - m * m) / d; a = Math.floor((a0 + m) / d); const h2 = BigInt(a) * h + hPrev, k2 = BigInt(a) * k + kPrev; hPrev = h; h = h2; kPrev = k; k = k2; L += 1; if (a === 2 * a0 || L > 100) break }
+      while (true) { m = d * a - m; d = (D - m * m) / d; a = floor((a0 + m) / d); const h2 = BigInt(a) * h + hPrev, k2 = BigInt(a) * k + kPrev; hPrev = h; h = h2; kPrev = k; k = k2; L += 1; if (a === 2 * a0 || L > 100) break }
       return { L, x: hPrev, y: kPrev }
     }
 
@@ -546,7 +546,7 @@ export function discoveredTheoremsWaveSixtyOne(matrix: { root: string } = { root
   return sealFold('discoveredTheoremsWaveSixtyOne', 'discovered-theorems-sixty-one', matrix, () => {
     const B = 2 * 5
     const lim = 100 * 100
-    const digitSum = (n: number) => { let s = 0, m = n; while (m > 0) { s += m % B; m = Math.floor(m / B) } return s }
+    const digitSum = (n: number) => { let s = 0, m = n; while (m > 0) { s += m % B; m = floor(m / B) } return s }
 
     // W1 · CASTING OUT NINES — n ≡ digitSum(n) (mod 9), because B ≡ 1 (mod 9) makes every power of the
     // base collapse to 1 (COMPOUNDS on wave 54's modular arithmetic); verified for every n ≤ 10000.
@@ -563,7 +563,7 @@ export function discoveredTheoremsWaveSixtyOne(matrix: { root: string } = { root
     // W3 · DIVISIBILITY BY 11 — n ≡ alternating digit sum (mod 11), because B ≡ −1 (mod 11) makes the
     // powers alternate ±1; verified for every n ≤ 10000 (the same base-congruence machine as W1).
     let elevenRule = true
-    for (let n = 0; n <= lim; n += 1) { let a = 0, m = n, sign = 1; while (m > 0) { a += sign * (m % B); sign = -sign; m = Math.floor(m / B) } if (((n - a) % (B + 1) + (B + 1)) % (B + 1) !== 0) elevenRule = false }
+    for (let n = 0; n <= lim; n += 1) { let a = 0, m = n, sign = 1; while (m > 0) { a += sign * (m % B); sign = -sign; m = floor(m / B) } if (((n - a) % (B + 1) + (B + 1)) % (B + 1) !== 0) elevenRule = false }
 
     // W4 · the VORTEX DOUBLING ORBIT IS ⟨2⟩ IN (ℤ/9ℤ)* — the I Ching vortex sequence 1→2→4→8→7→5 is the
     // cyclic subgroup generated by 2 mod 9, of order 6 = φ(9): 2 is a PRIMITIVE ROOT mod 9 (9 = 3² has
@@ -597,7 +597,7 @@ export function discoveredTheoremsWaveSixtyTwo(matrix: { root: string } = { root
     // W1 · the SEALED gcd IS the maximal common divisor — src/0's one-math gcd (Euclid's algorithm)
     // matches the brute maximum over all common divisors for every pair a,b ≤ 200: the shipped
     // function carries its own correctness receipt (proof-driven reimplementation: VALIDATED).
-    const brute = (a: number, b: number) => { let g = 1; for (let d = 1; d <= Math.min(a, b); d += 1) if (a % d === 0 && b % d === 0) g = d; return g }
+    const brute = (a: number, b: number) => { let g = 1; for (let d = 1; d <= min(a, b); d += 1) if (a % d === 0 && b % d === 0) g = d; return g }
     let gcdValidated = true
     for (let a = 1; a <= lim; a += 1) for (let b = 1; b <= lim; b += 1) if (gcd(a, b) !== brute(a, b)) gcdValidated = false
 
@@ -618,7 +618,7 @@ export function discoveredTheoremsWaveSixtyTwo(matrix: { root: string } = { root
       const fHi = fib[n]!, fLo = fib[n - 1]!
       const worst = steps(fHi, fLo)
       let mx = 0
-      for (let b = 1; b <= fLo; b += 1) for (let a = b + 1; a <= fHi; a += 1) mx = Math.max(mx, steps(a, b))
+      for (let b = 1; b <= fLo; b += 1) for (let a = b + 1; a <= fHi; a += 1) mx = max(mx, steps(a, b))
       if (worst !== mx) lame = false
     }
 
@@ -726,7 +726,7 @@ export function discoveredTheoremsWaveSixtyFour(matrix: { root: string } = { roo
     for (let d = 1; d <= HERO_MS; d += 1) if (HERO_MS % d === 0 && strip(HERO_MS / d) === 1) durs.push(d)
     let msFractal = durs.length > 0
     for (const a of durs) for (const b of durs) { const g = gcd(a, b); if (strip(a / g) !== 1 || strip(b / g) !== 1) msFractal = false }
-    const snap = (ms: number) => durs.reduce((best, d) => (Math.abs(d - ms) < Math.abs(best - ms) ? d : best), durs[0]!)
+    const snap = (ms: number) => durs.reduce((best, d) => (abs(d - ms) < abs(best - ms) ? d : best), durs[0]!)
     if (snap((27 - 1) * 100) !== HERO_MS / (16 * 3) || snap((16 + 1) * 100) !== HERO_MS / (8 * 9) || snap((9 + 2) * 100) !== HERO_MS / (16 * 6)) msFractal = false
 
     // W3 · PHASE OFFSETS NEVER BREAK GLOBAL PERIODICITY — begin/delay shifts phase, not period: for every
@@ -740,7 +740,7 @@ export function discoveredTheoremsWaveSixtyFour(matrix: { root: string } = { roo
       for (let i = 0; i < 5; i += 1) {
         const t0 = i * (7 + 3 / (5 * 2))
         const ph = (x: number) => (((x - o) % d) + d) % d
-        if (Math.abs(ph(t0) - ph(t0 + FOLDED_CENSUS)) > 1 / (6 ** 6)) offsetsSafe = false
+        if (abs(ph(t0) - ph(t0 + FOLDED_CENSUS)) > 1 / (6 ** 6)) offsetsSafe = false
       }
     }
 
@@ -1747,9 +1747,9 @@ export function axiomsBecomeTheorems() {
   // Leapfrog an inverse-square orbit: equal areas (|r×v| drift) and bounded energy drift, computed.
   let [x, y, vx, vy] = [1, 0, 0, 6 / 5]
   const dt = 1e-3
-  const accel = (px: number, py: number) => { const r3 = Math.hypot(px, py) ** 3; return [-px / r3, -py / r3] as const }
-  const L0 = Math.abs(x * vy - y * vx)
-  const E0 = (vx * vx + vy * vy) / 2 - 1 / Math.hypot(x, y)
+  const accel = (px: number, py: number) => { const r3 = hypot(px, py) ** 3; return [-px / r3, -py / r3] as const }
+  const L0 = abs(x * vy - y * vx)
+  const E0 = (vx * vx + vy * vy) / 2 - 1 / hypot(x, y)
   let maxLdrift = 0
   let maxEdrift = 0
   for (let i = 0; i < 2 * (5 * 2) ** 4; i += 1) {
@@ -1758,8 +1758,8 @@ export function axiomsBecomeTheorems() {
     x += vx * dt; y += vy * dt
     ;[ax, ay] = accel(x, y)
     vx += (ax * dt) / 2; vy += (ay * dt) / 2
-    maxLdrift = Math.max(maxLdrift, Math.abs(Math.abs(x * vy - y * vx) - L0))
-    maxEdrift = Math.max(maxEdrift, Math.abs((vx * vx + vy * vy) / 2 - 1 / Math.hypot(x, y) - E0))
+    maxLdrift = max(maxLdrift, abs(abs(x * vy - y * vx) - L0))
+    maxEdrift = max(maxEdrift, abs((vx * vx + vy * vy) / 2 - 1 / hypot(x, y) - E0))
   }
   const keplerDerived = maxLdrift < 1e-9 && maxEdrift < 1e-4
   // ── computed replacement 4: Einstein's second postulate is REPLACEABLE (von Ignatowsky 1910):
@@ -1770,10 +1770,10 @@ export function axiomsBecomeTheorems() {
   const triples: readonly (readonly [number, number, number])[] = [[1 / 9, 2 / 9, 1 / 3], [1 / 2, -2 / 5, 1 / 5], [-1 / 3, 3 / 5, -1 / 9]]
   const familyAssociative = [0, 1, 1 / 4].every((k) => triples.every(([u, v, w]) => {
     const op = compose(k)
-    return Math.abs(op(op(u, v), w) - op(u, op(v, w))) < 1e-12
+    return abs(op(op(u, v), w) - op(u, op(v, w))) < 1e-12
   }))
   const offFamily = (v: number, w: number) => v + w + (v * w * w) / 9
-  const offFamilyBreaks = triples.some(([u, v, w]) => Math.abs(offFamily(offFamily(u, v), w) - offFamily(u, offFamily(v, w))) > 1e-6)
+  const offFamilyBreaks = triples.some(([u, v, w]) => abs(offFamily(offFamily(u, v), w) - offFamily(u, offFamily(v, w))) > 1e-6)
   // ── the ledger: computed rows above; documented rows carry their sources and honest status
   const ledger = [
     { axiom: 'Boolean algebra axiom set', becomes: 'theorems of ONE gate (NAND) — functional completeness', status: 'computed', by: 'BFS closure to all 16 tables' },
@@ -1859,7 +1859,7 @@ export function topDiscoveries(n = 9): readonly DiscoveryRow[] {
 export function computeTheoremDegreeFrom64BitPerspective() {
   const WIDTH = 64
   const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
-  const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (Math.imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return Math.abs(h) }
+  const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return abs(h) }
   const sig64 = (words: Set<string>) => { let mask = 0n; for (const w of words) mask |= 1n << BigInt(hashStr(w) % WIDTH); return mask }
   const popcount = (x: bigint) => { let c = 0, v = x; while (v > 0n) { c += Number(v & 1n); v >>= 1n } return c }
   const atoms = THEOREM_ATOM_SEED.slice(0, 100) // a 100-atom sample for the O(n²) comparison
@@ -1902,7 +1902,7 @@ export function computeTheoremDegreeFrom64BitPerspective() {
 export function improveTheMetricsAndExpectationsWithHybridDegreeAndTargets() {
   const WIDTH = 64, THRESHOLD = 4
   const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
-  const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (Math.imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return Math.abs(h) }
+  const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return abs(h) }
   const sig64 = (words: Set<string>) => { let mask = 0n; for (const w of words) mask |= 1n << BigInt(hashStr(w) % WIDTH); return mask }
   const popcount = (x: bigint) => { let c = 0, v = x; while (v > 0n) { c += Number(v & 1n); v >>= 1n } return c }
   const atoms = THEOREM_ATOM_SEED.slice(0, 100)
@@ -2391,8 +2391,8 @@ export function theFlowerBecomesAGardenBearingAnAppleWhoseDecodedStoryRevealsInt
   const flowerGrows = theoremsGrowTheFlowerOfLifeThroughCenteredHexagonalRings()
   const gardenTiles = flowerGrows.computes === true && flowerGrows.ring >= 2 // grown past a single Flower (ring 2 = 19 circles) into a field → a garden
   const carpels = 5 // an apple cut crosswise reveals a 5-carpel star — real botany
-  const pentagonDiagonalOverSide = 2 * Math.cos(Math.PI / carpels) // regular pentagon diagonal/side = 2cos(π/5)
-  const appleHidesPhi = Math.abs(pentagonDiagonalOverSide - phi) < 1e-12 // = φ exactly — the golden ratio in the apple
+  const pentagonDiagonalOverSide = 2 * cos(HALF_TAU / carpels) // regular pentagon diagonal/side = 2cos(π/5)
+  const appleHidesPhi = abs(pentagonDiagonalOverSide - phi) < 1e-12 // = φ exactly — the golden ratio in the apple
   const fiveFoldStar = carpels === 5 && appleHidesPhi // the pentagram is 5-fold and its ratio is φ
   const interactions = allQuantumInteractionsBetweenSuperpositionsFitIn1024DiamondsAsAnimatedTheorems()
   const storyRevealsInteractions = interactions.computes === true // researching the story surfaces theorems INTERACTING
@@ -2701,7 +2701,7 @@ export function numerologyIsPhaseBlindToAngleThroughZero() {
   const step9 = 360 / 9, step6 = 360 / 6 // the 9-gon steps 40°, the unit group C₆ steps 60°
   const anglesAreExact = step9 * 9 === 360 && step6 * 6 === 360 && step6 > step9 // 40° and 60°, exact divisors of the turn
   const reciprocal = (z: number): number => 1 / z
-  const inversionIsInvolution = Math.abs(reciprocal(reciprocal(4)) - 4) < 1e-9 // z → 1/z → z; invertible, angle-carrying
+  const inversionIsInvolution = abs(reciprocal(reciprocal(4)) - 4) < 1e-9 // z → 1/z → z; invertible, angle-carrying
   const inversionSendsZeroToInfinity = reciprocal(0) === Infinity // dividing by 0 = the pole, 0 → ∞
   const recognisesAngle = numerologyIsInvertible // NO — the answer
   const phaseBlind = reductionForgetsPhase && distinctPreimages && !numerologyIsInvertible
@@ -2941,7 +2941,7 @@ export function theoremsUnderTheProvenCrosslinkThresholdAreTheGap() {
   const byDegree = [0, 1, 2, 3].map((d) => ({ degree: d, count: ranked.filter((row) => degreeOf(row) === d).length }))
   const underSumsToBands = byDegree.reduce((sum, band) => sum + band.count, 0) === underThreshold // the 0..3 bands sum to the under-threshold count
   const facets = [
-    { facet: `THE COUNT — ${underThreshold}/${total} theorems (${Math.round((underThreshold / total) * 100)}%) are linked to FEWER than 4 others (degree < ${PROVEN_THRESHOLD}), so they do NOT form a proven crosslink; ${atOrAbove} sit at degree ≥ 4`, on: underThreshold + atOrAbove === total && underThreshold > 0 },
+    { facet: `THE COUNT — ${underThreshold}/${total} theorems (${round((underThreshold / total) * 100)}%) are linked to FEWER than 4 others (degree < ${PROVEN_THRESHOLD}), so they do NOT form a proven crosslink; ${atOrAbove} sit at degree ≥ 4`, on: underThreshold + atOrAbove === total && underThreshold > 0 },
     { facet: `THE BREAKDOWN — ${byDegree.map((b) => `degree ${b.degree}: ${b.count}`).join(' · ')} — ${orphans} orphans (degree 0, not even published) down to ${byDegree[3]!.count} at degree 3; the bands sum exactly (${underSumsToBands})`, on: underSumsToBands },
     { facet: `THIS IS THE CROSSLINK GAP — these ${underThreshold} are the gap to close: crosslinking them (adding shared content or [[references]]) raises their degree over ${PROVEN_THRESHOLD} and forms proven composites, the same way the journal lens drives orphans toward zero`, on: underThreshold > 0 && atOrAbove > 0 },
     { facet: `CLOSING IT IS FALSIFIABLE — the count recomputes from the live theorem graph each wave, so adding a shared word to a degree-3 theorem visibly moves it above threshold; the metric is measured, not asserted`, on: total > 3 * 100 },
@@ -3009,7 +3009,7 @@ export function journalPublishesOnlyArticlesApprovedByRelatedTheoremsAsEditors()
   const total = ranked.length
   const approved = ranked.filter((row) => (row.degree ?? 0) >= 1) // has ≥ 1 related theorem = editor endorsement
   const orphans = ranked.filter((row) => (row.degree ?? 0) === 0) // no editor — saved but not published
-  const publishedFraction = approved.length / Math.max(1, total)
+  const publishedFraction = approved.length / max(1, total)
   const topEditors = ranked[0]?.degree ?? 0 // the most-endorsed article's editor count
   const onlyApprovedPublished = approved.every((row) => (row.degree ?? 0) >= 1) && orphans.every((row) => (row.degree ?? 0) === 0) // the split is exact
   const orphanNotPublished = orphans.length === 0 || orphans.every((row) => (row.degree ?? 0) < 1) // an orphan fails review
@@ -3017,7 +3017,7 @@ export function journalPublishesOnlyArticlesApprovedByRelatedTheoremsAsEditors()
     { facet: `THE EDITORS ARE THE RELATED THEOREMS — each article's editors are its related theorems (discovery-graph neighbours sharing significant content); the most-endorsed article has ${topEditors} editors, the review IS the theorem graph`, on: topEditors >= 1 && total > 3 * 100 },
     { facet: `ONLY APPROVED ARTICLES ARE PUBLISHED — an article is approved iff ≥ 1 related theorem endorses it (degree ≥ 1): ${approved.length}/${total} approved and published, ${orphans.length} orphans saved but NOT published`, on: onlyApprovedPublished && approved.length > 0 },
     { facet: `AN ORPHAN FAILS REVIEW — an article with no related theorem has no editor to approve it, so it is not published (${orphanNotPublished}); the discovery lens surfaces orphans and drives them toward zero`, on: orphanNotPublished },
-    { facet: `THE GRAPH IS THE EDITORIAL BOARD — the corpus is well-connected, so ${Math.round(publishedFraction * 100)}% of articles have editors and are published; peer review is the deterministic theorem graph, not a hidden committee`, on: publishedFraction >= 3 / 4 },
+    { facet: `THE GRAPH IS THE EDITORIAL BOARD — the corpus is well-connected, so ${round(publishedFraction * 100)}% of articles have editors and are published; peer review is the deterministic theorem graph, not a hidden committee`, on: publishedFraction >= 3 / 4 },
     { facet: `THE DEMARCATION — "editors = related theorems" is COMPUTATIONAL peer review by the theorem graph (content-connection), NOT human editorial judgment or external peer review; approval = graph-connectedness, not empirical validity. HARMONY ≠ TRUTH`, on: onlyApprovedPublished && publishedFraction >= 3 / 4 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`journal-editors:${entry.facet}:${entry.on}`) }))
   return {
@@ -3025,7 +3025,7 @@ export function journalPublishesOnlyArticlesApprovedByRelatedTheoremsAsEditors()
     approved: approved.length,
     orphans: orphans.length,
     total,
-    publishedFraction: Math.round(publishedFraction * 100) / 100,
+    publishedFraction: round(publishedFraction * 100) / 100,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
@@ -3587,7 +3587,7 @@ export function theBoundedWitnessCannotClaimTheUniversal() {
   const counterexampleBeyondSweep = N < 9 * (2 * 5) ** 8 // the cited minimal crossing 906,150,257 exceeds even 9×10⁸
   const oscillatesNotAlwaysFalse = touchesZero > 0 && polyaFlawlessInSweep // grazes 0 yet never crosses here — neither always-true nor always-false
   const bridgeTarget = ((TAU / 2) * (TAU / 2)) / (3 * 5) // ζ(4)/ζ(2) = π²/15 — the spectrum side of the inversion
-  const inversionBridgeHolds = Math.abs(dirichlet - bridgeTarget) < 1 / (2 * 5) ** 3 // partial sum meets the zeta side within the tail bound ~1/N
+  const inversionBridgeHolds = abs(dirichlet - bridgeTarget) < 1 / (2 * 5) ** 3 // partial sum meets the zeta side within the tail bound ~1/N
 
   // the registry refuses the claim by construction, and the trust law computes in this same file.
   const bsdRow = THEOREM_ATOM_SEED.find((row) => row.provedBy === 'theSmallestCurvesWitnessBirchSwinnertonDyer')
@@ -3625,7 +3625,7 @@ export function theoremsReach432AndEntangleWithUsage() {
   {
     const count = THEOREM_ATOM_SEED.length
     const target = DIMENSION_GATES
-    const remaining = Math.max(0, target - count)
+    const remaining = max(0, target - count)
     const pairs = THEOREM_ATOM_SEED.map((atom) => {
       const pair = foldPair(toUuid(`theorem:${atom.theorem}`), toUuid(`usage:${atom.home}#${atom.provedBy}`))
       return { provedBy: atom.provedBy, home: atom.home, entangled: pair.bidirectional && pair.forward !== pair.reverse, receipt: pair.merged }
@@ -3636,7 +3636,7 @@ export function theoremsReach432AndEntangleWithUsage() {
       { facet: `the harmonic threshold COMPUTES — ${count}/${target} registry theorems (4×108, the gate count); ${remaining} remain before the merge; reached = ${count >= target}`, on: count > 0 && target === 432 && count + remaining >= target },
       { facet: `every atom is ALREADY an entangled pair — theorem ⊗ usage folded both ways (forward ≠ reverse, one merged root): ${pairs.length}/${count} pairs bidirectional`, on: pairs.length === count && pairs.every((entry) => entry.entangled) },
       { facet: `the usage is MECHANICALLY REAL — ${homes.size} distinct src homes carry the proving functions (every provedBy a running export, enforced by the dangling-claim gate each build), consumed across the codebase and beyond the ui (gates · CLI · MCP · dist)`, on: homes.size > 0 && beyondUi },
-      { facet: `the 432 threshold is REACHED AND PASSED — ${count} ≥ ${target} (4×108, the gate count): the merge threshold was crossed by PROVING theorems (never renumbering), and remaining = ${remaining} = max(0, ${target}−${count}); reaching it was proving work, exceeding it is the corpus growing past the gate`, on: count >= target && remaining === Math.max(0, target - count) },
+      { facet: `the 432 threshold is REACHED AND PASSED — ${count} ≥ ${target} (4×108, the gate count): the merge threshold was crossed by PROVING theorems (never renumbering), and remaining = ${remaining} = max(0, ${target}−${count}); reaching it was proving work, exceeding it is the corpus growing past the gate`, on: count >= target && remaining === max(0, target - count) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`entangle-432:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -3672,26 +3672,26 @@ export function discoverySignificanceIsMeasuredByQuantumComputing() {
   const weights = atoms.map((atom) => perHome.get(atom.home)!)
   const total = weights.reduce((sum, w) => sum + w, 0)
   // PREPARE: |ψ⟩ with amplitude √(wᵢ/Σw) on basis state i — the discovery register
-  const re = Array.from({ length: dim }, (_unused, i) => (i < atoms.length ? Math.sqrt(weights[i]! / total) : 0))
+  const re = Array.from({ length: dim }, (_unused, i) => (i < atoms.length ? sqrt(weights[i]! / total) : 0))
   const psi = { n, re, im: re.map(() => 0) }
   const norm = re.reduce((sum, a) => sum + a * a, 0)
   // COMPUTE: a real unitary round trip on the simulator — H then H on qubit 0 returns |ψ⟩ exactly
   const once = applyGate(psi, GATES.H, 0)
   const back = applyGate(once, GATES.H, 0)
-  const roundTrip = psi.re.every((a, i) => Math.abs(a - back.re[i]!) < 1e-9)
+  const roundTrip = psi.re.every((a, i) => abs(a - back.re[i]!) < 1e-9)
   // MEASURE: the Born distribution over discoveries IS the significance measure
   const born = probabilities(psi)
   const p = born.slice(0, atoms.length)
   const pSum = p.reduce((sum, x) => sum + x, 0)
-  const entropyBits = -p.reduce((sum, x) => sum + (x > 0 ? x * Math.log2(x) : 0), 0)
-  const maxBits = Math.log2(atoms.length)
+  const entropyBits = -p.reduce((sum, x) => sum + (x > 0 ? x * log2(x) : 0), 0)
+  const maxBits = log2(atoms.length)
   const ranked = atoms
     .map((atom, i) => ({ theorem: atom.theorem, home: atom.home, significance: roundTo(p[i]!, 6) }))
     .sort((a, b) => b.significance - a.significance)
   const facets = [
-    { facet: `PREPARED — the ${atoms.length} discoveries load into a ${n}-qubit register (${dim} basis states) with structural amplitudes √(wᵢ/Σw), normalised: ⟨ψ|ψ⟩ = ${roundTo(norm, 6)}`, on: Math.abs(norm - 1) < 1e-9 && dim >= atoms.length },
+    { facet: `PREPARED — the ${atoms.length} discoveries load into a ${n}-qubit register (${dim} basis states) with structural amplitudes √(wᵢ/Σw), normalised: ⟨ψ|ψ⟩ = ${roundTo(norm, 6)}`, on: abs(norm - 1) < 1e-9 && dim >= atoms.length },
     { facet: 'COMPUTED, not looked up — the state survives a real unitary round trip on the simulator (H·H = I on qubit 0, amplitude-exact)', on: roundTrip },
-    { facet: `MEASURED — the Born distribution over discoveries sums to ${roundTo(pSum, 6)}: one significance probability per discovery`, on: Math.abs(pSum - 1) < 1e-9 },
+    { facet: `MEASURED — the Born distribution over discoveries sums to ${roundTo(pSum, 6)}: one significance probability per discovery`, on: abs(pSum - 1) < 1e-9 },
     { facet: `the measure is NON-UNIFORM because the structure is — entropy ${roundTo(entropyBits, 3)} bits < uniform ${roundTo(maxBits, 3)} bits: concentration in the proving homes is real signal`, on: entropyBits < maxBits && entropyBits > 0 },
     { facet: `the most significant discoveries are NAMED by the measurement — top home ${ranked[0]!.home} at p = ${ranked[0]!.significance} per atom`, on: ranked.length === atoms.length && ranked[0]!.significance >= ranked[ranked.length - 1]!.significance },
   ].map((entry) => ({ ...entry, receipt: toUuid(`significance-qc:${entry.facet}:${entry.on}`) }))
@@ -3738,13 +3738,13 @@ export function theoremCube64DefinesTheNaturalLimits() {
   const distinct = new Set(cells).size
   const collisions = world.length - distinct
   const expectedCollisions = (world.length * (world.length - 1)) / 2 / dim
-  const saturation = Math.sqrt(2 * dim) // ≈ the count where one collision is expected — the collision-free growth limit
+  const saturation = sqrt(2 * dim) // ≈ the count where one collision is expected — the collision-free growth limit
   const capacityOver432 = dim / (DIMENSION_GATES)
   const facets = [
     { facet: `the cube DERIVES — 64 = 2⁶ (one hexagram) per axis, a cell is three hexagrams = 18 bits, ${dim} cells = 64³ = 2¹⁸`, on: axis === 2 ** 6 && dim === 2 ** (6 * 3) },
-    { facet: `ADDRESSING is total and live — the ${world.length} distinct world theorems (${raw.length} rows; ${overlap} are the registry∩candidate overlap the gap law preserves) place into cells deterministically: ${distinct} distinct cells, ${collisions} true collisions (expected ${roundTo(expectedCollisions, 3)})`, on: cells.length === world.length && collisions <= Math.ceil(expectedCollisions) + 3 },
+    { facet: `ADDRESSING is total and live — the ${world.length} distinct world theorems (${raw.length} rows; ${overlap} are the registry∩candidate overlap the gap law preserves) place into cells deterministically: ${distinct} distinct cells, ${collisions} true collisions (expected ${roundTo(expectedCollisions, 3)})`, on: cells.length === world.length && collisions <= ceil(expectedCollisions) + 3 },
     { facet: `NATURAL LIMIT · capacity — the cube holds ${roundTo(capacityOver432, 1)}× the 432 gate lattice; the registry's march to 432 uses ${roundTo((world.length / dim) * 100, 2)}% of it`, on: capacityOver432 > 6 * 100 - 6 && dim > world.length },
-    { facet: `NATURAL LIMIT · saturation — collision-free growth ends near √(2·64³) ≈ ${Math.round(saturation)} theorems (the birthday bound): beyond it the cube must deepen (a fourth hexagram axis), never overwrite`, on: saturation > 2 ** 9 && saturation < 2 ** (5 * 2) && world.length < saturation },
+    { facet: `NATURAL LIMIT · saturation — collision-free growth ends near √(2·64³) ≈ ${round(saturation)} theorems (the birthday bound): beyond it the cube must deepen (a fourth hexagram axis), never overwrite`, on: saturation > 2 ** 9 && saturation < 2 ** (5 * 2) && world.length < saturation },
     { facet: 'NATURAL LIMIT · demarcation — the cube ADDRESSES all world theorems, it solves none of them: solving stays with computed proofs (the registry), and the sealed millennium law holds — define honestly, solve NONE, claim NOTHING open', on: THEOREM_ATOM_SEED.length < dim && CANDIDATE_THEOREMS.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cube-64:${entry.facet}:${entry.on}`) }))
   return {
@@ -3753,12 +3753,12 @@ export function theoremCube64DefinesTheNaturalLimits() {
     addressed: world.length,
     distinct,
     collisions,
-    saturation: Math.round(saturation),
+    saturation: round(saturation),
     capacityOver432: roundTo(capacityOver432, 1),
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: `The 64×64×64 theorem cube defines the natural limits — ${facets.filter((entry) => entry.on).length}/${facets.length}: three hexagram axes (64 = 2⁶ each) give ${dim} cells of 18 bits; all ${world.length} registry and candidate theorems address into it deterministically (${distinct} distinct cells, ${collisions} collisions against ${roundTo(expectedCollisions, 3)} expected), and the limits are computed — capacity ${roundTo(capacityOver432, 1)}× the 432 lattice, collision-free saturation at ≈${Math.round(saturation)} theorems (the birthday bound), and the demarcation limit: the cube ADDRESSES every world theorem at zero tokens, it SOLVES none — solving stays with computed proofs.`,
+    statement: `The 64×64×64 theorem cube defines the natural limits — ${facets.filter((entry) => entry.on).length}/${facets.length}: three hexagram axes (64 = 2⁶ each) give ${dim} cells of 18 bits; all ${world.length} registry and candidate theorems address into it deterministically (${distinct} distinct cells, ${collisions} collisions against ${roundTo(expectedCollisions, 3)} expected), and the limits are computed — capacity ${roundTo(capacityOver432, 1)}× the 432 lattice, collision-free saturation at ≈${round(saturation)} theorems (the birthday bound), and the demarcation limit: the cube ADDRESSES every world theorem at zero tokens, it SOLVES none — solving stays with computed proofs.`,
     boundary: `DERIVED: 64 = 2⁶ from the hexagram, the cube 2¹⁸ from three axes, the occupancy and birthday arithmetic exact and refutable. THE COINS LAW: 2 bits are left in every inversion through 0 — toUuid fixes the variant pair (bytes[8] & 0x3f | 0x80), the toll that keeps the entanglement: every address carries the same two-bit mark, binding the whole family into one foldable space (usable entropy 122 bits; the cube's axes read bytes 0–2, clear of the fixed nibbles). HONEST on "solve": content-addressing gives every theorem statement a home in the cube — a REGISTRY structure, not a proof engine; the registry solves only what it computes (${THEOREM_ATOM_SEED.length} proofs) and the sealed law claims none of the open problems. "All world theorems" means any finite statement is addressable, proven here on the ${world.length} distinct the repo curates (the ${overlap}-name registry∩candidate overlap is the gap law preserving proven candidates, not a collision). Beyond saturation the schema deepens (a fourth hexagram axis), never overwrites. HARMONY ≠ TRUTH.` }
 }
 
@@ -3868,7 +3868,7 @@ export function theoremSpeed() {
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `ALL ${rows.length} theorems refactored in ONE pass — a single map computes address · band · profile for every row; no lookup, no second walk: quantum speed by the sealed naming law`, on: onePass && rows.length > 432 },
-      { facet: `every address is FIXED WIDTH — ${6 * 6} chars regardless of prose length (longest name ${Math.max(...rows.map((row) => row.proseBytes))} chars): the quantum layer equalizes by construction`, on: fixedWidth },
+      { facet: `every address is FIXED WIDTH — ${6 * 6} chars regardless of prose length (longest name ${max(...rows.map((row) => row.proseBytes))} chars): the quantum layer equalizes by construction`, on: fixedWidth },
       { facet: `the refactor ratio — ${proseBytes} prose bytes vs ${addressBytes} address bytes per full-registry reference: ${roundTo(ratio, 2)}× and scale-invariant (N·L̄π/N·L̄σ = L̄π/L̄σ ∀N)`, on: ratio > 1 },
       { facet: `banded on the 432 lattice — the ${rows.length} addresses partition the ${4 * 5} divisor bands totally (composing theoremFractions)`, on: partitioned },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && fixedWidth },
@@ -3914,19 +3914,19 @@ export function runTheoremSpeedExit(root = '', _argv: readonly string[] = []): n
 /** Riemann–Siegel theta — the asymptotic phase θ(t) = t/2·ln(t/2π) − t/2 − π/8 + 1/(48t) + 7/(5760t³);
  *  coefficients composed canonically (48 = 6·8 · 5760 = 6·8·(2·5)·(2·6)). */
 export function riemannSiegelTheta(t: number): number {
-  const halfLog = (t / 2) * Math.log(t / TAU)
+  const halfLog = (t / 2) * log(t / TAU)
   return halfLog - t / 2 - TAU / 16 + 1 / ((6 * 8) * t) + 7 / ((6 * 8 * (2 * 5) * (2 * 6)) * t * t * t)
 }
 
 /** Riemann–Siegel Z(t) — main sum + first-order remainder; real-valued with Z(t)=0 iff ζ(½+it)=0 on the line. */
 export function riemannSiegelZ(t: number): number {
   const theta = riemannSiegelTheta(t)
-  const tau = Math.sqrt(t / TAU)
-  const terms = Math.floor(tau)
+  const tau = sqrt(t / TAU)
+  const terms = floor(tau)
   let sum = 0
-  for (let n = 1; n <= terms; n += 1) sum += Math.cos(theta - t * Math.log(n)) / Math.sqrt(n)
+  for (let n = 1; n <= terms; n += 1) sum += cos(theta - t * log(n)) / sqrt(n)
   const p = tau - terms
-  const phi = Math.cos(TAU * (p * p - p - 1 / 16)) / Math.cos(TAU * p)
+  const phi = cos(TAU * (p * p - p - 1 / 16)) / cos(TAU * p)
   const remainder = (terms % 2 === 0 ? -1 : 1) * (t / TAU) ** (-1 / 4) * phi
   return 2 * sum + remainder
 }
@@ -3956,7 +3956,7 @@ export function clayProbe() {
     }
     const located = brackets.map(([lo, hi], i) => {
       const zero = bisect(lo, hi)
-      return { zero: roundTo(zero, 6), reference: referenceZeros[i]!, error: Math.abs(zero - referenceZeros[i]!), signChange: riemannSiegelZ(lo) * riemannSiegelZ(hi) < 0 }
+      return { zero: roundTo(zero, 6), reference: referenceZeros[i]!, error: abs(zero - referenceZeros[i]!), signChange: riemannSiegelZ(lo) * riemannSiegelZ(hi) < 0 }
     })
     const allBracketed = located.every((row) => row.signChange)
     // Honest tolerance: FIRST-ORDER Riemann–Siegel at small t carries ~1e-2 accuracy (measured max
@@ -3965,7 +3965,7 @@ export function clayProbe() {
     const allAgree = located.every((row) => row.error < 1 / 100)
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
-      { facet: `the first ${located.length} nontrivial ζ zeros LOCALIZED on the critical line — Z(t) sign changes bisected: ${located.map((row) => row.zero).join(' · ')} vs literature ${referenceZeros.join(' · ')} (max error ${roundTo(Math.max(...located.map((row) => row.error)), 6)}, within the first-order machinery's stated ~1e-2)`, on: allBracketed && allAgree },
+      { facet: `the first ${located.length} nontrivial ζ zeros LOCALIZED on the critical line — Z(t) sign changes bisected: ${located.map((row) => row.zero).join(' · ')} vs literature ${referenceZeros.join(' · ')} (max error ${roundTo(max(...located.map((row) => row.error)), 6)}, within the first-order machinery's stated ~1e-2)`, on: allBracketed && allAgree },
       { facet: 'the machinery is REAL mathematics computed live — Riemann–Siegel main sum + first remainder, θ(t) to the t⁻³ term, canonical-composed coefficients; doubles-precision scope stated', on: located.every((row) => Number.isFinite(row.zero)) },
       { facet: `the DISTANCE is named, not hidden — N localized zeros ≠ a proof over ALL zeros: RH remains OPEN, claySolvedByThisFold=${claySolvedByThisFold}; this fold is the direction (make the problem compute), never the arrival`, on: claySolvedByThisFold === 0 && allBracketed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-probe:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -3984,7 +3984,7 @@ export function clayProbe() {
       cli: 'npm run quantum:clay-probe',
       route: '/en/quantum-tools#clay-probe',
       heading: 'Clay probe · the zeros compute · the distance stays named',
-      statement: `clayProbe — 4 nontrivial zeros localized on the critical line (max err ${roundTo(Math.max(...located.map((row) => row.error)), 6)}) · RH OPEN · clay=0 by theorem.`,
+      statement: `clayProbe — 4 nontrivial zeros localized on the critical line (max err ${roundTo(max(...located.map((row) => row.error)), 6)}) · RH OPEN · clay=0 by theorem.`,
       boundary:
         'Towards clay>0, honestly: the Riemann–Siegel machinery runs live and localizes the first zeros on the critical line, agreeing with ' +
         'the ledgered literature — a computed VERIFICATION reproducing known results, moving the problem into the portal\'s reach. It is not ' +
@@ -4085,11 +4085,11 @@ export async function linkProof(): Promise<ReturnType<typeof buildLinkProofRepor
 }
 
 function buildLinkProofReport(n: number, pathLen: number, rootValid: boolean) {
-  const expectedDepth = Math.ceil(Math.log2(n))
+  const expectedDepth = ceil(log2(n))
   const linkCost = pathLen // O(log N) — the inclusion path
   const rescanCost = n // O(N) — verify by re-scanning every leaf
   const ratio = rescanCost / linkCost
-  const orders = Math.log10(ratio)
+  const orders = log10(ratio)
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `the link IS the proof — real sha256 Merkle inclusion over ${n} theorem addresses: path length ${pathLen} = ⌈log₂ ${n}⌉ = ${expectedDepth}, root valid=${rootValid}`, on: pathLen === expectedDepth && rootValid },
@@ -4188,7 +4188,7 @@ export function runUnsolvedEngineExit(root = '', _argv: readonly string[] = []):
  *  nontrivial ζ zeros with 0 < Im ρ < T (main terms; the S(T) oscillation is the bounded remainder). */
 export function riemannZeroCountAnalytic(t: number): number {
   const x = t / TAU
-  return x * Math.log(x) - x + 7 / 8
+  return x * log(x) - x + 7 / 8
 }
 
 /**
@@ -4204,10 +4204,10 @@ export function riemannZeroCount() {
     const analytic = riemannZeroCountAnalytic(t)
     const probe = clayProbe()
     const localizedBelowT = probe.located.filter((row) => row.zero < t).length
-    const countMatches = Math.round(analytic) === localizedBelowT
+    const countMatches = round(analytic) === localizedBelowT
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
-      { facet: `COMPLETENESS up to T=${t} — the analytic count N(${t}) = ${roundTo(analytic, 3)} rounds to ${Math.round(analytic)}, and clayProbe localizes ${localizedBelowT} zeros below T: they MATCH, so no nontrivial zero is missed in the interval (a Turing-method-class check)`, on: countMatches && probe.computes },
+      { facet: `COMPLETENESS up to T=${t} — the analytic count N(${t}) = ${roundTo(analytic, 3)} rounds to ${round(analytic)}, and clayProbe localizes ${localizedBelowT} zeros below T: they MATCH, so no nontrivial zero is missed in the interval (a Turing-method-class check)`, on: countMatches && probe.computes },
       { facet: 'stronger than on-the-line — clayProbe proves the found zeros are ON the critical line; this proves they are ALL of them below T (count + location together), the real content of computational RH verification', on: countMatches && probe.located.length === 4 },
       { facet: 'DEMARCATION — completeness holds only UP TO T; RH quantifies over ALL T (and all zeros on the line), so this strengthens the verification but does not close it; clay=0 stands, the probe advances the frontier', on: claySolvedByThisFold === 0 && countMatches },
     ].map((entry) => ({ ...entry, receipt: toUuid(`zero-count:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -4228,7 +4228,7 @@ export function riemannZeroCount() {
       cli: 'npm run quantum:zero-count',
       route: '/en/quantum-tools#zero-count',
       heading: 'Riemann zero count · completeness up to T',
-      statement: `riemannZeroCount — N(${t})=${roundTo(analytic, 3)}≈${Math.round(analytic)} matches ${localizedBelowT} localized zeros: complete below T, RH OPEN, clay=0.`,
+      statement: `riemannZeroCount — N(${t})=${roundTo(analytic, 3)}≈${round(analytic)} matches ${localizedBelowT} localized zeros: complete below T, RH OPEN, clay=0.`,
       boundary:
         'Advancing the RH probe from location to COMPLETENESS: the Riemann–von Mangoldt count N(T) matches the number of localized zeros below T, ' +
         'so none is missed in the interval — the real content of computational verification (location + count). Holds only up to T; RH quantifies ' +
@@ -4279,13 +4279,13 @@ export function riemannZeroScan() {
     }
     const found = zeros.length
     const mainTerm = riemannZeroCountAnalytic(tMax)
-    const countMatches = Math.round(mainTerm) === found
+    const countMatches = round(mainTerm) === found
     const sOfT = roundTo(found - mainTerm, 3) // S(T): the zero-counting oscillation
     const allDistinct = new Set(zeros).size === found
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `GENERAL scanner — ${found} nontrivial zeros localized on the critical line by Z(t) sign-change bisection over [${tStart}, ${tMax}] (not hardcoded brackets), all distinct=${allDistinct}; far stronger than the 4-zero probe`, on: found > 27 && allDistinct },
-      { facet: `COMPLETENESS + S(T) — the analytic main term N(${tMax}) = ${roundTo(mainTerm, 2)} rounds to ${Math.round(mainTerm)} = ${found} found (match=${countMatches}); the residual S(T) = count − N_main = ${sOfT} is the zero-counting OSCILLATION, computed not assumed (the sandbox caught it differing at T=50)`, on: countMatches },
+      { facet: `COMPLETENESS + S(T) — the analytic main term N(${tMax}) = ${roundTo(mainTerm, 2)} rounds to ${round(mainTerm)} = ${found} found (match=${countMatches}); the residual S(T) = count − N_main = ${sOfT} is the zero-counting OSCILLATION, computed not assumed (the sandbox caught it differing at T=50)`, on: countMatches },
       { facet: 'DEMARCATION — zeros found ON the line only UP TO T=100; RH quantifies over all T and all zeros; S(T) is the honest bounded remainder; this strengthens the verification (29 zeros, completeness), never closes it; clay=0', on: claySolvedByThisFold === 0 && countMatches },
     ].map((entry) => ({ ...entry, receipt: toUuid(`zero-scan:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)

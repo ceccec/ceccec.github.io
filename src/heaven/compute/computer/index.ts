@@ -7,7 +7,7 @@ import * as __ns_up_routes_corpus from '../../../wind/routes/corpus'
 import * as __ns_up_pair_enforcement from '../../../pair/enforcement'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix, buildSequenceReducesComputations, hardwareSpecFromInvariants, maxEfficiencyCpuGpuMemoryStorageCooperation, verifyRoot } from '..'
-import { computesGate, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFold, resourceCooperationPolicy, roundTo, toUuid } from '../../../0'
+import { computesGate, floor, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFold, min, resourceCooperationPolicy, roundTo, toUuid } from '../../../0'
 import type { DriverProbeReceipt } from '../../../water/stack'
 import { driverRuntime, nodeProbesEnabled } from '../../../water/stack'
 import { heroPhaseAt } from '../../../fire/plasma/ball'
@@ -22,7 +22,7 @@ export type ComputerDriverRow = {
 }
 
 export function computerResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computerResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computerResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cpu = cpuDriverProbe(at)
     const gpu = gpuDriverProbe(at, matrix)
     const memory = memoryDriverProbe(at, matrix)
@@ -46,7 +46,7 @@ export function computerResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function computerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computerComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computerComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = computerResearch(matrix, at)
     const cpu = cpuComputes(matrix, at)
     const gpu = gpuComputes(matrix, at)
@@ -77,7 +77,7 @@ export function computerPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
 
 /** Application layer capstone — composes computer substrate + optional quantum OS/apps at call time (no extra census slot). */
 export function applicationResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`applicationResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`applicationResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = computerResearch(matrix, at)
     let osOk = false
     let appsOk = false
@@ -93,7 +93,7 @@ export function applicationResearch(matrix: MindMatrix = buildMatrix(), at = 0) 
 }
 
 export function applicationComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`applicationComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`applicationComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = applicationResearch(matrix, at)
     const computerCap = computerComputes(matrix, at)
     let osCap: { computes: boolean; root: string } | null = null
@@ -151,7 +151,7 @@ export function cpuDriverProbe(at = 0): DriverProbeReceipt {
 }
 
 export function cpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cpuComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cpuComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = cpuDriverProbe(at)
     const sequence = buildSequenceReducesComputations(matrix)
     const { computes, facets, root } = computesGate('cpu-computes', [
@@ -197,7 +197,7 @@ export function gpuDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): GpuD
 }
 
 export function gpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`gpuComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`gpuComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = gpuDriverProbe(at, matrix)
     const { computes, facets, root } = computesGate('gpu-computes', [{ facet: 'gpuDriverProbe', on: driver.paintChannels > 0 }, { facet: 'NOT CUDA', on: true }])
     return { computes, driver, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: 'GPU paint driver.', boundary: 'Browser canvas/WebGPU facade — NOT kernel GPU drivers.' }
@@ -230,7 +230,7 @@ export function memoryDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): D
 }
 
 export function memoryComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`memoryComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`memoryComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = memoryDriverProbe(at, matrix)
     const guard = __ns_up_stack_overflow.stackOverflowGuard(matrix)
     const { computes, facets, root } = computesGate('memory-computes', [{ facet: 'heap cap', on: driver.probe.heapCapMb === 64 * 16 * 2 }, { facet: 'overflow guard', on: guard.guarded }])
@@ -259,7 +259,7 @@ export function storageDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): 
 }
 
 export function storageComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`storageComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`storageComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = storageDriverProbe(at, matrix)
     const complete = __ns_up_routes_corpus.completeCorpus(matrix)
     const { computes, facets, root } = computesGate('storage-computes', [{ facet: 'merkle policy', on: driver.probe.storageModel === 'content-address-merkle' }, { facet: 'verifyRoot', on: verifyRoot(matrix) }, { facet: 'corpus', on: complete.total === (64 * 16) }])
@@ -320,7 +320,7 @@ export function busTransfer(receipt: string, from: BusDomain, to: BusDomain, at 
 }
 
 export function busComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`busComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`busComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = busDriverProbe(at, matrix)
     const substrate = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix)
     const transfers = BUS_TOPOLOGY.map((edge) => ({ edge, result: busTransfer(probe.receipt, edge.from, edge.to, at, matrix) }))
@@ -340,7 +340,7 @@ export function displayDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()) {
 }
 
 export function displayComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`displayComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`displayComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = displayDriverProbe(at, matrix)
     const busReceipt = toUuid(`display-bus:${probe.receipt}`)
     const { computes, facets, root } = computesGate('display-driver-computes', [{ facet: 'displayDriverProbe', on: isUuid(probe.receipt) }, { facet: 'NOT kernel framebuffer', on: true }])
@@ -363,7 +363,7 @@ export function terminalDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()) 
 }
 
 export function terminalComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`terminalComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`terminalComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = terminalDriverProbe(at, matrix)
     const cpu = cpuComputes(matrix, at)
     const { computes, facets, root } = computesGate('terminal-driver-computes', [{ facet: 'terminalDriverProbe', on: isUuid(probe.receipt) }, { facet: 'cpu stdio substrate', on: cpu.computes }])
@@ -372,7 +372,7 @@ export function terminalComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function powerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`powerComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`powerComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cpu = cpuComputes(matrix, at)
     const gpu = gpuComputes(matrix, at)
     const { computes, facets, root } = computesGate('power-computes', [{ facet: 'cpu+gpu draw estimate', on: cpu.computes && gpu.computes }, { facet: 'NOT datacenter telemetry', on: true }])
@@ -401,7 +401,7 @@ export function computerScienceResearch(matrix: MindMatrix = buildMatrix()) {
   })
 }
 export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`computerScienceComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`computerScienceComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = computerScienceResearch(matrix)
     const stack = __ns_up_stack_overflow.stackComputes(matrix)
     const srcAll = __ns_up_stack_overflow.srcAllComputes(matrix)
@@ -503,7 +503,7 @@ export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix
  * Pair: moment/prove · CLI npm run quantum:honest-revolution-w5
  */
 export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`honestRevolutionFpgaHonesty:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`honestRevolutionFpgaHonesty:${floor(at / 1e3)}`, matrix, () => {
     const plan = siliconFabricationPlanFromModel(matrix)
     const facets = [
       { facet: 'siliconFabricationPlanFromModel decoded', on: plan.decoded },
@@ -554,7 +554,7 @@ export function runHonestRevolutionW5Exit(_root = '', _argv: readonly string[] =
 export function siliconFabricationStageAt(at = 0, matrix: MindMatrix = buildMatrix()) {
   const plan = siliconFabricationPlanFromModel(matrix)
   const phase = heroPhaseAt(at)
-  const index = Math.min(plan.stages.length - 1, Math.floor(phase * plan.stages.length))
+  const index = min(plan.stages.length - 1, floor(phase * plan.stages.length))
   const current = plan.stages[index]!
   return { phase, index, stage: current.stage, total: plan.stages.length, decoded: plan.decoded, receipt: toUuid(`fab-stage-at:${index}:${current.stage}`) }
 }

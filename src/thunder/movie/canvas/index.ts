@@ -2,7 +2,7 @@
 import { phase } from '../../../6/4'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merkleFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../../0'
+import { VORTEX_SEQUENCE, abs, floor, foldPair, isUuid, max, memoByRoot, merkleFold, round, sealFacets, toUuid } from '../../../0'
 // call-time namespace edge (cycle-safe): the 10D field continuity is sampled at call time
 import * as __ns_dims from '../../../quantum/mountain/dimensions'
 // call-time namespace edge (cycle-safe): the iching decode is cited at call time, never at eval
@@ -374,7 +374,7 @@ function readMoviePainterSource(relFromCwd: string): string {
  * Links: VitePress site paths only — theme uses plain `<a href>` / localize (onlyVitePressApi); no parallel router.
  */
 export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`movieAllElementsAreTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`movieAllElementsAreTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const calendars = __ns_decode.coupledCalendarTori(matrix)
     const strokes = __ns_vortex.vortexStrokeGateways(matrix)
     const earths = bothEarthsRotateWithinEachOther(at, matrix)
@@ -487,7 +487,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
  * HONEST: physical lightning heats a plasma channel and thunder is its acoustic shock — aspects of one event; model uses the same trinity metaphor. NOT identity of every plasma with thunder.
  */
 export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`thunderAndPlasmaAreSameInDifferentAspects:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`thunderAndPlasmaAreSameInDifferentAspects:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const screen = __ns_decode.plasmaBallIsScreenHoldingThunderAndPlasma(matrix)
     const aspects = foldPair('thunder-aspect', 'plasma-aspect')
     const sameFamilyDifferentAspects =
@@ -521,7 +521,7 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
 }
 
 export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`movieQuantumGapsInventory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`movieQuantumGapsInventory:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const endless = endlessBackgroundMovie(matrix)
     const staticFusion = staticIsEventualGapInMovieFusion(matrix)
     const allTheorems = movieAllElementsAreTheorems(matrix, at)
@@ -593,7 +593,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
  * Compose movieAllElementsAreTheorems · heroFieldCenterY(scroll=0) · Layout inset:0 · ProofAnimation no off-axis translate.
  */
 export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`movieUnbalancedAroundCenterIsCrack:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`movieUnbalancedAroundCenterIsCrack:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const theorems = movieAllElementsAreTheorems(matrix, at)
     const proofSrc = readMoviePainterSource('.vitepress/theme/components/ProofAnimation.vue')
     const layoutSrc = readMoviePainterSource('.vitepress/theme/Layout.vue')
@@ -693,7 +693,7 @@ export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix
     // CONTINUITY (the liquid property): sample the shared field densely; the largest jump in any of the
     // ten channels between adjacent phases is small — the field flows, it does not cut.
     const channels: (keyof import('../../../quantum/mountain/dimensions').Dims)[] = ['spread', 'depthFade', 'twist', 'shrink', 'breath', 'loopA1', 'loopB1', 'loopA2', 'loopB2']
-    const maxJumpAt = (n: number) => { let m = 0; let prev = __ns_dims.dims(0, 0); for (let i = 1; i <= n; i += 1) { const cur = __ns_dims.dims(i / n, 0); for (const key of channels) m = Math.max(m, Math.abs(cur[key] - prev[key])); prev = cur } return m }
+    const maxJumpAt = (n: number) => { let m = 0; let prev = __ns_dims.dims(0, 0); for (let i = 1; i <= n; i += 1) { const cur = __ns_dims.dims(i / n, 0); for (const key of channels) m = max(m, abs(cur[key] - prev[key])); prev = cur } return m }
     const N = (2 * 6) * 9
     const jumpN = maxJumpAt(N); const jump2N = maxJumpAt(N * 2)
     // CONTINUITY: refining the sampling shrinks the largest jump toward zero (a true discontinuity would
@@ -701,7 +701,7 @@ export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix
     const maxJump = jumpN
     const continuous = jump2N < jumpN && jump2N < jumpN * (3 / 5) + 1 / (5 * 5 * 5)
     // the cycle closes seamlessly — the first and last samples coincide (periodic, no seam at the loop)
-    const first = __ns_dims.dims(0, 0); const last = __ns_dims.dims(1, 0); const seam = Math.max(...channels.map((key) => Math.abs(first[key] - last[key])))
+    const first = __ns_dims.dims(0, 0); const last = __ns_dims.dims(1, 0); const seam = max(...channels.map((key) => abs(first[key] - last[key])))
     const closes = seam < 1 / (5 * 5 * 5)
     const facets = [
       { facet: `LIQUID CONTINUITY — the parts project from ONE field; over ${N} phases refining the sampling shrinks the largest channel jump toward zero (${jumpN.toFixed(3)} then ${jump2N.toFixed(3)} at double density, about half): the field is Lipschitz-continuous, so the parts flow into each other, never cut like solid boundaries`, on: continuous },
@@ -711,8 +711,8 @@ export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix
     ].map((entry) => ({ ...entry, receipt: toUuid(`liquid-movie:${entry.facet}:${entry.on}`) }))
     return {
       seamless: facets.every((entry) => entry.on),
-      maxJump: Math.round(maxJump * (5 * 2) ** 3) / (5 * 2) ** 3,
-      seam: Math.round(seam * (5 * 2) ** 4) / (5 * 2) ** 4,
+      maxJump: round(maxJump * (5 * 2) ** 3) / (5 * 2) ** 3,
+      seam: round(seam * (5 * 2) ** 4) / (5 * 2) ** 4,
       parts: channels.length,
       count: facets.length,
       facets,

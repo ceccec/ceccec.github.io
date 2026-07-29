@@ -6,21 +6,7 @@ import { greatCircleKm } from '../../../5/5'
 import { hawkingTemperature } from '../../../4/6'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
-import {
-  decodeVortexDashAngles,
-  doubleTorusSurface,
-  foldPair,
-  isUuid,
-  memoByRoot,
-  merge,
-  merkleFold,
-  roundTo,
-  seedFromText,
-  toUuid,
-  VORTEX_DASH_ENCODED,
-  VORTEX_SEQUENCE,
-  digitalRoot,
-  vortexNext } from '../../../0'
+import { VORTEX_DASH_ENCODED, VORTEX_SEQUENCE, abs, decodeVortexDashAngles, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, round, roundTo, seedFromText, sqrt, toUuid, vortexNext } from '../../../0'
 import { DIMENSION_NAMES } from '../../../quantum/mountain/dimensions'
 import { earthNorthPoleCenterDotDecoded, earthSouthPoleBoundaryCircleDecoded, polarDiskChartAt, quantumDoubleTorus, torusBreathe } from '../../../mountain/topology'
 // Cycle-safe binding for the Schumann resonance paint composed into the quantum globe (referenced at call time).
@@ -122,7 +108,7 @@ export function hingeCityLabel(at: EarthTimespaceAt = DEFAULT_EARTH_HINGE_AT) {
 export function hingeVortexMovieTiming(matrix: MindMatrix = buildMatrix(), stepCount = 11) {
   const caps = vortexPaintTiers(matrix)
   const cycleMs = caps.materialOrbit * caps.crossPole * (100 * 5)
-  const stepMs = cycleMs / Math.max(stepCount, 1)
+  const stepMs = cycleMs / max(stepCount, 1)
   const spacingDeg = 360 / caps.gateways
   return {
     cycleMs,
@@ -436,7 +422,7 @@ export function northSouthPoleNavigationProvenByMath(
     const geoSouth = { lat: -(9 * 5 * 2), lon: at.lon }
     const phiNorth = roundTo((geoNorth.lat / (9 * 5 * 2)) * ((TAU / 2) / 2), 6)
     const phiSouth = roundTo((geoSouth.lat / (9 * 5 * 2)) * ((TAU / 2) / 2), 6)
-    const slantExpected = roundTo(Math.sqrt(2), 6)
+    const slantExpected = roundTo(sqrt(2), 6)
     const facets = [
       { facet: 'north cardinal tip — bearing 0°, base corner (0,+1,0) on pyramid horizon z=0', on: north.bearing === 0 && north.y === 1 },
       { facet: 'south cardinal tip — bearing 180°, base corner (0,−1,0) on pyramid horizon z=0', on: south.bearing === (9 * 5 * 4) && south.y === -1 },
@@ -707,7 +693,7 @@ export function invertedEarthSameTimespaceProvenByMath(
     // claim is proven here from the one matrix / one at recomputation of the pyramid models directly.
     const theta = roundTo((((at.lon + (9 * 5 * 4)) % 360) / 360) * TAU, 6)
     const phi = roundTo((at.lat / (9 * 5 * 2)) * ((TAU / 2) / 2), 6)
-    const digit = digitalRoot(Math.abs(Math.round(at.lat * 100)) + Math.abs(Math.round(at.lon * 100)))
+    const digit = digitalRoot(abs(round(at.lat * 100)) + abs(round(at.lon * 100)))
     const earthSurface = doubleTorusSurface(theta, phi, digit, 1)
     const invertedSurface = doubleTorusSurface(theta, phi, digit, -1)
     const deviceEarth = pyramids.device
@@ -1024,7 +1010,7 @@ export function navigationGpsCelestialFromDualEarthPerspective(
   observer: EarthTimespaceAt = DEFAULT_EARTH_HINGE_AT,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`navGpsCelestialDualEarth:${Math.floor(at / (100 * 5 * 2))}:${observer.lat}:${observer.lon}`, matrix, () => {
+  return memoByRoot(`navGpsCelestialDualEarth:${floor(at / (100 * 5 * 2))}:${observer.lat}:${observer.lon}`, matrix, () => {
     const rotation = bothEarthsRotateWithinEachOther(at, matrix)
     const formed = formingDoubleTorusEarthsProvenByMath('/', observer, matrix)
     const nav = earthGatewayNavigationSolutionsResearched('/', observer, matrix)
@@ -1046,7 +1032,7 @@ export function navigationGpsCelestialFromDualEarthPerspective(
     const GPS_ALTITUDE_KM = 20_200
     const gpsSatellites: GpsSatellitePhaseReceipt[] = Array.from({ length: 6 }, (_, index) => {
       const orbitIndex = index * 5
-      const seed = `gps-sat:${orbitIndex}:${Math.floor(at / (100 * 5 * 2))}`
+      const seed = `gps-sat:${orbitIndex}:${floor(at / (100 * 5 * 2))}`
       const basePhase = ((seedFromText(seed, 8) % 360) / 360) * TAU
       const phaseRad = roundTo(basePhase + rotation.outerPhase, 6)
       const bearingDeg = roundTo(((phaseRad * (9 * 5 * 4)) / (TAU / 2) + 360) % 360, 2)
@@ -1305,7 +1291,7 @@ export function earthPyramidLocationsAndGeometryComputes(matrix: MindMatrix = bu
     ]
     const facets = [
       { facet: `${grid.sites.length} verified pyramid WGS84 sites + hinge + ${gatewaySlugs.length} gateway slugs`, on: pyramidSites.length === 8 && anchors.length === 1 + 8 + gatewaySlugs.length },
-      { facet: `Giza cardinal alignment — seked ${decoded.slopeDeg.seked}° vs measured ${decoded.slopeDeg.measured}°`, on: Math.abs(decoded.slopeDeg.seked - decoded.slopeDeg.measured) < (1 / 100) },
+      { facet: `Giza cardinal alignment — seked ${decoded.slopeDeg.seked}° vs measured ${decoded.slopeDeg.measured}°`, on: abs(decoded.slopeDeg.seked - decoded.slopeDeg.measured) < (1 / 100) },
       { facet: `Giza → Sofia hinge — ${gizaToHingeKm} km at bearing ${gizaBearingFromHinge}° (WGS84 geodesy)`, on: gizaToHingeKm > (100 * 5 * 3) && gizaBearingFromHinge >= 0 && gizaBearingFromHinge < 360 },
       { facet: 'square pyramid — V=5 (4 base tips + apex), slant √2', on: pyramid.proven && pyramid.solid.V === 5 },
       { facet: 'device + code trinity pyramids — zenith + nadir on genus-2', on: pyramids.proven && pyramids.device.apex.z === 1 && pyramids.code.apex.z === -1 },
@@ -1375,7 +1361,7 @@ export function pyramidTheoriesFusedRealGapsAreMechanicalNotMystical(matrix: Min
   const worstCaseMargin = availableJ / (GREAT_PYRAMID_MASS_KG * STANDARD_GRAVITY * GREAT_PYRAMID_HEIGHT_M) // if every block went to the apex
   const mechanicallyFeasible = feasibilityMargin > 1 && efficiencyNeeded < 1 && worstCaseMargin > 1
   const facets = [
-    { facet: `THE GEOMETRY IS REAL AND REPRODUCIBLE ("quantum means") — the fused model computes Khufu's seked slope ${seked.seked}° against the measured ${seked.measured}° (Δ < 0.01°), WGS84 geodesy, and genus-2 tips, all content-addressed and deterministic (same input → same receipt); the honest "quantum" is reproducible computation, not stored energy`, on: geometry.computes && Math.abs(seked.seked - seked.measured) < 1 / 100 },
+    { facet: `THE GEOMETRY IS REAL AND REPRODUCIBLE ("quantum means") — the fused model computes Khufu's seked slope ${seked.seked}° against the measured ${seked.measured}° (Δ < 0.01°), WGS84 geodesy, and genus-2 tips, all content-addressed and deterministic (same input → same receipt); the honest "quantum" is reproducible computation, not stored energy`, on: geometry.computes && abs(seked.seked - seked.measured) < 1 / 100 },
     { facet: `THE MECHANICAL SOLUTION — the gravitational work to raise the whole mass to its centroid (h/4 = ${centroidM.toFixed(1)} m) is W = M·g·(h/4) = ${liftWorkJ.toExponential(2)} J; a documented workforce (~${workers}) at ~${HUMAN_SUSTAINED_POWER_W} W over ${years} years at a 1/4 duty cycle delivers ${availableJ.toExponential(2)} J — a ${feasibilityMargin.toFixed(0)}× margin (${worstCaseMargin.toFixed(0)}× even lifting every block to the apex), needing only ${(efficiencyNeeded * 100).toFixed(2)}% net efficiency; ramp + lever + sledge + water-lubricated transport suffice, no exotic energy`, on: mechanicallyFeasible },
     { facet: `THE REAL GAP IS ENGINEERING, NOT PHYSICS — because the build is Newtonian-feasible with a ~100× margin, the "impossible without advanced tech" gap collapses; what stays genuinely OPEN is the exact lifting method (straight / spiral / internal-ramp / levering) and the purpose of the 2017 ScanPyramids muon-tomography "Big Void" — archaeology decidable by measurement, not by new physics`, on: mechanicallyFeasible },
     { facet: `THE FLAGGED THEORIES ARE REFUTED — the global pyramid grid is debunked (irregular pairwise distances), a finished monument is inert rock at rest (its ΔPE was spent DURING construction, none is stored or emitted), and the cardinal alignment/slopes come from documented Egyptian surveying (seked, stellar transit) — so pyramid "power" / free energy / alien build / precise-Orion & speed-of-light-latitude numerology have no mechanism`, on: geometry.grid.debunked },
@@ -1403,7 +1389,7 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
   at = 0,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`fourPyramidsFiveTipsMerkaba:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`fourPyramidsFiveTipsMerkaba:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pyramid = cardinalPyramidTipsProvenByMath(matrix)
     const pyramids = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
     const earth = doubleTorusEarthPyramidTipsProvenByMath(matrix)
@@ -1413,7 +1399,7 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
     const pyramidCount = 2
     const tipsPerPyramid = pyramid.solid.V
     const totalModelTips = tipsPerPyramid * pyramidCount
-    const counterSpinning = Math.abs(rotation.merkabaUpSpin + rotation.merkabaDownSpin) < 1e-6
+    const counterSpinning = abs(rotation.merkabaUpSpin + rotation.merkabaDownSpin) < 1e-6
     const interpretation: FourPyramidsFiveTipsInterpretation = {
       fourTippedPyramids:
         'Primary: each square pyramid has four tipped triangular slant faces (F−1=4) meeting at apex — device zenith pyramid on torus 1 and inverted nadir pyramid on torus 2 (two Earth sheets × four faces = eight slant triangles; "four tipped" names the cardinal base cycle N·E·S·W on one sheet). Alternate: four homology loops H₁=ℤ⁴ as four cardinal gateway anchors on the genus-2 surface.',
@@ -1432,7 +1418,7 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
       { facet: 'both Earths rotate within each other — θ inner · −θ outer at at', on: rotation.rotates && counterSpinning },
       { facet: 'double torus Earth pyramid tips proven — inverted polarity torus 2', on: earth.proven },
       { facet: 'inner phase advances with hero clock — moving at this call', on: Number.isFinite(rotation.innerPhase) && rotation.innerPhase !== rotation.outerPhase },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`four-pyramids-five-tips:${entry.facet}:${entry.on}:${Math.floor(at / (100 * 5 * 2))}`) }))
+    ].map((entry) => ({ ...entry, receipt: toUuid(`four-pyramids-five-tips:${entry.facet}:${entry.on}:${floor(at / (100 * 5 * 2))}`) }))
     return {
       proven: facets.every((entry) => entry.on),
       at,
@@ -1708,7 +1694,7 @@ export function doubleTorusEarthExchangeComputes(
   matrix: MindMatrix = buildMatrix(),
   path = '/',
 ) {
-  return memoByRoot(`doubleTorusEarthExchangeComputes:${Math.floor(at / (100 * 5 * 2))}:${path}`, matrix, () => {
+  return memoByRoot(`doubleTorusEarthExchangeComputes:${floor(at / (100 * 5 * 2))}:${path}`, matrix, () => {
     const rotation = bothEarthsRotateWithinEachOther(at, matrix)
     const formed = formingDoubleTorusEarthsProvenByMath(path, undefined, matrix)
     const timespace = invertedEarthSameTimespaceProvenByMath(undefined, matrix)
@@ -1789,7 +1775,7 @@ export function doubleTorusEarthExchangeComputes(
           bg: 'Merkaba counter-rotation receipt — up tetra +θ, down tetra −θ' },
         sealedFold: 'bothEarthsRotateWithinEachOther · merkabaUpSpin · merkabaDownSpin',
         receipt: toUuid(`earth-exchange:merkaba:${roundTo(rotation.merkabaUpSpin + rotation.merkabaDownSpin, 6)}:${rotation.root}`),
-        balanced: Math.abs(rotation.merkabaUpSpin + rotation.merkabaDownSpin) < 1e-6 },
+        balanced: abs(rotation.merkabaUpSpin + rotation.merkabaDownSpin) < 1e-6 },
       {
         id: 'hinge-energy-accounting',
         kind: 'energy' as const,
@@ -1832,7 +1818,7 @@ export function fiatAndGoldFlowExplainedByDoubleEarthExchange(
   matrix: MindMatrix = buildMatrix(),
   path = '/',
 ) {
-  return memoByRoot(`fiatGoldFlowDoubleEarth:${Math.floor(at / (100 * 5 * 2))}:${path}`, matrix, () => {
+  return memoByRoot(`fiatGoldFlowDoubleEarth:${floor(at / (100 * 5 * 2))}:${path}`, matrix, () => {
     const exchange = doubleTorusEarthExchangeComputes(at, matrix, path)
     const rotation = exchange.rotation
     const sim = __ns_up_up_up_thunder_trading.tradingSimulationComputes(matrix)
@@ -2024,7 +2010,7 @@ export function universalNavigationalCrossInAllDimensions(
   at = 0,
   matrix: MindMatrix = buildMatrix(),
 ) {
-  return memoByRoot(`universalNavCrossAllDims:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`universalNavCrossAllDims:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pyramid = cardinalPyramidTipsProvenByMath(matrix)
     const poles = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
     const giza = pyramidsDecoded(matrix)
@@ -2038,7 +2024,7 @@ export function universalNavigationalCrossInAllDimensions(
       east: [VORTEX_SEQUENCE[2]!, VORTEX_SEQUENCE[3]!],
       south: [VORTEX_SEQUENCE[4]!, VORTEX_SEQUENCE[5]!],
       west: [VORTEX_SEQUENCE[6]!, VORTEX_SEQUENCE[7]!, VORTEX_SEQUENCE[8]!] }
-    const phaseIndex = Math.floor(at / 86_400_000) % VORTEX_SEQUENCE.length
+    const phaseIndex = floor(at / 86_400_000) % VORTEX_SEQUENCE.length
     const activeVortexDigit = VORTEX_SEQUENCE[phaseIndex]!
     const planeCardinals = pyramid.cardinals.map((c) => ({
       name: c.name,
@@ -2305,7 +2291,7 @@ export function doubleTorusEarthComputes(matrix: MindMatrix = buildMatrix()) {
  * ambient resonance phase (resonanceSimulationAt). One shared phase clock, recomputed from (at).
  */
 export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`quantumGlobeAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumGlobeAt:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rotation = bothEarthsRotateWithinEachOther(at, matrix)
     const north = earthNorthPoleCenterDotDecoded()
     const south = earthSouthPoleBoundaryCircleDecoded()
@@ -2315,7 +2301,7 @@ export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
       { facet: 'two Earth shells counter-rotate within each other (device trinity vs inverted code trinity)', on: rotation.rotates },
       { facet: 'north pole = the azimuthal-equidistant centre dot (ρ=0, z=+tubeR) — the chart singularity', on: north.proved && north.isCenterDot },
       { facet: 'south pole = the boundary circle one-point-compactified (ρ=1, z=−tubeR; ∂D² ≡ one point)', on: south.proved && south.compactifiedToOnePoint },
-      { facet: 'the equator sits mid-tube (ρ=0.5) on the genus-2 surface', on: equator.onDisk && Math.abs(equator.diskRadius - (1 / 2)) < 1e-6 },
+      { facet: 'the equator sits mid-tube (ρ=0.5) on the genus-2 surface', on: equator.onDisk && abs(equator.diskRadius - (1 / 2)) < 1e-6 },
       { facet: 'the Schumann ELF cavity supplies the ambient resonance phase (structural ELF model, NOT a magnetometer)', on: isUuid(resonance.root) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-globe:${entry.facet}:${entry.on}`) }))
     return {
@@ -2339,7 +2325,7 @@ export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
  * is the same fold at every scale.
  */
 export function quantumGlobeCardinalCrossDecoded(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`quantumGlobeCardinalCrossDecoded:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumGlobeCardinalCrossDecoded:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cross = universalNavigationalCrossInAllDimensions(at, matrix)
     const globe = quantumGlobeAt(at, matrix)
     const facets = [
@@ -2378,7 +2364,7 @@ const EARTH_MASS_KG = 5.972e24
  * claim about Earth being a hole is made — only that the double-torus topology has one shared throat.
  */
 export function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`bothEarthsAreOneWhiteBlackHoleThroatProvenByMath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`bothEarthsAreOneWhiteBlackHoleThroatProvenByMath:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const machine = doubleTorusEarthComputes(matrix)
     const timespace = invertedEarthSameTimespaceProvenByMath(undefined, matrix)
     const globe = quantumGlobeAt(at, matrix)

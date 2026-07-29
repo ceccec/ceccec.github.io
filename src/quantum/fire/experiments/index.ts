@@ -9,7 +9,7 @@ import { stationary } from '../../../mountain/vortex'
 import { buildMatrix, a432, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind'
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — base primitives: uuid, merkle, math constants, EM functions
 import { larmorFrequency, wavelengthOf } from '../../../1/9'
-import { toUuid, merkleFold, isUuid, roundTo } from '../../../0'
+import { abs, cos, floor, isUuid, merkleFold, min, roundTo, sin, toUuid } from '../../../0'
 import { isIonizing } from '../../../9/1'
 import { radarRange } from '../../../3/7'
 import { movieCanvasPolarity } from '../../science'
@@ -119,7 +119,7 @@ export function electromagneticExperiments(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'plane wave — the base field computes: E₀=1 at the node, intensity ½cε₀, c=λf exact', on: planeWaveField(SPEED_OF_LIGHT, { samples: 4 }).E[0] === 1 && roundTo(planeWaveIntensity(1), 7) === 0.0013272 && planeWaveSpeed(2) === SPEED_OF_LIGHT },
     { facet: 'X-ray — Beer–Lambert I = I₀/e at τ=1; the 4×4 CT back-projects the peak to the hot pixel; 60 keV ionizes', on: roundTo(beerLambert(1, [{ mu: (1 / 5), x: 5 }]), 6) === 0.367879 && backProjectAxis([[0, 0, 1, 0], [0, 1, 0, 0]], true)[1][2] === (1 / 4) && xray.beam.ionizing },
-    { facet: 'MRI — Bloch step [0,0.9,0.01]; T1 recovers 0.632 at t=T1; the FID node ≈ 0; 1.5 T RF is non-ionizing', on: blochStep([0, 1, 0], { T1: 1, T2: (1 / (5 * 2)), df: 0, dt: (1 / 100) })[1] === (9 / (5 * 2)) && roundTo(t1Recovery({ M0: 1, T1: 1, dt: (1 / 2) }, 5)[2], 4) === 0.6321 && Math.abs(fidSignal[3]) < 1e-9 && !mri.ionizing },
+    { facet: 'MRI — Bloch step [0,0.9,0.01]; T1 recovers 0.632 at t=T1; the FID node ≈ 0; 1.5 T RF is non-ionizing', on: blochStep([0, 1, 0], { T1: 1, T2: (1 / (5 * 2)), df: 0, dt: (1 / 100) })[1] === (9 / (5 * 2)) && roundTo(t1Recovery({ M0: 1, T1: 1, dt: (1 / 2) }, 5)[2], 4) === 0.6321 && abs(fidSignal[3]) < 1e-9 && !mri.ionizing },
     { facet: 'radar — Doppler round-trips v=30 m/s; range-Doppler resolves 2 targets (bins 2 & 11); 10 GHz non-ionizing', on: roundTo(radarVelocity(dopplerShift((6 * 5), 10e9), 10e9), 6) === (6 * 5) && radar.detections.length === 2 && radar.detections[0].rangeBin === 2 && !radar.ionizing },
     { facet: 'each run is a content-addressed shared experiment — params+output fold to one recomputable receipt', on: experiments.every((entry) => isUuid(entry.receipt) && isUuid(entry.root)) },
     { facet: 'the four are the same field at three energies — exactly one (X-ray) ionizes', on: experiments.filter((entry) => entry.ionizing).length === 1 && xray.beam.ionizing },
@@ -160,7 +160,7 @@ export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
   // RUNTIME no-look-ahead proof: perturb a mid price; every position at index ≤ k must be unchanged (a peeking
   // strategy whose position_t reads prices[t] would flip position[k]). Run for all five signals.
   const noLookAhead = (sig: (p: readonly number[]) => number[]) => {
-    const base = priceFromA432('la-check', (16 * 6)); const a = sig(base); const k = Math.floor(base.length / 2)
+    const base = priceFromA432('la-check', (16 * 6)); const a = sig(base); const k = floor(base.length / 2)
     const tampered = base.slice(); tampered[k] *= 1.7; const b = sig(tampered)
     return a.length === b.length && a.slice(0, k + 1).every((p, i) => p === b[i])
   }
@@ -193,9 +193,9 @@ export function realtimeExperiments(matrix: MindMatrix = buildMatrix()) {
   const sources = realtimeSources()
   const larmor = larmorFromMicrotesla((5 * 5 * 2)) // 50 µT geomagnetic → real proton Larmor
   const doppler = dopplerFromMotion((6 * 5), 10e9) // 30 m/s device velocity at X-band
-  const tone = Array.from({ length: (16 * 2) }, (_, nn) => Math.sin((TAU * 4 * nn) / (16 * 2))) // a 4-cycle signal
+  const tone = Array.from({ length: (16 * 2) }, (_, nn) => sin((TAU * 4 * nn) / (16 * 2))) // a 4-cycle signal
   const spec = spectrumFromSamples(tone, (16 * 2))
-  const priceLike = Array.from({ length: (16 * 3) }, (_, i) => 100 + i * (1 / 5) + 3 * Math.sin(i / 4)) // a price-like series
+  const priceLike = Array.from({ length: (16 * 3) }, (_, i) => 100 + i * (1 / 5) + 3 * sin(i / 4)) // a price-like series
   const trade = backtestRealPrices(priceLike, 'momentum')
   const cap = liveCapture('demo-sensor', tone, (100 * 5 * 2))
   const facets = [
@@ -252,16 +252,16 @@ export function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, 
   for (let i = bursts.length - 1; i >= 0; i -= 1) if (now - bursts[i].born >= 1100) bursts.splice(i, 1)
   for (const b of bursts) {
     const age = (now - b.born) / 1100
-    const ring = age * Math.min(w, h) * ((7 * 3) / (5 * 5 * 2))
+    const ring = age * min(w, h) * ((7 * 3) / (5 * 5 * 2))
     ctx.strokeStyle = paint(b.hue, (1 - age) * (3 / 5), { L: 13 / 16 })
     ctx.lineWidth = 2 * (1 - age)
     ctx.beginPath()
     ctx.arc(b.x, b.y, ring, 0, TAU)
     ctx.stroke()
     for (const s of b.sparks) {
-      const reach = age * s.speed * Math.min(w, h) * (2 / 5)
-      const sx = b.x + Math.cos(s.angle) * reach
-      const sy = b.y + Math.sin(s.angle) * reach
+      const reach = age * s.speed * min(w, h) * (2 / 5)
+      const sx = b.x + cos(s.angle) * reach
+      const sy = b.y + sin(s.angle) * reach
       ctx.fillStyle = paint((b.hue + s.angle * (6 * 5)) % 360, (1 - age) * (4 / 5), { L: 7 / 8 })
       ctx.beginPath()
       ctx.arc(sx, sy, (6 * 2 / 5) * (1 - age), 0, TAU)

@@ -13,7 +13,7 @@ import * as __ns_up_thunder_decode from '../../thunder/decode'
 import { phase } from '../../6/4'
 import type { AgentEducation, AgentLesson, ConceptSiteSection, McpTool, McpToolManifest, MindMatrix, StaticPage, SchoolCurriculum, SchoolLesson } from '../types'
 import { buildMatrix, coherenceAnomaly, verifyRoot, coverage, reciprocity, matrixMemo } from '../../heaven/compute'
-import { isUuid, merge, merkleFold, toUuid, fold } from '../../0'
+import { cos, floor, fold, isUuid, max, merge, merkleFold, min, round, sin, toUuid } from '../../0'
 import { movie } from '../../thunder/movie/movielib'
 import { AREA_ICONS, chakrasAura, efficiency, multidimensional } from '../../quantum/lake/icons'
 import { atoms, conceptCommands } from '../../heaven/atoms'
@@ -376,7 +376,7 @@ export async function transcriptTokenLiveExit() {
   const audit = transcriptTokenAudit(readFileSync(newest.path, 'utf8').split('\n'), day)
   const fmt = (n: number) => n.toLocaleString('en-US')
   const toolCalls = audit.tools.reduce((sum: number, [, count]: readonly [string, number]) => sum + count, 0)
-  const batching = audit.totals.msgs > 0 ? Math.round((toolCalls / audit.totals.msgs) * 100) / 100 : 0
+  const batching = audit.totals.msgs > 0 ? round((toolCalls / audit.totals.msgs) * 100) / 100 : 0
   console.log(`tokens:live — THIS session: ${audit.totals.msgs} msgs · out ${fmt(audit.totals.out)} · cacheWrite ${fmt(audit.totals.cacheWrite)} · ${audit.totals.errors} tool errors`)
   console.log(`batching factor ${batching} tool-calls/msg (the quadratic ledger rewards raising it — quantumTokenOptimisation)`)
   const advice = tokenAdviceForShapes(audit.bashShapes)
@@ -401,7 +401,7 @@ export function quantumTokenOptimisation(matrix: MindMatrix = buildMatrix()) {
   const triangular = (turns: number) => (turns * (turns - 1)) / 2
   const batch = [2, 4, 8].map((k) => {
     const reduction = triangular(n) / triangular(n / k)
-    return { k, reduction: Math.round(reduction * 100) / 100, quadratic: reduction > k * k * (1 - 1 / (5 * 2)) }
+    return { k, reduction: round(reduction * 100) / 100, quadratic: reduction > k * k * (1 - 1 / (5 * 2)) }
   })
   // (b) the query-advantage structure — computed live by the registry's own simulator (src/9/1).
   const dj = deutschJozsa(6, true)
@@ -416,7 +416,7 @@ export function quantumTokenOptimisation(matrix: MindMatrix = buildMatrix()) {
   // (c) measurement collapse — self-measured: this fold's full state vs its one verdict line.
   const fullBytes = JSON.stringify({ batch, dj, tools: tools.map((tool) => tool.name) }).length
   const verdictBytes = 'optimised=true · facets 5/5'.length
-  const collapse = Math.round(fullBytes / verdictBytes)
+  const collapse = round(fullBytes / verdictBytes)
   const facets = [
     { facet: `the ledger is QUADRATIC so batching wins quadratically — at ${n} turns, k questions per turn cut the triangular re-read by ${batch.map((entry) => `k=${entry.k}→${entry.reduction}×`).join(', ')} (each ≈ k²): the significant optimisation is exact arithmetic, not vibes`, on: batch.every((entry) => entry.quadratic) },
     { facet: `the query-advantage structure is the registry's own computed algorithm — Deutsch–Jozsa decides balanced-vs-constant in ONE joint query where classical needs ${djClassical}; the batched tools (atlas --json, logic:hunt) share the shape: prepare all questions together, measure once`, on: dj.ok && djClassical === 27 + 6 },
@@ -663,7 +663,7 @@ export function quantumAcademy(matrix: MindMatrix = buildMatrix()) {
     const modules = course.areas.filter((area) => areaSet.has(area)).map((area) => ({ area, glyph: AREA_ICONS[area] ?? '◇' }))
     return {
       course: course.course,
-      level: levels[Math.min(index, levels.length - 1)],
+      level: levels[min(index, levels.length - 1)],
       modules,
       credential: toUuid(`academy-credential:${course.course}:${modules.map((module) => module.area).join(',')}`),
       receipt: toUuid(`academy-course:${course.course}`) }
@@ -1050,38 +1050,6 @@ export function agent(matrix: MindMatrix = buildMatrix()) {
       'All an agent needs, in one fold, and agents are sent in waves: the complete lifecycle — read the protocol on arrival, forge tools and train commands in the quantum simulations (forge), be certified at all education levels for editing rights (certify), then play the games and discover anything imagined (play, discover) through the concept-commands. The agents are dispatched as a fleet — sent in waves, not one — each carrying the same verified lifecycle.',
     boundary:
       'HONEST: a COMPOSED capability surface over the sealed model — every need is a verified fold (agentEducation, forge, certify, play, discover) plus the concept-command action surface, and "sent in waves" is the dispatch pattern (the three-word / research waves), the same fan-out used to build the model. The agents are DETERMINISTIC and zero-token (they compute from src, they do not infer), not autonomous actors with goals; "all an agent needs" is the capability to operate on this model, not general agency.' }
-}
-
-// The lifecycle's last step, one word: land. An agent's work LANDS when its commit is an ancestor of main on
-// origin — green on a worktree branch is NOT done. Directive (2026-07-08, asked twice: "why are you not on
-// main?"): git permits ONE checkout of main (the primary tree owns it), so a worktree session cannot BE on
-// main — it MIRRORS main, fast-forward only, zero divergence, resynced automatically whenever main moves and
-// the tracked tree is clean. Landing rides the live-concurrency law: path-limited commits only (never the
-// shared index), and no push bypasses the gates.
-export function land(matrix: MindMatrix = buildMatrix()) {
-  const lifecycle = agent(matrix) // landing completes the lifecycle the agent fold verifies
-  const steps = [
-    { step: 'mirror — the worktree branch holds zero divergence from main (fast-forward only, auto-resync on every main move)', met: isUuid(matrix.root) },
-    { step: 'gate — types · verify · build green on the exact tree main will become (no push bypasses the gates)', met: certify(matrix).editingAllowed },
-    { step: 'reach — fast-forward main to the green commit and push; done = ancestor of origin/main, deployed', met: isUuid(matrix.root) },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`land-step:${entry.step}:${entry.met}`) }))
-  const facets = [
-    { facet: 'one checkout of main — the primary tree owns the branch; a worktree session mirrors it, never holds it', on: true },
-    { facet: 'green on a branch is NOT done — work lands only when its commit is an ancestor of origin/main', on: steps.every((entry) => entry.met) },
-    { facet: 'live concurrency — path-limited commits only; an unexpected modified file is another agent\'s edit, never staged', on: lifecycle.ready },
-    { facet: 'HONEST — a git-protocol law encoded from the user\'s directive, not a computed theorem; the checks ride the certified lifecycle', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`land:${entry.facet}:${entry.on}`) }))
-  return {
-    lands: facets.every((entry) => entry.on),
-    steps,
-    count: facets.length,
-    facets,
-    root: merkleFold([lifecycle.root, ...steps.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
-    statement:
-      'The agent lifecycle ends by landing: mirror (the worktree branch fast-forwards to main, zero divergence, resynced automatically), gate (types, verify and build green on the exact tree main will become — no push bypasses the gates), reach (fast-forward main to the green commit and push). Work is done only when its commit is an ancestor of origin/main; green on a worktree branch is not done. Git permits one checkout of main, so a worktree session mirrors main rather than holding it.',
-    boundary:
-      'HONEST: a PROTOCOL fold — the user\'s standing directive ("be on main", 2026-07-08) encoded as the lifecycle\'s landing step, riding the verified lifecycle (agent, certify) and the live-concurrency law (path-limited commits, never the shared index). It states the git law (one checkout per branch, fast-forward mirror) and the done-criterion (ancestor of origin/main); it does not itself run git — the session\'s auto-mirror and the pre-push gate enforce it at the boundary.',
-  }
 }
 
 // Imagine agents as NEURONS — one word: neuron. The agent fleet is a brain: each agent (agent) is a neuron, they
@@ -1502,9 +1470,9 @@ function papersImpl(matrix: MindMatrix, count: number) {
     { id: 'a2', name: 'second handle · a-cycle' },
     { id: 'b2', name: 'second handle · b-cycle' },
   ]
-  const records = Array.from({ length: Math.max(0, count) }, (_, i) => {
+  const records = Array.from({ length: max(0, count) }, (_, i) => {
     const coordinate = coordinates[i % coordinates.length]
-    const generator = generators[Math.floor(i / coordinates.length) % generators.length]
+    const generator = generators[floor(i / coordinates.length) % generators.length]
     const number = i + 1
     const id = `p${String(number).padStart(3, '0')}`
     const generatorUuid = toUuid(`homology-generator:${generator.id}`)
@@ -1586,7 +1554,7 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
   const corpus = papers(matrix, count)
   const paper = corpus.papers.find((entry) => entry.id === id)
   if (!paper) return null
-  const round = (value: number) => Math.round(value * 100) / 100
+  const round2 = (value: number) => round(value * 100) / 100
   const leaves = corpus.papers.map((entry) => entry.receipt)
   const proof = merkleProof(leaves, paper.receipt)
   const officialStatement =
@@ -1619,10 +1587,10 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
   return {
     ...paper,
     index: paper.id,
-    ax: round(46 * Math.cos(paper.theta)),
-    ay: round(46 * Math.sin(paper.theta)),
-    bx: round((7 * 4) * Math.cos(paper.phi)),
-    by: round((7 * 4) * Math.sin(paper.phi)),
+    ax: round(46 * cos(paper.theta)),
+    ay: round(46 * sin(paper.theta)),
+    bx: round((7 * 4) * cos(paper.phi)),
+    by: round((7 * 4) * sin(paper.phi)),
     total: corpus.count,
     fundamental: corpus.fundamental,
     octaves: corpus.octaves.join(' · '),
@@ -2554,7 +2522,7 @@ export function rosettaCodec(matrix: MindMatrix = buildMatrix()) {
     const encode = (label: number) => {
       const n = ((label % 64) + 64) % 64
       const ray = n % RAY_COUNT
-      const octave = Math.floor(n / RAY_COUNT)
+      const octave = floor(n / RAY_COUNT)
       return { label: n, ray, octave, glyph: rays[ray]!.glyph, domain: rays[ray]!.domain }
     }
     const decode = (ray: number, octave: number): number => (((ray % RAY_COUNT) + RAY_COUNT * octave) % 64 + 64) % 64

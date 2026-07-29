@@ -7,7 +7,7 @@ import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { animationEngineLivesInZero, buildEnforcementPipeline, inverseShiftConsciousness, quantumGreenPlanet, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, min, toUuid } from '../../0'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 // relocated imagination/mind cluster deps (call-time bindings; no load cycle)
 import { quantumAcademy, papers, monographPaths } from '../../wind/learning'
@@ -870,21 +870,21 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
     const phrase = offlineTranslateEnToBg(phraseProbe)
     const phraseHub = offlineTranslateEnToBg('the hub for origin')
     const phraseMapped = phrase.mapped + phraseHub.mapped
-    const phraseTotal = Math.max(1, (phrase.total ?? 1) + (phraseHub.total ?? 1))
+    const phraseTotal = max(1, (phrase.total ?? 1) + (phraseHub.total ?? 1))
     const phraseCoverage =
       phraseMapped > 0 && /[\u0400-\u04FF]/.test(phrase.text)
-        ? Math.min(1, phraseMapped / phraseTotal)
+        ? min(1, phraseMapped / phraseTotal)
         : 0
 
     const glaSample = toGlagolitic(phraseProbe)
     const glaLetters = [...glaSample].filter((c) => /[\u2C00-\u2C5F]/.test(c)).length
-    const glaTotal = Math.max(1, [...phraseProbe].filter((c) => /[A-Za-z]/.test(c)).length)
-    const glaCoverage = Math.min(1, glaLetters / glaTotal)
+    const glaTotal = max(1, [...phraseProbe].filter((c) => /[A-Za-z]/.test(c)).length)
+    const glaCoverage = min(1, glaLetters / glaTotal)
 
     const memoBonus = memoReuseCount / probes.length
     type CandidateId = 'pivot' | 'phrase-en-bg' | 'gla-transliterate'
     const anySpanBonus = roundTripsOk / (8 * 9) // measurable any↔any round-trip extent (phrase cannot claim)
-    const tongueSpanBonus = Math.min(1, tongues.length / (4 * 9)) / 9 // 32 tongues → small span edge
+    const tongueSpanBonus = min(1, tongues.length / (4 * 9)) / 9 // 32 tongues → small span edge
     const candidates: {
       id: CandidateId
       coverage: number
@@ -1191,7 +1191,7 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
     const lex = pivotLexicon()
     const tongues = pivotTongues(lex)
     const tongueCount = tongues.length
-    const pairCount = tongueCount * Math.max(0, tongueCount - 1)
+    const pairCount = tongueCount * max(0, tongueCount - 1)
 
     // Index units by tongue for fair probe pick (prefer verse:* shared surfaces).
     const unitsByTongue = new Map<string, string[]>()
@@ -1278,7 +1278,7 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
     const coverages = pairRows.map((r) => r.coverage)
     const meanCoverage =
       coverages.length > 0 ? coverages.reduce((s, c) => s + c, 0) / coverages.length : 0
-    const minCoverage = coverages.length > 0 ? Math.min(...coverages) : 0
+    const minCoverage = coverages.length > 0 ? min(...coverages) : 0
     const perfectPairs = pairRows.filter((r) => r.coverage === 1 && r.roundTripOk).length
     const leakPairs = pairRows.filter((r) => r.identityLeak).length
     const mappedPairs = pairRows.filter((r) => r.mapped > 0).length
@@ -1310,15 +1310,15 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
     const phrase = offlineTranslateEnToBg(phraseProbe)
     const phraseHub = offlineTranslateEnToBg('the hub for origin')
     const phraseMapped = phrase.mapped + phraseHub.mapped
-    const phraseTotal = Math.max(1, (phrase.total ?? 1) + (phraseHub.total ?? 1))
+    const phraseTotal = max(1, (phrase.total ?? 1) + (phraseHub.total ?? 1))
     const phraseCoverage =
       phraseMapped > 0 && /[\u0400-\u04FF]/.test(phrase.text)
-        ? Math.min(1, phraseMapped / phraseTotal)
+        ? min(1, phraseMapped / phraseTotal)
         : 0
     const glaSample = toGlagolitic(phraseProbe)
     const glaLetters = [...glaSample].filter((c) => /[\u2C00-\u2C5F]/.test(c)).length
-    const glaTotal = Math.max(1, [...phraseProbe].filter((c) => /[A-Za-z]/.test(c)).length)
-    const glaCoverage = Math.min(1, glaLetters / glaTotal)
+    const glaTotal = max(1, [...phraseProbe].filter((c) => /[A-Za-z]/.test(c)).length)
+    const glaCoverage = min(1, glaLetters / glaTotal)
 
     const leakRate = pairCount > 0 ? leakPairs / pairCount : 0
     const perfectRate = pairCount > 0 ? perfectPairs / pairCount : 0
@@ -2308,7 +2308,7 @@ export function doubleTorusComponents(matrix: MindMatrix = buildMatrix()) {
   const limit = closure.limit // 64 = 2×32 = 2⁶ = 4³ = 8²
   const graph = componentGraph()
   const canonical = graph.components.length
-  const over = Math.max(0, canonical - limit)
+  const over = max(0, canonical - limit)
   const shadcn = shadcnIsTheGraph(matrix)
   const primitives = shadcn.allComponents.length // shadcnIsTheGraph declares the 64-primitive alphabet
   const facets = [

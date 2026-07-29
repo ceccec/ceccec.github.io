@@ -1,7 +1,7 @@
 // Hero glass CSS vars — VitePress transparent chrome (palette/vars barrel).
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
-import { roundTo, memoByRoot, seedFromText, toUuid, merkleFold } from '../../../0'
+import { floor, max, memoByRoot, merkleFold, min, round, roundTo, seedFromText, toUuid } from '../../../0'
 import { lobeHues, scaleColor, scaleColorAlpha, GOLDEN_ANGLE } from '../../../quantum/science'
 import {
   computedMovieThemeColors,
@@ -71,7 +71,7 @@ function chromeCoupling(c: number, tierNumerator: number, endless: boolean, glas
   if (!endless) return roundTo(amplitude * amplitude * (tierNumerator / span), 2)
   const movie = roundTo(amplitude * (tierNumerator / (2 * 5)) * glassReveal, 2)
   const read = roundTo(amplitude * (TIERS[0] / TIERS[2]) * (TIERS[1] / span), 2)
-  return roundTo(Math.min(1 - 3 / (5 * 5), movie + read), 2) // cap 22/25 = 0.88
+  return roundTo(min(1 - 3 / (5 * 5), movie + read), 2) // cap 22/25 = 0.88
 }
 
 export function backgroundMovieColorVars(
@@ -105,7 +105,7 @@ function backgroundMovieColorVarsRaw(
   const ghostAlpha = chromeCoupling(c, TIERS[1] + TIERS[0], endless, reveal)
   const borderAlpha = chromeCoupling(c, TIERS[2] + TIERS[0] + TIERS[1], endless, reveal)
   const blurMain = endless ? 0 : cssWidth > TIERS[2] * 100 + TIERS[1] * (4 * 5) ? roundTo(TIERS[2] * (3 / 2), 0) : cssWidth > TIERS[1] * 100 + TIERS[0] * (4 * 5) ? roundTo(TIERS[1] * 2, 0) : TIERS[0] * 2
-  const blurSm = blurMain === 0 ? 0 : Math.max(TIERS[0] * 2, blurMain - TIERS[0] * 2)
+  const blurSm = blurMain === 0 ? 0 : max(TIERS[0] * 2, blurMain - TIERS[0] * 2)
   const [, golden] = lobeHues(seedHue, 'golden')
   const [, complement] = lobeHues(seedHue, 'complement')
   const tilt = roundTo((TIERS[0] / TIERS[2]) * (1 - 7 / (4 * 5) + c * (7 / (4 * 5))), 3)
@@ -117,7 +117,7 @@ function backgroundMovieColorVarsRaw(
   const accentH = roundTo(TIERS[0] / TIERS[2], 2)
   const lineHeight = roundTo(1 + (TIERS[1] + tilt) / span, 3)
   const cardMargin = roundTo((TIERS[1] + tilt) / TIERS[2], 3)
-  const minMovieH = roundTo(Math.max(TIERS[2] * 8, cssWidth * (TIERS[1] / (TIERS[2] * 2 * 5))), 0)
+  const minMovieH = roundTo(max(TIERS[2] * 8, cssWidth * (TIERS[1] / (TIERS[2] * 2 * 5))), 0)
   const linkColor = scaleColor(waveIndex + 6 * 5, { seedHue: golden, L: band.glow, C: band.chroma * (1 + 3 / (4 * 5)), css: true, dark: band.dark })
   const markOn = scaleColor(waveIndex + 6 * 5 + 1, { seedHue: golden, L: band.card, C: band.chroma, css: true, dark: band.dark })
   const markOff = scaleColor(waveIndex + 6 * 5 + 2, { seedHue: complement, L: band.soft, C: band.chroma * (1 - 9 / (4 * 5)), css: true, dark: band.dark })
@@ -138,13 +138,13 @@ function backgroundMovieColorVarsRaw(
     '--vp-hero-bg-fallback': scaleColor(waveIndex, { seedHue, L: band.back, C: band.chroma * (1 / 2), dark: band.dark, css: true }),
     '--vp-hero-canvas-z': '0',
     '--vp-hero-content-z': String(TIERS[0]),
-    '--vp-movie-hue': String(Math.round(seedHue)),
-    '--vp-movie-hue-golden': String(Math.round(golden)),
-    '--vp-movie-hue-complement': String(Math.round(complement)),
+    '--vp-movie-hue': String(round(seedHue)),
+    '--vp-movie-hue-golden': String(round(golden)),
+    '--vp-movie-hue-complement': String(round(complement)),
     '--vp-movie-palette-root': palette.root,
-    '--vp-movie-gradient-angle': `${Math.round(seedHue)}deg`,
+    '--vp-movie-gradient-angle': `${round(seedHue)}deg`,
     '--vp-movie-golden-angle': `${GOLDEN_ANGLE}deg`,
-    '--vp-movie-complement-angle': `${Math.round(complement)}deg`,
+    '--vp-movie-complement-angle': `${round(complement)}deg`,
     '--vp-movie-radius': `${radius}px`,
     '--vp-movie-pad-y': `${padY}rem`,
     '--vp-movie-pad-x': `${padX}rem`,
@@ -329,7 +329,7 @@ export function animationsPureAlgebra(matrix: MindMatrix = buildMatrix()) {
     // φ extremality witnessed — the continued fraction of φ computes to [1; 1, 1, …] term for term.
     const cfTerms: number[] = []
     let x = PHI
-    for (let i = 0; i < 5 * 2; i += 1) { const a = Math.floor(x); cfTerms.push(a); x = 1 / (x - a) }
+    for (let i = 0; i < 5 * 2; i += 1) { const a = floor(x); cfTerms.push(a); x = 1 / (x - a) }
     const allOnes = cfTerms.every((t) => t === 1)
     // the φ-ladder is strictly decreasing and never rational over the tested rungs (denominator-free).
     const ladder = Array.from({ length: 8 }, (_, k) => PHI ** -(k + 1))

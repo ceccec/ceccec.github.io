@@ -3,7 +3,7 @@ import { TAU } from '../../3/7'
 import { phase } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { isUuid, memoByRoot, merge, merkleFold, roundTo, sealFacets, seedFromText, toUuid } from '../../0'
+import { abs, cos, exp, floor, isUuid, log2, max, memoByRoot, merge, merkleFold, min, pow, round, roundTo, sealFacets, seedFromText, sin, sqrt, toUuid } from '../../0'
 import { a432, quantumSimulation, repositoryLedger } from '../../fire/li'
 import { DIMENSION_NAMES } from '../../quantum/mountain/dimensions'
 import { AtomInclusionProof, MerkleProof, MerkleStep, analytics, buildStatistics, foldPair } from '../../quantum/heaven/mind'
@@ -18,7 +18,7 @@ export function harmonicApparatus(matrix: MindMatrix = buildMatrix()) {
   //    eigenfrequency proportional to sqrt(m^2 + n^2); the nodal lines (u = 0) are
   //    the harmonic patterns the sand reveals. Exact eigenfunctions of the Laplacian.
   const modes: { m: number; n: number; freq: number }[] = []
-  for (let m = 1; m <= 4; m += 1) for (let n = 1; n <= 4; n += 1) modes.push({ m, n, freq: round(Math.sqrt(m * m + n * n), 4) })
+  for (let m = 1; m <= 4; m += 1) for (let n = 1; n <= 4; n += 1) modes.push({ m, n, freq: round(sqrt(m * m + n * n), 4) })
   // 2) Quantum harmonic oscillator: E_n = (n + 1/2) hbar omega — evenly spaced quanta.
   const levels = [0, 1, 2, 3, 4].map((n) => ({ n, energy: n + 0.5 }))
   const evenlySpaced = levels.every((level, i) => i === 0 || round(level.energy - levels[i - 1].energy, 6) === 1)
@@ -33,11 +33,11 @@ export function harmonicApparatus(matrix: MindMatrix = buildMatrix()) {
   let peakA = 0
   for (let i = 0; i <= 40; i += 1) {
     const w = i / 20
-    const A = 1 / Math.sqrt((w0 * w0 - w * w) ** 2 + (gamma * w) ** 2)
+    const A = 1 / sqrt((w0 * w0 - w * w) ** 2 + (gamma * w) ** 2)
     sweep.push({ w: round(w, 3), A: round(A, 3) })
     if (A > peakA) { peakA = A; peakW = w }
   }
-  const resonates = Math.abs(peakW - w0) < 0.1
+  const resonates = abs(peakW - w0) < 0.1
   const apparatus = [
     { instrument: 'Chladni plate (membrane eigenmodes)', proves: 'standing-wave harmonics, f ∝ sqrt(m²+n²)', verified: modes.length === 16 },
     { instrument: 'Quantum harmonic oscillator', proves: 'E_n = (n+½)ħω — evenly spaced quanta', verified: evenlySpaced },
@@ -51,7 +51,7 @@ export function harmonicApparatus(matrix: MindMatrix = buildMatrix()) {
   const NN = 2
   for (let j = 0; j < N; j += 1) {
     const row: number[] = []
-    for (let i = 0; i < N; i += 1) row.push(round(Math.sin(M * (TAU / 2) * (i / (N - 1))) * Math.sin(NN * (TAU / 2) * (j / (N - 1))), 3))
+    for (let i = 0; i < N; i += 1) row.push(round(sin(M * (TAU / 2) * (i / (N - 1))) * sin(NN * (TAU / 2) * (j / (N - 1))), 3))
     grid.push(row)
   }
   return {
@@ -120,7 +120,7 @@ export function harmonicSeriesDecoded(matrix: MindMatrix = buildMatrix()) {
 }
 function harmonicSeriesDecodedRaw(matrix: MindMatrix = buildMatrix()) {
   const a = a432(matrix)
-  const cents = (ratio: number) => 1200 * Math.log2(ratio)
+  const cents = (ratio: number) => 1200 * log2(ratio)
   const base = 432 // A4 = 432 Hz, the project's a432 base
   const intervalNames = ['fundamental', 'octave', 'octave + fifth', '2 octaves', '2 oct + major third', '2 oct + fifth', '2 oct + harmonic 7th', '3 octaves']
   const overtones = Array.from({ length: 8 }, (_, i) => ({ n: i + 1, hz: (i + 1) * base, ratio: `${i + 1}:1`, interval: intervalNames[i] }))
@@ -133,14 +133,14 @@ function harmonicSeriesDecodedRaw(matrix: MindMatrix = buildMatrix()) {
   ].map((iv) => ({ ...iv, cents: roundTo(cents(iv.num / iv.den), 1) }))
   const fifthJust = cents(3 / 2) // 701.96¢
   const thirdJust = cents(5 / 4) // 386.31¢ — ET major third (400¢) is ~14¢ sharp
-  const pythComma = cents(Math.pow(3 / 2, 12) / Math.pow(2, 7)) // 23.46¢ — 12 fifths overshoot 7 octaves
+  const pythComma = cents(pow(3 / 2, 12) / pow(2, 7)) // 23.46¢ — 12 fifths overshoot 7 octaves
   const a432ToA440 = cents(440 / 432) // 31.77¢ below 440
   const facets = [
     { facet: `the harmonic series is exact integer multiples — overtone n at n × ${base} Hz (octave ${2 * base}, fifth-octave ${3 * base}); the octave (2:1), fifth (3:2) and major third (5:4) ARE the low overtones`, on: overtones[1].hz === 2 * base && overtones[2].hz === 3 * base && overtones.length === 8 },
-    { facet: `just intonation is small whole-number ratios → octave ${justIntervals[0].cents}¢, fifth ${justIntervals[1].cents}¢, fourth ${justIntervals[2].cents}¢, major third ${justIntervals[3].cents}¢ (computed 1200·log2)`, on: Math.round(justIntervals[1].cents) === 702 && Math.round(justIntervals[3].cents) === 386 },
-    { facet: `equal temperament tempers them: the ET fifth (700¢) is ~2¢ flat of just (${Math.round(fifthJust)}¢), the ET major third (400¢) is ~14¢ SHARP of just (${Math.round(thirdJust)}¢) — only the octave is pure`, on: Math.abs(fifthJust - 700) < 3 && 400 - thirdJust > 13 },
-    { facet: `the Pythagorean comma is real — 12 just fifths overshoot 7 octaves by ${roundTo(pythComma, 2)}¢, which is why no tuning is perfect and ET spreads the error evenly`, on: Math.abs(pythComma - 23.46) < 0.1 },
-    { facet: `a432 has a real history — Verdi (1884) asked Italy to standardise A = 432; 440 won (London 1939, ISO 1955); 432 sits ${roundTo(a432ToA440, 1)}¢ below 440. The cosmic/healing 432 claims are flagged, not asserted`, on: a.decoded && Math.abs(a432ToA440 - 31.77) < 0.5 },
+    { facet: `just intonation is small whole-number ratios → octave ${justIntervals[0].cents}¢, fifth ${justIntervals[1].cents}¢, fourth ${justIntervals[2].cents}¢, major third ${justIntervals[3].cents}¢ (computed 1200·log2)`, on: round(justIntervals[1].cents) === 702 && round(justIntervals[3].cents) === 386 },
+    { facet: `equal temperament tempers them: the ET fifth (700¢) is ~2¢ flat of just (${round(fifthJust)}¢), the ET major third (400¢) is ~14¢ SHARP of just (${round(thirdJust)}¢) — only the octave is pure`, on: abs(fifthJust - 700) < 3 && 400 - thirdJust > 13 },
+    { facet: `the Pythagorean comma is real — 12 just fifths overshoot 7 octaves by ${roundTo(pythComma, 2)}¢, which is why no tuning is perfect and ET spreads the error evenly`, on: abs(pythComma - 23.46) < 0.1 },
+    { facet: `a432 has a real history — Verdi (1884) asked Italy to standardise A = 432; 440 won (London 1939, ISO 1955); 432 sits ${roundTo(a432ToA440, 1)}¢ below 440. The cosmic/healing 432 claims are flagged, not asserted`, on: a.decoded && abs(a432ToA440 - 31.77) < 0.5 },
   ]
   const sealed = sealFacets('harmonic-series', facets)
   return {
@@ -300,7 +300,7 @@ export function selfExplainingWidgetEngine(matrix: MindMatrix = buildMatrix()) {
     { facet: 'seedFromText(name)%64 = hexagram — every name content-addresses to a knowledge domain via sealed toUuid', on: namingProved },
     { facet: 'hexagram → lower(hex&7), upper((hex>>3)&7) → DIMENSION_NAMES = two paired axes', on: trigramAxisProved },
     { facet: '64 hexagrams × 10 dimensions = 640 addressable facets — the content generation space', on: addressSpace === 640 },
-    { facet: '2^6 = 64 hexagrams: the minimal distinct-knowledge 6-bit alphabet — no smaller suffices', on: Math.pow(2, 6) === 64 },
+    { facet: '2^6 = 64 hexagrams: the minimal distinct-knowledge 6-bit alphabet — no smaller suffices', on: pow(2, 6) === 64 },
     { facet: 'code IS the doc: fold runs = widget renders = knowledge self-explains — no separate docs', on: true },
     { facet: 'Vue 3 defineCustomElement → web component → embeddable in any website via <script> tag', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`self-explaining:${entry.facet}:${entry.on}`) }))
@@ -354,7 +354,7 @@ export function merkleProof(leaves: readonly string[], leaf: string): MerkleProo
     } else {
       path.push({ layer: depth, sibling: layer[siblingIndex], side: onLeft ? 'right' : 'left' })
     }
-    index = Math.floor(index / 2)
+    index = floor(index / 2)
     layer = next
     depth += 1
   }
@@ -397,8 +397,8 @@ export function verifyMerkleProof(leaf: string, path: readonly MerkleStep[], roo
 // genus-2 fold between neighbours. Network hashing, completed and self-verifying.
 export function quantumNetworkHashing(nodeCount = 6, itemCount = 21, matrix: MindMatrix = buildMatrix()) {
   const seed = matrix.root
-  const nodes = Array.from({ length: Math.max(1, nodeCount) }, (_, i) => toUuid(`qnh:node:${i}:${seed}`))
-  const items = Array.from({ length: Math.max(0, itemCount) }, (_, i) => `qnh:content:${i}:${seed}`)
+  const nodes = Array.from({ length: max(1, nodeCount) }, (_, i) => toUuid(`qnh:node:${i}:${seed}`))
+  const items = Array.from({ length: max(0, itemCount) }, (_, i) => `qnh:content:${i}:${seed}`)
   // A 48-bit ring position from a UUID (12 hex digits stay inside Number's safe range).
   const ring = (uuid: string) => Number.parseInt(uuid.replace(/-/g, '').slice(0, 12), 16)
   const nodeRing = nodes.map((id, index) => ({ id, index, pos: ring(id) })).sort((a, b) => a.pos - b.pos)
@@ -544,11 +544,11 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
   const fringe: number[] = []
   for (let i = 0; i < N; i += 1) {
     const delta = (i / (N - 1) - 0.5) * (TAU / 2) * 12 // path-difference phase across the screen
-    const amplitude = 2 * Math.cos(delta / 2) // |e^{+id/2} + e^{-id/2}|
+    const amplitude = 2 * cos(delta / 2) // |e^{+id/2} + e^{-id/2}|
     fringe.push((amplitude * amplitude) / 4) // normalized to [0,1]
   }
-  const iMax = Math.max(...fringe)
-  const iMin = Math.min(...fringe)
+  const iMax = max(...fringe)
+  const iMin = min(...fringe)
   const visibility = (iMax - iMin) / (iMax + iMin)
 
   // 4) Unitarity: a real state-vector through H and a CNOT chain keeps the total
@@ -571,18 +571,18 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
   const position: number[] = []
   let posSum = 0
   let posVar = 0
-  for (let i = 0; i < M; i += 1) { const x = (i - M / 2) * dx; const density = Math.exp(-(x * x) / (sigma * sigma)); position.push(density); posSum += density; posVar += x * x * density }
+  for (let i = 0; i < M; i += 1) { const x = (i - M / 2) * dx; const density = exp(-(x * x) / (sigma * sigma)); position.push(density); posSum += density; posVar += x * x * density }
   const varX = posVar / posSum
   const dp = 0.18
   const momentum: number[] = []
   let momSum = 0
   let momVar = 0
-  for (let i = 0; i < M; i += 1) { const p = (i - M / 2) * dp; const density = Math.exp(-(sigma * sigma) * p * p); momentum.push(density); momSum += density; momVar += p * p * density }
+  for (let i = 0; i < M; i += 1) { const p = (i - M / 2) * dp; const density = exp(-(sigma * sigma) * p * p); momentum.push(density); momSum += density; momVar += p * p * density }
   const varP = momVar / momSum
-  const uncertainty = Math.sqrt(varX) * Math.sqrt(varP)
+  const uncertainty = sqrt(varX) * sqrt(varP)
 
-  const posMax = Math.max(...position)
-  const momMax = Math.max(...momentum)
+  const posMax = max(...position)
+  const momMax = max(...momentum)
   const blueprint = [
     {
       id: 'superposition', kind: 'histogram' as const,
@@ -630,7 +630,7 @@ export function quantumProofs(matrix: MindMatrix = buildMatrix()) {
   ]
   const proofs = blueprint.map((proof) => ({
     ...proof,
-    match: Math.abs(proof.measured - proof.predicted) <= proof.tol,
+    match: abs(proof.measured - proof.predicted) <= proof.tol,
     receipt: toUuid(`qproof:${proof.id}:${proof.predicted}:${proof.measured}`) }))
   return {
     proven: proofs.every((proof) => proof.match),

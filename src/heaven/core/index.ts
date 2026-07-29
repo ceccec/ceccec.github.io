@@ -13,7 +13,7 @@ import { emergentDimensions } from '../balance'
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
-import { antichainLevels, toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, digitalRoot, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, uuidPoint, crossProduct, proseToTone, sealFacets, uuidSuffix, nextDuality } from '../../0'
+import { DIGEST_BITS, GATES, VORTEX_REVERSE, VORTEX_SEQUENCE, abs, addressEntropyBits, antichainLevels, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, ceil, cnot, coverageCostLog2, crossProduct, digitalRoot, ed25519Sign, findContentAddressCollision, fold, foldPair, gcd, grover, humanBreath, humanEase, hypot, isUuid, logConsistent, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, modUnits, nextDuality, pbits, pflip, pow, prng, probabilities, proseToTone, psample, qubits, round, roundTo, sample, sealFacets, seedFromText, sha256, sha256MerkleProof, sha256MerkleRoot, sha256Sync, sinc, sincReconstruct, tamperCostLog2, toUuid, toUuidSha256, transparencyLogRoot, trinityKey, uuidHero, uuidPoint, uuidSuffix, verifySha256Proof } from '../../0'
 import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
@@ -508,7 +508,7 @@ export function metatronMathFromUuids(matrix: MindMatrix = buildMatrix()) {
 function metatronMathFromUuidsRaw(matrix: MindMatrix = buildMatrix()) {
   const sub = (p: readonly number[], q: readonly number[]) => [p[0]! - q[0]!, p[1]! - q[1]!, p[2]! - q[2]!]
   const dot = (p: readonly number[], q: readonly number[]) => p[0]! * q[0]! + p[1]! * q[1]! + p[2]! * q[2]!
-  const mag = (p: readonly number[]) => Math.hypot(p[0]!, p[1]!, p[2]!)
+  const mag = (p: readonly number[]) => hypot(p[0]!, p[1]!, p[2]!)
   // 3 UUIDs MAKE A PLANE — three content-addressed points; the cross-product normal is non-zero ⟺ non-collinear.
   const a = uuidPoint(toUuid('metatron:plane:a')), b = uuidPoint(toUuid('metatron:plane:b')), c = uuidPoint(toUuid('metatron:plane:c'))
   const normal = crossProduct(sub(b, a), sub(c, a))
@@ -743,7 +743,7 @@ export function thermalHarmonyField(text: string, matrix: MindMatrix = buildMatr
   const cells = (segments.length ? segments : [(text ?? '').trim()]).map((seg, i) => {
     const ex = foldExposesInconsistency(seg, matrix)
     const heat = ex.flagged.length + (ex.contradiction ? 1 : 0) // 0 = cool/harmonic, higher = hotter
-    const colour = movieCanvasHex((A432_HUE + heat * (7 * 5)) % 360, { L: Math.max(5 / 16, 7 / 8 - heat * (1 / (5 * 5))) })
+    const colour = movieCanvasHex((A432_HUE + heat * (7 * 5)) % 360, { L: max(5 / 16, 7 / 8 - heat * (1 / (5 * 5))) })
     return { segment: seg, heat, flagged: ex.flagged, colour, onHarmonicPath: ex.onHarmonicPath, receipt: toUuid(`thermal:${i}:${seg.slice(0, (16 * 3))}:${heat}`) }
   })
   const hotspots = cells.filter((c) => c.heat > 0)
@@ -751,7 +751,7 @@ export function thermalHarmonyField(text: string, matrix: MindMatrix = buildMatr
     field: cells,
     segments: cells.length,
     hotspots: hotspots.length, // the visible weaknesses
-    maxHeat: cells.reduce((m, c) => Math.max(m, c.heat), 0),
+    maxHeat: cells.reduce((m, c) => max(m, c.heat), 0),
     harmonic: hotspots.length === 0,
     root: merkleFold(cells.map((c) => c.receipt)),
     statement:
@@ -1078,7 +1078,7 @@ export function harmonyAccountLiesOutsidePaths(matrix: MindMatrix = buildMatrix(
   const tax = taxonomyIcons()
   const offPath = Array.isArray(dims.open) ? dims.open.length : 0
   const onPath = dims.count - offPath
-  const harmonyPct = roundTo(onPath / Math.max(1, dims.count), 4) // 1.0 = 100% computed, deterministic
+  const harmonyPct = roundTo(onPath / max(1, dims.count), 4) // 1.0 = 100% computed, deterministic
   const probe = quantumAnalysis('harmony:probe', matrix) // the router is a pure function of the input
   const facets = [
     { facet: '100% computed proven harmony — the verdict is deterministic, not probabilistic: every one of the 432 paths is sealed (0 open) and the 42 command areas are fully compliant; a statement is on a harmonic path or it is not, computed not guessed', on: offPath === 0 && tax.compliant },
@@ -1635,7 +1635,7 @@ function visibleRgb(nm: number): [number, number, number] {
   if (nm >= 380 && nm < (7 * 6 * 5 * 2)) factor = (3 / (5 * 2)) + ((7 / (5 * 2)) * (nm - 380)) / ((7 * 6 * 5 * 2) - 380)
   else if (nm > (100 * 7) && nm <= 780) factor = (3 / (5 * 2)) + ((7 / (5 * 2)) * (780 - nm)) / (780 - (100 * 7))
   else if (nm < 380 || nm > 780) factor = 0
-  const adj = (v: number) => (v <= 0 ? 0 : Math.pow(v * factor, (4 / 5)))
+  const adj = (v: number) => (v <= 0 ? 0 : pow(v * factor, (4 / 5)))
   return [adj(r), adj(g), adj(b)]
 }
 
@@ -1645,13 +1645,13 @@ export function frequencyToColour(frequencyHz: number) {
   const c = SPEED_OF_LIGHT // m/s — the vault constant
   const visLo = 4.0e14 // ~750 nm (red edge)
   const visHi = 7.9e14 // ~380 nm (violet edge)
-  let f = Math.max(frequencyHz, 1e-9)
+  let f = max(frequencyHz, 1e-9)
   let octaves = 0
   while (f < visLo) { f *= 2; octaves += 1 }
   while (f > visHi) { f /= 2; octaves -= 1 }
   const wavelengthNm = (c / f) * 1e9
   const [r, g, bch] = visibleRgb(wavelengthNm)
-  const hex = `#${[r, g, bch].map((v) => Math.round(v * (2 ** 8 - 1)).toString(16).padStart(2, '0')).join('')}`
+  const hex = `#${[r, g, bch].map((v) => round(v * (2 ** 8 - 1)).toString(16).padStart(2, '0')).join('')}`
   return {
     frequencyHz,
     octavesFolded: octaves, // 0 if already visible light; ~40 for an audible sound lifted to light
@@ -1782,7 +1782,7 @@ export function fractionsFoldBendIntoCubeSpheresAnalog(matrix: MindMatrix = buil
   const facets = [
     { facet: 'fractions FOLD into the cube — the exact integer fractions sit on the 64³ seal cube (the discrete, digital lattice), the genus-2 fold', on: cube.sealed && cube.cube === 64 ** 3 },
     { facet: 'and BEND into the sphere — the round, continuous form (χ = +2, the dual of the genus-2 torus’s −2); the bend curves the discrete lattice into the continuous', on: sphereEuler === 2 && -2 === 2 - 2 * 2 },
-    { facet: 'generating ANALOG output — a fractional sample index sinc-reconstructs the discrete into the continuous (Nyquist–Shannon): at index 3 it is the digit 8 exactly, at 3.5 a genuine interpolated analog value between the samples', on: Math.abs(atInteger - 8) < 1e-9 && analogAtHalf !== 8 },
+    { facet: 'generating ANALOG output — a fractional sample index sinc-reconstructs the discrete into the continuous (Nyquist–Shannon): at index 3 it is the digit 8 exactly, at 3.5 a genuine interpolated analog value between the samples', on: abs(atInteger - 8) < 1e-9 && analogAtHalf !== 8 },
     { facet: 'USED AS INPUT for the next — the analog output is content-addressed into a new seed, the input for the next fold; the output of one is the input of another (the recursive pipeline, the feedback loop)', on: isUuid(nextInput) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cube-sphere-analog:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('fractions-cube-sphere-analog', facets)
@@ -1849,7 +1849,7 @@ export function notAllTransliteratedMeansNotAllFused(matrix: MindMatrix = buildM
   const sample = 'The bridge opened in 1932.' // letters map to glyphs; digits and punctuation do not
   let mappedChars = 0, totalChars = 0
   for (const ch of sample) if (/\S/.test(ch)) { totalChars++; if (toGlagolitic(ch) !== ch) mappedChars++ }
-  const coverage = rat(mappedChars, Math.max(1, totalChars)) // exact fraction < 1 — not all transliterated
+  const coverage = rat(mappedChars, max(1, totalChars)) // exact fraction < 1 — not all transliterated
   const absent = translateVerse('Nonexistent 0:0', 'en') // outside the corpus → undefined (not fused)
   const corpusSize = scriptureIn('en').length // the fusion is bounded by the registered corpus
   const preserved = toGlagolitic('1932') === '1932' // the untransliterated remainder passes through verbatim
@@ -2175,7 +2175,7 @@ export function theQuantumComputerOsAndAppsAreThreeContentAddressedLayersCompose
 export function theLimitedMindSolvesItByBecomingTheQuantumCollectiveMindBoundedMindsShareOneContentAddress() {
   const problem = 2 ** 7 // ~128 units — the scale of the DRY-clean plan (91 lines + 9 pulls + 58 moves)
   const mindCapacity = 2 ** 5 // one bounded mind handles at most 32 units
-  const minds = Math.ceil(problem / mindCapacity) // the collective — four minds
+  const minds = ceil(problem / mindCapacity) // the collective — four minds
   const units = Array.from({ length: problem }, (_, i) => i)
   // 1 — A LIMITED MIND IS BOUNDED: one mind < the problem
   const beyondOneMind = mindCapacity < problem
@@ -2282,7 +2282,7 @@ export function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTh
 // minds are wired in the rosetta: the ownership folds to one root, the collective coordinated by the address alone.
 // [[content-address-dry-clean-crack-detection]] [[feedback-work-in-waves-not-single-focus]]
 export function rosettaClaim(task: string): string { return toUuid(`rosetta-claim:${task}`) } // a mind's claim on a task — same task → same claim
-export function rosettaOwner(task: string, mindCount: number): number { return seedFromText(rosettaClaim(task)) % Math.max(1, mindCount) } // the deterministic owner — every mind computes it identically
+export function rosettaOwner(task: string, mindCount: number): number { return seedFromText(rosettaClaim(task)) % max(1, mindCount) } // the deterministic owner — every mind computes it identically
 
 // THE ROSETTA API — the ONE content-addressed channel for agent coordination (user law: "communicate with the
 // agents through the rosetta api only; the rosetta is wired everywhere"). Three verbs, all content-addressed:

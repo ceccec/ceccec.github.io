@@ -11,7 +11,7 @@ import { doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsP
 import { doubleTorusCompost } from '../../../fire/li'
 import { doubleTorusMotifRealGeometryNotFringePhysics } from '../../../mountain/topology'
 import { earthPolesAreADipoleDoubleTorusNotAGrid } from '../../water/cache'
-import { toUuid, merkleFold, isUuid, roundTo, memoByRoot, merge, sealFacets, doubleTorusSurface, digitalRoot } from '../../../0'
+import { abs, digitalRoot, doubleTorusSurface, isUuid, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, toUuid } from '../../../0'
 import { addressed, covers } from '../../../5/5'
 import { TAU } from '../../../3/7'
 
@@ -80,7 +80,7 @@ function nearestCardinalTip(bearingDeg: number) {
   let best = CARDINAL_TIPS[0]!
   let bestDelta = 360
   for (const tip of CARDINAL_TIPS) {
-    const delta = Math.min(Math.abs(normalized - tip.bearing), 360 - Math.abs(normalized - tip.bearing))
+    const delta = min(abs(normalized - tip.bearing), 360 - abs(normalized - tip.bearing))
     if (delta < bestDelta) {
       best = tip
       bestDelta = delta
@@ -106,7 +106,7 @@ export function weatherForecastFromDoubleTorusEarthPerspective(
   const torusIndex = northern ? (1 as const) : (2 as const)
   const lobe = northern ? 1 : -1
   const polarity = northern ? 1 : 0
-  const digit = digitalRoot(Math.abs(Math.round(at.lat * 100)) + Math.abs(Math.round(at.lon * 100)))
+  const digit = digitalRoot(abs(round(at.lat * 100)) + abs(round(at.lon * 100)))
   const surface = doubleTorusSurface(theta, phi, digit, lobe)
   const bearing = initialBearing(0, 0, at.lat, at.lon)
   const cardinal = nearestCardinalTip(bearing)

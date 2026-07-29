@@ -1,17 +1,17 @@
 // Pi-train station 6/4 — dissolution sequence order 7 (digit/reverse 6/4).
 // Domain cuts only — vault primitives import from src/0 at call sites.
 
-import { NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, ALVEOLAR_H2O_BAR, ALVEOLAR_CO2_BAR } from '../../3/7'
-import { prng, toUuid, merkleFold } from '../../0'
+import { ALVEOLAR_CO2_BAR, ALVEOLAR_H2O_BAR, LN2, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, SQRT2 } from '../../3/7'
+import { abs, acos, atan, atan2, cos, exp, floor, hypot, log, max, merkleFold, min, prng, round, sin, sqrt, toUuid } from '../../0'
 import { greatCircleKm } from '../../5/5'
 import { TAU } from '../../3/7'
 import { PHI } from '../../3/7'
 
 export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare (TAU / 2))
-  const y = Math.sin((lon2 - lon1) * r) * Math.cos(lat2 * r)
-  const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lon2 - lon1) * r)
-  return (Math.atan2(y, x) / r + 360) % 360
+  const y = sin((lon2 - lon1) * r) * cos(lat2 * r)
+  const x = cos(lat1 * r) * sin(lat2 * r) - sin(lat1 * r) * cos(lat2 * r) * cos((lon2 - lon1) * r)
+  return (atan2(y, x) / r + 360) % 360
 }
 
 /** Mean obliquity at J2000 (°) — theorem-anchor via microdegree integer (decimal/crack). */
@@ -34,7 +34,7 @@ export const HUBBLE_CONSTANT_LOCAL = 73.0
 
 /** Driven damped harmonic oscillator — steady-state resonance amplitude A(ω). */
 export function resonantAmplitude(omega: number, omega0: number, q: number): number {
-  const denom = Math.sqrt((omega0 * omega0 - omega * omega) ** 2 + ((omega0 * omega) / Math.max(q, 1e-9)) ** 2)
+  const denom = sqrt((omega0 * omega0 - omega * omega) ** 2 + ((omega0 * omega) / max(q, 1e-9)) ** 2)
   return denom === 0 ? Infinity : (omega0 * omega0) / denom
 }
 
@@ -63,7 +63,7 @@ export function oscillatorBank(seed: string, modes: readonly { freq: number; q: 
 export function casimirEnergyPerArea(plateGapM: number): number { return -((TAU / 2) ** 2 * REDUCED_PLANCK * SPEED_OF_LIGHT) / ((360 * 2) * plateGapM ** 3) }
 
 /** Bekenstein–Hawking black-hole entropy in bits — proportional to horizon area. */
-export function blackHoleEntropyBits(massKg: number): number { return (2 * TAU * NEWTON_G * massKg * massKg) / (REDUCED_PLANCK * SPEED_OF_LIGHT * Math.LN2) }
+export function blackHoleEntropyBits(massKg: number): number { return (2 * TAU * NEWTON_G * massKg * massKg) / (REDUCED_PLANCK * SPEED_OF_LIGHT * LN2) }
 
 /** Cantor diagonal — flip the i-th bit of the i-th row; escapes any enumeration. */
 export function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>): Array<0 | 1> {
@@ -72,8 +72,8 @@ export function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>): Array
 
 /** Quantum Zeno survival probability after n rapid measurements. */
 export function quantumZeno(n: number): number {
-  const nn = Math.max(1, Math.floor(n))
-  return Math.cos((TAU / 2) / (2 * nn)) ** (2 * nn)
+  const nn = max(1, floor(n))
+  return cos((TAU / 2) / (2 * nn)) ** (2 * nn)
 }
 
 /** Frequency from wavelength f = c/λ (Hz) — re-export from SI hub. */
@@ -81,7 +81,7 @@ export { frequencyOf } from '../../3/7'
 
 /** Sweepable phase gate diag(1, e^{iθ}) in applyGate flat format — interferometer fringe P(0)=cos²(φ/2). */
 export function phase(theta: number): number[] {
-  return [1, 0, 0, 0, 0, 0, Math.cos(theta), Math.sin(theta)]
+  return [1, 0, 0, 0, 0, 0, cos(theta), sin(theta)]
 }
 
 /** Fractional lag of the rotor behind the synchronous field (induction motor slip). */
@@ -97,8 +97,8 @@ export function slip(wSync: number, wRotor: number): number {
  * animation: frame k = ring k of struts raised. */
 export function geodesicDomeComputes(frequency = 3) {
   type V3 = readonly [number, number, number]
-  const norm = (v: V3): V3 => { const l = Math.hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l] }
-  const dist = (a: V3, b: V3) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2])
+  const norm = (v: V3): V3 => { const l = hypot(v[0], v[1], v[2]); return [v[0] / l, v[1] / l, v[2] / l] }
+  const dist = (a: V3, b: V3) => hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2])
   const key = (v: V3) => v.map((x) => x.toFixed(6)).join(',')
   // icosahedron: cyclic permutations of (0, ±1, ±φ) — generated, not listed
   const base: V3[] = []
@@ -111,14 +111,14 @@ export function geodesicDomeComputes(frequency = 3) {
   }
   // edges discovered as the minimal pair distance; faces as mutually adjacent triples
   let minD = Infinity
-  for (let i = 0; i < base.length; i += 1) for (let j = i + 1; j < base.length; j += 1) minD = Math.min(minD, dist(base[i]!, base[j]!))
+  for (let i = 0; i < base.length; i += 1) for (let j = i + 1; j < base.length; j += 1) minD = min(minD, dist(base[i]!, base[j]!))
   const adj = (i: number, j: number) => dist(base[i]!, base[j]!) < minD * (1 + 1e-6)
   const faces: (readonly [number, number, number])[] = []
   for (let i = 0; i < base.length; i += 1) for (let j = i + 1; j < base.length; j += 1) for (let k = j + 1; k < base.length; k += 1) {
     if (adj(i, j) && adj(j, k) && adj(i, k)) faces.push([i, j, k])
   }
   // subdivision: the ONE law (barycentric grid → project to the sphere) applied to every face
-  const nu = Math.max(1, Math.round(frequency))
+  const nu = max(1, round(frequency))
   const points = new Map<string, V3>()
   const edgeSet = new Set<string>()
   const eKey = (a: V3, b: V3) => [key(a), key(b)].sort().join('|')
@@ -151,10 +151,10 @@ export function geodesicDomeComputes(frequency = 3) {
     return dist(a!, b!)
   })
   const classes = new Set(struts.map((s) => s.toFixed(6))).size
-  const chordLawMaxError = Math.max(...[...edgeSet].map((entry) => {
+  const chordLawMaxError = max(...[...edgeSet].map((entry) => {
     const [a, b] = entry.split('|').map((k2) => points.get(k2)!)
-    const angle = Math.acos(Math.max(-1, Math.min(1, a![0] * b![0] + a![1] * b![1] + a![2] * b![2])))
-    return Math.abs(dist(a!, b!) - 2 * Math.sin(angle / 2))
+    const angle = acos(max(-1, min(1, a![0] * b![0] + a![1] * b![1] + a![2] * b![2])))
+    return abs(dist(a!, b!) - 2 * sin(angle / 2))
   }))
   // the assembly animation: hemisphere rings (unique z levels, base up), struts per ring
   const levels = [...new Set([...points.values()].filter((p) => p[2] > -1e-6).map((p) => p[2].toFixed(6)))].sort((x, y) => Number(x) - Number(y))
@@ -163,8 +163,8 @@ export function geodesicDomeComputes(frequency = 3) {
     z: Number(z),
     struts: [...edgeSet].filter((entry) => {
       const [a, b] = entry.split('|').map((k2) => points.get(k2)!)
-      const top = Math.max(a![2], b![2]).toFixed(6)
-      return top === z && Math.min(a![2], b![2]) > -1e-6
+      const top = max(a![2], b![2]).toFixed(6)
+      return top === z && min(a![2], b![2]) > -1e-6
     }).length }))
   const facets = [
     { facet: `the mesh is DISCOVERED, not listed: ${base.length} φ-vertices → ${faces.length} faces by mutual minimal distance, Euler V−E+F = ${V}−${E}+${F} = ${V - E + F}`, on: V - E + F === 2 && base.length === 3 * 4 && faces.length === 4 * 5 },
@@ -179,8 +179,8 @@ export function geodesicDomeComputes(frequency = 3) {
     rings: levels.length,
     struts: [...edgeSet].flatMap((entry) => {
       const [a, b] = entry.split('|').map((k2) => points.get(k2)!)
-      if (Math.min(a![2], b![2]) < -1e-6) return []
-      return [{ a: a!, b: b!, ring: zIdx.get(Math.max(a![2], b![2]).toFixed(6)) ?? 0 }]
+      if (min(a![2], b![2]) < -1e-6) return []
+      return [{ a: a!, b: b!, ring: zIdx.get(max(a![2], b![2]).toFixed(6)) ?? 0 }]
     }) }
   return {
     computes: facets.every((entry) => entry.on),
@@ -212,7 +212,7 @@ export function counterdiffusionOnTheDoubleTorus() {
   const cycles = 2 // b₁: the double torus the user named
   const genus = cycles
   // the documented-dangerous direction: saturated on air, switch to heliox at the SAME depth
-  const tN2 = ZHL16_HE_HALFTIMES[4]! * Math.sqrt(7) // comp 5 nitrogen halftime, via Graham
+  const tN2 = ZHL16_HE_HALFTIMES[4]! * sqrt(7) // comp 5 nitrogen halftime, via Graham
   const tHe = ZHL16_HE_HALFTIMES[4]! // the ledgered helium measurement
   const depthM = 3 * (5 * 2)
   const pAmb = 1 + depthM / (5 * 2)
@@ -223,8 +223,8 @@ export function counterdiffusionOnTheDoubleTorus() {
   let peak = 0
   let tPeak = 0
   for (let t = 0; t <= 4 * (3 * 5); t += 1 / 2) {
-    const n2 = startN2 * Math.exp((-Math.LN2 * t) / tN2) // N₂ leaves slowly
-    const he = fInert * (pAmb - pH2O) * (1 - Math.exp((-Math.LN2 * t) / tHe)) // He floods in √7 faster
+    const n2 = startN2 * exp((-LN2 * t) / tN2) // N₂ leaves slowly
+    const he = fInert * (pAmb - pH2O) * (1 - exp((-LN2 * t) / tHe)) // He floods in √7 faster
     const total = n2 + he + pH2O + pCO2
     if (total > peak) { peak = total; tPeak = t }
   }
@@ -261,12 +261,12 @@ export function counterdiffusionOnTheDoubleTorus() {
 export function oneExponentialLaw() {
   /** THE kernel — the whole of Haldane decompression, and the whole of eased animation, in one line. */
   const approach = (y0: number, yInf: number, halftime: number, t: number) =>
-    yInf + (y0 - yInf) * Math.exp((-Math.LN2 * t) / halftime)
+    yInf + (y0 - yInf) * exp((-LN2 * t) / halftime)
   /** The same law integrated from its DIFFERENTIAL form — the honest check that it is one ODE. */
   const integrate = (y0: number, yInf: number, halftime: number, T: number) => {
     const steps = 8 * 100 * 100
     const dt = T / steps
-    const lambda = Math.LN2 / halftime
+    const lambda = LN2 / halftime
     let y = y0
     for (let i = 0; i < steps; i += 1) y += lambda * (yInf - y) * dt
     return y
@@ -284,26 +284,26 @@ export function oneExponentialLaw() {
   const oneEquation = costumes.every(([, y0, yInf, ht, T]) => {
     const closed = approach(y0, yInf, ht, T)
     const stepped = integrate(y0, yInf, ht, T)
-    return Math.abs(closed - stepped) / Math.max(Math.abs(closed), 1) < 1 / (100 * 100)
+    return abs(closed - stepped) / max(abs(closed), 1) < 1 / (100 * 100)
   })
   // the ladder: derived from the ledgered He measurements via Graham (no second table typed)
-  const ladder = ZHL16_HE_HALFTIMES.map((he) => he * Math.sqrt(7))
+  const ladder = ZHL16_HE_HALFTIMES.map((he) => he * sqrt(7))
   const ratios = ladder.slice(1).map((v, i) => v / ladder[i]!)
-  const geoMean = Math.exp(ratios.reduce((s, r) => s + Math.log(r), 0) / ratios.length)
+  const geoMean = exp(ratios.reduce((s, r) => s + log(r), 0) / ratios.length)
   const middle = ratios.slice(4, 8)
   const middleMean = middle.reduce((s, r) => s + r, 0) / middle.length
-  const octaveRatio = Math.SQRT2
-  const middleIsOctaveLadder = Math.abs(middleMean - octaveRatio) / octaveRatio < 1 / 100
+  const octaveRatio = SQRT2
+  const middleIsOctaveLadder = abs(middleMean - octaveRatio) / octaveRatio < 1 / 100
   const headDrift = ratios[0]!
   const tailDrift = ratios[ratios.length - 1]!
   const ratioSpread = headDrift / tailDrift // a true geometric ladder has spread 1
   // compartments per octave: log2 of the ratio inverted — the fractal rung count
-  const perOctave = Math.log(2) / Math.log(middleMean)
+  const perOctave = log(2) / log(middleMean)
   const facets = [
     { facet: `ONE equation, ${costumes.length} costumes: tissue washout · RC · decay · cooling · easing all satisfy dy/dt = λ(y∞ − y) — closed form matches the integrated ODE in every case`, on: oneEquation },
     { facet: `the ladder is an OCTAVE ladder where the model is honest: the middle rungs average ${middleMean.toFixed(4)} ≈ √2 (${perOctave.toFixed(2)} compartments per doubling) — the same log-uniform spacing as A432's octaves`, on: middleIsOctaveLadder },
     { facet: `and the FIT shows at both ends: the rung ratio runs ${headDrift.toFixed(3)} at the head down to ${tailDrift.toFixed(3)} at the tail — a spread of ${ratioSpread.toFixed(2)}× where a true geometric ladder would hold 1.00; Bühlmann approached a law and never derived it, which is precisely the gap the fine-tuning had to fill`, on: ratioSpread > 3 / 2 },
-    { facet: `REUSE PROVEN: the same kernel eases an animation — approach(0, 1, t½, t) rises ${approach(0, 1, 1 / 3, 1 / 3).toFixed(3)} at one halftime and ${approach(0, 1, 1 / 3, 2 / 3).toFixed(3)} at two: gas loading and a fade are the same curve, so 16 compartments are 16 animation rates`, on: Math.abs(approach(0, 1, 1 / 3, 1 / 3) - 1 / 2) < 1e-12 && Math.abs(approach(0, 1, 1 / 3, 2 / 3) - 3 / 4) < 1e-12 },
+    { facet: `REUSE PROVEN: the same kernel eases an animation — approach(0, 1, t½, t) rises ${approach(0, 1, 1 / 3, 1 / 3).toFixed(3)} at one halftime and ${approach(0, 1, 1 / 3, 2 / 3).toFixed(3)} at two: gas loading and a fade are the same curve, so 16 compartments are 16 animation rates`, on: abs(approach(0, 1, 1 / 3, 1 / 3) - 1 / 2) < 1e-12 && abs(approach(0, 1, 1 / 3, 2 / 3) - 3 / 4) < 1e-12 },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -332,10 +332,10 @@ export function oneExponentialLaw() {
 export function pyramidsDecodeIntoTheorems() {
   // seked 5½: rise 7 palms per run 5½ palms → tan = 14/11 (documented Old Kingdom construction)
   const rise = 2 * 7, run = 2 + 9 // seked 5½: 7 palms rise per 5½ palms run → 14:11
-  const slopeDeg = (Math.atan(rise / run) * 360) / TAU
+  const slopeDeg = (atan(rise / run) * 360) / TAU
   const measuredSlope = ((8 * 9) * (8 * 9)) / 100 // 51.84° — the surveyed Great Pyramid slope, lattice-exact as 72²/100
   const piRatio = (4 * run) / rise // perimeter/(2·height) under the seked — exactly 22/7
-  const slantRatio = Math.sqrt(run * run + rise * rise) / run // slant (apothem √(11²+14²)) over half-base (11)
+  const slantRatio = sqrt(run * run + rise * rise) / run // slant (apothem √(11²+14²)) over half-base (11)
   // documented major pyramid sites (lat, lon) — exponent form = the measured-data home; Bosnian site EXCLUDED (pseudo)
   const sites = [
     { site: 'Giza', lat: 299792e-4, lon: 311342e-4 },
@@ -350,18 +350,18 @@ export function pyramidsDecodeIntoTheorems() {
     { site: 'Xi\'an', lat: 3438e-2, lon: 1087e-1 },
   ]
   const lats = sites.map((entry) => entry.lat)
-  const latMin = Math.min(...lats), latMax = Math.max(...lats)
+  const latMin = min(...lats), latMax = max(...lats)
   const rad = (deg: number) => (deg * TAU) / 360
-  const bandFraction = (Math.sin(rad(latMax)) - Math.sin(rad(latMin))) / 2 // spherical band area / Earth
+  const bandFraction = (sin(rad(latMax)) - sin(rad(latMin))) / 2 // spherical band area / Earth
   const pairs: number[] = []
   for (let i = 0; i < sites.length; i += 1) for (let j = i + 1; j < sites.length; j += 1) pairs.push(greatCircleKm(sites[i]!.lat, sites[i]!.lon, sites[j]!.lat, sites[j]!.lon))
-  const dMin = Math.min(...pairs), dMax = Math.max(...pairs)
+  const dMin = min(...pairs), dMax = max(...pairs)
   const facets = [
-    { facet: `the slope is INTEGER masonry — seked 5½ gives arctan(14/11) = ${slopeDeg.toFixed(3)}°, within 0.01° of the surveyed 72²/100 = ${measuredSlope}°: the geometry is a rise:run of whole palms`, on: Math.abs(slopeDeg - measuredSlope) < 1 / 100 },
+    { facet: `the slope is INTEGER masonry — seked 5½ gives arctan(14/11) = ${slopeDeg.toFixed(3)}°, within 0.01° of the surveyed 72²/100 = ${measuredSlope}°: the geometry is a rise:run of whole palms`, on: abs(slopeDeg - measuredSlope) < 1 / 100 },
     { facet: 'π appears WITHOUT π — perimeter/(2·height) = 4·11/14 = 22/7 exactly under the seked: the famous approximation is forced by the integer slope, not by knowledge of π', on: piRatio === (27 - 5) / 7 },
-    { facet: `and φ appears the same way — slant/half-base = √(11²+14²)/14 = ${slantRatio.toFixed(4)}, within 0.05% of φ = ${PHI.toFixed(4)}: BOTH sacred ratios are shadows of one integer choice`, on: Math.abs(slantRatio - PHI) / PHI < 1 / (2 * (5 * 2) ** 3) },
+    { facet: `and φ appears the same way — slant/half-base = √(11²+14²)/14 = ${slantRatio.toFixed(4)}, within 0.05% of φ = ${PHI.toFixed(4)}: BOTH sacred ratios are shadows of one integer choice`, on: abs(slantRatio - PHI) / PHI < 1 / (2 * (5 * 2) ** 3) },
     { facet: `ALL POSSIBLE LOCATIONS, computed honestly — the ${sites.length} documented sites span latitudes ${latMin.toFixed(1)}° to ${latMax.toFixed(1)}°, a spherical band covering ${(bandFraction * 100).toFixed(1)}% of Earth: the predictor is the civilisation band (river valleys, early states), not a geometric grid`, on: bandFraction > 1 / 3 && bandFraction < 1 / 2 },
-    { facet: `the grid myth refutes by direct computation — pairwise great-circle distances run ${Math.round(dMin)} km to ${Math.round(dMax)} km (${(dMax / dMin).toFixed(0)}× spread) with no small-generator structure: pyramids stand where civilisations stood`, on: pairs.length === (sites.length * (sites.length - 1)) / 2 && dMax / dMin > 5 * 4 },
+    { facet: `the grid myth refutes by direct computation — pairwise great-circle distances run ${round(dMin)} km to ${round(dMax)} km (${(dMax / dMin).toFixed(0)}× spread) with no small-generator structure: pyramids stand where civilisations stood`, on: pairs.length === (sites.length * (sites.length - 1)) / 2 && dMax / dMin > 5 * 4 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pyramids:${entry.facet}:${entry.on}`) }))
   return {
     decoded: facets.every((entry) => entry.on),

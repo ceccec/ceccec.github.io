@@ -1,6 +1,6 @@
 // ☱ Duì · Lake — music & sound: the a432 thread as real acoustics (harmonic series, just/equal temperament, the one shared audio engine, healing-frequency honesty, aksak rhythm), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import * as __ns_up_up_vortex_math from '../../mountain/vortex'
-import { DIMENSION_GATES, rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../../3/7'
+import { DIMENSION_GATES, LN2, rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../../3/7'
 import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
@@ -9,7 +9,7 @@ import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SIX, ROSETTA_
 import { realign } from '../../mountain/vortex'
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
-import { GATES, VORTEX_SEQUENCE, applyGate, asTorus, asVortex, computesGate, fold, foldPair, humanBreath, humanEase, isUuid, memoByRoot, merge, merkleFold, probabilities, proseToTone, qubits, roundTo, sample, sealFacets, seedFromText, toUuid, gcd } from '../../0'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, asTorus, asVortex, computesGate, cos, floor, fold, foldPair, gcd, humanBreath, humanEase, isUuid, log, log2, max, memoByRoot, merge, merkleFold, min, pow, probabilities, proseToTone, qubits, round, roundTo, sample, sealFacets, seedFromText, sin, toUuid } from '../../0'
 import { ratStr } from '../../9/1'
 import { A432_OCTAVES, SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7'
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -48,12 +48,12 @@ export function harmonicMap(matrix: MindMatrix = buildMatrix()) {
   const overtones = components.map((name, index) => {
     const overtone = index + 1
     const frequency = f0 * overtone
-    const semitones = Math.round((6 * 2) * Math.log2(overtone)) // semitones above the fundamental
+    const semitones = round((6 * 2) * log2(overtone)) // semitones above the fundamental
     return {
       name,
       overtone,
       frequency,
-      octave: Math.floor(Math.log2(overtone)),
+      octave: floor(log2(overtone)),
       note: NOTE[((semitones % (6 * 2)) + (6 * 2)) % (6 * 2)],
       receipt: toUuid(`harmonic-map:${name}:${overtone}`) }
   })
@@ -150,7 +150,7 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the folded census (110 − 2 = 108), not a raw pile', on: census.folded === 108 && 4 * census.folded === 432 },
     { facet: `displayed counts fold by genus-2 −χ — content pages ${pageLabel}; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (6×7 up, 7×6 down); census 108/110`, on: pageFoldHolds },
     { facet: `the concept commands are harmonic — ${commandCount}/108 = 4 × 27 (= the 432-gate harmonic ÷ 4), each a single-word method and an MCP tool`, on: harmonics.includes(commandCount) },
-    { facet: `the I Ching command taxonomy complies fully by analytics — ${tax.clean}/${tax.entries.length} areas (${Math.round(tax.compliance * 100)}%) sit on a whole I Ching unit (a line·a trigram·a hexagram), with no gap (a pair) and no excess (a partial or over); any area that drifts off a whole unit opens this gate, so the taxonomy always complies`, on: tax.compliant },
+    { facet: `the I Ching command taxonomy complies fully by analytics — ${tax.clean}/${tax.entries.length} areas (${round(tax.compliance * 100)}%) sit on a whole I Ching unit (a line·a trigram·a hexagram), with no gap (a pair) and no excess (a partial or over); any area that drifts off a whole unit opens this gate, so the taxonomy always complies`, on: tax.compliant },
     { facet: 'the file distribution IS the I Ching — every component content-addressed onto the eight trigrams, all eight spanned; a gap is an unplaced component, instantly visible', on: ich.organised && ich.sets.length === 8 },
     { facet: 'src/0 pulls all with gravity to max compression and distribution — the single-word naming gravity holds and the forge reaches maximal compression (entropy 0)', on: gravity.pulls && forge.maxed },
     { facet: 'knowledge lives as self-proving code, not inert memory — this principle is itself a gated, recomputable fold in src, not a note (memory is not code)', on: math.proven && pageFoldHolds && ich.organised && gravity.pulls },
@@ -300,7 +300,7 @@ export function blockchainMusic(name = 'commands', matrix: MindMatrix = buildMat
   const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
   const notes = chain.blocks.map((block, index) => {
     const semitone = digitOf(block.hash) % (8 * 3) // two octaves of pitch from the hash
-    const frequency = Math.round(a432NoteHz(semitone - (7 * 3))) // C3 (a432NoteHz(-21)) up two octaves, from the A432 source
+    const frequency = round(a432NoteHz(semitone - (7 * 3))) // C3 (a432NoteHz(-21)) up two octaves, from the A432 source
     return {
       index: block.index,
       hash: block.hash,
@@ -352,14 +352,14 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
   const train = piTrainDiamonds(matrix)
   const diamonds = train.diamonds
   const selfHoro = matrix.nodes.find((node) => node.atom === 'self')?.horo ?? 1
-  const horo = Math.min(9, Math.max(1, Math.floor(joinHoro ?? selfHoro)))
+  const horo = min(9, max(1, floor(joinHoro ?? selfHoro)))
   const joinIndex = diamonds.length === 0 ? 0 : (horo - 1) % diamonds.length
   const noteNames = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
-  const window = Math.min((6 * 2), diamonds.length)
+  const window = min((6 * 2), diamonds.length)
   const notes: PiNote[] = []
   for (let step = 0; step < window; step += 1) {
     const diamond = diamonds[(joinIndex + step) % diamonds.length]
-    const semitones = Math.round(a432Semitones(diamond.frequency)) // note name from the A432 source, not A=440
+    const semitones = round(a432Semitones(diamond.frequency)) // note name from the A432 source, not A=440
     const note = noteNames[(((semitones % (6 * 2)) + (6 * 2)) % (6 * 2))]
     notes.push({
       index: diamond.index,
@@ -386,7 +386,7 @@ export function piMusic(matrix: MindMatrix = buildMatrix(), joinHoro?: number): 
 export function musicNote(matrix: MindMatrix = buildMatrix(), wave?: number, joinHoro?: number) {
   const music = piMusic(matrix, joinHoro)
   const phrase = music.notes
-  const w = Math.floor(wave ?? 0)
+  const w = floor(wave ?? 0)
   const index = phrase.length === 0 ? 0 : ((w % phrase.length) + phrase.length) % phrase.length
   const here = phrase[index]
   return {
@@ -1150,7 +1150,7 @@ export function predictHarmonicWindows(opts: { priceVariant?: string; barCount?:
     const w = returns.slice(t - window, t)
     const mean = w.reduce((a, b) => a + b, 0) / w.length
     const direction = mean > (1 / (100 * 100)) ? 'up' as const : mean < -(1 / (100 * 100)) ? 'down' as const : 'flat' as const
-    const score = roundTo(Math.abs(mean) * 1e4, 4)
+    const score = roundTo(abs(mean) * 1e4, 4)
     windows.push({ bar: t, direction, score, receipt: toUuid(`harmonic-window:${variant}:${t}:${direction}:${score}`) })
   }
   return windows
@@ -1173,7 +1173,7 @@ export function harmonicPredictionSurprise(opts: { priceVariant?: string; barCou
   const barCount = opts.barCount ?? (16 * 6)
   const windows = predictHarmonicWindows({ priceVariant: variant, barCount })
   const replay = predictHarmonicWindows({ priceVariant: variant, barCount })
-  const sample = Math.min(8, windows.length)
+  const sample = min(8, windows.length)
   const precise = sample > 0 && windows.slice(0, sample).every((entry, index) => replay[index]?.receipt === entry.receipt)
   const { computes, facets, root } = computesGate('harmonic-prediction-surprise', [
     { facet: 'offline harmonic windows from a432 synthetic series', on: windows.length > 0 },
@@ -1207,7 +1207,7 @@ export function schumannPhaseAt(at: number, fundamentalHz = SCHUMANN_FUNDAMENTAL
 
 /** Schumann ~7.83 Hz cavity model harmonised with realtime API compute receipts at `at`. */
 export function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`schumannResonanceHarmonisedWithRealtimeApiComputations:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`schumannResonanceHarmonisedWithRealtimeApiComputations:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const computationsBoundToSourceApisRealtime = __ns_up_up_thunder_trading.computationsBoundToSourceApisRealtime
     const bothEarthsRotateWithinEachOther = __ns_up_up_mountain_geometry.bothEarthsRotateWithinEachOther
     const publicFrequencyApis = __ns_up_up_quantum_science.publicFrequencyApis, quantumHueFromHz = __ns_up_up_quantum_science.quantumHueFromHz
@@ -1225,9 +1225,9 @@ export function schumannResonanceHarmonisedWithRealtimeApiComputations(at = 0, m
       hz,
       mode: i + 1,
       phase: roundTo((schumannPhase + i * (2 / (5 * 5)) + ionospherePhase * (1 / (5 * 4))) % 1, 6),
-      hue: quantumHueFromHz(Math.max(hz, (5 * 4))),
+      hue: quantumHueFromHz(max(hz, (5 * 4))),
       receipt: toUuid(`schumann-mode:${i + 1}:${hz}`) }))
-    const phaseDelta = roundTo(Math.abs(schumannPhase - heroPhase), 6)
+    const phaseDelta = roundTo(abs(schumannPhase - heroPhase), 6)
     const phaseLocked = phaseDelta < (3 / (5 * 4)) || phaseDelta > (1 - 3 / (5 * 4))
     const modulatedReceipt = merkleFold([bound.root, toUuid(`schumann-phase:${schumannPhase}`), toUuid(`hero-phase:${heroPhase}`)])
     const { computes, facets, root } = computesGate('schumann-resonance-harmonised-realtime-api', [
@@ -1352,13 +1352,13 @@ export function a432NeuralBandLadder(matrix: MindMatrix = buildMatrix()) {
     ].map((b) => ({
       ...b,
       inLiteratureRange: b.a432Hz >= b.hzLo && b.a432Hz <= b.hzHi,
-      nearSchumann: Math.abs(b.a432Hz - SCHUMANN_FUNDAMENTAL_HZ) < (3 / (5 * 2)),
+      nearSchumann: abs(b.a432Hz - SCHUMANN_FUNDAMENTAL_HZ) < (3 / (5 * 2)),
       receipt: toUuid(`a432-neural-band:${b.name}:${b.a432Hz}`) }))
     const facets = [
       { facet: 'A432_OCTAVES spine present — ladder descends from sealed octave list', on: spine.includes(432) && spine.length >= 5 },
       { facet: 'five EEG-named bands — gamma→delta from A432 octave divisions', on: bands.length === 5 },
-      { facet: 'each band Hz is 432/octaveDiv — pure power-of-two fold from A432', on: bands.every((b) => Math.abs(b.a432Hz - 432 / b.octaveDiv) < 1e-9) },
-      { facet: 'theta/alpha neighborhood meets Schumann fundamental (structural, not measured)', on: bands.some((b) => b.nearSchumann || Math.abs(b.a432Hz - SCHUMANN_FUNDAMENTAL_HZ) < 2) },
+      { facet: 'each band Hz is 432/octaveDiv — pure power-of-two fold from A432', on: bands.every((b) => abs(b.a432Hz - 432 / b.octaveDiv) < 1e-9) },
+      { facet: 'theta/alpha neighborhood meets Schumann fundamental (structural, not measured)', on: bands.some((b) => b.nearSchumann || abs(b.a432Hz - SCHUMANN_FUNDAMENTAL_HZ) < 2) },
       { facet: 'modeled ladder only — no EEG hardware, no clinical claim', on: bands.every((b) => b.receipt.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`a432-neural-ladder:${entry.facet}:${entry.on}`) }))
     return {
@@ -1394,14 +1394,14 @@ export function observerObservationCoherenceAt(o: ObserverContext, field: Harmon
   let locked = 0
   for (let i = 0; i < layers; i += 1) {
     const layerPhase = ((field.p + i / 7) % 1 + 1) % 1
-    const delta = Math.abs(layerPhase - o.p)
-    const wrap = Math.min(delta, 1 - delta)
+    const delta = abs(layerPhase - o.p)
+    const wrap = min(delta, 1 - delta)
     if (wrap <= tol) locked += 1
   }
   const base = locked / layers
   const watchLift = attunementTier(o.watchMs).unlock * (1 / (5 * 5))
   const idleGate = o.idle || !o.visible || o.reduce ? 0 : 1
-  return roundTo(Math.min(1 - 1 / (5 * 5 * 5), (base + watchLift) * idleGate), 6)
+  return roundTo(min(1 - 1 / (5 * 5 * 5), (base + watchLift) * idleGate), 6)
 }
 
 /**
@@ -1423,7 +1423,7 @@ export function harmonizeField<T extends HarmonizeableField>(o: ObserverContext,
 
 /** Gate fold — H1 core recomputes; consumer wiring is H3. */
 export function harmonizeFieldComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`harmonizeFieldComputes:${Math.floor((at % HERO_CYCLE_MS) / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`harmonizeFieldComputes:${floor((at % HERO_CYCLE_MS) / (100 * 5 * 2))}`, matrix, () => {
     const ladder = a432NeuralBandLadder(matrix)
     const observer: ObserverContext = {
       route: '/',
@@ -1488,15 +1488,15 @@ export function parseWatchMsPersist(raw: string | null | undefined): number {
 
 /** Encode watch-ms with content-address root. */
 export function encodeWatchMsPersist(ms: number): string {
-  const safe = Math.max(0, Math.floor(ms))
+  const safe = max(0, floor(ms))
   return JSON.stringify({ ms: safe, root: toUuid(`watch:${safe}`) })
 }
 
 /** Saturating unlock ∈ [0,1) — monotonic in watchMs. */
 export function unlock(watchMs: number): number {
-  const w = Math.max(0, watchMs)
+  const w = max(0, watchMs)
   const u = 1 - 2 ** (-w / ATTUNEMENT_T_HALF_MS)
-  return roundTo(Math.min(1 - 1 / (5 * 5 * 5 * 5), Math.max(0, u)), 6)
+  return roundTo(min(1 - 1 / (5 * 5 * 5 * 5), max(0, u)), 6)
 }
 
 /**
@@ -1504,12 +1504,12 @@ export function unlock(watchMs: number): number {
  * HONEST: progressive disclosure of modeled layers, not brain-capacity.
  */
 export function attunementTier(watchMs: number) {
-  const w = Math.max(0, watchMs)
+  const w = max(0, watchMs)
   const thresholdsMs = ATTUNEMENT_TIER_CYCLES.map((c) => c * HERO_CYCLE_MS)
   const tier = ATTUNEMENT_TIER_CYCLES.filter((c) => w >= c * HERO_CYCLE_MS).length // 0..7
   const u = unlock(w)
   const ladder = a432NeuralBandLadder()
-  const band = ladder.bands[Math.min(tier, ladder.bands.length - 1)]!
+  const band = ladder.bands[min(tier, ladder.bands.length - 1)]!
   const lockedLayers = 1 + tier
   const partials = 1 + tier
   const on = tier >= 0 && tier <= ATTUNEMENT_TIER_CYCLES.length && u >= 0 && u < 1 && ladder.computes
@@ -1521,7 +1521,7 @@ export function attunementTier(watchMs: number) {
     dominantBand: band.name,
     lockedLayers,
     partials,
-    root: toUuid(`attunement-tier:${tier}:${Math.floor(w)}:${band.name}`),
+    root: toUuid(`attunement-tier:${tier}:${floor(w)}:${band.name}`),
     on,
     boundary: ATTUNEMENT_WATCH_BOUNDARY }
 }
@@ -1530,20 +1530,20 @@ export function attunementTier(watchMs: number) {
 export function unlockedHarmonicDepth(watchMs: number) {
   const t = attunementTier(watchMs)
   const ladder = a432NeuralBandLadder()
-  const bands = ladder.bands.slice(0, Math.min(ladder.bands.length, t.partials)).map((b) => b.name)
+  const bands = ladder.bands.slice(0, min(ladder.bands.length, t.partials)).map((b) => b.name)
   return {
     partials: t.partials,
     bands,
     tier: t.tier,
     unlock: t.unlock,
     root: toUuid(`unlocked-harmonic-depth:${t.tier}:${t.partials}:${bands.join(',')}`),
-    on: t.on && bands.length === Math.min(ladder.bands.length, t.partials),
+    on: t.on && bands.length === min(ladder.bands.length, t.partials),
     boundary: ATTUNEMENT_WATCH_BOUNDARY }
 }
 
 /** Gate — H2 watch-time math recomputes at call time (no browser storage in the fold). */
 export function attunementWatchComputes(watchMs = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`attunementWatchComputes:${Math.floor(watchMs / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`attunementWatchComputes:${floor(watchMs / (100 * 5 * 2))}`, matrix, () => {
     void matrix
     const u0 = unlock(0)
     const uHalf = unlock(ATTUNEMENT_T_HALF_MS)
@@ -1553,9 +1553,9 @@ export function attunementWatchComputes(watchMs = 0, matrix: MindMatrix = buildM
     const encoded = encodeWatchMsPersist(HERO_CYCLE_MS)
     const parsed = parseWatchMsPersist(encoded)
     const facets = [
-      { facet: 'unlock(0) ≈ 0 and unlock(T_HALF) ≈ 1/2', on: u0 < 1 / (5 * 5) && Math.abs(uHalf - (1 / 2)) < 1 / (5 * 5) },
+      { facet: 'unlock(0) ≈ 0 and unlock(T_HALF) ≈ 1/2', on: u0 < 1 / (5 * 5) && abs(uHalf - (1 / 2)) < 1 / (5 * 5) },
       { facet: 'attunementTier(0) = 0; tier grows on Fib×HERO_CYCLE_MS', on: tier0.tier === 0 && tier3.tier === 3 },
-      { facet: 'unlockedHarmonicDepth partials = 1+tier; bands capped by ladder length', on: depth.partials === 1 + 5 && depth.bands.length === Math.min(5, depth.partials) },
+      { facet: 'unlockedHarmonicDepth partials = 1+tier; bands capped by ladder length', on: depth.partials === 1 + 5 && depth.bands.length === min(5, depth.partials) },
       { facet: 'encode/parseWatchMsPersist round-trip', on: parsed === HERO_CYCLE_MS },
       { facet: 'tier on: recompute holds; boundary names progressive disclosure', on: tier0.on && tier0.boundary.includes('progressive disclosure') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`attunement-watch-computes:${entry.facet}:${entry.on}`) }))
@@ -1657,7 +1657,7 @@ export function clownQubitDecoded(matrix: MindMatrix = buildMatrix()) {
     const orbit = asVortex(f)
 
     const facets = [
-      { facet: 'the clown state is never an eigenstate — Hadamard superposition, both outcomes carry non-zero weight', on: p.length === 2 && p[0]! > 0 && p[1]! > 0 && Math.abs(p[0]! - p[1]!) < 1e-9 },
+      { facet: 'the clown state is never an eigenstate — Hadamard superposition, both outcomes carry non-zero weight', on: p.length === 2 && p[0]! > 0 && p[1]! > 0 && abs(p[0]! - p[1]!) < 1e-9 },
       { facet: 'the Laugh operator is a deterministic Born-rule collapse — the same seed reproduces the flop bit-for-bit', on: JSON.stringify(laughA) === JSON.stringify(laughB) },
       { facet: 'the doubling orbit 1·2·4·8·7·5 never lands on the 3·6·9 axis — asVortex proves it structurally', on: VORTEX_SEQUENCE.slice(0, 6).every((d) => ![3, 6, 9].includes(d)) && orbit.onAxis === [3, 6, 9].includes(orbit.digit) },
       { facet: 'the stage is the genus-2 double torus — a finite point on exactly one of two handles', on: Number.isFinite(stage.x) && Number.isFinite(stage.y) && (stage.lobe === 0 || stage.lobe === 1) },
@@ -1703,8 +1703,8 @@ export function clownActQuantumSteps(matrix: MindMatrix = buildMatrix()) {
     const bitsAgain = steps.map((_, k) => measureLine(k))
     const hexagram = bits.reduce((n, bit, k) => n | (bit << k), 0)
 
-    const landauer = 1.380649e-23 * (100 * 3) * Math.log(2) // kT ln 2 at 300 K — the receipt's burn price, in joules
-    const zeno64 = (1 / 2) * (1 - Math.cos((TAU / 2) / 64) ** 64) // Itano's law at n = 64 — the frozen bow
+    const landauer = 1.380649e-23 * (100 * 3) * log(2) // kT ln 2 at 300 K — the receipt's burn price, in joules
+    const zeno64 = (1 / 2) * (1 - cos((TAU / 2) / 64) ** 64) // Itano's law at n = 64 — the frozen bow
     const routes = new Set(steps.filter((s) => s.route !== 'crossing').map((s) => s.route))
 
     const facets = [
@@ -1771,8 +1771,8 @@ export function theCircleOfFifthsIsARosetta(matrix: MindMatrix = buildMatrix()) 
     // 5 — equal temperament IS the 12th roots of unity: freq ratio 2^(k/12), the k-th root on the octave circle
     const etIsRootsOfUnity = [0, fifth, octave].every((k) => {
       const ratio = 2 ** (k / octave)
-      return ratio > 0 && Math.abs((2 ** (k / octave)) - Math.pow(2, k / octave)) < 1e-12
-    }) && Math.abs(2 ** (fifth / octave) - 3 / 2) < 1 / 100 // the tempered fifth 2^(7/12) sits within 1% of the just fifth 3/2
+      return ratio > 0 && abs((2 ** (k / octave)) - pow(2, k / octave)) < 1e-12
+    }) && abs(2 ** (fifth / octave) - 3 / 2) < 1 / 100 // the tempered fifth 2^(7/12) sits within 1% of the just fifth 3/2
     const facets = [
       { facet: `the circle of fifths is a HAMILTONIAN ROSETTA: the fifth (${fifth} semitones) generates all ${octave} tones because gcd(${fifth},${octave})=1 — the orbit visits every note once, exactly like the slash circuit visits every digit`, on: fifthGenerates },
       { facet: `the generators are φ(${octave})=${generators.length} intervals {${generators.join(',')}} = semitone, fourth, fifth, major seventh — precisely the coprime steps that draw a full rosetta; the others draw chords`, on: generatorsAreCoprime },
@@ -1835,7 +1835,7 @@ export function scalesAreNecklacesOnTheRosetta(matrix: MindMatrix = buildMatrix(
 export function rhythmIsTheRosettaInTime(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('rhythmIsTheRosettaInTime', matrix, () => {
     // the maximally-even pattern: onset i at floor(i·n/k) — Euclidean/Bjorklund
-    const euclid = (k: number, n: number) => Array.from({ length: n }, (_, p) => (Array.from({ length: k }, (_, i) => Math.floor((i * n) / k)).includes(p) ? 1 : 0))
+    const euclid = (k: number, n: number) => Array.from({ length: n }, (_, p) => (Array.from({ length: k }, (_, i) => floor((i * n) / k)).includes(p) ? 1 : 0))
     // inter-onset intervals of a pattern (gaps between successive 1s, cyclically)
     const gaps = (pat: readonly number[]) => {
       const on = pat.map((b, i) => (b ? i : -1)).filter((i) => i >= 0)
@@ -1843,7 +1843,7 @@ export function rhythmIsTheRosettaInTime(matrix: MindMatrix = buildMatrix()) {
     }
     const maximallyEven = (k: number, n: number) => {
       const g = gaps(euclid(k, n))
-      return Math.max(...g) - Math.min(...g) <= 1 // the defining property: intervals differ by ≤ 1
+      return max(...g) - min(...g) <= 1 // the defining property: intervals differ by ≤ 1
     }
     // documented world rhythms as (onsets, pulses, name) — the Euclidean pattern matches each up to rotation
     const named = [
@@ -1859,7 +1859,7 @@ export function rhythmIsTheRosettaInTime(matrix: MindMatrix = buildMatrix()) {
     // the tresillo as the witness: E(3,8) has k onsets and gaps {3,3,2} (max-min = 1)
     const tresillo = euclid(3, 8)
     const tresilloGaps = gaps(tresillo)
-    const tresilloEven = Math.max(...tresilloGaps) - Math.min(...tresilloGaps) === 1 && tresillo.filter((b) => b === 1).length === 3
+    const tresilloEven = max(...tresilloGaps) - min(...tresilloGaps) === 1 && tresillo.filter((b) => b === 1).length === 3
     const facets = [
       { facet: `a rhythm is a NECKLACE in time: k onsets on n pulses is a binary necklace on the pulse-circle — the same rosetta as a scale, read in time instead of pitch`, on: allValidNecklaces },
       { facet: `the MAXIMALLY-EVEN necklace is the Euclidean rhythm: all ${named.length} named patterns have inter-onset intervals differing by at most 1 (E(k,n)/Bjorklund), the most uniform k onsets the integers permit`, on: allMaximallyEven },
@@ -1893,9 +1893,9 @@ export function theInverseMusicCompletesTheGroup(matrix: MindMatrix = buildMatri
     const involution = Array.from({ length: n }, (_, x) => x).every((x) => invert(invert(x)) === x)
     // 2 — it is angle-negation: I(x) is the conjugate root e^{−2πix/12}
     const anglesNegate = Array.from({ length: n }, (_, x) => x).every((x) => {
-      const forward = [Math.cos((TAU * x) / n), Math.sin((TAU * x) / n)]
-      const inverted = [Math.cos((TAU * invert(x)) / n), Math.sin((TAU * invert(x)) / n)]
-      return Math.abs(inverted[0]! - forward[0]!) < 1e-9 && Math.abs(inverted[1]! + forward[1]!) < 1e-9 // conjugate
+      const forward = [cos((TAU * x) / n), sin((TAU * x) / n)]
+      const inverted = [cos((TAU * invert(x)) / n), sin((TAU * invert(x)) / n)]
+      return abs(inverted[0]! - forward[0]!) < 1e-9 && abs(inverted[1]! + forward[1]!) < 1e-9 // conjugate
     })
     // 3 — ⟨T, I⟩ generates the dihedral group D₁₂ of order 2n = 24
     const encode = (f: (x: number) => number) => Array.from({ length: n }, (_, x) => f(x)).join(',')
@@ -2063,7 +2063,7 @@ export function theFortyEightRowFormsAreTheGroupOrder(matrix: MindMatrix = build
  * comma. a432 seeds the origin; the ladder 432·2^x covers every finite scale. */
 export function theContinuousRosettaBeneathTheScales(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theContinuousRosettaBeneathTheScales', matrix, () => {
-    const log2 = (x: number) => Math.log(x) / Math.LN2
+    const log2 = (x: number) => log(x) / LN2
     // 1 — the octave is the exact INVARIANT: log₂2 = 1, a fixed point of the log-frequency line
     const octaveExact = log2(2) === 1
     // 2 — the just fifth's log is IRRATIONAL: if log₂(3/2)=p/q then 2^(p+q)=3^q, impossible (unique factorisation)
@@ -2071,16 +2071,16 @@ export function theContinuousRosettaBeneathTheScales(matrix: MindMatrix = buildM
     // the just circle of fifths never returns to the origin (dense orbit — Weyl equidistribution)
     let x = 0
     let closest = 1
-    for (let step = 1; step <= 100; step += 1) { x = (x + justFifth) % 1; closest = Math.min(closest, Math.min(x, 1 - x)) }
+    for (let step = 1; step <= 100; step += 1) { x = (x + justFifth) % 1; closest = min(closest, min(x, 1 - x)) }
     const spiralsForever = closest > 0 && closest < 1 / 100 // approaches but never reaches 0
     // 3 — twelve just fifths overshoot seven octaves by the Pythagorean comma
     const comma = (3 / 2) ** (4 + 8) / 2 ** 7
     const commaIsReal = comma > 1 && comma < 27 / 16 - 1 + 1 // ~1.0136, strictly above 1 (the circle does not close)
     // 4 — equal temperament FORCES closure: the ET fifth makes 12 = 7 octaves exactly
     const etFifth = 2 ** (7 / (4 + 8))
-    const etCloses = Math.abs(etFifth ** (4 + 8) - 2 ** 7) < 1e-9
+    const etCloses = abs(etFifth ** (4 + 8) - 2 ** 7) < 1e-9
     // 5 — a432 seeds the continuous ladder; every finite scale is a lattice in 432·2^x
-    const a432Seeds = Math.abs(432 * 2 ** (7 / (4 + 8)) - 432 * etFifth) < 1e-9
+    const a432Seeds = abs(432 * 2 ** (7 / (4 + 8)) - 432 * etFifth) < 1e-9
     const facets = [
       { facet: `log-frequency is the continuous rosetta: the ear hears ratios as intervals, so log₂ turns multiplicative pitch additive and the octave circle is ℝ/ℤ — the finite scales (C₁₂, C₆) are lattices in it`, on: octaveExact },
       { facet: `the OCTAVE is the INVARIANT: log₂2 = 1 exactly, in every tuning — the wall that never moves, the fixed point of the log-frequency line (illusionsMeetInTheirInverse: no meeting dissolves it)`, on: octaveExact },
@@ -2108,7 +2108,7 @@ export function theContinuousRosettaBeneathTheScales(matrix: MindMatrix = buildM
  * rational approximation of the perfect fifth, and the Pythagorean comma is its residual. */
 export function twelveTonesIsTheBestApproximationOfTheFifth(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('twelveTonesIsTheBestApproximationOfTheFifth', matrix, () => {
-    const log2 = (x: number) => Math.log(x) / Math.LN2
+    const log2 = (x: number) => log(x) / LN2
     const target = log2(3 / 2) // the just fifth as a fraction of the octave, irrational
     // continued-fraction convergents of the target (best rational approximations)
     let x = target
@@ -2116,10 +2116,10 @@ export function twelveTonesIsTheBestApproximationOfTheFifth(matrix: MindMatrix =
     let k = [0, 1]
     const convergents: { p: number; q: number; cents: number }[] = []
     for (let i = 0; i < 8 && Number.isFinite(x); i += 1) {
-      const a = Math.floor(x)
+      const a = floor(x)
       const hn = a * h[0]! + h[1]!
       const kn = a * k[0]! + k[1]!
-      if (kn > 0) convergents.push({ p: hn, q: kn, cents: (4 + 8) * 100 * Math.abs(hn / kn - target) })
+      if (kn > 0) convergents.push({ p: hn, q: kn, cents: (4 + 8) * 100 * abs(hn / kn - target) })
       h = [hn, h[0]!]
       k = [kn, k[0]!]
       x = 1 / (x - a)
@@ -2133,7 +2133,7 @@ export function twelveTonesIsTheBestApproximationOfTheFifth(matrix: MindMatrix =
     // 3 — 12 is the smallest denominator with imperceptible (<6 cents, the just-noticeable) fifth error
     const audible = 6
     const smallImperceptible = convergents.filter((c) => c.q > 1 && c.cents < audible).map((c) => c.q)
-    const twelveIsSmallestGood = smallImperceptible.length > 0 && Math.min(...smallImperceptible) === 4 + 8
+    const twelveIsSmallestGood = smallImperceptible.length > 0 && min(...smallImperceptible) === 4 + 8
     // 4 — the next convergents (41, 53) are real microtonal systems with better fifths
     const finer = convergents.filter((c) => c.q > 4 + 8 && c.cents < (twelve?.cents ?? 2))
     const finerExists = finer.length >= 2 && finer.every((c) => c.q > 4 + 8) // 41-TET, 53-TET … the finer convergents

@@ -20,7 +20,7 @@ import * as __ns_up_up_heaven_laws from '../../../heaven/laws'
 import * as __ns_up_up_thunder_trading from '../../../thunder/trading'
 import type { MindMatrix, StaticPage } from '../../../wind/types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
-import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../../0'
+import { abs, computesGate, cos, exp, floor, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../../0'
 import { TAU, A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT } from '../../../3/7'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science'
@@ -359,7 +359,7 @@ export function memoByMovieRoute<T>(path: string, matrix: MindMatrix, key: strin
 /** Same, pinned to a phase bucket `at` so animated folds stay content-addressed. */
 export function memoByMovieRouteAt<T>(path: string, matrix: MindMatrix, at: number, key: string, fn: () => T): T {
   if (typeof window !== 'undefined') return fn()
-  return memoByRoot(`${key}:${movieRouteKey(path)}:${Math.floor(at)}`, matrix, fn)
+  return memoByRoot(`${key}:${movieRouteKey(path)}:${floor(at)}`, matrix, fn)
 }
 
 /** Normalise a route to a stable slug ('' → 'home'). */
@@ -431,7 +431,7 @@ export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildM
       { facet: `CHROMA ${CHROMA} === 9/64 ${9 / 64}`, on: CHROMA === 9 / 64 },
       { facet: `${entries.length} visibility ratios on lattice q∈[${qs.join(',')}], off-lattice ${offLattice.length}`, on: entries.length >= 6 * 5 && offLattice.length === 0 },
       { facet: `${planeCount} planes read PLANE_VIS; blob hue step = TIERS[2] ${TIERS[2]}`, on: planeCount >= 16 },
-      { facet: `hue source A432_HUE ${A432_HUE} + GOLDEN_ANGLE ${roundTo(GOLDEN_ANGLE, 2)} = 360(2−φ)`, on: A432_HUE === 5 && Math.abs(GOLDEN_ANGLE - 360 * (2 - PHI)) < 1e-9 },
+      { facet: `hue source A432_HUE ${A432_HUE} + GOLDEN_ANGLE ${roundTo(GOLDEN_ANGLE, 2)} = 360(2−φ)`, on: A432_HUE === 5 && abs(GOLDEN_ANGLE - 360 * (2 - PHI)) < 1e-9 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`plasma-hardcoded-planes:${entry.facet}:${entry.on}`) }))
     return {
       discovered: facets.every((entry) => entry.on),
@@ -456,7 +456,7 @@ export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix
     const ladder = A432_OCTAVES
     const onLadder = ladder.includes(cycleS)
     const capLaw = ROSETTA_AREAS + EULER_CHI
-    const nearest = ladder.reduce((a, b) => (Math.abs(b - cycleS) < Math.abs(a - cycleS) ? b : a))
+    const nearest = ladder.reduce((a, b) => (abs(b - cycleS) < abs(a - cycleS) ? b : a))
     const facets = [
       { facet: `cap ${REALTIME_COMPUTE_MOVIE_CAP} = ROSETTA_AREAS ${ROSETTA_AREAS} + χ ${EULER_CHI} = ${capLaw}`, on: REALTIME_COMPUTE_MOVIE_CAP === capLaw },
       { facet: `cycle ${cycleS}s ${onLadder ? 'on' : 'off'} ladder [${ladder.join(',')}]s, nearest ${nearest}s`, on: onLadder },
@@ -490,7 +490,7 @@ export function heroPhaseAt(at: number = Date.now(), cycleMs = HERO_CYCLE_MS): n
 export const FRACTAL_CLOCK_DIVISORS: readonly number[] = Array.from({ length: FOLDED_CENSUS }, (_, i) => i + 1).filter((d) => FOLDED_CENSUS % d === 0)
 /** The divisor-d period in seconds, snapped to the nearest ladder step when d is off-lattice (total, never throws). */
 export function fractalClockS(d: number): number {
-  const snapped = FRACTAL_CLOCK_DIVISORS.reduce((a, b) => (Math.abs(b - d) < Math.abs(a - d) ? b : a))
+  const snapped = FRACTAL_CLOCK_DIVISORS.reduce((a, b) => (abs(b - d) < abs(a - d) ? b : a))
   return FOLDED_CENSUS / snapped
 }
 /** The divisor-d period as a CSS/SMIL duration string — the ONE spelling every animation host uses. */
@@ -578,7 +578,7 @@ export type PlasmaMoviePalette = {
   }
 }
 
-const clamp01 = (n: number) => Math.max(0, Math.min(1, n))
+const clamp01 = (n: number) => max(0, min(1, n))
 // THE NEGATIVE LAW (analog photography): the LIGHT print is the photographic NEGATIVE of the sealed dark
 // POSITIVE — lightness inverts (L′ = 1 − L), hue crosses to its complement (half-turn, 360/2), density
 // (alpha) is unchanged. An involution: applied twice it is the identity. `dark` (true) is the sealed
@@ -624,14 +624,14 @@ export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/
     waveHue,
     waveIndex,
     holographicAlpha: endless ? 4 / (5 * 5) : 3 / (5 * 5), // 0.16 : 0.12
-    glassReveal: clamp01(1 / 2 + (1 / 2) * Math.cos((waveIndex / TIERS[2]) * (TAU / 2))),
+    glassReveal: clamp01(1 / 2 + (1 / 2) * cos((waveIndex / TIERS[2]) * (TAU / 2))),
     back: css(L_BACK),
     shell: css(L_SHELL),
     soft: css(L_SOFT),
     card: css(L_CARD),
     glow: css(L_GLOW),
     dark,
-    root: merkleFold([movieRouteKey(path), String(Math.round(hue)), endless ? 'endless' : 'once']),
+    root: merkleFold([movieRouteKey(path), String(round(hue)), endless ? 'endless' : 'once']),
     canvas: plasmaCanvasFor(dark) }
 }
 
@@ -642,7 +642,7 @@ export function computedMovieThemeColors(matrix: MindMatrix = buildMatrix(), pat
   const themeColor = scaleColor(0, { seedHue: hue, C: CHROMA, dark })
   const backgroundColor = scaleColor(0, { seedHue: hue, C: CHROMA, L: dark ? L_BACK : 1 - 1 / (5 * 5) }) // light manifest bg 24/25
   const accentColor = scaleColor(0, { seedHue: (((hue + GOLDEN_ANGLE) % 360) + 360) % 360, C: CHROMA, dark })
-  return { hue, variant, themeColor, backgroundColor, accentColor, root: merkleFold([movieRouteKey(path), variant, String(Math.round(hue))]) }
+  return { hue, variant, themeColor, backgroundColor, accentColor, root: merkleFold([movieRouteKey(path), variant, String(round(hue))]) }
 }
 
 // ── Audio: decode is math; play is opt-in (no autoplay) ──
@@ -938,7 +938,7 @@ export function realtimeComputationsMoviePaint(at: number = Date.now(), path = '
     streams: channels,
     count: channels.length,
     visible: channels.length === MOVIE_SIMULATION_CHANNEL_IDS.length,
-    hueShift: Math.round(heroPhaseAt(at) * 360),
+    hueShift: round(heroPhaseAt(at) * 360),
     boundary: 'Deterministic paint at the hero clock — NOT live video.',
     root: merkleFold([palette.root, ...channels.map((channel) => channel.receipt)]) }
 }
@@ -1071,12 +1071,12 @@ export function plasmaSpeedByTheorem() {
   const c = SPEED_OF_LIGHT
   // dimensionless sweep: x = ωₚ/ω ∈ (0,1) — propagating regime, lattice fractions only
   const xs = [1 / 9, 1 / 5, 1 / 3, 1 / 2, 2 / 3, 4 / 5, 8 / 9]
-  const n = (x: number) => Math.sqrt(1 - x * x) // refractive index
+  const n = (x: number) => sqrt(1 - x * x) // refractive index
   const vPhase = (x: number) => c / n(x)
   const vGroup = (x: number) => c * n(x)
   const superluminalPhase = xs.every((x) => vPhase(x) > c)
   const subluminalGroup = xs.every((x) => vGroup(x) < c)
-  const reciprocal = xs.every((x) => Math.abs(vPhase(x) * vGroup(x) - c * c) < c * c * 1e-12)
+  const reciprocal = xs.every((x) => abs(vPhase(x) * vGroup(x) - c * c) < c * c * 1e-12)
   // the pole: as x → 1 (ω → ωₚ), v_φ diverges and v_g vanishes — the 1/0 of the dispersion relation
   const approach = [1 - 1 / 100, 1 - 1 / (100 * 100), 1 - 1 / (100 * 100 * 100)]
   const poleDiverges = approach.every((x, i) => i === 0 || vPhase(x) > vPhase(approach[i - 1]!))
@@ -1086,7 +1086,7 @@ export function plasmaSpeedByTheorem() {
   const evanescent = [2, 3 * 3].every((over) => Number.isNaN(n(over)))
   // THE DECIDING COMPUTATION: launch a real wave packet and measure what the ENVELOPE does —
   // the envelope is the message; the phase is only a pattern moving through it.
-  const wOf = (k: number) => Math.sqrt(1 + k * k) // units c = ωₚ = 1
+  const wOf = (k: number) => sqrt(1 + k * k) // units c = ωₚ = 1
   const k0 = 2
   const dk = 3 / (4 * 5) // narrow band → a clean Gaussian envelope
   const envelopePeakAt = (t: number) => {
@@ -1096,12 +1096,12 @@ export function plasmaSpeedByTheorem() {
       let re = 0
       let im = 0
       for (let k = k0 - 5 * dk; k <= k0 + 5 * dk; k += dk / (5 * 2)) {
-        const a = Math.exp(-((k - k0) ** 2) / (2 * dk * dk))
+        const a = exp(-((k - k0) ** 2) / (2 * dk * dk))
         const ph = k * x - wOf(k) * t
-        re += a * Math.cos(ph)
-        im += a * Math.sin(ph)
+        re += a * cos(ph)
+        im += a * sin(ph)
       }
-      const env = Math.hypot(re, im)
+      const env = hypot(re, im)
       if (env > best) { best = env; bx = x }
     }
     return bx
@@ -1115,7 +1115,7 @@ export function plasmaSpeedByTheorem() {
     { facet: 'v_φ · v_g = c² exactly — phase and group are RECIPROCALS about light speed (the inversion law of src/9/1, in a plasma)', on: reciprocal },
     { facet: 'THE POLE IS THE VOID: at ω → ωₚ the index n → 0, so v_φ → ∞ while v_g → 0 — division by zero made physical; IEEE agrees at the exact cutoff (v_φ = Infinity, v_g = 0)', on: poleDiverges && poleStops && cutoffExact },
     { facet: 'below cutoff the index is imaginary (NaN on the reals) — the wave evanesces and reflects: this is why the ionosphere bounces shortwave around the Earth', on: evanescent },
-    { facet: `THE MESSAGE NEVER OUTRUNS LIGHT — a real wave packet, simulated: its carrier phase runs at ${packetVPhase.toFixed(4)}c while the ENVELOPE PEAK (the only thing that can carry information) measures ${packetSpeed.toFixed(4)}c — matching v_g = ${packetVGroup.toFixed(4)}c and staying below 1. The phase races, the message crawls: superluminal phase is a pattern, not a courier`, on: packetSpeed < 1 && Math.abs(packetSpeed - packetVGroup) < 1 / (2 * 5 * 5) && packetVPhase > 1 },
+    { facet: `THE MESSAGE NEVER OUTRUNS LIGHT — a real wave packet, simulated: its carrier phase runs at ${packetVPhase.toFixed(4)}c while the ENVELOPE PEAK (the only thing that can carry information) measures ${packetSpeed.toFixed(4)}c — matching v_g = ${packetVGroup.toFixed(4)}c and staying below 1. The phase races, the message crawls: superluminal phase is a pattern, not a courier`, on: packetSpeed < 1 && abs(packetSpeed - packetVGroup) < 1 / (2 * 5 * 5) && packetVPhase > 1 },
   ]
   return {
     computes: facets.every((entry) => entry.on),

@@ -11,7 +11,7 @@ import * as __ns_up_up_plasma_ball from '../../fire/plasma/ball'
 import * as __ns_up_up_computer from '../../heaven/compute/computer'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, proofReport } from '../../heaven/compute'
-import { isUuid, memoByRoot, computesGate, merkleFold, toUuid } from '../../0'
+import { computesGate, floor, isUuid, log2, memoByRoot, merkleFold, min, round, toUuid } from '../../0'
 import { harmonics, soundColor } from '../music'
 import { allComputed } from '../../wind/fusion'
 import { allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
@@ -40,14 +40,14 @@ export function recursiveFrequencyDropdowns(matrix: MindMatrix = buildMatrix()) 
   let nodeCount = 0
   function build(freq: number, depth: number, path: string): FreqNode {
     nodeCount += 1
-    const exp = Math.round(Math.log2(freq)) // the binary level: the nearest 2^n
+    const exp = round(log2(freq)) // the binary level: the nearest 2^n
     binaryLevels.add(exp)
-    const receipt = toUuid(`freq-node:${path}:${Math.round(freq)}:2^${exp}`)
+    const receipt = toUuid(`freq-node:${path}:${round(freq)}:2^${exp}`)
     receipts.push(receipt)
     const children = depth > 0
       ? [build(freq * 2, depth - 1, `${path}.o`), build(freq * (3 / 2), depth - 1, `${path}.f`)]
       : []
-    return { freq: Math.round(freq), binary: `2^${exp}`, binaryValue: 2 ** exp, accounted: true, children, receipt }
+    return { freq: round(freq), binary: `2^${exp}`, binaryValue: 2 ** exp, accounted: true, children, receipt }
   }
   const tree = build(base, maxDepth, 'root')
   const expected = 2 ** (maxDepth + 1) - 1 // a full binary tree of this depth
@@ -261,7 +261,7 @@ export function widgetDimensionControls(matrix: MindMatrix = buildMatrix()) {
   const innerGroup = DIMENSION_NAMES.slice(0, 3) // yin · lower trigram
   const outerGroup = DIMENSION_NAMES.slice(3, 6) // yang · upper trigram
   const loopGroup = DIMENSION_NAMES.slice(6)     // dependency loops
-  const testDist = (n: number) => Array.from({ length: n }, (_, i) => Math.min(Math.floor((i * (5 * 2)) / n), 9))
+  const testDist = (n: number) => Array.from({ length: n }, (_, i) => min(floor((i * (5 * 2)) / n), 9))
   const dist5 = testDist(5)
   const dist10 = testDist((5 * 2))
   const dist2 = testDist(2)
@@ -329,7 +329,7 @@ export function quantumWidgetsRegistry(): readonly QuantumWidgetEntry[] {
 }
 
 export function quantumWidgetRender(widgetId: string, at = 0, matrix: MindMatrix = buildMatrix()): QuantumWidgetPaint {
-  return memoByRoot(`quantumWidgetRender:${widgetId}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumWidgetRender:${widgetId}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const entry = QUANTUM_WIDGET_REGISTRY.find((row) => row.id === widgetId)
     if (!entry) {
       return { widgetId, title: widgetId, computes: false, summary: 'unknown widget', root: toUuid(`qwidget-miss:${widgetId}`), boundary: 'Widget id not in quantumWidgetsRegistry().' }
@@ -383,7 +383,7 @@ export function quantumWidgetRender(widgetId: string, at = 0, matrix: MindMatrix
 }
 
 export function quantumWidgetsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumWidgetsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumWidgetsComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumWidgetsRegistry()
     const paints = registry.map((entry) => quantumWidgetRender(entry.id, at, matrix))
     const sota = stateOfTheArtHarmonisedQuantumWidgets(matrix)

@@ -4,7 +4,7 @@ import * as __ns_up_fusion from '../../wind/fusion'
 import * as __ns_up_ui from '../../wind/ui'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, gcd, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { computesGate, gcd, memoByRoot, merge, merkleFold, min, toUuid } from '../../0'
 import { rosettaRayOfContent as rrOfContent, DIMENSION_GATES, HARMONICS_LADDER_LENGTH } from '../../3/7'
 // call-time namespace edge (cycle-safe): thunder/waves imports the rosetta; the registry reads back at call time
 import * as __ns_thunder_waves_iching from '../../thunder/waves'
@@ -147,7 +147,7 @@ export function decodingIChingAddsTheorems() {
   const reversalPairs = all.filter((h) => reverse6(h) > h).length // each non-palindromic pair counted once
   const complementPairsAmongPalindromes = palindromes.filter((h) => complement6(h) > h && palindromes.includes(complement6(h))).length
   // (3) the V₄ orbit census, two ways: direct orbits and Burnside's character sum
-  const orbitOf = (h: number) => Math.min(h, reverse6(h), complement6(h), complement6(reverse6(h)))
+  const orbitOf = (h: number) => min(h, reverse6(h), complement6(h), complement6(reverse6(h)))
   const orbits = new Set(all.map(orbitOf)).size
   const fixedByRevComp = all.filter((h) => complement6(reverse6(h)) === h).length // anti-palindromes
   const burnside = (all.length + palindromes.length + all.filter((h) => complement6(h) === h).length + fixedByRevComp) / 4

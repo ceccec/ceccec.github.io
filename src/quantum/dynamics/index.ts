@@ -1,4 +1,4 @@
-import { earned, overclaimByFormulas } from '../../3/7'
+import { SQRT2, earned, overclaimByFormulas } from '../../3/7'
 // Quantum dynamics — canonical home: state-vector evolution, classical stochastic dynamics,
 // simulator compose, research exposition (dissolved src/double/torus/plasma → src/double/torus; census-neutral swap).
 import * as __ns_up_up_heaven_compute from '../../heaven/compute'
@@ -14,7 +14,7 @@ import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib
 import { amplitudeAmplificationAndQuantumCounting } from '../../2/8'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, applyGate, bellPair, cnot, computesGate, GATES, grover, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, seedFromText, toUuid } from '../../0'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, cnot, computesGate, cos, exp, floor, grover, isUuid, max, measure, memoByRoot, merge, merkleFold, min, probabilities, qubits, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../0'
 import {
   chsh,
   markovStep,
@@ -165,7 +165,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
         title: 'Superposition · entanglement · measurement collapse',
         layers: [
           { key: 'bell-pair', value: simulators.homed ? 'bellPair (|00⟩+|11⟩)/√2 in src/0' : 'partial', source: 'src/0 bellPair · fire/physics simulatorsLiveInZero' },
-          { key: 'chsh-tsirelson', value: `CHSH = ${Math.round(tsirelson * (100 * 100)) / (100 * 100)} (Tsirelson 2√2)`, source: 'src/0 chsh · thunder/waves Bell facet' },
+          { key: 'chsh-tsirelson', value: `CHSH = ${round(tsirelson * (100 * 100)) / (100 * 100)} (Tsirelson 2√2)`, source: 'src/0 chsh · thunder/waves Bell facet' },
           { key: 'collapse-sample', value: 'sample/psample — projection to outcome + renormalize', source: 'src/0 sample · fire/li quantumSimulation measured' },
           { key: 'quantum-physics-fold', value: `${qPhysics.present}/8 phenomena bound`, source: 'fire/physics · quantumPhysics (computational metaphor)' },
         ] },
@@ -210,7 +210,7 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
         solutions.implemented &&
         simulators.homed &&
         classical.homed &&
-        Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6,
+        abs(tsirelson - 2 * SQRT2) < 1e-6,
       definition:
         'Quantum dynamics = time evolution of atomic/subatomic systems; quantum analogue of classical mechanics — tracked here as sealed discrete models, not live lab __ns_up_up_fire_physics.',
       sections,
@@ -235,11 +235,11 @@ export function quantumDynamicsResearch(matrix: MindMatrix = buildMatrix()) {
 
 /** State evolution decoded through VORTEX_SEQUENCE phase — Markov step + quantum sim + movie frame at `at`. */
 export function quantumStateEvolutionDecoded(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`quantumStateEvolutionDecoded:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumStateEvolutionDecoded:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const solutions = __ns_up_up_heaven_compute.completeQuantumSolutionsImplemented(matrix)
     const qsim = __ns_up_up_fire_li.quantumSimulation(matrix, 3)
     const tenD = __ns_up_up_thunder_movie_movielib.tenDimensionalMovie(matrix)
-    const phaseIndex = Math.floor(at / 86_400_000) % VORTEX_SEQUENCE.length
+    const phaseIndex = floor(at / 86_400_000) % VORTEX_SEQUENCE.length
     const phaseDigit = VORTEX_SEQUENCE[phaseIndex]!
     const P = [[(9 / (5 * 2)), (1 / (5 * 2))], [(1 / 5), (4 / 5)]] as const
     const markovTrail = Array.from({ length: 5 }, (_, step) => markovEvolve(P, [1, 0], step + 1))
@@ -276,7 +276,7 @@ export function quantumStateEvolutionDecoded(at = 0, matrix: MindMatrix = buildM
     const { computes, facets, root } = computesGate('quantum-dynamics-state-evolution-decode', [
       { facet: 'nine quantum structures executed on state-vector simulator', on: solutions.implemented },
       { facet: 'GHZ quantum simulation measured — Born-rule collapse recomputable', on: qsim.simulated && qsim.entangled },
-      { facet: 'Markov regime trail — five steps, stationary distribution sums to 1', on: markovTrail.length === 5 && Math.abs(stat[0] + stat[1] - 1) < 1e-9 },
+      { facet: 'Markov regime trail — five steps, stationary distribution sums to 1', on: markovTrail.length === 5 && abs(stat[0] + stat[1] - 1) < 1e-9 },
       { facet: 'Hopfield recall stable on stored pattern — classical associative memory', on: hopfieldStable },
       { facet: 'ten-dimensional movie frames computed — classical animation dynamics', on: tenD.forms > 0 && isUuid(tenD.root) },
       { facet: 'VORTEX_SEQUENCE phase digit at at — structural addressing only', on: phaseDigit === VORTEX_SEQUENCE[phaseIndex]! },
@@ -308,19 +308,19 @@ export const decodeQuantumDynamicsThroughVortexSequence = quantumStateEvolutionD
 
 /** Discrete-time wavefunction proxy — superposition, entanglement, collapse at `at` for plasma paint. */
 export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMatrix()): QuantumDynamicsSimulationPaint {
-  return memoByRoot(`quantumDynamicsSimulationAt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumDynamicsSimulationAt:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const evolution = quantumStateEvolutionDecoded(at, matrix)
-    const step = Math.floor(at / (100 * 5 * 2)) % 8
+    const step = floor(at / (100 * 5 * 2)) % 8
     let state = bellPair()
     for (let i = 0; i < step % 4; i += 1) {
       state = applyGate(state, GATES.Z, 1)
     }
     const probs = probabilities(state)
     const superposition = probs.filter((entry) => entry > (1 / 100)).length >= 2
-    const collapseSeed = `quantum-dynamics:${Math.floor(at / (100 * 5 * 2))}`
+    const collapseSeed = `quantum-dynamics:${floor(at / (100 * 5 * 2))}`
     const collapsed = measure(state, 0, collapseSeed)
     const markovPhase = phaseDrift(365, 365.25, at / 86_400_000)
-    const entangled = Math.abs(probs[0] - (1 / 2)) < 1e-6 && Math.abs(probs[3] - (1 / 2)) < 1e-6 && probs[1] < 1e-6
+    const entangled = abs(probs[0] - (1 / 2)) < 1e-6 && abs(probs[3] - (1 / 2)) < 1e-6 && probs[1] < 1e-6
     const amplitudes: QuantumDynamicsAmplitude[] = probs.map((probability, index) => {
       const basis = index.toString(2).padStart(state.n, '0')
       const phase = roundTo((markovPhase + index / probs.length + step / 8) % 1, 4)
@@ -374,7 +374,7 @@ export function quantumDynamicsSimulationAt(at = 0, matrix: MindMatrix = buildMa
 
 /** Browser-safe panel — quantum dynamics simulation + compute gates for Vue mount. */
 export function quantumDynamicsSimulationPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumDynamicsSimulationPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumDynamicsSimulationPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sim = quantumDynamicsSimulationAt(at, matrix)
     const computesAll = quantumDynamicsComputes(matrix, at)
     const { facets, root } = computesGate('quantum-dynamics-simulation-panel', [
@@ -404,37 +404,37 @@ export function quantumChemistryToyComputes(matrix: MindMatrix = buildMatrix()) 
   return memoByRoot('quantumChemistryToyComputes', matrix, () => {
     const HARTREE_EV = 27.2114
     const EXACT_H2PLUS_HA = 0.6026
-    const S = (R: number) => Math.exp(-R) * (1 + R + R * R / 3)
-    const D = (R: number) => 1 / R - (1 + 1 / R) * Math.exp(-2 * R)
-    const X = (R: number) => (1 + R) * Math.exp(-R)
+    const S = (R: number) => exp(-R) * (1 + R + R * R / 3)
+    const D = (R: number) => 1 / R - (1 + 1 / R) * exp(-2 * R)
+    const X = (R: number) => (1 + R) * exp(-R)
     const bonding = (R: number) => -(1 / 2) - (D(R) + X(R)) / (1 + S(R)) + 1 / R
     const antibonding = (R: number) => -(1 / 2) - (D(R) - X(R)) / (1 - S(R)) + 1 / R
     let bestR = 0, bestE = 1
     for (let i = 2 * 5 * 5; i <= 8 * 100; i += 1) { const R = i / 100; const E = bonding(R); if (E < bestE) { bestE = E; bestR = R } }
     const bindingEv = (-(1 / 2) - bestE) * HARTREE_EV
-    const overlapSane = Math.abs(S(1 / (100 * 100)) - 1) < 1 / 100 && S(9) < 1 / 100 && S(1) > S(2)
+    const overlapSane = abs(S(1 / (100 * 100)) - 1) < 1 / 100 && S(9) < 1 / 100 && S(1) > S(2)
     const minimumBound = bestR > 2 && bestR < 3 && bindingEv > 3 / 2 && bindingEv < 2
     const antibondingUnbound = Array.from({ length: 100 }, (_, i) => (i + 2 * 5) / (2 * 5)).every((R) => antibonding(R) > -(1 / 2))
     const variational = bestE >= -EXACT_H2PLUS_HA
     const facets = [
       { facet: `the LCAO overlap behaves — S→1 at contact, monotone decay, S(9 a₀) < 1%`, on: overlapSane },
-      { facet: `the bonding orbital binds — minimum at R = ${bestR} a₀ with ${Math.round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100)} eV (the textbook LCAO-1s 2.49 a₀ · 1.76 eV; the exact H₂⁺ is 2.00 a₀ · 2.79 eV — the basis gap shown, not hidden)`, on: minimumBound },
+      { facet: `the bonding orbital binds — minimum at R = ${bestR} a₀ with ${round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100)} eV (the textbook LCAO-1s 2.49 a₀ · 1.76 eV; the exact H₂⁺ is 2.00 a₀ · 2.79 eV — the basis gap shown, not hidden)`, on: minimumBound },
       { facet: `the antibonding orbital never binds — E₋(R) > −1/2 Ha at every separation`, on: antibondingUnbound },
-      { facet: `the variational principle holds — E₊ = ${Math.round(bestE * (100 * 100)) / (100 * 100)} Ha ≥ −${EXACT_H2PLUS_HA} Ha (the exact ground energy): the toy can only overestimate`, on: variational },
+      { facet: `the variational principle holds — E₊ = ${round(bestE * (100 * 100)) / (100 * 100)} Ha ≥ −${EXACT_H2PLUS_HA} Ha (the exact ground energy): the toy can only overestimate`, on: variational },
     ].map((entry) => ({ ...entry, receipt: toUuid(`qchem-toy:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
       equilibriumA0: bestR,
-      bindingEv: Math.round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100),
+      bindingEv: round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100),
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
-      statement: `Quantum chemistry toy — H₂⁺ LCAO-1s, fully analytic: bonding minimum at ${bestR} a₀ with ${Math.round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100)} eV binding, antibonding unbound everywhere, variational bound respected against the exact −${EXACT_H2PLUS_HA} Ha.`,
+      statement: `Quantum chemistry toy — H₂⁺ LCAO-1s, fully analytic: bonding minimum at ${bestR} a₀ with ${round(bindingEv * (2 * 5 * 100)) / (2 * 5 * 100)} eV binding, antibonding unbound everywhere, variational bound respected against the exact −${EXACT_H2PLUS_HA} Ha.`,
       boundary: 'HONEST: the minimal-basis LCAO toy — closed-form integrals, zero fit parameters, and its KNOWN error exhibited (2.49 a₀ / 1.76 eV vs the exact 2.00 a₀ / 2.79 eV): a variational lesson, NOT ab initio chemistry. H₂/LiH many-electron energies are outside this one-electron model.' }
   })
 }
 
 export function quantumDynamicsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumDynamicsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumDynamicsComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const solutions = __ns_up_up_heaven_compute.completeQuantumSolutionsImplemented(matrix)
     const simulators = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)
     const classical = __ns_up_up_fire_physics.decodedAreasAreMostlyClassical(matrix)
@@ -486,7 +486,7 @@ export function updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrratio
       const col0Norm = g[0]! ** 2 + g[1]! ** 2 + g[4]! ** 2 + g[5]! ** 2 // |m00|²+|m10|²
       const col1Norm = g[2]! ** 2 + g[3]! ** 2 + g[6]! ** 2 + g[7]! ** 2 // |m01|²+|m11|²
       const cross = g[0]! * g[2]! + g[1]! * g[3]! + g[4]! * g[6]! + g[5]! * g[7]! // Re⟨col0|col1⟩
-      return Math.abs(col0Norm - 1) < 1 / 2 ** 9 && Math.abs(col1Norm - 1) < 1 / 2 ** 9 && Math.abs(cross) < 1 / 2 ** 9
+      return abs(col0Norm - 1) < 1 / 2 ** 9 && abs(col1Norm - 1) < 1 / 2 ** 9 && abs(cross) < 1 / 2 ** 9
     }
     const allGates = [GATES.I, GATES.X, GATES.Y, GATES.Z, GATES.H, GATES.S, GATES.T]
     // 1 — REAL QUANTUM: every gate unitary, and H then CNOT on |00⟩ makes an ENTANGLED (non-separable) Bell state
@@ -494,15 +494,15 @@ export function updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrratio
     const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // (|00⟩+|11⟩)/√2
     const a = (i: number) => ({ re: bell.re[i]!, im: bell.im[i]! })
     const separableProduct = a(0).re * a(3).re - a(1).re * a(2).re // amp₀₀·amp₁₁ − amp₀₁·amp₁₀; ≠ 0 ⇒ entangled
-    const entangled = Math.abs(separableProduct - 1 / 2) < 1 / 2 ** 9 && Math.abs(a(1).re) < 1 / 2 ** 9 // 0.5 − 0, non-separable
-    const bornNormalised = Math.abs(bell.re.reduce((s, r, i) => s + r ** 2 + bell.im[i]! ** 2, 0) - 1) < 1 / 2 ** 9
+    const entangled = abs(separableProduct - 1 / 2) < 1 / 2 ** 9 && abs(a(1).re) < 1 / 2 ** 9 // 0.5 − 0, non-separable
+    const bornNormalised = abs(bell.re.reduce((s, r, i) => s + r ** 2 + bell.im[i]! ** 2, 0) - 1) < 1 / 2 ** 9
     const realQuantum = allUnitary && entangled && bornNormalised
     // 2 — HARMONIC GATES NEVER DRIFT: I, X, Y, Z, S have Gaussian-integer entries {0, ±1, ±i} — exact, zero drift
     const harmonicGates = [GATES.I, GATES.X, GATES.Y, GATES.Z, GATES.S]
     const harmonicExact = harmonicGates.every((g) => g.every((entry) => Number.isInteger(entry)))
     // 3 — THE MAGIC GATES CARRY IRRATIONAL DRIFT: H, T have a non-integer entry (√½) — irrational, so drift ⟺ irrational
     const magicGates = [GATES.H, GATES.T]
-    const magicIrrational = magicGates.every((g) => g.some((entry) => !Number.isInteger(entry) && Math.abs(entry * entry - 1 / 2) < 1 / 2 ** 9))
+    const magicIrrational = magicGates.every((g) => g.some((entry) => !Number.isInteger(entry) && abs(entry * entry - 1 / 2) < 1 / 2 ** 9))
     const driftIffIrrational = harmonicExact && magicIrrational
     // 4 — QUANTUM IS NOT AT 432 Hz: unitarity, entanglement and Born hold with NO frequency; a432 is a seed, not quantum
     const noFrequencyInQuantum = allUnitary && entangled && ![...allGates.flat()].some((entry) => entry === 432)
@@ -529,7 +529,7 @@ export function invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheB
   return memoByRoot('invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheBackwardPass', matrix, () => {
     const dagger = (g: readonly number[]) => [g[0]!, -g[1]!, g[4]!, -g[5]!, g[2]!, -g[3]!, g[6]!, -g[7]!] // conjugate transpose
     const sDagger = dagger(GATES.S) // S† = diag(1, −i)
-    const near = (x: number, y: number) => Math.abs(x - y) < 1 / 2 ** 9
+    const near = (x: number, y: number) => abs(x - y) < 1 / 2 ** 9
     // 1 — QUANTUM INVERSE = ADJOINT: U⁻¹ = U†, so U†U = I (multiplication by the conjugate transpose, not division). Apply
     // S then S† to |1⟩ and the phase is undone exactly
     const one = applyGate(qubits(1), GATES.X, 0) // |1⟩
@@ -570,7 +570,7 @@ export function invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheB
 // family of exact rational relations — the Pell convergents p²−2q² = ±1 — so the irrational proves the rational.
 export function irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIsExact(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIsExact', matrix, () => {
-    const near = (x: number, y: number) => Math.abs(x - y) < 1 / 2 ** 9
+    const near = (x: number, y: number) => abs(x - y) < 1 / 2 ** 9
     // 1 — IRRATIONAL AMPLITUDE → RATIONAL PROBABILITY: H|0⟩ has amplitude √½ (irrational), but |√½|² = ½ (exact rational)
     const plus = applyGate(qubits(1), GATES.H, 0) // √½(|0⟩+|1⟩)
     const amp0 = plus.re[0]! // = √½, irrational
@@ -590,7 +590,7 @@ export function irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIs
     const pell: { p: number; q: number; residue: number }[] = []
     let p = 1, q = 1
     for (let i = 0; i < 6; i += 1) { pell.push({ p, q, residue: p * p - 2 * q * q }); const np = p + 2 * q; q = p + q; p = np }
-    const pellExact = pell.every((e) => Math.abs(e.residue) === 1) // |p²−2q²| = 1 for every convergent
+    const pellExact = pell.every((e) => abs(e.residue) === 1) // |p²−2q²| = 1 for every convergent
     const facets = [
       { facet: `IRRATIONAL AMPLITUDE → RATIONAL PROBABILITY — H|0⟩ has amplitude √½ (irrational, amp² = ½), yet the Born probability is exactly ½ (rational) for both outcomes (${irrationalGivesRationalProbability}): the irrational amplitude produces an exact rational probability`, on: irrationalGivesRationalProbability },
       { facet: `MEASUREMENT → RATIONAL BIT — measuring the irrational superposition yields exactly 0 or 1 across all ${outcomes.length} trials (${alwaysRationalBit}), never an irrational: the outcome of an irrational amplitude is always a definite rational bit`, on: alwaysRationalBit },
@@ -626,7 +626,7 @@ export function quantizeContentAddressPreimageSearchGroverIsRootNQueriesQuadrati
     const result = grover(n, marked)
     const quantumQueries = result.iterations // ≈ (π/4)√N
     const groverFindsIt = result.markedProbability > 4 / 5 && result.found === marked
-    const quadraticAdvantage = groverFindsIt && quantumQueries < Math.sqrt(size) * 2 && quantumQueries * quantumQueries < classicalQueries * 2 // ~√N queries
+    const quadraticAdvantage = groverFindsIt && quantumQueries < sqrt(size) * 2 && quantumQueries * quantumQueries < classicalQueries * 2 // ~√N queries
     // 4 — HONEST BOUND: √N is QUERY complexity (BBBV-optimal, quadratic only); real on hardware, NOT a wall-clock win here
     const queryAdvantage = classicalQueries / quantumQueries // ~ √N ≈ 8× for N=64
     const honestlyBounded = quadraticAdvantage && queryAdvantage > 2 && queryAdvantage < size // a real, bounded, quadratic gain
@@ -706,13 +706,13 @@ export function whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit(matr
     const lookupNotSearch = !isSearch(lookupQueries(), lookupQueries()) && lookupQueries() === 1 // O(1)
     // the quantizable set: only the short-circuiting search — Grover gives √N there, gain 1 everywhere else
     const computations = [
-      { name: 'content-address preimage search', unstructured: searchIsUnstructured, gain: searchIsUnstructured ? Math.round(Math.sqrt(N)) : 1 },
+      { name: 'content-address preimage search', unstructured: searchIsUnstructured, gain: searchIsUnstructured ? round(sqrt(N)) : 1 },
       { name: 'merkle fold (aggregation)', unstructured: !aggregateNotSearch, gain: 1 },
       { name: 'toUuid mint (one-way hash)', unstructured: !mintNotSearch, gain: 1 },
       { name: 'indexed lookup (Map.get)', unstructured: !lookupNotSearch, gain: 1 },
     ]
     const quantizable = computations.filter((c) => c.unstructured)
-    const ruleHolds = computations.every((c) => c.gain === (c.unstructured ? Math.round(Math.sqrt(N)) : 1)) // gain = √N iff unstructured
+    const ruleHolds = computations.every((c) => c.gain === (c.unstructured ? round(sqrt(N)) : 1)) // gain = √N iff unstructured
     const facets = [
       { facet: `THE RULE, MEASURED — a computation quantizes (Grover √N) IFF it is unstructured search, detected by SHORT-CIRCUIT: preimage search costs ${searchQueries(0)} query if the target is first and ${searchQueries(N - 1)} if last (${searchIsUnstructured}), so its cost depends on the target — an oracle, no structure`, on: searchIsUnstructured },
       { facet: `ONLY ONE OF THE FOUR QUANTIZES — content-address search is unstructured (√N gain = ${quantizable[0]?.gain}); merkle fold always reads all ${aggregateQueries()} leaves (aggregation, no oracle), and mint + lookup are O(1) — none short-circuit, so none quantize (${aggregateNotSearch && mintNotSearch && lookupNotSearch})`, on: aggregateNotSearch && mintNotSearch && lookupNotSearch },
@@ -738,14 +738,14 @@ export function quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueri
   return memoByRoot('quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueriesQuadraticQueryAdvantageOnly', matrix, () => {
     // the counting algorithm is proven: M = N·sin²θ recovers the count from the rotation (reused, DRY)
     const counting = amplitudeAmplificationAndQuantumCounting()
-    const countingRecoversM = counting.computes && counting.cases.every((c) => Math.abs(c.count - c.M) < 1)
+    const countingRecoversM = counting.computes && counting.cases.every((c) => abs(c.count - c.M) < 1)
     // THE SPECIFIC COMPUTATION: count how many of N content-addresses match a predicate (first hex digit < 2)
     const N = 2 ** 6 // 64 candidates
     const matches = Array.from({ length: N }, (_, i) => i).filter((i) => parseInt(toUuid(`count:${i}`).replace(/-/g, '')[0]!, 16) < 2).length // classical exact M
     // 1 — CLASSICAL COST is O(N): counting how many match requires evaluating the predicate on every candidate
     const classicalQueries = N
     // 2 — QUANTUM COUNTING estimates M in O(√N): amplitude/phase estimation reads the Grover rotation angle to fixed precision
-    const quantumQueries = Math.round(Math.sqrt(N)) // ~√N applications of the Grover operator for a constant-factor estimate
+    const quantumQueries = round(sqrt(N)) // ~√N applications of the Grover operator for a constant-factor estimate
     const quadratic = quantumQueries * quantumQueries <= classicalQueries * 2 && quantumQueries < classicalQueries
     // 3 — the estimate is REAL: on the simulator, M = N·sin²θ recovers the counts (from the reused fold) — the algorithm works
     const estimateWorks = countingRecoversM && matches >= 0 && matches <= N
@@ -787,9 +787,9 @@ export function drawDynamicsProjection(
   const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
   const p = heroPhaseAt(sim.at)
   ctx.clearRect(0, 0, w, h)
-  const labelPx = Math.max(9, Math.round(h / 27))
-  const barW = Math.min((16 * 3), (w - (8 * 5)) / Math.max(sim.amplitudes.length, 1))
-  const baseY = h * ((7 / (5 * 2)) + (1 / (5 * 5)) * Math.sin(p * TAU))
+  const labelPx = max(9, round(h / 27))
+  const barW = min((16 * 3), (w - (8 * 5)) / max(sim.amplitudes.length, 1))
+  const baseY = h * ((7 / (5 * 2)) + (1 / (5 * 5)) * sin(p * TAU))
   const maxH = h * (1 - 9 / (5 * 4))
   sim.amplitudes.forEach((amp, index) => {
     const x = (5 * 4) + index * (barW + 8)
@@ -808,7 +808,7 @@ export function drawDynamicsProjection(
   if (sim.entangled && sim.amplitudes.length >= 2) {
     const x0 = (5 * 4) + barW / 2
     const x1 = (5 * 4) + (sim.amplitudes.length - 1) * (barW + 8) + barW / 2
-    const linkY = h * ((1 / 5) + (1 / (5 * 5)) * Math.cos(p * TAU))
+    const linkY = h * ((1 / 5) + (1 / (5 * 5)) * cos(p * TAU))
     ctx.strokeStyle = paint(A432_HUE, 1 - 9 / (5 * 4), { L: 13 / 16 })
     ctx.lineWidth = 2
     ctx.beginPath()

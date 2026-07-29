@@ -3,6 +3,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { worldMysteriesDecoded } from './index.ts'
 import { heroPhaseAt, subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
+import { floor } from '../../0'
 
 const atlas = worldMysteriesDecoded()
 const at = ref(0)
@@ -10,7 +11,7 @@ const at = ref(0)
 const activeIndex = computed(() => {
   const n = atlas.mysteries.length
   if (n <= 0) return 0
-  return Math.floor(heroPhaseAt(at.value) * n) % n
+  return floor(heroPhaseAt(at.value) * n) % n
 })
 let off: (() => void) | null = null
 onMounted(() => {

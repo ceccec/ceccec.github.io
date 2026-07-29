@@ -7,7 +7,7 @@ import { skillAtoms } from '../../wind/learning'
 import { dopplerShift, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7'
 export { A432_OCTAVES } from '../../3/7'
 import { powerSpectrum, larmorFrequency } from '../../1/9'
-import { computesGate, foldPair, isUuid, markovStep, memoByRoot, memoComputing, merge, merkleFold, prng, roundTo, sealFacets, seedFromText, toUuid, uuidHero, VORTEX_SEQUENCE } from '../../0'
+import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, exp, floor, foldPair, hypot, isUuid, markovStep, max, memoByRoot, memoComputing, merge, merkleFold, min, prng, roundTo, sealFacets, seedFromText, sign, sin, sqrt, toUuid, uuidHero } from '../../0'
 import { rosettaRayOf } from '../../water/digit'
 import { rosettaCoreApi, rosettaShelve } from '../../quantum/apps'
 import { vortexMath } from '../../mountain/vortex'
@@ -314,9 +314,9 @@ export function priceFromA432(variant: string, n: number, opts: { drift?: number
     let osc = 0
     for (let m = 0; m < periods.length; m++) {
       const phase = ((seedFromText(`${seed}:phase:${m}`, 6) % (100 * 5 * 2)) / (100 * 5 * 2)) * TAU
-      osc += (oscAmp * Math.sin((TAU * t) / periods[m] + phase)) / (m + 1)
+      osc += (oscAmp * sin((TAU * t) / periods[m] + phase)) / (m + 1)
     }
-    prices.push(prices[t - 1] * Math.exp(drift + osc + (noise() - (1 / 2)) * 2 * noiseAmp))
+    prices.push(prices[t - 1] * exp(drift + osc + (noise() - (1 / 2)) * 2 * noiseAmp))
   }
   return prices
 }
@@ -332,12 +332,12 @@ export interface BacktestResult { stratReturns: number[]; equity: number[]; tota
 export function backtest(prices: readonly number[], positions: readonly number[], costBps = 5): BacktestResult {
   const r = simpleReturns(prices); const cost = costBps / (100 * 100); const stratReturns = new Array(prices.length).fill(0)
   let prev = 0
-  for (let t = 0; t < prices.length; t++) { const turn = Math.abs(positions[t] - prev); stratReturns[t] = positions[t] * r[t] - turn * cost; prev = positions[t] }
+  for (let t = 0; t < prices.length; t++) { const turn = abs(positions[t] - prev); stratReturns[t] = positions[t] * r[t] - turn * cost; prev = positions[t] }
   let eq = 1, peak = 1, mdd = 0, wins = 0, active = 0; const equity: number[] = []
   for (let t = 0; t < prices.length; t++) { eq *= 1 + stratReturns[t]; equity.push(eq); if (eq > peak) peak = eq; const dd = peak === 0 ? 0 : (peak - eq) / peak; if (dd > mdd) mdd = dd; if (t >= 1) { active++; if (stratReturns[t] > 0) wins++ } }
   const rs = stratReturns.slice(1); const mean = rs.reduce((a, b) => a + b, 0) / rs.length
-  const std = Math.sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / rs.length)
-  return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * Math.sqrt((9 * 7 * 4)), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
+  const std = sqrt(rs.reduce((a, b) => a + (b - mean) ** 2, 0) / rs.length)
+  return { stratReturns, equity, totalReturn: eq - 1, sharpe: std === 0 ? 0 : (mean / std) * sqrt((9 * 7 * 4)), maxDrawdown: mdd, hitRate: active === 0 ? 0 : wins / active }
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function buyAndHold(prices: readonly number[], costBps = 5): BacktestResult { return backtest(prices, prices.map(() => 1), costBps) }
@@ -351,7 +351,7 @@ export function crossoverPositions(prices: readonly number[], fast: number, slow
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function rollingZScores(prices: readonly number[], window: number): (number | null)[] {
-  return prices.map((_, i) => { if (i < window) return null; let s = 0; for (let k = i - window; k < i; k++) s += prices[k]; const m = s / window; let v = 0; for (let k = i - window; k < i; k++) v += (prices[k] - m) ** 2; const sd = Math.sqrt(v / window); return sd === 0 ? 0 : (prices[i - 1] - m) / sd })
+  return prices.map((_, i) => { if (i < window) return null; let s = 0; for (let k = i - window; k < i; k++) s += prices[k]; const m = s / window; let v = 0; for (let k = i - window; k < i; k++) v += (prices[k] - m) ** 2; const sd = sqrt(v / window); return sd === 0 ? 0 : (prices[i - 1] - m) / sd })
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function meanReversionPositions(prices: readonly number[], window: number, zEntry: number): number[] {
@@ -359,11 +359,11 @@ export function meanReversionPositions(prices: readonly number[], window: number
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function dominantCycle(window: readonly number[], bins: number): { k: number; period: number } {
-  const s = powerSpectrum(window, bins); let k = 1, v = s[1]; const kmax = Math.floor(bins / 2); for (let i = 2; i <= kmax; i++) if (s[i] > v) { v = s[i]; k = i } return { k, period: window.length / k }
+  const s = powerSpectrum(window, bins); let k = 1, v = s[1]; const kmax = floor(bins / 2); for (let i = 2; i <= kmax; i++) if (s[i] > v) { v = s[i]; k = i } return { k, period: window.length / k }
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function cycleSlope(window: readonly number[], k: number): number {
-  const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-TAU * k * n) / N; re += window[n] * Math.cos(a); im += window[n] * Math.sin(a) } const amp = (2 / N) * Math.hypot(re, im), phi = Math.atan2(im, re); const at = (x: number) => amp * Math.cos((TAU * k * x) / N + phi); return at(N) - at(N - 1)
+  const N = window.length; let re = 0, im = 0; for (let n = 0; n < N; n++) { const a = (-TAU * k * n) / N; re += window[n] * cos(a); im += window[n] * sin(a) } const amp = (2 / N) * hypot(re, im), phi = atan2(im, re); const at = (x: number) => amp * cos((TAU * k * x) / N + phi); return at(N) - at(N - 1)
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function spectralCyclePositions(prices: readonly number[], lookback: number, bins: number): number[] {
@@ -374,7 +374,7 @@ export function spectralCyclePositions(prices: readonly number[], lookback: numb
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function regimeLabels(returns: readonly number[], volW: number): number[] {
   const labels = new Array(returns.length).fill(-1)
-  for (let b = 1; b < returns.length; b++) { const start = b - volW; if (start < 1) continue; let s = 0; for (let i = start; i <= b - 1; i++) s += Math.abs(returns[i]); labels[b] = Math.abs(returns[b]) > s / volW ? 1 : 0 }
+  for (let b = 1; b < returns.length; b++) { const start = b - volW; if (start < 1) continue; let s = 0; for (let i = start; i <= b - 1; i++) s += abs(returns[i]); labels[b] = abs(returns[b]) > s / volW ? 1 : 0 }
   return labels
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
@@ -392,14 +392,14 @@ export function regimeSwitchPositions(prices: readonly number[], opts: { shortW:
   return pos
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
-export function realizedVol(returns: readonly number[], end: number, window: number, annualize = Math.sqrt((9 * 7 * 4))): number {
+export function realizedVol(returns: readonly number[], end: number, window: number, annualize = sqrt((9 * 7 * 4))): number {
   const start = end - window + 1; if (start < 0 || end < 0 || end >= returns.length) return 0
   const w = returns.slice(start, end + 1); const n = w.length; if (n < 2) return 0
-  const m = w.reduce((a, b) => a + b, 0) / n; return Math.sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1)) * annualize
+  const m = w.reduce((a, b) => a + b, 0) / n; return sqrt(w.reduce((a, b) => a + (b - m) ** 2, 0) / (n - 1)) * annualize
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function inverseVolSize(realizedVolAnnual: number, targetVolAnnual: number, leverageCap: number, volFloor: number): number {
-  if (realizedVolAnnual <= 0) return 0; return Math.max(0, Math.min(leverageCap, targetVolAnnual / Math.max(realizedVolAnnual, volFloor)))
+  if (realizedVolAnnual <= 0) return 0; return max(0, min(leverageCap, targetVolAnnual / max(realizedVolAnnual, volFloor)))
 }
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export function volTargetPositions(prices: readonly number[], params: { window: number; targetVolAnnual: number; leverageCap: number; volFloor: number }): number[] {
@@ -430,7 +430,7 @@ export function spectrumFromSamples(samples: readonly number[], bins = (16 * 2))
 export function backtestRealPrices(prices: readonly number[], strategy: 'momentum' | 'mean-reversion' | 'spectral' | 'regime' | 'vol-target' = 'momentum', costBps = 5): { strategy: string; n: number; result: BacktestResult; benchmark: BacktestResult } {
   const positions =
     strategy === 'mean-reversion' ? meanReversionPositions(prices, (5 * 4), 1)
-    : strategy === 'spectral' ? spectralCyclePositions(prices, Math.min((16 * 2), Math.floor(prices.length / 2)), (16 * 2))
+    : strategy === 'spectral' ? spectralCyclePositions(prices, min((16 * 2), floor(prices.length / 2)), (16 * 2))
     : strategy === 'regime' ? regimeSwitchPositions(prices, { shortW: 8, longW: (7 * 3), volW: (5 * 4) })
     : strategy === 'vol-target' ? volTargetPositions(prices, { window: (5 * 4), targetVolAnnual: (3 / (5 * 4)), leverageCap: 3, volFloor: (1 / (5 * 4)) })
     : crossoverPositions(prices, 8, (7 * 3), -1)
@@ -538,7 +538,7 @@ export function runTradingLearnExit(_root: string, _argv: readonly string[] = []
 /** npm run trading:learn-risk — vol-target sizing + inverse-vol cap as risk teaching proxy. */
 export function runTradingLearnRiskExit(_root: string, _argv: readonly string[] = []): number {
   const prices = priceFromA432('learn-risk', 64); const positions = volTargetPositions(prices, { window: (5 * 4), targetVolAnnual: (3 / (5 * 4)), leverageCap: 3, volFloor: (1 / (5 * 4)) })
-  const maxLev = positions.reduce((peak, value) => Math.max(peak, value), 0)
+  const maxLev = positions.reduce((peak, value) => max(peak, value), 0)
   process.stdout.write(`learn-risk maxLeverage=${roundTo(maxLev, 3)} cap=3\n`); return maxLev <= 3 ? 0 : 1
 }
 /** npm run trading:margin-profit — paper margin sim from vol-target positions (no network). */
@@ -573,15 +573,15 @@ export function runRealtimeTradingTestExit(_root: string, _argv: readonly string
 // sine over the civil year — no forecast, no feed), then the sealed strategy backtests re-run on the
 // modulated path. Same seed → same result; the proxy at bar t uses only t (no look-ahead by shape).
 export function harmonicWeatherTradingOffline(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`harmonicWeatherTradingOffline:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`harmonicWeatherTradingOffline:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const yearDays = 360 + 5 + 1 / 4
     const base = priceFromA432('weather-sim', 64 * 2)
-    const proxy = (bar: number) => 1 + (3 / 100) * Math.sin((TAU * ((at / (3 * 8 * 360 * (5 * 2) ** 4)) + bar)) / yearDays)
+    const proxy = (bar: number) => 1 + (3 / 100) * sin((TAU * ((at / (3 * 8 * 360 * (5 * 2) ** 4)) + bar)) / yearDays)
     const modulated = base.map((p, i) => p * proxy(i))
     const strategies = (['momentum', 'mean-reversion', 'spectral'] as const).map((strategy) => backtestRealPrices(modulated, strategy))
     const again = base.map((p, i) => p * proxy(i))
     const { computes, facets, root } = computesGate('harmonic-weather-trading-offline', [
-      { facet: 'seasonal proxy is a pure calendar harmonic — amplitude 3%, period one civil year, value at bar t depends on t only (no look-ahead by construction)', on: modulated.length === base.length && Math.abs(proxy(0) - 1) <= 3 / 100 + 1 / (6 ** 6) },
+      { facet: 'seasonal proxy is a pure calendar harmonic — amplitude 3%, period one civil year, value at bar t depends on t only (no look-ahead by construction)', on: modulated.length === base.length && abs(proxy(0) - 1) <= 3 / 100 + 1 / (6 ** 6) },
       { facet: 'deterministic — recomputing the modulated path is byte-identical (same seed, same proxy, same bars)', on: modulated.every((p, i) => p === again[i]) },
       { facet: 'three sealed strategies backtest the weather-modulated path offline', on: strategies.length === 3 && strategies.every((run) => run.n > 0) },
       { facet: 'composition of two sealed parents — the a432 path and the calendar harmonic; no new price law, no forecast', on: base.length > 64 },
@@ -732,7 +732,7 @@ export type RankedStrategyRow = {
  * Improve = recompute rank from historical wave backtest (content-addressed).
  */
 export function rankWinningStrategies(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`rankWinningStrategies:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`rankWinningStrategies:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const hist = historicalTrainWavesViaRosetta(matrix, at)
     const prices = priceFromA432('rank-win', 432)
     const scored = STRATEGIES.map((strategy) => {
@@ -786,7 +786,7 @@ export function rankWinningStrategies(matrix: MindMatrix = buildMatrix(), at = 0
  * Offline a432 path; each ray gets a windowed backtest receipt.
  */
 export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`historicalTrainWavesViaRosetta:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`historicalTrainWavesViaRosetta:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const core = rosettaCoreApi(at, matrix)
     const waves = __ns_up_waves.coordinatedWaves(matrix)
     const prices = priceFromA432('train-waves-rosetta', 64 * 2)
@@ -797,10 +797,10 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
       // Harmonic window: slice length from A432 octave × vortex digit (offline historical proxy).
       const octave = A432_OCTAVES[ray % A432_OCTAVES.length]!
       const vortex = VORTEX_SEQUENCE[ray % VORTEX_SEQUENCE.length]!
-      const winLen = Math.min(prices.length - 1, Math.max(longW + 2, Math.floor(octave / vortex)))
+      const winLen = min(prices.length - 1, max(longW + 2, floor(octave / vortex)))
       const slice = prices.slice(0, winLen + 1)
       const shortRun = backtestRealPrices(slice, strategy === 'spectral' ? 'momentum' : strategy)
-      const longSlice = prices.slice(Math.max(0, prices.length - winLen - 1))
+      const longSlice = prices.slice(max(0, prices.length - winLen - 1))
       const longRun = backtestRealPrices(longSlice, strategy)
       const shelved = rosettaShelve(`train-wave:ray:${ray}:${strategy}`, 'compute')
       return {
@@ -857,7 +857,7 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
 
 /** T3/T4 compose — strategy improvement loop + honesty gate. */
 export function tradingStrategiesImproveViaRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`tradingStrategiesImproveViaRosetta:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`tradingStrategiesImproveViaRosetta:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const hist = historicalTrainWavesViaRosetta(matrix, at)
     const ranked = rankWinningStrategies(matrix, at)
     const winGate = liveWinTrainingGate(matrix)
@@ -960,8 +960,8 @@ export function invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInver
     const bars = prices.length
     // 1 — INVERSE: on bars where both are active they take OPPOSITE positions more often than the same
     const both = prices.map((_, t) => momentum[t] !== 0 && reversion[t] !== 0)
-    const opposite = prices.filter((_, t) => both[t] && Math.sign(momentum[t]!) !== Math.sign(reversion[t]!)).length
-    const same = prices.filter((_, t) => both[t] && Math.sign(momentum[t]!) === Math.sign(reversion[t]!)).length
+    const opposite = prices.filter((_, t) => both[t] && sign(momentum[t]!) !== sign(reversion[t]!)).length
+    const same = prices.filter((_, t) => both[t] && sign(momentum[t]!) === sign(reversion[t]!)).length
     const areInverse = opposite > same // trend-following vs fading — they oppose more than they agree
     // 2 — GAPS: each strategy is flat (0) on some bars — its coverage gap
     const momentumActive = momentum.filter((p) => p !== 0).length
@@ -971,7 +971,7 @@ export function invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInver
     const unionActive = prices.filter((_, t) => momentum[t] !== 0 || reversion[t] !== 0).length
     const inverseFillsGap = unionActive > momentumActive && unionActive > reversionActive // where one is flat, its inverse covers
     // 4 — COVER THE REGIMES: inverting adds coverage neither had alone
-    const coverGain = unionActive - Math.max(momentumActive, reversionActive)
+    const coverGain = unionActive - max(momentumActive, reversionActive)
     const coversRegimes = coverGain > 0 && areInverse
     const facets = [
       { facet: `MOMENTUM AND MEAN-REVERSION ARE INVERSE — on the ${opposite + same} bars where both are active they take OPPOSITE positions more often than the same (${opposite} vs ${same}, ${areInverse}): trend-following and fading are inverse strategies`, on: areInverse },

@@ -6,10 +6,10 @@ import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_os from '../os'
 import type { MindMatrix } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented, noQpuRequired } from '../../heaven/compute'
-import { GATES, applyGate, bellPair, chsh, cnot, computesGate, digitalRoot, grover, isUuid, measure, memoByRoot, merge, merkleFold, prng, probabilities, qubits, roundTo, runQuantumCircuit, sample, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, ceil, chsh, cnot, computesGate, cos, digitalRoot, exp, floor, grover, isUuid, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, pow, prng, probabilities, qubits, round, roundTo, runQuantumCircuit, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi, bernsteinVazirani } from '../../9/1'
-import { resonanceBandwidth, frequencyToLight, A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK } from '../../3/7'
+import { A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK, SQRT1_2, SQRT2, frequencyToLight, resonanceBandwidth } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
 // frequencyToLight / A432_HUE / GOLDEN_ANGLE live in the zero-import leaf src/3/7 (beside SPEED_OF_LIGHT) so the
@@ -30,11 +30,11 @@ export function quantumScienceResearch(matrix: MindMatrix = buildMatrix()) {
     const qdyn = __ns_up_dynamics.quantumDynamicsResearch(matrix)
     const qPhysics = __ns_up_up_fire_physics.quantumPhysics(matrix)
     const tsirelson = chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8)
-    return { researched: qdyn.researched && qPhysics.present >= 6 && Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6, mappings: [], root: toUuid('qsci-research'), boundary: 'HONEST: pedagogical models — NOT hardware QC.' }
+    return { researched: qdyn.researched && qPhysics.present >= 6 && abs(tsirelson - 2 * SQRT2) < 1e-6, mappings: [], root: toUuid('qsci-research'), boundary: 'HONEST: pedagogical models — NOT hardware QC.' }
   })
 }
 export function quantumScienceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumScienceComputes:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumScienceComputes:${floor(at / 1e3)}`, matrix, () => {
     const research = quantumScienceResearch(matrix)
     const dyn = __ns_up_dynamics.quantumDynamicsComputes(matrix, at)
     const simulators = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)
@@ -43,7 +43,7 @@ export function quantumScienceComputes(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'research', on: research.researched },
       { facet: 'dynamics', on: dyn.computes },
       { facet: 'simulators', on: simulators.homed },
-      { facet: 'CHSH', on: Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 },
+      { facet: 'CHSH', on: abs(tsirelson - 2 * SQRT2) < 1e-6 },
       { facet: 'NOT hardware QC', on: noQpuRequired().provenByClassicalSimulator },
     ])
     return { computes, research, dynamics: dyn, tsirelson, facets, root: merkleFold([research.root, dyn.root, root]), statement: 'Quantum science computes.', boundary: research.boundary }
@@ -211,7 +211,7 @@ export function resonanceDecoded() {
   const glassBandHz = resonanceBandwidth(omega0, glassQ) / (TAU)
   const tissueBandHz = resonanceBandwidth(omega0, tissueQ) / (TAU)
   const facets = [
-    { facet: 'resonance is REAL — at the natural frequency a driven damped oscillator amplifies by ≈ Q (the resonance gain)', on: Math.abs(glassGain - glassQ) / glassQ < 1 / 100 && Math.abs(resonancePeakGain(glassQ) - glassQ) / glassQ < 1 / 100 },
+    { facet: 'resonance is REAL — at the natural frequency a driven damped oscillator amplifies by ≈ Q (the resonance gain)', on: abs(glassGain - glassQ) / glassQ < 1 / 100 && abs(resonancePeakGain(glassQ) - glassQ) / glassQ < 1 / 100 },
     { facet: 'HIGH-Q shatters — a wine glass in air (Q≈1000) amplifies ~1000× at its tone; the opera-singer demo is real physics', on: glassGain > 100 },
     { facet: 'LOW-Q does NOT — a cell in living tissue is heavily damped (Q≈1), so it barely amplifies (~1×): no frequency selectively destroys it', on: tissueGain < 3 },
     { facet: 'selectivity needs a sharp peak — off-resonance the gain collapses; bandwidth = ω₀/Q, so low Q is broad and unselective', on: offResonance < glassGain / (2 * 5) && tissueBandHz > glassBandHz * 100 },
@@ -220,10 +220,10 @@ export function resonanceDecoded() {
     decoded: facets.every((entry) => entry.on),
     glassQ,
     tissueQ,
-    glassGain: Math.round(glassGain),
-    tissueGain: Math.round(tissueGain * 100) / 100,
-    glassBandwidthHz: Math.round(glassBandHz * 100) / 100,
-    tissueBandwidthHz: Math.round(tissueBandHz),
+    glassGain: round(glassGain),
+    tissueGain: round(tissueGain * 100) / 100,
+    glassBandwidthHz: round(glassBandHz * 100) / 100,
+    tissueBandwidthHz: round(tissueBandHz),
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
@@ -244,7 +244,7 @@ export function resonanceApplications() {
     { domain: 'QCM mass sensor', oscillates: 'AT-cut quartz, thickness-shear', f0Hz: 5e6, q: 1e6, does: 'a tiny resonant-frequency SHIFT weighs ~ng (Sauerbrey 1959)', kind: 'documented' as const },
     { domain: 'lithotripsy (ESWL) / HIFU', oscillates: '— focused broadband energy, NOT resonance', f0Hz: 0, q: 0, does: 'fragments kidney stones / ablates tissue by FOCUSED energy + cavitation — the honest contrast to a "kill frequency"', kind: 'not-resonance' as const },
     { domain: 'Rife "mortal oscillatory rate"', oscillates: '— a pathogen resonance that does not exist', f0Hz: 0, q: 0, does: 'FLAGGED pseudoscience + health fraud: tissue is overdamped (Q≲1), real virus resonances are GHz not audio, no selective coupling', kind: 'flagged' as const },
-  ].map((a) => ({ ...a, peakGain: a.q > 0 ? Math.round(resonancePeakGain(a.q)) : 0, bandwidthHz: a.q > 0 ? resonanceBandwidth(a.f0Hz, a.q) : 0, receipt: toUuid(`resonance-app:${a.domain}:${a.f0Hz}`) }))
+  ].map((a) => ({ ...a, peakGain: a.q > 0 ? round(resonancePeakGain(a.q)) : 0, bandwidthHz: a.q > 0 ? resonanceBandwidth(a.f0Hz, a.q) : 0, receipt: toUuid(`resonance-app:${a.domain}:${a.f0Hz}`) }))
   const documented = apps.filter((a) => a.kind === 'documented')
   const sharpest = apps.reduce((best, a) => (a.q > best.q ? a : best), apps[0])
   const facets = [
@@ -281,7 +281,7 @@ export function lobeHues(anchor: number = A432_HUE, mode: 'complement' | 'golden
 
 export function oklchToHex(L: number, C: number, H: number): string {
   const h = (H * (TAU / 2)) / (360 / 2)
-  const a = C * Math.cos(h), b = C * Math.sin(h)
+  const a = C * cos(h), b = C * sin(h)
   let l = L + 0.3963377774 * a + 0.2158037573 * b
   let m = L - 0.1055613458 * a - 0.0638541728 * b
   let s = L - 0.0894841775 * a - 1.291485548 * b
@@ -293,8 +293,8 @@ export function oklchToHex(L: number, C: number, H: number): string {
   ]
   const enc = (x: number) => {
     const c = x <= 0 ? 0 : x >= 1 ? 1 : x
-    const v = c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055 // IEC 61966-2-1 verbatim (ledgered; audited by fixedConstantsProvedByTheorems)
-    return Math.round(v * (2 ** 8 - 1)).toString(16).padStart(2, '0')
+    const v = c <= 0.0031308 ? 12.92 * c : 1.055 * pow(c, 1 / 2.4) - 0.055 // IEC 61966-2-1 verbatim (ledgered; audited by fixedConstantsProvedByTheorems)
+    return round(v * (2 ** 8 - 1)).toString(16).padStart(2, '0')
   }
   return `#${enc(lin[0])}${enc(lin[1])}${enc(lin[2])}`
 }
@@ -319,8 +319,8 @@ export function scaleColorRgba(
   const C = opts.C ?? 9 / 64
   const H = quantumScaleHue(n, seedHue)
   const [r, g, b] = oklchToRgb(L, C, H)
-  const a = Math.max(0, Math.min(1, alpha))
-  return `rgba(${r},${g},${b},${Math.round(a * 100) / 100})`
+  const a = max(0, min(1, alpha))
+  return `rgba(${r},${g},${b},${round(a * 100) / 100})`
 }
 
 export function quantumScaleHue(n: number, seedHue: number = A432_HUE): number {
@@ -353,8 +353,8 @@ export function scaleColorAlpha(
   const L = opts.L ?? (opts.dark ? 54 / 64 : 9 / 16)
   const C = opts.C ?? 9 / 64
   const H = quantumScaleHue(n, seedHue)
-  const a = Math.max(0, Math.min(1, alpha))
-  return `oklch(${L} ${C} ${H.toFixed(2)} / ${Math.round(a * 100) / 100})`
+  const a = max(0, min(1, alpha))
+  return `oklch(${L} ${C} ${H.toFixed(2)} / ${round(a * 100) / 100})`
 }
 
 /** Canvas/SVG at explicit hue — same OKLCH band as the movie palette (not raw HSL saturation).
@@ -397,11 +397,11 @@ export function quantumComputerResearch(matrix: MindMatrix = buildMatrix()) {
     const counts = sample(state, 2 * 64, 'qc') // 128 shots — H|0⟩ → measure: definite 0/1 outcomes, ~50/50
     const outcomes = Object.keys(counts)
     const measuresZeroOrOne = outcomes.length > 0 && outcomes.every((bit) => bit === '0' || bit === '1') && outcomes.reduce((sum, bit) => sum + counts[bit], 0) === 2 * 64
-    return { researched: solutions.implemented && pair.n === 2 && Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 && measuresZeroOrOne, rows: [], root: toUuid('qc-research'), boundary: 'HONEST: toy simulator — NOT NISQ hardware.' }
+    return { researched: solutions.implemented && pair.n === 2 && abs(tsirelson - 2 * SQRT2) < 1e-6 && measuresZeroOrOne, rows: [], root: toUuid('qc-research'), boundary: 'HONEST: toy simulator — NOT NISQ hardware.' }
   })
 }
 export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerComputes:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumComputerComputes:${floor(at / 1e3)}`, matrix, () => {
     const research = quantumComputerResearch(matrix)
     const solutions = completeQuantumSolutionsImplemented(matrix)
     const entangled = applyGate(cnot(bellPair(), 0, 1), GATES.H, 0)
@@ -417,7 +417,7 @@ export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'research', on: research.researched },
       { facet: 'nine structures', on: solutions.implemented },
       { facet: 'Bell+CNOT', on: entangled.n === 2 },
-      { facet: 'CHSH', on: Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 },
+      { facet: 'CHSH', on: abs(tsirelson - 2 * SQRT2) < 1e-6 },
       { facet: 'pairs', on: __ns_up_up_pair_enforcement.QUANTUM_COMMAND_PAIR_IDS.length >= 8 * 5 },
       { facet: 'I Ching 64-hexagram = 6-qubit computational basis', on: ic.hexagrams === 64 },
       { facet: 'Rosetta state/result codec wired', on: rosetta.computes },
@@ -449,10 +449,10 @@ export function quantumComputerPartsComposed(matrix: MindMatrix = buildMatrix())
     const ic = iChing(matrix)
     const plus = applyGate(qubits(1), GATES.H, 0)
     const qp = probabilities(plus)
-    const qubitProved = Math.abs(qp[0] - 1 / 2) < 1e-9 && Math.abs(qp[1] - 1 / 2) < 1e-9
+    const qubitProved = abs(qp[0] - 1 / 2) < 1e-9 && abs(qp[1] - 1 / 2) < 1e-9
     let reg = qubits(6)
     for (let q = 0; q < 6; q++) reg = applyGate(reg, GATES.H, q)
-    const registerProved = reg.re.length === 64 && ic.hexagrams === 64 && Math.abs(probabilities(reg).reduce((s, p) => s + p, 0) - 1) < 1e-9
+    const registerProved = reg.re.length === 64 && ic.hexagrams === 64 && abs(probabilities(reg).reduce((s, p) => s + p, 0) - 1) < 1e-9
     const hh = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0)
     const gatesProved = (probabilities(hh)[0] ?? 0) > 1 - 1e-6 && pauli.holds
     const circuit = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }] })
@@ -464,9 +464,9 @@ export function quantumComputerPartsComposed(matrix: MindMatrix = buildMatrix())
     const controlProved = pulse.amplitudes.length === 2 && pulse.amplitudes.every((a) => a.probability >= 0)
     const thermalNoise = roundTo(repetitionLogicalError(3, 1 / (4 * 5)), 6)
     const cryostatProved = thermalNoise >= 0 && thermalNoise < 1
-    const qec = [-1, 0, 1, 2].map((e) => bitFlipCode(Math.SQRT1_2, Math.SQRT1_2, e))
+    const qec = [-1, 0, 1, 2].map((e) => bitFlipCode(SQRT1_2, SQRT1_2, e))
     const qecProved = qec.every((r) => r.corrected) && reverse.proved
-    const t1 = roundTo(Math.exp(-1 / 5), 6), t2 = roundTo(Math.exp(-1 / 3), 6)
+    const t1 = roundTo(exp(-1 / 5), 6), t2 = roundTo(exp(-1 / 3), 6)
     const bell = bellPair()
     const decohProved = t1 > 0 && t1 < 1 && t2 > 0 && t2 <= t1 + 1e-9 && repetitionLogicalError(7, 1 / (2 * 5)) < repetitionLogicalError(3, 1 / (2 * 5)) && concurrence(bell) > 1 - 1e-3
     const qubitTypes = ['transmon (superconducting)', 'trapped-ion', 'photonic']
@@ -496,10 +496,10 @@ export function quantumComputerVerifies(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumComputerVerifies', matrix, () => {
     const bell = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }], shots: 2 * 4 * 4 * 64, seed: 'bell' })
     const bp = bell.probabilities
-    const bellOk = Math.abs(bp[0]! - 1 / 2) < 1e-9 && Math.abs(bp[3]! - 1 / 2) < 1e-9 && bp[1]! < 1e-12 && bp[2]! < 1e-12
+    const bellOk = abs(bp[0]! - 1 / 2) < 1e-9 && abs(bp[3]! - 1 / 2) < 1e-9 && bp[1]! < 1e-12 && bp[2]! < 1e-12
     const ghz = runQuantumCircuit({ n: 3, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }, { gate: 'CNOT', targets: [0, 2] }] })
     const gp = ghz.probabilities
-    const ghzOk = Math.abs(gp[0]! - 1 / 2) < 1e-9 && Math.abs(gp[7]! - 1 / 2) < 1e-9 && gp.slice(1, 7).every((x) => x < 1e-12)
+    const ghzOk = abs(gp[0]! - 1 / 2) < 1e-9 && abs(gp[7]! - 1 / 2) < 1e-9 && gp.slice(1, 7).every((x) => x < 1e-12)
     const djConst = deutschJozsa(3, false), djBal = deutschJozsa(3, true)
     const djOk = djConst.ok && djBal.ok && djConst.verdict === 'constant' && djBal.verdict === 'balanced'
     const gv = grover(3, 5, 8 * 64, 'qc-grover')
@@ -566,7 +566,7 @@ export const BLOCH_ZERO = blochQubit(0, 0, 1)
 export function blochGate(qubit: BlochQubit, gate: 'I' | 'X' | 'Y' | 'Z' | 'H' | 'S' | 'T'): BlochQubit {
   const [x, y, z] = qubit.bloch
   const zrot = (ang: number): readonly [number, number, number] => {
-    const c = Math.cos(ang), s = Math.sin(ang)
+    const c = cos(ang), s = sin(ang)
     return [c * x - s * y, s * x + c * y, z]
   }
   const map: Record<typeof gate, readonly [number, number, number]> = {
@@ -608,15 +608,15 @@ export function blochQubitFaithful(matrix: MindMatrix = buildMatrix()) {
       inits.map((init) => {
         const sv = blochOfState(applyGate(init.sv, GATES[gate], 0))
         const bl = blochGate(init.bloch, gate).bloch
-        const agree = sv.every((c, i) => Math.abs(c - bl[i]!) < 1e-9)
+        const agree = sv.every((c, i) => abs(c - bl[i]!) < 1e-9)
         return { gate, init: init.id, agree, receipt: toUuid(`bloch-faithful:${gate}:${init.id}:${agree}`) }
       }),
     )
     const { computes, facets, root } = computesGate('bloch-qubit-faithful', [
       { facet: 'qubit = ½(I + xσx + yσy + zσz) — four content-addressed Pauli components', on: BLOCH_ZERO.i.length > 0 && BLOCH_ZERO.bloch[2] === 1 },
       { facet: 'every single-qubit gate (I·X·Y·Z·H·S·T) matches the state-vector simulator on |0⟩ and |+⟩', on: checks.every((c) => c.agree) },
-      { facet: 'measurement is the Born rule P(0)=(1+z)/2 — H|0⟩ gives 50/50', on: Math.abs(blochMeasure(blochGate(BLOCH_ZERO, 'H')).p0 - 1 / 2) < 1e-9 },
-      { facet: 'pure-state purity ½(1+r²)=1 on the Bloch surface', on: Math.abs(BLOCH_ZERO.purity - 1) < 1e-9 },
+      { facet: 'measurement is the Born rule P(0)=(1+z)/2 — H|0⟩ gives 50/50', on: abs(blochMeasure(blochGate(BLOCH_ZERO, 'H')).p0 - 1 / 2) < 1e-9 },
+      { facet: 'pure-state purity ½(1+r²)=1 on the Bloch surface', on: abs(BLOCH_ZERO.purity - 1) < 1e-9 },
     ])
     return {
       faithful: computes,
@@ -703,7 +703,7 @@ export function quantumAdvantageBenchmark(matrix: MindMatrix = buildMatrix(), ma
       for (let i = 0; i < dim; i++) {
         const key = i.toString(2).padStart(n, '0')
         const sampled = (result.samples[key] ?? 0) / total
-        tvd += Math.abs((result.probabilities[i] ?? 0) - sampled)
+        tvd += abs((result.probabilities[i] ?? 0) - sampled)
       }
       const fidelity = roundTo(1 - tvd / 2, 4)
       rows.push({ n, gates, engineOps: gates * dim, classicalOps: gates * dim, physicalQpuOps: gates, fidelity, correct: fidelity > 7 / (2 * 5) })
@@ -738,7 +738,7 @@ export function quantumAdvantageBenchmark(matrix: MindMatrix = buildMatrix(), ma
 
 /** The modeled quantum computer's honest performance verdict — the single value the README/homepage prose must derive from. */
 export function quantumComputerHonestClaim(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerHonestClaim:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumComputerHonestClaim:${floor(at / 1e3)}`, matrix, () => {
     const bloch = blochQubitFaithful(matrix)
     const cost = quantumDimensionCost(matrix)
     const bench = quantumAdvantageBenchmark(matrix)
@@ -790,10 +790,10 @@ export type QuantumModelSnapshot = {
  * and the plasma phase is the shared hero clock. The whole folds to one root that recomputes from (route, at).
  */
 export function quantumModelSnapshot(route = '/', at = 0, matrix: MindMatrix = buildMatrix()): QuantumModelSnapshot {
-  return memoByRoot(`quantumModelSnapshot:${route}:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumModelSnapshot:${route}:${floor(at / 1e3)}`, matrix, () => {
     const phase = moviePhaseAt(at)
     const honest = quantumComputerHonestClaim(matrix, at)
-    const baseHex = Math.floor(phase * 64) % 64
+    const baseHex = floor(phase * 64) % 64
     const gateNames = ['I', 'X', 'Y', 'Z', 'H', 'S', 'T'] as const
     const register: QuantumRegisterLine[] = Array.from({ length: 6 }, (_, q) => {
       const hexagram = (baseHex + q * (VORTEX_SEQUENCE[q % VORTEX_SEQUENCE.length] ?? 1)) % 64
@@ -823,7 +823,7 @@ export const QUANTUM_THINKING_SHIFTS = [
  * the snapshot round-trips (recompute from (route, at) → same root), and "quantum thinking" is defined honestly.
  */
 export function observingMovieRevealsQuantumModel(route = '/', at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`observingMovieRevealsQuantumModel:${route}:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`observingMovieRevealsQuantumModel:${route}:${floor(at / 1e3)}`, matrix, () => {
     const snapshot = quantumModelSnapshot(route, at, matrix)
     const recomputed = quantumModelSnapshot(route, at, matrix)
     const roundTrips = recomputed.root === snapshot.root
@@ -869,7 +869,7 @@ export const QC_DEFAULT_CIRCUIT: { n: number; ops: CircuitOp[] } = { n: 3, ops: 
 
 /** UI panel — design tokens (quantumMathDesignsTheUi) + gate palette + a default run; the lab's compute spine. */
 export function quantumComputerLabComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerLabComputes:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumComputerLabComputes:${floor(at / 1e3)}`, matrix, () => {
     const cap = quantumComputerComputes(matrix, at)
     const design = __ns_up_os.quantumMathDesignsTheUi(at, matrix)
     const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots: 4 * 4 * 64, seed: 'qc-default' })
@@ -918,7 +918,7 @@ export function dimensionCostCeilingAtScale(matrix: MindMatrix = buildMatrix(), 
     const pibCeiling = tiers[3]!.ceilingQubits
     const facets = [
       { facet: 'the 4n linear UUID store is provably too small for an entangled state from the dimension-cost crossover — exponential, not linear', on: cost.asymptoticallyInsufficient && cost.crossover > 0 },
-      { facet: `the correlation ceiling is fixed: classical ≤ ${classicalBound}, quantum ≤ 2√2 ≈ ${roundTo(tsirelson, 4)} (Tsirelson) — no device or scale exceeds it`, on: Math.abs(tsirelson - 2 * Math.SQRT2) < 1e-6 },
+      { facet: `the correlation ceiling is fixed: classical ≤ ${classicalBound}, quantum ≤ 2√2 ≈ ${roundTo(tsirelson, 4)} (Tsirelson) — no device or scale exceeds it`, on: abs(tsirelson - 2 * SQRT2) < 1e-6 },
       { facet: `the memory ceiling is exponential: a faithful entangled state needs 2ⁿ·16 B, so ~16 GiB tops out near ${ramCeiling} qubits and ~1 PiB near ${pibCeiling} — each memory doubling buys ONE more qubit`, on: ramCeiling > 0 && pibCeiling === ramCeiling + 16 },
       { facet: 'HONEST: these are CEILINGS, not speedups — scaling hardware pushes the exponential wall by a constant per doubling, never removes it, and never beats the Tsirelson bound', on: tiers.every((t, i) => i === 0 || t.ceilingQubits >= tiers[i - 1]!.ceilingQubits) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`dim-ceiling-facet:${entry.facet}:${entry.on}`) }))
@@ -988,13 +988,13 @@ export function fixedConstantsProvedByTheorems(matrix: MindMatrix = buildMatrix(
     // sRGB C¹-continuity theorem: knee and slope follow from (a, γ) alone.
     const a = 0.055 // the spec's offset (IEC 61966-2-1, ledgered)
     const g = 2.4 // the spec's gamma (ledgered)
-    const kneeExact = Math.pow((a * g) / ((1 + a) * (g - 1)), g)
-    const slopeExact = ((1 + a) / g) * Math.pow(kneeExact, 1 / g - 1)
+    const kneeExact = pow((a * g) / ((1 + a) * (g - 1)), g)
+    const slopeExact = ((1 + a) / g) * pow(kneeExact, 1 / g - 1)
     // The theorem verified INTERNALLY: at the exact knee both branches meet in value (C⁰) and slope (C¹).
-    const c0 = Math.abs((1 + a) * Math.pow(kneeExact, 1 / g) - a - slopeExact * kneeExact) < 1e-12
-    const c1 = Math.abs(((1 + a) / g) * Math.pow(kneeExact, 1 / g - 1) - slopeExact) < 1e-12
+    const c0 = abs((1 + a) * pow(kneeExact, 1 / g) - a - slopeExact * kneeExact) < 1e-12
+    const c1 = abs(((1 + a) / g) * pow(kneeExact, 1 / g - 1) - slopeExact) < 1e-12
     // Fibonacci-hashing theorem: Knuth's multiplier is the prime nearest the golden section of 2³².
-    const fib = Math.pow(2, 4 * 8) / PHI
+    const fib = pow(2, 4 * 8) / PHI
     const knuth = 2654435761
     // Maya Calendar Round theorem: 18980 = lcm(365, 260).
     const lcmRound = (365 * 260) / gcd(365, 260)
@@ -1002,11 +1002,11 @@ export function fixedConstantsProvedByTheorems(matrix: MindMatrix = buildMatrix(
     for (const e of CRACK_LEDGER) kinds[e.kind] += e.count
     const frontierNoted = CRACK_LEDGER.filter((e) => e.frontier).length
     const facets = [
-      { facet: `sRGB C¹ knee from (a,γ) = ${roundTo(kneeExact, 7)} vs published 0.0031308 — the standard is off its own derivation by ${roundTo(Math.abs(kneeExact - 0.0031308) / kneeExact * 100, 1)}%`, on: c0 && Math.abs(kneeExact - 0.0031308) / kneeExact > 1 / (100 * 2) },
-      { facet: `sRGB C¹ slope from (a,γ) = ${roundTo(slopeExact, 5)} vs published 12.92 — a hardcoded rounding`, on: c1 && Math.abs(slopeExact - 12.92) < 1 / 100 },
-      { facet: `Knuth ${knuth} is PRIME within ${roundTo(Math.abs(fib - knuth), 1)} of 2³²/φ = ${roundTo(fib, 2)} — the golden section of the 32-bit ring`, on: tkIsPrime(knuth) && Math.abs(fib - knuth) < 2 * 5 },
+      { facet: `sRGB C¹ knee from (a,γ) = ${roundTo(kneeExact, 7)} vs published 0.0031308 — the standard is off its own derivation by ${roundTo(abs(kneeExact - 0.0031308) / kneeExact * 100, 1)}%`, on: c0 && abs(kneeExact - 0.0031308) / kneeExact > 1 / (100 * 2) },
+      { facet: `sRGB C¹ slope from (a,γ) = ${roundTo(slopeExact, 5)} vs published 12.92 — a hardcoded rounding`, on: c1 && abs(slopeExact - 12.92) < 1 / 100 },
+      { facet: `Knuth ${knuth} is PRIME within ${roundTo(abs(fib - knuth), 1)} of 2³²/φ = ${roundTo(fib, 2)} — the golden section of the 32-bit ring`, on: tkIsPrime(knuth) && abs(fib - knuth) < 2 * 5 },
       { facet: `Maya Calendar Round 18980 = lcm(365, 260) — the cycle meet theorem`, on: lcmRound === 18980 },
-      { facet: `golden angle ${roundTo(GOLDEN_ANGLE, 4)} = 360/φ² = 360(2−φ) — one identity, three spellings`, on: Math.abs(GOLDEN_ANGLE - 360 * (2 - PHI)) < 1e-9 },
+      { facet: `golden angle ${roundTo(GOLDEN_ANGLE, 4)} = 360/φ² = 360(2−φ) — one identity, three spellings`, on: abs(GOLDEN_ANGLE - 360 * (2 - PHI)) < 1e-9 },
       { facet: `sense codons 61 = 64 − 3 stops — the biology is the derivation`, on: 64 - 3 === 61 },
       { facet: `ledger audited: ${kinds.data} data · ${kinds.tuned} tuned uses, ${frontierNoted} frontier notes — every fixed number classified`, on: kinds.data > 0 && frontierNoted > 0 },
       { facet: `laws change with every theorem proven — ${CRACK_LAW_AMENDMENTS.length} amendments, each citing its forcing proof (latest: ${CRACK_LAW_AMENDMENTS[CRACK_LAW_AMENDMENTS.length - 1]!.forcedBy.slice(0, 8 * 5)}…)`, on: CRACK_LAW_AMENDMENTS.every((am, i) => am.version === i + 1 && am.forcedBy.length > 0) },
@@ -1054,7 +1054,7 @@ export function selfResearchTheorems(matrix: MindMatrix = buildMatrix()) {
     // fraction, that is a deliberate distinction, not two roundings (the 0.33/0.34 lesson, v8).
     const simpleFractions: Array<[string, number]> = []
     for (const q of [2, 3, 4, 5, 6, 8, 9, 16]) for (let pn = 1; pn < q; pn += 1) if (gcd(pn, q) === 1) simpleFractions.push([`${pn}/${q}`, pn / q])
-    const rel = (v: number, t: number) => Math.abs(v - t) / Math.max(Math.abs(t), 1e-12)
+    const rel = (v: number, t: number) => abs(v - t) / max(abs(t), 1e-12)
     const golden: Array<[string, number]> = [
       ['φ − 1', PHI - 1], ['2 − φ', 2 - PHI], ['1/φ²', 1 / (PHI * PHI)],
       ['360(2 − φ) — the golden angle', 360 * (2 - PHI)], ['(φ − 1)/10', (PHI - 1) / (2 * 5)],
@@ -1065,7 +1065,7 @@ export function selfResearchTheorems(matrix: MindMatrix = buildMatrix()) {
     for (const v of numerics) {
       if (tunedSet.has(v)) for (const [name, t] of golden) if (rel(v, t) < 1 / 100) { found.push({ value: v, literal: String(v), theorem: `≈ ${name} = ${roundTo(t, 6)} (rounded by its author)`, error: rel(v, t) }); break }
       if (fibs.includes(v)) found.push({ value: v, literal: String(v), theorem: `= Fibonacci — the golden ladder in the integers`, error: 0 })
-      else for (const k of [1, 2, 3]) { const scaled = v * Math.pow(2 * 5, k); if (Math.abs(scaled - Math.round(scaled)) < 1e-9 && fibs.includes(Math.round(scaled))) { found.push({ value: v, literal: String(v), theorem: `= ${Math.round(scaled)}/10^${k} — a Fibonacci DECADE (the golden ladder scaled to the tuner's hand)`, error: 0 }); break } }
+      else for (const k of [1, 2, 3]) { const scaled = v * pow(2 * 5, k); if (abs(scaled - round(scaled)) < 1e-9 && fibs.includes(round(scaled))) { found.push({ value: v, literal: String(v), theorem: `= ${round(scaled)}/10^${k} — a Fibonacci DECADE (the golden ladder scaled to the tuner's hand)`, error: 0 }); break } }
       if (v < 1) {
         // one BEST fraction per value; collisions collected across all kinds (a tuned value near a
         // data value's fraction is still a distinction worth protecting)
@@ -1075,10 +1075,10 @@ export function selfResearchTheorems(matrix: MindMatrix = buildMatrix()) {
       }
       if (Number.isInteger(v) && v > 2) {
         for (let k = 4; k <= 8 * 8; k += 1) {
-          const section = Math.pow(2, k) / PHI
-          if (Math.abs(v - section) < 2 * 5 && v > 1e3) { found.push({ value: v, literal: String(v), theorem: `prime candidate at the golden section of 2^${k} = ${roundTo(section, 2)} (distance ${roundTo(Math.abs(v - section), 1)})`, error: rel(v, section) }); break }
-          if (v === Math.pow(2, k)) { found.push({ value: v, literal: String(v), theorem: `= 2^${k} — a pure doubling`, error: 0 }); break }
-          if (v === Math.pow(2, k) - 1) { found.push({ value: v, literal: String(v), theorem: `= 2^${k} − 1 — a full register`, error: 0 }); break }
+          const section = pow(2, k) / PHI
+          if (abs(v - section) < 2 * 5 && v > 1e3) { found.push({ value: v, literal: String(v), theorem: `prime candidate at the golden section of 2^${k} = ${roundTo(section, 2)} (distance ${roundTo(abs(v - section), 1)})`, error: rel(v, section) }); break }
+          if (v === pow(2, k)) { found.push({ value: v, literal: String(v), theorem: `= 2^${k} — a pure doubling`, error: 0 }); break }
+          if (v === pow(2, k) - 1) { found.push({ value: v, literal: String(v), theorem: `= 2^${k} − 1 — a full register`, error: 0 }); break }
         }
         for (const a of numerics) {
           if (!Number.isInteger(a) || a <= 2 || a >= v) continue
@@ -1167,7 +1167,7 @@ export function quantumBreaksOnlyThePeriod(matrix: MindMatrix = buildMatrix()) {
     const periodBreakable = classes.filter((c) => c.period)
     const resistant = classes.filter((c) => !c.period)
     // Grover is only QUADRATIC: a 2^b keyspace falls to 2^(b/2), so doubling the key restores the margin
-    const groverHalvesExponent = [(2 ** 8), 2 ** (8 + 8)].every((bits) => Math.sqrt(2 ** bits) === 2 ** (bits / 2))
+    const groverHalvesExponent = [(2 ** 8), 2 ** (8 + 8)].every((bits) => sqrt(2 ** bits) === 2 ** (bits / 2))
     const facets = [
       { facet: `the rosetta period IS the quantum target: toy Shor factors 15→${fifteen.join('·')} and 21→${twentyOne.join('·')} by the orbit period ord_N(2) — order-finding is the whole threat`, on: shorFindsThePeriod },
       { facet: `"no matter the methods" is FALSE: only ${periodBreakable.length} classes (RSA, ECC) carry the period/abelian-HSP structure Shor needs; ${resistant.length} (AES, SHA, lattices) do NOT and get no exponential speedup`, on: periodBreakable.length === 2 && resistant.length === 3 },
@@ -1206,8 +1206,8 @@ export function theComputedUiIsARosetta(matrix: MindMatrix = buildMatrix()) {
     const distinctGaps = (count: number) => new Set(hueGaps(count).map((g) => g.toFixed(4))).size
     const threeGapHolds = [5, 8, 5 + 8].every((count) => distinctGaps(count) <= 3)
     // 2 — maximally even: the golden angle gives the smallest max/min gap ratio, → φ
-    const evenness = (count: number) => { const g = hueGaps(count); return Math.max(...g) / Math.min(...g) }
-    const goldenIsMaximallyEven = [5, 8, 5 + 8].every((count) => Math.abs(evenness(count) - PHI) < 1 / 100)
+    const evenness = (count: number) => { const g = hueGaps(count); return max(...g) / min(...g) }
+    const goldenIsMaximallyEven = [5, 8, 5 + 8].every((count) => abs(evenness(count) - PHI) < 1 / 100)
     // 3 — the musical twin: 7 fifths mod 12 = the diatonic scale, a well-formed scale (≤2 step sizes)
     const diatonic = Array.from({ length: 7 }, (_, k) => (k * 7) % (4 + 8)).sort((a, b) => a - b)
     const diatonicSteps = diatonic.map((x, i) => (i + 1 < diatonic.length ? diatonic[i + 1]! : diatonic[0]! + (4 + 8)) - x)
@@ -1244,7 +1244,7 @@ export function theStateIsNotTheBirthCoordinates(matrix: MindMatrix = buildMatri
     // 1 — CHAOS: the fully-chaotic logistic map (r = 4); two nearby states diverge to O(1)
     const logistic = (x0: number, steps: number) => { let x = x0; for (let i = 0; i < steps; i += 1) x = 4 * x * (1 - x); return x }
     const steps = 5 * (4 + 6) // 50 iterations
-    const divergence = Math.abs(logistic(2 / 5, steps) - logistic(2 / 5 + 1e-9, steps))
+    const divergence = abs(logistic(2 / 5, steps) - logistic(2 / 5 + 1e-9, steps))
     const chaosBreaksCoarseState = divergence > 1 / 100 // a 10⁻⁹ difference grows to O(1) — coarse data does not fix the fine state
     // 2 — QUANTUM: no sharp classical state at a point; Δx·Δp ≥ ħ/2 > 0
     const heisenbergFloor = REDUCED_PLANCK / 2
@@ -1280,16 +1280,16 @@ export function uncertaintyIsATheoremNotAnAxiom() {
   const expect = (psi: ReturnType<typeof qubits>, gate: readonly number[]) => innerProduct(psi, applyGate(psi, gate, 0)).re
   const bound = (psi: ReturnType<typeof qubits>) => {
     const ex = expect(psi, GATES.X), ey = expect(psi, GATES.Y), ez = expect(psi, GATES.Z)
-    const dA = Math.sqrt(Math.max(0, 1 - ex * ex)) // Δσx = √(⟨σx²⟩ − ⟨σx⟩²), ⟨σx²⟩ = 1
-    const dB = Math.sqrt(Math.max(0, 1 - ey * ey)) // Δσy
-    const rhs = Math.abs(ez) // ½|⟨[σx,σy]⟩| = ½|2i⟨σz⟩| = |⟨σz⟩|
+    const dA = sqrt(max(0, 1 - ex * ex)) // Δσx = √(⟨σx²⟩ − ⟨σx⟩²), ⟨σx²⟩ = 1
+    const dB = sqrt(max(0, 1 - ey * ey)) // Δσy
+    const rhs = abs(ez) // ½|⟨[σx,σy]⟩| = ½|2i⟨σz⟩| = |⟨σz⟩|
     return { lhs: dA * dB, rhs, holds: dA * dB >= rhs - 1e-9 }
   }
   const saturating = bound(qubits(1)) // |0⟩: Δσx·Δσy = 1 = |⟨σz⟩|, the bound is TIGHT
   const strict = bound(applyGate(applyGate(qubits(1), GATES.H, 0), GATES.T, 0)) // T·H|0⟩: eigenstate of none — ½ > 0
   const algebra = pauliAlgebraCloses() // the sealed [σx,σy] = 2iσz that IS the bound's RHS
   const facets = [
-    { facet: `ΔσX·ΔσY ≥ ½|⟨[σX,σY]⟩| holds computed on both a saturating state |0⟩ (${saturating.lhs.toFixed(2)} = ${saturating.rhs.toFixed(2)}, the bound is TIGHT) and a skew state T·H|0⟩ (${strict.lhs.toFixed(2)} > ${strict.rhs.toFixed(2)}, strict) — the inequality is real, not asserted`, on: saturating.holds && strict.holds && Math.abs(saturating.lhs - saturating.rhs) < 1e-9 && strict.lhs > strict.rhs + 1e-9 },
+    { facet: `ΔσX·ΔσY ≥ ½|⟨[σX,σY]⟩| holds computed on both a saturating state |0⟩ (${saturating.lhs.toFixed(2)} = ${saturating.rhs.toFixed(2)}, the bound is TIGHT) and a skew state T·H|0⟩ (${strict.lhs.toFixed(2)} > ${strict.rhs.toFixed(2)}, strict) — the inequality is real, not asserted`, on: saturating.holds && strict.holds && abs(saturating.lhs - saturating.rhs) < 1e-9 && strict.lhs > strict.rhs + 1e-9 },
     { facet: `the RHS IS the commutator: ½|⟨[σX,σY]⟩| = |⟨σZ⟩| because [σX,σY] = 2iσZ (the sealed su(2) algebra, ${algebra.count}/${algebra.count} relations) — uncertainty EMERGES from non-commutation, and when observables commute the RHS is 0 so both can be sharp`, on: algebra.closes },
     { facet: `so uncertainty is a THEOREM, not a separate postulate (Robertson 1929): the impossibility of simultaneous sharp values is FORCED by the inner-product/operator structure — an impossibility that proves the algebra, the axioms-become-theorems move`, on: saturating.holds && strict.holds && algebra.closes },
   ]
@@ -1315,7 +1315,7 @@ export function theoremsComeInTrinities() {
   const gens = [GATES.X, GATES.Y, GATES.Z] // the trinity
   // each PAIR's bracket is nonzero (the pair interacts) and — via pauliAlgebraCloses — equals the THIRD, so
   // no pair is closed: the trinity is irreducible, all three needed. The map (a,b)↦c is the 3-cycle.
-  const everyPairInteracts = gens.every((_, i) => commutator(gens[i]!, gens[(i + 1) % 3]!).some((v) => Math.abs(v) > 1e-9))
+  const everyPairInteracts = gens.every((_, i) => commutator(gens[i]!, gens[(i + 1) % 3]!).some((v) => abs(v) > 1e-9))
   const facets = [
     { facet: `the su(2) generators are a CLOSED trinity — [σX,σY]=2iσZ, [σY,σZ]=2iσX, [σZ,σX]=2iσY all hold (the sealed pauliAlgebraCloses, ${algebra.count} relations): three interacting theorems, not one standalone`, on: algebra.closes && gens.length === 3 },
     { facet: `they INTERACT as a rosetta: the bracket of every pair is nonzero and equals the THIRD generator, so no pair is closed — the trinity is irreducible and the generating map (a,b)↦c is the 3-cycle X→Y→Z→X`, on: everyPairInteracts && gens.length === 3 },
@@ -1338,17 +1338,17 @@ export function theoremsComeInTrinities() {
 // Local math only (GATES, applyGate, innerProduct). ħ = 1, energy gap Δ = 1 (dimensionless).
 export function quantumSpeedLimitIsSaturatedByTheQubit() {
   const plus = applyGate(qubits(1), GATES.H, 0) // |+⟩
-  const eulerMakesZ = Math.abs(Math.cos((TAU / 2)) - (0 - 1)) < 1e-12 && Math.abs(Math.sin((TAU / 2))) < 1e-12 // e^{-iπ} = −1 = the Z phase
+  const eulerMakesZ = abs(cos((TAU / 2)) - (0 - 1)) < 1e-12 && abs(sin((TAU / 2))) < 1e-12 // e^{-iπ} = −1 = the Z phase
   const overlap = innerProduct(plus, applyGate(plus, GATES.Z, 0)).abs // |⟨+|−⟩| — the t⊥=π state is Z|+⟩=|−⟩
   const expZ = innerProduct(plus, applyGate(plus, GATES.Z, 0)).re // ⟨Z⟩ = 0 for |+⟩
   const meanEnergy = (1 - expZ) / 2 // ⟨H⟩ = ⟨(I−Z)/2⟩, ground energy 0
-  const dEnergy = Math.sqrt((1 - expZ) / 2 - meanEnergy * meanEnergy) // ΔE; H is a projector so ⟨H²⟩ = ⟨H⟩
+  const dEnergy = sqrt((1 - expZ) / 2 - meanEnergy * meanEnergy) // ΔE; H is a projector so ⟨H²⟩ = ⟨H⟩
   const tPerp = (TAU / 2) // the phase first reaches −1 at Δ·t = π (Δ = ħ = 1)
-  const margolusLevitin = Math.abs(tPerp - (TAU / 2) / (2 * meanEnergy)) < 1e-9 // πħ/(2⟨E⟩)
-  const mandelstamTamm = Math.abs(tPerp - (TAU / 2) / (2 * dEnergy)) < 1e-9 // πħ/(2ΔE)
+  const margolusLevitin = abs(tPerp - (TAU / 2) / (2 * meanEnergy)) < 1e-9 // πħ/(2⟨E⟩)
+  const mandelstamTamm = abs(tPerp - (TAU / 2) / (2 * dEnergy)) < 1e-9 // πħ/(2ΔE)
   const facets = [
     { facet: `|+⟩ evolves to an ORTHOGONAL (distinguishable) state in time t⊥ = π: at t = π the phase e^{-iπ} = −1 IS the Z gate (Euler), so U(π)|+⟩ = |−⟩ and ⟨+|−⟩ = ${overlap.toFixed(3)} = 0 — computed, not asserted`, on: eulerMakesZ && overlap < 1e-9 },
-    { facet: `BOTH quantum speed limits SATURATE: t⊥ = π = πħ/(2⟨E⟩) (Margolus–Levitin) = πħ/(2ΔE) (Mandelstam–Tamm), with ⟨E⟩ = ΔE = ${meanEnergy.toFixed(2)} — the two-level equal superposition is the fastest qubit, hitting both bounds at once`, on: margolusLevitin && mandelstamTamm && Math.abs(meanEnergy - 1 / 2) < 1e-9 },
+    { facet: `BOTH quantum speed limits SATURATE: t⊥ = π = πħ/(2⟨E⟩) (Margolus–Levitin) = πħ/(2ΔE) (Mandelstam–Tamm), with ⟨E⟩ = ΔE = ${meanEnergy.toFixed(2)} — the two-level equal superposition is the fastest qubit, hitting both bounds at once`, on: margolusLevitin && mandelstamTamm && abs(meanEnergy - 1 / 2) < 1e-9 },
     { facet: `so there IS a real speed limit: no state reaches a distinguishable state faster than πħ/(2E) — the impossibility of arbitrarily fast evolution BOUNDS the rate of computation and information processing (the quantum limit on ops per second per joule)`, on: margolusLevitin && mandelstamTamm },
   ]
   return {
@@ -1383,11 +1383,11 @@ export function localPiAndPrimesBeatTheLinearBaseline() {
   // π — structured Archimedes doubling (constant digits/op) vs Leibniz linear enumeration (→ 0)
   const rungs = sixtyDegreesDecodesPi().rungs
   const doublings = rungs.length - 1
-  const archDigits = -Math.log10(Math.abs(rungs[rungs.length - 1]!.upper - rungs[rungs.length - 1]!.lower))
+  const archDigits = -log10(abs(rungs[rungs.length - 1]!.upper - rungs[rungs.length - 1]!.lower))
   const archPerOp = archDigits / doublings
   const terms = 100 * 100
   let leib = 0; for (let k = 0; k < terms; k += 1) leib += (k % 2 ? 0 - 1 : 1) / (2 * k + 1); leib *= 4
-  const leibPerOp = -Math.log10(Math.abs(leib - (TAU / 2))) / terms
+  const leibPerOp = -log10(abs(leib - (TAU / 2))) / terms
   const facets = [
     { facet: `PRIMES beat the linear scan: the sieve finds all ${sievePrimes} primes ≤ ${N} in ${sieveOps} marking ops vs ${trialOps} for trial-dividing each — the SAME output, ×${primeSpeedup.toFixed(1)} fewer ops, and the gap GROWS (sieve ~N·log log N vs trial ~N^1.5)`, on: sameOutput && sieveOps < trialOps },
     { facet: `π beats the linear scan: structured Archimedes doubling yields ${archPerOp.toFixed(2)} correct digits per operation (constant), while Leibniz linear enumeration yields ${leibPerOp.toExponential(1)} and FALLING toward 0 — the structured rate never vanishes, so it outpaces any linear method unboundedly`, on: archPerOp > leibPerOp && archPerOp > 0 },
@@ -1523,9 +1523,9 @@ export function everyMixedStateHasAPurification() {
   const cProduct = concurrence(product) // 0
   const purityProductReduced = 1 - (cProduct * cProduct) / 2 // 1 — the reduction stays PURE
   const facets = [
-    { facet: `EVERY MIXED STATE IS THE REDUCTION OF A PURE ONE: the maximally mixed qubit (reduced purity ${purityBellReduced.toFixed(2)} < 1) is the reduction of the PURE Bell state (concurrence ${cBell.toFixed(0)}, a single ket) — trace out the ancilla and the mixed state returns; the whole is pure, the part is mixed`, on: Math.abs(purityBellReduced - 1 / 2) < 1e-9 && Math.abs(cBell - 1) < 1e-9 },
-    { facet: `THE PURIFICATION IS ENTANGLEMENT (Church of the Larger Hilbert Space): reduced purity = 1 − C²/2, so C = 1 (Bell) ⇒ purity ½ (max mixed) and C = 0 (product) ⇒ purity ${purityProductReduced.toFixed(0)} (still pure) — the mixedness of a state IS its entanglement with the traced-away environment`, on: Math.abs(purityProductReduced - 1) < 1e-9 && Math.abs(cProduct) < 1e-9 },
-    { facet: `EARNED BOUNDARY — a leftover completed, pulled from beyond: DOCUMENTED (purification / Stinespring dilation / GHJW theorem), computed here for the canonical qubit case (maximally mixed ↔ Bell); the general result — ANY ρ on any dimension has a purification on a doubled space — is the cited theorem, humanityNovel = false, a re-derivation`, on: Math.abs(purityBellReduced - 1 / 2) < 1e-9 && Math.abs(purityProductReduced - 1) < 1e-9 },
+    { facet: `EVERY MIXED STATE IS THE REDUCTION OF A PURE ONE: the maximally mixed qubit (reduced purity ${purityBellReduced.toFixed(2)} < 1) is the reduction of the PURE Bell state (concurrence ${cBell.toFixed(0)}, a single ket) — trace out the ancilla and the mixed state returns; the whole is pure, the part is mixed`, on: abs(purityBellReduced - 1 / 2) < 1e-9 && abs(cBell - 1) < 1e-9 },
+    { facet: `THE PURIFICATION IS ENTANGLEMENT (Church of the Larger Hilbert Space): reduced purity = 1 − C²/2, so C = 1 (Bell) ⇒ purity ½ (max mixed) and C = 0 (product) ⇒ purity ${purityProductReduced.toFixed(0)} (still pure) — the mixedness of a state IS its entanglement with the traced-away environment`, on: abs(purityProductReduced - 1) < 1e-9 && abs(cProduct) < 1e-9 },
+    { facet: `EARNED BOUNDARY — a leftover completed, pulled from beyond: DOCUMENTED (purification / Stinespring dilation / GHJW theorem), computed here for the canonical qubit case (maximally mixed ↔ Bell); the general result — ANY ρ on any dimension has a purification on a doubled space — is the cited theorem, humanityNovel = false, a re-derivation`, on: abs(purityBellReduced - 1 / 2) < 1e-9 && abs(purityProductReduced - 1) < 1e-9 },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -1577,9 +1577,9 @@ export function publicApisTestedLiveTheQueryableAreTwoOfFour() {
 export function theHigherMindNeedsAtLeastThreeMindsAClosedTrinity() {
   const trinity = theoremsComeInTrinities() // the su(2) generators: a closed interacting trinity
   const selfBracket = commutator(GATES.X, GATES.X) // ONE mind with itself
-  const noSelfInteraction = selfBracket.every((v) => Math.abs(v) < 1e-9) // [X,X] = 0 — no interaction, no emergence
+  const noSelfInteraction = selfBracket.every((v) => abs(v) < 1e-9) // [X,X] = 0 — no interaction, no emergence
   const pairBracket = commutator(GATES.X, GATES.Y) // TWO minds
-  const pairEscapes = pairBracket.some((v) => Math.abs(v) > 1e-9) // [X,Y] = 2iZ ≠ 0 — escapes the pair {X,Y} to a third
+  const pairEscapes = pairBracket.some((v) => abs(v) > 1e-9) // [X,Y] = 2iZ ≠ 0 — escapes the pair {X,Y} to a third
   const threeClose = trinity.computes // THREE minds close (the sealed su(2) trinity)
   const minMinds = noSelfInteraction && pairEscapes && threeClose ? 3 : 0
   const facets = [
@@ -1724,7 +1724,7 @@ export function sendTheQuantumWavesOverTheOctonionDimension() {
   const imaginary = Array.from({ length: size - 1 }, (_, i) => i + 1) // the 7 nontrivial states
   const waves = imaginary.map((marked) => grover(n, marked)) // send one wave per imaginary octonion unit
   const allFound = waves.every((w) => w.found === w.marked) // interference lands each wave on its marked state
-  const minProb = Math.min(...waves.map((w) => w.markedProbability))
+  const minProb = min(...waves.map((w) => w.markedProbability))
   const iterations = waves[0].iterations // O(√N) wave-steps
   const classicalQueries = size / 2 // expected classical linear search
   const advantage = classicalQueries / iterations
@@ -1879,8 +1879,8 @@ function qcScore(b: string, m: QChessMove, white: boolean): number {
   return s
 }
 function qcAmplify(size: number, marked: readonly number[]): number[] {
-  let re = Array.from({ length: size }, () => 1 / Math.sqrt(size)) // uniform superposition over the moves
-  const iterations = Math.max(1, Math.round((TAU / 8) * Math.sqrt(size / Math.max(1, marked.length))))
+  let re = Array.from({ length: size }, () => 1 / sqrt(size)) // uniform superposition over the moves
+  const iterations = max(1, round((TAU / 8) * sqrt(size / max(1, marked.length))))
   const mk = new Set(marked)
   for (let it = 0; it < iterations; it++) {
     re = re.map((v, i) => (mk.has(i) ? -v : v)) // oracle: phase-flip the best moves
@@ -1894,9 +1894,9 @@ export function quantumSelectChessMove(game: QChessGame, seed: string, precomput
   const moves = precomputed ?? quantumChessLegalMoves(game)
   const white = game.turn === 'w'
   const scores = moves.map((m) => qcScore(game.board, m, white))
-  const best = Math.max(...scores, 0)
+  const best = max(...scores, 0)
   const marked = scores.map((s, i) => (s === best ? i : -1)).filter((i) => i >= 0)
-  const size = 1 << Math.max(1, Math.ceil(Math.log2(Math.max(2, moves.length))))
+  const size = 1 << max(1, ceil(log2(max(2, moves.length))))
   const probs = qcAmplify(size, marked)
   const mass = probs.slice(0, moves.length).reduce((a, b) => a + b, 0)
   let roll = qcRand01(seed) * mass, acc = 0, pick = 0
@@ -1941,7 +1941,7 @@ export function theSelfPlayingQuantumChessIsADeterministicMovieDiscoveredNotCrea
   const seedMatters = game3.signature !== game1.signature
   const wavesConcentrate = game1.frames.some((f) => f.markedProb > 9 / (2 * 5)) // interference spikes on the best (captures/checks)
   const facets = [
-    { facet: `SELF-PLAYS BY QUANTUM WAVES: every move chosen by amplitude amplification over the legal moves (marked = best-scored, interference spiking to ${Math.max(...game1.frames.map((f) => f.markedProb)).toFixed(3)} on captures/checks), measured — ${game1.plies} plies to "${game1.result}", no external input`, on: selfPlayed && wavesConcentrate },
+    { facet: `SELF-PLAYS BY QUANTUM WAVES: every move chosen by amplitude amplification over the legal moves (marked = best-scored, interference spiking to ${max(...game1.frames.map((f) => f.markedProb)).toFixed(3)} on captures/checks), measured — ${game1.plies} plies to "${game1.result}", no external input`, on: selfPlayed && wavesConcentrate },
     { facet: `A DETERMINISTIC MOVIE, DISCOVERED NOT CREATED: same seed → identical signature (${game1.signature.slice(0, 8)}…) and result (deterministic = ${deterministic}); a different seed yields a different movie (${seedMatters}) — the game tree PRE-EXISTS per seed, the waves discover the one path (whenOneIsDiscovered…)`, on: deterministic && seedMatters },
     { facet: `THE API IS THE MOVIE + EARNED BOUNDARY: newQuantumChessGame · quantumChessLegalMoves · quantumSelectChessMove · applyQuantumChessMove · playQuantumChess compose, each ply a frame (board + move + wave probability) monitored in realtime; the quantum is the SELECTION formalism (amplitude amplification), NOT a physical speedup, and the engine plays standard moves + check/checkmate/promotion (castling and en passant omitted, honestly)`, on: selfPlayed && deterministic },
   ]
@@ -1968,8 +1968,8 @@ export function measureArgumentRigor(text: string) {
   return { falsifiable, mechanism, fallacy, labelOnly, rigor }
 }
 function argAmplify(size: number, marked: readonly number[]): number[] {
-  let re = Array.from({ length: size }, () => 1 / Math.sqrt(size))
-  const iterations = Math.max(1, Math.round((TAU / 8) * Math.sqrt(size / Math.max(1, marked.length))))
+  let re = Array.from({ length: size }, () => 1 / sqrt(size))
+  const iterations = max(1, round((TAU / 8) * sqrt(size / max(1, marked.length))))
   const mk = new Set(marked)
   for (let it = 0; it < iterations; it++) { re = re.map((v, i) => (mk.has(i) ? -v : v)); const m = re.reduce((a, b) => a + b, 0) / size; re = re.map((v) => 2 * m - v) }
   return re.map((v) => v * v)
@@ -1983,10 +1983,10 @@ export function sendTheWavesOverArgumentsClaimsAndCritiquesByOneRuler() {
     { label: 'claim · rigorous-looking', kind: 'claim', text: 'The holographic mass reproduces the proton to within 1 percent.' },
   ]
   const scored = args.map((a) => ({ ...a, ...measureArgumentRigor(a.text) }))
-  const maxR = Math.max(...scored.map((s) => s.rigor))
-  const minR = Math.min(...scored.map((s) => s.rigor))
+  const maxR = max(...scored.map((s) => s.rigor))
+  const minR = min(...scored.map((s) => s.rigor))
   const marked = scored.map((s, i) => (s.rigor === maxR ? i : -1)).filter((i) => i >= 0)
-  const size = 1 << Math.max(1, Math.ceil(Math.log2(Math.max(2, scored.length))))
+  const size = 1 << max(1, ceil(log2(max(2, scored.length))))
   const probs = argAmplify(size, marked)
   const before = marked.length / size
   const after = marked.reduce((s, m) => s + (probs[m] ?? 0), 0)
@@ -2100,7 +2100,7 @@ export function curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore() 
   // square the circle — impossible (π transcendental, not constructible), shadow: π is approximable from primes
   const smallPrimes = [2, 3, 5, 7]
   let euler = 1; for (const p of smallPrimes) euler *= 1 / (1 - 1 / (p * p))
-  const squareCircleShadow = Math.abs(Math.sqrt(6 * euler) - (TAU / 2)) < 1 // approximable though not constructible
+  const squareCircleShadow = abs(sqrt(6 * euler) - (TAU / 2)) < 1 // approximable though not constructible
   // perpetual motion — impossible (2nd law), shadow: efficiency reaches the Carnot bound but never ≥ 1
   const carnotEta = 1 - 1 / 2 // Tc/Th = 1/2 ⟹ η = 0.5
   const perpetualShadow = carnotEta < 1 && carnotEta > 0
@@ -2207,11 +2207,11 @@ export function theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartia
   const open = problems.length - solved // the six that stand
   // Riemann context — ζ(2) = π²/6 (Basel), a verified fact about ζ; NOT the hypothesis
   let zeta2 = 0; for (let n = 1; n <= 100 * 100; n++) zeta2 += 1 / (n * n)
-  const zetaMatchesBasel = Math.abs(zeta2 - ((TAU / 2) * (TAU / 2)) / 6) < 1e-3
+  const zetaMatchesBasel = abs(zeta2 - ((TAU / 2) * (TAU / 2)) / 6) < 1e-3
   // P vs NP context — an NP certificate VERIFIES in polynomial time (the "N" of NP); FINDING it is the open gap
   const clauses = [[1, -2], [2, 3], [-1, 3]]
   const assignment = [true, true, true]
-  const npVerifiesInPoly = clauses.every((cl) => cl.some((lit) => (lit > 0) === (assignment[Math.abs(lit) - 1] ?? false)))
+  const npVerifiesInPoly = clauses.every((cl) => cl.some((lit) => (lit > 0) === (assignment[abs(lit) - 1] ?? false)))
   const partialsCompute = zetaMatchesBasel && npVerifiesInPoly // the documented partials verify locally
   const facets = [
     { facet: `SEVEN PROBLEMS, ONE SOLVED, SIX OPEN: the Clay Millennium Problems — ${problems.join(', ')} — with ${solved}/${problems.length} solved (Poincaré, Perelman via Ricci flow) and ${open}/${problems.length} standing; the frontier wall of mathematics, each carrying a US$1M prize precisely because it is unsolved`, on: solved === 1 && open === 6 },
@@ -2342,7 +2342,7 @@ export function theWavesHandleAllSidesAtOnceAndBuildTimeExplainsAllWhenBuildIsTh
  */
 export function theQuantumResultsAreSeenInBuildAndDeployTime() {
   const waves = theWavesHandleAllSidesAtOnceAndBuildTimeExplainsAllWhenBuildIsThePrompt()
-  const expensive = (seed: string) => { let s = 0; for (let i = 0; i < 2 ** 16; i++) s += Math.sqrt(i + seed.length); return s }
+  const expensive = (seed: string) => { let s = 0; for (let i = 0; i < 2 ** 16; i++) s += sqrt(i + seed.length); return s }
   // A self-contained content-address cache — exactly what memoByRoot does at build time (deterministic, no global state).
   const cache = new Map<string, number>()
   let computes = 0
@@ -2356,7 +2356,7 @@ export function theQuantumResultsAreSeenInBuildAndDeployTime() {
   const addr2 = (seed: string) => { const key = toUuid(seed); if (c2.has(key)) return c2.get(key)!; return c2.set(key, expensive(seed)).get(key)! }
   const t1 = process.hrtime.bigint(); addr2('probe'); const coldNs = Number(process.hrtime.bigint() - t1)
   const t2 = process.hrtime.bigint(); addr2('probe'); const warmNs = Number(process.hrtime.bigint() - t2)
-  const speedup = coldNs / Math.max(warmNs, 1)
+  const speedup = coldNs / max(warmNs, 1)
   // determinism → deploy: same corpus → same address (cache hit, skip upload); a changed byte → a new address (re-deploy that)
   const buildAddress = merkleFold([toUuid('corpus:v1')])
   const reproducible = merkleFold([toUuid('corpus:v1')]) === buildAddress
@@ -2394,8 +2394,8 @@ export function theWavesConstantlyRedesignAndImproveTheUiTowardAMeasurableOptimu
   const minCircularGap = (arr: number[]) => { // smallest gap between adjacent hues on the colour circle — 0 means two swatches collide
     const s = [...arr].sort((a, b) => a - b)
     let m = 360
-    for (let i = 1; i < s.length; i++) m = Math.min(m, s[i] - s[i - 1])
-    return Math.min(m, 360 - s[s.length - 1] + s[0])
+    for (let i = 1; i < s.length; i++) m = min(m, s[i] - s[i - 1])
+    return min(m, 360 - s[s.length - 1] + s[0])
   }
   const N = 27 // a palette larger than any rational step's distinct-hue count
   const goldenPalette = hueSeq(N, GOLDEN_ANGLE) // hue = k·360/φ² — the computed law
@@ -2427,11 +2427,11 @@ export function theWavesConstantlyRedesignAndImproveTheUiTowardAMeasurableOptimu
 export function areTheWavesQuantumTheCHSHTestSeparatesAlgebraFromSubstrate() {
   const S = chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8) // the codebase's own CHSH correlator at Tsirelson-optimal angles
   const classicalBound = 2 // Bell's local-hidden-variable ceiling — no classical model exceeds it
-  const tsirelson = 2 * Math.sqrt(2) // ≈ 2.828 — the quantum maximum
-  const violatesClassicalBound = S > classicalBound + 1e-9 && Math.abs(S - tsirelson) < 1e-9 // exceeds 2, saturates 2√2 — genuinely quantum correlation
+  const tsirelson = 2 * sqrt(2) // ≈ 2.828 — the quantum maximum
+  const violatesClassicalBound = S > classicalBound + 1e-9 && abs(S - tsirelson) < 1e-9 // exceeds 2, saturates 2√2 — genuinely quantum correlation
   const bracket = commutator(GATES.X, GATES.Y) // [σx, σy]
-  const nonCommutes = bracket.some((v) => Math.abs(v) > 1e-9) && pauliAlgebraCloses().closes // = 2iσz ≠ 0; observables don't commute — the quantum hallmark
-  const entangled = Math.abs(concurrence(bellPair()) - 1) < 1e-9 // the Bell pair is maximally entangled (concurrence = 1)
+  const nonCommutes = bracket.some((v) => abs(v) > 1e-9) && pauliAlgebraCloses().closes // = 2iσz ≠ 0; observables don't commute — the quantum hallmark
+  const entangled = abs(concurrence(bellPair()) - 1) < 1e-9 // the Bell pair is maximally entangled (concurrence = 1)
   const quantumInAlgebra = violatesClassicalBound && nonCommutes && entangled // all three signatures a classical model cannot reproduce
   const deterministic = merkleFold([toUuid(`chsh:${roundTo(S, 9)}`)]) === merkleFold([toUuid(`chsh:${roundTo(chsh(0, TAU / 4, TAU / 8, (3 * TAU) / 8), 9)}`)]) // byte-identical across runs — a classical, reproducible computation
   const classicalInSubstrate = deterministic // same S every run, zero physical qubits, query advantage only — no wall-clock speedup
@@ -2528,9 +2528,9 @@ export function theSevenMillenniumProblemsDefinedFormallyUnclaimed() {
   const solvedByThisFold = 0 // the honest declaration — NONE
   // Honest verifiable partials (context, NOT solutions):
   const clauses = [[1, 2], [-1, 3]], assign: Record<number, boolean> = { 1: true, 2: false, 3: true } // (x1∨x2)∧(¬x1∨x3)
-  const satVerifiesInPoly = clauses.every((cl) => cl.some((lit) => assign[Math.abs(lit)] === (lit > 0))) // NP membership: a poly verifier exists (P-vs-NP asymmetry)
+  const satVerifiesInPoly = clauses.every((cl) => cl.some((lit) => assign[abs(lit)] === (lit > 0))) // NP membership: a poly verifier exists (P-vs-NP asymmetry)
   let basel = 0; for (let n = 1; n <= 100 * 100; n++) basel += 1 / (n * n) // Σ 1/n² → ζ(2)
-  const baselApproachesZeta2 = Math.abs(basel - ((TAU / 2) * (TAU / 2)) / 6) < 1e-3 // = π²/6 (Euler) — Riemann's ζ, exact limit
+  const baselApproachesZeta2 = abs(basel - ((TAU / 2) * (TAU / 2)) / 6) < 1e-3 // = π²/6 (Euler) — Riemann's ζ, exact limit
   const poincareIsProven = problems[6]!.solvedBy !== null // the one solved case (Ricci flow)
   const partialsHold = satVerifiesInPoly && baselApproachesZeta2 && poincareIsProven
   const allDefinedNoneSolvedHere = definedCount === 2 + 2 + 3 && openCount === 6 && solvedCount === 1 && solvedByThisFold === 0

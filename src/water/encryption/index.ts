@@ -5,22 +5,9 @@ import * as __ns_mountain_geometry from '../../mountain/geometry'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, navigationCrossFourKeysDecodeTrinity, portalChat } from '../../heaven/compute'
 import { latestDiscoveries } from '../../4/6'
-import {
-  computesGate, digitalRoot, foldPair, gcd, isUuid, memoByRoot, merge, merkleFold,
-  resourceCooperationPolicy, roundTo, sealFacets, toUuid, trinityKey, VORTEX_SEQUENCE } from '../../0'
+import { VORTEX_SEQUENCE, abs, ceil, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
-import { A432_HUE,
-  DIMENSION_GATES,
-  DIMENSION_NAMES,
-  DIMENSIONS,
-  FOLDED_CENSUS,
-  TAU,
-  TEACHING_RSA_P,
-  TEACHING_RSA_Q,
-  UNFOLDED_CENSUS,
-  frequencyToLight,
-  rat,
-  ratInv, claySolvedTheorem, earned, physicalFtlClaimTheorem } from '../../3/7'
+import { A432_HUE, DIMENSIONS, DIMENSION_GATES, DIMENSION_NAMES, FOLDED_CENSUS, LN2, TAU, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, physicalFtlClaimTheorem, rat, ratInv } from '../../3/7'
 import { rosettaRayOf, zeroDivisionTable } from '../digit'
 // call-time namespace (cycle-safe): decode/one refuse path composes without wet bypass
 import * as __ns_thunder_decode from '../../thunder/decode'
@@ -29,11 +16,6 @@ import * as __ns_wind_site from '../../wind/site'
 import {
   sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
   universalNavigationalCrossInAllDimensions } from '../double'
-import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
-import {
-  sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
-  universalNavigationalCrossInAllDimensions,
-} from '../double'
 import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
 import {
   compareCeccecEfficiencyByVote,
@@ -278,7 +260,7 @@ export const PRODUCTION_BROWSER_REVERSE_TOOLS = [
 export const DEPRECATED_DEMO_RSA_MEASURE_TOOL_ID = 'demo-rsa-measure' as const
 
 /** Hard bit ceiling for sealed-catalog reverse — derived from teaching n=61×53 (bits of 3233). */
-export const SEALED_CATALOG_RSA_BIT_CEILING = Math.floor(Math.log2(TEACHING_RSA_P * TEACHING_RSA_Q)) + 1
+export const SEALED_CATALOG_RSA_BIT_CEILING = floor(log2(TEACHING_RSA_P * TEACHING_RSA_Q)) + 1
 
 /** @deprecated Use SEALED_CATALOG_RSA_BIT_CEILING — do not surface “demo” in UI/MCP copy. */
 export const DEMO_RSA_BIT_CEILING = SEALED_CATALOG_RSA_BIT_CEILING
@@ -297,8 +279,8 @@ export const FAR_OVER_CEILING_RSA_PROBE = 2 ** (8 * 5) * 3 + 1
 
 /** Cap parallel reverse workers: min(cpus, vortex ring length) — never unbounded. */
 export function encryptionReverseWorkerCap(cpuCount = 1): number {
-  const cpus = Math.max(1, Math.floor(cpuCount))
-  return Math.min(cpus, VORTEX_SEQUENCE.length) // ≤9 — vortex ring bound
+  const cpus = max(1, floor(cpuCount))
+  return min(cpus, VORTEX_SEQUENCE.length) // ≤9 — vortex ring bound
 }
 
 /** Classical 64-bit word — architectureRequirement=classical-64bit (NOT QPU). */
@@ -307,11 +289,11 @@ export const CLASSICAL_64BIT_WORD_BITS = 8 * 8
  * Local reverse path uses Number.isSafeInteger — bit WIDTH of JS safe integers.
  * Number.MAX_SAFE_INTEGER = 2^53 − 1; use ceil(log2(MAX+1)) so float rounding cannot yield 54.
  */
-export const JS_SAFE_INTEGER_BITS = Math.ceil(Math.log2(Number.MAX_SAFE_INTEGER + 1))
+export const JS_SAFE_INTEGER_BITS = ceil(log2(Number.MAX_SAFE_INTEGER + 1))
 /** AES-256 classical strength named by sealed max-bits theorem (external bulk cipher). */
 export const AES256_CLASSICAL_BITS = 2 ** 8
 /** Digit-folder mod-9 inverse domain 0..9 — ceil(log2(9)). */
-export const DIGIT_INVERSE_DOMAIN_BITS = Math.floor(Math.log2(3 * 3)) + 1
+export const DIGIT_INVERSE_DOMAIN_BITS = floor(log2(3 * 3)) + 1
 
 /**
  * Probe CPU parallelism at call time — browser hardwareConcurrency or Node os.
@@ -323,7 +305,7 @@ export function probeLocalCpuCount(): number {
     && typeof navigator.hardwareConcurrency === 'number'
     && navigator.hardwareConcurrency > 0
   ) {
-    return Math.max(1, Math.floor(navigator.hardwareConcurrency))
+    return max(1, floor(navigator.hardwareConcurrency))
   }
   try {
     const proc = typeof process !== 'undefined' ? process as NodeJS.Process & {
@@ -336,7 +318,7 @@ export function probeLocalCpuCount(): number {
         typeof os?.availableParallelism === 'function'
           ? os.availableParallelism()
           : (os?.cpus?.()?.length ?? 1)
-      return Math.max(1, Math.floor(n))
+      return max(1, floor(n))
     }
   } catch {
     /* edge/SSR without os */
@@ -368,16 +350,16 @@ export type MaxBitsHardwareCapabilities = {
  * Pair: bits/hardware
  */
 export function maxBitsFromHardwareCapabilities(cpuHint?: number): MaxBitsHardwareCapabilities {
-  const cpuCount = Math.max(1, Math.floor(cpuHint ?? probeLocalCpuCount()))
+  const cpuCount = max(1, floor(cpuHint ?? probeLocalCpuCount()))
   const workerCap = encryptionReverseWorkerCap(cpuCount)
   const heapCapMb = resourceCooperationPolicy().heapCapMb
   const classicalWordBits = CLASSICAL_64BIT_WORD_BITS
   const jsSafeIntegerBits = JS_SAFE_INTEGER_BITS
-  const hardwareReverseCapacityBits = Math.min(jsSafeIntegerBits, classicalWordBits)
+  const hardwareReverseCapacityBits = min(jsSafeIntegerBits, classicalWordBits)
   const demoSampleCeilingBits = SEALED_CATALOG_RSA_BIT_CEILING
   const encryptTheoremBits = AES256_CLASSICAL_BITS
   const inverseTheoremBits = DIGIT_INVERSE_DOMAIN_BITS
-  const reverseClaimBits = Math.min(demoSampleCeilingBits, hardwareReverseCapacityBits)
+  const reverseClaimBits = min(demoSampleCeilingBits, hardwareReverseCapacityBits)
   const demoIsNotHardwareCeiling = demoSampleCeilingBits < hardwareReverseCapacityBits
   return {
     cpuCount,
@@ -421,7 +403,7 @@ export function refuseNonDemoRsaModulus(n: number): { allowed: boolean; bits: nu
     return { allowed: false, bits: 0, reason: 'not a safe integer modulus' }
   }
   const N = n
-  const bits = N > 0 ? Math.floor(Math.log2(N)) + 1 : 0
+  const bits = N > 0 ? floor(log2(N)) + 1 : 0
   if (N < 4 || N % 2 === 0) {
     return { allowed: false, bits, reason: 'not an odd composite sealed-catalog modulus' }
   }
@@ -492,9 +474,9 @@ export function modeledShorFactorToyModulus(n: number): {
 } {
   const gate = refuseNonDemoRsaModulus(n)
   if (!gate.allowed) {
-    return { N: Math.trunc(n), factored: false, p: 0, q: 0, base: 0, order: 0, refused: true, reason: gate.reason }
+    return { N: trunc(n), factored: false, p: 0, q: 0, base: 0, order: 0, refused: true, reason: gate.reason }
   }
-  const N = Math.trunc(n)
+  const N = trunc(n)
   const orderModN = (a: number) => {
     let x = a % N
     let k = 1
@@ -512,7 +494,7 @@ export function modeledShorFactorToyModulus(n: number): {
     while (exp > 0) {
       if (exp % 2 === 1) r = (r * b) % N
       b = (b * b) % N
-      exp = Math.floor(exp / 2)
+      exp = floor(exp / 2)
     }
     return r
   }
@@ -560,7 +542,7 @@ export function encryptDecryptQuantumTools(matrix: MindMatrix = buildMatrix()) {
     while (k > 0) {
       if (k % 2 === 1) r = (r * b) % mod
       b = (b * b) % mod
-      k = Math.floor(k / 2)
+      k = floor(k / 2)
     }
     return r
   }
@@ -808,7 +790,7 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
     { facet: 'SEALED_CATALOG_RSA_MODULI named as sealed-catalog sample (not hardware ceiling)', on: boundaryNamesDemo && demoNotHwCeiling },
     {
       facet: `reverseClaim=${hw.reverseClaimBits}=min(catalog=${hw.demoSampleCeilingBits}, hwWord=${hw.hardwareReverseCapacityBits})`,
-      on: hw.reverseClaimBits === Math.min(hw.demoSampleCeilingBits, hw.hardwareReverseCapacityBits) },
+      on: hw.reverseClaimBits === min(hw.demoSampleCeilingBits, hw.hardwareReverseCapacityBits) },
     { facet: `refuseBeyond=${refuseBeyond} · qpuRequired=false · clay=0`, on: refuseBeyond && hw.qpuRequired === false },
   ].map((entry) => ({ ...entry, receipt: toUuid(`encryption-reverse:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('encryption-reverse-verify', facets)
@@ -862,7 +844,7 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
  * Route: /en/encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #secp256k1-prime · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`encryptionPanelComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`encryptionPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const tools = encryptDecryptQuantumTools(matrix)
     const reverse = encryptionReverseVerify(matrix)
     const demo = demoRsaReverseSync()
@@ -1070,7 +1052,7 @@ export function demoRsaTeachingGenerateSync() {
     while (k > 0) {
       if (k % 2 === 1) r = (r * b) % mod
       b = (b * b) % mod
-      k = Math.floor(k / 2)
+      k = floor(k / 2)
     }
     return r
   }
@@ -1171,11 +1153,11 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
   const generate = demoRsaTeachingGenerateSync()
   const generateMs = measureNowMs() - tGen0
   const rows: LocalEncryptionReverseRow[] = SEALED_CATALOG_RSA_MODULI.map((N) => {
-    const bits = Math.floor(Math.log2(N)) + 1
+    const bits = floor(log2(N)) + 1
     const t0 = measureNowMs()
     const factor = modeledShorFactorToyModulus(N)
     const reverseMs = measureNowMs() - t0
-    const sec = Math.max(reverseMs, MS_FLOOR) / MS_PER_SEC
+    const sec = max(reverseMs, MS_FLOOR) / MS_PER_SEC
     const opsPerSec = 1 / sec
     return {
       N,
@@ -1190,7 +1172,7 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
   const tAll0 = measureNowMs()
   const sync = demoRsaReverseSync()
   const reverseMs = measureNowMs() - tAll0
-  const suiteSec = Math.max(reverseMs, MS_FLOOR) / MS_PER_SEC
+  const suiteSec = max(reverseMs, MS_FLOOR) / MS_PER_SEC
   const aggregateOpsPerSec = SEALED_CATALOG_RSA_MODULI.length / suiteSec
   const ceiling = productionCeilingRefuseHolds()
   const far = farOverCeilingRefuseHolds()
@@ -1246,32 +1228,32 @@ export function classicalFactoringRsa2048MiningRigFeasibilityComputed(matrix: Mi
   // COMPUTE the operation count from the number field sieve's OWN heuristic complexity L[1/3, (64/9)^{1/3}] — not
   // asserted. The ONLY external datum is the Bitcoin hashrate below (a real-world measurement); the ops are derived.
   const nBits = 2 * 1024 // 2048-bit modulus
-  const lnN = nBits * Math.LN2 // ln(2^2048)
+  const lnN = nBits * LN2 // ln(2^2048)
   const gnfsC = (64 / 9) ** (1 / 3) // ≈ 1.9229 — the GNFS asymptotic constant
-  const gnfsExponent = gnfsC * lnN ** (1 / 3) * Math.log(lnN) ** (2 / 3)
-  const gnfsOps = Math.exp(gnfsExponent) // ≈ 1×10³⁵ sieve-equivalent operations, COMPUTED from the sieve complexity
-  const gnfsBits = roundTo(gnfsExponent / Math.LN2, 0) // ≈ 117 bits — consistent with NIST's standardized ~112-bit level
+  const gnfsExponent = gnfsC * lnN ** (1 / 3) * log(lnN) ** (2 / 3)
+  const gnfsOps = exp(gnfsExponent) // ≈ 1×10³⁵ sieve-equivalent operations, COMPUTED from the sieve complexity
+  const gnfsBits = roundTo(gnfsExponent / LN2, 0) // ≈ 117 bits — consistent with NIST's standardized ~112-bit level
   const secondsPerYear = 60 * 60 * 24 * 365 // ~3.15×10⁷
   const yearsAllMiningRigs = gnfsOps / BITCOIN_NETWORK_HASHRATE_HPS / secondsPerYear // ~millions of years
   const realtimeSeconds = gnfsOps / BITCOIN_NETWORK_HASHRATE_HPS // seconds at full network throughput
   const isRealtime = realtimeSeconds < (2 * 5 * 6) // "realtime" ≈ under a minute
   const facets = [
     { facet: `GNFS COST COMPUTED FROM THE ALGORITHM — the number field sieve's heuristic complexity L[1/3,(64/9)^{1/3}] on a ${nBits}-bit modulus computes to ~2^${gnfsBits} ≈ ${gnfsOps.toExponential(2)} operations (consistent with NIST's standardized ~${RSA2048_CLASSICAL_SECURITY_BITS}-bit level); derived, not asserted`, on: gnfsOps > (10 ** 33) && gnfsBits > 100 },
-    { facet: `NOT REALTIME, NOT CLOSE — even treating the ENTIRE Bitcoin network (~${BITCOIN_NETWORK_HASHRATE_HPS.toExponential(1)} h/s, the one external datum) as factoring ops, the COMPUTED time is ~${Math.round(yearsAllMiningRigs).toLocaleString()} years (isRealtime=${isRealtime}); realtime is off by ~14 orders of magnitude`, on: yearsAllMiningRigs > (10 ** 3) && !isRealtime },
+    { facet: `NOT REALTIME, NOT CLOSE — even treating the ENTIRE Bitcoin network (~${BITCOIN_NETWORK_HASHRATE_HPS.toExponential(1)} h/s, the one external datum) as factoring ops, the COMPUTED time is ~${round(yearsAllMiningRigs).toLocaleString()} years (isRealtime=${isRealtime}); realtime is off by ~14 orders of magnitude`, on: yearsAllMiningRigs > (10 ** 3) && !isRealtime },
     { facet: 'AND THE ESTIMATE IS GENEROUS — SHA-256 mining ASICs CANNOT run GNFS (they hash; GNFS needs general compute + petabyte-scale memory for sieving and the matrix step), so the real classical figure is FAR worse; "shared mining rigs break RSA-2048 in realtime" is refuted by the arithmetic', on: gnfsOps > (10 ** 33) },
     { facet: `THIS SITE DOES NOT DO IT — production browser reverse factors ≤${SEALED_CATALOG_RSA_BIT_CEILING}-bit sealed-catalog semiprimes (SEALED_CATALOG_RSA_MODULI), not RSA-2048; production RSA break + Bitcoin/mainnet hard-refused; blockchains sign with ECDSA/secp256k1 (also Shor-vulnerable) — factoring RSA-2048 is a different key from a blockchain drain`, on: SEALED_CATALOG_RSA_BIT_CEILING < 20 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rsa2048-classical:${entry.facet.slice(0, 40)}:${entry.on}`) }))
   const sealed = sealFacets('classical-factoring-rsa2048-mining-rig-feasibility', facets)
   return {
     computes: sealed.ok,
-    gnfsOps, yearsAllMiningRigs: Math.round(yearsAllMiningRigs), isRealtime,
+    gnfsOps, yearsAllMiningRigs: round(yearsAllMiningRigs), isRealtime,
     demoMaxBits: SEALED_CATALOG_RSA_BIT_CEILING,
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
-    statement: `Classical mining rigs vs RSA-2048, COMPUTED from the GNFS complexity (not asserted): ~2^${gnfsBits} ≈ ${gnfsOps.toExponential(2)} operations; even the entire Bitcoin network (~${BITCOIN_NETWORK_HASHRATE_HPS.toExponential(1)} h/s, the one external datum) as factoring ops takes ~${Math.round(yearsAllMiningRigs).toLocaleString()} years — not realtime (isRealtime=${isRealtime}). And ASICs cannot run GNFS, so it is far worse. Production browser reverse here factors ≤${SEALED_CATALOG_RSA_BIT_CEILING}-bit sealed-catalog semiprimes only.`,
+    statement: `Classical mining rigs vs RSA-2048, COMPUTED from the GNFS complexity (not asserted): ~2^${gnfsBits} ≈ ${gnfsOps.toExponential(2)} operations; even the entire Bitcoin network (~${BITCOIN_NETWORK_HASHRATE_HPS.toExponential(1)} h/s, the one external datum) as factoring ops takes ~${round(yearsAllMiningRigs).toLocaleString()} years — not realtime (isRealtime=${isRealtime}). And ASICs cannot run GNFS, so it is far worse. Production browser reverse here factors ≤${SEALED_CATALOG_RSA_BIT_CEILING}-bit sealed-catalog semiprimes only.`,
     boundary: earned(
-      `DO THE MATH: classical factoring of RSA-2048 needs ~2^${gnfsBits} operations (COMPUTED from the number field sieve's L-formula, not asserted); at the full Bitcoin network throughput that is ~${Math.round(yearsAllMiningRigs).toLocaleString()} years — realtime is impossible, and the number computes it.`,
+      `DO THE MATH: classical factoring of RSA-2048 needs ~2^${gnfsBits} operations (COMPUTED from the number field sieve's L-formula, not asserted); at the full Bitcoin network throughput that is ~${round(yearsAllMiningRigs).toLocaleString()} years — realtime is impossible, and the number computes it.`,
       facets,
       'SHA-256 mining ASICs cannot even run the GNFS (they only hash; GNFS needs general-purpose compute and petabyte-scale memory), so the computed multi-million-year figure is a generous LOWER bound on the difficulty. "Shared mining rigs break RSA-2048 in realtime and drain blockchains" is refuted by the arithmetic — and blockchains sign with ECDSA/secp256k1, not RSA. Production browser reverse factors ≤12-bit sealed-catalog semiprimes; production RSA break + Bitcoin/mainnet are hard-refused; breaksNistPqc=false.'),
   }
@@ -1291,7 +1273,7 @@ export function shorFactoringResourceEstimate(
   const physicalPerLogical = hw.physicalPerLogical ?? 1000 // surface-code overhead at ~code-distance 25 (published range 1000–2000)
   const cycleTimeUs = hw.cycleTimeUs ?? 1 // logical-cycle time, microseconds (superconducting assumption)
   const logicalQubits = 2 * nBits + 3 // Beauregard circuit width — DETERMINISTIC, 4099 for n=2048
-  const toffoliGates = Math.round((2 * 16) * nBits ** 3) // ~n³ modular-exponentiation Toffoli scaling (order estimate)
+  const toffoliGates = round((2 * 16) * nBits ** 3) // ~n³ modular-exponentiation Toffoli scaling (order estimate)
   const physicalQubits = logicalQubits * physicalPerLogical // computed from the named overhead
   const runtimeDays = roundTo((toffoliGates * (cycleTimeUs / (10 ** 6))) / (60 * 60 * 24), 1) // gates × cycle / seconds-per-day
   return { nBits, logicalQubits, toffoliGates, physicalQubits, runtimeDays, physicalPerLogical }
@@ -1380,9 +1362,9 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix: MindMatrix) {
   const audit = quantumStandardsAuditSuite(matrix)
   const catalog = isoNistPqcStandardsCatalog(matrix)
   const trinity = directionalTrinityForwardInverseReverse(matrix)
-  const demoMaxBits = timed.rows.reduce((m, r) => Math.max(m, r.bits), 0)
-  const opsPerSec = Math.max(timed.aggregateOpsPerSec, Number.EPSILON)
-  const log2Ops = Math.log2(opsPerSec)
+  const demoMaxBits = timed.rows.reduce((m, r) => max(m, r.bits), 0)
+  const opsPerSec = max(timed.aggregateOpsPerSec, Number.EPSILON)
+  const log2Ops = log2(opsPerSec)
   /** NIST classical security bit levels — lattice-derived (2⁷ / 3·2⁶ / 2⁸), not raw 128/192/256 literals. */
   const AES128_CLASSICAL_BITS = 2 ** 7
   const AES192_CLASSICAL_BITS = 3 * (2 ** 6)
@@ -1397,7 +1379,7 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix: MindMatrix) {
   ]
   const comparisons: LocalReverseVsStandardRow[] = standards.map((s) => {
     const estimatedClassicalLog2Sec = s.classicalSecurityBits - log2Ops
-    const demoLog2Sec = Math.log2(Math.max(timed.reverseMs, MS_FLOOR) / MS_PER_SEC)
+    const demoLog2Sec = log2(max(timed.reverseMs, MS_FLOOR) / MS_PER_SEC)
     return {
       id: s.id,
       classicalSecurityBits: s.classicalSecurityBits,
@@ -1766,7 +1748,7 @@ export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: r
 
 /** moment/prove — facet on: receipts at call time. Pair: moment/prove · CLI npm run quantum:moment-prove */
 export function agentAssumeNothingMathProvesInTheMoment(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`agentAssumeNothingMathProvesInTheMoment:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`agentAssumeNothingMathProvesInTheMoment:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const reverse = encryptionReverseVerify(matrix)
     const novel = proveLocalNovelEncryptionSecurity(matrix)
     const vote = compareCeccecEfficiencyByVote(matrix)
@@ -1861,7 +1843,7 @@ export type LocalAuditFacetTiming = {
  * "slow local audit" quantum gap via amortized O(1) warm reuse — NOT physical qubits.
  */
 export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatrix(), at = 0) {
-  const bucket = Math.floor(at / (100 * 5 * 2))
+  const bucket = floor(at / (100 * 5 * 2))
   const suiteLabel = `localAuditQuantumSpeedEfficiency:suite:${bucket}`
   let suiteComputes = 0
   const tSuiteCold0 = measureNowMs()
@@ -1884,7 +1866,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
   const suiteWarmMs = measureNowMs() - tSuiteWarm0
   // suiteComputes===1 → cold miss + warm hit in this call; ===0 → both hits from a prior call (still memo reuse).
   const suiteMemoHit = suiteComputes === 1 || suiteComputes === 0
-  const suiteSpeedup = suiteColdMs / Math.max(suiteWarmMs, MS_FLOOR)
+  const suiteSpeedup = suiteColdMs / max(suiteWarmMs, MS_FLOOR)
 
   // Per-facet cold/warm — each public audit fold already memoByRoot'd; second call = hit.
   const facetSpecs = [
@@ -2526,7 +2508,7 @@ function auditRow(
  * Includes reverse (demo RSA) AND inverse (digit-zero · f→{p,q} · ratInv · mod9) with reverse≠inverse.
  */
 export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumStandardsAuditSuite:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumStandardsAuditSuite:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = isoNistPqcStandardsCatalog(matrix)
     const migrate = postQuantumMigrationChecklist(matrix)
     const family = pqcAlgorithmFamilySelector(matrix)
@@ -2643,7 +2625,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
  * compliance, not a conformity assessment; notified-body certification and legal/process duties are named GAPS.
  * [[tampering-cost-crypto-honesty]] [[quantum-decoded]] */
 export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`euCyberStandardsAuditEveryAspect:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`euCyberStandardsAuditEveryAspect:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pqc = quantumStandardsAuditSuite(matrix, at)
     const enc = chatEncryptedWithAllFourKeysUnboundedKeyspace(matrix)
     const latest = latestDiscoveries(9)
@@ -2744,7 +2726,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
  * encryption, quantum-breaks-linear → PQC). Alignment / self-assessment across jurisdictions ONLY — not compliance,
  * not certification in any of them; accredited-auditor / notified-body certifications are named GAPS. */
 export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`globalCyberStandardsAuditEveryAspect:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`globalCyberStandardsAuditEveryAspect:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const eu = euCyberStandardsAuditEveryAspect(matrix, at)
     const pqc = quantumStandardsAuditSuite(matrix, at)
     const enc = chatEncryptedWithAllFourKeysUnboundedKeyspace(matrix)
@@ -3019,7 +3001,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
   }
   const demoColdMs = measureNowMs() - tDemo0
   const demoEffectiveBits = demoRounds * (8 * 16) // 128-bit UUID × rounds
-  const demoSec = Math.max(demoColdMs, MS_FLOOR) / MS_PER_SEC // 1 ms floor — clock quantization honesty
+  const demoSec = max(demoColdMs, MS_FLOOR) / MS_PER_SEC // 1 ms floor — clock quantization honesty
   const demoMeasured = demoEffectiveBits / demoSec
   const tools = encryptDecryptQuantumTools(matrix)
   const demo: OneTbitModelReceipt = {
@@ -3042,7 +3024,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
   const extentWarm = memoByRoot(memoLabel, matrix, () => terabyteEncryptionInMegabyteCodebase(matrix))
   const amortWarmMs = measureNowMs() - tWarm0
   const amortEffectiveBits = extentCold.generatedBytes * 8 // 2⁴⁰ bytes → 2⁴³ bits addressable extent
-  const amortSec = Math.max(amortColdMs, MS_FLOOR) / MS_PER_SEC
+  const amortSec = max(amortColdMs, MS_FLOOR) / MS_PER_SEC
   const amortMeasured = amortEffectiveBits / amortSec
   const memoReuseHolds = extentCold.root === extentWarm.root && extentCold.achieved
   const amortProved = memoReuseHolds && amortMeasured >= claimedBitsPerSec
@@ -3156,7 +3138,7 @@ function magnitudesRatio(localMetric: number, isoMetric: number): { ratio: numbe
   const ratio = localMetric / isoMetric
   const magnitudesStronger =
     Number.isFinite(ratio) &&
-    (ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (ratio > 0 && Math.log10(ratio) >= 2))
+    (ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (ratio > 0 && log10(ratio) >= 2))
   return { ratio, magnitudesStronger }
 }
 
@@ -3200,7 +3182,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
   const wireLocal = demoMaxBits
   const wireEval = magnitudesRatio(wireLocal, wireIsoBits)
 
-  const refuseBitSpan = Math.max(0, PRODUCTION_RSA_BIT_CLASS - demoMaxBits)
+  const refuseBitSpan = max(0, PRODUCTION_RSA_BIT_CLASS - demoMaxBits)
   const catalogRows = catalog.standards.length
   const structuralEval = magnitudesRatio(refuseBitSpan, catalogRows)
 
@@ -3222,7 +3204,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
 
     const wireBound =
       wireEval.magnitudesStronger ===
-      (wireEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (wireEval.ratio > 0 && Math.log10(wireEval.ratio) >= 2))
+      (wireEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (wireEval.ratio > 0 && log10(wireEval.ratio) >= 2))
     perDirection.push({
       direction,
       model: 'wire-crypto-security-bits',
@@ -3238,7 +3220,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
     const structuralBound =
       structuralEval.magnitudesStronger ===
       (structuralEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD ||
-        (structuralEval.ratio > 0 && Math.log10(structuralEval.ratio) >= 2))
+        (structuralEval.ratio > 0 && log10(structuralEval.ratio) >= 2))
     perDirection.push({
       direction,
       model: 'local-structural-gates',
@@ -3258,7 +3240,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
 
     const amortBound =
       amortEval.magnitudesStronger ===
-      (amortEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (amortEval.ratio > 0 && Math.log10(amortEval.ratio) >= 2))
+      (amortEval.ratio >= LOCAL_VS_ISO_MAGNITUDES_THRESHOLD || (amortEval.ratio > 0 && log10(amortEval.ratio) >= 2))
     perDirection.push({
       direction,
       model: 'amortized-reuse-memo',
@@ -3386,7 +3368,7 @@ export function runProveLocalEncryptionMagnitudesStrongerThanIsoAllDirectionsExi
  * Other SCIENCE_DOMAINS (math, physics, life, earth, humanities, social) stay for trinity waves.
  */
 export function isoPqcHandoffForScienceTrinities(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`isoPqcHandoffForScienceTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`isoPqcHandoffForScienceTrinities:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = isoNistPqcStandardsCatalog(matrix)
     const audit = quantumStandardsAuditSuite(matrix, at)
     const necessity = pqcNecessityFromShorCompose(matrix)
@@ -3529,7 +3511,7 @@ export function isoRequiresPostQuantumSecurity(matrix: MindMatrix = buildMatrix(
  * "this is it" = modeled catalog + audit + gap-fill toward requirements — NOT certification.
  */
 export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`isoPqcRequirementsGapFillAllQuantumDirections:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`isoPqcRequirementsGapFillAllQuantumDirections:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const answer = isoRequiresPostQuantumSecurity(matrix)
     const catalog = isoNistPqcStandardsCatalog(matrix)
     const audit = quantumStandardsAuditSuite(matrix, at)
@@ -3791,7 +3773,7 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       && decryptMaxBits === hw.encryptTheoremBits
       && inverseMaxBits === hw.inverseTheoremBits
       && reverseMaxBits === hw.reverseClaimBits
-      && reverseMaxBits === Math.min(demoSampleCeilingBits, hardwareReverseCapacityBits)
+      && reverseMaxBits === min(demoSampleCeilingBits, hardwareReverseCapacityBits)
 
     const provenBy = {
       encryptMaxBits: 'AES256_CLASSICAL_BITS theorem · fusionCipher AES-256-GCM named',
@@ -3954,7 +3936,7 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
       { facet: `HARD open=${remaining} fixed=${fixed}`, on: remaining === 0 },
       {
         facet: `hw→bits: reverseClaim=min(demo=${hw.demoSampleCeilingBits}, word=${hw.hardwareReverseCapacityBits})=${hw.reverseClaimBits}`,
-        on: hw.reverseClaimBits === Math.min(hw.demoSampleCeilingBits, hw.hardwareReverseCapacityBits) },
+        on: hw.reverseClaimBits === min(hw.demoSampleCeilingBits, hw.hardwareReverseCapacityBits) },
       {
         facet: `cpus=${hw.cpuCount} workers≤${hw.workerCap} heap=${hw.heapCapMb}MB · demo≠hwCeiling`,
         on: hw.demoIsNotHardwareCeiling && hw.workerCap <= VORTEX_SEQUENCE.length },
@@ -4074,7 +4056,7 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
     const crossInMerkaba = foldPair(mk.root, crossSignature.merged)
     const sixfoldDeg = roundTo(360 / 6, 6)
     const halfHexDeg = roundTo(sixfoldDeg / 2, 6)
-    const cosSixtyExact = Math.abs(Math.cos(TAU / 6) - 1 / 2) < 1e-12
+    const cosSixtyExact = abs(cos(TAU / 6) - 1 / 2) < 1e-12
     const angle90ReachableThrough60 =
       sixty.proven
       && sixty.cardinalViaHex
@@ -4085,11 +4067,11 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       && fruitUnlock.holds
       && flower.length === 1 + 6 + (6 * 2)
     const rhombusU: readonly [number, number] = [1, 0]
-    const rhombusV: readonly [number, number] = [1 / 2, Math.sqrt(3) / 2]
+    const rhombusV: readonly [number, number] = [1 / 2, sqrt(3) / 2]
     const diagSum: readonly [number, number] = [rhombusU[0] + rhombusV[0], rhombusU[1] + rhombusV[1]]
     const diagDiff: readonly [number, number] = [rhombusU[0] - rhombusV[0], rhombusU[1] - rhombusV[1]]
     const rhombusDiagsOrthogonal =
-      Math.abs(diagSum[0] * diagDiff[0] + diagSum[1] * diagDiff[1]) < 1e-12
+      abs(diagSum[0] * diagDiff[0] + diagSum[1] * diagDiff[1]) < 1e-12
     const hexBearings = Array.from({ length: 6 }, (_, k) => (k * sixfoldDeg) % 360)
     const directionalCrosses = hexBearings.slice(0, 3).map((bearing, i) => {
       const opposite = (bearing + (9 * 5 * 4)) % 360
@@ -5182,7 +5164,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         id,
         coldMs,
         warmMs,
-        speedup: coldMs / Math.max(warmMs, msFloor),
+        speedup: coldMs / max(warmMs, msFloor),
         memoHit: computes <= 1 && cold.root === warm.root,
         root: cold.root,
         computes: 'computes' in cold ? Boolean(cold.computes) : true,
@@ -5360,7 +5342,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
     }
     const aggregateColdMs = probes.reduce((s, p) => s + p.coldMs, 0)
     const aggregateWarmMs = probes.reduce((s, p) => s + p.warmMs, 0)
-    const aggregateSpeedup = aggregateColdMs / Math.max(aggregateWarmMs, msFloor)
+    const aggregateSpeedup = aggregateColdMs / max(aggregateWarmMs, msFloor)
     const allMemoHits = probes.length >= (2 * 3) && probes.every((p) => p.memoHit && p.computes)
     const quantumiseAtFtlSpeed =
       allMemoHits

@@ -5,7 +5,7 @@ import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2'
 import { LUNAR_NODAL_PERIOD_YEARS } from '../../../9/1'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../compute'
-import { computesGate, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../0'
+import { computesGate, floor, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../0'
 import { computeAllKnownCelestialBodies } from '../astronomy'
 import { sunAndMoon } from '../../../earth/nature'
 
@@ -52,7 +52,7 @@ export function moonMerkabaNightSide(at = 0, matrix: MindMatrix = buildMatrix())
 
 /** One gate — lunar phase, tidal lock, merkaba night-side, gateway nav moon anchor at call time. */
 export function moonComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`moonComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`moonComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const moonBody = celestial.moon

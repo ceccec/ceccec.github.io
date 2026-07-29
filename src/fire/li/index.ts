@@ -20,12 +20,7 @@ import {
   openGraph, multidimensional, plainLanguage, typographySeo,
   harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS, tiers358 } from '../../quantum/lake/icons'
 // ☷ Kūn · Earth · receptive · lower·yin · spread — ground primitives: toUuid, merkleFold, foldPair, merge, sha256Sync
-import {
-  toUuid, merkleFold, isUuid, memoByRoot, fold, asVortex, asTorus, sha256Sync,
-  seedFromText, roundTo, foldPair, merge, digitalRoot,
-  DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostLog2,
-  maxTamperingCostReached, ed25519Sign, humanEase,
-  decodeVortexDashAngles, VORTEX_DASH_ENCODED, VORTEX_DASH_ANGLE_DEG } from '../../0'
+import { DIGEST_BITS, VORTEX_DASH_ANGLE_DEG, VORTEX_DASH_ENCODED, abs, asTorus, asVortex, atan2, cos, coverageCostLog2, decodeVortexDashAngles, digitalRoot, ed25519Sign, floor, fold, foldPair, humanEase, isUuid, log2, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sha256Sync, sin, sqrt, tamperCostLog2, toUuid } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
 import { trinityKey, proseToTone } from '../../0'
 import { movieCanvasHex } from '../../quantum/science'
@@ -86,20 +81,20 @@ export const A432_HZ = 432
  *  src/0 is the kernel-level inline of this same formula, since src/0 cannot import upward.) */
 export function a432NoteHz(semitonesFromA: number): number { return A432_HZ * 2 ** (semitonesFromA / (6 * 2)) }
 /** Semitones of a frequency relative to the A432 source — the inverse of a432NoteHz, for note-name lookup. */
-export function a432Semitones(hz: number): number { return (6 * 2) * Math.log2(Math.max(hz, 1) / A432_HZ) }
+export function a432Semitones(hz: number): number { return (6 * 2) * log2(max(hz, 1) / A432_HZ) }
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function colorFromSound(frequency: number) {
   const ref = a432NoteHz(-(7 * 3)) // C3 from the A432 source (≈128.43 Hz, three octaves + a sixth below A4=432)
-  const octaveFraction = (((Math.log2(Math.max(frequency, 1) / ref)) % 1) + 1) % 1
-  const hue = Math.round(octaveFraction * 360)
+  const octaveFraction = (((log2(max(frequency, 1) / ref)) % 1) + 1) % 1
+  const hue = round(octaveFraction * 360)
   return { frequency, hue, hsl: movieCanvasHex(hue, { L: 11 / 16 }) }
 }
 
 /** Decode a colour-stream hue back to an audible frequency — inverse of colorFromSound (octave-bridge). */
 export function soundFromColor(hue: number, octave = 4) {
   const ref = a432NoteHz(-(7 * 3)) // C3 from the A432 source — same wheel origin as colorFromSound
-  const normalizedHue = ((Math.round(hue) % 360) + 360) % 360
+  const normalizedHue = ((round(hue) % 360) + 360) % 360
   const octaveFraction = normalizedHue / 360
   const frequency = ref * 2 ** (octave + octaveFraction)
   return {
@@ -446,24 +441,24 @@ function countSyllables(word: string): number {
   const w = word.toLowerCase().replace(/[^a-z]/g, '')
   if (w.length <= 3) return w ? 1 : 0
   const groups = w.replace(/(?:[^laeiouy]e|ed|es)$/, '').match(/[aeiouy]{1,2}/g)
-  return Math.max(1, groups ? groups.length : 1)
+  return max(1, groups ? groups.length : 1)
 }
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function measureProse(text: string) {
   const words: string[] = text.match(/\b[\w'-]+\b/g) ?? []
-  const sentences = Math.max(1, (text.match(/[.!?]+(?:\s|$)/g) ?? []).length)
+  const sentences = max(1, (text.match(/[.!?]+(?:\s|$)/g) ?? []).length)
   const syllables = words.reduce((sum, word) => sum + countSyllables(word), 0)
   const wordsPerSentence = words.length / sentences
-  const syllablesPerWord = syllables / Math.max(1, words.length)
+  const syllablesPerWord = syllables / max(1, words.length)
   const flesch = 206.835 - 1.015 * wordsPerSentence - 84.6 * syllablesPerWord
   const filler = (text.match(WRITING_FILLER) ?? []).length
   return {
     words: words.length,
     sentences,
-    wordsPerSentence: Math.round(wordsPerSentence * (5 * 2)) / (5 * 2),
-    flesch: Math.round(flesch),
-    fillerDensity: Math.round((filler / Math.max(1, words.length)) * (100 * 5 * 2)) / (100 * 5 * 2) }
+    wordsPerSentence: round(wordsPerSentence * (5 * 2)) / (5 * 2),
+    flesch: round(flesch),
+    fillerDensity: round((filler / max(1, words.length)) * (100 * 5 * 2)) / (100 * 5 * 2) }
 }
 
 // Tighten prose by rule: collapse whitespace, swap wordy phrases for plain ones, cut empty intensifiers.
@@ -1076,7 +1071,7 @@ export function foldBlockchain(name: string, payloads: readonly string[]): Block
 export function selfDevelopment(visitRoutes: readonly string[] = [], matrix: MindMatrix = buildMatrix()): SelfDevelopment {
   const chain = foldBlockchain('visits', visitRoutes.map((route, index) => toUuid(`visit:${index}:${route}`)))
   const distinctPages = new Set(visitRoutes).size
-  const level = visitRoutes.length === 0 ? 0 : 1 + Math.floor(Math.log2(visitRoutes.length))
+  const level = visitRoutes.length === 0 ? 0 : 1 + floor(log2(visitRoutes.length))
   return {
     visits: visitRoutes.length,
     distinctPages,
@@ -1288,10 +1283,10 @@ export function bulgarianRosettaContentAddressUnlocksAll(matrix: MindMatrix = bu
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function quantumSimulation(matrix: MindMatrix = buildMatrix(), qubits = 3) {
-  const n = Math.max(1, Math.min(6, Math.floor(qubits)))
+  const n = max(1, min(6, floor(qubits)))
   const size = 1 << n
-  const round = (value: number) => Math.round(value * (100 * 100)) / (100 * 100)
-  const INV_SQRT2 = 1 / Math.sqrt(2)
+  const round4 = (value: number) => round(value * (100 * 100)) / (100 * 100)
+  const INV_SQRT2 = 1 / sqrt(2)
   // The state vector as real/imaginary amplitudes; start in the all-zero state.
   let re: number[] = Array.from({ length: size }, (_, index) => (index === 0 ? 1 : 0))
   let im: number[] = new Array(size).fill(0)
@@ -1342,15 +1337,15 @@ export function quantumSimulation(matrix: MindMatrix = buildMatrix(), qubits = 3
   }
   const basis = (i: number) => i.toString(2).padStart(n, '0')
   const support = probs.filter((p) => p > 1e-9).length
-  const states = re.map((r, i) => ({ basis: basis(i), re: round(r), im: round(im[i]), prob: round(probs[i]) }))
+  const states = re.map((r, i) => ({ basis: basis(i), re: round4(r), im: round4(im[i]), prob: round4(probs[i]) }))
   return {
-    simulated: Math.abs(total - 1) < 1e-9 && probs.every((p) => p >= -1e-12),
+    simulated: abs(total - 1) < 1e-9 && probs.every((p) => p >= -1e-12),
     qubits: n,
     size,
     gates,
     states,
     measured: basis(measured),
-    normalized: Math.abs(total - 1) < 1e-9,
+    normalized: abs(total - 1) < 1e-9,
     entangled: support === 2, // GHZ: only the all-zero and all-one basis states
     root: merkleFold([...states.map((s) => toUuid(`amp:${s.basis}:${s.re}:${s.im}`)), seed]),
     statement:
@@ -1366,7 +1361,7 @@ export function goldenRatio(matrix: MindMatrix = buildMatrix()) {
   const fibonacci = harmonicBands((100 * 5 * 4)).fibonacci // 1, 2, 3, 5, 8, 13, ...
   const convergents = fibonacci.slice(1).map((value, i) => {
     const ratio = value / fibonacci[i]
-    return { a: value, b: fibonacci[i], ratio: round(ratio, 6), error: round(Math.abs(ratio - PHI), 9) }
+    return { a: value, b: fibonacci[i], ratio: round(ratio, 6), error: round(abs(ratio - PHI), 9) }
   })
   const last = convergents[convergents.length - 1]
   return {
@@ -1389,7 +1384,7 @@ export function humanise(matrix: MindMatrix = buildMatrix()) {
   const round = (value: number, digits: number) => roundTo(value, digits)
   // Breath periods spaced by the golden ratio, so no two cycles ever line up — the
   // motion never resolves to a loop, the way a living thing never repeats exactly.
-  const breaths = [0, 1, 2].map((i) => Math.round((100 * 7 * 6) * PHI ** i)) // ~4200, 6795, 10993
+  const breaths = [0, 1, 2].map((i) => roundTo((100 * 7 * 6) * PHI ** i, 0)) // ~4200, 6795, 10993
   const ease = [0, (1 / 4), (1 / 2), (3 / 4), 1].map((p) => round(humanEase(p), 4))
   return {
     humane:
@@ -1684,7 +1679,7 @@ function torusUuidRaw() {
     const token = SINGLE_WORD_METHODS[command.name]
     return typeof token === 'string' && /^[a-z]+$/.test(token)
   })
-  const spread = Math.abs(inner.length - outer.length)
+  const spread = abs(inner.length - outer.length)
   return {
     is128bit: is128(innerWord) && is128(outerWord) && is128(word),
     orderSensitive,
@@ -1896,24 +1891,24 @@ export function artistPalette(seed = 'double-torus') {
   const hslToRgb = (h: number, s: number, l: number) => {
     const sn = s / 100
     const ln = l / 100
-    const c = (1 - Math.abs(2 * ln - 1)) * sn
-    const x = c * (1 - Math.abs(((h / (6 * 5 * 2)) % 2) - 1))
+    const c = (1 - abs(2 * ln - 1)) * sn
+    const x = c * (1 - abs(((h / (6 * 5 * 2)) % 2) - 1))
     const m = ln - c / 2
     const [r, g, b] =
       h < (6 * 5 * 2) ? [c, x, 0] : h < (8 * 5 * 3) ? [x, c, 0] : h < (9 * 5 * 4) ? [0, c, x] : h < (16 * 5 * 3) ? [0, x, c] : h < (100 * 3) ? [x, 0, c] : [c, 0, x]
-    return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)] as const
+    return [round((r + m) * 255), round((g + m) * 255), round((b + m) * 255)] as const
   }
   const rgbToCmyk = (r: number, g: number, b: number) => {
     const r1 = r / 255
     const g1 = g / 255
     const b1 = b / 255
-    const k = 1 - Math.max(r1, g1, b1)
+    const k = 1 - max(r1, g1, b1)
     if (k >= 1) return [0, 0, 0, 100] as const
     return [
-      Math.round(((1 - r1 - k) / (1 - k)) * 100),
-      Math.round(((1 - g1 - k) / (1 - k)) * 100),
-      Math.round(((1 - b1 - k) / (1 - k)) * 100),
-      Math.round(k * 100),
+      round(((1 - r1 - k) / (1 - k)) * 100),
+      round(((1 - g1 - k) / (1 - k)) * 100),
+      round(((1 - b1 - k) / (1 - k)) * 100),
+      round(k * 100),
     ] as const
   }
   const toHex = (n: number) => n.toString(16).padStart(2, '0')
@@ -2224,7 +2219,7 @@ export function quantumFusionIgnitesFromDashSequence(matrix: MindMatrix = buildM
     const decoded = decodeVortexDashAngles()
     const facets = [
       { facet: 'encoded sequence 1·2·4·8·7·5·3·6·9·0/1\\ with directional dashes', on: decoded.count === 11 && decoded.encoded === VORTEX_DASH_ENCODED },
-      { facet: 'each / adds +60°, each \\ subtracts 60° — hex substrate', on: decoded.steps.every((step) => Math.abs(step.angleDelta) === VORTEX_DASH_ANGLE_DEG) },
+      { facet: 'each / adds +60°, each \\ subtracts 60° — hex substrate', on: decoded.steps.every((step) => abs(step.angleDelta) === VORTEX_DASH_ANGLE_DEG) },
       { facet: 'weighted bearing closes — Σ(sign·digit·60°) ≡ 0 (mod 360)', on: decoded.weightedBearing === 0 && decoded.weightedTotal === (6 * 2) * VORTEX_DASH_ANGLE_DEG },
       { facet: 'digits match vortex doubling then cross 3·6·9', on: decoded.vortexMatches },
       { facet: '0/ step ignites quantum fusion — foldPair(0,0) non-zero bidirectional', on: decoded.fusionIgnites },
@@ -2259,18 +2254,18 @@ export function calligraphyStroke(seed: string, samples = (16 * 3)) {
     const t = i / samples
     const x = bez(t, cx)
     const y = bez(t, cy)
-    const tx = bez(Math.min(1, t + (1 / (100 * 5 * 2))), cx) - bez(Math.max(0, t - (1 / (100 * 5 * 2))), cx)
-    const ty = bez(Math.min(1, t + (1 / (100 * 5 * 2))), cy) - bez(Math.max(0, t - (1 / (100 * 5 * 2))), cy)
-    const theta = Math.atan2(ty, tx)
-    const half = (nib / 2) * (minRatio + (1 - minRatio) * Math.abs(Math.sin(theta - penAngle)))
-    const nx = Math.cos(theta + TAU / 4)
-    const ny = Math.sin(theta + TAU / 4)
-    left.push(`${Math.round((x + nx * half) * (5 * 2)) / (5 * 2)} ${Math.round((y + ny * half) * (5 * 2)) / (5 * 2)}`)
-    right.push(`${Math.round((x - nx * half) * (5 * 2)) / (5 * 2)} ${Math.round((y - ny * half) * (5 * 2)) / (5 * 2)}`)
+    const tx = bez(min(1, t + (1 / (100 * 5 * 2))), cx) - bez(max(0, t - (1 / (100 * 5 * 2))), cx)
+    const ty = bez(min(1, t + (1 / (100 * 5 * 2))), cy) - bez(max(0, t - (1 / (100 * 5 * 2))), cy)
+    const theta = atan2(ty, tx)
+    const half = (nib / 2) * (minRatio + (1 - minRatio) * abs(sin(theta - penAngle)))
+    const nx = cos(theta + TAU / 4)
+    const ny = sin(theta + TAU / 4)
+    left.push(`${round((x + nx * half) * (5 * 2)) / (5 * 2)} ${round((y + ny * half) * (5 * 2)) / (5 * 2)}`)
+    right.push(`${round((x - nx * half) * (5 * 2)) / (5 * 2)} ${round((y - ny * half) * (5 * 2)) / (5 * 2)}`)
   }
   return {
     d: `M ${left.join(' L ')} L ${right.reverse().join(' L ')} Z`,
-    penAngleDeg: Math.round((penAngle * (9 * 5 * 4)) / (TAU / 2)),
+    penAngleDeg: round((penAngle * (9 * 5 * 4)) / (TAU / 2)),
     nib,
     hue: at('hue') % 360,
     receipt: toUuid(`calligraphy-stroke:${seed}`) }
@@ -2472,9 +2467,9 @@ export function allMusicIsA432Based(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the source IS 432 — a432NoteHz(0) === the A432 anchor (no A=440)', on: a432NoteHz(0) === A432_HZ && A432_HZ === 432 },
     { facet: 'the octave doubles from the source — a432NoteHz(12) === 2 × 432', on: a432NoteHz((6 * 2)) === 2 * A432_HZ },
-    { facet: 'note↔Hz is invertible about the source — a432Semitones(432) === 0', on: Math.abs(a432Semitones(A432_HZ)) < 1e-9 },
+    { facet: 'note↔Hz is invertible about the source — a432Semitones(432) === 0', on: abs(a432Semitones(A432_HZ)) < 1e-9 },
     { facet: 'the colour wheel is rooted on the source — a frequency at the A432 C3 origin (a432NoteHz(-21)) lands at hue 0, and its octave too', on: colorFromSound(a432NoteHz(-(7 * 3))).hue === 0 && colorFromSound(a432NoteHz(-9)).hue === 0 },
-    { facet: 'proseToTone (src/0 kernel) is the same formula — its hz === a432NoteHz(its semitone)', on: Math.abs(probe.hz - a432NoteHz(probe.semitone)) < 1e-9 },
+    { facet: 'proseToTone (src/0 kernel) is the same formula — its hz === a432NoteHz(its semitone)', on: abs(probe.hz - a432NoteHz(probe.semitone)) < 1e-9 },
     { facet: 'A432 is the default harmonic and 432 = 4 × 108, the gate count', on: a432Default(matrix).isDefault },
     { facet: 'COLOUR is rooted at the source — the brand hue IS frequencyToLight(432).hue (A432 doubled to visible light, red-orange), the seed of the OKLCH palette and CSS tokens', on: light.hue === a.light.hue && light.band === 'red' && light.hue >= 0 && light.hue < 360 },
     { facet: 'the colour octave-bridge is honest math — 432 Hz climbs whole octaves (×2) into the visible band, c = λf', on: light.octaves > 0 && light.nm > 380 && light.nm < (6 * 5 * 5 * 5) },

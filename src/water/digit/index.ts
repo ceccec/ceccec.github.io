@@ -2,14 +2,14 @@
 // @mvc model — pure domain math: rosetta decoder, digital root, zero-division — no UI, no routing.
 import { CANONICAL_SCIENCE_MASK, EIGHT_CURRICULUM_SCIENCES, FORBIDDEN_FOLDER_NAMES, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, displayPathFromScienceModelAction, folderTailFromMethodName, indexRegistryFromLogicRel, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMethodName, scienceModelActionFromMindTail, scienceModelActionFromWords, scienceModelActionMaskRowsFromMindTails, scienceModelActionTail, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import { GENETIC_CODE, codeRobustness, mutationClass } from '../../earth/life'
-import { BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, resonanceBandwidth, riseAzimuthDeg, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, type RosettaComputationType, type RosettaRay } from '../../3/7'
+import { BOLTZMANN, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, ELECTRONVOLT, HIGGS_VEV_GEV, IONIZING_EV, JARLSKOG_INVARIANT, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, SQRT2, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, otuPerMin, photonEnergyEv, radarRange, resonanceBandwidth, riseAzimuthDeg, schwarzschildRadius, seesawLightMassEv, soundWavelength, type RosettaComputationType, type RosettaRay } from '../../3/7'
 import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit, CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
 import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry'
-import { foldPair, humanBreath, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid, humanEase, addressEntropyBits, digitalRoot, modUnits, gcd, VORTEX_SEQUENCE } from '../../0'
+import { VORTEX_SEQUENCE, abs, addressEntropyBits, digitalRoot, floor, foldPair, gcd, humanBreath, humanEase, isUuid, log, max, memoByRoot, merge, merkleFold, min, modUnits, round, sealFacets, toUuid } from '../../0'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb } from '../../4/6'
@@ -202,7 +202,7 @@ export function dotIsCubeIsDot(matrix: MindMatrix = buildMatrix(), depth = 3) {
   const levels = Array.from({ length: depth }, (_, d) => {
     dot = toUuid(`dot:${d}:${merge(dot, cube.trinityRoot)}`) // expand to the cube, pick a cell — itself a dot
     const bitsExtent = CUBE_BITS * (d + 1) // grows 18 bits per level, unbounded as depth grows
-    return { depth: d + 1, bitsExtent, distinctBitsCap: Math.min(bitsExtent, 128), dot }
+    return { depth: d + 1, bitsExtent, distinctBitsCap: min(bitsExtent, 128), dot }
   })
   // CMYK hologram: the dot fuses to a four-channel colour, each channel a byte of its content address.
   const hex = seed.replace(/-/g, '')
@@ -251,8 +251,8 @@ export function digitDualityPairsEncodeAllDomains(matrix: MindMatrix = buildMatr
     if (!entry.invertible) { nonUnits.push(entry.digit); continue } // 3,6,9,0 — fold within themselves
     if (entry.selfInverse) { selfInverseUnits.push(entry.digit); continue } // 1,8 — involutive
     const inv = entry.inverse as number
-    const lo = Math.min(entry.digit, inv)
-    const hi = Math.max(entry.digit, inv)
+    const lo = min(entry.digit, inv)
+    const hi = max(entry.digit, inv)
     const key = `${lo}/${hi}`
     if (!seen.has(key)) { seen.add(key); pairs.push({ pair: key, a: lo, b: hi, product: (entry.digit * inv) % 9 }) }
   }
@@ -334,7 +334,7 @@ export function sixSevenCoversAll(matrix: MindMatrix = buildMatrix()) {
 export function fortyTwoVerdict(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const tiling = 1 / 2 + 1 / 3 + 1 / 7 + 1 / 42 // = (21+14+6+1)/42 = 1 — the parts of 42 tile unity
-  const tilesUnity = Math.abs(tiling - 1) < 1e-12
+  const tilesUnity = abs(tiling - 1) < 1e-12
   const areas = areaPairs() // the bounded domain 42 closes: 21 dual-pairs × 2 = 42
   const angles = [
     { tradition: 'Egyptian (Maat’s 42 assessors, the 42 nomes)', coversAll: 'partly', note: 'territorial "whole land" (42 nomes = 22 Upper + 20 Lower); but completeness is 4 & 7, and 6 had no symbolic role — not via 6×7' },
@@ -905,11 +905,11 @@ export function piTrainPhysicalCutWaveThreeTierB(matrix: MindMatrix = buildMatri
     { facet: 'wave 3 tier-A still cut', on: tierA.cut },
     { facet: 'tier-B symbols routed to station 1/9', on: tierBInCatalog },
     { facet: 'composeHazard clamps multiplicative levers', on: composeHazard(0.5, [0.8, 1.2]) > 0 && composeHazard(0.5, [0.8, 1.2]) < 1 },
-    { facet: 'rotatingField spins at line frequency', on: Math.abs(rotatingField(0, 60).omega - 120 * (TAU / 2)) < 1e-9 },
+    { facet: 'rotatingField spins at line frequency', on: abs(rotatingField(0, 60).omega - 120 * (TAU / 2)) < 1e-9 },
     { facet: 'zeroPointEnergy is positive for nonzero ω', on: zeroPointEnergy(1e15) > 0 },
     { facet: 'casimirPressure is attractive (negative)', on: casimirPressure(1e-6) < 0 },
     { facet: 'wavelengthOf · larmorFrequency compose EM band', on: wavelengthOf(1e9) > 0 && larmorFrequency(1.5) > 60e6 },
-    { facet: 'rebreatherInertBar = ambient − setpoint', on: Math.abs(rebreatherInertBar(4, 1.3) - 2.7) < 1e-9 },
+    { facet: 'rebreatherInertBar = ambient − setpoint', on: abs(rebreatherInertBar(4, 1.3) - 2.7) < 1e-9 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pi-train-wave3-tierB:${entry.facet}:${entry.on}`) }))
   return {
     cut: facets.every((entry) => entry.on),
@@ -1047,10 +1047,10 @@ export function piTrainExportImportFusion(matrix: MindMatrix = buildMatrix()) {
     // float honesty: humanEase(0.5) = (1 − cos(π/2))/2 carries cos(π/2) = 6.1e-17, so tolerance not ===;
     // quantumZeno(100) = cos(π/200)²⁰⁰ ≈ 0.9756 (the > 0.99 threshold was wrong for n = 100) — the Zeno
     // approach to 1 is witnessed by z(1000) ≈ 0.9975 > z(100), monotone toward the frozen limit
-    { facet: 'wave-10 exports homed at src/6/4 recompute at call', on: HUBBLE_CONSTANT_LOCAL > 70 && PROTON_GYROMAGNETIC > 4e7 && ZHL16_HE_HALFTIMES.length === 16 && cantorDiagonal([[1, 0], [0, 1]]).join(',') === '0,0' && resonantAmplitude(100, 100, 10) > 9 && Math.abs(humanEase(1 / 2) - 1 / 2) < 1e-9 && frequencyOf(0.5) > 5e8 && quantumZeno(100) > (5 * 8 - 1) / (5 * 8) && quantumZeno((2 * 5) ** 3) > quantumZeno(100) && casimirEnergyPerArea(1e-6) < 0 && congruence([1, 2, 3], [1, 2, 3]) === 1 },
+    { facet: 'wave-10 exports homed at src/6/4 recompute at call', on: HUBBLE_CONSTANT_LOCAL > 70 && PROTON_GYROMAGNETIC > 4e7 && ZHL16_HE_HALFTIMES.length === 16 && cantorDiagonal([[1, 0], [0, 1]]).join(',') === '0,0' && resonantAmplitude(100, 100, 10) > 9 && abs(humanEase(1 / 2) - 1 / 2) < 1e-9 && frequencyOf(0.5) > 5e8 && quantumZeno(100) > (5 * 8 - 1) / (5 * 8) && quantumZeno((2 * 5) ** 3) > quantumZeno(100) && casimirEnergyPerArea(1e-6) < 0 && congruence([1, 2, 3], [1, 2, 3]) === 1 },
     { facet: 'wave-11 exports homed at src/9/1 recompute at call', on: CRITICAL_MAGNETIC_FIELD_T > 4e9 && LUNAR_NODAL_PERIOD_YEARS > 18 && MOND_ACCELERATION_A0 > 1e-11 && OMEGA_BARYON > 0.04 && digitalRoot(18) === 9 && syncSpeedRpm(60, 4) === 1800 && methodNameFromFolderTail('a/b') === 'concept.a.b' && leafFromPathTail('x/y') === 'y' && bumpProfile(0, 0.5, 4).length === 4 && qcdMassFractionOfProton() > 0.98 && isIonizing(3e18) && ratIsInteger({ p: 5, q: 1 }) && ratStr({ p: 1, q: 2 }) === '1/2' && superdense(0).ok },
     // float honesty: phase(π/2)[6] = cos(π/2) = 6.1e-17, a tolerance check, never === on a transcendental
-    { facet: 'wave-12 exports homed at stations recompute at call', on: slip(100, 90) === 0.1 && Math.abs(phase((TAU / 2) / 2)[6]) < 1e-9 && inductionStep(40, { wSync: 100, k: 10, load: 0 }) > 40 && inductionEvolve(40, { wSync: 100, k: 10, load: 0 }, 3).length === 4 },
+    { facet: 'wave-12 exports homed at stations recompute at call', on: slip(100, 90) === 0.1 && abs(phase((TAU / 2) / 2)[6]) < 1e-9 && inductionStep(40, { wSync: 100, k: 10, load: 0 }) > 40 && inductionEvolve(40, { wSync: 100, k: 10, load: 0 }, 3).length === 4 },
     { facet: 'station 1/9 catalog matches fused export count', on: wave3.every((name) => station19.exports.includes(name)) },
     { facet: 'station 2/8 catalog matches fused export count', on: wave4.every((name) => station28.exports.includes(name)) },
     { facet: 'station 4/6 catalog includes wave-5 tier-A cuts', on: wave5.every((name) => station46.exports.includes(name)) },
@@ -1323,7 +1323,7 @@ export function piTrainPhysicalCutWaveTwelve(matrix: MindMatrix = buildMatrix())
     { facet: 'phase gate cos² fringe at θ=0', on: phase(0)[0] === 1 && phase(0)[6] === 1 },
     { facet: 'inductionStep advances rotor', on: inductionStep(50, { wSync: 100, k: 10, load: 0 }) > 50 },
     { facet: 'inductionEvolve returns steps+1 samples', on: inductionEvolve(50, { wSync: 100, k: 10, load: 0 }, 5).length === 6 },
-    { facet: 'chsh optimal angles reach Tsirelson 2√2', on: Math.abs(chsh(0, (TAU / 2) / 2, (TAU / 2) / 4, 3 * (TAU / 2) / 4) - 2 * Math.SQRT2) < 1e-9 },
+    { facet: 'chsh optimal angles reach Tsirelson 2√2', on: abs(chsh(0, (TAU / 2) / 2, (TAU / 2) / 4, 3 * (TAU / 2) / 4) - 2 * SQRT2) < 1e-9 },
     { facet: 'passthrough cluster remains in vault catalog (not 9/1 barrel)', on: blockedStillInVaultCatalog },
     { facet: 'remaining catalog exports homed at src/0 void', on: vaultRemainder > 0 },
     { facet: 'wave-12 catalog routing complete', on: tierAInCatalog },
@@ -1452,7 +1452,7 @@ export function piTrainPhysicalCutWaveFive(matrix: MindMatrix = buildMatrix()) {
     { facet: 'baryon-to-photon ratio in measured band', on: BARYON_TO_PHOTON_RATIO > 5e-10 && BARYON_TO_PHOTON_RATIO < 7e-10 },
     { facet: 'hawking temperature positive for stellar mass', on: hawkingTemperature(1.989e30) > 0 },
     { facet: 'helmholtz free energy decreases with entropy', on: helmholtzFreeEnergy(10, 300, 0) > helmholtzFreeEnergy(10, 300, 0.01) },
-    { facet: 'sound pressure level at reference is 0 dB', on: Math.abs(soundPressureLevelDb(20e-6)) < 1e-9 },
+    { facet: 'sound pressure level at reference is 0 dB', on: abs(soundPressureLevelDb(20e-6)) < 1e-9 },
     { facet: 'cycleAdvance wraps coupled ring phases', on: cycleAdvance([{ name: 'a', period: 10, phase: 9 }], 2)[0].phase === 1 },
     { facet: 'tampering cost principle is non-empty prose', on: MAX_TAMPERING_COST_PRINCIPLE.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pi-train-wave5:${entry.facet}:${entry.on}`) }))
@@ -1842,8 +1842,8 @@ export function sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix: MindMa
       crossPairs: { rosetta: rosettaCrossPairs, iching: ichingCrossPairs },
       glagoliticBridge: { letters: GLAGOLITIC_LETTER_COUNT, perRay: lettersPerRay, perfectNumber: isPerfectNumber } },
     distribution: {
-      rosetta: { dist: rosettaDist, chi2: Math.round(rosettaUniformity * 100) / 100, crossPairsReached: crossRosetta.size },
-      iching: { dist: ichingDist, chi2: Math.round(ichingUniformity * 100) / 100, crossPairsReached: crossIching.size } },
+      rosetta: { dist: rosettaDist, chi2: round(rosettaUniformity * 100) / 100, crossPairsReached: crossRosetta.size },
+      iching: { dist: ichingDist, chi2: round(ichingUniformity * 100) / 100, crossPairsReached: crossIching.size } },
     rays,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
@@ -2458,7 +2458,7 @@ export function theRosettaAddressesAnyPosition() {
   // (modular-exponent rays vs IEEE binary expansion) must agree digit-for-digit — refutable at any index.
   const DECADE = 2 * 5 // 10 — the decad, derived (the pi-train station count)
   const hexWitness: number[] = []
-  { let f = (TAU / 2) - 3; for (let i = 0; i < DECADE; i += 1) { f *= 16; const d = Math.floor(f); hexWitness.push(d); f -= d } }
+  { let f = (TAU / 2) - 3; for (let i = 0; i < DECADE; i += 1) { f *= 16; const d = floor(f); hexWitness.push(d); f -= d } }
   const bbpDigits = hexWitness.map((_, n) => piHexDigitAt(n))
   const bbpAgrees = hexWitness.every((d, n) => bbpDigits[n] === d)
 
@@ -2473,7 +2473,7 @@ export function theRosettaAddressesAnyPosition() {
   const inverts = ns.every((n, i) => primeCountUpTo(ps[i]) === n)
   const enumerationIntrinsic = ns.every((n, i) => primeCountUpTo(ps[i] - 1) === n - 1) // pₙ needs every prior prime counted
   const increasing = ps.every((p, i) => i === 0 || p > ps[i - 1])
-  const rosser = ns.filter((n) => n >= 6).every((n) => nthPrimeAt(n) < n * (Math.log(n) + Math.log(Math.log(n))))
+  const rosser = ns.filter((n) => n >= 6).every((n) => nthPrimeAt(n) < n * (log(n) + log(log(n))))
 
   // 3 — the hue coordinate is FAITHFUL: hue(d) = d·360/9 is injective on the nine digits and invertible
   // (d = hue·9/360), and the vortex doubling cycle ⟨2⟩ mod 9 — derived, not typed — visits six distinct hues.
@@ -2487,7 +2487,7 @@ export function theRosettaAddressesAnyPosition() {
   // 4 — the primes thin: π(x)·ln x/x falls monotonically toward 1 across decades — the PNT density read
   // through the same addresser that inverts the primes; the asymptote itself is the cited theorem.
   const xs = [DECADE ** 3, DECADE ** 4, DECADE ** 5]
-  const density = xs.map((x) => (primeCountUpTo(x) * Math.log(x)) / x)
+  const density = xs.map((x) => (primeCountUpTo(x) * log(x)) / x)
   const thins = density.every((d, i) => d > 1 && (i === 0 || d < density[i - 1]))
 
   const facets = [

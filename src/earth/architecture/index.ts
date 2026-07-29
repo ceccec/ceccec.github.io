@@ -9,7 +9,7 @@ import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrai
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
 import { vortexMath } from '../../mountain/vortex'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, seedFromText, toUuid, VORTEX_SEQUENCE, ICHING_NUMBERS, digitalRoot, prng, STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../0'
+import { ICHING_NUMBERS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, ceil, digitalRoot, floor, foldPair, isUuid, log, max, memoByRoot, merge, merkleFold, prng, seedFromText, toUuid, type StatusBadgeKind } from '../../0'
 import { addressed, covers } from '../../5/5'
 import { methodNameFromFolderTail } from '../../9/1'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
@@ -44,8 +44,8 @@ export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
 // the surface performs on its own files, with chi drawn from the explicit cell
 // homology, not chosen.
 export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`foldedCensus:${Math.max(0, Math.floor(unfolded))}`, matrix, () => {
-    const u = Math.max(0, Math.floor(unfolded))
+  return memoByRoot(`foldedCensus:${max(0, floor(unfolded))}`, matrix, () => {
+    const u = max(0, floor(unfolded))
     const euler = EULER_CHI // χ = −2 — sealed in src/0; cellHomology() proves it separately
     const genus = (2 - euler) / 2
     const folded = u + euler
@@ -523,7 +523,7 @@ export function digitFoldersDoMath(matrix: MindMatrix = buildMatrix()): DigitMat
 
   const bindings: readonly DigitMathBinding[] = subjects.map((subject) => {
     const digit = digitOf(subject.root)
-    const folder = folders.folders.find((candidate) => candidate.digit === digit) ?? folders.folders[digit % Math.max(folders.folders.length, 1)]
+    const folder = folders.folders.find((candidate) => candidate.digit === digit) ?? folders.folders[digit % max(folders.folders.length, 1)]
     const folderId = folder ? folder.folder : ''
     return {
       subject: subject.subject,
@@ -1164,7 +1164,7 @@ export function book(matrix: MindMatrix = buildMatrix()) {
   const dust = noise(matrix)
   const census = foldedCensus(0, matrix)
   const fan = folderLaw().strict?.eightFold ?? 8 // the bāguà width — ≤ 8 sub-paths per node
-  const baguaDepth = (n: number) => Math.max(1, Math.ceil(Math.log(Math.max(1, n)) / Math.log(fan))) // ⌈log₈ N⌉ — shallow + wide
+  const baguaDepth = (n: number) => max(1, ceil(log(max(1, n)) / log(fan))) // ⌈log₈ N⌉ — shallow + wide
   const facets = [
     { facet: 'src is the BOOK OF BOOKS and the paths are its index — listing all folders reveals the whole typography graph (the heading hierarchy)', on: isUuid(matrix.root) },
     { facet: 'a HARMONIC index is a balanced bāguà — each node branches within the eight-fold; a SINGLE-child folder is a pass-through that crosses nothing (noise), > 8 is an over-concentrated hub', on: fan === 8 },
@@ -2124,7 +2124,7 @@ export function scanCssForHardcoded(css: string): string[] {
     }
     // Every remaining number must be canonical. calc() bodies carry canonical fractions — stripped above.
     const bare = stripCalcExpressions(value)
-    const bad = (bare.match(/-?\d*\.?\d+/g) || []).map((n) => Math.abs(Number(n))).filter((n) => !Number.isInteger(n) || !allowed.has(n))
+    const bad = (bare.match(/-?\d*\.?\d+/g) || []).map((n) => abs(Number(n))).filter((n) => !Number.isInteger(n) || !allowed.has(n))
     if (bad.length > 0) offenders.push(`${shown}  [${[...new Set(bad)].join(', ')}]`)
   }
   return offenders
@@ -2415,10 +2415,10 @@ export function theCrowdThatCarriesSignalIsTheCode(matrix: MindMatrix = buildMat
     const direct: number[][] = Array.from({ length: classes }, () => Array.from({ length: classes }, () => 0))
     const transformed: number[][] = Array.from({ length: classes }, () => Array.from({ length: classes }, () => 0))
     for (let person = 0; person < crowd; person += 1) {
-      const birth = Math.floor(rng() * (5 * 108 * 108))
+      const birth = floor(rng() * (5 * 108 * 108))
       const config = (((birth * (5 * 2 + 6)) >>> 0) % classes)
       const gConfig = (((config * config + 3) >>> 0) % classes) // g = a nonlinear "quantum-ish" transform
-      const trait = Math.floor(rng() * classes) // independent of birth
+      const trait = floor(rng() * classes) // independent of birth
       direct[config]![trait]! += 1
       transformed[gConfig]![trait]! += 1
     }
@@ -2426,11 +2426,11 @@ export function theCrowdThatCarriesSignalIsTheCode(matrix: MindMatrix = buildMat
     const bestGuess = (table: number[][]) => {
       let correct = 0
       let total = 0
-      for (const row of table) { correct += Math.max(0, ...row); total += row.reduce((a, b) => a + b, 0) }
+      for (const row of table) { correct += max(0, ...row); total += row.reduce((a, b) => a + b, 0) }
       return total > 0 ? correct / total : 0
     }
     const chance = 1 / classes
-    const transformAddsNothing = Math.abs(bestGuess(transformed) - chance) < 1 / (5 * 4) && Math.abs(bestGuess(direct) - chance) < 1 / (5 * 4)
+    const transformAddsNothing = abs(bestGuess(transformed) - chance) < 1 / (5 * 4) && abs(bestGuess(direct) - chance) < 1 / (5 * 4)
     // 2 — the CODE crowd has non-uniform, real structure: the census and the ceiling are its profile
     const codeCrowd = UNFOLDED_CENSUS // the population of sealed indices
     const ceiling = fibonacci(9 + 9) // the compression ceiling F(18) — a real per-member constraint

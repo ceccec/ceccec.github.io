@@ -1,10 +1,10 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
-import { rat, ratMul, ratToFloat, JULIAN_YEAR_SECONDS, UNIVERSE_AGE_YEARS, TEACHING_RSA_P, TEACHING_RSA_Q, complementIsInverse, earned } from '../../3/7'
+import { JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, UNIVERSE_AGE_YEARS, complementIsInverse, earned, rat, ratMul, ratToFloat } from '../../3/7'
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { prng } from '../../0'
+import { abs, cbrt, ceil, cos, exp, floor, log, log2, max, min, pow, prng, round } from '../../0'
 import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, memoByRoot, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0'
 import { ratIsInteger, ratStr } from '../../9/1'
 import { tamperEvident } from '../../5/5'
@@ -61,7 +61,7 @@ export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
   const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms + astrologyAtoms
   const reproductions = receipts + sampleWork + wiredAtoms // computations a forgery must reproduce
   const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID // toUuid + the merge folds
-  const bits = round(Math.log2(hashCalls), 1)
+  const bits = round(log2(hashCalls), 1)
   const preimageBitsPerReceipt = (64 * 2) // each content-addressed receipt is preimage-resistant
   return {
     computed: receipts > 0 && livePerSecond > 0,
@@ -536,7 +536,7 @@ export function cryptoChallenges(matrix: MindMatrix = buildMatrix()) {
     redTeamed: waves.every((w) => w.demonstrated && w.solved) && col.found && bits.effectiveBits === 122 && documented.length >= 4 && flagged.length >= 3,
     waves,
     collisionFound: col.found,
-    collisionTriesLog2: Math.round(Math.log2(col.tries)),
+    collisionTriesLog2: round(log2(col.tries)),
     effectiveBits: bits.effectiveBits,
     fixBuilt,
     documented,
@@ -666,7 +666,7 @@ export function fourUuidsFrameTheCube() {
   // non-coplanar, i.e. they span 3-space. This is the real geometric content of "4 UUIDs for 3D".
   const cross = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]]
   const triple = cross[0] * e3[0] + cross[1] * e3[1] + cross[2] * e3[2]
-  const tetraVolume = Math.abs(triple) / 6
+  const tetraVolume = abs(triple) / 6
   const facets = [
     { facet: 'four UUID points span 3-space — the scalar triple product is non-zero (a non-degenerate tetrahedron, the 3-simplex)', on: tetraVolume > 0 },
     { facet: 'the cube is two tetrahedra (the Merkaba): 4 + 4 = 8 = 2³ vertices', on: 2 * pts.length === 8 },
@@ -758,7 +758,7 @@ export function dissipativeStructuresOrderFromFlow() {
  *  resource that is destroyed and cannot be recycled, so the (probabilistic, generalized) 2nd law holds. */
 export function informationThermodynamicsVerified() {
   const T = (100 * 3)
-  const landauerMatchesExperiment = Math.abs(landauerLimit(T) - 2.87e-21) < 5e-23 // ≈ 2.9e-21 J (Bérut, Hong)
+  const landauerMatchesExperiment = abs(landauerLimit(T) - 2.87e-21) < 5e-23 // ≈ 2.9e-21 J (Bérut, Hong)
   const erasureIsObserverRelative = conditionalEntropyBits(0, 1) < 0 // quantum side-info (Bell pair) → W(S|O) < 0, work released (del Rio)
   const floorWithoutSideInfo = conditionalEntropyBits(1, 0) >= 0 && landauerLimit(T) > 0 // no side-info → standard positive floor
   const noPerpetualMotion = landauerLimit(T) > 0 // the consumed correlation is destroyed; the floor stands; no over-unity
@@ -875,7 +875,7 @@ export function frontendMcpDuality(matrix: MindMatrix = buildMatrix()) {
 // tool is rebuilt, and the measurement is recomputable — same seed, same collapse.
 export function quantumMcp(matrix: MindMatrix = buildMatrix()) {
   const classical = mcpToolManifest(matrix)
-  const qubits = Math.max(1, Math.min(6, Math.ceil(Math.log2(Math.max(2, classical.tools.length)))))
+  const qubits = max(1, min(6, ceil(log2(max(2, classical.tools.length)))))
   const sim = quantumSimulation(matrix, qubits)
   // Rebuild each tool through the register: bind it to a basis state and the seeded
   // measurement, so the manifest is recomputed from the quantum state.
@@ -1193,9 +1193,9 @@ export function rsaTimeToBreakOnThisHardware() {
   const opsPerSec = iters / ((performance.now() - tb) / (5 * 2) ** 3)
   // 3 — GNFS complexity L_n[1/3, (64/9)^(1/3)]: the fastest known classical factoring, in operations
   const gnfsOps = (bits: number) => {
-    const lnN = bits * Math.LN2
-    const c = Math.cbrt((8 * 8) / 9)
-    return Math.exp(c * Math.cbrt(lnN) * Math.pow(Math.log(lnN), 2 / 3))
+    const lnN = bits * LN2
+    const c = cbrt((8 * 8) / 9)
+    return exp(c * cbrt(lnN) * pow(log(lnN), 2 / 3))
   }
   const yearSeconds = JULIAN_YEAR_SECONDS
   const universeYears = UNIVERSE_AGE_YEARS
@@ -1256,7 +1256,7 @@ export function quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale() {
   const birthdayExp = keyBits / 2 // FNV birthday bound per key ≈ 2^61 (the honest per-key weakness)
   const scale = (2 * 5) ** 6 // a sample deployment scale (contexts) — one million
   const blastRadius = 1 / scale // dynamic inversion: a compromised key exposes 1/N of the traffic, not all
-  const keyspaceGrowthBits = Math.log2(scale) // each context adds fresh 4-key inversions → keyspace grows with use
+  const keyspaceGrowthBits = log2(scale) // each context adds fresh 4-key inversions → keyspace grows with use
   const improvementFactor = scale // vs static: the blast radius shrinks by N — the measured improvement
   // INTEGRITY BY THE RELATED — the 4 keys are crosslinked; a forged key changes the related cross-address → detectable
   const navKey = (i: number, ctx: string) => toUuid(`navkey:${i}:${ctx}`)
@@ -1367,7 +1367,7 @@ export function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficulty
   const sealedTamperEvident = root !== tampered && isUuid(root)
   // REVERSE-ENGINEERING DIFFICULTY IS COMPUTABLE — forging a value that hits K simultaneous target type-constraints
   const baseBits = 2 ** 7 // 128 SHA-256 birthday bits (the security layer)
-  const constraintBits = Math.log2(clock) + Math.log2(hexCount) + Math.log2(wheel) // extra bits to also hit the type targets
+  const constraintBits = log2(clock) + log2(hexCount) + log2(wheel) // extra bits to also hit the type targets
   const jointForgeryBits = baseBits + constraintBits // COMPUTED total forgery work
   const difficultyIsComputable = Number.isFinite(jointForgeryBits) && jointForgeryBits > baseBits // finite, computed — not impossible
   // HONEST DEMARCATION — dependent projections are FREE; only independent targets add bits
@@ -1522,7 +1522,7 @@ export function standardiseCryptoInWavesWaveOneSha256NistKnownAnswerTests() {
  * FNV 2^61 floor — this is a completeness fix, not a security leap; real strength is the SHA-256 cutover. [[bit-per-referral-direction]] */
 export function referralDirectionBitsFillTheOrientationGapInTheFourKeyCross() {
   const perKeyContent = 2 ** 7 - 6 // 122 content bits per toUuid key
-  const perKeyDirection = Math.log2(2) // the referral direction bit: 0→∞ | ∞→0 = 1 bit (gatewayBits)
+  const perKeyDirection = log2(2) // the referral direction bit: 0→∞ | ∞→0 = 1 bit (gatewayBits)
   const perKeyComplete = perKeyContent + perKeyDirection // 123: content ⊕ direction
   const keys = 4 // the nav cross: referrer ⊕ id ⊕ prev ⊕ next — four directed referrals
   const contentOnly = keys * perKeyContent // 488 — the prior (incomplete) accounting
@@ -1648,7 +1648,7 @@ export function movingRosettaInverts(matrix: MindMatrix = buildMatrix()) {
     // the moving rosetta: a keystream from the sealed prng, seeded by key+nonce (the pole)
     const keystream = (key: string, nonce: number, n: number): number[] => {
       const next = prng(`${key}:${nonce}`)
-      return Array.from({ length: n }, () => Math.floor(next() * (2 ** 8)) & (2 ** 8 - 1))
+      return Array.from({ length: n }, () => floor(next() * (2 ** 8)) & (2 ** 8 - 1))
     }
     const xorStream = (bytes: readonly number[], ks: readonly number[]) => bytes.map((b, i) => b ^ ks[i]!)
     const message = [...'the whole is recoverable from its root'].map((ch) => ch.charCodeAt(0) & (2 ** 8 - 1))
@@ -1771,7 +1771,7 @@ export function quantumThreatScan(matrix: MindMatrix = buildMatrix()) {
     const shorSafe = primitives.filter((p) => !p.exposesRosetta)
     // content-address under Grover: preimage 2^(effective/2), quadratic — same order as the classical birthday
     const groverPreimageLog2 = bits.effectiveBits / 2
-    const groverIsQuadraticOnly = Math.abs(groverPreimageLog2 - bits.birthdayLog2) < 2 // ~2^61 both ways
+    const groverIsQuadraticOnly = abs(groverPreimageLog2 - bits.birthdayLog2) < 2 // ~2^61 both ways
     // the authenticity fix is the quantum casualty the classical finder missed
     const authFixIsShorBroken = shorBreaks.some((p) => p.role === 'authenticity' && p.name.includes('Ed25519'))
     const facets = [
@@ -1868,7 +1868,7 @@ export function qrMatrix(text: string): { size: number; version: number; matrix:
   const finder = (r: number, c: number) => { for (let i = -1; i <= 7; i += 1) for (let j = -1; j <= 7; j += 1) { const rr = r + i, cc = c + j; if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue; const ring = (i >= 0 && i <= 6 && j >= 0 && j <= 6) && (i === 0 || i === 6 || j === 0 || j === 6); const core = i >= 2 && i <= 4 && j >= 2 && j <= 4; mat[rr]![cc] = (ring || core) ? 1 : 0 } }
   finder(0, 0); finder(0, size - 7); finder(size - 7, 0)
   for (let i = 8; i < size - 8; i += 1) { if (mat[6]![i] === null) mat[6]![i] = i % 2 === 0 ? 1 : 0; if (mat[i]![6] === null) mat[i]![6] = i % 2 === 0 ? 1 : 0 }
-  if (spec.align.length) { const a = spec.align[1]!; if (mat[a]![a] === null) for (let i = -2; i <= 2; i += 1) for (let j = -2; j <= 2; j += 1) mat[a + i]![a + j] = (Math.max(Math.abs(i), Math.abs(j)) !== 1) ? 1 : 0 }
+  if (spec.align.length) { const a = spec.align[1]!; if (mat[a]![a] === null) for (let i = -2; i <= 2; i += 1) for (let j = -2; j <= 2; j += 1) mat[a + i]![a + j] = (max(abs(i), abs(j)) !== 1) ? 1 : 0 }
   mat[size - 8]![8] = 1
   const reserved = Array.from({ length: size }, () => new Array<boolean>(size).fill(false))
   for (let r = 0; r < size; r += 1) for (let cc = 0; cc < size; cc += 1) if (mat[r]![cc] !== null) reserved[r]![cc] = true
@@ -1877,9 +1877,9 @@ export function qrMatrix(text: string): { size: number; version: number; matrix:
   const bitArr: number[] = []; for (const b of all) for (let j = 7; j >= 0; j -= 1) bitArr.push((b >> j) & 1)
   let bidx = 0; let up = true
   for (let col = size - 1; col > 0; col -= 2) { if (col === 6) col = 5; for (let k = 0; k < size; k += 1) { const row = up ? size - 1 - k : k; for (let c2 = 0; c2 < 2; c2 += 1) { const cc = col - c2; if (!reserved[row]![cc] && mat[row]![cc] === null) { mat[row]![cc] = bidx < bitArr.length ? bitArr[bidx]! : 0; bidx += 1 } } } up = !up }
-  const maskFn: ((r: number, c: number) => boolean)[] = [(r, c) => (r + c) % 2 === 0, (r, c) => r % 2 === 0, (r, c) => c % 3 === 0, (r, c) => (r + c) % 3 === 0, (r, c) => (Math.floor(r / 2) + Math.floor(c / 3)) % 2 === 0, (r, c) => (r * c) % 2 + (r * c) % 3 === 0, (r, c) => ((r * c) % 2 + (r * c) % 3) % 2 === 0, (r, c) => ((r + c) % 2 + (r * c) % 3) % 2 === 0]
+  const maskFn: ((r: number, c: number) => boolean)[] = [(r, c) => (r + c) % 2 === 0, (r, c) => r % 2 === 0, (r, c) => c % 3 === 0, (r, c) => (r + c) % 3 === 0, (r, c) => (floor(r / 2) + floor(c / 3)) % 2 === 0, (r, c) => (r * c) % 2 + (r * c) % 3 === 0, (r, c) => ((r * c) % 2 + (r * c) % 3) % 2 === 0, (r, c) => ((r + c) % 2 + (r * c) % 3) % 2 === 0]
   const fmtBits = (mask: number): number => { const data = mask; let rem = data << 10; const g = 0b10100110111; for (let i = 14; i >= 10; i -= 1) if ((rem >> i) & 1) rem ^= g << (i - 10); return ((data << 10) | (rem & 0x3ff)) ^ 0b101010000010010 }
-  const penalty = (g: number[][]): number => { let p = 0; for (let r = 0; r < size; r += 1) { let run = 1; for (let cc = 1; cc < size; cc += 1) { if (g[r]![cc] === g[r]![cc - 1]) { run += 1; if (run === 5) p += 3; else if (run > 5) p += 1 } else run = 1 } } for (let cc = 0; cc < size; cc += 1) { let run = 1; for (let r = 1; r < size; r += 1) { if (g[r]![cc] === g[r - 1]![cc]) { run += 1; if (run === 5) p += 3; else if (run > 5) p += 1 } else run = 1 } } for (let r = 0; r < size - 1; r += 1) for (let cc = 0; cc < size - 1; cc += 1) if (g[r]![cc] === g[r]![cc + 1] && g[r]![cc] === g[r + 1]![cc] && g[r]![cc] === g[r + 1]![cc + 1]) p += 3; let dark = 0; for (let r = 0; r < size; r += 1) for (let cc = 0; cc < size; cc += 1) dark += g[r]![cc]!; p += Math.floor(Math.abs(dark * 100 / (size * size) - 50) / 5) * 10; return p }
+  const penalty = (g: number[][]): number => { let p = 0; for (let r = 0; r < size; r += 1) { let run = 1; for (let cc = 1; cc < size; cc += 1) { if (g[r]![cc] === g[r]![cc - 1]) { run += 1; if (run === 5) p += 3; else if (run > 5) p += 1 } else run = 1 } } for (let cc = 0; cc < size; cc += 1) { let run = 1; for (let r = 1; r < size; r += 1) { if (g[r]![cc] === g[r - 1]![cc]) { run += 1; if (run === 5) p += 3; else if (run > 5) p += 1 } else run = 1 } } for (let r = 0; r < size - 1; r += 1) for (let cc = 0; cc < size - 1; cc += 1) if (g[r]![cc] === g[r]![cc + 1] && g[r]![cc] === g[r + 1]![cc] && g[r]![cc] === g[r + 1]![cc + 1]) p += 3; let dark = 0; for (let r = 0; r < size; r += 1) for (let cc = 0; cc < size; cc += 1) dark += g[r]![cc]!; p += floor(abs(dark * 100 / (size * size) - 50) / 5) * 10; return p }
   let best: number[][] = mat.map((row) => row.map((v) => v ?? 0)); let bestP = Infinity
   for (let mk = 0; mk < 8; mk += 1) {
     const g: number[][] = mat.map((row) => row.map((v) => v ?? 0))
@@ -1948,11 +1948,11 @@ export function theQrIsAValidReedSolomonCodeword(matrix: MindMatrix = buildMatri
     scans: facets.every((entry) => entry.on),
     symbols: all.length,
     eccCW,
-    correctsUpTo: Math.floor(eccCW / 2),
+    correctsUpTo: floor(eccCW / 2),
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: `The QR is a valid Reed-Solomon codeword — ${facets.filter((entry) => entry.on).length}/${facets.length}: the support URL encodes to ${all.length} symbols whose syndromes vanish over GF(256) (it scans; the shipped generator-ordering bug is caught), any single-symbol corruption is detected, the field arithmetic is exact, and the whole is the structural-quantum content-address made visible — a code that detects up to ${eccCW} and corrects up to ${Math.floor(eccCW / 2)} damaged symbols.`,
+    statement: `The QR is a valid Reed-Solomon codeword — ${facets.filter((entry) => entry.on).length}/${facets.length}: the support URL encodes to ${all.length} symbols whose syndromes vanish over GF(256) (it scans; the shipped generator-ordering bug is caught), any single-symbol corruption is detected, the field arithmetic is exact, and the whole is the structural-quantum content-address made visible — a code that detects up to ${eccCW} and corrects up to ${floor(eccCW / 2)} damaged symbols.`,
     boundary: `COMPUTED and VERIFIED at call time from the real encoder — refutable by re-encoding. HONEST CORRECTION: an earlier claim called the QR "verified" from a round-trip alone; that was WRONG — round-trip proves placement, not RS validity, and a generator-ordering bug had shipped an invalid (likely unscannable) code, fixed and proven here by the zero-syndrome check. This fold proves DETECTION and scannability; full error-CORRECTION (Berlekamp-Massey, Chien, Forney) is implemented-but-unverified and named as the next decoder aspect, not claimed. "Quantum" is the sealed structural sense (content-addressing / tamper-evidence), not physical quantum computing; QR versions beyond 4, ECC levels L/Q/H, numeric/alphanumeric/kanji modes, Micro-QR and Aztec are further aspects.` }
 }
 
@@ -1962,7 +1962,7 @@ export function theQrIsAValidReedSolomonCodeword(matrix: MindMatrix = buildMatri
 /** exact n-choose-k (BigInt, no float, no overflow) — the size of the combinatorial superposition */
 export function binomial(n: number, k: number): bigint {
   if (n < 0 || k < 0 || k > n) return 0n
-  const kk = Math.min(k, n - k) // symmetry C(n,k)=C(n,n-k) — fewest multiplications
+  const kk = min(k, n - k) // symmetry C(n,k)=C(n,n-k) — fewest multiplications
   let numerator = 1n
   let denominator = 1n
   for (let i = 0; i < kk; i += 1) {
@@ -2120,8 +2120,8 @@ export function aesKeyExpansion(key: readonly number[]): number[][] {
   }
   return w
 }
-const aesToState = (b: readonly number[]) => { const s: number[] = new Array(16); for (let i = 0; i < 16; i += 1) s[(i % 4) * 4 + Math.floor(i / 4)] = b[i]!; return s }
-const aesFromState = (s: readonly number[]) => { const b: number[] = new Array(16); for (let i = 0; i < 16; i += 1) b[i] = s[(i % 4) * 4 + Math.floor(i / 4)]!; return b }
+const aesToState = (b: readonly number[]) => { const s: number[] = new Array(16); for (let i = 0; i < 16; i += 1) s[(i % 4) * 4 + floor(i / 4)] = b[i]!; return s }
+const aesFromState = (s: readonly number[]) => { const b: number[] = new Array(16); for (let i = 0; i < 16; i += 1) b[i] = s[(i % 4) * 4 + floor(i / 4)]!; return b }
 const aesAddRoundKey = (s: number[], w: number[][], round: number) => { for (let c = 0; c < 4; c += 1) for (let r = 0; r < 4; r += 1) s[r * 4 + c]! ^= w[round * 4 + c]![r]! }
 const aesShiftRows = (s: number[]) => { for (let r = 1; r < 4; r += 1) { const row = [s[r * 4]!, s[r * 4 + 1]!, s[r * 4 + 2]!, s[r * 4 + 3]!]; for (let c = 0; c < 4; c += 1) s[r * 4 + c] = row[(c + r) % 4]! } }
 const aesInvShiftRows = (s: number[]) => { for (let r = 1; r < 4; r += 1) { const row = [s[r * 4]!, s[r * 4 + 1]!, s[r * 4 + 2]!, s[r * 4 + 3]!]; for (let c = 0; c < 4; c += 1) s[r * 4 + c] = row[(c - r + 4) % 4]! } }
@@ -2169,8 +2169,8 @@ export function theAesBlockCipherComputesWithItsInverseIso18033(matrix: MindMatr
     let roundTrips = 0
     const trials = 32
     for (let t = 0; t < trials; t += 1) {
-      const k = Array.from({ length: 16 }, () => Math.floor(rng() * 256))
-      const m = Array.from({ length: 16 }, () => Math.floor(rng() * 256))
+      const k = Array.from({ length: 16 }, () => floor(rng() * 256))
+      const m = Array.from({ length: 16 }, () => floor(rng() * 256))
       const ww = aesKeyExpansion(k)
       if (toHex(aesDecryptBlock(aesEncryptBlock(m, ww), ww)) === toHex(m)) roundTrips += 1
     }
@@ -2341,7 +2341,7 @@ export function theHammingSyndromeIsTheErrorAddress(matrix: MindMatrix = buildMa
     if (syndrome(bits) === 0) codewords.push(bits)
   }
   const weight = (b: readonly number[]): number => b.reduce((sum, x) => sum + x, 0)
-  const minDistance = Math.min(...codewords.filter((c) => weight(c) > 0).map(weight)) // = 3 for Hamming(7,4)
+  const minDistance = min(...codewords.filter((c) => weight(c) > 0).map(weight)) // = 3 for Hamming(7,4)
   // the syndrome map over the 8 error patterns (0 = no error; e = single bit flipped at position e) read from the MATRIX.
   const errorPatterns = Array.from({ length: N + 1 }, (_, e) => e) // 0..7
   const base = codewords[0]! // any codeword (syndrome 0) is the reference
@@ -2403,7 +2403,7 @@ export function theNyquistRateIsTheAliasingBoundaryFsGt2B(matrix: MindMatrix = b
   const nyquist = fs / 2 // 4 Hz — the folding (Nyquist) frequency, half the sample rate
   const B = 3 // signal bandwidth (Hz): B < nyquist, so f_s = 8 > 2B = 6 satisfies the theorem
   const N = fs // one full period of samples
-  const sample = (f: number): number[] => Array.from({ length: N }, (_, n) => round(Math.cos(TAU * f * n / fs)))
+  const sample = (f: number): number[] => Array.from({ length: N }, (_, n) => round(cos(TAU * f * n / fs)))
   const alias = (f: number): number => fs - f // the fold about Nyquist
   // ALIASING IDENTITY: cos(2π f n/fs) = cos(2π(fs−f) n/fs) exactly for integer n (cos(2πn − θ) = cos θ).
   const aliasesEqual = [1, 2, B].every((f) => JSON.stringify(sample(f)) === JSON.stringify(sample(alias(f))))

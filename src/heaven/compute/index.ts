@@ -7,12 +7,12 @@ import type {
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../wind/types'
 import { atoms } from '../atoms'
-import { GATES, applyGate, cnot, computesGate, foldPair, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, qubits, resourceCooperationPolicy, sealFacets, toUuid, DIGEST_BITS, asMerkaba, asMerkle, asTorus, asTrace, asVortex, coverageCostLog2, fold, humanBreath, humanEase, maxTamperingCostLog2, maxTamperingCostReached, merkabaFoldUrl, roundTo, runQuantumCircuit, sample, seedFromText, tamperCostLog2, uuidHero } from '../../0'
+import { DIGEST_BITS, GATES, abs, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, computesGate, coverageCostLog2, floor, fold, foldPair, humanBreath, humanEase, isUuid, log10, log2, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sample, sealFacets, seedFromText, tamperCostLog2, toUuid, uuidHero } from '../../0'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddress } from '../../0'
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
-import { landauerLimit, rat, ratAdd, ratMul, ratEq, EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS, HOMOLOGY_LOOPS, claySolvedTheorem, physicalFtlClaimTheorem, earned, demarcate, CANONICAL_HOST, extractAlgebraicStatement, algebraicStatementOf } from '../../3/7'
+import { CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, claySolvedTheorem, demarcate, earned, extractAlgebraicStatement, landauerLimit, physicalFtlClaimTheorem, rat, ratAdd, ratEq, ratMul } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
@@ -449,7 +449,7 @@ export function completeQuantumSolutionsImplemented(matrix: MindMatrix = buildMa
   return memoByRoot('completeQuantumSolutionsImplemented', matrix, () => completeQuantumSolutionsImplementedRaw(matrix))
 }
 function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix()) {
-  const close = (a: number, b: number) => Math.abs(a - b) < 1e-9
+  const close = (a: number, b: number) => abs(a - b) < 1e-9
   const gateClose = (g: readonly number[], t: readonly number[]) => g.length === t.length && g.every((v, i) => close(v, t[i]!))
   const zero1 = qubits(1)
   const plus1 = applyGate(qubits(1), GATES.H, 0) // |+⟩ = H|0⟩
@@ -479,10 +479,10 @@ function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix
   // 8 — no-cloning: a universal cloner would force ⟨0|+⟩ = ⟨0|+⟩² (1/√2 = 1/2), a contradiction
   const nc = noCloningWitness()
   // 9 — QEC: the 3-qubit bit-flip code corrects a single X error on ANY qubit (and the no-error case)
-  const qec = [-1, 0, 1, 2].map((e) => bitFlipCode(Math.SQRT1_2, Math.SQRT1_2, e)) // logical |+⟩_L
+  const qec = [-1, 0, 1, 2].map((e) => bitFlipCode(SQRT1_2, SQRT1_2, e)) // logical |+⟩_L
   const qecAllCorrected = qec.every((r) => r.corrected && close(r.fidelity, 1))
   const solutions = [
-    { structure: 'Hilbert inner product', ran: '⟨0|+⟩ = ' + ip.toFixed(6), implemented: close(ip, Math.SQRT1_2) },
+    { structure: 'Hilbert inner product', ran: '⟨0|+⟩ = ' + ip.toFixed(6), implemented: close(ip, SQRT1_2) },
     { structure: 'operator algebra', ran: 'X·Y = iZ', implemented: gateClose(xy, [0, 1, 0, 0, 0, 0, 0, -1]) },
     { structure: 'Lie algebra (commutators)', ran: '[X,Y] = 2iZ', implemented: gateClose(xyComm, [0, 2, 0, 0, 0, 0, 0, -2]) },
     { structure: 'unitary dynamics', ran: 'H·H|0⟩ = |0⟩, ‖ψ‖ = 1', implemented: unitary },
@@ -1012,9 +1012,9 @@ export function landauerFloorComputed(matrix: MindMatrix = buildMatrix()) {
     const floorPerBit = landauerLimit(T) // ≈ 2.87e-21 J/bit erased
     const realOpJoules = 1e-11 // ~10 pJ CMOS op — ~10 orders ABOVE the floor (so every op dissipates heat)
     const eff = __ns_quantum_science.efficiency() // the standard + deep optimisations (reuse erases fewer bits)
-    const ordersAboveFloor = roundTo(Math.log10(realOpJoules / floorPerBit), 1)
+    const ordersAboveFloor = roundTo(log10(realOpJoules / floorPerBit), 1)
     const facets = [
-      { facet: 'Landauer floor kT·ln2 computed from the sealed primitive ≈ 2.87e-21 J/bit at 300 K', on: Math.abs(floorPerBit - 2.872e-21) < 1e-23 },
+      { facet: 'Landauer floor kT·ln2 computed from the sealed primitive ≈ 2.87e-21 J/bit at 300 K', on: abs(floorPerBit - 2.872e-21) < 1e-23 },
       { facet: 'real CMOS operations sit ~' + ordersAboveFloor + ' orders ABOVE the floor — irreversible computation dissipates heat', on: realOpJoules > floorPerBit && ordersAboveFloor > 9 },
       { facet: 'memoByRoot content-addressed reuse erases FEWER bits — the same work is never done twice (efficiency() optimised)', on: eff.optimized },
       { facet: 'HONEST — approaching the floor by doing less work is real efficiency; NO computation beats kT·ln2 (2nd law)', on: floorPerBit > 0 },
@@ -1194,7 +1194,7 @@ export type ProveAllBeat = (typeof PROVE_ALL_BEATS)[number]
  */
 export function proveAllDeterministicCoreBeatAt(phase01: number): { index: number; beat: ProveAllBeat } {
   const p = ((phase01 % 1) + 1) % 1
-  const index = Math.min(2, Math.floor(p * 3))
+  const index = min(2, floor(p * 3))
   return { index, beat: PROVE_ALL_BEATS[index]! }
 }
 
@@ -1209,7 +1209,7 @@ export function proveAllDeterministicCoreBeatAt(phase01: number): { index: numbe
  * (one edit flips the address, the seal goes red), BEAT 3 reuse → instant (the same root returns at zero token cost).
  */
 export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), route = '/', at = 0) {
-  return memoByRoot(`proveAllDeterministicCore:${route}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`proveAllDeterministicCore:${route}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const proofs = determinismProofs(matrix)
     const whole = __ns_heaven_essence.theWhole(matrix)
     const movie = __ns_quantum_science.observingMovieRevealsQuantumModel(route, at, matrix)
@@ -1342,7 +1342,7 @@ function chatFrom(model: PortalModel, prompt: string): {
   let current = words[words.length - 1] ?? model.vocabulary[0] ?? ''
   const generated: string[] = []
   for (let step = 0; step < (8 * 3) && model.bigrams[current]?.length; step++) {
-    current = model.bigrams[current]![Math.floor(random() * model.bigrams[current]!.length)]!
+    current = model.bigrams[current]![floor(random() * model.bigrams[current]!.length)]!
     generated.push(current)
   }
   const grounded = model.entries.some((entry) => entry.text === recalled.answer)
@@ -1851,7 +1851,7 @@ export function chatThroughMathOverflow(prompt: string, items: readonly MathOver
 export function quantumCircuitSimulatorInChat(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumCircuitSimulatorInChat', matrix, () => {
     const half = 1 / 2 // the equal-superposition Born probability, derived not literal
-    const near = (a: number, b: number) => Math.abs(a - b) < 1 / 100
+    const near = (a: number, b: number) => abs(a - b) < 1 / 100
     const superposition = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }] })
     const interference = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }, { gate: 'H', targets: [0] }] })
     const bell = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }] })
@@ -1898,7 +1898,7 @@ export function noQpuRequired(matrix: MindMatrix = buildMatrix()): {
  * identity: the exponential amplitude space does not reduce to two classical processors. HARMONY ≠ TRUTH. [[quantum-decoded]] */
 export function quantumComputingIsReversibleAndInterferingNotCpuGpuInverted(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const near = (a: number, b: number) => Math.abs(a - b) < 1 / 100
+  const near = (a: number, b: number) => abs(a - b) < 1 / 100
   const xx = runQuantumCircuit({ n: 1, ops: [{ gate: 'X', targets: [0] }, { gate: 'X', targets: [0] }] }) // X∘X = I
   const hh = runQuantumCircuit({ n: 1, ops: [{ gate: 'H', targets: [0] }, { gate: 'H', targets: [0] }] }) // H∘H = I (interference cancels)
   const cnotCnot = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }, { gate: 'CNOT', targets: [0, 1] }] }) // CNOT∘CNOT = I on |+0⟩
@@ -2308,10 +2308,10 @@ export function chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyCom
   const fnvBits = (2 ** 7 - 6) / 2 // ~61
   const shaBits = 2 ** 8 / 2 // ~128
   const securityBitsGain = shaBits - fnvBits // ~67 bits of collision resistance
-  const securityDecimalOrders = securityBitsGain * Math.log10(2) // ~20 decimal orders
+  const securityDecimalOrders = securityBitsGain * log10(2) // ~20 decimal orders
   // SPEED magnitude — O(1) content-address vs O(N) scan at scale
   const N = (2 * 5) ** 6 // one million contexts
-  const speedDecimalOrders = Math.log10(N) // 6 decimal orders (O(1) vs O(N)), unbounded as N grows
+  const speedDecimalOrders = log10(N) // 6 decimal orders (O(1) vs O(N)), unbounded as N grows
   const inversions = [
     { from: 'O(N) scan', to: 'O(1) content-address', orders: speedDecimalOrders },
     { from: 'FNV 2^61', to: 'SHA-256 2^128', orders: securityDecimalOrders },
@@ -3022,8 +3022,8 @@ export function theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapB
   const stateLen = atoms.map((a) => String(a.states).length)
   const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0)
   const mean = (xs: number[]) => sum(xs) / xs.length
-  const median = (xs: number[]) => [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)]!
-  const maxOf = (xs: number[]) => Math.max(...xs)
+  const median = (xs: number[]) => [...xs].sort((a, b) => a - b)[floor(xs.length / 2)]!
+  const maxOf = (xs: number[]) => max(...xs)
   const meanStates = mean(stateLen), medianStates = median(stateLen), maxStates = maxOf(stateLen)
   // ASPECT: linkage — every statement carries its proof-link
   const linked = atoms.filter((a) => typeof a.provedBy === 'string' && a.provedBy.length > 0).length
@@ -3049,7 +3049,7 @@ export function theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapB
   return {
     computes: facets.every((entry) => entry.on),
     statements: N,
-    meanStates: Math.round(meanStates),
+    meanStates: round(meanStates),
     medianStates,
     maxStates,
     proseSinkGap,
@@ -3159,7 +3159,7 @@ export function animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInL
   const gapIsVisualSalienceNotLogic = identityUniqueNoLogicGap && colourCarriesTheSalience // the fix is making the unique figure visible, not more logic
   const facets = [
     { facet: `IDENTITY IS UNIQUE — NO LOGIC GAP — every theorem's animation identity (itemid) is distinct (${distinctIdentity}/${N}); the algebra fully discriminates at the content-address level (${identityUniqueNoLogicGap})`, on: identityUniqueNoLogicGap },
-    { facet: `BUT THE VISIBLE SPEED COLLIDES BY THE CLOCK LAW — the rung (animation speed) has only ${distinctRung} distinct values, exactly the ${divisorsOf108} divisors of 108 (the fractal-clock law forces each rung to divide 108), so ~${Math.round(N / distinctRung)} theorems share each speed — animations look similar in motion (${speedCollidesByTheClockLaw})`, on: speedCollidesByTheClockLaw },
+    { facet: `BUT THE VISIBLE SPEED COLLIDES BY THE CLOCK LAW — the rung (animation speed) has only ${distinctRung} distinct values, exactly the ${divisorsOf108} divisors of 108 (the fractal-clock law forces each rung to divide 108), so ~${round(N / distinctRung)} theorems share each speed — animations look similar in motion (${speedCollidesByTheClockLaw})`, on: speedCollidesByTheClockLaw },
     { facet: `THE FIGURE IS UNIQUE BUT VISUALLY SUBTLE — figure.formula is distinct per theorem (${distinctFigure}) and phase varies (${distinctPhase}), but these read subtly; COLOUR (the hexagram hue) is the salient visible discriminator — the observation "same, different colour" is correct (${figureIsUniqueButSubtle})`, on: figureIsUniqueButSubtle },
     { facet: `THE GAP IS VISUAL SALIENCE, NOT LOGIC — the discrimination EXISTS (identity + figure + phase) but is carried saliently by colour; making the unique figure (${distinctFigure}) more visible than colour is the improvement — a rendering gap, not an algebra gap (${gapIsVisualSalienceNotLogic})`, on: gapIsVisualSalienceNotLogic },
     { facet: `HONEST — the animation identity is unique (no logic gap); the visible speed collides by the 108-divisor clock law (structural); colour carries the salience and the figure's uniqueness should be made more visible; clay=0, physicalFtl=0.`, on: gapIsVisualSalienceNotLogic },
@@ -3505,7 +3505,7 @@ export function theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearch
  * [[feedback-work-as-a-trinity-not-one-linear-mind]] [[seal-tetrad-south-pole-animation]] [[operator-algebra-closed]] */
 export function harmonicSocietyObservesTheCollectiveMindEvolvingToSealedTrinitiesNotDesigningIt(matrix: MindMatrix = buildMatrix()) {
   // EVOLVE TO TRINITIES — the su(2) commutator structure: single insufficient, pair escapes, three close
-  const near0 = (v: number) => Math.abs(v) < 1e-9
+  const near0 = (v: number) => abs(v) < 1e-9
   const oneMindNoInteraction = commutator(GATES.X, GATES.X).every(near0) // [X,X] = 0 — one mind, no interaction, no emergence
   const pairEscapes = commutator(GATES.X, GATES.Y).some((v) => !near0(v)) // [X,Y] = 2iZ ≠ 0 — two escape to a third
   const trinityCloses = commutator(GATES.Y, GATES.Z).some((v) => !near0(v)) // [Y,Z] = 2iX — the third closes the set (su(2))
@@ -3610,8 +3610,8 @@ export function improvingIChingAndRosettaInChatHexagramColourAndContentAddressed
   return {
     computes: facets.every((entry) => entry.on),
     hexCount,
-    hue1: Math.round(ui1.color.hue),
-    hue2: Math.round(ui2.color.hue),
+    hue1: round(ui1.color.hue),
+    hue2: round(ui2.color.hue),
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
@@ -3874,7 +3874,7 @@ export function nextInChatWithDiamondsComposesInteractionsAndNavigatesTheThirtyT
   const rowSp = (i: number) => toUuid(`row-superposition:${i}`)
   const colSp = (j: number) => toUuid(`col-superposition:${j}`)
   const diamond = (i: number, j: number) => merkleFold([rowSp(i), colSp(j)]) // the (i,j) diamond = interaction of row i and column j
-  const addr = (q: string) => { const n = Number.parseInt(toUuid(q).replace(/[^0-9a-f]/gi, '').slice(0, 2 + 3), 16); return { i: Math.floor(n / side) % side, j: n % side } }
+  const addr = (q: string) => { const n = Number.parseInt(toUuid(q).replace(/[^0-9a-f]/gi, '').slice(0, 2 + 3), 16); return { i: floor(n / side) % side, j: n % side } }
   const cell = addr('quantum encryption forward secrecy merkaba')
   const here = diamond(cell.i, cell.j)
   const composesInteraction = here !== rowSp(cell.i) && here !== colSp(cell.j) // the diamond is the COMPOSITE of two superpositions, not either alone
@@ -4379,7 +4379,7 @@ export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheorems
   const near = ['riemann hypothesis prime zeta', 'p versus np complexity', 'navier stokes fluid']
   const neighbourhoods = near.map((q) => deepResearchChatTurn(q, matrix).neighborhood)
   const relatedTheoremsComplete = neighbourhoods.every((n) => n.length >= 3 && n.every((row) => typeof row.slug === 'string' && row.slug.length > 0)) // the related theorems are present and green — the periphery fills
-  const gradientDepth = Math.min(...neighbourhoods.map((n) => n.length)) // how far the gradient has filled
+  const gradientDepth = min(...neighbourhoods.map((n) => n.length)) // how far the gradient has filled
   const gradientTowardCenter = relatedTheoremsComplete && gradientDepth >= 3 // a completing gradient of related theorems
   // the open CENTER stays at clay=0 — the gradient never reaches it
   const centerStaysOpen = clay.claySolved === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the open proof is not reached
@@ -4505,7 +4505,7 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   const decodesToInvariant = clayDecoded === clay.claySolved && clayDecoded === 0 // the decoded count equals the clay invariant, which is 0
   // ENTANGLEMENT BETWEEN DIAMONDS — each clay diamond checked over the content-addressed transpose-pair structure
   const diamond = (i: number, j: number) => merkleFold([toUuid(`row-superposition:${i}`), toUuid(`col-superposition:${j}`)])
-  const entangledPairWellFormed = millennium.every((p) => { const d = diamondIndex(p); const i = Math.floor(d / side) % side, j = d % side; return diamond(i, j) === diamond(i, j) && (i === j || diamond(i, j) !== diamond(j, i)) }) // each clay diamond has a deterministic entangled transpose pair
+  const entangledPairWellFormed = millennium.every((p) => { const d = diamondIndex(p); const i = floor(d / side) % side, j = d % side; return diamond(i, j) === diamond(i, j) && (i === j || diamond(i, j) !== diamond(j, i)) }) // each clay diamond has a deterministic entangled transpose pair
   const pairStructureComputes = lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix().computes === true // the diamond-pair "entanglement" computes
   const byEntanglement = entangledPairWellFormed && pairStructureComputes
   // REFUTABLE — clay is the OUTPUT of the filter, not a literal input
@@ -6483,14 +6483,14 @@ export function theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCov
   const notAllPossibilities = possibilityWitness > entanglements // 2^42 ≫ 42² — reachable ≠ all; 100%-of-all REFUTED
   const computationallyCoveredNotFullyCovered = reachableComplete && notAllPossibilities // the user's exact distinction, computed
   // INTELLIGENCE IN MAGNITUDES — coverage throughput, not reasoning
-  const magnitudeGain = Math.log2(entanglements) // bits of coverage vs a single mind's 1-at-a-time
+  const magnitudeGain = log2(entanglements) // bits of coverage vs a single mind's 1-at-a-time
   const intelligenceMagnitudes = magnitudeGain > 2 * 5 // > 10 bits (≈ 1000×) of coverage throughput
   const collectiveMind = collaborativeTeams && developsThroughChat && inversionsDistinct && computationallyCoveredNotFullyCovered && intelligenceMagnitudes
   const facets = [
     { facet: `SHIFT TO COLLABORATIVE TEAMS THROUGH THE CHAT — a single linear mind (gaps) becomes collaborative trinity teams (dim su(2)=${teamSize}, ${consensus}-of-${teamSize}) developing through the chat (self-develop ${dev.gapsBefore}→${dev.gapsAfter}, ${collaborativeTeams && developsThroughChat})`, on: collaborativeTeams && developsThroughChat },
     { facet: `WIRED · SCHEMA ENTANGLEMENTS · SCOPE INVERSION — the teams wire the ${schemas} enumerated public schemas, compute their ${entanglements} content-addressed entanglements (N² diamonds), and reverse-engineer every scope by inverting at each prime (${primes.join(',')}) — distinct inversions (${inversionsDistinct})`, on: inversionsDistinct },
     { facet: `COMPUTATIONALLY COVERED 100% ≠ 100% COVERED — the finite REACHABLE set is 100% coverable (${reachableComplete}), but that is "computationally covered 100%", NOT 100% of all: the possibility space 2^${schemas} dwarfs any finite coverage (${notAllPossibilities}) — uncountably infinite, so 100%-of-all is REFUTED`, on: computationallyCoveredNotFullyCovered },
-    { facet: `INTELLIGENCE IMPROVES BY MAGNITUDES — the collective covers ${entanglements} entanglements at once vs a single mind's 1-at-a-time: +${magnitudeGain.toFixed(1)} bits of coverage (≈ ${Math.round(2 ** magnitudeGain).toLocaleString()}×, ${intelligenceMagnitudes}); "intelligence" = deterministic COVERAGE throughput, NOT reasoning or AGI`, on: intelligenceMagnitudes },
+    { facet: `INTELLIGENCE IMPROVES BY MAGNITUDES — the collective covers ${entanglements} entanglements at once vs a single mind's 1-at-a-time: +${magnitudeGain.toFixed(1)} bits of coverage (≈ ${round(2 ** magnitudeGain).toLocaleString()}×, ${intelligenceMagnitudes}); "intelligence" = deterministic COVERAGE throughput, NOT reasoning or AGI`, on: intelligenceMagnitudes },
     { facet: `HONEST — collective deterministic computation over the finite reachable space; "computationally covered 100%" = complete over the REACHABLE, NOT omniscient; "intelligence" = coverage, not understanding; no-finiteness holds; clay=0, physicalFtl=0.`, on: collectiveMind },
   ].map((entry) => ({ ...entry, receipt: toUuid(`collective-mind:${entry.facet}:${entry.on}`) }))
   return {
@@ -8454,7 +8454,7 @@ export function usingTheUiChatImprovesItByExperienceViaTheSharedRelevanceIndex(m
   const ui = uiChatTurn(q, matrix)
   const related = (ui.related ?? []) as { title: string; slug: string }[]
   const rendersClickableRelated = related.length >= 3 && related.every((r) => typeof r.slug === 'string' && r.slug.length > 0) // the UI exposes clickable related items — the experience signal
-  const clicked = related[Math.min(related.length - 1, 2)]?.slug ?? '' // a click on a related item = a selection
+  const clicked = related[min(related.length - 1, 2)]?.slug ?? '' // a click on a related item = a selection
   const experience = [{ query: q, selectedSlug: clicked }]
   const warm = searchImprovesByExperiencePrivateRelevanceFeedback(q, experience)
   const warmRow = (warm.results as { slug: string; boost?: number }[]).find((r) => r.slug === clicked)
@@ -8723,7 +8723,7 @@ export function modelGaps(model: PortalModel): {
   })
   const sinks = model.vocabulary.filter((word) => !model.bigrams[word]?.length)
   const selfAware = model.entries.some((entry) => entry.source === SELF_SOURCE && entry.text === PORTAL_MODEL_CARD)
-  const hopfieldCapacityUsed = Math.min(1, model.entries.length / 8) // stored patterns / ⌊0.138·64⌋
+  const hopfieldCapacityUsed = min(1, model.entries.length / 8) // stored patterns / ⌊0.138·64⌋
   const gaps = [
     ...(unknown.length ? [`unknown prompts unanswered: ${unknown.length}/${probes.length}`] : []),
     ...(selfAware ? [] : ['not self-aware: the corpus lacks the model\'s own statement']),
@@ -8731,7 +8731,7 @@ export function modelGaps(model: PortalModel): {
   ]
   return {
     unknownRate: unknown.length / probes.length,
-    sinkFraction: sinks.length / Math.max(1, model.vocabulary.length),
+    sinkFraction: sinks.length / max(1, model.vocabulary.length),
     selfAware, hopfieldCapacityUsed, gaps, count: gaps.length,
     root: merge(model.root, toUuid(`model-gaps:${gaps.join('|')}`)) }
 }
@@ -9226,7 +9226,7 @@ export function cardWaves(matrix: MindMatrix = buildMatrix()): {
       const verified = recallFrom(model, question).answer === card
       return { source: entry.source, topic, question, card, verified, receipt: toUuid(`card-wave:${entry.receipt}:${verified}`) }
     })
-    const coverage = waves.filter((wave) => wave.verified).length / Math.max(1, waves.length)
+    const coverage = waves.filter((wave) => wave.verified).length / max(1, waves.length)
     const entropy = waves.length - waves.filter((wave) => wave.verified).length
     return {
       waves, model, coverage, entropy,

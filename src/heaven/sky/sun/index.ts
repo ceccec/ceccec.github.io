@@ -4,7 +4,7 @@ import * as __ns_up_resonance from '../../../thunder/resonance'
 import * as __ns_up_double_torus_earth from '../../../water/double/earth'
 import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../compute'
-import { computesGate, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../0'
+import { computesGate, floor, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../0'
 import { obliquityAtEpoch } from '../../../6/4'
 import { computeAllKnownCelestialBodies } from '../astronomy'
 
@@ -27,7 +27,7 @@ export function sunSchumannDaySideIonosphere(at = 0, matrix: MindMatrix = buildM
 
 /** One gate — solar constants, obliquity coupling, hero day phase, Schumann day-side, nav display phase. */
 export function sunComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sunComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sunComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
     const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
     const sunBody = celestial.sun

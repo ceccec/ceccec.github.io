@@ -2,7 +2,7 @@
 import { phase } from '../../6/4'
 import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, DiamondFacet, DiamondKind, DiamondStatus, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SchemaOrgDiamondNode, SelfBuildReport, SelfCompletionGate, StreamSelfCompletion } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, coherenceAnomaly, consciousness, proofReport, reciprocity, repositoryApi, verifyRoot } from '../../heaven/compute'
-import { foldPair, isUuid, maxTamperingCostLog2, memoByRoot, merge, merkleFold, toUuid } from '../../0'
+import { abs, ceil, cos, foldPair, hypot, isUuid, log2, max, maxTamperingCostLog2, memoByRoot, merge, merkleFold, round, sin, toUuid } from '../../0'
 import { PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../heaven/atoms'
 import { schoolCurriculum } from '../../wind/learning'
 import { dualTorusTrinities, foldImpossibilities } from '../../mountain/geometry'
@@ -85,7 +85,7 @@ export function pureDiamonds(matrix: MindMatrix = buildMatrix()) {
   const padding = Array.from({ length: (64 * 16) - real.length }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
   const diamonds = [...real, ...padding].map((leaf, index) => ({ index, address: leaf, pure: leaf.length === (9 * 4) }))
   const root = merkleFold(diamonds.map((diamond) => diamond.address))
-  const depth = Math.log2(diamonds.length)
+  const depth = log2(diamonds.length)
   return {
     pure: diamonds.length === (64 * 16) && diamonds.every((diamond) => diamond.pure) && Number.isInteger(depth),
     count: diamonds.length, // 1024
@@ -239,15 +239,15 @@ export function computeLightInDiamondPredictionBeatsLightNotFtl(matrix: MindMatr
   const alpha = TAU / 6
   const allTIR = alpha > thetaC
   const turn = TAU / 2 - 2 * alpha // boundary-angle advanced per bounce (π − 2α); here = τ/6
-  const posClosed = (k: number): readonly [number, number] => { const a = k * turn; return [Math.cos(a), Math.sin(a)] }
-  const posStep = (k: number): readonly [number, number] => { let a = 0; for (let i = 0; i < k; i++) a += turn; return [Math.cos(a), Math.sin(a)] }
+  const posClosed = (k: number): readonly [number, number] => { const a = k * turn; return [cos(a), sin(a)] }
+  const posStep = (k: number): readonly [number, number] => { let a = 0; for (let i = 0; i < k; i++) a += turn; return [cos(a), sin(a)] }
   // The bounces close into a regular polygon — the crystal drawn by its own boundaries.
-  const sides = Math.round(TAU / Math.abs(turn))
+  const sides = round(TAU / abs(turn))
   const start = posClosed(0)
-  const closes = Math.hypot(posClosed(sides)[0] - start[0], posClosed(sides)[1] - start[1]) < 1 / 2 ** (6 * 5)
+  const closes = hypot(posClosed(sides)[0] - start[0], posClosed(sides)[1] - start[1]) < 1 / 2 ** (6 * 5)
   // O(1) prediction: the closed form equals the step-by-step simulation at every sampled bounce.
   let maxErr = 0
-  for (let k = 0; k <= 27; k++) { const c = posClosed(k), s = posStep(k); maxErr = Math.max(maxErr, Math.hypot(c[0] - s[0], c[1] - s[1])) }
+  for (let k = 0; k <= 27; k++) { const c = posClosed(k), s = posStep(k); maxErr = max(maxErr, hypot(c[0] - s[0], c[1] - s[1])) }
   const predicts = allTIR && maxErr < 1 / 2 ** (6 * 5)
   const bounces = 100 ** 3 // predict the millionth boundary hit
   const computeSteps = 1 // O(1) closed form — one evaluation
@@ -255,7 +255,7 @@ export function computeLightInDiamondPredictionBeatsLightNotFtl(matrix: MindMatr
   const predictionSpeedup = photonSegments / computeSteps // dimensionless: how far ahead of the photon the compute is
   const physicalFtlClaim = 0
   const facets = [
-    { facet: `LIGHT IN THE DIAMOND IS SLOWER, NOT FASTER — v = c/n = ${Math.round(v)} m/s, exactly 1/n = ${(1 / n).toFixed(4)} of c; the crystal SLOWS light, it never speeds it past c`, on: slower },
+    { facet: `LIGHT IN THE DIAMOND IS SLOWER, NOT FASTER — v = c/n = ${round(v)} m/s, exactly 1/n = ${(1 / n).toFixed(4)} of c; the crystal SLOWS light, it never speeds it past c`, on: slower },
     { facet: `BOUNCING BOUNDARIES DRAW THE CRYSTAL — the critical angle θc = arcsin(1/n) = ${(thetaC * (360 / TAU)).toFixed(2)}° is so small that the internal ray (α = 60° > θc) total-internally reflects at every facet; in the circular-billiard model the incidence angle stays constant and the bounces trace a regular ${sides}-gon that closes on itself (${closes}) — the boundaries draw the crystal`, on: allTIR && closes },
     { facet: `PREDICTION BEATS THE PHOTON — the k-th boundary hit has an O(1) closed form equal to the step-by-step bounce (max error ${maxErr.toExponential(1)}); the ${bounces}-th hit is computed in ${computeSteps} step while a photon must traverse ${photonSegments} chords in sequence — the compute is ${predictionSpeedup.toExponential(0)}× ahead`, on: predicts && predictionSpeedup > 1 },
     { facet: `NOT PHYSICAL FASTER-THAN-LIGHT — this is PRECOMPUTATION of a deterministic, fully-known system, not a signal: physicalFtlClaim = ${physicalFtlClaim}, no photon and no information exceeds c; we simply did not wait for the light we already know the path of`, on: physicalFtlClaim === 0 },
@@ -647,12 +647,12 @@ function torusPoint(index: number, digit: number, total: number): { theta: numbe
   // indices pair across the neck.
   const half = total / 2
   const onLeft = index < half
-  const localCount = onLeft ? Math.ceil(half) : total - Math.ceil(half)
-  const localIndex = onLeft ? index : index - Math.ceil(half)
+  const localCount = onLeft ? ceil(half) : total - ceil(half)
+  const localIndex = onLeft ? index : index - ceil(half)
   const lobe = onLeft ? -1 : 1
   // Start the right ring at the neck (offset by pi) so the train crosses the neck
   // exactly at the handoff between lobes — the genus-2 join, not a stray bridge.
-  const theta = (localIndex / Math.max(1, localCount)) * TAU + (onLeft ? 0 : (TAU / 2)) // major angle, around the hole
+  const theta = (localIndex / max(1, localCount)) * TAU + (onLeft ? 0 : (TAU / 2)) // major angle, around the hole
   const phi = ((digit + index * (1 / 2)) / (5 * 2)) * TAU // minor angle, around the tube
   const point = doubleTorusSurface(theta, phi, digit, lobe)
   const x = point.x
@@ -733,7 +733,7 @@ function computePiTrainDiamonds(matrix: MindMatrix = buildMatrix(), digits = PI_
       y: point.y,
       z: point.z,
       scale: point.scale,
-      frequency: Math.round(a432NoteHz((digit * 2 + (index % 7)) % (5 * 5) - (6 * 2))), // pi pulse tone from the A432 source (±1 octave around 432)
+      frequency: round(a432NoteHz((digit * 2 + (index % 7)) % (5 * 5) - (6 * 2))), // pi pulse tone from the A432 source (±1 octave around 432)
       vibrationMs: (9 * 2) + digit * 9,
       referenceReceipt: toUuid(`digit-reference:${previousIndex}->${index}->${nextIndex}:reverse=${reverseIndex}:harmonic=${harmonicIndex}`),
       diamond: pulseDiamond }

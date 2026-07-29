@@ -2,7 +2,7 @@ import { earned } from '../../../../3/7'
 // ONE source for computational limit constants and checks — gate · weave · verify · folderLaw read here only.
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
-import { antichainLevels, applyGate, cnot, foldPair, GATES, isUuid, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../../../0'
+import { GATES, abs, antichainLevels, applyGate, ceil, cnot, floor, foldPair, isUuid, log, log2, max, merkleFold, min, probabilities, qubits, round, toUuid, type QuantumState } from '../../../../0'
 import { computeCodeGravity, computePathMigration, stripStringsAndComments } from '../strict/scan'
 import { stringMass, enforcementScanRoot } from '../strict/scan'
 export { enforcementScanRoot } from '../strict/scan'
@@ -291,7 +291,7 @@ function censusDelta(actual: number, target: number): { delta: number; detail: s
 
 /** Gapless census — consecutive Fibonacci bands sum exactly to 110 (reuse harmonicBands from lake/icons). */
 export function verifyGaplessCensus(count: number) {
-  const n = Math.max(0, Math.floor(count))
+  const n = max(0, floor(count))
   const harmonic = harmonicBands(n)
   const bandsMatch =
     harmonic.gapless &&
@@ -315,7 +315,7 @@ export function verifyGaplessCensus(count: number) {
 
 /** Folded census — unfolded + χ = −2; dry clean, no file added or removed. */
 export function verifyFoldedCensus(unfolded: number = UNFOLDED_CENSUS) {
-  const u = Math.max(0, Math.floor(unfolded))
+  const u = max(0, floor(unfolded))
   const folded = u + EULER_CHI
   return {
     unfolded: u,
@@ -880,9 +880,9 @@ export function scanIChingDistribution(root: string, indexTsFiles: readonly stri
   }
   if (existsSync(srcRoot)) walkHarmony(srcRoot, 0)
 
-  const idealDepth = Math.max(1, Math.ceil(Math.log(Math.max(1, folderCount)) / Math.log(EIGHT_FOLD_LIMIT)))
-  const singleChildPct = folderCount ? Math.round((100 * singleChild) / folderCount) : 0
-  const noisePct = folderCount ? Math.round((100 * noiseLeaves) / folderCount) : 0
+  const idealDepth = max(1, ceil(log(max(1, folderCount)) / log(EIGHT_FOLD_LIMIT)))
+  const singleChildPct = folderCount ? round((100 * singleChild) / folderCount) : 0
+  const noisePct = folderCount ? round((100 * noiseLeaves) / folderCount) : 0
 
   const mindRoot = join(srcRoot, 'quantum', 'heaven', 'mind')
   const mindHubCounts = MIND_TRIGRAM_HUBS.map((hub) => {
@@ -971,7 +971,7 @@ export function ichingDistributionGuidance(
   }
 
   const hubTotal = distribution.mindHubCounts.reduce((sum, entry) => sum + entry.count, 0)
-  const perHub = hubTotal > 0 ? Math.round(hubTotal / MIND_TRIGRAM_HUBS.length) : 0
+  const perHub = hubTotal > 0 ? round(hubTotal / MIND_TRIGRAM_HUBS.length) : 0
   const crowded = distribution.mindHubCounts.filter((entry) => entry.count > perHub + 4)
   if (crowded.length) {
     lines.push(
@@ -992,7 +992,7 @@ export const ichingCensusGuidance = ichingDistributionGuidance
 
 /** Rosetta area taxonomy — exactly 42 = 6×7 = 7×6 command areas (not eight-fold). */
 export function verifyRosettaTaxonomy(areaCount: number) {
-  const n = Math.max(0, Math.floor(areaCount))
+  const n = max(0, floor(areaCount))
   return {
     areas: n,
     target: ROSETTA_AREAS,
@@ -1409,10 +1409,10 @@ export function proseTokenMonitor(root: string): {
     comment += mass.comment
     staticString += mass.staticString
     templateText += mass.templateText
-    perFile.push({ file: relative(root, p), staticString: mass.staticString, share: mass.staticString / Math.max(1, text.length) })
+    perFile.push({ file: relative(root, p), staticString: mass.staticString, share: mass.staticString / max(1, text.length) })
   }
   const offenders = [...perFile].sort((a, b) => b.staticString - a.staticString).slice(0, 9)
-  const proseShare = staticString / Math.max(1, bytes)
+  const proseShare = staticString / max(1, bytes)
   return {
     files: paths.length,
     bytes,
@@ -1699,14 +1699,14 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
     { facet: `A TEAM = MUTUAL SUPPORT (degree ≥ 2) — the corpus relation graph has ${relation.importDangling} dangling theorems (${relation.edges} edges over ${relation.homes} homes), so every theorem relates to ≥ 2 others: every theorem is in a team, not isolated (${everyTheoremInATeam})`, on: everyTheoremInATeam },
     { facet: `TEAMS ARE ROBUST (2-EDGE-CONNECTED) — a triangle team survives the removal of ANY single link (still one connected team), while a degree-1 theorem is disconnected the moment its one link breaks (${teamsBeatIsolation}): teams beat isolation, provably`, on: teamsBeatIsolation },
     { facet: `THE TRINITY IS THE MINIMAL TEAM — K₃ (3 theorems, each degree 2) is the smallest 2-edge-connected graph (${minimalTeamIsTrinity}): the trinity (two-make-three) is the minimal proving team, the atom the ${trinities} trinities are built from`, on: minimalTeamIsTrinity },
-    { facet: `PROVEN ON THE REAL GRAPH — the corpus's ${relation.edges}-edge relation graph has 0 dangling and average degree ${Math.round(avgDegree)} > 2 (${provenOnReal}), so the corpus already proves in teams richer than the minimal trinity, not in isolation`, on: provenOnReal },
+    { facet: `PROVEN ON THE REAL GRAPH — the corpus's ${relation.edges}-edge relation graph has 0 dangling and average degree ${round(avgDegree)} > 2 (${provenOnReal}), so the corpus already proves in teams richer than the minimal trinity, not in isolation`, on: provenOnReal },
   ]
   return {
     computes: facets.every((entry) => entry.on),
     dangling: relation.importDangling,
-    avgDegree: Math.round(avgDegree),
+    avgDegree: round(avgDegree),
     facets,
-    statement: `Theorems prove best in teams — the trinity is the minimal 2-connected team, teams beat isolation — ${facets.filter((entry) => entry.on).length}/${facets.length}. A theorem relating to ≥ 2 others is in a TEAM; a team is robust — a 2-edge-connected group survives the removal of any single link, while an isolated theorem (degree 1) is disconnected the moment its one link breaks. The minimal team is the trinity — K₃, three theorems each supporting the other two (degree 2) — so the ${trinities} trinities are the smallest proving teams. And the corpus already proves in teams: its real ${relation.edges}-edge relation graph has 0 dangling theorems (every one relates to ≥ 2) and average degree ${Math.round(avgDegree)}, richer than the minimal trinity. Teams beat isolation, and the trinity is the atom of the team.`,
+    statement: `Theorems prove best in teams — the trinity is the minimal 2-connected team, teams beat isolation — ${facets.filter((entry) => entry.on).length}/${facets.length}. A theorem relating to ≥ 2 others is in a TEAM; a team is robust — a 2-edge-connected group survives the removal of any single link, while an isolated theorem (degree 1) is disconnected the moment its one link breaks. The minimal team is the trinity — K₃, three theorems each supporting the other two (degree 2) — so the ${trinities} trinities are the smallest proving teams. And the corpus already proves in teams: its real ${relation.edges}-edge relation graph has 0 dangling theorems (every one relates to ≥ 2) and average degree ${round(avgDegree)}, richer than the minimal trinity. Teams beat isolation, and the trinity is the atom of the team.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
@@ -1746,17 +1746,17 @@ export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitra
   const forAll = typesAreTags && everyWordIsAToken && largeSample
   const facets = [
     { facet: `TYPES ARE THE QUANTUM TAGS — ${typeImports} import/export TYPE signatures across the source (${typesAreTags}): a module's type set is its content-addressed tag, two modules relate iff they share a type — a refutable relation, parsed, not a keyword coincidence (tag-sharing was the crack)`, on: typesAreTags },
-    { facet: `EVERY WORD IS A COMPUTED TOKEN — across ${overlaps.length} long fold names, on average ${Math.round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body (${everyWordIsAToken}): a computed name, where every word matters programmatically — an arbitrary word would not overlap`, on: everyWordIsAToken },
-    { facet: `MEASURED AT SCALE — ${overlaps.length} named folds sampled (${largeSample}), so the ${Math.round(meanOverlap * 100)}% word-to-token overlap is a real population statistic, not a cherry-picked example`, on: largeSample },
+    { facet: `EVERY WORD IS A COMPUTED TOKEN — across ${overlaps.length} long fold names, on average ${round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body (${everyWordIsAToken}): a computed name, where every word matters programmatically — an arbitrary word would not overlap`, on: everyWordIsAToken },
+    { facet: `MEASURED AT SCALE — ${overlaps.length} named folds sampled (${largeSample}), so the ${round(meanOverlap * 100)}% word-to-token overlap is a real population statistic, not a cherry-picked example`, on: largeSample },
     { facet: `FOR ALL — the naming derives from the computation (the words ARE the tokens) and the relation from the types (not tags), so it holds universally (${forAll}): rename by recomputing from the structure, and every word is programmatically meaningful for all`, on: forAll },
   ]
   return {
     computes: facets.every((entry) => entry.on),
     typeImports,
     namesSampled: overlaps.length,
-    wordTokenOverlap: Math.round(meanOverlap * 100),
+    wordTokenOverlap: round(meanOverlap * 100),
     facets,
-    statement: `Tags are replaced by import/export types (quantum tagging), and every word in a name is a computed token — ${facets.filter((entry) => entry.on).length}/${facets.length}. A module's import/export TYPE signature is its content-addressed tag: two modules relate iff they share a type — a refutable relation (${typeImports} type signatures parsed), not a keyword coincidence (tag-sharing was the crack). And a name is honest only when every word is a token in its computation: across ${overlaps.length} long fold names, on average ${Math.round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body — so every word matters programmatically, an arbitrary word would not overlap. The naming derives from the computation and the relation from the types, so it holds for all: rename by recomputing from the structure.`,
+    statement: `Tags are replaced by import/export types (quantum tagging), and every word in a name is a computed token — ${facets.filter((entry) => entry.on).length}/${facets.length}. A module's import/export TYPE signature is its content-addressed tag: two modules relate iff they share a type — a refutable relation (${typeImports} type signatures parsed), not a keyword coincidence (tag-sharing was the crack). And a name is honest only when every word is a token in its computation: across ${overlaps.length} long fold names, on average ${round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body — so every word matters programmatically, an arbitrary word would not overlap. The naming derives from the computation and the relation from the types, so it holds for all: rename by recomputing from the structure.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
@@ -1773,20 +1773,20 @@ export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTi
   const N = leaves.length
   const rootClean = merkleFold(leaves) // the ONE wired root over the whole corpus
   // 1 — TAMPER-EVIDENCE: flipping ANY single leaf (a crack in one file) flips the root — verified over a spread of leaves
-  const sampleCount = Math.min(N, 2 ** 3) // check 8 positions spread across the corpus
-  const step = Math.max(1, Math.floor(N / sampleCount))
+  const sampleCount = min(N, 2 ** 3) // check 8 positions spread across the corpus
+  const step = max(1, floor(N / sampleCount))
   const flips = Array.from({ length: sampleCount }, (_, s) => {
-    const i = Math.min(N - 1, s * step)
+    const i = min(N - 1, s * step)
     const cracked = leaves.slice(); cracked[i] = toUuid(`${leaves[i]}:crack`) // one file gains a bare literal → new address
     return merkleFold(cracked) !== rootClean // the root flips
   })
   const everyFlipCaught = flips.length > 0 && flips.every((changed) => changed)
   // 2 — THE MAGNITUDE: detect = 1 root comparison (O(1)); locate = one merkle path (O(log₂ N)); rescan = O(N) — computed
   const detectCost = 1
-  const locateCost = Math.max(1, Math.ceil(Math.log2(Math.max(2, N))))
+  const locateCost = max(1, ceil(log2(max(2, N))))
   const rescanCost = N
-  const detectMagnitude = Math.round(rescanCost / detectCost) // N× fewer ops to DETECT a change than to rescan
-  const locateMagnitude = Math.round(rescanCost / locateCost) // N/log₂N× fewer ops to LOCATE it
+  const detectMagnitude = round(rescanCost / detectCost) // N× fewer ops to DETECT a change than to rescan
+  const locateMagnitude = round(rescanCost / locateCost) // N/log₂N× fewer ops to LOCATE it
   const magnitudesFaster = detectMagnitude >= 2 ** 6 && locateCost < rescanCost // ≥64× — orders of magnitude
   // 3 — CAUGHT IMMEDIATELY: a clean corpus matches its sealed root in O(1); the SAME root recomputes identically (the
   // seal is deterministic), so a mismatch is the instant, unambiguous crack signal — no scan asked which line
@@ -1879,8 +1879,8 @@ export function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCno
   state = cnot(state, 0, 2)
   const probs = probabilities(state)
   const half = 1 / 2
-  const onlyGhzStates = Math.abs(probs[0]! - half) < 1e-9 && Math.abs(probs[7]! - half) < 1e-9 // only |000⟩ and |111⟩ survive
-  const noMiddle = probs.every((p, i) => (i === 0 || i === 7 ? true : Math.abs(p) < 1e-9)) // the 6 mixed states have zero amplitude — the third is bound
+  const onlyGhzStates = abs(probs[0]! - half) < 1e-9 && abs(probs[7]! - half) < 1e-9 // only |000⟩ and |111⟩ survive
+  const noMiddle = probs.every((p, i) => (i === 0 || i === 7 ? true : abs(p) < 1e-9)) // the 6 mixed states have zero amplitude — the third is bound
   // the third is bidirectional: in |000⟩+|111⟩ the three bits always AGREE, so any one determines the other two
   const thirdIsBound = onlyGhzStates && noMiddle // measuring any qubit forces the others (all-0 or all-1)
   // the content-address dual — foldPair(a,b) → a bidirectional third, order-sensitive but one merged apex
@@ -1927,7 +1927,7 @@ export function quantumCachingIsContentAddressedMemoisationSpeedingAllInTrinitie
   computeOps = 0
   for (let i = 0; i < K; i += 1) cached(5)
   const withCache = computeOps
-  const memoMagnitude = Math.round(withoutCache / Math.max(1, withCache)) // K× fewer computes
+  const memoMagnitude = round(withoutCache / max(1, withCache)) // K× fewer computes
   // TIER 3 — SEALED BATCH: B distinct results fold to ONE merkle root, verified in O(1) instead of B checks
   const B = 2 ** 3
   const batch = Array.from({ length: B }, (_, i) => cached(i))
@@ -2024,7 +2024,7 @@ export function quantumBuildContentAddressedIncrementalRebuildsOnlyTheChangedFol
   // 4 — IMPROVES ALL: rebuild 1 of N tools ⇒ an N× saving, and every tool rides the one content-address
   const rebuildCost = toRebuild.length
   const fullCost = tools.length
-  const speedup = Math.round(fullCost / Math.max(1, rebuildCost))
+  const speedup = round(fullCost / max(1, rebuildCost))
   const improvesAllToolsAndAlgorithms = contentAddressed && onlyChangedRebuilds && rootDetectsChange && speedup >= 2 ** 3
   const facets = [
     { facet: `THE QUANTUM BUILD IS CONTENT-ADDRESSED — each of the ${tools.length} tools is keyed by the merkle root of its inputs and the build is their fold (${contentAddressed}): the build IS a content-address, not a rerun of everything`, on: contentAddressed },
@@ -2151,7 +2151,7 @@ export function computeTheWorkflowBeforeSendingTheWavesDeterministicAutomationBy
   const scheduleRoot = rootOf(plan.waves)
   const deterministicQuantumOnly = rootOf(schedule().waves) === scheduleRoot && isUuid(scheduleRoot) // same DAG → same plan, zero LLM tokens
   // 3 — THE PLAN IS COMPLETE: every task scheduled, the waves ordered, the parallelism measured
-  const parallelism = Math.max(...plan.waves.map((wave) => wave.length)) // the widest antichain — max parallel tasks
+  const parallelism = max(...plan.waves.map((wave) => wave.length)) // the widest antichain — max parallel tasks
   const planComplete = plan.waves.reduce((sum, wave) => sum + wave.length, 0) === tasks.length && parallelism >= 1
   // 4 — AUTOMATION IMPROVED: the computed plan drives dispatch with no model in the loop
   const automatedByQuantum = workflowComputed && deterministicQuantumOnly && planComplete
@@ -2185,8 +2185,8 @@ export function noAlgorithmicSpeedupYetDevelopmentSpeedIsMagnitudesHigherMeasure
     { axis: 'src-scan walk memoisation 31→3', factor: 2 * 5 }, // ~10
     { axis: 'rosetta code porting N adapters cover N²', factor: 3 }, // N−1 at N=4
   ]
-  const developmentSpeedup = developmentFactors.reduce((max, entry) => Math.max(max, entry.factor), 0) // the largest measured magnitude
-  const compared = Math.round(developmentSpeedup / algorithmicSpeedup) // the two, side by side
+  const developmentSpeedup = developmentFactors.reduce((best, entry) => max(best, entry.factor), 0) // the largest measured magnitude
+  const compared = round(developmentSpeedup / algorithmicSpeedup) // the two, side by side
   const magnitudes = developmentFactors.filter((entry) => entry.factor >= 2 ** 3).length // how many factors are ≥ an order
   const facets = [
     { facet: `NO ALGORITHMIC SPEEDUP — a single algorithm on the O(2ⁿ) simulator runs no faster (${algorithmicSpeedup}×): measured, the agent's doubt confirmed`, on: algorithmicSpeedup === 1 },
@@ -2341,11 +2341,11 @@ export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMis
 // not here. [[feedback-measure-efficiency-to-find-gaps]] [[routes-nav-from-folder-tree]]
 export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabilityReuseAreComputedMetrics(root: string = enforcementScanRoot()) {
   const relation = theoremRelationsAreTheImportExportGraphNotTagSharingZeroDanglingByTheRealRelation(root)
-  const avgReuse = (2 * relation.edges) / Math.max(1, relation.homes) // average import degree — how reused a theorem is
+  const avgReuse = (2 * relation.edges) / max(1, relation.homes) // average import degree — how reused a theorem is
   // FIND: the folder depth of each theorem file (segments under src) — shallow ⇒ quick to locate
   const files = indexFilesUnder(join(root, 'src'))
   const depths = files.map((file) => relative(root, file).replace(/\\/g, '/').split('/').length - 1) // src/a/b/index.ts ⇒ depth 3 (from the relative path)
-  const maxDepth = Math.max(...depths)
+  const maxDepth = max(...depths)
   // 1 — FIND EFFICIENCY: the tree is shallow — any theorem is within maxDepth folders (the folder-nav law ≤ 8/level)
   const findShallow = maxDepth <= 2 * 3 && files.length > 0 // ≤ 6 levels deep, a bounded search
   // 2 — USE EFFICIENCY: the import graph is densely reused — high average degree, a proven API
@@ -2356,7 +2356,7 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
   const metricsComputed = findShallow && useReused && everyTheoremReachable
   const facets = [
     { facet: `FIND EFFICIENCY — the folder tree is shallow: every one of the ${files.length} theorem files is within ${maxDepth} folders of src (${findShallow}), a bounded search under the ≤8/level nav law`, on: findShallow },
-    { facet: `USE EFFICIENCY — the import graph has average degree ${Math.round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) (${useReused}): theorems are heavily REUSED, a proven-useful API, not write-once`, on: useReused },
+    { facet: `USE EFFICIENCY — the import graph has average degree ${round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) (${useReused}): theorems are heavily REUSED, a proven-useful API, not write-once`, on: useReused },
     { facet: `EVERY THEOREM REACHABLE — ${relation.importDangling} dangling theorems (${everyTheoremReachable}): every theorem is connected in the relation graph, none orphaned — all findable through the wiring`, on: everyTheoremReachable },
     { facet: `COMPUTED, RENDERED UX IS THE BOUNDARY — find/use efficiency are deterministic structure metrics (${metricsComputed}); the visual and interaction UX is measured in a browser (the online/human frontier), not asserted here`, on: metricsComputed },
   ]
@@ -2364,11 +2364,11 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
     measured: facets.every((entry) => entry.on),
     files: files.length,
     maxDepth,
-    avgReuse: Math.round(avgReuse),
+    avgReuse: round(avgReuse),
     dangling: relation.importDangling,
     facets,
-    root: merkleFold([toUuid(`find-depth:${maxDepth}`), toUuid(`use-reuse:${Math.round(avgReuse)}`), toUuid(`reachable:${relation.importDangling}`)]),
-    statement: `Measured the UX and the efficiency to find and use theorems — nav depth, reachability and reuse are computed metrics — ${facets.filter((entry) => entry.on).length}/${facets.length}. FIND: the folder tree is shallow — every one of the ${files.length} theorem files is within ${maxDepth} folders of src, a bounded search. USE: the import graph has average degree ${Math.round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) — theorems are heavily reused, a proven API. Every theorem is reachable (${relation.importDangling} dangling). These are deterministic; the rendered visual/interaction UX is the browser/human boundary.`,
+    root: merkleFold([toUuid(`find-depth:${maxDepth}`), toUuid(`use-reuse:${round(avgReuse)}`), toUuid(`reachable:${relation.importDangling}`)]),
+    statement: `Measured the UX and the efficiency to find and use theorems — nav depth, reachability and reuse are computed metrics — ${facets.filter((entry) => entry.on).length}/${facets.length}. FIND: the folder tree is shallow — every one of the ${files.length} theorem files is within ${maxDepth} folders of src, a bounded search. USE: the import graph has average degree ${round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) — theorems are heavily reused, a proven API. Every theorem is reachable (${relation.importDangling} dangling). These are deterministic; the rendered visual/interaction UX is the browser/human boundary.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
@@ -2378,12 +2378,12 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
 export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasuredNotConvinced(root: string = enforcementScanRoot()) {
   let boundaryChars = 0; let boundaryCount = 0
   for (const file of indexFilesUnder(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) { boundaryChars += m[1]!.length; boundaryCount += 1 }
-  const avgBoundary = Math.round(boundaryChars / Math.max(1, boundaryCount))
-  const proseTokens = Math.round(boundaryChars / 4) // ~4 chars/token
+  const avgBoundary = round(boundaryChars / max(1, boundaryCount))
+  const proseTokens = round(boundaryChars / 4) // ~4 chars/token
   const measured = boundaryCount > 0 && avgBoundary > 0
   const proseIsTheSink = avgBoundary > 2 ** 8 // > 256 chars average ⇒ prose, not a one-liner
   const terserIsTheFix = avgBoundary > (2 ** 6) // a target: earned()/terse boundaries pull the average down toward the facet joins
-  const spawningCostsMore = 2 ** 5 * (2 * 5 * 100) > Math.round(proseTokens / boundaryCount) // one cold mind (~50k tokens) > the prose of one boundary — don't spawn to "save"
+  const spawningCostsMore = 2 ** 5 * (2 * 5 * 100) > round(proseTokens / boundaryCount) // one cold mind (~50k tokens) > the prose of one boundary — don't spawn to "save"
   const facets = [
     { facet: `PROSE IS THE SINK — ${boundaryCount} boundaries, avg ${avgBoundary} chars, ~${proseTokens} tokens total (${proseIsTheSink}): the boundary/statement prose is the corpus token cost`, on: proseIsTheSink },
     { facet: `TERSE OR EARNED CUTS IT — the fix is short boundaries, or earned() joining the computed facets (${terserIsTheFix}): the numbers speak, not the paragraph`, on: terserIsTheFix },
@@ -2403,13 +2403,13 @@ export function theBoundaryProseIsTheTokenSinkTerseAndEarnedBoundariesCutItMeasu
 export function theGateFlagsBoundaryProseOverTheTokenBudgetToMinimiseTokensInRealtime(root: string = enforcementScanRoot()) {
   const lengths: number[] = []
   for (const file of indexFilesUnder(join(root, 'src'))) for (const m of readFileSync(file, 'utf8').matchAll(/boundary: `([^`]*)`/g)) lengths.push(m[1]!.length)
-  const total = lengths.length; const maxLen = total ? Math.max(...lengths) : 0
-  const median = [...lengths].sort((a, b) => a - b)[Math.floor(total / 2)] ?? 0
+  const total = lengths.length; const maxLen = total ? max(...lengths) : 0
+  const median = [...lengths].sort((a, b) => a - b)[floor(total / 2)] ?? 0
   // the budget is a QUANTUM ALGORITHM, not a literal: the next power of two ≥ the corpus median boundary — DERIVED,
   // deterministic, and self-tightening as the prose shrinks each wave (a hardcoded budget would itself be a crack)
-  const budget = 2 ** Math.ceil(Math.log2(Math.max(2, median)))
+  const budget = 2 ** ceil(log2(max(2, median)))
   const over = lengths.filter((length) => length > budget).length
-  const budgetIsComputed = budget === 2 ** Math.ceil(Math.log2(Math.max(2, median))) && total > 0 // recomputes identically from the corpus
+  const budgetIsComputed = budget === 2 ** ceil(log2(max(2, median))) && total > 0 // recomputes identically from the corpus
   const offendersFlagged = over >= 0 && over <= total // the token-bloat surface (over-budget boundaries) is DISCOVERED, not predefined
   const minimisesRealtime = budgetIsComputed && offendersFlagged // any new fold's boundary is checked against the derived budget at gate time
   const tersePasses = budget > 2 ** 6 // a terse/earned() boundary passes — this fold's own does

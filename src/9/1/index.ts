@@ -1,8 +1,8 @@
 // Pi-train station 9/1 — dissolution sequence order 8 (digit/reverse 9/1).
 // Domain cuts only — vault primitives import from src/0 at call sites.
-import { IONIZING_EV, PROTON_MASS_MEV, photonEnergyEv } from '../../3/7'
+import { IONIZING_EV, LN2, PROTON_MASS_MEV, SQRT1_2, SQRT2, photonEnergyEv } from '../../3/7'
 import type { Rational } from '../../3/7'
-import { applyGate, cnot, GATES, measure, merkleFold, prng, probabilities, qubits, toUuid } from '../../0'
+import { GATES, abs, applyGate, atan2, ceil, cnot, cos, exp, floor, hypot, log2, max, measure, merkleFold, min, prng, probabilities, qubits, round, sin, sqrt, toUuid } from '../../0'
 import type { QuantumState } from '../../0'
 import { TAU, earned } from '../../3/7'
 import { BOLTZMANN, PHI, SPEED_OF_LIGHT } from '../../3/7'
@@ -16,7 +16,7 @@ export const tkKey = (p: number[]) => p.join(',')
 export const tkPerms = (n: number): number[][] => { const out: number[][] = []; const b = (r: number[], a: number[]): void => { if (!r.length) { out.push(a); return } for (const v of r) b(r.filter((t) => t !== v), [...a, v]) }; b([...Array(n).keys()], []); return out }
 export const tkEvenPerms = (n: number) => tkPerms(n).filter((p) => { let s = 0; for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) if (p[i]! > p[j]!) s += 1; return s % 2 === 0 })
 export const tkIsPrime = (n: number) => { if (n < 2) return false; for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false; return true }
-export const tkPowMod = (base: number, exp: number, mod: number) => { let r = 1, b = ((base % mod) + mod) % mod, e = exp; while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = Math.floor(e / 2) } return r }
+export const tkPowMod = (base: number, exp: number, mod: number) => { let r = 1, b = ((base % mod) + mod) % mod, e = exp; while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = floor(e / 2) } return r }
 export const tkClassSizesBy = <T>(group: T[], mul: (a: T, b: T) => T, inv: (a: T) => T, keyOf: (a: T) => string): number[] => { const seen = new Set<string>(); const sizes: number[] = []; for (const x of group) { if (seen.has(keyOf(x))) continue; const orbit = new Set<string>(); for (const g of group) orbit.add(keyOf(mul(mul(g, x), inv(g)))); for (const k of orbit) seen.add(k); sizes.push(orbit.size) } return sizes.sort((a, b) => a - b) }
 export const tkClassSizes = (group: number[][]) => tkClassSizesBy(group, tkCompose, tkInverse, tkKey)
 export const tkClassSumSimple = (sizes: number[], order: number): boolean => { const nont = sizes.filter((s) => s !== 1); for (let mask = 1; mask < 2 ** nont.length; mask += 1) { const sum = 1 + nont.reduce((s, c, i) => s + ((mask >> i) & 1) * c, 0); if (sum < order && order % sum === 0) return false } return true }
@@ -30,7 +30,7 @@ export function innerProduct(a: QuantumState, b: QuantumState): { re: number; im
     re += a.re[i] * b.re[i] + a.im[i] * b.im[i]
     im += a.re[i] * b.im[i] - a.im[i] * b.re[i]
   }
-  return { re, im, abs: Math.sqrt(re * re + im * im) }
+  return { re, im, abs: sqrt(re * re + im * im) }
 }
 
 // Operator algebra: the product of two single-qubit gates as 2×2 complex matrices (flat-8). Non-commutative —
@@ -80,7 +80,7 @@ export function dagger(a: readonly number[]): number[] {
   return [a[0]!, -a[1]!, a[4]!, -a[5]!, a[2]!, -a[3]!, a[6]!, -a[7]!]
 }
 
-const gateClose = (a: readonly number[], b: readonly number[]): boolean => a.every((v, i) => Math.abs(v - b[i]!) < 1e-9)
+const gateClose = (a: readonly number[], b: readonly number[]): boolean => a.every((v, i) => abs(v - b[i]!) < 1e-9)
 /** 2i·A in flat-8 (each complex entry (r,i) ↦ (−2i, 2r)) — the RHS scale of the su(2) structure relation. */
 const twoI = (a: readonly number[]): number[] => a.flatMap((_, i) => (i % 2 === 0 ? [-2 * a[i + 1]!, 2 * a[i]!] : []))
 /** 2·I flat-8 = diag(2,2) — the RHS of the Jordan relation {σ_i,σ_i} = 2I. */
@@ -91,12 +91,12 @@ const ZERO8 = new Array<number>(8).fill(0)
 // the src/0 purity law holds the void station at ≤126 exports, and R(θ)/phase ARE su(2) elements):
 // R(θ) real rotation and diag(1, e^{iφ}) phase, in the kernel's flat complex 2×2 form.
 export function rotationGate(theta: number): readonly number[] {
-  const c = Math.cos(theta)
-  const s = Math.sin(theta)
+  const c = cos(theta)
+  const s = sin(theta)
   return [c, 0, -s, 0, s, 0, c, 0]
 }
 export function phaseGate(phi: number): readonly number[] {
-  return [1, 0, 0, 0, 0, 0, Math.cos(phi), Math.sin(phi)]
+  return [1, 0, 0, 0, 0, 0, cos(phi), sin(phi)]
 }
 
 /** The fold: the operator algebra closes — the Pauli defining relations all hold, computed not asserted.
@@ -114,7 +114,7 @@ export function pauliAlgebraCloses(): {
     { facet: 'Jordan product closes — {σ_i,σ_j} = 2δ_ij I (anticommute off-diagonal, 2I on the diagonal)', on: paulis.every(([, a], i) => paulis.every(([, b], j) => gateClose(anticommutator(a, b), i === j ? TWO_I2 : ZERO8))) },
     { facet: 'su(2) structure closes — [σ_i,σ_j] = 2i ε_ijk σ_k ([X,Y]=2iZ, [Y,Z]=2iX, [Z,X]=2iY)', on: gateClose(commutator(X, Y), twoI(Z)) && gateClose(commutator(Y, Z), twoI(X)) && gateClose(commutator(Z, X), twoI(Y)) },
     { facet: 'Hermitian and unitary — σ_i† = σ_i and σ_i†σ_i = I (self-adjoint observables that are also gates)', on: paulis.every(([, s]) => gateClose(dagger(s), s) && gateClose(gateMul(dagger(s), s), I)) },
-    { facet: 'traceless Paulis, tr I = 2 — the su(2) generators live in the traceless subspace', on: paulis.every(([, s]) => Math.abs(trace(s).re) < 1e-9 && Math.abs(trace(s).im) < 1e-9) && trace(I).re === 2 },
+    { facet: 'traceless Paulis, tr I = 2 — the su(2) generators live in the traceless subspace', on: paulis.every(([, s]) => abs(trace(s).re) < 1e-9 && abs(trace(s).im) < 1e-9) && trace(I).re === 2 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pauli-algebra:${entry.facet}:${entry.on}`) }))
   return {
     closes: facets.every((entry) => entry.on),
@@ -267,17 +267,17 @@ export function improveDecisionMakingInQuantumTrinities() {
  * (the coincidence amplitude r²−t² vanishes); and g²(0) = 1 (coherent), 2 (thermal), 0 (single photon) — antibunching
  * g²(0)<1 has no classical model. A MODEL over the sealed algebra, not a photon-counting experiment. [[electromagnetic-radiation]] */
 export function quantumOpticsDecoded() {
-  const t = Math.SQRT1_2, r = Math.SQRT1_2 // 50/50 beam-splitter transmission / reflection amplitudes (1/√2)
+  const t = SQRT1_2, r = SQRT1_2 // 50/50 beam-splitter transmission / reflection amplitudes (1/√2)
   // The beam splitter is a 2×2 real orthogonal unitary U = [[t, r],[r, −t]]; UᵀU = I.
   const U = [[t, r], [r, -t]]
   const uTu = [
     [U[0]![0]! * U[0]![0]! + U[1]![0]! * U[1]![0]!, U[0]![0]! * U[0]![1]! + U[1]![0]! * U[1]![1]!],
     [U[0]![1]! * U[0]![0]! + U[1]![1]! * U[1]![0]!, U[0]![1]! * U[0]![1]! + U[1]![1]! * U[1]![1]!],
   ]
-  const isUnitary = Math.abs(uTu[0]![0]! - 1) < 1e-9 && Math.abs(uTu[1]![1]! - 1) < 1e-9 && Math.abs(uTu[0]![1]!) < 1e-9 && Math.abs(uTu[1]![0]!) < 1e-9
+  const isUnitary = abs(uTu[0]![0]! - 1) < 1e-9 && abs(uTu[1]![1]! - 1) < 1e-9 && abs(uTu[0]![1]!) < 1e-9 && abs(uTu[1]![0]!) < 1e-9
   // Hong–Ou–Mandel: two indistinguishable photons |1,1⟩ at a 50/50 BS — the coincidence (c†d†) amplitude is r²−t².
   const coincidenceAmplitude = r * r - t * t // = 0 for a 50/50 splitter → the HOM dip (photons bunch)
-  const homBunches = Math.abs(coincidenceAmplitude) < 1e-9
+  const homBunches = abs(coincidenceAmplitude) < 1e-9
   // g²(0) second-order coherence: coherent = 1 (Poissonian), thermal = 2 (super-Poissonian), Fock |n⟩ = 1 − 1/n.
   const g2Coherent = 1
   const g2Thermal = 2
@@ -472,7 +472,7 @@ export function concurrence(state: QuantumState): number {
   if (state.n !== 2) return Number.NaN
   const dr = state.re[0] * state.re[3] - state.im[0] * state.im[3] - (state.re[1] * state.re[2] - state.im[1] * state.im[2])
   const di = state.re[0] * state.im[3] + state.im[0] * state.re[3] - (state.re[1] * state.im[2] + state.im[1] * state.re[2])
-  return 2 * Math.sqrt(dr * dr + di * di)
+  return 2 * sqrt(dr * dr + di * di)
 }
 
 // The honest completion of "mechanical tools to achieve quantum entanglement at binary and analog at once" (user,
@@ -490,14 +490,14 @@ export function mechanicalToolsEntangleBinaryAndAnalogBellBounds(matrix: { root:
   const bits = value.toString(2).padStart(4 * 8, '0') // BINARY channel — discrete address bits
   const frac = value / (16 ** 8) // [0,1) fraction from the same address
   const freqHz = 432 * (1 + frac) // ANALOG channel — a continuous frequency around a432
-  const wave = Math.sin(TAU * frac) // ANALOG waveform sample — continuous
+  const wave = sin(TAU * frac) // ANALOG waveform sample — continuous
   const reproducible = hexOf(seed) === hex && bits.length === 4 * 8 // MECHANICAL = deterministic: recompute reproduces both
   // CHSH: the shared seed is a local hidden variable — enumerate every deterministic strategy, max |S| = 2.
   const pm = [1, -1]
   let classicalCHSH = -Infinity
-  for (const A0 of pm) for (const A1 of pm) for (const B0 of pm) for (const B1 of pm) classicalCHSH = Math.max(classicalCHSH, A0 * B0 + A0 * B1 + A1 * B0 - A1 * B1)
+  for (const A0 of pm) for (const A1 of pm) for (const B0 of pm) for (const B1 of pm) classicalCHSH = max(classicalCHSH, A0 * B0 + A0 * B1 + A1 * B0 - A1 * B1)
   // The quantum-mechanical prediction: correlations E(a,b) = cos(a−b) at the CHSH-optimal angles reach 2√2 (Tsirelson).
-  const corr = (a: number, b: number) => Math.cos(a - b)
+  const corr = (a: number, b: number) => cos(a - b)
   const quantumCHSH = corr(0, TAU / 8) + corr(0, -TAU / 8) + corr(TAU / 4, TAU / 8) - corr(TAU / 4, -TAU / 8)
   const bellGap = quantumCHSH - classicalCHSH
   // The concurrence witness: a real Bell pair is maximally entangled (1); the mechanical two-channel state is separable (0).
@@ -508,7 +508,7 @@ export function mechanicalToolsEntangleBinaryAndAnalogBellBounds(matrix: { root:
     { facet: `ONE SEED, BINARY AND ANALOG AT ONCE — from a single content-addressed seed the tool computes a BINARY channel (address bits ${bits.slice(0, 16)}…) and an ANALOG channel (a continuous ${freqHz.toFixed(2)} Hz around a432, waveform sample ${wave.toFixed(3)}) together — discrete and continuous from one source`, on: bits.length === 4 * 8 && Number.isFinite(freqHz) && Number.isFinite(wave) },
     { facet: `MECHANICAL = DETERMINISTIC, THE CHANNELS ARE CORRELATED — recomputing the seed reproduces both channels exactly (${reproducible}); each channel predicts the other through the shared seed, and that reproducibility IS the tool being mechanical`, on: reproducible },
     { facet: `THE SEED IS A LOCAL HIDDEN VARIABLE — every deterministic strategy on a shared seed has CHSH ≤ 2 (computed max ${classicalCHSH}), and the two-channel state is SEPARABLE, concurrence ${productConcurrence} (a product, not a Bell pair)`, on: classicalCHSH === 2 && productConcurrence < tol },
-    { facet: `BELL BOUNDS THE MECHANICAL TOOL — genuine quantum entanglement reaches CHSH = 2√2 ≈ ${quantumCHSH.toFixed(4)} (Tsirelson) and concurrence ${bellConcurrence} for a real Bell pair; the deterministic tool provably cannot cross the gap ${bellGap.toFixed(4)} — "mechanical" is the OPPOSITE of quantum indeterminacy`, on: bellGap > 0 && Math.abs(quantumCHSH - 2 * Math.SQRT2) < tol && Math.abs(bellConcurrence - 1) < tol },
+    { facet: `BELL BOUNDS THE MECHANICAL TOOL — genuine quantum entanglement reaches CHSH = 2√2 ≈ ${quantumCHSH.toFixed(4)} (Tsirelson) and concurrence ${bellConcurrence} for a real Bell pair; the deterministic tool provably cannot cross the gap ${bellGap.toFixed(4)} — "mechanical" is the OPPOSITE of quantum indeterminacy`, on: bellGap > 0 && abs(quantumCHSH - 2 * SQRT2) < tol && abs(bellConcurrence - 1) < tol },
     { facet: `THE DEMARCATION — "entanglement at binary and analog at once" is ACHIEVED as structural correlation across two channels from one seed (real, reproducible, useful), NOT physical quantum entanglement: no Bell violation, no superluminal signalling, no speedup.`, on: reproducible && bellGap > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`entangle-binary-analog:${entry.facet}:${entry.on}`) }))
   return {
@@ -537,7 +537,7 @@ export function mechanicalToolsEntangleBinaryAndAnalogBellBounds(matrix: { root:
 export function noCloningWitness(): { overlap: number; clonedRequires: number; contradiction: boolean } {
   const overlap = innerProduct(qubits(1), applyGate(qubits(1), GATES.H, 0)).abs // ⟨0|+⟩ = 1/√2
   const clonedRequires = overlap * overlap // unitarity would force ⟨a|b⟩ = ⟨a|b⟩²
-  return { overlap, clonedRequires, contradiction: Math.abs(overlap - clonedRequires) > 1e-9 }
+  return { overlap, clonedRequires, contradiction: abs(overlap - clonedRequires) > 1e-9 }
 }
 
 // The 3-qubit bit-flip code — the simplest quantum error-correcting code, run end to end. Encode one logical
@@ -549,7 +549,7 @@ export function noCloningWitness(): { overlap: number; clonedRequires: number; c
 export function bitFlipCode(alphaRe: number, betaRe: number, errorQubit: number): {
   syndrome: [number, number]; errorLocated: number; corrected: boolean; fidelity: number
 } {
-  const norm = Math.hypot(alphaRe, betaRe) || 1
+  const norm = hypot(alphaRe, betaRe) || 1
   let enc = qubits(3)
   enc = { n: 3, re: enc.re.slice(), im: enc.im.slice() }
   enc.re[0] = alphaRe / norm // |000⟩
@@ -572,8 +572,8 @@ export function bitFlipCode(alphaRe: number, betaRe: number, errorQubit: number)
 // exponentially as d grows (error suppressed — "quantum is here"); ABOVE p > ½ it grows; at p = ½ it stays ½.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function repetitionLogicalError(d: number, p: number): number {
-  const dd = d % 2 === 0 ? d + 1 : Math.max(1, Math.floor(d)) // odd distance
-  const half = Math.ceil(dd / 2)
+  const dd = d % 2 === 0 ? d + 1 : max(1, floor(d)) // odd distance
+  const half = ceil(dd / 2)
   let total = 0
   for (let k = half; k <= dd; k++) {
     let c = 1
@@ -596,9 +596,9 @@ export function repetitionLogicalError(d: number, p: number): number {
 // beyond-linear is the speed/power (collective power ∝ N·√N = N^{3/2}, superlinear in N), via the fold.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function quantumBatteryAdvantage(n: number): { cells: number; independentPower: number; collectivePower: number; advantage: number } {
-  const cells = Math.max(1, Math.floor(n))
+  const cells = max(1, floor(n))
   const independentPower = cells // N cells, unit power each, charged in parallel — linear in N
-  const advantage = Math.sqrt(cells) // the √N collective speed/power advantage (grows with N — beyond linear)
+  const advantage = sqrt(cells) // the √N collective speed/power advantage (grows with N — beyond linear)
   return { cells, independentPower, collectivePower: independentPower * advantage, advantage } // N·√N = N^{3/2}
 }
 
@@ -608,7 +608,7 @@ export function quantumBatteryAdvantage(n: number): { cells: number; independent
 // target is COOLED; total entropy does not decrease (the Sørensen/Shannon bound) — heat moves, never vanishes.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function algorithmicCoolingBias(epsilon: number): { initial: number; cooled: number; factor: number; physical: boolean } {
-  const e = Math.max(0, Math.min(1, epsilon))
+  const e = max(0, min(1, epsilon))
   const cooled = (3 * e - e ** 3) / 2 // the cooled qubit's new bias after one 3-qubit compression
   return { initial: e, cooled, factor: e > 0 ? cooled / e : 0, physical: cooled <= 1 } // ≤1 physical; entropy pumped to the rest
 }
@@ -620,9 +620,9 @@ export function algorithmicCoolingBias(epsilon: number): { initial: number; cool
 // measurement); no FTL (Bob is useless without the two classical bits). Exact on the state-vector simulator.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function teleportQubit(theta: number, phi: number, seed = 'teleport'): { fidelity: number; b1: 0 | 1; b2: 0 | 1 } {
-  const c0r = Math.cos(theta / 2)
-  const c1r = Math.sin(theta / 2) * Math.cos(phi)
-  const c1i = Math.sin(theta / 2) * Math.sin(phi)
+  const c0r = cos(theta / 2)
+  const c1r = sin(theta / 2) * cos(phi)
+  const c1i = sin(theta / 2) * sin(phi)
   let st = qubits(3) // qubit 0 = |ψ⟩ payload, 1 = Alice's Bell half, 2 = Bob's Bell half
   st = { n: 3, re: st.re.slice(), im: st.im.slice() }
   st.re[0] = c0r; st.re[1] = c1r; st.im[1] = c1i // prepare |ψ⟩ on qubit 0 (|000⟩=c0, |001⟩=c1)
@@ -672,7 +672,7 @@ export function bernsteinVazirani(s: number, n: number): { hidden: number; recov
   st = { n, re: st.re.map((r, x) => (popcount(x & s) & 1 ? -r : r)), im: st.im.slice() } // oracle (−1)^{s·x}, one query
   for (let q = 0; q < n; q++) st = applyGate(st, GATES.H, q) // H^n ⇒ the register is now |s⟩
   const probs = probabilities(st)
-  const recovered = probs.indexOf(Math.max(...probs))
+  const recovered = probs.indexOf(max(...probs))
   return { hidden: s, recovered, queries: 1, classicalQueries: n, ok: recovered === s }
 }
 
@@ -693,7 +693,7 @@ export function entanglementSwap(seed = 'swap'): { concurrence: number; swapped:
     const j = q0 | (q3 << 1)
     re2[j] = st.re[full]; im2[j] = st.im[full]
   }
-  const norm = Math.sqrt(re2.reduce((acc, r, i) => acc + r * r + im2[i] * im2[i], 0)) || 1
+  const norm = sqrt(re2.reduce((acc, r, i) => acc + r * r + im2[i] * im2[i], 0)) || 1
   const sub: QuantumState = { n: 2, re: re2.map((r) => r / norm), im: im2.map((v) => v / norm) }
   const c = concurrence(sub)
   return { concurrence: c, swapped: c > 0.999999 } // qubits 0,3 maximally entangled despite never meeting
@@ -708,7 +708,7 @@ export function entanglementSwap(seed = 'swap'): { concurrence: number; swapped:
 export function ghzMermin(): { xxx: number; xyy: number; yxy: number; yyx: number; qmProduct: number; lhvProduct: number; refuted: boolean } {
   const ghz = cnot(cnot(applyGate(qubits(3), GATES.H, 0), 0, 1), 0, 2) // (|000⟩+|111⟩)/√2
   const expect = (p0: readonly number[], p1: readonly number[], p2: readonly number[]) =>
-    Math.round(innerProduct(ghz, applyGate(applyGate(applyGate(ghz, p0, 0), p1, 1), p2, 2)).re) // ⟨ψ|P|ψ⟩, real
+    round(innerProduct(ghz, applyGate(applyGate(applyGate(ghz, p0, 0), p1, 1), p2, 2)).re) // ⟨ψ|P|ψ⟩, real
   const { X, Y } = GATES
   const xxx = expect(X, X, X), xyy = expect(X, Y, Y), yxy = expect(Y, X, Y), yyx = expect(Y, Y, X)
   const qmProduct = xxx * xyy * yxy * yyx // quantum mechanics: −1
@@ -814,8 +814,8 @@ const BUMP_TWO_PI = TAU
 export function bumpProfile(theta: number, width: number, N: number): number[] {
   return Array.from({ length: N }, (_, i) => {
     const phi = (i / N) * BUMP_TWO_PI
-    const d = Math.min(Math.abs(phi - theta), BUMP_TWO_PI - Math.abs(phi - theta))
-    return Math.exp(-(d * d) / (2 * width * width))
+    const d = min(abs(phi - theta), BUMP_TWO_PI - abs(phi - theta))
+    return exp(-(d * d) / (2 * width * width))
   })
 }
 
@@ -883,12 +883,12 @@ export function discoveredTheoremsWaveEighteen(matrix: { root: string } = { root
     const schemes: ((p: number, q: number, r: number) => number)[] = [
       (p, q) => impH(p, impH(q, p)),
       (p, q, r) => impH(impH(p, impH(q, r)), impH(impH(p, q), impH(p, r))),
-      (p, q) => impH(Math.min(p, q), p),
-      (p, q) => impH(Math.min(p, q), q),
-      (p, q) => impH(p, impH(q, Math.min(p, q))),
-      (p, q) => impH(p, Math.max(p, q)),
-      (p, q) => impH(q, Math.max(p, q)),
-      (p, q, r) => impH(impH(p, r), impH(impH(q, r), impH(Math.max(p, q), r))),
+      (p, q) => impH(min(p, q), p),
+      (p, q) => impH(min(p, q), q),
+      (p, q) => impH(p, impH(q, min(p, q))),
+      (p, q) => impH(p, max(p, q)),
+      (p, q) => impH(q, max(p, q)),
+      (p, q, r) => impH(impH(p, r), impH(impH(q, r), impH(max(p, q), r))),
       (p) => impH(0, p),
     ]
     let schemesValid = true
@@ -897,7 +897,7 @@ export function discoveredTheoremsWaveEighteen(matrix: { root: string } = { root
     let mpSound = true
     for (let a = 0; a <= TOP; a += 1) for (let b = 0; b <= TOP; b += 1)
       if (a === TOP && impH(a, b) === TOP && b !== TOP) mpSound = false
-    const lemValue = Math.max(1, negH(1))
+    const lemValue = max(1, negH(1))
     const lemUnprovable = schemesValid && mpSound && lemValue !== TOP
 
     // W3 · associativity is INDEPENDENT of division and norm — the octonion basis from the SAME
@@ -990,7 +990,7 @@ export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root
       if (u + v > compose(u, v)) additivityOvershoots += 1
       if (compose(u, v) >= SPEED_OF_LIGHT) relativisticCeiling = false
     }
-    const headlineNumerator = Math.round((compose((3 / 4) * SPEED_OF_LIGHT, (3 / 4) * SPEED_OF_LIGHT) / SPEED_OF_LIGHT) * (5 * 5)) // = 24 (over 25)
+    const headlineNumerator = round((compose((3 / 4) * SPEED_OF_LIGHT, (3 / 4) * SPEED_OF_LIGHT) / SPEED_OF_LIGHT) * (5 * 5)) // = 24 (over 25)
     const velocityChallenged = additivityOvershoots === relativisticChecks && relativisticCeiling && headlineNumerator === 4 * 6
 
     // W2 · CHEMISTRY — the ideal gas law is NOT universal. From van der Waals
@@ -1001,7 +1001,7 @@ export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root
     const Vc = 3 * b, Pc = a / (27 * b * b), Tc = (8 * a) / (27 * R * b)
     const Zc = (Pc * Vc) / (R * Tc)
     const idealZ = 1
-    const idealGasChallenged = Math.abs(Zc - 3 / 8) < TAU / TAU / 1e9 && Math.abs(Zc - idealZ) > 1 / 2
+    const idealGasChallenged = abs(Zc - 3 / 8) < TAU / TAU / 1e9 && abs(Zc - idealZ) > 1 / 2
 
     // W3 · BIOLOGY — blending inheritance is REFUTED, and Hardy–Weinberg is CONDITIONAL. Blending
     // (offspring = parental mean) HALVES population variance every generation → uniformity in
@@ -1014,10 +1014,10 @@ export function discoveredTheoremsWaveNineteen(matrix: { root: string } = { root
     const p = 1 / 2
     const genotypes = [p * p, 2 * p * (1 - p), (1 - p) * (1 - p)] // AA, Aa, aa = 1/4, 1/2, 1/4
     const pRecomputed = genotypes[0]! + genotypes[1]! / 2
-    const mendelStable = Math.abs(pRecomputed - p) < TAU / TAU / 1e9 && Math.abs(genotypes[1]! - 1 / 2) < TAU / TAU / 1e9
+    const mendelStable = abs(pRecomputed - p) < TAU / TAU / 1e9 && abs(genotypes[1]! - 1 / 2) < TAU / TAU / 1e9
     let pSel = 1 / 2
     for (let g = 0; g < 5; g += 1) { const q = 1 - pSel; pSel = (pSel * pSel + pSel * q) / (pSel * pSel + 2 * pSel * q) }
-    const inheritanceChallenged = blendingGens === 4 * 5 && mendelStable && Math.abs(pSel - 1 / 2) > 1 / 4
+    const inheritanceChallenged = blendingGens === 4 * 5 && mendelStable && abs(pSel - 1 / 2) > 1 / 4
 
     // W4 · SOCIAL SCIENCE — collective transitivity FAILS. Every voter has a transitive (rational)
     // ranking, yet majority rule can produce a CYCLE: enumerate all 6³ = 216 three-voter profiles
@@ -1164,22 +1164,22 @@ export function discoveredTheoremsWaveTwentyOne(matrix: { root: string } = { roo
     // outcome probabilities depend on both angles, yet Alice's MARGINAL P(+) = 1/2 for EVERY Bob
     // setting — the distant choice is invisible locally, so no information travels faster than light.
     const marginalA = (a: number, b: number) => {
-      const pPlusPlus = (1 / 2) * Math.cos((a - b) / 2) ** 2
-      const pPlusMinus = (1 / 2) * Math.sin((a - b) / 2) ** 2
+      const pPlusPlus = (1 / 2) * cos((a - b) / 2) ** 2
+      const pPlusMinus = (1 / 2) * sin((a - b) / 2) ** 2
       return pPlusPlus + pPlusMinus
     }
     const angles = Array.from({ length: 2 * 6 }, (_, k) => (k / (2 * 6)) * TAU)
     let signallingBlocked = true
     for (const a of angles) for (const b1 of angles) for (const b2 of angles)
-      if (Math.abs(marginalA(a, b1) - marginalA(a, b2)) > tiny || Math.abs(marginalA(a, b1) - 1 / 2) > tiny) signallingBlocked = false
+      if (abs(marginalA(a, b1) - marginalA(a, b2)) > tiny || abs(marginalA(a, b1) - 1 / 2) > tiny) signallingBlocked = false
 
     // W2 · THERMODYNAMICS — Maxwell's demon does NOT beat the second law (Landauer). Sorting N
     // molecules to one side lowers gas entropy by N·k·ln2, but the demon must ERASE its N-bit record
     // at cost ≥ N·k·ln2 (Landauer's principle) — the ledger nets to ≥ 0 for every N.
     let secondLawHolds = true
     for (let n = 1; n <= (2 * 5) ** 3; n += 1) {
-      const gasEntropyDrop = -n * BOLTZMANN * Math.LN2
-      const erasureCost = n * BOLTZMANN * Math.LN2
+      const gasEntropyDrop = -n * BOLTZMANN * LN2
+      const erasureCost = n * BOLTZMANN * LN2
       if (gasEntropyDrop + erasureCost < -tiny * BOLTZMANN) secondLawHolds = false
     }
 
@@ -1245,7 +1245,7 @@ export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { roo
     for (const e0 of entries) for (const e1 of entries) for (const e2 of entries) for (const e3 of entries) {
       machines += 1
       const r = bbSim([e0, e1, e2, e3])
-      if (r.halted) { bbMax = Math.max(bbMax, r.steps); sigmaMax = Math.max(sigmaMax, r.ones) }
+      if (r.halted) { bbMax = max(bbMax, r.steps); sigmaMax = max(sigmaMax, r.ones) }
     }
     const busyBeaver = machines === entries.length ** 4 && bbMax === 6 && sigmaMax === 4
 
@@ -1254,7 +1254,7 @@ export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { roo
     // by construction, not asserted.
     const goal = '012345678'
     const neighbors = (s: string): string[] => {
-      const z = s.indexOf('0'), r = Math.floor(z / 3), c = z % 3, out: string[] = []
+      const z = s.indexOf('0'), r = floor(z / 3), c = z % 3, out: string[] = []
       const swap = (i: number, j: number) => { const a = s.split(''); const t = a[i]!; a[i] = a[j]!; a[j] = t; return a.join('') }
       if (r > 0) out.push(swap(z, z - 3)); if (r < 2) out.push(swap(z, z + 3))
       if (c > 0) out.push(swap(z, z - 1)); if (c < 2) out.push(swap(z, z + 1))
@@ -1284,7 +1284,7 @@ export function discoveredTheoremsWaveTwentyTwo(matrix: { root: string } = { roo
     for (const s of platonic) {
       const faceAngle = (TAU / 2) * (s.p - 2) / s.p
       const total = s.V * (TAU - s.q * faceAngle)
-      if (Math.abs(total - 2 * TAU) > tiny) descartes = false
+      if (abs(total - 2 * TAU) > tiny) descartes = false
     }
 
     return {
@@ -1355,7 +1355,7 @@ export function discoveredTheoremsWaveTwentyThree(matrix: { root: string } = { r
         for (let i = 0; i < n && !triangle; i += 1) for (const j of adj[i]!) { for (const k of adj[j]!) if (adj[i]!.has(k)) { triangle = true; break } if (triangle) break }
         if (!triangle) maxTriangleFree = edges
       }
-      if (maxTriangleFree !== Math.floor((n * n) / 4)) mantel = false
+      if (maxTriangleFree !== floor((n * n) / 4)) mantel = false
     }
 
     // W4 · Erdős–Ko–Rado for 2-subsets — the largest pairwise-intersecting family of 2-element
@@ -1410,7 +1410,7 @@ export function discoveredTheoremsWaveTwentyFour(matrix: { root: string } = { ro
     // W2 · Erdős–Szekeres — every sequence of (r−1)(s−1)+1 distinct reals has an increasing r- or a
     // decreasing s-subsequence, and some sequence of (r−1)(s−1) has neither. Exhausted over all
     // permutations for (r,s) = (3,3) and (3,4): the exact threshold, both directions.
-    const longestIncr = (a: number[]) => { const n = a.length; const dp = Array(n).fill(1); let best = 1; for (let i = 0; i < n; i += 1) for (let j = 0; j < i; j += 1) if (a[j]! < a[i]!) { dp[i] = Math.max(dp[i]!, dp[j]! + 1); best = Math.max(best, dp[i]!) } return best }
+    const longestIncr = (a: number[]) => { const n = a.length; const dp = Array(n).fill(1); let best = 1; for (let i = 0; i < n; i += 1) for (let j = 0; j < i; j += 1) if (a[j]! < a[i]!) { dp[i] = max(dp[i]!, dp[j]! + 1); best = max(best, dp[i]!) } return best }
     const longestDecr = (a: number[]) => longestIncr(a.map((x) => -x))
     const permsOf = (arr: number[]): number[][] => arr.length <= 1 ? [arr] : arr.flatMap((x, i) => permsOf([...arr.slice(0, i), ...arr.slice(i + 1)]).map((p) => [x, ...p]))
     const esCheck = (r: number, s: number) => {
@@ -1423,16 +1423,16 @@ export function discoveredTheoremsWaveTwentyFour(matrix: { root: string } = { ro
 
     // W3 · Pick's theorem — for a lattice polygon, Area = I + B/2 − 1. The shoelace area and the
     // boundary count (via the sealed one-math gcd) are cross-checked against a DIRECT interior count.
-    const shoelace = (pts: number[][]) => { let a = 0; for (let i = 0; i < pts.length; i += 1) { const [x1, y1] = pts[i]!, [x2, y2] = pts[(i + 1) % pts.length]!; a += x1! * y2! - x2! * y1! } return Math.abs(a) / 2 }
-    const boundaryPts = (pts: number[][]) => { let b = 0; for (let i = 0; i < pts.length; i += 1) { const [x1, y1] = pts[i]!, [x2, y2] = pts[(i + 1) % pts.length]!; b += gcd(Math.abs(x2! - x1!), Math.abs(y2! - y1!)) } return b }
+    const shoelace = (pts: number[][]) => { let a = 0; for (let i = 0; i < pts.length; i += 1) { const [x1, y1] = pts[i]!, [x2, y2] = pts[(i + 1) % pts.length]!; a += x1! * y2! - x2! * y1! } return abs(a) / 2 }
+    const boundaryPts = (pts: number[][]) => { let b = 0; for (let i = 0; i < pts.length; i += 1) { const [x1, y1] = pts[i]!, [x2, y2] = pts[(i + 1) % pts.length]!; b += gcd(abs(x2! - x1!), abs(y2! - y1!)) } return b }
     const countInterior = (pts: number[][]) => {
       const xs = pts.map((p) => p[0]!), ys = pts.map((p) => p[1]!)
       let count = 0
-      for (let x = Math.min(...xs) + 1; x < Math.max(...xs); x += 1) for (let y = Math.min(...ys) + 1; y < Math.max(...ys); y += 1) {
+      for (let x = min(...xs) + 1; x < max(...xs); x += 1) for (let y = min(...ys) + 1; y < max(...ys); y += 1) {
         let inside = false, onBoundary = false
         for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
           const [xi, yi] = pts[i]!, [xj, yj] = pts[j]!
-          if (Math.min(xi!, xj!) <= x && x <= Math.max(xi!, xj!) && Math.min(yi!, yj!) <= y && y <= Math.max(yi!, yj!) && (xj! - xi!) * (y - yi!) === (yj! - yi!) * (x - xi!)) onBoundary = true
+          if (min(xi!, xj!) <= x && x <= max(xi!, xj!) && min(yi!, yj!) <= y && y <= max(yi!, yj!) && (xj! - xi!) * (y - yi!) === (yj! - yi!) * (x - xi!)) onBoundary = true
           if (((yi! > y) !== (yj! > y)) && x < ((xj! - xi!) * (y - yi!)) / (yj! - yi!) + xi!) inside = !inside
         }
         if (inside && !onBoundary) count += 1
@@ -1445,7 +1445,7 @@ export function discoveredTheoremsWaveTwentyFour(matrix: { root: string } = { ro
       [[0, 0], [4, 0], [4, 2], [2, 2], [2, 4], [0, 4]],
     ]
     let pick = true
-    for (const pts of polys) if (Math.abs(shoelace(pts) - (countInterior(pts) + boundaryPts(pts) / 2 - 1)) > tiny) pick = false
+    for (const pts of polys) if (abs(shoelace(pts) - (countInterior(pts) + boundaryPts(pts) / 2 - 1)) > tiny) pick = false
 
     // W4 · Catalan's conjecture (Mihailescu) — 8 and 9 are the ONLY consecutive perfect powers.
     // Enumerate every perfect power up to 10⁶; the sole pair differing by 1 is (8, 9) = (2³, 3²).
@@ -1496,7 +1496,7 @@ export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { ro
         const ni = nn % p, ki = kk % p
         if (ki > ni) return 0
         let c = 1; for (let j = 0; j < ki; j += 1) c = (c * (ni - j)) / (j + 1)
-        prod = (prod * Math.round(c)) % p; nn = Math.floor(nn / p); kk = Math.floor(kk / p)
+        prod = (prod * round(c)) % p; nn = floor(nn / p); kk = floor(kk / p)
       }
       return prod
     }
@@ -1511,16 +1511,16 @@ export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { ro
     for (let m = 2; m * m <= N; m += 1) for (let n = 1; n < m; n += 1) {
       if (gcd(m, n) !== 1 || (m - n) % 2 === 0) continue
       const a = m * m - n * n, b = 2 * m * n, c = m * m + n * n
-      if (c <= N) paramTriples.add([Math.min(a, b), Math.max(a, b), c].join(','))
+      if (c <= N) paramTriples.add([min(a, b), max(a, b), c].join(','))
     }
     const bruteTriples = new Set<string>()
-    for (let a = 1; a <= N; a += 1) for (let b = a; b <= N; b += 1) { const c2 = a * a + b * b; const c = Math.round(Math.sqrt(c2)); if (c * c === c2 && c <= N && gcd(a, b) === 1) bruteTriples.add([a, b, c].join(',')) }
+    for (let a = 1; a <= N; a += 1) for (let b = a; b <= N; b += 1) { const c2 = a * a + b * b; const c = round(sqrt(c2)); if (c * c === c2 && c <= N && gcd(a, b) === 1) bruteTriples.add([a, b, c].join(',')) }
     const pythagorean = paramTriples.size === bruteTriples.size && paramTriples.size > 0 && [...bruteTriples].every((t) => paramTriples.has(t))
 
     // W4 · Fermat–Euler — Euler's a^φ(n) ≡ 1 (mod n) for every a coprime to n (all n ≤ 60), and
     // Fermat's little theorem a^p ≡ a (mod p) for every a and prime p ≤ 60, as its special case.
     const totient = (n: number) => { let r = 0; for (let a = 1; a <= n; a += 1) if (gcd(a, n) === 1) r += 1; return r }
-    const powMod = (base: number, exp: number, mod: number) => { let r = 1, b = base % mod, e = exp; while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = Math.floor(e / 2) } return r }
+    const powMod = (base: number, exp: number, mod: number) => { let r = 1, b = base % mod, e = exp; while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = floor(e / 2) } return r }
     let euler = true, fermatLittle = true
     const lim = 54 + 6
     for (let n = 2; n <= lim; n += 1) { const phi = totient(n); for (let a = 1; a < n; a += 1) if (gcd(a, n) === 1 && powMod(a, phi, n) !== 1) euler = false }
@@ -1545,8 +1545,8 @@ export function discoveredTheoremsWaveTwentyFive(matrix: { root: string } = { ro
 // sum. Numerical witnesses — the theorems hold for all configurations, cited; the fold checks many.
 export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveTwentySix', 'discovered-theorems-twenty-six', matrix, () => {
-    const dist = (p: number[], q: number[]) => Math.hypot(p[0]! - q[0]!, p[1]! - q[1]!)
-    const frac = (x: number) => x - Math.floor(x)
+    const dist = (p: number[], q: number[]) => hypot(p[0]! - q[0]!, p[1]! - q[1]!)
+    const frac = (x: number) => x - floor(x)
     const tol = TAU / TAU / 1e6
     const runs = 2 * 100
 
@@ -1556,27 +1556,27 @@ export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { roo
     for (let t = 1; t <= runs; t += 1) {
       const angs = [2, 3, 5, 7].map((k) => frac(t * k * PHI) * TAU).sort((a, b) => a - b)
       if (angs.some((a, i) => i > 0 && a - angs[i - 1]! < tol)) continue
-      const P = angs.map((a) => [Math.cos(a), Math.sin(a)])
+      const P = angs.map((a) => [cos(a), sin(a)])
       const [A, B, C, D] = P as [number[], number[], number[], number[]]
       const lhs = dist(A, C) * dist(B, D)
       const rhs = dist(A, B) * dist(C, D) + dist(B, C) * dist(A, D)
       ptolemyTests += 1
-      if (Math.abs(lhs - rhs) > tol) ptolemy = false
+      if (abs(lhs - rhs) > tol) ptolemy = false
     }
 
     // W2 · Napoleon — the centroids of outward equilateral triangles erected on the three sides of
     // ANY triangle form an equilateral triangle (equal pairwise centroid distances).
-    const rotate = (p: number[], c: number[], ang: number) => { const dx = p[0]! - c[0]!, dy = p[1]! - c[1]!; return [c[0]! + dx * Math.cos(ang) - dy * Math.sin(ang), c[1]! + dx * Math.sin(ang) + dy * Math.cos(ang)] }
+    const rotate = (p: number[], c: number[], ang: number) => { const dx = p[0]! - c[0]!, dy = p[1]! - c[1]!; return [c[0]! + dx * cos(ang) - dy * sin(ang), c[1]! + dx * sin(ang) + dy * cos(ang)] }
     const apex = (P: number[], Q: number[]) => { const third = rotate(Q, P, -TAU / 6); return [(P[0]! + Q[0]! + third[0]!) / 3, (P[1]! + Q[1]! + third[1]!) / 3] }
     let napoleon = true, napoleonTests = 0
     for (let t = 1; t <= runs; t += 1) {
       const A = [frac(t * PHI) * 4 - 2, frac(t * PHI * PHI) * 4 - 2]
       const B = [2 + frac(t * 3 * PHI) * 3, frac(t * 5 * PHI) * 4 - 2]
       const C = [frac(t * 7 * PHI) * 3 - 1, 2 + frac(t * (2 + 9) * PHI) * 3]
-      if (Math.abs((B[0]! - A[0]!) * (C[1]! - A[1]!) - (B[1]! - A[1]!) * (C[0]! - A[0]!)) < 1 / 2) continue
+      if (abs((B[0]! - A[0]!) * (C[1]! - A[1]!) - (B[1]! - A[1]!) * (C[0]! - A[0]!)) < 1 / 2) continue
       const nA = apex(B, C), nB = apex(C, A), nC = apex(A, B)
       napoleonTests += 1
-      if (Math.abs(dist(nA, nB) - dist(nB, nC)) > tol || Math.abs(dist(nB, nC) - dist(nC, nA)) > tol) napoleon = false
+      if (abs(dist(nA, nB) - dist(nB, nC)) > tol || abs(dist(nB, nC) - dist(nC, nA)) > tol) napoleon = false
     }
 
     // W3 · the Euler line — the circumcenter O, centroid G and orthocenter H of any triangle are
@@ -1591,20 +1591,20 @@ export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { roo
       const A = [frac(t * PHI) * 6 - 3, frac(t * PHI * PHI) * 6 - 3]
       const B = [3 + frac(t * 3 * PHI) * 3, frac(t * 5 * PHI) * 6 - 3]
       const C = [frac(t * 7 * PHI) * 4 - 2, 3 + frac(t * (2 + 9) * PHI) * 3]
-      if (Math.abs((B[0]! - A[0]!) * (C[1]! - A[1]!) - (B[1]! - A[1]!) * (C[0]! - A[0]!)) < 1 / 2) continue
+      if (abs((B[0]! - A[0]!) * (C[1]! - A[1]!) - (B[1]! - A[1]!) * (C[0]! - A[0]!)) < 1 / 2) continue
       const G = [(A[0]! + B[0]! + C[0]!) / 3, (A[1]! + B[1]! + C[1]!) / 3]
       const O = circumcenter(A, B, C)
       const H = [A[0]! + B[0]! + C[0]! - 2 * O[0]!, A[1]! + B[1]! + C[1]! - 2 * O[1]!]
       eulerTests += 1
       const cross = (G[0]! - O[0]!) * (H[1]! - O[1]!) - (G[1]! - O[1]!) * (H[0]! - O[0]!)
-      if (Math.abs(cross) > tol || Math.abs(dist(O, H) - 3 * dist(O, G)) > tol) euler = false
+      if (abs(cross) > tol || abs(dist(O, H) - 3 * dist(O, G)) > tol) euler = false
     }
 
     // W4 · Viviani — in an equilateral triangle, the sum of distances from ANY interior point to the
     // three sides equals the altitude, independent of the point (a constant), for every interior run.
-    const distToLine = (p: number[], a: number[], b: number[]) => Math.abs((b[0]! - a[0]!) * (a[1]! - p[1]!) - (a[0]! - p[0]!) * (b[1]! - a[1]!)) / dist(a, b)
-    const eqA = [0, 0], eqB = [1, 0], eqC = [1 / 2, Math.sqrt(3) / 2]
-    const altitude = Math.sqrt(3) / 2
+    const distToLine = (p: number[], a: number[], b: number[]) => abs((b[0]! - a[0]!) * (a[1]! - p[1]!) - (a[0]! - p[0]!) * (b[1]! - a[1]!)) / dist(a, b)
+    const eqA = [0, 0], eqB = [1, 0], eqC = [1 / 2, sqrt(3) / 2]
+    const altitude = sqrt(3) / 2
     let viviani = true, vivianiTests = 0
     for (let t = 1; t <= 3 * 100; t += 1) {
       const u = frac(t * PHI), v = frac(t * PHI * PHI) * (1 - u), w = 1 - u - frac(t * PHI * PHI) * (1 - u)
@@ -1612,7 +1612,7 @@ export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { roo
       const P = [u * eqA[0]! + v * eqB[0]! + w * eqC[0]!, u * eqA[1]! + v * eqB[1]! + w * eqC[1]!]
       const sum = distToLine(P, eqA, eqB) + distToLine(P, eqB, eqC) + distToLine(P, eqC, eqA)
       vivianiTests += 1
-      if (Math.abs(sum - altitude) > tol) viviani = false
+      if (abs(sum - altitude) > tol) viviani = false
     }
 
     return {
@@ -1636,7 +1636,7 @@ export function discoveredTheoremsWaveTwentySix(matrix: { root: string } = { roo
 export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveTwentySeven', 'discovered-theorems-twenty-seven', matrix, () => {
     const tiny = TAU / TAU / 1e9
-    const s2 = Math.SQRT1_2
+    const s2 = SQRT1_2
 
     // W1 · a quantum circuit is a FINITE CLASSICAL computation — a 2-qubit Bell circuit (H then CNOT)
     // evolved by exact state-vector arithmetic ON THIS CPU. Since every quantum circuit is classically
@@ -1650,16 +1650,16 @@ export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { r
     let bellState = [1, 0, 0, 0]
     bellState = applyCNOT(applyH(bellState, 0), 0, 1)
     const norm = bellState.reduce((sum, a) => sum + a * a, 0)
-    const classicallySimulable = Math.abs(bellState[0]! - s2) < tiny && Math.abs(bellState[3]! - s2) < tiny && Math.abs(bellState[1]!) < tiny && Math.abs(bellState[2]!) < tiny && Math.abs(norm - 1) < tiny
+    const classicallySimulable = abs(bellState[0]! - s2) < tiny && abs(bellState[3]! - s2) < tiny && abs(bellState[1]!) < tiny && abs(bellState[2]!) < tiny && abs(norm - 1) < tiny
 
     // W2 · where quantum DOES win — FEASIBILITY: Deutsch–Jozsa decides constant-vs-balanced in ONE
     // query where a classical deterministic algorithm needs 2^(n−1)+1 in the worst case: an
     // exponential query separation (simulated here classically — the algorithm runs, the gap is real).
     const djDecides = (f: (x: number) => number, n: number) => {
       const N = 1 << n
-      const phased = Array.from({ length: N }, (_, x) => (1 / Math.sqrt(N)) * (f(x) ? -1 : 1))
-      const zeroAmp = phased.reduce((sum, a) => sum + a, 0) / Math.sqrt(N)
-      return Math.abs(Math.abs(zeroAmp) - 1) < tiny ? 'constant' : 'balanced'
+      const phased = Array.from({ length: N }, (_, x) => (1 / sqrt(N)) * (f(x) ? -1 : 1))
+      const zeroAmp = phased.reduce((sum, a) => sum + a, 0) / sqrt(N)
+      return abs(abs(zeroAmp) - 1) < tiny ? 'constant' : 'balanced'
     }
     let djSeparation = true
     for (let n = 1; n <= 4; n += 1) {
@@ -1674,8 +1674,8 @@ export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { r
     // magic wand — there is no O(log N) quantum search (BBBV lower bound), so NP does not collapse.
     const groverProb = (nQ: number, marked: number, fracNum: number, fracDen: number) => {
       const N = 1 << nQ
-      const iters = Math.round((fracNum / fracDen) * ((TAU / 2) / 4) * Math.sqrt(N))
-      let amp = Array(N).fill(1 / Math.sqrt(N))
+      const iters = round((fracNum / fracDen) * ((TAU / 2) / 4) * sqrt(N))
+      let amp = Array(N).fill(1 / sqrt(N))
       for (let it = 0; it < iters; it += 1) { amp = amp.map((a, i) => (i === marked ? -a : a)); const m = amp.reduce((sum, a) => sum + a, 0) / N; amp = amp.map((a) => 2 * m - a) }
       return amp[marked] ** 2
     }
@@ -1685,9 +1685,9 @@ export function discoveredTheoremsWaveTwentySeven(matrix: { root: string } = { r
     // {|0>,|1>,|+>,|−>} in ONE qubit; the states average to the maximally mixed state (von Neumann
     // entropy = 1 bit), so accessible information is 1 bit, NOT 2. (b) Tsirelson — quantum CHSH tops
     // out at 2√2, strictly below the algebraic maximum 4. Quantum FORBIDS; it does not free.
-    const vonNeumann = (r: number) => { const p = (1 + r) / 2, q = (1 - r) / 2; const h = (x: number) => (x <= 0 ? 0 : -x * Math.log2(x)); return h(p) + h(q) }
-    const holevoWall = Math.abs(vonNeumann(0) - 1) < tiny            // 1 qubit ⇒ ≤ 1 accessible bit
-    const tsirelson = 2 * Math.SQRT2
+    const vonNeumann = (r: number) => { const p = (1 + r) / 2, q = (1 - r) / 2; const h = (x: number) => (x <= 0 ? 0 : -x * log2(x)); return h(p) + h(q) }
+    const holevoWall = abs(vonNeumann(0) - 1) < tiny            // 1 qubit ⇒ ≤ 1 accessible bit
+    const tsirelson = 2 * SQRT2
     const tsirelsonWall = tsirelson > 2 && tsirelson < 4            // classical 2 < quantum 2√2 < algebraic 4
     const quantumErectsWalls = holevoWall && tsirelsonWall
 
@@ -1728,7 +1728,7 @@ export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { r
     const bruteSetPartitions = (n: number): number => {
       if (n === 0) return 1
       let count = 0
-      const assign = (i: number, maxBlock: number) => { if (i === n) { count += 1; return } for (let b = 0; b <= maxBlock + 1 && b < n; b += 1) assign(i + 1, Math.max(maxBlock, b)) }
+      const assign = (i: number, maxBlock: number) => { if (i === n) { count += 1; return } for (let b = 0; b <= maxBlock + 1 && b < n; b += 1) assign(i + 1, max(maxBlock, b)) }
       assign(0, -1); return count
     }
     const bell = bellTriangle(8)
@@ -1740,13 +1740,13 @@ export function discoveredTheoremsWaveTwentyEight(matrix: { root: string } = { r
     const detInt = (M: number[][]): number => {
       const n = M.length, a = M.map((r) => r.slice()); let det = 1
       for (let c = 0; c < n; c += 1) {
-        let piv = -1; for (let r = c; r < n; r += 1) if (Math.abs(a[r]![c]!) > TAU / TAU / 1e9) { piv = r; break }
+        let piv = -1; for (let r = c; r < n; r += 1) if (abs(a[r]![c]!) > TAU / TAU / 1e9) { piv = r; break }
         if (piv === -1) return 0
         if (piv !== c) { const t = a[c]!; a[c] = a[piv]!; a[piv] = t; det = -det }
         det *= a[c]![c]!
         for (let r = c + 1; r < n; r += 1) { const f = a[r]![c]! / a[c]![c]!; for (let k = c; k < n; k += 1) a[r]![k]! -= f * a[c]![k]! }
       }
-      return Math.round(det)
+      return round(det)
     }
     const cofactorTrees = (n: number, edges: number[][]) => {
       const L = Array.from({ length: n }, () => Array(n).fill(0))
@@ -1829,7 +1829,7 @@ export function discoveredTheoremsWaveTwentyNine(matrix: { root: string } = { ro
     // series, both converging to π to the tested precision.
     let leibniz = 0; for (let k = 0; k < 2 * (2 * 5) ** 5; k += 1) leibniz += (k % 2 ? -1 : 1) / (2 * k + 1)
     let wallis = 1; for (let n = 1; n <= (2 * 5) ** 5; n += 1) wallis *= ((2 * n) * (2 * n)) / ((2 * n - 1) * (2 * n + 1))
-    const piSeriesOK = Math.abs(4 * leibniz - pi) < 1 / (2 * 5) ** 2 && Math.abs(2 * wallis - pi) < 1 / (2 * 5) ** 2
+    const piSeriesOK = abs(4 * leibniz - pi) < 1 / (2 * 5) ** 2 && abs(2 * wallis - pi) < 1 / (2 * 5) ** 2
 
     // W3 · coupon collector — the expected time to collect all n coupons is exactly n·H_n, the sum of
     // geometric waiting times Σ n/(n−k) matching the harmonic form for every n ≤ 50.
@@ -1837,13 +1837,13 @@ export function discoveredTheoremsWaveTwentyNine(matrix: { root: string } = { ro
     for (let n = 1; n <= 2 * 5 * 5; n += 1) {
       let harmonic = 0; for (let k = 1; k <= n; k += 1) harmonic += 1 / k
       let expected = 0; for (let k = 0; k < n; k += 1) expected += n / (n - k)
-      if (Math.abs(expected - n * harmonic) > TAU / TAU / 1e9) coupon = false
+      if (abs(expected - n * harmonic) > TAU / TAU / 1e9) coupon = false
     }
 
     // W4 · the ballot problem (Bertrand) — if A gets a > b votes, the probability A leads throughout
     // is (a−b)/(a+b), verified by EXHAUSTIVELY counting the strictly-leading orderings against the
     // total C(a+b, a) for every a ≤ 10, b < a.
-    const choose = (n: number, k: number) => { let r = 1; for (let i = 0; i < k; i += 1) r = (r * (n - i)) / (i + 1); return Math.round(r) }
+    const choose = (n: number, k: number) => { let r = 1; for (let i = 0; i < k; i += 1) r = (r * (n - i)) / (i + 1); return round(r) }
     let ballot = true
     for (let a = 1; a <= 2 * 5; a += 1) for (let b = 0; b < a; b += 1) {
       let favorable = 0
@@ -1853,7 +1853,7 @@ export function discoveredTheoremsWaveTwentyNine(matrix: { root: string } = { ro
         if (nb < b) walk(na, nb + 1, ahead && na > nb + 1)
       }
       walk(0, 0, true)
-      if (Math.abs(favorable / choose(a + b, a) - (a - b) / (a + b)) > TAU / TAU / 1e9) ballot = false
+      if (abs(favorable / choose(a + b, a) - (a - b) / (a + b)) > TAU / TAU / 1e9) ballot = false
     }
 
     return {
@@ -1880,7 +1880,7 @@ export function discoveredTheoremsWaveThirty(matrix: { root: string } = { root: 
     const det2 = (M: number[]) => m3(M[0]! * M[3]! - M[1]! * M[2]!)
     const mul2 = (A: number[], B: number[]) => [m3(A[0]! * B[0]! + A[1]! * B[2]!), m3(A[0]! * B[1]! + A[1]! * B[3]!), m3(A[2]! * B[0]! + A[3]! * B[2]!), m3(A[2]! * B[1]! + A[3]! * B[3]!)]
     const mats: number[][] = []
-    for (let c = 0; c < 3 ** 4; c += 1) mats.push([Math.floor(c / 27) % 3, Math.floor(c / 9) % 3, Math.floor(c / 3) % 3, c % 3])
+    for (let c = 0; c < 3 ** 4; c += 1) mats.push([floor(c / 27) % 3, floor(c / 9) % 3, floor(c / 3) % 3, c % 3])
     let detMult = true
     for (const A of mats) for (const B of mats) if (det2(mul2(A, B)) !== m3(det2(A) * det2(B))) detMult = false
 
@@ -1888,13 +1888,13 @@ export function discoveredTheoremsWaveThirty(matrix: { root: string } = { root: 
     const detN = (M: number[][]): number => {
       const n = M.length, a = M.map((r) => r.slice()); let d = 1
       for (let c = 0; c < n; c += 1) {
-        let p = -1; for (let r = c; r < n; r += 1) if (Math.abs(a[r]![c]!) > TAU / TAU / 1e9) { p = r; break }
+        let p = -1; for (let r = c; r < n; r += 1) if (abs(a[r]![c]!) > TAU / TAU / 1e9) { p = r; break }
         if (p === -1) return 0
         if (p !== c) { const t = a[c]!; a[c] = a[p]!; a[p] = t; d = -d }
         d *= a[c]![c]!
         for (let r = c + 1; r < n; r += 1) { const f = a[r]![c]! / a[c]![c]!; for (let k = c; k < n; k += 1) a[r]![k]! -= f * a[c]![k]! }
       }
-      return Math.round(d)
+      return round(d)
     }
     const nodeSets = [[1, 2, 3], [0, 1, 2, 3], [2, 3, 5, 7], [1, 3, 4, 6, 9]]
     let vandermonde = true
@@ -1950,7 +1950,7 @@ export function discoveredTheoremsWaveThirtyOne(matrix: { root: string } = { roo
     // W2 · the Catalan bijection — Dyck paths, binary trees and the Catalan number agree for n ≤ 8:
     // three independent counts (lattice-path DFS, the C_n = ΣC_kC_{n−1−k} tree recurrence, the product
     // formula) landing on 1,1,2,5,14,42,132,429,1430.
-    const catalanFormula = (n: number) => { let c = 1; for (let i = 0; i < n; i += 1) c = (c * 2 * (2 * i + 1)) / (i + 2); return Math.round(c) }
+    const catalanFormula = (n: number) => { let c = 1; for (let i = 0; i < n; i += 1) c = (c * 2 * (2 * i + 1)) / (i + 2); return round(c) }
     const countDyck = (n: number) => { let count = 0; const walk = (up: number, down: number) => { if (up === n && down === n) { count += 1; return } if (up < n) walk(up + 1, down); if (down < up) walk(up, down + 1) }; walk(0, 0); return count }
     const countTrees = (n: number) => { const memo = [1]; for (let m = 1; m <= n; m += 1) { let s = 0; for (let k = 0; k < m; k += 1) s += memo[k]! * memo[m - 1 - k]!; memo[m] = s } return memo[n]! }
     let catalan = true
@@ -1958,8 +1958,8 @@ export function discoveredTheoremsWaveThirtyOne(matrix: { root: string } = { roo
 
     // W3 · Stirling numbers of the second kind — the recurrence S(n,k) = k·S(n−1,k) + S(n−1,k−1)
     // matches the brute count of partitions into k nonempty blocks, and Σ_k S(n,k) = Bell(n).
-    const stirling = (n: number, k: number) => { const S = Array.from({ length: n + 1 }, () => Array(k + 1).fill(0)); S[0]![0] = 1; for (let i = 1; i <= n; i += 1) for (let j = 1; j <= Math.min(i, k); j += 1) S[i]![j] = j * S[i - 1]![j]! + S[i - 1]![j - 1]!; return S[n]![k]! }
-    const bruteBlocks = (n: number, k: number): number => { if (n === 0) return k === 0 ? 1 : 0; let count = 0; const assign = (i: number, used: number) => { if (i === n) { if (used === k) count += 1; return } for (let b = 0; b <= used && b < k; b += 1) assign(i + 1, Math.max(used, b + 1)) }; assign(0, 0); return count }
+    const stirling = (n: number, k: number) => { const S = Array.from({ length: n + 1 }, () => Array(k + 1).fill(0)); S[0]![0] = 1; for (let i = 1; i <= n; i += 1) for (let j = 1; j <= min(i, k); j += 1) S[i]![j] = j * S[i - 1]![j]! + S[i - 1]![j - 1]!; return S[n]![k]! }
+    const bruteBlocks = (n: number, k: number): number => { if (n === 0) return k === 0 ? 1 : 0; let count = 0; const assign = (i: number, used: number) => { if (i === n) { if (used === k) count += 1; return } for (let b = 0; b <= used && b < k; b += 1) assign(i + 1, max(used, b + 1)) }; assign(0, 0); return count }
     const bellNum = (m: number) => { const B = [1]; let row = [1]; for (let i = 1; i <= m; i += 1) { const nr = [row[row.length - 1]!]; for (let j = 0; j < row.length; j += 1) nr.push(nr[j]! + row[j]!); B.push(nr[0]!); row = nr } return B[m]! }
     let stirlingOK = true
     for (let n = 0; n <= 8; n += 1) { let sum = 0; for (let k = 0; k <= n; k += 1) { if (stirling(n, k) !== bruteBlocks(n, k)) stirlingOK = false; sum += stirling(n, k) } if (sum !== bellNum(n)) stirlingOK = false }
@@ -2015,7 +2015,7 @@ export function discoveredTheoremsWaveThirtyTwo(matrix: { root: string } = { roo
     const convergents: number[][] = [[1, 1], [3, 2]]
     for (let k = 0; k < 3 * 5; k += 1) { const p2 = 2 * p1 + p0, q2 = 2 * q1 + q0; convergents.push([p2, q2]); p0 = p1; q0 = q1; p1 = p2; q1 = q2 }
     let sqrt2CF = true
-    for (const [p, q] of convergents) { if (Math.abs(p! / q! - Math.SQRT2) >= 1 / (q! * q!)) sqrt2CF = false; if (Math.abs(p! * p! - 2 * q! * q!) !== 1) sqrt2CF = false }
+    for (const [p, q] of convergents) { if (abs(p! / q! - SQRT2) >= 1 / (q! * q!)) sqrt2CF = false; if (abs(p! * p! - 2 * q! * q!) !== 1) sqrt2CF = false }
 
     // W4 · Lagrange's theorem — the order of every subgroup divides the order of the group. Enumerate
     // the subgroups of S₄ (order 24) by closure of single elements and pairs; every order divides 24.
@@ -2087,9 +2087,9 @@ export function discoveredTheoremsWaveThirtyThree(matrix: { root: string } = { r
     let dirac = true
     for (let n = 3; n <= 8; n += 1) {
       const adj: Set<number>[] = Array.from({ length: n }, () => new Set<number>())
-      const reach = Math.ceil(n / 2)
+      const reach = ceil(n / 2)
       for (let i = 0; i < n; i += 1) for (let k = 1; k <= reach && k <= n - 1; k += 1) { const j = (i + k) % n; if (i !== j) { adj[i]!.add(j); adj[j]!.add(i) } }
-      if (Math.min(...adj.map((a) => a.size)) >= n / 2 && !hasHamCycle(n, adj)) dirac = false
+      if (min(...adj.map((a) => a.size)) >= n / 2 && !hasHamCycle(n, adj)) dirac = false
     }
 
     // W3 · De Bruijn sequence B(2,n) — a cyclic binary string of length 2^n in which every n-bit
@@ -2138,7 +2138,7 @@ export function discoveredTheoremsWaveThirtyThree(matrix: { root: string } = { r
 // index-2 structure of the quadratic residues.
 export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveThirtyFour', 'discovered-theorems-thirty-four', matrix, () => {
-    const choose = (n: number, k: number) => { if (k < 0 || k > n) return 0; let r = 1; for (let i = 0; i < k; i += 1) r = (r * (n - i)) / (i + 1); return Math.round(r) }
+    const choose = (n: number, k: number) => { if (k < 0 || k > n) return 0; let r = 1; for (let i = 0; i < k; i += 1) r = (r * (n - i)) / (i + 1); return round(r) }
 
     // W1 · Vandermonde's identity — Σ_k C(m,k)·C(n,p−k) = C(m+n,p) for all m, n ≤ 12 and all p.
     let vandermonde = true
@@ -2156,10 +2156,10 @@ export function discoveredTheoremsWaveThirtyFour(matrix: { root: string } = { ro
 
     // W3 · the surjection count — three independent computations agree: k!·S(n,k), the inclusion–
     // exclusion sum Σ(−1)^i C(k,i)(k−i)^n, and the brute count of onto functions [n]→[k].
-    const stirling2 = (n: number, k: number) => { const S = Array.from({ length: n + 1 }, () => Array(k + 1).fill(0)); S[0]![0] = 1; for (let i = 1; i <= n; i += 1) for (let j = 1; j <= Math.min(i, k); j += 1) S[i]![j] = j * S[i - 1]![j]! + S[i - 1]![j - 1]!; return S[n]![k]! }
+    const stirling2 = (n: number, k: number) => { const S = Array.from({ length: n + 1 }, () => Array(k + 1).fill(0)); S[0]![0] = 1; for (let i = 1; i <= n; i += 1) for (let j = 1; j <= min(i, k); j += 1) S[i]![j] = j * S[i - 1]![j]! + S[i - 1]![j - 1]!; return S[n]![k]! }
     const fact = (n: number) => { let r = 1; for (let i = 2; i <= n; i += 1) r *= i; return r }
     const inclExcl = (n: number, k: number) => { let s = 0; for (let i = 0; i <= k; i += 1) s += (i % 2 ? -1 : 1) * choose(k, i) * (k - i) ** n; return s }
-    const bruteSurj = (n: number, k: number) => { let count = 0; const total = k ** n; for (let f = 0; f < total; f += 1) { const hit = new Set<number>(); let x = f; for (let d = 0; d < n; d += 1) { hit.add(x % k); x = Math.floor(x / k) } if (hit.size === k) count += 1 } return count }
+    const bruteSurj = (n: number, k: number) => { let count = 0; const total = k ** n; for (let f = 0; f < total; f += 1) { const hit = new Set<number>(); let x = f; for (let d = 0; d < n; d += 1) { hit.add(x % k); x = floor(x / k) } if (hit.size === k) count += 1 } return count }
     let surjection = true
     for (let n = 1; n <= 7; n += 1) for (let k = 1; k <= n; k += 1) {
       const a = fact(k) * stirling2(n, k)
@@ -2225,10 +2225,10 @@ export function discoveredTheoremsWaveThirtyFive(matrix: { root: string } = { ro
     let heron = true
     for (let a = 1; a <= 4 * 5; a += 1) for (let b = a; b <= 4 * 5; b += 1) for (let c = b; c <= 4 * 5 && c < a + b; c += 1) {
       const sp = (a + b + c) / 2
-      const area = Math.sqrt(sp * (sp - a) * (sp - b) * (sp - c))
+      const area = sqrt(sp * (sp - a) * (sp - b) * (sp - c))
       const cosC = (a * a + b * b - c * c) / (2 * a * b)
-      const shoelace = Math.abs(a * b * Math.sqrt(Math.max(0, 1 - cosC * cosC))) / 2
-      if (Math.abs(area - shoelace) > TAU / TAU / 1e6) heron = false
+      const shoelace = abs(a * b * sqrt(max(0, 1 - cosC * cosC))) / 2
+      if (abs(area - shoelace) > TAU / TAU / 1e6) heron = false
     }
 
     return {
@@ -2251,7 +2251,7 @@ export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { roo
   return sealFold('discoveredTheoremsWaveThirtySix', 'discovered-theorems-thirty-six', matrix, () => {
     // W1 · Bézout's identity — gcd(a,b) = a·x + b·y with (x,y) from the extended Euclidean algorithm,
     // for every a, b ≤ 60 (the coefficients and the gcd both verified).
-    const extGcd = (a: number, b: number) => { let oldR = a, r = b, oldS = 1, s = 0, oldT = 0, t = 1; while (r !== 0) { const q = Math.floor(oldR / r); [oldR, r] = [r, oldR - q * r]; [oldS, s] = [s, oldS - q * s]; [oldT, t] = [t, oldT - q * t] } return { g: oldR, x: oldS, y: oldT } }
+    const extGcd = (a: number, b: number) => { let oldR = a, r = b, oldS = 1, s = 0, oldT = 0, t = 1; while (r !== 0) { const q = floor(oldR / r); [oldR, r] = [r, oldR - q * r]; [oldS, s] = [s, oldS - q * s]; [oldT, t] = [t, oldT - q * t] } return { g: oldR, x: oldS, y: oldT } }
     let bezout = true
     for (let a = 1; a <= 54 + 6; a += 1) for (let b = 1; b <= 54 + 6; b += 1) { const { g, x, y } = extGcd(a, b); if (g !== gcd(a, b) || a * x + b * y !== g) bezout = false }
 
@@ -2261,7 +2261,7 @@ export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { roo
 
     // W3 · Legendre's formula — the exponent of a prime p in n! is Σ_{k≥1} ⌊n/p^k⌋, matched against
     // the exponent from direct factorization of n!, for all n ≤ 60.
-    const legendreExp = (n: number, p: number) => { let s = 0, pk = p; while (pk <= n) { s += Math.floor(n / pk); pk *= p } return s }
+    const legendreExp = (n: number, p: number) => { let s = 0, pk = p; while (pk <= n) { s += floor(n / pk); pk *= p } return s }
     const factExp = (n: number, p: number) => { let s = 0; for (let i = 2; i <= n; i += 1) { let x = i; while (x % p === 0) { s += 1; x /= p } } return s }
     let legendre = true
     for (let n = 1; n <= 54 + 6; n += 1) for (let p = 2; p <= n; p += 1) if (tkIsPrime(p) && legendreExp(n, p) !== factExp(n, p)) legendre = false
@@ -2293,9 +2293,9 @@ export function discoveredTheoremsWaveThirtySix(matrix: { root: string } = { roo
 // and Thales' right angle in a semicircle.
 export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveThirtySeven', 'discovered-theorems-thirty-seven', matrix, () => {
-    const irr = [PHI, Math.SQRT2, Math.sqrt(3), Math.sqrt(5), Math.sqrt(7), Math.sqrt(2 * 5 + 1)]
-    const rnd = (t: number, i: number) => { const x = t * irr[i]!; return x - Math.floor(x) }
-    const dist = (p: number[], q: number[]) => Math.hypot(p[0]! - q[0]!, p[1]! - q[1]!)
+    const irr = [PHI, SQRT2, sqrt(3), sqrt(5), sqrt(7), sqrt(2 * 5 + 1)]
+    const rnd = (t: number, i: number) => { const x = t * irr[i]!; return x - floor(x) }
+    const dist = (p: number[], q: number[]) => hypot(p[0]! - q[0]!, p[1]! - q[1]!)
     const sub = (p: number[], q: number[]) => [p[0]! - q[0]!, p[1]! - q[1]!]
     const cross = (u: number[], v: number[]) => u[0]! * v[1]! - u[1]! * v[0]!
     const tol = TAU / TAU / 1e6
@@ -2307,13 +2307,13 @@ export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { r
     let ceva = true, cevaTests = 0
     for (let t = 1; t <= runs; t += 1) {
       const A = [rnd(t, 0) * 4 - 2, rnd(t, 1) * 4 - 2], B = [2 + rnd(t, 2) * 3, rnd(t, 3) * 4 - 2], C = [rnd(t, 4) * 3 - 1, 2 + rnd(t, 5) * 3]
-      if (Math.abs(cross(sub(B, A), sub(C, A))) < 1 / 2) continue
+      if (abs(cross(sub(B, A), sub(C, A))) < 1 / 2) continue
       const u = rnd(t, 1) / 2 + 1 / 4, v = rnd(t, 3) * (7 / (2 * 5) - u) + 3 / (4 * 5), w = 1 - u - v
       if (w <= 1 / (2 * 5)) continue
       const P = [u * A[0]! + v * B[0]! + w * C[0]!, u * A[1]! + v * B[1]! + w * C[1]!]
       const D = lineX(A, P, B, C), E = lineX(B, P, C, A), F = lineX(C, P, A, B)
       cevaTests += 1
-      if (Math.abs((dist(B, D) / dist(D, C)) * (dist(C, E) / dist(E, A)) * (dist(A, F) / dist(F, B)) - 1) > tol) ceva = false
+      if (abs((dist(B, D) / dist(D, C)) * (dist(C, E) / dist(E, A)) * (dist(A, F) / dist(F, B)) - 1) > tol) ceva = false
     }
 
     // W2 · Menelaus — a transversal line crosses the three sides (extended) at D, E, F with the same
@@ -2321,14 +2321,14 @@ export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { r
     let menelaus = true, menelausTests = 0
     for (let t = 1; t <= runs; t += 1) {
       const A = [rnd(t, 0) * 4 - 2, rnd(t, 1) * 4 - 2], B = [2 + rnd(t, 2) * 3, rnd(t, 3) * 4 - 2], C = [rnd(t, 4) * 3 - 1, 2 + rnd(t, 5) * 3]
-      if (Math.abs(cross(sub(B, A), sub(C, A))) < 1 / 2) continue
+      if (abs(cross(sub(B, A), sub(C, A))) < 1 / 2) continue
       const L1 = [rnd(t, 3) * 6 - 3, rnd(t, 5) * 6 - 3], L2 = [rnd(t, 0) * 6 - 3, rnd(t, 2) * 6 - 3]
       if (dist(L1, L2) < 1 / 2) continue
-      const inter = (p1: number[], p2: number[]): number[] | null => { const d = cross(sub(p2, p1), sub(L2, L1)); if (Math.abs(d) < tol) return null; const s = cross(sub(L1, p1), sub(L2, L1)) / d; return [p1[0]! + s * (p2[0]! - p1[0]!), p1[1]! + s * (p2[1]! - p1[1]!)] }
+      const inter = (p1: number[], p2: number[]): number[] | null => { const d = cross(sub(p2, p1), sub(L2, L1)); if (abs(d) < tol) return null; const s = cross(sub(L1, p1), sub(L2, L1)) / d; return [p1[0]! + s * (p2[0]! - p1[0]!), p1[1]! + s * (p2[1]! - p1[1]!)] }
       const D = inter(B, C), E = inter(C, A), F = inter(A, B)
       if (!D || !E || !F) continue
       menelausTests += 1
-      if (Math.abs((dist(B, D) / dist(D, C)) * (dist(C, E) / dist(E, A)) * (dist(A, F) / dist(F, B)) - 1) > tol) menelaus = false
+      if (abs((dist(B, D) / dist(D, C)) * (dist(C, E) / dist(E, A)) * (dist(A, F) / dist(F, B)) - 1) > tol) menelaus = false
     }
 
     // W3 · the nine-point circle — the three edge midpoints, three altitude feet and three Euler
@@ -2338,12 +2338,12 @@ export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { r
     let ninePoint = true, ninePointTests = 0
     for (let t = 1; t <= runs; t += 1) {
       const A = [rnd(t, 0) * 6 - 3, rnd(t, 1) * 6 - 3], B = [3 + rnd(t, 2) * 3, rnd(t, 3) * 6 - 3], C = [rnd(t, 4) * 4 - 2, 3 + rnd(t, 5) * 3]
-      if (Math.abs(cross(sub(B, A), sub(C, A))) < 1) continue
+      if (abs(cross(sub(B, A), sub(C, A))) < 1) continue
       const O = circum(A, B, C), H = [A[0]! + B[0]! + C[0]! - 2 * O[0]!, A[1]! + B[1]! + C[1]! - 2 * O[1]!], N = [(O[0]! + H[0]!) / 2, (O[1]! + H[1]!) / 2]
       const pts = [[(A[0]! + B[0]!) / 2, (A[1]! + B[1]!) / 2], [(B[0]! + C[0]!) / 2, (B[1]! + C[1]!) / 2], [(C[0]! + A[0]!) / 2, (C[1]! + A[1]!) / 2], foot(A, B, C), foot(B, C, A), foot(C, A, B), [(A[0]! + H[0]!) / 2, (A[1]! + H[1]!) / 2], [(B[0]! + H[0]!) / 2, (B[1]! + H[1]!) / 2], [(C[0]! + H[0]!) / 2, (C[1]! + H[1]!) / 2]]
       const r = dist(N, pts[0]!)
       ninePointTests += 1
-      if (!pts.every((p) => Math.abs(dist(N, p) - r) < tol)) ninePoint = false
+      if (!pts.every((p) => abs(dist(N, p) - r) < tol)) ninePoint = false
     }
 
     // W4 · Thales — the angle inscribed in a semicircle is a right angle: for antipodal P1, P2 (a
@@ -2351,11 +2351,11 @@ export function discoveredTheoremsWaveThirtySeven(matrix: { root: string } = { r
     let thales = true, thalesTests = 0
     for (let t = 1; t <= 4 * 100; t += 1) {
       const a = rnd(t, 0) * TAU, b = rnd(t, 1) * TAU
-      const P1 = [Math.cos(a), Math.sin(a)], P2 = [-Math.cos(a), -Math.sin(a)], P = [Math.cos(b), Math.sin(b)]
+      const P1 = [cos(a), sin(a)], P2 = [-cos(a), -sin(a)], P = [cos(b), sin(b)]
       if (dist(P, P1) < 1 / (2 * 5) || dist(P, P2) < 1 / (2 * 5)) continue
       const v1 = sub(P1, P), v2 = sub(P2, P)
       thalesTests += 1
-      if (Math.abs(v1[0]! * v2[0]! + v1[1]! * v2[1]!) > tol) thales = false
+      if (abs(v1[0]! * v2[0]! + v1[1]! * v2[1]!) > tol) thales = false
     }
 
     return {
@@ -2391,7 +2391,7 @@ export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { r
       for (const L of sorted) {
         let assigned = false
         for (let v = 0; v < 2 ** L && !assigned; v += 1) {
-          const ok = used.every(([ul, uv]) => { const m = Math.min(ul!, L); return (uv! >> (ul! - m)) !== (v >> (L - m)) })
+          const ok = used.every(([ul, uv]) => { const m = min(ul!, L); return (uv! >> (ul! - m)) !== (v >> (L - m)) })
           if (ok) { used.push([L, v]); assigned = true }
         }
         if (!assigned) return false
@@ -2407,25 +2407,25 @@ export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { r
     // p_N=1, verified to satisfy the recurrence and boundary for all N ≤ 20.
     let ruin = true
     for (let N = 2; N <= 4 * 5; N += 1) {
-      for (let i = 1; i < N; i += 1) if (Math.abs(i / N - ((i - 1) / N + (i + 1) / N) / 2) > TAU / TAU / 1e9) ruin = false
-      if (Math.abs(0 / N) > TAU / TAU / 1e9 || Math.abs(N / N - 1) > TAU / TAU / 1e9) ruin = false
+      for (let i = 1; i < N; i += 1) if (abs(i / N - ((i - 1) / N + (i + 1) / N) / 2) > TAU / TAU / 1e9) ruin = false
+      if (abs(0 / N) > TAU / TAU / 1e9 || abs(N / N - 1) > TAU / TAU / 1e9) ruin = false
     }
 
     // W4 · Shannon entropy — H(X) = −Σ p log2 p is MAXIMISED by the uniform distribution (= log2 n),
     // is ≥ 0, and is 0 exactly when deterministic; checked over many distributions on n ≤ 8 symbols.
-    const entropyOf = (ps: number[]) => ps.reduce((s, p) => s + (p > 0 ? -p * Math.log2(p) : 0), 0)
+    const entropyOf = (ps: number[]) => ps.reduce((s, p) => s + (p > 0 ? -p * log2(p) : 0), 0)
     let entropy = true
     for (let n = 2; n <= 8; n += 1) {
       const hUniform = entropyOf(Array(n).fill(1 / n))
-      if (Math.abs(hUniform - Math.log2(n)) > TAU / TAU / 1e9) entropy = false
+      if (abs(hUniform - log2(n)) > TAU / TAU / 1e9) entropy = false
       for (let t = 1; t <= 2 * 5 * 5; t += 1) {
-        const raw = Array.from({ length: n }, (_, k) => { const x = t * (k + 1) * Math.SQRT2; return (x - Math.floor(x)) + 1 / 100 })
+        const raw = Array.from({ length: n }, (_, k) => { const x = t * (k + 1) * SQRT2; return (x - floor(x)) + 1 / 100 })
         const Z = raw.reduce((a, b) => a + b, 0)
         const h = entropyOf(raw.map((r) => r / Z))
         if (h > hUniform + TAU / TAU / 1e9 || h < -(TAU / TAU / 1e9)) entropy = false
       }
       const det = Array(n).fill(0); det[0] = 1
-      if (Math.abs(entropyOf(det)) > TAU / TAU / 1e9) entropy = false
+      if (abs(entropyOf(det)) > TAU / TAU / 1e9) entropy = false
     }
 
     return {
@@ -2445,8 +2445,8 @@ export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { r
 // by exhaustive permutation.
 export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveThirtyNine', 'discovered-theorems-thirty-nine', matrix, () => {
-    const irr = [PHI, Math.SQRT2, Math.sqrt(3), Math.sqrt(5), Math.sqrt(7)]
-    const rnd = (t: number, i: number) => { const x = t * irr[i % irr.length]!; return x - Math.floor(x) }
+    const irr = [PHI, SQRT2, sqrt(3), sqrt(5), sqrt(7)]
+    const rnd = (t: number, i: number) => { const x = t * irr[i % irr.length]!; return x - floor(x) }
     const tol = TAU / TAU / 1e6
 
     // W1 · AM-GM — the arithmetic mean is ≥ the geometric mean for positive reals, with equality iff
@@ -2458,7 +2458,7 @@ export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { ro
       const gm = xs.reduce((a, b) => a * b, 1) ** (1 / n)
       if (gm > am + tol) amgm = false
     }
-    for (let n = 2; n <= 6; n += 1) { const xs = Array(n).fill(4); const am = xs.reduce((a, b) => a + b, 0) / n, gm = xs.reduce((a, b) => a * b, 1) ** (1 / n); if (Math.abs(am - gm) > tol) amgm = false }
+    for (let n = 2; n <= 6; n += 1) { const xs = Array(n).fill(4); const am = xs.reduce((a, b) => a + b, 0) / n, gm = xs.reduce((a, b) => a * b, 1) ** (1 / n); if (abs(am - gm) > tol) amgm = false }
 
     // W2 · Cauchy-Schwarz — (Σ a_i b_i)² ≤ (Σ a_i²)(Σ b_i²), with equality iff the vectors are
     // proportional; checked over many pairs on n ≤ 8, plus the proportional equality case b = 2a.
@@ -2469,12 +2469,12 @@ export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { ro
       const na = a.reduce((s, ai) => s + ai * ai, 0), nb = b.reduce((s, bi) => s + bi * bi, 0)
       if (dot * dot > na * nb + tol) cauchy = false
     }
-    for (let n = 2; n <= 8; n += 1) { const a = Array.from({ length: n }, (_, k) => k + 1), b = a.map((x) => 2 * x); const dot = a.reduce((s, ai, i) => s + ai * b[i]!, 0), na = a.reduce((s, ai) => s + ai * ai, 0), nb = b.reduce((s, bi) => s + bi * bi, 0); if (Math.abs(dot * dot - na * nb) > tol) cauchy = false }
+    for (let n = 2; n <= 8; n += 1) { const a = Array.from({ length: n }, (_, k) => k + 1), b = a.map((x) => 2 * x); const dot = a.reduce((s, ai, i) => s + ai * b[i]!, 0), na = a.reduce((s, ai) => s + ai * ai, 0), nb = b.reduce((s, bi) => s + bi * bi, 0); if (abs(dot * dot - na * nb) > tol) cauchy = false }
 
     // W3 · Euler's φ product formula — φ(n) = n·Π_{p|n}(1 − 1/p), matched against the direct count of
     // integers ≤ n coprime to n, for every n ≤ 1000.
     const phiDirect = (n: number) => { let c = 0; for (let a = 1; a <= n; a += 1) if (gcd(a, n) === 1) c += 1; return c }
-    const phiProduct = (n: number) => { let r = n, m = n; for (let p = 2; p * p <= m; p += 1) if (m % p === 0) { while (m % p === 0) m /= p; r -= r / p } if (m > 1) r -= r / m; return Math.round(r) }
+    const phiProduct = (n: number) => { let r = n, m = n; for (let p = 2; p * p <= m; p += 1) if (m % p === 0) { while (m % p === 0) m /= p; r -= r / p } if (m > 1) r -= r / m; return round(r) }
     let phi = true
     for (let n = 1; n <= (2 * 5) ** 3; n += 1) if (phiDirect(n) !== phiProduct(n)) phi = false
 
@@ -2484,12 +2484,12 @@ export function discoveredTheoremsWaveThirtyNine(matrix: { root: string } = { ro
     const permsOf = (arr: number[]): number[][] => arr.length <= 1 ? [arr] : arr.flatMap((x, i) => permsOf([...arr.slice(0, i), ...arr.slice(i + 1)]).map((p) => [x, ...p]))
     let rearrange = true
     for (let n = 2; n <= 6; n += 1) for (let t = 1; t <= 4 * 5; t += 1) {
-      const a = Array.from({ length: n }, (_, k) => Math.floor(rnd(t, k) * 9) + 1).sort((x, y) => x - y)
-      const b = Array.from({ length: n }, (_, k) => Math.floor(rnd(t + 2, k + 1) * 9) + 1)
+      const a = Array.from({ length: n }, (_, k) => floor(rnd(t, k) * 9) + 1).sort((x, y) => x - y)
+      const b = Array.from({ length: n }, (_, k) => floor(rnd(t + 2, k + 1) * 9) + 1)
       const dots = permsOf(b).map((pb) => a.reduce((s, ai, i) => s + ai * pb[i]!, 0))
       const sortedSame = a.reduce((s, ai, i) => s + ai * [...b].sort((x, y) => x - y)[i]!, 0)
       const sortedOpp = a.reduce((s, ai, i) => s + ai * [...b].sort((x, y) => y - x)[i]!, 0)
-      if (sortedSame !== Math.max(...dots) || sortedOpp !== Math.min(...dots)) rearrange = false
+      if (sortedSame !== max(...dots) || sortedOpp !== min(...dots)) rearrange = false
     }
 
     return {
@@ -2513,13 +2513,13 @@ export function discoveredTheoremsWaveForty(matrix: { root: string } = { root: t
     // W1 · geometric series — Σ_{k=0}^{N} r^k = (1−r^{N+1})/(1−r), and → 1/(1−r) for |r| < 1.
     let geometric = true
     for (const r of [1 / 2, 1 / 3, 9 / (2 * 5), -1 / 2, 2 / 7]) {
-      let partial = 0; for (let k = 0; k <= 54 + 6; k += 1) { partial += r ** k; if (Math.abs(partial - (1 - r ** (k + 1)) / (1 - r)) > tol) geometric = false }
-      if (Math.abs(r) < 1) { let s = 0; for (let k = 0; k <= (2 * 5) ** 3; k += 1) s += r ** k; if (Math.abs(s - 1 / (1 - r)) > TAU / TAU / 1e6) geometric = false }
+      let partial = 0; for (let k = 0; k <= 54 + 6; k += 1) { partial += r ** k; if (abs(partial - (1 - r ** (k + 1)) / (1 - r)) > tol) geometric = false }
+      if (abs(r) < 1) { let s = 0; for (let k = 0; k <= (2 * 5) ** 3; k += 1) s += r ** k; if (abs(s - 1 / (1 - r)) > TAU / TAU / 1e6) geometric = false }
     }
 
     // W2 · telescoping — Σ_{k=1}^{n} 1/(k(k+1)) = 1 − 1/(n+1) = n/(n+1), exact for all n ≤ 1000.
     let telescoping = true
-    for (let n = 1; n <= (2 * 5) ** 3; n += 1) { let s = 0; for (let k = 1; k <= n; k += 1) s += 1 / (k * (k + 1)); if (Math.abs(s - n / (n + 1)) > tol) telescoping = false }
+    for (let n = 1; n <= (2 * 5) ** 3; n += 1) { let s = 0; for (let k = 1; k <= n; k += 1) s += 1 / (k * (k + 1)); if (abs(s - n / (n + 1)) > tol) telescoping = false }
 
     // W3 · the power-sum closed forms — Σk = n(n+1)/2, Σ(2k−1) = n², Σk² = n(n+1)(2n+1)/6, all n ≤ 1000.
     let powerSum = true
@@ -2564,13 +2564,13 @@ export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { ro
     // polynomial has p dividing the constant term and q dividing the leading coefficient; verified by
     // finding the actual rational roots and confirming the divisibility for four polynomials.
     const evalPoly = (c: number[], x: number) => c.reduce((s, ci, i) => s + ci * x ** (c.length - 1 - i), 0)
-    const divs = (m: number) => { const r: number[] = []; for (let d = 1; d <= Math.abs(m); d += 1) if (m % d === 0) r.push(d, -d); return r.length ? r : [1, -1] }
+    const divs = (m: number) => { const r: number[] = []; for (let d = 1; d <= abs(m); d += 1) if (m % d === 0) r.push(d, -d); return r.length ? r : [1, -1] }
     let rationalRoot = true
     for (const c of [[1, -3, 2], [2, -3, -3, 2], [6, -1, -2], [1, 0, -2]]) {
       const an = c[0]!, a0 = c[c.length - 1]!
       for (const p of divs(a0 * (2 * 5))) for (const q of divs(an * (2 * 5))) {
         const x = p / q
-        if (Math.abs(evalPoly(c, x)) < 1 / 1e9) { const g = gcd(Math.abs(p), Math.abs(q)) || 1; if (a0 % (p / g) !== 0 || an % (q / g) !== 0) rationalRoot = false }
+        if (abs(evalPoly(c, x)) < 1 / 1e9) { const g = gcd(abs(p), abs(q)) || 1; if (a0 % (p / g) !== 0 || an % (q / g) !== 0) rationalRoot = false }
       }
     }
 
@@ -2578,7 +2578,7 @@ export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { ro
     // T_{n−2}) satisfy T_n(cos θ) = cos(nθ) for all n ≤ 10 and a grid of angles.
     const cheb = (n: number, x: number) => { if (n === 0) return 1; let a = 1, b = x; for (let i = 2; i <= n; i += 1) { const cc = 2 * x * b - a; a = b; b = cc } return n === 1 ? x : b }
     let chebyshev = true
-    for (let n = 0; n <= 2 * 5; n += 1) for (let j = 0; j < 4 * 5; j += 1) { const th = (j * (TAU / 2)) / (2 * 5); if (Math.abs(cheb(n, Math.cos(th)) - Math.cos(n * th)) > 1 / 1e9) chebyshev = false }
+    for (let n = 0; n <= 2 * 5; n += 1) for (let j = 0; j < 4 * 5; j += 1) { const th = (j * (TAU / 2)) / (2 * 5); if (abs(cheb(n, cos(th)) - cos(n * th)) > 1 / 1e9) chebyshev = false }
 
     return {
       facets: [
@@ -2596,7 +2596,7 @@ export function discoveredTheoremsWaveFortyThree(matrix: { root: string } = { ro
 // the sealed teleportQubit), superdense coding, BB84 key distribution, and Bernstein–Vazirani.
 export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { root: toUuid('discovered-theorems') }) {
   return sealFold('discoveredTheoremsWaveFortyFour', 'discovered-theorems-forty-four', matrix, () => {
-    const s2 = Math.SQRT1_2
+    const s2 = SQRT1_2
     const gH = (st: number[], q: number, n: number) => { const N = 1 << n, amp = new Array(N).fill(0); for (let i = 0; i < N; i += 1) { const b = (i >> q) & 1, j = i ^ (1 << q); amp[i]! += s2 * st[i]! * (b ? -1 : 1); amp[j]! += s2 * st[i]! } return amp }
     const gX = (st: number[], q: number, n: number) => { const N = 1 << n, amp = new Array(N).fill(0); for (let i = 0; i < N; i += 1) amp[i ^ (1 << q)]! += st[i]!; return amp }
     const gZ = (st: number[], q: number) => st.map((a, i) => ((i >> q) & 1) ? -a : a)
@@ -2608,7 +2608,7 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
     let teleport = true
     for (let ti = 0; ti < 8; ti += 1) for (let pj = 0; pj < 8; pj += 1) for (let seed = 0; seed < 4; seed += 1) {
       const r = teleportQubit((ti / 8) * TAU, (pj / 8) * TAU, `w44:${ti}:${pj}:${seed}`)
-      if (Math.abs(r.fidelity - 1) > tiny) teleport = false
+      if (abs(r.fidelity - 1) > tiny) teleport = false
     }
 
     // W2 · superdense coding — Alice sends TWO classical bits by acting on her half of a shared Bell
@@ -2619,8 +2619,8 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
       const b1 = msg & 1, b2 = (msg >> 1) & 1
       if (b1) st = gZ(st, 0); if (b2) st = gX(st, 0, 2)
       st = gH(gCNOT(st, 0, 1, 2), 0, 2)
-      let best = 0; for (let i = 1; i < 4; i += 1) if (Math.abs(st[i]!) > Math.abs(st[best]!)) best = i
-      return (best & 1) === b1 && ((best >> 1) & 1) === b2 && Math.abs(Math.abs(st[best]!) - 1) < tiny
+      let best = 0; for (let i = 1; i < 4; i += 1) if (abs(st[i]!) > abs(st[best]!)) best = i
+      return (best & 1) === b1 && ((best >> 1) & 1) === b2 && abs(abs(st[best]!) - 1) < tiny
     }
     const superdenseTech = [0, 1, 2, 3].every(superdense)
 
@@ -2629,12 +2629,12 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
     // bits, so eavesdropping is DETECTABLE. Deterministic irrational choice streams, no randomness.
     const bb84 = (eve: boolean) => {
       let sift = 0, errors = 0; const rounds = 2 * (2 * 5) ** 3
-      const bit = (i: number, mult: number) => { const x = i * mult; return (x - Math.floor(x)) < 1 / 2 ? 0 : 1 }
+      const bit = (i: number, mult: number) => { const x = i * mult; return (x - floor(x)) < 1 / 2 ? 0 : 1 }
       for (let i = 1; i <= rounds; i += 1) {
-        const aBit = bit(i, PHI), aBasis = bit(i, Math.SQRT2)
+        const aBit = bit(i, PHI), aBasis = bit(i, SQRT2)
         let cBit = aBit, cBasis = aBasis
-        if (eve) { const eBasis = bit(i, Math.sqrt(3)); cBit = eBasis === cBasis ? cBit : bit(i, Math.sqrt(5)); cBasis = eBasis }
-        const bBasis = bit(i, Math.sqrt(7)), bBit = bBasis === cBasis ? cBit : bit(i, Math.sqrt(2 * 5 + 1))
+        if (eve) { const eBasis = bit(i, sqrt(3)); cBit = eBasis === cBasis ? cBit : bit(i, sqrt(5)); cBasis = eBasis }
+        const bBasis = bit(i, sqrt(7)), bBit = bBasis === cBasis ? cBit : bit(i, sqrt(2 * 5 + 1))
         if (aBasis === bBasis) { sift += 1; if (bBit !== aBit) errors += 1 }
       }
       return errors / sift
@@ -2645,10 +2645,10 @@ export function discoveredTheoremsWaveFortyFour(matrix: { root: string } = { roo
     // (H^n, phase oracle, H^n) recovers ALL n bits, where classical needs n queries.
     const bv = (s: number, n: number) => {
       const N = 1 << n
-      let st = new Array(N).fill(1 / Math.sqrt(N))
+      let st = new Array(N).fill(1 / sqrt(N))
       st = st.map((a, x) => { let dot = 0; for (let b = 0; b < n; b += 1) dot ^= ((s >> b) & 1) & ((x >> b) & 1); return a * (dot ? -1 : 1) })
       for (let q = 0; q < n; q += 1) st = gH(st, q, n)
-      let best = 0; for (let i = 1; i < N; i += 1) if (Math.abs(st[i]!) > Math.abs(st[best]!)) best = i
+      let best = 0; for (let i = 1; i < N; i += 1) if (abs(st[i]!) > abs(st[best]!)) best = i
       return best === s
     }
     let bvTech = true
@@ -2692,11 +2692,11 @@ export function discoveredTheoremsWaveFortyFive(matrix: { root: string } = { roo
     // Q†Q = I for N = 2,4,8,16 (exact to 1e-9): the reversible transform at the heart of Shor's algorithm.
     const qftUnitary = (nQ: number) => {
       const N = 1 << nQ, re: number[][] = [], im: number[][] = []
-      for (let j = 0; j < N; j += 1) { re.push([]); im.push([]); for (let k = 0; k < N; k += 1) { const ang = (TAU * j * k) / N; re[j]!.push(Math.cos(ang) / Math.sqrt(N)); im[j]!.push(Math.sin(ang) / Math.sqrt(N)) } }
+      for (let j = 0; j < N; j += 1) { re.push([]); im.push([]); for (let k = 0; k < N; k += 1) { const ang = (TAU * j * k) / N; re[j]!.push(cos(ang) / sqrt(N)); im[j]!.push(sin(ang) / sqrt(N)) } }
       for (let a = 0; a < N; a += 1) for (let b = 0; b < N; b += 1) {
         let sr = 0, si = 0
         for (let j = 0; j < N; j += 1) { const ar = re[j]![a]!, ai = -im[j]![a]!, br = re[j]![b]!, bi = im[j]![b]!; sr += ar * br - ai * bi; si += ar * bi + ai * br }
-        if (Math.abs(sr - (a === b ? 1 : 0)) > tiny || Math.abs(si) > tiny) return false
+        if (abs(sr - (a === b ? 1 : 0)) > tiny || abs(si) > tiny) return false
       }
       return true
     }
@@ -2799,7 +2799,7 @@ export function divisionByZeroComputes() {
   // regime 2: projective inversion inv([z:w]) = [w:z] — total, involutive, swaps 0 ↔ ∞
   type P1 = readonly [number, number]
   const inv = (p: P1): P1 => [p[1], p[0]]
-  const same = (p: P1, q: P1) => Math.abs(p[0] * q[1] - p[1] * q[0]) < 1e-9
+  const same = (p: P1, q: P1) => abs(p[0] * q[1] - p[1] * q[0]) < 1e-9
   const zero: P1 = [0, 1]
   const infinity: P1 = [1, 0]
   const samples: P1[] = [zero, infinity, [1, 1], [3, 7], [-2, 5], [1e-6, 1]]
@@ -2836,24 +2836,24 @@ export function divisionByZeroComputes() {
  * (1/z = z̄/|z|²). And though the angle COORDINATE flips, angles BETWEEN curves survive: 1/z is
  * conformal. The angle changes; the geometry keeps its word. */
 export function inverseNegatesAngle() {
-  const wrap = (theta: number) => Math.atan2(Math.sin(theta), Math.cos(theta))
-  const near = (x: number, y: number) => Math.abs(wrap(x - y)) < 1e-9
+  const wrap = (theta: number) => atan2(sin(theta), cos(theta))
+  const near = (x: number, y: number) => abs(wrap(x - y)) < 1e-9
   // guise 1: complex reciprocal — arg(1/z) = −arg(z), sampled off-axis
   const samples = [[3, 4], [-2, 5], [1, -7], [-3, -3]] as const
   const reciprocalNegates = samples.every(([re, im]) => {
     const inv = [re / (re * re + im * im), -im / (re * re + im * im)] // 1/z = z̄/|z|²
-    return near(Math.atan2(inv[1]!, inv[0]!), -Math.atan2(im, re))
+    return near(atan2(inv[1]!, inv[0]!), -atan2(im, re))
   })
   // guise 2: rotation matrices — R(θ)·R(−θ) = I, so R(θ)⁻¹ IS the negated angle
   const rotationInverse = [TAU / 9, TAU / 5, 6 / 5].every((theta) => {
-    const [c, s] = [Math.cos(theta), Math.sin(theta)]
-    const [cn, sn] = [Math.cos(-theta), Math.sin(-theta)]
-    return near(c * cn - s * sn, 1) && Math.abs(c * sn + s * cn) < 1e-9
+    const [c, s] = [cos(theta), sin(theta)]
+    const [cn, sn] = [cos(-theta), sin(-theta)]
+    return near(c * cn - s * sn, 1) && abs(c * sn + s * cn) < 1e-9
   })
   // guise 3: the CONTRAST — geometric circle inversion v/|v|² PRESERVES the angle coordinate
   const circleKeeps = samples.every(([x, y]) => {
     const inv = [x / (x * x + y * y), y / (x * x + y * y)]
-    return near(Math.atan2(inv[1]!, inv[0]!), Math.atan2(y, x))
+    return near(atan2(inv[1]!, inv[0]!), atan2(y, x))
   })
   // guise 4: the vortex — in (ℤ/9ℤ)* the ×2 orbit is a 6-cycle; a⁻¹ = 2^{−k}: angle negation, discretely
   const orbit = Array.from({ length: 6 }, (_, k) => (2 ** k) % 9)
@@ -2868,10 +2868,10 @@ export function inverseNegatesAngle() {
     const p: [number, number] = [base[0] + eps * dx!, base[1] + eps * dy!]
     const invOf = ([re, im]: readonly [number, number]) => [re / (re * re + im * im), -im / (re * re + im * im)] as const
     const [a, b] = [invOf(base), invOf(p)]
-    return Math.atan2(b[1] - a[1], b[0] - a[0])
+    return atan2(b[1] - a[1], b[0] - a[0])
   })
   // finite differences carry O(ε) error — the tolerance must match the method, not flatter it
-  const betweenSurvives = Math.abs(Math.abs(wrap(rays[1]! - rays[0]!)) - (TAU / 2) / 4) < 1e-4
+  const betweenSurvives = abs(abs(wrap(rays[1]! - rays[0]!)) - (TAU / 2) / 4) < 1e-4
   const facets = [
     { facet: 'complex: arg(1/z) = −arg(z) on every off-axis sample — the reciprocal reflects the phase', on: reciprocalNegates },
     { facet: 'rotations: R(θ)·R(−θ) = I computed — the inverse rotation IS the negated angle', on: rotationInverse },
@@ -2896,17 +2896,17 @@ export function inverseNegatesAngle() {
 export function sixtyDegreesDecodesPi() {
   const step = TAU / 6 // the vortex quantum of angle
   // three steps = π = negation: 2³ mod 9 vs e^{iπ}
-  const discreteEuler = (2 ** 3) % 9 === 9 - 1 && Math.abs(Math.cos(3 * step) - -1) < 1e-12
-  const cosSixtyExact = Math.abs(Math.cos(step) - 1 / 2) < 1e-12
+  const discreteEuler = (2 ** 3) % 9 === 9 - 1 && abs(cos(3 * step) - -1) < 1e-12
+  const cosSixtyExact = abs(cos(step) - 1 / 2) < 1e-12
   // Archimedes from the hexagon, on PERIMETERS (r = 1): inscribed b₆ = 6, circumscribed a₆ = 6·2/√3;
   // doubling: a' = 2ab/(a+b) (harmonic), b' = √(a'·b) (geometric) — bounds b/2 < π < a/2
   let n = 6
-  let a = 6 * (2 / Math.sqrt(3))
+  let a = 6 * (2 / sqrt(3))
   let b = 6
   const rungs: { n: number; lower: number; upper: number }[] = [{ n, lower: b / 2, upper: a / 2 }]
   while (n < (2 ** 5) * 3) {
     a = (2 * a * b) / (a + b)
-    b = Math.sqrt(a * b)
+    b = sqrt(a * b)
     n *= 2
     rungs.push({ n, lower: b / 2, upper: a / 2 })
   }
@@ -2934,7 +2934,7 @@ export function sixtyDegreesDecodesPi() {
   const isAffineGroup = groupOrder === 54 && [...seen.values()].every((f) => [1, 2, 4, 5, 7, 8].includes(((f[0] % 9) + 9) % 9))
   void apply
   const facets = [
-    { facet: 'the vortex quantum is τ/6 = 60° = π/3, and cos 60° = ½ EXACTLY — the hexagon is chords of the radius, which is why it seeds everything', on: cosSixtyExact && Math.abs(step - (TAU / 2) / 3) < 1e-15 },
+    { facet: 'the vortex quantum is τ/6 = 60° = π/3, and cos 60° = ½ EXACTLY — the hexagon is chords of the radius, which is why it seeds everything', on: cosSixtyExact && abs(step - (TAU / 2) / 3) < 1e-15 },
     { facet: 'three steps make π and negate: 2³ ≡ −1 (mod 9) beside cos(3·60°) = −1 — Euler\'s identity e^{iπ} = −1, discretely on the digit circle', on: discreteEuler },
     { facet: `Archimedes decoded π FROM 60°: hexagon → ${last.n}-gon by doubling, ${last.lower.toFixed(4)} < π < ${last.upper.toFixed(4)} — every rung brackets and tightens`, on: bracket && tightens && last.n === (2 ** 5) * 3 },
     { facet: `the ring and the void generate everything (erpax, same-day commit, verified here): ⟨x↦2x, x↦1−x⟩ closes to order ${groupOrder} = 6·9 = AGL(1,ℤ/9) with every slope a unit`, on: isAffineGroup },

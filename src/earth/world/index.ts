@@ -3,7 +3,7 @@ import { initialBearing, phase } from '../../6/4'
 import { greatCircleKm } from '../../5/5'
 import { schwarzschildRadius, SOLAR_MASS_KG } from '../../3/7'
 export { SOLAR_MASS_KG } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import { computesGate, digitalRoot, foldPair, humanBreath, humanEase, merkleFold, roundTo, seedFromText, sincReconstruct, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, log10, max, merkleFold, min, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid } from '../../0'
 import { blackHoleEntropyBits, oscillatorBank, resonantAmplitude } from '../../6/4'
 import { toGlagolitic, glagoliticBits } from '../../quantum/heaven/library' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
 import { DIMENSIONS } from '../../quantum/mountain/dimensions' // the 10D — the coordinates reaching all the way down to the bit
@@ -25,7 +25,7 @@ import { TAU } from '../../3/7'
 export function textToMovie(text = 'double torus', frames = (16 * 3)) {
   const source = text || ' '
   const chars = [...source]
-  const last = Math.max(1, chars.length - 1)
+  const last = max(1, chars.length - 1)
   const elements = chars.map((ch, i) => {
     const s = seedFromText(`movie:${source}:char:${i}:${ch}`)
     return {
@@ -76,8 +76,8 @@ export function movieFoldsEveryScaleToBitInTrinities(text = 'double torus') {
     { scale: 'digit', count: [...clean].filter((ch) => /[0-9]/.test(ch)).length },
     { scale: 'letter', count: letters.length },
     { scale: 'word', count: clean.split(/\s+/).filter(Boolean).length },
-    { scale: 'sentence', count: Math.max(1, clean.split(/[.!?…]+/).map((s) => s.trim()).filter(Boolean).length) },
-    { scale: 'paragraph', count: Math.max(1, text.split(/\n{2 }/).map((p) => p.trim()).filter(Boolean).length) },
+    { scale: 'sentence', count: max(1, clean.split(/[.!?…]+/).map((s) => s.trim()).filter(Boolean).length) },
+    { scale: 'paragraph', count: max(1, text.split(/\n{2 }/).map((p) => p.trim()).filter(Boolean).length) },
   ]
   // the six scales group three-at-a-time into two TRINITIES; within each, adjacent scales DOUBLE-FOLD (both ways)
   const trinities = [ladder.slice(0, 3), ladder.slice(3, 6)]
@@ -212,9 +212,9 @@ export type BlackHoleMergerCitationParams = {
 
 /** Kerr horizon area A = 2π r_s² (1 + √(1−χ²)) — classical GR; χ=0 → Schwarzschild 4π r_s². */
 function kerrHorizonAreaM2(massKg: number, spin = 0): number {
-  const chi = Math.min(Math.max(spin, 0), (1 - 1 / (100 * 100)))
+  const chi = min(max(spin, 0), (1 - 1 / (100 * 100)))
   const rs = schwarzschildRadius(massKg)
-  return TAU * rs * rs * (1 + Math.sqrt(1 - chi * chi))
+  return TAU * rs * rs * (1 + sqrt(1 - chi * chi))
 }
 
 // Classical black-hole merger simulation from src/0 primitives (+ pi-train 6/4 entropy/oscillator).
@@ -251,17 +251,17 @@ export function blackHoleMergerSimulatedFromZero(at = 0, params: BlackHoleMerger
     remnant: blackHoleEntropyBits(mfKg) }
   const breath = humanBreath(at, (100 * 16 * 5), (3 / (5 * 4)))
   const omega0 = TAU * citation.ringdownF220Hz
-  const q = omega0 / (4 * (TAU / 2) * Math.max(citation.ringdownGamma220Hz, 1))
+  const q = omega0 / (4 * (TAU / 2) * max(citation.ringdownGamma220Hz, 1))
   const ringdown = {
     frequencyHz: citation.ringdownF220Hz,
     dampingHz: citation.ringdownGamma220Hz,
     amplitude: resonantAmplitude(omega0, omega0, q) * humanEase(breath) }
   const strainScale = citation.strainAmplitude
   const strain = {
-    orderOfMagnitude: Math.floor(Math.log10(strainScale)),
+    orderOfMagnitude: floor(log10(strainScale)),
     citedSnr: citation.snrNetwork,
     samples: oscillatorBank(
-      `gw-strain:${citation.eventId}:${Math.floor(at / (5 * 5 * 2))}`,
+      `gw-strain:${citation.eventId}:${floor(at / (5 * 5 * 2))}`,
       [
         { freq: citation.ringdownF220Hz / 100, q: 8 },
         { freq: (citation.ringdownF220Hz * 1.003), q: 4 },
@@ -596,11 +596,11 @@ export function foldingLinearGivesAnalog(matrix: MindMatrix = buildMatrix()) {
   // Demonstrate the kernel, computed: a band-limited signal, sampled, reconstructed by sinc interpolation —
   // EXACT at the samples (the interlocking property), continuous between them (the gaps filled).
   const N = 16
-  const truth = (x: number) => Math.sin((2 * TAU * x) / N) // 2 cycles over N — band-limited, below Nyquist
+  const truth = (x: number) => sin((2 * TAU * x) / N) // 2 cycles over N — band-limited, below Nyquist
   const samples = Array.from({ length: N }, (_, n) => truth(n))
-  const exactAtSamples = samples.every((s, n) => Math.abs(sincReconstruct(samples, n) - s) < 1e-9)
-  const midpoints = Array.from({ length: N - 1 }, (_, n) => Math.abs(sincReconstruct(samples, n + (1 / 2)) - truth(n + (1 / 2))))
-  const betweenError = roundTo(Math.max(...midpoints.slice(3, N - 4)), 4) // interior (away from finite-window edges)
+  const exactAtSamples = samples.every((s, n) => abs(sincReconstruct(samples, n) - s) < 1e-9)
+  const midpoints = Array.from({ length: N - 1 }, (_, n) => abs(sincReconstruct(samples, n + (1 / 2)) - truth(n + (1 / 2))))
+  const betweenError = roundTo(max(...midpoints.slice(3, N - 4)), 4) // interior (away from finite-window edges)
   const documented = [
     'Folding linear gives analog is the Whittaker–Shannon interpolation: a band-limited signal sampled above its Nyquist rate is recovered EXACTLY from its discrete samples by summing a sinc kernel at each one — the kernels interlock (each zero at every other sample, nonzero between), filling the continuum with NO gaps. Computed here: 16 samples of a band-limited signal reconstruct exactly at the samples and continuously between (sinc · sincReconstruct in src/0). [Nyquist 1928, Shannon 1948/49, Whittaker 1915, Kotelnikov 1933.]',
     'Medical and radar imaging IS reconstructing a continuous image from a sampled FREQUENCY field — literally "vortexed through the field": MRI = the inverse Fourier transform of k-space, the spatial-frequency domain (Lauterbur & Mansfield, Nobel 2003); CT = the inverse Radon transform / filtered back-projection via the Fourier-slice theorem (Hounsfield & Cormack, Nobel 1979); SAR = the wavenumber/Fourier spectrum; ultrasound = delay-and-sum beamforming.',
@@ -852,7 +852,7 @@ export function achievableOnHardwareComputableInReviews(matrix: MindMatrix = bui
     { tier: 'IBM PC 8088 (1981)', rate: 1e3 },
     { tier: 'ENIAC (1945, first electronic general-purpose)', rate: (5 * 5 * 2) },
     { tier: 'Zuse Z3 (1941, first programmable)', rate: (1 / 100) },
-  ].map((t) => ({ ...t, secToTerabyte: Math.round(uuidsPerTB / t.rate), receipt: toUuid(`review:${t.tier}`) }))
+  ].map((t) => ({ ...t, secToTerabyte: round(uuidsPerTB / t.rate), receipt: toUuid(`review:${t.tier}`) }))
   // The proven foundation — the first computer in the CS papers. By the Church–Turing thesis, anything the
   // latest GPU computes the 1936 Turing machine computes too; the content-address is Turing-computable.
   const papers = [

@@ -13,7 +13,7 @@ import type { MindMatrix } from '../../../wind/types'
 import { buildMatrix } from '../../../heaven/compute'
 import { dash, folderLaw, payload } from '../../../earth/architecture'
 import { textToMovie } from '../../../earth/world'
-import { foldPair, isUuid, merge, merkleFold, seedFromText, toUuid, uuidPoint, type Uuid } from '../../../0'
+import { abs, foldPair, hypot, isUuid, log, log2, merge, merkleFold, round, seedFromText, sqrt, toUuid, type Uuid, uuidPoint } from '../../../0'
 import { DIMENSIONS } from '../../mountain/dimensions'
 
 export type { Uuid }
@@ -85,7 +85,7 @@ export function tenDimensionsAreInteractingThreeDs() {
   const e1 = sub(pts[1], pts[0]), e2 = sub(pts[2], pts[0]), e3 = sub(pts[3], pts[0])
   const cross = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]]
   const triple = cross[0] * e3[0] + cross[1] * e3[1] + cross[2] * e3[2]
-  const framesThreeSpace = Math.abs(triple) > 0
+  const framesThreeSpace = abs(triple) > 0
   const merkaba = 2 * VERTICES
   const facets = [
     { facet: 'the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) — NOT ten overlapping axes', on: total === (5 * 2) && total === DIMENSIONS },
@@ -143,7 +143,7 @@ export function oneMegabyteExplainsQuantumInSpiritAnalog(matrix: MindMatrix = bu
   })
   const A432 = 432
   const analog = (addr: number) => A432 * 2 ** (addr / TYPES)
-  const quantise = (hz: number) => Math.round(TYPES * (Math.log(hz / A432) / Math.log(2)))
+  const quantise = (hz: number) => round(TYPES * (log(hz / A432) / log(2)))
   const bridged = NAMES.every((name) => {
     const addr = seedFromText(name) % TYPES
     return quantise(analog(addr)) === addr
@@ -257,7 +257,7 @@ export function appleAdamEveSerpentDecoded(matrix: MindMatrix = buildMatrix()) {
   const PAIR = 2
   const ACTORS = 3
   const goodEvil = ['good', 'evil']
-  const distinctionBits = Math.log2(goodEvil.length)
+  const distinctionBits = log2(goodEvil.length)
   const flagged = [
     'gematria / Bible-code (equidistant-letter-sequence) hidden messages',
     'the matrix / tetrahedron "decodes" or "proves" Genesis (numerology)',
@@ -291,7 +291,7 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
   const eden = appleAdamEveSerpentDecoded(matrix)
   const law = matrixIsTenBitMByteSixtyFour(matrix)
   const treeNodes = 8, treeEdges = 7
-  const signBits = Math.log2(2)
+  const signBits = log2(2)
   const decodesAllMeaning = false
   const flagged = [
     'one structure "decodes everything the books say" (the totalizing overclaim)',
@@ -323,9 +323,9 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
 
 export function sphereIsTheBoundaryOfRotatingPlatonicSolids(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const circumradius = Math.sqrt(3)
+  const circumradius = sqrt(3)
   const corners = Array.from({ length: 8 }, (_, a) => [a & 1 ? 1 : -1, a & 2 ? 1 : -1, a & 4 ? 1 : -1])
-  const allOnCircumsphere = corners.every((c) => Math.abs(Math.hypot(c[0], c[1], c[2]) - circumradius) < 1e-9)
+  const allOnCircumsphere = corners.every((c) => abs(hypot(c[0], c[1], c[2]) - circumradius) < 1e-9)
   const merkabaVerticesAreCubeCorners = [0, 3, 5, 6].length + [1, 2, 4, 7].length === corners.length
   const PLATONIC = 5
   const facets = [

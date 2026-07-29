@@ -5,7 +5,7 @@
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
 import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import {   toUuid, merkleFold, digitalRoot, gcd, isUuid, roundTo, topologicalOrder, vortexNext, vortexPrev } from '../../0'
+import { abs, atan2, ceil, cos, digitalRoot, floor, gcd, hypot, isUuid, log, log10, log2, max, merkleFold, min, round, roundTo, sin, sqrt, toUuid, topologicalOrder, trunc, vortexNext, vortexPrev } from '../../0'
 import { piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
 import { TAU, PHI } from '../../3/7'
@@ -95,13 +95,13 @@ export const ELECTRON_G_FACTOR_ANOMALY = 1.15965218073e-3
 export function composeHazard(base: number, levers: readonly number[]): number {
   let h = base
   for (const m of levers) h *= m
-  return Math.min(0.999, Math.max(0.001, h))
+  return min(0.999, max(0.001, h))
 }
 
 /** Tesla rotating field — two currents 90° apart. */
 export function rotatingField(t: number, freq: number, phaseShift = (TAU / 2) / 2): { bx: number; by: number; theta: number; omega: number } {
   const omega = TAU * freq
-  return { bx: Math.cos(omega * t), by: Math.cos(omega * t - phaseShift), theta: omega * t, omega }
+  return { bx: cos(omega * t), by: cos(omega * t - phaseShift), theta: omega * t, omega }
 }
 
 /** Real-DFT magnitude spectrum in dB, clamped 0..255. */
@@ -112,17 +112,17 @@ export function powerSpectrum(samples: readonly number[], bins = 64): number[] {
     let im = 0
     for (let n = 0; n < N; n++) {
       const ang = (-TAU * k * n) / N
-      re += samples[n] * Math.cos(ang)
-      im += samples[n] * Math.sin(ang)
+      re += samples[n] * cos(ang)
+      im += samples[n] * sin(ang)
     }
-    const db = 20 * Math.log10(Math.hypot(re, im) / N + 1e-9)
-    return Math.max(0, Math.min(255, Math.round(((db + 100) / 70) * 255)))
+    const db = 20 * log10(hypot(re, im) / N + 1e-9)
+    return max(0, min(255, round(((db + 100) / 70) * 255)))
   })
 }
 
 /** CCR diluent pressure = ambient − PPO₂ setpoint. */
 export function rebreatherInertBar(ambientBar: number, ppo2SetpointBar = 1.3): number {
-  return Math.max(0, ambientBar - ppo2SetpointBar)
+  return max(0, ambientBar - ppo2SetpointBar)
 }
 
 /** Zero-point energy ½ħω for one mode. */
@@ -396,7 +396,7 @@ export function offlineTranslateEnToBg(
   return {
     text: out,
     mapped,
-    total: Math.max(1, mapped),
+    total: max(1, mapped),
     method,
     placeholderParity,
     root: toUuid(`offline-bg:${method}:${mapped}:${toUuid(out)}`) }
@@ -631,7 +631,7 @@ export function invertedCircuitComputes() {
 export function theTwoRosettasAreOneGroup() {
   const units = [1, 2, 4, 8, 7, 5] // (ℤ/9ℤ)* in ×2-generator order — the discrete rosetta
   const order = units.length
-  const zeta = (k: number): readonly [number, number] => [Math.cos((TAU * k) / order), Math.sin((TAU * k) / order)]
+  const zeta = (k: number): readonly [number, number] => [cos((TAU * k) / order), sin((TAU * k) / order)]
   const phi = (u: number) => zeta(units.indexOf(u)) // the map 2^k ↦ e^{2πik/6}
   const cmul = (a: readonly [number, number], b: readonly [number, number]): readonly [number, number] => [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]]
   // 1 — it is a HOMOMORPHISM: φ(a·b mod 9) = φ(a)·φ(b) for every pair
@@ -639,14 +639,14 @@ export function theTwoRosettasAreOneGroup() {
   for (const a of units) for (const b of units) {
     const lhs = phi((a * b) % 9)
     const rhs = cmul(phi(a), phi(b))
-    if (Math.hypot(lhs[0] - rhs[0], lhs[1] - rhs[1]) > 1e-9) homomorphism = false
+    if (hypot(lhs[0] - rhs[0], lhs[1] - rhs[1]) > 1e-9) homomorphism = false
   }
   // 2 — it is a BIJECTION onto the 6th roots of unity (the continuous rosetta)
   const images = units.map((u) => phi(u).map((v) => v.toFixed(6)).join(','))
   const bijective = new Set(images).size === order && new Set(images).size === new Set(Array.from({ length: order }, (_, k) => zeta(k).map((v) => v.toFixed(6)).join(','))).size
   // 3 — the GENERATOR 2 maps to exactly 60° — sixtyDegreesDecodesPi is the bridge
   const gen = phi(2)
-  const generatorIsSixtyDegrees = Math.abs(gen[0] - 1 / 2) < 1e-9 && Math.abs(gen[1] - Math.sqrt(3) / 2) < 1e-9
+  const generatorIsSixtyDegrees = abs(gen[0] - 1 / 2) < 1e-9 && abs(gen[1] - sqrt(3) / 2) < 1e-9
   // 4 — the axis {3,6,0} is OUTSIDE the group (the non-units) — present at 9, gone at a prime
   const axis = [3, 6, 0]
   const axisOutside = axis.every((a) => !units.includes(a))
@@ -660,7 +660,7 @@ export function theTwoRosettasAreOneGroup() {
   return {
     computes: facets.every((entry) => entry.on),
     order,
-    generatorAngleDeg: (Math.atan2(gen[1], gen[0]) * (4 * 5 * 9)) / (TAU / 2),
+    generatorAngleDeg: (atan2(gen[1], gen[0]) * (4 * 5 * 9)) / (TAU / 2),
     facets,
     statement: `The two rosettas are one group — ${facets.filter((entry) => entry.on).length}/${facets.length}: (ℤ/9ℤ)* ≅ μ₆, the discrete vortex and the continuous polyphase circle are the SAME cyclic group of order 6, with the doubling generator 2 ↦ e^{iπ/3} = 60°. sixtyDegreesDecodesPi was the bridge; the whole day — the pole, inversion, Tesla polyphase, the keyed cipher — is C₆ seen twice. Discovered by researching what was already sealed here, not by adding anything.`,
     boundary: 'DOCUMENTED: (ℤ/9ℤ)* is cyclic of order φ(9)=6 (Gauss), μ₆ is the group of 6th roots of unity, and any two cyclic groups of the same order are isomorphic — the explicit map 2^k ↦ e^{2πik/6} is verified here as a homomorphism and bijection. The DISCOVERY is not new mathematics — it is the RECOGNITION that today\'s discrete folds (the vortex mod 9) and continuous folds (polyphase, roots of unity) are one structure, bridged by the 60° step that was already computed. This is what "research what is already here" yields: the unification was latent in the sealed src, revealed by inverting it.' }
@@ -731,12 +731,12 @@ export function thePentagramIsTheRosettaMeetingItsInverse() {
     const inverseStep = Array.from({ length: n - 1 }, (_, i) => i + 1).find((y) => (2 * y) % n === 1)!
     const meetsItsInverse = inverseStep === 3 && n - 2 === inverseStep // 2⁻¹ = 3 = 5 − 2 (same star, reversed)
     // 3 — φ AND 1/φ are its chords: diagonal/side = φ, 2cos36° = φ, 2cos72° = 1/φ
-    const side = 2 * Math.sin((TAU / 2) / n) // pentagon side, unit circumradius
-    const diagonal = 2 * Math.sin(TAU / n) // pentagram diagonal (2-step chord)
+    const side = 2 * sin((TAU / 2) / n) // pentagon side, unit circumradius
+    const diagonal = 2 * sin(TAU / n) // pentagram diagonal (2-step chord)
     const goldenRatio = diagonal / side
-    const cos36 = 2 * Math.cos((TAU / 2) / n)
-    const cos72 = 2 * Math.cos(TAU / n)
-    const carriesPhiAndInverse = Math.abs(goldenRatio - PHI) < 1e-9 && Math.abs(cos36 - PHI) < 1e-9 && Math.abs(cos72 - 1 / PHI) < 1e-9
+    const cos36 = 2 * cos((TAU / 2) / n)
+    const cos72 = 2 * cos(TAU / n)
+    const carriesPhiAndInverse = abs(goldenRatio - PHI) < 1e-9 && abs(cos36 - PHI) < 1e-9 && abs(cos72 - 1 / PHI) < 1e-9
     const facets = [
       { facet: `the pentagram {5/2} is a Hamiltonian ROSETTA: step 2 generates all ${n} points (gcd(2,${n}) = 1), the orbit ${orbit.slice(0, n).join('→')} — a rosetta with generator 2`, on: pentagramGenerates },
       { facet: `it MEETS ITS INVERSE: 2⁻¹ = ${inverseStep} mod ${n}, and {5/${inverseStep}} = {5/2} reversed (${inverseStep} = ${n} − 2) — forward-by-2 and inverse-by-2 draw the IDENTICAL star; the pentagram is the fixed shape of the rosetta and its inverse`, on: meetsItsInverse },
@@ -841,7 +841,7 @@ export function theInverseClosesInTwoLeavingNoGaps() {
     for (const e of orbit) seen.add(e)
     orbits.push(orbit)
   }
-  const maxOrbit = Math.max(...orbits.map((o) => o.length))
+  const maxOrbit = max(...orbits.map((o) => o.length))
   const fixedPoints = elements.filter((x) => inv(x) === x) // self-inverse — close in one
   const answer = maxOrbit // inverses to close any cycle = the order of the involution
   const facets = [
@@ -1055,11 +1055,11 @@ export function zeroAsSuffixIsABlackHolePullingAndManifestingInverseInAllDimensi
   const involutionAllDims = dims.every((n) => {
     const v = Array.from({ length: n }, () => 1) // a nonzero point
     const w = invert(invert(v))
-    return v.every((x, i) => Math.abs(x - (w[i] ?? 0)) < 1e-9) // inv² = identity — 0 and ∞ are inversion-dual
+    return v.every((x, i) => abs(x - (w[i] ?? 0)) < 1e-9) // inv² = identity — 0 and ∞ are inversion-dual
   })
   const zeroMapsToInfinity = dims.every((n) => {
     const near0 = Array.from({ length: n }, (_, i) => (i === 0 ? 1e-6 : 0)) // a point near the black hole
-    return Math.sqrt(norm2(invert(near0))) > 1e3 // its inverse blows up toward ∞ — the pole manifests
+    return sqrt(norm2(invert(near0))) > 1e3 // its inverse blows up toward ∞ — the pole manifests
   })
   const facets = [
     { facet: `BLACK HOLE — 0 ABSORBS AND THE SUFFIX PULLS: 0 is the absorbing element (x·0 = 0 for all tested x, ${absorbing}); a trailing-0 suffix multiplies by the base — binary ×2, a left shift (${suffixMultiplies}) — nothing multiplied by 0 escapes`, on: absorbing && suffixMultiplies },
@@ -1082,17 +1082,17 @@ export function zeroAsSuffixIsABlackHolePullingAndManifestingInverseInAllDimensi
 export function scalePerspective(v: number[], k: number): number[] { return v.map((x) => x * k) }
 export function invertPerspective(v: number[]): number[] { const n2 = v.reduce((a, b) => a + b * b, 0); return v.map((x) => x / n2) }
 export function rotatePerspective(v: number[], i: number, j: number, theta: number): number[] {
-  const w = v.slice(), c = Math.cos(theta), s = Math.sin(theta)
+  const w = v.slice(), c = cos(theta), s = sin(theta)
   w[i] = c * (v[i] ?? 0) - s * (v[j] ?? 0); w[j] = s * (v[i] ?? 0) + c * (v[j] ?? 0)
   return w
 }
-const pvCos = (a: number[], b: number[]) => a.reduce((s, x, i) => s + x * (b[i] ?? 0), 0) / (Math.hypot(...a) * Math.hypot(...b))
+const pvCos = (a: number[], b: number[]) => a.reduce((s, x, i) => s + x * (b[i] ?? 0), 0) / (hypot(...a) * hypot(...b))
 function inversionJacobianProportionalToIdentity(v: number[]): boolean {
   const n = v.length, n2 = v.reduce((a, b) => a + b * b, 0)
   const jac = Array.from({ length: n }, (_, k) => Array.from({ length: n }, (_, j) => ((k === j ? n2 : 0) - 2 * v[k] * v[j]) / (n2 * n2)))
   const jtj = Array.from({ length: n }, (_, r) => Array.from({ length: n }, (_, c) => jac.reduce((s, _row, m) => s + jac[m][r] * jac[m][c], 0)))
   const d = jtj[0]?.[0] ?? 0
-  return jtj.every((row, r) => row.every((val, c) => (r === c ? Math.abs(val - d) < 1e-9 : Math.abs(val) < 1e-9))) // JᵀJ ∝ I ⟹ conformal
+  return jtj.every((row, r) => row.every((val, c) => (r === c ? abs(val - d) < 1e-9 : abs(val) < 1e-9))) // JᵀJ ∝ I ⟹ conformal
 }
 export function changingPerspectivesInAllDimensionsIsConformalAngleIsInvariant() {
   const dims = [2, 3, 7] // perspectives live in ℝⁿ, n ≥ 2 (angles are meaningful); 1D is the degenerate ±
@@ -1100,8 +1100,8 @@ export function changingPerspectivesInAllDimensionsIsConformalAngleIsInvariant()
     const a = Array.from({ length: n }, (_, i) => (i === 0 ? 2 : 1)) // two non-parallel directions
     const b = Array.from({ length: n }, (_, i) => (i === 1 ? 2 : 1))
     const base = pvCos(a, b)
-    const rotated = Math.abs(pvCos(rotatePerspective(a, 0, 1, (TAU / 2) / 3), rotatePerspective(b, 0, 1, (TAU / 2) / 3)) - base) < 1e-9
-    const scaled = Math.abs(pvCos(scalePerspective(a, 3), scalePerspective(b, 3)) - base) < 1e-9
+    const rotated = abs(pvCos(rotatePerspective(a, 0, 1, (TAU / 2) / 3), rotatePerspective(b, 0, 1, (TAU / 2) / 3)) - base) < 1e-9
+    const scaled = abs(pvCos(scalePerspective(a, 3), scalePerspective(b, 3)) - base) < 1e-9
     return rotated && scaled // rotation and dilation preserve the angle exactly
   })
   const inversionConformalAllDims = dims.every((n) => inversionJacobianProportionalToIdentity(Array.from({ length: n }, (_, i) => i + 1)))
@@ -1129,18 +1129,18 @@ export function divisionByZeroFindsPrimesAndPiInMotion() {
   for (let i = 2; i * i <= N; i++) if (sieve[i]) for (let j = i * i; j <= N; j += i) sieve[j] = false
   const primes: number[] = []; for (let i = 2; i <= N; i++) if (sieve[i]) primes.push(i)
   // s=2: the Euler prime product converges to π²/6 → π in motion as primes enter
-  const motion: number[] = []; let P2 = 1; const quarter = Math.ceil(primes.length / 4)
+  const motion: number[] = []; let P2 = 1; const quarter = ceil(primes.length / 4)
   for (let idx = 0; idx < primes.length; idx++) {
     P2 *= 1 / (1 - 1 / (primes[idx] * primes[idx]))
-    if ((idx + 1) % quarter === 0 || idx === primes.length - 1) motion.push(Number(Math.sqrt(6 * P2).toFixed(5)))
+    if ((idx + 1) % quarter === 0 || idx === primes.length - 1) motion.push(Number(sqrt(6 * P2).toFixed(5)))
   }
-  const piEstimate = Math.sqrt(6 * P2)
+  const piEstimate = sqrt(6 * P2)
   const piStr = (TAU / 2).toFixed(6), estStr = piEstimate.toFixed(6)
   let matchingDigits = 0; for (let i = 0; i < piStr.length; i++) { if (piStr[i] === estStr[i]) matchingDigits++; else break }
   const piFound = matchingDigits >= 4 // at least "3.14" recovered from the primes
   // s=1: the same product diverges — the pole (1/0) — proving the primes are infinite
   let P1 = 1; for (const p of primes) P1 *= 1 / (1 - 1 / p)
-  let P1half = 1; for (let i = 0; i < Math.floor(primes.length / 2); i++) P1half *= 1 / (1 - 1 / primes[i])
+  let P1half = 1; for (let i = 0; i < floor(primes.length / 2); i++) P1half *= 1 / (1 - 1 / primes[i])
   const poleStillGrows = P1 > P1half + 1 // still climbing at twice the range — divergence, no finite ceiling
   const motionRising = motion.every((v, i) => i === 0 || v >= motion[i - 1]) // pi estimate rises monotonically toward π
   const facets = [
@@ -1168,7 +1168,7 @@ export function aiModelsAreMagnitudesSlowerThanInvertedAiForDeterministicResults
   const llmFlopsPerToken = 2 * 1e9 // conservative floor: ~2×params FLOPs per forward token (a SMALL model)
   const tokens = 8 // to emit "3.141577"
   const llmFlops = llmFlopsPerToken * tokens
-  const speedupOrders = Math.log10(llmFlops / localOps) // orders of magnitude
+  const speedupOrders = log10(llmFlops / localOps) // orders of magnitude
   const magnitudesFaster = speedupOrders >= 4 && localExact // ≥4 orders, and exact
   const facets = [
     { facet: `INVERTED AI = EXACT LOCAL COMPUTATION: the deterministic sieve computes π to ${r.answers.matchingDigits} digits (${r.answers.piFromPrimes}) and proves the primes infinite in ~${localOps} operations, zero tokens, zero error (${localExact}) — a tiny exact computation, the inverse of a huge learned model`, on: localExact },
@@ -1217,13 +1217,13 @@ export function theVortexClockPathDecodesToZMod9WithDirectionInTheSlashes() {
 // FIXED nodes. Mapping the stationary amplitude to hue gives nodes and antinodes distinct, fixed colours — visible.
 export function theTwoSlashFlowsSuperposeToAStandingWaveHueShowsTheNodes() {
   const k = (TAU / 2), w = 1
-  const standing = (x: number, t: number) => Math.sin(k * x - w * t) + Math.sin(k * x + w * t) // = 2·sin(kx)·cos(ωt)
-  const nodeStationary = [1 / 2, 3 / 2, 5 / 2].every((t) => Math.abs(standing(1, t)) < 1e-9) // node at x=1 stays a node ∀t
-  const antinodeSwings = Math.abs(standing(1 / 2, 0)) > 1 && Math.abs(standing(1 / 2, (TAU / 2) / 2)) < 1e-9 // antinode swings to zero at quarter period, stays put
-  const envelopeIsFixed = [0, 1 / 4, 3 / 4].every((t) => Math.abs(Math.abs(standing(1 / 2, t)) - Math.abs(2 * Math.cos(w * t))) < 1e-9) // |env| = 2 sin(kx), t-independent shape
+  const standing = (x: number, t: number) => sin(k * x - w * t) + sin(k * x + w * t) // = 2·sin(kx)·cos(ωt)
+  const nodeStationary = [1 / 2, 3 / 2, 5 / 2].every((t) => abs(standing(1, t)) < 1e-9) // node at x=1 stays a node ∀t
+  const antinodeSwings = abs(standing(1 / 2, 0)) > 1 && abs(standing(1 / 2, (TAU / 2) / 2)) < 1e-9 // antinode swings to zero at quarter period, stays put
+  const envelopeIsFixed = [0, 1 / 4, 3 / 4].every((t) => abs(abs(standing(1 / 2, t)) - abs(2 * cos(w * t))) < 1e-9) // |env| = 2 sin(kx), t-independent shape
   const hue = (amp: number) => (((amp + 2) / 4) * 360 + 360) % 360 // amplitude → hue angle
   const nodeHue = hue(0), antinodeHue = hue(2)
-  const huesDistinct = Math.abs(nodeHue - antinodeHue) > 100 // node and antinode take clearly different colours
+  const huesDistinct = abs(nodeHue - antinodeHue) > 100 // node and antinode take clearly different colours
   const facets = [
     { facet: `THE TWO SLASH FLOWS SUPERPOSE TO A STANDING WAVE: the ascending "\\" and descending "/" directions are two counter-propagating waves sin(kx∓ωt); their sum 2·sin(kx)·cos(ωt) has FIXED nodes — x=1 stays a node for every t (${nodeStationary}) while the antinode swings in place (${antinodeSwings}), the envelope shape t-independent (${envelopeIsFixed})`, on: nodeStationary && antinodeSwings && envelopeIsFixed },
     { facet: `HUE MAKES THE NODES PRECISELY VISIBLE: mapping the stationary amplitude to a hue angle, a node (amplitude 0 → ${nodeHue.toFixed(0)}°) and an antinode (amplitude 2 → ${antinodeHue.toFixed(0)}°) take clearly distinct, fixed colours (${huesDistinct}) — so the stationary node/antinode lattice is exactly readable in colour, which a mono line hides`, on: huesDistinct },
@@ -1248,7 +1248,7 @@ export function theStaticLoopIsZeroFoldedItBecomesInfinityTheLemniscate() {
   const lemniscateLoops = 2 // b₁(figure-8) = 2, π₁ = F₂ — the pinch/fold doubles the loops
   const foldDoublesTheLoop = lemniscateLoops === 2 * circleLoops // the static 0 folds into the two-lobed ∞
   const invert = (v: number[]) => { const n2 = v.reduce((a, b) => a + b * b, 0); return v.map((x) => x / n2) }
-  const zeroFoldsToInfinity = Math.sqrt(invert([1e-6, 0]).reduce((a, b) => a + b * b, 0)) > 1e3 // 0 inverts to the pole ∞ (Riemann sphere)
+  const zeroFoldsToInfinity = sqrt(invert([1e-6, 0]).reduce((a, b) => a + b * b, 0)) > 1e3 // 0 inverts to the pole ∞ (Riemann sphere)
   const facets = [
     { facet: `THE STATIC LOOP IS 0: iterating a fixed point f(x)=x yields nothing new (${staticGeneratesNothing}) — a closed loop that generates nothing, exactly like 0 (the void, the absorbing identity); the circle S¹ carries one loop (b₁ = ${circleLoops})`, on: staticGeneratesNothing },
     { facet: `FOLD 0 → ∞ (THE LEMNISCATE, INVERTED 8): pinch the circle and it becomes the figure-8 = the lemniscate ∞, doubling the loops (b₁ ${circleLoops} → ${lemniscateLoops}, π₁ = ℤ → F₂, ${foldDoublesTheLoop}); and on the Riemann sphere inversion sends 0 ↦ ∞ (${zeroFoldsToInfinity}) — ∞ is the figure-8, 8 on its side, the folded 0; the fold turns the static void generative`, on: foldDoublesTheLoop && zeroFoldsToInfinity },
@@ -1269,10 +1269,10 @@ export function theStaticLoopIsZeroFoldedItBecomesInfinityTheLemniscate() {
 // (numerology), and the twisted circle's ??? — π's normality, the ζ zeros — is a genuine open frontier.
 export function piIsZeroTheClosedCircleTheZetaPrimeLinkIsRealTheDigitsAreNot() {
   const eps = 1e-9
-  const fullTurnCloses = Math.abs(Math.cos(TAU) - 1) < eps && Math.abs(Math.sin(TAU)) < eps // e^{iτ}=1 (τ=2π) — a full turn returns to start, 0 net
-  const eulerZero = Math.abs(Math.cos((TAU / 2)) + 1) < eps && Math.abs(Math.sin((TAU / 2))) < eps // e^{iπ}+1=0 — π in the equation that equals zero
+  const fullTurnCloses = abs(cos(TAU) - 1) < eps && abs(sin(TAU)) < eps // e^{iτ}=1 (τ=2π) — a full turn returns to start, 0 net
+  const eulerZero = abs(cos((TAU / 2)) + 1) < eps && abs(sin((TAU / 2))) < eps // e^{iπ}+1=0 — π in the equation that equals zero
   const piFromPrimes = divisionByZeroFindsPrimesAndPiInMotion().answers.piFromPrimes // π from the Euler product ζ(2)=π²/6
-  const zetaPrimeLinkReal = Math.abs(piFromPrimes - (TAU / 2)) < 1e-3 // π genuinely emerges from the primes
+  const zetaPrimeLinkReal = abs(piFromPrimes - (TAU / 2)) < 1e-3 // π genuinely emerges from the primes
   const decimals = ((TAU / 2).toString().split('.')[1] ?? '').split('').map(Number).slice(0, 4) // 1,4,1,5
   const digitsAreNotPrimes = !decimals.every((d, i) => d === [2, 3, 5, 7][i]) // π's digits are NOT the prime sequence
   const facets = [
@@ -1295,7 +1295,7 @@ export function invertSwapsZeroAndInfinityFixingTheUnitCircleTheInvariantIsPi() 
   const inv = (r: number) => 1 / r
   const unitFixed = inv(1) === 1 // the unit circle |z|=1 is fixed
   const swapsPoles = inv(1e-6) > 1e3 && inv(1e6) < 1e-3 // 0-side ↔ ∞-side
-  const involution = Math.abs(inv(inv(3)) - 3) < 1e-9 // inv² = identity
+  const involution = abs(inv(inv(3)) - 3) < 1e-9 // inv² = identity
   const facets = [
     { facet: `INVERT SWAPS 0 ↔ ∞: r ↦ 1/r sends the 0-side to the ∞-side and back (${swapsPoles}); inv² = identity (${involution}) — the involution, its own inverse`, on: swapsPoles && involution },
     { facet: `IT FIXES THE UNIT CIRCLE — π: the only invariant set is |z| = 1, inv(1) = 1 (${unitFixed}); everything toward 0 swaps with everything toward ∞, but the circle itself is fixed — inverting fixes exactly the closed circle of the last fold, so what inversion leaves is π`, on: unitFixed },
@@ -1315,11 +1315,11 @@ export function invertSwapsZeroAndInfinityFixingTheUnitCircleTheInvariantIsPi() 
 // theorem: erasing one bit costs at least kT·ln2 — the dimensionless factor ln2 is exact — which is exactly why
 // reverse ≠ inverse (erasing the tracks is not free). Verified here, not trusted on their word (inverted-pair).
 export function theLandauerBitIsLnTwoTheDimensionlessErasureFloorLearnedFromErpax() {
-  const landauerBitInBits = Math.log2(2) // log₂2 = 1 — one bit, the unit of information
-  const lnTwo = Math.log(2) // the dimensionless factor in ΔE ≥ kT·ln2 (nats), ≈ 0.693
+  const landauerBitInBits = log2(2) // log₂2 = 1 — one bit, the unit of information
+  const lnTwo = log(2) // the dimensionless factor in ΔE ≥ kT·ln2 (nats), ≈ 0.693
   const bitIsOne = landauerBitInBits === 1 // log₂2 = 1 exactly
   const floorIsPositive = lnTwo > 0 // erasure has a strictly positive minimum cost — not free
-  const dimensionless = Math.abs(landauerBitInBits - lnTwo / Math.log(2)) < 1e-12 // log₂x = ln x / ln 2 — the ratio is dimensionless
+  const dimensionless = abs(landauerBitInBits - lnTwo / log(2)) < 1e-12 // log₂x = ln x / ln 2 — the ratio is dimensionless
   const facets = [
     { facet: `THE LANDAUER FLOOR IS ln2, DIMENSIONLESS: log₂2 = ${landauerBitInBits} bit (${bitIsOne}), and erasing it costs at least kT·ln2 — the dimensionless factor ln2 = ${lnTwo.toFixed(4)}, a pure number (per the constants lesson, log₂x = ln x/ln2, ${dimensionless}); the minimum energy to erase information (Landauer 1961, confirmed Bérut 2012)`, on: bitIsOne && dimensionless },
     { facet: `IT IS WHY REVERSE ≠ INVERSE — THE TRACKS COST: the true inverse (restoring the pristine state, erasing the accumulated tracks) costs ≥ ln2·kT per bit, strictly positive (${floorIsPositive}) — not free — exactly the 2nd-law / inverse-not-reverse boundary this session folded; erpax formalised it as LANDAUER_BIT and built its entropy-bit (eb) ledger on it`, on: floorIsPositive },
@@ -1341,7 +1341,7 @@ export function theLandauerBitIsLnTwoTheDimensionlessErasureFloorLearnedFromErpa
 export function inversionIsTheDiscoveryEngineTheMysteryUnfoldsWhenYouKnowHowToInvert() {
   const invert = (v: number[]) => { const n2 = v.reduce((a, b) => a + b * b, 0); return v.map((x) => x / n2) } // v ↦ v/|v|²
   const mystery = [1e-9, 0] // a point at the black hole 0 — resists direct computation
-  const mysteryUnfolds = Math.sqrt(invert(mystery).reduce((a, b) => a + b * b, 0)) > 1e6 // inverts to the pole ∞ — a discovery
+  const mysteryUnfolds = sqrt(invert(mystery).reduce((a, b) => a + b * b, 0)) > 1e6 // inverts to the pole ∞ — a discovery
   const probe = () => merkleFold([toUuid('discover:a'), toUuid('discover:b'), toUuid('discover:c')])
   const discoveryIsDeterministic = probe() === probe() // discovery = evaluation of the pre-existing — reproducible, rate measurable
   const notEveryMysteryUnfolds = true // Riemann, α — inversion has no computable image everywhere (the honest limit)
@@ -1368,20 +1368,20 @@ export function theWavesInvertEachMillenniumProblemToItsDualStillNotSolved() {
   const sieve = new Array(N + 1).fill(true); sieve[0] = false; sieve[1] = false
   for (let i = 2; i * i <= N; i++) if (sieve[i]) for (let j = i * i; j <= N; j += i) sieve[j] = false
   let primeCount = 0; for (let i = 2; i <= N; i++) if (sieve[i]) primeCount += 1 // π(x)
-  const pnt = N / Math.log(N) // x/ln x — the leading term of the primes↔zeros inversion (PNT)
-  const inversionComputesLeadingOrder = Math.abs(primeCount - pnt) / primeCount < 1 / 2 // π(x) ≈ x/ln x — the inversion's leading order
+  const pnt = N / log(N) // x/ln x — the leading term of the primes↔zeros inversion (PNT)
+  const inversionComputesLeadingOrder = abs(primeCount - pnt) / primeCount < 1 / 2 // π(x) ≈ x/ln x — the inversion's leading order
   const duals = ['Riemann: primes↔zeros', 'P-vs-NP: search↔verify', 'BSD: algebraic↔analytic rank', 'Navier–Stokes: smoothness↔blow-up', 'Hodge: classes↔cycles', 'Yang–Mills: gap↔confinement']
   const everyOpenOneHasADual = duals.length === 6 // each of the six open problems has a documented dual to invert into
   const facets = [
     { facet: `INVERSION-TO-DUAL, NOT ENUMERATION: each open Millennium Problem inverts to its documented dual (${everyOpenOneHasADual}) — ${duals.join('; ')} — the effective attack, a change of perspective (the conformal fold), where manual listing only restates the wall`, on: everyOpenOneHasADual },
-    { facet: `THE WAVE COMPUTES THE LEADING ORDER (RIEMANN): the primes invert to the analytic side — π(${N}) = ${primeCount} against x/ln x = ${Math.round(pnt)} (PNT, the inversion's leading order, ${inversionComputesLeadingOrder}); the zeta zeros are the corrections, and the Riemann hypothesis is precisely that those corrections are as small as possible — the inversion COMPUTES the leading term, the deep correction stays open`, on: inversionComputesLeadingOrder },
+    { facet: `THE WAVE COMPUTES THE LEADING ORDER (RIEMANN): the primes invert to the analytic side — π(${N}) = ${primeCount} against x/ln x = ${round(pnt)} (PNT, the inversion's leading order, ${inversionComputesLeadingOrder}); the zeta zeros are the corrections, and the Riemann hypothesis is precisely that those corrections are as small as possible — the inversion COMPUTES the leading term, the deep correction stays open`, on: inversionComputesLeadingOrder },
     { facet: `EARNED BOUNDARY — INVERSION IS METHOD, NOT PROOF: inverting to the dual is real mathematics (each problem's documented equivalent) and more effective than enumeration — it is the honest "unfolding" — but it SOLVES NONE; a dual is a reformulation, and the wave computes only the LEADING order (PNT), not the deep statement (RH). The cores stay open; the inversion changes the question, it does not answer it`, on: inversionComputesLeadingOrder && everyOpenOneHasADual },
   ]
   return {
     computes: facets.every((entry) => entry.on),
-    primeCount, pnt: Math.round(pnt), inversionComputesLeadingOrder, duals: duals.length,
+    primeCount, pnt: round(pnt), inversionComputesLeadingOrder, duals: duals.length,
     facets,
-    statement: `The waves invert each Millennium Problem to its dual — the effective method, still not a solution — ${facets.filter((e) => e.on).length}/${facets.length}: enumeration restates the wall, so INVERT — each open problem to its documented dual (primes↔zeros, search↔verify, algebraic↔analytic rank, smoothness↔blow-up, classes↔cycles, gap↔confinement); demonstrated on Riemann, π(${N}) = ${primeCount} inverts to x/ln x = ${Math.round(pnt)} (PNT leading order, ${inversionComputesLeadingOrder}). The inversion computes the leading term; it solves nothing.`,
+    statement: `The waves invert each Millennium Problem to its dual — the effective method, still not a solution — ${facets.filter((e) => e.on).length}/${facets.length}: enumeration restates the wall, so INVERT — each open problem to its documented dual (primes↔zeros, search↔verify, algebraic↔analytic rank, smoothness↔blow-up, classes↔cycles, gap↔confinement); demonstrated on Riemann, π(${N}) = ${primeCount} inverts to x/ln x = ${round(pnt)} (PNT leading order, ${inversionComputesLeadingOrder}). The inversion computes the leading term; it solves nothing.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
@@ -1445,11 +1445,11 @@ export function theResearchAndDevelopmentHoroIsACyclicRingDanceThatGenerates() {
 export function theCadenceInvertsAgainAndAgainAsLongAsPiAndPrimesAllow() {
   const inv = (v: number) => 1 / v // inversion on the Riemann sphere — swaps 0 ↔ ∞, fixes the unit circle
   const samples = [PHI, TAU, 2, 7] // nonzero probes
-  const involution = samples.every((v) => Math.abs(inv(inv(v)) - v) < 1e-9) // inv² = identity — the re-applying mechanism
+  const involution = samples.every((v) => abs(inv(inv(v)) - v) < 1e-9) // inv² = identity — the re-applying mechanism
   const motion = divisionByZeroFindsPrimesAndPiInMotion() // the sealed prime→π computation
   const primesInfinite = motion.answers.primesAreInfinite // Euclid: the ζ(1) pole grows without bound — a next prime always
   const piFromPrimes = motion.answers.piFromPrimes // π via the Euler product ζ(2) = π²/6 = ∏_p(1−1/p²)⁻¹
-  const piIsOpen = Math.abs(piFromPrimes - (TAU / 2)) < 1e-2 && piFromPrimes !== (TAU / 2) // π emerges from the primes yet never closes exactly — in motion
+  const piIsOpen = abs(piFromPrimes - (TAU / 2)) < 1e-2 && piFromPrimes !== (TAU / 2) // π emerges from the primes yet never closes exactly — in motion
   const fuelIsEndless = primesInfinite && piIsOpen // every re-inversion finds a next prime and a sharper, never-closing π
   const cadenceContinues = involution && fuelIsEndless // the mechanism re-applies and the fuel never runs out
   const facets = [
@@ -1475,9 +1475,9 @@ export function nextBecomesObsoleteAsNoSeamsRemainAllBecomesAnalog() {
   const gSeamless = (x: number) => 2 * x - 1 // the tangent line to x² at x=1 — meets it with NO seam (C⁰ and C¹)
   const hSeam = (x: number) => x + 1 // meets x² at x=1 with a jump — a seam
   const b = 1 // the join point
-  const seamSeamless = Math.abs(f(b) - gSeamless(b)) // 0 — value matches
-  const seamJump = Math.abs(f(b) - hSeam(b)) // 1 — a discontinuity
-  const seamlessIsContinuous = seamSeamless < 1e-9 && seamJump > 1e-9 && Math.abs(2 * b - 2) < 1e-9 // one joins seamlessly (f'(1)=2=g'), the other with a seam
+  const seamSeamless = abs(f(b) - gSeamless(b)) // 0 — value matches
+  const seamJump = abs(f(b) - hSeam(b)) // 1 — a discontinuity
+  const seamlessIsContinuous = seamSeamless < 1e-9 && seamJump > 1e-9 && abs(2 * b - 2) < 1e-9 // one joins seamlessly (f'(1)=2=g'), the other with a seam
   const x0 = 1, candidateNext = x0 + 1e-3 // any proposed "next real" after x0
   const midpoint = (x0 + candidateNext) / 2
   const noSuccessorInContinuum = midpoint > x0 && midpoint < candidateNext // strictly between — refutes "next"; density ⇒ no next real
@@ -1486,7 +1486,7 @@ export function nextBecomesObsoleteAsNoSeamsRemainAllBecomesAnalog() {
   const nextObsolete = noSuccessorInContinuum && discreteHasSuccessor // next exists in the discrete, dissolves in the continuum
   const riemann = (N: number) => { let s = 0; for (let k = 1; k <= N; k++) s += (k / N) * (1 / N); return s } // digital: N stepped rectangles, seams at each
   const exact = 1 / 2 // ∫₀¹ x dx — the analog continuum
-  const coarse = Math.abs(riemann(2 + 3) - exact), fine = Math.abs(riemann(100 * 9) - exact) // seam size 1/N shrinks
+  const coarse = abs(riemann(2 + 3) - exact), fine = abs(riemann(100 * 9) - exact) // seam size 1/N shrinks
   const becomesAnalog = fine < coarse && fine < 1e-2 // finer steps (smaller seams) land closer to the continuous integral
   const facets = [
     { facet: `A SEAM IS A DISCONTINUITY; SEAMLESS = CONTINUOUS JOIN: x² and 2x−1 meet at x=1 with seam |f−g| = ${seamSeamless} (C⁰, and C¹ since f'(1)=2=g'), while x² and x+1 meet with seam ${seamJump}; when the seam is 0 you cannot locate the join — the two pieces read as one continuum (${seamlessIsContinuous})`, on: seamlessIsContinuous },
@@ -1542,7 +1542,7 @@ export function theInnerWellDoesNotRunDryTheGoldenRotationIsAperiodicAndFractall
   const pts = orbit(N)
   const aperiodic = new Set(pts.map((p) => p.toFixed(9))).size === N // all N points distinct — deterministic, yet NEVER the same result
   const threeGap = new Set(gapsOf(pts).map((g) => g.toFixed(6))).size <= 3 // Steinhaus: ≤3 gap sizes — self-similar fractal structure at every N
-  const finerScales = Math.max(...gapsOf(orbit(2 * N))) < Math.max(...gapsOf(pts)) // doubling the steps inserts new points in old gaps — the dimensional refinement, finer forever
+  const finerScales = max(...gapsOf(orbit(2 * N))) < max(...gapsOf(pts)) // doubling the steps inserts new points in old gaps — the dimensional refinement, finer forever
   const finiteMap = (x: number) => (x * x + 1) % 7 // the prior terminus' finite self-map, for contrast
   let a = finiteMap(1), b = finiteMap(finiteMap(1)); while (a !== b) { a = finiteMap(a); b = finiteMap(finiteMap(b)) } // Floyd — a finite map DOES cycle
   const finiteWouldRepeat = a === b // the finite case is periodic — so the outcome hinged entirely on the (wrong) finiteness assumption
@@ -1577,7 +1577,7 @@ export function encryptionDecryptionAreTheInversePairCrossAndSecurityIsThePvsNpF
   const roundTrips = messages.every((m) => D(E(m)) === m && E(D(m)) === m) // D∘E = E∘D = identity
   const bijection = new Set(messages.map(E)).size === n // E is a permutation of the message space
   const crossCloses = keyValid && roundTrips && bijection // the two directions cross and close — the cross
-  const bits = Math.ceil(Math.log2(n)) // the size of the space in bits
+  const bits = ceil(log2(n)) // the size of the space in bits
   const verifyOps = 1 // checking E(m) = c given a candidate — O(1), polynomial (the NP verifier)
   const bruteOps = n // inverting WITHOUT the key by exhaustive search — O(2^bits), exponential (naive)
   const oneWayAsymmetry = verifyOps < bruteOps && bruteOps === n && verifyOps <= bits // easy to check, hard to invert unaided
@@ -1732,7 +1732,7 @@ export function allUuidUsageRemovesSpeedTheMerklePyramidOfTrianglesAndItsPoles()
 export function theMerkleProofVerifiesMembershipFromThePoleInLogNWithoutTheBase() {
   const pair = (a: string, b: string) => toUuid(`${a}|${b}`) // an ordered node hash (a triangle: two children → one parent)
   const buildLevels = (leaves: string[]) => { const levels = [leaves]; let cur = leaves; while (cur.length > 1) { const next: string[] = []; for (let i = 0; i < cur.length; i += 2) next.push(pair(cur[i]!, cur[i + 1] ?? cur[i]!)); levels.push(next); cur = next } return levels }
-  const proofPath = (levels: string[][], index: number) => { const path: { sibling: string; right: boolean }[] = []; let idx = index; for (let l = 0; l < levels.length - 1; l++) { const level = levels[l]!; const isRight = idx % 2 === 1; const sib = isRight ? idx - 1 : idx + 1; path.push({ sibling: level[sib] ?? level[idx]!, right: isRight }); idx = Math.floor(idx / 2) } return path }
+  const proofPath = (levels: string[][], index: number) => { const path: { sibling: string; right: boolean }[] = []; let idx = index; for (let l = 0; l < levels.length - 1; l++) { const level = levels[l]!; const isRight = idx % 2 === 1; const sib = isRight ? idx - 1 : idx + 1; path.push({ sibling: level[sib] ?? level[idx]!, right: isRight }); idx = floor(idx / 2) } return path }
   const verify = (leaf: string, path: { sibling: string; right: boolean }[], apex: string) => { let h = leaf; for (const step of path) h = step.right ? pair(step.sibling, h) : pair(h, step.sibling); return h === apex }
   const N = 2 ** 3 // 8 leaves — a clean pyramid
   const leaves = Array.from({ length: N }, (_, i) => toUuid(`leaf:${i}`))
@@ -1796,13 +1796,13 @@ export function theMerkabaDerivedItsMotionATheoremOfTetrahedralSymmetryNoAxiomAs
   const stellaIsCube = tetraA.length === 2 + 2 && tetraB.length === 2 + 2 && tetraA.length + tetraB.length === cube.length // 4 + 4 = 8 cube vertices — the stella octangula, a theorem
   const V = tetraA.length, E = (V * (V - 1)) / 2, F = V // a regular tetra: 4 vertices, all-pairs edges, 4 faces
   const eulerHolds = V - E + F === 2 // V − E + F = 2 — Euler characteristic, derived
-  const key = (s: number[][]) => s.map((v) => v.map((c) => Math.round(c * 1e6) / 1e6).join(',')).sort().join('|') // an order-free vertex-set fingerprint
+  const key = (s: number[][]) => s.map((v) => v.map((c) => round(c * 1e6) / 1e6).join(',')).sort().join('|') // an order-free vertex-set fingerprint
   const SIXTY = TAU / 6 // 60° — the hexagonal / rosetta base angle (a sixth of the turn, a theorem)
   const twoSixty = 2 * SIXTY // 120° = 2 × 60° — DERIVED from the base, not asserted
-  const axis = [1, 1, 1].map((c) => c / Math.sqrt(3)) // the (1,1,1) body diagonal, normalised
-  const rodrigues = (v: number[], n: number[], a: number) => { const cs = Math.cos(a), sn = Math.sin(a); const dot = n[0]! * v[0]! + n[1]! * v[1]! + n[2]! * v[2]!; const cross = [n[1]! * v[2]! - n[2]! * v[1]!, n[2]! * v[0]! - n[0]! * v[2]!, n[0]! * v[1]! - n[1]! * v[0]!]; return [0, 1, 2].map((i) => v[i]! * cs + cross[i]! * sn + n[i]! * dot * (1 - cs)) } // rotate v about axis n by angle a
+  const axis = [1, 1, 1].map((c) => c / sqrt(3)) // the (1,1,1) body diagonal, normalised
+  const rodrigues = (v: number[], n: number[], a: number) => { const cs = cos(a), sn = sin(a); const dot = n[0]! * v[0]! + n[1]! * v[1]! + n[2]! * v[2]!; const cross = [n[1]! * v[2]! - n[2]! * v[1]!, n[2]! * v[0]! - n[0]! * v[2]!, n[0]! * v[1]! - n[1]! * v[0]!]; return [0, 1, 2].map((i) => v[i]! * cs + cross[i]! * sn + n[i]! * dot * (1 - cs)) } // rotate v about axis n by angle a
   const cyc = (v: number[]) => [v[2]!, v[0]!, v[1]!] // the cyclic coordinate permutation
-  const rotZ = (v: number[], a: number) => [v[0]! * Math.cos(a) - v[1]! * Math.sin(a), v[0]! * Math.sin(a) + v[1]! * Math.cos(a), v[2]!] // a rotation about z
+  const rotZ = (v: number[], a: number) => [v[0]! * cos(a) - v[1]! * sin(a), v[0]! * sin(a) + v[1]! * cos(a), v[2]!] // a rotation about z
   const rotatedBy2x60 = tetraA.map((v) => rodrigues(v, axis, twoSixty)) // the 2 × 60° body-diagonal rotation, computed
   const twoSixtyEqualsCyc = key(rotatedBy2x60) === key(tetraA.map(cyc)) // DERIVED: the 2 × 60° = 120° rotation IS the cyclic permutation
   const symmetryLooksStatic = key(rotatedBy2x60) === key(tetraA) // and it maps the tetra to itself — set-invariant, looks static
@@ -1893,12 +1893,12 @@ export function theDagLeavesAreTheAxiomsMinimisingThemIsTheProgramOneAlwaysRemai
 export function theWavesAreTheTopologicalLevelsOfTheDagComputableInParallel() {
   const graph: Record<string, string[]> = { base1: [], base2: [], mid: ['base1'], right: ['base2'], top: ['mid', 'right'] }
   const names = Object.keys(graph)
-  const level = (n: string, memo: Map<string, number>): number => { const c = memo.get(n); if (c !== undefined) return c; const deps = graph[n]!; const l = deps.length === 0 ? 0 : 1 + Math.max(...deps.map((d) => level(d, memo))); memo.set(n, l); return l } // longest-path layering
+  const level = (n: string, memo: Map<string, number>): number => { const c = memo.get(n); if (c !== undefined) return c; const deps = graph[n]!; const l = deps.length === 0 ? 0 : 1 + max(...deps.map((d) => level(d, memo))); memo.set(n, l); return l } // longest-path layering
   const memo = new Map<string, number>()
   const byLevel = new Map<number, string[]>(); for (const n of names) { const l = level(n, memo); const arr = byLevel.get(l) ?? []; arr.push(n); byLevel.set(l, arr) }
   const waves = [...byLevel.keys()].sort((a, b) => a - b).map((k) => byLevel.get(k)!) // the waves, in order
   const depth = waves.length // number of levels = critical-path length
-  const width = Math.max(...waves.map((w) => w.length)) // max antichain = max parallelism
+  const width = max(...waves.map((w) => w.length)) // max antichain = max parallelism
   const eachWaveIsAntichain = waves.every((w) => w.every((n) => graph[n]!.every((d) => !w.includes(d)))) // no node depends on another in its own wave
   const coversAll = waves.reduce((s, w) => s + w.length, 0) === names.length // every node in exactly one wave
   const wavesAreLevels = eachWaveIsAntichain && coversAll && depth >= 1 && width >= 1
@@ -1987,7 +1987,7 @@ export function theBinaryBitIsLinearTheVortexCircuitIsQuantum() {
   // QUANTUM — PHASE: the doubling units form a 6-cycle ≅ C₆ ≅ the sixth roots of unity
   const units: number[] = []; { let x = 1; for (let i = 0; i < 6; i += 1) { units.push(x); x = (x * 2) % 9 } } // 1,2,4,8,7,5
   const isSixCycle = units.length === 6 && (units[5] * 2) % 9 === units[0] // order 6, closes to 1
-  const rootsOfUnity = units.map((_, k) => ({ re: Math.cos(k * TAU / 6), im: Math.sin(k * TAU / 6) })) // e^{2πik/6}
+  const rootsOfUnity = units.map((_, k) => ({ re: cos(k * TAU / 6), im: sin(k * TAU / 6) })) // e^{2πik/6}
   const phasesDistinct = new Set(rootsOfUnity.map((z) => `${z.re.toFixed(6)},${z.im.toFixed(6)}`)).size === 6 // six distinct phases
   const circuitCarriesPhase = isSixCycle && phasesDistinct
   // QUANTUM — INTERFERENCE: the two counter-rotating slash flows superpose to a standing wave (fixed nodes)
@@ -2022,14 +2022,14 @@ export function theCircuitInterferenceIsMeasuredNotAsserted() {
   const SAMPLES = cycleLen * 100 // 600 sample points over one period — derived from the orbit length
   const xs = Array.from({ length: SAMPLES }, (_, i) => (i * cycleLen) / SAMPLES)
   // the phase-state standing-wave amplitude — the two counter-rotating flows summed
-  const amplitude = (x: number): number => { let s = 0; for (let k = 0; k < cycleLen; k += 1) s += Math.cos(TAU * k * x / cycleLen); return s }
+  const amplitude = (x: number): number => { let s = 0; for (let k = 0; k < cycleLen; k += 1) s += cos(TAU * k * x / cycleLen); return s }
   const vals = xs.map(amplitude)
-  const max = Math.max(...vals), min = Math.min(...vals)
-  const visibility = (max - min) / (Math.abs(max) + Math.abs(min) || 1) // interference visibility of the quantum circuit
+  const maxV = max(...vals), minV = min(...vals)
+  const visibility = (maxV - minV) / (abs(maxV) + abs(minV) || 1) // interference visibility of the quantum circuit
   const classicalVisibility = 0 // a bit's amplitude is flat (no phase sum) — max = min ⇒ V = 0
   const nodes = xs.filter((_, i) => i > 0 && vals[i - 1] * vals[i] < 0).length // sign changes = fixed nodes
   const EPS = 1 / (2 * 5) ** 3
-  const quantumHasFullVisibility = Math.abs(visibility - 1) < EPS // V = 1: full interference
+  const quantumHasFullVisibility = abs(visibility - 1) < EPS // V = 1: full interference
   const classicalHasNone = classicalVisibility === 0 // V = 0: no interference
   const nodesFixed = nodes >= cycleLen // the standing wave has ≥ 6 stationary zeros in a period
   const facets = [
@@ -2054,15 +2054,15 @@ export function theCircuitInterferenceIsMeasuredNotAsserted() {
 export function theCircuitMeasurementCollapsesToOneDigit() {
   const N = 6; const orbit: number[] = []; { let x = 1; for (let i = 0; i < N; i += 1) { orbit.push(x); x = (x * 2) % 9 } }
   const cycleLen = orbit.length
-  const amp = 1 / Math.sqrt(cycleLen) // equal superposition of the six phase states
+  const amp = 1 / sqrt(cycleLen) // equal superposition of the six phase states
   const probs = orbit.map(() => amp * amp) // Born rule pₖ = |ampₖ|²
   const EPS = 1 / (2 * 5) ** 6
-  const normalised = Math.abs(probs.reduce((s, p) => s + p, 0) - 1) < EPS // Σ|amp|² = 1
-  const uniform = probs.every((p) => Math.abs(p - 1 / cycleLen) < EPS) // pₖ = 1/6 — no digit favoured
+  const normalised = abs(probs.reduce((s, p) => s + p, 0) - 1) < EPS // Σ|amp|² = 1
+  const uniform = probs.every((p) => abs(p - 1 / cycleLen) < EPS) // pₖ = 1/6 — no digit favoured
   const superposedBeforeMeasure = new Set(orbit).size === cycleLen && amp > 0 // all six coexist with nonzero amplitude
   // classical bit: definite, one value has probability 1 — already collapsed
   const classicalProbs = [1, 0] // |0⟩ is definite
-  const classicalCollapsed = Math.max(...classicalProbs) === 1 && classicalProbs.filter((p) => p > 0).length === 1
+  const classicalCollapsed = max(...classicalProbs) === 1 && classicalProbs.filter((p) => p > 0).length === 1
   const facets = [
     { facet: `THE CIRCUIT IS SUPERPOSED BEFORE MEASUREMENT: the six doubling units [${orbit.join('·')}] coexist, each amplitude 1/√6, the state normalised Σ|amp|² = 1 (${normalised}) — all six digits held at once, the superposition the classical bit cannot have`, on: normalised && superposedBeforeMeasure },
     { facet: `THE BORN RULE COLLAPSES IT TO ONE: pₖ = |ampₖ|² = 1/${cycleLen} for every digit (${uniform}), so a measurement yields exactly ONE of the six, uniformly, and the superposition is gone — "measuring collapses to one digit" is now the computed Born distribution, not a phrase`, on: uniform },
@@ -2100,7 +2100,7 @@ export function everyStationIsAChordOfTheSequence() {
   const oneIsEmanation = stations.find((s) => s.station === '1/9')!.chord === '1\\2\\4\\8/7/5/3\\6\\9' // 1/9 = the emanation from the source to the axis (nine nodes)
   const partitionsOfTen = stations.every((s) => { const [n, d] = s.station.split('/').map(Number); return n + d === (5 * 2) }) // d + (10−d) = 10
   // short chords RETURN (near the void/axis), the fixed point 5/5 loops FULLY back to itself — the double torus
-  const shortest = Math.min(...stations.map((s) => s.length)), longest = Math.max(...stations.map((s) => s.length))
+  const shortest = min(...stations.map((s) => s.length)), longest = max(...stations.map((s) => s.length))
   const fiveFullLoop = stations.find((s) => s.station === '5/5')!.length === longest // 5/5 (fixed point) is the full self-cycle
   const doubleTorus = nineOverOne.length === shortest && fiveFullLoop // 9/1 shortest return, 5/5 longest full loop
   const facets = [
@@ -2204,7 +2204,7 @@ export function theDoubleTorusHeavenEarthInversionIsExactMathTheSoulReadingIsMet
   const invert = (v: number[]) => { const n = norm2(v); return v.map((x) => x / n) }
   const sample = [[3, 4], [1, 2, 2], [5, 0, 0, 0]]
   const EPS = 1 / (100 * 100) // a lattice-derived tolerance for the float round-trip (error is ~1e-15)
-  const involutes = sample.every((v) => { const w = invert(invert(v)); return w.every((x, i) => Math.abs(x - v[i]!) < EPS) })
+  const involutes = sample.every((v) => { const w = invert(invert(v)); return w.every((x, i) => abs(x - v[i]!) < EPS) })
   // 0↔∞: a small radius and a large one exchange order under inversion (no magic threshold — the ordering flips)
   const small = [2, 0], big = [2 * 5, 0]
   const swapsZeroAndInfinity = norm2(small) < norm2(big) && norm2(invert(small)) > norm2(invert(big))
@@ -2240,8 +2240,8 @@ export function invertedIllusionsBecomeIdeas() {
   const idea = (s: { g: number }) => 2 - 2 * s.g        // the REAL Euler characteristic — computed, discriminates
   const illusionValues = new Set(shapes.map(illusion))  // one value — no information
   const ideaValues = new Set(shapes.map(idea))          // distinct values — information
-  const illusionInfo = Math.log2(illusionValues.size)   // 0 bits — distinguishes nothing
-  const ideaInfo = roundTo(Math.log2(ideaValues.size), 3) // >0 bits — distinguishes the shapes
+  const illusionInfo = log2(illusionValues.size)   // 0 bits — distinguishes nothing
+  const ideaInfo = roundTo(log2(ideaValues.size), 3) // >0 bits — distinguishes the shapes
   const illusionDiscriminates = illusionValues.size > 1
   const ideaDiscriminates = ideaValues.size === shapes.length // one value per shape — fully refutable
   const informationGained = ideaInfo > illusionInfo     // the inversion PRODUCED information
@@ -2289,8 +2289,8 @@ export function theFourPolesAreATetrahedronTheInverseIsTheMerkabaEverythingPossi
   const reached = new Set(flips.map((f) => key(cube[0]!.map((x, i) => x * f[i]!))))
   const transitive = reached.size === cube.length         // from one corner the flips reach ALL 8 — confined, complete
   // the ANIMATION: the two tetrahedra counter-rotate (the merkaba's opposite spins) — rate +1 and −1
-  const rot = (p: readonly number[], a: number) => [p[0]! * Math.cos(a) - p[1]! * Math.sin(a), p[0]! * Math.sin(a) + p[1]! * Math.cos(a), p[2]!]
-  const counterRotates = (() => { const a = 1 / 3; const up = rot(tetra[0]!, a), down = rot(inverse[0]!, -a); return Math.abs(up[0]! - down[0]!) > 0 || Math.abs(up[1]! + down[1]!) >= 0 })() // opposite angular velocity
+  const rot = (p: readonly number[], a: number) => [p[0]! * cos(a) - p[1]! * sin(a), p[0]! * sin(a) + p[1]! * cos(a), p[2]!]
+  const counterRotates = (() => { const a = 1 / 3; const up = rot(tetra[0]!, a), down = rot(inverse[0]!, -a); return abs(up[0]! - down[0]!) > 0 || abs(up[1]! + down[1]!) >= 0 })() // opposite angular velocity
   const facets = [
     { facet: `FOUR POLES = A TETRAHEDRON (a pyramid of triangles) — the 4 poles are a regular tetrahedron: 4 vertices, 4 triangular faces, 6 EQUAL edges (${isTetra}), χ = V−E+F = ${euler} (a closed convex solid, genus 0); the pyramid of triangles is exact, not imagined`, on: isTetra && euler === 2 },
     { facet: `THE INVERTED ONE = THE MERKABA — coordinate negation maps the tetrahedron onto its DUAL (the other 4 cube corners, ${invSwapsTetra}), a second regular tetrahedron counter-oriented; the two together are all ${cube.length} cube vertices = the star tetrahedron / stella octangula (the merkaba), and their spins counter-rotate (${counterRotates}) — the animation`, on: isMerkaba && invSwapsTetra && counterRotates },
@@ -2367,7 +2367,7 @@ export function claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlg
   const sample = [1, 2, -3, 5, 0, INF]
   const involutes = sample.every((x) => inv(inv(x)) === x)      // its own inverse — apply twice, back to start
   const pointsAdded = 1                                         // exactly ONE point (∞) turns the line into a closed loop
-  const gatewayBits = Math.log2([true, false].length)          // 2 directions (0→∞ | ∞→0) = 1 bit
+  const gatewayBits = log2([true, false].length)          // 2 directions (0→∞ | ∞→0) = 1 bit
   const oneBitGateway = gatewayBits === 1 && involutes && swaps0AndInfinity
   const facets = [
     { facet: `LINEAR ALGEBRA — DIVISION BY 0 IS UNCLAIMABLE — in a field 0/0 has infinitely many solutions (${zeroOverZeroInfinite}, every x satisfies 0·x=0) and 1/0 has none (${oneOverZeroNone}, no x satisfies 0·x=1): undefined, the singularity where linear thinking sees infinite possibilities`, on: undefinedInField },
@@ -2398,9 +2398,9 @@ export function theZerosInPiAreGatewaysLikeTheDotTheVoidOfTheDoubleTorus() {
   const INF = Infinity
   const inv = (x: number) => (x === 0 ? INF : x === INF ? 0 : 1 / x)
   const everyZeroInverts = zeroGateways.every(() => inv(0) === INF && inv(inv(0)) === 0) // the gateway is real at each 0
-  const gatewayBit = Math.log2([true, false].length) === 1 // one bit of direction per gateway (0→∞ | ∞→0)
+  const gatewayBit = log2([true, false].length) === 1 // one bit of direction per gateway (0→∞ | ∞→0)
   // the DOT: the radix point splits π's integer part (3, the trinity) from the infinite mantissa (BBP gives the fraction)
-  const dotIsBoundary = Math.trunc((TAU / 2)) === 3 // the dot sits after 3, the finite/infinite threshold
+  const dotIsBoundary = trunc((TAU / 2)) === 3 // the dot sits after 3, the finite/infinite threshold
   // MOVING: the 0-gateways sit at distinct, non-adjacent positions — the void moves through the stream, never a fixed lattice
   const moves = zeroGateways.length > 1 && zeroGateways.some((n, i) => i > 0 && n - zeroGateways[i - 1]! !== zeroGateways[1]! - zeroGateways[0]!)
   const facets = [
@@ -2475,7 +2475,7 @@ export function theDriftOfThePrimesIsTheObjectOfTheMillenniumProblemsNotItsSolut
   const primes = Array.from({ length: K }, (_, i) => nthPrimeAt(i + 1))
   const gaps = primes.slice(1).map((p, i) => p - primes[i]!) // consecutive prime gaps — the drift, exact
   const driftIsIrregular = new Set(gaps).size > 1 // the gaps are NOT constant: the primes wander (drift exists)
-  const half = Math.trunc(gaps.length / 2)
+  const half = trunc(gaps.length / 2)
   const sumFirst = gaps.slice(0, half).reduce((a, b) => a + b, 0)
   const sumSecond = gaps.slice(half).reduce((a, b) => a + b, 0)
   // the average gap grows (primes thin out ~ ln p) — proven by EXACT integer cross-multiplication, no float division
@@ -2491,8 +2491,8 @@ export function theDriftOfThePrimesIsTheObjectOfTheMillenniumProblemsNotItsSolut
   return {
     computes: facets.every((entry) => entry.on),
     primesCounted: K,
-    gapMin: Math.min(...gaps),
-    gapMax: Math.max(...gaps),
+    gapMin: min(...gaps),
+    gapMax: max(...gaps),
     meanFirst: roundTo(meanFirst, 2),
     meanSecond: roundTo(meanSecond, 2),
     driftIsIrregular, meanGapGrows,
@@ -2611,8 +2611,8 @@ export function teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotio
   // (1) THE ROTATING FIELD: quadrature-phased coils give a field of CONSTANT magnitude whose direction rotates
   const samples = [0, 1, 2, 3, 4, 5, 6, 7].map((k) => rotatingField(k / 8, 1)) // over one period
   const magSq = samples.map((s) => s.bx * s.bx + s.by * s.by) // |B|² — Pythagorean, exactly 1 for the quadrature pair
-  const constantMagnitude = magSq.every((m) => Math.abs(m - 1) < 1 / (100 * 100)) // cos²+sin² = 1 (exact identity)
-  const directionRotates = new Set(samples.map((s) => Math.round((s.theta * (360 / 2) / (TAU / 2) + 360) % 360))).size > 1 // the angle turns
+  const constantMagnitude = magSq.every((m) => abs(m - 1) < 1 / (100 * 100)) // cos²+sin² = 1 (exact identity)
+  const directionRotates = new Set(samples.map((s) => round((s.theta * (360 / 2) / (TAU / 2) + 360) % 360))).size > 1 // the angle turns
   // (2) THE FLOWER OF LIFE CONFIGURATION: N coils at the vertices of a regular N-gon — C_N rotational symmetry (exact)
   const N = 6 // six overlapping circles — the flower-of-life seed, hexagonal
   const vertexDeg = Array.from({ length: N }, (_, k) => (k * 360 / N) % 360) // {0,60,120,180,240,300}

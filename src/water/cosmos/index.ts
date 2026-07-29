@@ -4,7 +4,7 @@
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../lake/widgets'
-import { rat, ratEq, ratAdd, ratMul, ratSub, ratDiv, ratToFloat, cfEval, claySolvedTheorem, claySolvedByFormulas, demarcate } from '../../3/7'
+import { SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
@@ -12,7 +12,7 @@ import * as __ns_up_digit from '../digit'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { memoByRoot, toUuid, merge, merkleFold, sealFacets, roundTo, prng, isUuid, gcd, phaseDrift, foldPair, digitalRoot, VORTEX_SEQUENCE, qubits, applyGate, probabilities, measure, GATES } from '../../0'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, cbrt, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, phaseDrift, prng, probabilities, qubits, round, roundTo, sealFacets, sin, sinh, sqrt, toUuid } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr, rotationGate, phaseGate, tkIsPrime } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
@@ -205,10 +205,10 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
   const horizonAcceleration = SPEED_OF_LIGHT * h0PerSecond / TAU                       // cH₀/2π ≈ 1.04×10⁻¹⁰ m/s²
   const a0Coincidence = MOND_ACCELERATION_A0 / horizonAcceleration                     // ≈ 1.15 (agree within ~15%)
   const facets = [
-    { facet: 'THE DENSITY INVERSION IS EXACT — the CMB budget Ω_c/Ω_b = ' + ratioCoverB.toFixed(2) + ' inverts into the matter census: dark matter is Ω_c/(Ω_c+Ω_b) = ' + (darkFractionOfMatter * 100).toFixed(1) + '% of all matter and ORDINARY matter is the ' + (baryonFractionOfMatter * 100).toFixed(1) + '% MINORITY — reading the ratio backwards, baryons are the exotic exception and the "dark" component is the norm. An exact algebraic identity in the two sealed density fractions (the two fractions sum to 1 by construction)', on: Math.abs(darkFractionOfMatter + baryonFractionOfMatter - 1) < 1e-9 && darkFractionOfMatter > baryonFractionOfMatter },
+    { facet: 'THE DENSITY INVERSION IS EXACT — the CMB budget Ω_c/Ω_b = ' + ratioCoverB.toFixed(2) + ' inverts into the matter census: dark matter is Ω_c/(Ω_c+Ω_b) = ' + (darkFractionOfMatter * 100).toFixed(1) + '% of all matter and ORDINARY matter is the ' + (baryonFractionOfMatter * 100).toFixed(1) + '% MINORITY — reading the ratio backwards, baryons are the exotic exception and the "dark" component is the norm. An exact algebraic identity in the two sealed density fractions (the two fractions sum to 1 by construction)', on: abs(darkFractionOfMatter + baryonFractionOfMatter - 1) < 1e-9 && darkFractionOfMatter > baryonFractionOfMatter },
     { facet: 'THE MOND SCALE IS THE COSMOLOGICAL-HORIZON ACCELERATION — the reversed math connects the smallest anomaly to the largest scale: Milgrom’s measured a₀ ≈ 1.2×10⁻¹⁰ m/s² and the horizon acceleration cH₀/(2π) = ' + horizonAcceleration.toExponential(2) + ' m/s² agree to a ratio of ' + a0Coincidence.toFixed(2) + ' (within ~15%), computed from the sealed c, H₀(CMB) and the AU-derived megaparsec — the galaxy-scale rotation anomaly is numerically tied to the Hubble scale', on: a0Coincidence > 0.5 && a0Coincidence < 2 },
     { facet: 'THE MASS↔GRAVITY DUALITY IS AN ACCOUNTING IDENTITY — on galaxy scales the tight radial-acceleration relation makes "add unseen MASS" and "bend the FORCE law below a₀" two bookkeepings of the SAME rotation data; the inversion (mass ⟺ modified dynamics) is exact wherever both are defined, so from the algebra ALONE neither description is privileged — the choice is not a theorem', on: dm.decoded && MOND_ACCELERATION_A0 > 0 },
-    { facet: 'WHAT STAYS OPEN IS EMPIRICAL, NOT ALGEBRAIC — the coincidence is NOT an equality (a₀/(cH₀/2π) = ' + a0Coincidence.toFixed(2) + ' ≠ 1), so it does not DERIVE MOND; and the duality is already broken by MEASUREMENT, not algebra — clusters, the Bullet Cluster (~8σ mass/gas offset) and the CMB acoustic peaks need unseen mass that pure MOND cannot supply, while direct detection is null (LZ 2024). The reversed math closes; WHICH mechanism nature uses is an OPEN empirical problem, not an open theorem — clay/overreach stays zero', on: Math.abs(a0Coincidence - 1) > 1e-3 && dm.decoded },
+    { facet: 'WHAT STAYS OPEN IS EMPIRICAL, NOT ALGEBRAIC — the coincidence is NOT an equality (a₀/(cH₀/2π) = ' + a0Coincidence.toFixed(2) + ' ≠ 1), so it does not DERIVE MOND; and the duality is already broken by MEASUREMENT, not algebra — clusters, the Bullet Cluster (~8σ mass/gas offset) and the CMB acoustic peaks need unseen mass that pure MOND cannot supply, while direct detection is null (LZ 2024). The reversed math closes; WHICH mechanism nature uses is an OPEN empirical problem, not an open theorem — clay/overreach stays zero', on: abs(a0Coincidence - 1) > 1e-3 && dm.decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dark-matter-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('dark-matter-invert', facets)
   return {
@@ -235,12 +235,12 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
 export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical(matrix: MindMatrix = buildMatrix()) {
   const omegaMatter = OMEGA_DARK_MATTER + OMEGA_BARYON                 // Ω_m = Ω_c + Ω_b ≈ 0.314
   const ratioMatterToDarkEnergy = omegaMatter / OMEGA_DARK_ENERGY     // Ω_m/Ω_Λ ≈ 0.458 (order unity NOW)
-  const equalityRedshift = Math.cbrt(OMEGA_DARK_ENERGY / omegaMatter) - 1  // ρ_m(1+z)³ = ρ_Λ ⟹ z_eq ≈ 0.30
+  const equalityRedshift = cbrt(OMEGA_DARK_ENERGY / omegaMatter) - 1  // ρ_m(1+z)³ = ρ_Λ ⟹ z_eq ≈ 0.30
   const equalityScaleFactor = 1 / (1 + equalityRedshift)              // a_eq = 1/(1+z) ≈ 0.77
   const facets = [
     { facet: 'THE COINCIDENCE IS EXACT AND ORDER-UNITY — today Ω_m/Ω_Λ = ' + ratioMatterToDarkEnergy.toFixed(3) + ' (with Ω_m = Ω_c+Ω_b = ' + omegaMatter.toFixed(3) + '): matter and dark energy have COMPARABLE densities right now, neither dominating by orders of magnitude — an exact ratio in the sealed ΛCDM fractions. This is the "cosmic coincidence problem" stated as a computed number', on: ratioMatterToDarkEnergy > (1 / (2 * 5)) && ratioMatterToDarkEnergy < (2 * 5) },
     { facet: 'IT INVERTS TO A MATTER–DARK-ENERGY EQUALITY REDSHIFT — reversing the accounting: matter dilutes as (1+z)³ while Λ stays constant, so the two densities were EQUAL when (1+z)³ = Ω_Λ/Ω_m, giving z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 = ' + equalityRedshift.toFixed(3) + ' (scale factor a_eq = ' + equalityScaleFactor.toFixed(3) + ') — the universe crossed from matter-dominated to Λ-dominated in the RECENT past (z ≈ 0.3, a few Gyr ago). An exact algebraic consequence of the two fractions', on: equalityRedshift > 0 && equalityRedshift < 1 },
-    { facet: 'THE ORDER-UNITY WINDOW IS TRANSIENT — because Ω_m/Ω_Λ scales as (1+z)³, the ratio was ≫1 throughout the matter era and →0 as Λ takes over, so the epoch where it is O(1) is a brief, one-time window; the "coincidence" is that our observation falls inside it. Refutable: the ratio at the equality redshift is 1 by construction, unlike its far-past/far-future limits', on: Math.abs(OMEGA_DARK_ENERGY / omegaMatter * equalityScaleFactor ** 3 - 1) < (1 / (10 ** 3)) },
+    { facet: 'THE ORDER-UNITY WINDOW IS TRANSIENT — because Ω_m/Ω_Λ scales as (1+z)³, the ratio was ≫1 throughout the matter era and →0 as Λ takes over, so the epoch where it is O(1) is a brief, one-time window; the "coincidence" is that our observation falls inside it. Refutable: the ratio at the equality redshift is 1 by construction, unlike its far-past/far-future limits', on: abs(OMEGA_DARK_ENERGY / omegaMatter * equalityScaleFactor ** 3 - 1) < (1 / (10 ** 3)) },
     { facet: 'WHY-NOW STAYS EMPIRICAL, NOT ALGEBRAIC — z_eq is a closed number, but WHY we exist and measure near this transient epoch is NOT decided by any identity: the candidates are anthropic selection (structure/observers form only around this era) versus DYNAMICAL dark energy (quintessence tracking, or an evolving w — the DESI 2024/2025 w₀wₐ hint at up to ~4σ, not a discovery). That choice is settled by MEASUREMENT, so the timing is an open EMPIRICAL problem, not a theorem gap — clay/overreach stays zero', on: equalityRedshift > 0 && OMEGA_DARK_ENERGY > omegaMatter },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cosmic-coincidence-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('cosmic-coincidence-invert', facets)
@@ -266,14 +266,14 @@ export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTh
  * Pair: cmb/budget · CLI npm run quantum:cmb-omega-c-over-b · claySolvedByThisFold=0 · certified=false
  */
 export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const dm = darkMatterDecoded(matrix)
     const omegaC = OMEGA_DARK_MATTER // sealed ΛCDM cold-dark-matter density fraction Ω_c
     const omegaB = OMEGA_BARYON
     const ratio = omegaC / omegaB
     const ratioRounded = roundTo(ratio, 2) // 5.41 from sealed 0.265 / 0.049
-    const ratioApprox541 = Math.abs(ratioRounded - 5.41) < 1e-9
-    const fiveToOne = Math.round(ratio) === 5
+    const ratioApprox541 = abs(ratioRounded - 5.41) < 1e-9
+    const fiveToOne = round(ratio) === 5
     const gravitationalCmbBudget =
       dm.decoded && omegaC > omegaB && ratioApprox541 && fiveToOne
     const nonGravitationalDetectionNull = dm.decoded // composed: LZ/indirect/LHC null facet in darkMatterDecoded
@@ -284,7 +284,7 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
     const physicalFtlClaim = 0 as const
     const certified = false as const
     const sealIntent =
-      `Ω_c/Ω_b = ${ratioRounded} — the unseen outweighs baryons ${Math.round(ratio)}:1 in the CMB budget; ` +
+      `Ω_c/Ω_b = ${ratioRounded} — the unseen outweighs baryons ${round(ratio)}:1 in the CMB budget; ` +
       'every non-gravitational detection NULL to date because of the quantum gaps in theorems'
     const facets = [
       {
@@ -434,7 +434,7 @@ export function quantumCosmologyMinisuperspaceDecoded(matrix: MindMatrix = build
   const temperatureExact = roundTo(gibbonsHawkingTOverH * TAU, 9) === 1
   // Object 3 — the Friedmann equation as a HAMILTONIAN CONSTRAINT (𝓗 = 0), measured by the flat-universe inventory.
   const flatnessInventory = OMEGA_BARYON + OMEGA_DARK_MATTER + OMEGA_DARK_ENERGY // Ω_total ≈ 1 ⇒ k = 0
-  const flat = Math.abs(flatnessInventory - 1) < 1 / (4 * 5) // within 5% of Ω_total = 1
+  const flat = abs(flatnessInventory - 1) < 1 / (4 * 5) // within 5% of Ω_total = 1
   // Object 4 — the boundary proposals select OPPOSITE signs of the same de Sitter instanton action for ψ:
   // Hartle-Hawking (no-boundary) weights e^{+|I|}, Vilenkin (tunneling) e^{−|I|}. Opposite ⇒ WDW alone can't fix ψ.
   const noBoundarySign: number = +1, tunnelingSign: number = -1 // signs of the instanton weight (HH vs Vilenkin)
@@ -477,10 +477,10 @@ export function wheelerDeWittMinisuperspaceSolved(matrix: MindMatrix = buildMatr
   let action = 0
   for (let i = 0; i <= steps; i++) {
     const weight = (i === 0 || i === steps) ? 1 : (i % 2 === 1 ? 4 : 2)
-    action += weight * Math.sqrt(Math.max(0, potential(i * h)))
+    action += weight * sqrt(max(0, potential(i * h)))
   }
   action *= h / 3
-  const actionExact = Math.abs(action - 1 / 3) < 1e-4 // ∫₀¹ a√(1−a²) da = 1/3
+  const actionExact = abs(action - 1 / 3) < 1e-4 // ∫₀¹ a√(1−a²) da = 1/3
   // 2 — SOLVE the ODE by RK4 on y = [ψ, ψ']; y' = [ψ', U(a)ψ]. Hartle-Hawking: regular at a=0 (ψ=1, ψ'=0) ⇒ growing.
   let psi = 1, dpsi = 0
   for (let i = 0; i < steps; i++) {
@@ -494,11 +494,11 @@ export function wheelerDeWittMinisuperspaceSolved(matrix: MindMatrix = buildMatr
   }
   const psiHartleHawking = psi // ψ(1) for the growing (no-boundary) solution
   const grows = psiHartleHawking > 1 && Number.isFinite(psiHartleHawking)
-  const logGrowth = Math.log(psiHartleHawking) // ≈ S to leading WKB order (turning-point prefactor shifts it)
+  const logGrowth = log(psiHartleHawking) // ≈ S to leading WKB order (turning-point prefactor shifts it)
   // 3 — the two proposals as SOLVED amplitudes: Hartle-Hawking e^{+2S}, Vilenkin e^{−2S}; opposite, product 1.
-  const hartleHawkingWeight = Math.exp(2 * action)
-  const vilenkinNucleationProb = Math.exp(-2 * action)
-  const oppositeAmplitudes = hartleHawkingWeight > 1 && vilenkinNucleationProb < 1 && Math.abs(hartleHawkingWeight * vilenkinNucleationProb - 1) < 1e-9
+  const hartleHawkingWeight = exp(2 * action)
+  const vilenkinNucleationProb = exp(-2 * action)
+  const oppositeAmplitudes = hartleHawkingWeight > 1 && vilenkinNucleationProb < 1 && abs(hartleHawkingWeight * vilenkinNucleationProb - 1) < 1e-9
   const facets = [
     { facet: `THE WDW EQUATION IS SOLVED — RK4 integrates ψ''(a) = U(a)ψ(a) across the barrier [0,1] (${steps} steps) to a finite growing wavefunction ψ(1) = ${roundTo(psiHartleHawking, 4)} (Hartle-Hawking, regular at a=0): a real wavefunction of the universe, computed not cited`, on: grows },
     { facet: `THE TUNNELLING ACTION IS 1/3 — the WKB barrier integral S = ∫₀¹ a√(1−a²) da = ${roundTo(action, 5)} (Simpson, matches the exact 1/3); the numerical growth ln ψ(1) = ${roundTo(logGrowth, 4)} tracks S up to the turning-point prefactor`, on: actionExact && logGrowth > 0 },
@@ -586,8 +586,8 @@ export function perpetuumMobileVoidSourceRefuted(matrix: MindMatrix = buildMatri
   const cycleDeltaU = 0 // a perpetuum mobile is a CLOSED cycle: state returns to itself ⇒ ΔU = 0 (first law)
   // The Szilard engine extracts kT·ln2 of work from one bit of information ONCE; Landauer's principle charges
   // exactly kT·ln2 to RESET the one-bit memory. In kT units the two are equal, so the cycle nets zero.
-  const szilardWorkPerBit = Math.log(2) // kT·ln2 extracted (kT = 1)
-  const landauerResetCost = Math.log(2) // kT·ln2 to erase the bit — the inversion's toll
+  const szilardWorkPerBit = log(2) // kT·ln2 extracted (kT = 1)
+  const landauerResetCost = log(2) // kT·ln2 to erase the bit — the inversion's toll
   const netWorkPerCycle = szilardWorkPerBit - landauerResetCost // = 0 (never positive)
   const casimirLoopWork = 0 // conservative force: assemble-then-separate returns the plates ⇒ ∮F·dx = 0
   const firstLawHolds = cycleDeltaU === 0
@@ -630,14 +630,14 @@ export function quantumMechanicsAndThermodynamicsAreCombinations(matrix: MindMat
   const beta = 1 // inverse temperature (any positive value; natural units)
   const time = 1 // real time
   // QM combination — the unit-modulus evolution phase e^{−iE_n t} of each atom (|phase| = 1, no decay)
-  const qmUnitModulus = spectrum.every((E) => Math.abs((Math.cos(-E * time) ** 2 + Math.sin(-E * time) ** 2) - 1) < 1e-12)
+  const qmUnitModulus = spectrum.every((E) => abs((cos(-E * time) ** 2 + sin(-E * time) ** 2) - 1) < 1e-12)
   // Thermo combination — the partition function Z(β) = Σ e^{−βE_n} (the same atoms, Boltzmann-weighted)
-  const partition = spectrum.reduce((z, E) => z + Math.exp(-beta * E), 0)
+  const partition = spectrum.reduce((z, E) => z + exp(-beta * E), 0)
   // Wick rotation t = −iβ: e^{−iE_n·(−iβ)} = e^{−βE_n}, so Tr U(−iβ) = Z(β) term by term — EXACT
-  const wickTrace = spectrum.reduce((z, E) => z + Math.exp(-beta * E), 0)
-  const wickExact = Math.abs(wickTrace - partition) < 1e-12
+  const wickTrace = spectrum.reduce((z, E) => z + exp(-beta * E), 0)
+  const wickExact = abs(wickTrace - partition) < 1e-12
   // Closed form of the full oscillator tower: Z = 1/(2 sinh(β/2)); the truncation approaches it
-  const closedForm = 1 / (2 * Math.sinh(beta / 2))
+  const closedForm = 1 / (2 * sinh(beta / 2))
   const closedFormApproached = partition <= closedForm && partition > closedForm * (1 - 1 / (2 ** 3)) // truncated ≤ full, close
   // Quantum cosmology develops the thermo: the de Sitter Euclidean-time PERIOD is β_dS = 2π/H ⇒ T = H/2π (the horizon temperature)
   const deSitterTemperatureOverH = 1 / TAU // T_dS / H = 1/(2π), the Wick period made a temperature
@@ -684,7 +684,7 @@ export function decompressionDecoded(matrix: MindMatrix = buildMatrix()) {
   const a5 = roundTo(buhlmannA(5), 3), b5 = roundTo(buhlmannB(5), 3) // ZHL-16 fast-compartment coefficients
   const ceiling = buhlmannCeilingBar(2.5, 5) // the tolerated ambient pressure for a loaded compartment
   const facets = [
-    { facet: 'inert-gas loading is exponential per tissue compartment — Haldane (1908): five compartments (half-times 5/10/20/40/75 min) with a ~2:1 supersaturation ratio; P(t) = P0 + (P_insp − P0)(1 − 2^(−t/t½)) (one half-time → halfway, here ' + roundTo(load5, 2) + ' bar)', on: Math.abs(load5 - 1.58) < 0.01 },
+    { facet: 'inert-gas loading is exponential per tissue compartment — Haldane (1908): five compartments (half-times 5/10/20/40/75 min) with a ~2:1 supersaturation ratio; P(t) = P0 + (P_insp − P0)(1 − 2^(−t/t½)) (one half-time → halfway, here ' + roundTo(load5, 2) + ' bar)', on: abs(load5 - 1.58) < 0.01 },
     { facet: 'Bühlmann ZHL-16 sets the ascent ceiling — 16 compartments (N₂ half-times ~4–635 min); a = 2/∛t½ (' + a5 + ' bar) and b = 1.005 − 1/√t½ (' + b5 + ') give the tolerated ambient pressure P_amb,tol = (P − a)·b; variants A/B/C; the basis of dive tables and computers. The dual-phase bubble models (VPM, RGBM) add free-phase microbubble control', on: a5 > 1 && a5 < 1.2 && b5 > 0.5 && b5 < 0.6 && ceiling < 2.5 },
     { facet: 'the physics is real — Henry’s law (dissolved gas ∝ partial pressure), the oxygen window (inherent unsaturation driving off-gassing), DCS as bubble formation on ASCENT (not pressure at depth); hyperbaric oxygen therapy has ~14–15 UHMS-evidenced indications (DCS, gas embolism, CO poisoning, gas gangrene, non-healing wounds…)', on: true },
     { facet: 'HONEST BOUNDS — DCS risk is PROBABILISTIC (one dataset ~5.7%; the US Navy targets ~2% mild, ~0.1–0.2% serious): the models REDUCE risk, they never make it zero, and eliminating it entirely is the genuinely impossible task. This is physics knowledge, NOT a substitute for proper dive training, certified tables/computers, or medical supervision', on: true },
@@ -866,7 +866,7 @@ export function gasBlendingRebreatherQuantumReserveFractions(matrix: MindMatrix 
   const gf = gradientFactorsHarmonicFractionsTrimixRecordPlanner(matrix) // composes the GF/trimix planner
   const facets = [
     { facet: 'GAS MIXING and its limits — for a chosen PPO₂ ceiling, maxOperatingDepthM gives a gas’s O₂-toxicity depth limit (EAN32 → ~34 m at PPO₂ 1.4), and bestMixFO2 gives the richest safe O₂ fraction for a depth; blending nitrox/trimix is partial-pressure arithmetic (the gas laws), the tanks are filled by COMPRESSORS, and gas DISTRIBUTION across stages/deco bottles is the team logistics', on: ean32Mod > 30 && ean32Mod < 38 },
-    { facet: 'the REBREATHER — a closed-circuit rebreather holds a constant PPO₂ setpoint, so the diluent (inert) pressure is ambient − setpoint (rebreatherInertBar: 4 bar, 1.3 setpoint → 2.7 bar inert); it tracks depth differently from a fixed open-circuit fraction and is far more gas-efficient (it recycles the inert gas, replacing only the O₂ metabolised)', on: Math.abs(ccrInert - 2.7) < 1e-9 },
+    { facet: 'the REBREATHER — a closed-circuit rebreather holds a constant PPO₂ setpoint, so the diluent (inert) pressure is ambient − setpoint (rebreatherInertBar: 4 bar, 1.3 setpoint → 2.7 bar inert); it tracks depth differently from a fixed open-circuit fraction and is far more gas-efficient (it recycles the inert gas, replacing only the O₂ metabolised)', on: abs(ccrInert - 2.7) < 1e-9 },
     { facet: 'the QUANTUM rebreather — the deterministic, content-addressed sense: the same loop math computed exactly and reproducibly, every setpoint/diluent state UUID-addressable so a dive plan is a content-address, not a guess; "quantum" is the determinism/encryption sense, NOT a claim of a quantum-physical breathing device', on: gf.planned },
     { facet: 'the RESERVE is ALWAYS a FRACTION — the rule of thirds (turn the dive at 1/3 of the total, 1/3 to return, 1/3 held back: gasReserveThirds(3000) = 1000 L) OR a 1/2-on-top reserve (carry the required volume × 3/2: gasReserveHalfOnTop(2000) = 3000 L); the reserve is an EXACT integer fraction (1/3, 1/2 → 3/2), the same harmonic-fraction discipline as the gradient factors', on: thirds === 1000 && halfOnTop === 3000 },
     { facet: 'the honest safety bound — MOD, best-mix, the CCR diluent and the reserve fractions are real, standard computations, but this is a SIMPLIFIED educational model: real gas blending, compressor operation and especially rebreather diving are life-critical, demand certified equipment and training and analysing EVERY cylinder, and a CCR adds failure modes (hypoxia, hyperoxia, hypercapnia, scrubber breakthrough) the model does not track', on: true },
@@ -1000,8 +1000,8 @@ export function harmonicFractionMaskOfDiveConstants(matrix: MindMatrix = buildMa
   const lateRatio = ZHL16_N2_HALFTIMES[15] / ZHL16_N2_HALFTIMES[14] // 635/498 ≈ 1.275
   const facets = [
     { facet: 'the DEFINED constants ARE exact rationals — the msw is 1/10 bar BY DEFINITION, the PPO₂ limits are 7/5 (1.4) and 8/5 (1.6), nitrox/air O₂ fractions are n/100 (air 21/100, EAN32 8/25), and the gradient factors and gas reserves are exact fractions (1/3, 1/2, 30/85); expressed as rat they remove the magic decimals and architecturally prevent unharmonic settings — the mask is REAL here', on: ratEq(rat(7, 5), rat(14, 10)) && ratEq(rat(8, 5), rat(16, 10)) },
-    { facet: 'the PHYSICAL constants collapse to ONE formula each — the salt/fresh "metres per bar" are not two magic numbers but the single hydrostatic mask P = ρ·g·h (barPerMetre = ρg/1e5), so 9.949 and 10.197 fall straight out of the two water densities (1025, 1000); and the Bühlmann a, b were ALWAYS formulas (a = 2/∛t½, b = 1.005 − 1/√t½) computed from the half-times — the mask was never hidden, finding it deletes the constants', on: Math.abs(saltMperBar - 9.949) < 0.02 && Math.abs(freshMperBar - 10.197) < 0.02 },
-    { facet: 'but the ZHL-16 HALF-TIMES resist a clean mask — [4, 8, 12.5, … 635] are EMPIRICAL (Bühlmann’s experimental fit); their consecutive ratio DRIFTS (2.000 early vs ≈1.275 late, two different plateaus), so NO single honest fraction generates them. Forcing a "harmonic mask" onto measured data would be NUMEROLOGY — the very trap the project flags elsewhere (why-60, pyramid-π); the proof is the drift itself', on: Math.abs(earlyRatio - lateRatio) > 0.5 },
+    { facet: 'the PHYSICAL constants collapse to ONE formula each — the salt/fresh "metres per bar" are not two magic numbers but the single hydrostatic mask P = ρ·g·h (barPerMetre = ρg/1e5), so 9.949 and 10.197 fall straight out of the two water densities (1025, 1000); and the Bühlmann a, b were ALWAYS formulas (a = 2/∛t½, b = 1.005 − 1/√t½) computed from the half-times — the mask was never hidden, finding it deletes the constants', on: abs(saltMperBar - 9.949) < 0.02 && abs(freshMperBar - 10.197) < 0.02 },
+    { facet: 'but the ZHL-16 HALF-TIMES resist a clean mask — [4, 8, 12.5, … 635] are EMPIRICAL (Bühlmann’s experimental fit); their consecutive ratio DRIFTS (2.000 early vs ≈1.275 late, two different plateaus), so NO single honest fraction generates them. Forcing a "harmonic mask" onto measured data would be NUMEROLOGY — the very trap the project flags elsewhere (why-60, pyramid-π); the proof is the drift itself', on: abs(earlyRatio - lateRatio) > 0.5 },
     { facet: 'minimum code, honestly bounded — the mask FITS where a number is DEFINED (→ an exact fraction) or PHYSICAL (→ one formula), and there it genuinely shrinks the code and prevents unharmonic decimals; it STOPS where the number is MEASURED (the half-times, the NOAA CNS table stay as data). The boundary between "computable from a seed" and "empirical data" IS the honesty — not every constant is a harmonic fraction, and pretending so is numerology', on: decomp.decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`mask:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('harmonic-fraction-mask-of-dive-constants', facets)
@@ -1106,14 +1106,14 @@ export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
     { name: 'Uranus', au: 19.19, periodYr: 84.01 },
     { name: 'Neptune', au: 30.07, periodYr: 164.8 },
   ]
-  const round = (value: number) => Math.round(value * 1000) / 1000
+  const round3 = (value: number) => round(value * 1000) / 1000
   const planets = bodies.map((body) => {
     const seed = Number.parseInt(toUuid(`planet:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
     const phase0 = ((seed % 360) * (TAU / 2)) / 180 // a deterministic starting angle from the matrix-seeded content address
     const angle = phase0 + (TAU * timeYears) / body.periodYr // the movement: angle advances with time over the period
-    const x = round(body.au * Math.cos(angle))
-    const y = round(body.au * Math.sin(angle))
-    return { ...body, angle: round(angle), x, y, receipt: toUuid(`planet-pos:${body.name}:${x}:${y}`) }
+    const x = round3(body.au * cos(angle))
+    const y = round3(body.au * sin(angle))
+    return { ...body, angle: round3(angle), x, y, receipt: toUuid(`planet-pos:${body.name}:${x}:${y}`) }
   })
   return {
     planets,
@@ -1125,15 +1125,15 @@ export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
 // MAJOR_MOONS is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the SSR TDZ.
 /** @rosetta ✦₁ · Fire · clarity */
 export function majorMoons(matrix: MindMatrix = buildMatrix(), timeDays = 0) {
-  const round = (value: number) => Math.round(value * 1000) / 1000
+  const round3 = (value: number) => round(value * 1000) / 1000
   const moons = MAJOR_MOONS.map((body) => {
     const seed = Number.parseInt(toUuid(`moon:${body.name}`).replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
     const phase0 = ((seed % 360) * (TAU / 2)) / 180
     const sign = 'retrograde' in body && body.retrograde ? -1 : 1
     const angle = phase0 + (sign * (TAU * timeDays)) / body.periodDays
-    const x = round(body.orbitRadiusKm * Math.cos(angle))
-    const y = round(body.orbitRadiusKm * Math.sin(angle))
-    return { ...body, angle: round(angle), x, y, receipt: toUuid(`moon-pos:${body.name}:${x}:${y}`) }
+    const x = round3(body.orbitRadiusKm * cos(angle))
+    const y = round3(body.orbitRadiusKm * sin(angle))
+    return { ...body, angle: round3(angle), x, y, receipt: toUuid(`moon-pos:${body.name}:${x}:${y}`) }
   })
   return {
     moons,
@@ -1158,12 +1158,12 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
     const coincidence = theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical(matrix)
     const omegaSum = darkMatter.omegaDarkEnergy + darkMatter.omegaDarkMatter + darkMatter.omegaBaryon
     const darkToBaryon = cmbBudget.ratio
-    const planckEnergyGeV = Math.sqrt((REDUCED_PLANCK * SPEED_OF_LIGHT ** 5) / NEWTON_G) / (ELECTRONVOLT * (2 * 5) ** 9)
+    const planckEnergyGeV = sqrt((REDUCED_PLANCK * SPEED_OF_LIGHT ** 5) / NEWTON_G) / (ELECTRONVOLT * (2 * 5) ** 9)
     const colliderGeV = 2 * 7 * (2 * 5) ** 3 // the 14 TeV design reach, in GeV
-    const planckOrders = Math.round(Math.log10(planckEnergyGeV / colliderGeV)) // orders of magnitude above the collider
+    const planckOrders = round(log10(planckEnergyGeV / colliderGeV)) // orders of magnitude above the collider
     const hubbleFraction = (HUBBLE_CONSTANT_LOCAL - HUBBLE_CONSTANT_CMB) / HUBBLE_CONSTANT_CMB // exact fractional discrepancy
     const splittingRatio = NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2 // atmospheric/solar mass-squared ratio
-    const orderingBit = Math.log2(2) // the ordering is exactly ONE undetermined sign bit
+    const orderingBit = log2(2) // the ordering is exactly ONE undetermined sign bit
     // Every frontier now carries its REVERSED (closed) companion — the exact theorem the open question inverts to —
     // beside the OPEN empirical part it never claims to solve (the session's split discipline, applied uniformly).
     // "OPEN" is NOT a hand-typed label: openness = demarcate(term) === 'contested', SIGNED by the zero-cycle
@@ -1172,7 +1172,7 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       { frontier: 'Dark matter', term: 'dark matter', question: 'a real gravitational anomaly; candidates (WIMP, axion) and MOND alternatives all unconfirmed.', reversed: `REVERSED (closed theorem): the density ratio inverts — dark matter is ${(dmInvert.darkFractionOfMatter * 100).toFixed(1)}% of all matter (baryons the ${(dmInvert.baryonFractionOfMatter * 100).toFixed(1)}% minority), and the MOND scale a₀ ≈ cH₀/(2π) ties it to the cosmological horizon (ratio ${dmInvert.a0Coincidence.toFixed(2)}); only the particle IDENTITY stays empirical`, computed: cmbBudget.sealIntent, reversedProvedBy: 'invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical', composedRoot: merge(darkMatter.root, merge(cmbBudget.root, dmInvert.root)) },
       { frontier: 'The H₀ / S₈ (ΛCDM) tensions', term: 'hubble tension', question: 'statistically significant early-vs-late-universe discrepancies; new physics or systematics, unresolved.', reversed: `REVERSED (closed theorem): the discrepancy is an exact fraction — (H₀_local − H₀_CMB)/H₀_CMB = ${(hubbleFraction * 100).toFixed(1)}% at ${tensions.hubbleTensionSigma.toFixed(1)}σ; whether it is new physics or systematics stays empirical`, computed: `H₀ = ${HUBBLE_CONSTANT_CMB} (CMB) vs ${HUBBLE_CONSTANT_LOCAL} (local ladder) → ${tensions.hubbleTensionSigma.toFixed(1)}σ, recomputed from the ledgered pair`, composedRoot: tensions.root },
       { frontier: 'Dark energy / cosmological constant', term: 'cosmological constant problem', question: 'the accelerating expansion is measured; why Λ has its tiny value is unexplained.', reversed: `REVERSED (closed theorem): the coincidence Ω_m≈Ω_Λ inverts to the matter–Λ equality redshift z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 ≈ ${coincidence.equalityRedshift.toFixed(2)} (a_eq ≈ ${coincidence.equalityScaleFactor.toFixed(2)}); only WHY-now (anthropic vs dynamical DE) stays empirical`, computed: `Ω_Λ = ${darkMatter.omegaDarkEnergy} and Ω_Λ + Ω_c + Ω_b = ${omegaSum.toFixed(3)} — the budget closes to flat; WHY Λ has this value stays unexplained`, reversedProvedBy: 'theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical', composedRoot: merge(coincidence.root, toUuid('frontier:dark-energy')) },
-      { frontier: 'Matter–antimatter asymmetry (baryogenesis)', term: 'baryogenesis', question: 'the universe is matter-dominated; the CP violation needed to explain it is not fully accounted.', reversed: `REVERSED (closed theorem): the asymmetry inverts to a survivor count — ~1 excess baryon per ${Math.round(1 / BARYON_TO_PHOTON_RATIO).toExponential(2)} pairs, an exact number in η; the SM CP SHORTFALL (Jarlskog J = ${JARLSKOG_INVARIANT}, orders too small) is the empirical part`, computed: `η = ${BARYON_TO_PHOTON_RATIO} — one excess baryon per ${Math.round(1 / BARYON_TO_PHOTON_RATIO).toExponential(2)} photons; SM CP violation (Jarlskog J = ${JARLSKOG_INVARIANT}) falls orders short`, composedRoot: toUuid('frontier:baryogenesis') },
+      { frontier: 'Matter–antimatter asymmetry (baryogenesis)', term: 'baryogenesis', question: 'the universe is matter-dominated; the CP violation needed to explain it is not fully accounted.', reversed: `REVERSED (closed theorem): the asymmetry inverts to a survivor count — ~1 excess baryon per ${round(1 / BARYON_TO_PHOTON_RATIO).toExponential(2)} pairs, an exact number in η; the SM CP SHORTFALL (Jarlskog J = ${JARLSKOG_INVARIANT}, orders too small) is the empirical part`, computed: `η = ${BARYON_TO_PHOTON_RATIO} — one excess baryon per ${round(1 / BARYON_TO_PHOTON_RATIO).toExponential(2)} photons; SM CP violation (Jarlskog J = ${JARLSKOG_INVARIANT}) falls orders short`, composedRoot: toUuid('frontier:baryogenesis') },
       { frontier: 'Neutrino mass ordering & nature', term: 'neutrino mass ordering', question: 'masses are nonzero (oscillations) but the ordering and Dirac-vs-Majorana question are undecided.', reversed: `REVERSED (closed theorem): the unknown is exactly ONE BIT — the ordering is the SIGN of the large splitting (log₂2 = ${orderingBit} bit), atop the closed ratio |Δm²_atm|/Δm²_sol = ${splittingRatio.toFixed(1)}; which sign, and Dirac-vs-Majorana, stay empirical`, computed: `|Δm²_atm| / Δm²_sol = ${splittingRatio.toFixed(1)} — both splittings measured; the SIGN of the large one (the ordering) undecided`, composedRoot: toUuid('frontier:neutrino') },
       { frontier: 'Quantum gravity', term: 'quantum gravity', question: 'no experimentally confirmed theory unifying general relativity and quantum mechanics.', reversed: `REVERSED (closed theorem): the scale gap is an exact number — E_Planck sits ${planckOrders} orders of magnitude above the 14 TeV collider; the unifying THEORY itself stays empirical`, computed: `E_Planck = √(ħc⁵/G) = ${planckEnergyGeV.toExponential(2)} GeV — ${planckOrders} orders above the 14 TeV collider frontier`, composedRoot: toUuid('frontier:quantum-gravity') },
     ].map((f) => ({ ...f, demarcation: demarcate(f.term), status: `OPEN (${demarcate(f.term)}) — ${f.question}`, receipt: toUuid(`cosmos-frontier:${f.frontier}:${f.term}:${demarcate(f.term)}:${f.reversed}:${f.computed}:${f.composedRoot.slice(0, 8)}`) }))
@@ -1232,8 +1232,8 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
     // angle θ₂₃ is near-maximal, so the maximal-mixing circuit is the honest demonstrator, not a fit.
     const theta = TAU / 8
     const phases = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((k) => (k * TAU) / 16)
-    const closedForm = (phi: number) => Math.sin(2 * theta) ** 2 * Math.sin(phi / 2) ** 2
-    const maxDrift = Math.max(...phases.map((phi) => Math.abs(oscillationOnSimulator(theta, phi) - closedForm(phi))))
+    const closedForm = (phi: number) => sin(2 * theta) ** 2 * sin(phi / 2) ** 2
+    const maxDrift = max(...phases.map((phi) => abs(oscillationOnSimulator(theta, phi) - closedForm(phi))))
     const pZero = oscillationOnSimulator(theta, 0)
     // Bound DERIVED, not asserted: 64 ulp of the double lattice (measured drift ≈ 1 ulp — the √½-class
     // irrational-gate drift documented in src/0); φ=0 makes the phase gate the EXACT identity, so P must be 0.
@@ -1241,7 +1241,7 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
     const witnessQubits = qubits(1).n
     const witnessGates = 3 // R(θ) · phase · R(−θ) — the circuit above, gate by gate
     const splittingsRatio = NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2
-    const jarlskogOrders = Math.log10(JARLSKOG_INVARIANT / BARYON_TO_PHOTON_RATIO)
+    const jarlskogOrders = log10(JARLSKOG_INVARIANT / BARYON_TO_PHOTON_RATIO)
     const program = [
       { frontier: 'Dark matter', tier: 'SENSES' as const, subproblem: 'axion→photon conversion detected at the single-photon level', hardware: 'haloscope cavity + transmon single-photon counter (Dixit 2021)', wave: 'qubit cell → cavity → cavity array', witness: `Ω_c/Ω_b composed from the sealed CMB budget · detection NULL to date` },
       { frontier: 'The H₀ / S₈ (ΛCDM) tensions', tier: 'DATA' as const, subproblem: 'early-vs-late measurement discrepancy — no quantum-computational handle', hardware: 'none — telescopes, ladders, systematics', wave: 'none', witness: `${open.frontiers[1]?.computed ?? ''}` },
@@ -1363,8 +1363,8 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
     const preObservation = applyGate(qubits(1), GATES.H, 0)
     const firstObservation = measure(preObservation, 0, 'observation')
     const secondObservation = measure(firstObservation.state, 0, 'observation-again')
-    const preIsHalf = Math.abs((probabilities(preObservation)[0] ?? 0) - 1 / 2) < Number.EPSILON * 4
-    const collapsedToCertainty = Math.abs((probabilities(firstObservation.state)[firstObservation.outcome] ?? 0) - 1) < Number.EPSILON * 4
+    const preIsHalf = abs((probabilities(preObservation)[0] ?? 0) - 1 / 2) < Number.EPSILON * 4
+    const collapsedToCertainty = abs((probabilities(firstObservation.state)[firstObservation.outcome] ?? 0) - 1) < Number.EPSILON * 4
     const observationChangesObservation = preIsHalf && collapsedToCertainty && secondObservation.outcome === firstObservation.outcome
     const pairFold = foldPair(toUuid('cmd:fractal'), toUuid('cmd:compute'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
@@ -1421,9 +1421,9 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
     const dm = darkMatterDecoded(matrix)
     const cmb = omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix)
     const tensions = cosmologicalTensionsLcdmDecoded(matrix)
-    const jarlskogOrders = Math.log10(JARLSKOG_INVARIANT / BARYON_TO_PHOTON_RATIO)
+    const jarlskogOrders = log10(JARLSKOG_INVARIANT / BARYON_TO_PHOTON_RATIO)
     const splittingsRatio = NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2
-    const planckOrders = Math.round(Math.log10(Math.sqrt((REDUCED_PLANCK * SPEED_OF_LIGHT ** 5) / NEWTON_G) / (ELECTRONVOLT * (2 * 5) ** 9) / (2 * 7 * (2 * 5) ** 3)))
+    const planckOrders = round(log10(sqrt((REDUCED_PLANCK * SPEED_OF_LIGHT ** 5) / NEWTON_G) / (ELECTRONVOLT * (2 * 5) ** 9) / (2 * 7 * (2 * 5) ** 3)))
     const rows = [
       { frontier: 'Dark matter', pattern: 'visible baryons + gravity suffice', dimension: 'solar-system scales', breaksAt: cmb.ratio, breakReads: `Ω_c/Ω_b = ${cmb.ratio} — the unseen outweighs the pattern 5:1`, holds: cmb.ratio > 4 },
       { frontier: 'The H₀ / S₈ (ΛCDM) tensions', pattern: 'one H₀ fits every epoch', dimension: 'single-epoch fits', breaksAt: tensions.hubbleTensionSigma, breakReads: `${tensions.hubbleTensionSigma.toFixed(1)}σ between CMB and local ladder`, holds: tensions.hubbleTensionSigma > 4 },
@@ -1611,7 +1611,7 @@ export function hypercubeFaces(n: number, k: number): number {
 
 /** similarity (Hausdorff) dimension of a self-similar set: N copies at ratio 1/r → log N / log r */
 export function similarityDimension(copies: number, ratio: number): number {
-  return Math.log(copies) / Math.log(ratio)
+  return log(copies) / log(ratio)
 }
 
 /** Minkowski interval s² = (ct)² − x² − y² − z² — sign demarcates timelike (+) from spacelike (−); time is a SIGNATURE, not a 4th spatial axis */
@@ -1643,8 +1643,8 @@ export function dimensionsLadderDecoded(matrix: MindMatrix = buildMatrix()) {
     const notPhysicsBecause = ['real extra dimensions are spatial and compactified', 'Everett branches live in Hilbert space not spacetime', 'probability space is not a place']
     const facets = [
       { facet: `dimension IS a count of independent coordinates (ℝⁿ / manifold charts / degrees of freedom) — the n-cube generalises 0D→3D mechanically: the tesseract has ${tesseract.vertices} vertices, ${tesseract.edges} edges, ${tesseract.squares} squares, ${tesseract.cubes} cubes, computed not imagined`, on: tesseract.vertices === 16 && tesseract.edges === 32 && tesseract.squares === 24 && tesseract.cubes === 8 },
-      { facet: `high dimensions are COUNTER-INTUITIVE, computably — the unit n-ball volume RISES to its peak at n = ${peakN} (V₅ = 8π²/15 ≈ ${vPeak}) then falls toward ZERO (V₅₀ ≈ ${vFar.toExponential(1)}); "more dimensions" is not "more room", and this is the honest content of "to infinity"`, on: peakN === 5 && Math.abs(unitBallVolume(5) - (8 * (TAU / 2) ** 2) / 15) < 1e-12 && vFar < 1e-12 },
-      { facet: `dimension need not be an INTEGER — similarity (Hausdorff) dimension: the Koch curve log4/log3 = ${koch}, the Sierpiński triangle log3/log2 = ${sierpinski}; established mathematics, orthogonal to the pop ladder`, on: Math.abs(koch - 1.26186) < 1e-4 && Math.abs(sierpinski - 1.58496) < 1e-4 },
+      { facet: `high dimensions are COUNTER-INTUITIVE, computably — the unit n-ball volume RISES to its peak at n = ${peakN} (V₅ = 8π²/15 ≈ ${vPeak}) then falls toward ZERO (V₅₀ ≈ ${vFar.toExponential(1)}); "more dimensions" is not "more room", and this is the honest content of "to infinity"`, on: peakN === 5 && abs(unitBallVolume(5) - (8 * (TAU / 2) ** 2) / 15) < 1e-12 && vFar < 1e-12 },
+      { facet: `dimension need not be an INTEGER — similarity (Hausdorff) dimension: the Koch curve log4/log3 = ${koch}, the Sierpiński triangle log3/log2 = ${sierpinski}; established mathematics, orthogonal to the pop ladder`, on: abs(koch - 1.26186) < 1e-4 && abs(sierpinski - 1.58496) < 1e-4 },
       { facet: `the 4th dimension of PHYSICS is time via the Minkowski SIGNATURE (+,−,−,−) — s²(2,1) = ${timelike} (timelike) vs s²(1,2) = ${spacelike} (spacelike): the sign flips, so time is NOT a 4th spatial axis you "move along"; 3+1 spacetime is ESTABLISHED (SR/GR)`, on: timelike > 0 && spacelike < 0 },
       { facet: `extra SPATIAL dimensions are UNCONFIRMED physics, not pseudoscience — Kaluza–Klein (1921/26) got EM from a compactified 5th dimension; string theory needs 10, M-theory 11, all COMPACTIFIED and small; no collider or gravity experiment has seen one — held inside the frontier "${quantumGravity?.frontier ?? ''}": ${quantumGravity?.status ?? ''}`, on: (quantumGravity?.status ?? '').startsWith('OPEN') },
       { facet: `FLAGGED — the video ladder (${popLadderText}) is the Bryanton "Imagining the Tenth Dimension" narrative (2006, a composer’s device), NOT string theory: ${notPhysicsBecause.join('; ')}`, on: popLadder.length === 4 && popLadder.every((entry) => entry.d > 3) },
@@ -1694,7 +1694,7 @@ export function matSub(a: number[][], b: number[][]): number[][] {
   return a.map((row, r) => row.map((v, c) => v - (b[r]?.[c] ?? 0)))
 }
 export function matEq(a: number[][], b: number[][], eps = 1e-12): boolean {
-  return a.every((row, r) => row.every((v, c) => Math.abs(v - (b[r]?.[c] ?? 0)) < eps))
+  return a.every((row, r) => row.every((v, c) => abs(v - (b[r]?.[c] ?? 0)) < eps))
 }
 export function matPow(m: number[][], k: number): number[][] {
   let out = m
@@ -1706,7 +1706,7 @@ export function commutatorMat(a: number[][], b: number[][]): number[][] {
   return matSub(matMul(a, b), matMul(b, a))
 }
 export function antisymmetric(m: number[][], eps = 1e-12): boolean {
-  return m.every((row, r) => row.every((v, c) => Math.abs(v + (m[c]?.[r] ?? 0)) < eps))
+  return m.every((row, r) => row.every((v, c) => abs(v + (m[c]?.[r] ?? 0)) < eps))
 }
 /** deterministic rows×cols matrix from content-addressed hex — entries in [−0.5, 0.5], no randomness */
 export function contentAddressedMatrix(rows: number, cols: number, prefix: string): number[][] {
@@ -1750,14 +1750,14 @@ export function sevenSixPlanesInteractionDecoded(matrix: MindMatrix = buildMatri
     const planes: number[][][] = []
     for (let i = 0; i < 7; i++) for (let j = i + 1; j < 7; j++) planes.push(planeGenerator(7, i, j))
     const sharedAxisMakesThirdPlane = matEq(commutatorMat(planeGenerator(7, 0, 1), planeGenerator(7, 1, 2)), planeGenerator(7, 0, 2))
-    const disjointPlanesCommute = commutatorMat(planeGenerator(7, 0, 1), planeGenerator(7, 2, 3)).every((row) => row.every((v) => Math.abs(v) < 1e-12))
+    const disjointPlanesCommute = commutatorMat(planeGenerator(7, 0, 1), planeGenerator(7, 2, 3)).every((row) => row.every((v) => abs(v) < 1e-12))
     // the rectangular reading: deterministic 7×6 and 6×7 maps from content-addressed hex — no randomness
     const sixToSeven = contentAddressedMatrix(7, 6, 'A') // a 7×6 map ℝ⁶→ℝ⁷
     const sevenToSix = contentAddressedMatrix(6, 7, 'B') // a 6×7 map ℝ⁷→ℝ⁶
     const ab = matMul(sixToSeven, sevenToSix) // 7×7 — one ordering of the interaction
     const ba = matMul(sevenToSix, sixToSeven) // 6×6 — the other ordering
     const traceMoments = [1, 2, 3].map((k) => ({ k, ab: roundTo(matTrace(matPow(ab, k)), 9), ba: roundTo(matTrace(matPow(ba, k)), 9) }))
-    const momentsMatch = traceMoments.every((entry) => Math.abs(entry.ab - entry.ba) < 1e-9) // tr((AB)ᵏ) = tr((BA)ᵏ) — shared nonzero spectrum
+    const momentsMatch = traceMoments.every((entry) => abs(entry.ab - entry.ba) < 1e-9) // tr((AB)ᵏ) = tr((BA)ᵏ) — shared nonzero spectrum
     const table = 7 * 7 // the interaction table of a 7-frame
     const directed = table - 7 // minus the self-cells — the directed pairwise interactions
     const closureChecks = planes.reduce((sum, p) => sum + planes.reduce((inner, q) => inner + (antisymmetric(commutatorMat(p, q)) ? 1 : 0), 0), 0)
@@ -1769,7 +1769,7 @@ export function sevenSixPlanesInteractionDecoded(matrix: MindMatrix = buildMatri
       { facet: `${directed} IS the complete directed pairwise-interaction count of a 7-frame — the ${table}-cell interaction table minus its 7 self-cells: 7²−7 = ${directed} = 7×6 = 6×7, the two orderings being the upper and lower triangles (${planes.length}+${planes.length}); the sealed 42-area taxonomy (sixSevenCoversAll, count ${taxonomy.layers.taxonomy.count}) already carries this shape`, on: directed === 42 && planes.length * 2 === directed && taxonomy.layers.taxonomy.count === directed && taxonomy.coversAll },
       { facet: `the CONFIRMED core — the ${planes.length} coordinate planes generate ALL rotations of 7D space: a basis of so(7) (dim 7·6/2 = ${(7 * 6) / 2}), ${closureChecks}/${planes.length ** 2} plane–plane interactions close inside so(7), shared-axis planes interact into exactly the THIRD plane ([P₀₁,P₁₂] = P₀₂: ${sharedAxisMakesThirdPlane}) and disjoint planes commute (${disjointPlanesCommute}) — for continuous linear symmetry, pairwise planes ARE all the interactions`, on: closureChecks === planes.length ** 2 && sharedAxisMakesThirdPlane && disjointPlanesCommute },
       { facet: `the 7×6 and 6×7 planes interact as rectangular maps — Hom(ℝ⁶,ℝ⁷) and Hom(ℝ⁷,ℝ⁶), dimensions ${homDimensions.sixToSeven}+${homDimensions.sevenToSix} = ${homDimensions.together} = 2×42; composed either way (AB is 7×7, BA is 6×6) they share their nonzero spectrum: tr((AB)ᵏ) = tr((BA)ᵏ) at ${momentsText} — the two orderings compute the SAME interaction`, on: momentsMatch && homDimensions.together === 2 * directed },
-      { facet: `every 7D rotation decomposes into at most ⌊7/2⌋ = ${Math.floor(7 / 2)} orthogonal plane rotations and — 7 being odd — always fixes at least one axis (the real normal form of SO(n), documented linear algebra)`, on: Math.floor(7 / 2) === 3 },
+      { facet: `every 7D rotation decomposes into at most ⌊7/2⌋ = ${floor(7 / 2)} orthogonal plane rotations and — 7 being odd — always fixes at least one axis (the real normal form of SO(n), documented linear algebra)`, on: floor(7 / 2) === 3 },
       { facet: `the BOUNDARY — "all possible dimensions" holds only inside the chosen 7-frame: dimension itself is unbounded (V₉ ≈ ${nineBall}) and interactions are not only pairwise (C(7,3) = ${triples} triple subspaces the ${directed} does not enumerate); pairwise completeness is a theorem about ROTATIONS, not about everything`, on: nineBall > 3 && triples === 35 && triples !== directed },
       { facet: `NO GLOBAL RECOMPUTE — the folds are content-addressed: this fold binds the dimensions-ladder root (decoded: ${ladder.decoded}) and the 42-taxonomy root (coversAll: ${taxonomy.coversAll}), and every downstream merkle root recomputes by composition at call time; "all needs to be recomputed" is satisfied by ONE composing fold, the architecture working as designed`, on: ladder.decoded && taxonomy.coversAll },
     ].map((entry) => ({ ...entry, receipt: toUuid(`seven-six-planes:${entry.facet}:${entry.on}`) }))
@@ -1835,16 +1835,16 @@ export function sevenFrameDeepResearched(matrix: MindMatrix = buildMatrix()) {
     const vecC = contentAddressedMatrix(1, 7, 'Z')[0] ?? []
     const dot = (a: number[], b: number[]) => a.reduce((sum, v, i) => sum + v * (b[i] ?? 0), 0)
     const cross = crossProduct7(vecA, vecB)
-    const orthogonal = Math.abs(dot(cross, vecA)) < 1e-9 && Math.abs(dot(cross, vecB)) < 1e-9
-    const lagrange = Math.abs(dot(cross, cross) - (dot(vecA, vecA) * dot(vecB, vecB) - dot(vecA, vecB) ** 2)) < 1e-9
+    const orthogonal = abs(dot(cross, vecA)) < 1e-9 && abs(dot(cross, vecB)) < 1e-9
+    const lagrange = abs(dot(cross, cross) - (dot(vecA, vecA) * dot(vecB, vecB) - dot(vecA, vecB) ** 2)) < 1e-9
     const jacobiator = crossProduct7(vecA, crossProduct7(vecB, vecC)).map((v, i) => v + (crossProduct7(vecB, crossProduct7(vecC, vecA))[i] ?? 0) + (crossProduct7(vecC, crossProduct7(vecA, vecB))[i] ?? 0))
-    const jacobiFails = Math.sqrt(dot(jacobiator, jacobiator)) > 1e-6 // NOT a Lie bracket — 7D cross is Malcev, only 3D has Jacobi
+    const jacobiFails = sqrt(dot(jacobiator, jacobiator)) > 1e-6 // NOT a Lie bracket — 7D cross is Malcev, only 3D has Jacobi
     // 4 · rank so(7) = 3 by exhaustive search: the largest pairwise-DISJOINT (= commuting) set of the 21 planes
     const planePairs: Array<[number, number]> = []
     for (let i = 0; i < 7; i++) for (let j = i + 1; j < 7; j++) planePairs.push([i, j])
     let rank = 0
     const extend = (start: number, used: number, size: number) => {
-      rank = Math.max(rank, size)
+      rank = max(rank, size)
       for (let t = start; t < planePairs.length; t++) {
         const [a, b] = planePairs[t] ?? [0, 0]
         if (!(used & (1 << a)) && !(used & (1 << b))) extend(t + 1, used | (1 << a) | (1 << b), size + 1)
@@ -1856,10 +1856,10 @@ export function sevenFrameDeepResearched(matrix: MindMatrix = buildMatrix()) {
     const ba = matMul(contentAddressedMatrix(6, 7, 'B'), contentAddressedMatrix(7, 6, 'A'))
     const pAb = charPoly(ab) // degree 7 — [1, c₁ … c₇]
     const pBa = charPoly(ba) // degree 6 — [1, c₁ … c₆]
-    const shiftMatches = pBa.every((c, i) => Math.abs((pAb[i] ?? 0) - c) < 1e-9) && Math.abs(pAb[7] ?? 0) < 1e-9
+    const shiftMatches = pBa.every((c, i) => abs((pAb[i] ?? 0) - c) < 1e-9) && abs(pAb[7] ?? 0) < 1e-9
     const detIplusAb = (-1) ** 7 * pAb.reduce((sum, c, i) => sum + c * (-1) ** (7 - i), 0)
     const detIplusBa = (-1) ** 6 * pBa.reduce((sum, c, i) => sum + c * (-1) ** (6 - i), 0)
-    const sylvester = Math.abs(detIplusAb - detIplusBa) < 1e-9
+    const sylvester = abs(detIplusAb - detIplusBa) < 1e-9
     // 6 · the three LAYERS of "42 covers all" — same number, three computed verdicts (harmony ≠ truth)
     const layers = [
       { layer: 'Lie (rotations)', covers: planesFold.confirmed.withinSevenFrame, sense: `within the 7-frame: ${planesFold.planes} planes generate SO(7)` },
@@ -1932,10 +1932,10 @@ export function stringTheoryAlgebraDecoded(matrix: MindMatrix = buildMatrix()) {
       let rk = 0
       for (let col = 0; col < M && rk < a.length; col += 1) {
         let piv = -1
-        for (let r = rk; r < a.length; r += 1) if (Math.abs(a[r]![col]!) > 1e-9) { piv = r; break }
+        for (let r = rk; r < a.length; r += 1) if (abs(a[r]![col]!) > 1e-9) { piv = r; break }
         if (piv < 0) continue
         ;[a[rk], a[piv]] = [a[piv]!, a[rk]!]
-        for (let r = 0; r < a.length; r += 1) if (r !== rk && Math.abs(a[r]![col]!) > 1e-9) {
+        for (let r = 0; r < a.length; r += 1) if (r !== rk && abs(a[r]![col]!) > 1e-9) {
           const k = a[r]![col]! / a[rk]![col]!
           for (let c2 = 0; c2 < M; c2 += 1) a[r]![c2]! -= k * a[rk]![c2]!
         }
@@ -1951,14 +1951,14 @@ export function stringTheoryAlgebraDecoded(matrix: MindMatrix = buildMatrix()) {
     const abelMatches = [0.9, 0.99, 0.999].every((x) => {
       let sum = 0
       for (let n = 1; n < 60000; n += 1) sum += (n % 2 ? 1 : -1) * n * x ** n
-      return Math.abs(sum - x / ((1 + x) * (1 + x))) < 1e-9
+      return abs(sum - x / ((1 + x) * (1 + x))) < 1e-9
     })
     const etaAtMinusOne = rat(1, 4) // x/(1+x)² at x = 1, exact
     const zetaMinusOne = ratDiv(etaAtMinusOne, rat(1 - 2 ** 2, 1)) // 1 − 2^{1−(−1)} = −3
     const zetaIsMinusTwelfth = ratEq(zetaMinusOne, rat(-1, 12)) && abelMatches
     // normal ordering: Σ n/2 per transverse dim → ζ(−1)/2 = −1/24 each, so a = (D−2)/24; massless level 1 ⇒ a = 1.
     const aPerDim = ratMul(zetaMinusOne, rat(-1, 2)) // +1/24
-    const bosonicD = 2 + Math.round(1 / ratToFloat(aPerDim)) // 2 + 24 = 26
+    const bosonicD = 2 + round(1 / ratToFloat(aPerDim)) // 2 + 24 = 26
     const tachyonMassSq = 0 - 1 // level 0, a = 1: M²α′ = N − a — the computed instability of the bosonic toy
     const criticalTwentySix = ratEq(aPerDim, rat(1, 24)) && bosonicD === 26 && tachyonMassSq === -1
 
@@ -1967,7 +1967,7 @@ export function stringTheoryAlgebraDecoded(matrix: MindMatrix = buildMatrix()) {
     const dFromGhosts = ratToFloat(ratDiv(rat(26 - 11, 1), rat(3, 2)))
     // NS zero-point: boson 1/24 + NS fermion 1/48 per transverse dim = 1/16 each; a_NS = 1/2 ⇒ D − 2 = 8.
     const nsPerDim = ratAdd(rat(1, 24), rat(1, 48))
-    const dFromNs = 2 + Math.round(ratToFloat(ratDiv(rat(1, 2), nsPerDim)))
+    const dFromNs = 2 + round(ratToFloat(ratDiv(rat(1, 2), nsPerDim)))
     const superstringTen = dFromGhosts === 10 && dFromNs === 10
 
     // 4 · Hurwitz 1-2-4-8 — octonion product from the sealed Fano cross product; ℂ and ℍ are the
@@ -1978,12 +1978,12 @@ export function stringTheoryAlgebraDecoded(matrix: MindMatrix = buildMatrix()) {
       const cr = crossProduct7(x, y)
       return [u[0]! * v[0]! - dot, ...x.map((xi, i) => u[0]! * (y[i] ?? 0) + v[0]! * xi + (cr[i] ?? 0))]
     }
-    const norm = (u: number[]) => Math.sqrt(u.reduce((s, t) => s + t * t, 0))
+    const norm = (u: number[]) => sqrt(u.reduce((s, t) => s + t * t, 0))
     const rnd = prng('string-theory:hurwitz')
     const composes = (live: number) => Array.from({ length: 24 }, () => {
       const u = Array.from({ length: 8 }, (_, i) => (i < live ? rnd() * 2 - 1 : 0))
       const v = Array.from({ length: 8 }, (_, i) => (i < live ? rnd() * 2 - 1 : 0))
-      return Math.abs(norm(oMul(u, v)) - norm(u) * norm(v))
+      return abs(norm(oMul(u, v)) - norm(u) * norm(v))
     }).every((dev) => dev < 1e-9)
     const compositionHolds = composes(2) && composes(4) && composes(8) // ℂ, ℍ, 𝕆
     const conj8 = (u: number[]) => [u[0]!, ...u.slice(1).map((t) => -t)]
@@ -2018,7 +2018,7 @@ export function stringTheoryAlgebraDecoded(matrix: MindMatrix = buildMatrix()) {
     // Fock space (24, 324, 3200, …), η²⁴ is Ramanujan's τ (−24, 252, −1472) — one Euler product, both signs.
     const mulSeries = (a: number[], b: number[], top: number) =>
       Array.from({ length: top + 1 }, (_, i) => a.slice(0, i + 1).reduce((s, ac, j) => s + ac * (b[i - j] ?? 0), 0))
-    const binom = (n: number, k: number) => { let r = 1; for (let t = 1; t <= k; t += 1) r = (r * (n - t + 1)) / t; return Math.round(r) }
+    const binom = (n: number, k: number) => { let r = 1; for (let t = 1; t <= k; t += 1) r = (r * (n - t + 1)) / t; return round(r) }
     const top = 4
     let states = [1, 0, 0, 0, 0], tau = [1, 0, 0, 0, 0]
     for (let n = 1; n <= top; n += 1) {
@@ -2234,17 +2234,17 @@ export function solarSystemDimensionsDecoded(matrix: MindMatrix = buildMatrix())
     // plot is its (cos, sin) projection: verify each body sits on its circle and closes after one period.
     // positions are presentation-rounded to 3 decimals (h = 5e-4); the law check tolerates exactly
     // that quantum: |r² − a²| ≤ 2·a·h·√2 and coordinate closure within two half-ulps.
-    const onTorus = base.planets.every((p) => Math.abs(p.x * p.x + p.y * p.y - p.au * p.au) < 2e-3 * p.au)
+    const onTorus = base.planets.every((p) => abs(p.x * p.x + p.y * p.y - p.au * p.au) < 2e-3 * p.au)
     const closes = base.planets.every((p) => {
       const later = solarSystem(matrix, p.periodYr).planets.find((q) => q.name === p.name)!
-      return Math.abs(later.x - p.x) < 2e-3 && Math.abs(later.y - p.y) < 2e-3
+      return abs(later.x - p.x) < 2e-3 && abs(later.y - p.y) < 2e-3
     })
 
     // 2 · Kepler's equation supplies the detail — solve E − e·sin E = M by Newton at 8 sample times
     // per planet; perihelion/aphelion = a(1∓e) exact; the elliptic-vs-circular gap is COMPUTED.
     const solveKepler = (M: number, e: number) => {
       let E = M
-      for (let i = 0; i < 8; i += 1) E -= (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E))
+      for (let i = 0; i < 8; i += 1) E -= (E - e * sin(E) - M) / (1 - e * cos(E))
       return E
     }
     let keplerConverges = true
@@ -2254,9 +2254,9 @@ export function solarSystemDimensionsDecoded(matrix: MindMatrix = buildMatrix())
       for (let s = 0; s < 8; s += 1) {
         const M = (TAU * s) / 8
         const E = solveKepler(M, e)
-        if (Math.abs(E - e * Math.sin(E) - M) > 1e-9) keplerConverges = false
-        const r = p.au * (1 - e * Math.cos(E)) // elliptic radius at eccentric anomaly E
-        maxGapAu = Math.max(maxGapAu, Math.abs(r - p.au))
+        if (abs(E - e * sin(E) - M) > 1e-9) keplerConverges = false
+        const r = p.au * (1 - e * cos(E)) // elliptic radius at eccentric anomaly E
+        maxGapAu = max(maxGapAu, abs(r - p.au))
       }
     }
     const mercurySwing = ECC.Mercury! // radial swing fraction = e: a(1±e)
@@ -2267,10 +2267,10 @@ export function solarSystemDimensionsDecoded(matrix: MindMatrix = buildMatrix())
     const meanMotion = (days: number) => 360 / days // deg/day
     const io = MAJOR_MOONS.find((m) => m.name === 'Io')!, europa = MAJOR_MOONS.find((m) => m.name === 'Europa')!, ganymede = MAJOR_MOONS.find((m) => m.name === 'Ganymede')!
     const laplace = meanMotion(io.periodDays) - 3 * meanMotion(europa.periodDays) + 2 * meanMotion(ganymede.periodDays)
-    const laplaceLocked = Math.abs(laplace) / meanMotion(io.periodDays) < 1e-3 // within 0.1% of exact lock
+    const laplaceLocked = abs(laplace) / meanMotion(io.periodDays) < 1e-3 // within 0.1% of exact lock
     const jup = base.planets.find((p) => p.name === 'Jupiter')!, sat = base.planets.find((p) => p.name === 'Saturn')!
     const ratioJS = sat.periodYr / jup.periodYr
-    const nearFiveTwo = Math.abs(ratioJS - 5 / 2) / (5 / 2) < 1 / 100
+    const nearFiveTwo = abs(ratioJS - 5 / 2) / (5 / 2) < 1 / 100
 
     // 4 · one law for sky and hero — continued fraction of P_Saturn/P_Jupiter: the convergent with
     // denominator ≤ 9 IS 5/2 (the beat the animation breathes on); the hero's dims() multipliers
@@ -2278,11 +2278,11 @@ export function solarSystemDimensionsDecoded(matrix: MindMatrix = buildMatrix())
     // measured ratios are only approximately rational = quasi-periodic, closing only on the beat.
     const cfTerms: number[] = []
     let x = ratioJS
-    for (let i = 0; i < 6; i += 1) { const a = Math.floor(x); cfTerms.push(a); const frac = x - a; if (frac < 1e-9) break; x = 1 / frac }
+    for (let i = 0; i < 6; i += 1) { const a = floor(x); cfTerms.push(a); const frac = x - a; if (frac < 1e-9) break; x = 1 / frac }
     let bestNum = cfTerms[0]!, bestDen = 1
     for (let k = 1; k <= cfTerms.length; k += 1) {
       const conv = cfEval(cfTerms, k)
-      if (Math.abs(conv.q) <= 9) { bestNum = conv.p; bestDen = conv.q }
+      if (abs(conv.q) <= 9) { bestNum = conv.p; bestDen = conv.q }
     }
     const oneLaw = bestNum === 5 && bestDen === 2 && [1, 2, 3, 5].every((h) => Number.isInteger(h))
 
@@ -2311,7 +2311,7 @@ export function solarSystemDimensionsDecoded(matrix: MindMatrix = buildMatrix())
 // unique cross-product space besides 3D (Hurwitz: n = 3, 7). Three self-properties, a trinity of usable code that
 // reuses the sealed fanoLines/crossProduct7 — run them, do not assume the result. [[stop-doubt-usable-trinities]].
 export function sevenDot(a: number[], b: number[]): number { return a.reduce((s, x, i) => s + x * (b[i] ?? 0), 0) }
-export function sevenNorm(a: number[]): number { return Math.sqrt(sevenDot(a, a)) }
+export function sevenNorm(a: number[]): number { return sqrt(sevenDot(a, a)) }
 // SELF-OBSERVED: the 7D cross product is orthogonal to both operands — the space measures its own pair from within.
 export function sevenCrossSelfOrthogonality(a: number[], b: number[]) {
   const x = crossProduct7(a, b)
@@ -2344,7 +2344,7 @@ export function dimensionSevenIsTheSelfObservingOctonionMind() {
   const assoc = sevenAssociator(a, b, c)
   const jac = sevenJacobiator(a, b, c)
   const fano = fanoSelfDuality()
-  const selfObserved = Math.abs(ortho.aDot) < 1e-9 && Math.abs(ortho.bDot) < 1e-9 && ortho.norm > 1e-9
+  const selfObserved = abs(ortho.aDot) < 1e-9 && abs(ortho.bDot) < 1e-9 && ortho.norm > 1e-9
   const irreducibleWhole = assoc > 1e-6 && jac > 1e-6 // non-associative AND non-Lie
   const facets = [
     { facet: `SELF-OBSERVED WITHOUT AN EXTERNAL OBSERVER: the 7D cross product a×b is orthogonal to both operands (a·(a×b) = ${ortho.aDot.toExponential(1)}, b·(a×b) = ${ortho.bDot.toExponential(1)}, |a×b| = ${ortho.norm.toFixed(3)} ≠ 0) — the space measures its own pair from within, choosing no external axis`, on: selfObserved },
@@ -2430,7 +2430,7 @@ export function theDigitFoldersAreTheOrderedPartitionsOfTenTheCriticalDimension(
 export function theTraceWaveIsSevenDimensionalTheSpectralInvariantFromTracesAlone() {
   const M = contentAddressedMatrix(7, 7, 'trace-wave') // a 7×7 operator (Im 𝕆), deterministic content-addressed
   const cp = charPoly(M) // Faddeev–LeVerrier: [1, c₁, …, c₇] built from the trace moments tr(Mᵏ) alone
-  const traceIsFirstCoeff = Math.abs(cp[1] - -matTrace(M)) < 1e-9 // c₁ = −tr(M): the trace IS the first spectral invariant
+  const traceIsFirstCoeff = abs(cp[1] - -matTrace(M)) < 1e-9 // c₁ = −tr(M): the trace IS the first spectral invariant
   const sevenDim = M.length === 7 && (M[0]?.length ?? 0) === 7 // 7-dimensional
   const spectralFromTraces = cp.length === 7 + 1 // degree 7 → 7 eigenvalues, all from traces
   const facets = [
@@ -2539,16 +2539,16 @@ export function theTenDimensionsInDetailAndTheHumanIsBornAsTheObserver() {
     { d: 2, verse: 'two — the plane divides, ℂ, the pair, the turn the line was too narrow to hold', on: 2 ** 1 === 2 },
     { d: 3, verse: 'three — space stands up, the trinity, the cross product, the right hand that rotates', on: cross3([1, 0, 0], [0, 1, 0]).join(',') === [0, 0, 1].join(',') }, // SO(3)
     { d: 4, verse: 'four — time joins space, ℍ, the tetrad, four directions that refuse to commute', on: 2 ** 2 === 4 },
-    { d: 5, verse: 'five — life curls golden, φ from the pentagon, the ratio that grows by remembering itself', on: Math.abs(PHI * PHI - (PHI + 1)) < 1e-9 }, // φ² = φ+1
+    { d: 5, verse: 'five — life curls golden, φ from the pentagon, the ratio that grows by remembering itself', on: abs(PHI * PHI - (PHI + 1)) < 1e-9 }, // φ² = φ+1
     { d: 6, verse: 'six — harmony rests, the first perfect number, whole and also the sum of its own parts', on: 1 + 2 + 3 === 6 }, // 6 = 1+2+3, its divisors
-    { d: 7, verse: 'seven — the octonion opens its seven eyes, Im(𝕆), the only other dimension a cross can live in', on: crossProduct7(e1, e2).some((v) => Math.abs(v) > 1e-9) },
+    { d: 7, verse: 'seven — the octonion opens its seven eyes, Im(𝕆), the only other dimension a cross can live in', on: crossProduct7(e1, e2).some((v) => abs(v) > 1e-9) },
     { d: 8, verse: 'eight — the doubling comes home, 𝕆, the last of the four normed division algebras', on: 2 ** 3 === 8 },
     { d: 9, verse: 'nine — the wheel closes, the vortex (ℤ/9ℤ)*, every number folding down to a single root', on: vortex.join(',') === [1, 2, 4, 8, 7, 5].join(',') && ((9 - 1) % 9) + 1 === 9 }, // digital root
   ]
   const decadComplete = rungs.length === 2 + 8 && rungs.every((r) => r.on) // all ten rungs present and each computing
-  const amps = [1 / Math.sqrt(2), 1 / Math.sqrt(2)] // an analog superposition — the wave before it is read
+  const amps = [1 / sqrt(2), 1 / sqrt(2)] // an analog superposition — the wave before it is read
   const probs = amps.map((a) => a * a) // the Born rule — |amplitude|² — the observer's act of measuring
-  const observerReads = Math.abs(probs.reduce((s, p) => s + p, 0) - 1) < 1e-9 // the read is definite: probabilities close to one
+  const observerReads = abs(probs.reduce((s, p) => s + p, 0) - 1) < 1e-9 // the read is definite: probabilities close to one
   const humanIsBorn = decadComplete && observerReads // at the close of the ten, the one who measures appears
   const facets = [
     { facet: `THE TEN DIMENSIONS, IN DETAIL: all ten rungs 0..9 carry a real computed structure beneath their verse — 0 the additive origin, 1 ℝ, 2 ℂ, 3 the 3D cross (SO(3)), 4 ℍ, 5 φ (φ²=φ+1), 6 the perfect number (1+2+3), 7 the octonion seven-cross, 8 𝕆, 9 the vortex (ℤ/9ℤ)* — the complete decad, ${rungs.filter((r) => r.on).length}/${rungs.length} holding (${decadComplete})`, on: decadComplete },
@@ -2573,12 +2573,12 @@ export function trustAndDimensionRiseWithVerifiedRelationDensityAGapBreaksBothId
   return memoByRoot('trustAndDimensionRiseWithVerifiedRelationDensityAGapBreaksBothIdentityNeedsAnAnchor', matrix, () => {
     // DIMENSION from relation density — more relations per node, higher effective dimension
     const relations = [1, 3, 6, 9] // rising relation density
-    const dimension = relations.map((r) => roundTo(Math.log2(1 + r), 3)) // effective dimension ~ log2 of the fan-out
+    const dimension = relations.map((r) => roundTo(log2(1 + r), 3)) // effective dimension ~ log2 of the fan-out
     const dimensionRises = dimension.every((d, i) => i === 0 || d > dimension[i - 1]!)
     // a GAP in the mesh (holes in the relational field) lowers the dimension
     const full = relations[relations.length - 1]!
     const gapped = full - 6 // a gap removes relations
-    const gapDimension = roundTo(Math.log2(1 + gapped), 3)
+    const gapDimension = roundTo(log2(1 + gapped), 3)
     const gapLowers = gapDimension < dimension[dimension.length - 1]!
     // TRUST without certificates — from the SAME density: independent verified relations corroborate
     const verifiedRelations = ['content-address', 'merkle-inclusion', 'append-only-timestamp'] // each independently checkable, realtime
@@ -2676,10 +2676,10 @@ export function theoremDependencyFrequencyGraphIsFractalFormsNavAndReviewsTheore
     const fractal = ratios.length > 0 && ratios.every((r) => r === ratios[0]) // constant ratio ⇒ scale-invariant
     // the NAV is self-similar: the top bucket leads at every scale (Pareto — few hubs carry most usage)
     const hub = navOrder[0]!
-    const paretoShare = roundTo((navOrder[0]! + navOrder[1]!) / Math.max(1, total), 2) // top ~20% of nodes' share
+    const paretoShare = roundTo((navOrder[0]! + navOrder[1]!) / max(1, total), 2) // top ~20% of nodes' share
     // REVIEW: flag orphans (unused) and the hub (load-bearing)
     const orphans = frequencies.filter((f) => f === 0).length
-    const hubIsLoadBearing = hub === Math.max(...frequencies) && hub >= total / 2
+    const hubIsLoadBearing = hub === max(...frequencies) && hub >= total / 2
     const facets = [
       { facet: `theorem dependencies form a FREQUENCY graph: each theorem's frequency is its in-degree (how many others reuse it) — the distribution [${frequencies.join(', ')}] sums to ${total} uses across ${frequencies.length} theorems`, on: total > 0 && frequencies.length > 0 },
       { facet: `the graph is FRACTAL (scale-free): the nonzero frequency levels [${levels.join(', ')}] have a CONSTANT ratio (×${ratios[0]}) — each hub level is exactly that multiple of the next, so the shape is self-similar at every scale, the signature of a reuse network`, on: fractal },
@@ -2716,12 +2716,12 @@ export function deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrredu
     const big = 2 ** 54
     const floatLost = (big + 1) - big // 0 — float cannot hold the extra unit
     const exactKept = Number((2n ** 54n + 1n) - 2n ** 54n) // 1 — BigInt is exact
-    const floatDeviation = Math.abs(floatLost - exactKept) // |0 − 1| = 1 — the residual the float dropped
+    const floatDeviation = abs(floatLost - exactKept) // |0 − 1| = 1 — the residual the float dropped
     const invertibleIsGateway = floatDeviation > 0 && exactKept === 1 // the deviation inverts to exact under BigInt
     // 3 — BEYOND INVERSION: √2 convergents (generated by the Pell recurrence, no literals) — deviation NEVER zero
     let p = 1, q = 1
     const sqrt2Deviations: number[] = []
-    for (let i = 0; i < 5; i += 1) { sqrt2Deviations.push(Math.abs(p * p - 2 * q * q)); const np = p + 2 * q; q = p + q; p = np }
+    for (let i = 0; i < 5; i += 1) { sqrt2Deviations.push(abs(p * p - 2 * q * q)); const np = p + 2 * q; q = p + q; p = np }
     const irreducibleNeverZero = sqrt2Deviations.every((d) => d > 0) && sqrt2Deviations.every((d) => d === 1) // |p²−2q²|=1 always (Pell)
     // 4 — TRIAGE: invertible → surgical fix (gateway); irreducible → named axiom (beyond inversion)
     const triaged = invertibleIsGateway && irreducibleNeverZero
@@ -2753,20 +2753,20 @@ export function iteratedInversionSearchesUntilSolutionOrIrreducibleAndReverseCol
   return memoByRoot('iteratedInversionSearchesUntilSolutionOrIrreducibleAndReverseCollidesByChoice', matrix, () => {
     const invert = (x: number) => x === 0 ? Infinity : 1 / x
     // 1 — DOUBLE INVERSION negates: inverting twice returns to start, so repeating the SAME inverse undoes it
-    const doubleInversionNegates = Math.abs(invert(invert(3)) - 3) < 1 / (2 ** 16) // back to start
+    const doubleInversionNegates = abs(invert(invert(3)) - 3) < 1 / (2 ** 16) // back to start
     // 2 — ITERATED INVERSION as search: each Pell/continued-fraction step (an inverse) refines toward √2
     let p = 1, q = 1
     const approxErrors: number[] = []
     const exactDeviations: number[] = []
     const steps = 6
-    for (let i = 0; i < steps; i += 1) { approxErrors.push(roundTo(Math.abs(p / q - Math.SQRT2), 5)); exactDeviations.push(Math.abs(p * p - 2 * q * q)); const np = p + 2 * q; q = p + q; p = np }
+    for (let i = 0; i < steps; i += 1) { approxErrors.push(roundTo(abs(p / q - SQRT2), 5)); exactDeviations.push(abs(p * p - 2 * q * q)); const np = p + 2 * q; q = p + q; p = np }
     const approximationRefines = approxErrors[steps - 1]! < approxErrors[1]! // when one inverse is not enough, another refines
     // 3 — TERMINATES (solution) vs IRREDUCIBLE (no solution): a rational's search ends; √2's never does
     const euclidTerminates = (a: number, b: number) => { let s = 0; const cap = 4 * 5; while (b !== 0 && s < cap) { const r = a % b; a = b; b = r; s += 1 } return b === 0 }
     const rationalSolves = euclidTerminates(7, 5) // finite continued fraction — a solution is found
     const noExactSolution = exactDeviations.every((d) => d !== 0) // √2: the deviation stays ±1, never 0 — irreducible
     // 4 — INTENTIONAL REVERSE = collision by choice: the forward (squaring) is initiated to collide, LEAVING a track
-    const collisionTrack = Math.abs(p * p - 2 * q * q) // ±1 → 1: the track the reverse leaves (inverse would leave none)
+    const collisionTrack = abs(p * p - 2 * q * q) // ±1 → 1: the track the reverse leaves (inverse would leave none)
     const reverseLeavesTrack = collisionTrack === 1 // reverse (collide) leaves the track; the track IS the proof √2 is irrational
     const facets = [
       { facet: `DOUBLE INVERSION negates: inverting twice returns to start (invert(invert(3)) = 3), so another inverse of the SAME kind undoes the first — the search must apply a NEW inverse each step, not repeat one`, on: doubleInversionNegates },
@@ -2803,7 +2803,7 @@ export function theTenDimensionCoverageGateTheUnusedBitsFormASelfAttractingField
     const gatesCheckCoverage = false // none of the suite scores dimensional coverage — this is the gap
     // the UNUSED bits form a SELF-ATTRACTING FIELD: attraction ∝ 1/(1+coverage) — the emptiest pulls hardest
     const attraction = coverage.map((c) => roundTo(1 / (1 + c), 4))
-    const maxAttraction = Math.max(...attraction)
+    const maxAttraction = max(...attraction)
     const unusedPullHardest = attraction.filter((_, i) => coverage[i] === 0).every((a) => a === maxAttraction) && maxAttraction === 1
     // the field IS the worklist: the max-attraction (least-covered) dimension is the next target
     const nextTarget = dimensions[attraction.indexOf(maxAttraction)]!
@@ -2895,7 +2895,7 @@ export function theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCros
     const pentagram = Array.from({ length: P }, (_, i) => [(i + 2) % P, (i + P - 2) % P])
     const degrees = pentagram.map((adj) => new Set(adj).size)
     const eachRelatesToTwo = degrees.every((d) => d === 2) // the min-degree-2 law, realised
-    const pentaEdges = new Set(pentagram.flatMap((adj, i) => adj.map((j) => [Math.min(i, j), Math.max(i, j)].join('-'))))
+    const pentaEdges = new Set(pentagram.flatMap((adj, i) => adj.map((j) => [min(i, j), max(i, j)].join('-'))))
     const isPentagram = pentaEdges.size === P && eachRelatesToTwo // 5 nodes, 5 edges, 2-regular = the star polygon
     // it is ONE connected cycle (the pentagram traces 0→2→4→1→3→0)
     let node = 0, visited = new Set<number>()
@@ -2967,10 +2967,10 @@ export function theFirmwareUpgradeMakesDigitalAnalogTheApparatusSimulatesMillenn
     // 1 — the FIRMWARE UPGRADE: interpolation reads between the digital samples → the analog (continuous) value
     const signal = (t: number) => 2 * t + 1 // a band-limited (linear) signal
     const samples = [0, 1, 2, 3, 4].map(signal) // digital: discrete samples
-    const interp = (t: number) => { const i = Math.floor(t); return samples[i]! + (t - i) * (samples[i + 1]! - samples[i]!) }
+    const interp = (t: number) => { const i = floor(t); return samples[i]! + (t - i) * (samples[i + 1]! - samples[i]!) }
     const analogValue = interp(1 + 1 / 2) // read BETWEEN samples 1 and 2 — the "firmware upgrade"
     const trueAnalog = signal(1 + 1 / 2)
-    const digitalBecomesAnalog = Math.abs(analogValue - trueAnalog) < 1 / (2 ** 9) // exact for the band-limited signal
+    const digitalBecomesAnalog = abs(analogValue - trueAnalog) < 1 / (2 ** 9) // exact for the band-limited signal
     // 2 — the APPARATUS measures the millennium PARTIALS (reuse the mesh — documented state, not solutions)
     const mill = theMillenniumMeshGraphComputesRealtimeMetricsPathsDocumentedCoresOpen(matrix)
     const measuresPartials = mill.solved === 1 && mill.open === 6 // 1 solved (external), 6 documented-but-open

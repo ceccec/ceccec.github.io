@@ -1,7 +1,7 @@
 // ☱ Duì · Lake — media & play: speech intonation, the simulations, live, intuitive search, the generative space, teleport, play-mind. Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, verifyRoot } from '../../heaven/compute'
-import { foldPair, isUuid, merge, merkleFold, toUuid } from '../../0'
+import { floor, foldPair, isUuid, max, merge, merkleFold, min, round, toUuid } from '../../0'
 import { inHouse, plasmaContainment, quantumSimulation, selfAddressed, taxonomyIcons } from '../../fire/li'
 import { breathe, equilibrium } from '../../earth/nature'
 import { selfHealing } from '../../mountain/geometry'
@@ -33,8 +33,8 @@ export function speechIntonation(matrix: MindMatrix = buildMatrix()) {
   const balance = frequencyBalance(matrix)
   const contour = balance.tones.map((tone) => {
     // cents (~ -1800..+1200) compressed to a pleasant speech-pitch multiplier.
-    const norm = Math.max(-1, Math.min(1, tone.cents / (100 * 5 * 3)))
-    return Math.round((1 + norm * (1 / 5)) * 100) / 100
+    const norm = max(-1, min(1, tone.cents / (100 * 5 * 3)))
+    return round((1 + norm * (1 / 5)) * 100) / 100
   })
   const harmonic =
     contour.length >= 3 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= (7 / (5 * 2)) && pitch <= (7 / 5))
@@ -115,7 +115,7 @@ export function live(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(vitals.map((entry) => entry.receipt)),
     // A pure, recomputable heartbeat: fold the beat number into the live root.
     beat(n: number) {
-      return merge(this.root, toUuid(`heartbeat:${Math.floor(n)}`))
+      return merge(this.root, toUuid(`heartbeat:${floor(n)}`))
     },
     statement:
       'Live: the portal\'s vital signs, computed in your browser — the seal verifies, the double torus lives and counter-rotates, the rhythm keeps time, the mysteries are shown, the society is folded, and the proofs hold. The whole is alive while every vital reads true, and a heartbeat recomputes a fold each beat.',

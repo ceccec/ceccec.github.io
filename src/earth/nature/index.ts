@@ -4,7 +4,7 @@ import { phase } from '../../6/4'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute'
 import { completeCorpus, monographs, onlyPageRouteForAll } from '../../wind/routes/corpus'
-import { computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'
+import { abs, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'
 import { imagination } from '../../mountain/source'
 import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, universalLanguage, torusUuid } from '../../fire/li'
 import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topology'
@@ -477,7 +477,7 @@ export function equilibrium(matrix: MindMatrix = buildMatrix(), steps = (5 * 2))
         root: toUuid(`equilibrium:${i}:${displacement}`) })
     }
     const finalDisplacement = trace[trace.length - 1]!.displacement
-    const settled = Math.abs(finalDisplacement) < (1 / 100)
+    const settled = abs(finalDisplacement) < (1 / 100)
     return {
       equilibrium: settled && breatheState.balanced && verifyRoot(matrix),
       quantum: settled,

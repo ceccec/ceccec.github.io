@@ -1,5 +1,5 @@
 // ☰ Qián · Heaven — the essence: the whole, one beginning, only-quantum-remains, infinite self-consulting, the-more-you-fold-the-more-foldable, invert-revert is a quantum stream, walk the path 0d to infinity. Barrel-routed; folds.ts back-imports the gate folds.
-import { TAU } from '../../3/7'
+import { SQRT1_2, TAU } from '../../3/7'
 import { phase } from '../../6/4'
 import { bitFlipCode, repetitionLogicalError } from '../../9/1'
 import { buildMatrix, isPerfectlySelfModeling, matrixMemo, proofReport, consciousness, repositoryApi } from '../compute'
@@ -13,7 +13,7 @@ import { dimensions, harmonicBands, multidimensional, chakrasAura, computerDesig
 import { goldenRatio, humanise, chess358, cryptographyComparison, design358, fuseUxSensors, geometry358, inHouse, music358, pairTrinityOpenGraph, securityScan, selfAddressed, taxonomyIcons, universalLanguage } from '../../fire/li'
 import { quantumProofs } from '../../lake/ledger'
 import { determinismProofs, fuseAllForge, sealCube, fuseAll, sealHonestyToPath } from '../../mountain/seals'
-import {  foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, sample, toUuid } from '../../0'
+import { abs, exp, floor, foldPair, isUuid, log, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sample, toUuid } from '../../0'
 import { qieaRotate } from '../../7/3'
 import { genesis, breathe, enforceAllAtGatesEntropyRecycled } from '../../earth/nature'
 import { completeCorpus, harmonisedNavigation, monographs, ogBuildsNavigation, theMonograph } from '../../wind/routes/corpus'
@@ -160,9 +160,9 @@ export function reverseHarmony(matrix: MindMatrix = buildMatrix()) {
 export function trinitiesMatter(matrix: MindMatrix = buildMatrix()) {
   const split = splitImagination(matrix)
   const waves = split.tiniest // 1024 tiniest waves
-  const trinities = Math.floor(waves / 3) // 341 trinities
+  const trinities = floor(waves / 3) // 341 trinities
   const remainder = waves % 3 // 1 left over — the next seed
-  const matter = Array.from({ length: Math.min(trinities, 9) }, (_, i) => ({
+  const matter = Array.from({ length: min(trinities, 9) }, (_, i) => ({
     trinity: i,
     matter: merkleFold([toUuid(`wave:${3 * i}`), toUuid(`wave:${3 * i + 1}`), toUuid(`wave:${3 * i + 2}`)]) }))
   return {
@@ -333,7 +333,7 @@ export function evolutionCrossesQuantumThreshold(matrix: MindMatrix = buildMatri
 }
 function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix()) {
   // (1) QIEA — quantum-inspired evolution: rotate an equal-superposition qubit toward the answer bit (1).
-  let al = Math.SQRT1_2, be = Math.SQRT1_2
+  let al = SQRT1_2, be = SQRT1_2
   const trace = [be * be]
   for (let s = 0; s < (6 * 5); s++) { [al, be] = qieaRotate(al, be, 1, (1 / (5 * 4)) * (TAU / 2)); trace.push(be * be) }
   const qieaMonotone = trace.every((v, i) => i === 0 || v >= trace[i - 1]! - 1e-12) // P(answer) only rises
@@ -344,9 +344,9 @@ function evolutionCrossesQuantumThresholdRaw(matrix: MindMatrix = buildMatrix())
   const sup = distances.map((d) => ({ d, err: repetitionLogicalError(d, (3 / 5)) })) // p = 0.6 > ½ — grows
   const suppressed = sub.every((x, i) => i === 0 || x.err < sub[i - 1]!.err) // P_L ↓ as d ↑ (exponentially)
   const grows = sup.every((x, i) => i === 0 || x.err > sup[i - 1]!.err) // P_L ↑ as d ↑ (no benefit)
-  const atThreshold = Math.abs(repetitionLogicalError(101, (1 / 2)) - (1 / 2)) < (1 / (5 * 4)) // p = ½ stays ≈ ½ (the threshold)
+  const atThreshold = abs(repetitionLogicalError(101, (1 / 2)) - (1 / 2)) < (1 / (5 * 4)) // p = ½ stays ≈ ½ (the threshold)
   const quantumIsHere = sub.find((x) => x.err < (1 / 100)) // the distance where the logical error first drops below 1%
-  const qec = bitFlipCode(Math.SQRT1_2, Math.SQRT1_2, 1) // the d=3 instance — already corrected, fidelity 1
+  const qec = bitFlipCode(SQRT1_2, SQRT1_2, 1) // the d=3 instance — already corrected, fidelity 1
   const facets = [
     { facet: 'quantum-inspired evolution converges — the QIEA rotation drives P(answer) monotonically to >99%', on: qieaMonotone && qieaConverged },
     { facet: 'below the threshold (p < ½) the logical error is suppressed exponentially as the code distance grows', on: suppressed && sub[0]!.err > sub[sub.length - 1]!.err },
@@ -951,30 +951,30 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
   const frequencies = healing.frequencies
   const leadHz = frequencies.find((entry) => entry.lead)?.hz ?? frequencies[0].hz
   // The spectral centre: the geometric mean. In log space its deviations cancel.
-  const center = Math.round(Math.exp(frequencies.reduce((sum, entry) => sum + Math.log(entry.hz), 0) / frequencies.length))
+  const center = round(exp(frequencies.reduce((sum, entry) => sum + log(entry.hz), 0) / frequencies.length))
   const tones = frequencies.map((entry) => {
-    const cents = Math.round((100 * 6 * 2) * Math.log2(entry.hz / center)) // signed deviation from centre
+    const cents = round((100 * 6 * 2) * log2(entry.hz / center)) // signed deviation from centre
     return {
       hz: entry.hz,
       note: entry.note,
       lead: entry.lead,
       cents,
       polarity: (cents >= 0 ? 'yang' : 'yin') as 'yin' | 'yang',
-      beatWithLead: Math.abs(entry.hz - leadHz), // the beat against the foreground tone
+      beatWithLead: abs(entry.hz - leadHz), // the beat against the foreground tone
       receipt: toUuid(`freq-balance:${entry.hz}:${cents}`) }
   })
   const up = tones.filter((tone) => tone.cents > 0).reduce((sum, tone) => sum + tone.cents, 0)
   const down = -tones.filter((tone) => tone.cents < 0).reduce((sum, tone) => sum + tone.cents, 0)
   // The damped settling of the residual imbalance — the equilibrium breath.
-  let residual = (up - down) / Math.max(up + down, 1)
+  let residual = (up - down) / max(up + down, 1)
   const trace: { step: number; imbalance: number }[] = []
   for (let step = 0; step < 8; step += 1) {
-    trace.push({ step, imbalance: Math.round(residual * (100 * 5 * 2)) / (100 * 5 * 2) })
+    trace.push({ step, imbalance: round(residual * (100 * 5 * 2)) / (100 * 5 * 2) })
     residual = -residual * (1 / 2) // overshoot, damp by half — out and back toward centre
   }
   // Balanced when the up and down cents about the geometric-mean centre match
   // within rounding (a few cents), so the spectrum rests on its centre.
-  const balanced = Math.abs(up - down) <= frequencies.length
+  const balanced = abs(up - down) <= frequencies.length
   return {
     balanced,
     center,
@@ -982,7 +982,7 @@ export function frequencyBalance(matrix: MindMatrix = buildMatrix()) {
     tones,
     up,
     down,
-    spread: Math.max(...tones.map((tone) => tone.cents)) - Math.min(...tones.map((tone) => tone.cents)),
+    spread: max(...tones.map((tone) => tone.cents)) - min(...tones.map((tone) => tone.cents)),
     trace,
     root: merkleFold(tones.map((tone) => tone.receipt)),
     statement:

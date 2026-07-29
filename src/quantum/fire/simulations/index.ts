@@ -8,7 +8,7 @@ import { phase } from '../../../6/4'
 import { ELECTRONVOLT, PLANCK, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7'
 import { inductionStep } from '../../../mountain/vortex'
 import { wavelengthOf, larmorFrequency } from '../../../1/9'
-import {   prng, merkleFold, toUuid, roundTo } from '../../../0'
+import { cos, exp, hypot, merkleFold, prng, roundTo, sin, toUuid } from '../../../0'
 import { isIonizing } from '../../../9/1'
 import { radarRange } from '../../../3/7'
 import { TAU } from '../../../3/7'
@@ -41,7 +41,7 @@ export function planeWaveField(frequencyHz: number, opts: { e0?: number; samples
   const x: number[] = [], E: number[] = [], B: number[] = []
   for (let i = 0; i < samples; i++) {
     const xi = i * dx
-    const e = e0 * Math.cos(k * xi - w * t + phase)
+    const e = e0 * cos(k * xi - w * t + phase)
     x.push(xi); E.push(e); B.push(e / SPEED_OF_LIGHT) // B in phase, = E/c
   }
   return { x, E, B }
@@ -60,7 +60,7 @@ export function planeWaveCircular(frequencyHz: number, opts: { e0?: number; samp
   const x: number[] = [], Ey: number[] = [], Ez: number[] = []
   for (let i = 0; i < samples; i++) {
     const xi = i * dx, ph = k * xi - w * t
-    x.push(xi); Ey.push(e0 * Math.cos(ph)); Ez.push(handedness * e0 * Math.sin(ph))
+    x.push(xi); Ey.push(e0 * cos(ph)); Ez.push(handedness * e0 * sin(ph))
   }
   return { x, Ey, Ez }
 }
@@ -87,7 +87,7 @@ export function beamProfile(keV: number): { keV: number; frequencyHz: number; ph
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function opticalDepth(layers: readonly { mu: number; x: number }[]): number { return layers.reduce((acc, l) => acc + l.mu * l.x, 0) } // τ = Σ μᵢxᵢ
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
-export function beerLambert(i0: number, layers: readonly { mu: number; x: number }[]): number { return i0 * Math.exp(-opticalDepth(layers)) } // I = I₀·e^(−τ)
+export function beerLambert(i0: number, layers: readonly { mu: number; x: number }[]): number { return i0 * exp(-opticalDepth(layers)) } // I = I₀·e^(−τ)
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function muToHu(mu: number, muWater = (1 / 5)): number { return ((100 * 5 * 2) * (mu - muWater)) / muWater } // Hounsfield: water=0, air=−1000
 // Two-angle parallel-beam Radon (sinogram): column sums (0°) and row sums (90°); each value is a ray's optical depth.
@@ -152,19 +152,19 @@ export function blochEvolve(m0: readonly number[], opts: { T1: number; T2: numbe
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function fid(opts: { M0?: number; T2: number; f: number; dt?: number }, samples: number): number[] {
   const { M0 = 1, T2, f, dt = (1 / (100 * 5 * 2)) } = opts
-  return Array.from({ length: samples }, (_, n) => { const t = n * dt; return M0 * Math.exp(-t / T2) * Math.cos(TAU * f * t) })
+  return Array.from({ length: samples }, (_, n) => { const t = n * dt; return M0 * exp(-t / T2) * cos(TAU * f * t) })
 }
 // Closed-form longitudinal T1 recovery from saturation: Mz(t)=M0·(1−e^(−t/T1)).
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function t1Recovery(opts: { M0?: number; T1: number; dt?: number }, samples: number): number[] {
   const { M0 = 1, T1, dt = (1 / (5 * 2)) } = opts
-  return Array.from({ length: samples }, (_, n) => M0 * (1 - Math.exp(-(n * dt) / T1)))
+  return Array.from({ length: samples }, (_, n) => M0 * (1 - exp(-(n * dt) / T1)))
 }
 // Coil signal of a small fixed phantom: per-sample sum of each voxel's FID (rotating frame f=0 ⇒ cos=1).
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function phantomFid(voxels: readonly { M0: number; T2: number }[], opts: { f?: number; dt?: number }, samples: number): number[] {
   const { f = 0, dt = (1 / (100 * 5 * 2)) } = opts
-  return Array.from({ length: samples }, (_, n) => { const t = n * dt; const c = Math.cos(TAU * f * t); let s = 0; for (const v of voxels) s += v.M0 * Math.exp(-t / v.T2) * c; return s })
+  return Array.from({ length: samples }, (_, n) => { const t = n * dt; const c = cos(TAU * f * t); let s = 0; for (const v of voxels) s += v.M0 * exp(-t / v.T2) * c; return s })
 }
 /** @rosetta ✦₁ · Fire · clarity (EM simulators) */
 export function blochReceipt(opts: { B0: number; T1: number; T2: number; M0?: number; f?: number; dt?: number; steps: number }, signal: readonly number[]): { id: string; root: string; f0: number; ionizing: boolean } {
@@ -202,7 +202,7 @@ export function syntheticEcho(scene: RadarScene): { re: number[][]; im: number[]
     const fd = (2 * t.velocityMs * fc) / SPEED_OF_LIGHT
     for (let p = 0; p < nc; p++) for (let n = 0; n < ns; n++) {
       const ph = TAU * (fb * (n / fs) + fd * (p * tr))
-      re[p][n] += t.rcs * Math.cos(ph); im[p][n] += t.rcs * Math.sin(ph)
+      re[p][n] += t.rcs * cos(ph); im[p][n] += t.rcs * sin(ph)
     }
   }
   if (noise > 0) { const rng = prng(seed); for (let p = 0; p < nc; p++) for (let n = 0; n < ns; n++) { re[p][n] += (rng() - (1 / 2)) * 2 * noise; im[p][n] += (rng() - (1 / 2)) * 2 * noise } }
@@ -214,9 +214,9 @@ export function rangeDopplerMap(echo: { re: number[][]; im: number[][] }): numbe
   const nc = echo.re.length, ns = echo.re[0].length
   const r1r = Array.from({ length: nc }, () => Array.from({ length: ns }, () => 0))
   const r1i = Array.from({ length: nc }, () => Array.from({ length: ns }, () => 0))
-  for (let p = 0; p < nc; p++) for (let k = 0; k < ns; k++) { let ar = 0, ai = 0; for (let n = 0; n < ns; n++) { const a = (-TAU * k * n) / ns, cs = Math.cos(a), sn = Math.sin(a); ar += echo.re[p][n] * cs - echo.im[p][n] * sn; ai += echo.re[p][n] * sn + echo.im[p][n] * cs } r1r[p][k] = ar; r1i[p][k] = ai }
+  for (let p = 0; p < nc; p++) for (let k = 0; k < ns; k++) { let ar = 0, ai = 0; for (let n = 0; n < ns; n++) { const a = (-TAU * k * n) / ns, cs = cos(a), sn = sin(a); ar += echo.re[p][n] * cs - echo.im[p][n] * sn; ai += echo.re[p][n] * sn + echo.im[p][n] * cs } r1r[p][k] = ar; r1i[p][k] = ai }
   const mag = Array.from({ length: nc }, () => Array.from({ length: ns }, () => 0))
-  for (let k = 0; k < ns; k++) for (let m = 0; m < nc; m++) { let ar = 0, ai = 0; for (let p = 0; p < nc; p++) { const a = (-TAU * m * p) / nc, cs = Math.cos(a), sn = Math.sin(a); ar += r1r[p][k] * cs - r1i[p][k] * sn; ai += r1r[p][k] * sn + r1i[p][k] * cs } mag[m][k] = Math.hypot(ar, ai) }
+  for (let k = 0; k < ns; k++) for (let m = 0; m < nc; m++) { let ar = 0, ai = 0; for (let p = 0; p < nc; p++) { const a = (-TAU * m * p) / nc, cs = cos(a), sn = sin(a); ar += r1r[p][k] * cs - r1i[p][k] * sn; ai += r1r[p][k] * sn + r1i[p][k] * cs } mag[m][k] = hypot(ar, ai) }
   return mag
 }
 // Local-max peak pick; fftshift Doppler bin → signed velocity. dr=c/(2B), B=slope·ns/fs; dv via velocityResolution.

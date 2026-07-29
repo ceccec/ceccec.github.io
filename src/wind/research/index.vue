@@ -7,7 +7,7 @@ import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.v
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
-import { statusBadgeKind } from '../../../.vitepress/lib/status-badge'
+import { round } from '../../0/index.ts'
 
 const panel = shallowRef(researchPanelComputes())
 const millennium = shallowRef(millenniumPanelComputes())
@@ -142,8 +142,8 @@ runMillennium()
         <p class="research-index__meta">
           fold <code>harmonizeScienceDomainsInWavesOfWaves</code> ·
           pair <code>{{ domainHarm.pair }}</code> · dual <code>{{ domainHarm.dualPair }}</code> ·
-          mill={{ Math.round((domainHarm.journeyMillRatio ?? 0) * 100) }}% ·
-          test={{ Math.round((domainHarm.journeyTestRatio ?? 0) * 100) }}% ·
+          mill={{ round((domainHarm.journeyMillRatio ?? 0) * 100) }}% ·
+          test={{ round((domainHarm.journeyTestRatio ?? 0) * 100) }}% ·
           <code>npm run quantum:harmonize-domains</code>
         </p>
       </section>

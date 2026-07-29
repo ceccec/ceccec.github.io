@@ -8,7 +8,7 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { toUuid, merkleFold, foldPair, type Uuid } from '../../../0'
+import { foldPair, max, merkleFold, min, toUuid, type Uuid } from '../../../0'
 import { computedDistRoute } from '../../../quantum/lake/dist'
 // DEV-MOUNT ROOT FIX (2026-07-24): importing CLI_ENTRY_REL from the enforcement barrel put this
 // module inside the enforcement↔cache evaluation cycle — in dev's per-module ESM the computed key
@@ -57,7 +57,7 @@ export function envTimeoutMs(kind: TimeoutKind, env: NodeJS.ProcessEnv = process
   const raw = env[key]
   if (raw !== undefined && raw !== '') {
     const n = Number.parseInt(String(raw), (5 * 2))
-    if (!Number.isNaN(n) && n > 0) return Math.min(n, maxTimeoutMs(kind))
+    if (!Number.isNaN(n) && n > 0) return min(n, maxTimeoutMs(kind))
   }
   return defaultTimeoutMs(kind)
 }
@@ -69,8 +69,8 @@ export function parseTimeoutCliArgs(argv: readonly string[] = process.argv.slice
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
     if (arg === '--once') once = true
-    else if (arg === '--max-ticks' && argv[i + 1]) { maxTicks = Math.max(1, Number.parseInt(argv[++i], (5 * 2)) || 1); once = true }
-    else if (arg.startsWith('--max-ticks=')) { maxTicks = Math.max(1, Number.parseInt(arg.slice('--max-ticks='.length), (5 * 2)) || 1); once = true }
+    else if (arg === '--max-ticks' && argv[i + 1]) { maxTicks = max(1, Number.parseInt(argv[++i], (5 * 2)) || 1); once = true }
+    else if (arg.startsWith('--max-ticks=')) { maxTicks = max(1, Number.parseInt(arg.slice('--max-ticks='.length), (5 * 2)) || 1); once = true }
     else if (arg === '--timeout-ms' && argv[i + 1]) timeoutMs = Number.parseInt(argv[++i], (5 * 2))
     else if (arg.startsWith('--timeout-ms=')) timeoutMs = Number.parseInt(arg.slice('--timeout-ms='.length), (5 * 2))
   }
@@ -78,7 +78,7 @@ export function parseTimeoutCliArgs(argv: readonly string[] = process.argv.slice
 }
 
 export function resolveScriptTimeoutMs(kind: TimeoutKind, cli: TimeoutCliOptions): number {
-  if (cli.timeoutMs > 0) return Math.min(cli.timeoutMs, maxTimeoutMs(kind))
+  if (cli.timeoutMs > 0) return min(cli.timeoutMs, maxTimeoutMs(kind))
   return envTimeoutMs(kind)
 }
 

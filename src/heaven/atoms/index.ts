@@ -3,7 +3,7 @@ import { folderTailFromMethodName } from '../../pair/enforcement/gates/computati
 import { algorithmicCoolingBias, quantumBatteryAdvantage } from '../../9/1'
 import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../wind/types'
 import { buildMatrix, completeQuantumSolutionsImplemented } from '../compute'
-import {   isUuid, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../0'
+import { isUuid, max, memoByRoot, merge, merkleFold, min, roundTo, seedFromText, toUuid } from '../../0'
 import * as __ns_registry from '../../4/6' // call-time (cycle-safe): the theorem registry as a searchable source — closes foldQuestion's index gap
 import { crossFoldTrinity, torusUuid } from '../../fire/li'
 import { areaPairs, dualTorusTrinities } from '../../mountain/geometry'
@@ -600,8 +600,8 @@ export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()):
 
   const command = topCommand?.command.name ?? null
   const executed = command ? executeConceptCommand(command, { atom: topAtom?.atom.name ?? 'self' }, matrix) : null
-  const maxScore = Math.max(topAtom?.s ?? 0, topCommand?.s ?? 0, pages[0]?.s ?? 0, topTheorem?.s ?? 0)
-  const confidence = terms.length ? Math.min(1, maxScore / terms.length) : 0
+  const maxScore = max(topAtom?.s ?? 0, topCommand?.s ?? 0, pages[0]?.s ?? 0, topTheorem?.s ?? 0)
+  const confidence = terms.length ? min(1, maxScore / terms.length) : 0
   // matched ⟺ CONFIDENTLY answerable locally (≥ ½); below the threshold the agent should leak — a weak partial
   // match from the large registry is NOT a local answer, so matched=false keeps the leak boundary honest.
   const matched = confidence >= 1 / 2

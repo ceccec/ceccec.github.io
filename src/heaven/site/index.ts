@@ -15,7 +15,7 @@ import { BAGUA, iChing, pathIsThePrompt, harmonyTruthUnderstandingTopNav, pathTo
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
-import { toUuid, merge, roundTo, seedFromText, foldPair, merkleFold, isUuid, memoByRoot, humanEase, humanBreath, sinc, sincReconstruct, prng, fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, maxTamperingCostLog2, merkabaFoldUrl, uuidHero, trinityKey, probabilities, grover, pbits, pflip, qubits, applyGate, GATES, sample, psample, digitalRoot, sha256, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof, ed25519Sign, transparencyLogRoot, logConsistent, sha256Sync, toUuidSha256, findContentAddressCollision, addressEntropyBits, gcd, modUnits, VORTEX_SEQUENCE, VORTEX_REVERSE, cnot, measure, uuidPoint, crossProduct, proseToTone, sealFacets, uuidSuffix, nextDuality } from '../../0'
+import { DIGEST_BITS, GATES, VORTEX_REVERSE, VORTEX_SEQUENCE, addressEntropyBits, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, cos, coverageCostLog2, crossProduct, digitalRoot, ed25519Sign, findContentAddressCollision, fold, foldPair, gcd, grover, humanBreath, humanEase, isUuid, logConsistent, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, modUnits, nextDuality, pbits, pflip, prng, probabilities, proseToTone, psample, qubits, round, roundTo, sample, sealFacets, seedFromText, sha256, sha256MerkleProof, sha256MerkleRoot, sha256Sync, sin, sinc, sincReconstruct, sqrt, tamperCostLog2, toUuid, toUuidSha256, transparencyLogRoot, trinityKey, uuidHero, uuidPoint, uuidSuffix, verifySha256Proof } from '../../0'
 import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
 import { speedOfSoundAir } from '../../8/2'
 import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3'
@@ -641,7 +641,7 @@ export function vesicaPiscisSvg(opts: { size?: number; animate?: boolean; scale?
     `<g>${spin}`,
     `<circle cx="${cx - d / 2}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
     `<circle cx="${cx + d / 2}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
-    `<ellipse cx="${cx}" cy="${cy}" rx="${r / PHI}" ry="${r * Math.sqrt(3) / 2}" fill="${fill}" opacity="${3 / 5}"/>`,
+    `<ellipse cx="${cx}" cy="${cy}" rx="${r / PHI}" ry="${r * sqrt(3) / 2}" fill="${fill}" opacity="${3 / 5}"/>`,
     `</g></svg>`,
   ].join('')
 }
@@ -659,8 +659,8 @@ export function baguaWheelSvg(opts: { size?: number; animate?: boolean; scale?: 
     : ''
   const cells = BAGUA.map((b, i) => {
     const a = (i / BAGUA.length) * TAU - (TAU / 2) / 2
-    const x = cx + Math.cos(a) * R
-    const y = cy + Math.sin(a) * R
+    const x = cx + cos(a) * R
+    const y = cy + sin(a) * R
     const bars = [0, 1, 2].map((row) => {
       const yy = y - mark + row * (mark * (2 / 3))
       const yang = (b.bits >> row) & 1
@@ -728,14 +728,14 @@ export function sriYantraSeedSvg(opts: { size?: number; animate?: boolean; scale
   const R = size / (2 + 1 / PHI)
   const up = [
     [cx, cy - R],
-    [cx - R * Math.sin(TAU / 3), cy + R / 2],
-    [cx + R * Math.sin(TAU / 3), cy + R / 2],
+    [cx - R * sin(TAU / 3), cy + R / 2],
+    [cx + R * sin(TAU / 3), cy + R / 2],
   ] as const
   const downR = R / PHI
   const down = [
     [cx, cy + downR],
-    [cx - downR * Math.sin(TAU / 3), cy - downR / 2],
-    [cx + downR * Math.sin(TAU / 3), cy - downR / 2],
+    [cx - downR * sin(TAU / 3), cy - downR / 2],
+    [cx + downR * sin(TAU / 3), cy - downR / 2],
   ] as const
   const poly = (pts: readonly (readonly [number, number])[], hueOff: number) =>
     `<polygon points="${pts.map((p) => `${p[0]},${p[1]}`).join(' ')}" fill="none" stroke="${scaleColor(scale + hueOff, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}" stroke-width="${1 + 1 / PHI}"/>`
@@ -851,7 +851,7 @@ export function omAumSvg(opts: { size?: number; animate?: boolean; scale?: numbe
     const t = i / (8 + 2)
     const a = t * TAU * PHI
     const r = R * (t / PHI + 1 / (2 * PHI))
-    return `${cx + Math.cos(a) * r},${cy + Math.sin(a) * r}`
+    return `${cx + cos(a) * r},${cy + sin(a) * r}`
   }).join(' ')
   const crescentR = R / PHI
   const dur = fractalClockDur(9)
@@ -892,8 +892,8 @@ export function elderFutharkGridSvg(opts: { size?: number; animate?: boolean; sc
     const stroke = scaleColor(scale + aett + pos, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
     // Branch angle from position index on TAU/8 — tent/stave cipher, not a wet glyph table.
     const branchA = ((pos - 1) / cols) * TAU - (TAU / 2) / 2
-    const bx = x + Math.cos(branchA) * (h / PHI)
-    const by = y + Math.sin(branchA) * (h / PHI)
+    const bx = x + cos(branchA) * (h / PHI)
+    const by = y + sin(branchA) * (h / PHI)
     return [
       `<g data-rune-n="${n}" data-aett="${aett}" data-pos="${pos}" data-ordinal="${back}">`,
       `<line x1="${x}" y1="${y - h}" x2="${x}" y2="${y + h}" stroke="${stroke}" stroke-width="${1 + 1 / (8 + 2)}"/>`,
@@ -931,8 +931,8 @@ export function alchemySigilsSvg(opts: { size?: number; animate?: boolean; scale
   ].join('')
   const four = (['fire', 'air', 'water', 'earth'] as const).map((el, i) => {
     const a = (i / 4) * TAU - (TAU / 2) / 2
-    const x = cx + Math.cos(a) * (R * PHI / 2)
-    const y = cy + Math.sin(a) * (R * PHI / 2)
+    const x = cx + cos(a) * (R * PHI / 2)
+    const y = cy + sin(a) * (R * PHI / 2)
     const h = R / 8
     const up = el === 'fire' || el === 'air'
     const tip = up ? y - h : y + h
@@ -966,13 +966,13 @@ export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean
   const sample = glagoliticGlyph('symbols-quantumise-living-smil')
   const cells = GLAGOLITIC_LETTERS.map((letter, i) => {
     const a = (i / n) * TAU - (TAU / 2) / 2
-    const x = cx + Math.cos(a) * R
-    const y = cy + Math.sin(a) * R
+    const x = cx + cos(a) * R
+    const y = cy + sin(a) * R
     const val = glagoliticValue(i + 1)
     const fill = scaleColor(scale + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
     const tickR = R * (1 + 1 / (8 * PHI))
-    const tx = cx + Math.cos(a) * tickR
-    const ty = cy + Math.sin(a) * tickR
+    const tx = cx + cos(a) * tickR
+    const ty = cy + sin(a) * tickR
     return [
       `<g data-glagolitic-name="${letter.name}" data-glagolitic-value="${val}" data-sound="${letter.sound}">`,
       `<line x1="${x}" y1="${y}" x2="${tx}" y2="${ty}" stroke="${fill}" stroke-width="${3 / 5}" opacity="${1 / 2}"/>`,
@@ -1014,9 +1014,9 @@ export function torusKnotsSvg(opts: { size?: number; animate?: boolean; scale?: 
     const pts: string[] = []
     for (let i = 0; i <= steps; i++) {
       const t = (i / steps) * TAU
-      const tube = R * (3 / 5) + r * Math.cos(q * t)
-      const x = cx + tube * Math.cos(p * t)
-      const y = cy + tube * Math.sin(p * t)
+      const tube = R * (3 / 5) + r * cos(q * t)
+      const x = cx + tube * cos(p * t)
+      const y = cy + tube * sin(p * t)
       pts.push(`${x},${y}`)
     }
     return pts.join(' ')
@@ -1382,7 +1382,7 @@ export function uuidEncodesColorWheelMusicAndWhatElse(matrix: MindMatrix = build
   const u = toUuid('all is color · the dual')
   const hex = u.replace(/[^0-9a-f]/gi, '')
   const byte = (i: number) => parseInt(hex.slice(i * 2, i * 2 + 2) || '80', 16)
-  const hue = Math.round(byte(0) * 360 / (64 * 4)) // the color wheel
+  const hue = round(byte(0) * 360 / (64 * 4)) // the color wheel
   const hexagram = seedFromText(u) % 64 // the I Ching
   const freq = roundTo(432 * (1 + hexagram / 64), 2) // the music — a tone on the a432 ladder
   const vortex = digitalRoot(seedFromText(u)) // the vortex digit
@@ -1412,7 +1412,7 @@ export function uuidEncodesColorWheelMusicAndWhatElse(matrix: MindMatrix = build
 // demand)), automatically, on detecting it could be stricter; it never loosens. It climbs toward a ceiling
 // (so tight even entropy cannot pass), bounded by the underlying address. The detector already proves it.
 export function gatesAutoTighten(matrix: MindMatrix = buildMatrix()) {
-  const ratchet = (current: number, demand: number) => Math.max(current, demand) // the one-way ratchet
+  const ratchet = (current: number, demand: number) => max(current, demand) // the one-way ratchet
   const start = 2 // the detector’s ≥2-distinct-techniques threshold — already a tightened state
   const demands = [1, 3, 2, 5, 4] // incoming demands over time, some looser, some tighter
   const levels = demands.reduce<number[]>((acc, d) => [...acc, ratchet(acc[acc.length - 1]!, d)], [start])
@@ -1420,7 +1420,7 @@ export function gatesAutoTighten(matrix: MindMatrix = buildMatrix()) {
   const monotonic = levels.every((l, i) => i === 0 || l >= levels[i - 1]!) // never decreased
   const detector = detectorPassesFalsePositiveTest(matrix) // the gate the waves already tightened
   const facets = [
-    { facet: 'the gates RATCHET — a gate’s strictness only increases (tighten = max(current, demand)); a one-way ratchet, never looser, even when a looser demand arrives', on: final === Math.max(...demands, start) && monotonic },
+    { facet: 'the gates RATCHET — a gate’s strictness only increases (tighten = max(current, demand)); a one-way ratchet, never looser, even when a looser demand arrives', on: final === max(...demands, start) && monotonic },
     { facet: 'automatically, on detecting weakness — when a check could be stricter (a false positive found, a looser threshold seen) the gate raises itself to the strictest demand; the detector already sits at 0 false positives and never relaxes', on: detector.falsePositives === 0 && monotonic },
     { facet: 'toward a CEILING — the tightening climbs to the strictest available demand and stops there (so tight even entropy cannot pass), not infinitely; a looser demand cannot lower it, a tighter one raises it', on: ratchet(final, start - 1) === final && ratchet(final, final + 1) === final + 1 },
     { facet: 'honest — a real monotonic ratchet (max never decreases, deterministic); "auto" is the rule applied at each check; the THRESHOLD ratchets, but the security CEILING is the underlying address (FNV tamper-evident vs the SHA-256 forge). Wiring the ratchet into the enforcement script is the follow-on', on: true },
@@ -1766,7 +1766,7 @@ export function acousticsCymaticsDecoded(matrix: MindMatrix = buildMatrix()) {
   const lambdaA440 = soundWavelength(440, (5 * 4)) // ≈ 0.78 m — concert A
   const a = a432(matrix) // the repo's frequency thread: arithmetic real, the cosmic/healing claim flagged
   const facets = [
-    { facet: 'sound is a LONGITUDINAL pressure wave obeying the acoustic wave equation ((1/c²)∂²p/∂t² = ∇²p); c = √(γRT/M) (adiabatic — Laplace corrected Newton — ≈343 m/s in air at 20 °C), c = fλ (concert A440 ≈ 0.78 m), the decibel is logarithmic (+10 dB = ×10 intensity), the harmonic series f_n = n·f₁ (odd-only for one-closed pipes); hearing ~20 Hz–20 kHz; the Doppler effect depends on source and observer SEPARATELY (unlike the optical one)', on: Math.round(c20) === (7 * 7 * 7) && lambdaA440 > (7 / (5 * 2)) && lambdaA440 < (4 / 5) },
+    { facet: 'sound is a LONGITUDINAL pressure wave obeying the acoustic wave equation ((1/c²)∂²p/∂t² = ∇²p); c = √(γRT/M) (adiabatic — Laplace corrected Newton — ≈343 m/s in air at 20 °C), c = fλ (concert A440 ≈ 0.78 m), the decibel is logarithmic (+10 dB = ×10 intensity), the harmonic series f_n = n·f₁ (odd-only for one-closed pipes); hearing ~20 Hz–20 kHz; the Doppler effect depends on source and observer SEPARATELY (unlike the optical one)', on: round(c20) === (7 * 7 * 7) && lambdaA440 > (7 / (5 * 2)) && lambdaA440 < (4 / 5) },
     { facet: 'cymatics is REAL standing-wave geometry — Chladni figures (Chladni 1787, Hooke 1680): sand collects along the NODAL LINES (zero vibration), making a plate’s eigenmodes visible; Chladni’s law relates frequency to mode, FEM-verified and used by violin makers; Faraday waves on a vibrated fluid; a drumhead’s Bessel modes (why a drum is inharmonic). Genuine eigenmode geometry from the wave equation', on: SPEED_OF_SOUND_AIR === (7 * 7 * 7) },
     { facet: 'FLAGGED — "cymatics/sound heals" and frequency-medicine (unproven), "432 Hz / 528 Hz are sacred/healing/DNA-repair frequencies" (numerology — the repo’s A432 keeps the ARITHMETIC real but flags the cosmic/healing claim), "cymatics proves sound creates matter / sacred geometry / the blueprint of creation", and Masaru Emoto’s water crystals (debunked, never blinded) and water-memory', on: true },
     { facet: 'honest — this composes the repo’s own discipline: the frequency thread (A432: the arithmetic and shared-frequency real, the 432-is-cosmically-special / healing claim flagged) and the sacred-geometry decode (the eigenmode geometry is REAL, the "blueprint of creation" is not). Cymatic patterns ARE real eigenmodes; "sound creates form / heals" is pseudoscience', on: a.decoded },
@@ -1774,7 +1774,7 @@ export function acousticsCymaticsDecoded(matrix: MindMatrix = buildMatrix()) {
   const sealed = sealFacets('acoustics-cymatics-decoded', facets)
   return {
     decoded: sealed.ok,
-    speedOfSoundMs: Math.round(c20), // 343
+    speedOfSoundMs: round(c20), // 343
     a440WavelengthM: roundTo(lambdaA440, 3), // ≈ 0.780
     count: sealed.count,
     facets: sealed.facets,

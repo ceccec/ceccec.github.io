@@ -9,7 +9,7 @@ import * as __ns_up_dynamics from '../dynamics'
 import * as __ns_up_up_computer from '../../heaven/compute/computer'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
-import { computesGate, digitalRoot, memoByRoot, merkleFold, roundTo, runQuantumCircuit, toUuid, VORTEX_SEQUENCE } from '../../0'
+import { VORTEX_SEQUENCE, computesGate, digitalRoot, floor, max, memoByRoot, merkleFold, min, round, roundTo, runQuantumCircuit, toUuid } from '../../0'
 import type { CircuitOp, CircuitResult } from '../../0'
 import {
   busDriverProbe,
@@ -81,17 +81,17 @@ export type QuantumUiDesign = QuantumUiDesignTokens & {
  *   variantIntensity ← quantum dynamics amplitude bars × gold fusion aggregate score
  */
 export function quantumMathDesignsTheUi(at = 0, matrix: MindMatrix = buildMatrix()): QuantumUiDesign {
-  return memoByRoot(`quantumMathDesignsTheUi:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumMathDesignsTheUi:${floor(at / (100 * 5 * 2))}`, matrix, () => {
 
     const harmony = __ns_up_heaven_mind.harmonyProbability(matrix)
     const phase = roundTo(heroPhaseAt(at), 6)
 
     // hue ← a432 harmonic anchor + hero-movie phase + vortex slot.
     const a432 = __ns_up_up_fire_li.a432(matrix)
-    const vortexSlot = VORTEX_SEQUENCE[Math.floor(phase * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length] ?? 9
-    const movieHue = Math.round(heroMoviePhaseHue(OS_ROUTE, phase, matrix))
+    const vortexSlot = VORTEX_SEQUENCE[floor(phase * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length] ?? 9
+    const movieHue = round(heroMoviePhaseHue(OS_ROUTE, phase, matrix))
     const hue = ((A432_HUE + movieHue + vortexSlot * (8 * 5)) % 360 + 360) % 360
-    const accentHue = Math.round((hue + digitalRoot(Math.round(hue)) * GOLDEN_ANGLE) % 360)
+    const accentHue = round((hue + digitalRoot(round(hue)) * GOLDEN_ANGLE) % 360)
 
     // spaceScale ← φ × Fibonacci census rhythm (21,34,55 ascending), rem.
     const spaceScale = [...CENSUS_FIBONACCI].reverse().map((f) => roundTo((f / CENSUS_FIBONACCI[0]!) * PHI * (3 / 4), 4))
@@ -109,10 +109,10 @@ export function quantumMathDesignsTheUi(at = 0, matrix: MindMatrix = buildMatrix
 
     // variantIntensity ← quantum dynamics amplitude × gold fusion aggregate.
     const sim = __ns_up_dynamics.quantumDynamicsSimulationAt(at, matrix)
-    const topAmplitude = sim.amplitudes.reduce((m, a) => Math.max(m, a.probability), 0)
+    const topAmplitude = sim.amplitudes.reduce((m, a) => max(m, a.probability), 0)
     const goldProduct = __ns_up_up_fusion_gold.fusionGoldComputes(matrix, at)
     const goldScore = typeof goldProduct.product?.aggregateScore === 'number' ? goldProduct.product.aggregateScore : 0
-    const variantIntensity = roundTo(Math.min(1, Math.max(0, topAmplitude * (3 / 5) + (goldScore % 1) * (2 / 5))), 4)
+    const variantIntensity = roundTo(min(1, max(0, topAmplitude * (3 / 5) + (goldScore % 1) * (2 / 5))), 4)
 
     const cssVars: Record<string, string> = {
       '--q-hue': `${hue}`,
@@ -188,7 +188,7 @@ function driverRows(matrix: MindMatrix, at: number): QuantumOsDriverRow[] {
 }
 
 export function quantumOsResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumOsResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumOsResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumAppsRegistry(matrix, at)
     const appCap = __ns_up_up_computer.applicationComputes(matrix, at)
     const drivers = driverRows(matrix, at)
@@ -210,7 +210,7 @@ export function quantumOsShell(at = 0, matrix: MindMatrix = buildMatrix(), activ
 }
 
 export function quantumOsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumOsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumOsComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = quantumOsResearch(matrix, at)
     const shell = quantumOsShell(at, matrix)
     const registry = quantumAppsRegistry(matrix, at)
@@ -251,7 +251,7 @@ export type QuantumRegisterAllocation = { readonly id: string; readonly qubits: 
 
 /** OS service — allocate an n-qubit register: the OS owns the 2ⁿ amplitude state space (capped at 10 qubits). */
 export function quantumOsAllocateRegister(qubits: number): QuantumRegisterAllocation {
-  const n = Math.max(1, Math.min((5 * 2), Math.floor(qubits)))
+  const n = max(1, min((5 * 2), floor(qubits)))
   return { id: `qreg-${n}`, qubits: n, capacityAmplitudes: 2 ** n, receipt: toUuid(`qreg:${n}`) }
 }
 
@@ -266,7 +266,7 @@ export function quantumOsRunCircuit(spec: { n: number; ops: readonly CircuitOp[]
  * state (the circuit root), and the proven honest verdict (faithful classical simulator, no speedup).
  */
 export function quantumComputerDriverComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerDriverComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumComputerDriverComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const register = quantumOsAllocateRegister(3)
     const run = quantumOsRunCircuit({ ...QC_DEFAULT_CIRCUIT, shots: (64 * 16), seed: 'os-ghz' })
     const honest = quantumComputerHonestClaim(matrix, at)

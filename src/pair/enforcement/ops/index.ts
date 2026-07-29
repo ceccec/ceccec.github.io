@@ -9,7 +9,7 @@ import { DIMENSION_GATES, FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, UNFO
 import { readdirSync, readFileSync, rmSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { join, dirname, resolve, relative } from 'node:path'
-import { memoByRoot, merkleFold, toUuid, roundTo } from '../../../0'
+import { abs, max, memoByRoot, merkleFold, roundTo, toUuid } from '../../../0'
 import { buildMatrix } from '../../../heaven/compute'
 import type { MindMatrix } from '../../../wind/types'
 import { taxonomyIcons } from '../../../fire/li'
@@ -103,6 +103,10 @@ export async function runMissionGateExit(root: string): Promise<number> {
     process.stderr.write(`  ✗ HARD ${row.id} — open=${row.open} · ${row.theorem}\n`)
   }
   if (!invisible.passed) return 1
+  // HARD math/algebra — Math.* outside host floor (src/0 · src/3/7 only)
+  const { runMathAlgebraExit } = await import('../gates/strict/scan')
+  const mathAlgebraExit = runMathAlgebraExit(root)
+  if (mathAlgebraExit !== 0) return mathAlgebraExit
   // HARD srcMerkle/quantumize regression; WARN phase timings — pair gate/slow-build
   return runSlowBuildIsQuantumGapGateExit(root)
 }
@@ -318,7 +322,7 @@ export async function runCrackMeasureExit(root: string, argv: readonly string[] 
       }
       return `String(x) === '${lit}'`
     }
-    for (const q of lattice) for (let num = 1; num < q; num += 1) if (Math.abs(num / q - v) < 1e-9) return `${num} / ${q}`
+    for (const q of lattice) for (let num = 1; num < q; num += 1) if (abs(num / q - v) < 1e-9) return `${num} / ${q}`
     return 'ledger row (data) or derive from PHI/TAU'
   }
   for (const o of offenders) {
@@ -551,7 +555,7 @@ async function runRosettaExit(root: string, argv: readonly string[]) {
  *  (research · edit · verify) for the surgical action. Scans src + .vitepress. Exit 0 always —
  *  a worklist, not a gate (the ratchet is the falling top score). */
 function runLogicHuntExit(root: string, argv: readonly string[]): number {
-  const top = Math.max(1, Number(argv[0]) || (4 * 3))
+  const top = max(1, Number(argv[0]) || (4 * 3))
   const files: { rel: string; text: string }[] = []
   const walk = (rel: string): void => {
     let entries: { name: string; isDirectory: () => boolean }[]
@@ -929,7 +933,7 @@ export function theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost(root: s
   const rosettaNamed = filesWith(/\brosetta/i)           // the literal name
   const contentAddress = filesWith(/\btoUuid\b/)         // the rosetta's OPERATION (the rosetta IS the uuid)
   const others = { merge: filesWith(/\bmerge\b/), merkleFold: filesWith(/\bmerkleFold\b/), buildMatrix: filesWith(/\bbuildMatrix\b/), digitalRoot: filesWith(/\bdigitalRoot\b/) }
-  const maxOther = Math.max(...Object.values(others))
+  const maxOther = max(...Object.values(others))
   const rosettaAsUuidIsMost = contentAddress >= maxOther && contentAddress > rosettaNamed // the content-address is the top usage
   const usedInMostFiles = roundTo(contentAddress / files.length, 3)
   const facets = [

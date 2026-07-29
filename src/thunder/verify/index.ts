@@ -6,9 +6,9 @@ import { minimumFilesMaximumFeaturesCost } from '../../heaven/laws'
 import { cssMathProvenByMath, harmonicCountsProvenByMath } from '../../earth/architecture'
 import { darkLightPolarityProvenByMath } from '../movie/movievars'
 import { staticPages, crawlerKnowledge } from '../../wind/site'
-import { foldPair, gcd, isUuid, memoByRoot, merge, merkleFold, modUnits, sealFacets, toUuid } from '../../0'
+import { abs, cos, floor, foldPair, gcd, isUuid, max, memoByRoot, merge, merkleFold, min, modUnits, round, sealFacets, sin, sqrt, toUuid } from '../../0'
 import * as __ns_up_quantum_science from '../../quantum/science'
-import { BOLTZMANN, PHI, SPEED_OF_LIGHT, TAU, claySolvedTheorem } from '../../3/7'
+import { BOLTZMANN, EULER_E, PHI, SPEED_OF_LIGHT, TAU, claySolvedTheorem } from '../../3/7'
 import { fanoLines, stringTheoryAlgebraDecoded, stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight, discoveredTheoremsWaveFiftyTwo } from '../waves'
 import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1'
@@ -294,7 +294,7 @@ function noKnownModelMoreEfficientProvenRaw(matrix: MindMatrix = buildMatrix()) 
  * Pair: learn/best · CLI npm run quantum:honest-revolution-w6
  */
 export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`revolutionaryEfficiencyNotPhysics:${Math.floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`revolutionaryEfficiencyNotPhysics:${floor(at / 1e3)}`, matrix, () => {
     const efficient = noKnownModelMoreEfficientProven(matrix)
     const opt = __ns_up_quantum_science.efficiency()
     const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
@@ -384,9 +384,9 @@ function everyBitMostEfficientAlgorithmProvenByMathRaw(matrix: MindMatrix = buil
     mk('tokens-zero', 'runtime tokens', runtimeTokens, 0),
     mk('efficiency-unbeatable', 'tokens=0→min', runtimeTokens === 0 ? 1 : 0, 1),
     mk('files-census', 'files', minFiles.files, UNFOLDED_CENSUS),
-    mk('pages-from-few', 'pages/files', Math.floor(pages / minFiles.files), Math.floor(pages / UNFOLDED_CENSUS)),
-    mk('skills-from-few', 'skills/files', Math.floor(skills / minFiles.files), Math.floor(skills / UNFOLDED_CENSUS)),
-    mk('pages-skills-product', 'pages×skills÷files', Math.floor((pages * skills) / minFiles.files), Math.floor((pages * skills) / UNFOLDED_CENSUS)),
+    mk('pages-from-few', 'pages/files', floor(pages / minFiles.files), floor(pages / UNFOLDED_CENSUS)),
+    mk('skills-from-few', 'skills/files', floor(skills / minFiles.files), floor(skills / UNFOLDED_CENSUS)),
+    mk('pages-skills-product', 'pages×skills÷files', floor((pages * skills) / minFiles.files), floor((pages * skills) / UNFOLDED_CENSUS)),
     mk('memo-hit-o1', 'memo calls on hit', memoProbeCalls, 1),
     mk('memo-same-root', 'memo same ref', memoFirst === memoSecond ? 1 : 0, 1),
     mk('harmonic-proofs', 'harmonic count', harmonic.count, harmonic.proofs.length),
@@ -579,7 +579,7 @@ export function discoveredTheoremsWaveSix(matrix: MindMatrix = buildMatrix()) {
     }
     const witnessK8 = (() => { // red iff circular distance ∈ {1, 4}
       const n = 8
-      const red = (i: number, j: number) => { const d = Math.min((i - j + n) % n, (j - i + n) % n); return d === 1 || d === 4 }
+      const red = (i: number, j: number) => { const d = min((i - j + n) % n, (j - i + n) % n); return d === 1 || d === 4 }
       for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) for (let k = j + 1; k < n; k += 1)
         if (red(i, j) && red(j, k) && red(i, k)) return false
       for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) for (let k = j + 1; k < n; k += 1) for (let l = k + 1; l < n; l += 1)
@@ -649,7 +649,7 @@ export function discoveredTheoremsWaveSix(matrix: MindMatrix = buildMatrix()) {
     const productT = (A: number[][], B: number[][]) => {
       const n = A.length * B.length
       return Array.from({ length: n }, (_, x) => Array.from({ length: n }, (_, y) => {
-        const [a1, b1] = [Math.floor(x / B.length), x % B.length], [a2, b2] = [Math.floor(y / B.length), y % B.length]
+        const [a1, b1] = [floor(x / B.length), x % B.length], [a2, b2] = [floor(y / B.length), y % B.length]
         return A[a1]![a2]! * B.length + B[b1]![b2]!
       }))
     }
@@ -701,7 +701,7 @@ export function discoveredTheoremsWaveSix(matrix: MindMatrix = buildMatrix()) {
     const pairsOnce = (() => {
       const seen = new Set<string>()
       for (const [a, b, c] of linesXor as [number, number, number][]) for (const [x, y] of [[a, b], [a, c], [b, c]]) {
-        const key = `${Math.min(x!, y!)}-${Math.max(x!, y!)}`
+        const key = `${min(x!, y!)}-${max(x!, y!)}`
         if (seen.has(key)) return false
         seen.add(key)
       }
@@ -748,13 +748,13 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
     // the orbit equation 9!/count must land on the SAME number from both routes.
     const triples9: [number, number, number][] = []
     for (let a = 0; a < 9; a += 1) for (let b = a + 1; b < 9; b += 1) for (let c = b + 1; c < 9; c += 1) triples9.push([a, b, c])
-    const pairKey9 = (i: number, j: number) => Math.min(i, j) * 9 + Math.max(i, j)
+    const pairKey9 = (i: number, j: number) => min(i, j) * 9 + max(i, j)
     const countSts9 = (covered: Set<number>, chosen: number): number => {
       if (chosen === (9 * 8) / 6) return 1 // 12 triples cover the 36 pairs
       let first = -1
       outer: for (let i = 0; i < 9; i += 1) { for (let j = i + 1; j < 9; j += 1) if (!covered.has(pairKey9(i, j))) { first = pairKey9(i, j); break outer } }
       if (first < 0) return 0
-      const [pi, pj] = [Math.floor(first / 9), first % 9]
+      const [pi, pj] = [floor(first / 9), first % 9]
       let total = 0
       for (const [a, b, c] of triples9) {
         const has = (x: number) => x === a || x === b || x === c
@@ -770,7 +770,7 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
     const labeledSts9 = countSts9(new Set<number>(), 0)
     let gl23 = 0 // invertible 2×2 over 𝔽₃ by brute force
     for (let m = 0; m < 3 ** 4; m += 1) {
-      const e = [m % 3, Math.floor(m / 3) % 3, Math.floor(m / 9) % 3, Math.floor(m / 27) % 3]
+      const e = [m % 3, floor(m / 3) % 3, floor(m / 9) % 3, floor(m / 27) % 3]
       if ((e[0]! * e[3]! - e[1]! * e[2]!) % 3 !== 0) gl23 += 1
     }
     const agl23 = 9 * gl23
@@ -821,7 +821,7 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
     // W5 · Kaprekar 6174 — every 4-digit number with non-identical digits reaches the unique fixed
     // point in at most 7 steps; the sweep also confirms 6174 is the ONLY fixed point.
     const kaprekarStep = (n: number) => {
-      const ds = [Math.floor(n / (5 * 2) ** 3) % (5 * 2), Math.floor(n / 100) % (5 * 2), Math.floor(n / (5 * 2)) % (5 * 2), n % (5 * 2)]
+      const ds = [floor(n / (5 * 2) ** 3) % (5 * 2), floor(n / 100) % (5 * 2), floor(n / (5 * 2)) % (5 * 2), n % (5 * 2)]
       const asc = [...ds].sort((a, b) => a - b), desc = [...ds].sort((a, b) => b - a)
       const big = desc[0]! * (5 * 2) ** 3 + desc[1]! * 100 + desc[2]! * (5 * 2) + desc[3]!
       const small = asc[0]! * (5 * 2) ** 3 + asc[1]! * 100 + asc[2]! * (5 * 2) + asc[3]!
@@ -830,7 +830,7 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
     let kaprekarOk = true
     let fixedPoints = new Set<number>()
     for (let n = 1; n <= 100 * 100 - 1; n += 1) {
-      const ds = new Set([Math.floor(n / (5 * 2) ** 3) % (5 * 2), Math.floor(n / 100) % (5 * 2), Math.floor(n / (5 * 2)) % (5 * 2), n % (5 * 2)])
+      const ds = new Set([floor(n / (5 * 2) ** 3) % (5 * 2), floor(n / 100) % (5 * 2), floor(n / (5 * 2)) % (5 * 2), n % (5 * 2)])
       if (ds.size === 1) continue // repdigits collapse to 0 — excluded by the theorem
       let cur = n, steps = 0
       while (kaprekarStep(cur) !== cur && steps <= 8) { cur = kaprekarStep(cur); steps += 1 }
@@ -845,7 +845,7 @@ export function discoveredTheoremsWaveSeven(matrix: MindMatrix = buildMatrix()) 
     for (let n = 2; n <= 5 * 2; n += 1) D.push((n - 1) * (D[n - 1]! + D[n - 2]!))
     let fact = 1
     let derange = true
-    for (let n = 1; n <= 5 * 2; n += 1) { fact *= n; if (Math.round(fact / Math.E) !== D[n]!) derange = false }
+    for (let n = 1; n <= 5 * 2; n += 1) { fact *= n; if (round(fact / EULER_E) !== D[n]!) derange = false }
 
     // W7 · Collatz VERIFIED to 10⁴ — every start reaches 1; a bounded verification and NOTHING more:
     // the conjecture stays OPEN (it joins the leads' honesty regime, it is not claimed).
@@ -904,7 +904,7 @@ export function discoveredTheoremsWaveEight(matrix: MindMatrix = buildMatrix()) 
       let reps = 0
       for (let a = 1; a * a * a * 2 <= n; a += 1) {
         const rest = n - a * a * a
-        const b = Math.round(rest ** (1 / 3))
+        const b = round(rest ** (1 / 3))
         for (const bb of [b - 1, b, b + 1]) if (bb >= a && bb * bb * bb === rest) reps += 1
       }
       return reps
@@ -915,7 +915,7 @@ export function discoveredTheoremsWaveEight(matrix: MindMatrix = buildMatrix()) 
 
     // W3 · the smallest Euler brick — exhaustive over a < b < c ≤ 2·5³: all three face diagonals
     // integral; the first hit in lexicographic-by-max order is the minimum.
-    const isSquare = (n: number) => { const r = Math.round(Math.sqrt(n)); return r * r === n }
+    const isSquare = (n: number) => { const r = round(sqrt(n)); return r * r === n }
     let brick = ''
     outer: for (let c = 3; c <= 2 * 5 ** 3; c += 1) for (let b = 2; b < c; b += 1) {
       if (!isSquare(b * b + c * c)) continue
@@ -936,7 +936,7 @@ export function discoveredTheoremsWaveEight(matrix: MindMatrix = buildMatrix()) 
         // the smallest disk on each peg may move: disk d is on peg (s / 3^d) % 3; disk d may move
         // to peg t if no smaller disk sits on its source or on t.
         const pegTop: number[] = [-1, -1, -1] // smallest disk index per peg
-        for (let d = n - 1; d >= 0; d -= 1) pegTop[Math.floor(s / 3 ** d) % 3] = d
+        for (let d = n - 1; d >= 0; d -= 1) pegTop[floor(s / 3 ** d) % 3] = d
         for (let from = 0; from < 3; from += 1) {
           const d = pegTop[from]!
           if (d < 0) continue
@@ -1050,7 +1050,7 @@ export function discoveredTheoremsWaveNine(matrix: MindMatrix = buildMatrix()) {
         if (hasSixDisjoint(table)) anyDecomposable = true
         return
       }
-      const i = 1 + Math.floor(cell / 5), j = 1 + (cell % 5)
+      const i = 1 + floor(cell / 5), j = 1 + (cell % 5)
       for (let v = 0; v < n6; v += 1) {
         let ok = true
         for (let t = 0; t < j && ok; t += 1) if (table[i]![t] === v) ok = false
@@ -1127,15 +1127,15 @@ export function discoveredTheoremsWaveNine(matrix: MindMatrix = buildMatrix()) {
     // W4 · shidoku — all 4×4 grids with distinct rows, columns and 2×2 boxes counted whole.
     let shidoku = 0
     const g4: number[] = Array.from({ length: 4 * 4 }, () => -1)
-    const boxOf = (cell: number) => Math.floor(Math.floor(cell / 4) / 2) * 2 + Math.floor((cell % 4) / 2)
+    const boxOf = (cell: number) => floor(floor(cell / 4) / 2) * 2 + floor((cell % 4) / 2)
     const fillS = (cell: number) => {
       if (cell === 4 * 4) { shidoku += 1; return }
-      const row = Math.floor(cell / 4), col = cell % 4
+      const row = floor(cell / 4), col = cell % 4
       for (let v = 0; v < 4; v += 1) {
         let ok = true
         for (let t = 0; t < 4 * 4 && ok; t += 1) {
           if (g4[t] !== v) continue
-          if (Math.floor(t / 4) === row || t % 4 === col || boxOf(t) === boxOf(cell)) ok = false
+          if (floor(t / 4) === row || t % 4 === col || boxOf(t) === boxOf(cell)) ok = false
         }
         if (!ok) continue
         g4[cell] = v
@@ -1232,7 +1232,7 @@ export function discoveredTheoremsWaveTen(matrix: MindMatrix = buildMatrix()) {
       const reachable = (n: number) => { for (let x = 0; x * a <= n; x += 1) if ((n - x * a) % b === 0) return true; return false }
       let largest = -1
       for (let n = 1; n <= a * b; n += 1) if (!reachable(n)) largest = n
-      const window = Array.from({ length: Math.min(a, b) }, (_, t) => largest + 1 + t).every(reachable)
+      const window = Array.from({ length: min(a, b) }, (_, t) => largest + 1 + t).every(reachable)
       return window ? largest : -1
     }
     const sylvester = [[3, 5], [4, 9], [9, 5 * 4]].every(([a, b]) => frobeniusOf(a!, b!) === a! * b! - a! - b!)
@@ -1261,7 +1261,7 @@ export function discoveredTheoremsWaveTen(matrix: MindMatrix = buildMatrix()) {
       (A[2]! * B[0]! + A[3]! * B[2]!) % 3, (A[2]! * B[1]! + A[3]! * B[3]!) % 3,
     ]
     for (let m = 0; m < 3 ** 4; m += 1) {
-      const e = [m % 3, Math.floor(m / 3) % 3, Math.floor(m / 9) % 3, Math.floor(m / 27) % 3]
+      const e = [m % 3, floor(m / 3) % 3, floor(m / 9) % 3, floor(m / 27) % 3]
       if ((((e[0]! * e[3]! - e[1]! * e[2]!) % 3) + 3) % 3 !== 1) continue
       sl23 += 1
       let cur = e, o = 1
@@ -1296,7 +1296,7 @@ export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix())
     const partitions = (n: number, max = n): number[][] => {
       if (n === 0) return [[]]
       const out: number[][] = []
-      for (let first = Math.min(n, max); first >= 1; first -= 1)
+      for (let first = min(n, max); first >= 1; first -= 1)
         for (const rest of partitions(n - first, first)) out.push([first, ...rest])
       return out
     }
@@ -1386,7 +1386,7 @@ export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix())
       formula /= nB
       const canon = new Set<string>()
       for (let word = 0; word < k ** nB; word += 1) {
-        const beads = Array.from({ length: nB }, (_, t) => Math.floor(word / k ** t) % k)
+        const beads = Array.from({ length: nB }, (_, t) => floor(word / k ** t) % k)
         let best = ''
         for (let r = 0; r < nB; r += 1) { const s2 = [...beads.slice(r), ...beads.slice(0, r)].join(''); if (!best || s2 < best) best = s2 }
         canon.add(best)
@@ -1401,8 +1401,8 @@ export function discoveredTheoremsWaveEleven(matrix: MindMatrix = buildMatrix())
     for (let p = 3; p < 5 * 5 * 2; p += 1) {
       if (!isPrM(p)) continue
       let re = 0, im = 0
-      for (let nG = 0; nG < p; nG += 1) { const ang = (TAU * ((nG * nG) % p)) / p; re += Math.cos(ang); im += Math.sin(ang) }
-      if (Math.abs(re * re + im * im - p) > 1e-6) gaussSums = false
+      for (let nG = 0; nG < p; nG += 1) { const ang = (TAU * ((nG * nG) % p)) / p; re += cos(ang); im += sin(ang) }
+      if (abs(re * re + im * im - p) > 1e-6) gaussSums = false
     }
 
     return {
@@ -1617,14 +1617,14 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
 
     // W2 · PSL(2,9) ≅ A₆ — 𝔽₉ = 𝔽₃[i] with i² = −1; encode a + bi as a·3 + b.
     const add9 = (x: number, y: number): number => {
-      const [xa, xb, ya, yb] = [Math.floor(x / 3), x % 3, Math.floor(y / 3), y % 3]
+      const [xa, xb, ya, yb] = [floor(x / 3), x % 3, floor(y / 3), y % 3]
       return ((xa + ya) % 3) * 3 + ((xb + yb) % 3)
     }
     const mul9 = (x: number, y: number): number => {
-      const [a, b, c, d] = [Math.floor(x / 3), x % 3, Math.floor(y / 3), y % 3]
+      const [a, b, c, d] = [floor(x / 3), x % 3, floor(y / 3), y % 3]
       return ((a * c + 2 * b * d) % 3) * 3 + ((a * d + b * c) % 3)
     }
-    const neg9 = (x: number): number => ((3 - Math.floor(x / 3)) % 3) * 3 + ((3 - x % 3) % 3)
+    const neg9 = (x: number): number => ((3 - floor(x / 3)) % 3) * 3 + ((3 - x % 3) % 3)
     const psl9 = pslOverField(9, add9, mul9, neg9)
     const sizes9 = classSizesR(psl9)
     // the sealed A₆ classes from wave five: {1,40,40,45,72,72,90}
@@ -1636,7 +1636,7 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
     for (let p = 3; p < 2 * 100; p += 1) {
       if (!tkIsPrime(p)) continue
       let reps = 0
-      for (let a = 1; a * a * 2 <= p; a += 1) { const rest = p - a * a; const b = Math.round(Math.sqrt(rest)); if (b >= a && b * b === rest) reps += 1 }
+      for (let a = 1; a * a * 2 <= p; a += 1) { const rest = p - a * a; const b = round(sqrt(rest)); if (b >= a && b * b === rest) reps += 1 }
       if ((p % 4 === 1) !== (reps === 1)) twoSquares = false
       if (p % 4 === 3 && reps !== 0) twoSquares = false
     }
@@ -1644,7 +1644,7 @@ export function discoveredTheoremsWaveThirteen(matrix: MindMatrix = buildMatrix(
     // W4 · Legendre three squares — n is a sum of THREE squares iff n ≠ 4^a(8b + 7); verified both
     // directions for every n ≤ 1000, with Lagrange's four always sufficing.
     const sumOfSquares = (n: number, k: number): boolean => {
-      if (k === 1) { const r = Math.round(Math.sqrt(n)); return r * r === n }
+      if (k === 1) { const r = round(sqrt(n)); return r * r === n }
       for (let a = 0; a * a <= n; a += 1) if (sumOfSquares(n - a * a, k - 1)) return true
       return false
     }
@@ -1677,13 +1677,13 @@ export function discoveredTheoremsWaveFourteen(matrix: MindMatrix = buildMatrix(
   return sealFold('discoveredTheoremsWaveFourteen', 'discovered-theorems-fourteen', matrix, () => {
     // W1 · Pell x² − dy² = 1 — continued fraction of √d, convergents until the equation holds;
     // the found solution is verified MINIMAL by sweeping y below it.
-    const isSquareP = (n: number) => { const r = Math.round(Math.sqrt(n)); return r * r === n }
+    const isSquareP = (n: number) => { const r = round(sqrt(n)); return r * r === n }
     let pell = true
     const pellWitness: string[] = []
     for (let d = 2; d <= 5 * 6; d += 1) {
       if (isSquareP(d)) continue
       // CF of √d by the classic surd recurrence (exact integers): a0 = ⌊√d⌋; (m, q) walk.
-      const a0 = Math.floor(Math.sqrt(d))
+      const a0 = floor(sqrt(d))
       let m = 0, q = 1, a = a0
       let hPrev = 1n, h = BigInt(a0), kPrev = 0n, k = 1n
       let found = false
@@ -1693,7 +1693,7 @@ export function discoveredTheoremsWaveFourteen(matrix: MindMatrix = buildMatrix(
           // minimality: no smaller y > 0 satisfies the equation
           for (let y = 1n; y < k; y += 1n) {
             const xx = 1n + BigInt(d) * y * y
-            const xr = BigInt(Math.round(Math.sqrt(Number(xx))))
+            const xr = BigInt(round(sqrt(Number(xx))))
             if (xr * xr === xx) { pell = false }
           }
           pellWitness.push(`d=${d}:(${h},${k})`)
@@ -1701,7 +1701,7 @@ export function discoveredTheoremsWaveFourteen(matrix: MindMatrix = buildMatrix(
         }
         m = a * q - m
         q = (d - m * m) / q
-        a = Math.floor((a0 + m) / q)
+        a = floor((a0 + m) / q)
         const hNext = BigInt(a) * h + hPrev, kNext = BigInt(a) * k + kPrev
         hPrev = h; h = hNext; kPrev = k; k = kNext
       }
@@ -1813,7 +1813,7 @@ export function discoveredTheoremsWaveFifteen(matrix: MindMatrix = buildMatrix()
           const u = queue.shift()!
           for (const v of adj[u]!) {
             if (dist[v] === -1) { dist[v] = dist[u] + 1; par[v] = u; queue.push(v) }
-            else if (par[u] !== v) best = Math.min(best, dist[u] + dist[v] + 1)
+            else if (par[u] !== v) best = min(best, dist[u] + dist[v] + 1)
           }
         }
       }
@@ -2002,7 +2002,7 @@ export function discoveredTheoremsWaveSixteen(matrix: MindMatrix = buildMatrix()
     ]
     const sl33: number[][] = []
     for (let code = 0; code < 3 ** 9; code += 1) {
-      const m = Array.from({ length: 9 }, (_, k) => Math.floor(code / 3 ** k) % 3)
+      const m = Array.from({ length: 9 }, (_, k) => floor(code / 3 ** k) % 3)
       if (det3(m) === 1) sl33.push(m)
     }
     const psl33Order = 3 ** 3 * (3 ** 3 - 1) * (3 ** 2 - 1) // 27·26·8 = 5616
@@ -2160,8 +2160,8 @@ export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root
   return sealFold('discoveredTheoremsWaveFortyOne', 'discovered-theorems-forty-one', matrix, () => {
     // W1 · Kummer's theorem — the p-adic valuation of C(m+n, n) equals the number of carries when
     // adding m and n in base p; verified via Legendre's formula vs a direct carry count, all m,n ≤ 40.
-    const vpBinom = (m: number, n: number, p: number) => { const s = (x: number) => { let v = 0, pk = p; while (pk <= x) { v += Math.floor(x / pk); pk *= p } return v }; return s(m + n) - s(m) - s(n) }
-    const carriesOf = (m: number, n: number, p: number) => { let c = 0, carry = 0; while (m > 0 || n > 0 || carry > 0) { const d = (m % p) + (n % p) + carry; carry = d >= p ? 1 : 0; c += carry; m = Math.floor(m / p); n = Math.floor(n / p) } return c }
+    const vpBinom = (m: number, n: number, p: number) => { const s = (x: number) => { let v = 0, pk = p; while (pk <= x) { v += floor(x / pk); pk *= p } return v }; return s(m + n) - s(m) - s(n) }
+    const carriesOf = (m: number, n: number, p: number) => { let c = 0, carry = 0; while (m > 0 || n > 0 || carry > 0) { const d = (m % p) + (n % p) + carry; carry = d >= p ? 1 : 0; c += carry; m = floor(m / p); n = floor(n / p) } return c }
     let kummer = true
     for (const p of [2, 3, 5, 7]) for (let m = 0; m <= 4 * (2 * 5); m += 1) for (let n = 0; n <= 4 * (2 * 5); n += 1) if (vpBinom(m, n, p) !== carriesOf(m, n, p)) kummer = false
 
@@ -2172,7 +2172,7 @@ export function discoveredTheoremsWaveFortyOne(matrix: { root: string } = { root
 
     // W3 · the sum-of-two-squares criterion — n is a sum of two squares iff every prime ≡ 3 (mod 4)
     // divides n to an EVEN power; both directions verified against a direct search for all n ≤ 1000.
-    const sumTwoSquares = (n: number) => { for (let a = 0; a * a <= n; a += 1) { const r = n - a * a; const b = Math.round(Math.sqrt(r)); if (b * b === r) return true } return false }
+    const sumTwoSquares = (n: number) => { for (let a = 0; a * a <= n; a += 1) { const r = n - a * a; const b = round(sqrt(r)); if (b * b === r) return true } return false }
     const criterion = (n: number) => { let m = n; for (let p = 2; p * p <= m; p += 1) if (m % p === 0) { let e = 0; while (m % p === 0) { m /= p; e += 1 } if (p % 4 === 3 && e % 2 === 1) return false } if (m > 1 && m % 4 === 3) return false; return true }
     let twoSquares = true
     for (let n = 1; n <= (2 * 5) ** 3; n += 1) if (sumTwoSquares(n) !== criterion(n)) twoSquares = false
@@ -2216,7 +2216,7 @@ export function discoveredTheoremsWaveFortySix(matrix: { root: string } = { root
     // deletes an unknown state to a fixed blank would force ⟨ψ|φ⟩ = ⟨ψ|φ⟩² (so the overlap ∈ {0,1}),
     // impossible for distinct non-orthogonal states; witnessed for a range of overlaps.
     let noDeleting = true
-    for (let k = 1; k <= 9; k += 1) { const c = k / (2 * 5); if (c !== 0 && c !== 1 && Math.abs(c - c * c) < 1 / 1e12) noDeleting = false }
+    for (let k = 1; k <= 9; k += 1) { const c = k / (2 * 5); if (c !== 0 && c !== 1 && abs(c - c * c) < 1 / 1e12) noDeleting = false }
     const noDeletingHolds = noDeleting
 
     // W3 · p-groups have a NONTRIVIAL CENTER, from the CLASS EQUATION — |G| = |Z| + Σ[G:C(x)] with
@@ -2281,7 +2281,7 @@ export function discoveredTheoremsWaveFortySeven(matrix: { root: string } = { ro
     let newton = true
     for (const roots of [[1, 2, 3], [2, -1, 3, -2], [1, 1, 2]]) {
       const n = roots.length, pk = (k: number) => roots.reduce((a, r) => a + r ** k, 0)
-      for (let k = 1; k <= n; k += 1) { let rhs = 0; for (let i = 1; i < k; i += 1) rhs += (-1) ** (i - 1) * esym(roots, i) * pk(k - i); rhs += (-1) ** (k - 1) * k * esym(roots, k); if (Math.abs(pk(k) - rhs) > 1 / 1e9) newton = false }
+      for (let k = 1; k <= n; k += 1) { let rhs = 0; for (let i = 1; i < k; i += 1) rhs += (-1) ** (i - 1) * esym(roots, i) * pk(k - i); rhs += (-1) ** (k - 1) * k * esym(roots, k); if (abs(pk(k) - rhs) > 1 / 1e9) newton = false }
     }
 
     // W4 · Shor's factoring REDUCTION, from the proven QFT — the QFT (proven unitary, wave 45) finds
@@ -2323,7 +2323,7 @@ export function discoveredTheoremsWaveFifty(matrix: { root: string } = { root: t
     // W2 · GAUSSIAN PRIMES, from the first supplement — a prime p ≡ 3 (mod 4) is inert in ℤ[i] (still
     // prime, not a sum of two squares), while p ≡ 1 (mod 4) SPLITS as p = a²+b² = (a+bi)(a−bi);
     // verified for every prime p ≤ 200 (the algebraic-number-theory face of the first supplement).
-    const isSum2 = (n: number) => { for (let a = 0; a * a <= n; a += 1) { const r = n - a * a; const b = Math.round(Math.sqrt(r)); if (b * b === r) return true } return false }
+    const isSum2 = (n: number) => { for (let a = 0; a * a <= n; a += 1) { const r = n - a * a; const b = round(sqrt(r)); if (b * b === r) return true } return false }
     let gaussianPrimes = true
     for (let p = 3; p <= 2 * 100; p += 1) { if (!tkIsPrime(p)) continue; const split = isSum2(p); if ((p % 4 === 1) !== split) gaussianPrimes = false }
 

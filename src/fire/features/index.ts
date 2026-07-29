@@ -3,7 +3,7 @@ import { phase } from '../../6/4'
 import { noCloningWitness, teleportQubit } from '../../9/1'
 import type { MindMatrix, QuantumUiEvidenceReport, QuantumUiUseCase } from '../../wind/types'
 import { buildMatrix, coverage, entropy, proofReport } from '../../heaven/compute'
-import { foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../0'
+import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../0'
 import { superdense } from '../../9/1'
 import { navigation358 } from '../../wind/learning'
 import { doubleTorusSurface, quantumDoubleTorus } from '../../mountain/topology'
@@ -23,7 +23,7 @@ import { foldThoughts, mindsRealiseByObservingPath } from '../../mountain/source
 import { selfSufficientWave } from '../../mountain/geometry'
 import { cryptoFuture } from '../../water/crypto'
 import { backgroundMovie, cloudflareBindings, complete, completeQuantumSolutionsImplemented, computedSlugsFoldTheGraph, diamondCompleteness, everyDiamondIsGate, everyObjectSameSpinFoldLaw, evolutionCrossesQuantumThreshold, fuseAll, gatesBehaveAsMcp, numberLabel, proofBundle, result, trinityEncryption, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
-import { TAU } from '../../3/7'
+import { LN2, TAU } from '../../3/7'
 
 // Complete quantum-computer browser OS. The portal is a whole operating system that
 // runs in the browser: a kernel (the agnostic core), processes (components and
@@ -314,7 +314,7 @@ export function quantumFusedDeviceEnergyHonest(matrix: MindMatrix = buildMatrix(
 function quantumFusedDeviceEnergyHonestRaw(matrix: MindMatrix = buildMatrix()) {
   // The physical constants and an honest order-of-magnitude energy ledger (joules).
   const kB = 1.380649e-23, T = (100 * 3) // Boltzmann constant; room temperature (K)
-  const landauerPerBit = kB * T * Math.LN2 // ≈ 2.87e-21 J — the thermodynamic floor on erasing one bit
+  const landauerPerBit = kB * T * LN2 // ≈ 2.87e-21 J — the thermodynamic floor on erasing one bit
   const realOpJoules = 1e-11 // ~10 pJ per CMOS operation — ~10 orders ABOVE Landauer ⇒ computation dissipates heat
   const radioTailJoules = (1 / 1) // ~order 1 J: an LTE/5G request holds the radio awake for seconds — the dominant mobile drain
   const localRecomputeJoules = 1e-3 // ~order 1 mJ: a page's deterministic, memoized folds recomputed client-side
@@ -683,7 +683,7 @@ export function adaptOpenMeteo(json: unknown): TorusDataRow {
 export function adaptOpenAlex(json: unknown): TorusDataRow {
   const counts = ((json as { results?: { cited_by_count?: number }[] })?.results ?? []).map((w) => w.cited_by_count ?? 0)
   const total = counts.reduce((a, b) => a + b, 0)
-  const top = counts.length ? Math.max(...counts) : 0
+  const top = counts.length ? max(...counts) : 0
   return { source: 'OpenAlex (works JSON)', dimensionless: 'top-work citations / total citations — concentration', value: total > 0 ? top / total : 0, unitCarrying: ['cited_by_count (count)'] }
 }
 

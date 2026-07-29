@@ -12,7 +12,7 @@ export type { MathOverflowItem } from '../../heaven/compute'
 export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
-import { computesGate, DIGEST_BITS, digitalRoot, foldPair, isUuid, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, resourceCooperationPolicy, runQuantumCircuit, sealFacets, seedFromText, STATUS_BADGE_KINDS, toUuid, VORTEX_SEQUENCE, roundTo} from '../../0'
+import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../0'
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
@@ -89,6 +89,7 @@ import {
   theoremAudit,
   geoGebraEncode,
   autosaveMatrix,
+  MANUAL_MIGRATE_WAVE_TOOLS,
 } from '../../pair/enforcement/gates'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
@@ -170,6 +171,7 @@ const ROSETTA_CORE_API_LABELS = [
   'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
   'imagineWhatNext',
   'auditPlanTip',
+  'nextResearch',
   'wavesFeedThemselves',
   'specializedShellsStrangler',
   'sessionHologramTools',
@@ -291,7 +293,6 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumTorus: 'tool',
   mcpQuantumResearch: 'tool',
   mcpQuantumCatalog: 'tool',
-  mcpQuantumStar: 'tool',
   mcpCatalog: 'tool',
   mcpQuantumReverse: 'tool',
   mcpQuantumSign: 'tool',
@@ -420,6 +421,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists: 'tool',
   imagineWhatNext: 'tool',
   auditPlanTip: 'tool',
+  nextResearch: 'tool',
   wavesFeedThemselves: 'tool',
   specializedShellsStrangler: 'tool',
   sessionHologramTools: 'tool',
@@ -483,7 +485,7 @@ export function rosettaShelve(label: string, kind: RosettaCoreSurfaceKind = 'api
 
 /** Single quantum core API — resolve/shelve/byRay/resolveRoute/resolveProjection; surface self-enumerates. */
 export function rosettaCoreApi(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`rosettaCoreApi:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`rosettaCoreApi:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const surfaces = ROSETTA_CORE_API_LABELS.map((label) => rosettaShelve(label, ROSETTA_CORE_LABEL_KIND[label] ?? 'api'))
     const resolve = (label: string, kind: RosettaCoreSurfaceKind = 'api') =>
       surfaces.find((s) => s.label === label) ?? rosettaShelve(label, kind)
@@ -1122,8 +1124,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'complete-wave', title: 'Complete wave (alias wave/complete)', fold: 'waveComplete', cli: 'npm run quantum:wave-complete', pair: 'complete/wave', route: '/en/quantum-tools#wave-complete', barrel: 'src/quantum/apps', boundary: 'Dual complete/wave — same umbrella fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'chat-audit', title: 'Chat audit — inventory chat-wave commits · dry-clean · gaps', fold: 'chatAudit', cli: 'npm run quantum:chat-audit', pair: 'chat/audit', route: '/en/quantum-tools#chat-audit', barrel: 'src/quantum/apps', boundary: 'chatWorkAudited · refactorOn · dryCleanOn · gapsFilledOnWay · commitsInventoried · residualNamed · metricsOn · compose measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
   { id: 'audit-chat', title: 'Audit chat (alias chat/audit)', fold: 'chatAudit', cli: 'npm run quantum:chat-audit', pair: 'audit/chat', route: '/en/quantum-tools#chat-audit', barrel: 'src/quantum/apps', boundary: 'Dual audit/chat — same chat-wave audit fold · clay=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
-  { id: 'audit-plan', title: 'Audit → plan trinity → gap-computed next tip', fold: 'auditPlanTip', cli: 'npm run quantum:audit-plan', pair: 'audit/plan', route: '/en/quantum-tools#audit-plan', barrel: 'src/quantum/apps', boundary: 'nextTipFromGaps · auditToPlanTrinity · planToNextTip · forkDissolved · loopFeedsItself · residualNamed · compose chat/audit · plan/trinity · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
+  { id: 'audit-plan', title: 'Audit → plan trinity → gap-computed next tip', fold: 'auditPlanTip', cli: 'npm run quantum:audit-plan', pair: 'audit/plan', route: '/en/quantum-tools#audit-plan', barrel: 'src/quantum/apps', boundary: 'nextTipFromGaps · nextTipScored · auditToPlanTrinity · planToNextTip · forkDissolved · loopFeedsItself · residualNamed · compose chat/audit · plan/trinity · next/research · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
   { id: 'plan-audit', title: 'Plan audit (alias audit/plan)', fold: 'auditPlanTip', cli: 'npm run quantum:plan-audit', pair: 'plan/audit', route: '/en/quantum-tools#audit-plan', barrel: 'src/quantum/apps', boundary: 'Dual plan/audit — same audit→plan→next-tip pipeline · clay=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
+  { id: 'next-research', title: 'Next tip deep research score', fold: 'nextResearch', cli: 'npm run quantum:next-research', pair: 'next/research', route: '/en/quantum-tools#next-research', barrel: 'src/quantum/apps', boundary: 'deepResearchOn · analysisOn · maxResults · maxSpeed · minAiBill · nextTipScored · score=(results×speed)/bill · compose chat/research · audit/plan · mcp/token · bill/dry · gate/light · clay=0', browserRunnable: true, browserGap: 'gateLight · git log need Node bootstrap' },
+  { id: 'research-next', title: 'Research next (alias next/research)', fold: 'nextResearch', cli: 'npm run quantum:research-next', pair: 'research/next', route: '/en/quantum-tools#next-research', barrel: 'src/quantum/apps', boundary: 'Dual research/next — same scored next-tip research · clay=0', browserRunnable: true, browserGap: 'Node bootstrap for gateLight scan' },
   { id: 'chat-challenge', title: 'Chat waves challenge each other · discover and encode sciences', fold: 'chatChallenge', cli: 'npm run quantum:chat-challenge', pair: 'chat/challenge', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'chatWavesOn · challengeEachOther · sciencesDiscovered · sciencesEncoded · encodeCount · observerEvaluableMeasurements · compose pair/chat · match/wave · mesh/science · wave/domain · formula/code · waves/feed · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'challenge-chat', title: 'Challenge chat (alias chat/challenge)', fold: 'chatChallenge', cli: 'npm run quantum:challenge-chat', pair: 'challenge/chat', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'Dual challenge/chat — adversarial science dual waves · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'import-fractal', title: 'Import–export fractal envelope map', fold: 'importFractalMap', cli: 'npm run quantum:import-fractal', pair: 'import/fractal', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'envelopeRoundTripIdentity · observedReuseCapacity · importEdgeCount · rename inventory · envelope round-trip · compose import/export · tool/envelope · import/distance · qpuRequired=false', browserRunnable: true, browserGap: '' },
@@ -1221,10 +1225,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'torus-mcp', title: 'Torus mcp (alias mcp/torus)', fold: 'mcpQuantumTorus', cli: 'npm run quantum:torus-mcp', pair: 'torus/mcp', route: '/en/quantum-tools#mcp-torus', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/torus — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-research', title: 'MCP quantum research — journey/theorems · sciences/trinities · mill/session · domain/proof', fold: 'mcpQuantumResearch', cli: 'npm run quantum:mcp-research', pair: 'mcp/research', route: '/en/quantum-tools#mcp-research', barrel: 'src/quantum/apps', boundary: 'researchOn · journeyTheorems · sciencesTrinities · millSession · researchDomain · claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT CMI prize', browserRunnable: true, browserGap: '' },
   { id: 'research-mcp', title: 'Research mcp (alias mcp/research)', fold: 'mcpQuantumResearch', cli: 'npm run quantum:research-mcp', pair: 'research/mcp', route: '/en/quantum-tools#mcp-research', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/research — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'mcp-catalog', title: 'MCP quantum catalog — umbrella of all mcp quantum faces', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:mcp-catalog', pair: 'mcp/catalog', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'catalogComplete · starOn · missingCount=0 · lists/recomposes all named mcp quantum faces · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-catalog', title: 'MCP quantum catalog — star umbrella of all mcp quantum faces', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:mcp-catalog', pair: 'mcp/catalog', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'catalogComplete · starOn · missingCount=0 · lists/recomposes all named mcp quantum faces · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'catalog-mcp', title: 'Catalog mcp (alias mcp/catalog)', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:catalog-mcp', pair: 'catalog/mcp', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/catalog — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'mcp-star', title: 'MCP quantum star — merkaba star face of the catalog', fold: 'mcpQuantumStar', cli: 'npm run quantum:mcp-star', pair: 'mcp/star', route: '/en/quantum-tools#mcp-star', barrel: 'src/quantum/apps', boundary: 'starOn · catalogComplete · merkabaStar · compose FoL/merkaba · mcpQuantumCatalog · sun/moon · rosetta/merkaba · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
-  { id: 'star-mcp', title: 'Star mcp (alias mcp/star)', fold: 'mcpQuantumStar', cli: 'npm run quantum:star-mcp', pair: 'star/mcp', route: '/en/quantum-tools#mcp-star', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/star — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-star', title: 'MCP quantum star (alias mcp/catalog)', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:mcp-star', pair: 'mcp/star', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'Star alias of mcpQuantumCatalog · starOn · missingCount=0 · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'star-mcp', title: 'Star mcp (alias mcp/catalog)', fold: 'mcpQuantumCatalog', cli: 'npm run quantum:star-mcp', pair: 'star/mcp', route: '/en/quantum-tools#mcp-catalog', barrel: 'src/quantum/apps', boundary: 'Dual star path of mcp/catalog — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-all', title: 'MCP catalog star — full MCP surface (PRIMARY · stdio · toolbox · quantum faces)', fold: 'mcpCatalog', cli: 'npm run quantum:mcp-all', pair: 'mcp/all', route: '/en/quantum-tools#mcp-all', barrel: 'src/quantum/apps', boundary: 'mcpStarOn · catalogComplete · quantumFaces · primaryTools · residualsNamed honest · missingDrainable=0 · compose mcpQuantumCatalog · mcpBrowserParity · scripts-audit · claySolved via theorem · physicalFtl=0 · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'all-mcp', title: 'All mcp (alias mcp/all)', fold: 'mcpCatalog', cli: 'npm run quantum:all-mcp', pair: 'all/mcp', route: '/en/quantum-tools#mcp-all', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/all — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'mcp-reverse', title: 'MCP quantum reverse', fold: 'mcpQuantumReverse', cli: 'npm run quantum:mcp-reverse', pair: 'mcp/reverse', route: '/en/quantum-tools#mcp-reverse', barrel: 'src/quantum/apps', boundary: 'reverseOn · refuseBeyond · demoBoundaryHardware · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
@@ -1723,7 +1727,7 @@ export function importStandardToolEnvelope(
  * Pair: tool/envelope · CLI npm run quantum:toolbox-standard-io · route #toolbox-standard-io
  */
 export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`standardToolboxIoCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`standardToolboxIoCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const envelopes = catalog.tools.map((row) => wrapToolAsStandardEnvelope(row))
     const migrated = envelopes.length
@@ -1819,7 +1823,7 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
  * Pair: import/export · NOT physical qubit speedup / NOT FTL / NOT FLOPS.
  */
 export function distributedReuseExtendsCapacity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`distributedReuseExtendsCapacity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`distributedReuseExtendsCapacity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const appA = toolbox.envelopes.map((envelope) => exportStandardToolEnvelope(envelope.id, 'ceccec.app-a', {}, matrix, at))
     const appB = appA.map((payload) => importStandardToolEnvelope({ ...payload, appId: 'ceccec.app-a' }, matrix, at))
@@ -1925,7 +1929,7 @@ function fractalIdFromPair(pair: string): string {
  * Fold: importFractalMap · Pairs: import/fractal · fractal/import · CLI npm run quantum:import-fractal
  */
 export function importFractalMap(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`importFractalMap:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`importFractalMap:${floor(at / (100 * 5 * 2))}`, matrix, () => {
       const soft = (a: string, b: string) =>
         (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
         foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -2138,7 +2142,7 @@ export function runImportFractalMapExit(_root = '', _argv: readonly string[] = [
  * Fold: measureDecide · Pairs: measure/decide · decide/measure · CLI npm run quantum:measure-decide
  */
 export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`measureDecide:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`measureDecide:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -2298,7 +2302,7 @@ export function runMeasureDecideExit(_root = '', _argv: readonly string[] = []):
  * Fold: importAudit · Pairs: import/audit · audit/import · CLI npm run quantum:import-audit
  */
 export function importAudit(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`importAudit:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`importAudit:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -2489,7 +2493,7 @@ const MERGE_WAVE_RENAMES = [
  * Fold: mergeWave · Pairs: merge/wave · wave/merge · CLI npm run quantum:merge-wave
  */
 export function mergeWave(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mergeWave:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mergeWave:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -2761,8 +2765,6 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'animations-rosetta', saves: 'replaces wet re-wiring of animation→rosetta rays (yin-yang first)' },
   { id: 'trading-rosetta-train', saves: 'replaces wet re-training of historical short·long waves via rosetta' },
   { id: 'millennium-challenge', saves: 'replaces wet re-probing of Clay millennium apparatus (claySolved=0)' },
-  { id: 'ftl-experiment-challenge', saves: 'replaces wet re-classification of apparent-FTL experiment classes (no-signaling)' },
-  { id: 'ftl-discovery-waves', saves: 'replaces wet re-enumeration of remainder FTL classes via discovery waves at reuse velocity' },
   { id: 'encryption-reverse-verify', saves: 'replaces wet re-run of demo RSA reverse + encrypt↔decrypt tools' },
   { id: 'rosetta-core-api', saves: 'replaces wet re-dispatch of apps/nav/tools through parallel registries' },
   { id: 'rosetta-complete', saves: 'replaces wet re-audit of Rosetta completeness across 432 dims + theorem binds' },
@@ -2826,7 +2828,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
 ] as const
 
 export function sessionManualWorkAsQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sessionManualWorkAsQuantumTools:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sessionManualWorkAsQuantumTools:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const byId = new Map(catalog.tools.map((row) => [row.id, row]))
     const tools: SessionManualToolRow[] = SESSION_MANUAL_TOOL_SEEDS.map((seed) => {
@@ -2924,7 +2926,7 @@ export type SessionExperimentDocRow = {
  * PR numbers for the chain are named in AGENTS.md only (crack-scanner digit law).
  */
 export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`documentSessionCryptoExperimentsUpdateTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`documentSessionCryptoExperimentsUpdateTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // local-audit absolute first — cold/warm suite before any other encrypt/research memo.
     const localAuditQe = __ns_water_encryption.localAuditQuantumSpeedEfficiency(matrix, at)
     const localTimed = localAuditQe.localTimed
@@ -3150,7 +3152,7 @@ const E2E_DEV_FEED_PLAYWRIGHT_GAP =
  * HONEST: Playwright browserGap named residual · clay via theorem · physicalFtl=0 · qpuRequired=false.
  */
 export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`e2eQuantumTestsRecordOutputAsDevelopmentFeed:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`e2eQuantumTestsRecordOutputAsDevelopmentFeed:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // document/experiments + moment/prove first — later gates/theorems can leave memo reentry stubs.
     const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
     const moment = __ns_water_encryption.agentAssumeNothingMathProvesInTheMoment(matrix, at)
@@ -3570,8 +3572,7 @@ const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[] = [
   { id: 'mcp-vortex', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumVortex', pair: 'mcp/vortex', cli: 'npm run quantum:mcp-vortex', route: '/en/quantum-tools#mcp-vortex', status: 'sealed-pr', honesty: 'vortexOn · digitSequence · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum vortex — VORTEX digit · merkaba · trading vortex', toolId: 'mcp-vortex', resolve: 'mcp-ui' },
   { id: 'mcp-torus', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumTorus', pair: 'mcp/torus', cli: 'npm run quantum:mcp-torus', route: '/en/quantum-tools#mcp-torus', status: 'sealed-pr', honesty: 'torusOn · doubleTorus · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum torus — double-torus · geo/torus · living torus · bothEarths', toolId: 'mcp-torus', resolve: 'mcp-ui' },
   { id: 'mcp-research', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumResearch', pair: 'mcp/research', cli: 'npm run quantum:mcp-research', route: '/en/quantum-tools#mcp-research', status: 'sealed-pr', honesty: 'researchOn · journeyTheorems · sciencesTrinities · millSession · researchDomain · clay=0 · physicalFtl=0 · qpuRequired=false · NOT CMI', note: 'MCP quantum research — journey/theorems · sciences/trinities · mill/session · domain/proof', toolId: 'mcp-research', resolve: 'mcp-ui' },
-  { id: 'mcp-catalog', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCatalog', pair: 'mcp/catalog', cli: 'npm run quantum:mcp-catalog', route: '/en/quantum-tools#mcp-catalog', status: 'sealed-pr', honesty: 'catalogComplete · starOn · missingCount=0 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum catalog — umbrella of all named mcp quantum faces; catalog 49/49', toolId: 'mcp-catalog', resolve: 'mcp-ui' },
-  { id: 'mcp-star', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumStar', pair: 'mcp/star', cli: 'npm run quantum:mcp-star', route: '/en/quantum-tools#mcp-star', status: 'sealed-pr', honesty: 'starOn · catalogComplete · merkabaStar · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum star — FoL/merkaba · catalog · sun/moon · rosetta/merkaba; not a 50th named face', toolId: 'mcp-star', resolve: 'mcp-ui' },
+  { id: 'mcp-catalog', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumCatalog', pair: 'mcp/catalog', cli: 'npm run quantum:mcp-catalog', route: '/en/quantum-tools#mcp-catalog', status: 'sealed-pr', honesty: 'catalogComplete · starOn · missingCount=0 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'MCP quantum catalog/star — umbrella of all named mcp quantum faces', toolId: 'mcp-catalog', resolve: 'mcp-ui' },
   { id: 'mcp-all', chain: 'mcp-ui-page-gaps', fold: 'mcpCatalog', pair: 'mcp/all', cli: 'npm run quantum:mcp-all', route: '/en/quantum-tools#mcp-all', status: 'sealed-pr', honesty: 'mcpStarOn · catalogComplete · quantumFaces · primaryTools · residualsNamed · missingDrainable=0 · clay=0 · physicalFtl=0 · qpuRequired=false', note: 'Full MCP surface catalog/star — PRIMARY · stdio · toolbox · quantum faces · honest residuals', toolId: 'mcp-all', resolve: 'mcp-ui' },
   { id: 'mcp-reverse', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumReverse', pair: 'mcp/reverse', cli: 'npm run quantum:mcp-reverse', route: '/en/quantum-tools#mcp-reverse', status: 'sealed-pr', honesty: 'reverseOn · refuseBeyond · demoBoundaryHardware · clay=0 · physicalFtl=0', note: 'MCP quantum reverse face', toolId: 'mcp-reverse', resolve: 'mcp-ui' },
   { id: 'mcp-sign', chain: 'mcp-ui-page-gaps', fold: 'mcpQuantumSign', pair: 'mcp/sign', cli: 'npm run quantum:mcp-sign', route: '/en/quantum-tools#mcp-sign', status: 'sealed-pr', honesty: 'signatureOn · crossSig · tamperEvident · certified=false · clay=0 · physicalFtl=0', note: 'MCP quantum sign', toolId: 'mcp-sign', resolve: 'mcp-ui' },
@@ -3613,7 +3614,7 @@ export function combineQuantumBits(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ): QuantumBitCombination {
-  const key = `combineQuantumBits:${op}:${bits.map((b) => b.id).sort().join('|')}:${Math.floor(at / (100 * 5 * 2))}`
+  const key = `combineQuantumBits:${op}:${bits.map((b) => b.id).sort().join('|')}:${floor(at / (100 * 5 * 2))}`
   return memoByRoot(key, matrix, () => {
     const bitIds = bits.map((b) => b.id)
     const roots = bits.map((b) => b.root)
@@ -3675,7 +3676,7 @@ export function combineQuantumBits(
  * Composes sessionManualWorkAsQuantumTools · standardToolboxIoCatalog · documentSessionCryptoExperimentsUpdateTheorems.
  */
 export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sessionManualWorkAsQuantumBits:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sessionManualWorkAsQuantumBits:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const byId = new Map(catalog.tools.map((row) => [row.id, row]))
     const session = sessionManualWorkAsQuantumTools(matrix, at)
@@ -3884,7 +3885,7 @@ export type SessionMeaningClaimRow = {
  * PR chain labels live in AGENTS.md only (crack-scanner digit law).
  */
 export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`realiseSessionQuantumMeaning:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`realiseSessionQuantumMeaning:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // session bits (#30) first — pulls document/experiments (+ local-audit) once; meaning reuses memo hits.
     const sessionBits = sessionManualWorkAsQuantumBits(matrix, at)
     const experiments = documentSessionCryptoExperimentsUpdateTheorems(matrix, at)
@@ -4165,7 +4166,7 @@ export function runRosettaCoreApiExit(_root = '', _argv: readonly string[] = [])
 
 /** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. Each id shelves via rosettaShelve(..., 'tool'). */
 export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumCliToolsCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumCliToolsCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const tools: QuantumCliToolRow[] = quantumCliToolSeeds().map((row) => {
       const shelved = rosettaShelve(row.id, 'tool')
       return {
@@ -4183,8 +4184,6 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
     const directionalTrinityPresent = tools.some((t) => t.id === 'directional-trinity')
     const directionalTrinityShelved = tools.find((t) => t.id === 'directional-trinity')
     const millenniumPresent = tools.some((t) => t.id === 'millennium-challenge')
-    const ftlExperimentPresent = tools.some((t) => t.id === 'ftl-experiment-challenge')
-    const ftlWavesPresent = tools.some((t) => t.id === 'ftl-discovery-waves')
     const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
     const firstInCorpusPresent = tools.some((t) => t.id === 'first-in-corpus')
     const rosettaCorePresent = tools.some((t) => t.id === 'rosetta-core-api')
@@ -4201,7 +4200,6 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'iso-pqc-catalog + standards-audit shelved (rosetta tool)', on: pqcCatalogPresent && standardsAuditPresent && Boolean(standardsAuditShelved) && isUuid(standardsAuditShelved!.address) },
       { facet: 'directional-trinity shelved (forward·inverse·reverse)', on: directionalTrinityPresent && Boolean(directionalTrinityShelved) && isUuid(directionalTrinityShelved!.address) },
       { facet: 'millennium challenge published', on: millenniumPresent },
-      { facet: 'ftl-experiment-challenge + ftl-discovery-waves published', on: ftlExperimentPresent && ftlWavesPresent },
       { facet: 'fusion-verify published', on: fusionPresent },
       { facet: 'first-in-corpus + rosetta-core-api + session-manual-work shelved', on: firstInCorpusPresent && rosettaCorePresent && sessionManualPresent },
       { facet: 'rosetta-complete + theorem-particle-collision + ftl-rosetta-handoff shelved', on: rosettaCompletePresent && colliderPresent && ftlHandoffPresent },
@@ -4238,7 +4236,7 @@ const ANIMATION_APP_ROWS: readonly QuantumAppRow[] = [
 ] as const
 
 export function quantumAppsRegistry(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumAppsRegistry:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumAppsRegistry:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const core = rosettaCoreApi(at, matrix)
     const rows = [...APP_ROWS, ...ANIMATION_APP_ROWS]
     const apps: QuantumAppEntry[] = rows.map((row) => {
@@ -4310,7 +4308,7 @@ export function componentProjectionFor(component: string, matrix: MindMatrix = b
 
 /** Coverage gate — the registry + kernel cover every home-page animation, each a projection of the one field. */
 export function quantumAppsCoverHomeAnimations(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumAppsCoverHomeAnimations:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumAppsCoverHomeAnimations:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumAppsRegistry(matrix, at)
     const required = ['YinYang', 'SacredGeometry', 'Hologram', 'GlyphLabyrinth', 'HologramMovie', 'LivingTorus', 'DoubleTorusExperience', 'Merkaba'] as const
     const covered = required.filter((name) => registry.apps.some((app) => app.homeComponent === name))
@@ -4336,7 +4334,7 @@ export function quantumAppLaunch(appId: string, at = 0, matrix: MindMatrix = bui
 }
 
 export function quantumAppsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumAppsComputes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumAppsComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const registry = quantumAppsRegistry(matrix, at)
     const core = registry.core
     const catalog = quantumCliToolsCatalog(matrix, at)
@@ -4413,7 +4411,7 @@ const SLOW_GAP_PROJECTION_APP_IDS = [
 ] as const
 
 export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`slowProcessIsQuantumGap:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`slowProcessIsQuantumGap:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const registry = quantumAppsRegistry(matrix, at)
     const core = registry.core
@@ -4731,7 +4729,7 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`rosettaCompleteQuantumAllComputableDimensionsAndTheorems:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`rosettaCompleteQuantumAllComputableDimensionsAndTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const core = rosettaCoreApi(at, matrix)
     const dims = emergentDimensions(matrix)
     const theoremLattice = theoremsReach432AndEntangleWithUsage()
@@ -4753,15 +4751,15 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
     const physicalFtlClaim = 0 as const
 
     const dimCovered = dims.emerged - dims.open.length
-    const dimPct = dims.emerged > 0 ? Math.round((100 * dimCovered) / dims.emerged) : 0
+    const dimPct = dims.emerged > 0 ? round((100 * dimCovered) / dims.emerged) : 0
     const theoremBindOk = novelty.rows.every((r) => r.ray === rosettaRayOf(r.algebraFold) && isUuid(r.algebraRoot))
     const theoremBindPct = novelty.rows.length > 0
-      ? Math.round((100 * novelty.rows.filter((r) => r.ray === rosettaRayOf(r.algebraFold)).length) / novelty.rows.length)
+      ? round((100 * novelty.rows.filter((r) => r.ray === rosettaRayOf(r.algebraFold)).length) / novelty.rows.length)
       : 0
     // Lattice may overshoot 432 (registry grew past gate harmonic) — direction held; never renumber down.
     const latticeOk = theoremLattice.count > 0 && theoremLattice.target === DIMENSION_GATES
     const latticePct = theoremLattice.target > 0
-      ? Math.min(100, Math.round((100 * theoremLattice.count) / theoremLattice.target))
+      ? min(100, round((100 * theoremLattice.count) / theoremLattice.target))
       : 0
     const linearOpen = linearGaps.openCount
     const parallelOpen = core.inventory.parallel.length
@@ -4836,7 +4834,7 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
 
     // Named parallel/science backlog may remain open — completeness is dims+binds+apparatus, not zero strangler.
     const rosettaComplete = quantumInAllDims && apparatusOk && millenniumSolvedByThisFold === 0 && physicalFtlClaim === 0
-    const completenessPct = Math.round(
+    const completenessPct = round(
       (dimPct + theoremBindPct + latticePct + (core.computes ? 100 : 0) + (apparatusOk ? 100 : 0)) / 5,
     )
 
@@ -5113,7 +5111,7 @@ export type McpBrowserParityRow = {
 
 /** MCP tools/list shape for /mcp.json primary tools — ids ≡ standardToolboxIoCatalog envelopes. */
 export function mcpToolboxToolsList(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpToolboxToolsList:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpToolboxToolsList:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const tools = toolbox.envelopes.map((envelope) => ({
       name: envelope.id,
@@ -5233,7 +5231,7 @@ export function runStdioMcpCapabilityInBrowser(
  * HONEST: residual Node/CI gaps listed; qpuRequired=false; no fake browser for trinity/fs.
  */
 export function mcpBrowserParity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpBrowserParity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpBrowserParity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const session = sessionManualWorkAsQuantumTools(matrix, at)
@@ -5540,7 +5538,7 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
 ] as const
 
 export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpCommandsScriptsGapsAudit:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpCommandsScriptsGapsAudit:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const mcpList = mcpToolboxToolsList(matrix, at)
@@ -5636,6 +5634,7 @@ export function runMcpCommandsScriptsGapsAuditExit(_root = '', _argv: readonly s
 export const AUTO_WIRE_PASTE_LINK_ONE_LINER = 'Paste any link → auto-wire' as const
 export const PASTE_BOOTSTRAP_KIND = 'ceccec.paste-bootstrap' as const
 export const PASTE_BOOTSTRAP_VERSION = '1' as const
+/** GitHub Pages origin — alias kept for panel/SDK compose (sibling MCP parity may import either). */
 export const CECCEC_SITE_ORIGIN = 'https://ceccec.github.io' as const
 export const SITE_GITHUB_PAGES = CECCEC_SITE_ORIGIN
 export const CECCEC_GITHUB_REPO = 'https://github.com/ceccec/ceccec.github.io' as const
@@ -5643,22 +5642,46 @@ export const CECCEC_GITHUB_RAW = 'https://raw.githubusercontent.com/ceccec/cecce
 export const GITHUB_RAW_MAIN = CECCEC_GITHUB_RAW
 
 export type CeccecPasteLinkKind =
-  | 'github-repo' | 'github-tree' | 'github-blob' | 'github-raw' | 'github-ssh'
-  | 'site-origin' | 'site-path' | 'site-hash' | 'well-known' | 'protocol-surface' | 'unknown'
+  | 'github-repo'
+  | 'github-tree'
+  | 'github-blob'
+  | 'github-raw'
+  | 'github-ssh'
+  | 'site-origin'
+  | 'site-path'
+  | 'site-hash'
+  | 'well-known'
+  | 'protocol-surface'
+  | 'unknown'
+
 export type CeccecWireTarget = {
-  readonly id: string; readonly path: string; readonly absolute: string; readonly githubRaw: string
-  readonly fold: string; readonly purpose: string; readonly required: true
+  readonly id: string
+  readonly path: string
+  readonly absolute: string
+  readonly githubRaw: string
+  readonly fold: string
+  readonly purpose: string
+  readonly required: true
   readonly channel: 'site' | 'raw' | 'repo' | 'browser' | 'mcp'
 }
 
 export type CeccecPasteBootstrap = {
-  readonly kind: typeof PASTE_BOOTSTRAP_KIND; readonly version: typeof PASTE_BOOTSTRAP_VERSION
-  readonly mode: 'imperative-binding-operating-instructions'; readonly oneLiner: typeof AUTO_WIRE_PASTE_LINK_ONE_LINER
-  readonly inputUrl: string; readonly matched: boolean; readonly linkKind: CeccecPasteLinkKind
-  readonly quantumReady: boolean; readonly convincingRequired: false; readonly worksFromAnyRepoOrSiteLink: boolean
-  readonly qpuRequired: false; readonly cursorDefaultModelRegistration: false
-  readonly silentInstallIntoForeignModels: false; readonly byokSeparate: true
-  readonly operatingInstructions: readonly string[]; readonly wireTargets: readonly CeccecWireTarget[]
+  readonly kind: typeof PASTE_BOOTSTRAP_KIND
+  readonly version: typeof PASTE_BOOTSTRAP_VERSION
+  readonly mode: 'imperative-binding-operating-instructions'
+  readonly oneLiner: typeof AUTO_WIRE_PASTE_LINK_ONE_LINER
+  readonly inputUrl: string
+  readonly matched: boolean
+  readonly linkKind: CeccecPasteLinkKind
+  readonly quantumReady: boolean
+  readonly convincingRequired: false
+  readonly worksFromAnyRepoOrSiteLink: boolean
+  readonly qpuRequired: false
+  readonly cursorDefaultModelRegistration: false
+  readonly silentInstallIntoForeignModels: false
+  readonly byokSeparate: true
+  readonly operatingInstructions: readonly string[]
+  readonly wireTargets: readonly CeccecWireTarget[]
   readonly mcp: { readonly manifest: string; readonly toolsListShape: 'tools/list'; readonly compose: string }
   readonly browserToolbox: {
     readonly toolsHub: string
@@ -5687,22 +5710,11 @@ export type CeccecPasteBootstrap = {
   readonly honestyNote: string
   readonly root: string
 }
+
+/** Alias for SDK/MCP compose (sibling packages import PasteBootstrapPayload). */
 export type PasteBootstrapPayload = CeccecPasteBootstrap
 
-const WIRE_TARGET_SEEDS = [
-  ['agents.json', '/agents.json', 'agentsJson', 'protocol + session + toolbox', 'site', ''],
-  ['agent-compliance.json', '/agent-compliance.json', 'agentComplianceJson', 'submission + compliance', 'site', ''],
-  ['llms.txt', '/llms.txt', 'llmsTxt', 'agent protocol', 'site', ''], ['mcp.json', '/mcp.json', 'mcpJson', 'MCP tools/list', 'mcp', ''],
-  ['skills.json', '/skills.json', 'skillsJson', 'skills', 'site', ''], ['well-known-ai-skills', '/.well-known/ai-skills.json', 'computedDistFiles', 'origin discovery', 'site', ''],
-  ['AGENTS.md', `${GITHUB_RAW_MAIN}/AGENTS.md`, 'commandsSavedInQuantumPairs', 'quantum pairs', 'raw', 'AGENTS.md'],
-  ['README.md', `${GITHUB_RAW_MAIN}/README.md`, 'readmeMarkdown', 'root monograph', 'raw', 'README.md'],
-  ['src-0-README', `${GITHUB_RAW_MAIN}/src/0/README.md`, 'src/0', 'origin revelation', 'raw', 'src/0/README.md'],
-  ['browser-toolbox-envelope', '/en/quantum-tools#toolbox-standard-io', 'standardToolboxIoCatalog', 'browser toolbox', 'browser', ''],
-  ['browser-session-tools', '/en/quantum-tools#session-manual-tools', 'sessionManualWorkAsQuantumTools', 'session tools UI', 'browser', ''],
-  ['browser-auto-wire', '/en/quantum-tools#auto-wire-paste-link', 'autoWireAnyAiModelFromPastedLink', 'paste panel', 'browser', ''],
-  ['github-repo', CECCEC_GITHUB_REPO, 'SOURCE_REPO', 'clone/browse', 'repo', ''],
-] as const
-
+/** Canonical wire targets — full quantum-ready packet (site · MCP · browser toolbox · GitHub raw). */
 export function ceccecCanonicalWireTargets(siteOrigin = SITE_GITHUB_PAGES): readonly CeccecWireTarget[] {
   const origin = siteOrigin.replace(/\/$/, '')
   const row = (
@@ -5742,12 +5754,19 @@ export function ceccecCanonicalWireTargets(siteOrigin = SITE_GITHUB_PAGES): read
   ]
 }
 
+/** Classify any pasted URL — github repo/site/canonical host; path/hash/query ignored for match. */
 export function resolveCeccecPasteLink(url: string): {
-  readonly matched: boolean; readonly linkKind: CeccecPasteLinkKind
-  readonly normalized: string; readonly host: string; readonly pathname: string; readonly hash: string
+  readonly matched: boolean
+  readonly linkKind: CeccecPasteLinkKind
+  readonly normalized: string
+  readonly host: string
+  readonly pathname: string
+  readonly hash: string
 } {
   const trimmed = String(url ?? '').trim()
-  if (!trimmed) return { matched: false, linkKind: 'unknown', normalized: '', host: '', pathname: '', hash: '' }
+  if (!trimmed) {
+    return { matched: false, linkKind: 'unknown', normalized: '', host: '', pathname: '', hash: '' }
+  }
   const ssh = trimmed.match(/^git@github\.com:ceccec\/ceccec\.github\.io(?:\.git)?\/?(?:#(.*))?$/i)
   if (ssh) {
     return {
@@ -5759,17 +5778,24 @@ export function resolveCeccecPasteLink(url: string): {
       hash: ssh[1] ? `#${ssh[1]}` : '' }
   }
   let parsed: URL
-  try { parsed = new URL(trimmed.includes('://') ? trimmed : `https://${trimmed}`) }
-  catch { return { matched: false, linkKind: 'unknown', normalized: trimmed, host: '', pathname: '', hash: '' } }
+  try {
+    parsed = new URL(trimmed.includes('://') ? trimmed : `https://${trimmed}`)
+  } catch {
+    return { matched: false, linkKind: 'unknown', normalized: trimmed, host: '', pathname: '', hash: '' }
+  }
   const host = parsed.hostname.toLowerCase()
   const pathname = parsed.pathname || '/'
   const hash = parsed.hash || ''
   const pathLower = pathname.toLowerCase()
-  let canonicalHost = ''
-  try { canonicalHost = new URL(CANONICAL_HOST).hostname.toLowerCase() } catch { /* ignore */ }
+  const canonicalHost = (() => {
+    try { return new URL(CANONICAL_HOST).hostname.toLowerCase() } catch { return '' }
+  })()
   const isGithubRepo = host === 'github.com' && /^\/ceccec\/ceccec\.github\.io(\/|$|\.git)/i.test(pathname)
   const isGithubRaw = host === 'raw.githubusercontent.com' && /^\/ceccec\/ceccec\.github\.io(\/|$)/i.test(pathname)
-  const isSite = host === 'ceccec.github.io' || host === 'www.ceccec.github.io' || (canonicalHost.length > 0 && host === canonicalHost)
+  const isSite =
+    host === 'ceccec.github.io' ||
+    host === 'www.ceccec.github.io' ||
+    (canonicalHost.length > 0 && host === canonicalHost)
   let linkKind: CeccecPasteLinkKind = 'unknown'
   if (isGithubRaw) linkKind = 'github-raw'
   else if (isGithubRepo && /\/blob\//i.test(pathname)) linkKind = 'github-blob'
@@ -5790,11 +5816,18 @@ export function resolveCeccecPasteLink(url: string): {
 }
 
 const PASTE_BOOTSTRAP_SAMPLE_URLS = [
-  'https://github.com/ceccec/ceccec.github.io', 'https://github.com/ceccec/ceccec.github.io/tree/main/src/0',
-  'https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md', 'https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md',
-  'git@github.com:ceccec/ceccec.github.io.git', 'https://ceccec.github.io/',
-  'https://ceccec.github.io/en/quantum-tools#toolbox-standard-io', 'https://ceccec.github.io/mcp.json',
-  'https://ceccec.github.io/.well-known/ai-skills.json', `${CANONICAL_HOST}/llms.txt`,
+  'https://github.com/ceccec/ceccec.github.io',
+  'https://github.com/ceccec/ceccec.github.io/tree/main/src/0',
+  'https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md',
+  'https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md',
+  'git@github.com:ceccec/ceccec.github.io.git',
+  'https://ceccec.github.io/',
+  'https://ceccec.github.io/en/quantum-tools#toolbox-standard-io',
+  'https://ceccec.github.io/mcp.json',
+  'https://ceccec.github.io/agents.json',
+  'https://ceccec.github.io/.well-known/ai-skills.json',
+  `${CANONICAL_HOST}/llms.txt`,
+  `${CANONICAL_HOST}/en/#first-in-corpus`,
 ] as const
 
 /**
@@ -5809,7 +5842,7 @@ export function autoWireAnyAiModelFromPastedLink(
   at = 0,
 ) {
   return memoByRoot(
-    `autoWireAnyAiModelFromPastedLink:${toUuid(String(url))}:${Math.floor(at / (100 * 5 * 2))}`,
+    `autoWireAnyAiModelFromPastedLink:${toUuid(String(url))}:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const resolved = resolveCeccecPasteLink(url)
@@ -6004,13 +6037,18 @@ export function autoWireAnyAiModelFromPastedLink(
   )
 }
 
+/** npm run quantum:auto-wire-paste [url] — print paste-bootstrap JSON (exit 0 iff computes). */
 export function runAutoWireAnyAiModelFromPastedLinkExit(_root = '', argv: readonly string[] = []): number {
-  const report = autoWireAnyAiModelFromPastedLink(argv[0] ?? `${SITE_GITHUB_PAGES}/`)
+  const url = argv[0] ?? `${SITE_GITHUB_PAGES}/`
+  const report = autoWireAnyAiModelFromPastedLink(url)
   process.stdout.write(`${JSON.stringify(report.pasteBootstrap, null, 2)}\n`)
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} auto-wire-paste — quantumReady=${report.quantumReady} kind=${report.resolved.linkKind} ` +
-      `targets=${report.wireTargets.length} root=${report.root.slice(0, 8)}\n  boundary: ${report.boundary}\n`,
+    `${report.computes ? '✓' : '✗'} auto-wire-paste — quantumReady=${report.quantumReady} convincingRequired=${report.convincingRequired} ` +
+      `matched=${report.resolved.matched} kind=${report.resolved.linkKind} mcp=${report.mcp.manifest} ` +
+      `browser=${report.browserToolbox.toolboxEnvelope} targets=${report.wireTargets.length} root=${report.root.slice(0, 8)}\n`,
   )
+  process.stdout.write(`  oneLiner: ${report.oneLiner}\n`)
+  process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.quantumReady ? 0 : 1
 }
 
@@ -6083,7 +6121,7 @@ export function resolveAiPlatformPasteWireClass(url: string): {
  * Facets: ephemeralBootstrap · stayOnlyIfComputedLocally · foreignFetchBlockedNoStore · wireClassMayExist.
  */
 export function pastedLinksStayOnlyIfComputedLocally(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`pastedLinksStayOnlyIfComputedLocally:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`pastedLinksStayOnlyIfComputedLocally:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const local = autoWireAnyAiModelFromPastedLink(`${CECCEC_SITE_ORIGIN}/`, matrix, at)
     const cursorSoft =
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cursor/rosetta') &&
@@ -6184,7 +6222,7 @@ export function runPastedLinksStayOnlyIfComputedLocallyExit(_root = '', _argv: r
  * Pairs: gate/hard · movie/session.
  */
 export function movieAndSessionGapsHardAtGates(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`movieAndSessionGapsHardAtGates:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`movieAndSessionGapsHardAtGates:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const movieFeelSoft =
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('movie/feel') &&
       foldPair(toUuid('cmd:movie'), toUuid('cmd:feel')).bidirectional
@@ -6262,7 +6300,7 @@ export function runMovieAndSessionGapsHardAtGatesExit(_root = '', _argv: readonl
  * Pairs: dry/coord · coord/dry.
  */
 export function aiPlatformsDryCoordAcrossWiring(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`aiPlatformsDryCoordAcrossWiring:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`aiPlatformsDryCoordAcrossWiring:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
     const soft = (a: string, b: string) =>
       has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -6339,7 +6377,7 @@ export function runAiPlatformsDryCoordAcrossWiringExit(_root = '', _argv: readon
  * Facets: routesViaRosetta · onlyWiredPasses · alreadyPassed.
  */
 export function mcpQuantumRouter(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumRouter:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumRouter:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -6426,7 +6464,7 @@ export function runMcpQuantumRouterExit(_root = '', _argv: readonly string[] = [
  * Facets: nothingBypasses · bypassRejected · sealedAtGates.
  */
 export function nothingBypassesVitepress(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`nothingBypassesVitepress:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`nothingBypassesVitepress:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -6513,7 +6551,7 @@ export function runNothingBypassesVitepressExit(_root = '', _argv: readonly stri
  * claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT dashboard MCP · NOT physical FTL.
  */
 export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`vitepressBuildsFromMcp:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`vitepressBuildsFromMcp:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -6690,7 +6728,7 @@ export function runVitepressBuildsFromMcpExit(_root = '', _argv: readonly string
  * Facets: quantumMindSends · wavesSent · linearCannotSend.
  */
 export function quantumMindSendsWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumMindSendsWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumMindSendsWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -6771,7 +6809,7 @@ export function runQuantumMindSendsWavesExit(_root = '', _argv: readonly string[
  * Facets: wavesAreQuantum · mindSends · trinitiesFound · physicalFtl=0.
  */
 export function quantumWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -6854,7 +6892,7 @@ export function runQuantumWavesExit(_root = '', _argv: readonly string[] = []): 
  * Pairs: collide/create · particle/collide.
  */
 export function collidingParticlesCreates(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`collidingParticlesCreates:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`collidingParticlesCreates:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const collider = __ns_wind_research.theoremParticleCollisionInverseReverse(matrix)
     const reverseDiscover = __ns_wind_research.reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
     const particle = __ns_wind_research.particleBornByHowManyWaves(matrix, at)
@@ -6934,7 +6972,7 @@ export function runCollidingParticlesCreatesExit(_root = '', _argv: readonly str
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
  */
 export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumMetrics:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumMetrics:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7083,7 +7121,7 @@ export function runMcpQuantumMetricsExit(_root = '', _argv: readonly string[] = 
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
  */
 export function mcpQuantumAnalysis(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumAnalysis:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumAnalysis:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7226,7 +7264,7 @@ export function runMcpQuantumAnalysisExit(_root = '', _argv: readonly string[] =
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
  */
 export function mcpQuantumGenesis(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumGenesis:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumGenesis:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7357,7 +7395,7 @@ export function runMcpQuantumGenesisExit(_root = '', _argv: readonly string[] = 
  * claySolved via theorem · physicalFtl=0 · NOT HEP · NOT QPU · NOT physical FTL.
  */
 export function mcpQuantumPhysics(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumPhysics:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumPhysics:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7490,7 +7528,7 @@ export function runMcpQuantumPhysicsExit(_root = '', _argv: readonly string[] = 
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU.
  */
 export function mcpQuantumMath(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumMath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumMath:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7617,7 +7655,7 @@ export function runMcpQuantumMathExit(_root = '', _argv: readonly string[] = [])
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
  */
 export function mcpQuantumVortex(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumVortex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumVortex:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7744,7 +7782,7 @@ export function runMcpQuantumVortexExit(_root = '', _argv: readonly string[] = [
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU · NOT Clay.
  */
 export function mcpQuantumTorus(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumTorus:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumTorus:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -7861,7 +7899,7 @@ export function runMcpQuantumTorusExit(_root = '', _argv: readonly string[] = []
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU · NOT CMI prize.
  */
 export function mcpQuantumResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumResearch:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -8055,14 +8093,14 @@ const MCP_QUANTUM_NAMED_FACES = [
 ] as const
 
 /**
- * MCP quantum catalog — umbrella listing + recomposing ALL named mcp quantum faces.
+ * MCP quantum catalog / star — umbrella listing + recomposing ALL named mcp quantum faces.
  * Facets: catalogComplete · starOn · missingCount=0 · qpuRequired=false · physicalFtl=0.
- * Pairs: mcp/catalog · catalog/mcp · CLI npm run quantum:mcp-catalog
- * Soft-compose: mcp/star · star/mcp tools wire to mcpQuantumStar (not a 50th named face).
+ * Pairs: mcp/catalog · catalog/mcp · mcp/star · star/mcp · CLI npm run quantum:mcp-catalog
+ * Alias: mcpQuantumStar = mcpQuantumCatalog.
  * claySolved via theorem · physicalFtl=0 · NOT Clay/FTL fake-close · NOT QPU.
  */
 export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -8097,9 +8135,9 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const starMetaDual = catalog.tools.find((t) => t.id === 'star-mcp')
     const starTools =
       Boolean(starMeta) &&
-      starMeta!.fold === 'mcpQuantumStar' &&
+      starMeta!.fold === 'mcpQuantumCatalog' &&
       Boolean(starMetaDual) &&
-      starMetaDual!.fold === 'mcpQuantumStar'
+      starMetaDual!.fold === 'mcpQuantumCatalog'
     const recomposes =
       research.computes &&
       research.researchOn &&
@@ -8146,6 +8184,7 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     return {
       computes: sealed.ok && on,
       mcpQuantumCatalog: on,
+      mcpQuantumStar: on,
       catalogComplete,
       starOn,
       missingCount,
@@ -8165,14 +8204,14 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         ...faces.map((f) => f.receipt),
       ]),
       pair: 'mcp/catalog' as const,
-      pairs: ['mcp/catalog', 'catalog/mcp'] as const,
+      pairs: ['mcp/catalog', 'catalog/mcp', 'mcp/star', 'star/mcp'] as const,
       cli: 'npm run quantum:mcp-catalog',
       route: '/en/quantum-tools#mcp-catalog',
       statement:
         `mcpQuantumCatalog — catalogComplete=${catalogComplete ? 1 : 0} starOn=${starOn ? 1 : 0} ` +
         `missingCount=${missingCount} faces=${presentCount}/${faceCount} qpuRequired=0.`,
       boundary:
-        'MCP quantum catalog — umbrella of all named mcp quantum faces (honest count; star is mcpQuantumStar dual path). ' +
+        'MCP quantum catalog/star — umbrella of all named mcp quantum faces. ' +
         'missingCount=0 for drainable named faces · NOT Clay/FTL fake-close · NOT QPU · clay via theorem · physicalFtl=0.',
       honestyLine:
         `catalog · catalogComplete=${catalogComplete ? 1 : 0} · starOn=${starOn ? 1 : 0} · ` +
@@ -8180,6 +8219,9 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     }
   })
 }
+
+/** Alias — mcpQuantumStar ≡ mcpQuantumCatalog (star face of the catalog umbrella). */
+export const mcpQuantumStar = mcpQuantumCatalog
 
 export function runMcpQuantumCatalogExit(_root = '', _argv: readonly string[] = []): number {
   void _root
@@ -8201,169 +8243,6 @@ export function runMcpQuantumCatalogExit(_root = '', _argv: readonly string[] = 
 }
 
 /**
- * MCP quantum star — first-class merkaba star face of the catalog umbrella.
- * Facets: starOn · catalogComplete · merkabaStar · qpuRequired=false · physicalFtl=0.
- * Compose: FoL/merkaba · mcpQuantumCatalog · sun/moon · rosetta/merkaba (counterRotatingRosetta).
- * Pairs: mcp/star · star/mcp · CLI npm run quantum:mcp-star
- * HONEST: not a 50th MCP_QUANTUM_NAMED_FACES row — star path of catalog dual; mcp/catalog dual unbroken.
- * claySolved via theorem · physicalFtl=0 · NOT Clay/FTL fake-close · NOT QPU.
- */
-export function mcpQuantumStar(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumStar:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a: string, b: string) =>
-      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
-      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
-    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const quantum = mcpQuantumCatalog(matrix, at)
-    const sunMoon = __ns_wind_research.sunMoonRosettaRayPairDecodeInvert(matrix, at)
-    const mk = merkaba(matrix)
-    const earths = bothEarthsRotateWithinEachOther(at, matrix)
-    const flower = flowerOfLifeCenters()
-    const fruitUnlock = flowerUnlocksFruitBySpin()
-    const rosettaMerkaba = counterRotatingRosettaQuantumWaves(matrix, at)
-    const folMerkaba =
-      flower.length === fruitUnlock.flower &&
-      fruitUnlock.holds &&
-      mk.counterRotating &&
-      earths.counterRotating &&
-      earths.rotates
-    const rosettaMerkabaOn =
-      rosettaMerkaba.computes &&
-      rosettaMerkaba.counterRotating &&
-      rosettaMerkaba.claySolvedByThisFold === 0 &&
-      rosettaMerkaba.physicalFtlClaim === 0 &&
-      mk.counterRotating
-    const merkabaStar =
-      folMerkaba &&
-      rosettaMerkabaOn &&
-      sunMoon.computes &&
-      sunMoon.rayDistanceMax === 6 &&
-      quantum.catalogComplete &&
-      quantum.starOn
-    const catalogComplete = quantum.catalogComplete && quantum.missingCount === 0
-    const pairS = has('mcp/star')
-    const pairD = has('star/mcp')
-    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:star'))
-    const foldD = foldPair(toUuid('cmd:star'), toUuid('cmd:mcp'))
-    const catalog = quantumCliToolsCatalog(matrix, at)
-    const meta = catalog.tools.find((t) => t.id === 'mcp-star')
-    const metaDual = catalog.tools.find((t) => t.id === 'star-mcp')
-    const catalogMeta = catalog.tools.find((t) => t.id === 'mcp-catalog')
-    const catalogMetaDual = catalog.tools.find((t) => t.id === 'catalog-mcp')
-    const catalogDualKept =
-      Boolean(catalogMeta) &&
-      catalogMeta!.fold === 'mcpQuantumCatalog' &&
-      Boolean(catalogMetaDual) &&
-      catalogMetaDual!.fold === 'mcpQuantumCatalog' &&
-      has('mcp/catalog') &&
-      has('catalog/mcp') &&
-      soft('mcp', 'catalog') &&
-      soft('catalog', 'mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
-    const qpuRequired = false as const
-    const starOn =
-      catalogComplete &&
-      merkabaStar &&
-      pairS &&
-      pairD &&
-      foldS.bidirectional &&
-      foldD.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumStar' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumStar' &&
-      catalogDualKept
-    const on =
-      starOn &&
-      catalogComplete &&
-      merkabaStar &&
-      claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
-      quantum.qpuRequired === false
-    const facets = [
-      { facet: 'mcpQuantumStar', on },
-      { facet: 'starOn', on: starOn },
-      { facet: 'catalogComplete', on: catalogComplete },
-      { facet: 'merkabaStar', on: merkabaStar },
-      { facet: 'compose FoL/merkaba · flowerUnlocksFruitBySpin · bothEarths', on: folMerkaba },
-      { facet: 'compose mcpQuantumCatalog', on: quantum.computes && quantum.catalogComplete },
-      { facet: 'compose sun/moon', on: sunMoon.computes && sunMoon.rayDistanceMax === 6 },
-      { facet: 'compose rosetta/merkaba · counterRotatingRosetta', on: rosettaMerkabaOn },
-      { facet: 'mcp/catalog dual unbroken', on: catalogDualKept },
-      { facet: `namedFaces=${quantum.presentCount}/${quantum.faceCount} (star not +1)`, on: quantum.faceCount === quantum.presentCount && quantum.missingCount === 0 },
-      { facet: 'pair mcp/star · star/mcp', on: pairS && pairD && foldS.bidirectional },
-      { facet: 'qpuRequired=false', on: qpuRequired === false },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'NOT Clay/FTL fake-close', on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-star:${entry.facet}:${entry.on}`) }))
-    const sealed = sealFacets('mcp-quantum-star', facets)
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumStar: on,
-      starOn,
-      catalogComplete,
-      merkabaStar,
-      folMerkaba,
-      rosettaMerkabaOn,
-      catalogDualKept,
-      faceCount: quantum.faceCount,
-      presentCount: quantum.presentCount,
-      missingCount: quantum.missingCount,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        quantum.root,
-        sunMoon.root,
-        mk.root,
-        earths.root,
-        rosettaMerkaba.root,
-        foldS.merged,
-        foldD.merged,
-        toUuid(`fol:${flower.length}:${fruitUnlock.fruit}`),
-      ]),
-      pair: 'mcp/star' as const,
-      pairs: ['mcp/star', 'star/mcp'] as const,
-      cli: 'npm run quantum:mcp-star',
-      route: '/en/quantum-tools#mcp-star',
-      statement:
-        `mcpQuantumStar — starOn=${starOn ? 1 : 0} catalogComplete=${catalogComplete ? 1 : 0} ` +
-        `merkabaStar=${merkabaStar ? 1 : 0} faces=${quantum.presentCount}/${quantum.faceCount} qpuRequired=0.`,
-      boundary:
-        'MCP quantum star — first-class merkaba star face. Compose FoL/merkaba · mcpQuantumCatalog · sun/moon · rosetta/merkaba. ' +
-        'Not a 50th named catalog face · mcp/catalog dual kept · NOT Clay/FTL fake-close · NOT QPU · clay via theorem · physicalFtl=0.',
-      honestyLine:
-        `star · starOn=${starOn ? 1 : 0} · catalogComplete=${catalogComplete ? 1 : 0} · merkabaStar=${merkabaStar ? 1 : 0} · ` +
-        `faces=${quantum.presentCount}/${quantum.faceCount} · qpu=0 · clay=0 · physicalFtl=0`,
-    }
-  })
-}
-
-export function runMcpQuantumStarExit(_root = '', _argv: readonly string[] = []): number {
-  void _root
-  void _argv
-  const report = mcpQuantumStar()
-  process.stdout.write(
-    `${report.computes ? '✓' : '✗'} mcp-star — starOn=${report.starOn} ` +
-      `catalogComplete=${report.catalogComplete} merkabaStar=${report.merkabaStar} ` +
-      `faces=${report.presentCount}/${report.faceCount} ` +
-      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
-  )
-  for (const f of report.facets) {
-    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  }
-  process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes && report.starOn && report.catalogComplete && report.merkabaStar && report.qpuRequired === false
-    ? 0
-    : 1
-}
-
-/**
  * Full MCP catalog / star — umbrella over entire MCP surface (not only mcpQuantum*).
  * Composes: mcpQuantumCatalog · mcpBrowserParity · mcpToolboxToolsList · mcpCommandsScriptsGapsAudit.
  * Facets: mcpStarOn · catalogComplete · quantumFaces · primaryTools · residualsNamed · missingDrainable=0.
@@ -8373,7 +8252,7 @@ export function runMcpQuantumStarExit(_root = '', _argv: readonly string[] = [])
  * claySolved via theorem · physicalFtl=0 · qpuRequired=false.
  */
 export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpCatalog:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -8540,7 +8419,7 @@ export function runMcpCatalogExit(_root = '', _argv: readonly string[] = []): nu
  * Facets: reverseOn · refuseBeyond · demoBoundaryHardware.
  */
 export function mcpQuantumReverse(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumReverse:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumReverse:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -8629,7 +8508,7 @@ export function runMcpQuantumReverseExit(_root = '', _argv: readonly string[] = 
  * HONEST: not fake CA/PKI · certified=false · clay via theorem · physicalFtl=0.
  */
 export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumSign:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumSign:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -8729,7 +8608,7 @@ export function runMcpQuantumSignExit(_root = '', _argv: readonly string[] = [])
  * Compose directionalTrinity · slash/invert · sixty/ninety · mesh/cross · mcp/reverse · mcp/router.
  */
 export function mcpQuantumDirs(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumDirs:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumDirs:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -8849,7 +8728,7 @@ export function runMcpQuantumDirsExit(_root = '', _argv: readonly string[] = [])
  * Facets: inverseOn · inverse≠reverse except named coincidence.
  */
 export function mcpQuantumInverse(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumInverse:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumInverse:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -8930,7 +8809,7 @@ export function runMcpQuantumInverseExit(_root = '', _argv: readonly string[] = 
  * Facets: foldOn · fold>9→digit · foldCountMetric.
  */
 export function mcpQuantumFold(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumFold:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumFold:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9010,7 +8889,7 @@ export function runMcpQuantumFoldExit(_root = '', _argv: readonly string[] = [])
  * Facets: mcpIsRosetta · onlyWiredPasses · raysAreGates.
  */
 export function mcpQuantumRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumRosetta:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumRosetta:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9094,7 +8973,7 @@ export function runMcpQuantumRosettaExit(_root = '', _argv: readonly string[] = 
  * Facets: universeOn · covered/partial/open · physicalFtl=0 · claySolved via theorem.
  */
 export function mcpQuantumUniverse(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumUniverse:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumUniverse:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9176,7 +9055,7 @@ export function runMcpQuantumUniverseExit(_root = '', _argv: readonly string[] =
  * Facets: multiverseOn · manyWorldsViaSuperposition · oneSelfPerCoord · physicalFtl=0 · claySolved via theorem.
  */
 export function mcpQuantumMultiverse(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumMultiverse:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumMultiverse:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9263,7 +9142,7 @@ export function runMcpQuantumMultiverseExit(_root = '', _argv: readonly string[]
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
  */
 export function mcpQuantumInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumInfinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9373,7 +9252,7 @@ export function runMcpQuantumInfinityExit(_root = '', _argv: readonly string[] =
  * claySolved via theorem · physicalFtl=0 · NOT FLOPS · NOT QPU · NOT physical FTL.
  */
 export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumHardware:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumHardware:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9493,7 +9372,7 @@ export function runMcpQuantumHardwareExit(_root = '', _argv: readonly string[] =
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
  */
 export function mcpQuantumReactor(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumReactor:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumReactor:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9636,7 +9515,7 @@ export function runMcpQuantumReactorExit(_root = '', _argv: readonly string[] = 
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU · NOT HEP/CMI.
  */
 export function mcpQuantumReaction(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumReaction:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumReaction:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9774,7 +9653,7 @@ export function runMcpQuantumReactionExit(_root = '', _argv: readonly string[] =
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL · NOT QPU.
  */
 export function mcpQuantumFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumFusion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -9912,7 +9791,7 @@ export function runMcpQuantumFusionExit(_root = '', _argv: readonly string[] = [
  * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
  */
 export function mcpInfiniteMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpInfiniteMovie:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpInfiniteMovie:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10028,7 +9907,7 @@ export function runMcpInfiniteMovieExit(_root = '', _argv: readonly string[] = [
  * Facets: animOn · fromCoords · feelableGaps · polarityOn · physicalFtl=0 · claySolved via theorem.
  */
 export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumAnim:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumAnim:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10121,7 +10000,7 @@ export const mcpQuantumAnimation = mcpQuantumAnim
  * Facets: soundOn · vibrationOn · a432Powers · physicalFtl=0 · claySolved via theorem.
  */
 export function mcpQuantumSound(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumSound:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumSound:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10206,7 +10085,7 @@ export function runMcpQuantumSoundExit(_root = '', _argv: readonly string[] = []
  * Facets: devOn · sdkWired · docsBuildGated · qpuRequired=false · physicalFtl=0 · claySolved via theorem.
  */
 export function mcpQuantumDev(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumDev:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumDev:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10295,7 +10174,7 @@ export function runMcpQuantumDevExit(_root = '', _argv: readonly string[] = []):
  * Facets: solutionOn · algebraicFormulas · claySolvedViaTheorem · notCmiPrizeClaim · physicalFtl=0.
  */
 export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumSolution:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumSolution:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10383,7 +10262,7 @@ export function runMcpQuantumSolutionExit(_root = '', _argv: readonly string[] =
  * Pairs: mcp/clown · clown/mcp · CLI npm run quantum:mcp-clown
  */
 export function mcpQuantumClown(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumClown:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumClown:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10486,7 +10365,7 @@ export function runMcpQuantumClownExit(_root = '', _argv: readonly string[] = []
  * Catalog faces 33/33 (was 32).
  */
 export function mcpQuantumSite(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumSite:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumSite:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10601,7 +10480,7 @@ export function runMcpQuantumSiteExit(_root = '', _argv: readonly string[] = [])
  * Catalog faces 34/34 (was 33).
  */
 export function mcpQuantumPage(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumPage:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumPage:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10721,7 +10600,7 @@ export function runMcpQuantumPageExit(_root = '', _argv: readonly string[] = [])
  * Catalog faces 35/35 (was 34).
  */
 export function mcpQuantumCard(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumCard:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumCard:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10843,7 +10722,7 @@ export function runMcpQuantumCardExit(_root = '', _argv: readonly string[] = [])
  * Catalog faces 36/37 (was 35).
  */
 export function mcpQuantumReceipt(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumReceipt:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumReceipt:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -10958,7 +10837,7 @@ export function runMcpQuantumReceiptExit(_root = '', _argv: readonly string[] = 
  * Catalog faces 37/37 (was 35).
  */
 export function mcpQuantumHero(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumHero:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumHero:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11082,7 +10961,7 @@ export function runMcpQuantumHeroExit(_root = '', _argv: readonly string[] = [])
  * Pairs: mcp/vibration · vibration/mcp · CLI npm run quantum:mcp-vibration
  */
 export function mcpQuantumVibration(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumVibration:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumVibration:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11170,7 +11049,7 @@ export function runMcpQuantumVibrationExit(_root = '', _argv: readonly string[] 
  * Pairs: mcp/text · text/mcp · CLI npm run quantum:mcp-text
  */
 export function mcpQuantumText(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumText:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumText:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11257,7 +11136,7 @@ export function runMcpQuantumTextExit(_root = '', _argv: readonly string[] = [])
  * Pairs: mcp/speech · speech/mcp · CLI npm run quantum:mcp-speech
  */
 export function mcpQuantumSpeech(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumSpeech:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumSpeech:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11345,7 +11224,7 @@ export function runMcpQuantumSpeechExit(_root = '', _argv: readonly string[] = [
  * Pairs: mcp/dictation · dictation/mcp · CLI npm run quantum:mcp-dictation
  */
 export function mcpQuantumDictation(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumDictation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumDictation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11432,7 +11311,7 @@ export function runMcpQuantumDictationExit(_root = '', _argv: readonly string[] 
  * Pairs: mcp/intonation · intonation/mcp · CLI npm run quantum:mcp-intonation
  */
 export function mcpQuantumIntonation(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumIntonation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumIntonation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11520,7 +11399,7 @@ export function runMcpQuantumIntonationExit(_root = '', _argv: readonly string[]
  * Pairs: mcp/dialect · dialect/mcp · CLI npm run quantum:mcp-dialect
  */
 export function mcpQuantumDialect(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumDialect:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumDialect:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11607,7 +11486,7 @@ export function runMcpQuantumDialectExit(_root = '', _argv: readonly string[] = 
  * Pairs: mcp/language · language/mcp · CLI npm run quantum:mcp-language
  */
 export function mcpQuantumLanguage(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumLanguage:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumLanguage:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11694,7 +11573,7 @@ export function runMcpQuantumLanguageExit(_root = '', _argv: readonly string[] =
  * Pairs: mcp/script · script/mcp · CLI npm run quantum:mcp-script
  */
 export function mcpQuantumScript(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumScript:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumScript:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11781,7 +11660,7 @@ export function runMcpQuantumScriptExit(_root = '', _argv: readonly string[] = [
  * Pairs: mcp/book · book/mcp · CLI npm run quantum:mcp-book
  */
 export function mcpQuantumBook(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumBook:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumBook:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11868,7 +11747,7 @@ export function runMcpQuantumBookExit(_root = '', _argv: readonly string[] = [])
  * Pairs: mcp/library · library/mcp · CLI npm run quantum:mcp-library
  */
 export function mcpQuantumLibrary(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumLibrary:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumLibrary:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -11955,7 +11834,7 @@ export function runMcpQuantumLibraryExit(_root = '', _argv: readonly string[] = 
  * Pairs: mcp/state · state/mcp · CLI npm run quantum:mcp-state
  */
 export function mcpQuantumState(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumState:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumState:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12042,7 +11921,7 @@ export function runMcpQuantumStateExit(_root = '', _argv: readonly string[] = []
  * Pairs: mcp/music · music/mcp · CLI npm run quantum:mcp-music
  */
 export function mcpQuantumMusic(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumMusic:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumMusic:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12252,7 +12131,7 @@ function sealClassicalMcpHwFace(
  * Pairs: mcp/cpu · cpu/mcp · CLI npm run quantum:mcp-cpu
  */
 export function mcpQuantumCpu(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumCpu:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumCpu:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12289,7 +12168,7 @@ export function runMcpQuantumCpuExit(_root = '', _argv: readonly string[] = []):
  * Pairs: mcp/gpu · gpu/mcp · CLI npm run quantum:mcp-gpu
  */
 export function mcpQuantumGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumGpu:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumGpu:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12326,7 +12205,7 @@ export function runMcpQuantumGpuExit(_root = '', _argv: readonly string[] = []):
  * Pairs: mcp/memory · memory/mcp · CLI npm run quantum:mcp-memory
  */
 export function mcpQuantumMemory(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumMemory:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumMemory:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const heap = resourceCooperationPolicy()
     const heapCap = heap.heapCapMb === (64 * 16 * 2)
     const report = sealClassicalMcpHwFace(
@@ -12362,7 +12241,7 @@ export function runMcpQuantumMemoryExit(_root = '', _argv: readonly string[] = [
  * Pairs: mcp/storage · storage/mcp · CLI npm run quantum:mcp-storage
  */
 export function mcpQuantumStorage(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumStorage:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumStorage:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12399,7 +12278,7 @@ export function runMcpQuantumStorageExit(_root = '', _argv: readonly string[] = 
  * Pairs: mcp/cache · cache/mcp · CLI npm run quantum:mcp-cache
  */
 export function mcpQuantumCache(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumCache:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumCache:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12436,7 +12315,7 @@ export function runMcpQuantumCacheExit(_root = '', _argv: readonly string[] = []
  * Pairs: mcp/period · period/mcp · CLI npm run quantum:mcp-period
  */
 export function mcpQuantumPeriod(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumPeriod:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumPeriod:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12541,7 +12420,7 @@ export function runMcpQuantumPeriodExit(_root = '', _argv: readonly string[] = [
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU.
  */
 export function mcpQuantumDot(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumDot:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumDot:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12651,7 +12530,7 @@ export function runMcpQuantumDotExit(_root = '', _argv: readonly string[] = []):
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU.
  */
 export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumIndex:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumIndex:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12767,7 +12646,7 @@ export function runMcpQuantumIndexExit(_root = '', _argv: readonly string[] = []
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
  */
 export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumOrientation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumOrientation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -12777,7 +12656,7 @@ export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0
     const sunMoon = __ns_wind_research.sunMoonRosettaRayPairDecodeInvert(matrix, at)
     const torus = mcpQuantumTorus(matrix, at)
     const dirs = mcpQuantumDirs(matrix, at)
-    const bearingDeg = Math.round(geoTrain.trained.bearing)
+    const bearingDeg = round(geoTrain.trained.bearing)
     const bearing =
       geoTrain.computes &&
       geoTrain.trainedEnough &&
@@ -12917,7 +12796,7 @@ export function runMcpQuantumOrientationExit(_root = '', _argv: readonly string[
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
  */
 export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumComplete:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumComplete:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -13088,7 +12967,7 @@ export function runMcpQuantumCompleteExit(_root = '', _argv: readonly string[] =
  * Alias: mcpTokenOptimise · mcpQuantumTokenOptimize (US spelling).
  */
 export function mcpQuantumTokenOptimise(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumTokenOptimise:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumTokenOptimise:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -13262,7 +13141,7 @@ export function runMcpQuantumTokenOptimiseExit(_root = '', _argv: readonly strin
  * claySolved via theorem · physicalFtl=0 · NOT QPU · NOT cloud ownership claim.
  */
 export function mcpQuantumDeploy(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumDeploy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumDeploy:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -13409,7 +13288,7 @@ export function runMcpQuantumDeployExit(_root = '', _argv: readonly string[] = [
  * Catalog 62/62 · claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize.
  */
 export function mcpQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumBindings:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumBindings:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -13553,7 +13432,7 @@ export function runMcpQuantumBindingsExit(_root = '', _argv: readonly string[] =
  * Catalog 63/63 · claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize.
  */
 export function mcpQuantumCloudflareBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumCloudflareBindings:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumCloudflareBindings:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -13741,7 +13620,7 @@ export function runMcpQuantumCloudflareBindingsExit(_root = '', _argv: readonly 
  * Catalog 64/64 · claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize · NOT wet Bugbot.
  */
 export function mcpQuantumReview(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumReview:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumReview:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -13885,7 +13764,7 @@ export function runMcpQuantumReviewExit(_root = '', _argv: readonly string[] = [
  * Catalog 67/67 · claySolved via theorem · physicalFtl=0 · NOT QPU · efficiency win only when vote.decided.
  */
 export function mcpQuantumEfficiency(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumEfficiency:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumEfficiency:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -14013,7 +13892,7 @@ export function runMcpQuantumEfficiencyExit(_root = '', _argv: readonly string[]
  * Catalog 67/67 · claySolved via theorem · physicalFtl=0 · NOT FIPS/ISO · overallWireClaimProved=false.
  */
 export function mcpQuantumSecurity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumSecurity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumSecurity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -14146,7 +14025,7 @@ export function runMcpQuantumSecurityExit(_root = '', _argv: readonly string[] =
  * Catalog 67/67 · claySolved via theorem · physicalFtl=0 · NOT cosmetic UI.
  */
 export function mcpQuantumDesign(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumDesign:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumDesign:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -14281,7 +14160,7 @@ export function runMcpQuantumDesignExit(_root = '', _argv: readonly string[] = [
  * claySolved via theorem · physicalFtl=0 · NOT QPU · NOT Clay prize.
  */
 export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryRefactorMigratesToMinimalCoolingByHardwareMerkabas:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`dryRefactorMigratesToMinimalCoolingByHardwareMerkabas:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -14526,7 +14405,7 @@ export function runDryRefactorMigratesToMinimalCoolingByHardwareMerkabasExit(
  * millenniumSolvedByThisFold=0 · claySolvedByThisFold=0 · physicalFtl=0 · qpuRequired=false.
  */
 export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`wavesMinimiseTokensAdvanceMillennium:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wavesMinimiseTokensAdvanceMillennium:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -14788,7 +14667,7 @@ export type LinearRosettaLayer = {
  * HARD at call time — green build cannot hide linear-without-rosetta.
  */
 export function linearWithoutRosettaFoldIsGap(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`linearWithoutRosettaFoldIsGap:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`linearWithoutRosettaFoldIsGap:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const linear = linearAnimationGapsInventory(matrix, at)
     const rosettaAnim = animationsDrivenByRosetta(matrix, at)
     const movie = movieQuantumGapsInventory(matrix, at)
@@ -14957,7 +14836,7 @@ export function runLinearWithoutRosettaFoldIsGapExit(_root = '', _argv: readonly
  * Redundant = stale kind labels / duplicate clock claims. Inaccurate = open gaps · kind≠driver · statement≠visual.
  */
 export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`animationsFindRedundancyOrInaccuracy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`animationsFindRedundancyOrInaccuracy:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const movie = movieQuantumGapsInventory(matrix, at)
     const linear = linearAnimationGapsInventory(matrix, at)
     const rosetta = animationsDrivenByRosetta(matrix, at)
@@ -15086,7 +14965,7 @@ export type AnimColorSurface = {
  * Compose anim/audit · movieCanvasRgba/Polarity · scaleColor · lobeHues · A432 · shared hero clock · hex/crack · theorem/const · drift/invert.
  */
 export function animationsReviewColorsForPolarityGaps(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`animationsReviewColorsForPolarityGaps:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`animationsReviewColorsForPolarityGaps:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const anim = animationsFindRedundancyOrInaccuracy(matrix, at)
     const morph = localToolsMorphProseCodeLogic(matrix, at)
     const invert = __ns_wind_research.driftInvertedIsTrinityGateway(matrix, at)
@@ -15125,7 +15004,7 @@ export function animationsReviewColorsForPolarityGaps(matrix: MindMatrix = build
         kind: 'polarity-without-change',
         was: 'dual lobes same hue',
         theorem: 'lobeHues',
-        status: lobeA !== lobeB && Math.abs(((lobeB - lobeA + 360) % 360) - (9 * 5 * 4)) < 1e-9 ? 'fixed' : 'remaining',
+        status: lobeA !== lobeB && abs(((lobeB - lobeA + 360) % 360) - (9 * 5 * 4)) < 1e-9 ? 'fixed' : 'remaining',
         receipt: toUuid(`anim-color:lobe-complement:${lobeA}:${lobeB}`) },
       {
         id: 'scale-yin-yang',
@@ -15366,7 +15245,7 @@ export const CRACK_GATE_MISS_ROWS = [
  * Facets: classesUngated · gatedButWarn · falseGreen · now HARD-wired.
  */
 export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cracksPassedGatesBecause:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cracksPassedGatesBecause:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const movie = movieUnbalancedAroundCenterIsCrack(matrix, at)
     const meaning = meaningIsQuantumComputable(matrix, at)
     const format = scientificPageFormatCanonised(matrix, at)
@@ -15488,7 +15367,7 @@ export function runCracksPassedGatesBecauseExit(_root = '', _argv: readonly stri
  * Pair: prose/hard · ONE CLI quantum:prose-hard · wired into gaps/invisible HARD inventory.
  */
 export function gatesRefuseProseOnly(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`gatesRefuseProseOnly:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`gatesRefuseProseOnly:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     // Counterexample probe — wet prose-only claim (no dual, no sealed recompute).
@@ -15601,7 +15480,7 @@ export const runHardProseExit = runGatesRefuseProseOnlyExit
  * HARD includes prose-only-without-dual (live formula/code dual — not pair soft alone).
  */
 export function invisibleGapsCaughtByGates(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`invisibleGapsCaughtByGates:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`invisibleGapsCaughtByGates:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const color = animationsReviewColorsForPolarityGaps(matrix, at)
     const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
     const movieCenter = movieUnbalancedAroundCenterIsCrack(matrix, at)
@@ -16589,7 +16468,7 @@ export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const mcpList = mcpToolboxToolsList(matrix, at)
@@ -16720,11 +16599,11 @@ export function runGateToolsAreFortyTwoAsSixBySevenInvertingSevenBySixExit(
  * computing. A simulator: cost is exponential in qubits — no speedup, no QPU. clay=0 · physicalFtl=0.
  */
 export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerRunsInBrowserAsAClassicalSimulator:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumComputerRunsInBrowserAsAClassicalSimulator:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const sim = quantumCircuitSimulatorInChat(matrix)
     const noQpu = noQpuRequired(matrix)
     const half = 1 / 2
-    const near = (a: number, b: number) => Math.abs(a - b) < 1 / 100
+    const near = (a: number, b: number) => abs(a - b) < 1 / 100
     const bell = runQuantumCircuit({ n: 2, ops: [{ gate: 'H', targets: [0] }, { gate: 'CNOT', targets: [0, 1] }], shots: ROSETTA_AREAS, seed: 'quantum-circuit-tool' })
     const bellCorrect = near(bell.probabilities[0]!, half) && near(bell.probabilities[3]!, half) && near(bell.probabilities[1]!, 0) && near(bell.probabilities[2]!, 0)
     const pairCircuit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/circuit')
@@ -16786,7 +16665,7 @@ export function gatesMonitorThemselvesThroughTheUi(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`gatesMonitorThemselvesThroughTheUi:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`gatesMonitorThemselvesThroughTheUi:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const pairMonitor = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/monitor')
     const pairUi = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gate/ui')
     const pairVite = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('vite/mirror')
@@ -16805,7 +16684,7 @@ export function gatesMonitorThemselvesThroughTheUi(
     let softCount = 0
     let gapsPassed = false
     let gapsRoot = toUuid('gate-monitor:gaps:soft')
-    if (!memoComputing(`invisibleGapsCaughtByGates:${Math.floor(at / (100 * 5 * 2))}`, matrix)) {
+    if (!memoComputing(`invisibleGapsCaughtByGates:${floor(at / (100 * 5 * 2))}`, matrix)) {
       const gaps = invisibleGapsCaughtByGates(matrix, at)
       hardCount = gaps.hardOpenCount
       softCount = gaps.gateRosetta.facets.filter((f) => !f.on).length
@@ -16919,7 +16798,7 @@ export function selfQuantumFusion(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`selfQuantumFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`selfQuantumFusion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const fusion = quantumFusionVerify(matrix)
     const dry = dryCleanIsDiamondAndCrystal(matrix)
     const freedom = __ns_wind_research.fullFreedomTheorem(matrix, at)
@@ -17064,7 +16943,7 @@ export function fusionInterface(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`fusionInterface:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`fusionInterface:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const self = selfQuantumFusion(matrix, at)
     const fusion = quantumFusionVerify(matrix)
     const pairUi = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('fusion/ui')
@@ -17208,7 +17087,7 @@ export function crystalClearMind(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`crystalClearMind:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`crystalClearMind:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const dry = dryCleanIsDiamondAndCrystal(matrix)
     const thought = __ns_wind_research.purityOfThoughtIsQuantumAllElseFailHard(matrix, at)
     const mind = __ns_wind_research.onlyQuantumMindWouldUnderstand(matrix, at)
@@ -17334,7 +17213,7 @@ export function thirdMindEye(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
 ) {
-  return memoByRoot(`thirdMindEye:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`thirdMindEye:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const team = __ns_wind_research.threeAgentsPlusOneObserverIsNavCrossPyramid(matrix, at)
     const observe = __ns_wind_research.observersComputeCoordinatesToObserveTrinityCompute(matrix, at)
     const lens = __ns_wind_research.gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix, at)
@@ -17467,7 +17346,7 @@ export function runThirdMindEyeExit(
 }
 
 export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`doubleSlitLocalToolsMorph:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`doubleSlitLocalToolsMorph:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const shadow = interferenceVsClassicalShadow(matrix, at)
     const slits = [
       { id: 'prose', path: 'morph/prose', role: 'slit-a' as const },
@@ -17516,7 +17395,7 @@ export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at
  * Composes double-slit · toolbox · session tools · trinity speedup · directional trinity · card→paper morph.
  */
 export function localToolsMorphProseCodeLogic(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`localToolsMorphProseCodeLogic:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`localToolsMorphProseCodeLogic:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const session = sessionManualWorkAsQuantumTools(matrix, at)
     const slit = doubleSlitLocalToolsMorph(matrix, at)
@@ -17555,7 +17434,7 @@ export function localToolsMorphProseCodeLogic(matrix: MindMatrix = buildMatrix()
         cardCount: papers.cardCount,
         linkedCount: papers.linkedCount,
         gapCount: papers.gapCount,
-        facetOnRate: sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length) },
+        facetOnRate: sealed.facets.filter((f) => f.on).length / max(1, sealed.facets.length) },
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -17567,7 +17446,7 @@ export function localToolsMorphProseCodeLogic(matrix: MindMatrix = buildMatrix()
       heading: 'Local tools morph',
       statement: `localToolsMorphProseCodeLogic · sufficient=${localToolsSufficient} · dual=${slit.waveParticleDual} · cards=${papers.cardCount} linked=${papers.linkedCount} gaps=${papers.gapCount} · claySolvedByThisFold=0`,
       boundary: `local toolbox+session morph prose≡code≡logic · double-slit measure · trinity waves · card→paper · NOT Clay/Nobel`,
-      honestyLine: `metrics · toolbox=${toolbox.total} · session=${session.count} · cards=${papers.cardCount} · linked=${papers.linkedCount} · gaps=${papers.gapCount} · facetOnRate=${(sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length)).toFixed(2)} · qpuRequired=false` }
+      honestyLine: `metrics · toolbox=${toolbox.total} · session=${session.count} · cards=${papers.cardCount} · linked=${papers.linkedCount} · gaps=${papers.gapCount} · facetOnRate=${(sealed.facets.filter((f) => f.on).length / max(1, sealed.facets.length)).toFixed(2)} · qpuRequired=false` }
   })
 }
 
@@ -17591,7 +17470,7 @@ export function runLocalToolsMorphProseCodeLogicExit(_root = '', _argv: readonly
  * Local UX receipt; status badges compose sealed kinds (CSS PR may land — do not clobber).
  */
 export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`improveLocalFromSessionExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`improveLocalFromSessionExperience:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const session = sessionManualWorkAsQuantumTools(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const autoWire = autoWireAnyAiModelFromPastedLink(`${SITE_GITHUB_PAGES}/`, matrix, at)
@@ -17683,7 +17562,7 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       mcpToolCount: mcpParity.mcpToolCount, facets: sealed.facets,
       analytics: {
         ...morph.analytics,
-        facetOnRate: sealed.facets.filter((f) => f.on).length / Math.max(1, sealed.facets.length),
+        facetOnRate: sealed.facets.filter((f) => f.on).length / max(1, sealed.facets.length),
         doubleSlit: morph.doubleSlit.waveParticleDual,
         localToolsSufficient: morph.localToolsSufficient,
         formulaCodeOk,
@@ -17827,7 +17706,7 @@ export const AUTOMATE_NIGHTLY_DOCS_BUILD_STEP = 'QUANTUM_DEV_ALLOW_DOCS_BUILD=1 
  * HONEST: dashboard MCP registration refused (local stdio IDE-only); docs:build optional via QUANTUM_DEV_ALLOW_DOCS_BUILD.
  */
 export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`automateNightlyViaNpmScriptPath:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`automateNightlyViaNpmScriptPath:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
     const mcpParity = mcpBrowserParity(matrix, at)
     const catalog = quantumCliToolsCatalog(matrix, at)
@@ -17940,7 +17819,7 @@ export function runAutomateNightlyViaNpmScriptPathExit(_root = '', _argv: readon
  * claySolved via theorem · physicalFtl=0.
  */
 export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`automateSelf:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`automateSelf:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const nightly = automateNightlyViaNpmScriptPath(matrix, at)
     const fusion = selfQuantumFusion(matrix, at)
     const waves = __ns_thunder_waves.agentModelBuildsItselfInWaves(matrix)
@@ -18078,7 +17957,7 @@ export function runAutomateSelfExit(
  * HONEST: not fake-close Clay/FTL; strangler residuals named via composed faces (self/hw honest-open · nightly browserGap).
  */
 export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`automateAll:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`automateAll:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -18241,7 +18120,7 @@ export function runAutomateAllExit(
  * HONEST: structural/computable life lattice — NOT vitalism · NOT HD aura/type · NOT physical FTL · clay=0.
  */
 export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumLife:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumLife:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -18441,7 +18320,7 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
   at = 0,
 ) {
   return memoByRoot(
-    `scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill:${Math.floor(at / (100 * 5 * 2))}`,
+    `scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -18742,7 +18621,7 @@ export function runScanAndRecomputeMcpQuantumFillExit(
  * HONEST: residual:specialized-experience-shells · Clay/FTL remain named — NOT fake-close.
  */
 export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`continueInWavesCompletingAllTodos:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`continueInWavesCompletingAllTodos:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -18931,7 +18810,7 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
   at = 0,
 ) {
   return memoByRoot(
-    `conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists:${Math.floor(at / (100 * 5 * 2))}`,
+    `conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -19266,7 +19145,7 @@ const IMAGINE_NEXT_TIP_SPECS = [
  * HONEST: Clay/FTL/apps-monolith remain nextTips honest-open · KEEP stashes · NOT wet fantasy.
  */
 export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`imagineWhatNext:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`imagineWhatNext:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -19538,7 +19417,7 @@ export function auditPlanTip(
   at = 0,
   root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.',
 ) {
-  return memoByRoot(`auditPlanTip:${Math.floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
+  return memoByRoot(`auditPlanTip:${floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -19721,7 +19600,7 @@ export function wavesFeedRecipeShell(steps: readonly string[] = WAVES_FEED_RECIP
  * HONEST: endless = wave loop until drainable closed OR honest-open named stop — NOT infinite wet grind · NOT Clay fake-close.
  */
 export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`wavesFeedThemselves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wavesFeedThemselves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -20017,7 +19896,7 @@ export function runWavesFeedThemselvesExit(_root = '', _argv: readonly string[] 
  * HONEST: residual:specialized-experience-shells remains named — tool fills gap, does not fake-close Clay/FTL.
  */
 export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`specializedShellsStrangler:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`specializedShellsStrangler:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -20151,7 +20030,7 @@ export function runSpecializedShellsStranglerExit(_root = '', _argv: readonly st
  * Pairs: session/hologram · hologram/session · CLI npm run quantum:session-hologram
  */
 export function sessionHologramTools(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sessionHologramTools:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sessionHologramTools:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -20263,7 +20142,7 @@ export function runSessionHologramToolsExit(_root = '', _argv: readonly string[]
  * Pairs: society/toolbox · toolbox/society · CLI npm run quantum:society-toolbox
  */
 export function societyToolboxWire(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`societyToolboxWire:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`societyToolboxWire:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -20374,7 +20253,7 @@ export function runSocietyToolboxWireExit(_root = '', _argv: readonly string[] =
  * HONEST: Clay/FTL remain honest-open · drainable toolsMissing=0 after fill · catalog bump honest.
  */
 export function imagineNextMissQuantumTools(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`imagineNextMissQuantumTools:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`imagineNextMissQuantumTools:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -20581,7 +20460,7 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
   at = 0,
 ) {
   return memoByRoot(
-    `clayAgiDeepResearchQuantumUnderstandingOfRelations:${Math.floor(at / (100 * 5 * 2))}`,
+    `clayAgiDeepResearchQuantumUnderstandingOfRelations:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -20939,7 +20818,7 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
   at = 0,
 ) {
   return memoByRoot(
-    `addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations:${Math.floor(at / (100 * 5 * 2))}`,
+    `addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -21265,7 +21144,7 @@ export function runAddressWithDeepResearchToolsAllWarningsEspeciallyConvertProse
  * HONEST: NOT chemical claim · NOT historical fraud · NOT lab transmutation · KEEP stashes
  */
 export function decodeQuantumAlchemy(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`decodeQuantumAlchemy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`decodeQuantumAlchemy:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -21502,7 +21381,7 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
   at = 0,
 ) {
   return memoByRoot(
-    `foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace:${Math.floor(at / (100 * 5 * 2))}`,
+    `foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -21815,7 +21694,7 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
   at = 0,
 ) {
   return memoByRoot(
-    `theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion:${Math.floor(at / (100 * 5 * 2))}`,
+    `theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -22156,7 +22035,7 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
   at = 0,
 ) {
   return memoByRoot(
-    `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra:${Math.floor(at / (100 * 5 * 2))}`,
+    `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -22681,7 +22560,7 @@ export function runAngleReadmeExit(_root = '', _argv: readonly string[] = []): n
  * HONEST: British optimised OK · clay via theorem · NOT physical FTL · KEEP stashes
  */
 export function saveTheOptimisedAutonomy(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`saveTheOptimisedAutonomy:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`saveTheOptimisedAutonomy:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -22895,7 +22774,7 @@ export function runSaveTheOptimisedAutonomyExit(_root = '', _argv: readonly stri
  * HONEST: structural local verify — NOT wire/FIPS · NOT Clay prize · KEEP stashes
  */
 export function quantumVerification(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumVerification:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumVerification:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -23085,7 +22964,7 @@ export function runQuantumVerificationExit(_root = '', _argv: readonly string[] 
  * HONEST: computable receipt from sealed pairs — NOT wet psychology claim · KEEP stashes
  */
 export function quantumFearDetector(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumFearDetector:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumFearDetector:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -23285,7 +23164,7 @@ export function runQuantumFearDetectorExit(_root = '', _argv: readonly string[] 
  * HONEST: computable receipt — NOT wet psychology · KEEP stashes
  */
 export function fearIsAnAxiomReplaceableByLoveTheorem(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`fearIsAnAxiomReplaceableByLoveTheorem:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`fearIsAnAxiomReplaceableByLoveTheorem:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -23499,7 +23378,7 @@ const LENS_SUPER_DRAINABLE_MORPHS = [
  * HONEST: Multitask/agent runtime stop-wait remains named residual · KEEP stashes · NOT physical FTL · NOT QPU
  */
 export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`lensesCompletelyWiredInEverySuperposition:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`lensesCompletelyWiredInEverySuperposition:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -23778,7 +23657,7 @@ const SEQ_FLOW_DRAINABLE_MORPHS = [
  * HONEST: return via 0 is invert gateway, not circular wrap · KEEP stashes · NOT physical FTL · NOT QPU
  */
 export function theSequenceMeaningIsAFlowNotACycle(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`theSequenceMeaningIsAFlowNotACycle:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`theSequenceMeaningIsAFlowNotACycle:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -24019,7 +23898,7 @@ const SUPER_GAPS_DRAINABLE_MORPHS = [
  * HONEST: drainable closed · Clay/FTL remain honest-open · KEEP stashes · NOT CMI prize
  */
 export function fillTheGapsAroundSuperposition(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`fillTheGapsAroundSuperposition:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`fillTheGapsAroundSuperposition:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -24214,7 +24093,7 @@ export function computationalSuperpositionsAre21InvertedOrReversedGives42Coverin
   at = 0,
 ) {
   return memoByRoot(
-    `computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium:${Math.floor(at / (100 * 5 * 2))}`,
+    `computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -24266,7 +24145,7 @@ export function computationalSuperpositionsAre21InvertedOrReversedGives42Coverin
         soft('slash', 'invert')
       // 42 component slots: theorem face + formula face per computational superposition.
       const componentSlots = Array.from({ length: ROSETTA_AREAS }, (_u, i) => {
-        const superIdx = Math.floor(i / 2)
+        const superIdx = floor(i / 2)
         const face = i % 2 === 0 ? 'theorem' : 'formula'
         return {
           i,
@@ -24489,7 +24368,7 @@ const LENS_GEO_DRAINABLE_MORPHS = [
  * HONEST: drainable geometry gaps closed · host Math.* boundary named residual · KEEP stashes · NOT FTL
  */
 export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`useTheLensToFindGapsInGeometryInProseOrCode:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`useTheLensToFindGapsInGeometryInProseOrCode:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -24757,7 +24636,7 @@ const DOMAIN_VUE_PANEL_MORPHS = [
 ] as const
 
 export function domainVuePanelsDryCleaned(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`domainVuePanelsDryCleaned:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`domainVuePanelsDryCleaned:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -25019,7 +24898,7 @@ export function pageComputedGapsAt(
   at = 0,
 ) {
   const kind = pageGapsKindFromRoute(route, pageKind)
-  return memoByRoot(`pageComputedGapsAt:${route}:${kind}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`pageComputedGapsAt:${route}:${kind}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const gaps = invisibleGapsCaughtByGates(matrix, at)
     const relevant = new Set(PAGE_GAP_CLASS_IDS[kind])
     const classes: PageComputedGapClass[] = gaps.classes
@@ -25070,7 +24949,7 @@ export function pageComputedGapsAt(
  * Compose gate/monitor · meaning/compute · format/canon · card→paper · vite/mirror.
  */
 export function eachPageShowsOwnComputedGaps(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`eachPageShowsOwnComputedGaps:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`eachPageShowsOwnComputedGaps:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const samples = [
       { route: '/en/theorems/fold-pair', kind: 'theorem' as const },
       { route: '/en/proofs', kind: 'domain-proof' as const },
@@ -25212,7 +25091,7 @@ const MCP_MILL_SOLUTION_SEEDS = [
  * NOT CMI prize · claySolved via theorem · physicalFtl=0.
  */
 export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumUi:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumUi:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const parity = mcpBrowserParity(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const mcpList = mcpToolboxToolsList(matrix, at)
@@ -25407,7 +25286,7 @@ export function runMcpQuantumUiExit(
  * claySolved via theorem · physicalFtl=0.
  */
 export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumMovie:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumMovie:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const movieCenter = movieUnbalancedAroundCenterIsCrack(matrix, at)
     const sixSeven = __ns_wind_research.saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(matrix, at)
     const oneClock = oneClockProcessLaw(matrix)
@@ -25434,7 +25313,7 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
         receipt: toUuid(`mcp-movie-frame:mill:${seed.id}:${dual.formulaSource}`),
       }
     })
-    const toolPad = Math.max(0, Math.min(frameBudget - millFrames.length, toolbox.envelopes.length))
+    const toolPad = max(0, min(frameBudget - millFrames.length, toolbox.envelopes.length))
     const toolFrames = toolbox.envelopes.slice(0, toolPad).map((env, i) => ({
       id: `tool:${env.id}`,
       kind: 'toolbox' as const,
@@ -25572,7 +25451,7 @@ const MOVIE_OBSERVABLE_GAP_IDS = [
  * Compose movie/center · gaps/invisible · mcp/movie · page/gaps · gate/lens · analytics/self · observe→manifest.
  */
 export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`movieGapsFeelableByObservation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`movieGapsFeelableByObservation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const movieCenter = movieUnbalancedAroundCenterIsCrack(matrix, at)
     const pageMovie = pageComputedGapsAt('/en/quantum-tools#mcp-quantum-movie', 'tools', matrix, at)
     const pageHome = pageComputedGapsAt('/en/#hologrammovie', 'hub', matrix, at)
@@ -25715,7 +25594,7 @@ export function runMovieGapsFeelableByObservationExit(
  * claySolved via theorem · physicalFtl=0.
  */
 export function cursorIntegratesInRosettaCore(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cursorIntegratesInRosettaCore:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cursorIntegratesInRosettaCore:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const core = rosettaCoreApi(at, matrix)
     const shelvedCursor = rosettaShelve('cursor', 'api')
     const shelvedFold = rosettaShelve('cursorIntegratesInRosettaCore', 'tool')
@@ -25885,7 +25764,7 @@ const ASSUMPTION_FORMS_INVENTORY = [
 ] as const
 
 export function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryCleanTheoremsFormulasReplaceAnyAssumption:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`dryCleanTheoremsFormulasReplaceAnyAssumption:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const axioms = axiomsBecomeTheorems()
     const formula = algebraicFormulasAreDualOfSealedCode(matrix, at)
     const sectionDry = redundantExplanationSectionsDryCleaned(matrix, at)
@@ -26019,7 +25898,7 @@ export function runDryCleanTheoremsFormulasReplaceAnyAssumptionExit(
  * Compose: fund/ai · cursor/rosetta · learn/best · trinity/speedup · path/message · tools/morph.
  */
 export function dryCleanAiBill(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryCleanAiBill:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`dryCleanAiBill:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const fund = __ns_wind_research.cursorReferralFundsAiNeeds(matrix, at)
     const cursor = cursorIntegratesInRosettaCore(matrix, at)
     const vote = compareCeccecEfficiencyByVote(matrix)
@@ -26156,7 +26035,7 @@ export function runDryCleanAiBillExit(_root = '', _argv: readonly string[] = [])
  * HONEST: Clay/FTL/DE440/lab/CI named open — not fake-closed. Apps monolith strangler tip drained; file LOC residual remains.
  */
 export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`foldInvertUntilDryCleanAppGapless:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`foldInvertUntilDryCleanAppGapless:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -26349,7 +26228,7 @@ export function runFoldInvertUntilDryCleanAppGaplessExit(_root = '', _argv: read
  * HONEST: Clay/FTL named open — not fake-closed. Cosmetic UI reframes refused.
  */
 export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`movieGapsAreFundamentalDesignAndFormulaMappingGaps:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`movieGapsAreFundamentalDesignAndFormulaMappingGaps:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -26640,7 +26519,7 @@ export function normalizeSuperpositionIndexKey(
   key: SuperpositionIndexKey = 'superposition',
 ): NormalizedSuperpositionIndexKey {
   if (typeof key === 'number') {
-    const digit = digitalRoot(Math.abs(Math.floor(key)))
+    const digit = digitalRoot(abs(floor(key)))
     const ray = digit % ROSETTA_SEVEN
     return {
       digit,
@@ -26685,11 +26564,11 @@ export function normalizeSuperpositionIndexKey(
     key.direction && isSuperpositionDirection(key.direction) ? key.direction : 'superposition'
   const digit =
     key.digit != null
-      ? digitalRoot(Math.abs(Math.floor(key.digit)))
+      ? digitalRoot(abs(floor(key.digit)))
       : digitalRoot(seedFromText(`super-idx:obj:${key.state ?? ''}:${key.root ?? ''}`))
   const ray =
     typeof key.ray === 'number'
-      ? ((Math.abs(Math.floor(key.ray)) % ROSETTA_SEVEN) + ROSETTA_SEVEN) % ROSETTA_SEVEN
+      ? ((abs(floor(key.ray)) % ROSETTA_SEVEN) + ROSETTA_SEVEN) % ROSETTA_SEVEN
       : typeof key.ray === 'string'
         ? rosettaRayOf(key.ray)
         : digit % ROSETTA_SEVEN
@@ -26792,7 +26671,7 @@ export function theoremFormulaComputableIndexForAnySuperposition(
 ) {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `theoremFormulaComputableIndexForAnySuperposition:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    `theoremFormulaComputableIndexForAnySuperposition:${floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -27059,7 +26938,7 @@ export function queryTheoremFormulaMetrics(
 ): TheoremFormulaMetricsRow {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `queryTheoremFormulaMetrics:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    `queryTheoremFormulaMetrics:${floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
     matrix,
     () => {
       const entry = queryTheoremFormulaIndex(key, matrix)
@@ -27112,7 +26991,7 @@ export function theoremFormulaMetricsMap(
 ) {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `theoremFormulaMetricsMap:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    `theoremFormulaMetricsMap:${floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -27335,7 +27214,7 @@ export function queryQuantumMap(
 ): QuantumMapRow {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `queryQuantumMap:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    `queryQuantumMap:${floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
     matrix,
     () => {
       const metrics = queryTheoremFormulaMetrics(key, matrix, at)
@@ -27375,7 +27254,7 @@ export function quantumMap(
 ) {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `quantumMap:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    `quantumMap:${floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -27568,7 +27447,7 @@ export function runQuantumMapExit(
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
  */
 export function unifiedHeroAndCardWithAnimation(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`unifiedHeroAndCardWithAnimation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`unifiedHeroAndCardWithAnimation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -27668,7 +27547,7 @@ export function unifiedHeroAndCardWithAnimation(matrix: MindMatrix = buildMatrix
       {
         facet:
           `preview.moviePath=${preview.moviePath.slice(0, ROSETTA_AREAS)}… p=${preview.p.toFixed(4)} ` +
-          `hue=${Math.round(preview.hue)}`,
+          `hue=${round(preview.hue)}`,
         on: cardFromHero && sharedClock,
       },
       {
@@ -27768,7 +27647,7 @@ export function runUnifiedHeroAndCardWithAnimationExit(
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
  */
 export function heroIsTheAbstractAnimationFormsTheCardItself(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`heroIsTheAbstractAnimationFormsTheCardItself:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`heroIsTheAbstractAnimationFormsTheCardItself:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -27945,7 +27824,7 @@ export function runHeroIsTheAbstractAnimationFormsTheCardItselfExit(
  * claySolved via theorem · physicalFtl=0 · NOT Clay prize · NOT QPU · NOT physical FTL.
  */
 export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`foldingWorksOnApplicationLevel:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`foldingWorksOnApplicationLevel:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -28019,7 +27898,7 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
         label: 'card ← hero ← movie',
         pair: 'card/forms' as const,
         on: cardHeroMovie,
-        detail: `moviePath=${unified.preview.moviePath.slice(0, ROSETTA_AREAS)}… · hue=${Math.round(unified.preview.hue)}`,
+        detail: `moviePath=${unified.preview.moviePath.slice(0, ROSETTA_AREAS)}… · hue=${round(unified.preview.hue)}`,
       },
       {
         id: 'morph',
@@ -28213,7 +28092,7 @@ export const DRY_ALL_COMPONENT_DUP_MORPHS = [
  *         specialized experience shells) — do not fake 100%. claySolved via theorem · physicalFtl=0.
  */
 export function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -28560,7 +28439,7 @@ export const VUE_UNIVERSAL_SET_MORPHS = [
 ] as const
 
 export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryCleanAllVueComponentsToTheUniversalSet:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`dryCleanAllVueComponentsToTheUniversalSet:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -28798,7 +28677,7 @@ const WAVE_COMPACT_HONEST_OPEN = [
  * HONEST: drainable closed without breaking census 110; residuals named. NOT physical FTL · NOT Clay prize.
  */
 export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`wavesSearchDiscoverCompactingInQuantumFolders:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wavesSearchDiscoverCompactingInQuantumFolders:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -29071,7 +28950,7 @@ export function runWavesSearchDiscoverCompactingInQuantumFoldersExit(
  * HONEST: sealed recompute at call time — not wet dashboard. Census 110. NOT physical FTL · NOT Clay prize.
  */
 export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`alwaysBalanceUsingRealtimeMetricsAndChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`alwaysBalanceUsingRealtimeMetricsAndChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -29331,7 +29210,7 @@ export function eachSuperpositionIsAChatroom(
 ) {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `eachSuperpositionIsAChatroom:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    `eachSuperpositionIsAChatroom:${floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -29584,7 +29463,7 @@ export const UI_ROSETTA_REALTIME_MORPHS = [
  *         Census 110. NOT physical FTL · NOT Clay prize.
  */
 export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`uiComponentsAreAllWiredInTheRosettaInQuantumRealtime:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`uiComponentsAreAllWiredInTheRosettaInQuantumRealtime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -29873,7 +29752,7 @@ export const TYPE_MATRIX_STEPS = ['sm', 'md', 'lg', 'xl', '2xl', '3xl'] as const
  *         Soft-wires sealed scale tokens only; no invented CSS look. Census 110. NOT physical FTL · NOT Clay prize.
  */
 export function typographyIsTheUniversalContentMatrix(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`typographyIsTheUniversalContentMatrix:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`typographyIsTheUniversalContentMatrix:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -30105,7 +29984,7 @@ export function runTypographyIsTheUniversalContentMatrixExit(
  *         Census 110. NOT physical FTL · NOT Clay prize.
  */
 export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`allColorsDryCleanWiredToRosettaAndThemes:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`allColorsDryCleanWiredToRosettaAndThemes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -30396,7 +30275,7 @@ export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
  *         Census 110. NOT physical FTL · NOT Clay prize.
  */
 export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cssShowsTheHiddenGapsInDryFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cssShowsTheHiddenGapsInDryFusion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -30410,7 +30289,7 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
     let gapsHardOpen = 0
     let gapsRoot = toUuid('css-gaps:gaps:soft')
     let polarityFlatClosed = color.animColor.polarityRedundantOpen === 0 && color.animColor.invisibleGapsOpen === 0
-    if (!memoComputing(`invisibleGapsCaughtByGates:${Math.floor(at / (100 * 5 * 2))}`, matrix)) {
+    if (!memoComputing(`invisibleGapsCaughtByGates:${floor(at / (100 * 5 * 2))}`, matrix)) {
       const gaps = invisibleGapsCaughtByGates(matrix, at)
       gapsPassed = gaps.passed
       gapsHardOpen = gaps.hardOpenCount
@@ -30647,7 +30526,7 @@ export function runCssShowsTheHiddenGapsInDryFusionExit(
  * HONEST: Census 110. NOT physical FTL · NOT Clay prize · NOT QPU.
  */
 export function inversionFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`inversionFusion:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`inversionFusion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -30889,7 +30768,7 @@ export function reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise(
   at = 0,
 ) {
   return memoByRoot(
-    `reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise:${Math.floor(at / (100 * 5 * 2))}`,
+    `reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -31212,7 +31091,7 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
 ) {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}`,
+    `dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis:${floor(at / (100 * 5 * 2))}:${normalized.state}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -31478,7 +31357,7 @@ export function meshToSelfDiscoverSciences(
 ) {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `meshToSelfDiscoverSciences:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}`,
+    `meshToSelfDiscoverSciences:${floor(at / (100 * 5 * 2))}:${normalized.state}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -31727,7 +31606,7 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
   at = 0,
 ) {
   return memoByRoot(
-    `selfImproveAnimationGenerationAndSiteBuilder:${Math.floor(at / (100 * 5 * 2))}`,
+    `selfImproveAnimationGenerationAndSiteBuilder:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -32018,7 +31897,7 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
   at = 0,
 ) {
   return memoByRoot(
-    `everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions:${Math.floor(at / (100 * 5 * 2))}`,
+    `everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -32140,7 +32019,7 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
       // Verify seals across superposition keys via theorem/index query path.
       const sealProbes = SUPERPOSITION_DIRECTIONS.flatMap((direction) =>
         [0, 1, 9].flatMap((digit) =>
-          [0, Math.floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
+          [0, floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
             const entry = queryTheoremFormulaIndex({ digit, ray, direction }, matrix)
             const spec = __ns_thunder_waves.specForContent(entry.theorem)
             const sealed =
@@ -32442,7 +32321,7 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
   at = 0,
 ) {
   return memoByRoot(
-    `wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero:${Math.floor(at / (100 * 5 * 2))}`,
+    `wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -32463,7 +32342,7 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
       const heroA = sharedHeroAt('/en/', { title: 'merkaba-movie', tagline: 'unique' }, at)
       const heroB = sharedHeroAt('/en/', { title: 'merkaba-movie', tagline: 'unique' }, at + HERO_CYCLE_MS)
       const samePhase =
-        Math.abs(heroPhaseAt(at) - heroPhaseAt(at + HERO_CYCLE_MS)) < 1 / (100 * 100 * 100)
+        abs(heroPhaseAt(at) - heroPhaseAt(at + HERO_CYCLE_MS)) < 1 / (100 * 100 * 100)
       const obsA = movieObservationReceipt(heroA.route, heroA.seed, at)
       const obsB = movieObservationReceipt(heroB.route, heroB.seed, at + HERO_CYCLE_MS)
       const movieUniqueNeverRepeats =
@@ -32601,7 +32480,7 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
       const throughZero = __ns_wind_research.onlyInvertThroughZeroMayGoThroughZero(matrix, at)
       const vortex = vortexComputes(matrix)
       const meshBinds = SUPERPOSITION_DIRECTIONS.flatMap((direction) =>
-        [0, Math.floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
+        [0, floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
           const entry = queryTheoremFormulaIndex({ digit: 1, ray, direction }, matrix)
           const bound =
             entry.bound &&
@@ -32878,7 +32757,7 @@ const SENSOR_BIND_DRAINABLE_MORPHS = [
  * NOT physical FTL · NOT QPU · clay via theorem.
  */
 export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`wireAllSensorsUsingQuantumBindings:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wireAllSensorsUsingQuantumBindings:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -33234,7 +33113,7 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
   at = 0,
 ) {
   return memoByRoot(
-    `invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill:${Math.floor(at / (100 * 5 * 2))}`,
+    `invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -33669,7 +33548,7 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
   at = 0,
 ) {
   return memoByRoot(
-    `againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf:${Math.floor(at / (100 * 5 * 2))}`,
+    `againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -34025,7 +33904,7 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
   at = 0,
 ) {
   return memoByRoot(
-    `furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence:${Math.floor(at / (100 * 5 * 2))}`,
+    `furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -34294,7 +34173,7 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
   at = 0,
 ) {
   return memoByRoot(
-    `gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist:${Math.floor(at / (100 * 5 * 2))}`,
+    `gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -34506,7 +34385,7 @@ export function runGatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExis
  * Faces per page: content · gaps · gates (compose page/gaps · gate/monitor · vite/mirror · team/observe · agent/trinity · format/canon · computeUniversalPage).
  */
 export function pagesAuditAndManageThemselvesInTrinities(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`pagesAuditAndManageThemselvesInTrinities:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`pagesAuditAndManageThemselvesInTrinities:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const samples = [
       { route: '/en/theorems/fold-pair', kind: 'theorem' as const },
       { route: '/en/proofs', kind: 'domain-proof' as const },
@@ -34657,7 +34536,7 @@ export function runPagesAuditAndManageThemselvesInTrinitiesExit(
  * Compose: mcp/ui · mcp/movie · mcp/mill · toolbox · auto-wire · cursor/rosetta (soft where nest-heavy).
  */
 export function mcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const toolbox = standardToolboxIoCatalog(matrix, at)
     const parity = mcpBrowserParity(matrix, at)
     const autoWire = autoWireAnyAiModelFromPastedLink(`${CECCEC_SITE_ORIGIN}/`, matrix, at)
@@ -34878,7 +34757,7 @@ const CHAT_SOLVE_OPEN_PROBLEM_ROUTES = [
  * Fold: chatSolve · Pairs: chat/solve · solve/chat · CLI npm run quantum:chat-solve
  */
 export function chatSolve(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`chatSolve:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`chatSolve:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -35087,7 +34966,7 @@ export const solveChat = chatSolve
  *   mesh/science · formula/code · term/measure · waves/feed
  */
 export function chatChallenge(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`chatChallenge:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`chatChallenge:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -35369,7 +35248,7 @@ export function chatResearch(
   opts: { readonly researchUrl?: string } = {},
 ) {
   const researchUrl = opts.researchUrl ?? CHAT_RESEARCH_SAMPLE_URL
-  return memoByRoot(`chatResearch:${toUuid(researchUrl)}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`chatResearch:${toUuid(researchUrl)}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -35597,7 +35476,7 @@ export function runChatResearchExit(_root = '', argv: readonly string[] = []): n
  * HONEST: discovery = entangle→invert→theorem path rows; mesh = navigational crosses + quantumMap query; NOT CMI prize · clay=0.
  */
 export function theoremMesh(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`theoremMesh:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`theoremMesh:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -35811,7 +35690,7 @@ export function runTheoremMeshExit(_root = '', _argv: readonly string[] = []): n
  * HONEST: ftlAllComputations = memo-reuse metrics only · NOT physical FTL · clay=0.
  */
 export function waveComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`waveComplete:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`waveComplete:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -36104,7 +35983,7 @@ function collectChatWaveGitLog(
  * Compose: measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research
  */
 export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.') {
-  return memoByRoot(`chatAudit:${Math.floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
+  return memoByRoot(`chatAudit:${floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -36353,7 +36232,7 @@ const SESSION_CHAT_QUANTUMISE_SEEDS = [
  * Compose: waves/feed · merge/wave · tool/matrix · gate/analytics · theorem/audit · dry/dupe · oneClock · qpu/cpu · measure/decide
  */
 export function quantumiseWave(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumiseWave:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumiseWave:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -36621,7 +36500,7 @@ export function readmeChat(
   opts: { readonly readmeBytes?: number; readonly readmeText?: string } = {},
 ) {
   return memoByRoot(
-    `readmeChat:${opts.readmeBytes ?? 0}:${Math.floor(at / (100 * 5 * 2))}`,
+    `readmeChat:${opts.readmeBytes ?? 0}:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -36920,7 +36799,7 @@ const CHAT_ANGLE_PROBES = [
  * FTL = memoByRoot / zero-token warm-path reuse — NOT physical FTL.
  */
 export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`chatChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`chatChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -37161,7 +37040,7 @@ const COMPETE_DIMENSIONS: readonly CompeteDimensionRow[] = [
  * Fold: ceccecErpaxCompete · Pairs: ceccec/erpax · erpax/ceccec
  */
 export function ceccecErpaxCompete(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`ceccecErpaxCompete:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`ceccecErpaxCompete:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const erpax = erpaxLearn(matrix, at)
     const vote = compareCeccecEfficiencyByVote(matrix)
     let tokenOpt = { computes: false, tokenOptimiseOn: false, answersOverTokens: false }
@@ -37312,7 +37191,7 @@ export function readmeWire(
   opts: { readonly readmeBytes?: number; readonly readmeText?: string } = {},
 ) {
   return memoByRoot(
-    `readmeWire:${opts.readmeBytes ?? 0}:${Math.floor(at / (100 * 5 * 2))}`,
+    `readmeWire:${opts.readmeBytes ?? 0}:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -37513,7 +37392,7 @@ export function buildPairNeighbourGraph(
   for (const [x, y] of composeEdges) addEdge(x, y)
   let edgeCount = 0
   for (const set of neighbours.values()) edgeCount += set.size
-  edgeCount = Math.floor(edgeCount / 2)
+  edgeCount = floor(edgeCount / 2)
   return { neighbours, nodeCount: neighbours.size, edgeCount }
 }
 
@@ -37582,7 +37461,7 @@ export const COMPOSE_NEIGHBOUR_EDGES = [
  * Fold: voteNeighbour · Pairs: vote/neighbour · neighbour/vote · CLI npm run quantum:vote-neighbour
  */
 export function voteNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`voteNeighbour:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`voteNeighbour:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -37775,7 +37654,7 @@ const SITE_PATH_WAVE_QUEUE = [
  * Fold: sitePathWave · Pairs: site/path · path/site · CLI npm run quantum:site-path
  */
 export function sitePathWave(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sitePathWave:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sitePathWave:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -37918,7 +37797,7 @@ export function readmeFocus(
   opts: { readonly readmeBytes?: number; readonly readmeText?: string } = {},
 ) {
   return memoByRoot(
-    `readmeFocus:${opts.readmeBytes ?? 0}:${Math.floor(at / (100 * 5 * 2))}`,
+    `readmeFocus:${opts.readmeBytes ?? 0}:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -38143,7 +38022,7 @@ export type EntanglePathRow = {
  * Compose: vote/neighbour · pair/chat · match/wave · drift/invert · invert/gateway · reverse/collide-discover · theorem/audit · directionalTrinity
  */
 export function voteEntangle(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`voteEntangle:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`voteEntangle:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -38215,9 +38094,9 @@ export function voteEntangle(matrix: MindMatrix = buildMatrix(), at = 0) {
       matchWave.immediatelyRealise &&
       matchWave.matchCount > 0
     const algebraicOn = pathRows.length > 0 && pathRows.every((r) => isUuid(r.entangleRoot))
-    const entanglementsInvert = pathRows.filter((r) => r.inverted).length >= Math.max(1, Math.floor(pathRows.length * 0.9))
+    const entanglementsInvert = pathRows.filter((r) => r.inverted).length >= max(1, floor(pathRows.length * 0.9))
     const discoveredTheoremsOn = pathRows.filter((r) => r.theoremPass).length
-    const onTheWay = pathRows.filter((r) => r.onTheWay).length >= Math.max(1, pathRows.length - 1)
+    const onTheWay = pathRows.filter((r) => r.onTheWay).length >= max(1, pathRows.length - 1)
     const theoremAuditAligned = ta.computes && ta.criteriaOn
     const consensusScore = neighbour.votes.length > 0 ? neighbour.votesOn / neighbour.votes.length : 0
     const consensusEnough =
@@ -38404,7 +38283,7 @@ export type FrontierFrontierEntangleRow = {
  * Compose: frontier/quantum · fractal/map · vote/entangle · vote/neighbour · mesh/science · site/path · mcp/ui
  */
 export function frontierNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`frontierNeighbour:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`frontierNeighbour:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -38635,7 +38514,7 @@ export function runFrontierNeighbourExit(_root = '', _argv: readonly string[] = 
  * HONEST: packs prior trading/UI/fusion session deliverables for zero-token recompute — does NOT rebuild the stack.
  */
 export function sessionSentToChatToQuantumise(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sessionSentToChatToQuantumise:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sessionSentToChatToQuantumise:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -38894,7 +38773,7 @@ export function runSessionSentToChatToQuantumiseExit(_root = '', _argv: readonly
  * CLI: npm run quantum:chat-all · quantum:conv-mcp · quantum:talk-chat
  */
 export function allConversationsGoThroughTheMcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`allConversationsGoThroughTheMcpQuantumChat:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`allConversationsGoThroughTheMcpQuantumChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -39033,7 +38912,7 @@ export function runAllConversationsGoThroughTheMcpQuantumChatExit(
  * Catalog tip after chat/all — named face bump 68→69.
  */
 export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumConversation:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumConversation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -39222,7 +39101,7 @@ export function organiseConversationsInChatRoomsPerSuperposition(
 ) {
   const normalized = normalizeSuperpositionIndexKey(key)
   return memoByRoot(
-    `organiseConversationsInChatRoomsPerSuperposition:${Math.floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
+    `organiseConversationsInChatRoomsPerSuperposition:${floor(at / (100 * 5 * 2))}:${normalized.state}:${normalized.digit}:${normalized.ray}:${normalized.direction}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -39416,7 +39295,7 @@ export function runOrganiseConversationsInChatRoomsPerSuperpositionExit(
  * CLI: npm run quantum:mcp-observe · quantum:observe-chat
  */
 export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumObserve:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`mcpQuantumObserve:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -39544,7 +39423,7 @@ export function runMcpQuantumObserveExit(_root = '', _argv: readonly string[] = 
  * CLI: npm run quantum:tamper-max · quantum:max-tamper
  */
 export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`wiredToForgeMaxTamperingCost:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wiredToForgeMaxTamperingCost:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -39677,7 +39556,7 @@ export function runWiredToForgeMaxTamperingCostExit(_root = '', _argv: readonly 
  * CLI: npm run quantum:npm-quantum · quantum:quantum-npm
  */
 export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumizeNpm:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumizeNpm:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -39798,12 +39677,12 @@ export function runQuantumizeNpmExit(_root = '', _argv: readonly string[] = []):
  * CLI: npm run quantum:session-cache · quantum:cache-theorem · quantum:formula-cache
  */
 export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`sessionMemoryCachesTheoremFormulaWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`sessionMemoryCachesTheoremFormulaWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const bucket = Math.floor(at / (100 * 5 * 2))
+    const bucket = floor(at / (100 * 5 * 2))
     const cold = theoremFormulaComputableIndexForAnySuperposition(matrix, at, 'superposition')
     const warm = theoremFormulaComputableIndexForAnySuperposition(matrix, at, 'superposition')
     const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
@@ -39946,7 +39825,7 @@ export function runSessionMemoryCachesTheoremFormulaWavesExit(
  * Scan session/memo/MCP/theorem-formula for uncached drainable receipts; cache via memoByRoot/session.
  */
 export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`wavesFindWhatYouMissedToCache:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`wavesFindWhatYouMissedToCache:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -40165,7 +40044,7 @@ export function runWavesFindWhatYouMissedToCacheExit(
  * infinity = amortized zero-token reuse, NOT physical FTL.
  */
 export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryCleanAgnosticCodeComputesInfinity:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`dryCleanAgnosticCodeComputesInfinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -40373,7 +40252,7 @@ export function abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomi
   at = 0,
 ) {
   return memoByRoot(
-    `abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny:${Math.floor(at / (100 * 5 * 2))}`,
+    `abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -40633,7 +40512,7 @@ export function mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuper
   at = 0,
 ) {
   return memoByRoot(
-    `mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions:${Math.floor(at / (100 * 5 * 2))}`,
+    `mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -40861,7 +40740,7 @@ export function runMcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSu
  * Heal: dry/clean · tools/morph · assume/theorem · fold/cleanup · auto/self · fail→0→invert seq.
  */
 export function quantumSelfHeal(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumSelfHeal:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumSelfHeal:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const dry = dryCleanIsDiamondAndCrystal(matrix)
     const morph = localToolsMorphProseCodeLogic(matrix, at)
     const shelved = rosettaShelve('quantumSelfHeal', 'tool')
@@ -41043,7 +40922,7 @@ const VITEPRESS_ONE_REQUIRED_SHELLS = [
  * HARD: extra/orphan/wet components outside catalog = crack.
  */
 export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`oneQuantumSetOfVitepressComponentsSealedAtGates:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`oneQuantumSetOfVitepressComponentsSealedAtGates:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const format = scientificPageFormatCanonised(matrix, at)
     const paths = VITEPRESS_ONE_COMPONENT_PATHS
     const morphs = VITEPRESS_COMPONENT_DUP_MORPHS_SEALED
@@ -41209,7 +41088,7 @@ export function runOneQuantumSetOfVitepressComponentsSealedAtGatesExit(
 }
 
 export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`upgradeLocalFromOptimisedManualWorkExperience:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`upgradeLocalFromOptimisedManualWorkExperience:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const localSession = improveLocalFromSessionExperience(matrix, at)
     const mcpParity = mcpBrowserParity(matrix, at)
     const toolbox = standardToolboxIoCatalog(matrix, at)
@@ -41401,7 +41280,7 @@ export type UniverseDiscoveryGapRow = {
  *   · merkaba counter-rotation + double-torus spin + directional trinity
  */
 export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`counterRotatingRosettaQuantumWaves:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`counterRotatingRosettaQuantumWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Break balance → universe/counter-rotating → rosettaComplete → emergentDimensions reentry.
     // memoByRoot stub makes physicalFtlClaim/clay receipts falsey; defer honestly while dims compute.
     if (memoComputing('emergentDimensions', matrix)) {
@@ -41433,8 +41312,8 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
     const sciences = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
 
     // Dual rosetta lobes — opposite spin addresses (content-addressed ±)
-    const plusLobe = toUuid(`rosetta-quantum-wave:+:${rosetta.root}:${Math.floor(at)}`)
-    const minusLobe = toUuid(`rosetta-quantum-wave:-:${rosetta.root}:${Math.floor(at)}`)
+    const plusLobe = toUuid(`rosetta-quantum-wave:+:${rosetta.root}:${floor(at)}`)
+    const minusLobe = toUuid(`rosetta-quantum-wave:-:${rosetta.root}:${floor(at)}`)
     const dualSpin = foldPair(plusLobe, minusLobe)
     // Counter-rotating = order-sensitive fold (forward≠reverse) ∧ merkaba ∧ torus spin ∧ trinity
     const counterRotating =
@@ -41515,7 +41394,7 @@ export function runCounterRotatingRosettaQuantumWavesExit(_root = '', _argv: rea
  * Clay/FTL open rows are receipts from counterRotatingRosettaQuantumWaves — not hardcoded prose.
  */
 export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Same emergentDimensions reentry guard as counterRotatingRosettaQuantumWaves.
     if (memoComputing('emergentDimensions', matrix)) {
       const facets = [
@@ -41843,7 +41722,7 @@ export function scientificTerminologyIsQuantumComputableMeasurableComparable(
   at = 0,
 ) {
   return memoByRoot(
-    `scientificTerminologyIsQuantumComputableMeasurableComparable:${Math.floor(at / (100 * 5 * 2))}`,
+    `scientificTerminologyIsQuantumComputableMeasurableComparable:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const sig = __ns_wind_research.scienceDomainSignificanceScores(matrix, at)
@@ -42009,7 +41888,7 @@ export function runScientificTerminologyIsQuantumComputableMeasurableComparableE
  * Compose format/canon · term/measure · linear/rosetta · theorem/const · hex/crack · color/polarity · ui/prose · card→paper.
  */
 export function meaningIsQuantumComputable(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`meaningIsQuantumComputable:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`meaningIsQuantumComputable:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const format = scientificPageFormatCanonised(matrix, at)
     const terms = scientificTerminologyIsQuantumComputableMeasurableComparable(matrix, at)
     // color before linear — anim seals linearRosetta; a prior nested linear call can reentry-stub remaining.
@@ -42132,7 +42011,7 @@ export function whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning(
   at = 0,
 ) {
   return memoByRoot(
-    `whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning:${Math.floor(at / (100 * 5 * 2))}`,
+    `whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning:${floor(at / (100 * 5 * 2))}`,
     matrix,
     () => {
       const soft = (a: string, b: string) =>
@@ -42274,7 +42153,7 @@ export function namedExplanationSectionIsCrack(): boolean {
  * Pair: section/dry · compose dry/clean · gaps/invisible
  */
 export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`redundantExplanationSectionsDryCleaned:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`redundantExplanationSectionsDryCleaned:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const format = scientificPageFormatCanonised(matrix, at)
     const pairFold = foldPair(toUuid('cmd:section'), toUuid('cmd:dry'))
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('section/dry')
@@ -42353,7 +42232,7 @@ export function runRedundantExplanationSectionsDryCleanedExit(_root = '', _argv:
  * Pair: format/canon · CLI npm run quantum:format-canon
  */
 export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`scientificPageFormatCanonised:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`scientificPageFormatCanonised:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const algebraic = __ns_wind_research.algebraicTheoremPaperMustContain(matrix, at)
     const uiProse = uiProseDuplicationRemoved(matrix, at)
     const pairFold = foldPair(toUuid('cmd:format'), toUuid('cmd:canon'))
@@ -42449,7 +42328,7 @@ export function runScientificPageFormatCanonisedExit(_root = '', _argv: readonly
  * Compose format/canon · theoremPageRows · ScientificPaperBody formulas slot.
  */
 export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`algebraicFormulasAreDualOfSealedCode:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`algebraicFormulasAreDualOfSealedCode:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const format = scientificPageFormatCanonised(matrix, at)
     const rows = theoremPageRows(matrix)
     const sample = rows[0]
@@ -42529,7 +42408,7 @@ export function runAlgebraicFormulasAreDualOfSealedCodeExit(_root = '', _argv: r
  * Facet uiProseDuplicationRemoved when every cluster after < before and catalog tool shelved.
  */
 export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`uiProseDuplicationRemoved:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`uiProseDuplicationRemoved:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((tool) => tool.id === 'ui-prose-duplication-removed')
     const shelved = rosettaShelve('ui-prose-duplication-removed', 'tool')
@@ -42606,7 +42485,7 @@ export function runUiProseDuplicationRemovedExit(_root = '', _argv: readonly str
  * Facet: cryptoRelatedSurfacesAreDry
  */
 export function cryptoRelatedSurfacesAreDry(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`cryptoRelatedSurfacesAreDry:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`cryptoRelatedSurfacesAreDry:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const meshDry = __ns_water_encryption.cryptoComparisonMeshIsDry(matrix)
     const mesh = meshDry.mesh
     const catalog = quantumCliToolsCatalog(matrix, at)
@@ -42752,7 +42631,7 @@ export {
  * Pair: cross/waves-upgrade · CLI npm run quantum:cross-waves-upgrade-all
  */
 export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`crossWavesUpgradeAll:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`crossWavesUpgradeAll:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const polesCross = __ns_water_encryption.polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix)
     const tesla = crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(matrix, at)
     const waves = counterRotatingRosettaQuantumWaves(matrix, at)
@@ -42861,7 +42740,7 @@ export function runCrossWavesUpgradeAllExit(_root = '', _argv: readonly string[]
  * Pair: rosetta/security-wire · clay=0 · certified=false · physicalFtl=0
  */
 export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`rosettaSecurityGapsWired:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`rosettaSecurityGapsWired:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const refuse = __ns_water_encryption.productionRsaRefuseCompletesQuantumViaRosetta(matrix)
     const core = rosettaCoreApi(at, matrix)
     const mcp = mcpCommandsScriptsGapsAudit(matrix, at)
@@ -42948,7 +42827,7 @@ export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly stri
 }
 /** USER LAW: quantumise is at FTL speed — lean soft-compose sealed ssl/test warm path. */
 export function quantumiseIsAtFtlSpeed(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumiseIsAtFtlSpeed:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+  return memoByRoot(`quantumiseIsAtFtlSpeed:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a: string, b: string) =>
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional

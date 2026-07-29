@@ -12,7 +12,7 @@ import { quantumProofs } from '../../lake/ledger'
 import { determinismProofs } from '../seals'
 import { mysteries, mvcOrganisationReceipt } from '../source'
 import { society, societyCreatesRequiredPages } from '../../earth/governance'
-import { fold, foldPair, isUuid, memoByRoot, merge, merkleFold, roundTo, toUuid, VORTEX_SEQUENCE, digitalRoot, seedFromText } from '../../0'
+import { VORTEX_SEQUENCE, abs, digitalRoot, floor, fold, foldPair, isUuid, max, memoByRoot, merge, merkleFold, roundTo, seedFromText, toUuid } from '../../0'
 import { coreComputationalLogicSaved, piTrainExportImportFusion, rosettaComputesAll, rosettaComputesItself, rosettaReuse, sevenStarPliskaRosettaHarmonisesDigitDistribution, sevenStarRosettaNaturalMotion } from '../../water/digit'
 import { rosettaCoreApiSelfWires } from '../../quantum/apps'
 import { bosnianPyramidNearPliskaHarmonisesDigitDistribution } from '../geometry'
@@ -92,7 +92,7 @@ export function quantifyGates(matrix: MindMatrix = buildMatrix()) {
 // just name it: it shows the harmonic path to it — which 108-band and which step of 108 the
 // gate sits at — so the failure is located on the harmonic, not merely reported.
 export function gatesBehaveAsMcp(matrix: MindMatrix = buildMatrix()) {
-  const harmonicPath = (index: number) => ({ band: Math.floor(Math.max(0, index - 1) / 108), step: (Math.max(0, index - 1) % 108) + 1 })
+  const harmonicPath = (index: number) => ({ band: floor(max(0, index - 1) / 108), step: (max(0, index - 1) % 108) + 1 })
   const demo = [108, 217, 433, (108 * 5)].map((index) => ({ index, ...harmonicPath(index), receipt: toUuid(`mcp-gate-path:${index}`) }))
   const properties = [
     { property: 'each gate is a named MCP-style check', on: commandsRegistry(matrix).consistent },
@@ -504,7 +504,7 @@ export function theSessionTokenLedgerFollowsTheSequence(matrix: MindMatrix = bui
   const quadraticHolds = cacheRead === explicit // refutable identity: closed form === the explicit re-read sum
   const cacheWrite = n * w // each of n turns seals w — LINEAR
   const readWriteRatio = cacheRead / cacheWrite // = (n−1)/2 — each sealed token re-read this many times
-  const ratchetHolds = Math.abs(readWriteRatio - (n - 1) / 2) < 1e-9 // read:write = (n−1)/2, grows with n
+  const ratchetHolds = abs(readWriteRatio - (n - 1) / 2) < 1e-9 // read:write = (n−1)/2, grows with n
   const channels = [1, out, cacheWrite, cacheRead] // the four token channels: input(≈1), output, cacheWrite, cacheRead
   const processed = channels.reduce((sum, c) => sum + c, 0) // the ledger total — the channels partition it exactly
   const ledgerExhaustive = channels.every((c) => c >= 0) && 2 * cacheRead > processed // four non-negative channels summing to the total, and re-read is the MAJORITY (2·cacheRead > total; double-entry: nothing unaccounted)

@@ -15,7 +15,7 @@ import { congruence } from '../../mountain/vortex'
 import type { ConceptSiteSection, MindMatrix, StaticPage } from '../types'
 import { buildMatrix, portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { toUuid, merkleFold, isUuid, memoByRoot, sealFacets, referralAddress } from '../../0'
+import { floor, isUuid, max, memoByRoot, merkleFold, referralAddress, round, sealFacets, sqrt, toUuid } from '../../0'
 import { ratStr } from '../../9/1'
 import { livingTorus } from '../../fire/diamonds'
 import { oneOpenGraphAll } from '../../fire/li'
@@ -322,9 +322,9 @@ export function quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised
   const resultCount = predicted.resultCount
   const scores = topK.map((row) => row.score)
   // STATISTICALLY ANALYSE — mean μ and standard deviation σ of the top scores.
-  const mean = scores.reduce((sum, s) => sum + s, 0) / Math.max(1, scores.length)
-  const variance = scores.reduce((sum, s) => sum + (s - mean) ** 2, 0) / Math.max(1, scores.length)
-  const std = Math.sqrt(variance)
+  const mean = scores.reduce((sum, s) => sum + s, 0) / max(1, scores.length)
+  const variance = scores.reduce((sum, s) => sum + (s - mean) ** 2, 0) / max(1, scores.length)
+  const std = sqrt(variance)
   const chat = portalChat(query, matrix)
   const groundedRatio = chat.grounded ? 1 : 0 // a one-query grounded probe (0 or 1)
   const analysed = Number.isFinite(mean) && Number.isFinite(std) && mean > 0
@@ -780,8 +780,8 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
 /** npm run quantum:folder-migration-waves — print per-folder migration/dedup receipt (exit 0 iff computes). */
 export function runFolderMigrationDedupWavesExit(_root = '', _argv: readonly string[] = []): number {
   const report = folderMigrationDedupWaves()
-  const statusPad = Math.max(...(['migrated', 'partial', 'residual'] as const).map((s) => s.length))
-  const idPad = Math.max(...CONTENT_FOLDER_WAVE_SEED.map((folder) => folder.id.length))
+  const statusPad = max(...(['migrated', 'partial', 'residual'] as const).map((s) => s.length))
+  const idPad = max(...CONTENT_FOLDER_WAVE_SEED.map((folder) => folder.id.length))
   for (const folder of report.folders) {
     process.stdout.write(`  ${folder.status.padEnd(statusPad)} ${folder.id.padEnd(idPad)} ${folder.path} — ${folder.note}\n`)
   }
@@ -1310,7 +1310,7 @@ export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndD
   // 2 — DOMAINS = 7 RAYS: seven scopes; Reference (ray 6) is a domain, not a separate collection
   const sevenDomains = rays.length === ROSETTA_SEVEN && rays.some((entry) => entry.domain === 'Reference')
   // 3 — PROPORTIONS = 42: 6×7, hues evenly spaced ⌊360k/7⌋
-  const proportions = ROSETTA_AREAS === ROSETTA_SIX * ROSETTA_SEVEN && ROSETTA_RAYS.every((ray, k) => ray.hue === Math.floor((360 * k) / ROSETTA_SEVEN))
+  const proportions = ROSETTA_AREAS === ROSETTA_SIX * ROSETTA_SEVEN && ROSETTA_RAYS.every((ray, k) => ray.hue === floor((360 * k) / ROSETTA_SEVEN))
   // 4 — DYNAMICS = the 6×7/7×6 transpose (build up, clean down)
   const dynamics = ROSETTA_FOLD_LABEL === `${ROSETTA_SIX}×${ROSETTA_SEVEN}/${ROSETTA_SEVEN}×${ROSETTA_SIX}`
   const populated = rays.filter((entry) => entry.pages > 0).length
@@ -2192,7 +2192,7 @@ export function rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing
     const measured = total === pages.length ? false : total >= 0 // total classified ≤ pages (some pages may share); histogram real
     const histogramReal = dist.every((d) => d.count >= 0) && dist.length === 7
     const facets = [
-      { facet: `THE DISTRIBUTION IS UNEVEN — the ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${Math.round(topShare * 100)}% and ${empty.length} rays are EMPTY (${uneven}) — the same concentration as the old 4-pole regex (36/2/2/0)`, on: uneven },
+      { facet: `THE DISTRIBUTION IS UNEVEN — the ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${round(topShare * 100)}% and ${empty.length} rays are EMPTY (${uneven}) — the same concentration as the old 4-pole regex (36/2/2/0)`, on: uneven },
       { facet: `ONLY ${populated.length} OF 7 RAYS ARE POPULATED — hub routes exist only for populated rays (the isServedRoute populatedRays filter), so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page (${onlyFewPopulated})`, on: onlyFewPopulated },
       { facet: `THE WIRING BLOCKER — the 3-doors × 7-rays nav needs 7 hub routes, but ${brokenIfWiredAll} of them do not exist, so wiring the full 7-ray nav as-is would emit ${brokenIfWiredAll} broken links (${wiringBlocked}): the redesign is blocked upstream, at classification, not at nav structure`, on: wiringBlocked },
       { facet: `COMPUTED, NOT DECLARED — the per-ray histogram is measured from the real pages via rosettaRayOfContent (${histogramReal}); the empty rays and the broken-link count are derived, refutable by re-running over the pages`, on: histogramReal },
@@ -2203,7 +2203,7 @@ export function rosettaRayDistributionMostPagesClassifyToFewRaysSoHubsAreMissing
       populated: populated.length,
       empty: empty.map((d) => d.slug),
       facets,
-      statement: `The rosetta-ray distribution is uneven — most pages classify to a few rays, so hub routes are missing — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${Math.round(topShare * 100)}% and ${empty.length} rays are empty. Hub routes exist only for populated rays, so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page — wiring the full 3-doors × 7-rays nav as-is would emit ${brokenIfWiredAll} broken links. The redesign (rosettaIChingTopNav) is correct as a structure, but blocked upstream at CLASSIFICATION — the same uneven concentration that made the 4-pole regex dump 36/40 into one pole. The fix is to populate the empty rays (content keywords / lens stems) or generate all 7 hub landing pages unconditionally, then wire.`,
+      statement: `The rosetta-ray distribution is uneven — most pages classify to a few rays, so hub routes are missing — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${pages.length} pages classify as [${dist.map((d) => `${d.name}:${d.count}`).join(', ')}]; the top ray holds ${round(topShare * 100)}% and ${empty.length} rays are empty. Hub routes exist only for populated rays, so ${empty.map((d) => '/' + d.slug).join(', ')} have no landing page — wiring the full 3-doors × 7-rays nav as-is would emit ${brokenIfWiredAll} broken links. The redesign (rosettaIChingTopNav) is correct as a structure, but blocked upstream at CLASSIFICATION — the same uneven concentration that made the 4-pole regex dump 36/40 into one pole. The fix is to populate the empty rays (content keywords / lens stems) or generate all 7 hub landing pages unconditionally, then wire.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

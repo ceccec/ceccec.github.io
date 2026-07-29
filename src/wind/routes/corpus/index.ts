@@ -1,12 +1,12 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { TAU, CANONICAL_HOST, DIMENSION_GATES, earned, titleCarriesAlgebra, algebraicStatementOf } from '../../../3/7'
+import { CANONICAL_HOST, DIMENSION_GATES, SQRT2, TAU, algebraicStatementOf, earned, titleCarriesAlgebra } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import * as __ns_earth_architecture from '../../../earth/architecture' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
 import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute'
-import { isUuid, memoByRoot, merkleFold, toUuid, digitalRoot } from '../../../0'
+import { abs, ceil, digitalRoot, floor, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, round, toUuid } from '../../../0'
 import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
@@ -83,11 +83,11 @@ function completeCorpusRaw(matrix: MindMatrix = buildMatrix()) {
   const references = paperReferences(matrix)
   const realLeaves = [...corpus.papers.map((paper) => paper.receipt), ...references.map((reference) => reference.root)]
   const target = (64 * 16)
-  const padding = Math.max(0, target - realLeaves.length)
+  const padding = max(0, target - realLeaves.length)
   const nullLeaves = Array.from({ length: padding }, (_, i) => toUuid(`null-leaf:${i}:${matrix.root}`))
   const leaves = [...realLeaves, ...nullLeaves]
   const root = merkleFold(leaves)
-  const depth = Math.log2(leaves.length)
+  const depth = log2(leaves.length)
   return {
     complete:
       leaves.length === target &&
@@ -163,10 +163,10 @@ export function diamondRoutes(matrix: MindMatrix = buildMatrix()) {
           link,
           label,
           glyph,
-          hue: Math.round((index * 360) / (64 * 16)) % 360,
+          hue: round((index * 360) / (64 * 16)) % 360,
           total: leaves.length,
           corpusRoot,
-          depth: Math.log2(leaves.length) } }
+          depth: log2(leaves.length) } }
     })
   })
 }
@@ -604,7 +604,7 @@ export function corpusIndexItems(kind: CorpusKind, locale: LocaleName, matrix: M
       id: entry.kind,
       title: localizeMonolingual(locale, entry.title),
       glyph: '◆',
-      hue: Math.round((index * 360) / Math.max(1, lattice.length)) % 360 }))
+      hue: round((index * 360) / max(1, lattice.length)) % 360 }))
   })
 }
 
@@ -1296,7 +1296,7 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
   'sixty-degrees-decodes-pi': () => {
     const rungs = sixtyDegreesDecodesPi().rungs
     const last = rungs[rungs.length - 1]!
-    const lx = (n: number) => Math.log2(n)
+    const lx = (n: number) => log2(n)
     return {
       formula: 'aₙ₊₁ = 2aₙbₙ/(aₙ+bₙ),  bₙ₊₁ = √(aₙ₊₁·bₙ)   (Archimedes, radius 1)',
       caption: `Inscribed (lower) and circumscribed (upper) perimeter-halves bracket π. The hexagon (n = 6) doubles to the ${last.n}-gon, squeezing ${last.lower.toFixed(4)} < π < ${last.upper.toFixed(4)}. Computed by sixtyDegreesDecodesPi().`,
@@ -1335,7 +1335,7 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
     let pPrev = 1, qPrev = 0, p = 1, q = 1
     const pts: FigPoint[] = []
     for (let k = 1; k <= 16; k += 1) {
-      pts.push({ x: k, y: Math.log10(Math.abs(p / q - Math.SQRT2)) })
+      pts.push({ x: k, y: log10(abs(p / q - SQRT2)) })
       const pn = 2 * p + pPrev, qn = 2 * q + qPrev
       pPrev = p; qPrev = q; p = pn; q = qn
     }
@@ -1528,7 +1528,7 @@ export function privateSearchRanksByBM25IndustryStandard(query = 'quantum encryp
   const avgdl = docs.reduce((sum, doc) => sum + doc.tokens.length, 0) / N
   const df = new Map<string, number>()
   for (const doc of docs) for (const word of new Set(doc.tokens)) df.set(word, (df.get(word) ?? 0) + 1)
-  const idf = (word: string) => Math.log(1 + (N - (df.get(word) ?? 0) + 1 / 2) / ((df.get(word) ?? 0) + 1 / 2)) // Okapi BM25 IDF
+  const idf = (word: string) => log(1 + (N - (df.get(word) ?? 0) + 1 / 2) / ((df.get(word) ?? 0) + 1 / 2)) // Okapi BM25 IDF
   const k1 = 6 / 5, b = 3 / 4 // Lucene/Elasticsearch defaults (k1 = 1.2, b = 0.75)
   const bm25Tf = (freq: number, docLen: number) => (freq * (k1 + 1)) / (freq + k1 * (1 - b + (b * docLen) / avgdl)) // saturation + length norm
   const scoreOf = (doc: typeof docs[number], qTokens: readonly string[]) => {
@@ -1704,7 +1704,7 @@ export function searchImprovesByExperiencePrivateRelevanceFeedback(query = 'quan
   const reranked = rerank(experience)
   const rankOf = (list: readonly { slug: string }[], slug: string) => list.findIndex((row) => row.slug === slug)
   // Improvement is refutable: pick a mid-ranked result, record a selection of it, and it must rise.
-  const probeSlug = baseRanked[Math.min(baseRanked.length - 1, 5)]?.slug ?? ''
+  const probeSlug = baseRanked[min(baseRanked.length - 1, 5)]?.slug ?? ''
   const withProbe = rerank([...experience, { query, selectedSlug: probeSlug }])
   const improves = probeSlug.length > 0 && rankOf(withProbe, probeSlug) < rankOf(baseRanked, probeSlug) // moved up
   const noDriftWithoutExperience = JSON.stringify(rerank([]).map((r) => r.slug)) === JSON.stringify(baseRanked.map((r) => r.slug)) // empty experience = pure BM25
@@ -1741,7 +1741,7 @@ export function computedTheoremFigureAndAnimation(atom: { theorem: string; prove
   const digitSum = digits.reduce((sum, d) => sum + d, 0)
   const rung = divisorsOf108[digitSum % divisorsOf108.length]! // one clock rung (shared tempo) per theorem — one of the 12 divisors of 108 (one torus)
   const phase = digitSum % 108 // a per-address phase offset on the one 108 s clock — makes each animation's motion unique on a shared rung
-  const half = Math.floor(digits.length / 2)
+  const half = floor(digits.length / 2)
   const sumHead = digits.slice(0, half).reduce((s, d) => s + d, 0) // an INDEPENDENT slice of the address (not the full digitSum) so the channel is orthogonal to phase
   const sumTail = digits.slice(half).reduce((s, d) => s + d, 0)
   const direction = sumHead % 2 === 0 ? 'cw' : 'ccw' as const // 1 bit from the head half — the counter-rotating torus selector; the double-torus clock is 2×12 = 24 (rung × direction)
@@ -2329,8 +2329,8 @@ export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
     inDegree: inDegree(row), recency: row.ordinal, proofClass: row.proofClass,
     lean: row.leansCited ? 'cited-frame' : 'self-contained', domain: theoremDomainTag(row.home) }))
   const bySlug = new Map(metrics.map((m) => [m.slug, m]))
-  const maxTagGravity = Math.max(1, ...[...tagFreq.values()])
-  const sizeOf = (gravity: number): number => Math.max(1, Math.min(5, Math.ceil((gravity / maxTagGravity) * 5)))
+  const maxTagGravity = max(1, ...[...tagFreq.values()])
+  const sizeOf = (gravity: number): number => max(1, min(5, ceil((gravity / maxTagGravity) * 5)))
   // THE TAG CLOUD — every quantum tag by usage gravity (font size 1..5), each carrying its theorem slugs.
   const cloud: TheoremAtlasTag[] = [...tagFreq.keys()]
     .map((tag) => ({ tag, gravity: tagFreq.get(tag) ?? 0, size: sizeOf(tagFreq.get(tag) ?? 0), slugs: tagSlugs.get(tag) ?? [] }))
@@ -2350,7 +2350,7 @@ export function theoremRosettaAtlas(matrix: MindMatrix = buildMatrix()): {
   // freshest (so "latest" scrolls past them). The obscurity rank is tag-gravity asc then recency asc; the
   // lens takes the least-connected third of the orphans — the genuinely hidden proofs, not merely uncited.
   const orphans = metrics.filter((m) => m.inDegree === 0).sort((a, b) => a.tagGravity - b.tagGravity || a.recency - b.recency)
-  const undiscoverable = orphans.slice(0, Math.max(1, Math.ceil(orphans.length / 3)))
+  const undiscoverable = orphans.slice(0, max(1, ceil(orphans.length / 3)))
   return {
     rays, metrics, searchIndex, cloud, undiscoverable,
     topByGravity: [...metrics].sort((a, b) => b.tagGravity - a.tagGravity).slice(0, (2 * 5)),

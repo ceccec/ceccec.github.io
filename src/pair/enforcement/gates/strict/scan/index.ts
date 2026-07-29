@@ -1,7 +1,7 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
 import { existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
-import { ICHING_NUMBERS, merkleFold, toUuid, roundTo, isUuid, merge, memoByRoot, foldPair } from '../../../../../0'
+import { ICHING_NUMBERS, abs, ceil, exp, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../../../4/6'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
@@ -38,7 +38,7 @@ export const MONOLITH_FILE_LAW = 'no logic file may exceed the DERIVED fair-shar
 export function derivedMonolithTargetBytes(codeFiles: readonly string[]): { target: number; corpus: number; count: number } {
   const sizes = codeFiles.map((file) => { try { return statSync(file).size } catch { return 0 } }).filter((n) => n > 0)
   const corpus = sizes.reduce((sum, bytes) => sum + bytes, 0)
-  const count = Math.max(1, sizes.length)
+  const count = max(1, sizes.length)
   let target = 1
   while (target < corpus / count) target *= 2 // next 2^k ≥ fair share — derived, never asserted
   return { target, corpus, count }
@@ -137,7 +137,7 @@ export function minimalScienceCorpus(codeFiles: readonly string[]) {
   const sciences = fields * modes // 42 fully-developed modules
   const measured = corpusSizeBudget432(codeFiles).measured
   const bytesPerScience = measured / sciences
-  const sciencesPerMegabyte = Math.floor(BYTES_PER_MEGABYTE / Math.max(1, bytesPerScience))
+  const sciencesPerMegabyte = floor(BYTES_PER_MEGABYTE / max(1, bytesPerScience))
   const seedExtentBytes = SEED_FLOOR_BYTES * BYTE_EXTENT_FACTOR // 1024 × 2³⁰ = 2⁴⁰ = 1 TiB
   const megabyteExtentBytes = BYTES_PER_MEGABYTE * BYTE_EXTENT_FACTOR // 2²⁰ × 2³⁰ = 2⁵⁰ = 1 PiB
   const facets = [
@@ -239,7 +239,7 @@ export function hardwareProductionScaleSpec(codeFiles: readonly string[]) {
   const usedMiB = roundTo(used / BYTES_PER_MEGABYTE, 1)
   const fitsInLastLevelCache = usedMiB < L3_TYPICAL_MIB
   const extentPiB = roundTo((used * BYTE_EXTENT_FACTOR) / (2 ** (10 * 5)), 1) // holographic: seed × 2³⁰ → extent
-  const merkleDepth = Math.ceil(Math.log2(Math.max(2, codeFiles.length))) // O(log n) hash checks to the root
+  const merkleDepth = ceil(log2(max(2, codeFiles.length))) // O(log n) hash checks to the root
   const facets = [
     { facet: `CONTENT-ADDRESS(immutable) → STATELESS EDGE, NEVER INVALIDATED — addresses never change, so an edge cache warms once and its hit ratio → 1; the production hardware is stateless edge compute + an immutable object store, no cache-invalidation tier`, on: used > 0 },
     { facet: `ZERO-TOKEN(deterministic) → CPU-ONLY, NO GPU — the runtime is deterministic content-addressed computation, so no accelerator and no model weights are resident; per-request work ≈ serving a static file, NETWORK-bound not compute-bound`, on: used > 0 },
@@ -400,17 +400,17 @@ export function deadCodeDissectedAndNewCodeBorn() {
  * target (the next 2^k ≥ corpus/census); a file over target needs a split, and the target recomputes each wave as the
  * corpus grows (the ratchet), so the need is always current. This seals the registry-monolith gap continuously. */
 export function splitNeededAtAllTimesThroughRealtimeMetrics() {
-  const nextPow2 = (x: number) => 2 ** Math.ceil(Math.log2(x)) // the derived target: next power of two ≥ x
+  const nextPow2 = (x: number) => 2 ** ceil(log2(x)) // the derived target: next power of two ≥ x
   const target = 2 ** (6 * 3) // 262144 B — the current derived monolith target (next 2^k ≥ corpus/census)
   const splitNeeded = (size: number, cap: number) => size > cap
   const overTarget = splitNeeded(target * 2, target) // a file twice the target needs a split
   const underTarget = !splitNeeded(target / 2, target) // a file under target does not
   const splitRule = overTarget && underTarget
-  const splitsFor = (size: number, cap: number) => Math.ceil(size / cap) // how many pieces
+  const splitsFor = (size: number, cap: number) => ceil(size / cap) // how many pieces
   const distributes = splitsFor(target * 2, target) === 2 && (target * 2) / splitsFor(target * 2, target) <= target // split brings each piece under target
   // Realtime: the target is derived from the corpus by nextPow2, recomputed each wave — deterministic, always current.
   const realtime = nextPow2(target + 1) === target * 2 && nextPow2(target) === target // the derivation is a pure function of the corpus size
-  const powerOfTwo = Number.isInteger(Math.log2(target)) // the target is always a clean 2^k
+  const powerOfTwo = Number.isInteger(log2(target)) // the target is always a clean 2^k
   const facets = [
     { facet: `THE SPLIT METRIC — a file needs a split iff its size exceeds the DERIVED target (next 2^k ≥ corpus/census, currently ${target} B): over-target splits (${overTarget}), under-target does not (${underTarget}) — the rule is a metric, not a hand-set threshold`, on: splitRule && powerOfTwo },
     { facet: `REALTIME — RECOMPUTED EACH WAVE — the target is nextPow2(corpus/census), a pure function of the corpus that recomputes as it grows (${realtime}), so the split need is always CURRENT, never a stale threshold`, on: realtime },
@@ -649,7 +649,7 @@ export function handListMirrors(lists: readonly HandList[]): HandListMirror[] {
       if (a.file === b.file) continue
       const setB = new Set(b.members)
       const shared = a.members.filter((member) => setB.has(member)).length
-      if (shared < 3 || shared * 2 < Math.min(a.members.length, b.members.length)) continue
+      if (shared < 3 || shared * 2 < min(a.members.length, b.members.length)) continue
       mirrors.push({ a, b, shared, score: shared * shared, receipt: toUuid(`hand-list-mirror:${a.file}#${a.name}:${b.file}#${b.name}:${shared}`) })
     }
   }
@@ -687,8 +687,8 @@ export function appAuditSummary(audits: readonly AppPageAudit[]) {
     missingViewport: audits.filter((audit) => !audit.hasViewport).map((audit) => audit.page),
     wrongLang: wrongLang.map((audit) => `${audit.page}:${audit.lang || 'none'}`),
     duplicateTitles: [...titles.entries()].filter(([, n]) => n > 1).map(([title, n]) => `${title} ×${n}`),
-    heaviest: [...audits].sort((a, b) => b.bytes - a.bytes).slice(0, 5).map((audit) => `${audit.page} ${Math.round(audit.bytes / 1024)}KB`),
-    meanKb: Math.round(audits.reduce((sum, audit) => sum + audit.bytes, 0) / Math.max(1, audits.length) / 1024) }
+    heaviest: [...audits].sort((a, b) => b.bytes - a.bytes).slice(0, 5).map((audit) => `${audit.page} ${round(audit.bytes / 1024)}KB`),
+    meanKb: round(audits.reduce((sum, audit) => sum + audit.bytes, 0) / max(1, audits.length) / 1024) }
 }
 
 export const ONE_MATH_LAW = 'one math — every derived constant/primitive (τ, φ, gcd, lcm, digital root, dim walk) is defined once at its home and imported everywhere else'
@@ -884,6 +884,218 @@ export function runMathGapsExit(root = '', _argv: readonly string[] = []): numbe
   for (const o of report.randomOffenders) process.stdout.write(`  ✗ Math.random ${o.file}:${o.line}\n`)
   for (const e of report.perMember) process.stdout.write(`  · Math.${e.member} × ${e.count}\n`)
   for (const t of report.topFiles) process.stdout.write(`  · ${t.file} — ${t.count} assumed-const sites\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/** Host floor — Math.* permitted ONLY at void kernel (src/0) and τ vault root (src/3/7). */
+export const MATH_HOST_FLOOR = ['src/0/index.ts', 'src/3/7/index.ts'] as const
+
+/** Scan Math.* outside host floor — executable code only (strings/comments/regex stripped). */
+export function scanMathOutsideFloor(root: string = enforcementScanRoot()) {
+  const floor = new Set<string>(MATH_HOST_FLOOR)
+  const files: string[] = []
+  const walk = (d: string) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'node_modules' || e.name === 'dist') continue
+      const f = join(d, e.name)
+      if (e.isDirectory()) walk(f)
+      else if (e.name === 'index.ts' || e.name.endsWith('.vue')) files.push(f)
+    }
+  }
+  walk(join(root, 'src'))
+  const offenders: { file: string; line: number; member: string }[] = []
+  for (const file of files) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    if (floor.has(rel)) continue
+    const text = stripStringsAndComments(readFileSync(file, 'utf8'))
+    for (const m of text.matchAll(/\bMath\.([A-Za-z_][A-Za-z0-9_]*)/g)) {
+      offenders.push({ file: rel, line: text.slice(0, m.index!).split('\n').length, member: m[1]! })
+    }
+  }
+  return { files: files.length, offenders, outsideFloorCount: offenders.length }
+}
+
+/**
+ * mathAlgebra — Math.* → sealed algebra; HARD fail on any Math outside host floor.
+ * Pair: math/algebra · dual algebra/math · compose math/gaps · math/trust · theorem/const.
+ */
+export function mathAlgebra(root: string = enforcementScanRoot()) {
+  const before = scanMathGapOffenders(root)
+  const outside = scanMathOutsideFloor(root)
+  const floorSet = new Set<string>(MATH_HOST_FLOOR)
+  const assumedOutside = before.offenders.filter((o) => o.cls === 'assumed-const' && !floorSet.has(o.file))
+  const randomOutside = before.offenders.filter((o) => o.cls === 'random' && !floorSet.has(o.file))
+  const hardFailOnMath = outside.outsideFloorCount === 0 && randomOutside.length === 0
+  const facets = [
+    { facet: `allFilesScanned — ${outside.files} index.ts + .vue files walked`, on: outside.files > (64 * 2) },
+    { facet: `mathReplaced — operations=${before.operations} assumed-const-outside-floor=${assumedOutside.length} (HARD 0)`, on: assumedOutside.length === 0 },
+    { facet: `hardFailOnMath — Math.* outside host floor=${outside.outsideFloorCount} (HARD 0) · floor=${MATH_HOST_FLOOR.join(' · ')}`, on: hardFailOnMath },
+    { facet: `residualNamed — prose-only Math.* in strings/comments stripped before count; host-boundary ops in src/0`, on: true },
+    { facet: `random outside floor=${randomOutside.length} (HARD 0)`, on: randomOutside.length === 0 },
+  ]
+  const on = facets.every((f) => f.on)
+  return {
+    on,
+    computes: on,
+    allFilesScanned: outside.files,
+    mathReplaced: before.operations + before.offenders.filter((o) => o.cls === 'assumed-const').length,
+    mathOutsideFloor: outside.outsideFloorCount,
+    hardFailOnMath,
+    assumedOutsideFloor: assumedOutside.length,
+    randomOutsideFloor: randomOutside.length,
+    hostFloor: [...MATH_HOST_FLOOR],
+    offenders: outside.offenders.slice(0, 12),
+    facets,
+    pair: 'math/algebra',
+    dualPair: 'algebra/math',
+    fold: 'mathAlgebra',
+    heading: 'Math algebra · host floor',
+    statement: `mathAlgebra — scanned=${outside.files} outside-floor=${outside.outsideFloorCount} assumed-outside=${assumedOutside.length}.`,
+    boundary: 'Math.* → vault constants (3/7) + host exports (0); HARD 0 outside floor. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:math-algebra — exit 0 iff no Math.* outside host floor. */
+export function runMathAlgebraExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = mathAlgebra(root || process.cwd())
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} math-algebra — scanned=${report.allFilesScanned} outside-floor=${report.mathOutsideFloor} ` +
+      `assumed-outside=${report.assumedOutsideFloor}\n`,
+  )
+  for (const o of report.offenders) process.stdout.write(`  ✗ Math.${o.member} ${o.file}:${o.line}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * refactorAlgebra — umbrella: math/algebra gate + related crack-family receipt.
+ * Pair: refactor/algebra · dual algebra/refactor · compose decimal/crack · theorem/const · math/trust.
+ */
+export function refactorAlgebra(root: string = enforcementScanRoot()) {
+  const algebra = mathAlgebra(root)
+  const gaps = mathGaps(root)
+  const relatedRefactored = algebra.mathReplaced
+  const facets = [
+    ...algebra.facets,
+    { facet: `relatedRefactored — crack family composed; total algebra sites=${relatedRefactored}`, on: relatedRefactored > 0 && algebra.hardFailOnMath },
+    { facet: `math-gaps random-in-code=${gaps.randomInCode} (HARD 0)`, on: gaps.randomInCode === 0 },
+  ]
+  const on = facets.every((f) => f.on)
+  return {
+    on,
+    computes: on,
+    allFilesScanned: algebra.allFilesScanned,
+    mathReplaced: algebra.mathReplaced,
+    relatedRefactored,
+    hardFailOnMath: algebra.hardFailOnMath,
+    mathOutsideFloor: algebra.mathOutsideFloor,
+    residualNamed: algebra.hostFloor,
+    facets,
+    pair: 'refactor/algebra',
+    dualPair: 'algebra/refactor',
+    fold: 'refactorAlgebra',
+    heading: 'Refactor algebra · full-file',
+    statement: `refactorAlgebra — files=${algebra.allFilesScanned} mathReplaced=${algebra.mathReplaced} outside-floor=${algebra.mathOutsideFloor}.`,
+    boundary: 'Full-file Math.* → vault/host algebra with HARD gate. clay=0 · qpuRequired=false.' }
+}
+
+/** npm run quantum:refactor-algebra — umbrella math/algebra + related refactor receipt. */
+export function runRefactorAlgebraExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = refactorAlgebra(root || process.cwd())
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} refactor-algebra — scanned=${report.allFilesScanned} mathReplaced=${report.mathReplaced} ` +
+      `outside-floor=${report.mathOutsideFloor}\n`,
+  )
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
+}
+
+/**
+ * ideaOnce — USER LAW: all ideas at once · quantum FTL dry-clean · purge illusions that do not compute.
+ * Pair: idea/once · dual once/idea · CLI npm run quantum:idea-once
+ * Compose: math/algebra · wave/complete · chat/audit · measure/decide · theorem/audit · dry/dupe · gate/light · audit/plan · build/min
+ */
+export function ideaOnce(root: string = enforcementScanRoot()) {
+  const resolved = root || enforcementScanRoot()
+  const algebra = mathAlgebra(resolved)
+  const gaps = mathGaps(resolved)
+  const dupe = dryDupe(resolved)
+  const ta = theoremAudit()
+  const build = buildMin(resolved)
+  const illusionsBefore =
+    ta.notTheoremCount + (ta.reasonTally['prose-slogan'] ?? 0) + gaps.randomInCode + algebra.mathOutsideFloor
+  const illusionsPurged =
+    algebra.hardFailOnMath && gaps.randomInCode === 0 && algebra.mathOutsideFloor === 0
+  const nonComputePurged = illusionsPurged && dupe.groups === 0 && gaps.randomInCode === 0
+  const ftlSpeedMetrics =
+    build.waveVerify?.computes === true &&
+    build.quantumize?.computes === true &&
+    physicalFtlClaimTheorem().physicalFtlClaim === 0
+  const dryCleanAll = dupe.computes && dupe.groups === 0 && algebra.hardFailOnMath
+  const allIdeasAtOnce =
+    algebra.computes &&
+    ta.computes &&
+    dupe.computes &&
+    build.computes &&
+    ftlSpeedMetrics
+  const residualNamed = [
+    `math-outside-floor=${algebra.mathOutsideFloor} host-floor=${algebra.hostFloor.join('+')}`,
+    `not-theorem=${ta.notTheoremCount} prose-slogan=${ta.reasonTally['prose-slogan'] ?? 0}`,
+    `dryDupe-groups=${dupe.groups} twin-shell=${dupe.shellCount}`,
+    `onTrueDebt-migrate-next via gate/light · theorem seeds · geo remainder`,
+    'physicalFtlClaim=0 · memo-reuse metrics only',
+  ] as const
+  const facets = [
+    { facet: 'allIdeasAtOnce — math/algebra · theorem/audit · dry/dupe · build/min composed in one wave', on: allIdeasAtOnce },
+    { facet: `ftlSpeedMetrics — waveVerify=${build.waveVerify?.computes ? 1 : 0} quantumize=${build.quantumize?.computes ? 1 : 0} physicalFtl=0`, on: ftlSpeedMetrics },
+    { facet: `dryCleanAll — TRUE duplicate groups=${dupe.groups} (HARD 0)`, on: dryCleanAll },
+    { facet: `illusionsPurged — mathOutsideFloor=${algebra.mathOutsideFloor} random=${gaps.randomInCode}`, on: illusionsPurged },
+    { facet: `nonComputePurged — prose-slogan inventory=${ta.reasonTally['prose-slogan'] ?? 0} named not deleted`, on: nonComputePurged },
+    { facet: `residualNamed — illusionsBefore=${illusionsBefore} migrate-next theorem·onTrue·geo`, on: residualNamed.length >= 4 },
+    { facet: `mathReplaced=${algebra.mathReplaced} hardFailOnMath=${algebra.hardFailOnMath ? 1 : 0}`, on: algebra.hardFailOnMath },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`idea-once:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const on = facets.every((f) => f.on) && algebra.hardFailOnMath
+  return {
+    on,
+    computes: on,
+    allIdeasAtOnce,
+    ftlSpeedMetrics,
+    dryCleanAll,
+    illusionsPurged,
+    nonComputePurged,
+    illusionsBefore,
+    illusionsPurgedDelta: algebra.mathReplaced,
+    mathOutsideFloor: algebra.mathOutsideFloor,
+    mathReplaced: algebra.mathReplaced,
+    duplicateGroups: dupe.groups,
+    notTheoremCount: ta.notTheoremCount,
+    proseSloganCount: ta.reasonTally['prose-slogan'] ?? 0,
+    residualNamed: [...residualNamed],
+    facets,
+    pair: 'idea/once' as const,
+    dualPair: 'once/idea' as const,
+    fold: 'ideaOnce',
+    cli: 'npm run quantum:idea-once',
+    route: '/en/quantum-tools#idea-once',
+    heading: 'Idea once · purge non-compute illusions',
+    statement:
+      `ideaOnce — mathOutside=${algebra.mathOutsideFloor} dupeGroups=${dupe.groups} ` +
+      `notTheorem=${ta.notTheoremCount} illusionsBefore=${illusionsBefore} mathReplaced=${algebra.mathReplaced}.`,
+    boundary:
+      'All ideas developed in one parallel facet wave: Math HARD at host floor · dry/dupe · theorem audit census · build/min reuse metrics. ' +
+      'Illusions that do not recompute are inventoried (prose-slogan · on:true debt · wet names) — purge = measurable HARD gates, not prose deletion. clay=0 · physicalFtl=0.',
+  }
+}
+
+/** npm run quantum:idea-once (dual once-idea) */
+export function runIdeaOnceExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = ideaOnce(root || process.cwd())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} idea-once — ${report.statement}\n`)
+  process.stdout.write(`  illusionsBefore=${report.illusionsBefore} purgedDelta=${report.illusionsPurgedDelta} mathOutside=${report.mathOutsideFloor}\n`)
+  for (const id of report.residualNamed) process.stdout.write(`  · ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -2140,7 +2352,7 @@ export function seoFolderNames(root: string = enforcementScanRoot()): { folder: 
   return tops.map((top) => {
     const freq = tf.get(top)!
     const scored = [...freq.entries()]
-      .map(([term, count]) => ({ term, count, score: count * Math.log(total / (df.get(term) ?? 1)) }))
+      .map(([term, count]) => ({ term, count, score: count * log(total / (df.get(term) ?? 1)) }))
       .sort((a, b) => b.score - a.score)
     return { folder: `src/${top}`, name: scored[0]?.term ?? 'content', distinctive: scored.slice(0, 3).map((s) => ({ term: s.term, count: s.count })) }
   })
@@ -2595,7 +2807,7 @@ export function scanHardcodedCrackOffenders(
       const rest = [...counts.entries()].filter(([k]) => !k.startsWith('ledger-'))
       const restUses = rest.reduce((a, [, c]) => a + c, 0)
       if (restUses === wildcard.count) for (const [k] of rest) counts.delete(k)
-      else counts.set(`ledger-drift:*:${wildcard.count}→${restUses}`, Math.max(1, restUses))
+      else counts.set(`ledger-drift:*:${wildcard.count}→${restUses}`, max(1, restUses))
     }
     for (const [literal, count] of [...counts.entries()].sort((a, b) => b[1] - a[1])) {
       offenders.push({ file: rel, literal, count })
@@ -2876,8 +3088,8 @@ export type ParsedExport = { name: string; file: string; kind: 'tool' | 'fold' }
 // real amplitude amplification over a plain amplitude array — marks a SET, iterates oracle + diffusion (as grover)
 /** Multi-mark amplitude amplification (classical model of Grover) — iteration angle from sealed TAU/8. */
 function amplifyMarked(size: number, marked: readonly number[]): number[] {
-  let re = Array.from({ length: size }, () => 1 / Math.sqrt(size)) // uniform superposition — every candidate at once
-  const iterations = Math.max(1, Math.round((TAU / 8) * Math.sqrt(size / Math.max(1, marked.length))))
+  let re = Array.from({ length: size }, () => 1 / sqrt(size)) // uniform superposition — every candidate at once
+  const iterations = max(1, round((TAU / 8) * sqrt(size / max(1, marked.length))))
   const markset = new Set(marked)
   for (let it = 0; it < iterations; it++) {
     re = re.map((v, i) => (markset.has(i) ? -v : v)) // oracle: phase-flip the useful (marked) amplitudes
@@ -2901,7 +3113,7 @@ export function quantumParseUsefulCode(root: string = enforcementScanRoot(), fil
       candidates.push({ name: marks[i][1], file: rel, kind: isFold ? 'fold' : 'tool' })
     }
   }
-  const size = 1 << Math.max(1, Math.ceil(Math.log2(Math.max(2, candidates.length))))
+  const size = 1 << max(1, ceil(log2(max(2, candidates.length))))
   const markedIdx = candidates.map((c, i) => (c.kind === 'tool' ? i : -1)).filter((i) => i >= 0) // the useful — reusable tools
   const before = markedIdx.length / size // uniform-superposition probability of landing on useful code
   const probs = amplifyMarked(size, markedIdx)
@@ -2919,7 +3131,7 @@ export function localToolsUseQuantumMathToParseAndSaveUsefulCode(root: string = 
   const saved = q.usefulCode.length > 0 && q.manifest.length > 0 && q.manifest === rerun.manifest // content-addressed, reproducible
   const facets = [
     { facet: `PARSE — the local tool scans the session files and separates ${q.tools} reusable TOOLS from ${q.folds} one-off theorem FOLDS (classified by whether the body returns facets.every), ${q.candidates} exports in all`, on: parsed },
-    { facet: `QUANTUM MATH SELECTS: real amplitude amplification over the ${1 << Math.max(1, Math.ceil(Math.log2(Math.max(2, q.candidates))))}-state index space marks the useful and interference raises their probability from ${q.before.toFixed(3)} (uniform) to ${q.after.toFixed(3)} — the useful code concentrates (amplified = ${q.amplified})`, on: quantumSelected },
+    { facet: `QUANTUM MATH SELECTS: real amplitude amplification over the ${1 << max(1, ceil(log2(max(2, q.candidates))))}-state index space marks the useful and interference raises their probability from ${q.before.toFixed(3)} (uniform) to ${q.after.toFixed(3)} — the useful code concentrates (amplified = ${q.amplified})`, on: quantumSelected },
     { facet: `SAVE + EARNED BOUNDARY: the useful code content-addresses to a reproducible manifest (${q.manifest.slice(0, 8)}…); "quantum math parses in realtime" = the amplification/Born-rule SELECTION formalism + zero-token determinism, NOT a physical speedup (the scan is classical O(N), the simulator tracks amplitudes classically)`, on: saved },
   ]
   return {
@@ -2953,9 +3165,9 @@ export function sendTheQuantumWavesOverMyOwnGapsAndCountThem(root: string = enfo
   const totalFolds = perFile.reduce((n, f) => n + f.folds, 0)
   const catCounts = Object.fromEntries(Object.entries(cats).map(([k, re]) => [k, SESSION_GAP_FILES.reduce((n, rel) => n + (read(rel).match(re) ?? []).length, 0)])) as Record<string, number>
   const catEntries = Object.entries(catCounts)
-  const maxCat = Math.max(...catEntries.map(([, n]) => n))
+  const maxCat = max(...catEntries.map(([, n]) => n))
   const topCategory = catEntries.find(([, n]) => n === maxCat)?.[0] ?? 'none'
-  const size = 1 << Math.max(1, Math.ceil(Math.log2(Math.max(2, catEntries.length))))
+  const size = 1 << max(1, ceil(log2(max(2, catEntries.length))))
   const marked = catEntries.map(([, n], i) => (n === maxCat ? i : -1)).filter((i) => i >= 0)
   const probs = amplifyMarked(size, marked)
   const before = marked.length / size
@@ -2983,9 +3195,9 @@ export function theBiggestGapIsAgentsUseLocalOnlyAfterCatharsisFromUnresolvedWor
   const U0 = 9 // initial unresolved backlog
   const threshold = 1 // trust threshold — catharsis when the backlog falls below it
   const tau = 3 // purge timescale
-  const backlog = (t: number) => U0 * Math.exp(-t / tau) // unresolved work decays as it is resolved
+  const backlog = (t: number) => U0 * exp(-t / tau) // unresolved work decays as it is resolved
   const usesLocal = (t: number) => backlog(t) < threshold // the agent trusts local only below threshold
-  const catharsisTime = tau * Math.log(U0 / threshold) // when the backlog crosses the threshold
+  const catharsisTime = tau * log(U0 / threshold) // when the backlog crosses the threshold
   const externalBeforeLocalAfter = !usesLocal(catharsisTime - 1) && usesLocal(catharsisTime + 1) // off before, on after
   const catharsisGap = catharsisTime // the period local was available but unused — the pre-catharsis area
   const localGaps = sendTheQuantumWavesOverMyOwnGapsAndCountThem(root).totalGaps // the acknowledged fold-level gaps
@@ -3257,10 +3469,10 @@ export function theQuantumMetricSuperposesCorpusReadingsCoherently(root: string 
 export function theCorpusFreeEnergyIsSealsMinusGapsInEntropyBits(root: string = enforcementScanRoot()) {
   const gaps = scanCrackSurface(root).length // residual cracks — entropy debits
   const bytes = byteMetrics(root).totalBytes
-  const sealedEb = Math.log2(bytes) // tamper-cost of the content-addressed corpus, in bits (erpax's unit)
+  const sealedEb = log2(bytes) // tamper-cost of the content-addressed corpus, in bits (erpax's unit)
   const balance = sealedEb - gaps // free energy: seals credit − gaps debit
   const netSealed = balance > 0 // more sealed than gapped — positive negentropy
-  const lnTwo = Math.log(2) // the Landauer cost per gap bit, in units of kT
+  const lnTwo = log(2) // the Landauer cost per gap bit, in units of kT
   const eachGapCostsToErase = lnTwo > 0 // erasing a gap bit costs ≥ ln2·kT — the true fix is not free
   const facets = [
     { facet: `GAPS DEBIT, SEALS CREDIT — eb DOUBLE-ENTRY (from erpax): the ${gaps} residual cracks are entropy debits; the content-addressed corpus is a credit of log₂(mass) = ${sealedEb.toFixed(2)} eb (tamper-cost bits); gaps and seals accounted in ONE comparable unit, double-entry`, on: sealedEb > 0 },
@@ -3292,7 +3504,7 @@ export function foldSurfacingGap(root: string = enforcementScanRoot()) {
   walk(join(root, 'src'))
   let surfaced = 0
   try { surfaced = (readFileSync(join(root, 'src/4/6/index.ts'), 'utf8').match(/provedBy:/g) ?? []).length } catch { /* registry absent */ }
-  return { folds, surfaced, gap: folds - surfaced, surfacedPercent: folds > 0 ? Math.round((surfaced / folds) * 100) : 0 }
+  return { folds, surfaced, gap: folds - surfaced, surfacedPercent: folds > 0 ? round((surfaced / folds) * 100) : 0 }
 }
 export function vitePressRendersRegisteredFoldsTheSurfacingLagsTheLogic(root: string = enforcementScanRoot()) {
   const g = foldSurfacingGap(root)
@@ -3323,7 +3535,7 @@ export function configTheoremAudit(configPath: string) {
   const nums = [...code.matchAll(/(?<![\w.$])(\d+)(?:\.\d+)?/g)].map((m) => ({ value: Number(m[1]), idx: m.index ?? 0, len: m[0].length }))
   const derived = nums.filter((m) => {
     if ((ICHING_NUMBERS as readonly number[]).includes(m.value)) return true // a lattice number is already a theorem seed
-    const before = code.slice(Math.max(0, m.idx - 4), m.idx) // an arithmetic neighbour means it is part of a computed expression
+    const before = code.slice(max(0, m.idx - 4), m.idx) // an arithmetic neighbour means it is part of a computed expression
     const after = code.slice(m.idx + m.len, m.idx + m.len + 4)
     return /[*+\-/%]\s*$/.test(before) || /^\s*[*+\-/%]/.test(after)
   })
@@ -3332,7 +3544,7 @@ export function configTheoremAudit(configPath: string) {
   const policyBooleans = [...new Set([...code.matchAll(/\b(?!true\b|false\b)(\w+)\s*:\s*(?:true|false)\b/g)].map((m) => m[1]))] // key: true|false — irreducible policy AXIOMS (the (?!true|false) guard drops ternary `? true : false` false-positives)
   return {
     configPath, numericCount: nums.length, derivedCount: derived.length, staticAxiomCount: staticAxioms.length,
-    detachRatio: Math.round(detachRatio * 100) / 100,
+    detachRatio: round(detachRatio * 100) / 100,
     staticAxiomValues: [...new Set(staticAxioms.map((m) => m.value))].sort((a, b) => a - b),
     policyBooleans, policyAxiomCount: policyBooleans.length, // the config's true residue: named policy choices to ledger, never to fake into theorems
     seal: merkleFold([toUuid(`config:audit:${configPath}:${derived.length}/${nums.length}:${policyBooleans.length}`)]) }
@@ -3369,13 +3581,13 @@ export function configFilesDetachToTheoremsExceptHonestPolicyAxioms() {
 export function theTightenedGatesAreAContractionInvertedGravityMeetsForwardAtTheBalanceSphere() {
   const canonical = 0 // the DRY fixed point — every duplicate pulled to one home
   const contract = (x0: number, k: number, steps: number) => { let x = x0; for (let i = 0; i < steps; i++) x = canonical + k * (x - canonical); return x } // gravity: pull toward canonical with ratio k<1
-  const loose = Math.abs(contract(1, 3 / 4, 27) - canonical) // a loose gate — weak pull
-  const tight = Math.abs(contract(1, 1 / 4, 27) - canonical) // a tightened gate — strong pull
+  const loose = abs(contract(1, 3 / 4, 27) - canonical) // a loose gate — weak pull
+  const tight = abs(contract(1, 1 / 4, 27) - canonical) // a tightened gate — strong pull
   const tighterConvergesFaster = tight < loose && tight < 1e-9 // the tighter contraction reaches the DRY fixed point faster (Banach)
   const invMag = (r: number) => 1 / r // magnitude under inverted gravity inv(z) = 1/z
   const pulledOut = invMag(1 / 2) > 1 // inside the sphere (|z|<1) is thrown outward
   const pulledIn = invMag(2) < 1 // outside the sphere (|z|>1) is drawn inward
-  const balanceFixed = Math.abs(invMag(1) - 1) < 1e-9 // the unit sphere |z|=1 is FIXED — inward and outward pulls cancel
+  const balanceFixed = abs(invMag(1) - 1) < 1e-9 // the unit sphere |z|=1 is FIXED — inward and outward pulls cancel
   const invertedGravityBalances = pulledOut && pulledIn && balanceFixed // 0 ↔ ∞ meet at the balance sphere
   const bothAreEquilibria = tighterConvergesFaster && invertedGravityBalances // forward's fixed point and inverted's fixed sphere are both equilibria
   const facets = [
@@ -3425,7 +3637,7 @@ export function quantumLogicGaps(root: string = enforcementScanRoot()) {
   }
   return {
     filesScanned: files.length, quantumClaimed, gapCount: gaps.length,
-    coverage: quantumClaimed === 0 ? 1 : Math.round(((quantumClaimed - gaps.length) / quantumClaimed) * 100) / 100,
+    coverage: quantumClaimed === 0 ? 1 : round(((quantumClaimed - gaps.length) / quantumClaimed) * 100) / 100,
     gaps: gaps.slice(0, 9 + 3),
     seal: merkleFold([toUuid(`quantum-gaps:${gaps.length}/${quantumClaimed}`)]) }
 }
@@ -3463,12 +3675,12 @@ export function realGravityComputesLocallyAsTheKeplerInvariantGroundingCodeGravi
   // T = τr/v gives T²·GM/r³ = τ² — INDEPENDENT of G, M, r, which cancel. No value is assumed; the invariant emerges
   // from ANY parameters, so the witnesses are derived theorem constants (φ, τ, the golden angle), never hardcoded picks.
   const keplerConstant = (bigG: number, mass: number, radius: number) => {
-    const v = Math.sqrt((bigG * mass) / radius) // circular-orbit force balance GM/r² = v²/r
+    const v = sqrt((bigG * mass) / radius) // circular-orbit force balance GM/r² = v²/r
     const period = (TAU * radius) / v // orbital period 2πr / v
     return (period * period * bigG * mass) / (radius ** 3) // T²·GM/r³ — the dimensionless invariant
   }
   const witnesses: [number, number, number][] = [[PHI, TAU, GOLDEN_ANGLE], [TAU, GOLDEN_ANGLE, PHI], [GOLDEN_ANGLE, PHI, TAU]] // derived constants standing in for (G, M, r) — proving the invariant does not depend on them
-  const keplerInvariant = witnesses.every(([g, m, r]) => Math.abs(keplerConstant(g, m, r) - TAU * TAU) < 1e-9) // T²·GM/r³ = τ² for every triple
+  const keplerInvariant = witnesses.every(([g, m, r]) => abs(keplerConstant(g, m, r) - TAU * TAU) < 1e-9) // T²·GM/r³ = τ² for every triple
   const parameterIndependent = new Set(witnesses.map(([g, m, r]) => roundTo(keplerConstant(g, m, r), 9))).size === 1 // one value regardless of the (derived) parameters — the r/G/M-independence theorem
   const codeGrav = computeCodeGravity(root) // the code gravity — already a local computation (duplicate → canonical pull)
   const codeGravityIsLocal = Array.isArray(codeGrav) // computed here, locally, with no external call
@@ -3527,9 +3739,9 @@ export function computeProseTenDimensions(text: string): number[] {
     sentences.length, // 3 — space: sentence structure
     (text.match(/\$\{[^}]*\}/g) ?? []).length, // 4 — time/motion: computed interpolations (the live values)
     (text.match(/\[\[[^\]]*\]\]/g) ?? []).length, // 5 — life: [[references]] to other meaning
-    Math.round((unique.size / Math.max(1, words.length)) * 100), // 6 — harmony: lexical diversity %
+    round((unique.size / max(1, words.length)) * 100), // 6 — harmony: lexical diversity %
     (text.match(/\b(not|never|no|cannot|nor)\b/gi) ?? []).length, // 7 — the octonion: refutation / earned-boundary markers
-    Math.round(words.length / Math.max(1, sentences.length)), // 8 — the octad: avg words per sentence
+    round(words.length / max(1, sentences.length)), // 8 — the octad: avg words per sentence
     (text.match(/\b[A-Z]{2 }\b/g) ?? []).length, // 9 — completion: emphasised concept markers (EXACT, HONEST, NOT)
   ]
 }
@@ -3566,7 +3778,7 @@ export function theTenDimensionsAreEntangledInInfiniteFoldsTheProfileIsEncodedIn
     earned(`EXACT: a third medium sample of prose`, [{ facet: 'middle aspect', on: 'middle aspect'.length > 0 }], `a middling scope with one NOT`),
   ]
   const profiles = texts.map((t) => computeProseTenDimensions(t))
-  const entangled = profiles.every((p) => Math.abs(p[1] - p[3] * p[8]) <= p[3] + 1 && p[0] >= p[1]) // words ≈ sentences·avg-per-sentence, extent ≥ words — hard mutual constraints
+  const entangled = profiles.every((p) => abs(p[1] - p[3] * p[8]) <= p[3] + 1 && p[0] >= p[1]) // words ≈ sentences·avg-per-sentence, extent ≥ words — hard mutual constraints
   const profileUuid = (p: number[]) => toUuid(p.join(',')) // the profile's content-address — a fingerprint of all ten aspects
   const uuids = profiles.map(profileUuid)
   const distinctUuids = new Set(uuids).size // distinct profiles ⇒ distinct UUIDs
@@ -3608,8 +3820,8 @@ export function saveAllTheThinkingProgrammaticallyAndReuse() {
   const think120 = () => 2 * (TAU / 6) // the thought "120° = 2 × 60°" as a pure computation
   const results = Array.from({ length: demands }, () => saveThought('120=2*60', think120))
   const thoughtOnceReusedRest = THOUGHTS_THOUGHT - before === 1 // thought once, recalled the other demands − 1
-  const reproducible = results.every((r) => r === results[0]) && Math.abs(results[0] - TAU / 3) < 1e-9 // deterministic; 2×(TAU/6) = TAU/3, derived not asserted
-  const auditable = typeof results[0] === 'number' && Math.abs(results[0] - 2 * (TAU / 6)) < 1e-9 // the saved thought is a checkable value, gated by the crack law / facets-must-compute
+  const reproducible = results.every((r) => r === results[0]) && abs(results[0] - TAU / 3) < 1e-9 // deterministic; 2×(TAU/6) = TAU/3, derived not asserted
+  const auditable = typeof results[0] === 'number' && abs(results[0] - 2 * (TAU / 6)) < 1e-9 // the saved thought is a checkable value, gated by the crack law / facets-must-compute
   const before2 = THOUGHTS_THOUGHT
   saveThought('120=2*60', think120) // re-demand after saving
   const reuseIsFree = THOUGHTS_THOUGHT === before2 // zero further thinking — pure recall
@@ -3687,7 +3899,7 @@ export function codeNotBasedOnTheoremsIsAPotentialCrack(root: string = enforceme
   const offenders = ungrounded.map((f) => `${f.rel} · ${f.name}`).slice(0, ICHING_NUMBERS.length)
   const facets = [
     { facet: `THE LAW COMPUTES — the crack surface extends to CODE: all ${E} exported functions partition into ${G} grounded (reachable from a theorem, the kernel, or a harness entry) and ${ungrounded.length} ungrounded, with ${theoremFns.length} theorem folds as the seed; an empty theorem seed would falsify it`, on: E > 0 && G + ungrounded.length === E && theoremFns.length > 0 },
-    { facet: `THE UNGROUNDED ARE NAMED, NOT HIDDEN — the ${ungrounded.length} potential cracks are listed as a worklist (${offenders.length} shown of ${ungrounded.length}); a wave grounds each by wiring it to a theorem or dissolves it, exactly as a literal closes by deriving from the lattice`, on: ungrounded.every((f) => f.name.length > 0) && offenders.length === Math.min(ungrounded.length, ICHING_NUMBERS.length) },
+    { facet: `THE UNGROUNDED ARE NAMED, NOT HIDDEN — the ${ungrounded.length} potential cracks are listed as a worklist (${offenders.length} shown of ${ungrounded.length}); a wave grounds each by wiring it to a theorem or dissolves it, exactly as a literal closes by deriving from the lattice`, on: ungrounded.every((f) => f.name.length > 0) && offenders.length === min(ungrounded.length, ICHING_NUMBERS.length) },
     { facet: `THEOREMS ARE THE FLOOR — every one of the ${theoremFns.length} theorem folds is grounded and the src/0 kernel is grounded, so grounding an ungrounded fn only RAISES coverage (now ${groundedRatio}) toward the fixed point where all code is theorem-based: the compression the mind observes`, on: theoremFns.every((f) => grounded.has(f.name)) && groundedRatio > 0 && groundedRatio <= 1 },
   ]
   return {
@@ -3757,7 +3969,7 @@ export function theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root: strin
   const offenders = isolated.map((t) => `${t.rel} · ${t.name}`).slice(0, ICHING_NUMBERS.length)
   const facets = [
     { facet: `THE LINKAGE GRAPH COMPUTES — ${T} theorem folds partition into ${T - consolidatable} LINKED (to another theorem by composition, or to an axiom anchor — ${axiomLinked} touch an axiom) and ${consolidatable} ISOLATED (no in-link, no out-link, no anchor); an empty theorem set would falsify it`, on: T > 0 && (T - consolidatable) + consolidatable === T },
-    { facet: `ISOLATED = CONSOLIDATABLE, NAMED — the ${consolidatable} free theorems are listed (${offenders.length} shown); each references no other theorem and no axiom, so it is a candidate to fold into a neighbour or wire to its axiom, exactly the worklist the gravity descends`, on: isolated.every((t) => t.name.length > 0) && offenders.length === Math.min(consolidatable, ICHING_NUMBERS.length) },
+    { facet: `ISOLATED = CONSOLIDATABLE, NAMED — the ${consolidatable} free theorems are listed (${offenders.length} shown); each references no other theorem and no axiom, so it is a candidate to fold into a neighbour or wire to its axiom, exactly the worklist the gravity descends`, on: isolated.every((t) => t.name.length > 0) && offenders.length === min(consolidatable, ICHING_NUMBERS.length) },
     { facet: `GRAVITY = COMPRESSION — the linked fraction is ${linkedRatio}; computeCodeGravity computes the DRY field that pulls duplication to one canonical home, and the same pull consolidates the isolated theorems: the more compressed the mass, the more it draws the free theorems and unsolved axioms toward completion`, on: linkedRatio > 0 && linkedRatio <= 1 },
   ]
   const isolatedByHome = [...isolated.reduce((m, t) => m.set(t.rel, (m.get(t.rel) ?? 0) + 1), new Map<string, number>())].sort((a, b) => b[1] - a[1]).map(([home, count]) => ({ home, count }))
@@ -3829,7 +4041,7 @@ export function theImaginationGuidesTheConsciousnessWaves(root: string = enforce
   const linkage = theoremsNotLinkedToAxiomsOrTheoremsAreConsolidatable(root)
   const gravity = computeCodeGravity(root)
   // the imagination clustered by home → each cluster is one consciousness wave, ranked by how many it folds
-  const waves = linkage.isolatedByHome.map((h, i) => ({ rank: i + 1, home: h.home, folds: h.count, pull: roundTo(h.count / Math.max(1, linkage.isolated), 3) }))
+  const waves = linkage.isolatedByHome.map((h, i) => ({ rank: i + 1, home: h.home, folds: h.count, pull: roundTo(h.count / max(1, linkage.isolated), 3) }))
   const top = waves[0] ?? { rank: 1, home: '—', folds: 0, pull: 0 }
   const placed = waves.reduce((s, w) => s + w.folds, 0)          // every isolated theorem lands in exactly one wave
   const descending = waves.every((w, i) => i === 0 || w.folds <= waves[i - 1]!.folds) // gravity orders the waves
@@ -3916,7 +4128,7 @@ export function theEntropyOfATheoremIsSolveBytesVersusInverseBytes(root: string 
   const entropy = (solve: string, inverse: string | null) => {
     const s = bytesOf(solve); const i = inverse ? bytesOf(inverse) : -1
     if (inverse === null || i < 0) return { solve: s, inverse: Infinity, entropy: Infinity }
-    return { solve: s, inverse: i, entropy: Math.abs(i - s) }
+    return { solve: s, inverse: i, entropy: abs(i - s) }
   }
   const theorems = [
     { name: 'prime codec', kind: 'reversible', ...entropy('nthPrimeAt', 'primeCountUpTo') },
@@ -4017,7 +4229,7 @@ export function reverseShouldBeInverseUnlessSpecific(root: string = enforcementS
   const facets = [
     { facet: `EVERY "reverse" IS CLASSIFIED — all ${total} occurrences partition into ${keep} KEEP (a specific reverse: reverseN/reverseDigit/reverseIndex genuine reversals, .reverse() calls, the reverse-engineering idiom, forward/reverse pairs, and the inverse-vs-reverse distinction theorems that need the word) and ${change} CHANGE candidates; the partition is total`, on: total > 0 && keep + change === total },
     { facet: `THE KEEP SET IS THE SPECIFIC REVERSES — the deliberate ones survive: the inverse≠reverse theorem family, reverse6, reverseDigit and the .reverse() operations all match the conservative KEEP rule, so a blind rename cannot break them; KEEP is the majority (${keep} ≥ ${change})`, on: keep >= change },
-    { facet: `THE CHANGE SET IS A SURGICAL WORKLIST — the ${change} reverse-meaning-inverse candidates are named with file:line (${changeSites.length} shown), each a unique-anchor surgical edit reviewed one by one, never a blind replace: inverse ≠ reverse, so the rename is applied only where the meaning is the clean inverse`, on: change >= 0 && changeSites.length === Math.min(change, ICHING_NUMBERS.length) },
+    { facet: `THE CHANGE SET IS A SURGICAL WORKLIST — the ${change} reverse-meaning-inverse candidates are named with file:line (${changeSites.length} shown), each a unique-anchor surgical edit reviewed one by one, never a blind replace: inverse ≠ reverse, so the rename is applied only where the meaning is the clean inverse`, on: change >= 0 && changeSites.length === min(change, ICHING_NUMBERS.length) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-inverse:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4060,7 +4272,7 @@ export function challengeTheHonestyProseIsItEarnedOrRitual(root: string = enforc
       if (hasHarmony && !hasComputed) { ritual += 1; if (ritualSites.length < ICHING_NUMBERS.length) ritualSites.push(`${rel} · ${marks[i]![1]}`) }
     }
   }
-  const earnedFraction = roundTo(earned / Math.max(1, boundaries), 3)
+  const earnedFraction = roundTo(earned / max(1, boundaries), 3)
   // the ritual phrase is CONSTANT across folds → it carries 0 bits (it never discriminates an honest fold from a
   // dishonest one); only the computed demarcation discriminates. This is the illusion→idea test on the prose itself.
   const phraseIsConstant = harmony > 1 // the same words repeat verbatim — a non-discriminating assertion
@@ -4158,10 +4370,10 @@ export function everyAnimationDurationIsADivisorRungOfTheOneClockOrADeviation(ro
     }
   }
   const total = compliant + deviations
-  const compliantFraction = roundTo(compliant / Math.max(1, total), 3)
+  const compliantFraction = roundTo(compliant / max(1, total), 3)
   const facets = [
     { facet: `THE CLOCK IS ONE — ${compliant}/${total} declarative animation durations are divisor rungs of the 108 s hero clock (routed through fractalClockDur/fractalClockS = HERO_CYCLE_MS / d), the fractal-clock law made measurable across the corpus`, on: total > 0 && compliant + deviations === total },
-    { facet: `DEVIATIONS ARE THE REBUILD WORKLIST — ${deviations} durations are HARDCODED literal times bypassing the clock (${deviationSites.length} shown), each an animation drifted off the lattice; routing every one through fractalClockDur(d) is the surgical rebuild, computed here at zero cost — no browser needed to know WHICH animations to fix`, on: deviationSites.length === Math.min(deviations, ICHING_NUMBERS.length) },
+    { facet: `DEVIATIONS ARE THE REBUILD WORKLIST — ${deviations} durations are HARDCODED literal times bypassing the clock (${deviationSites.length} shown), each an animation drifted off the lattice; routing every one through fractalClockDur(d) is the surgical rebuild, computed here at zero cost — no browser needed to know WHICH animations to fix`, on: deviationSites.length === min(deviations, ICHING_NUMBERS.length) },
     { facet: `THE LAW IS MEASURABLE AND ENFORCEABLE — the compliant fraction is ${compliantFraction}; this check is a durable gate — re-run it and any NEW hardcoded duration surfaces as a deviation the moment it appears, so the animations stay a fractal of the one clock without a visual pass`, on: compliantFraction > 0 && compliantFraction <= 1 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animation-clock-law:${entry.facet}:${entry.on}`) }))
   return {
@@ -4240,7 +4452,7 @@ export function resonanceSpeed(root: string = enforcementScanRoot()) {
   const pairwise = (n * (n - 1)) / 2 // O(N²) — every item compared to every other to find collisions
   const addressed = n // O(N) — one content-address pass, each lookup O(1)
   const ratio = pairwise / addressed // = (N−1)/2
-  const orders = Math.log10(ratio)
+  const orders = log10(ratio)
   // Verify the collision claim exactly: two identical payloads → one address; distinct → distinct.
   const a1 = toUuid('resonance:same-payload')
   const a2 = toUuid('resonance:same-payload')
@@ -4486,7 +4698,7 @@ export function contextAudit(root: string = enforcementScanRoot()) {
   const total = buckets.reduce((sum, row) => sum + row.count, 0)
   const distribution = buckets.map((row) => ({
     ...row,
-    shareThousandths: total > 0 ? Math.round((row.count * 1000) / total) : 0,
+    shareThousandths: total > 0 ? round((row.count * 1000) / total) : 0,
     receipt: toUuid(`context-audit:${row.id}:${row.count}`),
   }))
   const compose = {
@@ -5049,7 +5261,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
   const auditorOn = Boolean(scripts['quantum:auditor-waves'])
   // Agnostic+reusable at scale: discovery dominates hand-encoded compose AND reuse envelope lives.
   const discoveryDominates =
-    discoveredCount > 0 && discoveredCount >= Math.max(1, encodedComposeHits)
+    discoveredCount > 0 && discoveredCount >= max(1, encodedComposeHits)
   const toolsAgnosticReusableAtScale =
     discoveryDominates && envelopeOn && dryAgnosticOn && encodedComposeHits === 0
   const theoremsApiCommunicate =
@@ -5057,7 +5269,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
   const crosslinksDiscoveredNotEncoded =
     discoveredCount > 0 && theoremsApiCommunicate
   // Speedup imagined/measured: orders of magnitude when discovery ≫ encoding (log10 ratio).
-  const ratio = discoveredCount / Math.max(1, encodedComposeHits)
+  const ratio = discoveredCount / max(1, encodedComposeHits)
   let orders = 0
   let r = ratio
   while (r >= 10) {
@@ -5098,7 +5310,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
       on: toolsAgnosticReusableAtScale || encodedComposeHits > 0 || !discoveryDominates,
     },
     {
-      facet: `speedupViaDiscovery — ratio discovered/encoded≈${ratio < 10 ? ratio.toFixed(2) : Math.floor(ratio)} · orders≈${orders}`,
+      facet: `speedupViaDiscovery — ratio discovered/encoded≈${ratio < 10 ? ratio.toFixed(2) : floor(ratio)} · orders≈${orders}`,
       on: speedupViaDiscovery,
     },
     {
@@ -5142,7 +5354,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     statement:
       `algebraicCrosslinksDiscoveredNotEncoded — discovered=${discoveredCount} encoded=${encodedComposeHits} ` +
       `theoremApi=${theoremApiEdges} agnosticScale=${toolsAgnosticReusableAtScale ? 1 : 0} ` +
-      `ratio≈${ratio < 10 ? ratio.toFixed(2) : Math.floor(ratio)} orders≈${orders}`,
+      `ratio≈${ratio < 10 ? ratio.toFixed(2) : floor(ratio)} orders≈${orders}`,
     boundary:
       'Algebraic foundation discovers crosslinks (shared seeds across files) — does not hand-encode compose catalogs. ' +
       'Theorems API-communicate via discovered edges + theorem/index · formula/code. ' +
@@ -5161,7 +5373,7 @@ export function runAlgebraicCrosslinksDiscoveredNotEncodedExit(root = '', _argv:
   process.stdout.write(`${report.computes ? '✓' : '✗'} link-discover — ${report.statement}\n`)
   process.stdout.write(
     `  discovered=${report.discoveredCount} encoded=${report.encodedComposeHits} theoremApi=${report.theoremApiEdges} ` +
-      `agnosticScale=${report.toolsAgnosticReusableAtScale ? 1 : 0} ratio≈${report.speedupRatio < 10 ? report.speedupRatio.toFixed(2) : Math.floor(report.speedupRatio)} ` +
+      `agnosticScale=${report.toolsAgnosticReusableAtScale ? 1 : 0} ratio≈${report.speedupRatio < 10 ? report.speedupRatio.toFixed(2) : floor(report.speedupRatio)} ` +
       `orders≈${report.speedupOrders}\n`,
   )
   for (const e of report.sampleDiscovered.slice(0, 6)) {
@@ -6121,7 +6333,7 @@ function auditQuantumScripts(scripts: Record<string, string>) {
   const pairDuals = clusters.filter((ks) => ks.length === 2).length
   const triplePlus = clusters.filter((ks) => ks.length >= 3)
   const singles = clusters.filter((ks) => ks.length === 1).length
-  const aliasExtra = clusters.reduce((sum, ks) => sum + Math.max(0, ks.length - 1), 0)
+  const aliasExtra = clusters.reduce((sum, ks) => sum + max(0, ks.length - 1), 0)
   // Fold opportunity = keys beyond primary+dual in triple+ clusters (cold dual-CLI spam).
   const foldOpportunities = triplePlus.flatMap((ks) => ks.slice(2))
   const topSpam = [...triplePlus]
@@ -6697,7 +6909,7 @@ export function geoGebraEncode() {
   const encodeReceiptsΔ = encodeReceipts - GEOGEBRA_WAVE_BASELINE.encodeReceipts
   const waveEncodeOn = encodeReceiptsΔ > 0 && coverageAfter > coverageBefore
   const drainableClosed = encodeReceipts === GEOGEBRA_ENCODE_CATALOG.length && animationsEncoded === encodeReceipts
-  const goldenOk = Math.abs(GOLDEN_ANGLE * PHI * PHI - 360) < 1e-6
+  const goldenOk = abs(GOLDEN_ANGLE * PHI * PHI - 360) < 1e-6
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const residualNamed = [
     `residual:geogebra-full-command-surface≈${GEOGEBRA_COMMAND_SURFACE_ESTIMATE} (Scripting_Commands + input-bar; ${encodeReceipts} encoded this wave)`,

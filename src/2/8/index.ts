@@ -1,14 +1,14 @@
-import { earned } from '../../3/7'
+import { SQRT1_2, SQRT2, earned } from '../../3/7'
 // Pi-train station 2/8 — dissolution sequence order 1 (digit/reverse 2/8).
 // Export-import fusion: fused local exports only; vault imports are dependency edges until those symbols cut.
 
 import { equivalentNarcoticDepthM, TAU } from '../../3/7'
-import {  humanBreath, seedFromText, applyGate, cnot, cz, GATES, isUuid, measure, probabilities, qubits, grover, gcd, merkleFold, toffoli, toUuid } from '../../0'
+import { GATES, abs, applyGate, asin, cnot, cos, cz, floor, gcd, grover, humanBreath, hypot, isUuid, max, measure, merkleFold, min, probabilities, qubits, round, seedFromText, sin, sqrt, toUuid, toffoli } from '../../0'
 import type { QuantumState } from '../../0'
 import { innerProduct, pauliAlgebraCloses, noCloningWitness, deutschJozsa, bernsteinVazirani, simon, ghzMermin, entanglementSwap, bb84, teleportQubit, superdense } from '../../9/1'
 
 /** Two quantum states are equal when their amplitude vectors agree within tolerance 1e-9. */
-const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => Math.abs(r - b.re[i]!) < 1e-9 && Math.abs(a.im[i]! - b.im[i]!) < 1e-9)
+const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => abs(r - b.re[i]!) < 1e-9 && abs(a.im[i]! - b.im[i]!) < 1e-9)
 /** NuFit-6.0 atmospheric neutrino mass-squared splitting |Δm²₃ₗ|, eV². */
 export const NEUTRINO_DM2_ATM_EV2 = 2.513e-3
 
@@ -18,7 +18,7 @@ export function aksakRatioWalk(seed: string, cycles: number, lo = (7 / 5), hi = 
   return Array.from({ length: cycles }, (_, c) => {
     const breath = humanBreath(c * (100 * 5 * 2), (100 * 7 * 5 * 2), (1 / (5 * 2)))
     const jitter = ((seedFromText(`${seed}:${c}`, 6) % (100 * 5 * 2)) / (100 * 5 * 2) - (1 / 2)) * (3 / (5 * 5))
-    return Math.min(hi, Math.max(lo, mid * breath + jitter))
+    return min(hi, max(lo, mid * breath + jitter))
   })
 }
 
@@ -34,7 +34,7 @@ export function equivalentAirDepthM(depthM: number, fO2: number, freshWater = fa
 
 /** Hubble tension significance in σ. */
 export function hubbleTensionSigma(localKmsMpc: number, localErr: number, cmbKmsMpc: number, cmbErr: number): number {
-  return Math.abs(localKmsMpc - cmbKmsMpc) / Math.sqrt(localErr * localErr + cmbErr * cmbErr)
+  return abs(localKmsMpc - cmbKmsMpc) / sqrt(localErr * localErr + cmbErr * cmbErr)
 }
 
 export { inductionEvolve, inductionStep } from '../../0'
@@ -264,12 +264,12 @@ export const SESSION_SKILL_FNS: readonly string[] = [
  * a THEOREM (linearity of the partial trace), not a postulate. Station 2: two parties, a 2×2
  * marginal, outcomes ±1 — the digit is the mathematics. */
 export function noSignallingComputes() {
-  const s = 1 / Math.SQRT2
+  const s = 1 / SQRT2
   const psi = [s, 0, 0, s] // |Φ+> = (|00> + |11>)/√2
   /** Alice's reduced density matrix after Bob measures in basis θ and tells her nothing. */
   const marginalA = (theta: number): number[][] => {
-    const cB = Math.cos(theta)
-    const sB = Math.sin(theta)
+    const cB = cos(theta)
+    const sB = sin(theta)
     const rho = [[0, 0], [0, 0]]
     for (const outcome of [0, 1]) {
       const b0 = outcome === 0 ? cB : -sB
@@ -284,17 +284,17 @@ export function noSignallingComputes() {
   }
   const ref = marginalA(0)
   const bases = [0, (TAU / 2) / 8, (TAU / 2) / 6, (TAU / 2) / 4, (TAU / 2) / 3, (TAU / 2) / 2, 1 + 1 / 9, 2 + 7 / 9]
-  const maxDrift = Math.max(...bases.map((theta) => {
+  const maxDrift = max(...bases.map((theta) => {
     const r = marginalA(theta)
-    return Math.max(Math.abs(r[0]![0]! - ref[0]![0]!), Math.abs(r[0]![1]! - ref[0]![1]!), Math.abs(r[1]![1]! - ref[1]![1]!))
+    return max(abs(r[0]![0]! - ref[0]![0]!), abs(r[0]![1]! - ref[0]![1]!), abs(r[1]![1]! - ref[1]![1]!))
   }))
-  const isMaximallyMixed = Math.abs(ref[0]![0]! - 1 / 2) < 1e-12 && Math.abs(ref[1]![1]! - 1 / 2) < 1e-12 && Math.abs(ref[0]![1]!) < 1e-12
+  const isMaximallyMixed = abs(ref[0]![0]! - 1 / 2) < 1e-12 && abs(ref[1]![1]! - 1 / 2) < 1e-12 && abs(ref[0]![1]!) < 1e-12
   const parties = 2
   const marginalDim = 2
   const facets = [
     { facet: `Alice's marginal is I/2 — maximally mixed, carrying zero information about anything`, on: isMaximallyMixed },
     { facet: `and it does not move: across ${bases.length} Bob bases the marginal drifts by ${maxDrift.toExponential(1)} (machine epsilon) — Bob's CHOICE is invisible to Alice, so no message crosses, at any speed`, on: maxDrift < 1e-12 },
-    { facet: `the correlations are still real and super-classical (Tsirelson 2√2 > 2, sealed at src/0) — quantum mechanics gives correlation WITHOUT signalling; both halves are theorems, neither is a postulate`, on: 2 * Math.SQRT2 > 2 },
+    { facet: `the correlations are still real and super-classical (Tsirelson 2√2 > 2, sealed at src/0) — quantum mechanics gives correlation WITHOUT signalling; both halves are theorems, neither is a postulate`, on: 2 * SQRT2 > 2 },
     { facet: `the address is the mathematics: ${parties} parties, a ${marginalDim}×${marginalDim} marginal, ±1 outcomes — station 2 by its own content`, on: parties === marginalDim && marginalDim === 2 },
   ]
   return {
@@ -320,7 +320,7 @@ export function noSignallingComputes() {
 // the parts of quantum computing NOT yet built — no fake claim of completeness.
 export function quantumComputingScientists() {
   const attack = (claim: string, attempt: string, withstood: boolean) => ({ claim, attempt, withstood, receipt: toUuid(`qc-scientist:${claim}:${withstood}`) })
-  const near1 = (x: number | null) => x !== null && Math.abs(x - 1) < 1e-9
+  const near1 = (x: number | null) => x !== null && abs(x - 1) < 1e-9
 
   const noClone = noCloningWitness() // overlap 1/√2 ⇒ a cloner would need it 0 AND 1 — contradiction
   const teleAngles = [[(TAU / 2) / 3, (TAU / 2) / 4], [(TAU / 2) / 5, (TAU / 2) / 2], [1, 2]]
@@ -332,7 +332,7 @@ export function quantumComputingScientists() {
   const spies = bb84(2 * 100, 'scientist') // 200 rounds — derived
 
   const challenges = [
-    attack('No-cloning', 'clone an unknown qubit exactly — copy |ψ⟩ with fidelity 1 for all ψ', noClone.contradiction && Math.abs(noClone.overlap - Math.SQRT1_2) < 1e-9),
+    attack('No-cloning', 'clone an unknown qubit exactly — copy |ψ⟩ with fidelity 1 for all ψ', noClone.contradiction && abs(noClone.overlap - SQRT1_2) < 1e-9),
     attack('Operator algebra closes', 'claim the Paulis do not close under product, bracket, Jordan product, † and trace', pauliAlgebraCloses().closes),
     attack('Teleportation is exact', 'claim teleportation loses information — output fidelity < 1', teleAngles.every(([t, p]) => near1(teleportQubit(t, p).fidelity))),
     attack('Eavesdropping is detectable (BB84)', 'intercept-resend the key and stay undetected', spies.errorWithEve > spies.errorNoEve + 1e-9),
@@ -341,7 +341,7 @@ export function quantumComputingScientists() {
     attack('Simon: exponential separation', 'claim the hidden period is not recoverable from the sampled orthogonal strings', sim.ok && sim.recoveredS === sim.hiddenS && sim.allOrthogonal),
     attack('Superdense coding', 'claim one qubit cannot carry two classical bits', [0, 1, 2, 3].every((m) => superdense(m, `sci-${m}`).decoded === m)),
     attack('GHZ–Mermin: no local hidden variables', 'reproduce the GHZ product with a local hidden-variable assignment', ghz.refuted && ghz.qmProduct === -1 && ghz.lhvProduct === 1),
-    attack('Entanglement swapping', 'claim entanglement cannot be established between never-interacting qubits', swap.swapped && Math.abs(swap.concurrence - 1) < 1e-9),
+    attack('Entanglement swapping', 'claim entanglement cannot be established between never-interacting qubits', swap.swapped && abs(swap.concurrence - 1) < 1e-9),
   ]
   const withstood = challenges.filter((entry) => entry.withstood).length
   // THE REST OF QUANTUM COMPUTING — the named frontiers, now DEVELOPED into complete solutions (user
@@ -383,7 +383,7 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   // The one primitive the QFT needs beyond H and cnot (src/0 has cz = R(π); this is the general angle).
   const cphase = (st: St, control: number, target: number, theta: number): St => {
     const re = st.re.slice(), im = st.im.slice(), c = 1 << control, t = 1 << target
-    const cr = Math.cos(theta), ci = Math.sin(theta)
+    const cr = cos(theta), ci = sin(theta)
     for (let i = 0; i < re.length; i += 1) if ((i & c) !== 0 && (i & t) !== 0) { const a = re[i], b = im[i]; re[i] = a * cr - b * ci; im[i] = a * ci + b * cr }
     return { n: st.n, re, im }
   }
@@ -396,19 +396,19 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   const qft = (st0: St, n: number, sign: number): St => {
     let s = st0 as St
     for (let j = n - 1; j >= 0; j -= 1) { s = applyGate(s, GATES.H, j) as St; for (let k = j - 1; k >= 0; k -= 1) s = cphase(s, k, j, sign * (TAU / 2) / (1 << (j - k))) }
-    for (let i = 0; i < Math.floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
+    for (let i = 0; i < floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
     return s
   }
   const iqft = (st0: St, n: number): St => { // exact adjoint: reverse the order, undo, negate the phases
     let s = st0 as St
-    for (let i = 0; i < Math.floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
+    for (let i = 0; i < floor(n / 2); i += 1) s = swap(s, i, n - 1 - i)
     for (let j = 0; j < n; j += 1) { for (let k = 0; k < j; k += 1) s = cphase(s, k, j, -(TAU / 2) / (1 << (j - k))); s = applyGate(s, GATES.H, j) as St }
     return s
   }
   // ground truth: the direct DFT of the amplitude vector, y_k = (1/√N) Σ_j x_j ω^{jk}, ω = e^{2πi/N}.
   const dft = (st: St): St => {
-    const N = st.re.length, re = new Array<number>(N).fill(0), im = new Array<number>(N).fill(0), s = 1 / Math.sqrt(N)
-    for (let k = 0; k < N; k += 1) for (let j = 0; j < N; j += 1) { const a = TAU * j * k / N, c = Math.cos(a), d = Math.sin(a); re[k] += s * (st.re[j] * c - st.im[j] * d); im[k] += s * (st.re[j] * d + st.im[j] * c) }
+    const N = st.re.length, re = new Array<number>(N).fill(0), im = new Array<number>(N).fill(0), s = 1 / sqrt(N)
+    for (let k = 0; k < N; k += 1) for (let j = 0; j < N; j += 1) { const a = TAU * j * k / N, c = cos(a), d = sin(a); re[k] += s * (st.re[j] * c - st.im[j] * d); im[k] += s * (st.re[j] * d + st.im[j] * c) }
     return { n: st.n, re, im }
   }
 
@@ -417,11 +417,11 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   let maxErr = 0
   for (let n = 1; n <= 4; n += 1) {
     const N = 1 << n
-    const raw: St = { n, re: Array.from({ length: N }, (_, i) => Math.sin(i + 1)), im: Array.from({ length: N }, (_, i) => Math.cos(2 * i + 1)) }
-    const nrm = Math.sqrt(raw.re.reduce((s, x) => s + x * x, 0) + raw.im.reduce((s, x) => s + x * x, 0))
+    const raw: St = { n, re: Array.from({ length: N }, (_, i) => sin(i + 1)), im: Array.from({ length: N }, (_, i) => cos(2 * i + 1)) }
+    const nrm = sqrt(raw.re.reduce((s, x) => s + x * x, 0) + raw.im.reduce((s, x) => s + x * x, 0))
     const st: St = { n, re: raw.re.map((x) => x / nrm), im: raw.im.map((x) => x / nrm) }
     const a = qft(st, n, 1), b = dft(st)
-    for (let i = 0; i < N; i += 1) maxErr = Math.max(maxErr, Math.abs(a.re[i] - b.re[i]), Math.abs(a.im[i] - b.im[i]))
+    for (let i = 0; i < N; i += 1) maxErr = max(maxErr, abs(a.re[i] - b.re[i]), abs(a.im[i] - b.im[i]))
   }
   const circuitIsDft = maxErr < EPS
 
@@ -429,7 +429,7 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   const N3 = 1 << 3
   const rt0: St = { n: 3, re: Array.from({ length: N3 }, (_, i) => (i === 3 ? 1 : 0)), im: new Array<number>(N3).fill(0) }
   const rt = iqft(qft(rt0, 3, 1), 3)
-  const roundTrips = rt.re.every((x, i) => Math.abs(x - rt0.re[i]) < EPS) && rt.im.every((x) => Math.abs(x) < EPS)
+  const roundTrips = rt.re.every((x, i) => abs(x - rt0.re[i]) < EPS) && rt.im.every((x) => abs(x) < EPS)
 
   // C — phase estimation: eigenstate |1⟩ of R(φ); t counting qubits; recover φ = a/2^t exactly.
   const phaseEstimate = (phi: number, t: number): number => {
@@ -444,7 +444,7 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   }
   const T = 4
   const phis = [1 / 16, 3 / 16, 5 / 8, 7 / 16] // each a/2^4 — exactly representable, so PE is exact
-  const peExact = phis.every((phi) => Math.abs(phaseEstimate(phi, T) - phi) < EPS)
+  const peExact = phis.every((phi) => abs(phaseEstimate(phi, T) - phi) < EPS)
 
   const facets = [
     { facet: `THE QFT CIRCUIT IS THE DFT: H on each qubit + the controlled-phase R_k ladder + the reversing swaps, built from src/0's applyGate, reproduces the direct DFT of the amplitude vector for n = 1..4 — max amplitude error ${maxErr.toExponential(1)}, machine precision. The wave-45 proof was the abstract matrix; this is the circuit that realises it`, on: circuitIsDft },
@@ -472,18 +472,18 @@ export function shorFactorsByPeriodFinding() {
   const gcdN = (a0: number, b0: number): number => { let a = a0, b = b0; while (b) { const t = b; b = a % b; a = t } return a }
   // best rational approximation of num/den with denominator ≤ maxDen (continued-fraction convergents)
   const cfDenominator = (num: number, den: number, maxDen: number): number => {
-    let a = Math.floor(num / den), h1 = 1, h0 = a, k1 = 0, k0 = 1, n = num, d = den
-    while (true) { const rem = n - a * d; if (rem === 0) break; n = d; d = rem; a = Math.floor(n / d); const k2 = a * k0 + k1; if (k2 > maxDen) break; h1 = h0; h0 = a * h0 + h1; k1 = k0; k0 = k2 }
+    let a = floor(num / den), h1 = 1, h0 = a, k1 = 0, k0 = 1, n = num, d = den
+    while (true) { const rem = n - a * d; if (rem === 0) break; n = d; d = rem; a = floor(n / d); const k2 = a * k0 + k1; if (k2 > maxDen) break; h1 = h0; h0 = a * h0 + h1; k1 = k0; k0 = k2 }
     return k0
   }
   const factor = (N: number, a: number, t: number, w: number): { period: number; factors: readonly number[] | null; valid: boolean } => {
     const T = 1 << t, W = 1 << w, dim = T * W
     const re = new Array<number>(dim).fill(0), im = new Array<number>(dim).fill(0)
-    for (let x = 0; x < T; x += 1) re[x * W + 1] = 1 / Math.sqrt(T) // counting uniform, work = |1⟩
+    for (let x = 0; x < T; x += 1) re[x * W + 1] = 1 / sqrt(T) // counting uniform, work = |1⟩
     const re2 = new Array<number>(dim).fill(0), im2 = new Array<number>(dim).fill(0)
     for (let x = 0; x < T; x += 1) { let ax = 1; for (let i = 0; i < x; i += 1) ax = (ax * a) % N; re2[x * W + (ax % N)] += re[x * W + 1] } // oracle
-    const outRe = new Array<number>(dim).fill(0), outIm = new Array<number>(dim).fill(0), s = 1 / Math.sqrt(T)
-    for (let y = 0; y < W; y += 1) for (let k = 0; k < T; k += 1) { let ar = 0, ai = 0; for (let x = 0; x < T; x += 1) { const ang = -TAU * x * k / T, c = Math.cos(ang), dd = Math.sin(ang); ar += s * (re2[x * W + y] * c - im2[x * W + y] * dd); ai += s * (re2[x * W + y] * dd + im2[x * W + y] * c) } outRe[k * W + y] = ar; outIm[k * W + y] = ai } // inverse QFT
+    const outRe = new Array<number>(dim).fill(0), outIm = new Array<number>(dim).fill(0), s = 1 / sqrt(T)
+    for (let y = 0; y < W; y += 1) for (let k = 0; k < T; k += 1) { let ar = 0, ai = 0; for (let x = 0; x < T; x += 1) { const ang = -TAU * x * k / T, c = cos(ang), dd = sin(ang); ar += s * (re2[x * W + y] * c - im2[x * W + y] * dd); ai += s * (re2[x * W + y] * dd + im2[x * W + y] * c) } outRe[k * W + y] = ar; outIm[k * W + y] = ai } // inverse QFT
     const pk = new Array<number>(T).fill(0)
     for (let k = 0; k < T; k += 1) for (let y = 0; y < W; y += 1) pk[k] += outRe[k * W + y] ** 2 + outIm[k * W + y] ** 2
     let period = 0
@@ -526,14 +526,14 @@ export function theMixedStateLayer() {
   const depolarize = (rho: Rho, p: number): Rho => { const N = rho.N, re = rho.re.map((x) => (1 - p) * x), im = rho.im.map((x) => (1 - p) * x); for (let a = 0; a < N; a += 1) re[a * N + a] += p / N; return { N, re, im } }
   const ptrace1of2 = (rho: Rho): Rho => { const re = [0, 0, 0, 0], im = [0, 0, 0, 0]; for (let i = 0; i < 2; i += 1) for (let j = 0; j < 2; j += 1) for (let k = 0; k < 2; k += 1) { re[i * 2 + j] += rho.re[(i * 2 + k) * 4 + (j * 2 + k)]; im[i * 2 + j] += rho.im[(i * 2 + k) * 4 + (j * 2 + k)] } return { N: 2, re, im } }
   const EPS = 1 / (2 * 5) ** 9
-  const pure = outer([Math.cos(3 / (2 * 5)), Math.sin(3 / (2 * 5))], [0, 0]) // an arbitrary pure qubit
+  const pure = outer([cos(3 / (2 * 5)), sin(3 / (2 * 5))], [0, 0]) // an arbitrary pure qubit
   const mixed = depolarize(pure, 1 / 2)
-  const bell = outer([1 / Math.sqrt(2), 0, 0, 1 / Math.sqrt(2)], [0, 0, 0, 0]) // (|00⟩+|11⟩)/√2
+  const bell = outer([1 / sqrt(2), 0, 0, 1 / sqrt(2)], [0, 0, 0, 0]) // (|00⟩+|11⟩)/√2
   const reduced = ptrace1of2(bell)
   const facets = [
-    { facet: `PURE ⟺ PURITY 1: a pure state's density matrix ρ = |ψ⟩⟨ψ| has tr(ρ²) = ${purity(pure).toFixed(6)} = 1 — the extremal point of the state space, no classical uncertainty`, on: Math.abs(purity(pure) - 1) < EPS },
-    { facet: `DECOHERENCE MIXES, TRACE IS CONSERVED: the depolarizing channel ρ → (1−p)ρ + p·I/2 drops the purity to ${purity(mixed).toFixed(4)} < 1 (a genuine mixed state) while tr(ρ) = ${trace(mixed).toFixed(6)} stays 1 — a valid quantum operation, the honest model of noise the pure-state simulator could not express`, on: purity(mixed) < 1 - EPS && Math.abs(trace(mixed) - 1) < EPS },
-    { facet: `ENTANGLEMENT = PURE WHOLE, MIXED PART: the Bell pair is pure (tr(ρ²) = ${purity(bell).toFixed(4)}), yet tracing out one qubit leaves the other MAXIMALLY MIXED — tr(ρ_A²) = ${purity(reduced).toFixed(4)} = 1/2, ρ_A = I/2 — the operational signature of entanglement, computed by partial trace`, on: Math.abs(purity(bell) - 1) < EPS && Math.abs(purity(reduced) - 1 / 2) < EPS && Math.abs(trace(reduced) - 1) < EPS },
+    { facet: `PURE ⟺ PURITY 1: a pure state's density matrix ρ = |ψ⟩⟨ψ| has tr(ρ²) = ${purity(pure).toFixed(6)} = 1 — the extremal point of the state space, no classical uncertainty`, on: abs(purity(pure) - 1) < EPS },
+    { facet: `DECOHERENCE MIXES, TRACE IS CONSERVED: the depolarizing channel ρ → (1−p)ρ + p·I/2 drops the purity to ${purity(mixed).toFixed(4)} < 1 (a genuine mixed state) while tr(ρ) = ${trace(mixed).toFixed(6)} stays 1 — a valid quantum operation, the honest model of noise the pure-state simulator could not express`, on: purity(mixed) < 1 - EPS && abs(trace(mixed) - 1) < EPS },
+    { facet: `ENTANGLEMENT = PURE WHOLE, MIXED PART: the Bell pair is pure (tr(ρ²) = ${purity(bell).toFixed(4)}), yet tracing out one qubit leaves the other MAXIMALLY MIXED — tr(ρ_A²) = ${purity(reduced).toFixed(4)} = 1/2, ρ_A = I/2 — the operational signature of entanglement, computed by partial trace`, on: abs(purity(bell) - 1) < EPS && abs(purity(reduced) - 1 / 2) < EPS && abs(trace(reduced) - 1) < EPS },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -576,7 +576,7 @@ export function theShorNineQubitCodeCorrectsAnySingleError() {
   const pL = (p: number): number => pairs9 * p * p
   const belowThresholdWins = pL(1 / 100) < 1 / 100 // p = 0.01 < p_th ⇒ logical < physical
   const aboveThresholdLoses = pL(1 / 5) > 1 / 5 // p = 0.2 > p_th ⇒ code makes it worse
-  const quadratic = Math.abs(pL(1 / (2 * 100)) / pL(1 / 100) - 1 / 4) < 1 / (2 * 5) ** 6 // halving p quarters p_L
+  const quadratic = abs(pL(1 / (2 * 100)) / pL(1 / 100) - 1 / 4) < 1 / (2 * 5) ** 6 // halving p quarters p_L
   const facets = [
     { facet: `EVERY SINGLE-QUBIT ERROR IS DETECTED: all ${errors.length} single-qubit Pauli errors (X, Y, Z on each of 9 qubits) trip a non-trivial stabiliser syndrome — none is silent — so the distance-3 Shor code CORRECTS any single-qubit error (X caught by Z_iZ_j, Z by the X-block pairs, Y by both)`, on: allDetected && blocksDistinguished },
     { facet: `THE THRESHOLD THEOREM: a distance-3 code fails only on ≥2 errors, so p_L = C(9,2)·p² = ${pairs9}p² — below the physical rate exactly when p < 1/${pairs9} ≈ ${pTh.toFixed(4)} (verified: p=0.01 ⇒ p_L=${pL(1 / 100).toFixed(4)} < 0.01; p=0.2 ⇒ p_L=${pL(1 / 5).toFixed(2)} > 0.2)`, on: belowThresholdWins && aboveThresholdLoses },
@@ -598,23 +598,23 @@ export function theShorNineQubitCodeCorrectsAnySingleError() {
 // objective. Both run here as REAL state-vector circuits over the sealed src/0 gate set, optimised on a
 // grid, and checked against ground truth: VQE against exact diagonalisation, QAOA against the true cut.
 export function variationalQuantumEigensolverAndQaoa() {
-  const RY = (t: number): number[] => [Math.cos(t / 2), 0, -Math.sin(t / 2), 0, Math.sin(t / 2), 0, Math.cos(t / 2), 0]
-  const RX = (t: number): number[] => [Math.cos(t / 2), 0, 0, -Math.sin(t / 2), 0, -Math.sin(t / 2), Math.cos(t / 2), 0]
+  const RY = (t: number): number[] => [cos(t / 2), 0, -sin(t / 2), 0, sin(t / 2), 0, cos(t / 2), 0]
+  const RX = (t: number): number[] => [cos(t / 2), 0, 0, -sin(t / 2), 0, -sin(t / 2), cos(t / 2), 0]
   const EPS = 1 / (2 * 5) ** 3
   // VQE: H = a·Z + b·X on one qubit; exact ground energy = −√(a²+b²). Ansatz RY(θ)|0⟩, ⟨Z⟩ and ⟨X⟩ from amplitudes.
   const expZ = (st: QuantumState): number => st.re.reduce((s, r, i) => s + (i === 0 ? 1 : -1) * (r * r + st.im[i] * st.im[i]), 0)
   const expX = (st: QuantumState): number => 2 * (st.re[0] * st.re[1] + st.im[0] * st.im[1])
   const vqe = (a: number, b: number): number => { let best = Infinity; const steps = (2 * 5) ** 3; for (let i = 0; i <= steps; i += 1) { const th = TAU * i / steps; const st = applyGate(qubits(1), RY(th), 0); const E = a * expZ(st) + b * expX(st); if (E < best) best = E } return best }
-  const vqeCases = [[1, 0], [0, 1], [3 / 5, 4 / 5], [1, 1]].map(([a, b]) => ({ a, b, found: vqe(a, b), exact: -Math.hypot(a, b) }))
-  const vqeExact = vqeCases.every((c) => Math.abs(c.found - c.exact) < EPS)
+  const vqeCases = [[1, 0], [0, 1], [3 / 5, 4 / 5], [1, 1]].map(([a, b]) => ({ a, b, found: vqe(a, b), exact: -hypot(a, b) }))
+  const vqeExact = vqeCases.every((c) => abs(c.found - c.exact) < EPS)
   // QAOA MaxCut on a triangle (edges 01,12,20); max cut = 2. p=1 circuit e^{-iβΣX}·e^{-iγC}|+⟩³, optimised on a grid.
   const edges: readonly [number, number][] = [[0, 1], [1, 2], [2, 0]]
   const cutValue = (z: number): number => edges.reduce((s, [a, b]) => s + ((((z >> a) & 1) !== ((z >> b) & 1)) ? 1 : 0), 0)
-  const exactMaxCut = Math.max(...Array.from({ length: 8 }, (_, z) => cutValue(z)))
+  const exactMaxCut = max(...Array.from({ length: 8 }, (_, z) => cutValue(z)))
   const qaoaExpect = (gamma: number, beta: number): number => {
     let st = qubits(3); for (let q = 0; q < 3; q += 1) st = applyGate(st, GATES.H, q)
     const re = st.re.slice(), im = st.im.slice()
-    for (let z = 0; z < 8; z += 1) { const ph = -gamma * cutValue(z), c = Math.cos(ph), d = Math.sin(ph), a = re[z], bb = im[z]; re[z] = a * c - bb * d; im[z] = a * d + bb * c }
+    for (let z = 0; z < 8; z += 1) { const ph = -gamma * cutValue(z), c = cos(ph), d = sin(ph), a = re[z], bb = im[z]; re[z] = a * c - bb * d; im[z] = a * d + bb * c }
     st = { n: 3, re, im }
     for (let q = 0; q < 3; q += 1) st = applyGate(st, RX(2 * beta), q)
     let E = 0; for (let z = 0; z < 8; z += 1) E += (st.re[z] ** 2 + st.im[z] ** 2) * cutValue(z); return E
@@ -644,8 +644,8 @@ export function variationalQuantumEigensolverAndQaoa() {
 // the ground state of H₁. Verified against exact diagonalisation, on the sealed src/0 gate set, deterministic
 // (no physical speedup). H₀ = −(X₀+X₁), ground |++⟩; H₁ = −(Z₀ + ½Z₁), ground |00⟩ (non-degenerate).
 export function adiabaticQuantumComputationAndAnnealing() {
-  const RX = (t: number): number[] => [Math.cos(t / 2), 0, 0, -Math.sin(t / 2), 0, -Math.sin(t / 2), Math.cos(t / 2), 0]
-  const RZ = (t: number): number[] => [Math.cos(t / 2), -Math.sin(t / 2), 0, 0, 0, 0, Math.cos(t / 2), Math.sin(t / 2)]
+  const RX = (t: number): number[] => [cos(t / 2), 0, 0, -sin(t / 2), 0, -sin(t / 2), cos(t / 2), 0]
+  const RZ = (t: number): number[] => [cos(t / 2), -sin(t / 2), 0, 0, 0, 0, cos(t / 2), sin(t / 2)]
   const groundH0 = (): QuantumState => applyGate(applyGate(qubits(2), GATES.H, 0), GATES.H, 1) // |++⟩ = ground of −(X₀+X₁)
   // first-order Trotter of the adiabatic sweep over N steps, total time T: H₀ terms as RX, H₁ terms as RZ
   const adiabatic = (N: number, T: number): QuantumState => {
@@ -660,12 +660,12 @@ export function adiabaticQuantumComputationAndAnnealing() {
   const pGround = (st: QuantumState): number => st.re[0] ** 2 + st.im[0] ** 2 // |⟨00|ψ⟩|², |00⟩ = ground of H₁
   const energyH1 = (st: QuantumState): number => { const p = probabilities(st); const h = [-(1 + 1 / 2), -(1 - 1 / 2), -(-1 + 1 / 2), -(-1 - 1 / 2)]; return p.reduce((e, pi, i) => e + pi * h[i], 0) } // ⟨ψ|H₁|ψ⟩
   // exact diagonalisation of the diagonal H₁ = −(Z₀+½Z₁): eigenvalues over z ∈ {±1}², ground = −1.5 at |00⟩
-  const exactGround = Math.min(...[[1, 1], [1, -1], [-1, 1], [-1, -1]].map(([z0, z1]) => -(z0 + (1 / 2) * z1)))
+  const exactGround = min(...[[1, 1], [1, -1], [-1, 1], [-1, -1]].map(([z0, z1]) => -(z0 + (1 / 2) * z1)))
   const N = 4 * 100
   const runs = [2, 2 * 5, 5 * 8, 100].map((T) => ({ T, p: pGround(adiabatic(N, T)), e: energyH1(adiabatic(N, T)) }))
   const slow = runs[runs.length - 1], fast = runs[0]
   const EPS = 1 / (2 * 5) ** 2
-  const adiabaticReachesGround = slow.p > 1 - 1 / (2 * 5) && Math.abs(slow.e - exactGround) < EPS // slow → ground of H₁
+  const adiabaticReachesGround = slow.p > 1 - 1 / (2 * 5) && abs(slow.e - exactGround) < EPS // slow → ground of H₁
   const monotone = runs.every((r, i) => i === 0 || r.p >= runs[i - 1].p - EPS) // slower sweep ⇒ higher ground fidelity
   const fastIsDiabatic = fast.p < slow.p - 1 / 4 // a too-fast sweep fails to track — the adiabatic condition is real
   const annealingSolves = slow.p > 1 - 1 / (2 * 5) && exactGround === -(1 + 1 / 2) // the Ising ground = the optimisation answer, found
@@ -701,7 +701,7 @@ export function thePhaseFlipCodeCorrectsAnyZError() {
     const fixed = located < 0 ? s : applyGate(s, GATES.X, located)
     return innerProduct(clean, fixed).abs ** 2 // fidelity to the clean bit-flip codeword
   }
-  const a = Math.cos(2 / 5), b = Math.sin(2 / 5) // an arbitrary logical qubit
+  const a = cos(2 / 5), b = sin(2 / 5) // an arbitrary logical qubit
   const EPS = 1 / (2 * 5) ** 6
   const fidelities = [-1, 0, 1, 2].map((q) => correctZ(a, b, q))
   const correctsAnyZ = fidelities.every((f) => f > 1 - EPS)
@@ -733,8 +733,8 @@ export function theNoCommunicationTheorem() {
   const base = rhoBob(bell())
   // Alice applies arbitrary local operations on qubit 0; Bob's marginal must be identical each time.
   const aliceOps = [applyGate(bell(), GATES.X, 0), applyGate(bell(), GATES.H, 0), applyGate(applyGate(bell(), GATES.H, 0), GATES.Z, 0), applyGate(bell(), GATES.Y, 0)]
-  const same = (p: { re: number[]; im: number[] }, q: { re: number[]; im: number[] }): boolean => p.re.every((x, i) => Math.abs(x - q.re[i]) < EPS && Math.abs(p.im[i] - q.im[i]) < EPS)
-  const isHalfIdentity = (p: { re: number[]; im: number[] }): boolean => Math.abs(p.re[0] - 1 / 2) < EPS && Math.abs(p.re[3] - 1 / 2) < EPS && Math.abs(p.re[1]) < EPS && Math.abs(p.re[2]) < EPS
+  const same = (p: { re: number[]; im: number[] }, q: { re: number[]; im: number[] }): boolean => p.re.every((x, i) => abs(x - q.re[i]) < EPS && abs(p.im[i] - q.im[i]) < EPS)
+  const isHalfIdentity = (p: { re: number[]; im: number[] }): boolean => abs(p.re[0] - 1 / 2) < EPS && abs(p.re[3] - 1 / 2) < EPS && abs(p.re[1]) < EPS && abs(p.re[2]) < EPS
   const bobMaximallyMixed = isHalfIdentity(base)
   const unchangedByAlice = aliceOps.every((s) => same(rhoBob(s), base))
   const facets = [
@@ -762,11 +762,11 @@ export function everyMixedStateHasAPurification() {
   const purityOf = (rho: { re: number[]; im: number[] }): number => { let t = 0; for (let a = 0; a < 2; a += 1) for (let b = 0; b < 2; b += 1) t += rho.re[a * 2 + b] * rho.re[b * 2 + a] - rho.im[a * 2 + b] * rho.im[b * 2 + a]; return t }
   const EPS = 1 / (2 * 5) ** 6
   const p = 3 / (2 * 5) // an arbitrary mixed state ρ = diag(p, 1−p), purity p²+(1−p)² < 1
-  const psi: QuantumState = { n: 2, re: [Math.sqrt(p), 0, 0, Math.sqrt(1 - p)], im: [0, 0, 0, 0] } // |Ψ⟩ = √p|00⟩+√(1−p)|11⟩
+  const psi: QuantumState = { n: 2, re: [sqrt(p), 0, 0, sqrt(1 - p)], im: [0, 0, 0, 0] } // |Ψ⟩ = √p|00⟩+√(1−p)|11⟩
   const reduced = rhoA(psi)
-  const recoversRho = Math.abs(reduced.re[0] - p) < EPS && Math.abs(reduced.re[3] - (1 - p)) < EPS && Math.abs(reduced.re[1]) < EPS && Math.abs(reduced.re[2]) < EPS
-  const psiIsPure = Math.abs(purityOf(rhoA(psi)) - (p * p + (1 - p) * (1 - p))) < EPS // ρ_A purity = the mixed purity < 1
-  const globalPure = Math.abs((psi.re.reduce((s, x) => s + x * x, 0)) - 1) < EPS // ⟨Ψ|Ψ⟩ = 1, a genuine pure state
+  const recoversRho = abs(reduced.re[0] - p) < EPS && abs(reduced.re[3] - (1 - p)) < EPS && abs(reduced.re[1]) < EPS && abs(reduced.re[2]) < EPS
+  const psiIsPure = abs(purityOf(rhoA(psi)) - (p * p + (1 - p) * (1 - p))) < EPS // ρ_A purity = the mixed purity < 1
+  const globalPure = abs((psi.re.reduce((s, x) => s + x * x, 0)) - 1) < EPS // ⟨Ψ|Ψ⟩ = 1, a genuine pure state
   const facets = [
     { facet: `THE PURIFICATION RECOVERS THE MIXED STATE: |Ψ⟩ = √p|00⟩+√(1−p)|11⟩ is pure (⟨Ψ|Ψ⟩ = 1, ${globalPure}), and tracing out the environment gives back ρ = diag(${p}, ${(1 - p).toFixed(1)}) exactly (${recoversRho}) — every mixed state is the shadow of a pure one`, on: recoversRho && globalPure },
     { facet: `MIXEDNESS IS TRACED-AWAY ENTANGLEMENT: the reduced state's purity is ${(p * p + (1 - p) * (1 - p)).toFixed(2)} < 1 (${psiIsPure}) precisely because |Ψ⟩ is ENTANGLED across A and B; forget B and A looks mixed — decoherence (the mixed-state layer) and purification are the two directions of one fact`, on: psiIsPure },
@@ -801,16 +801,16 @@ export function amplitudeAmplificationAndQuantumCounting() {
   const n = 4, N = 1 << n, EPS = 1 / (2 * 5) ** 6
   const cases = [1, 2, 4].map((M) => {
     const marked = Array.from({ length: M }, (_, i) => i)
-    const theta = Math.asin(Math.sqrt(M / N))
-    const kOpt = Math.round((TAU / 2) / (4 * theta) - 1 / 2)
+    const theta = asin(sqrt(M / N))
+    const kOpt = round((TAU / 2) / (4 * theta) - 1 / 2)
     const pSim = pMarked(grover(n, marked, kOpt), marked)
-    const pAnalytic = Math.sin((2 * kOpt + 1) * theta) ** 2
+    const pAnalytic = sin((2 * kOpt + 1) * theta) ** 2
     const p1 = pMarked(grover(n, marked, 1), marked)
-    const countFromRotation = N * Math.sin(Math.asin(Math.sqrt(p1)) / 3) ** 2 // sin(3θ)=√p1 ⇒ θ ⇒ M = N sin²θ
+    const countFromRotation = N * sin(asin(sqrt(p1)) / 3) ** 2 // sin(3θ)=√p1 ⇒ θ ⇒ M = N sin²θ
     return { M, kOpt, pSim, pAnalytic, initial: M / N, count: countFromRotation }
   })
-  const amplificationMatches = cases.every((c) => Math.abs(c.pSim - c.pAnalytic) < EPS && c.pSim > 1 - 1 / 5 && c.pSim > c.initial) // boosted to ~1, matches sin((2k+1)θ)²
-  const countingRecovers = cases.every((c) => Math.abs(c.count - c.M) < 1 / (2 * 5)) // M = N sin²θ recovers the count
+  const amplificationMatches = cases.every((c) => abs(c.pSim - c.pAnalytic) < EPS && c.pSim > 1 - 1 / 5 && c.pSim > c.initial) // boosted to ~1, matches sin((2k+1)θ)²
+  const countingRecovers = cases.every((c) => abs(c.count - c.M) < 1 / (2 * 5)) // M = N sin²θ recovers the count
   const oneRotation = cases.every((c) => c.kOpt >= 1) // both ride the same 2θ Grover rotation
   const facets = [
     { facet: `AMPLITUDE AMPLIFICATION GENERALISES GROVER: the state-vector Grover rotation drives the success probability from M/N to ${cases.map((c) => c.pSim.toFixed(3)).join(', ')} (~1) in the optimal ${cases.map((c) => c.kOpt).join(', ')} steps, matching sin((2k+1)θ)² exactly (${amplificationMatches}) — any oracle's good subspace amplified in O(√(N/M)) steps`, on: amplificationMatches },
@@ -843,10 +843,10 @@ export function quantumParallelismIsNotTheSpeedupInterferenceIs() {
     for (let x = 0; x < N; x += 1) for (let y = 0; y < 2; y += 1) { const i = x + (y << n), o = x + ((y ^ f(x)) << n); re[o] += s.re[i]; im[o] += s.im[i] }
     s = { n: n + 1, re, im } }
   // 1 — parallelism REAL: every |x⟩|f(x)⟩ carries 1/√N, every |x⟩|1−f(x)⟩ carries 0
-  const allComputed = [...Array(N).keys()].every((x) => Math.abs(s.re[x + (f(x) << n)] - 1 / Math.sqrt(N)) < EPS && Math.abs(s.re[x + ((1 - f(x)) << n)]) < EPS)
+  const allComputed = [...Array(N).keys()].every((x) => abs(s.re[x + (f(x) << n)] - 1 / sqrt(N)) < EPS && abs(s.re[x + ((1 - f(x)) << n)]) < EPS)
   // 2 — measurement COLLAPSES: the input marginal is uniform, so one shot reveals one random (x, f(x))
   const p = probabilities(s); const xMarginal = Array.from({ length: N }, (_, x) => p[x] + p[x + (1 << n)])
-  const uniformMarginal = xMarginal.every((px) => Math.abs(px - 1 / N) < EPS)
+  const uniformMarginal = xMarginal.every((px) => abs(px - 1 / N) < EPS)
   const valuesComputed = N // all f(x) in the amplitudes
   const valuesReadablePerShot = 1 // measurement gives ONE outcome
   const queriesToLearnF = N // Holevo: to learn all N values needs ~N measurements — no parallelism speedup
@@ -875,11 +875,11 @@ export function quantumParallelismIsNotTheSpeedupInterferenceIs() {
 // guarantee beneath the algorithm. Verified: over a dense grid of qubit states no expectation falls below E₀,
 // and the minimum touches it. H = aZ + bX, E₀ = −√(a²+b²) by diagonalisation.
 export function theVariationalPrincipleLowerBound() {
-  const RY = (t: number): number[] => [Math.cos(t / 2), 0, -Math.sin(t / 2), 0, Math.sin(t / 2), 0, Math.cos(t / 2), 0]
-  const RZg = (t: number): number[] => [Math.cos(t / 2), -Math.sin(t / 2), 0, 0, 0, 0, Math.cos(t / 2), Math.sin(t / 2)]
+  const RY = (t: number): number[] => [cos(t / 2), 0, -sin(t / 2), 0, sin(t / 2), 0, cos(t / 2), 0]
+  const RZg = (t: number): number[] => [cos(t / 2), -sin(t / 2), 0, 0, 0, 0, cos(t / 2), sin(t / 2)]
   const expZ = (s: QuantumState): number => s.re[0] ** 2 + s.im[0] ** 2 - (s.re[1] ** 2 + s.im[1] ** 2)
   const expX = (s: QuantumState): number => 2 * (s.re[0] * s.re[1] + s.im[0] * s.im[1])
-  const a = 3 / 5, b = 4 / 5, E0 = -Math.hypot(a, b) // ground energy of aZ+bX, exact
+  const a = 3 / 5, b = 4 / 5, E0 = -hypot(a, b) // ground energy of aZ+bX, exact
   const EPS = 1 / (2 * 5) ** 3
   const TH = 2 * 100, PH = 2 * (2 * 5) // grid of states over the Bloch sphere
   let minE = Infinity, allAboveBound = true, samples = 0
@@ -891,7 +891,7 @@ export function theVariationalPrincipleLowerBound() {
     if (E < minE) minE = E
   }
   const boundHolds = allAboveBound // no state's expectation falls below E₀
-  const tightAtGround = Math.abs(minE - E0) < EPS // the minimum reaches E₀ — equality at the ground state
+  const tightAtGround = abs(minE - E0) < EPS // the minimum reaches E₀ — equality at the ground state
   const facets = [
     { facet: `THE LOWER BOUND HOLDS EVERYWHERE: over ${samples} states across the Bloch sphere, ⟨ψ|H|ψ⟩ ≥ E₀ = ${E0.toFixed(4)} WITHOUT exception (${boundHolds}) — the variational principle: no state's energy expectation can undershoot the ground energy`, on: boundHolds },
     { facet: `IT IS TIGHT AT THE GROUND STATE: the minimum expectation over the grid is ${minE.toFixed(4)} = E₀ (${tightAtGround}) — equality iff |ψ⟩ is the ground state, so minimising ⟨H⟩ IS ground-state finding, exactly`, on: tightAtGround },
@@ -978,7 +978,7 @@ export function twoBitsAreTheDualityGateways() {
   }
   const X = GATES.X, Z = GATES.Z
   const I2 = [1, 0, 0, 0, 0, 0, 1, 0]
-  const close = (a: readonly number[], b: readonly number[]) => a.every((v, i) => Math.abs(v - b[i]!) < 1e-9)
+  const close = (a: readonly number[], b: readonly number[]) => a.every((v, i) => abs(v - b[i]!) < 1e-9)
   const neg = (a: readonly number[]) => a.map((v) => -v)
   const klein = close(mul(X, X), I2) && close(mul(Z, Z), I2) && close(mul(X, Z), neg(mul(Z, X)) as number[])
   // (4) the four xiàng: (value, moving) = 2 bits per line → {6,7,8,9}; moving-mask flips are involutive bijections on the 64
@@ -1022,9 +1022,9 @@ export function bellMeasurementOutcomesAreUniform() {
     { theta: TAU / 7, phi: TAU / 3 },
   ]
   const uniform = samples.map(({ theta, phi }) => {
-    const c0r = Math.cos(theta / 2)
-    const c1r = Math.sin(theta / 2) * Math.cos(phi)
-    const c1i = Math.sin(theta / 2) * Math.sin(phi)
+    const c0r = cos(theta / 2)
+    const c1r = sin(theta / 2) * cos(phi)
+    const c1i = sin(theta / 2) * sin(phi)
     let st = qubits(3)
     st = { n: 3, re: st.re.slice(), im: st.im.slice() }
     st.re[0] = c0r; st.re[1] = c1r; st.im[1] = c1i
@@ -1032,7 +1032,7 @@ export function bellMeasurementOutcomesAreUniform() {
     st = applyGate(cnot(st, 0, 1), GATES.H, 0)
     const p = probabilities(st)
     const joint = [0, 1, 2, 3].map((b) => p.reduce((sum, x, i) => sum + ((i & 3) === b ? x : 0), 0))
-    return joint.every((x) => Math.abs(x - 1 / 4) < 1e-9)
+    return joint.every((x) => abs(x - 1 / 4) < 1e-9)
   })
   const facets = [
     { facet: `for every sampled payload the four (b1,b2) outcomes are EXACTLY ¼ each — ${samples.length}/${samples.length} states, joint probabilities computed from amplitudes, no sampling`, on: uniform.every(Boolean) },
@@ -1056,15 +1056,15 @@ export function kleinFourActsSimplyTransitivelyOnBellStates() {
   const bell = () => cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // |Φ⁺⟩
   const apply = (ops: readonly (readonly number[])[]) => ops.reduce((st, gate) => applyGate(st, gate, 0), bell())
   const states = [apply([]), apply([GATES.X]), apply([GATES.Z]), apply([GATES.X, GATES.Z])]
-  const key = (st: { re: number[]; im: number[] }) => st.re.map((r, i) => `${Math.round(r * ((5 * 2) ** 6))}:${Math.round(st.im[i]! * ((5 * 2) ** 6))}`).join('|')
+  const key = (st: { re: number[]; im: number[] }) => st.re.map((r, i) => `${round(r * ((5 * 2) ** 6))}:${round(st.im[i]! * ((5 * 2) ** 6))}`).join('|')
   const keys = states.map((st) => {
     // normalise global phase: flip sign so the first non-zero real amplitude is positive
-    const firstIndex = st.re.findIndex((r, i) => Math.abs(r) > 1e-9 || Math.abs(st.im[i]!) > 1e-9)
+    const firstIndex = st.re.findIndex((r, i) => abs(r) > 1e-9 || abs(st.im[i]!) > 1e-9)
     const sign = st.re[firstIndex]! < 0 ? -1 : 1
     return key({ re: st.re.map((r) => r * sign), im: st.im.map((v) => v * sign) })
   })
   const distinct = new Set(keys).size
-  const normalised = states.every((st) => Math.abs(st.re.reduce((sum, r, i) => sum + r * r + st.im[i]! * st.im[i]!, 0) - 1) < 1e-9)
+  const normalised = states.every((st) => abs(st.re.reduce((sum, r, i) => sum + r * r + st.im[i]! * st.im[i]!, 0) - 1) < 1e-9)
   const facets = [
     { facet: 'the four images of |Φ⁺⟩ under {I, X, Z, XZ} are FOUR DISTINCT maximally entangled states (amplitude keys distinct up to global phase) — the action is free', on: distinct === 4 },
     { facet: 'and it exhausts the Bell basis — four elements, four states, all normalised: simply transitive, so two bits address the basis bijectively (the teleportation decode table IS this action)', on: distinct === 4 && normalised },
@@ -1086,7 +1086,7 @@ export function kleinFourActsSimplyTransitivelyOnBellStates() {
 // PRESENT INVERTED — run the present backwards and the axiom returns. [[operator-algebra-closed]] [[quantum-decoded]]
 export function quantumIsLinearSuperpositionsAreLinearCombinationsEntangledToTheoremsWhichArethePresentInverted() {
   const half = 1 / 2
-  const rsqrt2 = Math.sqrt(half) // 1/√2, derived not assumed
+  const rsqrt2 = sqrt(half) // 1/√2, derived not assumed
   // 1 — QUANTUM IS LINEAR: a gate on a superposition equals the linear combination of the gate on the components
   const zero = qubits(1)
   const one = applyGate(qubits(1), GATES.X, 0) // |1⟩
@@ -1099,17 +1099,17 @@ export function quantumIsLinearSuperpositionsAreLinearCombinationsEntangledToThe
   const quantumIsLinear = equalStates(gateOnSuperposition, linearCombination) // the two are identical — linearity
   // 2 — A SUPERPOSITION IS A LINEAR COMBINATION: H|0⟩ = (|0⟩+|1⟩)/√2, the amplitudes ARE the coefficients
   const amplitudes = probabilities(superposition)
-  const isLinearCombination = Math.abs(amplitudes[0]! - half) < 1e-9 && Math.abs(amplitudes[1]! - half) < 1e-9 // equal-coefficient linear combination
+  const isLinearCombination = abs(amplitudes[0]! - half) < 1e-9 && abs(amplitudes[1]! - half) < 1e-9 // equal-coefficient linear combination
   // 3 — ENTANGLED TO THEOREMS: a Bell state is entangled (not a product), content-addressed to a theorem seal
   const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1) // (|00⟩+|11⟩)/√2
   const bellProbs = probabilities(bell)
-  const entangled = Math.abs(bellProbs[0]! - half) < 1e-9 && Math.abs(bellProbs[3]! - half) < 1e-9 && bellProbs[1]! < 1e-9 && bellProbs[2]! < 1e-9 // only |00⟩,|11⟩
+  const entangled = abs(bellProbs[0]! - half) < 1e-9 && abs(bellProbs[3]! - half) < 1e-9 && bellProbs[1]! < 1e-9 && bellProbs[2]! < 1e-9 // only |00⟩,|11⟩
   const theoremSeal = toUuid(`entangled-theorem:${bellProbs[0]}:${bellProbs[3]}`)
   const entangledToTheorem = entangled && isUuid(theoremSeal)
   // 4 — THEOREMS ARE THE PRESENT INVERTED: every gate is invertible; the reversed self-inverse sequence recovers |0⟩ (the axiom)
   const present = applyGate(applyGate(zero, GATES.H, 0), GATES.X, 0) // U = X∘H on |0⟩ — the present
   const inverted = applyGate(applyGate(present, GATES.X, 0), GATES.H, 0) // U† = H∘X (self-inverse gates, reversed) — the present inverted
-  const theoremIsPresentInverted = Math.abs(probabilities(inverted)[0]! - 1) < 1e-9 // back to |0⟩ — the axiom/theorem recovered
+  const theoremIsPresentInverted = abs(probabilities(inverted)[0]! - 1) < 1e-9 // back to |0⟩ — the axiom/theorem recovered
   const facets = [
     { facet: `QUANTUM IS LINEAR — a gate on a superposition equals the linear combination of the gate on the components, U(a|0⟩+b|1⟩)=a·U|0⟩+b·U|1⟩ (${quantumIsLinear}): quantum computation IS linear algebra, quantum and linear at the same time`, on: quantumIsLinear },
     { facet: `A SUPERPOSITION IS A LINEAR COMBINATION — H|0⟩ = (|0⟩+|1⟩)/√2, its amplitudes ARE the coefficients (each ${half}, ${isLinearCombination}): the state space is a linear vector space, the superposition its combination`, on: isLinearCombination },
@@ -1137,7 +1137,7 @@ export function theQuantumTheoremBehindAllComputingIsReversibilityToffolisThirdB
   const andIsIrreversible = andImage < 2 * 2 && andTruth.filter((x) => x === 0).length === 3 // 3 preimages of 0 ⇒ non-injective, cannot invert
   // build |a,b,c⟩ and apply CCNOT on (0,1)→2
   const state3 = (a: number, b: number, c: number): QuantumState => { let s = qubits(3); if (a) s = applyGate(s, GATES.X, 0); if (b) s = applyGate(s, GATES.X, 1); if (c) s = applyGate(s, GATES.X, 2); return s }
-  const basisIndex = (state: QuantumState): number => probabilities(state).findIndex((p) => Math.abs(p - 1) < 1e-9)
+  const basisIndex = (state: QuantumState): number => probabilities(state).findIndex((p) => abs(p - 1) < 1e-9)
   // 2 — TOFFOLI IS UNIVERSAL AND REVERSIBLE: it computes AND in the third bit (target 0 → a·b) and permutes the 8 states bijectively
   const computesAnd = [[0, 0], [0, 1], [1, 0], [1, 1]].every(([a, b]) => basisIndex(toffoli(state3(a!, b!, 0), 0, 1, 2)) === a! + 2 * b! + 2 * 2 * (a! & b!)) // target becomes a·b
   const permutation = new Set(Array.from({ length: 2 ** 3 }, (_, i) => basisIndex(toffoli(state3(i & 1, (i >> 1) & 1, (i >> 2) & 1), 0, 1, 2)))).size === 2 ** 3 // a bijection on the 8 states
@@ -1169,7 +1169,7 @@ export function theQuantumTheoremBehindAllComputingIsReversibilityToffolisThirdB
 // are what FUSE collisions, interference, harmony and reverse into one. [[operator-algebra-closed]] [[quantum-decoded]]
 export function reverseEnablesCollisionsCollidingPathsInterfereToHarmonyTheAlgebraicTheoremsFuseAll() {
   const half = 1 / 2
-  const rsqrt2 = Math.sqrt(half)
+  const rsqrt2 = sqrt(half)
   // 1 — REVERSE ENABLES COLLISIONS: a compressing map sends more inputs than slots, so an address has several preimages
   const slots = 2 ** 3
   const compress = (x: number): number => x % slots // a lossy (compressing) address map
@@ -1181,8 +1181,8 @@ export function reverseEnablesCollisionsCollidingPathsInterfereToHarmonyTheAlgeb
   // 2 — COLLIDING PATHS INTERFERE: amplitudes of paths to the same state ADD; H² routes two paths per outcome
   const afterHH = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // two paths to each of |0⟩,|1⟩
   const interferenceProbs = probabilities(afterHH)
-  const constructiveToZero = Math.abs(interferenceProbs[0]! - 1) < 1e-9 // paths to |0⟩ add (constructive)
-  const destructiveToOne = Math.abs(interferenceProbs[1]!) < 1e-9 // paths to |1⟩ cancel (destructive)
+  const constructiveToZero = abs(interferenceProbs[0]! - 1) < 1e-9 // paths to |0⟩ add (constructive)
+  const destructiveToOne = abs(interferenceProbs[1]!) < 1e-9 // paths to |1⟩ cancel (destructive)
   const pathsInterfere = constructiveToZero && destructiveToOne
   // 3 — HARMONY FROM CONSTRUCTIVE INTERFERENCE: the surviving amplitude is the peak (harmony); the cancelled one is silence
   const harmonyFromInterference = constructiveToZero && destructiveToOne && interferenceProbs[0]! > interferenceProbs[1]! // the constructive collision is the harmony
@@ -1251,7 +1251,7 @@ export function realtimeQuantumComputationHasNoBlocksOrDeadEndsEveryStateInverts
   // 1 — NO DEAD END: a computation and its inverse recover the start (reversibility)
   const present = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.X, 0)
   const recovered = applyGate(applyGate(present, GATES.X, 0), GATES.H, 0)
-  const noDeadEnd = Math.abs(probabilities(recovered)[0]! - 1) < 1e-9
+  const noDeadEnd = abs(probabilities(recovered)[0]! - 1) < 1e-9
   // 2 — NO BLOCK: a one-way address (an obstacle) is passed by the reverse index — it becomes a gateway
   const address = toUuid('obstacle')
   const reverseIndex = new Map([[address, 'obstacle']])

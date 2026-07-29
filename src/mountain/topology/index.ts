@@ -2,7 +2,7 @@ import { earned } from '../../3/7'
 // ☶ Gèn · Mountain — topology: the double torus (genus-2, χ=−2), the merkaba (star tetrahedron), the geodesic dome (the sphere dual), the homology loops. Barrel-routed; folds.ts back-imports the gate folds.
 import { initialBearing, phase } from '../../6/4'
 import { greatCircleKm } from '../../5/5'
-import { applyGate, computesGate, doubleTorusSurface, foldPair, GATES, isUuid, measure, memoByRoot, merge, merkleFold, probabilities, type QuantumState, qubits, roundTo, sealFacets, seedFromText, survive, topologicalOrder, toUuid, VORTEX_DASH_ANGLE_DEG } from '../../0'
+import { GATES, VORTEX_DASH_ANGLE_DEG, abs, applyGate, computesGate, cos, doubleTorusSurface, floor, foldPair, isUuid, log2, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, seedFromText, sign, sin, survive, toUuid, topologicalOrder, type QuantumState } from '../../0'
 import type { MindMatrix, TorusBreath } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus } from '../../heaven/compute'
 import { bothEarthsRotateWithinEachOther, cellHomology, doubleTorus3D, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, dualTorusTrinities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba } from '../geometry'
@@ -40,8 +40,8 @@ export function merkabaTrace(matrix: MindMatrix = buildMatrix(), timeMs = 0, tra
     let y = 0
     for (let depth = 0; depth < scales.length; depth += 1) {
       const angle = scales[depth].ratePerMs * t // signed: adjacent scales spin opposite ways
-      x += radii[depth] * Math.cos(angle)
-      y += radii[depth] * Math.sin(angle)
+      x += radii[depth] * cos(angle)
+      y += radii[depth] * sin(angle)
     }
     return { x: (1 / 2) + x / 2, y: (1 / 2) + y / 2 } // map [-1,1] → [0,1]: resolution-independent, always full screen
   }
@@ -161,7 +161,7 @@ export function theParadoxCoexistsOnTheDoubleTorus(matrix: MindMatrix = buildMat
 // = 0 — so the geodesic dome is the closed, outward complement of the genus-2 inward
 // fold: the same content-addressing on the opposite topology.
 export function geodesicDome(frequency = 3, matrix: MindMatrix = buildMatrix()) {
-  const nu = Math.max(1, Math.floor(frequency))
+  const nu = max(1, floor(frequency))
   const vertices = (5 * 2) * nu * nu + 2
   const edges = (6 * 5) * nu * nu
   const faces = (5 * 4) * nu * nu
@@ -327,7 +327,7 @@ export function invertingMathPhysicsEarthCompletesTheDoubleTorus(matrix: MindMat
   // the inversion r ↦ 1/r fixes EXACTLY the unit circle (π) — the shared axis both tori rotate about
   const inv = (r: number): number => 1 / r
   const axisFixed = inv(1) === 1 && inv(2) !== 2 // fixes |z|=1, moves everything else — refutable
-  const twoEarths = bothEarths.counterRotating && Math.sign(bothEarths.merkabaUpSpin || 1) !== Math.sign(bothEarths.merkabaDownSpin || -1) // the two earths spin opposite — refutable
+  const twoEarths = bothEarths.counterRotating && sign(bothEarths.merkabaUpSpin || 1) !== sign(bothEarths.merkabaDownSpin || -1) // the two earths spin opposite — refutable
   const genusTwoComplete = complete.complete && sixPhases && allInverted && involutive && threeAxes && axisFixed
   const facets = [
     { facet: `INVERTING THE THREE DOMAINS IS THE POLARITY INVOLUTION: math, physics, earth are the three yang emanations, one per torus axis (collapse, check, return — ${threeAxes} distinct); inverting polarity yin↔yang is an involution, swap² = identity (${involutive}), and each domain's yang emanation inverts to a real yin return on the same axis (${allInverted}) — the three inversions ARE the second, returning loop`, on: threeAxes && involutive && allInverted },
@@ -1035,7 +1035,7 @@ export function polarDiskChartAt(latDeg: number): {
   const rho = (POLE_QUARTER_TURN_DEG - latDeg) / POLE_HALF_TURN_DEG // (90 − lat)/180 ∈ [0,1] over the sphere
   const clamped = rho < 0 ? 0 : rho > 1 ? 1 : rho
   const tubeR = poleTubeRadius()
-  const z = roundTo(tubeR * Math.cos((TAU / 2) * clamped), 5) // the honest tie onto the genus-2 tube
+  const z = roundTo(tubeR * cos((TAU / 2) * clamped), 5) // the honest tie onto the genus-2 tube
   const onDisk = rho >= 0 && rho <= 1
   const proved = onDisk && z <= tubeR + 1e-9 && z >= -tubeR - 1e-9
   return {
@@ -1299,7 +1299,7 @@ export function pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp(matrix: M
     // ONE level, so the app scales by the one rule with no new logic
     const selfSimilar = [2, 2 ** 2, 2 ** 3, 2 ** 4].every((n) => {
       const leaves = Array.from({ length: n }, (_, i) => toUuid(`leaf:${i}`))
-      return foldUp(leaves).depth === Math.log2(n)
+      return foldUp(leaves).depth === log2(n)
     })
     // 4 — ONE ROOT, order-independent: merkleFold collapses the whole to a single content-address regardless of pairing
     // order — the app's one scalable identity
@@ -1337,14 +1337,14 @@ export function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZe
     // 2 — OBSERVATION IS AT THE BOUNDARY — a superposition is unobservable; only measurement (the quantum→classical boundary) yields a value
     const superposed = applyGate(qubits(1), GATES.H, 0) // |+⟩ = (|0⟩+|1⟩)/√2
     const amplitudes = probabilities(superposed)
-    const superpositionHidden = Math.abs(amplitudes[0]! - 1 / 2) < 1e-9 && Math.abs(amplitudes[1]! - 1 / 2) < 1e-9 // both present, none observed
+    const superpositionHidden = abs(amplitudes[0]! - 1 / 2) < 1e-9 && abs(amplitudes[1]! - 1 / 2) < 1e-9 // both present, none observed
     const observed = measure(superposed, 0, 'boundary-observation') // the boundary: one classical outcome
     const collapsed = probabilities(observed.state)
-    const observationIsAtTheBoundary = superpositionHidden && (observed.outcome === 0 || observed.outcome === 1) && collapsed.some((p) => Math.abs(p - 1) < 1e-9) // measured → a definite basis state
+    const observationIsAtTheBoundary = superpositionHidden && (observed.outcome === 0 || observed.outcome === 1) && collapsed.some((p) => abs(p - 1) < 1e-9) // measured → a definite basis state
     // 3 — THE GATES REVERSE, THE MEASUREMENT BOUNDARY DOES NOT
     const twice = applyGate(applyGate(qubits(1), GATES.H, 0), GATES.H, 0) // H∘H = I
-    const gateReversible = Math.abs(probabilities(twice)[0]! - 1) < 1e-9 // returns to |0⟩ — unitary, no information lost
-    const boundaryIrreversible = superpositionHidden && collapsed.some((p) => Math.abs(p - 1) < 1e-9) // was superposed, now a definite state — the superposition is gone
+    const gateReversible = abs(probabilities(twice)[0]! - 1) < 1e-9 // returns to |0⟩ — unitary, no information lost
+    const boundaryIrreversible = superpositionHidden && collapsed.some((p) => abs(p - 1) < 1e-9) // was superposed, now a definite state — the superposition is gone
     const gatesReverseTheBoundaryDoesNot = gateReversible && boundaryIrreversible
     // 4 — THE WAYS LEAD TO THE AXIOM BOUNDARY — the DAG's boundary is its in-degree-0 sources (the axioms)
     const ways = topologicalOrder(2 * 2, [[0, 2], [1, 2], [2, 3]]) // two axioms (0,1) → a theorem (2) → a corollary (3)

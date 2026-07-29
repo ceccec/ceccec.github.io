@@ -1,9 +1,9 @@
-import { earned } from '../../3/7'
+import { HALF_TAU, LN2, earned } from '../../3/7'
 // Pi-train station 7/3 — dissolution sequence order 4 (digit/reverse 7/3).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { MOON_ORBIT_INCLINATION_DEG } from '../../8/2'
-import { gcd, merkleFold, toUuid } from '../../0'
+import { abs, atan2, ceil, cos, floor, gcd, log, max, merkleFold, min, pow, round, sign, sin, sqrt, toUuid } from '../../0'
 import { tkIsPrime } from '../../9/1'
 import { TAU, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub } from '../../3/7'
 
@@ -22,7 +22,7 @@ export const HUBBLE_CONSTANT_CMB = 67.4
 /** Astronomical unit in metres — IAU 2012 exact definition. */
 export const ASTRONOMICAL_UNIT_M = 149597870700
 /** Megaparsec in metres — DERIVED from the AU by the parsec definition (1 pc = AU·(180·3600)/π), never a raw literal. */
-export const MEGAPARSEC_M = ASTRONOMICAL_UNIT_M * (180 * 3600) / Math.PI * (10 ** 6)
+export const MEGAPARSEC_M = ASTRONOMICAL_UNIT_M * (180 * 3600) / HALF_TAU * (10 ** 6)
 
 /** Hardy–Weinberg genotype frequencies for allele frequency p. */
 export function hardyWeinbergGenotypes(p: number): { AA: number; Aa: number; aa: number } {
@@ -32,16 +32,16 @@ export function hardyWeinbergGenotypes(p: number): { AA: number; Aa: number; aa:
 
 /** Han–Kim QIEA amplitude rotation toward target bit pole. */
 export function qieaRotate(alpha: number, beta: number, targetBit: number, angle: number): [number, number] {
-  const phi = Math.atan2(beta, alpha)
+  const phi = atan2(beta, alpha)
   const target = targetBit === 1 ? (TAU / 2) / 2 : 0
   const delta = target - phi
-  const step = Math.sign(delta) * Math.min(angle, Math.abs(delta))
-  return [Math.cos(phi + step), Math.sin(phi + step)]
+  const step = sign(delta) * min(angle, abs(delta))
+  return [cos(phi + step), sin(phi + step)]
 }
 
 /** Resonance peak gain (≈ q) for driven oscillator. */
 export function resonancePeakGain(q: number): number {
-  return q / Math.sqrt(Math.max(1 - 1 / (4 * q * q), 1e-9))
+  return q / sqrt(max(1 - 1 / (4 * q * q), 1e-9))
 }
 
 /** Moon standstill declination magnitude — major = ε + i, minor = ε − i. */
@@ -113,17 +113,17 @@ export function primeCollapsesTheAxis() {
 export function piHexDigitAt(n: number): number {
   const modpow = (base: number, exp: number, mod: number): number => {
     let r = 1; let b = base % mod; let e = exp
-    while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = Math.floor(e / 2) }
+    while (e > 0) { if (e & 1) r = (r * b) % mod; b = (b * b) % mod; e = floor(e / 2) }
     return r
   }
   const series = (j: number): number => {
     let s = 0
     for (let k = 0; k <= n; k += 1) { const d = 8 * k + j; s = (s + modpow(16, n - k, d) / d) % 1 }
-    for (let k = n + 1; k <= n + 5 * 8; k += 1) { const t = Math.pow(16, n - k) / (8 * k + j); if (t < 1e-17) break; s += t }
+    for (let k = n + 1; k <= n + 5 * 8; k += 1) { const t = pow(16, n - k) / (8 * k + j); if (t < 1e-17) break; s += t }
     return s
   }
   const x = (4 * series(1) - 2 * series(4) - series(5) - series(6)) % 1
-  return Math.floor((x < 0 ? x + 1 : x) * 16)
+  return floor((x < 0 ? x + 1 : x) * 16)
 }
 
 // The n-th PRIME at any position, deterministic — the sieve of Eratosthenes to the Rosser–Schoenfeld
@@ -132,7 +132,7 @@ export function piHexDigitAt(n: number): number {
 // stored table — the position is addressed by a bounded computation, the honest sense of "any prime".
 export function nthPrimeAt(n: number): number {
   if (n < 1) return 0
-  const bound = n < 6 ? 3 * 4 : Math.ceil(n * (Math.log(n) + Math.log(Math.log(n))))
+  const bound = n < 6 ? 3 * 4 : ceil(n * (log(n) + log(log(n))))
   const composite = new Uint8Array(bound + 1)
   let count = 0
   for (let p = 2; p <= bound; p += 1) {
@@ -169,15 +169,15 @@ export function theCountOfPrimesFollowsTheLog() {
   for (let p = 2; p * p <= N; p += 1) if (!composite[p]) for (let m = p * p; m <= N; m += p) composite[m] = true
   const primes: number[] = []
   for (let n = 2; n <= N; n += 1) if (!composite[n]) primes.push(n)
-  const theta = (x: number) => primes.reduce((s, p) => (p <= x ? s + Math.log(p) : s), 0) // ϑ(x) = Σ_{p≤x} ln p
+  const theta = (x: number) => primes.reduce((s, p) => (p <= x ? s + log(p) : s), 0) // ϑ(x) = Σ_{p≤x} ln p
   const primePi = (x: number) => primes.reduce((c, p) => (p <= x ? c + 1 : c), 0) // π(x)
 
   // 1 — LEMMA 0, the reduction: ϑ(x) ≤ π(x)·ln x pointwise (each ln p ≤ ln x), the sandwich that turns
   // ϑ(x) ∼ x into π(x) ∼ x/ln x. Swept, never asserted; refutable at any x that breaks it.
   const SAMPLES = 2 * 6 // a dozen log-spaced x — derived
   const LOW = 5 * 6 // the sweep floor — derived
-  const sample = Array.from({ length: SAMPLES }, (_, i) => Math.round(LOW * Math.pow(N / LOW, (i + 1) / SAMPLES)))
-  const reductionHolds = sample.every((x) => theta(x) <= primePi(x) * Math.log(x) + 1e-9)
+  const sample = Array.from({ length: SAMPLES }, (_, i) => round(LOW * pow(N / LOW, (i + 1) / SAMPLES)))
+  const reductionHolds = sample.every((x) => theta(x) <= primePi(x) * log(x) + 1e-9)
 
   // 2 — CHEBYSHEV O(x): ∏_{n<p≤2n} p divides C(2n,n) ≤ 4ⁿ, so e^{ϑ(2n)−ϑ(n)} ≤ 4ⁿ and
   // ϑ(2n)−ϑ(n) ≤ n·ln4 = 2n·ln2. Both the exact BigInt inequality and its ϑ consequence are checked;
@@ -186,16 +186,16 @@ export function theCountOfPrimesFollowsTheLog() {
   const binomCentral = (n: number) => { let c = 1n; for (let k = 1; k <= n; k += 1) c = (c * BigInt(n + k)) / BigInt(k); return c }
   const centralBounded = Array.from({ length: nMax }, (_, i) => i + 1).every((n) => binomCentral(n) <= 4n ** BigInt(n))
   const chebyshevBound = Array.from({ length: nMax }, (_, i) => i + 1)
-    .every((n) => theta(2 * n) - theta(n) <= 2 * n * Math.LN2 + 1e-9)
+    .every((n) => theta(2 * n) - theta(n) <= 2 * n * LN2 + 1e-9)
 
   // 3 — THE POSITIVITY KERNEL: the identity Σ_{k=0}^{4} C(4,k)·cos((k−2)x) = (2cos(x/2))⁴ ≥ 0.
   // Nonnegativity of this Fejér/de la Vallée Poussin kernel is the entire reason ζ has no zero on the
   // line Re s = 1. Verified as an identity AND as a nonnegativity over a grid of angles.
   const c4 = [1, 4, 6, 4, 1] // C(4,k) — the binomial the fourth power of 2cos produces
-  const kernel = (x: number) => c4.reduce((s, w, k) => s + w * Math.cos((k - 2) * x), 0)
+  const kernel = (x: number) => c4.reduce((s, w, k) => s + w * cos((k - 2) * x), 0)
   const ANGLES = 3 * 5 * 16 // 240 grid angles over [0, 2π) — derived
   const grid = Array.from({ length: ANGLES }, (_, i) => (i * (TAU / 2)) / (ANGLES / 2))
-  const kernelIsIdentity = grid.every((x) => Math.abs(kernel(x) - (2 * Math.cos(x / 2)) ** 4) < 1e-9)
+  const kernelIsIdentity = grid.every((x) => abs(kernel(x) - (2 * cos(x / 2)) ** 4) < 1e-9)
   const kernelNonNegative = grid.every((x) => kernel(x) >= -1e-9)
 
   // 4 — THE ORDER ARITHMETIC: apply the kernel weights to the residues at 1+ε+irα (r = k−2):
@@ -204,7 +204,7 @@ export function theCountOfPrimesFollowsTheLog() {
   // — ζ(1+iα) ≠ 0. Derived from c4, not hardcoded: the residual is Σ_r w_r·res_r.
   const residual = (mu: number, nu: number) => c4.reduce((s, w, k) => {
     const r = k - 2
-    return s + w * (r === 0 ? 1 : Math.abs(r) === 1 ? -mu : -nu)
+    return s + w * (r === 0 ? 1 : abs(r) === 1 ? -mu : -nu)
   }, 0)
   const orders = Array.from({ length: 5 }, (_, i) => i) // μ,ν searched over {0,1,2,3,4}
   const admissible = orders.flatMap((mu) => orders.map((nu) => ({ mu, nu }))).filter(({ mu, nu }) => residual(mu, nu) >= 0)
@@ -213,9 +213,9 @@ export function theCountOfPrimesFollowsTheLog() {
   // 5 — THE NUMERICAL WITNESS, threshold-free: ϑ(x)/x → 1, and its relative error beats π(x)·ln x/x at
   // every sample and shrinks with x. That gap IS the slow ∼1/ln x convergence of the prime count — the
   // reason ϑ, not π, is the quantity the proof drives.
-  const xs = [1e3, 1e4, 1e5].map((x) => Math.min(x, N))
-  const errTheta = (x: number) => Math.abs(theta(x) / x - 1)
-  const errPi = (x: number) => Math.abs((primePi(x) * Math.log(x)) / x - 1)
+  const xs = [1e3, 1e4, 1e5].map((x) => min(x, N))
+  const errTheta = (x: number) => abs(theta(x) / x - 1)
+  const errPi = (x: number) => abs((primePi(x) * log(x)) / x - 1)
   const thetaBeatsPi = xs.every((x) => errTheta(x) < errPi(x))
   const thetaTendsToOne = errTheta(xs[xs.length - 1]) < errTheta(xs[0])
 
@@ -255,7 +255,7 @@ export function theSmallestCurvesWitnessBirchSwinnertonDyer() {
   const H = 100
   const brute = new Set<string>()
   for (let a = 1; a <= H; a += 1) for (let b = a + 1; b <= H; b += 1) {
-    const c2 = a * a + b * b; const c = Math.round(Math.sqrt(c2))
+    const c2 = a * a + b * b; const c = round(sqrt(c2))
     if (c * c === c2 && c <= H && gcd(a, b) === 1) brute.add(`${a},${b},${c}`)
   }
   const generated = new Set<string>()
@@ -273,7 +273,7 @@ export function theSmallestCurvesWitnessBirchSwinnertonDyer() {
   const B = 2 * 5 * 5
   let quarticInsoluble = true
   for (let x = 1; x <= B; x += 1) for (let y = 1; y <= B; y += 1) {
-    const s = x ** 4 + y ** 4; const z = Math.round(Math.sqrt(s))
+    const s = x ** 4 + y ** 4; const z = round(sqrt(s))
     if (z * z === s) quarticInsoluble = false
   }
   const onE1 = (x: number, y: number) => y * y === x * x * x - x
@@ -289,21 +289,21 @@ export function theSmallestCurvesWitnessBirchSwinnertonDyer() {
   const x2 = ratSub(ratMul(lambda, lambda), ratMul(rat(2, 1), px))
   const y2 = ratSub(ratMul(lambda, ratSub(px, x2)), py)
   // clear denominators: x₂ = X/Z², y₂ = Y/Z³ — integer on-curve check stays inside exact doubles
-  const Z = Math.round(Math.sqrt(x2.q))
+  const Z = round(sqrt(x2.q))
   const X = x2.p; const Y = y2.p
   const doublingExact = Z * Z === x2.q && Z ** 3 === y2.q
     && Y * Y === X ** 3 + A5 * X * Z ** 4 // Y² = X³ − 25XZ⁴ — 2P is ON the curve, exactly
   const nonIntegral = x2.q > 1 // Nagell–Lutz (cited): torsion is integral, so a non-integral 2P ⟹ P has infinite order
   const legA = rat(3, 2); const legB = rat(4 * 5, 3)
   const hyp2 = ratAdd(ratMul(legA, legA), ratMul(legB, legB))
-  const hypP = Math.round(Math.sqrt(hyp2.p)); const hypQ = Math.round(Math.sqrt(hyp2.q))
+  const hypP = round(sqrt(hyp2.p)); const hypQ = round(sqrt(hyp2.q))
   const triangleArea5 = hypP * hypP === hyp2.p && hypQ * hypQ === hyp2.q // hypotenuse 41/6 is exact
     && ratEq(ratMul(rat(1, 2), ratMul(legA, legB)), rat(5, 1)) // area = ½·(3/2)·(20/3) = 5 exactly
 
   // 4 — TUNNELL'S COUNTS (unconditional direction): A_n = #{n = 2x² + y² + 32z²}, B_n = #{n = 2x² + y² + 8z²}.
   const tunnell = (n: number, zc: number) => {
     let count = 0
-    const bx = Math.ceil(Math.sqrt(n / 2)); const by = Math.ceil(Math.sqrt(n)); const bz = Math.ceil(Math.sqrt(n / zc))
+    const bx = ceil(sqrt(n / 2)); const by = ceil(sqrt(n)); const bz = ceil(sqrt(n / zc))
     for (let x = -bx; x <= bx; x += 1) for (let y = -by; y <= by; y += 1) for (let z = -bz; z <= bz; z += 1) {
       if (2 * x * x + y * y + zc * z * z === n) count += 1
     }
@@ -405,7 +405,7 @@ export function knownSymbolsDecodeIntoTheorems() {
   // (4) glagolitic numerals — 27 symbols, unique shortest spelling for every 1..999
   const spellings = new Set<string>()
   for (let n = 1; n < (5 * 2) ** 3; n += 1) {
-    const h = Math.floor(n / 100), t = Math.floor((n % 100) / (5 * 2)), u = n % (5 * 2)
+    const h = floor(n / 100), t = floor((n % 100) / (5 * 2)), u = n % (5 * 2)
     spellings.add([h ? `H${h}` : '', t ? `T${t}` : '', u ? `U${u}` : ''].join(''))
   }
   const numerals = spellings.size === (5 * 2) ** 3 - 1 && 27 === 3 * 9

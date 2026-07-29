@@ -16,7 +16,7 @@
 // `export { … } from` does NOT bind the names locally, which is why those folds were unreachable.
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · lower·yin · spread — content-address primitives (merkaba fold, entry, uuid, quantum sim)
 import { phase } from '../../../6/4'
-import { merkabaFoldUrl, entry, toUuid, isUuid, roundTo, addressEntropyBits, qubits, GATES, applyGate, cnot, sample, probabilities, type Uuid, type Entry } from '../../../0'
+import { GATES, addressEntropyBits, applyGate, ceil, cnot, entry, floor, isUuid, log10, log2, max, merkabaFoldUrl, probabilities, qubits, round, roundTo, sample, toUuid, type Entry, type Uuid } from '../../../0'
 import { bulgarianFromEnglish, type LocaleName } from '../../../1/9'
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — re-exports and decoded library surface
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
@@ -142,8 +142,8 @@ export function sixBySeven(): { rows: number[][]; total: number; coversAll: bool
 const MAYA_RADIX = [144000, 7200, 360, 20, 1] // bʼakʼtun · kʼatun · tun · winal · kʼin
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function mayaLongCount(days: number): number[] {
-  let remainder = Math.max(0, Math.floor(days))
-  return MAYA_RADIX.map((value) => { const d = Math.floor(remainder / value); remainder %= value; return d })
+  let remainder = max(0, floor(days))
+  return MAYA_RADIX.map((value) => { const d = floor(remainder / value); remainder %= value; return d })
 }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function mayaDays(longCount: readonly number[]): number {
@@ -156,7 +156,7 @@ export function mayaDays(longCount: readonly number[]): number {
 export function magicSquare(n: number): { grid: number[][]; constant: number } {
   const grid = Array.from({ length: n }, () => Array.from({ length: n }, () => 0))
   let row = 0
-  let col = Math.floor(n / 2)
+  let col = floor(n / 2)
   for (let k = 1; k <= n * n; k += 1) {
     grid[row][col] = k
     const nr = (row - 1 + n) % n
@@ -173,14 +173,14 @@ export function hekatFraction(x: number): { powers: number[]; ro: number } {
   const powers: number[] = []
   let remainder = x
   for (let p = 1; p <= 6; p += 1) { const f = 1 / 2 ** p; if (remainder >= f - 1e-12) { powers.push(p); remainder -= f } }
-  return { powers, ro: Math.round(remainder * 320) } // powers p ↦ 1/2^p; ro = 1/320 sub-units of the residue
+  return { powers, ro: round(remainder * 320) } // powers p ↦ 1/2^p; ro = 1/320 sub-units of the residue
 }
 
 // The runic cipher coordinate: a rune's ordinal n (1..24) ↔ (aett, position) in the 3×8 grid. The attested
 // branch/tent-rune encoding — a rune drawn as a pair of integers. Bijective.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function runeCoordinate(n: number): { aett: number; pos: number } {
-  return { aett: Math.ceil(n / 8), pos: ((n - 1) % 8) + 1 }
+  return { aett: ceil(n / 8), pos: ((n - 1) % 8) + 1 }
 }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function runeOrdinal(aett: number, pos: number): number {
@@ -210,7 +210,7 @@ export const GLAGOLITIC_LETTERS: readonly { glyph: string; name: string; sound: 
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function glagoliticValue(position: number): number {
   if (position < 1) return 0
-  return (((position - 1) % 9) + 1) * 10 ** Math.floor((position - 1) / 9)
+  return (((position - 1) % 9) + 1) * 10 ** floor((position - 1) / 9)
 }
 const GLAGOLITIC_VALUE_BY_GLYPH: Record<string, number> = {}
 GLAGOLITIC_LETTERS.forEach((letter, i) => {
@@ -443,10 +443,10 @@ export function glagoliticAcrosticMessage(): { secure: string; secureEnglish: st
 // first place-value system; 60 is the superior-highly-composite (2·3·4·5·6 all divide). Decodes back.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function sexagesimal(n: number): number[] {
-  let r = Math.max(0, Math.floor(n))
+  let r = max(0, floor(n))
   if (r === 0) return [0]
   const out: number[] = []
-  while (r > 0) { out.unshift(r % 60); r = Math.floor(r / 60) }
+  while (r > 0) { out.unshift(r % 60); r = floor(r / 60) }
   return out
 }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
@@ -465,7 +465,7 @@ export function luoShu(): { grid: number[][]; constant: number } {
 // 1–5), cut as 1–5 scores across or beside a stemline. The same coordinate fold as the runic cipher. Bijective.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function oghamCoordinate(n: number): { aicme: number; pos: number } {
-  return { aicme: Math.ceil(n / 5), pos: ((n - 1) % 5) + 1 }
+  return { aicme: ceil(n / 5), pos: ((n - 1) % 5) + 1 }
 }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function oghamOrdinal(aicme: number, pos: number): number {
@@ -479,7 +479,7 @@ export function ifaOdu(rows: readonly number[]): number {
 }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function ifaRows(value: number): number[] {
-  return [3, 2, 1, 0].map((i) => (Math.max(0, Math.floor(value)) >> i) & 1) // the 4 rows, top to bottom
+  return [3, 2, 1, 0].map((i) => (max(0, floor(value)) >> i) & 1) // the 4 rows, top to bottom
 }
 // Polynesian star compass — the horizon as 32 named houses of 11.25° (16 stars, each rising and setting in
 // reciprocal houses joined by a diameter through the canoe). A house index 0..31 ↔ its bearing in degrees.
@@ -489,7 +489,7 @@ export function starHouseBearing(house: number): number {
 }
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function bearingToStarHouse(deg: number): number {
-  return Math.round((((deg % 360) + 360) % 360) / 11.25) % 32
+  return round((((deg % 360) + 360) % 360) / 11.25) % 32
 }
 
 // Old Church Slavonic — the LANGUAGE the Glagolitic alphabet was made to write. Cyril & Methodius
@@ -1511,7 +1511,7 @@ export function parseUuidOrGlyphs(input: string): string {
 
 function log2Factorial(n: number): number {
   let sum = 0
-  for (let i = 2; i <= n; i += 1) sum += Math.log2(i)
+  for (let i = 2; i <= n; i += 1) sum += log2(i)
   return sum
 }
 
@@ -1519,10 +1519,10 @@ function log2Factorial(n: number): number {
 export function glyphUuidEncryptionMagnitude() {
   const hexExposureLog2 = addressEntropyBits().effectiveBits
   const alphabetPermutationLog2 = log2Factorial(UUID_GLYPH_ALPHABET.length)
-  const glyphKnownAlphabetLog2 = UUID_GLYPH_WIDTH * Math.log2(UUID_GLYPH_ALPHABET.length)
+  const glyphKnownAlphabetLog2 = UUID_GLYPH_WIDTH * log2(UUID_GLYPH_ALPHABET.length)
   const glyphWithoutFoldLog2 = hexExposureLog2 + alphabetPermutationLog2
   const obfuscationBonusLog2 = glyphWithoutFoldLog2 - hexExposureLog2
-  const magnitudeOrdersVsHex = obfuscationBonusLog2 / Math.log10(2)
+  const magnitudeOrdersVsHex = obfuscationBonusLog2 / log10(2)
   return {
     hexExposureLog2,
     alphabetPermutationLog2,
@@ -1530,7 +1530,7 @@ export function glyphUuidEncryptionMagnitude() {
     glyphWithoutFoldLog2,
     obfuscationBonusLog2,
     magnitudeOrdersVsHex,
-    label: `~10^${Math.round(magnitudeOrdersVsHex)}× vs hex` }
+    label: `~10^${round(magnitudeOrdersVsHex)}× vs hex` }
 }
 
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */

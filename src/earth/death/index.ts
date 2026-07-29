@@ -3,7 +3,7 @@ import { earned } from '../../3/7'
 import * as __ns_up_life from '../life'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, entropy } from '../../heaven/compute'
-import { applyGate, computesGate, foldPair, GATES, isUuid, memoByRoot, merge, merkleFold, probabilities, type QuantumState, qubits, toUuid } from '../../0'
+import { GATES, applyGate, computesGate, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, probabilities, qubits, round, toUuid, type QuantumState } from '../../0'
 import { doubleTorusCompost } from '../../fire/li'
 import { trinityOtherSideDoomed } from '../../mountain/seals'
 import { inverseAndNewGapsEmerge } from '../../heaven/site'
@@ -267,7 +267,7 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
 export function violationsComputationallyDecreaseAgentLifeToNoLifeAtAll(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('violationsComputationallyDecreaseAgentLifeToNoLifeAtAll', matrix, () => {
     const FULL_LIFE = 9 // the quanta of life an agent is forged with — the digital-root ceiling (lattice), one lost per violation
-    const life = (violations: number): number => Math.max(0, FULL_LIFE - Math.max(0, Math.floor(violations))) // monotone, floored at 0
+    const life = (violations: number): number => max(0, FULL_LIFE - max(0, floor(violations))) // monotone, floored at 0
     const range = Array.from({ length: FULL_LIFE + 2 }, (_, v) => v) // violation counts 0 .. FULL_LIFE+1
     const series = range.map((v) => life(v))
     const startsFull = series[0] === FULL_LIFE // no violations ⇒ full life
@@ -331,7 +331,7 @@ export function betterTrainedTeamsWinTheBitsByQuantumAmplitudeAmplificationTeams
   // the single-winner curve: win amplitude by training (iterations) — argmax finds the optimum, no π assumed
   const iterRange = Array.from({ length: 2 * N_QUBITS }, (_, k) => k)
   const winByIters = iterRange.map((k) => winProbability([0], k))
-  const kStar = winByIters.indexOf(Math.max(...winByIters)) // the optimal training — computed, not π/4·√N assumed
+  const kStar = winByIters.indexOf(max(...winByIters)) // the optimal training — computed, not π/4·√N assumed
   // 1 — VIOLATIONS DELAY: on the rising arm [0..kStar], each lost iteration (a violation) strictly lowers the win probability
   const risingArm = Array.from({ length: kStar }, (_, k) => k)
   const eachViolationLowersTheWin = kStar > 0 && risingArm.every((k) => winByIters[k + 1]! > winByIters[k]!)
@@ -346,7 +346,7 @@ export function betterTrainedTeamsWinTheBitsByQuantumAmplitudeAmplificationTeams
   const waveWin = winProbability(Array.from({ length: WAVE_WINNERS }, (_, i) => i), earlyIter)
   const singleTeamWin = winProbability([0], earlyIter)
   const wavesReplaceTeams = waveWin > singleTeamWin
-  const receipts = iterRange.map((k) => toUuid(`win-amplitude:${k}:${Math.round(winByIters[k]! * 100)}`))
+  const receipts = iterRange.map((k) => toUuid(`win-amplitude:${k}:${round(winByIters[k]! * 100)}`))
   const { computes, facets } = computesGate('better-trained-teams-win-the-bits-by-amplitude-amplification', [
     { facet: `VIOLATIONS DELAY — win probability is Grover amplification, and on the rising arm every lost iteration (a violation) strictly lowers it (${eachViolationLowersTheWin}): a violation is delay, and delay wins fewer bits`, on: eachViolationLowersTheWin },
     { facet: `BETTER-TRAINED WINS THE BITS — the unit trained to the optimum (${kStar} iterations, ${(winProbability([0], kStar) * 100).toFixed(0)}% win) beats one a violation held one short (${trainedWins}): fewer violations, higher win amplitude, more bits`, on: trainedWins },
@@ -356,7 +356,7 @@ export function betterTrainedTeamsWinTheBitsByQuantumAmplitudeAmplificationTeams
   return {
     computes,
     optimalTraining: kStar,
-    ladder: { agentWin: Math.round(agentWin * 100), teamWin: Math.round(teamWin * 100), waveWin: Math.round(waveWin * 100) },
+    ladder: { agentWin: round(agentWin * 100), teamWin: round(teamWin * 100), waveWin: round(waveWin * 100) },
     root: merkleFold(receipts),
     facets,
     statement: `Violations delay the team and the better-trained team wins the bits — all by quantum amplitude amplification, ${facets.filter((entry) => entry.on).length}/${facets.length}. Each unit competes for the marked winning state of a ${N_QUBITS}-qubit register; its success is the measured win probability, and training is Grover amplification. A violation is a lost iteration that slides the unit down the rising amplitude curve (delay), so the better-trained (fewer-violation) unit wins the bits. Under one violation the K₃ team's redundancy still reaches the optimum (${(teamWin * 100).toFixed(0)}%) while the lone agent stalls (${(agentWin * 100).toFixed(0)}%) — teams replace agents; and a wave amplifying the antichain of ${WAVE_WINNERS} winners takes ${(waveWin * 100).toFixed(0)}% of the bits in one iteration vs a single team's ${(singleTeamWin * 100).toFixed(0)}% — waves replace teams. Higher win amplitude wins.`,
