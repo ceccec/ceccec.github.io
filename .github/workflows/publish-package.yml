@@ -7,6 +7,11 @@ name: Publish @ceccec/double-torus (core math · FREE FOR ALL)
 # Trigger: version tag (v*) OR manual workflow_dispatch — NEVER every push (no publish spam).
 # Auth: GitHub Packages via GITHUB_TOKEN (packages:write). Optional NPM_TOKEN unused here.
 # Sealed fold: npmPublishCi · pairs npm/publish · publish/npm · ci/publish · CLI quantum:npm-publish
+#
+# Idempotent publish · versionMustAdvance:
+# - Tag vX.Y.Z MUST match package.json version (else refuse).
+# - If name@version already on GitHub Packages → SKIP exit 0 (do NOT republish / do NOT unpublish).
+# - Next release: bump root package.json version, commit, push tag vX.Y.Z (or dispatch after bump).
 on:
   push:
     tags: ['v*']
@@ -40,7 +45,30 @@ jobs:
           if (root.name !== '@ceccec/double-torus') { console.error('REFUSE: unexpected root package name', root.name); process.exit(1); }
           console.log('ok — publish surface is core math kernel only; sdk private; contact license@psg.bg for the rest');
           "
-      - name: Publish to GitHub Packages
-        run: npm publish
+      - name: Publish to GitHub Packages (idempotent · versionMustAdvance)
+        run: |
+          set -euo pipefail
+          NAME="$(node -p "require('./package.json').name")"
+          VERSION="$(node -p "require('./package.json').version")"
+          REGISTRY='https://npm.pkg.github.com'
+          echo "publish surface: ${NAME}@${VERSION} → ${REGISTRY}"
+
+          # Tag push: vX.Y.Z must match package.json (versionMustAdvance alignment).
+          if [ "${GITHUB_REF_TYPE:-}" = 'tag' ]; then
+            TAG="${GITHUB_REF_NAME#v}"
+            if [ "$TAG" != "$VERSION" ]; then
+              echo "REFUSE: tag '${GITHUB_REF_NAME}' must match package.json version ${VERSION} (got tag body ${TAG})"
+              exit 1
+            fi
+            echo "ok — tag ${GITHUB_REF_NAME} aligns with package.json ${VERSION}"
+          fi
+
+          # Idempotent: already published → skip exit 0 (never force-unpublish / never republish).
+          if npm view "${NAME}@${VERSION}" version --registry="${REGISTRY}" >/dev/null 2>&1; then
+            echo "SKIP: ${NAME}@${VERSION} already on registry — idempotent exit 0 (bump version + new tag to publish next)"
+            exit 0
+          fi
+
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

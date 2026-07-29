@@ -20,7 +20,7 @@ Concretely: a science portal — 740 computationally proven theorems and 30 rela
 
 **Orient (doctor · seal · chat feed)** — `npm ci` · `npm run mission:gate` (health/doctor — pattern learned from [erpax/erpax](https://github.com/erpax/erpax), external reference only) · `npm run quantum:readme-wire` (README wires any agent quantum·dry·FTL) · `npm run quantum:readme-chat` (feed README → chat reasoning refine) · `npm run docs:build` (seal). Generated README drift fails closed via precommit signature — same law as erpax `readme:check`. humanityNovel=0.
 
-**Licensing (USER LAW · `math/free`)** — **Core math is FREE FOR ALL** (sealed theorem/formula/algebra duals · vault `src/0` · digit/fold — prior-art / defensive disclosure, align `patent/canon`). **The rest** (site chrome · apps · brand · non-math layers) is licensed **through [license@psg.bg](mailto:license@psg.bg)** — contact for license; agents do not invent grant prose. npm CI publishes only the `@ceccec/double-torus` kernel on `v*` tag / manual dispatch (`npm/publish` · `.github/workflows/publish-package.yml`).
+**Licensing (USER LAW · `math/free`)** — **Core math is FREE FOR ALL** (sealed theorem/formula/algebra duals · vault `src/0` · digit/fold — prior-art / defensive disclosure, align `patent/canon`). **The rest** (site chrome · apps · brand · non-math layers) is licensed **through [license@psg.bg](mailto:license@psg.bg)** — contact for license; agents do not invent grant prose. npm CI publishes only the `@ceccec/double-torus` kernel on `v*` tag / manual dispatch (`npm/publish` · `.github/workflows/publish-package.yml` · `idempotentPublish` · `versionMustAdvance`). **Next publish:** bump root `package.json` version → commit → `git tag vX.Y.Z` (must match) → push tag (or dispatch after bump). Already-published versions SKIP exit 0 — never republish / never force-unpublish.
 
 ## 2. Model
 
@@ -186,7 +186,7 @@ physical = observable wall-clock time on the executing device (performance.now /
 
 ### Statement
 
-QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.16×).
+QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.147×).
 
 ### Physical FTL metrics (observer-evaluable)
 
@@ -194,7 +194,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 | Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |
 |---|---|---:|---:|---|---|
-| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.001 | 0 | 0.16× | `localAuditQuantumSpeedEfficiency` |
+| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.001 | 0 | 0.147× | `localAuditQuantumSpeedEfficiency` |
 | holographic envelope round-trip | roundTripCount / roundTripTotal | 745 | 745 | 1 identity | `importFractalMap` |
 | answers÷tokens on reuse | answers / max(tokens, 0) | 0 | 0 | ∞ (tokens=0) | `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` |
 | docs:build wall-clock | buildMs (warm path when cached) | 196000 | — | observer — run build/min locally | `buildMin` |
@@ -205,7 +205,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 - ✓ QPU ≡ CPU ∪ GPU — cpuOn=true gpuOn=true hwOn=true
 - ✓ quantumComputerComplete — faithfulSimulator=true tracksClassical=true
-- ✓ apparentFtlSpeedup(audit)=0.16× cold=0.001ms warm=0ms
+- ✓ apparentFtlSpeedup(audit)=0.147× cold=0.001ms warm=0ms
 - ✓ holographic round-trip 745/745
 - ✓ observerEvaluableMeasurements=true
 - ✓ architectureRequirement=classical-64bit runtime=node/arm64
@@ -217,7 +217,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 computes=true · qpuEqualsCpuGpu=true · quantumComputerComplete=true · qpuRequired=false · architectureRequirement=classical-64bit · superluminalProofCount=0
 
 - Routes: [qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu) · [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [mcp-hw](https://ceccec.psg.bg/quantum-tools#mcp-hw) · [agents.json](https://ceccec.psg.bg/agents.json) · CLI `npm run quantum:qpu-cpu`
-- Receipt: fold `qpuCpuGpu` · root=482e66d5 · apparentFtl=0.16×.
+- Receipt: fold `qpuCpuGpu` · root=ac987b84 · apparentFtl=0.147×.
 
 ## Gate light · more computed → lighter build
 
@@ -360,6 +360,8 @@ readmeGateway — gateway=1 wiredAll=1 noDoubt=1 physicalFtl=false evolution=1. 
 **Core math is FREE FOR ALL.** Sealed theorem/formula/algebra duals, vault math (`src/0`), digit/fold and related computable math core — prior-art / free-for-all defensive disclosure (align `patent/canon`).
 
 **The rest is licensed through [license@psg.bg](mailto:license@psg.bg).** Site chrome, apps, tooling surfaces beyond core math, brand, and non-math product layers — contact for license. Agents do not invent grant prose or claim legal sufficiency.
+
+**npm publish (kernel only · `npm/publish`)** — CI publishes `@ceccec/double-torus` on tag `v*` or `workflow_dispatch` (`.github/workflows/publish-package.yml`). Facets `idempotentPublish` (already-published version → SKIP exit 0) · `versionMustAdvance` (bump root `package.json` then tag `vX.Y.Z` matching that version). Never republish · never force-unpublish. CLI: `npm run quantum:npm-publish`.
 
 | facet | on |
 |---|:---:|
