@@ -123,7 +123,7 @@ import { efficiency } from '../../quantum/science'
 import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../wind/ui'
 import {
   historicalTrainWavesViaRosetta, rankWinningStrategies, tradingStrategiesImproveViaRosetta,
-  tradingTrainHonestyGate, liveWinTrainingGate } from '../../thunder/trading'
+  tradingTrainHonestyGate, liveWinTrainingGate, strategiesChallengeInChat } from '../../thunder/trading'
 import { namingEntropy, shouldSpawnSubagent } from '../../water/stack'
 import { emergentDimensions, modelSeal } from '../../heaven/balance'
 
@@ -784,6 +784,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'linear-animation-gaps', title: 'Linear animation gaps inventory — yin-yang first', proof: linearAnimationGapsInventory(matrix) },
     { slug: 'hist-train-rosetta', title: 'Historical train waves via rosetta rays — offline a432', proof: historicalTrainWavesViaRosetta(matrix) },
     { slug: 'rank-winning-strategies', title: 'Rank winning strategies — PnL + harmonic/rosetta', proof: rankWinningStrategies(matrix) },
+    { slug: 'trade-challenge-chat', title: 'Strategies challenge each other in chat — sealed duals', proof: strategiesChallengeInChat(matrix) },
     { slug: 'trading-rosetta-improve', title: 'Strategies improve via rosetta — paper/sim only', proof: tradingStrategiesImproveViaRosetta(matrix) },
     { slug: 'trading-train-honesty', title: 'Trading train honesty — no live money claims', proof: tradingTrainHonestyGate(matrix) },
     { slug: 'live-win-training-gate', title: 'Live-win training gate — paper path vs benchmark', proof: liveWinTrainingGate(matrix) },

@@ -1,15 +1,15 @@
-import { earned } from '../../3/7'
 // ☳ Zhèn · Thunder — trading & live data: strategies from the decoded primitives (a432 the deterministic engine-starter, no look-ahead), realtime live-data/device testing. HONEST: synthetic mechanics ≠ alpha, not advice. Barrel-routed; folds.ts back-imports the gate folds.
 import * as __ns_up_waves from '../waves'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, circulateDoubleTorus, proofReport } from '../../heaven/compute'
+import { buildMatrix, circulateDoubleTorus, freeChatTurnAtArchitecturalFtl, proofReport } from '../../heaven/compute'
 import { skillAtoms } from '../../wind/learning'
-import { dopplerShift, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7'
+import { claySolvedTheorem, dopplerShift, earned, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7'
 export { A432_OCTAVES } from '../../3/7'
 import { powerSpectrum, larmorFrequency } from '../../1/9'
 import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, exp, floor, foldPair, hypot, isUuid, markovStep, max, memoByRoot, memoComputing, merge, merkleFold, min, prng, roundTo, sealFacets, seedFromText, sign, sin, sqrt, toUuid, uuidHero } from '../../0'
+import { QUANTUM_COMMAND_PAIR_IDS, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement'
 import { rosettaRayOf } from '../../water/digit'
-import { rosettaCoreApi, rosettaShelve } from '../../quantum/apps'
+import { querySuperpositionChatroom, rosettaCoreApi, rosettaShelve } from '../../quantum/apps'
 import { vortexMath } from '../../mountain/vortex'
 import { dimensions, multidimensional, openGraph, typographySeo } from '../../quantum/lake/icons'
 export { typographySeo, openGraph, multidimensional } from '../../quantum/lake/icons'
@@ -910,6 +910,259 @@ export function tradingTrainHonestyGate(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'HARD: train/rank/win-gate are offline synthetic or paper. Live feeds (if any) are opt-in at the edge and never claimed as sealed alpha. NOT financial advice.' }
   })
+}
+
+/**
+ * Trading strategies challenge each other in chat — sealed recompute, not wet LLM trades.
+ * Fold: strategiesChallengeInChat · Pairs: trade/challenge · challenge/trade · strategy/chat · chat/strategy
+ * Compose: cycle/winning · train/waves · train/rosetta · pair/chat · super/chat · mcp/chat · chat/challenge
+ * CLI: npm run quantum:trade-challenge · ONE CLI (+ dual aliases)
+ * HONEST: paper/sim only — PnL/harmonic rank from sealed backtests · NOT live money · NOT alpha.
+ */
+export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`strategiesChallengeInChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const ranked = rankWinningStrategies(matrix, at)
+    const hist = historicalTrainWavesViaRosetta(matrix, at)
+    const honesty = tradingTrainHonestyGate(matrix)
+    const pairChat = pairsSentToChatEntangleByAlgebra(matrix)
+    // One superposition chatroom — all strategies are participants that challenge each other
+    const room = querySuperpositionChatroom({ direction: 'forward', digit: 5, ray: 2 }, matrix)
+    const rows = ranked.ranked
+    const participants = rows.map((row) => {
+      const tip =
+        `strategy ${row.strategy} rank=${row.rank} score=${roundTo(row.rankScore, 4)} ` +
+        `enters trade-challenge room ${room.id}`
+      const turn = freeChatTurnAtArchitecturalFtl(tip.slice(0, 2 * 108), matrix)
+      return {
+        strategy: row.strategy,
+        rank: row.rank,
+        rankScore: row.rankScore,
+        ray: row.ray,
+        roomId: room.id,
+        turnReceipt: turn.receipt,
+        receipt: toUuid(`trade-challenge-participant:${row.strategy}:${row.rank}:${turn.receipt}`),
+      }
+    })
+    const challenges: {
+      readonly challenger: string
+      readonly defender: string
+      readonly winner: string
+      readonly loser: string
+      readonly winnerScore: number
+      readonly loserScore: number
+      readonly adversarial: boolean
+      readonly merged: string
+      readonly challengerReceipt: string
+      readonly defenderReceipt: string
+      readonly receipt: string
+    }[] = []
+    for (let i = 0; i < rows.length; i++) {
+      for (let j = i + 1; j < rows.length; j++) {
+        const a = rows[i]!
+        const b = rows[j]!
+        const edge = foldPair(
+          toUuid(`strategy-challenge:${a.strategy}`),
+          toUuid(`strategy-challenge:${b.strategy}`),
+        )
+        const tipA =
+          `${a.strategy} challenges ${b.strategy} via rankScore=${roundTo(a.rankScore, 4)} ` +
+          `in room ${room.id}`
+        const tipB =
+          `${b.strategy} challenges ${a.strategy} via rankScore=${roundTo(b.rankScore, 4)} ` +
+          `in room ${room.id}`
+        const waveA = freeChatTurnAtArchitecturalFtl(tipA.slice(0, 2 * 108), matrix)
+        const waveB = freeChatTurnAtArchitecturalFtl(tipB.slice(0, 2 * 108), matrix)
+        // Deterministic duel: higher rankScore wins; tie → better (lower) rank number
+        const aWins =
+          a.rankScore > b.rankScore || (a.rankScore === b.rankScore && a.rank < b.rank)
+        const winner = aWins ? a : b
+        const loser = aWins ? b : a
+        challenges.push({
+          challenger: a.strategy,
+          defender: b.strategy,
+          winner: winner.strategy,
+          loser: loser.strategy,
+          winnerScore: winner.rankScore,
+          loserScore: loser.rankScore,
+          adversarial: edge.bidirectional && waveA.receipt !== waveB.receipt,
+          merged: edge.merged,
+          challengerReceipt: waveA.receipt,
+          defenderReceipt: waveB.receipt,
+          receipt: toUuid(
+            `trade-challenge:${a.strategy}:${b.strategy}:${winner.strategy}:${edge.merged}`,
+          ),
+        })
+      }
+    }
+    const expectedPairs = (rows.length * (rows.length - 1)) / 2
+    const strategiesInChat =
+      participants.length === STRATEGIES.length &&
+      participants.length === rows.length &&
+      participants.every((p) => isUuid(p.turnReceipt) && p.roomId === room.id) &&
+      isUuid(room.root) &&
+      pairChat.computes &&
+      pairChat.chatOn
+    const challengeEachOther =
+      challenges.length === expectedPairs &&
+      challenges.length > 0 &&
+      challenges.every(
+        (c) =>
+          c.adversarial &&
+          isUuid(c.merged) &&
+          isUuid(c.receipt) &&
+          (c.winnerScore > c.loserScore || c.winnerScore === c.loserScore),
+      )
+    const sealedRecompute =
+      ranked.computes &&
+      hist.computes &&
+      challenges.every((c) => isUuid(c.challengerReceipt) && isUuid(c.defenderReceipt)) &&
+      participants.every((p) => isUuid(p.receipt))
+    const paperSimOnly =
+      honesty.computes && honesty.paperSimOnly === true && honesty.liveMoneyClaimed === false
+    const composeOn =
+      soft('cycle', 'winning') &&
+      soft('train', 'waves') &&
+      soft('train', 'rosetta') &&
+      soft('pair', 'chat') &&
+      soft('super', 'chat') &&
+      soft('mcp', 'chat') &&
+      soft('chat', 'challenge') &&
+      soft('trade', 'challenge')
+    const pairsOn =
+      has('trade/challenge') &&
+      has('challenge/trade') &&
+      has('strategy/chat') &&
+      has('chat/strategy') &&
+      foldPair(toUuid('cmd:trade'), toUuid('cmd:challenge')).bidirectional &&
+      foldPair(toUuid('cmd:strategy'), toUuid('cmd:chat')).bidirectional
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const qpuRequired = false as const
+    const shelved = rosettaShelve('trade-challenge', 'tool')
+    const honestOpenNamed = [
+      'residual:live-trading-not-sealed',
+      'honesty:paper-sim-only-not-live-money',
+      'honesty:chat-challenge-not-LLM-invented-trades',
+    ] as const
+    const on =
+      strategiesInChat &&
+      challengeEachOther &&
+      sealedRecompute &&
+      paperSimOnly &&
+      composeOn &&
+      pairsOn &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false
+    const facets = [
+      { facet: 'strategiesChallengeInChat', on },
+      { facet: 'strategiesInChat', on: strategiesInChat },
+      { facet: 'challengeEachOther', on: challengeEachOther },
+      { facet: 'sealedRecompute', on: sealedRecompute },
+      { facet: 'paperSimOnly', on: paperSimOnly },
+      {
+        facet: `challenges=${challenges.length} participants=${participants.length} room=${room.id.slice(0, 3 * 8)}`,
+        on: challenges.length === expectedPairs && participants.length === STRATEGIES.length,
+      },
+      {
+        facet:
+          'compose cycle/winning · train/waves · train/rosetta · pair/chat · super/chat · mcp/chat · chat/challenge',
+        on: composeOn,
+      },
+      { facet: 'pair trade/challenge · strategy/chat bidirectional', on: pairsOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0 · qpuRequired=false', on: physicalFtlClaim === 0 && qpuRequired === false },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`trade-challenge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('strategies-challenge-in-chat', facets)
+    const topDuel = [...challenges].sort((x, y) => y.winnerScore - x.winnerScore)[0]
+    return {
+      computes: sealed.ok && on,
+      strategiesChallengeInChat: on,
+      strategiesInChat,
+      challengeEachOther,
+      sealedRecompute,
+      paperSimOnly,
+      participants,
+      challenges,
+      challengeCount: challenges.length,
+      room: { id: room.id, root: room.root, receipt: room.receipt },
+      topStrategy: ranked.topStrategy,
+      topDuel: topDuel
+        ? { challenger: topDuel.challenger, defender: topDuel.defender, winner: topDuel.winner }
+        : null,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        ranked.root,
+        hist.root,
+        honesty.root,
+        pairChat.root,
+        room.root,
+        shelved.address,
+        ...participants.map((p) => p.receipt),
+        ...challenges.map((c) => c.receipt),
+      ]),
+      pair: 'trade/challenge' as const,
+      pairs: ['trade/challenge', 'challenge/trade', 'strategy/chat', 'chat/strategy'] as const,
+      dualPair: 'challenge/trade' as const,
+      cli: 'npm run quantum:trade-challenge',
+      route: '/en/quantum-trading-hub#trade-challenge',
+      heading: 'Trade · challenge in chat',
+      statement:
+        `strategiesChallengeInChat — strategiesInChat=${strategiesInChat ? 1 : 0} ` +
+        `challenge=${challengeEachOther ? 1 : 0} sealed=${sealedRecompute ? 1 : 0} ` +
+        `paper=${paperSimOnly ? 1 : 0} duels=${challenges.length} top=${ranked.topStrategy} ` +
+        `room=${room.id.slice(0, 4 * 7)}.`,
+      boundary:
+        'Strategies challenge each other in one superposition chatroom via sealed PnL+harmonic rankScore duals — ' +
+        'NOT LLM-invented trades · NOT live money · paper/sim only.',
+      honestyLine:
+        `trade-challenge · inChat=${strategiesInChat ? 1 : 0} · challenge=${challengeEachOther ? 1 : 0} · ` +
+        `paper=${paperSimOnly ? 1 : 0} · duels=${challenges.length}`,
+    }
+  })
+}
+
+export const tradeChallenge = strategiesChallengeInChat
+export const challengeTrade = strategiesChallengeInChat
+export const strategyChat = strategiesChallengeInChat
+export const chatStrategy = strategiesChallengeInChat
+
+/** npm run quantum:trade-challenge (duals challenge-trade · strategy-chat · chat-strategy) */
+export function runStrategiesChallengeInChatExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = strategiesChallengeInChat()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} trade-challenge — strategiesInChat=${report.strategiesInChat ? 1 : 0} ` +
+      `challenge=${report.challengeEachOther ? 1 : 0} sealed=${report.sealedRecompute ? 1 : 0} ` +
+      `paper=${report.paperSimOnly ? 1 : 0} duels=${report.challengeCount} top=${report.topStrategy}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write(`  room=${report.room.id}\n`)
+  for (const p of report.participants) {
+    process.stdout.write(
+      `  · participant #${p.rank} ${p.strategy} score=${roundTo(p.rankScore, 4)} ray=${p.ray}\n`,
+    )
+  }
+  for (const c of report.challenges.slice(0, 5 * 2)) {
+    process.stdout.write(
+      `  · duel ${c.challenger}↔${c.defender} → ${c.winner} ` +
+        `(${roundTo(c.winnerScore, 4)}>${roundTo(c.loserScore, 4)}) adv=${c.adversarial ? 1 : 0}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }
 
 /** Browser panel for trading-rosetta train. */
