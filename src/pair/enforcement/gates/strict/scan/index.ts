@@ -6554,12 +6554,12 @@ const GEOGEBRA_API_METHODS = [
   'setValue', 'getValue', 'setUndoPoint', 'registerObjectUpdateListener', 'registerAddListener', 'registerRemoveListener',
   'getXcoord', 'getYcoord', 'getZcoord', 'setVisible', 'deleteObject', 'renameObject', 'evalGeoGEBRA',
 ] as const
-/** Prior wave baseline (fa36964c) — observer re-measure each wave. */
+/** Prior wave baseline (wave 2) — observer re-measure each wave. */
 const GEOGEBRA_WAVE_BASELINE = {
-  encodeReceipts: 18,
-  theoremsEncoded: 12,
-  animationsEncoded: 18,
-  encodeCoverage: 0.0417,
+  encodeReceipts: 51,
+  theoremsEncoded: 41,
+  animationsEncoded: 51,
+  encodeCoverage: 0.1181,
 } as const
 /** Honest-open residual — full input-bar + scripting command surface (manual Scripting_Commands); not fake-closed this wave. */
 const GEOGEBRA_COMMAND_SURFACE_ESTIMATE = 432
@@ -6631,6 +6631,40 @@ const GEOGEBRA_ENCODE_CATALOG: readonly GeoGebraEncodeRow[] = [
   { id: 'api-getx', geogebraObject: 'API', geogebraCommand: 'getXcoord(obj)', algebraicStatement: 'getXcoord(P) = x-coordinate of P ∈ ℝ²', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getXcoord' },
   { id: 'api-gety', geogebraObject: 'API', geogebraCommand: 'getYcoord(obj)', algebraicStatement: 'getYcoord(P) = y-coordinate of P ∈ ℝ²', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getYcoord' },
   { id: 'api-getz', geogebraObject: 'API', geogebraCommand: 'getZcoord(obj)', algebraicStatement: 'getZcoord(P) = z-coordinate of P ∈ ℝ³', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getZcoord' },
+  // Wave 3 — remaining object families · constructions · graphing · CAS · probability · API
+  { id: 'axis-directed', geogebraObject: 'Axis', geogebraCommand: 'xAxis / yAxis', algebraicStatement: 'xAxis = { (t,0) : t ∈ ℝ } · yAxis = { (0,t) : t ∈ ℝ }', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/Geometric_Objects#Lines_and_Axes' },
+  { id: 'numeric-slider', geogebraObject: 'Numeric', geogebraCommand: 'a=3.14', algebraicStatement: 'a ∈ ℝ fixed numeric constant in construction algebra', animationKind: 'formula/anim', composePair: 'digit/fold', docRef: 'manual/General_Objects' },
+  { id: 'polyhedron-3d', geogebraObject: 'Polyhedron', geogebraCommand: 'Polyhedron(pts,faces)', algebraicStatement: 'P = conv(V) ⊂ ℝ³ with face set F ⊂ 2^V simplicial or polygonal', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/3D_Objects' },
+  { id: 'tetrahedron-3d', geogebraObject: 'Tetrahedron', geogebraCommand: 'Tetrahedron(A,B,C,D)', algebraicStatement: 'T(A,B,C,D) = conv{A,B,C,D} ⊂ ℝ³ · V=4 · E=6 · F=4', animationKind: 'ProofAnimation', composePair: 'geo/torus', docRef: 'manual/3D_Objects' },
+  { id: 'angle-bisector', geogebraObject: 'AngleBisector', geogebraCommand: 'AngleBisector(A,B,C)', algebraicStatement: 'bisector(∠ABC) = { X : ∠ABX = ∠XBC }', animationKind: 'golden/angle', composePair: 'golden/angle', docRef: 'manual/Geometric_Objects' },
+  { id: 'centroid-triangle', geogebraObject: 'Centroid', geogebraCommand: 'Centroid(A,B,C)', algebraicStatement: 'G = (A+B+C)/3 ∈ ℝ² for △ABC', animationKind: 'coord/anim', composePair: 'digit/fold', docRef: 'manual/Geometric_Objects' },
+  { id: 'orthocenter-tri', geogebraObject: 'Orthocenter', geogebraCommand: 'Orthocenter(A,B,C)', algebraicStatement: 'H = ∩ of altitudes of △ABC in ℝ²', animationKind: 'ProofAnimation', composePair: 'mesh/cross', docRef: 'manual/Geometric_Objects' },
+  { id: 'circumference-c', geogebraObject: 'Circumference', geogebraCommand: 'Circumference(c)', algebraicStatement: 'C = 2πr for circle c with radius r ∈ ℝ>0', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'manual/Geometric_Objects#Conic_sections_and_Arcs' },
+  { id: 'area-polygon', geogebraObject: 'Area', geogebraCommand: 'Area(poly)', algebraicStatement: 'Area(P) = ½|Σ det(vᵢ,vᵢ₊₁)| for polygon P ⊂ ℝ²', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Geometric_Objects' },
+  { id: 'perimeter-poly', geogebraObject: 'Perimeter', geogebraCommand: 'Perimeter(poly)', algebraicStatement: 'Perim(P) = Σ|vᵢ₊₁−vᵢ| for vertices vᵢ of P', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Geometric_Objects' },
+  { id: 'root-zero', geogebraObject: 'Root', geogebraCommand: 'Root(f,x)', algebraicStatement: 'Root(f) = { x ∈ dom(f) : f(x) = 0 }', animationKind: 'ProofAnimation', composePair: 'algebra/prove', docRef: 'manual/Graphing_Commands' },
+  { id: 'extremum-local', geogebraObject: 'Extremum', geogebraCommand: 'Extremum(f,a,b)', algebraicStatement: 'Extremum(f,[a,b]) = arg min/max of f on [a,b]', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Graphing_Commands' },
+  { id: 'tangent-line', geogebraObject: 'Tangent', geogebraCommand: 'Tangent(f,x)', algebraicStatement: 'T_f(x₀) = { (x,f(x₀)+f′(x₀)(x−x₀)) } at x₀', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Graphing_Commands' },
+  { id: 'secant-line', geogebraObject: 'Secant', geogebraCommand: 'Secant(f,a,b)', algebraicStatement: 'Sec(f,a,b) = chord through (a,f(a)) and (b,f(b))', animationKind: 'parametric', composePair: 'algebra/fold', docRef: 'manual/Graphing_Commands' },
+  { id: 'asymptote-fn', geogebraObject: 'Asymptote', geogebraCommand: 'Asymptote(f)', algebraicStatement: 'y = L is asymptote iff lim_{x→∞} |f(x)−L| = 0', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Graphing_Commands' },
+  { id: 'inflection-pt', geogebraObject: 'InflectionPoint', geogebraCommand: 'InflectionPoint(f)', algebraicStatement: 'x₀ inflection iff f″ changes sign at x₀', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Graphing_Commands' },
+  { id: 'shear-transform', geogebraObject: 'Shear', geogebraCommand: 'Shear(obj,α,axis)', algebraicStatement: 'Shear_α(P) = P + α·proj_axis(P) along axis', animationKind: 'ProofAnimation', composePair: 'algebra/fold', docRef: 'manual/Transformations' },
+  { id: 'locus-trace', geogebraObject: 'Locus', geogebraCommand: 'Locus(P,obj)', algebraicStatement: 'Locus(P,obj) = { P(t) : t varies over driving parameter }', animationKind: 'trace', composePair: 'animations/rosetta', docRef: 'manual/Locus' },
+  { id: 'cas-simplify', geogebraObject: 'Simplify', geogebraCommand: 'Simplify(expr)', algebraicStatement: 'Simplify(e) = canonical form of e in CAS algebra', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'cas-substitute', geogebraObject: 'Substitute', geogebraCommand: 'Substitute(expr,x,v)', algebraicStatement: 'Substitute(e,x,v) = e[x↦v] in polynomial ring', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'cas-limit', geogebraObject: 'Limit', geogebraCommand: 'Limit(f,x,a)', algebraicStatement: 'lim_{x→a} f(x) computed symbolically in CAS', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'cas-taylor', geogebraObject: 'TaylorSeries', geogebraCommand: 'TaylorSeries(f,x,a,n)', algebraicStatement: 'T_n(f,a) = Σ_{k=0}^n f^{(k)}(a)(x−a)^k/k!', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/CAS_Commands' },
+  { id: 'prob-poisson', geogebraObject: 'Poisson', geogebraCommand: 'Poisson(λ)', algebraicStatement: 'X ~ Pois(λ) · P(X=k)=e^{−λ}λ^k/k!', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'manual/Probability_Commands' },
+  { id: 'prob-chi2', geogebraObject: 'ChiSquared', geogebraCommand: 'ChiSquared(k)', algebraicStatement: 'χ²(k) with k degrees of freedom · pdf on ℝ>0', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'manual/Probability_Commands' },
+  { id: 'prob-uniform', geogebraObject: 'Uniform', geogebraCommand: 'Uniform(a,b)', algebraicStatement: 'U ~ Uniform[a,b] · f(x)=1/(b−a) on [a,b]', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'manual/Probability_Commands' },
+  { id: 'stat-mean', geogebraObject: 'Mean', geogebraCommand: 'Mean(L)', algebraicStatement: 'μ(L) = (1/n)Σ xᵢ for list L = (x₁,…,xₙ)', animationKind: 'formula/anim', composePair: 'digit/fold', docRef: 'manual/Statistics_Commands' },
+  { id: 'stat-sd', geogebraObject: 'SD', geogebraCommand: 'SD(L)', algebraicStatement: 'σ(L) = √(Σ(xᵢ−μ)²/(n−1)) sample std dev', animationKind: 'formula/anim', composePair: 'digit/fold', docRef: 'manual/Statistics_Commands' },
+  { id: 'stat-corr', geogebraObject: 'Correlation', geogebraCommand: 'Correlation(L1,L2)', algebraicStatement: 'ρ(L1,L2) = cov(L1,L2)/(σ₁σ₂) ∈ [−1,1]', animationKind: 'formula/anim', composePair: 'algebra/prove', docRef: 'manual/Statistics_Commands' },
+  { id: 'api-setcoords', geogebraObject: 'API', geogebraCommand: 'setCoords(obj,x,y)', algebraicStatement: 'setCoords(P,x,y) ⟹ P ↦ (x,y) ∈ ℝ²', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#setCoords' },
+  { id: 'api-getcoords', geogebraObject: 'API', geogebraCommand: 'getCoords(obj)', algebraicStatement: 'getCoords(P) = (x,y) coordinate pair of P ∈ ℝ²', animationKind: 'coord/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getCoords' },
+  { id: 'api-evallatex', geogebraObject: 'API', geogebraCommand: 'evalLaTeX(latex)', algebraicStatement: 'evalLaTeX(L) parses LaTeX → construction in algebra', animationKind: 'ProofAnimation', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#evalLaTeX' },
+  { id: 'api-setvalue', geogebraObject: 'API', geogebraCommand: 'setValue(obj,v)', algebraicStatement: 'setValue(obj,v) ⟹ numeric property v ∈ ℝ assigned', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#setValue' },
+  { id: 'api-getvalue', geogebraObject: 'API', geogebraCommand: 'getValue(obj)', algebraicStatement: 'getValue(obj) = numeric measure of obj ∈ ℝ', animationKind: 'formula/anim', composePair: 'formula/code', docRef: 'reference/GeoGebra_Apps_API#getValue' },
 ] as const
 
 /**
