@@ -118,7 +118,7 @@ export type ImportPathDistanceEdge = {
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict'
 export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
-export { dryDupe, theoremAudit, geoGebraEncode, buildMin } from './strict/scan'
+export { dryDupe, theoremAudit, geoGebraEncode, buildMin, mathAlgebra } from './strict/scan'
 export { invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit } from '../../../quantum/apps'
 export {
   

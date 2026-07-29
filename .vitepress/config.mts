@@ -247,6 +247,9 @@ export function importGapCount(spec) {
 export function dryDupe(_root) {
   return { computes: false, dryDupe: false, files: 0, bodies: 0, groups: 0, duplicateBodies: 0, animGroups: 0, shellCount: 0, queue: [], shells: [], facets: [], root: '', pair: 'dry/dupe', dualPair: 'dupe/dry', cli: 'npm run quantum:dry-dupe', route: '/en/quantum-tools#dry-dupe', heading: 'Dry dupe', statement: 'browser stub', boundary: 'Node fs scan only' }
 }
+export function mathAlgebra(_root) {
+  return { computes: false, on: false, allFilesScanned: 0, mathReplaced: 0, mathOutsideFloor: 0, hardFailOnMath: false, assumedOutsideFloor: 0, randomOutsideFloor: 0, hostFloor: [], offenders: [], facets: [], pair: 'math/algebra', dualPair: 'algebra/math', fold: 'mathAlgebra', heading: 'Math algebra', statement: 'browser stub', boundary: 'Node fs scan only' }
+}
 `
       }
       if (id === '\0node-stub:computational') return computationalClientStubSource()
