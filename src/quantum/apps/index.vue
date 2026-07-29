@@ -5434,6 +5434,37 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
+      <section id="crypto-comparison-mesh">
+        <h3>Crypto comparison mesh</h3>
+        <p class="quantum-apps__meta">{{ cryptoMeshDry.mesh.boundary }}</p>
+        <UiBadge :variant="cryptoMeshDry.cryptoRelatedSurfacesAreDry ? 'default' : 'outline'">
+          relatedDry={{ cryptoMeshDry.cryptoRelatedSurfacesAreDry }}
+          · meshIsDry={{ cryptoMeshDry.cryptoComparisonMeshIsDry }}
+          · nodes={{ cryptoMeshDry.mesh.nodeCount }}
+          · edges={{ cryptoMeshDry.mesh.edgeCount }}
+          · residuals={{ cryptoMeshDry.residuals.length }}
+        </UiBadge>
+        <ul class="quantum-apps__facets">
+          <li v-for="node in cryptoMeshDry.mesh.nodes" :key="node.id">
+            <UiBadge variant="outline">{{ node.kind }}</UiBadge>
+            <strong>{{ node.id }}</strong>
+            — <a :href="node.route">{{ node.route }}</a>
+            <template v-if="node.proofRoute">
+              · <a :href="node.proofRoute">{{ node.proofRoute }}</a>
+            </template>
+          </li>
+        </ul>
+        <p class="quantum-apps__meta">
+          Edges:
+          <span v-for="(e, i) in cryptoMeshDry.mesh.edges" :key="e.id">
+            {{ i ? ' · ' : '' }}{{ e.from }}—{{ e.relation }}→{{ e.to }}
+          </span>
+        </p>
+        <UiButton size="sm" :disabled="runningId === 'crypto-comparison-mesh-dry'" @click="runTool('crypto-comparison-mesh-dry')">
+          {{ runningId === 'crypto-comparison-mesh-dry' ? '…' : 'Run crypto-comparison-mesh-dry' }}
+        </UiButton>
+      </section>
+      <UiSeparator />
       <section id="crypto-beyond-rsa">
         <h3>Beyond RSA — PQC · Shor/ECC · trinity</h3>
         <p class="quantum-apps__meta">
