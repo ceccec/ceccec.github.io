@@ -749,6 +749,8 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'audit/who',
   'audit/chat',
   'chat/audit',
+  'audit/plan',
+  'plan/audit',
   'before/sign',
   'sign/before',
   'sign/neighbours',

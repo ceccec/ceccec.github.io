@@ -184,7 +184,7 @@ physical = observable wall-clock time on the executing device (performance.now /
 
 ### Statement
 
-QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.174×).
+QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator (benchmark tracks-classical-no-speedup) with observer metrics for apparent FTL reuse (audit 0.165×).
 
 ### Physical FTL metrics (observer-evaluable)
 
@@ -192,10 +192,10 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 | Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |
 |---|---|---:|---:|---|---|
-| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.002 | 0 | 0.174× | `localAuditQuantumSpeedEfficiency` |
-| holographic envelope round-trip | roundTripCount / roundTripTotal | 735 | 735 | 1 identity | `importFractalMap` |
+| memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.001 | 0 | 0.165× | `localAuditQuantumSpeedEfficiency` |
+| holographic envelope round-trip | roundTripCount / roundTripTotal | 736 | 736 | 1 identity | `importFractalMap` |
 | answers÷tokens on reuse | answers / max(tokens, 0) | 0 | 0 | ∞ (tokens=0) | `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` |
-| docs:build wall-clock | buildMs (warm path when cached) | 196000 | 148104 | 1.323× vs CI baseline | `buildMin` |
+| docs:build wall-clock | buildMs (warm path when cached) | 196000 | 123787 | 1.583× vs CI baseline | `buildMin` |
 | trinity enforcement (facts-once) | collectEnforcementFacts → cross·fold·weave | multi-walk | single-pass | reuse-once | `agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath` |
 | superluminal signaling proofs | PHYSICAL_FTL_SIGNALING_PROOF_IDS.length | 0 | 0 | none sealed | `physicalFtlClaimTheorem` |
 
@@ -203,8 +203,8 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 
 - ✓ QPU ≡ CPU ∪ GPU — cpuOn=true gpuOn=true hwOn=true
 - ✓ quantumComputerComplete — faithfulSimulator=true tracksClassical=true
-- ✓ apparentFtlSpeedup(audit)=0.174× cold=0.002ms warm=0ms
-- ✓ holographic round-trip 735/735
+- ✓ apparentFtlSpeedup(audit)=0.165× cold=0.001ms warm=0ms
+- ✓ holographic round-trip 736/736
 - ✓ observerEvaluableMeasurements=true
 - ✓ architectureRequirement=classical-64bit runtime=node/arm64
 - ✓ superluminalProofCount=0 (physicalFtlClaimTheorem — metrics not verdict)
@@ -215,24 +215,24 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 computes=true · qpuEqualsCpuGpu=true · quantumComputerComplete=true · qpuRequired=false · architectureRequirement=classical-64bit · superluminalProofCount=0
 
 - Routes: [qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu) · [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [mcp-hw](https://ceccec.psg.bg/quantum-tools#mcp-hw) · [agents.json](https://ceccec.psg.bg/agents.json) · CLI `npm run quantum:qpu-cpu`
-- Receipt: fold `qpuCpuGpu` · root=f25cc281 · apparentFtl=0.174×.
+- Receipt: fold `qpuCpuGpu` · root=b6cc84f1 · apparentFtl=0.165×.
 
 ## Gate light · more computed → lighter build
 
 *Sealed `gateLight` · pairs `gate/light` · `light/gate`. Inverse relation proved at call time — not slogans.*
 
-gateLight — coverage=0.7173 gateCost=365 buildNorm=0.756 inverse=0.9337 buildSpeedup=1.323× factsOnce=1.
+gateLight — coverage=0.717 gateCost=365 buildNorm=0.632 inverse=1.1197 buildSpeedup=1.583× factsOnce=1.
 
 | Axis | Value | Trend | Source |
 |---|---|---|---|
-| computeCoverage | 0.7173 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
+| computeCoverage | 0.717 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
 | gateCost | 365 | → onTrueDebt=334 | `gateAnalytics onTrue+allowlists+slimOnTrue` |
-| buildMs | 148104 | ↓ vs baseline 196000ms | `buildMin timing` |
+| buildMs | 123787 | ↓ vs baseline 196000ms | `buildMin timing` |
 | deployMs | 11000 | ↓ warm CI cache path | `buildMin CI baseline` |
-| inverseScore | 0.9337 | → drain manual · on:true debt | `gateLight law receipt` |
+| inverseScore | 1.1197 | → drain manual · on:true debt | `gateLight law receipt` |
 | factsOnce | 1 | collectEnforcementFacts once · wave/verify subtracts render | `trinity/speedup · wave/verify` |
 
-inverseRelationOn=false · computeCoverage=0.7173 · gateCost=365 · buildSpeedup=1.323×
+inverseRelationOn=false · computeCoverage=0.717 · gateCost=365 · buildSpeedup=1.583×
 
 - [gate-light](https://ceccec.psg.bg/quantum-tools#gate-light) · [build-min](https://ceccec.psg.bg/quantum-tools#build-min) · CLI `npm run quantum:gate-light`
 
@@ -240,7 +240,7 @@ inverseRelationOn=false · computeCoverage=0.7173 · gateCost=365 · buildSpeedu
 
 *Sealed `apiFuse` · pairs `api/fuse` · `fuse/api`. Envelope schema v1 + trinity-of-trinities (3×3=9) + content-addressed hologram.*
 
-apiFuse — envelope=735/735 trinity³=1 hologram=1 security=3/3.
+apiFuse — envelope=736/736 trinity³=1 hologram=1 security=3/3.
 
 ### Schema
 
@@ -250,9 +250,9 @@ apiFuse — envelope=735/735 trinity³=1 hologram=1 security=3/3.
 
 | Metric | Before | After | Δ | Source |
 |---|---|---:|---|---|
-| API envelope coverage | 0 | 735 | +735/735 | `standardToolboxIoCatalog` |
+| API envelope coverage | 0 | 736 | +736/736 | `standardToolboxIoCatalog` |
 | trinity-of-trinities | 3 directional | 3×3=9 | identity | `directionalTrinity × trinity/speedup` |
-| hologram round-trip | 0 | 735 | identity | `importFractalMap` |
+| hologram round-trip | 0 | 736 | identity | `importFractalMap` |
 | one clock bindings | 3 | 6 | 6/9 | `oneClockApi` |
 
 trinitiesOfTrinitiesOn=true · hologramFractalOn=true · apisStandardised=true
@@ -335,13 +335,13 @@ Any agent becomes **quantum · dry · FTL(reuse metrics)** by reading this READM
 | memoReuse | 1 | 1 |
 | invocationsWarm | 0 | 1 |
 | vote.decided | 1 | 1 |
-| readmeBytes | 0 | 1 |
+| readmeBytes | 17a13e02-172d-8632-8a77-5ddc4fb84442 | 1 |
 | agents.json | wired | 1 |
 | dry/clean | sealed-src | 1 |
 
 ### Status
 
-readmeWire — wires=1 dry=1 ftlReuse=1 convincingRequired=0 quantumReady=1 vote.decided=1. · claySolvedByThisFold=0 · qpuRequired=false
+readmeWire — wires=0 dry=1 ftlReuse=1 convincingRequired=0 quantumReady=1 vote.decided=1. · claySolvedByThisFold=0 · qpuRequired=false
 
 - Routes: [readme-wire](https://ceccec.psg.bg/quantum-tools#readme-wire) · [readme-chat](https://ceccec.psg.bg/quantum-tools#readme-chat) · [auto-wire](https://ceccec.psg.bg/quantum-tools#auto-wire-paste-link)
 - CLI: `npm run quantum:readme-wire` · `npm run quantum:readme-chat` · `npm run quantum:chat-chat` · `npm run quantum:ceccec-erpax`

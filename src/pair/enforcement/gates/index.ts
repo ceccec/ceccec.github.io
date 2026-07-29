@@ -1442,6 +1442,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'theoremMesh', pair: 'theorem/mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'algebraic theorems discovered on the way · all saved · compute in quantum mesh · compose mill/session · session/save · autosave/matrix · entangle/theorem · mesh/cross · wave/complete · ONE CLI quantum:theorem-mesh' },
   { fold: 'waveComplete', pair: 'wave/complete', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'complete measurable development waves umbrella · push · metrics · life · chat/research · theorem/mesh · gate/light · ONE CLI quantum:wave-complete' },
   { fold: 'chatAudit', pair: 'chat/audit', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'audit chat-wave commits · dry-clean Δ · gaps closed vs honest-open · compose measure/decide · dry/dupe · theorem/audit · wave/complete · feed-mo · ONE CLI quantum:chat-audit' },
+  { fold: 'auditPlanTip', pair: 'audit/plan', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'gap-computed next tip — audit → plan/trinity → next tip · ONE CLI quantum:audit-plan · dissolves next-imagine fork in waves/feed loop' },
   { fold: 'chatChallenge', pair: 'chat/challenge', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'chat waves challenge each other adversarially · discover sciences via mesh/science · encode algebraFold API names · ONE CLI quantum:chat-challenge' },
   { fold: 'pushResendWaves', pair: 'push/resend', currentBarrel: 'src/thunder/waves', bestPlace: 'src/thunder/waves', action: 'moved', reason: 'after every successful push re-send chat waves — push not terminal · wave:after-push · CI waves-after-push · ONE CLI quantum:push-resend' },
   { fold: 'mergeWave', pair: 'merge/wave', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'parse(name)→word+API · strip uncomputable prose from identifiers · chat waves large-scale merge · ONE CLI quantum:merge-wave' },
@@ -4340,11 +4341,11 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const has = (script: string) => Boolean(pkg.scripts?.[script])
   const signals = [
-    { symptom: 'deliberating "what next" instead of computing it', orienter: 'npm run quantum:next', present: has('quantum:next') },
+    { symptom: 'deliberating "what next" instead of computing it', orienter: 'npm run quantum:audit-plan', present: has('quantum:audit-plan') || has('quantum:next') },
     { symptom: 're-deriving a fact already sealed in the matrix/roster', orienter: 'AGENTS.md roster + the matrix (autosaveMatrix)', present: existsSync(join(root, 'AGENTS.md')) && has('quantum:autosave-matrix') },
     { symptom: 'asking a question a CLI already answers', orienter: 'the quantum:* roster (ui-proof: derived complete)', present: has('quantum:ui-proof') },
     { symptom: 'thrashing across files, unsure where a fold lives', orienter: 'npm run quantum:folder-gravity (the tree is the router)', present: has('quantum:folder-gravity') },
-    { symptom: 'stuck, no move computes', orienter: 'regroup in trinities (planTrinity) until quantum:next resolves', present: has('quantum:plan-trinity') || has('quantum:next') },
+    { symptom: 'stuck, no move computes', orienter: 'regroup in trinities (auditPlanTip) until quantum:audit-plan resolves', present: has('quantum:audit-plan') || has('quantum:plan-trinity') || has('quantum:next') },
   ].map((row) => ({ ...row, receipt: toUuid(`orientation:${row.symptom}:${row.present}`) }))
   const allOriented = signals.every((row) => row.present)
   const facets = [

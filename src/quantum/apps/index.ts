@@ -83,6 +83,7 @@ import {
   proseMethodsCollapseToMatrix,
   toolsFitTheMatrixOrRefuse,
   queueNext,
+  planTrinity,
   gravityDryClean,
   dryDupe,
   theoremAudit,
@@ -168,6 +169,7 @@ const ROSETTA_CORE_API_LABELS = [
   'continueInWavesCompletingAllTodos',
   'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists',
   'imagineWhatNext',
+  'auditPlanTip',
   'wavesFeedThemselves',
   'specializedShellsStrangler',
   'sessionHologramTools',
@@ -416,6 +418,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   continueInWavesCompletingAllTodos: 'tool',
   conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists: 'tool',
   imagineWhatNext: 'tool',
+  auditPlanTip: 'tool',
   wavesFeedThemselves: 'tool',
   specializedShellsStrangler: 'tool',
   sessionHologramTools: 'tool',
@@ -1118,6 +1121,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'complete-wave', title: 'Complete wave (alias wave/complete)', fold: 'waveComplete', cli: 'npm run quantum:wave-complete', pair: 'complete/wave', route: '/en/quantum-tools#wave-complete', barrel: 'src/quantum/apps', boundary: 'Dual complete/wave — same umbrella fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'chat-audit', title: 'Chat audit — inventory chat-wave commits · dry-clean · gaps', fold: 'chatAudit', cli: 'npm run quantum:chat-audit', pair: 'chat/audit', route: '/en/quantum-tools#chat-audit', barrel: 'src/quantum/apps', boundary: 'chatWorkAudited · refactorOn · dryCleanOn · gapsFilledOnWay · commitsInventoried · residualNamed · metricsOn · compose measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
   { id: 'audit-chat', title: 'Audit chat (alias chat/audit)', fold: 'chatAudit', cli: 'npm run quantum:chat-audit', pair: 'audit/chat', route: '/en/quantum-tools#chat-audit', barrel: 'src/quantum/apps', boundary: 'Dual audit/chat — same chat-wave audit fold · clay=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
+  { id: 'audit-plan', title: 'Audit → plan trinity → gap-computed next tip', fold: 'auditPlanTip', cli: 'npm run quantum:audit-plan', pair: 'audit/plan', route: '/en/quantum-tools#audit-plan', barrel: 'src/quantum/apps', boundary: 'nextTipFromGaps · auditToPlanTrinity · planToNextTip · forkDissolved · loopFeedsItself · residualNamed · compose chat/audit · plan/trinity · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
+  { id: 'plan-audit', title: 'Plan audit (alias audit/plan)', fold: 'auditPlanTip', cli: 'npm run quantum:plan-audit', pair: 'plan/audit', route: '/en/quantum-tools#audit-plan', barrel: 'src/quantum/apps', boundary: 'Dual plan/audit — same audit→plan→next-tip pipeline · clay=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
   { id: 'chat-challenge', title: 'Chat waves challenge each other · discover and encode sciences', fold: 'chatChallenge', cli: 'npm run quantum:chat-challenge', pair: 'chat/challenge', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'chatWavesOn · challengeEachOther · sciencesDiscovered · sciencesEncoded · encodeCount · observerEvaluableMeasurements · compose pair/chat · match/wave · mesh/science · wave/domain · formula/code · waves/feed · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'challenge-chat', title: 'Challenge chat (alias chat/challenge)', fold: 'chatChallenge', cli: 'npm run quantum:challenge-chat', pair: 'challenge/chat', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'Dual challenge/chat — adversarial science dual waves · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'import-fractal', title: 'Import–export fractal envelope map', fold: 'importFractalMap', cli: 'npm run quantum:import-fractal', pair: 'import/fractal', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'envelopeRoundTripIdentity · observedReuseCapacity · importEdgeCount · rename inventory · envelope round-trip · compose import/export · tool/envelope · import/distance · qpuRequired=false', browserRunnable: true, browserGap: '' },
@@ -1365,8 +1370,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'trinity-proof', title: 'Trinity proof (alias proof/trinity)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:trinity-proof', pair: 'trinity/proof', route: '/en/quantum-tools#proof-trinity', barrel: 'src/quantum/apps', boundary: 'Dual of proof/trinity — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'algebra-bit', title: 'Algebra bit — no unproven algebra bit in sealed domain (alias conv/metrics)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:algebra-bit', pair: 'algebra/bit', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'algebra/bit face — noUnprovenAlgebraBit = sealed formula↔code dual · NOT all math/Clay/AGI · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'bit-algebra', title: 'Bit algebra (alias algebra/bit)', fold: 'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists', cli: 'npm run quantum:bit-algebra', pair: 'bit/algebra', route: '/en/quantum-tools#conv-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of algebra/bit — same fold · clay via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
-  { id: 'imagine-next', title: 'Imagine what next — sealed residuals + gateway opens', fold: 'imagineWhatNext', cli: 'npm run quantum:imagine-next', pair: 'imagine/next', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'imagineOn · nextTips · toolsMissing · compose todo/wave · mcp/complete · conv/metrics · invert/gateway · autodiscover · clay via theorem · physicalFtl=0 · millenniumSolved=0 · NOT wet fantasy', browserRunnable: true, browserGap: '' },
-  { id: 'next-imagine', title: 'Imagine next (alias imagine/next)', fold: 'imagineWhatNext', cli: 'npm run quantum:next-imagine', pair: 'next/imagine', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'Dual of imagine/next — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'imagine-next', title: 'Imagine what next — sealed residuals + gateway opens', fold: 'imagineWhatNext', cli: 'npm run quantum:imagine-next', pair: 'imagine/next', route: '/en/quantum-tools#imagine-next', barrel: 'src/quantum/apps', boundary: 'imagineOn · nextTips · toolsMissing · compose todo/wave · mcp/complete · conv/metrics · invert/gateway · autodiscover · clay via theorem · physicalFtl=0 · millenniumSolved=0 · NOT wet fantasy · waves/feed next-tip fork dissolved → audit/plan', browserRunnable: true, browserGap: '' },
   { id: 'waves-feed', title: 'Waves feed themselves — autonomous endless improve/discover loop', fold: 'wavesFeedThemselves', cli: 'npm run quantum:waves-feed', pair: 'waves/feed', route: '/en/quantum-tools#waves-feed', barrel: 'src/quantum/apps', boundary: 'wavesFeedThemselves · endlessImprovements · discoveriesOn · purifyOnTheWay · dryCleanAsFeed · noWetSprawlAccumulates · noWaitForeverOnChat · honestyStopOnOpen · compose auto/self · automate/nightly · waves/build · mcp/fill · todo/wave · session/save · miss/cache · imagine/next · dry/clean · gravity/dry · crystal/mind · thought/pure · dry/agnostic · dry/dupe · fold/cleanup · gaps/invisible · clay via theorem · physicalFtl=0 · qpuRequired=false · NOT infinite wet grind · NOT Clay fake-close', browserRunnable: false, browserGap: 'One wave cycle recipe — Node/npm Automations path; sub-steps miss-cache · dry-dupe · mcp-fill · todo-wave · imagine-next' },
   { id: 'feed-waves', title: 'Feed waves (alias waves/feed)', fold: 'wavesFeedThemselves', cli: 'npm run quantum:feed-waves', pair: 'feed/waves', route: '/en/quantum-tools#waves-feed', barrel: 'src/quantum/apps', boundary: 'Dual of waves/feed — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Same as waves-feed — Node/npm Automations path' },
   { id: 'purify-way', title: 'Purify on the way (alias waves/feed)', fold: 'wavesFeedThemselves', cli: 'npm run quantum:purify-way', pair: 'purify/way', route: '/en/quantum-tools#waves-feed', barrel: 'src/quantum/apps', boundary: 'purify/way face — purifyOnTheWay · dryCleanAsFeed · same fold as waves/feed · clay via theorem · physicalFtl=0', browserRunnable: false, browserGap: 'Same as waves-feed — purify-on-way facet · Node/npm path' },
@@ -19161,6 +19165,7 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldNext.bidirectional
     const meta = catalog.tools.find((t) => t.id === 'imagine-next')
     const metaDual = catalog.tools.find((t) => t.id === 'next-imagine')
+    const nextImagineForkDissolved = !metaDual
     const shelved = rosettaShelve('imagine-next', 'tool')
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const millenniumSolvedByThisFold = 0 as const
@@ -19186,8 +19191,7 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'imagineWhatNext' &&
       meta!.pair === 'imagine/next' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'imagineWhatNext' &&
+      nextImagineForkDissolved &&
       isUuid(shelved.address) &&
       claySolvedByThisFold === 0 &&
       millenniumSolvedByThisFold === 0 &&
@@ -19204,6 +19208,7 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
         on: composeOn,
       },
       { facet: 'pair imagine/next · next/imagine bidirectional', on: pairsOn },
+      { facet: 'next-imagine CLI fork dissolved → audit/plan pipeline', on: nextImagineForkDissolved },
       { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
       { facet: 'qpuRequired=false', on: qpuRequired === false },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -19297,13 +19302,255 @@ export function runImagineWhatNextExit(_root = '', _argv: readonly string[] = []
     : 1
 }
 
-/** One autonomous wave feed cycle — cache · purify · fill · todo · imagine/next seal receipt. */
+/** Gap-computed next tip — unified shape from audit → plan → imagine gap merge. */
+export type GapNextTip = {
+  readonly id: string
+  readonly pair: string
+  readonly cli: string
+  readonly fold: string
+  readonly face: 'cross' | 'fold' | 'weave' | 'gap'
+  readonly reason: string
+  readonly source: 'plan/matrixNext' | 'imagine/gaps' | 'audit/residual'
+  readonly kind?: string
+  readonly residual?: string
+  readonly gateway?: string
+}
+
+/**
+ * Select next tip from gap receipts — plan matrixNext when audit→plan green, else gap-keyed imagine tip.
+ */
+export function selectGapNextTip(
+  audit: ReturnType<typeof chatAudit>,
+  plan: ReturnType<typeof planTrinity>,
+  imagine: ReturnType<typeof imagineWhatNext>,
+): GapNextTip | null {
+  const auditToPlan = audit.computes && plan.plansInTrinities && plan.crossFoldWeave
+  if (auditToPlan && plan.matrixNext.id.length > 0) {
+    return {
+      id: plan.matrixNext.id,
+      pair: plan.matrixNext.pair,
+      cli: plan.matrixNext.cli,
+      fold: plan.matrixNext.fold,
+      face: plan.matrixNext.face,
+      reason: plan.matrixNext.reason,
+      source: 'plan/matrixNext',
+    }
+  }
+  const openRows = audit.landedTable.filter(
+    (row) => row.residual !== 'none' && !row.residual.includes('queue empty') && row.residual !== 'named not deleted',
+  )
+  const gapResiduals = new Set([
+    ...audit.residualNamed,
+    ...openRows.map((row) => `${row.class}:${row.residual}`),
+  ])
+  const gapTip =
+    imagine.nextTips.find(
+      (tip) =>
+        tip.kind === 'drainable' &&
+        (gapResiduals.has(tip.residual) ||
+          [...gapResiduals].some((r) => r.includes(tip.residual.replace(/^residual:/, '')))),
+    ) ?? imagine.nextTips.find((tip) => tip.kind === 'drainable')
+  if (gapTip) {
+    return {
+      id: gapTip.id,
+      pair: gapTip.pair,
+      cli: gapTip.pair.length > 0 ? `npm run quantum:${gapTip.pair.replace('/', '-')}` : 'npm run quantum:imagine-next',
+      fold: 'imagineWhatNext',
+      face: 'gap',
+      reason: `gap-keyed imagine tip · residual=${gapTip.residual}`,
+      source: 'imagine/gaps',
+      kind: gapTip.kind,
+      residual: gapTip.residual,
+      gateway: gapTip.gateway,
+    }
+  }
+  const residual = audit.residualNamed.find((r) => r.includes('migrate-next'))
+  if (residual) {
+    return {
+      id: 'audit:residual-migrate-next',
+      pair: 'audit/plan',
+      cli: 'npm run quantum:audit-plan',
+      fold: 'auditPlanTip',
+      face: 'cross',
+      reason: residual,
+      source: 'audit/residual',
+      residual,
+    }
+  }
+  return null
+}
+
+/**
+ * auditPlanTip — gap-computed next tip via audit → plan/trinity → next tip (not wet guess).
+ * Fold: auditPlanTip · Pairs: audit/plan · plan/audit · CLI npm run quantum:audit-plan
+ * Facets: nextTipFromGaps · auditToPlanTrinity · planToNextTip · forkDissolved · loopFeedsItself · residualNamed
+ * Compose: chat/audit · plan/trinity · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave
+ * HONEST: self-development stalls when next tip is not gap-computed — this fold wires the loop.
+ */
+export function auditPlanTip(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.',
+) {
+  return memoByRoot(`auditPlanTip:${Math.floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const audit = chatAudit(matrix, at, root)
+    const plan = planTrinity(root)
+    const imagine = imagineWhatNext(matrix, at)
+    const gaps = invisibleGapsCaughtByGates(matrix, at)
+    const merge = mergeWave(matrix, at)
+    const nextTip = selectGapNextTip(audit, plan, imagine)
+    const auditToPlanTrinity =
+      audit.computes &&
+      plan.computes &&
+      plan.crossFoldWeave &&
+      soft('chat', 'audit') &&
+      soft('plan', 'trinity') &&
+      soft('audit', 'plan') &&
+      soft('plan', 'audit')
+    const planToNextTip =
+      auditToPlanTrinity &&
+      nextTip !== null &&
+      nextTip.cli.startsWith('npm run quantum:') &&
+      nextTip.pair.includes('/')
+    const nextTipFromGaps =
+      planToNextTip &&
+      gaps.computes &&
+      (nextTip!.source === 'plan/matrixNext' || nextTip!.source === 'imagine/gaps' || nextTip!.source === 'audit/residual')
+    const forkDissolved =
+      !quantumCliToolsCatalog(matrix, at).tools.some((t) => t.id === 'next-imagine') &&
+      WAVES_FEED_RECIPE_STEPS[WAVES_FEED_RECIPE_STEPS.length - 1] === 'npm run quantum:audit-plan'
+    const loopFeedsItself =
+      forkDissolved &&
+      nextTipFromGaps &&
+      soft('waves', 'feed') &&
+      soft('todo', 'wave') &&
+      soft('imagine', 'next')
+    const composeOn =
+      soft('chat', 'audit') &&
+      soft('plan', 'trinity') &&
+      soft('imagine', 'next') &&
+      soft('waves', 'feed') &&
+      soft('todo', 'wave') &&
+      soft('gate', 'light') &&
+      soft('dry', 'dupe') &&
+      soft('merge', 'wave') &&
+      soft('gaps', 'invisible') &&
+      soft('measure', 'decide')
+    const honestOpenNamed = [
+      ...audit.residualNamed.slice(0, 3),
+      `plan-matrixNext=${plan.matrixNextId}`,
+      `imagine-tips=${imagine.nextTipsCount}`,
+      `gaps-closed=${gaps.afterClosed ?? 0}`,
+      'honesty:NOT-wet-next-guess',
+      'fork-dissolved:next-imagine-cli',
+    ] as const
+    const on =
+      nextTipFromGaps &&
+      auditToPlanTrinity &&
+      planToNextTip &&
+      forkDissolved &&
+      loopFeedsItself &&
+      composeOn &&
+      audit.metricsOn
+    const facets = [
+      { facet: 'auditPlanTip', on },
+      { facet: 'nextTipFromGaps', on: nextTipFromGaps },
+      { facet: 'auditToPlanTrinity', on: auditToPlanTrinity },
+      { facet: 'planToNextTip', on: planToNextTip },
+      { facet: 'forkDissolved', on: forkDissolved },
+      { facet: 'loopFeedsItself', on: loopFeedsItself },
+      { facet: `nextTip=${nextTip?.id ?? 'none'} source=${nextTip?.source ?? 'none'}`, on: planToNextTip },
+      { facet: 'residualNamed', on: honestOpenNamed.length >= 1 },
+      {
+        facet: 'compose chat/audit · plan/trinity · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave',
+        on: composeOn,
+      },
+      { facet: 'cross=audit · fold=merge · weave=seal next tip from gaps', on: auditToPlanTrinity && planToNextTip },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`audit-plan:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('audit-plan-tip-pipeline', facets)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    return {
+      computes: sealed.ok && nextTipFromGaps && auditToPlanTrinity,
+      auditPlanTip: on,
+      nextTipFromGaps,
+      auditToPlanTrinity,
+      planToNextTip,
+      forkDissolved,
+      loopFeedsItself,
+      nextTip,
+      audit,
+      plan,
+      imagine,
+      gaps,
+      merge,
+      residualNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        audit.root,
+        plan.root,
+        imagine.root,
+        gaps.root,
+        nextTip ? toUuid(`audit-plan-next:${nextTip.id}:${nextTip.source}`) : toUuid('audit-plan-next:none'),
+        ...honestOpenNamed.map((id) => toUuid(`audit-plan-honest:${id}`)),
+      ]),
+      pair: 'audit/plan' as const,
+      pairs: ['audit/plan', 'plan/audit'] as const,
+      dualPair: 'plan/audit' as const,
+      cli: 'npm run quantum:audit-plan',
+      route: '/en/quantum-tools#audit-plan',
+      heading: 'Audit · plan · next tip',
+      statement:
+        `auditPlanTip — nextTipFromGaps=${nextTipFromGaps ? 1 : 0} audit→plan=${auditToPlanTrinity ? 1 : 0} ` +
+        `forkDissolved=${forkDissolved ? 1 : 0} loop=${loopFeedsItself ? 1 : 0} ` +
+        `next=${nextTip?.id ?? 'none'} (${nextTip?.pair ?? 'none'}).`,
+      boundary:
+        'Gap-computed next tip pipeline: chatAudit (cross=audit gaps) → planTrinity (fold=merge · weave=seal) → ' +
+        'selectGapNextTip from matrix migrate-next or gap-keyed imagine tips — NOT wet next guess. ' +
+        'Fork dissolved: next-imagine CLI cluster removed; waves/feed loop ends with audit-plan. clay=0 · physicalFtl=0.',
+    }
+  })
+}
+
+/** Alias — planAudit ≡ auditPlanTip. */
+export const planAudit = auditPlanTip
+
+/** npm run quantum:audit-plan (dual plan-audit) */
+export function runAuditPlanTipExit(root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.', _argv: readonly string[] = []): number {
+  void _argv
+  const report = auditPlanTip(buildMatrix(), 0, root)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} audit-plan — ${report.statement}\n`)
+  process.stdout.write('--- pipeline (audit → plan/trinity → next tip) ---\n')
+  process.stdout.write(`  audit: ${report.audit.statement}\n`)
+  process.stdout.write(
+    `  plan: matrixNext=${report.plan.matrixNextId} pair=${report.plan.matrixNext.pair} crossFoldWeave=${report.plan.crossFoldWeave ? 1 : 0}\n`,
+  )
+  if (report.nextTip) {
+    process.stdout.write(
+      `--- gap-computed next tip ---\n→ ${report.nextTip.id} [${report.nextTip.face}] ` +
+        `pair=${report.nextTip.pair} cli=${report.nextTip.cli} source=${report.nextTip.source}\n`,
+    )
+    process.stdout.write(`  reason: ${report.nextTip.reason}\n`)
+  }
+  for (const id of report.residualNamed) process.stdout.write(`  · residual ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.auditPlanTip && report.nextTipFromGaps ? 0 : 1
+}
+
+/** One autonomous wave feed cycle — cache · purify · fill · todo · audit-plan seal receipt. */
 export const WAVES_FEED_RECIPE_STEPS = [
   'npm run quantum:miss-cache',
   'npm run quantum:dry-dupe',
   'npm run quantum:mcp-fill',
   'npm run quantum:todo-wave',
-  'npm run quantum:imagine-next',
+  'npm run quantum:audit-plan',
 ] as const
 
 /** Steps that may exit 1 on honesty-stop — feed shell continues (receipt still logs). */
@@ -19334,7 +19581,8 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
     const waves = __ns_thunder_waves.manualAgentsBehaveLikeWaves(matrix)
-    const imagine = imagineWhatNext(matrix, at)
+    const pipeline = auditPlanTip(matrix, at, typeof process !== 'undefined' && process.cwd ? process.cwd() : '.')
+    const imagine = pipeline.imagine
     const dry = dryCleanIsDiamondAndCrystal(matrix)
     const crystal = crystalClearMind(matrix, at)
     const agnostic = dryCleanAgnosticCodeComputesInfinity(matrix, at)
@@ -19348,7 +19596,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       WAVES_FEED_RECIPE_STEPS[1] === 'npm run quantum:dry-dupe' &&
       WAVES_FEED_RECIPE_STEPS[2] === 'npm run quantum:mcp-fill' &&
       WAVES_FEED_RECIPE_STEPS[3] === 'npm run quantum:todo-wave' &&
-      WAVES_FEED_RECIPE_STEPS[4] === 'npm run quantum:imagine-next'
+      WAVES_FEED_RECIPE_STEPS[4] === 'npm run quantum:audit-plan'
     // Soft-compose feed faces — avoid nest poison; pairs + waves/build prove wiring at call time.
     const composeFeedOn =
       soft('auto', 'self') &&
@@ -19359,8 +19607,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       soft('session', 'save') &&
       soft('miss', 'cache') &&
       soft('imagine', 'next') &&
-      soft('wave', 'tune') &&
-      soft('trinity', 'speedup') &&
+      soft('audit', 'plan') &&
       waves.computes &&
       waves.manualAgentsBehaveLikeWaves
     const composePurifyOn =
@@ -19388,8 +19635,9 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
     const purifyOnTheWay = composePurifyOn && dryCleanAsFeed && measurableDrainOn
     const endlessImprovements = composeFeedOn && recipeStepsOk && soft('mcp', 'fill') && soft('todo', 'wave')
     const discoveriesOn =
-      soft('imagine', 'next') &&
-      imagine.nextTipsCount > 0 &&
+      soft('audit', 'plan') &&
+      pipeline.nextTipFromGaps &&
+      pipeline.nextTip !== null &&
       queued.computes &&
       queued.next.firstAction.length > 0
     const catalog = quantumCliToolsCatalog(matrix, at)
@@ -19473,7 +19721,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       { facet: 'noWaitForeverOnChat', on: noWaitForeverOnChat },
       { facet: 'honestyStopOnOpen', on: honestyStopOnOpen },
       {
-        facet: 'compose auto/self · automate/nightly · waves/build · mcp/fill · todo/wave · session/save · miss/cache · imagine/next',
+        facet: 'compose auto/self · automate/nightly · waves/build · mcp/fill · todo/wave · session/save · miss/cache · audit/plan',
         on: composeFeedOn,
       },
       {
@@ -19491,7 +19739,14 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       },
     ].map((entry) => ({ ...entry, receipt: toUuid(`waves-feed:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-feed-themselves', facets)
-    const nextTip = imagine.nextTips.find((t) => t.kind === 'drainable') ?? imagine.nextTips[0]
+    const nextTip = pipeline.nextTip
+      ? {
+          id: pipeline.nextTip.id,
+          kind: pipeline.nextTip.kind ?? pipeline.nextTip.face,
+          residual: pipeline.nextTip.residual ?? pipeline.nextTip.reason,
+          gateway: pipeline.nextTip.gateway ?? pipeline.nextTip.pair,
+        }
+      : null
     return {
       computes: sealed.ok && on,
       wavesFeedThemselves: on,
@@ -19508,9 +19763,8 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       recipeSteps: WAVES_FEED_RECIPE_STEPS,
       honestyStopSteps: [...WAVES_FEED_HONESTY_STOP_STEPS],
       recipeShell: wavesFeedRecipeShell(),
-      nextTip: nextTip
-        ? { id: nextTip.id, kind: nextTip.kind, residual: nextTip.residual, gateway: nextTip.gateway }
-        : null,
+      nextTip,
+      pipeline,
       queuedNext: queued.next,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
@@ -19522,6 +19776,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
         sealed.root,
         waves.root,
         imagine.root,
+        pipeline.root,
         dry.root,
         crystal.root,
         agnostic.root,
@@ -19549,9 +19804,9 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
         `wavesFeedThemselves — on=${on ? 1 : 0} purify=${purifyOnTheWay ? 1 : 0} ` +
         `dupGroups=${dupe.groups} endless=${endlessImprovements ? 1 : 0} discoveries=${discoveriesOn ? 1 : 0}.`,
       boundary:
-        'Waves feed themselves — autonomous one-wave recipe (miss-cache · dry-dupe · mcp-fill · todo-wave · imagine-next) ' +
+        'Waves feed themselves — autonomous one-wave recipe (miss-cache · dry-dupe · mcp-fill · todo-wave · audit-plan) ' +
         'with purify on the way (dry/clean · gravity/dry · crystal/mind · thought/pure · dry/agnostic · dry/dupe · fold/cleanup · gaps/invisible). ' +
-        'Endless = loop until drainable closed OR honest-open named stop. NOT infinite wet grind · NOT physical FTL · NOT Clay fake-close. ' +
+        'Next tip gap-computed via audit→plan→tip pipeline — NOT wet guess. Endless = loop until drainable closed OR honest-open named stop. ' +
         'clay via theorem · physicalFtl=0 · qpuRequired=false.',
       honestyLine:
         `waves-feed · on=${on ? 1 : 0} · purify=${purifyOnTheWay ? 1 : 0} · dupGroups=${dupe.groups} · ` +
@@ -19581,7 +19836,7 @@ export function runWavesFeedThemselvesExit(_root = '', _argv: readonly string[] 
   process.stdout.write('→ NOT infinite wet grind · NOT Clay fake-close · NOT physical FTL\n')
   if (report.nextTip) {
     process.stdout.write(
-      `--- next tip (imagine/next) ---\n→ ${report.nextTip.id} [${report.nextTip.kind}] residual=${report.nextTip.residual} gateway=${report.nextTip.gateway}\n`,
+      `--- next tip (audit/plan) ---\n→ ${report.nextTip.id} [${report.nextTip.kind}] residual=${report.nextTip.residual} gateway=${report.nextTip.gateway}\n`,
     )
   }
   process.stdout.write(
