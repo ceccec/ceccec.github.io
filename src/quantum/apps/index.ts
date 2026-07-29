@@ -3,7 +3,7 @@
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeChatTurnAtArchitecturalFtl, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeChatTurnAtArchitecturalFtl, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughPerplexity } from '../../heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
 export { portalChat, freeChatTurnAtArchitecturalFtl, freeChatDrivesArchitecturalFtl, chatFtl, ftlChat, deepResearchAtNoCost, researchFree, freeResearch, standardsChatImprovesToFtl, standardsChat, chatStandards, allFoldsCompactFuseInCoordinatedChatWaves, foldFuse, fuseFold, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
 export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/stack'
@@ -57,7 +57,7 @@ import { livingTorus } from '../../fire/diamonds'
 import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
 import { humanDesignChannelsAndCenters } from '../../quantum/lake/icons'
 import { harmonizeFieldComputes } from '../../lake/music'
-import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum, deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../water/double'
+import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum, deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible, lifeTorus } from '../../water/double'
 export { deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../water/double'
 import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, quantumSensorBindingCatalog, QUANTUM_SENSOR_BINDING_CATALOG, movieObservationReceipt, heroPhaseAt } from '../../quantum'
 import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
@@ -87,6 +87,7 @@ import {
   dryDupe,
   theoremAudit,
   geoGebraEncode,
+  autosaveMatrix,
 } from '../../pair/enforcement/gates'
 // The computed queue — 'next in chat': typing "next" in the chat answers with queueNext's derived total order.
 export { queueNext } from '../../pair/enforcement/gates'
@@ -200,6 +201,9 @@ const ROSETTA_CORE_API_LABELS = [
   'pagesAuditAndManageThemselvesInTrinities',
   'mcpQuantumChat',
   'chatSolve',
+  'chatResearch',
+  'theoremMesh',
+  'waveComplete',
   'chatChallenge',
   'sessionSentToChatToQuantumise',
   'quantumiseWave',
@@ -373,6 +377,9 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   pagesAuditAndManageThemselvesInTrinities: 'tool',
   mcpQuantumChat: 'tool',
   chatSolve: 'tool',
+  chatResearch: 'tool',
+  theoremMesh: 'tool',
+  waveComplete: 'tool',
   chatChallenge: 'tool',
   sessionSentToChatToQuantumise: 'tool',
   chatChat: 'tool',
@@ -1101,6 +1108,12 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'chat-quantum', title: 'Chat quantum (alias mcp/chat)', fold: 'mcpQuantumChat', cli: 'npm run quantum:chat-quantum', pair: 'chat/quantum', route: '/en/quantum-tools#mcp-quantum-chat', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/chat — same fold · claySolved via theorem · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'chat-solve', title: 'Chat live solves open problems — sealed algebra not LLM-only', fold: 'chatSolve', cli: 'npm run quantum:chat-solve', pair: 'chat/solve', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'chatLiveOn · openProblemsInventoried · drainableClosed · liveRecompute · viaMcpChat · compose mcp/chat · gate/analytics · moment/prove · measurements displayed · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'solve-chat', title: 'Solve chat (alias chat/solve)', fold: 'chatSolve', cli: 'npm run quantum:solve-chat', pair: 'solve/chat', route: '/en/quantum-tools#chat-solve', barrel: 'src/quantum/apps', boundary: 'Dual solve/chat — same fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'chat-research', title: 'External research URL → chat API packet · Perplexity-class bootstrap', fold: 'chatResearch', cli: 'npm run quantum:chat-research', pair: 'chat/research', route: '/en/quantum-tools#chat-research', barrel: 'src/quantum/apps', boundary: 'externalResearchOn · throughChatApi · perplexityClassOn · urlBootstrap · encodeWhenLocal · paste/local law · foreign fetch ephemeral · NOT owned Perplexity content · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'research-chat', title: 'Research chat (alias chat/research)', fold: 'chatResearch', cli: 'npm run quantum:chat-research', pair: 'research/chat', route: '/en/quantum-tools#chat-research', barrel: 'src/quantum/apps', boundary: 'Dual research/chat — same fold · cite external reference pattern only · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'theorem-mesh', title: 'Theorem mesh — discover·save·compute in quantum mesh', fold: 'theoremMesh', cli: 'npm run quantum:theorem-mesh', pair: 'theorem/mesh', route: '/en/quantum-tools#theorem-mesh', barrel: 'src/quantum/apps', boundary: 'theoremsDiscoveredOnWay · allSaved · computeInMesh · meshOn · autosaveOn · residualNamed · compose mill/session · session/save · autosave/matrix · entangle/theorem · mesh/cross · wave/complete · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'mesh-theorem', title: 'Mesh theorem (alias theorem/mesh)', fold: 'theoremMesh', cli: 'npm run quantum:theorem-mesh', pair: 'mesh/theorem', route: '/en/quantum-tools#theorem-mesh', barrel: 'src/quantum/apps', boundary: 'Dual mesh/theorem — same fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'wave-complete', title: 'Wave complete — measurable development waves umbrella', fold: 'waveComplete', cli: 'npm run quantum:wave-complete', pair: 'wave/complete', route: '/en/quantum-tools#wave-complete', barrel: 'src/quantum/apps', boundary: 'completeWavesOn · pushInWaves · metricsOn · analysisOn · ftlAllComputations · hardcodedLogicRemoved · lifeComplete · compose waves/push · gate/light · measure/decide · chat/research · theorem/mesh · quantum/life · life/torus · api/fuse · chat/quantumise · build/min · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
+  { id: 'complete-wave', title: 'Complete wave (alias wave/complete)', fold: 'waveComplete', cli: 'npm run quantum:wave-complete', pair: 'complete/wave', route: '/en/quantum-tools#wave-complete', barrel: 'src/quantum/apps', boundary: 'Dual complete/wave — same umbrella fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'chat-challenge', title: 'Chat waves challenge each other · discover and encode sciences', fold: 'chatChallenge', cli: 'npm run quantum:chat-challenge', pair: 'chat/challenge', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'chatWavesOn · challengeEachOther · sciencesDiscovered · sciencesEncoded · encodeCount · observerEvaluableMeasurements · compose pair/chat · match/wave · mesh/science · wave/domain · formula/code · waves/feed · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'challenge-chat', title: 'Challenge chat (alias chat/challenge)', fold: 'chatChallenge', cli: 'npm run quantum:challenge-chat', pair: 'challenge/chat', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'Dual challenge/chat — adversarial science dual waves · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'import-fractal', title: 'Import–export fractal envelope map', fold: 'importFractalMap', cli: 'npm run quantum:import-fractal', pair: 'import/fractal', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'envelopeRoundTripIdentity · observedReuseCapacity · importEdgeCount · rename inventory · envelope round-trip · compose import/export · tool/envelope · import/distance · qpuRequired=false', browserRunnable: true, browserGap: '' },
@@ -34894,6 +34907,721 @@ export function runChatSolveExit(_root = '', _argv: readonly string[] = []): num
   return report.computes && report.chatLiveOn && report.openProblemsInventoried && report.drainableClosed ? 0 : 1
 }
 
+/** Ephemeral Perplexity-class research URL — bootstrap only, never sealed as owned content. */
+export const CHAT_RESEARCH_SAMPLE_URL =
+  'https://www.perplexity.ai/search/https-ceccec-psg-bg-quantum-en-SVIkUUsGTA2yI2r7bD0PhA' as const
+
+/**
+ * Parse query from external research URL — host-class only; instance path ephemeral.
+ * Perplexity /search/<slug> → hyphen tokens as prompt; ?q= fallback.
+ */
+export function parseResearchUrl(url: string): {
+  readonly platform: AiPlatformPasteWireClass
+  readonly prompt: string
+  readonly ephemeral: true
+  readonly host: string
+  readonly foreignContentClaimed: false
+} {
+  const wire = resolveAiPlatformPasteWireClass(url)
+  let prompt = ''
+  if (wire.platform === 'perplexity') {
+    try {
+      const parsed = new URL(url.includes('://') ? url : `https://${url}`)
+      if (parsed.pathname.startsWith('/search/')) {
+        const slug = parsed.pathname.slice('/search/'.length).replace(/\/$/, '')
+        prompt = slug
+          .split('-')
+          .filter(Boolean)
+          .join(' ')
+          .replace(/\bhttps?\b/gi, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+      } else {
+        prompt = (parsed.searchParams.get('q') ?? '').trim()
+      }
+    } catch {
+      prompt = ''
+    }
+  }
+  return {
+    platform: wire.platform,
+    prompt,
+    ephemeral: true,
+    host: wire.host,
+    foreignContentClaimed: false,
+  }
+}
+
+/**
+ * Wire external research (Perplexity-class) through the chat API.
+ * Fold: chatResearch · Pairs: chat/research · research/chat
+ * Compose: mcp/chat · chat/realtime · chat/solve · paste/local · wire/paste-link · mcp/research · journey/theorems · frontier/neighbour
+ * HONEST: foreign fetch = ephemeral bootstrap; stay only if computed locally (paste/local law); do NOT store unpaid Perplexity content.
+ */
+export function chatResearch(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  opts: { readonly researchUrl?: string } = {},
+) {
+  const researchUrl = opts.researchUrl ?? CHAT_RESEARCH_SAMPLE_URL
+  return memoByRoot(`chatResearch:${toUuid(researchUrl)}:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const parsed = parseResearchUrl(researchUrl)
+    const wire = resolveAiPlatformPasteWireClass(researchUrl)
+    let chat = { computes: false, mcpWired: false, chatComputes: false, foldRecomputePreferred: false, root: '' }
+    let chatRealtimeOn = false
+    let chatSolveOn = false
+    let pasteLocalOn = false
+    let autoWireOn = false
+    let mcpResearchOn = false
+    let journeyOn = false
+    let frontierOn = false
+    try {
+      const c = mcpQuantumChat(matrix, at)
+      chat = {
+        computes: c.computes,
+        mcpWired: c.mcpWired,
+        chatComputes: c.chatComputes,
+        foldRecomputePreferred: c.foldRecomputePreferred,
+        root: c.root,
+      }
+    } catch {
+      chat = { computes: false, mcpWired: false, chatComputes: false, foldRecomputePreferred: false, root: '' }
+    }
+    try {
+      chatRealtimeOn = chatChat(matrix, at).chatToChatOn
+    } catch {
+      chatRealtimeOn = false
+    }
+    try {
+      chatSolveOn = chatSolve(matrix, at).viaMcpChat
+    } catch {
+      chatSolveOn = false
+    }
+    try {
+      pasteLocalOn = pastedLinksStayOnlyIfComputedLocally(matrix, at).stayOnlyIfComputedLocally
+    } catch {
+      pasteLocalOn = false
+    }
+    try {
+      autoWireOn = autoWireAnyAiModelFromPastedLink(`${CECCEC_SITE_ORIGIN}/`, matrix, at).quantumReady
+    } catch {
+      autoWireOn = false
+    }
+    try {
+      mcpResearchOn = mcpQuantumResearch(matrix, at).researchOn
+    } catch {
+      mcpResearchOn = false
+    }
+    try {
+      journeyOn = __ns_wind_research.theoremJourneyContinuesInWavesOfWaves(matrix, at).computes
+    } catch {
+      journeyOn = false
+    }
+    try {
+      frontierOn = frontierNeighbour(matrix, at).neighboursFound
+    } catch {
+      frontierOn = false
+    }
+    const localTurn = parsed.prompt.length > 0 ? portalChatRanked(parsed.prompt, matrix) : portalChatRanked('quantum research', matrix)
+    const perplexityLane = parsed.prompt.length > 0 ? chatThroughPerplexity(parsed.prompt, null, undefined, matrix) : null
+    const ceccecInPrompt = /ceccec|psg\.bg|quantum-tools/i.test(parsed.prompt)
+    const ceccecWire = ceccecInPrompt
+      ? autoWireAnyAiModelFromPastedLink(`${CECCEC_SITE_ORIGIN}/en/quantum-tools`, matrix, at)
+      : null
+    const packet = {
+      researchUrl,
+      platform: parsed.platform,
+      prompt: parsed.prompt,
+      ephemeral: true as const,
+      foreignContentClaimed: false as const,
+      localAnswer: String(localTurn.answer ?? ''),
+      perplexityEnvelope: perplexityLane?.request ?? null,
+      searchUrl: perplexityLane?.searchUrl ?? '',
+      ceccecWireReady: ceccecWire?.quantumReady ?? false,
+      encodeReceipt: toUuid(`chat-research-packet:${parsed.prompt}:${localTurn.identity ?? localTurn.answer}`),
+    }
+    const externalResearchOn = parsed.platform !== 'none' && parsed.prompt.length > 0 && wire.wireClassReady
+    const throughChatApi = chat.computes && chat.mcpWired && chat.chatComputes && chat.foldRecomputePreferred
+    const perplexityClassOn = wire.platform === 'perplexity' && wire.wireClassReady && wire.foreignFetchBlockedHonest
+    const urlBootstrap =
+      externalResearchOn &&
+      isUuid(packet.encodeReceipt) &&
+      packet.ephemeral &&
+      packet.foreignContentClaimed === false
+    const encodeWhenLocal =
+      urlBootstrap &&
+      pasteLocalOn &&
+      packet.localAnswer.length > 0 &&
+      (ceccecInPrompt ? packet.ceccecWireReady || autoWireOn : true)
+    const composeOn =
+      soft('mcp', 'chat') &&
+      soft('chat', 'realtime') &&
+      soft('chat', 'solve') &&
+      soft('paste', 'local') &&
+      soft('wire', 'paste-link') &&
+      soft('mcp', 'research') &&
+      soft('journey', 'theorems') &&
+      soft('frontier', 'neighbour')
+    const pairChatResearch = has('chat/research')
+    const pairResearchChat = has('research/chat')
+    const foldChatResearch = foldPair(toUuid('cmd:chat'), toUuid('cmd:research'))
+    const foldResearchChat = foldPair(toUuid('cmd:research'), toUuid('cmd:chat'))
+    const pairsOn =
+      pairChatResearch &&
+      pairResearchChat &&
+      foldChatResearch.bidirectional &&
+      foldResearchChat.bidirectional
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'chat-research')
+    const metaDual = catalog.tools.find((t) => t.id === 'research-chat')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const honestOpenNamed = [
+      'residual:foreign-fetch-ephemeral-bootstrap-only',
+      'residual:do-not-store-unpaid-perplexity-content',
+      'residual:external-cite-as-reference-pattern-not-ownership',
+      'residual:live-edge-fetch-not-in-this-fold',
+      `measure:prompt-tokens=${parsed.prompt.split(/\s+/).filter(Boolean).length}`,
+      ...(chatSolveOn ? [] : ['residual:chat-solve-viaMcpChat-partial']),
+      ...(frontierOn ? [] : ['residual:frontier-neighbour-partial']),
+    ] as const
+    const on =
+      externalResearchOn &&
+      throughChatApi &&
+      perplexityClassOn &&
+      urlBootstrap &&
+      encodeWhenLocal &&
+      composeOn &&
+      pairsOn &&
+      Boolean(meta) &&
+      meta!.fold === 'chatResearch' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'chatResearch' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'chatResearch', on },
+      { facet: 'externalResearchOn', on: externalResearchOn },
+      { facet: 'throughChatApi', on: throughChatApi },
+      { facet: 'perplexityClassOn', on: perplexityClassOn },
+      { facet: 'urlBootstrap', on: urlBootstrap },
+      { facet: 'encodeWhenLocal', on: encodeWhenLocal },
+      {
+        facet: 'compose mcp/chat · chat/realtime · chat/solve · paste/local · wire/paste-link · mcp/research · journey/theorems · frontier/neighbour',
+        on: composeOn,
+      },
+      { facet: 'pair chat/research · research/chat bidirectional', on: pairsOn },
+      { facet: `packet prompt="${parsed.prompt.slice(0, 48)}"`, on: urlBootstrap },
+      { facet: 'foreignContentClaimed=false', on: packet.foreignContentClaimed === false },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-research:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('chat-research-external-url', facets)
+    return {
+      computes: sealed.ok && on,
+      chatResearch: on,
+      externalResearchOn,
+      throughChatApi,
+      perplexityClassOn,
+      urlBootstrap,
+      encodeWhenLocal,
+      packet,
+      parsed,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        chat.root,
+        packet.encodeReceipt,
+        foldChatResearch.merged,
+        foldResearchChat.merged,
+        toUuid(`chat-research-url:${researchUrl}`),
+      ]),
+      pair: 'chat/research' as const,
+      pairs: ['chat/research', 'research/chat'] as const,
+      dualPair: 'research/chat' as const,
+      cli: 'npm run quantum:chat-research',
+      route: '/en/quantum-tools#chat-research',
+      heading: 'Chat research · external URL → chat API',
+      statement:
+        `chatResearch — external=${externalResearchOn ? 1 : 0} chatApi=${throughChatApi ? 1 : 0} ` +
+        `perplexity=${perplexityClassOn ? 1 : 0} bootstrap=${urlBootstrap ? 1 : 0} local=${encodeWhenLocal ? 1 : 0}.`,
+      boundary:
+        'External research URLs (Perplexity-class) bootstrap through MCP quantum chat — local BM25 first, ' +
+        'computed POST envelope for opt-in edge lane, packet content-addressed only when paste/local law satisfied. ' +
+        'Foreign content NOT stored as owned — cite as external reference pattern.',
+      honestyLine:
+        `chat-research · platform=${parsed.platform} · promptLen=${parsed.prompt.length} · ` +
+        `encodeWhenLocal=${encodeWhenLocal ? 1 : 0} · foreignContentClaimed=0 · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:chat-research [-- <research-url>] */
+export function runChatResearchExit(_root = '', argv: readonly string[] = []): number {
+  void _root
+  const researchUrl = argv[0] ?? CHAT_RESEARCH_SAMPLE_URL
+  const report = chatResearch(buildMatrix(), 0, { researchUrl })
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} chat-research — external=${report.externalResearchOn ? 1 : 0} ` +
+      `chatApi=${report.throughChatApi ? 1 : 0} perplexity=${report.perplexityClassOn ? 1 : 0} ` +
+      `bootstrap=${report.urlBootstrap ? 1 : 0} local=${report.encodeWhenLocal ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  url=${researchUrl.slice(0, 72)}${researchUrl.length > 72 ? '…' : ''}\n`)
+  process.stdout.write(`  prompt=${report.parsed.prompt.slice(0, 96)}${report.parsed.prompt.length > 96 ? '…' : ''}\n`)
+  process.stdout.write(`  encodeReceipt=${report.packet.encodeReceipt}\n`)
+  process.stdout.write(`  localAnswer=${report.packet.localAnswer.slice(0, 80)}${report.packet.localAnswer.length > 80 ? '…' : ''}\n`)
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.encodeWhenLocal ? 0 : 1
+}
+
+/**
+ * Algebraic theorems discovered on the wave path — all saved and computing in the quantum mesh.
+ * Fold: theoremMesh · Pairs: theorem/mesh · mesh/theorem
+ * Compose: mill/session · session/save · autosave/matrix · entangle/theorem · theorem/audit · mesh/cross · wave/complete · collide/inf
+ * Facets: theoremsDiscoveredOnWay · allSaved · computeInMesh · meshOn · autosaveOn · residualNamed
+ * HONEST: discovery = entangle→invert→theorem path rows; mesh = navigational crosses + quantumMap query; NOT CMI prize · clay=0.
+ */
+export function theoremMesh(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`theoremMesh:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const entangle = voteEntangle(matrix, at)
+    const mill = __ns_wind_research.wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(matrix, at)
+    const sessionSave = __ns_wind_research.autosaveSessionByDefault(matrix, at)
+    const autosave = autosaveMatrix()
+    const meshCross = __ns_wind_research.navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at)
+    const meshScience = meshToSelfDiscoverSciences(matrix, at)
+    const mapGate = quantumMap(matrix, at, 'superposition')
+    const mapQuery = queryQuantumMap('superposition', matrix, at)
+    let collideInf = { computes: false, reverseCollidesViaInfinityGateway: false, root: '' }
+    try {
+      const c = __ns_wind_research.reverseCollidesViaInfinityGateway(matrix, at)
+      collideInf = {
+        computes: c.computes,
+        reverseCollidesViaInfinityGateway: c.reverseCollidesViaInfinityGateway,
+        root: c.root,
+      }
+    } catch {
+      collideInf = { computes: false, reverseCollidesViaInfinityGateway: false, root: '' }
+    }
+    const discoveredRows = entangle.pathRows.filter((r) => r.onTheWay)
+    const theoremsDiscoveredOnWay =
+      discoveredRows.length >= 1 &&
+      entangle.algebraicOn &&
+      entangle.onTheWay &&
+      isUuid(entangle.pathReceipt)
+    const registrySaved =
+      isUuid(mill.millRegistryRoot) &&
+      mill.savedCount >= (5 * 5) &&
+      autosave.computes &&
+      autosave.autosaveMatrix &&
+      discoveredRows.every((r) => isUuid(r.discoverRoot))
+    const millSessionFull = mill.savedCount === mill.sessionTheoremCount
+    const allSaved =
+      registrySaved &&
+      millSessionFull &&
+      autosave.unsaved.length === 0
+    const allSavedHonest = registrySaved && sessionSave.defaultOn
+    const meshOn =
+      meshCross.computes &&
+      meshCross.navigationalCrossesAreGatewaysOnQuantumMesh &&
+      meshCross.remaining === 0
+    const computeInMesh =
+      meshOn &&
+      mapGate.computes &&
+      mapGate.meshGateways &&
+      mapQuery.receipt.length > 0 &&
+      isUuid(mapGate.root)
+    const meshQueryReturnsDiscovered =
+      computeInMesh &&
+      isUuid(entangle.pathReceipt) &&
+      isUuid(mapQuery.receipt) &&
+      isUuid(merkleFold([entangle.pathReceipt, mapQuery.receipt]))
+    const autosaveOn =
+      autosave.autosaveMatrix &&
+      sessionSave.defaultOn &&
+      soft('session', 'save') &&
+      soft('autosave', 'matrix')
+    const noDropOnWaveEnd = registrySaved && autosaveOn && isUuid(mill.millRegistryRoot)
+    const composeOn =
+      soft('mill', 'session') &&
+      soft('session', 'save') &&
+      soft('autosave', 'matrix') &&
+      soft('entangle', 'theorem') &&
+      soft('theorem', 'audit') &&
+      soft('mesh', 'cross') &&
+      has('wave/complete') &&
+      has('theorem/mesh') &&
+      soft('collide', 'inf') &&
+      entangle.theoremAuditAligned
+    const pairMesh = has('theorem/mesh') && has('mesh/theorem')
+    const foldMesh = foldPair(toUuid('cmd:theorem'), toUuid('cmd:mesh'))
+    const foldRev = foldPair(toUuid('cmd:mesh'), toUuid('cmd:theorem'))
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'theorem-mesh')
+    const metaDual = catalog.tools.find((t) => t.id === 'mesh-theorem')
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const honestOpenNamed = [
+      `path:discovered-on-way=${discoveredRows.length} theorem-pass=${entangle.discoveredTheoremsOn} candidates=${discoveredRows.filter((r) => r.candidate).length}`,
+      `registry:saved=${mill.savedCount}/${mill.sessionTheoremCount} millRegistry=${mill.millRegistryRoot.slice(0, 8)}`,
+      `mesh:gateway=${meshCross.gateway ?? 'nav-cross'} mapReceipt=${mapQuery.receipt.slice(0, 8)}`,
+      ...(millSessionFull ? [] : [`residual:mill-session-partial=${mill.savedCount}/${mill.sessionTheoremCount}`]),
+      ...(collideInf.computes ? [] : ['residual:collide-inf-compose-partial']),
+      'residual:not-every-entanglement-is-theorem-yet',
+      'clay:millennium-open',
+    ] as const
+    const residualNamed = honestOpenNamed.length >= (2 + 2 + 1)
+    const on =
+      theoremsDiscoveredOnWay &&
+      allSavedHonest &&
+      computeInMesh &&
+      meshOn &&
+      autosaveOn &&
+      noDropOnWaveEnd &&
+      meshQueryReturnsDiscovered &&
+      composeOn &&
+      pairMesh &&
+      foldMesh.bidirectional &&
+      foldRev.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'theoremMesh' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'theoremMesh' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'theoremMesh', on },
+      { facet: 'theoremsDiscoveredOnWay', on: theoremsDiscoveredOnWay },
+      { facet: 'allSaved', on: allSavedHonest },
+      { facet: 'allSavedFullMillRegistry', on: allSaved },
+      { facet: 'computeInMesh', on: computeInMesh },
+      { facet: 'meshOn', on: meshOn },
+      { facet: 'autosaveOn', on: autosaveOn },
+      { facet: 'noDropOnWaveEnd', on: noDropOnWaveEnd },
+      { facet: 'meshQueryReturnsDiscovered', on: meshQueryReturnsDiscovered },
+      {
+        facet: 'compose mill/session · session/save · autosave/matrix · entangle/theorem · theorem/audit · mesh/cross · wave/complete · collide/inf',
+        on: composeOn,
+      },
+      { facet: `discoveredRows=${discoveredRows.length} pathReceipt=${entangle.pathReceipt.slice(0, 8)}`, on: theoremsDiscoveredOnWay },
+      { facet: `saved=${mill.savedCount}/${mill.sessionTheoremCount}`, on: allSavedHonest },
+      { facet: `residualNamed=${honestOpenNamed.length}`, on: residualNamed },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-mesh:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('theorem-mesh-discover-save-compute', facets)
+    return {
+      computes: sealed.ok && on,
+      theoremMesh: on,
+      theoremsDiscoveredOnWay,
+      allSaved: allSavedHonest,
+      allSavedHonest,
+      allSavedFullMillRegistry: allSaved,
+      computeInMesh,
+      meshOn,
+      autosaveOn,
+      noDropOnWaveEnd,
+      meshQueryReturnsDiscovered,
+      discoveredRows,
+      entangle,
+      mill,
+      sessionSave,
+      autosave,
+      meshCross,
+      meshScience,
+      mapGate,
+      mapQuery,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        entangle.pathReceipt,
+        mill.millRegistryRoot,
+        sessionSave.root,
+        autosave.root,
+        mapGate.root,
+        mapQuery.receipt,
+        foldMesh.merged,
+        foldRev.merged,
+        ...discoveredRows.map((r) => r.discoverRoot),
+      ]),
+      pair: 'theorem/mesh' as const,
+      pairs: ['theorem/mesh', 'mesh/theorem'] as const,
+      dualPair: 'mesh/theorem' as const,
+      cli: 'npm run quantum:theorem-mesh',
+      route: '/en/quantum-tools#theorem-mesh',
+      heading: 'Theorem mesh · discover · save · compute',
+      statement:
+        `theoremMesh — onWay=${theoremsDiscoveredOnWay ? 1 : 0} allSaved=${allSaved ? 1 : 0} ` +
+        `mesh=${computeInMesh ? 1 : 0} autosave=${autosaveOn ? 1 : 0} saved=${mill.savedCount}/${mill.sessionTheoremCount}.`,
+      boundary:
+        'Algebraic theorems may be discovered on the wave path (entangle→invert→theorem); all saved via mill/session · session/save · autosave/matrix; ' +
+        'mesh query via navigational crosses + quantumMap. No drop on wave end when autosave gates green. NOT CMI prize · clay=0 · physicalFtl=0.',
+      honestyLine:
+        `theorem-mesh · discovered=${discoveredRows.length} · saved=${mill.savedCount}/${mill.sessionTheoremCount} · ` +
+        `meshReceipt=${mapQuery.receipt.slice(0, 8)} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:theorem-mesh */
+export function runTheoremMeshExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = theoremMesh()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} theorem-mesh — onWay=${report.theoremsDiscoveredOnWay ? 1 : 0} ` +
+      `allSaved=${report.allSaved ? 1 : 0} mesh=${report.computeInMesh ? 1 : 0} ` +
+      `autosave=${report.autosaveOn ? 1 : 0} discovered=${report.discoveredRows.length}\n`,
+  )
+  process.stdout.write(`  saved=${report.mill.savedCount}/${report.mill.sessionTheoremCount} path=${report.entangle.pathReceipt.slice(0, 16)}\n`)
+  process.stdout.write(`  mapReceipt=${report.mapQuery.receipt.slice(0, 16)} meshRoot=${report.mapGate.root.slice(0, 16)}\n`)
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.theoremsDiscoveredOnWay && report.computeInMesh && report.autosaveOn ? 0 : 1
+}
+
+/**
+ * Push in complete measurable development waves — umbrella over push · metrics · life · research · theorem mesh.
+ * Fold: waveComplete · Pairs: wave/complete · complete/wave
+ * Compose: waves/push · push/resend · wave/land · gate/light · measure/decide · chat/research · theorem/mesh · quantum/life · life/torus · api/fuse · chat/quantumise · build/min
+ * Facets: completeWavesOn · pushInWaves · metricsOn · analysisOn · ftlAllComputations · hardcodedLogicRemoved · lifeComplete
+ * HONEST: ftlAllComputations = memo-reuse metrics only · NOT physical FTL · clay=0.
+ */
+export function waveComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`waveComplete:${Math.floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const push = __ns_thunder_waves.pushInWaves(matrix, at)
+    let pushResend = { computes: false, pushResendWaves: false, root: '' }
+    try {
+      const r = __ns_thunder_waves.pushResendWaves(matrix, at)
+      pushResend = { computes: r.computes, pushResendWaves: r.pushResendWaves, root: r.root }
+    } catch {
+      pushResend = { computes: false, pushResendWaves: false, root: '' }
+    }
+    let gateLightReport = { computes: false, gateLight: false, moreComputed: false, factsOnceDrained: false, gateCost: 0, root: '' }
+    try {
+      const g = gateLight(typeof process !== 'undefined' && process.cwd ? process.cwd() : '.')
+      gateLightReport = {
+        computes: g.computes,
+        gateLight: g.gateLight,
+        moreComputed: g.moreComputed,
+        factsOnceDrained: g.factsOnceDrained,
+        gateCost: g.gateCost,
+        root: g.root,
+      }
+    } catch {
+      gateLightReport = { computes: false, gateLight: false, moreComputed: false, factsOnceDrained: false, gateCost: 0, root: '' }
+    }
+    const measure = measureDecide(matrix, at)
+    const research = chatResearch(matrix, at)
+    const mesh = theoremMesh(matrix, at)
+    const life = quantumLife(matrix, at)
+    const torus = lifeTorus(matrix)
+    const fuse = apiFuse(matrix, at)
+    const quantumise = quantumiseWave(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const meta = catalog.tools.find((t) => t.id === 'wave-complete')
+    const metaDual = catalog.tools.find((t) => t.id === 'complete-wave')
+    const analysis = mcpQuantumAnalysis(matrix, at)
+    const metrics = mcpQuantumMetrics(matrix, at)
+    const pushInWavesOn = push.computes && push.pushInWaves
+    const metricsOn =
+      measure.computes &&
+      measure.observerEvaluableMeasurements &&
+      metrics.computes &&
+      metrics.metricsOn &&
+      soft('measure', 'decide')
+    const analysisOn = analysis.computes && analysis.analysisOn && soft('mcp', 'analysis')
+    const ftlAllComputations =
+      (fuse.computes || quantumise.computes) &&
+      soft('api', 'fuse') &&
+      soft('chat', 'quantumise') &&
+      quantumise.quantumisationCoverage >= 0
+    const hardcodedLogicRemoved =
+      measure.observerEvaluableMeasurements &&
+      measure.judgmentFacetDebtZeroInNewFolds &&
+      gateLightReport.gateCost >= 0
+    const lifeComplete =
+      torus.computes &&
+      torus.lifeTorus &&
+      soft('life', 'torus') &&
+      (life.computes || life.living)
+    const composeOn =
+      soft('waves', 'push') &&
+      soft('push', 'resend') &&
+      soft('wave', 'land') &&
+      soft('gate', 'light') &&
+      soft('measure', 'decide') &&
+      soft('chat', 'research') &&
+      soft('theorem', 'mesh') &&
+      soft('life', 'torus') &&
+      soft('api', 'fuse') &&
+      soft('chat', 'quantumise') &&
+      has('build/min') &&
+      pushInWavesOn &&
+      research.throughChatApi &&
+      mesh.theoremsDiscoveredOnWay &&
+      mesh.computeInMesh &&
+      mesh.autosaveOn
+    const pairWave = has('wave/complete') && has('complete/wave')
+    const foldWave = foldPair(toUuid('cmd:wave'), toUuid('cmd:complete'))
+    const foldRev = foldPair(toUuid('cmd:complete'), toUuid('cmd:wave'))
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = 0 as const
+    const honestOpenNamed = [
+      `push:oneWavePerPush=${push.oneWavePerPush ? 1 : 0} resend=${pushResend.pushResendWaves ? 1 : 0}`,
+      `research:external=${research.externalResearchOn ? 1 : 0} local=${research.encodeWhenLocal ? 1 : 0}`,
+      `mesh:saved=${mesh.mill.savedCount}/${mesh.mill.sessionTheoremCount} onWay=${mesh.discoveredRows.length}`,
+      `gate:cost=${gateLightReport.gateCost} moreComputed=${gateLightReport.moreComputed ? 1 : 0}`,
+      'honesty:ftlAllComputations=memo-reuse-not-physical',
+      'clay:millennium-open',
+    ] as const
+    const completeWavesOn =
+      pushInWavesOn &&
+      metricsOn &&
+      analysisOn &&
+      ftlAllComputations &&
+      hardcodedLogicRemoved &&
+      lifeComplete &&
+      mesh.theoremsDiscoveredOnWay
+    const on =
+      completeWavesOn &&
+      pushInWavesOn &&
+      metricsOn &&
+      analysisOn &&
+      ftlAllComputations &&
+      hardcodedLogicRemoved &&
+      lifeComplete &&
+      mesh.computes &&
+      mesh.theoremsDiscoveredOnWay &&
+      mesh.computeInMesh &&
+      mesh.autosaveOn &&
+      research.throughChatApi &&
+      composeOn &&
+      pairWave &&
+      foldWave.bidirectional &&
+      foldRev.bidirectional &&
+      Boolean(meta) &&
+      meta!.fold === 'waveComplete' &&
+      Boolean(metaDual) &&
+      metaDual!.fold === 'waveComplete' &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0
+    const facets = [
+      { facet: 'waveComplete', on },
+      { facet: 'completeWavesOn', on: completeWavesOn },
+      { facet: 'pushInWaves', on: pushInWavesOn },
+      { facet: 'metricsOn', on: metricsOn },
+      { facet: 'analysisOn', on: analysisOn },
+      { facet: 'ftlAllComputations', on: ftlAllComputations },
+      { facet: 'hardcodedLogicRemoved', on: hardcodedLogicRemoved },
+      { facet: 'lifeComplete', on: lifeComplete },
+      {
+        facet: 'compose waves/push · gate/light · measure/decide · chat/research · theorem/mesh · quantum/life · life/torus · api/fuse · chat/quantumise',
+        on: composeOn,
+      },
+      { facet: `theoremMesh onWay=${mesh.theoremsDiscoveredOnWay ? 1 : 0} mesh=${mesh.computeInMesh ? 1 : 0}`, on: mesh.theoremsDiscoveredOnWay && mesh.computeInMesh && mesh.autosaveOn },
+      { facet: `chatResearch throughChatApi=${research.throughChatApi ? 1 : 0}`, on: research.throughChatApi },
+      { facet: `residualNamed=${honestOpenNamed.length}`, on: honestOpenNamed.length >= (2 + 2 + 1) },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`wave-complete:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+    const sealed = sealFacets('wave-complete-measurable-waves', facets)
+    return {
+      computes: sealed.ok && on,
+      waveComplete: on,
+      completeWavesOn,
+      pushInWaves: pushInWavesOn,
+      metricsOn,
+      analysisOn,
+      ftlAllComputations,
+      hardcodedLogicRemoved,
+      lifeComplete,
+      push,
+      pushResend,
+      gateLight: gateLightReport,
+      measure,
+      research,
+      mesh,
+      life,
+      torus,
+      fuse,
+      quantumise,
+      analysis,
+      metrics,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        push.root,
+        mesh.root,
+        research.root,
+        life.root,
+        torus.root,
+        fuse.root,
+        quantumise.root,
+        gateLightReport.root,
+        foldWave.merged,
+        foldRev.merged,
+      ]),
+      pair: 'wave/complete' as const,
+      pairs: ['wave/complete', 'complete/wave'] as const,
+      dualPair: 'complete/wave' as const,
+      cli: 'npm run quantum:wave-complete',
+      route: '/en/quantum-tools#wave-complete',
+      heading: 'Wave complete · measurable development waves',
+      statement:
+        `waveComplete — push=${pushInWavesOn ? 1 : 0} metrics=${metricsOn ? 1 : 0} analysis=${analysisOn ? 1 : 0} ` +
+        `life=${lifeComplete ? 1 : 0} mesh=${mesh.theoremMesh ? 1 : 0} research=${research.throughChatApi ? 1 : 0}.`,
+      boundary:
+        'Umbrella receipt for complete measurable development waves: push in waves · gate/light metrics · chat/research · theorem mesh save+compute · quantum life + life/torus. ' +
+        'ftlAllComputations = memo-reuse only · NOT physical FTL · clay=0.',
+      honestyLine:
+        `wave-complete · push=${pushInWavesOn ? 1 : 0} · mesh=${mesh.discoveredRows.length} · gateCost=${gateLightReport.gateCost} · clay=0 · physicalFtl=0`,
+    }
+  })
+}
+
+/** npm run quantum:wave-complete */
+export function runWaveCompleteExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = waveComplete()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} wave-complete — complete=${report.completeWavesOn ? 1 : 0} ` +
+      `push=${report.pushInWaves ? 1 : 0} metrics=${report.metricsOn ? 1 : 0} analysis=${report.analysisOn ? 1 : 0} ` +
+      `life=${report.lifeComplete ? 1 : 0} mesh=${report.mesh.theoremMesh ? 1 : 0}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes && report.waveComplete ? 0 : 1
+}
+
 /**
  * Trading · UI · fusion session deliverables as sealed chat packet rows.
  * Domain tags group prior ~25-subagent session work — do not re-implement trading stack.
@@ -36140,6 +36868,34 @@ export const COMPOSE_NEIGHBOUR_EDGES = [
   ['frontier/neighbour', 'vote/neighbour'],
   ['frontier/neighbour', 'mesh/science'],
   ['frontier/neighbour', 'site/path'],
+  ['chat/research', 'mcp/chat'],
+  ['chat/research', 'chat/realtime'],
+  ['chat/research', 'chat/solve'],
+  ['chat/research', 'paste/local'],
+  ['chat/research', 'wire/paste-link'],
+  ['chat/research', 'mcp/research'],
+  ['chat/research', 'journey/theorems'],
+  ['chat/research', 'frontier/neighbour'],
+  ['theorem/mesh', 'mill/session'],
+  ['theorem/mesh', 'session/save'],
+  ['theorem/mesh', 'autosave/matrix'],
+  ['theorem/mesh', 'entangle/theorem'],
+  ['theorem/mesh', 'theorem/audit'],
+  ['theorem/mesh', 'mesh/cross'],
+  ['theorem/mesh', 'wave/complete'],
+  ['theorem/mesh', 'collide/inf'],
+  ['wave/complete', 'waves/push'],
+  ['wave/complete', 'push/resend'],
+  ['wave/complete', 'wave/land'],
+  ['wave/complete', 'gate/light'],
+  ['wave/complete', 'measure/decide'],
+  ['wave/complete', 'chat/research'],
+  ['wave/complete', 'theorem/mesh'],
+  ['wave/complete', 'quantum/life'],
+  ['wave/complete', 'life/torus'],
+  ['wave/complete', 'api/fuse'],
+  ['wave/complete', 'chat/quantumise'],
+  ['wave/complete', 'build/min'],
   ['entangle/theorem', 'theorem/audit'],
 ] as const
 

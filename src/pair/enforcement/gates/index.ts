@@ -1438,6 +1438,9 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'measureDecide', pair: 'measure/decide', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'judgment-pattern inventory → observer-evaluable measurements · judgmentPatternHitCount · compose claim/audit · gate/analytics · ONE CLI quantum:measure-decide' },
   { fold: 'importAudit', pair: 'import/audit', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'import/export core sprawl measured · unstandardisedFunctions · unstandardisedConstants · standardiseResidualNamed · ONE CLI quantum:import-audit' },
   { fold: 'chatSolve', pair: 'chat/solve', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'free/MCP quantum chat live surface solves/advances/drains open problems via sealed algebra — not wet LLM-only · ONE CLI quantum:chat-solve · slim tool over gate/analytics core' },
+  { fold: 'chatResearch', pair: 'chat/research', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'wire external research URLs (Perplexity-class) through chat API · ephemeral bootstrap · paste/local encode · compose mcp/chat · chat/solve · frontier/neighbour · ONE CLI quantum:chat-research' },
+  { fold: 'theoremMesh', pair: 'theorem/mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'algebraic theorems discovered on the way · all saved · compute in quantum mesh · compose mill/session · session/save · autosave/matrix · entangle/theorem · mesh/cross · wave/complete · ONE CLI quantum:theorem-mesh' },
+  { fold: 'waveComplete', pair: 'wave/complete', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'complete measurable development waves umbrella · push · metrics · life · chat/research · theorem/mesh · gate/light · ONE CLI quantum:wave-complete' },
   { fold: 'chatChallenge', pair: 'chat/challenge', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'chat waves challenge each other adversarially · discover sciences via mesh/science · encode algebraFold API names · ONE CLI quantum:chat-challenge' },
   { fold: 'pushResendWaves', pair: 'push/resend', currentBarrel: 'src/thunder/waves', bestPlace: 'src/thunder/waves', action: 'moved', reason: 'after every successful push re-send chat waves — push not terminal · wave:after-push · CI waves-after-push · ONE CLI quantum:push-resend' },
   { fold: 'mergeWave', pair: 'merge/wave', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'parse(name)→word+API · strip uncomputable prose from identifiers · chat waves large-scale merge · ONE CLI quantum:merge-wave' },
@@ -2696,6 +2699,9 @@ export const GATE_ANALYTICS_SLIM_TOOL_FOLDS = [
   { id: 'lens-super', fold: 'lensesCompletelyWiredInEverySuperposition', cli: 'quantum:lens-super', pair: 'lens/super' },
   { id: 'mcp-chat', fold: 'mcpQuantumChat', cli: 'quantum:mcp-chat', pair: 'mcp/chat' },
   { id: 'chat-solve', fold: 'chatSolve', cli: 'quantum:chat-solve', pair: 'chat/solve' },
+  { id: 'chat-research', fold: 'chatResearch', cli: 'quantum:chat-research', pair: 'chat/research' },
+  { id: 'theorem-mesh', fold: 'theoremMesh', cli: 'quantum:theorem-mesh', pair: 'theorem/mesh' },
+  { id: 'wave-complete', fold: 'waveComplete', cli: 'quantum:wave-complete', pair: 'wave/complete' },
   { id: 'session-chat', fold: 'sessionSentToChatToQuantumise', cli: 'quantum:session-chat', pair: 'session/chat' },
 ] as const
 
