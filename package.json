@@ -752,6 +752,7 @@
     "quantum:theorem-mesh": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runTheoremMeshExit",
     "quantum:mesh-theorem": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runTheoremMeshExit",
     "quantum:wave-complete": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runWaveCompleteExit",
+    "quantum:chat-audit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runChatAuditExit",
     "quantum:complete-wave": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runWaveCompleteExit",
     "quantum:chat-challenge": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runChatChallengeExit",
     "quantum:challenge-chat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runChatChallengeExit",

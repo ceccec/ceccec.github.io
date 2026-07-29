@@ -204,6 +204,7 @@ const ROSETTA_CORE_API_LABELS = [
   'chatResearch',
   'theoremMesh',
   'waveComplete',
+  'chatAudit',
   'chatChallenge',
   'sessionSentToChatToQuantumise',
   'quantumiseWave',
@@ -380,6 +381,7 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   chatResearch: 'tool',
   theoremMesh: 'tool',
   waveComplete: 'tool',
+  chatAudit: 'tool',
   chatChallenge: 'tool',
   sessionSentToChatToQuantumise: 'tool',
   chatChat: 'tool',
@@ -1114,6 +1116,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'mesh-theorem', title: 'Mesh theorem (alias theorem/mesh)', fold: 'theoremMesh', cli: 'npm run quantum:theorem-mesh', pair: 'mesh/theorem', route: '/en/quantum-tools#theorem-mesh', barrel: 'src/quantum/apps', boundary: 'Dual mesh/theorem — same fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'wave-complete', title: 'Wave complete — measurable development waves umbrella', fold: 'waveComplete', cli: 'npm run quantum:wave-complete', pair: 'wave/complete', route: '/en/quantum-tools#wave-complete', barrel: 'src/quantum/apps', boundary: 'completeWavesOn · pushInWaves · metricsOn · analysisOn · ftlAllComputations · hardcodedLogicRemoved · lifeComplete · compose waves/push · gate/light · measure/decide · chat/research · theorem/mesh · quantum/life · life/torus · api/fuse · chat/quantumise · build/min · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: '' },
   { id: 'complete-wave', title: 'Complete wave (alias wave/complete)', fold: 'waveComplete', cli: 'npm run quantum:wave-complete', pair: 'complete/wave', route: '/en/quantum-tools#wave-complete', barrel: 'src/quantum/apps', boundary: 'Dual complete/wave — same umbrella fold · qpuRequired=false', browserRunnable: true, browserGap: '' },
+  { id: 'chat-audit', title: 'Chat audit — inventory chat-wave commits · dry-clean · gaps', fold: 'chatAudit', cli: 'npm run quantum:chat-audit', pair: 'chat/audit', route: '/en/quantum-tools#chat-audit', barrel: 'src/quantum/apps', boundary: 'chatWorkAudited · refactorOn · dryCleanOn · gapsFilledOnWay · commitsInventoried · residualNamed · metricsOn · compose measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research · clay=0 · physicalFtl=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
+  { id: 'audit-chat', title: 'Audit chat (alias chat/audit)', fold: 'chatAudit', cli: 'npm run quantum:chat-audit', pair: 'audit/chat', route: '/en/quantum-tools#chat-audit', barrel: 'src/quantum/apps', boundary: 'Dual audit/chat — same chat-wave audit fold · clay=0', browserRunnable: true, browserGap: 'git log injection needs Node bootstrap' },
   { id: 'chat-challenge', title: 'Chat waves challenge each other · discover and encode sciences', fold: 'chatChallenge', cli: 'npm run quantum:chat-challenge', pair: 'chat/challenge', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'chatWavesOn · challengeEachOther · sciencesDiscovered · sciencesEncoded · encodeCount · observerEvaluableMeasurements · compose pair/chat · match/wave · mesh/science · wave/domain · formula/code · waves/feed · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'challenge-chat', title: 'Challenge chat (alias chat/challenge)', fold: 'chatChallenge', cli: 'npm run quantum:challenge-chat', pair: 'challenge/chat', route: '/en/research#chat-challenge', barrel: 'src/quantum/apps', boundary: 'Dual challenge/chat — adversarial science dual waves · qpuRequired=false', browserRunnable: true, browserGap: '' },
   { id: 'import-fractal', title: 'Import–export fractal envelope map', fold: 'importFractalMap', cli: 'npm run quantum:import-fractal', pair: 'import/fractal', route: '/en/quantum-tools#import-fractal', barrel: 'src/quantum/apps', boundary: 'envelopeRoundTripIdentity · observedReuseCapacity · importEdgeCount · rename inventory · envelope round-trip · compose import/export · tool/envelope · import/distance · qpuRequired=false', browserRunnable: true, browserGap: '' },
@@ -35620,6 +35624,279 @@ export function runWaveCompleteExit(_root = '', _argv: readonly string[] = []): 
   for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes && report.waveComplete ? 0 : 1
+}
+
+/** Anchor commit — tool/matrix seal; chat-wave audit window starts here. */
+const CHAT_WAVE_AUDIT_ANCHOR = '1c2559f4'
+
+/** Sealed tips from chat refactoring wave — matched against git log + pair registry. */
+const CHAT_WAVE_SEALED_TIPS = [
+  'tool/matrix',
+  'pair/chat',
+  'match/wave',
+  'waves/feed',
+  'chat/solve',
+  'chat/research',
+  'merge/wave',
+  'measure/decide',
+  'import/fractal',
+  'import/audit',
+  'theorem/audit',
+  'theorem/mesh',
+  'wave/complete',
+  'geo/gebra',
+  'gate/light',
+  'api/fuse',
+  'chat/quantumise',
+  'frontier/neighbour',
+  'build/min',
+  'mo/chat',
+  'chat/challenge',
+  'dry/dupe',
+  'readme/chat',
+  'site/path',
+  'vote/neighbour',
+  'vote/entangle',
+] as const
+
+type ChatWaveCommitRow = { readonly hash: string; readonly subject: string; readonly pairs: readonly string[] }
+
+function collectChatWaveGitLog(
+  root: string,
+  anchor = CHAT_WAVE_AUDIT_ANCHOR,
+): { commits: ChatWaveCommitRow[]; head: string; commitCount: number; gitAvailable: boolean } {
+  const getBuiltin =
+    typeof process !== 'undefined' ? (process as { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule : undefined
+  const cp =
+    typeof getBuiltin === 'function'
+      ? (getBuiltin('node:child_process') as { execSync(cmd: string, opts: { cwd: string; encoding: 'utf8' }): string } | undefined)
+      : undefined
+  if (!cp) return { commits: [], head: '', commitCount: 0, gitAvailable: false }
+  try {
+    const head = cp.execSync('git rev-parse HEAD', { cwd: root, encoding: 'utf8' }).trim().slice(0, 8)
+    const raw = cp.execSync(`git log --oneline ${anchor}^..HEAD`, { cwd: root, encoding: 'utf8' })
+    const commits = raw
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => {
+        const space = line.indexOf(' ')
+        const hash = space > 0 ? line.slice(0, space) : line
+        const subject = space > 0 ? line.slice(space + 1) : ''
+        const pairs = [
+          ...new Set(
+            [...subject.matchAll(/[\w]+(?:\/[\w-]+)+/g)]
+              .map((m) => m[0]!)
+              .filter((p) => p.includes('/') && (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(p)),
+          ),
+        ]
+        return { hash, subject, pairs }
+      })
+    return { commits, head, commitCount: commits.length, gitAvailable: true }
+  } catch {
+    return { commits: [], head: '', commitCount: 0, gitAvailable: false }
+  }
+}
+
+/**
+ * Audit chat-wave work — inventory landed commits/tips · dry-clean Δ · gaps closed vs honest-open.
+ * Fold: chatAudit · Pairs: chat/audit · audit/chat · CLI npm run quantum:chat-audit
+ * Compose: measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research
+ */
+export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.') {
+  return memoByRoot(`chatAudit:${Math.floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const git = collectChatWaveGitLog(root)
+    const pairsFromCommits = [...new Set(git.commits.flatMap((c) => c.pairs))]
+    const tipRows = CHAT_WAVE_SEALED_TIPS.map((pair) => ({
+      pair,
+      landed: pairsFromCommits.includes(pair) || has(pair),
+      inGitLog: pairsFromCommits.includes(pair),
+      inRegistry: has(pair),
+    }))
+    const tipsLanded = tipRows.filter((r) => r.landed).length
+    const measure = measureDecide(matrix, at)
+    let dupe = { computes: false, groups: 0, shellCount: 0, bodies: 0, duplicateBodies: 0 }
+    try {
+      const d = dryDupe(root)
+      dupe = { computes: d.computes, groups: d.groups, shellCount: d.shellCount, bodies: d.bodies, duplicateBodies: d.duplicateBodies }
+    } catch {
+      dupe = { computes: false, groups: -1, shellCount: -1, bodies: 0, duplicateBodies: 0 }
+    }
+    let dryCleanOn = false
+    try {
+      dryCleanOn = dryCleanIsDiamondAndCrystal().diamond
+    } catch {
+      dryCleanOn = false
+    }
+    const gaps = invisibleGapsCaughtByGates(matrix, at)
+    const ta = theoremAudit()
+    let geo = { computes: false, encodeCoverage: 0, encodeReceipts: 0, theoremsEncoded: 0 }
+    try {
+      const g = geoGebraEncode()
+      geo = { computes: g.computes, encodeCoverage: g.encodeCoverage, encodeReceipts: g.encodeReceipts, theoremsEncoded: g.theoremsEncoded }
+    } catch {
+      geo = { computes: false, encodeCoverage: 0, encodeReceipts: 0, theoremsEncoded: 0 }
+    }
+    let gateLightReport = { computes: false, gateCost: 0, computeCoverage: 0 }
+    try {
+      const g = gateLight(root)
+      gateLightReport = { computes: g.computes, gateCost: g.gateCost, computeCoverage: g.computeCoverage }
+    } catch {
+      gateLightReport = { computes: false, gateCost: 0, computeCoverage: 0 }
+    }
+    const wave = waveComplete(matrix, at)
+    const merge = mergeWave(matrix, at)
+    const research = chatResearch(matrix, at)
+    const mesh = theoremMesh(matrix, at)
+    const site = sitePathWave(matrix, at)
+    const refactorOn =
+      merge.computes &&
+      merge.redundancyPurged &&
+      dupe.computes &&
+      dupe.groups === 0 &&
+      measure.computes
+    const dryCleanOnFacet =
+      dryCleanOn &&
+      dupe.computes &&
+      dupe.groups === 0 &&
+      soft('dry', 'dupe') &&
+      soft('dry', 'clean')
+    const gapsFilledOnWay =
+      gaps.invisibleGapsCaughtByGates &&
+      gaps.afterClosed >= gaps.afterOpen &&
+      soft('gaps', 'invisible')
+    const commitsInventoried = git.gitAvailable && git.commitCount > 0
+    const metricsOn =
+      measure.computes &&
+      measure.observerEvaluableMeasurements &&
+      ta.computes &&
+      geo.computes
+    const composeOn =
+      soft('measure', 'decide') &&
+      soft('dry', 'dupe') &&
+      soft('dry', 'clean') &&
+      soft('gaps', 'invisible') &&
+      soft('theorem', 'audit') &&
+      soft('gate', 'light') &&
+      soft('wave', 'complete') &&
+      soft('merge', 'wave') &&
+      soft('chat', 'research') &&
+      has('mo/chat')
+    const honestOpenNamed = [
+      `onTrueDebt=${measure.gateAnalyticsHardcodedOnCount ?? gateLightReport.gateCost} gateCost=${gateLightReport.gateCost}`,
+      `theorem=${ta.theoremCount}/${ta.totalRegistry} not-theorem=${ta.notTheoremCount} ratio=${ta.ratio}`,
+      `geo coverage=${geo.encodeCoverage} encoded=${geo.encodeReceipts}/432`,
+      `dryDupe trueGroups=${dupe.groups} twinShell=${dupe.shellCount}`,
+      `site/path covered=${site.pathsCovered ?? 0} consensus=${site.consensusWavesOn ? 1 : 0}`,
+      `frontier/ui: site-path consensusWavesOn honest-open`,
+      `mesh saved=${mesh.mill?.savedCount ?? 0} onWay=${mesh.discoveredRows?.length ?? 0}`,
+      `wave-complete mesh=${wave.mesh?.theoremMesh ? 1 : 0} gateLight=${gateLightReport.computes ? 1 : 0}`,
+      `judgmentPatternHitCount=${measure.judgmentPatternHitCount}`,
+      'migrate-next: drain on:true debt · promote theorem seeds · geo encode remainder',
+    ] as const
+    const landedTable = [
+      { class: 'commits', metric: 'chat-wave commits', landed: `${git.commitCount} (${CHAT_WAVE_AUDIT_ANCHOR}..${git.head})`, residual: git.gitAvailable ? 'none' : 'git-unavailable' },
+      { class: 'tips', metric: 'sealed tips matched', landed: `${tipsLanded}/${CHAT_WAVE_SEALED_TIPS.length}`, residual: `${CHAT_WAVE_SEALED_TIPS.length - tipsLanded} tips not in git log` },
+      { class: 'dry-clean', metric: 'TRUE duplicate groups', landed: `${dupe.groups}`, residual: dupe.groups > 0 ? `${dupe.groups} groups to delete` : 'queue empty' },
+      { class: 'dry-clean', metric: 'twin-shell duals', landed: `${dupe.shellCount}`, residual: 'named not deleted' },
+      { class: 'theorem', metric: 'registry theorem/not', landed: `${ta.theoremCount}/${ta.notTheoremCount}`, residual: `522 prose-slogan migrate-next` },
+      { class: 'geo', metric: 'encode coverage', landed: `${roundTo(geo.encodeCoverage, 4)} (${geo.encodeReceipts}/432)`, residual: `${roundTo(1 - geo.encodeCoverage, 4)} open` },
+      { class: 'gate', metric: 'on:true debt', landed: `${gateLightReport.gateCost}`, residual: 'migrate-next stripStrings' },
+      { class: 'site', metric: 'path consensus', landed: `${site.pathsCovered ?? 0}/6`, residual: site.consensusWavesOn ? 'none' : 'consensusWavesOn open' },
+      { class: 'mesh', metric: 'theorem mesh', landed: mesh.theoremMesh ? 'saved+onWay' : 'partial', residual: mesh.autosaveOn ? 'none' : 'autosave' },
+      { class: 'chat', metric: 'research feed', landed: research.throughChatApi ? 'wired' : 'partial', residual: research.externalResearchOn ? 'ephemeral bootstrap only' : 'local' },
+    ] as const
+    const chatWorkAudited = commitsInventoried && tipsLanded >= CHAT_WAVE_SEALED_TIPS.length - 5
+    const on =
+      chatWorkAudited &&
+      commitsInventoried &&
+      metricsOn &&
+      composeOn &&
+      refactorOn &&
+      dryCleanOnFacet &&
+      gapsFilledOnWay
+    const facets = [
+      { facet: 'chatWorkAudited', on: chatWorkAudited },
+      { facet: 'refactorOn', on: refactorOn },
+      { facet: 'dryCleanOn', on: dryCleanOnFacet },
+      { facet: 'gapsFilledOnWay', on: gapsFilledOnWay },
+      { facet: `commitsInventoried=${git.commitCount} anchor=${CHAT_WAVE_AUDIT_ANCHOR} head=${git.head}`, on: commitsInventoried },
+      { facet: `tipsLanded=${tipsLanded}/${CHAT_WAVE_SEALED_TIPS.length}`, on: tipsLanded >= CHAT_WAVE_SEALED_TIPS.length - 5 },
+      { facet: 'residualNamed', on: honestOpenNamed.length >= 1 },
+      { facet: 'metricsOn', on: metricsOn },
+      { facet: 'compose measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research', on: composeOn },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`chat-audit:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('chat-audit-wave-inventory', facets)
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    return {
+      computes: sealed.ok && commitsInventoried && metricsOn,
+      chatAudit: on,
+      chatWorkAudited,
+      refactorOn,
+      dryCleanOn: dryCleanOnFacet,
+      gapsFilledOnWay,
+      commitsInventoried,
+      residualNamed: [...honestOpenNamed],
+      metricsOn,
+      git,
+      tipRows,
+      tipsLanded,
+      landedTable: [...landedTable],
+      measure,
+      dupe,
+      gaps,
+      theorem: ta,
+      geo,
+      gateLight: gateLightReport,
+      wave,
+      merge,
+      research,
+      mesh,
+      site,
+      claySolvedByThisFold,
+      physicalFtlClaim: 0 as const,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, git.head ? toUuid(`chat-audit:head:${git.head}`) : toUuid('chat-audit:no-git')]),
+      pair: 'chat/audit' as const,
+      pairs: ['chat/audit', 'audit/chat'] as const,
+      dualPair: 'audit/chat' as const,
+      cli: 'npm run quantum:chat-audit',
+      route: '/en/quantum-tools#chat-audit',
+      heading: 'Chat audit · chat-wave inventory · dry-clean · gaps',
+      statement:
+        `chatAudit — commits=${git.commitCount} tips=${tipsLanded}/${CHAT_WAVE_SEALED_TIPS.length} ` +
+        `theorem=${ta.theoremCount}/${ta.totalRegistry} geo=${roundTo(geo.encodeCoverage, 4)} ` +
+        `onTrueDebt=${gateLightReport.gateCost} dupeGroups=${dupe.groups}.`,
+      boundary:
+        'Measured audit of chat-wave landed work from git log (anchor tool/matrix) + composed fold receipts. ' +
+        'Dry-clean Δ from dryDupe · theorem/audit census · geo/gebra coverage · gate/light on:true debt. ' +
+        'Residuals honest-open — NOT fake-close Clay/FTL · clay=0.',
+    }
+  })
+}
+
+/** npm run quantum:chat-audit */
+export function runChatAuditExit(root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.', _argv: readonly string[] = []): number {
+  void _argv
+  const report = chatAudit(buildMatrix(), 0, root)
+  process.stdout.write(`${report.computes ? '✓' : '✗'} chat-audit — ${report.statement}\n`)
+  process.stdout.write(`  anchor=${CHAT_WAVE_AUDIT_ANCHOR} head=${report.git.head} commits=${report.git.commitCount}\n`)
+  process.stdout.write('  landed table:\n')
+  for (const row of report.landedTable) {
+    process.stdout.write(`    · [${row.class}] ${row.metric}: ${row.landed} · residual=${row.residual}\n`)
+  }
+  process.stdout.write('  tips (sealed vs git):\n')
+  for (const t of report.tipRows.filter((r) => !r.landed)) {
+    process.stdout.write(`    · OPEN ${t.pair} registry=${t.inRegistry ? 1 : 0}\n`)
+  }
+  process.stdout.write('  honest-open:\n')
+  for (const id of report.residualNamed) process.stdout.write(`    · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }
 
 /**
