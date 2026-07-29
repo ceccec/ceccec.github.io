@@ -28436,6 +28436,36 @@ export const VUE_UNIVERSAL_SET_MORPHS = [
     path: 'src/* simulation panels',
     status: 'removed' as const,
   },
+  {
+    before: 'render/compute/storage raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/render/compute/storage/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'render/compute/memory raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/render/compute/memory/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'render/compute/gpu raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/render/compute/gpu/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'render/compute/cpu raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/render/compute/cpu/index.vue',
+    status: 'removed' as const,
+  },
+  {
+    before: 'render/compute/display raw UiCard',
+    after: 'UiCardShell',
+    path: 'src/render/compute/display/index.vue',
+    status: 'removed' as const,
+  },
 ] as const
 
 export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -28464,7 +28494,7 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       dryRosetta.unifiedComponents &&
       soft('dry', 'rosetta') &&
       soft('vue', 'universal')
-    const morphsCleared = morphs.every((m) => m.status === 'removed') && morphs.length === (2 + 2 + 1)
+    const morphsCleared = morphs.every((m) => m.status === 'removed') && morphs.length === (5 + 5)
     const composeOn =
       soft('dry', 'rosetta') &&
       soft('shells', 'strangler') &&

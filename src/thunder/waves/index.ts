@@ -3080,6 +3080,11 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       pushWaves.bidirectional &&
       wavesPush.forward !== wavesPush.reverse
     const noForceMain = true as const // protocol: never force-push main / never --force
+    const pushAuditedOn =
+      has('push/audit') &&
+      has('audit/push') &&
+      soft('push', 'audit') &&
+      soft('audit', 'push')
     const pushInWavesOn =
       oneWavePerPush &&
       pairWavesBuild &&
@@ -3089,6 +3094,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       pairVoteChain &&
       commitPush.bidirectional &&
       voteBuildCommitPush.bidirectional &&
+      pushAuditedOn &&
       noForceMain
     const resendRecipeOk =
       WAVES_AFTER_PUSH_RECIPE_STEPS.length === 4 &&
@@ -3110,6 +3116,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
     const facets = [
       { facet: 'pushInWaves', on: pushInWavesOn },
       { facet: 'oneWavePerPush — compose waves/build · one sequential push path', on: oneWavePerPush },
+      { facet: 'pushAuditedOn — push/audit · audit/push · wave:land chains quantum:push-audit before push', on: pushAuditedOn },
       { facet: 'noForceMain — refuse force-push main · no --force', on: noForceMain },
       { facet: 'compose vote/build/commit/push · commit/push bidirectional', on: pairVoteChain && pairCommitPush && commitPush.bidirectional && voteBuildCommitPush.bidirectional },
       { facet: 'pairs waves/push · push/waves registered · forward≠reverse', on: pairWavesPush && pairPushWaves && wavesPush.forward !== wavesPush.reverse },
@@ -3314,6 +3321,10 @@ export function runPushResendWavesExit(_root = '', _argv: readonly string[] = []
   return report.computes && report.afterPushResendWaves ? 0 : 1
 }
 
+/** BINDING: wave:land — autosave · push-audit · verify · commit · push · after-push (no unaudited push). */
+export const WAVE_LAND_RECIPE =
+  'npm run -s quantum:autosave-matrix && npm run -s quantum:push-audit && npm run -s wave:verify && git commit -m "$(npm run -s quantum:commit-message)" && git push origin HEAD:main && npm run -s wave:after-push' as const
+
 /** BINDING: every push is a complete audited wave — audit before push, no partial unaudited lands. */
 export const PUSH_AUDIT_RECIPE_STEPS = [
   'npm run quantum:audit-plan',
@@ -3360,6 +3371,7 @@ export function pushAuditWave(
       push.pushInWaves &&
       auditedOn &&
       waveCompleteOn &&
+      wave.metricsOn &&
       math.hardFailOnMath &&
       soft('waves', 'push') &&
       soft('wave', 'complete') &&
@@ -3479,7 +3491,7 @@ export function runPushAuditWaveExit(root = '', _argv: readonly string[] = []): 
   for (const id of report.residualNamed) process.stdout.write(`  · ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   process.stdout.write(`  wave:land chains: autosave-matrix && push-audit && wave:verify && commit && push\n`)
-  return report.computes && report.pushInCompleteWaves && report.mathHard ? 0 : 1
+  return report.computes && report.pushInCompleteWaves && report.mathHard && report.auditedOn ? 0 : 1
 }
 
 /** Alias dual — audit/push ≡ pushAuditWave. */
