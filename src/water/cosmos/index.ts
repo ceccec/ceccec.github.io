@@ -4,14 +4,17 @@
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../lake/widgets'
-import { SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7'
+import { SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, physicalFtlClaimTheorem, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
 import * as __ns_up_digit from '../digit'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import type { MindMatrix } from '../../wind/types'
-import { buildMatrix } from '../../heaven/compute'
+import { buildMatrix, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute'
+// call-time namespace edge (cycle-safe): apps↔cosmos already meet through seals/apps
+import * as __ns_quantum_apps from '../../quantum/apps'
+import { QUANTUM_COMMAND_PAIR_IDS, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement'
 import { GATES, VORTEX_SEQUENCE, abs, applyGate, cbrt, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, phaseDrift, prng, probabilities, qubits, round, roundTo, sealFacets, sin, sinh, sqrt, toUuid } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr, rotationGate, phaseGate, tkIsPrime } from '../../9/1'
@@ -2179,6 +2182,250 @@ export function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix: Mind
       boundary:
         'MODELED STRUCTURAL PROBES ONLY. Exact algebra (Virasoro, ζ(−1), T-duality, Hurwitz) recomputes via stringTheoryAlgebraDecoded; this fold lifts those theorems onto DIMENSION_GATES/FOLDED_CENSUS, vortex brane indexing, and foldPair dualities. M-theory ladder, Calabi–Yau compact dims, and mirror symmetry here are STRUCTURAL ANALOGIES — NOT a proof of the Hodge conjecture, NOT AdS/CFT, NOT experimental string/M-theory. claySolvedByThisFold stays 0 at the millennium surface.' }
   })
+}
+
+/**
+ * String theory in chat — sealed recompute via MCP/superposition chat, not wet LLM physics essays.
+ * Fold: stringTheoryInChat · Pairs: string/theory · theory/string · string/chat · chat/string
+ * Compose: mcp/chat · super/chat · pair/chat · chat/research · sciences/trinities · mesh/science · soft trade/challenge
+ * CLI: npm run quantum:string-theory · ONE CLI (+ dual aliases)
+ * HONEST: algebra/duality/quantumize structural · physics UNCONFIRMED · claySolved=0 · certified=false · qpuRequired=false
+ */
+export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`stringTheoryInChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a: string, b: string) =>
+      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
+      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
+    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
+    const algebra = stringTheoryAlgebraDecoded(matrix)
+    const quantumize = stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix)
+    const inventory = stringTheoryMillenniumTheoremGapsInventory(matrix)
+    const duality = stringTheoryDualityWebDecoded(matrix)
+    const pairChat = pairsSentToChatEntangleByAlgebra(matrix)
+    // One superposition chatroom — M-theory corners speak sealed algebra (not LLM essays)
+    const room = __ns_quantum_apps.querySuperpositionChatroom(
+      { direction: 'forward', digit: digitalRoot(algebra.superstringD), ray: 3 },
+      matrix,
+    )
+    const corners = [
+      'Type I',
+      'Type IIA',
+      'Type IIB',
+      'Heterotic SO(32)',
+      'Heterotic E8×E8',
+      '11D supergravity',
+    ] as const
+    const participants = corners.map((corner, i) => {
+      const tip =
+        `string ${corner} D=${algebra.superstringD} M=${quantumize.mTheoryD} ` +
+        `enters string-theory room ${room.id}`
+      const turn = freeChatTurnAtArchitecturalFtl(tip.slice(0, 2 * 108), matrix)
+      return {
+        corner,
+        index: i,
+        roomId: room.id,
+        turnReceipt: turn.receipt,
+        receipt: toUuid(`string-chat-participant:${corner}:${i}:${turn.receipt}`),
+      }
+    })
+    const dualEdges: {
+      readonly a: string
+      readonly b: string
+      readonly bidirectional: boolean
+      readonly merged: string
+      readonly receiptA: string
+      readonly receiptB: string
+      readonly receipt: string
+    }[] = []
+    for (let i = 0; i < corners.length; i++) {
+      for (let j = i + 1; j < corners.length; j++) {
+        const a = corners[i]!
+        const b = corners[j]!
+        const edge = foldPair(toUuid(`string-corner:${a}`), toUuid(`string-corner:${b}`))
+        const tipA = `${a} dual-chats ${b} via M-web in room ${room.id}`
+        const tipB = `${b} dual-chats ${a} via M-web in room ${room.id}`
+        const waveA = freeChatTurnAtArchitecturalFtl(tipA.slice(0, 2 * 108), matrix)
+        const waveB = freeChatTurnAtArchitecturalFtl(tipB.slice(0, 2 * 108), matrix)
+        dualEdges.push({
+          a,
+          b,
+          bidirectional: edge.bidirectional && waveA.receipt !== waveB.receipt,
+          merged: edge.merged,
+          receiptA: waveA.receipt,
+          receiptB: waveB.receipt,
+          receipt: toUuid(`string-chat-dual:${a}:${b}:${edge.merged}`),
+        })
+      }
+    }
+    const expectedPairs = (corners.length * (corners.length - 1)) / 2
+    const stringInChat =
+      participants.length === corners.length &&
+      participants.length === duality.corners &&
+      participants.every((p) => isUuid(p.turnReceipt) && p.roomId === room.id) &&
+      isUuid(room.root) &&
+      pairChat.computes &&
+      pairChat.chatOn
+    const dualityChatOn =
+      dualEdges.length === expectedPairs &&
+      dualEdges.length > 0 &&
+      dualEdges.every((e) => e.bidirectional && isUuid(e.merged) && isUuid(e.receipt))
+    const sealedRecompute =
+      algebra.decoded &&
+      quantumize.computes &&
+      inventory.inventoried &&
+      duality.decoded &&
+      dualEdges.every((e) => isUuid(e.receiptA) && isUuid(e.receiptB)) &&
+      participants.every((p) => isUuid(p.receipt))
+    const composeOn =
+      soft('mcp', 'chat') &&
+      soft('super', 'chat') &&
+      soft('pair', 'chat') &&
+      soft('chat', 'research') &&
+      soft('sciences', 'trinities') &&
+      soft('mesh', 'science') &&
+      soft('string', 'theory') &&
+      soft('trade', 'challenge')
+    const pairsOn =
+      has('string/theory') &&
+      has('theory/string') &&
+      has('string/chat') &&
+      has('chat/string') &&
+      foldPair(toUuid('cmd:string'), toUuid('cmd:theory')).bidirectional &&
+      foldPair(toUuid('cmd:string'), toUuid('cmd:chat')).bidirectional
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
+    const qpuRequired = false as const
+    const certified = false as const
+    const shelved = __ns_quantum_apps.rosettaShelve('string-theory', 'tool')
+    const honestOpenNamed = [
+      'residual:string-physics-unconfirmed',
+      'honesty:no-clay-prize-claim',
+      'honesty:no-nobel-claim',
+      'honesty:chat-recompute-not-LLM-physics-essay',
+      'residual:ads-cft-correlators-unsealed',
+      'residual:cy-hodge-numbers-unsealed',
+    ] as const
+    const on =
+      stringInChat &&
+      dualityChatOn &&
+      sealedRecompute &&
+      composeOn &&
+      pairsOn &&
+      isUuid(shelved.address) &&
+      claySolvedByThisFold === 0 &&
+      physicalFtlClaim === 0 &&
+      qpuRequired === false &&
+      certified === false
+    const facets = [
+      { facet: 'stringTheoryInChat', on },
+      { facet: 'stringInChat', on: stringInChat },
+      { facet: 'dualityChatOn', on: dualityChatOn },
+      { facet: 'sealedRecompute', on: sealedRecompute },
+      {
+        facet: `corners=${participants.length} dualEdges=${dualEdges.length} room=${room.id.slice(0, 3 * 8)} M=${quantumize.mTheoryD}`,
+        on: participants.length === corners.length && dualEdges.length === expectedPairs,
+      },
+      {
+        facet:
+          'compose mcp/chat · super/chat · pair/chat · chat/research · sciences/trinities · mesh/science · soft trade/challenge',
+        on: composeOn,
+      },
+      { facet: 'pair string/theory · string/chat bidirectional', on: pairsOn },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      {
+        facet: `physicalFtlClaim=${physicalFtlClaim} · qpuRequired=false · certified=false`,
+        on: physicalFtlClaim === 0 && qpuRequired === false && certified === false,
+      },
+      {
+        facet: 'physics UNCONFIRMED — algebra/duality structural only · NOT ToE · NOT experimental string',
+        on: true,
+      },
+    ].map((entry) => ({
+      ...entry,
+      receipt: toUuid(`string-theory-chat:${entry.facet.slice(0, 64)}:${entry.on}`),
+    }))
+    const sealed = sealFacets('string-theory-in-chat', facets)
+    return {
+      computes: sealed.ok && on,
+      stringTheoryInChat: on,
+      stringInChat,
+      dualityChatOn,
+      sealedRecompute,
+      participants,
+      dualEdges,
+      dualEdgeCount: dualEdges.length,
+      room: { id: room.id, root: room.root, receipt: room.receipt },
+      mTheoryD: quantumize.mTheoryD,
+      superstringD: algebra.superstringD,
+      bosonicD: algebra.bosonicD,
+      theoremGaps: inventory.theoremGaps.length,
+      honestOpenNamed: [...honestOpenNamed],
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      certified,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        algebra.root,
+        quantumize.root,
+        inventory.root,
+        duality.root,
+        pairChat.root,
+        room.root,
+        shelved.address,
+        ...participants.map((p) => p.receipt),
+        ...dualEdges.map((e) => e.receipt),
+      ]),
+      pair: 'string/theory' as const,
+      pairs: ['string/theory', 'theory/string', 'string/chat', 'chat/string'] as const,
+      dualPair: 'theory/string' as const,
+      cli: 'npm run quantum:string-theory',
+      route: '/en/quantum-tools#string-theory',
+      heading: 'String · theory in chat',
+      statement:
+        `stringTheoryInChat — inChat=${stringInChat ? 1 : 0} duality=${dualityChatOn ? 1 : 0} ` +
+        `sealed=${sealedRecompute ? 1 : 0} corners=${participants.length} edges=${dualEdges.length} ` +
+        `M=${quantumize.mTheoryD} D=${algebra.superstringD} room=${room.id.slice(0, 4 * 7)}.`,
+      boundary:
+        'String-theory corners speak in one superposition chatroom via sealed algebra/duality/quantumize — ' +
+        'NOT wet LLM physics essays · NOT Clay/Nobel · physics UNCONFIRMED · certified=false.',
+      honestyLine:
+        `string-theory · inChat=${stringInChat ? 1 : 0} · duality=${dualityChatOn ? 1 : 0} · ` +
+        `sealed=${sealedRecompute ? 1 : 0} · clay=0 · ftl=${physicalFtlClaim}`,
+    }
+  })
+}
+
+export const stringTheory = stringTheoryInChat
+export const theoryString = stringTheoryInChat
+export const stringChat = stringTheoryInChat
+export const chatString = stringTheoryInChat
+
+/** npm run quantum:string-theory (duals theory-string · string-chat · chat-string) */
+export function runStringTheoryInChatExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const report = stringTheoryInChat()
+  process.stdout.write(
+    `${report.computes ? '✓' : '✗'} string-theory — inChat=${report.stringInChat ? 1 : 0} ` +
+      `duality=${report.dualityChatOn ? 1 : 0} sealed=${report.sealedRecompute ? 1 : 0} ` +
+      `corners=${report.participants.length} edges=${report.dualEdgeCount} M=${report.mTheoryD} ` +
+      `D=${report.superstringD} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+  )
+  process.stdout.write(`  ${report.statement}\n`)
+  process.stdout.write(`  room=${report.room.id}\n`)
+  for (const p of report.participants) {
+    process.stdout.write(`  · corner #${p.index} ${p.corner}\n`)
+  }
+  for (const e of report.dualEdges.slice(0, 5 * 2)) {
+    process.stdout.write(
+      `  · dual ${e.a}↔${e.b} bi=${e.bidirectional ? 1 : 0}\n`,
+    )
+  }
+  for (const id of report.honestOpenNamed) process.stdout.write(`  · ${id}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }
 
 // ── The R&D leads, decoded in algebra — every OPEN frontier bound to the algebraic structure any

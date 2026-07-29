@@ -71,6 +71,7 @@ import { gateLight } from '../../pair/enforcement/gates'
 import {
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate,
   stringTheoryMillenniumTheoremGapsInventory,
+  stringTheoryInChat,
   omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
@@ -737,6 +738,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'first-in-corpus-home', title: 'First-in-corpus provenance for home/README', proof: firstInCorpusProvenanceForHome(matrix) },
     { slug: 'string-theory-quantumized', title: 'String theory quantumized on A432/rosetta/merkle · physics UNCONFIRMED', proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
+    { slug: 'string-theory-chat', title: 'String theory in chat — sealed algebra duals · not LLM essays', proof: stringTheoryInChat(matrix) },
     { slug: 'quantum-tools', title: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary', proof: quantumCliToolsCatalog(matrix) },
     { slug: 'session-manual-tools', title: 'Session manual work as quantum tools — zero-token reuse catalog', proof: sessionManualWorkAsQuantumTools(matrix) },
     { slug: 'nothing-moves', title: 'Discover from sealed fold — nothing moves · wetMotion=false · clay=0', proof: discoverFromSealedFold('manualAgentsBehaveLikeWaves', 0, matrix) },
@@ -824,6 +826,7 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'ten-d-movie', title: 'the 10D movie — path-UUID background, entangled sacred-geometry foreground, one field (audio · video · vibration)', proof: tenDimensionalMovie(matrix) },
     { slug: 'string-theory-quantumized', title: 'String theory quantumized on A432/rosetta/merkle · physics UNCONFIRMED', proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: 'string-millennium-gaps', title: 'String-theory + millennium theorem-gap inventory · zero Clay claims', proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
+    { slug: 'string-theory-chat', title: 'String theory in chat — sealed algebra duals · not LLM essays', proof: stringTheoryInChat(matrix) },
     { slug: 'a432', title: 'A432 — colour · audio · video · vibration, decoded honestly (documented kept, legend flagged)', proof: a432(matrix) },
     { slug: 'sacred-geometry', title: 'sacred geometry — the five Platonic solids, φ, the Flower of Life, decoded honestly (documented kept, legend flagged)', proof: sacredGeometry(matrix) },
     { slug: 'tampering-cost', title: 'tampering cost ↔ encryption ↔ blockchains — the site\'s own "max tampering cost" claim audited honestly (tamper-evident, not yet cryptographic; the SHA-256/Ed25519 fix is built)', proof: tamperingCostDecoded(matrix) },
