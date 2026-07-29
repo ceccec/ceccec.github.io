@@ -520,6 +520,52 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
   })
 }
 
+/**
+ * Geometry audit — surface atom radii, projection extents, H₁ loops vs sealed lattice.
+ * Pair half of universe/align (dynamics+phase live in water/double).
+ */
+export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('doubleTorusGeometryAlignsWithUniverseConstants', matrix, () => {
+    const dt = doubleTorus3D(matrix)
+    const homology = cellHomology(matrix)
+    const allScales = doubleTorusMathAtAllScalesProofs(matrix)
+    const left = doubleTorusSurface(0, 0, 0, -1)
+    const right = doubleTorusSurface(0, 0, 0, 1)
+    const tubeSeam = doubleTorusSurface(0, Math.PI / 2, 0, 0)
+    const ratio = dt.majorRadius / dt.minorRadius
+    const facets = [
+      { facet: `surface major ringR=${TORUS_RING_R} = Fibonacci 5×4 — sealed atom`, on: TORUS_RING_R === (5 * 4) && dt.majorRadius === TORUS_RING_R },
+      { facet: `surface minor tubeR base=${TORUS_TUBE_R_BASE} — sealed atom; seam z equals tubeR`, on: TORUS_TUBE_R_BASE === 7 && tubeSeam.z === TORUS_TUBE_R_BASE && dt.minorRadius === TORUS_TUBE_R_BASE },
+      { facet: `lobe offset=${TORUS_LOBE_OFFSET} separates counter-oriented lobes (linking) — Δx = 2·offset at θ=φ=0`, on: TORUS_LOBE_OFFSET === (9 * 2) && right.x - left.x === 2 * TORUS_LOBE_OFFSET && left.x < right.x },
+      { facet: `R/r = ${TORUS_RING_R}/${TORUS_TUBE_R_BASE} — major > minor (meridian ≠ longitude)`, on: ratio === TORUS_RING_R / TORUS_TUBE_R_BASE && dt.majorRadius > dt.minorRadius },
+      { facet: `H₁ rank = HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} (genus-2 four cycles)`, on: homology.betti[1] === HOMOLOGY_LOOPS && HOMOLOGY_LOOPS === 4 },
+      { facet: 'Euler χ=−2 · genus 2 · 42 areas on the surface', on: dt.euler === -2 && dt.genus === 2 && dt.areas === (7 * 6) && dt.rendered },
+      { facet: 'all-scales geometry proofs hold (merkaba · 10D · census · circulation)', on: allScales.proven },
+      { facet: `TAU=${TAU} is the full circle (Math.PI×2) — projection angles use sealed TAU lattice`, on: TAU === Math.PI * 2 },
+      { facet: `SPEED_OF_LIGHT=${SPEED_OF_LIGHT} m/s vault constant present (classical track — no FTL)`, on: SPEED_OF_LIGHT === 299792458 },
+      { facet: `PHI golden ratio present for self-similar scale (dims golden-angle)`, on: PHI === (1 + Math.sqrt(5)) / 2 },
+    ]
+    const sealed = sealFacets('torus-geometry-universe', facets)
+    return {
+      aligns: sealed.ok,
+      majorRadius: dt.majorRadius,
+      minorRadius: dt.minorRadius,
+      lobeOffset: TORUS_LOBE_OFFSET,
+      homologyLoops: HOMOLOGY_LOOPS,
+      ratio,
+      count: sealed.count,
+      facets: sealed.facets,
+      root: merge(dt.root, merge(homology.root, sealed.root)),
+      statement:
+        `Double-torus geometry aligns with sealed universe constants — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: ring/tube/lobe atom, R/r, H₁=${HOMOLOGY_LOOPS}, χ=−2, TAU·c·φ lattice, all-scales proofs.`,
+      boundary:
+        'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c. physicalFtlClaim=0 · clay=0. HARMONY ≠ TRUTH.',
+      physicalFtlClaim: 0 as const,
+      claySolvedByThisFold: 0 as const,
+    }
+  })
+}
+
 // 42 areas, 7 x 6 = 6 x 7 = 21 pairs of areas — the double torus pairs its
 // areas. The math (the digit fold of each area name) orders the areas, then
 // deals them into 21 dual pairs (an inner area paired with an outer area). The

@@ -12183,20 +12183,20 @@ function tenDimensionsAreInteractingThreeDs() {
   const cross2 = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
   const triple = cross2[0] * e3[0] + cross2[1] * e3[1] + cross2[2] * e3[2];
   const framesThreeSpace = Math.abs(triple) > 0;
-  const merkaba5 = 2 * VERTICES;
+  const merkaba4 = 2 * VERTICES;
   const facets = [
     { facet: "the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) \u2014 NOT ten overlapping axes", on: total === 5 * 2 && total === DIMENSIONS },
     { facet: "the four vertices frame ONE 3-space \u2014 a non-degenerate tetrahedron (scalar triple product \u2260 0): a 3D, not a stack", on: framesThreeSpace },
     { facet: "the six edges ARE the pairwise interactions of the four points \u2014 C(4,2) = 6, the couplings between them", on: EDGES === 6 },
     { facet: "the project dims are exactly this: 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions)", on: DIMENSIONS === 5 * 2 },
-    { facet: "3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba \u2014 the cube's 8 = 2\xB3 vertices", on: merkaba5 === 8 }
+    { facet: "3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba \u2014 the cube's 8 = 2\xB3 vertices", on: merkaba4 === 8 }
   ];
   return {
     decoded: facets.every((f2) => f2.on),
     vertices: VERTICES,
     edges: EDGES,
     dimensions: total,
-    merkaba: merkaba5,
+    merkaba: merkaba4,
     facets,
     root: merkleFold(facets.map((f2) => toUuid(`${f2.facet}:${f2.on}`))),
     statement: "10D is interacting 3Ds: the ten dimensions are the TETRAHEDRON (the 3-simplex) \u2014 four vertices frame ONE 3-space and the SIX edges are their pairwise interactions; 4 + 6 = 10 = K4. The project dims are 4 homology loops + 6 cross-fold axes, and two tetrahedra interlock into the Merkaba (the cube's 8 vertices).",
