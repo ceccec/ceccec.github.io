@@ -1324,7 +1324,7 @@ export const RELATIVITY_CONSTANTS = {
 }
 export function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const c = SPEED_OF_LIGHT // 299792458 m/s, exact SI — reused, already ledgered in src/3/7
+  const c = SPEED_OF_LIGHT // sealed vault c — reused from src/3/7
   const k = RELATIVITY_CONSTANTS
   const title = titleFromAlgebra(['r_s', '2GM/c²']) // the identity the theorem LEADS with
   // 1 — SCHWARZSCHILD RADIUS r_s = 2GM/c²: the radius where the escape velocity v_esc = √(2GM/r) reaches c.

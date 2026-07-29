@@ -3463,6 +3463,8 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         case 'stringTheoryAlgebraDecoded': return stringAlgebra.root
         case 'wavesAutoScaleCapacityAtNoCostOnReuse':
           return toUuid('waves-auto-scale:capacity-at-no-cost-on-reuse') // stable seal id — avoids self-call while W1 memoises
+        case 'fasterThanLightExperimentChallenge':
+          return toUuid('ftl-experiment-quantum-techniques:apparatus')
         case 'discoveredTheoremsWaveTwentyNine': return toUuid(`classical:basel:${fold}`)
         case 'theSevenMillenniumProblemsDefinedFormallyUnclaimed': return toUuid(`classical:poincare-external:${fold}`)
         case 'quantumAdvantageBenchmark': return toUuid(`classical:qm-sim:${fold}`)

@@ -2760,6 +2760,8 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'animations-rosetta', saves: 'replaces wet re-wiring of animation→rosetta rays (yin-yang first)' },
   { id: 'trading-rosetta-train', saves: 'replaces wet re-training of historical short·long waves via rosetta' },
   { id: 'millennium-challenge', saves: 'replaces wet re-probing of Clay millennium apparatus (claySolved=0)' },
+  { id: 'ftl-experiment-challenge', saves: 'replaces wet re-classification of apparent-FTL experiment classes (no-signaling)' },
+  { id: 'ftl-discovery-waves', saves: 'replaces wet re-enumeration of remainder FTL classes via discovery waves at reuse velocity' },
   { id: 'encryption-reverse-verify', saves: 'replaces wet re-run of demo RSA reverse + encrypt↔decrypt tools' },
   { id: 'rosetta-core-api', saves: 'replaces wet re-dispatch of apps/nav/tools through parallel registries' },
   { id: 'rosetta-complete', saves: 'replaces wet re-audit of Rosetta completeness across 432 dims + theorem binds' },
@@ -4179,6 +4181,8 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
     const directionalTrinityPresent = tools.some((t) => t.id === 'directional-trinity')
     const directionalTrinityShelved = tools.find((t) => t.id === 'directional-trinity')
     const millenniumPresent = tools.some((t) => t.id === 'millennium-challenge')
+    const ftlExperimentPresent = tools.some((t) => t.id === 'ftl-experiment-challenge')
+    const ftlWavesPresent = tools.some((t) => t.id === 'ftl-discovery-waves')
     const fusionPresent = tools.some((t) => t.id === 'fusion-verify')
     const firstInCorpusPresent = tools.some((t) => t.id === 'first-in-corpus')
     const rosettaCorePresent = tools.some((t) => t.id === 'rosetta-core-api')
@@ -4195,6 +4199,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'iso-pqc-catalog + standards-audit shelved (rosetta tool)', on: pqcCatalogPresent && standardsAuditPresent && Boolean(standardsAuditShelved) && isUuid(standardsAuditShelved!.address) },
       { facet: 'directional-trinity shelved (forward·inverse·reverse)', on: directionalTrinityPresent && Boolean(directionalTrinityShelved) && isUuid(directionalTrinityShelved!.address) },
       { facet: 'millennium challenge published', on: millenniumPresent },
+      { facet: 'ftl-experiment-challenge + ftl-discovery-waves published', on: ftlExperimentPresent && ftlWavesPresent },
       { facet: 'fusion-verify published', on: fusionPresent },
       { facet: 'first-in-corpus + rosetta-core-api + session-manual-work shelved', on: firstInCorpusPresent && rosettaCorePresent && sessionManualPresent },
       { facet: 'rosetta-complete + theorem-particle-collision + ftl-rosetta-handoff shelved', on: rosettaCompletePresent && colliderPresent && ftlHandoffPresent },

@@ -74,7 +74,7 @@ import {
   omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
-import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
+import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero, fasterThanLightExperimentChallenge, ftlExperimentDiscoveryWaves } from '../../fire/physics'
 import { nextLevel64CubedRealtime } from '../../thunder/trading'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
