@@ -3741,9 +3741,9 @@ export function queueNext(root: string = enforcementScanRoot()) {
   // DIRECTIVE-PROSE rows (states quoting `user,` — process folds, not identities; fabricating identities for
   // them would break the algebraic-theorems-only law). The measuring wave adopts the discovery: the derived
   // count excludes them, so the row now names only the honestly fillable gap and vanishes when THAT reaches zero.
-  const missingIdentity = THEOREM_ATOM_SEED.filter((row) => !row.algebraicStatement && !extractAlgebraicStatement(row.states) && !/\(user[ ,:]|user law|user directive|user correction/.test(row.states)).length
+  const missingIdentity = THEOREM_ATOM_SEED.filter((row) => !row.algebraicStatement && !extractAlgebraicStatement(row.states) && !/\(user[ ,:]|user law|user directive|user correction/.test(row.states) && /[=\u2261\u2264\u2265\u2260\u21D4\u21D2\u2208\u2209\u2282\u2286\u223C\u2245\u2248\u21A6\u2223]|\bmod\b|\biff\b| \| /u.test(row.states)).length
   const derivedRows = missingIdentity > 0 ? [{
-    wave: `algebraic-statement fill (${missingIdentity}/${THEOREM_ATOM_SEED.length} rows fillable: neither curated, extractable, nor directive-prose)`,
+    wave: `algebraic-statement fill (${missingIdentity}/${THEOREM_ATOM_SEED.length} relation-bearing rows fillable: neither curated, extractable, nor directive-prose)`,
     why: 'TOP PRIORITY — only algebraic quantum computing (user 2026-07-28); DERIVED from THEOREM_ATOM_SEED — every theorem must show its real algebraic statement; high-confidence fills only, never fabricated',
     blocksCore: true, // algebraic QC is top priority — outranks non-algebraic residue
     localOnly: true,
