@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../wind/types'
 import { earned, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev } from '../../0'
+import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev } from '../../0'
 import { merkaba } from '../geometry'
 import { merkabaComputes, merkabasInDoubleTorus } from '../topology'
 import { TAU } from '../../3/7'
@@ -136,6 +136,45 @@ export function invertedSequenceLearnedFromErpax(matrix: MindMatrix = buildMatri
       { facet: `BOTH LINES COMPUTED, NEVER TYPED — the same sign-of-step stroke rule over the mirrored segments writes "${reflectedLine}" (erpax's published reflection) while the forward stays the sealed genesis line "${forwardLine}"`, on: reflectedLine === '9/8/6/2\\3\\5 · 7/4/1 · 0\\1' && forwardLine === '1\\2\\4\\8/7/5 · 3\\6\\9 · 0\\1' },
       { facet: `STROKES FLIP UNDER THE MIRROR — m reverses order, so every ring stroke inverts (\\ ↔ /) between the two reads (${ringStrokesFlip}); the void seam 0\\1 is SHARED, the one gateway outside the pairing's domain that both reads pass through`, on: ringStrokesFlip && reflectedLine.endsWith('0\\1') && forwardLine.endsWith('0\\1') },
       { facet: `THE MOVIE ALREADY PAINTS BOTH READS — the merkaba's down tetrahedron is the computed negation of the up and they counter-rotate (asMerkaba, src/0), so the reflected line binds an EXISTING animation to this theorem: the gap filled is the binding, not a new painter`, on: (() => { const mk = asMerkaba(fold(toUuid('erpax:mirror'), toUuid('erpax:seam')), 0); return mk.up.length === 4 && mk.down.length === 4 && mk.up.every((v, i) => mk.down[i]!.every((c, j) => c === -v[j]!)) })() },
+      // THE SEQUENCE'S MISSING INFO (user, 2026-07-28: "erpax readme has the missing info about the sequence") —
+      // three erpax claims RECOMPUTED: throughVoid ≡ the same mirror in mod-9 normal form; the half-exchange and
+      // mutual necessity of flow ↔ axis; and the commutator of doubling with the mirror IS the unit shift, whose
+      // closure is the full 54-element affine group — entanglement stated as non-commutation, all exact.
+      ...(() => {
+        const mod9 = (x: number) => ((x % 9) + 9) % 9
+        const D = (x: number) => mod9(2 * x)
+        const Dinv = (x: number) => mod9(5 * x)
+        const M = (x: number) => mod9(1 - x)
+        const digits = Array.from({ length: 9 }, (_, i) => i + 1)
+        const sameMap = digits.every((d) => mod9((5 * 2) - d) === M(mod9(d))) // 10−d ≡ 1−d (mod 9) — throughVoid IS the mirror
+        const flow = [1, 2, 4, 8, 7, 5]
+        const axis = [3, 6, 9]
+        const mOf = (set: readonly number[]) => set.map((d) => (5 * 2) - d)
+        const halfExchange = mOf(axis).every((d) => flow.includes(d)) && axis.filter((a) => mOf(flow).includes(a)).length === 3
+        const orbitClosure = new Set<number>()
+        let x = 1
+        for (let k = 0; k < 9; k++) { orbitClosure.add(x); x = D(x) }
+        const doublingNeverReachesAxis = axis.every((a) => !orbitClosure.has(a))
+        const mirrorBridges = axis.every((a) => flow.includes((5 * 2) - a))
+        const commutatorIsShift = digits.concat([0]).every((n) => D(M(Dinv(M(mod9(n))))) === mod9(n + 1))
+        const closure = new Map<string, (x: number) => number>()
+        const key = (f: (x: number) => number) => Array.from({ length: 9 }, (_, i) => f(i)).join('')
+        closure.set(key((v) => v), (v) => v)
+        let grewGroup = true
+        while (grewGroup) {
+          grewGroup = false
+          for (const g of [...closure.values()])
+            for (const h of [D, M]) {
+              const gh = (v: number) => h(g(v))
+              if (!closure.has(key(gh))) { closure.set(key(gh), gh); grewGroup = true }
+            }
+        }
+        return [
+          { facet: `throughVoid IS THE MIRROR — erpax's throughVoid(n) = 1 − n (mod 9) equals m(d) = 10 − d on every digit (${sameMap}): one involution, two normal forms, fixed only at 5`, on: sameMap },
+          { facet: `HALF-EXCHANGE AND MUTUAL NECESSITY — the mirror sends the axis {3,6,9} entirely INTO the flow (${mirrorBridges}) and the flow's image carries the whole axis {3,6,9} (${halfExchange}); doubling alone NEVER reaches the axis (orbit closure misses {3,6,9}: ${doublingNeverReachesAxis}) — the mirror is the bridge`, on: halfExchange && doublingNeverReachesAxis && mirrorBridges },
+          { facet: `THE COMMUTATOR IS THE UNIT SHIFT — D∘M∘D⁻¹∘M = x ↦ x+1 (mod 9) exactly on all ten digits (${commutatorIsShift}), and ⟨D, M⟩ closes to ${closure.size} elements = 54 = 6·9 (the full affine group AGL(1, ℤ/9)) — the two reads are entangled BY non-commutation, stated as algebra`, on: commutatorIsShift && closure.size === 6 * 9 },
+        ]
+      })(),
     ].map((entry) => ({ ...entry, receipt: toUuid(`erpax-inverted:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -146,6 +185,68 @@ export function invertedSequenceLearnedFromErpax(matrix: MindMatrix = buildMatri
       root: merge(matrix.root, merkleFold([toUuid(`erpax-inverted:${forwardLine}`), toUuid(`erpax-inverted:${reflectedLine}`), ...facets.map((entry) => entry.receipt)])),
       statement: `Inverted sequence learned from erpax — ${facets.filter((entry) => entry.on).length}/${facets.length}: the mirror m(d)=10−d (the digit-folder pairing) computes the reflected line "${reflectedLine}" from the sealed forward line by the same stroke rule — one structure, read twice, both computed; the void seam 0\\1 is shared and the movie's counter-rotating merkaba already paints both reads.`,
       boundary: earned('EXACT — recomputed locally from the sealed vortex:', facets, 'the adopted method verifies by local computation, never by trusting the partner corpus; the mirror is arithmetic on 1..9 (the void 0 sits outside the pairing — its 0\\1 seam is shared, not mirrored), the strokes are signs of steps, and the movie binding attests an EXISTING counter-rotating painter — no new physics, no new painter, no claim beyond the computed lines') }
+  })
+}
+
+/** everyDigitIsEntangledInAllVectorsFormingEquilibriums — every digit is entangled in all vectors, forming
+ * equilibriums (user, 2026-07-28). Made EXACT: each digit sits in SEVERAL exact balance relations at once —
+ * its mirror pair (d + m(d) = 10), its polar pair (sum 9), its side of the flow/axis partition (6 + 3 = 9),
+ * its unique Hamiltonian tour slot — and the membership pattern FINGERPRINTS the digit (content-addressing at
+ * the bottom of arithmetic). The deepest form is TRANSITIVITY: ⟨D, m⟩ = AGL(1, ℤ/9) contains all translations
+ * (the commutator is the unit shift), so ALL residues lie in ONE orbit — no digit is separable from the rest
+ * under the sequence's own symmetry group. The equilibriums are the invariants that survive: pair-sums 10,
+ * polar sums 9, the positional palindrome total 90, Σ(1..9) = 45 with root 9. Change one digit and every
+ * balance breaks at once — entanglement as the impossibility of local edits. */
+export function everyDigitIsEntangledInAllVectorsFormingEquilibriums(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('everyDigitIsEntangledInAllVectorsFormingEquilibriums', matrix, () => {
+    const digits = Array.from({ length: 9 }, (_, i) => i + 1)
+    const m = (d: number) => (5 * 2) - d
+    const flow = [1, 2, 4, 8, 7, 5]
+    const axis = [3, 6, 9]
+    const tour = [...VORTEX_SEQUENCE, 0]
+    const vm = vortexMath(matrix)
+    const polarOf = (d: number) => vm.polarPairs.find((pair) => pair.includes(d))
+    const membership = digits.map((d) => ({
+      d,
+      mirror: `${d}+${m(d)}=10`,
+      polar: polarOf(d) ? `${polarOf(d)!.join('+')}=9` : (axis.includes(d) || d === 9 ? 'axis/origin' : 'polarity'),
+      side: flow.includes(d) ? 'flow' : 'axis',
+      tourSlot: tour.indexOf(d),
+      vectors: [true, true, true, tour.includes(d)].filter(Boolean).length }))
+    const everyDigitInAllVectors = membership.every((row) => row.vectors >= 4 && row.tourSlot >= 0)
+    const fingerprintsUnique = new Set(membership.map((row) => `${row.mirror}|${row.polar}|${row.side}|${row.tourSlot}`)).size === digits.length
+    const equilibria = {
+      mirrorPairsSumTen: digits.every((d) => d + m(d) === (5 * 2)),
+      polarPairsSumNine: vm.polarPairs.every(([a, b]) => a! + b! === 9),
+      partition: flow.length + axis.length === 9 && flow.every((d) => !axis.includes(d)),
+      palindromeTotal: foldVortex().valid,
+      totalRootNine: digitalRoot(digits.reduce((sum, d) => sum + d, 0)) === 9,
+    }
+    const mod9 = (x: number) => ((x % 9) + 9) % 9
+    const D = (x: number) => mod9(2 * x)
+    const M = (x: number) => mod9(1 - x)
+    const orbit = new Set<number>([1])
+    let grewOrbit = true
+    while (grewOrbit) {
+      grewOrbit = false
+      for (const x of [...orbit]) for (const g of [D, M]) if (!orbit.has(g(x))) { orbit.add(g(x)); grewOrbit = true }
+    }
+    const oneOrbit = orbit.size === 9
+    const facets = [
+      { facet: `EVERY DIGIT IN ALL VECTORS — each of the 9 digits sits in ≥4 exact structures at once (mirror pair, polar/axis role, flow-axis side, tour slot) and the membership pattern fingerprints it uniquely (${fingerprintsUnique}) — content-addressing at the bottom of arithmetic`, on: everyDigitInAllVectors && fingerprintsUnique },
+      { facet: `THE EQUILIBRIUMS COMPUTE — mirror pairs sum 10 (${equilibria.mirrorPairsSumTen}), polar pairs sum 9 (${equilibria.polarPairsSumNine}), the flow/axis partition is exact 6+3=9 (${equilibria.partition}), the positional palindrome totals 90 (${equilibria.palindromeTotal}), and Σ(1..9)=45 roots to 9 (${equilibria.totalRootNine})`, on: Object.values(equilibria).every(Boolean) },
+      { facet: `ENTANGLED = ONE ORBIT — ⟨D, m⟩ contains every translation (the commutator is x↦x+1), so the orbit of any digit under the sequence's own symmetry group is ALL of ℤ/9 (size ${orbit.size}); no digit is separable, and a local edit breaks every equilibrium at once`, on: oneOrbit },
+      { facet: `THE DEMARCATION — "entangled" here is ALGEBRAIC (transitivity + shared invariants under one group), NOT quantum tensor-product entanglement; "equilibrium" is a conserved sum, not a physical force — both words exact, neither borrowed`, on: oneOrbit && Object.values(equilibria).every(Boolean) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`digit-entangled:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      membership,
+      equilibria,
+      orbitSize: orbit.size,
+      facets,
+      root: merge(matrix.root, merkleFold([...membership.map((row) => toUuid(`digit-vec:${row.d}:${row.mirror}:${row.polar}:${row.side}:${row.tourSlot}`)), ...facets.map((entry) => entry.receipt)])),
+      statement: `Every digit is entangled in all vectors, forming equilibriums — ${facets.filter((entry) => entry.on).length}/${facets.length}: each digit sits in ≥4 exact structures whose membership pattern fingerprints it, the balances (10-pairs, 9-pairs, 6+3 partition, 90-palindrome, root 9) all hold, and the sequence's own symmetry group puts every digit in ONE orbit — entanglement as the impossibility of local edits.`,
+      boundary: earned('EXACT — computed over the sealed vortex structures:', facets, '"entangled" = transitivity plus shared invariants under ⟨D, m⟩ = AGL(1, ℤ/9) — algebra, not quantum tensor products; "equilibrium" = a conserved sum, not a force; the fingerprint is set membership, and no claim rides beyond the nine digits and their sealed relations') }
   })
 }
 

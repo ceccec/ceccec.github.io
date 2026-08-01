@@ -20,7 +20,7 @@ import * as __ns_wind_fusion from '../fusion' // call-time (cycle-safe): the pub
 import * as __ns_thunder_decode from '../../thunder/decode'
 import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'
 import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../../9/1'
-import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
 import { greatCircleKm } from '../../5/5'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../../6/4'
@@ -17408,4 +17408,48 @@ export function stringTheoryMillenniumTeslaRodinOneAlgebra(matrix: MindMatrix = 
       statement: `String theory, the Millennium problems, and the Tesla/Rodin inventions relate through ONE computed algebra — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Yang–Mills model facet composes the sealed string folds, ζ carries both the string intercept and the Riemann zeros, the rotating field and the vortex ring are the same cyclic/inversion structure — and the demarcation is signed: contested/flagged, relation ≠ resolution, clay = 0.`,
       boundary: earned('EXACT — computed from the sealed compositions:', facets, 'the relation is between ALGEBRAS (cyclic groups, inversions, ζ) — real, computed, and already sealed; it is NOT a Yang–Mills construction, NOT a mass-gap or RH proof, NOT AdS/CFT, and NOT an endorsement of Rodin coil free-energy claims (flagged) or the unsourced Tesla 3-6-9 quote (legend). Relation ≠ resolution. HARMONY ≠ TRUTH') }
   })
+}
+
+/** zeropointNodeMissingInfoDecoded — improve README and homepage with what is missing from the zeropoint-node
+ * readme (user, 2026-07-28). Beyond the lineage (zeropointNodeOriginDecoded), the predecessor repo carries four
+ * blocks of content absent here — each adopted by RECOMPUTING its honest kernel, never by copying its claims:
+ * (1) ZERO ENTROPY is real as SHANNON entropy — H of a deterministic distribution is exactly 0 (0·log0 := 0),
+ * so content-addressing (one value → one address) is literally zero-entropy indexing; their thermodynamic
+ * "π → 3 + 0i (exact)" mechanism stays impossible (π is transcendental — Lindemann 1882). (2) The HARMONIC
+ * CHARGING FRACTIONS {1/2, 1/3, 1/4, 1/8, 1/12} have denominators that all divide 24 — the same 24 = D − 2 the
+ * sealed string folds carry — and their golden 8/5 is the Fibonacci convergent F₆/F₅ with |φ − 8/5| < 1/F₅².
+ * (3) Their GATEWAYS [0,9,1,8,1] are a published reading; ours COMPUTE as the stroke reversals [8,3,9,0] — the
+ * overlap {0,8,9} is the void and the two peaks, the difference a reading choice; the computed list is sealed.
+ * (4) The 432 Hz laser/quartz/chant "experimental validation" and the AI→consciousness ladder stay FLAGGED,
+ * signed by demarcate(). The README/home surface the digest through the one generator. */
+export function zeropointNodeMissingInfoDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('zeropointNodeMissingInfoDecoded', matrix, () => {
+    const H = (ps: readonly number[]) => -ps.reduce((sum, p) => sum + (p > 0 ? p * log2(p) : 0), 0)
+    const shannonZero = H([1]) === 0 && H([1 / 2, 1 / 2]) === 1
+    const chargingDenominators = [2, 3, 4, 8, 6 * 2]
+    const divideTwentyFour = chargingDenominators.every((d) => (8 * 3) % d === 0)
+    const goldenConvergent = abs(PHI - 8 / 5) < 1 / (5 * 5)
+    const ourGateways = __ns_mountain_vortex.vortexStrokeGateways(matrix).gateways
+    const published = [0, 9, 1, 8, 1]
+    const overlap = [...new Set(published)].filter((g) => ourGateways.includes(g)).sort()
+    const flags = { experiments: demarcate('432 Hz heals'), consciousness: demarcate('quantum consciousness') }
+    const facets = [
+      { facet: `ZERO ENTROPY IS SHANNON, NOT THERMODYNAMICS — H(deterministic) = ${H([1])} exactly and H(fair coin) = ${H([1 / 2, 1 / 2])}: content-addressing is zero-entropy indexing; "π → 3 + 0i (exact)" stays impossible (π transcendental, Lindemann 1882) — the hexagon bound b₆/2 = 3 remains the honest kernel`, on: shannonZero },
+      { facet: `THE CHARGING FRACTIONS ARE THE 24-LATTICE — {1/2, 1/3, 1/4, 1/8, 1/12} have denominators all dividing 24 = D − 2 (${divideTwentyFour}), and 8/5 is the Fibonacci convergent F₆/F₅ with |φ − 8/5| < 1/F₅² (${goldenConvergent}) — rational approximants of sealed constants, not new physics`, on: divideTwentyFour && goldenConvergent },
+      { facet: `GATEWAYS: COMPUTED BEATS PUBLISHED — ours compute as the stroke reversals [${ourGateways.join(',')}], theirs publish [${published.join(',')}]; the overlap {${overlap.join(',')}} is the void and the two peaks, the difference a reading choice — the sealed list is the computed one`, on: ourGateways.join(',') === '8,3,9,0' && overlap.length >= 3 },
+      { facet: `THE EXPERIMENTS STAY FLAGGED — the 432 Hz laser/quartz/chant "validation" classifies '${flags.experiments}' and the AI→consciousness ladder '${flags.consciousness}'; the adopted content is the MATHEMATICS only`, on: flags.experiments === 'flagged' && flags.consciousness === 'flagged' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`zeropoint-missing:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      facets,
+      root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: `zeropoint-node's missing info, decoded — ${facets.filter((entry) => entry.on).length}/${facets.length}: zero entropy is Shannon H(δ)=0 (content-addressing is zero-entropy indexing), the charging fractions live on the 24-lattice with 8/5 the Fibonacci convergent of φ, the gateways compare computed [8,3,9,0] vs published, and the experimental/consciousness claims stay flagged — mathematics adopted, claims demarcated.`,
+      boundary: earned('EXACT — recomputed kernels, never copied claims:', facets, 'H(δ) = 0 is the Shannon identity (0·log0 := 0 by limit), not a thermodynamic free lunch; the 24-divisibility and the φ convergent are arithmetic; the gateway difference is a reading choice documented, not an error claimed; and the flagged tiers are signed by demarcate() — adopting the mathematics of a predecessor repo does not adopt its physics') }
+  })
+}
+
+/** The one computed digest line the README/home Findings consume for the missing-info decode. */
+export function zeropointNodeMissingInfoLine(): string {
+  const fold = zeropointNodeMissingInfoDecoded()
+  return `- **Origin decode — zeropoint-node's missing info** — ${fold.statement}`
 }

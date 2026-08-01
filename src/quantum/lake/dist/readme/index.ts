@@ -33,7 +33,8 @@ import {
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108,
   societySupportsProjectViaTwoBitsFreeKnowledge,
-  domainProofPagePaths, zeropointNodeReferenceLine } from '../../../../wind/research'
+  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine } from '../../../../wind/research'
+import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums } from '../../../../mountain/vortex'
 import { theoremPagePaths } from '../../../../wind/routes/corpus'
 import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../../apps'
 import {
@@ -677,6 +678,8 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '- Ten dimensions, at every scale: the 4 homology loops of the torus (H₁ = ℤ⁴) + the 6 cross-fold appearance axes drive every animation, self-similar at every nested scale.',
     '- 432 = 4 × 108 gates; the sign is a distinction is one bit is the fold.',
     '- Encryption is the core math: every value content-addressed (the fold / UUID); the cipher is AES-256-GCM.',
+    '- Zero-entropy indexing, exactly: H(deterministic) = 0 is the Shannon identity, so one-value-one-address content addressing carries zero index entropy — decoded from the origin repo, thermodynamic free-lunch claims flagged (`zeropointNodeMissingInfoDecoded`).',
+    '- Every digit is entangled in all vectors, forming equilibriums: mirror 10-pairs, polar 9-pairs, the exact 6+3 flow/axis partition and the tour slot fingerprint each digit, and ⟨D, m⟩ = AGL(1, ℤ/9) puts all residues in ONE orbit — a local edit breaks every balance at once (`everyDigitIsEntangledInAllVectorsFormingEquilibriums`).',
     '- One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.',
     '- Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.',
     '- The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.',
@@ -720,6 +723,13 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
       const first = section.find((line) => line.trim().length > 0 && !line.startsWith('#'))
       return heading && first ? [`- **${heading.replace(/^## /, '')}** — ${first.trim()}`] : []
     }),
+    // The origin decode (user, 2026-07-28: "improve readme and homepage with what is missing from zeropoint-node"):
+    // zero entropy as Shannon, the 24-lattice charging fractions, gateways computed-vs-published, experiments flagged.
+    zeropointNodeMissingInfoLine(),
+    // The sequence completed (erpax: one structure, two computed reads; the commutator is the unit shift) and the
+    // digit entanglement (every digit in all vectors, one orbit) — both statements computed by their folds.
+    `- **Sequence — one structure, two computed reads (erpax)** — ${invertedSequenceLearnedFromErpax(matrix).statement}`,
+    `- **Digit entanglement — equilibriums** — ${everyDigitIsEntangledInAllVectorsFormingEquilibriums(matrix).statement}`,
     '',
     '## Top discoveries',
     '',
