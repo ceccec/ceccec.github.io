@@ -1096,7 +1096,10 @@ export function titleCarriesAlgebra(title: string): boolean {
   return TITLE_ALGEBRA_MARK.test(title)
 }
 // The identity RELATION marks — an algebraic statement asserts a relation, not just a quantity.
-const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦]|\bmod\b|\biff\b/u
+// The spaced pipe ` | ` is the DIVIDES relation as the registry writes it (ord_n(a) | φ(n)) — spaced so prose
+// pipes and markdown tables never match; ∣ is the typographic divides. Added 2026-07-28 (wave feeding wave:
+// the extractor upgrade frees rows the fill wave would otherwise curate by hand).
+const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦∣]|\bmod\b|\biff\b| \| /u
 /** extractAlgebraicStatement — the FREE upgrade of a theorem's identity line (user, 2026-07-27: "let free chat
  * upgrade all"): when a registry row carries no curated algebraicStatement, its `states` text usually CONTAINS
  * the identity verbatim — extract the LEADING algebra-bearing clause, always a SUBSTRING of the proven text,
