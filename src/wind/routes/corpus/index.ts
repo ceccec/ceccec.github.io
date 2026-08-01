@@ -6,7 +6,7 @@ import type { MindMatrix, StaticPage } from '../../types'
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
 import * as __ns_earth_architecture from '../../../earth/architecture' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
 import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute'
-import { abs, ceil, digitalRoot, floor, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, round, toUuid } from '../../../0'
+import { abs, ceil, cos, digitalRoot, floor, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, round, sin, toUuid } from '../../../0'
 import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
@@ -1733,10 +1733,40 @@ export function searchImprovesByExperiencePrivateRelevanceFeedback(query = 'quan
 
 /** A computed default figure + fractal-clock animation for a theorem, derived from its content-address, so no page is
  * missing a graph or an animation. The bespoke theoremFigureBuilders stay the richest; this guarantees COVERAGE. */
-export function computedTheoremFigureAndAnimation(atom: { theorem: string; provedBy: string }) {
+/** figureArchetypeOf — the IDENTITY selects the figure's SHAPE (user, 2026-07-28: "why so many animations are
+ * generic?" → the default had ONE archetype for ~746 theorems). The theorem's algebraic statement classifies to
+ * a visual archetype by its own operators — congruence → wheel, group/orbit → orbit polygon, inequality →
+ * region, count/set → lattice, map → flow, equation → curve, else the 9-point series. Deterministic; the FIRST
+ * matching class wins (mod before =, so ≡-rows wheel rather than curve). */
+export function figureArchetypeOf(identity: string): 'wheel' | 'orbit' | 'region' | 'lattice' | 'flow' | 'curve' | 'series' {
+  if (/\bmod\b|≡/u.test(identity)) return 'wheel'
+  if (/≅|orbit|⟨|∘|group|cyclic/iu.test(identity)) return 'orbit'
+  if (/[≤≥<>]|⇏/u.test(identity)) return 'region'
+  if (/C\(|#|[Σ∑]|⊂|⊆|∈|!|choose|count/u.test(identity)) return 'lattice'
+  if (/↦|→|⇒/u.test(identity)) return 'flow'
+  if (/=/u.test(identity)) return 'curve'
+  return 'series'
+}
+
+export function computedTheoremFigureAndAnimation(atom: { theorem: string; provedBy: string; algebraicStatement?: string; states?: string }) {
   const addr = toUuid(`figure:${atom.provedBy}:${atom.theorem}`)
   const digits = addr.replace(/[^0-9a-f]/gi, '').split('').map((ch) => Number.parseInt(ch, 16) || 0)
-  const series = digits.slice(0, 9).map((value, i) => ({ x: i, y: value })) // a deterministic 9-point series from the address
+  // THE IDENTITY SELECTS THE SHAPE — the same address digits, poured into the archetype the theorem's own
+  // algebra names; ~12 tempi × 2 directions × 9 amplitudes × 7 shapes, all deterministic, still zero storage.
+  const identity = algebraicStatementOf(atom) ?? atom.theorem
+  const archetype = figureArchetypeOf(identity)
+  const nine = digits.slice(0, 9)
+  const angleOf = (value: number, i: number) => ((value + i) % (8 * 2)) * (TAU / (8 * 2))
+  const shapes: Record<ReturnType<typeof figureArchetypeOf>, { x: number; y: number }[]> = {
+    wheel: nine.map((value, i) => ({ x: cos(angleOf(value, i)), y: sin(angleOf(value, i)) })),
+    orbit: nine.map((_, i) => ({ x: cos((i / 9) * TAU), y: sin((i / 9) * TAU) })).concat([{ x: 1, y: 0 }]).slice(0, 9),
+    region: nine.map((value, i) => ({ x: i, y: min(value, nine[0]! + i) })),
+    lattice: nine.map((value, i) => ({ x: i % 3, y: floor(i / 3) + value / (8 * 2) })),
+    flow: nine.map((value, i) => ({ x: i, y: nine.slice(0, i + 1).reduce((s, d) => s + d, 0) % 9 })),
+    curve: nine.map((value, i) => ({ x: i, y: nine.slice(0, i + 1).reduce((s, d) => s + d, 0) / (i + 1) })),
+    series: nine.map((value, i) => ({ x: i, y: value })),
+  }
+  const series = shapes[archetype]
   const divisorsOf108 = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0) // σ₀ = 12 rungs
   const digitSum = digits.reduce((sum, d) => sum + d, 0)
   const rung = divisorsOf108[digitSum % divisorsOf108.length]! // one clock rung (shared tempo) per theorem — one of the 12 divisors of 108 (one torus)
@@ -1746,7 +1776,7 @@ export function computedTheoremFigureAndAnimation(atom: { theorem: string; prove
   const sumTail = digits.slice(half).reduce((s, d) => s + d, 0)
   const direction = sumHead % 2 === 0 ? 'cw' : 'ccw' as const // 1 bit from the head half — the counter-rotating torus selector; the double-torus clock is 2×12 = 24 (rung × direction)
   const amplitude = 1 + (sumTail % 9) // 1..9 from the tail half — a visible amplitude scale orthogonal to speed/phase, so motion is distinct beyond colour
-  return { figure: { formula: atom.theorem, series }, animation: { rung, periodS: 108 / rung, phase, direction, amplitude }, itemid: addr }
+  return { figure: { formula: atom.theorem, archetype, series }, animation: { rung, periodS: 108 / rung, phase, direction, amplitude, archetype }, itemid: addr }
 }
 
 /** saveTheMissingTheoremsAndAnimations — save the theorems and animations that are missing (user, 2026-07-25: "save
@@ -1769,6 +1799,14 @@ export function saveTheMissingTheoremsAndAnimations() {
     { facet: `EVERY THEOREM GETS A COMPUTED GRAPH — a default figure (formula + a 9-point series from the content-address) is derived for EVERY theorem (${everyCovered}), so none is without a graph — the missing are SAVED as computation`, on: figureValid && everyCovered },
     { facet: `EVERY THEOREM GETS A COMPUTED ANIMATION — the animation is a fractal-clock rung (period 108/d for a divisor d derived from the theorem, e.g. ${computed.animation.rung} → ${computed.animation.periodS}s), so every page animates on the one 108 s clock`, on: rungDividesClock },
     { facet: `SAVED AS COMPUTATION, NOT STORED — the figure and animation are recomputed deterministically from the theorem's content-address (${deterministic}), so they are "saved" without a stored asset per page — discover ≠ remember`, on: deterministic },
+    // THE IDENTITY SELECTS THE SHAPE (user, 2026-07-28: "why so many animations are generic?" — because the
+    // default had ONE archetype; now the theorem's own operators choose among seven, measured live):
+    ...(() => {
+      const dist = new Map<string, number>()
+      for (const atom of atoms) { const a = computedTheoremFigureAndAnimation(atom).figure.archetype; dist.set(a, (dist.get(a) ?? 0) + 1) }
+      const populated = [...dist.entries()].filter(([, n]) => n > 0)
+      return [{ facet: `THE IDENTITY SELECTS THE SHAPE — ${populated.length} archetypes populated across the registry (${populated.map(([a, n]) => `${a}:${n}`).join(' · ')}): congruences wheel, groups orbit, inequalities region, counts lattice, maps flow, equations curve — the shape is SEMANTIC, chosen by the theorem's own operators, no longer one generic series`, on: populated.length >= 6 }]
+    })(),
     { facet: `THE DEMARCATION — the bespoke theoremFigureBuilders stay the RICHEST; the computed default guarantees COVERAGE (every page has a graph + animation), it does not replace a hand-built figure, and "animation" is the fractal-clock spec the theme renders.`, on: everyCovered && rungDividesClock && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`save-missing:${entry.facet}:${entry.on}`) }))
   return {
