@@ -1733,6 +1733,48 @@ export function feedTheChatInItself(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+/** wavesOfWavesInChat — waves of waves feeding each other, in the chat (user, 2026-07-28). The chat's two wave
+ * engines COMPOSE into one step: the trinity dialogue's arbitrated answer (chatWaveStep) FEEDS the self-feed
+ * step (splitSearch's identity-answer), and the composition's orbit runs through the ONE orbit primitive — a
+ * wave whose input is another wave's output, cycling by pigeonhole like every deterministic self-map on the
+ * finite corpus. The component orbits and the composed orbit are all computed and COMPARED, agreeing or not as
+ * the algebra decides — the honest content is the comparison, not a harmony claim. */
+export function wavesOfWavesInChat(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('wavesOfWavesInChat', matrix, () => {
+    const cap = 64
+    const stepTrinity = (topic: string): string => chatWaveStep(topic, matrix).next
+    const stepSelfFeed = (topic: string): string => {
+      const top = splitSearch(topic).results[0]
+      return top ? (top.identity ?? top.title) : String(portalChat(topic, matrix).answer)
+    }
+    const composed = (topic: string): string => stepSelfFeed(stepTrinity(topic))
+    const whole = orbit(composed, ALGEBRA_SEED_TOPIC, cap)
+    const trinity = orbit(stepTrinity, ALGEBRA_SEED_TOPIC, cap)
+    const feed = orbit(stepSelfFeed, ALGEBRA_SEED_TOPIC, cap)
+    const chainExact = whole.states.every((state, k) => k === 0 || state === composed(whole.states[k - 1]!))
+    const composedCycle = whole.states.slice(whole.mu, whole.mu + whole.lambda)
+    const trinityCycle = trinity.states.slice(trinity.mu, trinity.mu + trinity.lambda)
+    const feedCycle = feed.states.slice(feed.mu, feed.mu + feed.lambda)
+    const sameAsTrinity = composedCycle.join('¦') === trinityCycle.join('¦')
+    const sameAsFeed = composedCycle.join('¦') === feedCycle.join('¦')
+    const far = 9 ** 9
+    const facets = [
+      { facet: `WAVES FEED WAVES IN ONE STEP — composed = selfFeed ∘ trinity: each state is the self-feed of the trinity's arbitrated answer, the chain recomputed exact (${chainExact})`, on: chainExact && whole.states.length >= 2 },
+      { facet: `THE COMPOSITION CYCLES BY THE ONE PRIMITIVE — μ=${whole.mu}, λ=${whole.lambda} in ${whole.states.length} steps; composed wave ${far} is O(1)-determined`, on: whole.cycles && whole.at(far) === whole.at(far + whole.lambda) },
+      { facet: `COMPONENTS AND COMPOSITION COMPARED, NOT ASSUMED — trinity (μ=${trinity.mu}, λ=${trinity.lambda}) · self-feed (μ=${feed.mu}, λ=${feed.lambda}) · composed (μ=${whole.mu}, λ=${whole.lambda}); the composed cycle ${sameAsTrinity ? 'EQUALS' : 'differs from'} the trinity's and ${sameAsFeed ? 'EQUALS' : 'differs from'} the self-feed's — the algebra decides, the fold reports`, on: trinity.cycles && feed.cycles && whole.cycles },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`waves-of-waves:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      composed: { mu: whole.mu, lambda: whole.lambda, cycle: composedCycle.map((state) => state.slice(0, 8 * 9)) },
+      trinity: { mu: trinity.mu, lambda: trinity.lambda },
+      selfFeed: { mu: feed.mu, lambda: feed.lambda },
+      facets,
+      root: merge(matrix.root, merkleFold([toUuid(`waves-of-waves:${whole.mu}:${whole.lambda}`), ...whole.states.map((state, k) => toUuid(`wow-state:${k}:${state}`)), ...facets.map((entry) => entry.receipt)])),
+      statement: `Waves of waves in chat — ${facets.filter((entry) => entry.on).length}/${facets.length}: the trinity wave's answer feeds the self-feed wave as ONE composed step, the composition cycles (μ=${whole.mu}, λ=${whole.lambda}) through the one orbit primitive with every far step O(1)-determined, and the component cycles are compared, not assumed.`,
+      boundary: earned('EXACT — computed from the one orbit algebra:', facets, 'the composition of two deterministic self-maps on the finite corpus is eventually periodic by pigeonhole — the CONTENT is the computed μ/λ comparison between components and composition, reported as the algebra decides; retrieval feeding retrieval, zero tokens, zero fetches, no emergence claim') }
+  })
+}
+
 /** continueAtNoAiCost — the wave continues at zero AI cost (user, 2026-07-27: "continue at no ai cost"). The
  * continuation is not a promise but a PROPERTY: every chat capability is deterministic over the sealed corpus
  * (zero LLM tokens by construction — [[zero-token-policy]]), the researcher dialogue EXTENDS by pure recompute
@@ -8896,8 +8938,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'researcher-waves', out: () => wavesOfLocalResearchersChatAboutAlgebra(matrix).computes },
     { name: 'countless-waves', out: () => countlessFreeChatWaves(matrix).computes },
     { name: 'self-feed', out: () => feedTheChatInItself(matrix).computes },
+    { name: 'waves-of-waves', out: () => wavesOfWavesInChat(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
