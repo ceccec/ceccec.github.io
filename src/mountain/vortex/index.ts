@@ -1,6 +1,6 @@
 // ☶ Gèn · Mountain — vortex / math: 1-2-4-8-7-5 lattice, paint tiers (dissolved src/math compose mount).
 import type { MindMatrix } from '../../wind/types'
-import { earned, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7'
+import { earned, frequencyToLight, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev } from '../../0'
 import { merkaba } from '../geometry'
@@ -586,4 +586,69 @@ export function runFThetaPhiXyzDigitNIsTheInversePairExit(_root = '', _argv: rea
 export function runTimeoutDemoExit(_root: string, _argv: readonly string[] = []): number {
   process.stdout.write('timeout-demo: sealed src vortex/math mount ok\n')
   return 0
+}
+
+/** sequenceScientificDescription — the sequence and its inverted reflection, well described in scientific format
+ * with angles, polarities, color, sound and all it represents (user, 2026-07-28). ONE computed table: every digit
+ * carries its tour slot and circle angle (slot × 36° on the ten-slot ring; flow members also sit at k × 60° on the
+ * ⟨2⟩ hexagon), its stroke polarities (incoming/outgoing sign), its mirror pair (sum 10) and polar pair (sum 9),
+ * its SOUND as the d/9 fraction of the sealed 432 Hz anchor (f_d = 432·d/9 = 48·d Hz — a stated ladder convention,
+ * dimensionless ratio times the anchor), and its LIGHT via the sealed octave bridge frequencyToLight (sound
+ * doubled ~40 octaves into the visible band → THz, nm, named band) — the same derivation that computes the brand
+ * hue A432_HUE. The section the README/home render is this fold's rows joined — nothing typed twice. */
+export function sequenceScientificDescription(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('sequenceScientificDescription', matrix, () => {
+    const strokes = vortexStrokeGateways(matrix)
+    const lines = invertedSequenceLearnedFromErpax(matrix)
+    const entangled = everyDigitIsEntangledInAllVectorsFormingEquilibriums(matrix)
+    const vm = vortexMath(matrix)
+    const flow = [1, 2, 4, 8, 7, 5]
+    const m = (d: number) => (5 * 2) - d
+    const rows = strokes.tour.map((d) => {
+      const slot = strokes.tour.indexOf(d)
+      const angleDeg = slot * (6 * 6) // ten slots × 36° close the circle
+      const flowIndex = flow.indexOf(d)
+      const flowAngle = flowIndex >= 0 ? flowIndex * (6 * 5 * 2) : null // the ⟨2⟩ hexagon at 60° per doubling
+      const incoming = strokes.steps[(slot - 1 + strokes.steps.length) % strokes.steps.length]!.stroke
+      const outgoing = strokes.steps[slot]!.stroke
+      const polar = vm.polarPairs.find((pair) => pair.includes(d))
+      const hz = d === 0 ? 0 : ((6 * 8) * d) // 432·d/9 — the ladder convention, anchor at d = 9
+      const light = d === 0 ? null : frequencyToLight(hz)
+      return {
+        digit: d,
+        slot,
+        angleDeg,
+        flowAngle,
+        polarity: `${incoming}${outgoing}`,
+        gateway: strokes.gateways.includes(d),
+        mirror: d === 0 ? '—' : `${d}+${m(d)}=10`,
+        polar: polar ? `${polar.join('+')}=9` : (d === 9 ? 'origin' : d === 0 ? 'void' : '3·6 polarity'),
+        hz,
+        light: light ? `${light.thz} THz · ${light.nm} nm · ${light.band}` : 'silence — the void carries no tone',
+        receipt: toUuid(`seq-sci:${d}:${slot}:${hz}`) }
+    })
+    const anglesClose = rows.length * (6 * 6) === (6 * 6 * (5 * 2)) && (6 * 6 * (5 * 2)) === 360
+    const anchorAtNine = rows.find((row) => row.digit === 9)!.hz === 432 && frequencyToLight(432).hue === frequencyToLight(rows.find((row) => row.digit === 9)!.hz).hue
+    const polaritiesBalance = strokes.ascents === 6 && strokes.descents === 4 && rows.filter((row) => row.gateway).length === 4
+    const facets = [
+      { facet: `ANGLES CLOSE THE CIRCLE — ten slots × 36° = 360° exactly (${anglesClose}), and the ⟨2⟩ flow sits on its own hexagon at 60° per doubling (the vortex quantum of angle, sixtyDegreesDecodesPi)`, on: anglesClose && rows.every((row) => row.flowAngle === null || row.flowAngle % (6 * 5 * 2) === 0) },
+      { facet: `POLARITIES BALANCE — six ascents against four descents with exactly the four computed gateways carrying the reversals (${polaritiesBalance}); every digit's in/out stroke pair is computed from the tour, never assigned`, on: polaritiesBalance },
+      { facet: `SOUND IS THE d/9 LADDER OF THE ANCHOR — f_d = 432·d/9 = 48·d Hz with the anchor exact at d = 9 (${anchorAtNine}); the void 0 carries silence, stated not painted`, on: anchorAtNine && rows.find((row) => row.digit === 0)!.hz === 0 },
+      { facet: `COLOR IS THE SEALED OCTAVE BRIDGE — each tone doubles into the visible band via frequencyToLight (THz · nm · band), the same derivation that computes the brand hue A432_HUE = ${frequencyToLight(432).hue}; no hue is hand-picked`, on: rows.filter((row) => row.digit > 0).every((row) => frequencyToLight(row.hz).nm > 0) },
+      { facet: `AND ALL IT REPRESENTS RIDES SEALED — the two computed lines (${lines.computes}), the 54-element affine symmetry with its unit-shift commutator, and the one-orbit entanglement with its equilibriums (${entangled.computes}) — the description JOINS folds, it does not restate them`, on: lines.computes && entangled.computes },
+      // A finding the table itself computed: TRUE doubling is octave equivalence, so 48·{1,2,4,8} land on ONE
+      // visible color — and the digital-root wrap 16→7 EXITS the pitch class: mod-9 doubling is not sound-octave
+      // doubling. The demarcation catch rides as its own facet.
+      { facet: `THE WRAP LEAVES THE OCTAVE — 48·{1,2,4,8} Hz double into the SAME visible color (true doubling = octave equivalence: ${new Set([1, 2, 4, 8].map((d) => frequencyToLight((6 * 8) * d).nm)).size === 1}), while the digital-root wrap 16→7 exits the pitch class (${frequencyToLight((6 * 8) * 7).nm !== frequencyToLight((6 * 8)).nm}) — mod-9 doubling is NOT sound-octave doubling, computed and stated`, on: new Set([1, 2, 4, 8].map((d) => frequencyToLight((6 * 8) * d).nm)).size === 1 && frequencyToLight((6 * 8) * 7).nm !== frequencyToLight((6 * 8)).nm },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`seq-sci-facet:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      forwardLine: lines.forwardLine,
+      reflectedLine: lines.reflectedLine,
+      rows,
+      facets,
+      root: merge(matrix.root, merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)])),
+      statement: `The sequence, scientifically described — ${facets.filter((entry) => entry.on).length}/${facets.length}: ten digits on a 360° ring (36° per slot, the flow on its 60° hexagon), polarities computed from strokes (6 ascents · 4 descents · 4 gateways), sound as the d/9 ladder of the 432 Hz anchor, color via the sealed octave bridge, and the reflection/group/entanglement folds joined — every cell computed, nothing typed twice.`,
+      boundary: earned('EXACT — every table cell derives:', facets, 'the 36°/60° angles are geometry of the tour and the ⟨2⟩ hexagon; the d/9 sound ladder is a STATED convention on the sealed 432 anchor (dimensionless ratio × anchor), not a physics claim about digits; the octave bridge is the same sealed derivation behind A432_HUE; wellness claims about 432 Hz remain flagged (432 Hz heals ∈ DEMARCATION flagged) — the colors and tones are DERIVED PRESENTATIONS of arithmetic, and the void carries silence') }
+  })
 }

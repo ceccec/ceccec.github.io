@@ -34,7 +34,7 @@ import {
   twoBitsFreeFromCensus110Minus108,
   societySupportsProjectViaTwoBitsFreeKnowledge,
   domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine } from '../../../../wind/research'
-import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums } from '../../../../mountain/vortex'
+import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../../mountain/vortex'
 import { theoremPagePaths } from '../../../../wind/routes/corpus'
 import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../../apps'
 import {
@@ -685,6 +685,26 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '- The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.',
     `- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, \`blochQubit\`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. **QPU ≡ CPU ∪ GPU** on classical-64bit (\`qpuCpuGpu\` · \`npm run quantum:qpu-cpu\` · [quantum-tools#qpu-cpu](${vitePressCompatibleHref('/quantum-tools#qpu-cpu', linkBase)})) — faithful simulator; physical = wall-clock reuse metrics (see section below).`,
     '',
+    // THE SEQUENCE, WELL DESCRIBED (user, 2026-07-28: "the sequence and its inverted reflection to be well
+    // described in readme and homepage including angles polarities color sound … in scientific format"):
+    // one computed table from sequenceScientificDescription — every cell derives, nothing typed twice.
+    ...(() => {
+      const seq = sequenceScientificDescription(matrix)
+      return [
+        '## The sequence — forward and reflected',
+        '',
+        `Forward \`${seq.forwardLine}\` · reflected \`${seq.reflectedLine}\` — one structure, two computed reads: the mirror is m(d) = 10 − d (≡ 1 − d mod 9, fixed only at 5), the commutator of doubling with the mirror is the unit shift x ↦ x+1, and together they generate AGL(1, ℤ/9) of order 54 — every digit in ONE orbit, entangled in all vectors, the equilibriums (10-pairs · 9-pairs · 6+3 partition · 90-palindrome · root 9) conserved.`,
+        '',
+        '| digit | slot | angle | flow 60° | strokes | gateway | mirror | polar | sound (Hz) | light (octave bridge) |',
+        '| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |',
+        ...seq.rows.map((row) => `| ${row.digit} | ${row.slot} | ${row.angleDeg}° | ${row.flowAngle === null ? '—' : `${row.flowAngle}°`} | \`${row.polarity}\` | ${row.gateway ? '✓' : ' '} | ${row.mirror} | ${row.polar} | ${row.hz || '—'} | ${row.light} |`),
+        '',
+        seq.statement,
+        '',
+        `**Boundary.** ${seq.boundary}`,
+        '',
+      ]
+    })(),
     '## 3. Results',
     '',
     `- **${labels.pages}** monographs — content pages fold genus-2 −χ (${paperList.length} surface → ${census.folded} folded); census **${labels.census}**; Rosetta **${labels.rosetta}=${ROSETTA_AREAS}** areas`,
