@@ -3748,7 +3748,11 @@ export function queueNext(root: string = enforcementScanRoot()) {
     blocksCore: true, // algebraic QC is top priority — outranks non-algebraic residue
     localOnly: true,
     toolExists: true,
-    firstAction: 'fill algebraicStatement for high-confidence rows in src/4/6 THEOREM_ATOM_SEED; verify with npm run theorems:verify',
+    // PHASE-AWARE (waves of waves, 2026-07-28): below two dozen the mechanical phase is over — the residue
+    // carries only incidental relation symbols, and each row needs an individual decision, not a sweep.
+    firstAction: missingIdentity > (6 * 4)
+      ? 'fill algebraicStatement for high-confidence rows in src/4/6 THEOREM_ATOM_SEED; verify with npm run theorems:verify'
+      : 'JUDGMENT RESIDUE — mechanical high-confidence fills are exhausted; each remaining row needs an individual decision (real identity, rewrite states to carry one, or stays a process row identity-free by law)',
   }] : []
   const openRows = [...QUEUE_ROWS.filter((row) => !('doneArtifact' in row) || !existsSync(join(root, (row as { doneArtifact: string }).doneArtifact))), ...derivedRows]
   // Algebraic-QC top priority (user 2026-07-28): algebraic work gets +8 so it outranks lexical/prose residue.
