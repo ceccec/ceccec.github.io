@@ -2785,7 +2785,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'honest-revolution-w6', saves: 'replaces wet re-framing of efficiency as physics speedup — answers÷tokens only' },
   { id: 'animations-rosetta', saves: 'replaces wet re-wiring of animation→rosetta rays (yin-yang first)' },
   { id: 'trading-rosetta-train', saves: 'replaces wet re-training of historical short·long waves via rosetta' },
-  { id: 'trade-challenge', saves: 'strategies challenge each other in chat via sealed PnL/harmonic duals — not LLM trades' },
+  { id: 'trade-challenge', saves: 'replaces wet trade-debate re-inference — strategies challenge each other in chat via sealed PnL/harmonic duals, not LLM trades' },
   { id: 'millennium-challenge', saves: 'replaces wet re-probing of Clay millennium apparatus (claySolved=0)' },
   { id: 'encryption-reverse-verify', saves: 'replaces wet re-run of demo RSA reverse + encrypt↔decrypt tools' },
   { id: 'rosetta-core-api', saves: 'replaces wet re-dispatch of apps/nav/tools through parallel registries' },
