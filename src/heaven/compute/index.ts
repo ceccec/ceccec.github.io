@@ -1758,10 +1758,17 @@ export function wavesOfWavesInChat(matrix: MindMatrix = buildMatrix()) {
     const sameAsTrinity = composedCycle.join('¦') === trinityCycle.join('¦')
     const sameAsFeed = composedCycle.join('¦') === feedCycle.join('¦')
     const far = 9 ** 9
+    // ROUND 2 (user, 2026-07-28: 'next waves of waves in chat') — the order question the session's own
+    // algebra demands: the commutator finding for D and m repeats at the WAVE level. Compose the other way
+    // and compare: if the two orders reach different attractors, the waves do not commute — computed, not assumed.
+    const reversed = orbit((topic: string) => stepTrinity(stepSelfFeed(topic)), ALGEBRA_SEED_TOPIC, cap)
+    const reversedCycle = reversed.states.slice(reversed.mu, reversed.mu + reversed.lambda)
+    const ordersAgree = reversedCycle.join('¦') === composedCycle.join('¦')
     const facets = [
       { facet: `WAVES FEED WAVES IN ONE STEP — composed = selfFeed ∘ trinity: each state is the self-feed of the trinity's arbitrated answer, the chain recomputed exact (${chainExact})`, on: chainExact && whole.states.length >= 2 },
       { facet: `THE COMPOSITION CYCLES BY THE ONE PRIMITIVE — μ=${whole.mu}, λ=${whole.lambda} in ${whole.states.length} steps; composed wave ${far} is O(1)-determined`, on: whole.cycles && whole.at(far) === whole.at(far + whole.lambda) },
       { facet: `COMPONENTS AND COMPOSITION COMPARED, NOT ASSUMED — trinity (μ=${trinity.mu}, λ=${trinity.lambda}) · self-feed (μ=${feed.mu}, λ=${feed.lambda}) · composed (μ=${whole.mu}, λ=${whole.lambda}); the composed cycle ${sameAsTrinity ? 'EQUALS' : 'differs from'} the trinity's and ${sameAsFeed ? 'EQUALS' : 'differs from'} the self-feed's — the algebra decides, the fold reports`, on: trinity.cycles && feed.cycles && whole.cycles },
+      { facet: `THE ORDERS ${ordersAgree ? 'COMMUTE' : 'DO NOT COMMUTE'} — trinity ∘ selfFeed cycles (μ=${reversed.mu}, λ=${reversed.lambda}) and its attractor ${ordersAgree ? 'EQUALS' : 'DIFFERS FROM'} selfFeed ∘ trinity's — the same non-commutation question the digit mirror answered ([D, m] = the unit shift), now asked of the waves themselves and answered by computation`, on: reversed.cycles },
     ].map((entry) => ({ ...entry, receipt: toUuid(`waves-of-waves:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
