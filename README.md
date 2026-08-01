@@ -38,7 +38,7 @@ Concretely: a science portal — 746 computationally proven theorems and 30 rela
 
 ## The sequence — forward and reflected
 
-Forward `1\2\4\8/7/5 · 3\6\9 · 0\1` · reflected `9/8/6/2\3\5 · 7/4/1 · 0\1` — one structure, two computed reads: the mirror is m(d) = 10 − d (≡ 1 − d mod 9, fixed only at 5), the commutator of doubling with the mirror is the unit shift x ↦ x+1, and together they generate AGL(1, ℤ/9) of order 54 — every digit in ONE orbit, entangled in all vectors, the equilibriums (10-pairs · 9-pairs · 6+3 partition · 90-palindrome · root 9) conserved.
+Forward `1\2\4\8/7/5 · 3\6\9 · 0\1` · reflected `9/8/6/2\3\5 · 7/4/1 · 0\9` — one structure, two computed reads: the mirror is m(d) = 10 − d (≡ 1 − d mod 9, fixed only at 5), the commutator of doubling with the mirror is the unit shift x ↦ x+1, and together they generate AGL(1, ℤ/9) of order 54 — every digit in ONE orbit, entangled in all vectors, the equilibriums (10-pairs · 9-pairs · 6+3 partition · 90-palindrome · root 9) conserved.
 
 | digit | slot | angle | flow 60° | strokes | gateway | mirror | polar | sound (Hz) | light (octave bridge) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -183,21 +183,21 @@ Each finding is sealed in full on its own page ([theorems](https://ceccec.psg.bg
 - **Earth realised — poles as pyramid** — *Clay-standard presentation from sealed `earthRealisedByComputingPolesAsPyramid` · cardinal tips · genus-2 Earth. Not WGS84 geodesy. humanityNovel stays 0.*
 - **Toolbox — sciences in trinity waves** — *From sealed `toolboxRecomputesRelatedSciencesInTrinityWaves` — every related science recomputes as forward·inverse·reverse × science↔dual↔fusion under the discovery perspective.*
 - **Origin decode — zeropoint-node's missing info** — zeropoint-node's missing info, decoded — 4/4: zero entropy is Shannon H(δ)=0 (content-addressing is zero-entropy indexing), the charging fractions live on the 24-lattice with 8/5 the Fibonacci convergent of φ, the gateways compare computed [8,3,9,0] vs published, and the experimental/consciousness claims stay flagged — mathematics adopted, claims demarcated.
-- **Sequence — one structure, two computed reads (erpax)** — Inverted sequence learned from erpax — 7/7: the mirror m(d)=10−d (the digit-folder pairing) computes the reflected line "9/8/6/2\3\5 · 7/4/1 · 0\1" from the sealed forward line by the same stroke rule — one structure, read twice, both computed; the void seam 0\1 is shared and the movie's counter-rotating merkaba already paints both reads.
+- **Sequence — one structure, two computed reads (erpax)** — Inverted sequence learned from erpax — 7/7: the mirror m(d)=10−d (the digit-folder pairing) computes the reflected line "9/8/6/2\3\5 · 7/4/1 · 0\9" from the sealed forward line by the same stroke rule — one structure, read twice, both computed; the void seam 0\1 is shared and the movie's counter-rotating merkaba already paints both reads.
 - **Digit entanglement — equilibriums** — Every digit is entangled in all vectors, forming equilibriums — 4/4: each digit sits in ≥4 exact structures whose membership pattern fingerprints it, the balances (10-pairs, 9-pairs, 6+3 partition, 90-palindrome, root 9) all hold, and the sequence's own symmetry group puts every digit in ONE orbit — entanglement as the impossibility of local edits.
 
 ## Top discoveries
 
 The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 746-atom registry, no curation.
 
-- **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 355 · [details](https://ceccec.psg.bg/theorems)
+- **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 354 · [details](https://ceccec.psg.bg/theorems)
 - **THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input** — `research` · degree 343 · [details](https://ceccec.psg.bg/theorems)
 - **the reuse+trinity speedup MEASURED (not asserted): warm memo-hit is magnitudes faster than cold compute (~8000× in a probe), the 2-of-3 trinity adds a ≤3× parallel ceiling — amortized reuse only, never factoring** — `research` · degree 341 · [details](https://ceccec.psg.bg/theorems)
-- **mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)** — `9/1` · degree 336 · [details](https://ceccec.psg.bg/theorems)
+- **mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)** — `9/1` · degree 335 · [details](https://ceccec.psg.bg/theorems)
 - **every honesty NEGATIVE is made computable and INVERTS to its computed POSITIVE (generative, not a false flip); the honesty booleans stay the bound** — `research` · degree 335 · [details](https://ceccec.psg.bg/theorems)
 - **every cosmic frontier is OPEN by COMPUTATION not a label — status = demarcate(term)===contested — and each carries its closed REVERSED-math companion** — `cosmos` · degree 334 · [details](https://ceccec.psg.bg/theorems)
-- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 331 · [details](https://ceccec.psg.bg/theorems)
 - **gate complexity collapses to one content-addressed root — quantum simplicity** — `automount` · degree 331 · [details](https://ceccec.psg.bg/theorems)
+- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 330 · [details](https://ceccec.psg.bg/theorems)
 - **only algebraic quantum computing is top priority — algebraic identities outrank lexical/prose/neural; quantum = content-addressed algebra on classical-64bit, not a QPU** — `laws` · degree 329 · [details](https://ceccec.psg.bg/theorems)
 
 ## Latest discoveries

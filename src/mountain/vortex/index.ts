@@ -115,9 +115,10 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
  * `9/8/6/2\3\5 · 7/4/1 · 0\1` — "both computed, never typed". RECOMPUTED here (the adopted method: verify
  * locally, never trust a partner corpus): the mirror is this repo's own digit-folder pairing m(d) = 10 − d
  * ([[digit-folders-pi-train]]) — an involution fixing 5 with every pair summing to 10; applying the SAME
- * sign-of-step stroke rule to the mirrored segments WRITES the reflected line exactly, every stroke flipped
- * (m reverses order), and the void seam `0\1` is shared because 0 sits outside the pairing's domain — the one
- * gateway both reads pass through. The movie already PAINTS the two reads (the merkaba's down tetrahedron is
+ * sign-of-step stroke rule to the fully mirrored segments (m(0) = 0 — the void self-mirror, one rule with no
+ * exception) WRITES the reflected line exactly, every ring stroke flipped (m reverses order); the seam is the
+ * one stroke that does NOT flip — both reads RISE from the void, each to its own head (0\1 and 0\9, user
+ * correction 2026-07-28). The movie already PAINTS the two reads (the merkaba's down tetrahedron is
  * the negation of the up, counter-rotating), so the mirror line binds the existing animation to its theorem —
  * the gap filled is the BINDING, computed, not a new painter. */
 export function invertedSequenceLearnedFromErpax(matrix: MindMatrix = buildMatrix()) {
@@ -125,7 +126,11 @@ export function invertedSequenceLearnedFromErpax(matrix: MindMatrix = buildMatri
     const mirror = (d: number) => (5 * 2) - d // the digit-folder pairing d/(10−d), defined on 1..9
     const strokesOf = (seg: readonly number[]) => seg.map((d, i) => (i + 1 < seg.length ? `${d}${seg[i + 1]! > d ? '\\' : '/'}` : `${d}`)).join('')
     const forwardSegments: readonly (readonly number[])[] = [[...VORTEX_SEQUENCE.slice(0, 6)], [...VORTEX_SEQUENCE.slice(6)], [0, 1]]
-    const reflectedSegments = [forwardSegments[0]!.map(mirror), forwardSegments[1]!.map(mirror), forwardSegments[2]!] // the void seam is NOT mirrored — 0 is outside the pairing
+    // ONE RULE, NO EXCEPTION (user correction, 2026-07-28: the reflected tail is 0\9): extend the mirror with
+    // m(0) = 0 — the void is SELF-mirror — and the reflected line is m applied to EVERY digit of the forward
+    // line, its seam rising to its OWN head (forward 0\1 → 1…, reflected 0\9 → 9…), the cycle closing consistently.
+    const mirrorWithVoid = (d: number) => (d === 0 ? 0 : mirror(d))
+    const reflectedSegments = forwardSegments.map((seg) => seg.map(mirrorWithVoid))
     const forwardLine = forwardSegments.map(strokesOf).join(' · ')
     const reflectedLine = reflectedSegments.map(strokesOf).join(' · ')
     const involution = Array.from({ length: 9 }, (_, i) => i + 1).every((d) => mirror(mirror(d)) === d) && mirror(5) === 5
@@ -133,8 +138,8 @@ export function invertedSequenceLearnedFromErpax(matrix: MindMatrix = buildMatri
     const ringStrokesFlip = strokesOf(forwardSegments[0]!).replace(/[0-9]/g, '') === strokesOf(reflectedSegments[0]!).replace(/[0-9]/g, '').split('').map((s) => (s === '/' ? '\\' : '/')).join('')
     const facets = [
       { facet: `THE MIRROR IS THE DIGIT-FOLDER PAIRING — m(d) = 10−d, an involution (${involution}) fixing 5, every pair summing to 10 (${pairsSumTen}); erpax's reflection and this repo's d/(10−d) folder duals are ONE map`, on: involution && pairsSumTen },
-      { facet: `BOTH LINES COMPUTED, NEVER TYPED — the same sign-of-step stroke rule over the mirrored segments writes "${reflectedLine}" (erpax's published reflection) while the forward stays the sealed genesis line "${forwardLine}"`, on: reflectedLine === '9/8/6/2\\3\\5 · 7/4/1 · 0\\1' && forwardLine === '1\\2\\4\\8/7/5 · 3\\6\\9 · 0\\1' },
-      { facet: `STROKES FLIP UNDER THE MIRROR — m reverses order, so every ring stroke inverts (\\ ↔ /) between the two reads (${ringStrokesFlip}); the void seam 0\\1 is SHARED, the one gateway outside the pairing's domain that both reads pass through`, on: ringStrokesFlip && reflectedLine.endsWith('0\\1') && forwardLine.endsWith('0\\1') },
+      { facet: `BOTH LINES COMPUTED, NEVER TYPED — the same sign-of-step stroke rule over the fully mirrored segments (m(0) = 0, the void self-mirror) writes "${reflectedLine}" while the forward stays the sealed genesis line "${forwardLine}"; each read's seam rises to its OWN head — forward 0\\1, reflected 0\\9`, on: reflectedLine === '9/8/6/2\\3\\5 · 7/4/1 · 0\\9' && forwardLine === '1\\2\\4\\8/7/5 · 3\\6\\9 · 0\\1' },
+      { facet: `STROKES FLIP UNDER THE MIRROR, EXCEPT THROUGH THE VOID — m reverses order so every ring stroke inverts (\\ ↔ /) between the two reads (${ringStrokesFlip}); the seam is the ONE stroke that does not flip: both reads RISE from the void, each to its own head (0\\1 and 0\\9)`, on: ringStrokesFlip && reflectedLine.endsWith('0\\9') && forwardLine.endsWith('0\\1') },
       { facet: `THE MOVIE ALREADY PAINTS BOTH READS — the merkaba's down tetrahedron is the computed negation of the up and they counter-rotate (asMerkaba, src/0), so the reflected line binds an EXISTING animation to this theorem: the gap filled is the binding, not a new painter`, on: (() => { const mk = asMerkaba(fold(toUuid('erpax:mirror'), toUuid('erpax:seam')), 0); return mk.up.length === 4 && mk.down.length === 4 && mk.up.every((v, i) => mk.down[i]!.every((c, j) => c === -v[j]!)) })() },
       // THE SEQUENCE'S MISSING INFO (user, 2026-07-28: "erpax readme has the missing info about the sequence") —
       // three erpax claims RECOMPUTED: throughVoid ≡ the same mirror in mod-9 normal form; the half-exchange and
@@ -184,7 +189,7 @@ export function invertedSequenceLearnedFromErpax(matrix: MindMatrix = buildMatri
       facets,
       root: merge(matrix.root, merkleFold([toUuid(`erpax-inverted:${forwardLine}`), toUuid(`erpax-inverted:${reflectedLine}`), ...facets.map((entry) => entry.receipt)])),
       statement: `Inverted sequence learned from erpax — ${facets.filter((entry) => entry.on).length}/${facets.length}: the mirror m(d)=10−d (the digit-folder pairing) computes the reflected line "${reflectedLine}" from the sealed forward line by the same stroke rule — one structure, read twice, both computed; the void seam 0\\1 is shared and the movie's counter-rotating merkaba already paints both reads.`,
-      boundary: earned('EXACT — recomputed locally from the sealed vortex:', facets, 'the adopted method verifies by local computation, never by trusting the partner corpus; the mirror is arithmetic on 1..9 (the void 0 sits outside the pairing — its 0\\1 seam is shared, not mirrored), the strokes are signs of steps, and the movie binding attests an EXISTING counter-rotating painter — no new physics, no new painter, no claim beyond the computed lines') }
+      boundary: earned('EXACT — recomputed locally from the sealed vortex:', facets, 'the adopted method verifies by local computation, never by trusting the partner corpus; the mirror extends to the void as self-mirror (m(0) = 0), so the reflected line is m of the whole forward line and each read rises from the void to its own head (0\\1 · 0\\9), the strokes are signs of steps, and the movie binding attests an EXISTING counter-rotating painter — no new physics, no new painter, no claim beyond the computed lines') }
   })
 }
 
