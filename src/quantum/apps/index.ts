@@ -16448,6 +16448,19 @@ export function invisibleGapsCaughtByGatesBody(matrix: MindMatrix = buildMatrix(
         helperBarrel: 'src/quantum/apps',
         drainableClosed: afterOpen === 0 && hardOpen.length === 0,
         blocker: 'residual:9-apps-helpers-still-in-apps-body',
+        // THE COMPUTED MIGRATION PLAN (measured 2026-07-28 — the blocker upgraded from a name to a worklist):
+        // ~1500 lines across the Body + six named helpers, ten consumer files import from this barrel. The
+        // move's risk is CYCLES (the helpers compose corpus/format folds that live above strict/scan); the
+        // next session starts from this list, not from the search.
+        plan: [
+          'invisibleGapsCaughtByGatesBody (949 lines)',
+          'linearWithoutRosetta (141 lines)',
+          'animationsFindRedundancyOrInaccuracy (96 lines)',
+          'meaningIsQuantumComputable (95 lines)',
+          'gatesRefuseProseOnly (85 lines)',
+          'scientificPageFormatCanonised (73 lines)',
+          'algebraicFormulasAreDualOfSealedCode (61 lines)',
+        ] as const,
       },
     }
   })
