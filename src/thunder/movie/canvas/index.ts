@@ -429,6 +429,9 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       { id: 'flower-of-life', theorem: 'flowerUnlocksFruitBySpin', binds: flower.holds },
       { id: 'calendars-vortex-markers', theorem: 'coupledCalendarTori', binds: calendars.decoded && calendarsNoRing },
       { id: 'vortex-strokes', theorem: 'vortexStrokeGateways', binds: strokes.computes && VORTEX_SEQUENCE.length === 9 },
+      // The erpax inverted read — the counter-rotating merkaba (down = negation of up) IS the reflected line's
+      // painter; the gap filled is the BINDING of the existing animation to its computed mirror theorem.
+      { id: 'inverted-sequence', theorem: 'invertedSequenceLearnedFromErpax', binds: __ns_vortex.invertedSequenceLearnedFromErpax(matrix).computes && earths.rotates },
       { id: 'both-earths-merkaba', theorem: 'bothEarthsRotateWithinEachOther', binds: earths.rotates && merkabaNoShell },
       { id: 'void-confluence', theorem: 'plasma-throat-soft', binds: voidSoft },
       { id: 'plasma-screen', theorem: 'plasmaBallIsScreenHoldingThunderAndPlasma', binds: plasmaScreenBinds },
