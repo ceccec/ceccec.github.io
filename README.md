@@ -197,7 +197,7 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 | memoByRoot audit suite | apparentFtlSpeedup = T_cold / max(T_warm, ε) | 0.001 | 0 | 0.151× | `localAuditQuantumSpeedEfficiency` |
 | holographic envelope round-trip | roundTripCount / roundTripTotal | 753 | 753 | 1 identity | `importFractalMap` |
 | answers÷tokens on reuse | answers / max(tokens, 0) | 0 | 0 | ∞ (tokens=0) | `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` |
-| docs:build wall-clock | buildMs (warm path when cached) | 196000 | — | observer — run build/min locally | `buildMin` |
+| docs:build wall-clock | buildMs (warm path when cached) | 196000 | 126626 | 1.548× vs CI baseline | `buildMin` |
 | trinity enforcement (facts-once) | collectEnforcementFacts → cross·fold·weave | multi-walk | single-pass | reuse-once | `agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath` |
 | superluminal signaling proofs | PHYSICAL_FTL_SIGNALING_PROOF_IDS.length | 0 | 0 | none sealed | `physicalFtlClaimTheorem` |
 
@@ -217,24 +217,24 @@ Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot re
 computes=true · qpuEqualsCpuGpu=true · quantumComputerComplete=true · qpuRequired=false · architectureRequirement=classical-64bit · superluminalProofCount=0
 
 - Routes: [qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu) · [prove-no-qpu-64bit](https://ceccec.psg.bg/quantum-tools#prove-no-qpu-64bit) · [mcp-hw](https://ceccec.psg.bg/quantum-tools#mcp-hw) · [agents.json](https://ceccec.psg.bg/agents.json) · CLI `npm run quantum:qpu-cpu`
-- Receipt: fold `qpuCpuGpu` · root=606cb1e0 · apparentFtl=0.151×.
+- Receipt: fold `qpuCpuGpu` · root=70272547 · apparentFtl=0.151×.
 
 ## Gate light · more computed → lighter build
 
 *Sealed `gateLight` · pairs `gate/light` · `light/gate`. Inverse relation proved at call time — not slogans.*
 
-gateLight — coverage=0.7163 gateCost=367 buildNorm=0.018 inverse=40.0434 buildSpeedup=3.4× factsOnce=1.
+gateLight — coverage=0.7163 gateCost=367 buildNorm=0.646 inverse=1.1269 buildSpeedup=1.548× factsOnce=1.
 
 | Axis | Value | Trend | Source |
 |---|---|---|---|
 | computeCoverage | 0.7163 | → migrate manual rows | `manualGauge derived/(derived+manual)` |
 | gateCost | 367 | → onTrueDebt=336 | `gateAnalytics onTrue+allowlists+slimOnTrue` |
-| buildMs | — | ↓ vs baseline 196000ms | `buildMin timing` |
+| buildMs | 126626 | ↓ vs baseline 196000ms | `buildMin timing` |
 | deployMs | 11000 | ↓ warm CI cache path | `buildMin CI baseline` |
-| inverseScore | 40.0434 | → drain manual · on:true debt | `gateLight law receipt` |
+| inverseScore | 1.1269 | → drain manual · on:true debt | `gateLight law receipt` |
 | factsOnce | 1 | collectEnforcementFacts once · wave/verify subtracts render | `trinity/speedup · wave/verify` |
 
-inverseRelationOn=false · computeCoverage=0.7163 · gateCost=367 · buildSpeedup=3.4×
+inverseRelationOn=false · computeCoverage=0.7163 · gateCost=367 · buildSpeedup=1.548×
 
 - [gate-light](https://ceccec.psg.bg/quantum-tools#gate-light) · [build-min](https://ceccec.psg.bg/quantum-tools#build-min) · CLI `npm run quantum:gate-light`
 

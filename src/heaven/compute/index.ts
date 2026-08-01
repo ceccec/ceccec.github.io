@@ -1648,23 +1648,31 @@ export function freeChatUpgradesAll(matrix: MindMatrix = buildMatrix()) {
  * is topics[μ + ((n−μ) mod λ)], O(1) index arithmetic. Countably infinite waves, zero tokens, zero fetches:
  * the cycle is what makes infinity affordable ([[feedback-no-finiteness-assumption-fractal-aperiodic]] honoured
  * the honest way round — the STATE space is finite, so the infinite ORBIT is periodic and computable). */
+/** orbit — the ONE eventually-periodic orbit detector (fewest words, combinatorial: every self-feeding loop —
+ * the trinity dialogue, the chat feeding on itself — is the SAME algebra: a deterministic map on a finite state
+ * space, so the orbit cycles by pigeonhole; μ/λ make every future state O(1)). */
+function orbit(step: (state: string) => string, seed: string, cap: number) {
+  const seenAt = new Map<string, number>()
+  const states: string[] = []
+  let state = seed
+  let mu = -1
+  let lambda = 0
+  for (let k = 0; k < cap; k++) {
+    const at = seenAt.get(state)
+    if (at !== undefined) { mu = at; lambda = k - at; break }
+    seenAt.set(state, k)
+    states.push(state)
+    state = step(state)
+  }
+  const cycles = mu >= 0 && lambda >= 1
+  const at = (n: number): string => (n < states.length ? states[n]! : states[mu + ((n - mu) % lambda)]!)
+  return { states, mu, lambda, cycles, at }
+}
+
 export function countlessFreeChatWaves(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('countlessFreeChatWaves', matrix, () => {
     const scanCap = 64 // 2^6 — the detector's budget; the corpus-answer space bounds the orbit far below this
-    const seenAt = new Map<string, number>()
-    const topics: string[] = []
-    let topic = ALGEBRA_SEED_TOPIC
-    let mu = -1
-    let lambda = 0
-    for (let k = 0; k < scanCap; k++) {
-      const at = seenAt.get(topic)
-      if (at !== undefined) { mu = at; lambda = k - at; break }
-      seenAt.set(topic, k)
-      topics.push(topic)
-      topic = chatWaveStep(topic, matrix).next
-    }
-    const cycles = mu >= 0 && lambda >= 1
-    const waveTopicAt = (n: number): string => (n < topics.length ? topics[n]! : topics[mu + ((n - mu) % lambda)]!)
+    const { states: topics, mu, lambda, cycles, at: waveTopicAt } = orbit((topic) => chatWaveStep(topic, matrix).next, ALGEBRA_SEED_TOPIC, scanCap)
     const closedFormMatchesScan = cycles && topics.every((t, k) => waveTopicAt(k) === t)
     const far = 9 ** 9 // the far-wave probe, lattice-derived from the vortex digit (387 420 489 waves out)
     const nearFar = 9 ** 6
@@ -1686,6 +1694,42 @@ export function countlessFreeChatWaves(matrix: MindMatrix = buildMatrix()) {
       root: merge(matrix.root, merkleFold([toUuid(`countless:${mu}:${lambda}`), ...topics.map((t, k) => toUuid(`countless-topic:${k}:${t}`)), ...facets.map((entry) => entry.receipt)])),
       statement: `Countless free chat waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the trinity dialogue cycles (μ=${mu}, λ=${lambda}) after ${topics.length} computed steps, so every wave to infinity is determined by O(1) index arithmetic — countably many waves, zero tokens, zero fetches.`,
       boundary: earned('EXACT — computed from the cycle algebra:', facets, '"countless" = countably infinite waves DETERMINED (not executed) by the detected cycle — the orbit of a deterministic map on a finite corpus is eventually periodic, so infinity is a closed form, not a marathon; nothing new is learned past the cycle (the dialogue provably repeats), and no physical-infinity or open-ended-learning claim is made') }
+  })
+}
+
+/** feedTheChatInItself — feed the chat in itself (user, 2026-07-28, twice). The chat's own ANSWER becomes its
+ * next PROMPT through the richest output surface it has: splitSearch's top hit answered by the ONE identity
+ * accessor ([[free-for-all]] chain — curated or verbatim-extracted formula, else the title, else the seed-model
+ * reply). The self-feeding loop is the same orbit algebra as the researcher waves (ONE `orbit` primitive):
+ * deterministic map, finite corpus, so the feed cycles by pigeonhole and every future self-feeding step is
+ * O(1)-determined. The directive itself is the seed — the chat literally feeds on "feed the chat in itself". */
+export function feedTheChatInItself(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('feedTheChatInItself', matrix, () => {
+    const cap = 64 // same detector budget as the researcher waves
+    const step = (prompt: string): string => {
+      const top = splitSearch(prompt).results[0]
+      return top ? (top.identity ?? top.title) : String(portalChat(prompt, matrix).answer)
+    }
+    const seed = 'feed the chat in itself'
+    const { states, mu, lambda, cycles, at } = orbit(step, seed, cap)
+    const chainExact = states.every((state, k) => k === 0 || state === step(states[k - 1]!))
+    const identityFed = states.slice(1).some((state) => /[=≡≤⇔]/u.test(state))
+    const far = 9 ** 9
+    const facets = [
+      { facet: `THE CHAT FEEDS IN ITSELF — every state after the seed IS the chat's own answer to the previous state (chain recomputed exact: ${chainExact}); the seed is the directive itself`, on: chainExact && states.length >= 2 },
+      { facet: `IT FEEDS THROUGH THE IDENTITY — at least one fed state is a FORMULA the free accessor answered with (relation-bearing: ${identityFed}), so the free-for-all upgrade is what the chat eats`, on: identityFed },
+      { facet: `AND CYCLES LIKE EVERY SELF-FEED — μ=${mu}, λ=${lambda} in ${states.length} steps via the ONE orbit primitive; self-feed step ${far} is O(1)-determined`, on: cycles && typeof at(far) === 'string' && at(far) === at(far + lambda) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`self-feed:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      mu,
+      lambda,
+      steps: states.length,
+      feed: states.map((state) => state.slice(0, 8 * 9)),
+      facets,
+      root: merge(matrix.root, merkleFold([toUuid(`self-feed:${mu}:${lambda}`), ...states.map((state, k) => toUuid(`self-feed-state:${k}:${state}`)), ...facets.map((entry) => entry.receipt)])),
+      statement: `Feed the chat in itself — ${facets.filter((entry) => entry.on).length}/${facets.length}: from the directive as seed, each answer becomes the next prompt through the identity accessor, the feed cycles (μ=${mu}, λ=${lambda}) in ${states.length} steps, and every future self-feeding step is O(1)-determined.`,
+      boundary: earned('EXACT — computed from the one orbit algebra:', facets, 'the self-feed is retrieval feeding retrieval over the sealed corpus — deterministic, zero tokens, zero fetches; it provably reaches a cycle (nothing new is learned past it) and the loop is a dynamical system, NOT self-improvement, emergence, or an LLM feeding on its outputs. HARMONY ≠ TRUTH') }
   })
 }
 
@@ -8851,8 +8895,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'quantum-computer', out: () => quantumCircuitSimulatorInChat(matrix).root },
     { name: 'researcher-waves', out: () => wavesOfLocalResearchersChatAboutAlgebra(matrix).computes },
     { name: 'countless-waves', out: () => countlessFreeChatWaves(matrix).computes },
+    { name: 'self-feed', out: () => feedTheChatInItself(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
