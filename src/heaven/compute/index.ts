@@ -39,7 +39,7 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy, onlyAlgebraicQuantumComputingIsTopPriority } from '../laws'
-import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug } from '../../wind/routes/corpus'
+import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug, animationsNaturalEntanglementsByTheorems } from '../../wind/routes/corpus'
 import { staticPages, quantumSitemap, monographAsScientificPaper, quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised } from '../../wind/site'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
@@ -8946,8 +8946,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'countless-waves', out: () => countlessFreeChatWaves(matrix).computes },
     { name: 'self-feed', out: () => feedTheChatInItself(matrix).computes },
     { name: 'waves-of-waves', out: () => wavesOfWavesInChat(matrix).computes },
+    { name: 'animation-entanglements', out: () => animationsNaturalEntanglementsByTheorems(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {

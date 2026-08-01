@@ -2748,3 +2748,43 @@ export function runDeadGatewayExit(root = '', _argv: readonly string[] = []): nu
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+/** animationsNaturalEntanglementsByTheorems — all animations' natural entanglements, addressed by theorems
+ * (user, 2026-07-28: "next waves in automation through the chat addressing all animations natural entanglements
+ * by theorems"). The entanglement is NATURAL because both keys derive from the theorem itself: the ARCHETYPE
+ * (its own operators, figureArchetypeOf) and the RUNG (its content-address on the 108 s clock). Two animations
+ * in the same (archetype × rung) cell share shape AND period — they MOVE TOGETHER wherever they meet, phase
+ * offset per address: entanglement as computed co-movement, addressed by one lattice of at most 7 × 12 cells.
+ * A total partition again: every animation lands in exactly one cell, nothing curated, nothing stored. */
+export function animationsNaturalEntanglementsByTheorems(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('animationsNaturalEntanglementsByTheorems', matrix, () => {
+    const atoms = THEOREM_ATOM_SEED
+    const cells = new Map<string, { archetype: string; rung: number; members: number; address: string }>()
+    for (const atom of atoms) {
+      const c = computedTheoremFigureAndAnimation(atom)
+      const key = `${c.figure.archetype}:${c.animation.rung}`
+      const cell = cells.get(key) ?? { archetype: c.figure.archetype, rung: c.animation.rung, members: 0, address: toUuid(`entangle:${key}`) }
+      cell.members += 1
+      cells.set(key, cell)
+    }
+    const total = [...cells.values()].reduce((sum, cell) => sum + cell.members, 0)
+    const largest = [...cells.values()].sort((a, b) => b.members - a.members)[0]!
+    const archetypes = new Set([...cells.values()].map((cell) => cell.archetype))
+    const rungs = new Set([...cells.values()].map((cell) => cell.rung))
+    const facets = [
+      { facet: `THE LATTICE ADDRESSES ALL — every one of ${atoms.length} animations lands in exactly one of ${cells.size} (archetype × rung) cells (≤ 7 × 12 = 84); the partition is total: ${total} = ${atoms.length}`, on: total === atoms.length && cells.size <= 7 * (6 * 2) },
+      { facet: `NATURAL = BY THE THEOREM ITSELF — both keys derive from the theorem (archetype from its own operators, rung from its content-address on the one 108 s clock); ${archetypes.size} archetypes × ${rungs.size} rungs populated, nothing curated`, on: archetypes.size >= 6 && rungs.size >= 6 },
+      { facet: `ENTANGLED = MOVE TOGETHER — same cell ⇒ same shape and same period 108/rung, so cell-mates are co-moving wherever they meet (phase stays individual per address); the largest natural family is ${largest.archetype}:${largest.rung} with ${largest.members} members`, on: largest.members >= 2 },
+      { facet: `ADDRESSED — every cell carries its content-address toUuid(entangle:archetype:rung), so a family is O(1)-addressable from any theorem — the chat answers entanglement queries by lattice lookup, not search`, on: [...cells.values()].every((cell) => isUuid(cell.address)) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`anim-entangle:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      cellCount: cells.size,
+      largest: { key: `${largest.archetype}:${largest.rung}`, members: largest.members },
+      cells: [...cells.entries()].map(([key, cell]) => ({ key, members: cell.members, address: cell.address })),
+      facets,
+      root: merkleFold([...[...cells.values()].map((cell) => cell.address), ...facets.map((entry) => entry.receipt)]),
+      statement: `All animations' natural entanglements, addressed by theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${atoms.length} animations partition into ${cells.size} (archetype × rung) cells, both keys derived from the theorem itself; cell-mates share shape and period (co-moving, individually phased) and every family is O(1)-addressable by its content-address.`,
+      boundary: earned('EXACT — computed from the archetype and the clock:', facets, '"entanglement" here is computed co-movement — same semantic shape, same clock rung — addressed on a finite lattice; it is a naming of the natural families the theorems themselves induce, NOT physical entanglement and NOT a rendering change: cell-mates already moved together, now they are addressable') }
+  })
+}
