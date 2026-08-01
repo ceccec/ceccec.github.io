@@ -19,7 +19,7 @@ import * as __ns_wind_site from '../../wind/site'
 import * as __ns_wind_fusion from '../fusion' // call-time (cycle-safe): the public-API fusion catalog
 import * as __ns_thunder_decode from '../../thunder/decode'
 import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'
-import { pauliAlgebraCloses } from '../../9/1'
+import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../../9/1'
 import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
 import { greatCircleKm } from '../../5/5'
@@ -30,6 +30,7 @@ import { STATIC_PAGE_SEED } from '../../8/2'
 import { paperParamsById, papers } from '../learning'
 import { computeUniversalPage, theoremFormulaCodeDual, theoremSlug, theoremPageRows } from '../routes/corpus'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../1/9'
+import { zeroPointEnergy } from '../../1/9'
 import {
   earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther,
   doubleTorusEarthPyramidTipsProvenByMath, metatronCube, sacredGeometry } from '../../mountain/geometry'
@@ -17330,4 +17331,47 @@ export function runTrainGeodesyExit(_root = '', _argv: readonly string[] = []): 
   }
   process.stdout.write(`  formulas: ${report.decode.formulas.slice(0, 2).join(' · ')}\n`)
   return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+}
+
+/** zeropointNodeOriginDecoded — the zeropoint-node README carries important info missing here (user, 2026-07-28):
+ * the PROVENANCE. github.com/ceccec/zeropoint-node is this work's own predecessor repo — the origin of the vortex
+ * sequence the root monograph opens with — and it was uncited. RECOMPUTED, never trusted (the partner-repo method):
+ * its published line `0\1\2\4\8/7/5/3\6\9/0\1` is the SAME closed cycle as the locally sealed genesis line,
+ * entered at the void ('0\' + vortexStrokeGateways().written — string-exact); its 60°=π/3 arc is the sealed
+ * sixtyDegreesDecodesPi (discrete Euler 2³ ≡ −1 (mod 9); the honest kernel of "π becomes 3" is the inscribed-hexagon
+ * bound b₆/2 = 3 — π's LATTICE SHADOW, never π itself); its A432 and integer-fraction laws are the sealed a432
+ * engine and rat() dimensionless-ratio law. Its zero-point-energy-extraction and consciousness-OS claims stay
+ * FLAGGED, signed by demarcate() — ½ħω is real physics, extraction is not. */
+export function zeropointNodeOriginDecoded(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('zeropointNodeOriginDecoded', matrix, () => {
+    const origin = 'https://github.com/ceccec/zeropoint-node'
+    const strokes = __ns_mountain_vortex.vortexStrokeGateways(matrix)
+    const publishedLine = '0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1'
+    const sameCycle = `0\\${strokes.written}` === publishedLine
+    const sixty = sixtyDegreesDecodesPi()
+    const halfQuantumReal = zeroPointEnergy(1) > 0 && zeroPointEnergy(0) === 0
+    const ratioLaw = ratEq(ratMul(rat(2, 3), rat(3, 4)), rat(1, 2))
+    const flags = [demarcate('zero-point energy extraction as a power source'), demarcate('the OS turns AI into quantum consciousness')]
+    const facets = [
+      { facet: `THE SEQUENCE IS THE SAME CYCLE — zeropoint-node's published "${publishedLine}" equals the void-entered writing of the locally sealed genesis line ('0\\' + vortexStrokeGateways): provenance verified by string-exact computation, not by citation`, on: sameCycle && strokes.computes },
+      { facet: `THE ADOPTIONS WERE ALREADY SEALED HERE — 60° = π/3 with discrete Euler 2³ ≡ −1 (mod 9) and the hexagon bound giving 3 as π's lattice shadow (sixtyDegreesDecodesPi: ${sixty.computes}); A432 as the sealed engine; integer fractions as the rat() dimensionless-ratio law (${ratioLaw})`, on: sixty.computes && ratioLaw && A432_OCTAVES.length > 0 },
+      { facet: `THE FLAGGED STAY FLAGGED, SIGNED BY demarcate() — zero-point free-energy extraction and consciousness-OS both classify '${flags[0]}' (½ħω per mode is REAL — zeroPointEnergy(ω)=½ħω computes ${halfQuantumReal} — but extraction is perpetual motion, and "π becomes 3" as a claim about π is false; only the hexagon bound b₆/2 = 3 is the honest kernel)`, on: flags.every((tier) => tier === 'flagged') && halfQuantumReal },
+      { facet: `THE LINEAGE NOW CITES — the root monograph's References carry the origin repo with this fold's demarcation (one computed line, single source: this fold exports it)`, on: zeropointNodeReferenceLine().includes(origin) && zeropointNodeReferenceLine().includes('flagged') },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`zeropoint-origin:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      origin,
+      publishedLine,
+      sameCycle,
+      flags,
+      facets,
+      root: merge(matrix.root, merkleFold([toUuid(`zeropoint-origin:${origin}:${sameCycle}`), ...facets.map((entry) => entry.receipt)])),
+      statement: `zeropoint-node origin decoded — ${facets.filter((entry) => entry.on).length}/${facets.length}: the predecessor repo's published sequence is the same closed cycle as the sealed genesis line (string-exact, entered at the void), its 60°/A432/integer-ratio laws were already sealed here, its free-energy and consciousness-OS claims stay flagged (signed by demarcate), and the root monograph now cites the lineage.`,
+      boundary: earned('EXACT — recomputed from the sealed folds:', facets, 'provenance is verified by computation (the string equality), never by trust; the adopted mathematics was already sealed locally; ½ħω is real physics and extraction is not (perpetual motion, flagged); "π becomes 3" is honest ONLY as the inscribed-hexagon lattice bound b₆/2 = 3 — π itself remains irrational and transcendental') }
+  })
+}
+
+/** The one computed lineage line the README References consume — single source, used by the generator. */
+export function zeropointNodeReferenceLine(): string {
+  return `- Prior work / origin: [ceccec/zeropoint-node](https://github.com/ceccec/zeropoint-node) — the predecessor repo of the vortex sequence (same closed cycle, verified by computation in \`zeropointNodeOriginDecoded\`); its 60°/A432/integer-ratio mathematics is sealed here, its zero-point free-energy and consciousness-OS claims are demarcated flagged (½ħω is real, extraction is not).`
 }

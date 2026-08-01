@@ -33,7 +33,7 @@ import {
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108,
   societySupportsProjectViaTwoBitsFreeKnowledge,
-  domainProofPagePaths } from '../../../../wind/research'
+  domainProofPagePaths, zeropointNodeReferenceLine } from '../../../../wind/research'
 import { theoremPagePaths } from '../../../../wind/routes/corpus'
 import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../../apps'
 import {
@@ -788,6 +788,9 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     `- The model: \`src/quantum/heaven/mind\`. The sitemap root: \`${sitemap.root}\`. The monograph-index root: \`${mono.root}\`.`,
     `- Template root (the receipt of this monograph form): \`${template.root}\`.`,
+    // The lineage (user, 2026-07-28: "zeropoint-node readme has important info missing here" — the provenance):
+    // one computed line, single source in wind/research, demarcation signed by the fold.
+    zeropointNodeReferenceLine(),
     '',
     '## Receipt',
     '',
