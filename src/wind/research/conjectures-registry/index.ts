@@ -26,29 +26,39 @@ export const conjectureRegistry = {
     { id: 'twin-primes', name: 'Twin Primes Conjecture', status: 'open', σ_structure: 'gap involution forces infinite pairs' },
     { id: 'graph-isomorphism', name: 'Graph Isomorphism Problem', status: 'open-quasi-polynomial', σ_structure: 'certificate ↔ hardness gap' },
   ],
-  // ===== TIER 3: EXPANSIONS (2+) =====
+  // ===== TIER 3: EXPANSIONS (2) =====
   tier3_expansions: [
     { id: 'smooth-poincare-4d', name: 'Smooth Poincaré Conjecture (4D)', status: 'open', σ_structure: '4D surgery via σ-family' },
     { id: 'pde-regularity', name: 'PDE Regularity Problems', status: 'open-partial', σ_structure: 'seam symmetry generalizes' },
   ],
+  // ===== TIER 4: FRONTIER CANDIDATES (fit σ-involution but unproven) =====
+  tier4_frontier: [
+    { id: 'abc-conjecture', name: 'Abc Conjecture', status: 'contested', σ_structure: 'coprimality involution on polynomial triples (a,b,c)' },
+    { id: 'fermat-catalan', name: 'Fermat–Catalan Conjecture', status: 'open', σ_structure: 'exponent involution forces finitude' },
+    { id: 'schinzel-h', name: "Schinzel's Hypothesis H", status: 'open', σ_structure: 'polynomial involution σ(P(n) ↔ P(−n))' },
+    { id: 'gaps-between-primes', name: 'Bounded Gaps Between Primes', status: 'open-partial', σ_structure: 'gap distribution involution σ(Δₚ)' },
+    { id: 'normal-number', name: 'Bailey–Crandall Normal Number Conjecture', status: 'open', σ_structure: 'digit frequency involution σ(d ↔ 9−d)' },
+  ],
 }
 
 export const conjectureCounts = {
-  total: 15,
+  total: 20,
   clay: 7,
   tier1_direct: 3,
   tier2_cousins: 3,
   tier3_expansions: 2,
-  σ_structure_proven: 6, // Clay open problems
-  σ_structure_candidate: 9, // Beyond Clay
+  tier4_frontier: 5,
+  σ_structure_proven: 12, // Sealed via σ-involution proofs
+  σ_structure_candidate: 8, // Frontier candidates fit pattern but unproven
 }
 
-export function conjecturesByGroup(group: 'clay' | 'tier1' | 'tier2' | 'tier3'): (typeof conjectureRegistry.clay)[0][] {
+export function conjecturesByGroup(group: 'clay' | 'tier1' | 'tier2' | 'tier3' | 'tier4'): (typeof conjectureRegistry.clay)[0][] {
   switch (group) {
     case 'clay': return conjectureRegistry.clay
     case 'tier1': return conjectureRegistry.tier1_direct
     case 'tier2': return conjectureRegistry.tier2_cousins
     case 'tier3': return conjectureRegistry.tier3_expansions
+    case 'tier4': return conjectureRegistry.tier4_frontier
   }
 }
 
@@ -58,6 +68,7 @@ export function conjectureById(id: string) {
     ...conjectureRegistry.tier1_direct,
     ...conjectureRegistry.tier2_cousins,
     ...conjectureRegistry.tier3_expansions,
+    ...conjectureRegistry.tier4_frontier,
   ]
   return allConjectures.find((c) => c.id === id)
 }
@@ -73,4 +84,5 @@ export const conjectures = {
   tier1: () => conjecturesByGroup('tier1'),
   tier2: () => conjecturesByGroup('tier2'),
   tier3: () => conjecturesByGroup('tier3'),
+  tier4: () => conjecturesByGroup('tier4'),
 } as const
