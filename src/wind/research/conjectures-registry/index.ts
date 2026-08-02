@@ -39,26 +39,36 @@ export const conjectureRegistry = {
     { id: 'gaps-between-primes', name: 'Bounded Gaps Between Primes', status: 'open-partial', σ_structure: 'gap distribution involution σ(Δₚ)' },
     { id: 'normal-number', name: 'Bailey–Crandall Normal Number Conjecture', status: 'open', σ_structure: 'digit frequency involution σ(d ↔ 9−d)' },
   ],
+  // ===== TIER 5: EXTENDED FRONTIERS (pattern recognition for deeper conjectures) =====
+  tier5_extended: [
+    { id: 'riemann-generalized', name: 'Generalized Riemann Hypothesis', status: 'open', σ_structure: 's ↔ (1−s) on L-functions beyond ζ' },
+    { id: 'collatz-generalization', name: 'Collatz Generalization (3n+1 family)', status: 'open', σ_structure: 'iteration-involution on linear recurrences' },
+    { id: 'cramér-conjecture', name: "Cramér's Conjecture (Prime Gaps)", status: 'open', σ_structure: 'log-involution on gap distribution' },
+    { id: 'beal-conjecture', name: 'Beal Conjecture', status: 'open', σ_structure: 'coprimality involution on generalized Fermat' },
+    { id: 'langlands-program', name: 'Langlands Functoriality', status: 'open-partial', σ_structure: 'automorphic involution σ(dual-groups)' },
+  ],
 }
 
 export const conjectureCounts = {
-  total: 20,
+  total: 25,
   clay: 7,
   tier1_direct: 3,
   tier2_cousins: 3,
   tier3_expansions: 2,
   tier4_frontier: 5,
+  tier5_extended: 5,
   σ_structure_proven: 12, // Sealed via σ-involution proofs
-  σ_structure_candidate: 8, // Frontier candidates fit pattern but unproven
+  σ_structure_candidate: 13, // Frontier candidates fit pattern but unproven
 }
 
-export function conjecturesByGroup(group: 'clay' | 'tier1' | 'tier2' | 'tier3' | 'tier4'): (typeof conjectureRegistry.clay)[0][] {
+export function conjecturesByGroup(group: 'clay' | 'tier1' | 'tier2' | 'tier3' | 'tier4' | 'tier5'): (typeof conjectureRegistry.clay)[0][] {
   switch (group) {
     case 'clay': return conjectureRegistry.clay
     case 'tier1': return conjectureRegistry.tier1_direct
     case 'tier2': return conjectureRegistry.tier2_cousins
     case 'tier3': return conjectureRegistry.tier3_expansions
     case 'tier4': return conjectureRegistry.tier4_frontier
+    case 'tier5': return conjectureRegistry.tier5_extended
   }
 }
 
@@ -69,6 +79,7 @@ export function conjectureById(id: string) {
     ...conjectureRegistry.tier2_cousins,
     ...conjectureRegistry.tier3_expansions,
     ...conjectureRegistry.tier4_frontier,
+    ...conjectureRegistry.tier5_extended,
   ]
   return allConjectures.find((c) => c.id === id)
 }
@@ -85,4 +96,5 @@ export const conjectures = {
   tier2: () => conjecturesByGroup('tier2'),
   tier3: () => conjecturesByGroup('tier3'),
   tier4: () => conjecturesByGroup('tier4'),
+  tier5: () => conjecturesByGroup('tier5'),
 } as const
