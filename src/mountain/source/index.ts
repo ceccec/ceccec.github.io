@@ -389,7 +389,7 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       { facet: `sealed morphs from EN meaning=${sealedMorphs}`, on: sealedMorphs > 0 },
       { facet: `trueOpen WARN residual=${trueOpen}`, on: true },
       { facet: 'pair trans/wave', on: pairFold.bidirectional },
-      { facet: '', on: gate.claySolvedByThisFold === 0 },
+      { facet: 'gate reports no Clay solution', on: gate.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trans-wave:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((f) => f.on) && translationsFilledBySelfTranslatingWavesOn,
@@ -512,8 +512,8 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       },
       { facet: 'pair warn/all · all/warn', on: pairsOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: qpuRequired === false },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
+      { facet: 'no QPU required', on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`warn-all:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((f) => f.on) && warningsAddressed,

@@ -653,7 +653,6 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       { facet: 'page field centre = h/2 at scroll 0', on: pageCenterBalanced },
       { facet: 'composes movieAllElementsAreTheorems.centerIsVortexNotBoundary', on: theorems.centerIsVortexNotBoundary },
       { facet: 'pair movie/center', on: pairFold.bidirectional },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-center-facet:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('movie-unbalanced-around-center-is-crack', facets)
     return {

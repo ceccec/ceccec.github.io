@@ -3941,7 +3941,7 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
         on: hw.demoIsNotHardwareCeiling && hw.workerCap <= VORTEX_SEQUENCE.length },
       { facet: 'refuseBeyond ∧ incompleteOpen=0 ∧ productionBreak=false', on: maxBits.refuseBeyond && refuse.incompleteOpen === 0 && !refuse.productionBreakEnabled },
       { facet: 'pair bits/hardware', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: maxBits.claySolvedByThisFold === 0 && hw.qpuRequired === false },
+      { facet: 'maxBits reports no Clay solution · hw reports no QPU required', on: maxBits.claySolvedByThisFold === 0 && hw.qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`bits-hw-agree:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('max-bits-hardware-boundary-agree', facets)
     return {

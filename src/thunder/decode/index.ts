@@ -2839,8 +2839,6 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
       { facet: `natural plasma-em phenomena decoded as theorems (${phenomena.theoremRoutes.length} routes)`, on: phenomena.decoded && phenomena.theoremRoutes.length >= 9 },
       { facet: 'A432 harmonic blood binds the plasma palette aspect', on: isUuid(harmonic.root) },
       { facet: 'compose #63 movie centreIsVortexNotBoundary — void soft confluence, not sphere ornament', on: noBallInTheMiddle },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`plasma-screen:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((e) => e.on),

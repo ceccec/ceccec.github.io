@@ -2950,8 +2950,7 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       { facet: 'crypto-pqc residual gapsOpen named · certified=false · no fake close', on: cryptoResidualAddressed },
       { facet: 'pair wave/domain · domain/harm bidirectional', on: pairWaveReg && pairHarmReg && pairWaveDomain.bidirectional },
       { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-domain:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('harmonize-science-domains-in-waves-of-waves', facets)
     return {
@@ -3231,7 +3230,7 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: `resendSteps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length}`, on: wavesResentOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`push-resend:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('push-resend-waves', facets)
     return {

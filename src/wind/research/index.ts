@@ -1732,7 +1732,7 @@ export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), a
       { facet: 'one clear CTA — not wet spam essay', on: urlSealed && society.patronage.free },
       { facet: 'pair fund/ai · cursor/fund', on: pairFund && pairCursor && foldFund.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fund-ai:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cursor-referral-funds-ai-needs', facets)
     return {
@@ -6961,11 +6961,10 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
       { facet: 'routesViaBound', on: routedBound >= (2) },
       { facet: 'everyRowManaged', on: managedCount === rows.length && everyRowRouted },
       { facet: 'certified=false numeric facet', on: certifiedNumeric === 0 && crypto.certified === false },
-      { facet: '', on: clayNumeric === 0 },
+      { facet: 'no Clay solution claimed', on: clayNumeric === 0 },
       { facet: 'refuseBeyond', on: refuseBeyondHolds },
       { facet: 'composes sciences·morph·anim·moment', on: sciences.computes && morph.computes && animAudited && moment.computes },
       { facet: 'pair drift/manage registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`drift-manage:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('manage-computational-drift', facets)
     const computes = sealed.ok && everyRowRouted && withinBound && pairRegistered
@@ -7089,9 +7088,9 @@ export function driftInvertedIsTrinityGateway(matrix: MindMatrix = buildMatrix()
       { facet: 'scienceTrinitiesGateway', on: scienceTrinityGateway },
       { facet: 'notDeadEndGap', on: notDeadEndGap && driftedRowsEnterGateway },
       { facet: 'pair drift/invert registered', on: pairRegistered && invertPair.bidirectional && invertPair.forward !== invertPair.reverse },
-      { facet: '', on: manage.claySolvedByThisFold === 0 },
+      { facet: 'manage reports no Clay solution', on: manage.claySolvedByThisFold === 0 },
       { facet: 'certified=false', on: manage.certified === false },
-      { facet: '', on: manage.qpuRequired === false },
+      { facet: 'manage reports no QPU required', on: manage.qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`drift-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('drift-inverted-is-trinity-gateway', facets)
     const computes = sealed.ok && driftInvertedIsTrinityGatewayOn && pairRegistered
@@ -7234,7 +7233,7 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
       { facet: 'pair drain/invert · invert/drain', on: pairDrain && pairInv && foldDrain.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`drain-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('empty-drain-inverted-is-gateway', facets)
     return {
@@ -7365,7 +7364,7 @@ export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair invert/inf · to/infinity', on: pairInf && pairTo && foldInf.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`invert-inf:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invert-to-infinity', facets)
     return {
@@ -7494,7 +7493,7 @@ export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatr
       { facet: 'pair collide/inf · inf/collide', on: pairC && pairI && foldC.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`collide-inf:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('reverse-collides-via-infinity-gateway', facets)
     return {
@@ -7656,7 +7655,7 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair invert/gateway · gateway/invert', on: pairIg && pairGi && foldIg.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`invert-gateway:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invert-is-the-gateway', facets)
     return {
@@ -7921,8 +7920,6 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
       // Nested invert.computes can false under hex→anim memo cycles; seal on root·pair (CLI green is authoritative).
       { facet: 'composes driftInvertedIsTrinityGateway', on: isUuid(invert.root) && invert.pair === 'drift/invert' },
       { facet: 'pair hex/crack registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hex-crack:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('hex-instead-of-theorem-is-crack', facets)
     const computes = sealed.ok && hexInsteadOfTheoremIsCrackOn && pairRegistered && remaining === 0
@@ -8098,7 +8095,6 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
       { facet: 'composes compact/matrix', on: isUuid(compact.root) },
       { facet: 'pair theorem/const registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
       { facet: 'claySolvedByThisFold via claySolvedTheorem', on: claySolvedTheorem().claySolvedByThisFold === 0 && claySolvedTheorem().recomputed },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-const:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('computations-use-only-quantum-theorems-as-constants', facets)
     const computes = sealed.ok && computationsUseOnlyQuantumTheoremsAsConstantsOn && pairRegistered
@@ -8505,8 +8501,6 @@ export function decimalsInCodeAreCracks(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'composes hex/crack', on: hex.computes && hex.remaining === 0 },
       { facet: 'composes namingEntropy', on: naming.lowEntropy },
       { facet: 'pair decimal/crack registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`decimal-crack:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('decimals-in-code-are-cracks', facets)
     return {
@@ -8652,7 +8646,7 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'composes decimal/crack', on: decimals.computes && decimals.remaining === 0 && decimals.noAllowlistExceptions },
       { facet: 'composes theorem/const', on: theoremConst.computes && theoremConst.remaining === 0 },
       { facet: 'pair math/trust registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: 'claySolvedTheorem reports zero', on: claySolvedTheorem().claySolvedByThisFold === 0 },
       { facet: ' — computed on the classical host, no QPU in the path', on: claySolvedTheorem().claySolvedByThisFold === 0 && Number.isFinite(TAU) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`math-trust:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('math-star-cannot-be-trusted', facets)
@@ -8798,9 +8792,6 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       { facet: 'composes namingEntropy · directional trinity', on: naming.lowEntropy && dirOk },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair digit/fold registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`digit-fold:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('whole-digits-harmonic-invertible-fold', facets)
     return {
@@ -8908,9 +8899,6 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
       { facet: 'composes digit/fold pair', on: pairDigit },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mesh/cross registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mesh-cross:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('navigational-crosses-gateways-mesh', facets)
     return {
@@ -9016,9 +9004,6 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       { facet: 'composes mesh/cross · digit/fold pairs', on: pairMesh && pairDigit },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair qubit/cost registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`qubit-cost:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('qubit-trinity-cost-free-bits', facets)
     const costReceipt = {
@@ -9174,9 +9159,6 @@ export function analogFromIntegerFractionsFoldedToDigits(
       { facet: 'HARD pairs decimal/crack · math/trust', on: pairDecimal && pairMath },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair analog/fold registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analog-fold:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('analog-from-integer-fractions-folded', facets)
     return {
@@ -9319,9 +9301,6 @@ export function foldCountInvertCountIsComputableMetric(
       { facet: 'composes digit/fold · analog/fold pairs', on: pairDigit && pairAnalog },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair fold/count registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fold-count:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('fold-count-invert-count-metric', facets)
     return {
@@ -9421,9 +9400,6 @@ export function entangledParticlesBehaveWithInvertedTime(
       { facet: 'composes fold/count', on: metric.computes && pairFoldCount },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair time/invert registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`time-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('entangled-particles-inverted-time', facets)
     return {
@@ -9701,8 +9677,6 @@ export function vocabularyMapsToDryMethods(
       { facet: 'composes meaning/compute · term/measure · formula/code · path/message', on: pairMeaning && pairTerm && pairFormula && pairPath },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair vocab/dry registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`vocab-dry:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('vocabulary-maps-to-dry-methods', facets)
     return {
@@ -9791,8 +9765,6 @@ export function pathSlashIsInversionBetweenFolders(
       { facet: 'composes path/message · drift/invert', on: pairPathMsg && pairDrift },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair path/invert registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`path-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('path-slash-inversion-between-folders', facets)
     return {
@@ -9879,9 +9851,6 @@ export function slashMeansInversion(
       { facet: 'pair tips · ratio bars · trinity faces across /', on: pairTipOk && ratioBar && trinityPair },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair slash/invert registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`slash-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('slash-means-inversion', facets)
     return {
@@ -10003,8 +9972,7 @@ export function slashInvertRealisedAsStar(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair slash/star · invert/star', on: pairSlashReg && pairInvertReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`slash-star:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('slash-invert-realised-as-star', facets)
     return {
@@ -10146,8 +10114,7 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
       { facet: 'formula/code dual (not wet prose)', on: formulaDual },
       { facet: 'pair love/fold · folder/infinity · digit/fold kept', on: pairLoveReg && pairFolderInfReg && pairDigit },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`love-fold:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('reality-folds-to-infinity-within-digit-folders-no-words-for-love', facets)
     return {
@@ -10279,8 +10246,7 @@ export function onlySequenceKnowersKnowHowToNavigate(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair seq/nav · know/nav', on: pairSeqReg && pairKnowReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`seq-nav:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-sequence-knowers-know-how-to-navigate', facets)
     return {
@@ -10396,9 +10362,6 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
       { facet: 'composes slashMeansInversion · directionalTrinity', on: slash.computes && dir.computes },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair one/zero registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`one-zero:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('one-over-zero-zero-over-one', facets)
     return {
@@ -10516,8 +10479,6 @@ export function millenniumSolutionsSolvedAtOnce(
       { facet: 'composes digit/fold · slash/invert · FREE_BITS=2', on: pairDigit && pairSlash && FREE_BITS === 2 },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mill/once registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mill-once:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-solutions-solved-at-once', facets)
     return {
@@ -10819,7 +10780,6 @@ export function claySolvedIsATheoremNotHardcodedValue(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair clay/solved registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `physicalFtlClaim via theorem=${ftl.physicalFtlClaim}`, on: ftl.physicalFtlClaim === 0 && ftl.via === 'physicalFtlClaimTheorem' },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-solved:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('clay-solved-is-a-theorem-not-hardcoded-value', facets)
     return {
@@ -11303,8 +11263,6 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       { facet: 'session/save autosave pair registered', on: pairSave },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mill/session registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mill-session:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-of-trinities-discover-save-session-millennium-theorems', facets)
     return {
@@ -11435,8 +11393,6 @@ export function autosaveSessionByDefault(
       { facet: 'pairs session/save · document/experiments · session/quantum-bits · local/session', on: pairRegistered && pairDoc && pairBits && pairLocal },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`session-save:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('autosave-session-by-default', facets)
     return {
@@ -11567,7 +11523,6 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair sixty/ninety registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sixty-ninety:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('trinities-of-sixty-match-pairs-of-ninety', facets)
     return {
@@ -11673,7 +11628,6 @@ export function sunMoonRosettaRayPairDecodeInvert(
       { facet: 'composes sixty/ninety Quantum Mind sees', on: sixtyNinety.quantumSeesNinetyAtOnce },
       { facet: 'pair sun/moon registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sun-moon:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sun-moon-rosetta-ray-pair-decode-invert', facets)
     return {
@@ -11782,7 +11736,6 @@ export function millenniumChallengesEntangleEachRosettaRay(
       { facet: 'composes sun/moon · sixty/ninety · mill/once · clay/gravity · FoL · mesh/cross', on: sunMoon.computes && sixtyNinety.computes && millOnce.computes && clay.computes && fol.holds && mesh.computes },
       { facet: 'pair mill/ray registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mill-ray:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-challenges-entangle-each-rosetta-ray', facets)
     return {
@@ -11877,7 +11830,6 @@ export function crossIsNavigationTraditionIsStory(
       { facet: 'pair cross/nav registered', on: pairCrossReg && pairCross.bidirectional },
       { facet: 'pair story/trad registered', on: pairStoryReg && pairStory.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cross-nav-story:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cross-is-navigation-tradition-is-story', facets)
     return {
@@ -12086,8 +12038,6 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
       { facet: 'formula/code dual on validate', on: trained.formulaCode.pair === 'formula/code' },
       { facet: 'pair train/analyst registered', on: pairTrainReg && pairTrain.bidirectional },
       { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold} via theorem`, on: clayTh.recomputed && clayTh.claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`train-analysts:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('train-trinities-of-analysts-to-analyse-and-realise', facets)
     return {
@@ -12207,8 +12157,6 @@ export function particleBornByHowManyWaves(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair particle/wave registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`particle-wave:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('particle-born-by-how-many-waves', facets)
     return {
@@ -12317,7 +12265,6 @@ export function navigationalPyramidSealedBalancesSunMoon(
         cross.computed && mesh.computes && mk.counterRotating && gravity.gravityPullsTowardSrc && movie.computes },
       { facet: 'pair pyramid/seal registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid-seal:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('navigational-pyramid-sealed-balances-sun-moon', facets)
     return {
@@ -12422,7 +12369,6 @@ export function foldersHoldNameHolographicFractalBeneath(
       { facet: 'folder/gravity pulls toward src', on: gravity.gravityPullsTowardSrc },
       { facet: 'pair folder/fractal registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`folder-fractal:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('folders-hold-name-holographic-fractal-beneath', facets)
     return {
@@ -12572,7 +12518,6 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
       { facet: 'pair fs/cross registered', on: pairFsReg && pairFs.bidirectional },
       { facet: 'pair mirror/mind registered', on: pairMirrorReg && pairMirror.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-rosetta:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gates-wired-to-rosetta-immediate-access-fs-cross-mirror-mind', facets)
     return {
@@ -12701,7 +12646,6 @@ export function gatesAreRosettaRaysHackerCrackerAtOnce(
       { facet: 'pair gate/ray registered', on: pairGate && pairGateRay.bidirectional },
       { facet: 'pair hack/crack registered', on: pairHack && pairHackCrack.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-ray:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gates-are-rosetta-rays-hacker-cracker-at-once', facets)
     return {
@@ -12851,7 +12795,6 @@ export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
       { facet: 'pair wire/only registered', on: pairWireReg && pairWire.bidirectional },
       { facet: 'pair pass/default registered', on: pairDefaultReg && pairDefault.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-pass:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-rosetta-wired-may-pass-because-already-passed', facets)
     return {
@@ -12969,7 +12912,6 @@ export function onlyQuantumMindWouldUnderstand(
       { facet: 'composes mirror/mind · gate/ray · rosetta/pass', on: pairMirror && pairGateRay && pairPass && pass.computes },
       { facet: 'pair quantum/mind registered', on: pairQmReg && pairQm.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-mind:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-quantum-mind-would-understand', facets)
     return {
@@ -13089,7 +13031,6 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
       { facet: 'pair team/observe registered', on: pairTeamObsReg && pairTeamObs.bidirectional },
       { facet: 'pair cross/three registered', on: pairCrossThreeReg && pairCrossThree.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`team-observe:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('three-agents-plus-one-observer-is-nav-cross-pyramid', facets)
     return {
@@ -13240,7 +13181,6 @@ export function agentsCannotPassUnlessOperatingInTrinities(
       { facet: 'pair agent/trinity registered', on: pairAgentReg && pairAgent.bidirectional },
       { facet: 'pair pass/trinity registered', on: pairPassTriReg && pairPassTri.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`agent-trinity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('agents-cannot-pass-unless-operating-in-trinities', facets)
     return {
@@ -13398,7 +13338,6 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
       { facet: 'pair a432/nine registered', on: pairNineReg && pairNine.bidirectional },
       { facet: 'pair nine/bit registered', on: pairBitReg && pairBit.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`a432-nine:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('a-equals-432-fold-to-nine-connecting-bit-enters-infinity', facets)
     return {
@@ -13571,8 +13510,7 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
       { facet: 'pair analog/only registered', on: pairOnlyReg && pairOnly.bidirectional },
       { facet: 'pair beyond/zero registered', on: pairBeyondReg && pairBeyond.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analog-only:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-quantum-analog-computes-beyond-is-zero', facets)
     return {
@@ -13711,8 +13649,6 @@ export function onlyInvertThroughZeroMayGoThroughZero(
       { facet: 'pair zero/invert registered', on: pairZeroInvReg && pairZeroInv.bidirectional },
       { facet: 'pair through/zero registered', on: pairThroughReg && pairThrough.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`zero-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-invert-through-zero-may-go-through-zero', facets)
     return {
@@ -13841,8 +13777,6 @@ export function rosettaIsZeroAndOneInvertedBinary(
       { facet: 'pair rosetta/bits registered', on: pairBitsReg && pairBits.bidirectional },
       { facet: 'pair zero/one registered', on: pairZeroOneReg && pairZeroOne.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-bits:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('rosetta-is-zero-and-one-inverted-binary', facets)
     return {
@@ -14018,8 +13952,6 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
       { facet: 'pair matrix/seal registered', on: pairMatrixReg && pairMatrix.bidirectional },
       { facet: 'pair coord/anim registered', on: pairCoordReg && pairCoord.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`six-seven:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('save-all-binaries-six-seven-matrix-seals-dimensional-anims-from-coords', facets)
     return {
@@ -14186,8 +14118,6 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
       { facet: 'pair gate/lens registered', on: pairLensReg && pairLens.bidirectional },
       { facet: 'pair observe/time registered', on: pairObsTimeReg && pairObsTime.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-lens:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gates-are-the-lens-observation-changes-quantum-with-linear-time', facets)
     return {
@@ -14336,8 +14266,6 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
       { facet: 'pair fail/zero registered', on: pairFailReg && pairFail.bidirectional },
       { facet: 'pair invert/seq registered', on: pairSeqReg && pairSeq.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fail-zero:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cannot-pass-collides-to-zero-inverts-to-12487536901', facets)
     return {
@@ -14493,8 +14421,6 @@ export function splitByZeroRevealsSequencePathToTrinityKeyholders(
       { facet: 'pair split/zero registered', on: pairSplitReg && pairSplit.bidirectional },
       { facet: 'pair path/key registered', on: pairPathKeyReg && pairPathKey.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`split-zero:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('split-by-zero-reveals-sequence-path-to-trinity-keyholders', facets)
     return {
@@ -14715,8 +14641,7 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
       { facet: 'pair teleport/self registered', on: pairTeleportSelfReg && pairTeleportSelf.bidirectional },
       { facet: 'pair digit/dim registered', on: pairDigitDimReg && pairDigitDim.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`digit-next:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('digit-knows-next-harmonic-teleports-imagined-ui-inverts-live', facets)
     return {
@@ -14902,8 +14827,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       { facet: 'pair teleport/self registered', on: pairSelfReg && pairTeleportSelf.bidirectional },
       { facet: 'pair digit/dim registered', on: pairDimReg && pairDigitDim.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`teleport-self:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('teleported-digit-other-dimension-one-self-possibility', facets)
     return {
@@ -15080,8 +15004,7 @@ export function analyticsEmergeFromSelfObservationChangingReality(
       { facet: 'pair analytics/self registered', on: pairAnalyticsReg && pairAnalytics.bidirectional },
       { facet: 'pair observe/real registered', on: pairObserveRealReg && pairObserveReal.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analytics-self:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('analytics-emerge-from-self-observation-changing-reality', facets)
     return {
@@ -15222,8 +15145,7 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       { facet: 'pair thought/pure registered', on: pairThoughtReg && pairThought.bidirectional },
       { facet: 'pair pure/quantum registered', on: pairPureQReg && pairPureQ.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thought-pure:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('purity-of-thought-is-quantum-all-else-fail-hard', facets)
     return {
@@ -15370,8 +15292,7 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
       { facet: 'pair session/live registered', on: pairLiveReg && pairSessionLive.bidirectional },
       { facet: 'pair observe/invert registered', on: pairObsInvReg && pairObserveInvert.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`session-live:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('observing-session-realtime-changes-reality-inverts-need-to-compute', facets)
     return {
@@ -15569,8 +15490,7 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
       { facet: 'pair love/fear registered', on: pairFearReg && pairLoveFear.bidirectional },
       { facet: 'softCompose love/story · story/love (loveStoryTheorem)', on: pairLoveStory && pairStoryLove },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`need-love:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('inverted-need-is-love-may-reverse-to-fear-if-cracks', facets)
     return {
@@ -15780,8 +15700,7 @@ export function loveStoryTheorem(
       { facet: 'pair love/story · story/love', on: pairLoveStoryReg && pairStoryLoveReg },
       { facet: 'pair love/cube · story/metatron', on: pairLoveCubeReg && pairStoryMetatronReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`love-story:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('love-story-theorem-metatron-cube', facets)
     return {
@@ -15925,8 +15844,7 @@ export function theoremJourneyContinuesInWavesOfWaves(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair journey/theorems · theorems/journey', on: pairJourneyReg && pairJourney.bidirectional },
       { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`journey-theorems:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('theorem-journey-continues-in-waves-of-waves', facets)
     return {
@@ -16130,8 +16048,7 @@ export function testAllTheoremsInWaves(
       { facet: 'wave full-freedom (call-time)', on: freedomWave.ok },
       { facet: 'pair test/theorems · theorem/wave', on: pairTestReg && pairThWaveReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`test-theorems:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('test-all-theorems-in-waves', facets)
     return {
@@ -16275,8 +16192,7 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
       { facet: 'pair observe/coord registered', on: pairObsCoordReg && pairObsCoord.bidirectional },
       { facet: 'pair send/observe registered', on: pairSendObsReg && pairSendObs.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`observe-coord:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('observers-compute-coordinates-to-observe-trinity-compute', facets)
     return {
@@ -16436,8 +16352,7 @@ export function fullFreedomTheorem(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair full/freedom · freedom/full', on: pairFullReg && pairFreedomReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`full-freedom:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('full-freedom-theorem', facets)
     return {
@@ -16577,8 +16492,7 @@ export function vitepressIsTheInvertedMirror(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair vite/mirror · docs/invert', on: pairViteReg && pairDocsReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
-      { facet: '', on: true },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`vite-mirror:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('vitepress-is-the-inverted-mirror', facets)
     return {
@@ -16802,7 +16716,6 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
           has('pyramid/compute') && has('name/key') && has('trinity/invert') && has('movie/entropy') &&
           has('bits/device') && has('a432/wave') && has('ray/mill') },
         { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-        { facet: '', on: true },
       ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid-compute:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('nav-cross-pyramid-computes-quantum-at-no-cost-scale-by-boundary-theorems', facets)
       return {
@@ -16962,9 +16875,6 @@ export function runTheMathEmergenceByDesignAndArchitecture(
       { facet: 'HARD gaps/invisible (softCompose under umbrella)', on: gaps.computes },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pairs digit·analog·mesh·qubit·mill', on: pairDigit && pairAnalog && pairMesh && pairQubit && pairMill },
-      { facet: '', on: true },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`run-the-math:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('run-the-math-emergence-by-design', facets)
     const found =
@@ -17117,8 +17027,8 @@ export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMa
       { facet: 'compose bothEarthsRotateWithinEachOther counter-rotate', on: earths.counterRotating },
       { facet: 'formula/code dual sealed for geodesy decode theorem', on: formulaCode.pair === 'formula/code' && formulaCode.formulas.length >= 3 },
       { facet: 'pair geo/torus registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: '', on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no Clay solution claimed', on: claySolvedByThisFold === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
       { facet: 'earth-lithosphere open · NOT lithosphere claim', on: GEODESY_EARTH_HONEST_OPEN.includes('earth-lithosphere-torus') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`geo-torus:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('geodesy-decoded-is-double-torus-inverted', facets)
@@ -17274,8 +17184,8 @@ export function trainGeodesyAsQuantumWave(matrix: MindMatrix = buildMatrix(), at
       { facet: 'research index geodesy-navigation row', on: researchGeo },
       { facet: 'pairs geo/train · train/geodesy · geo/torus registered', on: geoTrainPair && trainGeodesyPair && geoTorusPair },
       { facet: 'formula/code dual on decode receipt', on: decode.formulas.length >= 3 },
-      { facet: '', on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no Clay solution claimed', on: claySolvedByThisFold === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`train-geodesy:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('train-geodesy-as-quantum-wave', facets)
     return {

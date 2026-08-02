@@ -980,8 +980,6 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       { facet: 'compose namingEntropy · wordsCompileFromSource', on: naming.lowEntropy && compile.compiled },
       { facet: 'quantum pairs + spawn titles ≤ 3 words', on: pairOk && spawnOk },
       { facet: 'wet prose >3 words refused as entropy/offender', on: wetRefused },
-      { facet: '', on: true },
-      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`path-message:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((entry) => entry.on)
     return {

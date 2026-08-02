@@ -2887,9 +2887,9 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     { facet: 'compose gate/lens · mcp/chat · chat/all · gate/monitor · tool/matrix · dry/* · formula/code · analytics/self', on: composeOn },
     { facet: 'pair gate/analytics bidirectional', on: pairOn },
     { facet: `manualGauge gap=${manual.magnitude} derived=${manual.derived}`, on: manual.computes },
-    { facet: '', on: qpuRequired === false },
+    { facet: 'no QPU required', on: qpuRequired === false },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: '', on: physicalFtlClaim === 0 },
+    { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gate-analytics:${entry.facet.slice(0, 64)}:${entry.on}`) }))
 
   const computes = analyticsFacetsOn && pairOn && slimToolsOn && debt.computes && manual.computes

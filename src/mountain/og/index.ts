@@ -1635,9 +1635,9 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: `siteDesc≤${budget} · portal→/learn`, on: siteDescFits && portalRoutesOnLearn },
       { facet: 'pair seo/gaps · gaps/seo', on: pairSg && pairGs && foldSg.bidirectional },
-      { facet: '', on: qpuRequired === false },
+      { facet: 'no QPU required', on: qpuRequired === false },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
       {
         facet: 'NOT fake-close — platform OG · cu hreflang · ranking named honest-open',
         on: honestOpenNamedOn && drainableClosed && claySolvedByThisFold === 0,

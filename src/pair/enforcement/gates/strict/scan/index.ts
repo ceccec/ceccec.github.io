@@ -2145,7 +2145,6 @@ export function coreMathFreeForAll(root: string = enforcementScanRoot()) {
     { facet: 'pair math/free · free/math · license/psg · psg/license', on: pairsOn },
     { facet: 'README states free-core vs license@psg.bg (sealed sync)', on: readmeStatesSplit || gatewayWired },
     { facet: 'counsel residue named — no agent-authored grant / full license text', on: counselResidueNamed },
-    { facet: '', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`math-free:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {

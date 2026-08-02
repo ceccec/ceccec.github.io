@@ -1076,7 +1076,7 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       },
       { facet: 'pair trade/challenge · strategy/chat bidirectional', on: pairsOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: '', on: physicalFtlClaim === 0 && qpuRequired === false },
+      { facet: 'no physical FTL claim · no QPU required', on: physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trade-challenge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('strategies-challenge-in-chat', facets)
     const topDuel = [...challenges].sort((x, y) => y.winnerScore - x.winnerScore)[0]

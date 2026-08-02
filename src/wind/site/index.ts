@@ -736,8 +736,6 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       { facet: 'ROUTE_ALIASES thin-mount learn-developer → learn', on: ROUTE_ALIASES['learn-developer'] === 'learn' },
       { facet: 'machine corpora not synonym discovery hubs (papers·references·diamonds·theorems)', on: machineCorpus.size === 5 },
       { facet: 'nav before→after sealed (I Ching doors · domain sidebars · zero synonym hubs)', on: navBefore.sidebar.includes('alias') && navAfter.sidebar.includes('aliases purged') },
-      { facet: '', on: true },
-      { facet: '', on: true },
       { facet: `residuals named (${residuals.length}) — compose parallel lanes, do not clobber`, on: residuals.length >= 3 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`folder-mig-facet:${entry.facet}:${entry.on}`) }))
 
