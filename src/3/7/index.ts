@@ -1828,6 +1828,8 @@ export const DEMARCATION_REGISTRY = {
     'quantum mysticism', 'quantum consciousness', 'consciousness creates reality', 'neuromyth', '10% of the brain',
     '432 Hz heals', 'astrology', 'flat earth', 'homeopathy', 'climate denial', 'perpetual motion',
     'zero-point energy extraction', 'free energy device',
+    'predicting individual criminal intent from behaviour', 'pre-crime prediction', 'behavioural threat prediction',
+    'novel key derivation function', 'home-rolled cryptography', 'custom cipher', 'unpredictable key schedule',
     'orion correlation theory', 'mars face', 'ley lines', 'megalithic yard', 'bosnian pyramid',
   ] } as const
 export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted'
