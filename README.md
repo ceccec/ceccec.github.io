@@ -149,6 +149,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - ✓ `f₂ ζ(−1) exact — bosonic normal ordering forces ζ(−1) = −1/12, a DIFFERENT point on the ζ line`
   - ✓ `f₃ inverse ≠ reverse — (ℤ/9)* pairs a·a⁻¹ ≡ 1 (mod 9) and the f→{p,q} inverse fold computes — a discrete-harmonic probe`
   - ✓ `f₄ vortex digital root — ∀d∈VORTEX_SEQUENCE: digitalRoot(d)=d ∨ d=9`
+  - ✓ `f₅ σ↔functional-equation shadow — ζ(s)·Γ(s/2)·π^{−s/2} = ζ(1−s)·Γ((1−s)/2)·π^{−(1−s)/2} holds as involution s↔(1−s); (ℤ/9)* replicates this via a·a⁻¹≡1 (mod 9) with fixed point d=5`
   - gap algebra: `RH ⟺ ∀s: (ζ(s)=0 ∧ 0<Re(s)<1) ⊢ Re(s)=½ — a ∀ over the infinitely many nontrivial zeros in the critical strip`
   - gap algebra: `known (cited): >40% of zeros on the line (Conrey 1989) · the first ~10^13 zeros verified · a zero-free region near Re(s)=1 (de la Vallée Poussin) — none reduce the ∀ to a finite check`
   - gap algebra: `the fold seals VALUES of ζ (ζ(2)=π²/6, ζ(−1)=−1/12) and discrete inverse harmonics — never the real part of the zeros`
