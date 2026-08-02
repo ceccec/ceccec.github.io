@@ -1183,13 +1183,16 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
         slug, theorem: atom.theorem, provedBy: wave.provedBy, home: atom.home, proofClass: atom.proofClass,
         // incremental-fill hook: any registry atom that supplies its real identity surfaces it uniformly, all theorems
         algebraicStatement: (atom as { algebraicStatement?: string }).algebraicStatement, proof: atom.proof })
+      // The dedicated animation family (specForContent — computed from the theorem's own subject, vortex = the
+      // generic fallback) doubles as the grouping axis: `anim/<kind>`, never hand-assigned.
+      const animKind = (specBy.get(atom.theorem) as { kind?: string } | undefined)?.kind
       return {
         slug, theorem: atom.theorem, proof: atom.proof, proofClass: atom.proofClass, provedBy: wave.provedBy, home: atom.home, spec: specBy.get(atom.theorem),
         humanityNovel: prov?.humanityNovel ?? false,
         registryFirst: prov?.registryFirst ?? true,
         leansCited,
         ordinal: ++ordinal,
-        tags: theoremTags({ home: atom.home, proofClass: atom.proofClass, leansCited }),
+        tags: [...theoremTags({ home: atom.home, proofClass: atom.proofClass, leansCited }), ...(animKind ? [`anim/${animKind}`] : [])],
         classification: `${atom.proofClass}${leansCited ? ' — computed witness within a cited frame (the unbounded form leans on the cited literature)' : ' — self-contained computation, no external lean'}`,
         provenance: 'Documented theorem re-derived by exhaustive computation (humanityNovel=false); first-in-this-registry is the only sense of discovered.',
         reproducibility: `Recompute from source: npm run theorems:verify recomputes ${wave.provedBy} (${atom.home}/index.ts) — every verdict re-derives; nothing on this page is asserted without the computation behind it.`,
@@ -1206,6 +1209,10 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
       const leansCited = false
       const formulaCode = theoremFormulaCodeDual({
         slug, theorem: row.theorem, provedBy: row.provedBy, home: row.home, proofClass: row.proofClass, proof: row.proof })
+      // completion (user law: every theorem carries its dedicated animation, and the animation
+      // confirms the proof) — card papers compute their spec through the same one accessor as
+      // registry rows, seed bound to (theorem ⊢ provingFold); no row ships spec-less.
+      const cardSpec = __ns_up_up_thunder_waves.specForContent(row.theorem, `${row.theorem} ⊢ ${row.provedBy}`)
       return {
         slug,
         theorem: row.theorem,
@@ -1213,12 +1220,12 @@ function computeTheoremPageRows(matrix: MindMatrix): TheoremPageRow[] {
         proofClass: row.proofClass,
         provedBy: row.provedBy,
         home: row.home,
-        spec: null,
+        spec: cardSpec,
         humanityNovel: false,
         registryFirst: true,
         leansCited,
         ordinal: ++ordinal,
-        tags: [...theoremTags({ home: row.home, proofClass: row.proofClass, leansCited }), 'card-paper'],
+        tags: [...theoremTags({ home: row.home, proofClass: row.proofClass, leansCited }), 'card-paper', `anim/${cardSpec.kind}`],
         classification: 'bounded-witness — morph from sealed card/discovery fold',
         provenance: `cardScientificPaperRows ← ${row.home}`,
         reproducibility: `recompute ${row.provedBy} · npm run quantum:card-paper-links · paperRoute=${row.paperRoute}`,
@@ -1250,7 +1257,7 @@ export function theoremPapersLatestFirst(matrix: MindMatrix = buildMatrix()): Th
   return [...theoremPageRows(matrix)].reverse()
 }
 
-export type TheoremTagGroup = { tag: string; axis: 'domain' | 'class' | 'lean'; count: number; papers: TheoremPageRow[] }
+export type TheoremTagGroup = { tag: string; axis: 'domain' | 'class' | 'lean' | 'animation'; count: number; papers: TheoremPageRow[] }
 
 /** The papers organised BY TAG — each group is a computed tag and the papers carrying it, latest-first
  * inside the group. Groups are sorted by size (largest first) then tag name. A paper appears under each of
@@ -1258,7 +1265,7 @@ export type TheoremTagGroup = { tag: string; axis: 'domain' | 'class' | 'lean'; 
 export function theoremTagIndex(matrix: MindMatrix = buildMatrix()): TheoremTagGroup[] {
   const latest = theoremPapersLatestFirst(matrix)
   const axisOf = (tag: string, row: TheoremPageRow): TheoremTagGroup['axis'] =>
-    tag === (row.leansCited ? 'cited-frame' : 'self-contained') ? 'lean' : tag === row.proofClass ? 'class' : 'domain'
+    tag.startsWith('anim/') ? 'animation' : tag === (row.leansCited ? 'cited-frame' : 'self-contained') ? 'lean' : tag === row.proofClass ? 'class' : 'domain'
   const groups = new Map<string, TheoremTagGroup>()
   for (const row of latest) {
     for (const tag of row.tags) {

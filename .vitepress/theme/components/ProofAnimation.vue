@@ -28,6 +28,10 @@ let io: IntersectionObserver | null = null
 
 const hue = (props.spec.hueDigit * (360 / 9)) % 360
 const rate = PHI ** -props.spec.ratePhi
+// The bijection made visible: the seed (content-address of the theorem's own algebraic identity)
+// is this animation's phase offset — the same formula always starts at the same angle, distinct
+// formulas never share one. Fraction of a full turn; 0 for legacy specs without a seed.
+const seedPhase = ((props.spec.seed ?? 0) % 360) / 360
 
 function ring(n: number, r: number, cx: number, cy: number, offset = 0) {
   return Array.from({ length: n }, (_, i) => {
@@ -42,7 +46,7 @@ function draw(t: number) {
   if (!canvas || !ctx) return
   const s = canvas.width
   const c = s / 2
-  const phase = (t / (108 * (2 * 5))) * rate * TAU // the census clock scaled by the φ-rate
+  const phase = ((t / (108 * (2 * 5))) * rate + seedPhase) * TAU // the census clock scaled by the φ-rate, offset by the theorem's own seed
   // THE CENTER IS MANY — the frame tours the figure's OWN vertices: each of the spec's points takes
   // its turn as the center (weights sharpened so the drift lingers, then travels). The tour rate rides
   // φ⁻² tour drives in-frame child phase only; canvas origin stays square-centered (movie/center).

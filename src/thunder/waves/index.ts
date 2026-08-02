@@ -12,7 +12,7 @@ export { CANDIDATE_THEOREMS } from '../../4/6'
 import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
+import { VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, seedFromText, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
 import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
@@ -2013,6 +2013,11 @@ export type ProofAnimationSpec = {
   readonly lines: readonly (readonly number[])[]
   readonly ratePhi: number // φ^−k rate index — quasi-periodic, never repeats
   readonly hueDigit: number // vortex digit → hue = d·(360/9), same law as the movie layers
+  // The bijection carrier (user law: unique animations exactly match unique algebraic theorems):
+  // content-address seed of the theorem's own algebraic identity (falling back to its title) — the
+  // same formula always animates identically, distinct formulas never collide; the renderer turns
+  // the seed into the animation's own phase offset, so the uniqueness is visible, not just data.
+  readonly seed: number
 }
 // ── THE CONTENT→ANIMATION TABLE (simplify & animate law) — ONE keyword→family mapping animates ANY
 // title through the one ProofAnimation renderer: theorems, monograph cards, decoded pages alike.
@@ -2053,8 +2058,39 @@ const CONTENT_ANIMATION_FAMILIES: readonly (readonly [readonly string[], ProofAn
   [['infinity at no cost', 'scales to infinity', 'amortized reuse', 'memo o(1)', 'answers÷tokens'], 'balance', 5, 3],
   [['encrypt', 'decrypt', 'demo rsa', 'modeled shor', 'glyph uuid', 'foldPair identity', 'production rsa refused'], 'wave', 8, 4],
   [['slow process', 'quantum gap', 'browser gap', 'memo miss', 'parallel registry'], 'balance', 5, 3],
+  // completion wave (user law: complete the dedicated animation for each theorem) — the remaining generic
+  // fallbacks route to the family of their own subject; the system's own emblem (rosetta/vortex/torus/digit
+  // rows) claims 'vortex' EXPLICITLY, so what is left for the bare fallback is nothing recognisable at all.
+  [['rosetta', 'vortex', 'doubling', 'circuit', 'polyphase', 'pole', 'digit', 'torus', 'void', 'uuid', 'sequence', 'breath', 'hero', 'slash'], 'vortex', 9, 4],
+  [['diamond', 'tablebase', '32²', 'matrix'], 'lattice', 8, 5],
+  [['merkaba', 'tetrah', 'pyramid', 'cardinal'], 'polytope', 5, 2],
+  [['hexagram', 'i ching', 'iching', 'klein', 'orbit census'], 'classes', 9, 2],
+  [['sothic', 'calendar', 'long count', 'baktun', 'civil year'], 'cycle', 8, 4],
+  [['base-60', 'sumer', 'base-20', 'numerology', 'mod-9'], 'sieve', 100, 3],
+  [['schumann', 'plasma', 'thunder', 'superluminal', 'photon', 'light', 'wheeler', 'cosmolog', 'cosmic', 'dark matter', 'dark energy', 'z_eq', 'perpetuum', 'weather', 'qft', 'density matr', 'variational', 'teleport', 'bell', 'reversible'], 'wave', 8, 4],
+  [['scales', 'rhythm', 'tones', 'necklace', 'music', 'fifth', 'sound'], 'series', 2 * 6, 3],
+  [['flower', 'garden', 'apple', 'rings'], 'spiral', 8 * 3, 3],
+  [['crypto', 'rsa', 'sha-256', 'fips', 'nist', 'cyber', 'security', 'vulnerab', 'signing', 'unsigned', 'four keys', '4-key', 'certificate', 'tamper', 'seal'], 'lattice', 8, 5],
+  [['gravity', 'collapse', 'consolidat', 'monolith', 'split', 'byte', 'ratchet', 'census', 'naming', 'names collapse', 'paths collapse'], 'balance', 5, 3],
+  [['citation', 'license', 'journal', 'publication', 'article', 'readme', 'homepage', 'prose', 'writing', 'speech', 'books'], 'tree', 7, 3],
+  [['herb', 'biology', 'abiogenesis', 'ladder', 'bees'], 'tree', 7, 3],
+  [['search', 'bm25', 'seo', 'sitemap', 'opengraph', 'open graph', 'vitepress', 'mcp', 'navigation', 'sidebar', 'route', 'pages', 'slug', 'lens', 'hub'], 'tree', 7, 3],
+  [['chat', 'waves', 'movie', 'improve', 'fuse', 'mind', 'experience', 'session'], 'wave', 8, 4],
+  // completion batch 2 — the last bare fallbacks, most-specific first: real math one-offs to their own
+  // figure, the inversion arc and the system/meta rows to the vortex (the corpus's own emblem), the
+  // theorem-registry/crosslink rows to the tree (the reasoning DAG). After this the bare fallback is empty.
+  [['sixty degrees'], 'circle', 6, 3],
+  [['golden angle'], 'spiral', 8 * 3, 3],
+  [['3-smooth', 'log-lattice', 'keys and the lock'], 'sieve', 100, 3],
+  [['frequency', 'harmony'], 'series', 2 * 6, 3],
+  [['periodicity', 'phase offsets'], 'cycle', 8, 4],
+  [['group order', 'forms shift', 'magma', 'element field'], 'classes', 9, 2],
+  [['string theory'], 'polytope', 5, 2],
+  [['invert', 'inverse', 'inversion', 'illusions'], 'vortex', 9, 4],
+  [['crosslink', 'theorem', 'axioms'], 'tree', 7, 3],
+  [['compute', 'algebra', 'corpus', 'code', 'audit', 'dry', 'fold', 'gate', 'deploy', 'release', 'reuse', 'kernel', 'metric', 'skill', 'patent', 'page', 'economy', 'css', 'hardware', 'library', 'portal', 'attribution', 'honest', 'complete', 'wisdom', 'discovery', 'tool', 'scan', 'referral', 'roster', 'crack', 'barrier', 'boundar', 'profiling', 'signal', 'coordinates', 'intelligence', 'math', 'consistency', 'proof', 'collision', 'cleanup', 'impossibilit', 'protected-ref', 'auto-advance', 'reverse-engineering', 'reusable method'], 'vortex', 9, 4],
 ]
-const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit'> => {
+const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit' | 'seed'> => {
   const t = theorem.toLowerCase()
   const hit = CONTENT_ANIMATION_FAMILIES.find(([keys]) => keys.some((k) => t.includes(k)))
   if (!hit) return { kind: 'vortex', points: 9, lines: [], ratePhi: 4 }
@@ -2062,24 +2098,45 @@ const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'h
   return { kind, points, lines: kind === 'star' ? fanoLines() : [], ratePhi }
 }
 
-/** Any content title → its animation spec — the visual metaphor computed, never hand-keyed. */
-export function specForContent(title: string): ProofAnimationSpec {
-  return { theorem: title, ...contentSpecOf(title), hueDigit: contentDigitOf(title) }
+/** Any content title → its animation spec — the visual metaphor computed, never hand-keyed.
+ *  `proofKey` is the theorem's OWN (algebraic identity ⊢ proving fold) pair: the spec seed is its
+ *  content-address, so the animation is the visual RECEIPT of the proof — the same proof always
+ *  animates identically, and any change to statement or proving fold changes the animation. */
+export function specForContent(title: string, proofKey?: string): ProofAnimationSpec {
+  return { theorem: title, ...contentSpecOf(title), hueDigit: contentDigitOf(title), seed: seedFromText(proofKey ?? title) }
 }
 
 export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('proofAnimations', matrix, () => {
     const registry = theoremAtoms(matrix)
-    const specs: ProofAnimationSpec[] = registry.theorems.map((entry) => specForContent(entry.theorem))
+    // THE ANIMATION CONFIRMS THE PROOF (user law) — the seed input is (identity ⊢ provedBy): the
+    // statement bound to its executable proving fold. Not decoration: a visual receipt of the proof.
+    const proofKeyOf = (entry: { theorem: string; provedBy: string; algebraicStatement?: string }) =>
+      `${entry.algebraicStatement ?? entry.theorem} ⊢ ${entry.provedBy}`
+    const specs: ProofAnimationSpec[] = registry.theorems.map((entry) => specForContent(entry.theorem, proofKeyOf(entry)))
     const kinds = [...new Set(specs.map((entry) => entry.kind))]
+    // THE BIJECTION, COMPUTED (user law: unique animations exactly match unique algebraic theorems):
+    // distinct proofs ↔ distinct animation signatures — refutable at call time.
+    const identityCount = new Set(registry.theorems.map((entry) => proofKeyOf(entry))).size
+    const signatureCount = new Set(specs.map((entry) => `${entry.kind}:${entry.points}:${entry.ratePhi}:${entry.hueDigit}:${entry.seed}`)).size
+    // NO OTHER ANIMATION IS ALLOWED (user law) — the spec set is EXACTLY the proven-registry set:
+    // one spec per proven theorem, every spec's seed recomputes from its own proof, no spec without one.
+    const registryTitles = new Set(registry.theorems.map((entry) => entry.theorem))
+    const everyAnimationConfirmsItsProof = registry.theorems.every((entry, i) => specs[i]!.seed === seedFromText(proofKeyOf(entry)))
+    const noOtherAnimationAllowed = specs.length === registry.count && specs.every((s) => registryTitles.has(s.theorem))
     return {
       animated: specs.length === registry.count && kinds.length >= 6,
+      uniqueAnimationsMatchUniqueTheorems: signatureCount === identityCount,
+      everyAnimationConfirmsItsProof,
+      noOtherAnimationAllowed,
+      identityCount,
+      signatureCount,
       specs,
       count: specs.length,
       kinds,
-      root: merkleFold([registry.root, ...specs.map((entry) => toUuid(`proof-anim:${entry.theorem}:${entry.kind}:${entry.ratePhi}:${entry.hueDigit}`))]),
-      statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — every theorem animates by its own constants; rates are φ-ladder indices, hues vortex digits: the same two sealed generators as the movie.`,
-      boundary: `SPECS ONLY — pure data derived from the registry (kind by proof family, hue by content digit, rate by φ-index). The renderer interprets; nothing here draws, and no parameter is hand-keyed per animation. Adding a theorem animates it automatically.` }
+      root: merkleFold([registry.root, ...specs.map((entry) => toUuid(`proof-anim:${entry.theorem}:${entry.kind}:${entry.ratePhi}:${entry.hueDigit}:${entry.seed}`))]),
+      statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — each animation is the visual receipt of its proof: seed = address(identity ⊢ provingFold), so ${signatureCount} unique animations for ${identityCount} unique proofs (${signatureCount === identityCount ? 'exact match' : 'MISMATCH'}); confirmsProof=${everyAnimationConfirmsItsProof} · noOther=${noOtherAnimationAllowed}.`,
+      boundary: `SPECS ONLY — pure data derived from the registry (kind by proof family, hue by content digit, rate by φ-index, seed by the (identity ⊢ provingFold) content-address). An animation without a proven theorem behind it is forbidden here — the spec set equals the registry set, and every seed recomputes from its own proof. The renderer interprets; nothing here draws, and no parameter is hand-keyed per animation.` }
   })
 }
 

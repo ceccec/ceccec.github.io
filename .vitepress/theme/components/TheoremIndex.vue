@@ -14,8 +14,8 @@ import LinkedHeroCard from './LinkedHeroCard.vue'
 const { t } = useSiteLocale()
 const groups = computed<TheoremTagGroup[]>(() => theoremTagIndex())
 const total = computed(() => theoremPapersLatestFirst().length)
-const axisOrder: TheoremTagGroup['axis'][] = ['domain', 'class', 'lean']
-const axisLabel: Record<TheoremTagGroup['axis'], string> = { domain: 'domain', class: 'proof class', lean: 'method' }
+const axisOrder: TheoremTagGroup['axis'][] = ['animation', 'domain', 'class', 'lean']
+const axisLabel: Record<TheoremTagGroup['axis'], string> = { animation: 'animation', domain: 'domain', class: 'proof class', lean: 'method' }
 
 // filter state — a selected tag narrows to its one group; null shows every group, newest paper on top.
 const selected = ref<string | null>(null)
