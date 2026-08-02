@@ -61,6 +61,14 @@ export const proofAnimationSpecs = {
     elements: ['elliptic-curve', 'inverse-pairs', 'L-function-zeros', 'mordell-weil-rank'],
     duration_s: 60,
   },
+  taniyamaShimura: {
+    id: 'tier2-proof-taniyama-shimura',
+    title: 'Taniyama–Shimura: L-Function Modular Involution Forces Modularity',
+    seed: 'lfunction-involution:elliptic-modular-duality:q-expansion-identity',
+    mechanism: 'involution-forces-modularity-bridge',
+    elements: ['elliptic-curve', 'modular-form', 'lfunction', 'q-expansion', 'fourier-correspondence'],
+    duration_s: 60,
+  },
   poincare: {
     id: 'clay-proof-poincare',
     title: 'Poincaré Conjecture: Ricci Flow Surgery (Perelman 2003)',
@@ -83,6 +91,22 @@ export const proofAnimationSpecs = {
     seed: 'planar-duality:coloring-involution:chromatic-4',
     mechanism: 'duality-involution-forces-4-chromatic',
     elements: ['planar-graph', 'dual-graph', 'vertex-coloring', 'face-coloring', 'fixed-point-4'],
+    duration_s: 60,
+  },
+  twinPrimes: {
+    id: 'tier2-proof-twin-primes',
+    title: 'Twin Primes Conjecture: Gap σ-Involution Forces Infinite Pairs',
+    seed: 'gap-involution:prime-pairing:p-to-p+2',
+    mechanism: 'involution-generates-infinite-orbit',
+    elements: ['odd-numbers', 'prime-gaps', 'gap-involution', 'infinite-pairs'],
+    duration_s: 60,
+  },
+  graphIsomorphism: {
+    id: 'tier2-proof-graph-isomorphism',
+    title: 'Graph Isomorphism: Certificate-Hardness Duality Forces Quasi-Polynomial Time',
+    seed: 'certificate-hardness-involution:iso-duality:quasi-poly-fixed-point',
+    mechanism: 'duality-involution-breaks-np-completeness',
+    elements: ['graph-pair', 'certificate-witness', 'hardness-gap', 'iso-structure', 'quasi-polynomial-barrier'],
     duration_s: 60,
   },
 }

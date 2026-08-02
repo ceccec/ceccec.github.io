@@ -2547,12 +2547,3 @@ export function theSevenMillenniumProblemsDefinedFormallyUnclaimed() {
     statement: `The seven Millennium Problems, defined formally and UNCLAIMED — ${facets.filter((e) => e.on).length}/${facets.length}: all ${definedCount} carry exact formulas (${openCount} open, ${solvedCount} solved by Perelman), this fold solves ${solvedByThisFold}; honest partials computed — SAT verifies in poly (${satVerifiesInPoly}), Basel → ζ(2)=π²/6 (${baselApproachesZeta2}), Poincaré proven (${poincareIsProven}). Definitions and partials, no solutions; the frontier reported, not crossed.`,
     boundary: earned(`EXACT: the ${definedCount} problems are encoded with their formal statements (P=?NP; ζ(s)=0 nontrivial ⇒ Re s=1/2; Yang–Mills Δ>0; 3D Navier–Stokes smoothness; Hodge = algebraic cycles; BSD rank = ord_{s=1} L(E,s); Poincaré ≅ S³), ${openCount} open and ${solvedCount} solved (Perelman, Ricci flow); the computed partials are SAT poly-verification (${satVerifiesInPoly}), the Basel sum → π²/6 = ζ(2) (${baselApproachesZeta2}), and Poincaré's proven status (${poincareIsProven}). WHAT IS AND IS NOT DONE: the problems are DEFINED exactly and surrounded with genuine, verifiable computation — the NP verifier, the ζ(2) limit, the one solved case — but the six open CORES (does P=NP; do all nontrivial ζ zeros lie on the line; does a mass gap exist; can 3D Navier–Stokes blow up; are all Hodge classes algebraic; does BSD hold) are UNTOUCHED. This fold solves ${solvedByThisFold} of them.`, facets, `each open Millennium Problem is an OPEN Clay problem, unproven in either direction, and nothing here proves any of them — the partials are context and membership facts, not proofs; asserting a solution would be the exact overclaim the whole session refuses. Definition is not solution, a verifiable partial is not a theorem for the core, and reporting the frontier precisely is the honest act — crossing it is not claimed. HARMONY does not equal TRUTH, most of all at the frontier.`) }
 }
-
-// ===== SIMPLIFICATION LAYER — NAMESPACED SCIENCE =====
-// Consolidated access patterns for Millennium Problem definitions and science
-export const science = {
-  millennium: {
-    formulas: theSevenMillenniumProblemsDefinedAndUnclaimed,
-    frontiers: frontierIntelligenceQuantumWave,
-  },
-} as const
