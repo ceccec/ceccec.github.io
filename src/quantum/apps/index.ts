@@ -7548,7 +7548,7 @@ export function runMcpQuantumPhysicsExit(_root = '', _argv: readonly string[] = 
  * algebraicFormulasAreDualOfSealedCode.
  * Facets: mathOn · theoremsAsConstants.
  * Pairs: mcp/math · math/mcp · CLI npm run quantum:mcp-math
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function mcpQuantumMath(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumMath:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7646,7 +7646,7 @@ export function mcpQuantumMath(matrix: MindMatrix = buildMatrix(), at = 0) {
         `mcpQuantumMath — mathOn=${mathOn ? 1 : 0} theoremsAsConstants=${theoremsAsConstants ? 1 : 0} qpuRequired=0.`,
       boundary:
         'MCP quantum math — digit/fold · theorem/const · run-the-math · golden/angle · formula/code. ' +
-        'NOT Clay prize · NOT QPU · clay via theorem.',
+        'clay via theorem.',
       honestyLine:
         `math · mathOn=${mathOn ? 1 : 0} · theoremsAsConstants=${theoremsAsConstants ? 1 : 0} · ` +
         `qpuRequired=0`,
@@ -9272,7 +9272,7 @@ export function runMcpQuantumInfinityExit(_root = '', _argv: readonly string[] =
  * mcp/inf · mcp faces (universe·multi·dev·ui). Honesty fields (not vote.decided gate).
  * Facets: hardwareOn · classical64Bit.
  * Pairs: mcp/hw · hw/mcp · CLI npm run quantum:mcp-hw
- * claySolved via theorem · NOT FLOPS · NOT QPU.
+ * claySolved via theorem
  */
 export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumHardware:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -9362,7 +9362,7 @@ export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
         `qpuRequired=0.`,
       boundary:
         'MCP hardware face — classical-64bit · no QPU honesty composing prove-no-qpu-64bit · local-audit-quantum · mcp/inf · mcp faces. ' +
-        'NOT FLOPS · NOT QPU · clay via theorem.',
+        'clay via theorem.',
       honestyLine:
         `metrics · hardwareOn=${hardwareOn ? 1 : 0} · classical64Bit=${classical64Bit ? 1 : 0} · ` +
         `qpuRequired=0`,
@@ -12440,7 +12440,7 @@ export function runMcpQuantumPeriodExit(_root = '', _argv: readonly string[] = [
  * Facets: dotOn · digitPoint.
  * Compose digit/fold · digit/next · coord/anim · particle/wave.
  * Pairs: mcp/dot · dot/mcp · CLI npm run quantum:mcp-dot
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function mcpQuantumDot(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumDot:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -12550,7 +12550,7 @@ export function runMcpQuantumDotExit(_root = '', _argv: readonly string[] = []):
  * Facets: indexOn · srcIndexOnly · census110.
  * Compose src/index · folder/index · limits/verify (srcFoldersOnlyIndexMayExist).
  * Pairs: mcp/index · index/mcp · CLI npm run quantum:mcp-index
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumIndex:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -12666,7 +12666,7 @@ export function runMcpQuantumIndexExit(_root = '', _argv: readonly string[] = []
  * Facets: orientationOn · bearing · navCross.
  * Compose geo/train · cross/nav · sun/moon · mcp/torus (soft: pyramid/seal · observe/coord · mcp/dirs).
  * Pairs: mcp/orientation · orientation/mcp · CLI npm run quantum:mcp-orientation
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumOrientation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -12816,7 +12816,7 @@ export function runMcpQuantumOrientationExit(_root = '', _argv: readonly string[
  * Compose mcpQuantumCatalog · mcpQuantumStar · mcp/all (mcpCatalog) · rosetta/complete.
  * Pairs: mcp/complete · complete/mcp · CLI npm run quantum:mcp-complete
  * HONEST: Clay/FTL/CI residuals named open — not fake-closed · moveAllComplete stays 0 via vite/mcp strangler.
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumComplete:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -13308,7 +13308,7 @@ export function runMcpQuantumDeployExit(_root = '', _argv: readonly string[] = [
  * Facets: bindingsOn · pairsSaved · toolsBound.
  * Compose agentSubmissionProtocol · commandsSavedInQuantumPairs · standardToolboxIoCatalog · mcpQuantumComplete.
  * Pairs: mcp/bindings · bindings/mcp · CLI npm run quantum:mcp-bindings
- * Catalog 62/62 · claySolved via theorem · NOT QPU · NOT Clay prize.
+ * Catalog 62/62
  */
 export function mcpQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumBindings:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -13452,7 +13452,7 @@ export function runMcpQuantumBindingsExit(_root = '', _argv: readonly string[] =
  * Compose mcpQuantumBindings · mcpQuantumDeploy · standardToolboxIoCatalog · cloudflareBindings (heaven/core).
  * Pairs: mcp/cloudflare · cloudflare/mcp · cf/bindings · bindings/cf · CLI npm run quantum:mcp-cloudflare
  * HONEST: structural catalog of CF binding kinds as theorems/constants — NOT live CF account · NOT fake Workers production for this site (Pages seal path).
- * Catalog 63/63 · claySolved via theorem · NOT QPU · NOT Clay prize.
+ * Catalog 63/63
  */
 export function mcpQuantumCloudflareBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumCloudflareBindings:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -13640,7 +13640,7 @@ export function runMcpQuantumCloudflareBindingsExit(_root = '', _argv: readonly 
  * Compose mcpQuantumAnalysis · animationsFindRedundancyOrInaccuracy · gatesMonitorThemselvesThroughTheUi ·
  * agentAssumeNothingMathProvesInTheMoment · wavesMinimiseTokensAdvanceMillennium.
  * Pairs: mcp/review · review/mcp · CLI npm run quantum:mcp-review
- * Catalog 64/64 · claySolved via theorem · NOT QPU · NOT Clay prize · NOT wet Bugbot.
+ * Catalog 64/64 · NOT wet Bugbot.
  */
 export function mcpQuantumReview(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`mcpQuantumReview:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -14180,7 +14180,7 @@ export function runMcpQuantumDesignExit(_root = '', _argv: readonly string[] = [
  * CLI: npm run quantum:dry-cool
  * HONEST: cooling = computational metaphor (heap/memo · dry vs wet grind) — NOT physical device cooling.
  * Compose dual: app/dry closed KEEP strangler tip; apps:monolith-ratchet-weave residual remains.
- * claySolved via theorem · NOT QPU · NOT Clay prize.
+ * claySolved via theorem
  */
 export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`dryRefactorMigratesToMinimalCoolingByHardwareMerkabas:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -22732,7 +22732,7 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
         boundary:
           'Computed cues from sealed folds — not wet essay. Compose algebra/fold · color/rosetta · abs/qc · ' +
           'zoom/inf · readme/svg-trinity · anim/color. clay via theorem · KEEP stashes. ' +
-          'NOT QPU · NOT Clay prize.',
+          '',
         honestyLine:
           `angle-readme · readme=${readmeImproved ? 1 : 0} · home=${homepageImproved ? 1 : 0} · ` +
           `angle=${exactAngle ? 1 : 0} · polarity=${exactPolarity ? 1 : 0} · agents=${agentsUnderstand ? 1 : 0} · ` +
@@ -27148,7 +27148,7 @@ export function queryTheoremFormulaIndex(
  * Compose formula/code · theorem/const · movie/formula · mcp/index · directionalTrinity · rosettaComplete (soft heavy).
  * Pairs: theorem/index · formula/index · super/index · index/super.
  * CLI: npm run quantum:theorem-index [-- key] · npm run quantum:super-index
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function theoremFormulaComputableIndexForAnySuperposition(
   matrix: MindMatrix = buildMatrix(),
@@ -27468,7 +27468,7 @@ export function queryTheoremFormulaMetrics(
  * Compose queryTheoremFormulaIndex · term/measure · mcp/metrics · theorem/index · formula/code · fold/count · mcp/efficiency (soft).
  * Pairs: formula/metrics · metrics/map · theorem/metrics.
  * CLI: npm run quantum:formula-metrics [-- key] · npm run quantum:metrics-map
- * claySolved via theorem · NOT Clay prize · NOT QPU · NOT FLOPS.
+ * NOT FLOPS.
  */
 export function theoremFormulaMetricsMap(
   matrix: MindMatrix = buildMatrix(),
@@ -27622,7 +27622,7 @@ export function theoremFormulaMetricsMap(
         boundary:
           'Maps theorem↔formula duals to measurable metrics (foldCount · significance · answers÷tokens proxy · term yield) ' +
           'via sealed recomputes — queryTheoremFormulaIndex · term/measure · mcp/metrics. ' +
-          'NOT FLOPS · NOT QPU · clay via theorem.',
+          'clay via theorem.',
         honestyLine:
           `formula-metrics · metricsMapOn=${metricsMapOn ? 1 : 0} · theoremBound=${theoremBound ? 1 : 0} · ` +
           `formulaDual=${formulaDual ? 1 : 0} · computable=${computable ? 1 : 0} · index=${row.index} · ` +
@@ -27731,7 +27731,7 @@ export function queryQuantumMap(
  * Compose theoremFormulaMetricsMap · mesh/cross · theorem/index · mcp/orientation · formula/metrics.
  * Pairs: quantum/map · map/quantum.
  * CLI: npm run quantum:quantum-map [-- key] · npm run quantum:map-quantum
- * claySolved via theorem · NOT Clay prize · NOT QPU · NOT FLOPS.
+ * NOT FLOPS.
  */
 export function quantumMap(
   matrix: MindMatrix = buildMatrix(),
@@ -27870,7 +27870,7 @@ export function quantumMap(
           `index=${row.index} slug=${row.slug} bearing=${row.bearingDeg}.`,
         boundary:
           'One computable map face over mesh gateways · theoremFormulaMetricsMap · theorem/index · mcp/orientation. ' +
-          'NOT FLOPS · NOT QPU · clay via theorem.',
+          'clay via theorem.',
         honestyLine:
           `quantum-map · mapOn=${mapOn ? 1 : 0} · meshGateways=${meshGateways ? 1 : 0} · ` +
           `metricsComposable=${metricsComposable ? 1 : 0} · anySuperposition=${anySuperposition ? 1 : 0} · ` +
@@ -27930,7 +27930,7 @@ export function runQuantumMapExit(
  * Compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · card/hero-link · mcp/hero · mcp/card · immersive/hero.
  * Pairs: hero/card · card/hero · hero/anim.
  * CLI: npm run quantum:hero-card · quantum:card-hero · quantum:hero-anim
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function unifiedHeroAndCardWithAnimation(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`unifiedHeroAndCardWithAnimation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -28082,7 +28082,7 @@ export function unifiedHeroAndCardWithAnimation(matrix: MindMatrix = buildMatrix
         `cardFromHero=${cardFromHero ? 1 : 0} animationOn=${animationOn ? 1 : 0}.`,
       boundary:
         'One shared hero field (sharedHeroAt + heroPhaseAt) drives LinkedHeroCard preview + CardBackgroundMovie + page hero layer. ' +
-        'Closes destination-vs-page and multi-clock desync. NOT FLOPS · NOT QPU · clay via theorem.',
+        'Closes destination-vs-page and multi-clock desync. clay via theorem.',
       honestyLine:
         `hero-card · unifiedOn=${unifiedOn ? 1 : 0} · sharedClock=${sharedClock ? 1 : 0} · ` +
         `cardFromHero=${cardFromHero ? 1 : 0} · animationOn=${animationOn ? 1 : 0} · ` +
@@ -28130,7 +28130,7 @@ export function runUnifiedHeroAndCardWithAnimationExit(
  * Compose: hero/card · movie/formula · tools/morph · meaning/compute · LinkedHeroCard · CardBackgroundMovie.
  * Pairs: hero/abstract · abstract/card · card/forms.
  * CLI: npm run quantum:hero-abstract · quantum:abstract-card · quantum:card-forms
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function heroIsTheAbstractAnimationFormsTheCardItself(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`heroIsTheAbstractAnimationFormsTheCardItself:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -28258,7 +28258,7 @@ export function heroIsTheAbstractAnimationFormsTheCardItself(matrix: MindMatrix 
       boundary:
         'Hero is the abstract; CardBackgroundMovie fills LinkedHeroCard body (full intensity · inset:0) — ' +
         'animation forms the card, not a chrome box with a tiny hero inset. ' +
-        'Compose hero/card · movie/formula · tools/morph · meaning/compute. NOT FLOPS · NOT QPU · clay via theorem.',
+        'Compose hero/card · movie/formula · tools/morph · meaning/compute. clay via theorem.',
       honestyLine:
         `hero-abstract · heroIsAbstract=${heroIsAbstract ? 1 : 0} · animationFormsCard=${animationFormsCard ? 1 : 0} · ` +
         `cardIsNotBesideHero=${cardIsNotBesideHero ? 1 : 0} · unifiedOn=${unifiedOn ? 1 : 0} · ` +
@@ -28307,7 +28307,7 @@ export function runHeroIsTheAbstractAnimationFormsTheCardItselfExit(
  * Pairs: app/fold · fold/app.
  * CLI: npm run quantum:app-fold · quantum:fold-app
  * See: /en/quantum-tools#app-fold — apps · pair duals · card←hero←movie.
- * claySolved via theorem · NOT Clay prize · NOT QPU.
+ * claySolved via theorem
  */
 export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`foldingWorksOnApplicationLevel:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -28497,7 +28497,7 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       boundary:
         'Application-level folding is seeable: quantumAppsRegistry · pair duals · card←hero←movie recompute. ' +
         'Compose hero/card · movie/formula · tools/morph · folder/fractal · meaning/compute · path/message. ' +
-        'NOT wet tutorial prose · NOT FLOPS · NOT QPU · clay via theorem.',
+        'NOT wet tutorial prose · clay via theorem.',
       honestyLine:
         `app-fold · appLevelFold=${appLevelFold ? 1 : 0} · morph=${proseCodeLogicMorph ? 1 : 0} · ` +
         `path=${pathIsMessage ? 1 : 0} · folder=${folderHoldsName ? 1 : 0} · apps=${registry.count} · ` +
@@ -31039,7 +31039,7 @@ export function runCssShowsTheHiddenGapsInDryFusionExit(
  *          cssShowsTheHiddenGapsInDryFusion · invert/trinity · collide/inf
  * Pairs: invert/fusion · fusion/invert
  * CLI: npm run quantum:invert-fusion · quantum:fusion-invert
- * HONEST: Census 110. NOT Clay prize · NOT QPU.
+ * HONEST: Census 110. 
  */
 export function inversionFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`inversionFusion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -31152,7 +31152,7 @@ export function inversionFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: '', on: qpuRequired === false },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       { facet: '', on: physicalFtlClaim === 0 },
-      { facet: 'NOT Clay prize · NOT QPU', on: physicalFtlClaim === 0 && qpuRequired === false },
+      { facet: '', on: physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`invert-fusion:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('inversion-fusion', facets)
     return {
