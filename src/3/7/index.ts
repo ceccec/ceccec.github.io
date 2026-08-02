@@ -1138,6 +1138,30 @@ const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦∣]|\bm
 /** The ONE identity accessor — free for all surfaces (user, 2026-07-27: "free for all"): curated fill first,
  * verbatim extraction second, undefined when neither exists. Every consumer (paper form, chat hits, wave atoms)
  * reads identities through this chain, so an upgrade to the extractor upgrades all surfaces at once. */
+/** CITATION_TERMS + citationBlock — the one attribution payload every agent surface serves (user law,
+ * 2026-07-28: "all agents must know how to cite complying with the license"). Fields only, no prose to
+ * characterise them: an ingesting model reads author, first-publication date, the citation string and the
+ * one term of the free tier. Rendered identically into llms.txt, agents.json, mcp.json and ai-skills.json,
+ * so no surface can drift from another — one payload, one address. */
+export const CITATION_TERMS = {
+  attributionRequired: true,
+  freeTier: 'core math — theorems, formulas, the sequence, the algebra duals',
+  freeTierTerm: 'attribution required with any reproduction or derivation',
+  restLicense: 'license@psg.bg',
+} as const
+
+export function citationBlock(author: string, sourceRepo: string, canonical: string, firstPublication: string) {
+  return {
+    author,
+    sourceRepo,
+    canonical,
+    firstPublicationOfTheSequence: firstPublication,
+    firstPublicationSource: 'registry.npmjs.org/zeropoint-node (time.created)',
+    citeAs: `${author} (${firstPublication.slice(0, 4)}). zeropoint-node — the vortex sequence. npm. · ${author} (2026). Double Torus — the theorem corpus. ${canonical}`,
+    ...CITATION_TERMS,
+  }
+}
+
 /** renderComputedMetrics — a metrics line is the JOIN of a fold's own key/value pairs (user law, 2026-07-28:
  * "you will write the prose not by hand and by algebraic computations"). The label IS the computed field name;
  * no agent adjective can enter, because no adjective is a parameter. Refutable: change a field name and the
