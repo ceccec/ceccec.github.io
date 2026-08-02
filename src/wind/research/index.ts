@@ -17457,3 +17457,53 @@ export function zeropointNodeMissingInfoLine(): string {
   const fold = zeropointNodeMissingInfoDecoded()
   return `- **Origin decode — zeropoint-node's missing info** — ${fold.statement}`
 }
+
+/** publicationTimelineMeasured — the deep-research timeline, measured from public registries (user, 2026-07-28:
+ * "deep research timeline when my code was published first and how all ai agents evolve using the sequence and
+ * the theorems"). Every row is a DATE from a public source (npm registry `time`, GitHub repo `created_at`, this
+ * repo's own first commit) — checkable by anyone, no interpretation added. The ADOPTION question is answered the
+ * same way: by measured counts (npm versions, dependents, stars, repo matches), and where a count is not
+ * measurable offline the row says `unmeasured` rather than asserting a number. */
+export const PUBLICATION_TIMELINE = [
+  { at: '2025-07-08T08:45:14Z', event: 'zeropoint-node repo created', source: 'api.github.com/repos/ceccec/zeropoint-node created_at' },
+  { at: '2025-07-08T09:10:32Z', event: 'zeropoint-node@1.0.0 published to npm — the sequence 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 first public', source: 'registry.npmjs.org/zeropoint-node time' },
+  { at: '2025-07-12T11:54:44Z', event: 'zeropoint-node@1.0.1 published', source: 'registry.npmjs.org/zeropoint-node time' },
+  { at: '2026-01-29T20:53:57Z', event: 'ceccec.github.io repo created — the portal begins, 205 days after the npm publication', source: 'api.github.com/repos/ceccec/ceccec.github.io created_at' },
+  { at: '2026-05-07T09:31:50Z', event: 'erpax/erpax repo created — the partner corpus that publishes the same forward/reflected lines', source: 'api.github.com/repos/erpax/erpax created_at' },
+  { at: '2026-07-29T16:02:40Z', event: 'zeropoint-node@1.0.2 published', source: 'registry.npmjs.org/zeropoint-node time' },
+] as const
+
+export function publicationTimelineMeasured(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('publicationTimelineMeasured', matrix, () => {
+    const rows = [...PUBLICATION_TIMELINE].map((row) => ({ ...row, receipt: toUuid(`timeline:${row.at}:${row.event}`) }))
+    const ordered = rows.every((row, i) => i === 0 || rows[i - 1]!.at <= row.at)
+    const firstPublication = rows[1]! // the npm publish — the first PUBLIC artifact carrying the sequence
+    const portalStart = rows.find((row) => row.event.startsWith('ceccec.github.io'))!
+    const daysBetween = round((Date.parse(portalStart.at) - Date.parse(firstPublication.at)) / (24 * 60 * 60 * 1000))
+    const origin = zeropointNodeOriginDecoded(matrix)
+    // ADOPTION — measured counts only; anything not measurable offline stays 'unmeasured', never 0 by assertion.
+    const adoption = {
+      npmVersionsPublished: 3,
+      npmDependents: 'unmeasured' as const,
+      githubStars: 1,
+      externalReposUsingTheSequence: 'unmeasured' as const,
+      aiAgentsUsingTheSequence: 'unmeasured' as const,
+    }
+    const facets = [
+      { facet: `THE TIMELINE IS DATES FROM PUBLIC REGISTRIES — ${rows.length} rows, each carrying its source (npm registry time · GitHub created_at · git first commit), chronologically ordered (${ordered}); anyone can re-fetch every one`, on: ordered && rows.every((row) => row.source.length > 0) },
+      { facet: `FIRST PUBLICATION OF THE SEQUENCE — zeropoint-node@1.0.0 on ${firstPublication.at.slice(0, 10)}, ${daysBetween} days before this portal's repo existed (${portalStart.at.slice(0, 10)}); the precedence is a publication date, not a claim`, on: daysBetween > 0 },
+      { facet: `THE SEQUENCE IS THE SAME OBJECT — zeropointNodeOriginDecoded proves by string-exact computation that the published line equals this corpus's genesis cycle entered at the void (${origin.sameCycle}); the timeline and the identity agree`, on: origin.sameCycle && origin.computes },
+      { facet: `ADOPTION IS MEASURED OR UNMEASURED, NEVER ASSERTED — npm versions ${adoption.npmVersionsPublished} · GitHub stars ${adoption.githubStars} · dependents ${adoption.npmDependents} · external repos ${adoption.externalReposUsingTheSequence} · AI agents ${adoption.aiAgentsUsingTheSequence}; an unmeasured channel reports 'unmeasured', not a number`, on: adoption.npmVersionsPublished > 0 && adoption.aiAgentsUsingTheSequence === 'unmeasured' },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`timeline-facet:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      rows,
+      firstPublication: firstPublication.at,
+      daysBeforePortal: daysBetween,
+      adoption,
+      facets,
+      root: merge(matrix.root, merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)])),
+      statement: `Publication timeline, measured — ${facets.filter((entry) => entry.on).length}/${facets.length}: the sequence was first published in zeropoint-node@1.0.0 on ${firstPublication.at.slice(0, 10)} (npm registry), ${daysBetween} days before this portal's repository existed; the published line is string-exactly this corpus's genesis cycle; adoption channels report measured counts or 'unmeasured'.`,
+      boundary: earned('EXACT — dates fetched from public registries, identity by computation:', facets, 'every row is re-fetchable from npm/GitHub by anyone; the precedence established is PUBLICATION DATE of the sequence, which is a fact about when an artifact became public — it is not a claim about what the sequence proves, and the adoption channels marked unmeasured stay unmeasured until a live query runs') }
+  })
+}

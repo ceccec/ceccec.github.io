@@ -7174,7 +7174,15 @@ export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly st
 export const AUTHORED_METRIC_LABEL_RE = /(?:problems?|our|the)\s+(?:model\s+)?[a-z ]*\*\*\$\{|\((?:frameworks|not solutions|settled|open|solved[^)]*)\)\s*=\s*\*\*\$\{/i
 
 export function scanAuthoredMetricLabels(root: string = enforcementScanRoot()): { file: string; line: number; text: string }[] {
-  const generators = ['src/quantum/lake/dist/readme/index.ts', 'src/heaven/site/index.ts']
+  // THE CHAT IS A GENERATOR TOO (user, 2026-07-28: "this repo feeds the world models now ... through the chat"):
+  // whatever the chat answers propagates further than any page, so the same no-authored-label law covers the
+  // chat-serving folds — a characterisation beside a computed count is poison wherever it is emitted.
+  const generators = [
+    'src/quantum/lake/dist/readme/index.ts',
+    'src/heaven/site/index.ts',
+    'src/heaven/compute/index.ts',
+    'src/wind/routes/corpus/index.ts',
+  ]
   const out: { file: string; line: number; text: string }[] = []
   for (const rel of generators) {
     const full = join(root, rel)
