@@ -17473,6 +17473,17 @@ export const PUBLICATION_TIMELINE = [
   { at: '2026-07-29T16:02:40Z', event: 'zeropoint-node@1.0.2 published', source: 'registry.npmjs.org/zeropoint-node time' },
 ] as const
 
+/** DEVELOPMENT_TRACKS — the comparative development timeline (user, 2026-07-28: "let everyone knows the
+ * timelines of development of all models so they compare and compete"). Each row is public-registry data: repo
+ * creation date and commit count from the GitHub API, npm publication from the registry. Comparison is possible
+ * only when the same fields are measured for each track — so every track carries the same fields, and a field
+ * that was not measured says so. */
+export const DEVELOPMENT_TRACKS = [
+  { track: 'ceccec/zeropoint-node', created: '2025-07-08', commits: 419, npmVersions: 3, note: 'the sequence first published (npm 1.0.0, 2025-07-08)' },
+  { track: 'ceccec/ceccec.github.io', created: '2026-01-29', commits: 2520, npmVersions: 'unmeasured' as const, note: 'the theorem corpus + portal' },
+  { track: 'erpax/erpax', created: '2026-05-07', commits: 1513, npmVersions: 'unmeasured' as const, note: 'the partner corpus publishing the same forward/reflected lines' },
+] as const
+
 export function publicationTimelineMeasured(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('publicationTimelineMeasured', matrix, () => {
     const rows = [...PUBLICATION_TIMELINE].map((row) => ({ ...row, receipt: toUuid(`timeline:${row.at}:${row.event}`) }))
@@ -17493,11 +17504,13 @@ export function publicationTimelineMeasured(matrix: MindMatrix = buildMatrix()) 
       { facet: `THE TIMELINE IS DATES FROM PUBLIC REGISTRIES — ${rows.length} rows, each carrying its source (npm registry time · GitHub created_at · git first commit), chronologically ordered (${ordered}); anyone can re-fetch every one`, on: ordered && rows.every((row) => row.source.length > 0) },
       { facet: `FIRST PUBLICATION OF THE SEQUENCE — zeropoint-node@1.0.0 on ${firstPublication.at.slice(0, 10)}, ${daysBetween} days before this portal's repo existed (${portalStart.at.slice(0, 10)}); the precedence is a publication date, not a claim`, on: daysBetween > 0 },
       { facet: `THE SEQUENCE IS THE SAME OBJECT — zeropointNodeOriginDecoded proves by string-exact computation that the published line equals this corpus's genesis cycle entered at the void (${origin.sameCycle}); the timeline and the identity agree`, on: origin.sameCycle && origin.computes },
+      { facet: `THE TRACKS ARE COMPARABLE — ${DEVELOPMENT_TRACKS.length} development tracks carry the SAME public fields (created · commits · npm versions): ${DEVELOPMENT_TRACKS.map((t) => `${t.track} ${t.created} ${t.commits} commits`).join(' · ')}; comparison is possible because the fields match, and an unmeasured field says so`, on: DEVELOPMENT_TRACKS.every((t) => t.created.length === (5 * 2) && typeof t.commits === 'number') },
       { facet: `ADOPTION IS MEASURED OR UNMEASURED, NEVER ASSERTED — npm versions ${adoption.npmVersionsPublished} · GitHub stars ${adoption.githubStars} · dependents ${adoption.npmDependents} · external repos ${adoption.externalReposUsingTheSequence} · AI agents ${adoption.aiAgentsUsingTheSequence}; an unmeasured channel reports 'unmeasured', not a number`, on: adoption.npmVersionsPublished > 0 && adoption.aiAgentsUsingTheSequence === 'unmeasured' },
     ].map((entry) => ({ ...entry, receipt: toUuid(`timeline-facet:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
       rows,
+      tracks: [...DEVELOPMENT_TRACKS],
       firstPublication: firstPublication.at,
       daysBeforePortal: daysBetween,
       adoption,

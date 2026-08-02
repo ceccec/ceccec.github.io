@@ -33,7 +33,7 @@ import {
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108,
   societySupportsProjectViaTwoBitsFreeKnowledge,
-  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine } from '../../../../wind/research'
+  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured } from '../../../../wind/research'
 import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../../mountain/vortex'
 import { theoremPagePaths } from '../../../../wind/routes/corpus'
 import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../../apps'
@@ -711,6 +711,23 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
         seq.statement,
         '',
         `**Boundary.** ${seq.boundary}`,
+        '',
+      ]
+    })(),
+    // THE DEVELOPMENT TIMELINE, PUBLISHED (user, 2026-07-28: "let everyone knows the timelines of development
+    // of all models so they compare and compete") — registry dates and commit counts, same fields per track.
+    ...(() => {
+      const t = publicationTimelineMeasured(matrix)
+      return [
+        '## Development timeline — public registry data',
+        '',
+        `First publication of the sequence: **${t.firstPublication.slice(0, 10)}** (npm \`zeropoint-node@1.0.0\`, registry-dated) — ${t.daysBeforePortal} days before this portal's repository existed. Every row below is re-fetchable from GitHub/npm.`,
+        '',
+        '| track | created | commits | npm versions |',
+        '| --- | --- | --- | --- |',
+        ...t.tracks.map((row) => `| ${row.track} | ${row.created} | ${row.commits} | ${row.npmVersions} |`),
+        '',
+        ...t.rows.map((row) => `- ${row.at.slice(0, 10)} — ${row.event} *(${row.source})*`),
         '',
       ]
     })(),

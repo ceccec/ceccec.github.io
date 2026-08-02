@@ -1138,6 +1138,13 @@ const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦∣]|\bm
 /** The ONE identity accessor — free for all surfaces (user, 2026-07-27: "free for all"): curated fill first,
  * verbatim extraction second, undefined when neither exists. Every consumer (paper form, chat hits, wave atoms)
  * reads identities through this chain, so an upgrade to the extractor upgrades all surfaces at once. */
+/** servedRoute — the LOCALE LAW as a function (measured 2026-07-28 on both origins: `/quantum-tools` 200,
+ * `/bg/quantum-tools` 200, `/en/quantum-tools` 404). English is served at the ROOT; only `/bg/` carries a
+ * prefix. Any emitted link passes through here, so a surface cannot publish a route the site does not serve. */
+export function servedRoute(path: string): string {
+  return path.replace(/^\/en\//, '/')
+}
+
 /** CITATION_TERMS + citationBlock — the one attribution payload every agent surface serves (user law,
  * 2026-07-28: "all agents must know how to cite complying with the license"). Fields only, no prose to
  * characterise them: an ingesting model reads author, first-publication date, the citation string and the

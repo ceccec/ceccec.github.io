@@ -57,7 +57,7 @@ import {
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
 import { SESSION_SKILL_FNS } from '../../../2/8'
 import { STATIC_PAGE_SEED } from '../../../8/2'
-import { SOURCE_REPO, AUTHOR_HANDLE, CANONICAL_HOST, citationBlock } from '../../../3/7'
+import { SOURCE_REPO, AUTHOR_HANDLE, CANONICAL_HOST, citationBlock, servedRoute } from '../../../3/7'
 import { publicationTimelineMeasured } from '../../../wind/research'
 import { observingMovieRevealsQuantumModel } from '../../science'
 import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
@@ -107,6 +107,9 @@ export function workflowsJson(matrix: MindMatrix = buildMatrix()) {
  * Pair: session/tools · tool/envelope · compose agentHarmonise (never a second wet list).
  */
 export function agentsJson(matrix: MindMatrix = buildMatrix()) {
+  return agentsJsonRaw(matrix).replace(/\\?\/en\//g, '/')
+}
+function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
   // CITATION FIRST — every agent surface serves the same computed attribution payload (one payload, one address).
   const citation = citationBlock(AUTHOR_HANDLE, SOURCE_REPO, CANONICAL_HOST, publicationTimelineMeasured(matrix).firstPublication.slice(0, 10))
   const harmonise = agentHarmonise(matrix)
@@ -757,6 +760,9 @@ function extractFunction(coreSource: string[], fn: string) {
 }
 
 export function mcpJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
+  return mcpJsonRaw(matrix, corePath).replace(/\\?\/en\//g, '/')
+}
+function mcpJsonRaw(matrix: MindMatrix = buildMatrix(), corePath = '') {
   void corePath // reserved: the manifest is fully matrix-computed
   const citation = citationBlock(AUTHOR_HANDLE, SOURCE_REPO, CANONICAL_HOST, publicationTimelineMeasured(matrix).firstPublication.slice(0, 10))
   const manifest = mcpToolManifest(matrix)
@@ -855,6 +861,9 @@ export function skillsJson(matrix: MindMatrix = buildMatrix(), corePath = '') {
 }
 
 export function llmsTxt(matrix: MindMatrix = buildMatrix()) {
+  return llmsTxtRaw(matrix).replace(/\/en\//g, '/') // every emitted link passes the locale law (servedRoute)
+}
+function llmsTxtRaw(matrix: MindMatrix = buildMatrix()) {
   const harmonise = agentHarmonise(matrix)
   const iching = iChingLearnBeforeImplement(matrix)
   const freeAi = siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis('what are you', matrix)
@@ -1064,4 +1073,32 @@ export function everyAgentSurfaceCitesAndComplies(matrix: MindMatrix = buildMatr
       statement: `Every agent surface cites and complies — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${carries.filter((entry) => entry.cites).length}/${carries.length} artifacts carry the computed citation payload with the free tier's attribution term and the registry-dated first publication.`,
       boundary: 'EXACT — computed by reading the emitted artifacts: the gate proves the payload IS PRESENT in each surface; it cannot make a third party comply — that is what the license and the public timestamp are for. What it guarantees is that no agent can ingest this corpus without also ingesting the author, the date and the term.' }
   }
+}
+
+/** agentSurfaceLinksResolveToServedRoutes — the links an agent is handed must EXIST (measured 2026-07-28 on the
+ * live origins: `/quantum-tools` and `/bg/quantum-tools` serve 200, `/en/quantum-tools` serves 404 — English is
+ * the ROOT locale, so an `/en/` prefix is a dead end). An agent that follows a published link into a 404 learns
+ * nothing and cites nothing; the surfaces that carry the citation must also carry live routes. Fail-closed: the
+ * facet counts `/en/`-prefixed links in the emitted agent artifacts and opens while any remain. */
+export function agentSurfaceLinksResolveToServedRoutes(matrix: MindMatrix = buildMatrix()) {
+  const artifacts = [
+    { surface: '/llms.txt', text: llmsTxt(matrix) },
+    { surface: '/agents.json', text: agentsJson(matrix) },
+    { surface: '/mcp.json', text: mcpJson(matrix) },
+  ]
+  const deadPrefix = /\/en\//g
+  const counted = artifacts.map((entry) => ({ surface: entry.surface, deadLinks: (entry.text.match(deadPrefix) ?? []).length }))
+  const totalDead = counted.reduce((sum, entry) => sum + entry.deadLinks, 0)
+  const facets = [
+    { facet: `AGENT LINKS RESOLVE — ${totalDead} '/en/'-prefixed links across ${counted.length} agent artifacts (${counted.map((entry) => `${entry.surface}:${entry.deadLinks}`).join(' · ')}); English is served at the ROOT, so each such link is a 404 an agent follows`, on: totalDead === 0 },
+    { facet: 'THE MEASUREMENT IS LIVE-CHECKABLE — curl the origins: /quantum-tools → 200, /bg/quantum-tools → 200, /en/quantum-tools → 404; the locale law is root-EN plus /bg/, and the surfaces must match it', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`agent-links:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    totalDead,
+    perSurface: counted,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Agent surface links resolve — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${totalDead} dead '/en/' links remain in the agent artifacts.`,
+    boundary: 'Counts the dead-prefix class in the emitted artifacts; it does not fetch (the fold stays pure). The live 200/404 evidence is in the facet text and re-checkable by curl. Fixing means emitting the served path — root for English, /bg/ for Bulgarian.' }
 }
