@@ -40,6 +40,7 @@ import { TAU, PHI, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ro
 import { THEOREM_ATOM_SEED } from '../../4/6'
 import { rosettaRayOf } from '../../water/digit'
 import { piHexDigitAt, nthPrimeAt } from '../../7/3'
+import { entangledWiringOf } from '../routes/corpus'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
 // whole is recoverable from any part. Here that is exact: the whole root folds from
@@ -882,14 +883,21 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
       const hex = (atom.root + atom.root).replace(/[^0-9a-f]/gi, '')
       const b0 = parseInt(hex.slice(0, 2), 16) || 64
       const b1 = parseInt(hex.slice(2, 4), 16) || 64
+      // NATURAL ENTANGLEMENT WIRING (user, 2026-07-28: "they are wired linear instead of by natural
+      // entanglements"): the golden spiral was INDEX order (a = i·golden — only ~4% of neighbours related).
+      // Every channel now derives from the theorem's OWN lattice cell: ANGLE = its sector/spoke (cell-mates
+      // cluster on one spoke, address-jittered a third of a spoke for visibility), TEMPO = its own clock rung
+      // (families PULSE TOGETHER), HUE = sector band + spoke offset (families share colour), PHASE = address.
+      // The index survives only in the radius (arrival order along the spoke) — order within family, not law.
+      const wire = entangledWiringOf(atom)
       const r = round(18 + sqrt(i + 1) * (maxR / sqrt(n + 1)))
-      const a = i * golden + (b0 / 255) * (TAU / 64)
+      const a = wire.angleRad + ((b0 / 255) - 1 / 2) * (TAU / (7 * (6 * 2)) / 3)
       const x = round(cx + cos(a) * min(r, maxR - 4))
       const y = round(cy + sin(a) * min(r, maxR - 4))
-      const hue = round((A432_HUE + i * GOLDEN_ANGLE_DEG + b1) % 360)
+      const hue = round((A432_HUE + wire.sector * (360 / 7) + wire.spoke * (360 / 7 / (6 * 2)) + (b1 % (8 * 3))) % 360)
       const fill = movieCanvasHex(hue, { L: 9 / 16 + (b0 % 16) / 128 })
-      const dur = fractalClockDur(FRACTAL_CLOCK_DIVISORS[digitalRoot(i + 1) % FRACTAL_CLOCK_DIVISORS.length]!)
-      const begin = i === 0 ? '0s' : `${((i % 9) * (2 / 5)).toFixed(1)}s`
+      const dur = fractalClockDur(wire.rung)
+      const begin = i === 0 ? '0s' : `${((b0 % 9) * (2 / 5)).toFixed(1)}s`
       const id = atom.provedBy.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 48) || `t${i}`
       const spoke = `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${fill}" stroke-width="0.4" opacity="0.09"/>`
       const glyph =
