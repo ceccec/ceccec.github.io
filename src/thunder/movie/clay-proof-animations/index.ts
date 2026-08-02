@@ -181,6 +181,22 @@ export const proofAnimationSpecs = {
     elements: ['prime-gap', 'logarithmic-scale', 'log-involution', 'gap-partition', 'quadratic-bound', 'density-heuristic', 'cramér-model'],
     duration_s: 60,
   },
+  collatzGeneralization: {
+    id: 'tier5-proof-collatz-generalization',
+    title: 'Collatz Generalization via Parametric Iteration σ-Involution',
+    seed: 'parametric-iteration-involution:linear-recurrence-family:convergent-regime',
+    mechanism: 'involution-classifies-convergence-regimes',
+    elements: ['parametric-map-family', 'linear-recurrence', 'iteration-involution', 'trajectory-reversal', 'cycle-fixed-points', 'multiplier-ratio-threshold', 'convergent-divergent-partition'],
+    duration_s: 60,
+  },
+  langlandsFunctoriality: {
+    id: 'tier5-proof-langlands-functoriality',
+    title: 'Langlands Functoriality via Dual-Group σ-Involution',
+    seed: 'dual-group-involution:automorphic-galois-correspondence:functorial-transfer',
+    mechanism: 'involution-forces-functorial-transfer',
+    elements: ['reductive-group', 'langlands-dual-group', 'dual-group-involution', 'automorphic-representation', 'l-parameter', 'l-function-matching', 'self-dual-fixed-points'],
+    duration_s: 60,
+  },
 }
 
 export function proofAnimationSeed(proofId: string): string {
