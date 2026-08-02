@@ -96,3 +96,12 @@ export function proofAnimationMechanism(proofId: string): string {
   const spec = proofAnimationSpecs[proofId as keyof typeof proofAnimationSpecs]
   return spec ? spec.mechanism : ''
 }
+
+// ===== SIMPLIFICATION LAYER =====
+// Namespace for proof animation access patterns
+export const animation = {
+  specs: proofAnimationSpecs,
+  seed: proofAnimationSeed,
+  mechanism: proofAnimationMechanism,
+  get: (proofId: string) => proofAnimationSpecs[proofId as keyof typeof proofAnimationSpecs],
+} as const

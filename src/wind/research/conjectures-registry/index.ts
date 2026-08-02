@@ -61,3 +61,16 @@ export function conjectureById(id: string) {
   ]
   return allConjectures.find((c) => c.id === id)
 }
+
+// ===== SIMPLIFICATION LAYER =====
+// Namespace for conjecture access patterns
+export const conjectures = {
+  byGroup: conjecturesByGroup,
+  byId: conjectureById,
+  registry: conjectureRegistry,
+  counts: conjectureCounts,
+  clay: () => conjecturesByGroup('clay'),
+  tier1: () => conjecturesByGroup('tier1'),
+  tier2: () => conjecturesByGroup('tier2'),
+  tier3: () => conjecturesByGroup('tier3'),
+} as const

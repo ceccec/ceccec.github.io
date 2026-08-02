@@ -17546,8 +17546,10 @@ export function publicationTimelineMeasured(matrix: MindMatrix = buildMatrix()) 
   })
 }
 
-// ===== PROOF COMPOSITION LAYER — TERSE ALIASES (simplification layer) =====
-// Direct exports of verbose functions renamed for terse access. No functional change; these are re-exports.
+// ===== SIMPLIFICATION LAYER — TERSE ALIASES & NAMESPACES =====
+// Consolidated namespace objects for simplified access patterns. No functional change; all re-exports.
+
+// Proof abstractions (compact naming)
 export const proofs = allProofsViaInvolution
 export const barriers = millenniumOpenBarriersInvertToRequirements
 export const challenges = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed
@@ -17555,3 +17557,73 @@ export const testables = reverseEngineerRequirementsToTestablePossibilities
 export const toolsExternal = clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra
 export const clayReverse = reverseEngineerClayAndItInverseEngineersItself
 export const testableSurface = reverseEngineerAllTestableFragments
+
+// Clay Millennium aggregations (namespace: clay.*)
+export const clay = {
+  problems: CLAY_PROBLEMS,
+  order: CLAY_ORDER,
+  openCount: CLAY_OPEN_COUNT,
+  solvedCount: CLAY_SOLVED_COUNT,
+  rules: clayMillenniumPrizeRulesMapping,
+  model: clayModelComputesItselfWithCompletionAndStatistics,
+  challenges: clayChallengesComputableFromSequence,
+  detection: clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry,
+  credits: clayCreditsOnlyThePoincareSolutionTheOtherSixOpen,
+  graph: clayGraphOverAlgebraicMonographs,
+  isRosetta: clayIsDecodedByTheRosetta,
+  isGravity: clayIsGravityRosettaOneRayThisDimensionRestBeyond,
+  ftlTopic: clayFtlTopicRelated,
+  ftlFacets: clayFtlFacetsOnlyWhenRelated,
+  solved: claySolvedIsATheoremNotHardcodedValue,
+} as const
+
+// Domain proof queries (namespace: domain.*)
+export const domain = {
+  proofCatalog: domainProofCatalog,
+  proofRows: domainProofPageRows,
+  proofPaths: domainProofPagePaths,
+  proofBySlug: domainProofPageBySlug,
+  proofPanel: domainProofPanelComputes,
+} as const
+
+// Research indices (namespace: research.*)
+export const research = {
+  index: researchIndex,
+  professional: professionalResearchIndex,
+  reproducibility: researchReproducibility,
+  computes: researchComputes,
+  panel: researchPanelComputes,
+  millennium: millenniumPanelComputes,
+} as const
+
+// Unit distance research (namespace: unitDistance.*)
+export const unitDistance = {
+  numbers: unitDistanceTowerNumbers,
+  golodMargin: unitDistanceGolodShafarevichMargin,
+  gamma: unitDistanceGamma,
+  gammaCrossover: unitDistanceGammaCrossover,
+  lensRatio: unitDistanceLensRatio,
+  lensRadius: unitDistanceLensRadius,
+  delta: unitDistanceDelta,
+  gridBaseline: unitDistanceGridBaseline,
+  deltaPeak: unitDistanceDeltaPeak,
+  findings: unitDistanceFindings,
+  research: unitDistanceResearch,
+} as const
+
+// Research catalogs (namespace: catalog.*)
+export const catalog = {
+  aiQuantumChronology: AI_QUANTUM_CHRONOLOGY,
+  globalWorkspaceContrast: GLOBAL_WORKSPACE_CONTRAST,
+  attribution2026: ATTRIBUTION_2026,
+  publicationTimeline: PUBLICATION_TIMELINE,
+  developmentTracks: DEVELOPMENT_TRACKS,
+  scienceDomainSeeds: SCIENCE_DOMAIN_SEEDS,
+} as const
+
+// Simplified constant aliases
+export const URLS = {
+  clayMillenniumProblems: CLAY_MILLENNIUM_PROBLEMS_URL,
+  clayPrizeRules: CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL,
+  cursorReferral: CURSOR_REFERRAL_FUNDING_URL,
+} as const
