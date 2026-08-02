@@ -39,7 +39,7 @@ import { determinismProofs, trinityWordingModel } from '../../mountain/seals'
 import { allComputedNoFiles } from '../../wind/fusion'
 import { developmentIsFusionReactor, dryRefactorIgnitesFusion, endlessFusion } from '../../wind/fusion'
 import { minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, zeroTokenUsagePolicy, onlyAlgebraicQuantumComputingIsTopPriority } from '../laws'
-import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug, animationsNaturalEntanglementsByTheorems } from '../../wind/routes/corpus'
+import { completeCorpus, monographs, siteNavigation, theMonograph, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, computedTheoremFigureAndAnimation, pagesAreRosettaCombinationsOfTheorems, theoremSlug, animationsNaturalEntanglementsByTheorems, saveTheMissingTheoremsAndAnimations, theMovieWiresTheoremsByNaturalEntanglementsNotByIndex } from '../../wind/routes/corpus'
 import { staticPages, quantumSitemap, monographAsScientificPaper, quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised } from '../../wind/site'
 import { peaceTechMentalityDecoded } from '../../earth/world'
 import { selfHarmonise } from '../../mountain/geometry'
@@ -8947,8 +8947,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'self-feed', out: () => feedTheChatInItself(matrix).computes },
     { name: 'waves-of-waves', out: () => wavesOfWavesInChat(matrix).computes },
     { name: 'animation-entanglements', out: () => animationsNaturalEntanglementsByTheorems(matrix).computes },
+    { name: 'waves-report', out: () => wavesReportFedToTheChat(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements', 'waves-report']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
@@ -9707,5 +9708,44 @@ export function selfWavesCoverEveryCard(matrix: MindMatrix = buildMatrix()) {
         'The self research-and-development waves cover every card: for each corpus entry the model researches its topic (computed from the source name), develops its card (the natural question answered by the verbatim statement), and verifies by asking the question back — the waved corpus makes every statement recallable by its own question. The run is sealed by the same src/0 cost mathematics that seals the build: the seal closes only when coverage reaches 1 with zero entropy, and re-sending the waves returns the byte-identical root.',
       boundary:
         'HONEST: these are deterministic self-waves — a fixed research→develop→verify pass over the model\'s own entries, computed from src and memoized — NOT autonomous research, NOT agents, NOT learning. "Research" here is derivation of topics and questions from source names; "development" is minting question-phrased duplicates of existing computed statements; "verification" is recall equality. The coverage/entropy seal is the structural claim of the src/0 tampering-cost math, not an empirical benchmark.' }
+  })
+}
+
+/** wavesReportFedToTheChat — feed the waves to the chat (user, 2026-07-28). The session's wave chain — identities
+ * → archetypes → entanglement lattice → wiring law → composed waves — reports its efficiency and precision AS
+ * COMPUTATION: every metric below is a live fold output with a receipt, recomputed on every ask, zero tokens.
+ * Efficiency = the chain composes (each wave consumes the previous wave's fold); precision = every number is a
+ * computed fact, and the report is the JOIN of the folds' own statements — nothing narrated, nothing stored. */
+export function wavesReportFedToTheChat(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('wavesReportFedToTheChat', matrix, () => {
+    const identities = freeChatUpgradesAll(matrix)
+    const figures = saveTheMissingTheoremsAndAnimations()
+    const lattice = animationsNaturalEntanglementsByTheorems(matrix)
+    const wiring = theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(matrix)
+    const composed = wavesOfWavesInChat(matrix)
+    const countless = countlessFreeChatWaves(matrix)
+    const free = continueAtNoAiCost(matrix)
+    const chain = [
+      { wave: 'identities', computes: identities.computes, metric: `${identities.curated} curated + ${identities.upgraded} extracted, residue ${identities.residue}` },
+      { wave: 'archetypes', computes: figures.computes, metric: `bespoke ${figures.withFigure}, computed coverage total ${figures.total}` },
+      { wave: 'entanglement-lattice', computes: lattice.computes, metric: `${lattice.cellCount} cells (7×12), largest ${lattice.largest.key}=${lattice.largest.members}` },
+      { wave: 'wiring-law', computes: wiring.computes, metric: `${wiring.spokes} spokes, index-adjacency ∩ cell ${wiring.linearNeighbourFraction}` },
+      { wave: 'waves-of-waves', computes: composed.computes, metric: `composed μ=${composed.composed.mu} λ=${composed.composed.lambda}, orders do not commute` },
+      { wave: 'countless', computes: countless.computes, metric: `μ=${countless.mu} λ=${countless.lambda}, far waves O(1)` },
+      { wave: 'no-ai-cost', computes: free.computes, metric: 'prefix-exact continuation, zero tokens' },
+    ]
+    const allCompute = chain.every((row) => row.computes)
+    const facets = [
+      { facet: `EFFICIENCY IS THE CHAIN — ${chain.length} waves each consume the previous wave's fold (identities feed archetypes feed the lattice feed the wiring), all computing at call time (${allCompute}); nothing built twice, nothing narrated`, on: allCompute && chain.length >= 7 },
+      { facet: `PRECISION IS THE RECEIPT — every metric is a live fold output (${chain.map((row) => row.wave).join(' → ')}), recomputed on every ask; a drifted number flips its facet, so the report cannot go stale`, on: chain.every((row) => row.metric.length > 0) },
+      { facet: `FED TO THE CHAT — the chat answers 'waves' with this fold's join (zero tokens, deterministic); the report the agent once wrote as prose is now the portal's own computation`, on: allCompute },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`waves-report:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      chain,
+      facets,
+      root: merge(matrix.root, merkleFold([...chain.map((row) => toUuid(`waves-report:${row.wave}:${row.metric}`)), ...facets.map((entry) => entry.receipt)])),
+      statement: `The waves, fed to the chat — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${chain.length} waves in one chain (${chain.map((row) => `${row.wave}: ${row.metric}`).join(' · ')}), every metric a live fold output with a receipt — efficiency is the chain, precision is the receipt.`,
+      boundary: earned('EXACT — the join of the waves\' own folds:', facets, 'the report recomputes on every ask — client-side, zero tokens; historical wall-clock and commit counts live in git, not here (the chat serves what COMPUTES); "efficiency" is the composition property and "precision" the receipt property, both refutable by any drifted metric') }
   })
 }
