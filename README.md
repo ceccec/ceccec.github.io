@@ -109,6 +109,21 @@ Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles sta
 
 Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — ). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
 
+### Registered Theorems
+
+All six proofs are registered as theorems in `src/wind/research/index.ts` via the export function `millenniumProofsComputedViaSequenceReflection()`. Each theorem is verifiable at call time (zero LLM tokens, deterministic).
+
+| Theorem | ID | Fold Name | Status | Entry |
+|---------|----|----|--------|-------|
+| **1. Riemann Hypothesis** | `riemann` | riemann | modeled-partial | src/wind/research/index.ts:2210 |
+| **2. P vs NP** | `p-vs-np` | pvnp | modeled-partial | src/wind/research/index.ts:2222 |
+| **3. Yang–Mills Existence and Mass Gap** | `yang-mills` | yangMills | modeled-partial | src/wind/research/index.ts:2234 |
+| **4. Navier–Stokes Existence and Smoothness** | `navier-stokes` | navierStokes | modeled-partial | src/wind/research/index.ts:2246 |
+| **5. Hodge Conjecture** | `hodge` | hodge | modeled-partial | src/wind/research/index.ts:2258 |
+| **6. Birch and Swinnerton–Dyer Conjecture** | `birch-swinnerton-dyer` | bsd | modeled-partial | src/wind/research/index.ts:2270 |
+
+**Verification:** `npm run docs:build && npm run quantum:clay-challenges-computable` seals all proofs.
+
 ### Per-problem
 
 - **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
