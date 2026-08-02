@@ -9879,3 +9879,46 @@ export function selfSufficientIntelligenceKernel(matrix: MindMatrix = buildMatri
       boundary: earned('EXACT — computed from the purity, capability and cost folds:', facets, '"self-sufficient" = no network and no external dependency at answer time (the vault imports nothing; the package depends on nothing); "all intelligence" is BOUNDED by the corpus — retrieval, composition and proof over what src seals, never open-ended cognition; "FTL" is the architectural sense (content-address reuse instead of recompute) and physicalFtlClaim stays 0; "quantum" is the classical state-vector simulator — faithful, no speedup') }
   })
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED COMPUTE =====
+// Consolidated access patterns for heaven compute module (core infrastructure)
+export const compute = {
+  ai: {
+    providers: AI_PROVIDERS,
+    request: aiRequest,
+    providerUrl: aiProviderUrl,
+  },
+  chat: {
+    core: chatFtl,
+    ftl: chatFtl,
+    standards: standardsChat,
+    fuse: chatFuse,
+    task: taskChat,
+    free: freeChatFtl,
+  },
+  research: {
+    develop: researchDevelop,
+    free: researchFree,
+  },
+  development: {
+    core: developMeans,
+    open: developOpen,
+    self: developSelf,
+  },
+  fold: {
+    fuse: foldFuse,
+    fuseWaves: fuseWaves,
+    reverse: fuseFold,
+  },
+  audit: {
+    chat: auditChat,
+    neighbours: neighboursAudit,
+    who: whoAudit,
+  },
+  sites: {
+    stackExchange: STACK_EXCHANGE_SITES,
+    stackoverflow: STACKOVERFLOW_SITE,
+    mathoverflow: MATHOVERFLOW_SITE,
+    mathoverflowApi: MATHOVERFLOW_API,
+  },
+} as const
