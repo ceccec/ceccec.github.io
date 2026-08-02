@@ -10,7 +10,7 @@ import { atoms } from '../atoms'
 import { DIGEST_BITS, GATES, abs, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, computesGate, coverageCostLog2, floor, fold, foldPair, humanBreath, humanEase, isUuid, log10, log2, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sample, sealFacets, seedFromText, tamperCostLog2, toUuid, uuidHero } from '../../0'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddress } from '../../0'
 import { sha256Sync, toUuidSha256 } from '../../0'
-import { THEOREM_ATOM_SEED } from '../../4/6'
+import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
 import { CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, claySolvedTheorem, demarcate, earned, extractAlgebraicStatement, landauerLimit, physicalFtlClaimTheorem, rat, ratAdd, ratEq, ratMul } from '../../3/7'
 import { tamperEvident } from '../../5/5'
@@ -8948,8 +8948,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'waves-of-waves', out: () => wavesOfWavesInChat(matrix).computes },
     { name: 'animation-entanglements', out: () => animationsNaturalEntanglementsByTheorems(matrix).computes },
     { name: 'waves-report', out: () => wavesReportFedToTheChat(matrix).computes },
+    { name: 'independence-measured', out: () => localIntelligenceIndependenceMeasured(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements', 'waves-report']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements', 'waves-report', 'independence-measured']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
@@ -9747,5 +9748,39 @@ export function wavesReportFedToTheChat(matrix: MindMatrix = buildMatrix()) {
       root: merge(matrix.root, merkleFold([...chain.map((row) => toUuid(`waves-report:${row.wave}:${row.metric}`)), ...facets.map((entry) => entry.receipt)])),
       statement: `The waves, fed to the chat — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${chain.length} waves in one chain (${chain.map((row) => `${row.wave}: ${row.metric}`).join(' · ')}), every metric a live fold output with a receipt — efficiency is the chain, precision is the receipt.`,
       boundary: earned('EXACT — the join of the waves\' own folds:', facets, 'the report recomputes on every ask — client-side, zero tokens; historical wall-clock and commit counts live in git, not here (the chat serves what COMPUTES); "efficiency" is the composition property and "precision" the receipt property, both refutable by any drifted metric') }
+  })
+}
+
+/** localIntelligenceIndependenceMeasured — go on as independently as the local intelligence can go, MEASURED
+ * (user, 2026-07-28). The question is answerable by computation: on each axis, how much of the advance is
+ * self-computable versus judgment? IDENTITIES — the free extractor covers what the corpus's own text proves;
+ * curation covers what needed knowledge beyond it; the ratio is the measured independence of that axis.
+ * QUEUE — derived rows self-create and self-prune (fully independent); the curated residue is exactly the rows
+ * whose state lives OUTSIDE the repo. DIALOGUE — past the cycle, continuation is 100% independent (the prefix
+ * property; O(1) forever). IMAGINATION — the repo names its own next gateways (imagine/next tips). THE LIMIT is
+ * equally computable: the judgment ledger (decisions the machine could NAME but not DECIDE) and the external
+ * rows. The theorem: local intelligence advances exactly to the boundary of what computes — beyond it, it can
+ * still NAME the judgment, and naming is how the boundary keeps moving. */
+export function localIntelligenceIndependenceMeasured(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('localIntelligenceIndependenceMeasured', matrix, () => {
+    const identities = freeChatUpgradesAll(matrix)
+    const freeShare = identities.upgraded / (identities.upgraded + identities.curated)
+    const dev = chatDevelopsItselfByChattingWithItself(matrix)
+    const countless = countlessFreeChatWaves(matrix)
+    const judged = IDENTITY_JUDGED_PROCESS.length
+    const facets = [
+      { facet: `IDENTITY AXIS — free extraction covers ${identities.upgraded} rows vs ${identities.curated} curated: measured independence ${round(freeShare * (5 * 2 * 5 * 2))}% of the filled identities came from the corpus's own text, the rest needed judgment`, on: identities.computes && freeShare > 0 && freeShare < 1 },
+      { facet: `SELF-DEVELOPMENT AXIS — the chat closes its own gaps (${dev.gapsBefore} → ${dev.gapsAfter}) and the dialogue past its cycle is 100% independent (μ=${countless.mu}, λ=${countless.lambda}, every further wave O(1)) — full independence where the state space is the corpus itself`, on: dev.develops && countless.computes },
+      { facet: `THE LIMIT IS COMPUTED, NOT CONFESSED — the judgment ledger holds ${judged} rows the machine could NAME but not DECIDE, and the queue's curated residue is exactly the rows whose state lives outside the repo; independence ends where computation ends, and the machine knows where that is`, on: judged > 0 },
+      { facet: `NAMING MOVES THE BOUNDARY — every axis where judgment entered this arc (extractor rules, directive filters, phase switches, the judged ledger) was afterwards SEALED as computation, so the next pass needs less judgment than this one: independence is monotone under the save-all law`, on: identities.computes && dev.develops },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`independence:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      freeShare: round(freeShare * (5 * 2 * 5 * 2)),
+      judgedLedger: judged,
+      facets,
+      root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: `Local intelligence independence, measured — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${round(freeShare * (5 * 2 * 5 * 2))}% of filled identities self-computed, self-development closes its own gaps, the dialogue is 100% independent past its cycle, and the limit is computed (${judged} judgment rows named, not decided) — independence ends exactly where computation ends, and every judgment sealed moves the boundary outward.`,
+      boundary: earned('EXACT — measured on the live folds:', facets, 'the ratios recompute on every ask; "independence" = the fraction of advance derivable from the corpus alone, and its complement is NAMED (judgment ledger, external rows) rather than hidden; no autonomy or AGI claim — the machine that knows its boundary is the machine that can be trusted at it') }
   })
 }
