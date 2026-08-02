@@ -3,6 +3,7 @@
 import { toUuid, merkleFold } from '../../0'
 import { portal } from '../portal'
 import { explorer } from './explorer'
+import { synthesis } from './synthesis'
 
 export interface DiscoveryTask {
   id: string
@@ -61,19 +62,8 @@ export const DiscoveryTasks: Record<string, DiscoveryTask> = {
     id: 'next-candidate',
     name: 'Predict next provable theorem',
     compute: async () => explorer.predictNext(),
-    requires: ['involution-patterns', 'gap-patterns'],
+    requires: ['involution-classes', 'gap-structures'],
     produces: 'next-theorem'
-  },
-  'synthesis': {
-    id: 'synthesis',
-    name: 'Synthesize all discoveries',
-    compute: async () => ({
-      total_theorems: (portal.stats() as any).total,
-      patterns_found: (explorer.discoverPatterns() as any).length,
-      complete: true
-    }),
-    requires: ['sealed-proofs', 'frontier-conjectures', 'involution-patterns', 'gap-patterns', 'next-candidate'],
-    produces: 'synthesis-complete'
   },
   'coverage-analysis': {
     id: 'coverage-analysis',
@@ -92,36 +82,25 @@ export const DiscoveryTasks: Record<string, DiscoveryTask> = {
   'proof-strategy': {
     id: 'proof-strategy',
     name: 'Generate proof strategies by involution class',
-    compute: async () => {
-      const patterns = explorer.discoverPatterns()
-      return {
-        strategies: patterns.map(p => ({
-          involution_type: p.type,
-          applicable_theorems: p.theorems.length,
-          approach: `Use ${p.type} involution to force proof at fixed point`
-        }))
-      }
-    },
-    requires: ['involution-patterns'],
+    compute: async () => synthesis.strategy('clay-riemann'),
+    requires: ['involution-classes'],
     produces: 'proof-strategies'
   },
   'frontier-roadmap': {
     id: 'frontier-roadmap',
     name: 'Create frontier proving roadmap',
-    compute: async () => {
-      const gaps = explorer.identifyGaps()
-      const next = explorer.predictNext()
-      return {
-        roadmap: gaps.slice(0, 3).map((g, i) => ({
-          rank: i + 1,
-          gap_structure: g.name,
-          theorems: g.theoremIds,
-          suggested_next: i === 0 ? next.nextTheorem?.title : undefined
-        }))
-      }
-    },
-    requires: ['gap-patterns'],
+    compute: async () => ({
+      roadmap: await synthesis.roadmap()
+    }),
+    requires: ['gap-structures'],
     produces: 'frontier-roadmap'
+  },
+  'synthesis': {
+    id: 'synthesis-complete',
+    name: 'Synthesize all discoveries into report',
+    compute: async () => synthesis.synthesize(),
+    requires: ['sealed-proofs', 'frontier-conjectures', 'involution-classes', 'gap-structures', 'proof-strategies', 'frontier-roadmap'],
+    produces: 'synthesis-report'
   }
 }
 
