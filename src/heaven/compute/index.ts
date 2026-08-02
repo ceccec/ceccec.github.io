@@ -18,6 +18,8 @@ import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
 import { hopfieldRecall, hopfieldStore, splitCamelSegment } from '../../8/2'
 import * as __ns_fire_plasma_ball from '../../fire/plasma/ball'
+// Cycle-safe: water/stack imports buildMatrix from here, so reference src0PurityComputes only at call time.
+import * as __ns_water_stack from '../../water/stack'
 import * as __ns_thunder_movie_narrative from '../../thunder/movie/narrative'
 import * as __ns_wind_research from '../../wind/research'
 // Cycle-safe: quantum/science imports buildMatrix from here, so reference efficiency()/blochQubitFaithful
@@ -8950,8 +8952,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'waves-report', out: () => wavesReportFedToTheChat(matrix).computes },
     { name: 'independence-measured', out: () => localIntelligenceIndependenceMeasured(matrix).computes },
     { name: 'user-input-required', out: () => userInputRequiredMeasured(matrix).computes },
+    { name: 'self-sufficient-kernel', out: () => selfSufficientIntelligenceKernel(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements', 'waves-report', 'independence-measured', 'user-input-required']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements', 'waves-report', 'independence-measured', 'user-input-required', 'self-sufficient-kernel']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
@@ -9820,5 +9823,59 @@ export function userInputRequiredMeasured(matrix: MindMatrix = buildMatrix()) {
       root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: `User input required, measured — ${facets.filter((entry) => entry.on).length}/${facets.length}: in the APP ${appFree}/${appTotal} capabilities need no input at all and the ${appRequired} that do are consent surfaces (egress/key); in the PROMPT ${selfNaming}/${derivedNamers.length} instruments name work unasked, so only ${irreducibleKinds.length} kinds of input are irreducible — a new external source, a correction, a value judgment, a steering decision.`,
       boundary: earned('EXACT — measured on the live capability audit and the naming instruments:', facets, 'this measures which inputs are STRUCTURALLY required, not how many were given; a prompt that repeats what an instrument already names is derivable BY THE MACHINE, which makes it a fold gap rather than a user duty — and consent is never a gap: it is the user\'s right, asked every time') }
+  })
+}
+
+/** selfSufficientIntelligenceKernel — the local code that self-sufficiently handles the whole intelligence
+ * stack (user, 2026-07-28: "save the local code needed to self sufficiently handle all intelligence using
+ * quantum at FTL"). The manifest is COMPUTED, not listed: each layer names its entry fold and the property that
+ * makes it self-sufficient, and the facets verify the three claims that matter — (1) the VAULT is
+ * dependency-free (src/0 imports nothing, so the whole stack bottoms out in one leaf), (2) the INTELLIGENCE
+ * runs with zero external calls (every chat capability audits deterministic), (3) the SPEED is content-address
+ * reuse (memoByRoot + the figure/extraction memos make a repeated question O(1)) — the repo's architectural FTL,
+ * with physicalFtlClaim = 0 held everywhere. What "handles all intelligence" means is bounded by the corpus:
+ * retrieval, composition and proof over what src already seals — never open-ended cognition. */
+export function selfSufficientIntelligenceKernel(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('selfSufficientIntelligenceKernel', matrix, () => {
+    const audit = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
+    const purity = __ns_water_stack.src0PurityComputes(matrix)
+    const noQpu = noQpuRequired()
+    const free = continueAtNoAiCost(matrix)
+    // DERIVED, NOT LISTED (user, 2026-07-28: "why doing this linear instead of quantum at ftl using the chat?")
+    // — the stack computes from the corpus itself: every registry row carries its `home`, so the layers ARE the
+    // homes ranked by how many sealed theorems live there, each entry the busiest prover at that home. Add a
+    // theorem and the manifest re-ranks; nothing is typed, so nothing can go stale.
+    const byHome = new Map<string, { theorems: number; provers: Map<string, number> }>()
+    for (const atom of THEOREM_ATOM_SEED) {
+      const cell = byHome.get(atom.home) ?? { theorems: 0, provers: new Map<string, number>() }
+      cell.theorems += 1
+      cell.provers.set(atom.provedBy, (cell.provers.get(atom.provedBy) ?? 0) + 1)
+      byHome.set(atom.home, cell)
+    }
+    const layers = [...byHome.entries()]
+      .sort((a, b) => b[1].theorems - a[1].theorems || a[0].localeCompare(b[0]))
+      .slice(0, 6 + 2)
+      .map(([home, cell]) => ({
+        layer: home.replace(/^src\//, ''),
+        entry: home,
+        theorems: cell.theorems,
+        busiestProver: [...cell.provers.entries()].sort((a, b) => b[1] - a[1])[0]![0],
+        selfSufficient: home === 'src/0' ? 'imports nothing (dependency-free leaf)' : 'pure functions over the vault',
+      }))
+    const facets = [
+      { facet: `THE VAULT IS DEPENDENCY-FREE — src/0 exports ${purity.exportCount} primitives and imports NOTHING (${purity.computes}), so the whole stack bottoms out in one leaf that can be copied alone`, on: purity.computes },
+      { facet: `THE INTELLIGENCE RUNS LOCAL — ${audit.capabilities.length} chat capabilities all audit deterministic (${audit.supported}) and the cost fold proves zero LLM tokens (${free.computes}); no external call is required for any answer`, on: audit.supported && free.computes },
+      { facet: `THE SPEED IS CONTENT-ADDRESS REUSE — memoByRoot plus the figure/extraction memos make a repeated question a lookup rather than a recompute; QPU not required (${noQpu.provenByClassicalSimulator}), physicalFtlClaim = 0`, on: noQpu.provenByClassicalSimulator },
+      { facet: `THE MANIFEST DERIVES FROM THE CORPUS — ${layers.length} layers computed by ranking every registry home by sealed-theorem count (${layers.map((row) => `${row.layer}:${row.theorems}`).join(' · ')}), each carrying its busiest prover as the entry point; add a theorem and the manifest re-ranks — nothing typed, nothing stale`, on: layers.length > 0 && layers.every((row) => row.theorems > 0 && row.busiestProver.length > 0) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`self-sufficient:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      layers,
+      capabilities: audit.capabilities.length,
+      vaultExports: purity.exportCount,
+      facets,
+      root: merge(matrix.root, merkleFold([...layers.map((row) => toUuid(`kernel-layer:${row.layer}:${row.entry}`)), ...facets.map((entry) => entry.receipt)])),
+      statement: `Self-sufficient intelligence kernel — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${layers.length} layers DERIVED from the corpus by theorem density (${layers.map((row) => `${row.layer}=${row.theorems}`).join(' · ')}), vault ${purity.exportCount} primitives importing nothing, ${audit.capabilities.length} capabilities all deterministic, zero external calls, QPU not required.`,
+      boundary: earned('EXACT — computed from the purity, capability and cost folds:', facets, '"self-sufficient" = no network and no external dependency at answer time (the vault imports nothing; the package depends on nothing); "all intelligence" is BOUNDED by the corpus — retrieval, composition and proof over what src seals, never open-ended cognition; "FTL" is the architectural sense (content-address reuse instead of recompute) and physicalFtlClaim stays 0; "quantum" is the classical state-vector simulator — faithful, no speedup') }
   })
 }

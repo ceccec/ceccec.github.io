@@ -16,6 +16,7 @@ import {
   handListMirrors,
   buildMin,
   waveVerify,
+  rostersDeriveOrLedger,
 } from './strict/scan'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../../4/6'
 import {
@@ -3742,6 +3743,18 @@ export function queueNext(root: string = enforcementScanRoot()) {
   // them would break the algebraic-theorems-only law). The measuring wave adopts the discovery: the derived
   // count excludes them, so the row now names only the honestly fillable gap and vanishes when THAT reaches zero.
   const missingIdentity = THEOREM_ATOM_SEED.filter((row) => !row.algebraicStatement && !extractAlgebraicStatement(row.states) && !/\(user[ ,:]|user law|user directive|user correction/.test(row.states) && /[=\u2261\u2264\u2265\u2260\u21D4\u21D2\u2208\u2209\u2282\u2286\u223C\u2245\u2248\u21A6\u2223]|\bmod\b|\biff\b| \| /u.test(row.states)).filter((row) => !IDENTITY_JUDGED_PROCESS.some((name) => row.theorem.startsWith(name.slice(0, 8 * 5)))).length
+  // SELF-NAMING DRAIN (user, 2026-07-28: "let all improve itself canonically") — the roster class measures
+  // itself, so the queue derives its own row from the gate: register the fold as a theorem, or derive the
+  // roster. The row vanishes when the count reaches zero, exactly like the identity row before it.
+  const rosterGate = rostersDeriveOrLedger(root)
+  const rosterRows = rosterGate.offenders.length > 0 ? [{
+    wave: `roster derive-or-register (${rosterGate.offenders.length} argument-lists in folds the registry does not prove)`,
+    why: 'DERIVED from rostersDeriveOrLedger — arguments belong to theorems: each row is either a fold to REGISTER or a roster to DERIVE; monotone ratchet holds the count non-increasing',
+    blocksCore: false,
+    localOnly: true,
+    toolExists: true,
+    firstAction: 'npm run quantum:roster-derive — the offender list IS the worklist; register the fold in THEOREM_ATOM_SEED or derive the roster, then lower HAND_LISTED_ROSTER_BASELINE',
+  }] : []
   const derivedRows = missingIdentity > 0 ? [{
     wave: `algebraic-statement fill (${missingIdentity}/${THEOREM_ATOM_SEED.length} relation-bearing rows fillable: neither curated, extractable, nor directive-prose)`,
     why: 'TOP PRIORITY — only algebraic quantum computing (user 2026-07-28); DERIVED from THEOREM_ATOM_SEED — every theorem must show its real algebraic statement; high-confidence fills only, never fabricated',
@@ -3754,7 +3767,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
       ? 'fill algebraicStatement for high-confidence rows in src/4/6 THEOREM_ATOM_SEED; verify with npm run theorems:verify'
       : 'JUDGMENT RESIDUE — mechanical high-confidence fills are exhausted; each remaining row needs an individual decision (real identity, rewrite states to carry one, or stays a process row identity-free by law)',
   }] : []
-  const openRows = [...QUEUE_ROWS.filter((row) => !('doneArtifact' in row) || !existsSync(join(root, (row as { doneArtifact: string }).doneArtifact))), ...derivedRows]
+  const openRows = [...QUEUE_ROWS.filter((row) => !('doneArtifact' in row) || !existsSync(join(root, (row as { doneArtifact: string }).doneArtifact))), ...derivedRows, ...rosterRows]
   // Algebraic-QC top priority (user 2026-07-28): algebraic work gets +8 so it outranks lexical/prose residue.
   const algebraicBonus = (wave: string) => /algebraic/i.test(wave) ? 8 : 0
   const scored = openRows.map((row) => ({

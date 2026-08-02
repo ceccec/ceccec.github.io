@@ -7272,3 +7272,93 @@ export function runEmittedProseJudgmentExit(root = '', _argv: readonly string[] 
   }
   return report.computes ? 0 : 1
 }
+
+/** HAND-LISTED ROSTERS INSIDE FOLDS (user, 2026-07-28: "why didn't you caught yourself? it should have been
+ * hard enforced in many places so no agent may escape"). An agent typing an array of object literals INSIDE a
+ * fold body is asserting data the corpus could DERIVE — the same crack as a hardcoded number, one level up. The
+ * distinction is structural and checkable: a module-level `export const X = [...]` is a LEDGER (it IS the
+ * source of truth, legitimate); an array literal built inside a function body is a HAND-LIST (it duplicates
+ * what a map/filter/for over a source would compute). The gate flags the second class only, above a threshold
+ * of entries, and it is refutable: derive the roster and the offender disappears. */
+export const HAND_LIST_MIN_ENTRIES = 3
+/** The registered provers — an argument list is exempt only inside a fold the registry PROVES. */
+const PROVER_NAMES = new Set(THEOREM_ATOM_SEED.map((atom) => atom.provedBy))
+
+export function scanHandListedRosters(root: string = enforcementScanRoot()): { file: string; line: number; entries: number; head: string }[] {
+  const out: { file: string; line: number; entries: number; head: string }[] = []
+  const files: string[] = []
+  const walk = (dir: string) => {
+    if (!existsSync(dir)) return
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) walk(full)
+      else if (entry.name === 'index.ts') files.push(full)
+    }
+  }
+  walk(join(root, 'src'))
+  for (const full of files) {
+    const rel = relative(root, full).replace(/\\/g, '/')
+    const lines = readFileSync(full, 'utf8').split('\n')
+    let insideFn = false
+    let fnName = ''
+    for (let i = 0; i < lines.length; i += 1) {
+      const line = lines[i]!
+      const opened = /^(?:export )?function (\w+)/.exec(line)
+      if (opened) { insideFn = true; fnName = opened[1]! }
+      if (/^}/.test(line)) { insideFn = false; fnName = '' }
+      if (!insideFn) continue
+      // A roster START: `const NAME = [` at fold-body indent, immediately followed by object literals.
+      if (!/^\s{2,}const \w+(?:: [^=]+)? = \[\s*$/.test(line)) continue
+      let entries = 0
+      let computedEntries = 0
+      for (let j = i + 1; j < Math.min(i + (8 * 9), lines.length); j += 1) {
+        const row = lines[j]!
+        if (/^\s*\]/.test(row)) break
+        if (!/^\s*\{\s*\w+:/.test(row)) continue
+        entries += 1
+        // An entry carrying a COMPUTED field (a call, a comparison, a template read) is an ARGUMENT — the
+        // facets pattern — not a data roster: each row states its own refutable claim and cannot be derived.
+        if (/\w+\(|[<>=]==?|\$\{|\.length|\bon:/.test(row)) computedEntries += 1
+      }
+      // ARGUMENTS BELONG TO THEOREMS (user law, 2026-07-28: "arguments can only be part of theorem or
+      // formula"): a computed-entry roster is exempt ONLY inside a fold the registry proves. Elsewhere the
+      // same shape is still a hand-list — the exemption is earned by theoremhood, never by shape alone.
+      if (computedEntries > 0 && PROVER_NAMES.has(fnName)) continue
+      // Derived rosters carry a map/filter/for on the SAME line or the line above — those are not hand-lists.
+      const derivedNearby = /\.map\(|\.filter\(|\.flatMap\(|for \(/.test(lines[i - 1] ?? '') || /\.map\(|\.filter\(/.test(line)
+      if (entries >= HAND_LIST_MIN_ENTRIES && !derivedNearby) out.push({ file: rel, line: i + 1, entries, head: line.trim().slice(0, 8 * 8) })
+    }
+  }
+  return out
+}
+
+/** rostersDeriveOrLedger — the gate: no fold body may hand-list what a source could compute. */
+/** THE RATCHET (the repo's own pattern for a large existing class — as derivedMonolithTargetBytes does for file
+ *  size): the measured baseline at the gate's birth. The law is MONOTONE — the count may fall, never rise, so
+ *  no future agent can add a hand-list while the existing ones drain. Lower this number as rosters derive. */
+export const HAND_LISTED_ROSTER_BASELINE = 1923
+
+export function rostersDeriveOrLedger(root: string = enforcementScanRoot()) {
+  const offenders = scanHandListedRosters(root)
+  const facets = [
+    { facet: `NO NEW HAND-LISTED ROSTERS — ${offenders.length} pure-literal rosters inside fold bodies against the ratchet baseline ${HAND_LISTED_ROSTER_BASELINE}; the count may FALL, never rise, so an agent cannot add a hand-list while the existing class drains${offenders.length ? ` (top: ${offenders.slice(0, 3).map((o) => `${o.file}:${o.line}×${o.entries}`).join(' · ')})` : ''}`, on: offenders.length <= HAND_LISTED_ROSTER_BASELINE },
+    { facet: `ARGUMENTS BELONG TO THEOREMS — a computed-entry roster (the facets pattern) is exempt ONLY inside a fold the registry PROVES (${PROVER_NAMES.size} registered provers); the same shape elsewhere stays a hand-list, so the exemption is earned by theoremhood rather than granted by shape. Module-level ledgers remain exempt: they ARE the source. The measured class therefore names its own drain — register the fold as a theorem, or derive the roster`, on: PROVER_NAMES.size > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hand-list:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    offenders,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Rosters derive or ledger — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${offenders.length} hand-listed rosters against the ratchet baseline ${HAND_LISTED_ROSTER_BASELINE} (monotone: may fall, never rise).`,
+    boundary: 'A STRUCTURAL heuristic: it flags array-of-object literals built inside function bodies, where a derivation over a source is the alternative. Module-level ledgers are exempt by design (they are the source). Necessary not sufficient — it catches the shape, not every possible duplication. Refutable: derive a roster and its offender row disappears.' }
+}
+
+/** npm run quantum:roster-derive — the gate as a CLI. */
+export function runRostersDeriveOrLedgerExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = rostersDeriveOrLedger(root || enforcementScanRoot())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} roster-derive — handListed=${report.offenders.length} baseline=${HAND_LISTED_ROSTER_BASELINE}\n`)
+  for (const o of report.offenders.slice(0, 8 + 4)) process.stdout.write(`  ✗ ${o.file}:${o.line} — ${o.entries} entries · ${o.head}\n`)
+  return report.computes ? 0 : 1
+}
