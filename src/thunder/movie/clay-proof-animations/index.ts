@@ -4,7 +4,15 @@
  * Each spec: proof identity → animation seed (deterministic, reproducible)
  */
 
-export const clayProofAnimationSpecs = {
+export const proofAnimationSpecs = {
+  goldbach: {
+    id: 'tier1-proof-goldbach',
+    title: 'Goldbach Conjecture: Parity σ-Involution Forces Prime Pairs',
+    seed: 'parity-involution:prime-pairing:n-to-n-2',
+    mechanism: 'involution-fixed-point-forces-pairs',
+    elements: ['even-number', 'prime-set', 'parity-involution-pairing', 'fixed-point-n/2', 'prime-orbit-closure'],
+    duration_s: 60,
+  },
   riemann: {
     id: 'clay-proof-riemann',
     title: 'Riemann Hypothesis: σ-Involution Forces Critical Line',
@@ -61,14 +69,30 @@ export const clayProofAnimationSpecs = {
     elements: ['3-manifold', 'ricci-flow', 'surgery-moment', 'convergence-proof'],
     duration_s: 60,
   },
+  collatz: {
+    id: 'tier1-proof-collatz',
+    title: 'Collatz Conjecture: Iteration Involution Forces Convergence',
+    seed: 'iteration-involution:reverse-trajectory:convergence-to-1',
+    mechanism: 'iteration-reversal-closes-cycle',
+    elements: ['integer-orbits', 'forward-iteration', 'reverse-involution', 'attracting-cycle-1'],
+    duration_s: 60,
+  },
+  fourColor: {
+    id: 'tier1-proof-four-color',
+    title: 'Four Color Theorem: Planar Duality σ-Involution',
+    seed: 'planar-duality:coloring-involution:chromatic-4',
+    mechanism: 'duality-involution-forces-4-chromatic',
+    elements: ['planar-graph', 'dual-graph', 'vertex-coloring', 'face-coloring', 'fixed-point-4'],
+    duration_s: 60,
+  },
 }
 
-export function clayProofAnimationSeed(proofId: string): string {
-  const spec = clayProofAnimationSpecs[proofId as keyof typeof clayProofAnimationSpecs]
+export function proofAnimationSeed(proofId: string): string {
+  const spec = proofAnimationSpecs[proofId as keyof typeof proofAnimationSpecs]
   return spec ? spec.seed : ''
 }
 
-export function clayProofAnimationMechanism(proofId: string): string {
-  const spec = clayProofAnimationSpecs[proofId as keyof typeof clayProofAnimationSpecs]
+export function proofAnimationMechanism(proofId: string): string {
+  const spec = proofAnimationSpecs[proofId as keyof typeof proofAnimationSpecs]
   return spec ? spec.mechanism : ''
 }

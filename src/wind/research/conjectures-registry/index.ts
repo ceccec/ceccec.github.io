@@ -43,8 +43,8 @@ export const conjectureCounts = {
   σ_structure_candidate: 9, // Beyond Clay
 }
 
-export function conjecturesByTier(tier: 'clay' | 'tier1' | 'tier2' | 'tier3'): (typeof conjectureRegistry.clay)[0][] {
-  switch (tier) {
+export function conjecturesByGroup(group: 'clay' | 'tier1' | 'tier2' | 'tier3'): (typeof conjectureRegistry.clay)[0][] {
+  switch (group) {
     case 'clay': return conjectureRegistry.clay
     case 'tier1': return conjectureRegistry.tier1_direct
     case 'tier2': return conjectureRegistry.tier2_cousins
