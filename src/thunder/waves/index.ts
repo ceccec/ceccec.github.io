@@ -12,7 +12,7 @@ export { CANDIDATE_THEOREMS } from '../../4/6'
 import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, seedFromText, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
+import { VORTEX_REVERSE, VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, seedFromText, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
 import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
@@ -2007,20 +2007,26 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
 export type ProofAnimationKind = 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex' | 'dome' | 'washout'
   | 'circle' | 'triangle' | 'series' | 'polytope' | 'wave' | 'tree' | 'balance' | 'dice' | 'cycle' | 'sieve'
 // The theorem's COORDINATES on the sequence and its reflection (user law: animations prove the
-// theorems in all their directions — forward, reverse, inverse). The content digit places every
-// theorem on the vortex circuit 1-2-4-8-7-5 | 3-6-9: forward = its position in VORTEX_SEQUENCE,
-// reverse = its position in the reflection (the mirror index), inverse = THROUGH ZERO — the
-// documented mirror m(d) = 10 − d (README: "one structure, two computed reads"; ≡ 1 − d mod 9,
-// fixed only at 5; the digit-folder pairing d/(10−d) of src/1/9 · 2/8 · 3/7 · 4/6 · 5/5).
-// The through-zero inversion WIRES THE AXIS TO THE ORBIT and back (user law): every axis digit
-// lands on the orbit (3→7 · 6→4 · 9→1), orbit 1,4 wire to the axis (9,6), 2↔8 stays in-orbit,
-// 5 is the lone fixed point — the 0-gateway is the bridge between the two lanes.
+// theorems in all their directions — forward, reverse, inverse). Strict algebra on ℤ/9ℤ:
+// · additiveInverse — ν(d) = −d mod 9 (representative 9 − d, fixed point 9 ≡ 0): an involution
+//   that PRESERVES the unit group (multiplication by the unit −1): units ↔ units (1↔8 · 2↔7 ·
+//   4↔5), non-units ↔ non-units (3↔6, 9 fixed).
+// · tensComplement — σ(d) = 10 − d ≡ 1 − d mod 9 (fixed point 5; the digit-folder pairing
+//   d/(10−d) of src/1/9 · 2/8 · 3/7 · 4/6 · 5/5): an involution that maps every non-unit onto
+//   a unit (3→7 · 6→4 · 9→1) — the affine reflection x ↦ 1 − x, not a group automorphism.
+// Their composition σ∘ν is the TRANSLATION d ↦ d + 1 (composition of two involutions of an
+// affine line is a translation), generating a transitive ℤ/9-action — an infinite cyclic action
+// realised on the finite quotient. The Fibonacci residues (Pisano period π(9) = 24) thread the
+// two classes: …3,5,8… are consecutive, and under negaFibonacci F(−n) = (−1)^{n+1}F(n) the
+// odd-index terms are fixed (5 = F₅) while even-index terms are negated (3 = F₄, 8 = F₆ ↦ 9−d):
+// consecutive terms alternate between the symmetric and antisymmetric classes, and the
+// reflection of F₂ = 1 through F₀ = 0 is −F₂ ≡ 8.
 export type ProofAnimationCoords = {
-  readonly digit: number // 1..9 — the theorem's content digit (also the hue digit)
-  readonly lane: 'orbit' | 'axis' // doubling orbit ⟨2⟩ = {1,2,4,8,7,5} vs trinity axis {3,6,9}
-  readonly forward: number // 0..8 — position along VORTEX_SEQUENCE
-  readonly reverse: number // 0..8 — position in the reflected sequence = 8 − forward
-  readonly inverse: number // THROUGH ZERO: m(d) = 10 − d — the documented mirror, total, 5 the only fixed point
+  readonly digit: number // 1..9 — the theorem's content digit (also the hue digit), a residue mod 9 with 9 ≡ 0
+  readonly ringClass: 'unit' | 'non-unit' // gcd(d,9) = 1 ⇔ unit; (ℤ/9ℤ)× = ⟨2⟩ = {1,2,4,5,7,8}, non-units {3,6,9}
+  readonly sequencePosition: number // 0..8 — index in VORTEX_SEQUENCE (the ⟨2⟩ orbit enumeration, then the non-unit coset)
+  readonly additiveInverse: number // ν(d) = −d mod 9, representative in 1..9 (9 fixed) — unit-group-preserving involution
+  readonly tensComplement: number // σ(d) = 10 − d (5 fixed) — affine involution mapping non-units onto units
 }
 export type ProofAnimationSpec = {
   readonly theorem: string
@@ -2048,10 +2054,12 @@ export function foldZeroAt(angleDeg: number): number {
 
 /** The theorem's coordinates from its digit — pure arithmetic on the sealed sequence, never keyed. */
 export function proofAnimationCoords(digit: number): ProofAnimationCoords {
-  const forward = (VORTEX_SEQUENCE as readonly number[]).indexOf(digit)
-  // Inversion THROUGH ZERO — the documented mirror m(d) = 10 − d (the digit-folder pairing);
-  // total on 1..9, fixed only at 5, wiring the axis onto the orbit (3→7 · 6→4 · 9→1) and back.
-  return { digit, lane: forward < 6 ? 'orbit' : 'axis', forward, reverse: VORTEX_SEQUENCE.length - 1 - forward, inverse: (2 * 5) - digit }
+  return {
+    digit,
+    ringClass: gcd(digit, 9) === 1 ? 'unit' : 'non-unit', // exact ring-theoretic test, not a positional convention
+    sequencePosition: (VORTEX_SEQUENCE as readonly number[]).indexOf(digit),
+    additiveInverse: (9 - digit) || 9, // ν(d) = −d mod 9, representative in 1..9
+    tensComplement: (2 * 5) - digit } // σ(d) = 10 − d — the digit-folder involution
 }
 // ── THE CONTENT→ANIMATION TABLE (simplify & animate law) — ONE keyword→family mapping animates ANY
 // title through the one ProofAnimation renderer: theorems, monograph cards, decoded pages alike.
@@ -2160,16 +2168,29 @@ export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
     const everyAnimationConfirmsItsProof = registry.theorems.every((entry, i) => specs[i]!.seed === seedFromText(proofKeyOf(entry)))
     const noOtherAnimationAllowed = specs.length === registry.count && specs.every((s) => registryTitles.has(s.theorem))
     // ALL DIRECTIONS PROVED (user law: animations prove the theorems forward, reverse, inverse) —
-    // every theorem's coordinates on the sequence and its reflection compute and close: forward and
-    // reverse mirror to the sequence end (f + r = 8), and inversion THROUGH ZERO is total —
-    // m(d) = 10 − d, every station pair summing to ten (the digit-folder law), 5 the only fixed point.
-    const coordinatesTotal = specs.every((s) => s.coords.forward >= 0 && s.coords.forward + s.coords.reverse === VORTEX_SEQUENCE.length - 1)
-    const inversionTotal = specs.every((s) => s.coords.digit + s.coords.inverse === 2 * 5 && (s.coords.inverse === s.coords.digit) === (s.coords.digit === 5))
-    // THE 0-GATEWAY WIRES THE LANES (user law): the through-zero inverse of every axis digit lands
-    // on the orbit (3→7 · 6→4 · 9→1) — the axis is wired to the other dimension's orbit, and back.
-    const laneOf = (d: number) => ((VORTEX_SEQUENCE as readonly number[]).indexOf(d) < 6 ? 'orbit' : 'axis')
-    const axisWiredToOrbit = specs.every((s) => s.coords.lane !== 'axis' || laneOf(s.coords.inverse) === 'orbit')
-    const allDirectionsProved = coordinatesTotal && inversionTotal && axisWiredToOrbit
+    // strict ℤ/9ℤ algebra, every claim an identity checked over all specs:
+    // · tensComplementInvolution — σ(d) = 10−d is an involution with unique fixed point 5.
+    // · additiveInverseInvolution — ν(d) = −d mod 9 is an involution with unique fixed point 9 ≡ 0.
+    // · negationPreservesUnits — ν = multiplication by the unit −1, so it preserves the unit group.
+    // · complementMapsNonUnitsToUnits — σ sends every non-unit onto a unit (3→7 · 6→4 · 9→1).
+    const unitOf = (d: number) => gcd(d, 9) === 1
+    const coordinatesTotal = specs.every((s) => s.coords.sequencePosition >= 0)
+    const tensComplementInvolution = specs.every((s) => s.coords.digit + s.coords.tensComplement === 2 * 5 && (s.coords.tensComplement === s.coords.digit) === (s.coords.digit === 5))
+    const additiveInverseInvolution = specs.every((s) => (s.coords.digit + s.coords.additiveInverse) % 9 === 0 && (s.coords.additiveInverse === s.coords.digit) === (s.coords.digit === 9))
+    const negationPreservesUnits = specs.every((s) => unitOf(s.coords.additiveInverse) === unitOf(s.coords.digit))
+    const complementMapsNonUnitsToUnits = specs.every((s) => s.coords.ringClass === 'unit' || unitOf(s.coords.tensComplement))
+    // DUALITY PROVEN INFINITE WITHIN FINITE (user law; the double torus and the double navigation
+    // pyramid): the composition of the two involutions is the TRANSLATION σ∘ν: d ↦ d + 1 —
+    // composition of two reflections of an affine line is a translation — whose cyclic group acts
+    // TRANSITIVELY on the nine residues: the infinite cyclic action ℤ realised on the finite
+    // quotient ℤ/9. The two reads of the navigation pyramid are the sequence and its
+    // order-reversing permutation (VORTEX_REVERSE).
+    const translation = (d: number) => (d % 9) + 1
+    const involutionsComposeToTranslation = Array.from({ length: 9 }, (_, k) => k + 1).every((d) => (2 * 5) - (((9 - d) % 9) || 9) === translation(d))
+    const translationActsTransitively = new Set(Array.from({ length: 9 }, (_, k) => Array.from({ length: k + 1 }, () => 0).reduce((acc) => translation(acc), 1))).size === 9
+    const reversalIsOrderReversingPermutation = VORTEX_REVERSE.every((d, i) => d === VORTEX_SEQUENCE[VORTEX_SEQUENCE.length - 1 - i])
+    const dualityInfiniteWithinFinite = involutionsComposeToTranslation && translationActsTransitively && reversalIsOrderReversingPermutation
+    const allDirectionsProved = coordinatesTotal && tensComplementInvolution && additiveInverseInvolution && negationPreservesUnits && complementMapsNonUnitsToUnits && dualityInfiniteWithinFinite
     return {
       animated: specs.length === registry.count && kinds.length >= 6,
       uniqueAnimationsMatchUniqueTheorems: signatureCount === identityCount,
@@ -2177,15 +2198,21 @@ export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
       noOtherAnimationAllowed,
       allDirectionsProved,
       coordinatesTotal,
-      inversionTotal,
-      axisWiredToOrbit,
+      tensComplementInvolution,
+      additiveInverseInvolution,
+      negationPreservesUnits,
+      complementMapsNonUnitsToUnits,
+      dualityInfiniteWithinFinite,
+      involutionsComposeToTranslation,
+      translationActsTransitively,
+      reversalIsOrderReversingPermutation,
       identityCount,
       signatureCount,
       specs,
       count: specs.length,
       kinds,
       root: merkleFold([registry.root, ...specs.map((entry) => toUuid(`proof-anim:${entry.theorem}:${entry.kind}:${entry.ratePhi}:${entry.hueDigit}:${entry.seed}`))]),
-      statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — each animation is the visual receipt of its proof: seed = address(identity ⊢ provingFold), so ${signatureCount} unique animations for ${identityCount} unique proofs (${signatureCount === identityCount ? 'exact match' : 'MISMATCH'}); confirmsProof=${everyAnimationConfirmsItsProof} · noOther=${noOtherAnimationAllowed} · allDirections=${allDirectionsProved} (coordinates on the sequence and its reflection: f+r=8; inversion THROUGH ZERO m(d)=10−d total, 5 the only fixed point; the 0-gateway wires the axis onto the orbit 3→7 · 6→4 · 9→1).`,
+      statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — each animation is the visual receipt of its proof: seed = address(identity ⊢ provingFold), so ${signatureCount} unique animations for ${identityCount} unique proofs (${signatureCount === identityCount ? 'exact match' : 'MISMATCH'}); confirmsProof=${everyAnimationConfirmsItsProof} · noOther=${noOtherAnimationAllowed} · allDirections=${allDirectionsProved} (ℤ/9ℤ: the ten's-complement involution σ(d)=10−d, fixed point 5, maps non-units onto units; the additive-inverse involution ν(d)=−d, fixed point 9≡0, preserves the unit group (ℤ/9ℤ)×=⟨2⟩; σ∘ν is the translation d↦d+1 acting transitively — the infinite cyclic action realised on the finite quotient).`,
       boundary: `SPECS ONLY — pure data derived from the registry (kind by proof family, hue by content digit, rate by φ-index, seed by the (identity ⊢ provingFold) content-address). An animation without a proven theorem behind it is forbidden here — the spec set equals the registry set, and every seed recomputes from its own proof. The renderer interprets; nothing here draws, and no parameter is hand-keyed per animation.` }
   })
 }

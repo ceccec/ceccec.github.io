@@ -6,6 +6,7 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { useData } from 'vitepress'
 import { PHI, TAU } from '../../../src/3/7'
+import { VORTEX_SEQUENCE } from '../../../src/0'
 import { movieCanvasRgba, subscribeHeroClock } from '../../lib/hero-movie-paint'
 import { geodesicDomeComputes, oneExponentialLaw } from '../../../src/6/4'
 import type { ProofAnimationSpec } from '../../../src/thunder/waves'
@@ -290,24 +291,26 @@ function draw(t: number) {
   }
 
   // THE DIRECTION FRAME (user law: animations prove the theorem in all its directions) — the
-  // theorem's own coordinates on the sequence and its reflection, drawn as three markers on the
-  // outer nine-wheel: FORWARD rides the sequence from the theorem's forward coordinate; REVERSE
-  // counter-rotates from the reflected coordinate; INVERSE sits at the negated angle (inversion
-  // negates the angle) in the through-zero mirror digit's hue — m(d) = 10 − d, the documented
-  // digit-folder pairing, wiring the axis onto the orbit (3→7 · 6→4 · 9→1) through the 0-gateway.
+  // theorem's residue coordinates on ℤ/9ℤ, drawn as three markers on the outer nine-wheel:
+  // FORWARD rotates from the theorem's own residue position; the ADDITIVE INVERSE ν(d) = −d mod 9
+  // counter-rotates (an involution preserving the unit group — multiplication by the unit −1);
+  // the TEN'S COMPLEMENT σ(d) = 10 − d sits at the negated angle (inversion negates the angle),
+  // in the complement residue's hue — the affine involution mapping non-units onto units. Their
+  // composition σ∘ν is the translation d ↦ d + 1: the infinite cyclic action on the finite wheel.
   const co = props.spec.coords
-  if (co && co.forward >= 0) {
+  if (co && co.sequencePosition >= 0) {
     const rOut = c * (9 / 10)
     const dot = s / (4 * 9)
-    const angleOf = (pos: number) => (pos / 9) * TAU - TAU / 4
-    const fwd = angleOf(co.forward) + phase
-    const rev = angleOf(co.reverse) - phase // the reflection counter-rotates
-    const inv = -fwd // inversion negates the angle
+    const posOf = (d: number) => (VORTEX_SEQUENCE as readonly number[]).indexOf(d)
+    const angleOf = (d: number) => (posOf(d) / 9) * TAU - TAU / 4
+    const fwd = angleOf(co.digit) + phase
+    const rev = angleOf(co.additiveInverse) - phase // the additive inverse counter-rotates
+    const inv = -angleOf(co.tensComplement) - phase // inversion negates the angle at the complement residue
     fill(2 / 3)
     ctx.beginPath(); ctx.arc(c + rOut * Math.cos(fwd), c + rOut * Math.sin(fwd), dot, 0, TAU); ctx.fill()
-    fill(1 / 3)
+    fill(1 / 3, (co.additiveInverse - co.digit) * (360 / 9))
     ctx.beginPath(); ctx.arc(c + rOut * Math.cos(rev), c + rOut * Math.sin(rev), dot, 0, TAU); ctx.fill()
-    fill(1 / 2, (co.inverse - co.digit) * (360 / 9))
+    fill(1 / 2, (co.tensComplement - co.digit) * (360 / 9))
     ctx.beginPath(); ctx.arc(c + rOut * Math.cos(inv), c + rOut * Math.sin(inv), dot * (2 / 3), 0, TAU); ctx.fill()
   }
 }
