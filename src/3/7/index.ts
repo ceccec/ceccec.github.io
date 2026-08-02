@@ -1851,3 +1851,67 @@ export function demarcate(topic: string): DemarcationTier {
   }
   return tier
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED ALGEBRA =====
+// Consolidated access patterns for core algebra, physics constants, and utilities
+export const algebra = {
+  constants: {
+    tau: TAU,
+    phi: PHI,
+    euler: EULER_E,
+    golden: GOLDEN_ANGLE,
+    goldenRad: GOLDEN_ANGLE_RAD,
+    ln2: LN2,
+    ln10: LN10,
+    halfTau: HALF_TAU,
+  },
+  physics: {
+    newton: NEWTON_G,
+    boltzmann: BOLTZMANN,
+    electronvolt: ELECTRONVOLT,
+    higgs: HIGGS_VEV_GEV,
+    darkEnergy: DARK_ENERGY_EOS_W,
+    landauer: landauerLimit,
+    schwarzschild: schwarzschildRadius,
+  },
+  earth: {
+    radius: EARTH_RADIUS_KM,
+    pyramidHeight: GREAT_PYRAMID_HEIGHT_M,
+    pyramidMass: GREAT_PYRAMID_MASS_KG,
+  },
+  math: {
+    fibonacci,
+    euler: eulerPolyhedron,
+    isTotalBijection,
+    complementInverse: complementIsInverse,
+    cyclicUnits: cyclicUnitsOrder,
+    partitionCovers: partitionCoversTotal,
+  },
+  clay: {
+    solved: claySolvedTheorem,
+    solvedByFormulas: claySolvedByFormulas,
+    solvedByFold: claySolvedByThisFoldFromTheorem,
+    openMarkers: CLAY_OPEN_MARKERS,
+    solutionMarkers: CLAY_SOLUTION_MARKERS,
+  },
+  crack: {
+    ledger: crackLedgerAccounts,
+    law: crackLawEvolution,
+    research: CRACK_RESEARCH_TARGETS,
+  },
+  demarcation: {
+    compute: demarcate,
+    registry: DEMARCATION_REGISTRY,
+  },
+  diving: {
+    buhlmannA,
+    buhlmannB,
+    buhlmannCeiling: buhlmannCeilingBar,
+    buhlmannGfCeiling: buhlmannGfCeilingBar,
+    divePlan: buhlmannDivePlan,
+    gfDivePlan: buhlmannGfDivePlan,
+    maxDepth: maxOperatingDepthM,
+    eqNarcoticDepth: equivalentNarcoticDepthM,
+    criticalAngle,
+  },
+} as const
