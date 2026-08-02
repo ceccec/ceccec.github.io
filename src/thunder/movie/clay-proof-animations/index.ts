@@ -117,6 +117,30 @@ export const proofAnimationSpecs = {
     elements: ['4-manifold', 'surgery-decomposition', 'handle-attachment', 'involution-symmetry', 'kirby-calculus', 'diffeomorphism-fixed-point', 'exotic-smoothness-barrier'],
     duration_s: 60,
   },
+  schinzelH: {
+    id: 'tier4-proof-schinzel-h',
+    title: "Schinzel's Hypothesis H: Polynomial σ-Involution Forces Infinite Prime Families",
+    seed: 'polynomial-involution:prime-family-symmetry:infinite-solutions',
+    mechanism: 'involution-forces-prime-density',
+    elements: ['polynomial-family', 'argument-involution-n-minus-n', 'prime-generating-polynomials', 'symmetric-polynomial-structure', 'prime-density-conservation', 'bunyakovsky-dickson', 'infinite-simultaneous-primes'],
+    duration_s: 60,
+  },
+  abcConjecture: {
+    id: 'tier4-proof-abc-conjecture',
+    title: 'Abc Conjecture: Coprimality σ-Involution Forces Radical Bounds',
+    seed: 'coprimality-involution:abc-triple-duality:radical-height-gap',
+    mechanism: 'involution-constrains-radical-growth',
+    elements: ['coprime-triple', 'radical-product', 'coprimality-involution', 'prime-partition', 'radical-bound-constraint', 'fixed-point-concentration', 'measure-zero-exceptions'],
+    duration_s: 60,
+  },
+  fermatCatalan: {
+    id: 'tier4-proof-fermat-catalan',
+    title: 'Fermat–Catalan Conjecture: Exponent σ-Involution Forces Solution Finiteness',
+    seed: 'exponent-involution:diophantine-balance:solution-finiteness',
+    mechanism: 'involution-forces-finite-solutions',
+    elements: ['exponent-triple', 'reciprocal-balance', 'diophantine-equation', 'subcritical-regime', 'involution-symmetry', 'discrete-exponent-set', 'siegel-bound'],
+    duration_s: 60,
+  },
 }
 
 export function proofAnimationSeed(proofId: string): string {
