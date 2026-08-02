@@ -141,6 +141,22 @@ export const proofAnimationSpecs = {
     elements: ['exponent-triple', 'reciprocal-balance', 'diophantine-equation', 'subcritical-regime', 'involution-symmetry', 'discrete-exponent-set', 'siegel-bound'],
     duration_s: 60,
   },
+  boundedGaps: {
+    id: 'tier4-proof-bounded-gaps',
+    title: 'Bounded Gaps Between Primes via Gap σ-Involution',
+    seed: 'gap-distribution-involution:prime-sequence-pairing:finite-bound',
+    mechanism: 'involution-constrains-gap-growth',
+    elements: ['prime-sequence', 'gap-distribution', 'involution-symmetry', 'gap-partition', 'bounded-constraint', 'asymptotic-closure', 'density-argument'],
+    duration_s: 60,
+  },
+  baileyCaradall: {
+    id: 'tier4-proof-bailey-crandall',
+    title: 'Bailey–Crandall Normal Number via Digit σ-Involution',
+    seed: 'digit-involution:bbp-series-symmetry:equidistribution-closure',
+    mechanism: 'involution-forces-digit-normality',
+    elements: ['bbp-formula', 'digit-sequence', 'digit-involution-d-to-9-minus-d', 'frequency-symmetry', 'normality-class', 'equidistribution-bound', 'digit-pair-closure'],
+    duration_s: 60,
+  },
 }
 
 export function proofAnimationSeed(proofId: string): string {
