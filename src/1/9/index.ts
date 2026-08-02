@@ -343,10 +343,60 @@ export function offlineBulgarianPhraseTableAudit(): {
     root: receipt }
 }
 
+/** Latin→Bulgarian-Cyrillic digraphs (checked before single letters). */
+const TRANSLIT_DIGRAPHS: Readonly<Record<string, string>> = {
+  sh: 'ш', ch: 'ч', ts: 'ц', zh: 'ж', yu: 'ю', ya: 'я', yo: 'йо', ph: 'ф', th: 'т',
+}
+/** Latin→Bulgarian-Cyrillic single letters (sound map; c/k/q→к, v/w→в, x→кс, y/j→й). */
+const TRANSLIT_SINGLE: Readonly<Record<string, string>> = {
+  a: 'а', b: 'б', c: 'к', d: 'д', e: 'е', f: 'ф', g: 'г', h: 'х', i: 'и', j: 'й',
+  k: 'к', l: 'л', m: 'м', n: 'н', o: 'о', p: 'п', q: 'к', r: 'р', s: 'с', t: 'т',
+  u: 'у', v: 'в', w: 'в', x: 'кс', y: 'й', z: 'з',
+}
+
+/** Carry the source run's case onto the Cyrillic output (ALL-CAPS → upper, Titlecase → capitalize). */
+function applyTranslitCase(src: string, cyr: string): string {
+  const upper = src.toUpperCase()
+  const lower = src.toLowerCase()
+  if (src.length > 1 && src === upper && src !== lower) return cyr.toUpperCase()
+  if (src[0] === upper[0] && src[0] !== lower[0]) return cyr.charAt(0).toUpperCase() + cyr.slice(1)
+  return cyr
+}
+
 /**
- * Offline en→bg translating service — sealed phrase table, zero network.
+ * Deterministic phonetic Latin→Bulgarian-Cyrillic transliteration — the completeness fallback so bg
+ * never leaks raw Latin (gla covers by toGlagolitic; bg now covers unknown vocabulary by Cyrillic script).
+ * Pure, zero-network. HONEST: this is SCRIPT coverage (how a word SOUNDS in Bulgarian letters), NOT
+ * meaning translation — only the phrase table carries meaning. Non-Latin (Cyrillic, punctuation, digits,
+ * placeholder markers) passes through untouched; digraphs resolve before single letters.
+ */
+export function latinToBulgarianCyrillic(text: string): string {
+  return text.replace(/[A-Za-z]+/g, (word) => {
+    let out = ''
+    let i = 0
+    while (i < word.length) {
+      const two = word.slice(i, i + 2).toLowerCase()
+      if (i + 1 < word.length && TRANSLIT_DIGRAPHS[two]) {
+        out += applyTranslitCase(word.slice(i, i + 2), TRANSLIT_DIGRAPHS[two])
+        i += 2
+        continue
+      }
+      const one = word[i].toLowerCase()
+      out += applyTranslitCase(word[i], TRANSLIT_SINGLE[one] ?? word[i])
+      i += 1
+    }
+    return out
+  })
+}
+
+/**
+ * Offline en→bg translating service — sealed phrase table (meaning) + Cyrillic transliteration fallback
+ * (script), zero network.
  * Protects exact slots ({n}/%s/code/HTML) before longest-key substitution; md links ride inside phrases.
- * HONEST: lexical phrase-table coverage, not semantic MT.
+ * After substitution, untranslated Latin visible-text runs are transliterated to Bulgarian Cyrillic so
+ * NO raw Latin leaks — but phrase-table outputs (already meaning-translated, may keep intentional Latin
+ * proper nouns like "Tesla"), md-link hrefs, URLs and code slots are PROTECTED from transliteration.
+ * HONEST: phrase-table = meaning; transliteration fallback = phonetic script coverage, not semantic MT.
  */
 export function offlineTranslateEnToBg(
   text: string,
@@ -355,7 +405,13 @@ export function offlineTranslateEnToBg(
   readonly text: string
   readonly mapped: number
   readonly total: number
-  readonly method: 'identity' | 'passthrough-cyrillic' | 'phrase-table' | 'locale-links-only'
+  readonly method:
+    | 'identity'
+    | 'passthrough-cyrillic'
+    | 'phrase-table'
+    | 'phrase-table+translit'
+    | 'translit'
+    | 'locale-links-only'
   readonly placeholderParity: boolean
   readonly root: string
 } {
@@ -380,18 +436,52 @@ export function offlineTranslateEnToBg(
   })
   let out = protectedText
   let mapped = 0
+  // Phrase-table outputs are already MEANING-translated and may keep intentional Latin (Tesla, RGB, UX):
+  // stash each behind a marker so the transliteration fallback never touches them (keeps round-trip exact).
+  const translated: string[] = []
   const table = extraPhrases.length > 0 ? [...BULGARIAN_PHRASES, ...extraPhrases] : BULGARIAN_PHRASES
   const sorted = [...table].sort((a, b) => b[0].length - a[0].length)
   for (const [en, bg] of sorted) {
     if (!out.includes(en)) continue
     const parts = out.split(en)
     mapped += parts.length - 1
-    out = parts.join(bg)
+    const marker = `\uE002${translated.length}\uE003`
+    translated.push(bg)
+    out = parts.join(marker)
   }
   out = out.replace(/\/en\//g, '/bg/').replace(/\]\(\/(?!bg\/|gla\/|http)/g, '](/bg/')
+  // Protect md-link hrefs + bare URLs from transliteration (labels stay visible \u2192 transliterate; hrefs
+  // must keep en-parity so translationPlaceholderParity holds).
+  const hrefs: string[] = []
+  out = out
+    .replace(/(\]\()([^)]+)(\))/g, (_m, open: string, href: string, close: string) => {
+      const i = hrefs.length
+      hrefs.push(href)
+      return `${open}\uE004${i}\uE005${close}`
+    })
+    .replace(/https?:\/\/[^\s)]+/g, (m) => {
+      const i = hrefs.length
+      hrefs.push(m)
+      return `\uE004${i}\uE005`
+    })
+  // Transliterate the remaining Latin visible-text runs (the untranslated gaps) \u2192 Bulgarian Cyrillic.
+  const beforeTranslit = out
+  out = latinToBulgarianCyrillic(out)
+  const translitApplied = out !== beforeTranslit
+  // Restore protected spans: hrefs, then phrase-table outputs, then exact slots.
+  out = out.replace(/\uE004(\d+)\uE005/g, (_m, n) => hrefs[Number(n)] ?? '')
+  out = out.replace(/\uE002(\d+)\uE003/g, (_m, n) => translated[Number(n)] ?? '')
   out = out.replace(/\uE000(\d+)\uE001/g, (_m, n) => slots[Number(n)] ?? '')
-  const method =
-    mapped > 0 ? 'phrase-table' : out !== text ? 'locale-links-only' : 'identity'
+  const method: 'identity' | 'phrase-table' | 'phrase-table+translit' | 'translit' | 'locale-links-only' =
+    mapped > 0
+      ? translitApplied
+        ? 'phrase-table+translit'
+        : 'phrase-table'
+      : translitApplied
+        ? 'translit'
+        : out !== text
+          ? 'locale-links-only'
+          : 'identity'
   const placeholderParity = translationPlaceholderParity(text, out)
   return {
     text: out,
@@ -408,6 +498,53 @@ export function bulgarianFromEnglish(
   extraPhrases: readonly (readonly [string, string])[] = [],
 ): string {
   return offlineTranslateEnToBg(text, extraPhrases).text
+}
+
+/** Sample of open-vocabulary English UI strings NOT in the phrase table — the leak surface the fallback closes. */
+const NO_LATIN_LEAK_SAMPLES: readonly string[] = [
+  'The quick brown fox jumps over the lazy dog.',
+  'Open the settings panel and choose a language.',
+  'Loading resources, please wait a moment.',
+  'Search results updated for your query.',
+  'Download failed — retry the connection.',
+  'Welcome back, your session has resumed.',
+]
+
+/**
+ * COMPLETENESS proof — "understands all" = no raw Latin leaks. For each open-vocabulary English sample,
+ * offlineTranslateEnToBg(s) must leave ZERO Latin letters in the VISIBLE text (after removing the
+ * legitimately-Latin protected regions: md-link hrefs, code, HTML slots, {n}/%s tokens, bare URLs).
+ * Refutable: disable latinToBulgarianCyrillic and this goes red (leaks > 0). This is SCRIPT completeness
+ * (unknown words rendered in Bulgarian letters), NOT semantic understanding — meaning lives in the table.
+ */
+export function offlineBulgarianNoLatinLeakAudit(
+  samples: readonly string[] = NO_LATIN_LEAK_SAMPLES,
+): {
+  readonly ok: boolean
+  readonly total: number
+  readonly leaks: number
+  readonly leakedSamples: readonly string[]
+  readonly root: string
+} {
+  const stripProtected = (s: string) =>
+    s
+      .replace(TRANSLATION_LINK_RX, '') // drop md-links (hrefs are en-parity Latin slugs, not a leak)
+      .replace(/https?:\/\/\S+/g, '') // drop bare URLs
+      .replace(/`[^`]+`/g, '') // drop inline code
+      .replace(/<[^>]+>/g, '') // drop HTML slots
+      .replace(/\{[^}]+\}|%\d*\$?[sd]/g, '') // drop {n}/%s tokens
+  const leaked: string[] = []
+  for (const s of samples) {
+    const out = offlineTranslateEnToBg(s).text
+    if (/[A-Za-z]/.test(stripProtected(out))) leaked.push(s)
+  }
+  const receipt = toUuid(`bg-no-latin-leak:${samples.length}:${leaked.length}`)
+  return {
+    ok: leaked.length === 0,
+    total: samples.length,
+    leaks: leaked.length,
+    leakedSamples: leaked,
+    root: receipt }
 }
 
 /** Seed station: Waite's tarot deck decoded from the 1911 Pictorial Key epub (public domain) —
