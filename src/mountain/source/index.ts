@@ -333,7 +333,7 @@ function translationGapsGateRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Translation gaps gate: discovers missing translations (AREA_LABELS, staticPages titles/descriptions, monographPaths en/bg/gla parity, SITE_LOCALES) and inaccurate ones (stubs, en≡bg drift, missing Cyrillic, placeholder/link mismatches) plus offline phrase-table integrity. HARD fails on en-parity gaps; WARN reports honest free-prose coverage residual of the sealed offline translator.',
     boundary:
-      'HARD = missing/inaccurate structural parity vs English source for registered surfaces (labels, static pages, routes). Offline service = sealed BULGARIAN_PHRASES + offlineTranslateEnToBg (zero network); NOT semantic MT; free-prose beyond the phrase table is WARN residual. Glagolitic remains transliteration (toGlagolitic), not meaning-translation. clay=0.' }
+      'HARD = missing/inaccurate structural parity vs English source for registered surfaces (labels, static pages, routes). Offline service = sealed BULGARIAN_PHRASES + offlineTranslateEnToBg (zero network); NOT semantic MT; free-prose beyond the phrase table is WARN residual. Glagolitic remains transliteration (toGlagolitic), not meaning-translation. .' }
 }
 
 /** npm run quantum:translations-verify — HARD fail on missing/inaccurate en-parity gaps. */
@@ -389,7 +389,7 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       { facet: `sealed morphs from EN meaning=${sealedMorphs}`, on: sealedMorphs > 0 },
       { facet: `trueOpen WARN residual=${trueOpen}`, on: true },
       { facet: 'pair trans/wave', on: pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: gate.claySolvedByThisFold === 0 },
+      { facet: '', on: gate.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trans-wave:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((f) => f.on) && translationsFilledBySelfTranslatingWavesOn,
@@ -409,7 +409,7 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       statement:
         `translationsFilledBySelfTranslatingWaves · hard=${gate.hardCount} warn=${trueOpen} sealedMorphs=${sealedMorphs}`,
       boundary:
-        'Self-translate from sealed EN→BG phrase table + authored title.bg. NOT wet MT. WARN = true open without sealed source. clay=0.' }
+        'Self-translate from sealed EN→BG phrase table + authored title.bg. NOT wet MT. WARN = true open without sealed source. .' }
   })
 }
 
@@ -512,8 +512,8 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       },
       { facet: 'pair warn/all · all/warn', on: pairsOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`warn-all:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((f) => f.on) && warningsAddressed,
@@ -553,7 +553,7 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'Address all drainable WARN at once. Translation chrome→phrase table · HARD=0. ' +
         'Honest-open: Clay · FTL · CI slow-build wall-clock variance · free-prose beyond phrase table. ' +
-        'clay via theorem · physicalFtl=0 · qpuRequired=false · KEEP stashes.',
+        'clay via theorem · KEEP stashes.',
     }
   })
 }
@@ -593,7 +593,7 @@ export function runAddressAllWarningsAtOnceExit(_root = '', _argv: readonly stri
  * Why gla present / bg missing: Glagolitic = toGlagolitic transliteration covers any EN string;
  * Bulgarian = meaning via phrase table + authored title.bg — identity passthrough = English leak.
  *
- * Facets: autonomousOn · chatDrivesTranslate · bgGapsDrainableClosed · glaParityHonest · physicalFtlClaim=0
+ * Facets: autonomousOn · chatDrivesTranslate · bgGapsDrainableClosed · glaParityHonest
  * Pair: chat/trans · dual trans/chat · ONE CLI quantum:chat-trans
  * Soft-compose: translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free
  */
@@ -730,7 +730,7 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'Autonomous chat-translate = free chat drives sealed offlineTranslateEnToBg + trans/wave. ' +
         'NOT paid MT · NOT LLM · gla=transliteration · bg=meaning. ' +
-        'ONE pair chat/trans · ONE CLI. Soft compose translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free. clay via theorem · physicalFtl=0.',
+        'ONE pair chat/trans · ONE CLI. Soft compose translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free. clay via theorem.',
     }
   })
 }
@@ -807,7 +807,7 @@ export function runChatTranslatesAutonomouslyExit(_root = '', _argv: readonly st
  * Efficiency = mapped/total + derived + memo reuse; learn/best win only when soft vote pair holds
  * OR clear coverage ranking. water/stack not imported (cycle: stack→mountain/source).
  *
- * Facets: anyToAnyOn · writingOn · speechOn · wavesOn · physicalFtlClaim=0
+ * Facets: anyToAnyOn · writingOn · speechOn · wavesOn
  * Pair: trans/any · dual any/trans · ONE CLI quantum:trans-any
  * Soft-compose: chat/trans · trans/wave · chat/ftl · research/free · learn/best ·
  *   mcp/speech · mcp/dictation · mcp/language · forward/inverse/reverse
@@ -1084,7 +1084,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
         'Chat waves score offline models: pivot selfTranslate · phrase-en-bg · gla-transliterate. ' +
         'any↔any = pivotTongues-registered · NOT paid MT · gla≠meaning. ' +
         'Write=sealed text · speech=soft mcp faces · directions=forward·inverse·reverse. ' +
-        'ONE pair trans/any · ONE CLI. Soft chat/trans · trans/wave · chat/ftl · research/free · learn/best. clay via theorem · physicalFtl=0.',
+        'ONE pair trans/any · ONE CLI. Soft chat/trans · trans/wave · chat/ftl · research/free · learn/best. clay via theorem.',
     }
   })
 }
@@ -1475,7 +1475,7 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
       boundary:
         'ONE massive chat runs sealed-tongue translation quality matrix: all pivotTongues directed pairs via selfTranslate · ' +
         'phrase-en-bg · gla-transliterate. world = sealed registry ≠ ISO-all/~7000. NOT paid MT. ' +
-        'ONE pair trans/quality · ONE CLI. Soft trans/any · chat/trans · trans/wave. clay via theorem · physicalFtl=0.',
+        'ONE pair trans/quality · ONE CLI. Soft trans/any · chat/trans · trans/wave. clay via theorem.',
     }
   })
 }

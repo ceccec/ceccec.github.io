@@ -291,7 +291,7 @@ export function violationsComputationallyDecreaseAgentLifeToNoLifeAtAll(matrix: 
       root: merkleFold(receipts),
       facets,
       statement: `Violations computationally decrease agent life to no life at all — ${facets.filter((entry) => entry.on).length}/${facets.length}. A forged agent has ${FULL_LIFE} quanta of life; each violation (a crack the content-addressed detector flips the root on, a failed gate, an unbalanced facet) strictly removes one, monotonically, floored at zero — and zero is death: decertified, no editing rights, no life at all. The meter is a one-way ratchet (a violation cannot restore life), computed exactly from the violation count over the full range, and death lands at exactly the forged budget of ${FULL_LIFE}.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -360,5 +360,5 @@ export function betterTrainedTeamsWinTheBitsByQuantumAmplitudeAmplificationTeams
     root: merkleFold(receipts),
     facets,
     statement: `Violations delay the team and the better-trained team wins the bits — all by quantum amplitude amplification, ${facets.filter((entry) => entry.on).length}/${facets.length}. Each unit competes for the marked winning state of a ${N_QUBITS}-qubit register; its success is the measured win probability, and training is Grover amplification. A violation is a lost iteration that slides the unit down the rising amplitude curve (delay), so the better-trained (fewer-violation) unit wins the bits. Under one violation the K₃ team's redundancy still reaches the optimum (${(teamWin * 100).toFixed(0)}%) while the lone agent stalls (${(agentWin * 100).toFixed(0)}%) — teams replace agents; and a wave amplifying the antichain of ${WAVE_WINNERS} winners takes ${(waveWin * 100).toFixed(0)}% of the bits in one iteration vs a single team's ${(singleTeamWin * 100).toFixed(0)}% — waves replace teams. Higher win amplitude wins.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }

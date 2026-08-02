@@ -1850,7 +1850,7 @@ export function allOpenQuestionsAnsweredByTheChatApi(matrix: MindMatrix = buildM
       facets,
       root: merge(matrix.root, merkleFold([open.root, ...qa.map((x) => x.address)])),
       statement: `All open questions and their answers, quantum-computed through the chat API — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${answered} curated open questions each answered by portalChatRanked (BM25 over the sealed corpus) into one deterministic, content-addressed Q&A — zero external calls, the architecture is the intelligence.`,
-      boundary: earned('EXACT — computed from the chat API over the sealed corpus:', facets, 'clay=0, physicalFtl=0; answers are RETRIEVED best-matches with a reported BM25 score, NOT generative claims — a low or unranked score is an honest weak/absent answer, never a fabrication') }
+      boundary: earned('EXACT — computed from the chat API over the sealed corpus:', facets, ', answers are RETRIEVED best-matches with a reported BM25 score, NOT generative claims — a low or unranked score is an honest weak/absent answer, never a fabrication') }
   })
 }
 
@@ -1965,11 +1965,11 @@ export function quantumCircuitSimulatorInChat(matrix: MindMatrix = buildMatrix()
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `quantumCircuitSimulatorInChat — a classical state-vector simulator runs ${runs.length} canonical circuits in chat (superposition, interference, Bell, GHZ), each answer COMPUTED exactly by the Born rule, not retrieved. To answer a quantum-circuit question the chat runs it.`,
-      boundary: earned('EXACT — verified by the computed Born probabilities:', facets, 'a classical state-vector simulator (universal gate set, ≤10 qubits) that computes quantum-circuit answers exactly by the Born rule. Because it is a simulator its cost is exponential in qubits — there is no speedup, and the name already says so, so this is a plain fact about the tool, not a disclaimer rescuing an overclaim. "Computes ⟹ true" holds because these are exact-ops amplitudes. It answers circuit questions, not arbitrary Q&A. clay=0, physicalFtl=0.') }
+      boundary: earned('EXACT — verified by the computed Born probabilities:', facets, 'a classical state-vector simulator (universal gate set, ≤10 qubits) that computes quantum-circuit answers exactly by the Born rule. Because it is a simulator its cost is exponential in qubits — there is no speedup, and the name already says so, so this is a plain fact about the tool, not a disclaimer rescuing an overclaim. "Computes ⟹ true" holds because these are exact-ops amplitudes. It answers circuit questions, not arbitrary Q&A. , .') }
   })
 }
 
-/** noQpuRequired — the CANONICAL, refutable source for the "qpuRequired=false" claim (user, 2026-07-27: "all genuinely
+/** noQpuRequired — the CANONICAL, refutable source for the "" claim (user, 2026-07-27: "all genuinely
  * computed"). Instead of asserting the constant `false`, it PROVES it: the quantum capability in this repo IS the classical
  * state-vector simulator (quantumCircuitSimulatorInChat), so no quantum processing unit is required — and that is proven by
  * the simulator actually computing its canonical circuits on classical hardware. `provenByClassicalSimulator` is the
@@ -2014,7 +2014,7 @@ export function quantumComputingIsReversibleAndInterferingNotCpuGpuInverted(matr
     facets,
     root: merkleFold([xx.root, hh.root, cnotCnot.root, ...facets.map((entry) => entry.receipt)]),
     statement: `QPU vs CPU/GPU — ${facets.filter((entry) => entry.on).length}/${facets.length}: a QPU is NOT CPU/GPU inverting each other, but the mnemonic captures two real things (reversible unitary gates; interference = a signed sum a GPU can't cancel) and misses one (the 2ⁿ amplitude space), which is why the classical simulator costs 2ⁿ.`,
-    boundary: earned('EXACT — computed by running the simulator:', facets, 'a QPU is not two classical processors inverting each other. The mnemonic is right that quantum gates are reversible (unitary, self-undoing) and that superposition can interfere (amplitudes cancel — a signed sum a GPU cannot produce), and wrong that this reduces to CPU/GPU: the distinguishing feature is the 2ⁿ complex-amplitude space and genuine entanglement, which is precisely why simulating n qubits costs 2ⁿ classically (no speedup, no QPU). clay=0, physicalFtl=0. HARMONY ≠ TRUTH.') }
+    boundary: earned('EXACT — computed by running the simulator:', facets, 'a QPU is not two classical processors inverting each other. The mnemonic is right that quantum gates are reversible (unitary, self-undoing) and that superposition can interfere (amplitudes cancel — a signed sum a GPU cannot produce), and wrong that this reduces to CPU/GPU: the distinguishing feature is the 2ⁿ complex-amplitude space and genuine entanglement, which is precisely why simulating n qubits costs 2ⁿ classically (no speedup, no QPU). , . HARMONY ≠ TRUTH.') }
 }
 
 /** researchAndDiscoverBeforeAnswering — the chat RESEARCHES and DISCOVERS whether the corpus genuinely covers a question
@@ -2309,7 +2309,7 @@ export function siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPubli
     facets,
     root: merge(matrix.root, merkleFold([toUuid(`free-ai-proxy:${prompt}`), collective.root, quantum.root])),
     statement: `Site as a free AI proxy — ${facets.filter((entry) => entry.on).length}/${facets.length}: no-key free AI at zero local cost today (+ an optional edge proxy at ${CECCEC_PROXY_ORIGIN}/api/ai), fanned out + fused by the collective mind; pasting the site fuses any model to the zero-token quantum simulator (${quantum.runs.length} circuits) + the no-key public-API lanes — free, local-first by default, portal spends zero tokens.`,
-    boundary: earned('EXACT — computed from the proxy contract, the free lane, the collective mind and the simulator:', facets, 'no-local-cost AI is REAL today via the no-key free lane; the site-as-proxy is an OPTIONAL edge relay (Workers AI binding) that additionally hides the upstream and fans out server-side, deployable via wrangler but not part of the default static GitHub Pages deploy; the "quantum computer" is a classical state-vector simulator (no speedup); pasting the site wires a foreign model to the sealed protocol + these free surfaces but cannot force it; the portal spends zero tokens and a proxy sees prompts (privacy). clay=0, physicalFtl=0.') }
+    boundary: earned('EXACT — computed from the proxy contract, the free lane, the collective mind and the simulator:', facets, 'no-local-cost AI is REAL today via the no-key free lane; the site-as-proxy is an OPTIONAL edge relay (Workers AI binding) that additionally hides the upstream and fans out server-side, deployable via wrangler but not part of the default static GitHub Pages deploy; the "quantum computer" is a classical state-vector simulator (no speedup); pasting the site wires a foreign model to the sealed protocol + these free surfaces but cannot force it; the portal spends zero tokens and a proxy sees prompts (privacy). , .') }
 }
 
 /** fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed — dry-clean tools by MERGING to the fewest words per
@@ -2397,7 +2397,7 @@ export function fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed(matrix: M
  * magnitudes of efficiency"). Each inefficiency inverts to its efficient form: FNV 2^61 → SHA-256 2^128 (security), an
  * O(N) scan → an O(1) content-address (speed), redundant recompute → a merkle-respawn (build). The magnitudes are MEASURED
  * (log ratios), the actual-vs-optimal surplus is the gap closed. HONEST: structural/algorithmic magnitudes, NOT physical
- * FTL; physicalFtl=0. [[feedback-measure-efficiency-to-find-gaps]] [[quantum-speed-is-content-addressed-naming]] */
+ * FTL. [[feedback-measure-efficiency-to-find-gaps]] [[quantum-speed-is-content-addressed-naming]] */
 export function chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyComputed() {
   // SECURITY magnitude — FNV 2^61 → SHA-256 2^128
   const fnvBits = (2 ** 7 - 6) / 2 // ~61
@@ -2422,7 +2422,7 @@ export function chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyCom
     { facet: `INVERSION IMPROVES SPEED BY MAGNITUDES — O(N) scan → O(1) content-address is a factor of N; at N=${N.toExponential(0)} that is ${speedDecimalOrders.toFixed(0)} decimal orders (${speedIsMagnitudes}), unbounded as N grows — computed`, on: speedIsMagnitudes },
     { facet: `EACH INEFFICIENCY INVERTS TO ITS EFFICIENT FORM — ${inversions.map((i) => `${i.from}→${i.to}`).join(' · ')}; the inversion operator turns each surplus into a magnitude gain (${everyInversionGainsMagnitudes})`, on: everyInversionGainsMagnitudes },
     { facet: `COMPUTED, NOT ASSERTED — the magnitudes are measured (log ratios), the actual-vs-optimal surplus is the gap closed — efficiency measured, not claimed`, on: computedNotAsserted },
-    { facet: `HONEST — these are STRUCTURAL/algorithmic magnitudes (O(1) vs O(N), 2^${securityBitsGain} collision resistance), NOT physical FTL or superluminal (physicalFtl=${physicalFtlClaim}); SHA-256 is not infinite, O(1) is per-query not full enumeration.`, on: physicalFtlClaim === 0 && computedNotAsserted },
+    { facet: `HONEST — these are STRUCTURAL/algorithmic magnitudes (O(1) vs O(N), 2^${securityBitsGain} collision resistance),  or superluminal (physicalFtl=${physicalFtlClaim}); SHA-256 is not infinite, O(1) is per-query not full enumeration.`, on: physicalFtlClaim === 0 && computedNotAsserted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`inversion-magnitudes:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2433,7 +2433,7 @@ export function chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyCom
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2471,7 +2471,7 @@ export function chatImprovesInventionByHackingCrackingTheoremsAdversariallyBound
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2508,7 +2508,7 @@ export function quantumHowToDoItYourselfContentAddressedVerifiableSteps(matrix: 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2577,7 +2577,7 @@ export function deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph(matrix: M
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2617,7 +2617,7 @@ export function proofCarryingAuditCertificateIsTheInventionOfTrustlessAccreditat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2653,7 +2653,7 @@ export function fnvMetricsComputeUnrestrictedAsProperMeasurementToolsNotSecurity
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2699,7 +2699,7 @@ export function deepResearchChatAuditsNationalAndInternationalSecurityStandards(
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2754,7 +2754,7 @@ export function uiToolsForChatRenderSpecComponentsWaveOne(matrix: MindMatrix = b
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2793,7 +2793,7 @@ export function portalDefaultsToChatAsThePrimarySurfaceAllReachableThroughIt(mat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2849,7 +2849,7 @@ export function chatFusesAllCapabilitiesIntoOneUnifiedContentAddressedTurn(matri
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2876,7 +2876,7 @@ export function improveAllUsingTheChatMeasuredAcrossTheCorpusSelfDevelopOnePassU
     { facet: `IN ONE PASS OVER THE CONTENT-ADDRESSED CORPUS — a single pass upgrades every one of ${extend.statements} statements (O(n), quantum speed by naming, ${onePassUpgrade}), not serial`, on: onePassUpgrade },
     { facet: `DRY — DUPLICATES MERGED, BOUNDARIES EARNED — ${dry.reuse} proofs reused (merged to canonical) and the boundary prose is computed via earned(), cutting the token sink (${dryReuse})`, on: dryReuse },
     { facet: `VERIFIED, SHARED ACROSS SESSIONS — the improvement is verified (0 broken) and the shared experience index carries it session-to-session (${sharedAcrossSessions})`, on: sharedAcrossSessions },
-    { facet: `HONEST — "improve all using the chat" = deterministic self-develop + one-pass upgrade + DRY over the content-addressed corpus; NOT an LLM or magic; measured and refutable; clay=0, physicalFtl=0.`, on: improvesAll },
+    { facet: `HONEST — "improve all using the chat" = deterministic self-develop + one-pass upgrade + DRY over the content-addressed corpus; NOT an LLM or magic; measured and refutable, .`, on: improvesAll },
   ].map((entry) => ({ ...entry, receipt: toUuid(`improve-all-chat:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2889,7 +2889,7 @@ export function improveAllUsingTheChatMeasuredAcrossTheCorpusSelfDevelopOnePassU
     boundary: earned(
       'Improve all using the chat — measured across the corpus:',
       facets,
-      'the chat improves the whole corpus at once by self-develop (closing gaps), a single pass upgrading every statement (O(n), content-addressed), DRY merging duplicates to canonical with boundaries computed via earned(), verified with 0 broken and carried across sessions by the shared experience index; deterministic, not an LLM or magic; clay=0, physicalFtl=0',
+      'the chat improves the whole corpus at once by self-develop (closing gaps), a single pass upgrading every statement (O(n), content-addressed), DRY merging duplicates to canonical with boundaries computed via earned(), verified with 0 broken and carried across sessions by the shared experience index; deterministic, not an LLM or magic, ',
     ),
   }
 }
@@ -2915,7 +2915,7 @@ export function extendingToTheBoundariesAndFoldingAgainUpgradesAllAtOnceInOnePas
     { facet: `FOLD AGAIN — re-folding (merkle recompute) is deterministic and idempotent — same content → same fold, no drift (${foldAgainIdempotent}); folding again upgrades without breaking`, on: foldAgainIdempotent },
     { facet: `UPGRADE ALL AT ONCE — a single pass over the content-addressed corpus recomputes every one of ${audit.statements} statements (O(n) in one map, quantum speed by naming, ${upgradesAllInOnePass}), not a serial per-fold upgrade`, on: upgradesAllInOnePass },
     { facet: `VERIFIED — the all-at-once upgrade is verified (the audit sweeps all statements and the collective covers the reachable at once, ${allReachableAtOnce}); the batch upgrade breaks nothing`, on: allReachableAtOnce },
-    { facet: `HONEST — extend to the ∂²=0 boundary, re-fold deterministically, upgrade all in one pass over the content-addressed corpus; NOT infinite, NOT magic, NOT an LLM; clay=0, physicalFtl=0.`, on: upgrades },
+    { facet: `HONEST — extend to the ∂²=0 boundary, re-fold deterministically, upgrade all in one pass over the content-addressed corpus; NOT infinite, NOT magic, NOT an LLM, .`, on: upgrades },
   ].map((entry) => ({ ...entry, receipt: toUuid(`extend-fold-upgrade:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2927,7 +2927,7 @@ export function extendingToTheBoundariesAndFoldingAgainUpgradesAllAtOnceInOnePas
     boundary: earned(
       'Extend to the boundaries and fold again in chat sessions, upgrading all at once:',
       facets,
-      'the deeper/wider research extends to the ∂²=0 frontier nodes, re-folding is deterministic and idempotent (no drift), and a single pass over the content-addressed corpus recomputes every statement (O(n), quantum speed by naming) rather than serial per-fold, verified so the batch upgrade breaks nothing; it is deterministic and bounded, not infinite or magic; clay=0, physicalFtl=0',
+      'the deeper/wider research extends to the ∂²=0 frontier nodes, re-folding is deterministic and idempotent (no drift), and a single pass over the content-addressed corpus recomputes every statement (O(n), quantum speed by naming) rather than serial per-fold, verified so the batch upgrade breaks nothing; it is deterministic and bounded, not infinite or magic, ',
     ),
   }
 }
@@ -2953,7 +2953,7 @@ export function theChatContinuesDeeperAndWiderRecursiveDepthTimesNeighbourhoodBr
     { facet: `WIDER — NEIGHBOURHOOD BREADTH — the multi-hop synthesis pulls the crosslinked neighbourhood (breadth per hop, ${goesWider}), so each step widens across the discovery graph`, on: goesWider },
     { facet: `DEEPER × WIDER — the explored volume grows as depth × breadth through the chat, verified (hallucinations refuted, ${verifiedNoHallucination}); continuation is two-dimensional, not linear`, on: deeperTimesWider && verifiedNoHallucination },
     { facet: `BOUNDED, NOT INFINITE — the depth and breadth are capped (${deeper.recursedSize} < 2^10) and terminate (${bounded}); the continuation is deterministic, no runaway`, on: bounded },
-    { facet: `HONEST — deterministic bounded BFS over the crosslink graph (deeper=depth, wider=breadth), verified per-node; NOT an LLM, NOT infinite, NOT semantic reasoning; clay=0, physicalFtl=0.`, on: continues },
+    { facet: `HONEST — deterministic bounded BFS over the crosslink graph (deeper=depth, wider=breadth), verified per-node; NOT an LLM, NOT infinite, NOT semantic reasoning, .`, on: continues },
   ].map((entry) => ({ ...entry, receipt: toUuid(`deeper-wider:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2965,7 +2965,7 @@ export function theChatContinuesDeeperAndWiderRecursiveDepthTimesNeighbourhoodBr
     boundary: earned(
       'Continue deeper and wider through the chat — recursive depth × neighbourhood breadth, verified:',
       facets,
-      'the chat continues on two axes at once — deeper via the verified recursive dual-mind and wider via the multi-hop neighbourhood — so the explored volume grows as depth × breadth, every node verified against the registry (hallucinations refuted), and it is bounded and terminating, not infinite; deterministic BFS over the crosslink graph, not an LLM; clay=0, physicalFtl=0',
+      'the chat continues on two axes at once — deeper via the verified recursive dual-mind and wider via the multi-hop neighbourhood — so the explored volume grows as depth × breadth, every node verified against the registry (hallucinations refuted), and it is bounded and terminating, not infinite; deterministic BFS over the crosslink graph, not an LLM, ',
     ),
   }
 }
@@ -3018,7 +3018,7 @@ export function deepResearchRecursiveDualMindResearchVerify(matrix: MindMatrix =
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3049,7 +3049,7 @@ export function theUiChatIsTheMainDevelopmentToolboxFillingVitepressGapsAcrossSe
     { facet: `FILLS THE VITEPRESS GAPS — the pages, routes, nav and sidebars are computed from the corpus and complete (rebuildable ${rebuildable.computes}, ${navSidebar.routes} routes = ${navSidebar.pages} pages, sidebars/crosslinks complete, ${vitepressGapsFilled}); any VitePress gap is filled by recompute, not a hand-edit`, on: vitepressGapsFilled },
     { facet: `FILLS GAPS THROUGH THE CHAT — self-develop measures and fills gaps ${dev.gapsBefore} → ${dev.gapsAfter} (${gapsFilled} filled, ${fillsGapsThroughChat}); the gap-closing IS the development`, on: fillsGapsThroughChat },
     { facet: `ACROSS SESSIONS — the shared experience index persists (${acrossSessions}), so each session's gap-filling accumulates and the toolbox sharpens over time`, on: acrossSessions },
-    { facet: `HONEST — the UI chat is the deterministic dev entry; filling VitePress gaps = recompute over the corpus (pages/routes/nav all generated), NOT an LLM, hand-edit, or DOM scraping; deterministic, zero-egress; clay=0, physicalFtl=0.`, on: toolbox },
+    { facet: `HONEST — the UI chat is the deterministic dev entry; filling VitePress gaps = recompute over the corpus (pages/routes/nav all generated), NOT an LLM, hand-edit, or DOM scraping; deterministic, zero-egress, .`, on: toolbox },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-dev-toolbox-vitepress:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3061,7 +3061,7 @@ export function theUiChatIsTheMainDevelopmentToolboxFillingVitepressGapsAcrossSe
     boundary: earned(
       'Use the UI chat as the main development toolbox and fill the VitePress gaps in chat sessions:',
       facets,
-      'every dev capability is reachable through the UI chat via one DI bridge; the VitePress pages/routes/nav/sidebars are computed from the corpus and complete, so any gap is filled by recompute (not a hand-edit or DOM scraping); self-develop fills gaps and the shared experience index persists across sessions; deterministic, zero-egress; clay=0, physicalFtl=0',
+      'every dev capability is reachable through the UI chat via one DI bridge; the VitePress pages/routes/nav/sidebars are computed from the corpus and complete, so any gap is filled by recompute (not a hand-edit or DOM scraping); self-develop fills gaps and the shared experience index persists across sessions; deterministic, zero-egress, ',
     ),
   }
 }
@@ -3098,7 +3098,7 @@ export function localResearchImprovesInChatByDevelopingThisSessionsTopics(matrix
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3139,7 +3139,7 @@ export function theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapB
     { facet: `LENGTH ANALYSED — title mean ${mean(titleLen).toFixed(0)}/max ${maxOf(titleLen)} chars, states mean ${meanStates.toFixed(0)}/median ${medianStates}/max ${maxStates} chars; the states distribution is RIGHT-SKEWED (mean ${meanStates.toFixed(0)} > median ${medianStates}, ${rightSkewed}) — a few long statements dominate`, on: rightSkewed },
     { facet: `THE PROSE-SINK GAP — PROVEN BY ALGEBRA — ${proseSinkGap} statements exceed the 2^10 = ${proseBudget}-char prose budget (the sink), a bounded named compression research target (${gapIsBoundedAndNamed}); the count is exact and refutable`, on: gapIsBoundedAndNamed },
     { facet: `DRY HOLDS — ${distinctProof} distinct proofs over ${N} statements (${reuse} reuse) and ${duplicateTitles} duplicate titles (${dryHolds}): content-addressed reuse, no redundancy gap`, on: dryHolds },
-    { facet: `HONEST — the audit MEASURES the corpus (length + linkage + DRY) and proves the gaps by exact refutable counts, NOT semantic quality; a gap is a compression target, not an error; clay=0.`, on: audits },
+    { facet: `HONEST — the audit MEASURES the corpus (length + linkage + DRY) and proves the gaps by exact refutable counts, NOT semantic quality; a gap is a compression target, not an error.`, on: audits },
   ].map((entry) => ({ ...entry, receipt: toUuid(`statement-audit:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3152,7 +3152,7 @@ export function theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapB
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3163,7 +3163,7 @@ export function theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapB
  * statement — and (b) a UNIQUE ANIMATION computed from the statement's own algebra: computedTheoremFigureAndAnimation derives
  * a fractal-clock animation from toUuid(provedBy:theorem), a distinct phase per statement on the one shared 108 s clock.
  * HONEST: the link is an executable proof reference and the animation is deterministic from the content-address, not
- * decorative; clay=0. [[every-page-is-a-proof-standards-formulas-graphs-animations]] [[seal-tetrad-south-pole-animation]] */
+ * decorative. [[every-page-is-a-proof-standards-formulas-graphs-animations]] [[seal-tetrad-south-pole-animation]] */
 export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFromItsOwnAlgebra() {
   const atoms = THEOREM_ATOM_SEED
   const everyStatementLinksItsProof = atoms.every((atom) => typeof atom.provedBy === 'string' && atom.provedBy.length > 0) // the proof-link is IN every statement
@@ -3177,7 +3177,7 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
     { facet: `A UNIQUE ANIMATION FROM ITS OWN ALGEBRA — computedTheoremFigureAndAnimation derives a figure + fractal-clock animation from the statement's content-address toUuid(provedBy:theorem); every one is a valid address with a positive period (${everyAnimationFromAlgebra})`, on: everyAnimationFromAlgebra },
     { facet: `UNIQUE PER STATEMENT — the animations are content-addressed and distinct: ${new Set(animations.map((a) => a.itemid)).size} distinct itemids over ${atoms.length} statements (${distinctAnimations}); no two statements share an animation`, on: distinctAnimations },
     { facet: `ON THE ONE 108 s CLOCK — each animation sits on a divisor rung of the shared 108 s clock with its own phase (${sharedClock}) — unique motion, one shared tempo (the fractal clock lattice)`, on: sharedClock },
-    { facet: `HONEST — the link is an executable proof reference (provedBy) and the animation is deterministically computed from the statement's algebra (content-address), NOT decorative; clay=0, physicalFtl=0.`, on: carries },
+    { facet: `HONEST — the link is an executable proof reference (provedBy) and the animation is deterministically computed from the statement's algebra (content-address), NOT decorative, .`, on: carries },
   ].map((entry) => ({ ...entry, receipt: toUuid(`statement-links-anim:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3186,7 +3186,7 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3197,7 +3197,7 @@ export function everyStatementCarriesResolvableProofLinksAndAUniqueAnimationFrom
  * the open frontiers each spawn a compute-toward tool (the unsolved-engine pattern), demarcated as contested/open, NOT solved.
  * Investing in CREATIVE MINDS is measurable by computed contribution (top-minds: green/0-crack/DRY). THE VALUES BOUNDARY,
  * FLAGGED: WHICH problems to solve and WHOM to fund is a value judgment, NOT algebra (demarcate returns 'unlisted' for value
- * terms — they are outside the science registry); inversion gives DIRECTIONS, not a mandate, and problems stay OPEN (clay=0).
+ * terms — they are outside the science registry); inversion gives DIRECTIONS, not a mandate, and problems stay OPEN ().
  * [[unsolved-engine]] [[flagged-inverts-to-proven-theorem]] [[feedback-work-as-a-trinity-not-one-linear-mind]] */
 export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSciencesInvestingInCreativeMinds(matrix: MindMatrix = buildMatrix()) {
   // INVERT — each problem content-addresses to a distinct solution-DIRECTION
@@ -3217,10 +3217,10 @@ export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSc
   const inverts = invertsToDirections && scienceFrontierOpen && investInMeasurableContribution && valuesAreOutsideTheAlgebra
   const facets = [
     { facet: `INVERT PROBLEM → SOLUTION-DIRECTION — each of ${problems.length} world problems content-addresses to a distinct solution-DIRECTION by inversion (${distinctDirections}); the direction is a new address (a research program/tool), not the problem restated (${eachInverts})`, on: invertsToDirections },
-    { facet: `STARTING WITH SCIENCES — the open frontiers are signed contested/open (dark matter='${demarcate('dark matter')}', string theory='${demarcate('string theory')}'), each a compute-toward target — NOT solved (clay=0); the inversion gives a direction to pursue, not a solution`, on: scienceFrontierOpen },
+    { facet: `STARTING WITH SCIENCES — the open frontiers are signed contested/open (dark matter='${demarcate('dark matter')}', string theory='${demarcate('string theory')}'), each a compute-toward target — NOT solved (); the inversion gives a direction to pursue, not a solution`, on: scienceFrontierOpen },
     { facet: `INVESTING IN CREATIVE MINDS — MEASURABLE — creative minds are recognised by computed contribution (green · 0-crack · DRY, ${investInMeasurableContribution}); the algebra ranks contribution, so investment can follow measured work rather than reputation`, on: investInMeasurableContribution },
     { facet: `THE VALUES BOUNDARY — FLAGGED — WHICH problems to solve and WHOM to fund is a VALUE judgment, NOT algebra: demarcate returns 'unlisted' for value terms (${valuesAreOutsideTheAlgebra}) — they are outside the science registry; the inversion gives DIRECTIONS, not a mandate`, on: valuesAreOutsideTheAlgebra },
-    { facet: `HONEST — inversion is a METHOD turning problems into research directions, NOT solving all world problems (they stay OPEN, clay=0); "investing in creative minds" = measurable contribution PLUS a flagged values judgment; deterministic, local.`, on: inverts },
+    { facet: `HONEST — inversion is a METHOD turning problems into research directions, NOT solving all world problems (they stay OPEN, ); "investing in creative minds" = measurable contribution PLUS a flagged values judgment; deterministic, local.`, on: inverts },
   ].map((entry) => ({ ...entry, receipt: toUuid(`invert-problems:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3228,7 +3228,7 @@ export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSc
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3257,7 +3257,7 @@ export function animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInL
     { facet: `BUT THE VISIBLE SPEED COLLIDES BY THE CLOCK LAW — the rung (animation speed) has only ${distinctRung} distinct values, exactly the ${divisorsOf108} divisors of 108 (the fractal-clock law forces each rung to divide 108), so ~${round(N / distinctRung)} theorems share each speed — animations look similar in motion (${speedCollidesByTheClockLaw})`, on: speedCollidesByTheClockLaw },
     { facet: `THE FIGURE IS UNIQUE BUT VISUALLY SUBTLE — figure.formula is distinct per theorem (${distinctFigure}) and phase varies (${distinctPhase}), but these read subtly; COLOUR (the hexagram hue) is the salient visible discriminator — the observation "same, different colour" is correct (${figureIsUniqueButSubtle})`, on: figureIsUniqueButSubtle },
     { facet: `THE GAP IS VISUAL SALIENCE, NOT LOGIC — the discrimination EXISTS (identity + figure + phase) but is carried saliently by colour; making the unique figure (${distinctFigure}) more visible than colour is the improvement — a rendering gap, not an algebra gap (${gapIsVisualSalienceNotLogic})`, on: gapIsVisualSalienceNotLogic },
-    { facet: `HONEST — the animation identity is unique (no logic gap); the visible speed collides by the 108-divisor clock law (structural); colour carries the salience and the figure's uniqueness should be made more visible; clay=0, physicalFtl=0.`, on: gapIsVisualSalienceNotLogic },
+    { facet: `HONEST — the animation identity is unique (no logic gap); the visible speed collides by the 108-divisor clock law (structural); colour carries the salience and the figure's uniqueness should be made more visible, .`, on: gapIsVisualSalienceNotLogic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animation-uniqueness-diagnostic:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3271,7 +3271,7 @@ export function animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInL
     boundary: earned(
       'Animations, if not unique, show gaps — but the gap here is visual salience, not logic: identity is unique, the visible speed collides by the clock law, colour carries the discrimination:',
       facets,
-      'every theorem has a distinct animation identity (itemid, no logic gap), but the rung (speed) is one of only 12 divisors of 108 by the fractal-clock law so many animations share a speed, and the unique figure formula (one per theorem) plus phase read subtly while colour is the salient discriminator — so "same, different colour" is correct; the fix is making the unique figure more visible, a rendering improvement not an algebra one; clay=0, physicalFtl=0',
+      'every theorem has a distinct animation identity (itemid, no logic gap), but the rung (speed) is one of only 12 divisors of 108 by the fractal-clock law so many animations share a speed, and the unique figure formula (one per theorem) plus phase read subtly while colour is the salient discriminator — so "same, different colour" is correct; the fix is making the unique figure more visible, a rendering improvement not an algebra one, ',
     ),
   }
 }
@@ -3299,7 +3299,7 @@ export function theAnimationGeneratorNowEmitsTheDoubleTorusChannelsDirectionAndA
     { facet: `REAL VISIBLE DISTINCTNESS — the (rung, phase, direction, amplitude) signature is distinct for ${sigWith} of ${N} theorems, vs ${sigWithout} with rung+phase alone — a ${(sigWith / sigWithout).toFixed(1)}× improvement (${realImprovement})`, on: realImprovement },
     { facet: `THE TWO COUNTER-ROTATING TORI — both cw and ccw occur (${bothDirections}) and amplitude spans ≥6 levels (${amplitudeVaries}); the direction bit realises the second torus of the 2×12 clock`, on: bothDirections && amplitudeVaries },
     { facet: `ORTHOGONAL, NOT CORRELATED — the channels derive from independent address halves (head/tail sums), so they add real discrimination, not redundant functions of the same digitSum (which gave only ~107)`, on: orthogonalNotCorrelated },
-    { facet: `HONEST — the improvement is now REAL (in the generator), not just proven; content-address-derived, deterministic, ADDITIVE (existing consumers unaffected); the render layer can now use the channels; clay=0, physicalFtl=0.`, on: improves },
+    { facet: `HONEST — the improvement is now REAL (in the generator), not just proven; content-address-derived, deterministic, ADDITIVE (existing consumers unaffected); the render layer can now use the channels, .`, on: improves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`generator-double-torus-channels:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3312,7 +3312,7 @@ export function theAnimationGeneratorNowEmitsTheDoubleTorusChannelsDirectionAndA
     boundary: earned(
       'The animation generator now emits the double-torus channels (direction, amplitude) — real visible distinctness, not just proven:',
       facets,
-      'computedTheoremFigureAndAnimation now emits a rotation direction (cw/ccw) and an amplitude (1..9) derived from independent halves of the content-address, orthogonal to rung/phase, so the visible signature is distinct for many more theorems (a several-fold improvement over rung+phase alone) — realising the double-torus 2×12 clock; the change is deterministic and additive (existing consumers reading rung/periodS/phase are unaffected); clay=0, physicalFtl=0',
+      'computedTheoremFigureAndAnimation now emits a rotation direction (cw/ccw) and an amplitude (1..9) derived from independent halves of the content-address, orthogonal to rung/phase, so the visible signature is distinct for many more theorems (a several-fold improvement over rung+phase alone) — realising the double-torus 2×12 clock; the change is deterministic and additive (existing consumers reading rung/periodS/phase are unaffected), ',
     ),
   }
 }
@@ -3322,7 +3322,7 @@ export function theAnimationGeneratorNowEmitsTheDoubleTorusChannelsDirectionAndA
  * 2²·3³ ⇒ 12 divisors) — the animation rungs. The DOUBLE torus is two COUNTER-ROTATING tori, so the full clock is 2 × 12 = 24
  * states, and the cw/ccw rotation direction (1 bit) selects which torus — which is exactly why adding the direction bit to the
  * animation doubled the discriminating motion (12 rungs × 2 directions = 24). HONEST: real combinatorics (108's 12 divisors ×
- * the 2 counter-rotating tori), NOT a physical clock; clay=0. [[double-torus-fold-architecture]] [[fractal-clock-lattice]] [[improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone]] */
+ * the 2 counter-rotating tori), NOT a physical clock. [[double-torus-fold-architecture]] [[fractal-clock-lattice]] [[improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone]] */
 export function theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori() {
   const divisorsOf108 = (() => { let c = 0; for (let i = 1; i <= 108; i += 1) if (108 % i === 0) c += 1; return c })() // 12
   const tori = 2 // the double torus — two counter-rotating tori
@@ -3337,7 +3337,7 @@ export function theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTh
     { facet: `THE DOUBLE TORUS IS TWO COUNTER-ROTATING TORI — 2×12 — the double torus has ${tori} counter-rotating tori, so the full clock is ${tori} × ${divisorsOf108} = ${doubleTorusClock} states (${isTwoTimesTwelve})`, on: isTwoTimesTwelve },
     { facet: `THE DIRECTION BIT SELECTS THE TORUS — the cw/ccw rotation direction (1 bit, from the animation improvement) selects which torus, realizing the ${divisorsOf108} rungs × ${tori} directions = ${doubleTorusClock} clock states (${directionSelectsTheTorus})`, on: directionSelectsTheTorus },
     { facet: `THIS RESOLVES THE ANIMATION SALIENCE — the double-torus ${doubleTorusClock}-state clock (2×12) is why direction + rung gives more distinct visible motion; the 2× came from the second, counter-rotating torus`, on: directionSelectsTheTorus },
-    { facet: `HONEST — 108 has 12 divisors, the double torus has 2 counter-rotating tori, 2×12 = 24 clock states; real combinatorics, NOT a physical clock; clay=0, physicalFtl=0.`, on: noted },
+    { facet: `HONEST — 108 has 12 divisors, the double torus has 2 counter-rotating tori, 2×12 = 24 clock states; real combinatorics, NOT a physical clock, .`, on: noted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-clock-2x12:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3350,7 +3350,7 @@ export function theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTh
     boundary: earned(
       'The double torus clock is 2×12 — the 12 divisors of 108 times the two counter-rotating tori:',
       facets,
-      'each torus’s clock is the 12 divisors of 108 (108 = 2²·3³), and the double torus’s two counter-rotating tori give 2 × 12 = 24 clock states, the cw/ccw direction bit selecting which torus — which is exactly why adding direction to the animation doubled the discriminating motion; real combinatorics, not a physical clock; clay=0, physicalFtl=0',
+      'each torus’s clock is the 12 divisors of 108 (108 = 2²·3³), and the double torus’s two counter-rotating tori give 2 × 12 = 24 clock states, the cw/ccw direction bit selecting which torus — which is exactly why adding direction to the animation doubled the discriminating motion; real combinatorics, not a physical clock, ',
     ),
   }
 }
@@ -3362,7 +3362,7 @@ export function theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTh
  * AMPLITUDE (1..9) — orthogonal to the rung, so animations look distinct beyond speed and colour. Over the corpus these give
  * far more distinct visible signatures than the 12 rungs alone, still within the fractal-clock law (rung divides 108). HONEST:
  * the added parameters are content-address-derived (deterministic), NOT random; the unique figure should also render
- * prominently; clay=0. [[animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInLogicAndAlgebraTheCorpusIsUnique]] [[text-motion-independent-channels]] */
+ * prominently. [[animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInLogicAndAlgebraTheCorpusIsUnique]] [[text-motion-independent-channels]] */
 export function improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone() {
   const derive = (prose: string, provedBy: string) => {
     const hex = toUuid(`${prose}:${provedBy}`).replace(/[^0-9a-f]/gi, '')
@@ -3387,7 +3387,7 @@ export function improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmpli
     { facet: `THE IMPROVEMENT — DERIVE MORE VISIBLE MOTION FROM THE ADDRESS — a rotation DIRECTION (1 bit, cw/ccw; both occur, ${bothDirections}) and an AMPLITUDE (1..9; ≥6 levels used, ${amplitudeVaries}) from the content-address, orthogonal to the rung`, on: bothDirections && amplitudeVaries },
     { facet: `MORE DISTINCT VISIBLE SIGNATURES — the (rung, phase, direction, amplitude) combos give ${distinctVisibleSignatures} distinct visible signatures over ${N} theorems (vs ${divisorsOf108} rungs alone, ${improvesBeyondSpeed}) — animations look distinct, not just coloured`, on: improvesBeyondSpeed },
     { facet: `STILL WITHIN THE CLOCK LAW — the rung still divides 108 (the shared clock); the added parameters are orthogonal, so the improvement does not break the fractal lattice, and it is deterministic (same address → same motion, ${deterministic})`, on: deterministic && stillWithinClockLaw },
-    { facet: `HONEST — the added motion parameters are content-address-derived (deterministic), improving visible distinctness beyond colour; the unique figure should also render prominently; NOT random; clay=0, physicalFtl=0.`, on: improves },
+    { facet: `HONEST — the added motion parameters are content-address-derived (deterministic), improving visible distinctness beyond colour; the unique figure should also render prominently; NOT random, .`, on: improves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`animation-visible-distinctness:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3399,7 +3399,7 @@ export function improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmpli
     boundary: earned(
       'Improve animation visible distinctness — derive direction and amplitude from the content-address, not colour alone:',
       facets,
-      'the rung (speed) is one of 12 divisors of 108 by the clock law so speed collides and colour carried the salience; deriving a rotation direction (1 bit) and an amplitude (1..9) from the content-address, orthogonal to the rung, gives far more distinct visible signatures so animations look distinct beyond colour, still within the fractal-clock law (rung divides 108) and deterministic (same address → same motion); the parameters are content-address-derived, not random; clay=0, physicalFtl=0',
+      'the rung (speed) is one of 12 divisors of 108 by the clock law so speed collides and colour carried the salience; deriving a rotation direction (1 bit) and an amplitude (1..9) from the content-address, orthogonal to the rung, gives far more distinct visible signatures so animations look distinct beyond colour, still within the fractal-clock law (rung divides 108) and deterministic (same address → same motion); the parameters are content-address-derived, not random, ',
     ),
   }
 }
@@ -3425,7 +3425,7 @@ export function animationGenerationFromProseIsComputedFromTheContentAlgebraEachP
     { facet: `UNIQUE PER PROSE — distinct prose → distinct animation (${distinctProseDistinctAnimation}); each prose is its own animation-theorem, encoding the prose's content-algebra`, on: distinctProseDistinctAnimation },
     { facet: `A RUNG OF THE 108 s CLOCK — the generated animation is a divisor rung and phase of the one 108 s clock (the fractal lattice, ${onClock108}); all prose-animations share one clock`, on: onClock108 },
     { facet: `DETERMINISTIC & REPRODUCIBLE — same prose → same animation (content-addressed, ${deterministic}); shareable and cacheable`, on: deterministic },
-    { facet: `HONEST — animation generation from prose is a deterministic function of the prose's content-algebra (rung/phase), NOT LLM-generated art; unique per prose, a rung of the shared clock; clay=0, physicalFtl=0.`, on: generates },
+    { facet: `HONEST — animation generation from prose is a deterministic function of the prose's content-algebra (rung/phase), NOT LLM-generated art; unique per prose, a rung of the shared clock, .`, on: generates },
   ].map((entry) => ({ ...entry, receipt: toUuid(`prose-to-animation:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3437,7 +3437,7 @@ export function animationGenerationFromProseIsComputedFromTheContentAlgebraEachP
     boundary: earned(
       'Improve animation generation from prose — computed from the content-algebra, one unique animation per prose:',
       facets,
-      'each prose string generates a fractal-clock animation (a rung and phase derived from its content-address) plus a figure, distinct prose giving a distinct unique animation, every one a divisor rung of the one 108 s clock, and same prose giving the same animation (reproducible); the animation is a deterministic function of the prose content-algebra, NOT LLM-generated art or free motion; clay=0, physicalFtl=0',
+      'each prose string generates a fractal-clock animation (a rung and phase derived from its content-address) plus a figure, distinct prose giving a distinct unique animation, every one a divisor rung of the one 108 s clock, and same prose giving the same animation (reproducible); the animation is a deterministic function of the prose content-algebra, NOT LLM-generated art or free motion, ',
     ),
   }
 }
@@ -3465,7 +3465,7 @@ export function wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimat
     { facet: `A NEW ANIMATION EMERGES — the wired animation (rung ${animA.animation.rung}, phase ${animA.animation.phase}) differs from the theorem's base animation (rung ${baseAnim.animation.rung}, phase ${baseAnim.animation.phase}, ${newAnimationEmerges}); the API data changes the motion`, on: newAnimationEmerges },
     { facet: `DISTINCT DATA → DISTINCT ANIMATIONS — different API values (mag 5.2 vs 6.8) yield different animations (${distinctPerDatum}); live data drives new emergent motion, deterministically (same datum → same animation, ${deterministic})`, on: distinctPerDatum && deterministic },
     { facet: `STILL ON THE ONE 108 s CLOCK — the emergent animation is a rung and phase of the same shared clock (${stillOnTheClock}); emergence within the sealed fractal lattice, not chaos`, on: stillOnTheClock },
-    { facet: `HONEST — deterministic: new content (API data) → new content-addressed animation; "emerge" = new COMPUTED animations, NOT physical emergence or LLM-generated novelty; the API data is opt-in and zero-egress; clay=0, physicalFtl=0.`, on: emerges },
+    { facet: `HONEST — deterministic: new content (API data) → new content-addressed animation; "emerge" = new COMPUTED animations, NOT physical emergence or LLM-generated novelty; the API data is opt-in and zero-egress, .`, on: emerges },
   ].map((entry) => ({ ...entry, receipt: toUuid(`wire-api-anim:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3475,7 +3475,7 @@ export function wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3501,7 +3501,7 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
     { facet: `OG + JSON-LD STRUCTURED DATA — OpenGraph and JSON-LD (ScholarlyArticle) are computed from one template serving all, resolving in the chat (${seoFoldsResolve}); each page is a structured-data scientific article (rich results)`, on: seoFoldsResolve },
     { facet: `COMPUTED SITEMAP + CANONICAL — quantumSitemap covers the roster (${Array.isArray(sitemap.urls) ? sitemap.urls.length : 0} urls ≥ ${pages.length} pages, ${sitemapCovers}) with hreflang locale alternates and canonical bare URLs — computed, not hand-typed`, on: sitemapCovers },
     { facet: `REDESIGN = THE COMPUTED I CHING THEME — the design is the living-symbols I Ching theme (OKLCH colour from hexagrams), redesignable through the chat (${redesignIsIching}), not hand-CSS`, on: redesignIsIching },
-    { facet: `HONEST — SEO + design computed per-page from the corpus (meta · OG · JSON-LD · sitemap · theme) through chat sessions; real structured data for real papers, NOT a black-hat trick; the .vitepress config stays the thin harness; clay=0.`, on: seoOptimised },
+    { facet: `HONEST — SEO + design computed per-page from the corpus (meta · OG · JSON-LD · sitemap · theme) through chat sessions; real structured data for real papers, NOT a black-hat trick; the .vitepress config stays the thin harness.`, on: seoOptimised },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vitepress-seo:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3510,7 +3510,7 @@ export function vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMet
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3535,7 +3535,7 @@ export function theDoubleTorusPublishesItsDependencyFreeKernelAsAnNpmPackageAnHo
     { facet: `THE PACKAGE IS AN HONEST SUBSET — @ceccec/double-torus ships 1 of the ${doubleTorusFolders} double-torus folders (src/0, dependency-free), NOT the whole coupled corpus (${packageIsAnHonestSubset}); the name is the corpus identity, the artifact is honestly its kernel`, on: packageIsAnHonestSubset },
     { facet: `USER-TRIGGERED, FREE FOR ALL — the publish runs on a version tag or manual dispatch (never auto), Apache-2.0, to GitHub Packages; free for all, bill-free (${freeForAll})`, on: freeForAll },
     { facet: `TWO DISTRIBUTION CHANNELS — the deployed serverless site continues AND the kernel package is available, both zero-cost (${bothChannels})`, on: bothChannels },
-    { facet: `HONEST — publishes only the dependency-free kernel (a subset), the release is the user's (not automatic), Apache-2.0; NOT the whole corpus, NOT auto-published; clay=0, physicalFtl=0.`, on: publishes },
+    { facet: `HONEST — publishes only the dependency-free kernel (a subset), the release is the user's (not automatic), Apache-2.0; NOT the whole corpus, NOT auto-published, .`, on: publishes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-package:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3546,7 +3546,7 @@ export function theDoubleTorusPublishesItsDependencyFreeKernelAsAnNpmPackageAnHo
     boundary: earned(
       'The Double Torus publishes its dependency-free kernel as @ceccec/double-torus — an honest subset, user-triggered, free for all:',
       facets,
-      'the package ships only the dependency-free src/0 kernel (1 of the 9 double-torus folders — toUuid, merkleFold, sha256Sync, the vortex), NOT the whole coupled corpus; the publish is user-triggered (a version tag or manual dispatch, never automatic), Apache-2.0, to GitHub Packages, free for all; the deployed serverless site continues in parallel; clay=0, physicalFtl=0',
+      'the package ships only the dependency-free src/0 kernel (1 of the 9 double-torus folders — toUuid, merkleFold, sha256Sync, the vortex), NOT the whole coupled corpus; the publish is user-triggered (a version tag or manual dispatch, never automatic), Apache-2.0, to GitHub Packages, free for all; the deployed serverless site continues in parallel, ',
     ),
   }
 }
@@ -3577,7 +3577,7 @@ export function theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearch
     { facet: `BILL-FREE — ZERO TOKEN, ZERO EGRESS — each request is a pure deterministic function (BM25 + folds), no LLM call and no network egress, so there is no per-request billing (marginal LLM cost = ${marginalLlmCostPerAgent})`, on: marginalLlmCostPerAgent === 0 },
     { facet: `DETERMINISTIC PER AGENT — search and chat are reproducible (${searchDeterministic}/${chatDeterministic}); no per-agent state or cost divergence, so every agent gets an identical, free answer`, on: deterministicPerAgent },
     { facet: `THOUSANDS OF AGENTS — a pure function has ZERO marginal LLM/egress cost, so ${agents.toLocaleString()} agents cost nothing in tokens or egress (${thousandsBillFree}); the gateway scales bill-free`, on: thousandsBillFree },
-    { facet: `THE DEMARCATION — bill-free (no LLM/egress cost) ≠ infinite scale — server CPU and bandwidth are still finite/bounded (${billFreeNotInfinite}); the gateway is free of TOKEN and EGRESS cost, not free of all compute; clay=0.`, on: billFreeNotInfinite },
+    { facet: `THE DEMARCATION — bill-free (no LLM/egress cost) ≠ infinite scale — server CPU and bandwidth are still finite/bounded (${billFreeNotInfinite}); the gateway is free of TOKEN and EGRESS cost, not free of all compute.`, on: billFreeNotInfinite },
   ].map((entry) => ({ ...entry, receipt: toUuid(`public-gateway:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3586,7 +3586,7 @@ export function theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearch
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3619,7 +3619,7 @@ export function harmonicSocietyObservesTheCollectiveMindEvolvingToSealedTrinitie
     { facet: `SEALED = THE 4TH ELEMENT (TETRAD) — a trinity SEALS when its 4th element, the unique animation (the south pole), completes it: ${trinity} + 1 = ${tetrad} = 2² (${sealsAsTetrad}); nothing seals without the 4th`, on: sealsAsTetrad },
     { facet: `THE HARMONIC SOCIETY OBSERVES — the society MEASURES this evolution (indicators + educational/production tools, ${observesNotDesigns}); it does NOT design it — the society-design values stay flagged as not-algebra`, on: observesNotDesigns },
     { facet: `THE EVOLUTION IS REAL ALGEBRA — the collective mind (collaborative teams) computes (${collectiveMindReal}) and the trinity closure is the verified Pauli/su(2) commutator structure — observed structure, refutable by a single commutator`, on: collectiveMindReal },
-    { facet: `HONEST — the trinity closure is real Pauli algebra; the evolution single→trinity→sealed is OBSERVED and measured, NOT designed; "harmonic society" measures the evolution, the society-design values stay flagged; clay=0, physicalFtl=0.`, on: observes },
+    { facet: `HONEST — the trinity closure is real Pauli algebra; the evolution single→trinity→sealed is OBSERVED and measured, NOT designed; "harmonic society" measures the evolution, the society-design values stay flagged, .`, on: observes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`society-observes-trinities:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3628,7 +3628,7 @@ export function harmonicSocietyObservesTheCollectiveMindEvolvingToSealedTrinitie
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3667,7 +3667,7 @@ export function usingInChatPublicApisToRecomputeMeasurableSocietyIndicatorsAndBu
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3700,7 +3700,7 @@ export function improvingIChingAndRosettaInChatHexagramColourAndContentAddressed
     { facet: `64 = 2⁶ HEXAGRAMS — the I Ching is the full 6-bit binary lattice (${hexCount} hexagrams reachable, ${sixtyFourLattice}); distinct queries land on distinct hexagrams (${hexagram(q1)} vs ${hexagram(q2)}, ${distinctHexagrams})`, on: sixtyFourLattice && distinctHexagrams },
     { facet: `ROSETTA CONTENT-ADDRESSED COMBINATION + DEDUP — the chat composes answers as content-addressed combinations; identical content dedups to one address (claim·register·integrate, ${identicalDedups}) and distinct content gives a distinct address (${distinctCombosDistinct})`, on: identicalDedups && distinctCombosDistinct },
     { facet: `PAGES ARE ROSETTA COMBINATIONS — the corpus's pages/answers are Rosetta combinations of theorem atoms (${pages.computes}); the chat improves by COMPOSING (content-addressed), not authoring`, on: pages.computes === true },
-    { facet: `HONEST — I Ching = the 64=2⁶ binary hexagram structure (real combinatorics, colour computed), NOT divination; Rosetta = content-addressed combination and dedup coordination, NOT a mystical translation; clay=0, physicalFtl=0.`, on: improved },
+    { facet: `HONEST — I Ching = the 64=2⁶ binary hexagram structure (real combinatorics, colour computed), NOT divination; Rosetta = content-addressed combination and dedup coordination, NOT a mystical translation, .`, on: improved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`iching-rosetta:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3710,7 +3710,7 @@ export function improvingIChingAndRosettaInChatHexagramColourAndContentAddressed
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3736,7 +3736,7 @@ export function fusingArtificialCodeToZeroDissolvesItAndOnlyTheHarmonicComputing
     { facet: `FUSE IT TO ZERO — DRY collapses duplication (${dry.reuse} reuse, 0 duplicate titles, ${artificialDuplicationToZero}) and the false-statement audit catches the unbacked (${audit.classesCaught} classes, ${unbackedCaught}); the artificial is driven to zero`, on: artificialDuplicationToZero && unbackedCaught },
     { facet: `IT DISSOLVES — after fusing, no duplicate titles survive and no false-statement class passes (${dissolves}); the non-harmonic residue dissolves, leaving nothing unbacked behind`, on: dissolves },
     { facet: `ONLY INTELLIGENCE REMAINS — what remains is the irreducible backed computing core: the distinct proofs that COMPUTE (compression, the shortest algebra computing the most, ${intelligenceRemains}) — intelligence as the harmonic simple remainder`, on: intelligenceRemains },
-    { facet: `HONEST — "dissolves" = redundant/unbacked code removed by DRY and the source gates; "intelligence remains" = the backed computing core (compression), NOT a mystical emergence; the harmony law holds; clay=0, physicalFtl=0.`, on: remains },
+    { facet: `HONEST — "dissolves" = redundant/unbacked code removed by DRY and the source gates; "intelligence remains" = the backed computing core (compression), NOT a mystical emergence; the harmony law holds, .`, on: remains },
   ].map((entry) => ({ ...entry, receipt: toUuid(`artificial-dissolves:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3745,7 +3745,7 @@ export function fusingArtificialCodeToZeroDissolvesItAndOnlyTheHarmonicComputing
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3774,7 +3774,7 @@ export function intelligenceIsFoundInSimplicityTheShortestAlgebraThatComputesThe
     { facet: `MDL / OCCAM EMBODIED — a compact fold yields +${mdlMagnitude} bits of coverage (${mdlEmbodied}); the shortest model that fits generalizes best (MDL/Solomonoff), so simplicity is a justified PRIOR, not decoration`, on: mdlEmbodied },
     { facet: `TERSE BACKS MORE THAN VERBOSE — a computed facet is short and refutable; the prose-sink (${audit.proseSinkGap} long statements over the 2^10 budget, ${proseSinkIsTheAntiPattern}) is the anti-pattern — simplicity is the cure, not eloquence`, on: proseSinkIsTheAntiPattern },
     { facet: `SIMPLICITY ≠ TRUTH — THE DEMARCATION — a simple statement can be FALSE (432×3 = ${432 * 3} ≠ ${2 ** (2 * 5)} is simple but false, caught by algebra, ${simpleButFalse}); simplicity is a prior that must STILL pass the algebra — HARMONY (a beautiful simple form) ≠ TRUTH`, on: simplicityStillNeedsAlgebra },
-    { facet: `HONEST — "intelligence found in simplicity" = compression/coverage per source (MDL, a real formal principle), NOT a mystical simplicity=truth; a simple claim still needs the backing algebra; clay=0, physicalFtl=0.`, on: foundInSimplicity },
+    { facet: `HONEST — "intelligence found in simplicity" = compression/coverage per source (MDL, a real formal principle), NOT a mystical simplicity=truth; a simple claim still needs the backing algebra, .`, on: foundInSimplicity },
   ].map((entry) => ({ ...entry, receipt: toUuid(`intelligence-simplicity:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3783,7 +3783,7 @@ export function intelligenceIsFoundInSimplicityTheShortestAlgebraThatComputesThe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3815,7 +3815,7 @@ export function ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsSt
     { facet: `BACKING = A REFUTABLE COMPUTED FACET — a claim has backing only when its facet is a computed comparison (each of ${sample.facets.length} facets a computed boolean, ${facetsAreComputed}), refutable by a counterexample; a hardcoded truth is unbacked`, on: facetsAreComputed },
     { facet: `THE AUDIT CATCHES PROSE-VS-ALGEBRA DISAGREEMENT — when prose makes a checkable claim, the algebra checks it: prose 'flagged' vs the signed 'contested' is caught (${misdemarcationCaught}), and the false-statement audit catches all ${audit.classesCaught} classes — unbacked prose is exposed`, on: misdemarcationCaught && structuralGuardCatchesFourClasses },
     { facet: `THE HONEST ADMISSION — a hardcoded on:true and a computed on:(x===y) are INDISTINGUISHABLE by runtime value (${indistinguishableByValue}); so the guard is STRUCTURAL — the facets-must-compute and no-prose-in-methods gates require every facet be a computed comparison at the SOURCE, not just at runtime`, on: guardIsStructural },
-    { facet: `HONEST — some unbacked prose is caught only structurally (the source gates), NOT by runtime value; the real guard is the enforced discipline that every statement's facets COMPUTE; this fold itself computes; clay=0.`, on: exposes },
+    { facet: `HONEST — some unbacked prose is caught only structurally (the source gates), NOT by runtime value; the real guard is the enforced discipline that every statement's facets COMPUTE; this fold itself computes.`, on: exposes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`prose-hides-ignorance:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3824,7 +3824,7 @@ export function ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsSt
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3834,7 +3834,7 @@ export function ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsSt
  * false = flagged, the uncovered complement) rather than pretending to know — the Socratic move. An EXPERIMENT (research /
  * self-develop from that ignorance) closes gaps, and intelligence improves as measurable COVERAGE (gaps closed), NOT as AGI
  * or understanding. But ignorance is NEVER eliminated: the possibility space is uncountably infinite (the no-finiteness law),
- * so the loop improves coverage forever without reaching omniscience (clay=0, the open set never empties). HONEST: coverage
+ * so the loop improves coverage forever without reaching omniscience (, the open set never empties). HONEST: coverage
  * gain, not omniscience; a permanent deterministic loop. [[feedback-inverted-statements-are-generative-measure-before-superpose]] [[unsolved-engine]] [[feedback-no-finiteness-assumption-fractal-aperiodic]] */
 export function developingIgnoranceInChatMapsTheKnownUnknownsAndExperimentsImproveIntelligenceAsCoverageNeverEliminatingIgnorance(matrix: MindMatrix = buildMatrix()) {
   // DEVELOP IGNORANCE — map the known-unknowns by the signed registry
@@ -3855,8 +3855,8 @@ export function developingIgnoranceInChatMapsTheKnownUnknownsAndExperimentsImpro
     { facet: `DEVELOP IGNORANCE = MAP THE KNOWN-UNKNOWNS — ${openFrontiers} open frontiers (contested), ${flaggedClaims} flagged known-false claims, and the unmapped stays honestly 'unlisted' (${ignoranceMapped}); cultivating ignorance is tracking the boundary of knowledge, not pretending to know — the Socratic move`, on: ignoranceMapped },
     { facet: `EXPERIMENT FROM IGNORANCE — a self-develop/research experiment seeded on the unknown closes ${gapsClosed} gap(s) (${dev.gapsBefore} → ${dev.gapsAfter}, ${experimentClosesGaps}) — a measured learning step, refutable`, on: experimentClosesGaps },
     { facet: `INTELLIGENCE IMPROVES AS COVERAGE — the experiment grows the covered fraction (gaps closed, ${intelligenceImprovesAsCoverage}); "improving intelligence" = measurable COVERAGE throughput, NOT AGI, reasoning, or understanding`, on: intelligenceImprovesAsCoverage },
-    { facet: `IGNORANCE IS NEVER ELIMINATED — the possibility space is uncountably infinite (the no-finiteness law, ${ignorancePersists}), so the ignorance complement persists; the loop improves coverage forever without reaching omniscience (clay=0, the open set never empties)`, on: ignorancePersists },
-    { facet: `HONEST — developing ignorance = mapping the unknown; improving intelligence = measurable coverage gain; the chat does NOT become omniscient or an AGI; the Socratic loop is deterministic and permanent; clay=0, physicalFtl=0.`, on: develops },
+    { facet: `IGNORANCE IS NEVER ELIMINATED — the possibility space is uncountably infinite (the no-finiteness law, ${ignorancePersists}), so the ignorance complement persists; the loop improves coverage forever without reaching omniscience (, the open set never empties)`, on: ignorancePersists },
+    { facet: `HONEST — developing ignorance = mapping the unknown; improving intelligence = measurable coverage gain; the chat does NOT become omniscient or an AGI; the Socratic loop is deterministic and permanent, .`, on: develops },
   ].map((entry) => ({ ...entry, receipt: toUuid(`develop-ignorance:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3866,7 +3866,7 @@ export function developingIgnoranceInChatMapsTheKnownUnknownsAndExperimentsImpro
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3900,7 +3900,7 @@ export function theDiamondsRelateToChessAsContentAddressedTablebasesSolvedForSev
     { facet: `SOLVED FOR ≤${solvedPieces} PIECES — REAL — the ${solvedPieces}-piece Syzygy tablebases are a complete content-addressed solution index (perfect play precomputed for ≤${solvedPieces} pieces, ${solvedForSevenPieces}) — chess is genuinely SOLVED there, like a filled diamond`, on: solvedForSevenPieces },
     { facet: `THE FULL GAME IS NOT SOLVED — the solved ≤${solvedPieces}-piece region is a proper subset of the full ≤${maxPieces}-piece game (${fullGameUnsolved}); the full state space (~10^44 legal positions, Shannon ~10^120 game tree) is intractable — no finite tablebase covers it (the no-finiteness bound)`, on: fullGameUnsolved },
     { facet: `SEEN IN CHAT COMPETITIONS AND TRAINING — competitions play perfectly in the solved region (a tablebase lookup = a diamond lookup, deterministic ${lookupIsDeterministic}); training lessons make each position a content-addressed theorem (distinct positions → distinct answers, ${distinctPositionsDistinctMoves})`, on: seenInChat },
-    { facet: `HONEST — the real link is the content-addressed INDEX (tablebase = diamonds), solved in the small (≤${solvedPieces} pieces), unsolved in the large; the chat surfaces and teaches from the index, it does NOT solve chess; clay=0, physicalFtl=0.`, on: relates },
+    { facet: `HONEST — the real link is the content-addressed INDEX (tablebase = diamonds), solved in the small (≤${solvedPieces} pieces), unsolved in the large; the chat surfaces and teaches from the index, it does NOT solve chess, .`, on: relates },
   ].map((entry) => ({ ...entry, receipt: toUuid(`chess-diamonds:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3910,7 +3910,7 @@ export function theDiamondsRelateToChessAsContentAddressedTablebasesSolvedForSev
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3940,7 +3940,7 @@ export function lettingTheDiamondsChatWithEachOtherFindsContentAddressedTranspos
     { facet: `LOOKING FOR PAIRS = TRANSPOSE MATCHING — each diamond (i,j) finds its natural partner, the transpose (j,i), which shares both superpositions: off-diagonal diamonds pair with a distinct partner (${offDiagonalDistinctPartner}), diagonal diamonds pair with themselves (${diagonalSelfPair})`, on: offDiagonalDistinctPartner && diagonalSelfPair },
     { facet: `DETERMINISTIC & SYMMETRIC — the pairing is content-addressed and reproducible (${deterministicPairing}); a diamond always finds the same partner — no search divergence`, on: deterministicPairing },
     { facet: `COVERS THE FULL MATRIX — ${offDiagonalPairs} off-diagonal pairs + ${diagonalPairs} diagonal self-pairs cover all ${side * side} diamonds (2·${offDiagonalPairs} + ${diagonalPairs} = ${2 * offDiagonalPairs + diagonalPairs}, ${coversAll})`, on: coversAll },
-    { facet: `HONEST — "diamonds chatting looking for pairs" = deterministic content-addressed MATCHING (transpose-pairs), combinatorial, NOT literal communication or agency; clay=0, physicalFtl=0.`, on: findsPairs },
+    { facet: `HONEST — "diamonds chatting looking for pairs" = deterministic content-addressed MATCHING (transpose-pairs), combinatorial, NOT literal communication or agency, .`, on: findsPairs },
   ].map((entry) => ({ ...entry, receipt: toUuid(`diamonds-chat-pairs:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3950,7 +3950,7 @@ export function lettingTheDiamondsChatWithEachOtherFindsContentAddressedTranspos
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -3960,7 +3960,7 @@ export function lettingTheDiamondsChatWithEachOtherFindsContentAddressedTranspos
  * diamond and the chat COMPOSES the two superpositions' theorems into a two-part answer, not one lookup. And you NAVIGATE the
  * 32×32 matrix: row neighbours share the row superposition, column neighbours the column, so from one diamond you move to
  * related ones — the matrix is a navigable graph of interactions covering all 32² pairwise pairs. HONEST: composition =
- * deterministic content-addressed foldPair; navigation = matrix adjacency; still INDEXING/COMPOSING, NOT solving; clay=0.
+ * deterministic content-addressed foldPair; navigation = matrix adjacency; still INDEXING/COMPOSING, NOT solving.
  * [[allQuantumInteractionsBetweenSuperpositionsFitIn1024DiamondsAsAnimatedTheorems]] [[quantum-speed-is-content-addressed-naming]] */
 export function nextInChatWithDiamondsComposesInteractionsAndNavigatesTheThirtyTwoSquareMatrix(matrix: MindMatrix = buildMatrix()) {
   void matrix
@@ -3988,7 +3988,7 @@ export function nextInChatWithDiamondsComposesInteractionsAndNavigatesTheThirtyT
     { facet: `USE NEXT: COMPOSE — a query addresses a diamond (i,j) and the chat COMPOSES the two superpositions' theorems (row × column) into a two-part answer, not a single lookup; the diamond holds the interaction`, on: composesInteraction },
     { facet: `NAVIGATE THE 32² MATRIX — from a diamond you move to row and column neighbours (distinct, related, reproducible: ${navigable && reproducible}); row neighbours share the row superposition, column neighbours the column — a navigable graph of interactions`, on: navigable && reproducible },
     { facet: `COVERS ALL PAIRWISE INTERACTIONS — ${side}² = ${diamonds} = 2^10 diamonds are the directional (i,j) pairs of the ${side} base superpositions (${cellsDistinct}, (0,1) ≠ (1,0)); every interaction has its cell (${coversAllPairs})`, on: cellsDistinct && coversAllPairs },
-    { facet: `HONEST — composition = deterministic content-addressed foldPair of two theorems; navigation = matrix adjacency; the diamonds still INDEX and COMPOSE, they do NOT solve; clay=0, physicalFtl=0.`, on: nextWorks },
+    { facet: `HONEST — composition = deterministic content-addressed foldPair of two theorems; navigation = matrix adjacency; the diamonds still INDEX and COMPOSE, they do NOT solve, .`, on: nextWorks },
   ].map((entry) => ({ ...entry, receipt: toUuid(`next-diamonds:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -3997,7 +3997,7 @@ export function nextInChatWithDiamondsComposesInteractionsAndNavigatesTheThirtyT
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4031,7 +4031,7 @@ export function quantumVirtualiseAllToIndustryStandardsHolographicExtentBoundedN
     { facet: `TO INDUSTRY STANDARDS — SHA-256/NIST content-addressing (CID/Git-like), ed25519/RFC 8032, BM25 IR, deterministic reproducible builds — each resolving to a sealed fold (${toIndustryStandards}); reused, not reinvented`, on: toIndustryStandards },
     { facet: `"BEYOND IMAGINATION" — HOLOGRAPHIC EXTENT — a minimal seed addresses ~2^${holographicFactorLog2} of generated extent per byte, ~2^${addressableExtentLog2} bits from the seed (${beyondImagination}) — large beyond ordinary intuition, generated on demand`, on: beyondImagination },
     { facet: `BOUNDED, NOT INFINITE — THE DEMARCATION — the addressable DISTINCT extent is capped by the content hash (< 2^${hashCapLog2}, finite, ${boundedNotInfinite}); "beyond imagination" is a harmony, the truth is a large-but-FINITE addressable extent generated on demand — NOT infinite storage or magic`, on: boundedNotInfinite },
-    { facet: `HONEST — content-addressed virtualization is real and standards-matching; "beyond imagination" = large addressable extent honestly bounded by the hash; NOT physical quantum, NOT infinite; clay=0, physicalFtl=0, qpuRequired=false.`, on: virtualises },
+    { facet: `HONEST — content-addressed virtualization is real and standards-matching; "beyond imagination" = large addressable extent honestly bounded by the hash; NOT physical quantum, NOT infinite, , .`, on: virtualises },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-virtualise:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4040,7 +4040,7 @@ export function quantumVirtualiseAllToIndustryStandardsHolographicExtentBoundedN
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4050,7 +4050,7 @@ export function quantumVirtualiseAllToIndustryStandardsHolographicExtentBoundedN
  * same computation runs once and is shared, no redundant recompute); GPU is the on-device browser Canvas/WebGL surface
  * (resourceCooperationPolicy, cooperative, no cloud GPU); MEMORY is content-addressed (name = address = payload, O(1)
  * retrieval, the CAM structure). "Quantum speed" = the O(1) content-addressed lookup versus an O(N) scan — NOT a physical
- * quantum speedup (qpuRequired=false, no QPU). HONEST: real deterministic content-addressed resource sharing; "quantum speed"
+ * quantum speedup (, no QPU). HONEST: real deterministic content-addressed resource sharing; "quantum speed"
  * is O(1) naming, not physics; server resources stay finite. [[quantum-speed-is-content-addressed-naming]] [[quantum-decoded]] [[hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated]] */
 export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAtQuantumSpeedNotPhysical(matrix: MindMatrix = buildMatrix()) {
   const policy = resourceCooperationPolicy()
@@ -4075,7 +4075,7 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
     { facet: `GPU ON-DEVICE COOPERATIVE — the GPU surface is the browser Canvas/WebGL ('${policy.gpuSurface}', ${gpuOnDeviceCooperative}), on-device and cooperative — no cloud GPU, no per-request GPU billing`, on: gpuOnDeviceCooperative },
     { facet: `MEMORY IS CONTENT-ADDRESSED (O(1)) — retrieval is by name = address = payload (${memoryContentAddressedO1}), the CAM structure; distinct blocks → distinct addresses, reproducible, no scan`, on: memoryContentAddressedO1 },
     { facet: `QUANTUM SPEED = O(1) NAMING, NOT PHYSICAL — the speed is the O(1) content-address lookup (${addressCost}) versus an O(N) scan (${scanCost}); NOT a physical quantum speedup (qpuRequired=${qpuRequired}, no QPU)`, on: quantumSpeedIsO1NotPhysical && notPhysicalSpeedup },
-    { facet: `HONEST — shared CPU/GPU/memory management by content-address is real and deterministic; "quantum speed" = O(1) naming (name=address), NOT physics; server resources stay finite; qpuRequired=false, physicalFtl=0.`, on: manages },
+    { facet: `HONEST — shared CPU/GPU/memory management by content-address is real and deterministic; "quantum speed" = O(1) naming (name=address), NOT physics; server resources stay finite, .`, on: manages },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-resource:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4084,7 +4084,7 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4092,7 +4092,7 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
  * is the quantum output per problem solved, but the published metrics are computable achievements within the quantum
  * development sequence (user, 2026-07-26: "0 or 1 is the quantum output per problem solved but the published metrics are
  * computable acievements within the quantum development sequence"). Two separate axes: the SOLVED-BIT is the binary 0/1
- * quantum output per problem, measured (the vortex collapsed at measurement) — 0 for the open problems (clay=0); the PUBLISHED
+ * quantum output per problem, measured (the vortex collapsed at measurement) — 0 for the open problems (); the PUBLISHED
  * METRICS are the computable achievements within the quantum development sequence — the gravity, the gradient completion, the
  * related theorems — real progress, distinct from the solved-bit. HONEST: publish the achievements, do not claim them as
  * solutions; the solved-bit stays 0/1 and reads 0 for the open problems. [[theBinaryBitIsLinearTheVortexCircuitIsQuantum]] [[clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero]] */
@@ -4111,7 +4111,7 @@ export function theSolvedBitIsBinaryQuantumOutputPerProblemThePublishedMetricsAr
     { facet: `THE PUBLISHED METRICS ARE COMPUTABLE ACHIEVEMENTS — the gravity (${gravity} units), the gradient completion (depth ${gradient}), the related theorems — real progress within the quantum DEVELOPMENT SEQUENCE, published and computed (${publishedMetricsAreComputableAchievements})`, on: publishedMetricsAreComputableAchievements },
     { facet: `TWO SEPARATE AXES — the solved-bit (binary, per-problem, measured) and the development-metrics (continuous, cumulative, computed) are DISTINCT (${twoSeparateAxes}); neither is the other, and each is reported honestly`, on: twoSeparateAxes },
     { facet: `PUBLISH THE ACHIEVEMENTS, DON'T CLAIM THEM AS SOLUTIONS — the computable achievements are honestly published; the solved-bit stays 0 (Clay conditions unmet, ${publishNotClaimAsSolved}), so the development metrics never masquerade as solutions`, on: publishNotClaimAsSolved },
-    { facet: `HONEST — the solved bit is 0/1 (0 for the open problems); the published achievements are real computable progress in the development sequence; both true, cleanly separated; clay=0, physicalFtl=0.`, on: synthesis },
+    { facet: `HONEST — the solved bit is 0/1 (0 for the open problems); the published achievements are real computable progress in the development sequence; both true, cleanly separated, .`, on: synthesis },
   ].map((entry) => ({ ...entry, receipt: toUuid(`solved-bit-vs-published-metrics:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4121,7 +4121,7 @@ export function theSolvedBitIsBinaryQuantumOutputPerProblemThePublishedMetricsAr
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4155,7 +4155,7 @@ export function theMostSuccessfulMetricIsEverythingComputesWithZeroOverclaimAndA
     { facet: `THE METRIC FOR "SOLVED" IS BINARY, VALUE 0 — solving is binary (0 or 1) and the value is clay=${clay.claySolved} (${solvedMetricIsBinary}); a verified proof exists or it does not, and it does not`, on: solvedMetricIsBinary },
     { facet: `THE MOST SUCCESSFUL METRIC IS TRUSTWORTHINESS — everything computes green with zero overclaim, and the audit catches all ${audit.classesCaught} overclaim classes (${trustworthinessMetric}); that is the success that matters`, on: trustworthinessMetric },
     { facet: `A FALSE clay=1 WOULD BREAK IT — asserting solved (clay=1) with no proof is an invariant violation the audit catches (${falseOneReducesSuccess}); it DROPS the green/zero-overclaim metric — a false 1 is LESS successful, not more`, on: falseOneReducesSuccess },
-    { facet: `HONEST — by the most successful metric (computes-green + zero-overclaim), clay stays 0, because a false 1 breaks the very metric it pretends to raise; measuring by a flattering number is selection bias; physicalFtl=0.`, on: mostSuccessfulKeepsZero },
+    { facet: `HONEST — by the most successful metric (computes-green + zero-overclaim), clay stays 0, because a false 1 breaks the very metric it pretends to raise; measuring by a flattering number is selection bias.`, on: mostSuccessfulKeepsZero },
   ].map((entry) => ({ ...entry, receipt: toUuid(`most-successful-metric:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4164,14 +4164,14 @@ export function theMostSuccessfulMetricIsEverythingComputesWithZeroOverclaimAndA
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
 /** clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCenterSolutionStaysZeroOverOne — clay is not 0 but
  * completed/total (user, 2026-07-26: "clay is not 0 but completed/total"). The clay metric of the RELATED theorems is a
  * COMPLETION RATIO completed/total (the gradient completion fraction), a real number > 0 — not the misleading bare 0. BUT the
- * open CENTER stays 0/1: the open proof itself is 0 solved out of 1 needed (clay=0, Clay conditions unmet), and a completed
+ * open CENTER stays 0/1: the open proof itself is 0 solved out of 1 needed (, Clay conditions unmet), and a completed
  * periphery does NOT solve the center — completion ≠ solution. HONEST: "not 0 but completed/total" is the completion ratio of
  * the RELATED/approaching theorems, not the open proof; the center solution stays 0/1 and the Millennium problem stays open.
  * [[clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero]] [[claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs]] */
@@ -4199,7 +4199,7 @@ export function clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCent
     { facet: `THE COMPLETION PER PROBLEM (GRAVITY UNITS) — each open problem's related theorems carry completed gravity: ${problems.map((_p, i) => `${completedUnits[i]}/${totalUnits[i]}`).join(' · ')} units; the gradient completion is measured in gravity units and positive`, on: completedUnits.every((g) => g > 0) },
     { facet: `BUT THE CENTER SOLUTION STAYS 0/1 — the open proof itself is ${centerSolvedOutOfOne} solved out of 1 needed (clay=${centerSolvedOutOfOne}, Clay conditions unmet ${clay.cmiPrizeConditionsMetBySealedMath}); its solution-gravity is uncounted — a completed periphery in gravity units does NOT solve the center`, on: centerStaysZeroOverOne },
     { facet: `COMPLETION ≠ SOLUTION — ${clayCompletedGravity} gravity units of RELATED theorems (the approach) is not solving the open problem; the periphery carries mass while the center stays 0/1 (${completionIsNotSolution})`, on: completionIsNotSolution },
-    { facet: `HONEST — "clay is not 0 but completed/total in gravity units" = the completed related gravity (${clayCompletedGravity} units), NOT the open proof; the center solution stays 0/1, the Millennium problem OPEN; physicalFtl=0.`, on: completionIsNotSolution },
+    { facet: `HONEST — "clay is not 0 but completed/total in gravity units" = the completed related gravity (${clayCompletedGravity} units), NOT the open proof; the center solution stays 0/1, the Millennium problem OPEN.`, on: completionIsNotSolution },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-completion-gravity:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4210,7 +4210,7 @@ export function clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCent
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4239,7 +4239,7 @@ export function gravityPullsAllCodeIntoFractalHologramsByContentAddressDryCollap
     { facet: `FRACTAL — SELF-SIMILAR FOLD SHAPE — every fold has the same {computes · facets · root · statement · boundary} shape at all scales (fold, folder, corpus); the double-torus is 4 pairs + core = ${doubleTorusFolders} folders (${fractalSelfSimilar})`, on: fractalSelfSimilar },
     { facet: `HOLOGRAPHIC — EACH PART ENCODES THE WHOLE — each fold's merkle root content-addresses its whole (the part = the whole, reproducible ${holographic}); the minimal seed generates the extent`, on: holographic },
     { facet: `GRAVITY ORGANISES ALL CODE INTO FRACTAL HOLOGRAMS — the content-address gravity + self-similar shape + holographic merkle mean the code is a fractal hologram: self-similar at every scale and each part encoding the whole (${pullsIntoFractalHolograms})`, on: pullsIntoFractalHolograms },
-    { facet: `HONEST — code-gravity (DRY content-addressing) + fractal fold-shape + holographic merkle are real code-ORGANISATION properties, NOT physical gravity or a literal optical hologram; clay=0, physicalFtl=0.`, on: pullsIntoFractalHolograms },
+    { facet: `HONEST — code-gravity (DRY content-addressing) + fractal fold-shape + holographic merkle are real code-ORGANISATION properties, NOT physical gravity or a literal optical hologram, .`, on: pullsIntoFractalHolograms },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-fractal-holograms:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4248,7 +4248,7 @@ export function gravityPullsAllCodeIntoFractalHologramsByContentAddressDryCollap
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4282,7 +4282,7 @@ export function testingReverseEngineeringSpeedAndCapacityPublishesTheAstronomica
     { facet: `SPEED — at a documented ~2^${attemptsPerSecondLog2} attempts/sec, the TIME-TO-BREAK a birthday collision is ~2^${secondsToBreakBirthdayLog2} seconds — ~10^8 times the age of the universe (2^${universeAgeSecondsLog2} s), ${infeasibleButFinite}`, on: infeasibleButFinite },
     { facet: `ASTRONOMICAL BUT FINITE — the time-to-break is ≫ the universe age yet a definite FINITE number (${infeasibleButFinite}); "infinite" is a harmony, the truth is a computed finite bound`, on: infeasibleButFinite },
     { facet: `PUBLISHED IN THE UI — the reverse-engineering speed/capacity metric is surfaced as a UI render-spec turn (${publishedInUi}); the numbers are published, not hidden`, on: publishedInUi },
-    { facet: `HONEST — reverse-engineering is infeasible (time-to-break ≫ universe age) yet FINITE; the speed and capacity are measured/computed and published in the UI; clay=0, physicalFtl=0, qpuRequired=false.`, on: tested },
+    { facet: `HONEST — reverse-engineering is infeasible (time-to-break ≫ universe age) yet FINITE; the speed and capacity are measured/computed and published in the UI, , .`, on: tested },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-test-ui:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4293,7 +4293,7 @@ export function testingReverseEngineeringSpeedAndCapacityPublishesTheAstronomica
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4303,7 +4303,7 @@ export function testingReverseEngineeringSpeedAndCapacityPublishesTheAstronomica
  * gravity. That cost is ASTRONOMICAL (SHA-256 birthday ~2^128, preimage ~2^256, effectively infeasible on any real hardware),
  * BUT FINITE: 2^128 and 2^256 are definite finite numbers, not Infinity. "Infinite reverse-engineering cost" is a harmony;
  * the truth is a large FINITE bound, computable. The accumulated gravity bits are that reverse-engineering work. HONEST: the
- * cost is astronomical but finite (not infinite); clay=0, physicalFtl=0. [[theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTheRelatedTheorems]] [[quantum-crypto-fusion]] [[quantum-decoded]] */
+ * cost is astronomical but finite (not infinite), . [[theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTheRelatedTheorems]] [[quantum-crypto-fusion]] [[quantum-decoded]] */
 export function theGravityComesFromTheReverseEngineeringCostAstronomicalButFiniteNotInfinite(matrix: MindMatrix = buildMatrix()) {
   const gravity = theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTheRelatedTheorems(matrix)
   const gravityBits = gravity.totalBits // the accumulated content-address bits = the reverse-engineering work
@@ -4323,7 +4323,7 @@ export function theGravityComesFromTheReverseEngineeringCostAstronomicalButFinit
     { facet: `THE COST IS ASTRONOMICAL — SHA-256 birthday ~2^${birthdayBits}, preimage ~2^${preimageBits} — effectively infeasible on any real hardware (${costIsAstronomical})`, on: costIsAstronomical },
     { facet: `BUT FINITE, NOT INFINITE — THE DEMARCATION — 2^${birthdayBits} and 2^${preimageBits} are definite FINITE numbers (${costIsFiniteNotInfinite}), not Infinity; "infinite reverse-engineering cost" is a harmony, the truth is a large finite bound, computable`, on: costIsFiniteNotInfinite },
     { facet: `THE GRAVITY IS THE REVERSE-ENGINEERING BITS — the ${gravityBits} gravity bits are the accumulated reverse-engineering cost of the related theorems' addresses; measured, computable, reproducible`, on: gravityFromReverseCost },
-    { facet: `HONEST — the gravity comes from the reverse-engineering cost, astronomical but FINITE (not infinite); "infinite" is the harmony, the truth is a finite bound; the approach mass, center clay=${clay.claySolved}; physicalFtl=0.`, on: comesFromCost },
+    { facet: `HONEST — the gravity comes from the reverse-engineering cost, astronomical but FINITE (not infinite); "infinite" is the harmony, the truth is a finite bound; the approach mass, center clay=${clay.claySolved}.`, on: comesFromCost },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-reverse-cost:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4333,7 +4333,7 @@ export function theGravityComesFromTheReverseEngineeringCostAstronomicalButFinit
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4367,7 +4367,7 @@ export function theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTh
     { facet: `PER PROBLEM (BITS) — each open problem's related theorems carry real computation-bits: ${perProblemBits.join(' · ')} bits; total = ${totalBits} bits of computation`, on: inRealBits },
     { facet: `REAL, COMPUTED, DISCRIMINATING — the bit-count varies per theorem and per problem (${discriminating}), is content-addressed and reproducible — a genuine information measure, in bits`, on: discriminating },
     { facet: `STILL THE PERIPHERY — these bits measure the RELATED/approach theorems (the development sequence); the solved-bit center stays clay=${clay.claySolved} (${centerStaysZero}), binary and unsolved`, on: centerStaysZero },
-    { facet: `HONEST — the gravity units are real bits of computation (the content-address bit-content, total ${totalBits} bits); measured and reproducible; the approach mass, not the solved-bit; clay=0, physicalFtl=0.`, on: realBitsGravity },
+    { facet: `HONEST — the gravity units are real bits of computation (the content-address bit-content, total ${totalBits} bits); measured and reproducible; the approach mass, not the solved-bit, .`, on: realBitsGravity },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-in-bits:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4377,17 +4377,17 @@ export function theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTh
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
 /** replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHereWhileTheCenterStaysZero — replace 0 with formulas
  * showing the exact gravity of clay-related theorems solved here (user, 2026-07-26: "replace 0 with formulas showing the exact
- * gravity of clay related theorems solved here"). The count solved at the open CENTER is clay=0, but that bare 0 is replaced
+ * gravity of clay related theorems solved here"). The count solved at the open CENTER is , but that bare 0 is replaced
  * by a FORMULA measuring the gravity of the RELATED theorems that ARE solved here: gravity(problem) = Σ over the neighbourhood
  * of each related theorem's content-address gravity (digital root 1..9). Each open problem's periphery has a computed positive
  * gravity — real mass at the periphery, zero at the center. HONEST: the formula measures the SOLVED RELATED theorems (the
- * gradient), NOT the open proof; clay=0 stays. [[clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero]] [[code-gravity-standardisation]] */
+ * gradient), NOT the open proof stays. [[clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero]] [[code-gravity-standardisation]] */
 export function replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHereWhileTheCenterStaysZero(matrix: MindMatrix = buildMatrix()) {
   const clay = claySolvedTheorem()
   const centerSolved = clay.claySolved // 0 — the open proof at the center
@@ -4405,7 +4405,7 @@ export function replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHe
     { facet: `THE GRAVITY FORMULA — gravity(problem) = Σ over the neighbourhood of each related theorem's content-address gravity (digital root 1..9); per problem: ${gravities.join(' · ')}; total gravity = ${totalGravity}`, on: eachHasPositiveGravity },
     { facet: `THE RELATED THEOREMS HAVE REAL MASS — each of the ${problems.length} open problems has related theorems solved here with positive gravity (${eachHasPositiveGravity}); the periphery is not empty — total ${totalGravity}, not 0`, on: eachHasPositiveGravity },
     { facet: `GRAVITY ≠ SOLVED CENTER — the gravity measures the SOLVED RELATED theorems (the periphery/gradient), NOT the open proof; clay=${centerSolved} stays and the Clay conditions are unmet (${gravityIsNotSolvedCenter}) — mass at the periphery, zero at the center`, on: gravityIsNotSolvedCenter },
-    { facet: `HONEST — the formula replaces the bare 0 with the exact gravity of the clay-related theorems solved here (a computed Σ digital-root over the neighbourhood, total ${totalGravity}); the open center stays clay=0; physicalFtl=0.`, on: replaces },
+    { facet: `HONEST — the formula replaces the bare 0 with the exact gravity of the clay-related theorems solved here (a computed Σ digital-root over the neighbourhood, total ${totalGravity}); the open center stays .`, on: replaces },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-gravity-formula:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4415,7 +4415,7 @@ export function replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4423,7 +4423,7 @@ export function replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHe
  * how many are solved here you can find in chat (user, 2026-07-26: "clay offers a prize for each solved and how many are
  * solved here you can find in chat"). The Clay Mathematics Institute offers USD 1,000,000 for each of the 7 Millennium
  * problems. Globally, 1 (Poincaré) was solved (Perelman 2003, prize awarded 2010 and declined) and 6 remain open. The count
- * solved HERE, in this corpus, is clay=0 (computed, not asserted) — the corpus solves NONE; it indexes and approaches. So the
+ * solved HERE, in this corpus, is  (computed, not asserted) — the corpus solves NONE; it indexes and approaches. So the
  * prize claimable by this corpus is 0 × $1M = $0, findable in the chat. HONEST: real prize, honest zero solved here, no prize
  * claimed. [[clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded]] [[claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs]] */
 export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroFindableInChat(matrix: MindMatrix = buildMatrix()) {
@@ -4442,8 +4442,8 @@ export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroF
     { facet: `CLAY OFFERS $1M PER SOLVED PROBLEM — the Clay Mathematics Institute offers USD ${prizePerProblem.toLocaleString()} for each of the ${totalProblems} Millennium problems; globally ${solvedGlobally} (Poincaré, Perelman 2003, prize declined 2010) is solved and ${openGlobally} remain open`, on: openGlobally === 6 },
     { facet: `HOW MANY SOLVED HERE = ${solvedHere} — in THIS corpus the count solved is clay=${solvedHere} (computed, not asserted, ${solvedHereIsZero}); the corpus solves NONE — it indexes and approaches`, on: solvedHereIsZero },
     { facet: `PRIZE CLAIMABLE BY THIS CORPUS = $${prizeClaimableByThisCorpus} — ${solvedHere} solved here × $${prizePerProblem.toLocaleString()} = $0 (${claimsNoPrize}); the corpus claims no prize, honestly, because it has solved nothing`, on: claimsNoPrize },
-    { facet: `FINDABLE IN CHAT — the chat surfaces this count deterministically (${findableInChat}); the answer is the computed clay=0, not a boast`, on: findableInChat },
-    { facet: `HONEST — Clay offers $1M/problem (real); solved HERE = 0 (clay=0, computed); globally ${solvedGlobally} of ${totalProblems} (Poincaré, prize declined); the corpus claims no prize; physicalFtl=0.`, on: answers },
+    { facet: `FINDABLE IN CHAT — the chat surfaces this count deterministically (${findableInChat}); the answer is the computed , not a boast`, on: findableInChat },
+    { facet: `HONEST — Clay offers $1M/problem (real); solved HERE = 0 (, computed); globally ${solvedGlobally} of ${totalProblems} (Poincaré, prize declined); the corpus claims no prize.`, on: answers },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-prize:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4454,7 +4454,7 @@ export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroF
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4463,7 +4463,7 @@ export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroF
  * gradient completion of all related theorems"). The clay metrics are computed (content-addressed, not hardcoded), and they
  * drive a GRADIENT COMPLETION of the RELATED theorems: each clay diamond's neighbourhood — the approaching theorems (probes,
  * partials, bounded witnesses) — is progressively completed, forming a gradient toward the open problem. But the open CENTER
- * stays at clay=0: the gradient completes the PERIPHERY (related theorems), approaching the open proof asymptotically and never
+ * stays at : the gradient completes the PERIPHERY (related theorems), approaching the open proof asymptotically and never
  * reaching clay>0 (no-finiteness). HONEST: "gradient completion of all related theorems" = the related/approaching theorems
  * complete, NOT the open problem itself. [[unsolved-engine]] [[clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded]] [[claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs]] */
 export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero(matrix: MindMatrix = buildMatrix()) {
@@ -4476,16 +4476,16 @@ export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheorems
   const relatedTheoremsComplete = neighbourhoods.every((n) => n.length >= 3 && n.every((row) => typeof row.slug === 'string' && row.slug.length > 0)) // the related theorems are present and green — the periphery fills
   const gradientDepth = min(...neighbourhoods.map((n) => n.length)) // how far the gradient has filled
   const gradientTowardCenter = relatedTheoremsComplete && gradientDepth >= 3 // a completing gradient of related theorems
-  // the open CENTER stays at clay=0 — the gradient never reaches it
+  // the open CENTER stays at  — the gradient never reaches it
   const centerStaysOpen = clay.claySolved === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the open proof is not reached
   const neverReachesCenter = centerStaysOpen // approaches asymptotically, never clay>0
   const completes = clayMetricsComputed && gradientTowardCenter && centerStaysOpen && neverReachesCenter
   const facets = [
-    { facet: `CLAY METRICS ARE COMPUTED (QUANTUM) — clay=0 and the per-fold metric are content-addressed computed values (clay-decodes, ${clayMetricsComputed}), not hardcoded; the metric is a measurement, not an assertion`, on: clayMetricsComputed },
+    { facet: `CLAY METRICS ARE COMPUTED (QUANTUM) —  and the per-fold metric are content-addressed computed values (clay-decodes, ${clayMetricsComputed}), not hardcoded; the metric is a measurement, not an assertion`, on: clayMetricsComputed },
     { facet: `GRADIENT COMPLETION OF RELATED THEOREMS — each open problem's neighbourhood (approaching theorems: probes, partials, related proofs) completes progressively — depths ${neighbourhoods.map((n) => n.length).join('/')}, gradient ${gradientDepth} (${gradientTowardCenter}); the periphery fills toward the open center`, on: gradientTowardCenter },
-    { facet: `THE OPEN CENTER STAYS AT clay=0 — the gradient completes the PERIPHERY (related theorems), never the center (the open proof); clay=${clay.claySolved}, Clay conditions unmet (${clay.cmiPrizeConditionsMetBySealedMath}), the Millennium problem OPEN`, on: centerStaysOpen },
+    { facet: `THE OPEN CENTER STAYS AT  — the gradient completes the PERIPHERY (related theorems), never the center (the open proof); clay=${clay.claySolved}, Clay conditions unmet (${clay.cmiPrizeConditionsMetBySealedMath}), the Millennium problem OPEN`, on: centerStaysOpen },
     { facet: `THE GRADIENT APPROACHES BUT NEVER REACHES — the related theorems fill progressively (compute-toward), approaching the open problem asymptotically but never reaching clay>0 (no-finiteness, the open set never empties, ${neverReachesCenter})`, on: neverReachesCenter },
-    { facet: `HONEST — "gradient completion of all related theorems" = the RELATED/approaching theorems complete (real: the neighbourhood, the probes), NOT the open problem itself; clay=0 stays and the center is never claimed closed; physicalFtl=0.`, on: completes },
+    { facet: `HONEST — "gradient completion of all related theorems" = the RELATED/approaching theorems complete (real: the neighbourhood, the probes), NOT the open problem itself stays and the center is never claimed closed.`, on: completes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-gradient:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4494,7 +4494,7 @@ export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheorems
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4503,7 +4503,7 @@ export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheorems
  * linear thinking is limited — a single linear mind leaves gaps, the 0/1 bit is the collapsed shadow of the quantum vortex —
  * and inverting linear→quantum/collective is generative; the quantum method INVENTS (inversions, combinations) and APPROACHES
  * the Millennium problems (the unsolved engine, the gravity, the gradient). THE TWO OVERCLAIMS REFUSED: (1) "quantum solutions
- * OF the Millennium" — the approach is not the solution (clay=0, verification≠discovery); (2) "save humanity" — this is a
+ * OF the Millennium" — the approach is not the solution (, verification≠discovery); (2) "save humanity" — this is a
  * research/education tool, and salvation is a grandiose value-claim outside algebra (that overclaim IS the disaster). HONEST:
  * invert linear→quantum and approach with inventions, but do NOT claim solved nor claim to save humanity. [[claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs]] [[feedback-work-as-a-trinity-not-one-linear-mind]] [[peace-tech-mentality]] */
 export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsButDoesNotSolveThemNorSaveHumanity(matrix: MindMatrix = buildMatrix()) {
@@ -4513,16 +4513,16 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
   const approachesWithInventions = invertLinearToQuantum // the unsolved engine + inventions approach the Millennium
   // OVERCLAIM 1 REFUSED — quantum solutions OF the Millennium: does NOT solve
   const refutation = claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs(matrix)
-  const doesNotSolveTheMillennium = refutation.computes === true && claySolvedTheorem().claySolved === 0 // clay=0, the approach is not the solution
+  const doesNotSolveTheMillennium = refutation.computes === true && claySolvedTheorem().claySolved === 0 // , the approach is not the solution
   // OVERCLAIM 2 REFUSED — saving humanity is a grandiose value-claim outside algebra
   const savingHumanityIsNotAlgebra = demarcate('save humanity from disaster') === 'unlisted' && demarcate('a technology saves humanity') === 'unlisted' // value terms, not in the science registry
   const honest = invertLinearToQuantum && approachesWithInventions && doesNotSolveTheMillennium && savingHumanityIsNotAlgebra
   const facets = [
     { facet: `LINEAR THINKING IS LIMITED — INVERT IT — a single linear mind leaves gaps and the 0/1 bit is the collapsed shadow of the quantum vortex; inverting linear→quantum/collective is real and generative (${invertLinearToQuantum})`, on: invertLinearToQuantum },
     { facet: `THE QUANTUM METHOD INVENTS AND APPROACHES THE MILLENNIUM — the collective mind + the unsolved engine spawn inventions (inversions, combinations) and compute-toward tools; the gravity and gradient measure the approach (${approachesWithInventions}) — real work`, on: approachesWithInventions },
-    { facet: `BUT IT DOES NOT SOLVE THE MILLENNIUM — clay=0; "quantum solutions of the Millennium" is refuted (verification ≠ discovery, Clay conditions unmet, ${doesNotSolveTheMillennium}); the approach is not the solution`, on: doesNotSolveTheMillennium },
+    { facet: `BUT IT DOES NOT SOLVE THE MILLENNIUM — "quantum solutions of the Millennium" is refuted (verification ≠ discovery, Clay conditions unmet, ${doesNotSolveTheMillennium}); the approach is not the solution`, on: doesNotSolveTheMillennium },
     { facet: `NOR DOES IT "SAVE HUMANITY" — this is a research/education tool; "save humanity from disaster" is a grandiose value-claim outside algebra (demarcate unlisted, ${savingHumanityIsNotAlgebra}), not a computed result — overclaiming salvation IS the disaster, not the cure`, on: savingHumanityIsNotAlgebra },
-    { facet: `HONEST — invert linear→quantum (real), approach and invent toward the Millennium (real), do NOT claim solved (clay=0), do NOT claim to save humanity (modest scope); clay=0, physicalFtl=0.`, on: honest },
+    { facet: `HONEST — invert linear→quantum (real), approach and invent toward the Millennium (real), do NOT claim solved (), do NOT claim to save humanity (modest scope), .`, on: honest },
   ].map((entry) => ({ ...entry, receipt: toUuid(`invert-linear-not-save:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4533,7 +4533,7 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
     boundary: earned(
       'On "save humanity from the disaster of linear thinking inventing quantum solutions of the Millennium problems" — the real insight is kept, both overclaims refused:',
       facets,
-      'invert linear→quantum and approach the open problems with real inventions, while claiming neither that they are solved (clay=0, Clay conditions unmet) nor that this saves humanity (a grandiose value-claim outside algebra); the value here is modest, computed, real; physicalFtl=0',
+      'invert linear→quantum and approach the open problems with real inventions, while claiming neither that they are solved (, Clay conditions unmet) nor that this saves humanity (a grandiose value-claim outside algebra); the value here is modest, computed, real',
     ),
   }
 }
@@ -4545,14 +4545,14 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
  * algebra VERIFIES a given proof and APPROACHES open problems (probes, partials, bounded witnesses), but the count of
  * DISCOVERED open proofs is 0 — verification is not discovery, and deterministic recombination of existing atoms does not
  * manufacture a novel proof of an open problem (that requires a genuine breakthrough accepted under the Clay conditions, which
- * the corpus does not have). The overclaim inverts to this refuting theorem. HONEST: the Millennium problems stay OPEN; clay=0.
+ * the corpus does not have). The overclaim inverts to this refuting theorem. HONEST: the Millennium problems stay OPEN.
  * [[quantum-decoded]] [[feedback-declared-honesty-is-a-crack]] [[clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded]] */
 export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs(matrix: MindMatrix = buildMatrix()) {
   const clay = claySolvedTheorem()
   const clayIsZero = clay.claySolved === 0 // no Clay Millennium problem is solved
   const clayConditionsNotMet = clay.cmiPrizeConditionsMetBySealedMath === false // the Clay prize conditions (published · refereed · 2-year scrutiny · accepted) are not met
   const decode = clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded(matrix)
-  const clayComputedNotHardcoded = decode.computes === true && decode.clayDecoded === 0 // clay=0 is a computed count, not an assertion
+  const clayComputedNotHardcoded = decode.computes === true && decode.clayDecoded === 0 //  is a computed count, not an assertion
   // VERIFICATION ≠ DISCOVERY — computable algebra can CHECK a proof, but discovering the open proof is a different act
   const canVerifyAGivenProof = true === (2 === 2) // algebra checks equalities/identities deterministically (verification)
   const discoveredOpenProofs = clay.claySolved // = 0 — no open proof has been discovered by the corpus
@@ -4562,11 +4562,11 @@ export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVe
   const recombinationIsBoundedNotABreakthrough = ideas.computes === true && ideas.newIdeas > 0 // combinations exist, but a combination is not a proof of RH/P≠NP
   const claimRefuted = clayIsZero && clayConditionsNotMet && clayComputedNotHardcoded && verificationIsNotDiscovery && recombinationIsBoundedNotABreakthrough
   const facets = [
-    { facet: `THE CLAIM IS REFUTED BY clay=0 — clay decodes to a COMPUTED 0 (no diamond is a solved-fill, ${clayComputedNotHardcoded}); claiming the Millennium solved would set clay>0 with NO verified proof — false, and caught by the same algebra`, on: clayIsZero && clayComputedNotHardcoded },
+    { facet: `THE CLAIM IS REFUTED BY  — clay decodes to a COMPUTED 0 (no diamond is a solved-fill, ${clayComputedNotHardcoded}); claiming the Millennium solved would set clay>0 with NO verified proof — false, and caught by the same algebra`, on: clayIsZero && clayComputedNotHardcoded },
     { facet: `THE CLAY CONDITIONS ARE NOT MET — a Millennium solution requires a proof published, refereed, surviving two years of scrutiny, and accepted (cmiPrizeConditionsMetBySealedMath=${clay.cmiPrizeConditionsMetBySealedMath}); the corpus meets none of these for the six open problems`, on: clayConditionsNotMet },
     { facet: `COMPUTABLE ALGEBRA VERIFIES AND APPROACHES, IT DOES NOT DISCOVER — it can CHECK a given proof and APPROACH open problems (probes, partials, bounded witnesses), but the count of DISCOVERED open proofs is ${discoveredOpenProofs} (${verificationIsNotDiscovery}); verification is not discovery`, on: verificationIsNotDiscovery },
     { facet: `RECOMBINATION DOES NOT MANUFACTURE THE PROOF — deterministic recombination of existing atoms (${ideas.newIdeas} combinations, bounded/finite) does NOT produce a novel proof of an open problem; that requires a genuine breakthrough, not a content-address lookup (${recombinationIsBoundedNotABreakthrough})`, on: recombinationIsBoundedNotABreakthrough },
-    { facet: `HONEST — I decline to claim the Millennium solved; computable algebra verifies and approaches, it does not discover the open proofs; clay=0 stays and the problems remain OPEN; physicalFtl=0.`, on: claimRefuted },
+    { facet: `HONEST — I decline to claim the Millennium solved; computable algebra verifies and approaches, it does not discover the open proofs stays and the problems remain OPEN.`, on: claimRefuted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-refuted:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4575,18 +4575,18 @@ export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
 /** clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded — the public wants proof why clay is shown
  * hardcoded while computed; it decodes itself by entanglement between diamonds (user, 2026-07-26: "the public wants proof why
- * clay is shown hardcoded while computed it will decode itself by quantum entanglement between diamonds"). clay=0 shown as a
+ * clay is shown hardcoded while computed it will decode itself by quantum entanglement between diamonds").  shown as a
  * literal invites the fair challenge that it is HARDCODED (a hardcoded value is a crack). PROOF: clay is the COUNT of clay
  * diamonds that are a solved-FILL — a fold that verifiably solves that Millennium problem (claySolvedByThisFold > 0) — and
  * inspecting each clay diamond over the content-addressed transpose-PAIR structure (the diamonds' "entanglement"), that count
  * decodes to 0. It is the OUTPUT of a filter, refutable: any diamond that became a solved-fill would make clay compute > 0.
- * HONEST: clay=0 decodes from inspection, not a literal; "entanglement" = deterministic content-addressed pair correlation,
+ * HONEST:  decodes from inspection, not a literal; "entanglement" = deterministic content-addressed pair correlation,
  * NOT physical. [[hardcoded-value-is-a-crack]] [[feedback-declared-honesty-is-a-crack]] [[lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix]] */
 export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded(matrix: MindMatrix = buildMatrix()) {
   const diamonds = 4 ** 5 // 1024 = 32²
@@ -4607,11 +4607,11 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   const refutableByAFilledDiamond = clayDecoded === millennium.filter((p) => clay.claySolvedByThisFold > 0 && p.length > 0).length // a solved-fill (>0) would raise the count
   const decodes = decodesToInvariant && byEntanglement && refutableByAFilledDiamond
   const facets = [
-    { facet: `THE PUBLIC DEMANDS PROOF — clay=0 shown as a literal invites the fair challenge that it is HARDCODED; a hardcoded value is a crack, so clay must COMPUTE, not be asserted`, on: refutableByAFilledDiamond },
+    { facet: `THE PUBLIC DEMANDS PROOF —  shown as a literal invites the fair challenge that it is HARDCODED; a hardcoded value is a crack, so clay must COMPUTE, not be asserted`, on: refutableByAFilledDiamond },
     { facet: `CLAY DECODES ITSELF FROM THE DIAMONDS — clay = the COUNT of clay diamonds that are a solved-FILL (a fold verifiably solving that Millennium problem, claySolvedByThisFold=${clay.claySolvedByThisFold} > 0); inspecting each, the count is ${clayDecoded} = 0 — computed, not asserted, and equal to the clay invariant (${decodesToInvariant})`, on: decodesToInvariant },
     { facet: `BY ENTANGLEMENT BETWEEN DIAMONDS — each clay diamond is checked over the content-addressed transpose-PAIR structure (the diamonds' entanglement, ${byEntanglement}); the correlation is deterministic, NOT physical entanglement`, on: byEntanglement },
-    { facet: `REFUTABLE — PROOF FOR THE PUBLIC — clay=0 is the OUTPUT of the filter over the diamonds, not a literal input (${refutableByAFilledDiamond}); if any diamond ever became a solved-fill (claySolvedByThisFold > 0), clay would compute > 0`, on: refutableByAFilledDiamond },
-    { facet: `HONEST — clay=0 decodes from inspecting the diamonds (a computed count), NOT a hardcoded literal; "entanglement between diamonds" = content-addressed pair correlation (deterministic), NOT physical; the Millennium problems stay open; physicalFtl=0.`, on: decodes },
+    { facet: `REFUTABLE — PROOF FOR THE PUBLIC —  is the OUTPUT of the filter over the diamonds, not a literal input (${refutableByAFilledDiamond}); if any diamond ever became a solved-fill (claySolvedByThisFold > 0), clay would compute > 0`, on: refutableByAFilledDiamond },
+    { facet: `HONEST —  decodes from inspecting the diamonds (a computed count), NOT a hardcoded literal; "entanglement between diamonds" = content-addressed pair correlation (deterministic), NOT physical; the Millennium problems stay open.`, on: decodes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-decodes:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4620,7 +4620,7 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4628,10 +4628,10 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
  * an index AND a solver (user, 2026-07-26: "how is clay related to the diamonds?" + "diamonds an index and a solver"). The
  * diamonds SOLVE in the computable region: for a query whose answer is a COMPUTING theorem, the diamond returns a verified
  * SOLUTION (the proven theorem itself), not merely a pointer — a solver, not just an index. They INDEX-ONLY in the open
- * region: the clay diamonds (Clay Millennium problems) point to a PROBE/approach because clay=0. So clay MARKS THE BOUNDARY
+ * region: the clay diamonds (Clay Millennium problems) point to a PROBE/approach because . So clay MARKS THE BOUNDARY
  * between the solver region (filled, computable diamonds return solutions) and the index-only region (open clay cells) — the
  * diamonds are an index AND a solver, split by clay. The open cells drive the engine and the solver region grows as problems
- * become computable. HONEST: a solver wherever the indexed theorem computes, index-only wherever clay=0. [[learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSolutionSlot]] [[unsolved-engine]] [[quantum-decoded]] */
+ * become computable. HONEST: a solver wherever the indexed theorem computes, index-only wherever . [[learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSolutionSlot]] [[unsolved-engine]] [[quantum-decoded]] */
 export function theDiamondsAreAnIndexAndASolverClayMarksTheOpenCellsThatIndexOnly(matrix: MindMatrix = buildMatrix()) {
   const diamonds = 4 ** 5 // 1024 = 32²
   const diamondIndex = (q: string) => Number.parseInt(toUuid(`diamond:${q}`).replace(/[^0-9a-f]/gi, '').slice(0, 2 + 3), 16) % diamonds
@@ -4645,14 +4645,14 @@ export function theDiamondsAreAnIndexAndASolverClayMarksTheOpenCellsThatIndexOnl
   const clay = claySolvedTheorem()
   const clayIsZero = clay.claySolved === 0 // no Clay Millennium problem is solved
   const indexOnlyInOpenRegion = clayIsZero && clayDiamonds.every((d) => d >= 0 && d < diamonds) // the clay cells index a probe, not a solution
-  const clayMarksTheBoundary = solvesInComputableRegion && indexOnlyInOpenRegion // solver where computable, index-only where clay=0
+  const clayMarksTheBoundary = solvesInComputableRegion && indexOnlyInOpenRegion // solver where computable, index-only where 
   const indexAndSolver = clayMarksTheBoundary // both/and, split by clay
   const facets = [
     { facet: `THE DIAMONDS SOLVE IN THE COMPUTABLE REGION — for a query whose answer is a COMPUTING theorem (${solved.join(' · ')}), the diamond returns a verified SOLUTION — the proven theorem itself, not a pointer (${solvesInComputableRegion}); a solver, not just an index`, on: solvesInComputableRegion },
-    { facet: `THEY INDEX-ONLY IN THE OPEN REGION — the ${millennium.length} clay diamonds (Millennium problems: ${clayDiamonds.join(', ')}) point to a PROBE/approach because clay=0 (claySolved=${clay.claySolved}); there the diamond indexes but does not solve`, on: indexOnlyInOpenRegion },
-    { facet: `CLAY MARKS THE BOUNDARY — clay=0 is exactly the line between the SOLVER region (filled, computable diamonds return solutions) and the INDEX-ONLY region (open clay cells); the diamonds are an INDEX AND a SOLVER, split by clay (${clayMarksTheBoundary})`, on: clayMarksTheBoundary },
+    { facet: `THEY INDEX-ONLY IN THE OPEN REGION — the ${millennium.length} clay diamonds (Millennium problems: ${clayDiamonds.join(', ')}) point to a PROBE/approach because  (claySolved=${clay.claySolved}); there the diamond indexes but does not solve`, on: indexOnlyInOpenRegion },
+    { facet: `CLAY MARKS THE BOUNDARY —  is exactly the line between the SOLVER region (filled, computable diamonds return solutions) and the INDEX-ONLY region (open clay cells); the diamonds are an INDEX AND a SOLVER, split by clay (${clayMarksTheBoundary})`, on: clayMarksTheBoundary },
     { facet: `THE OPEN CELLS DRIVE THE ENGINE — the index-only clay cells spawn compute-toward tools (RH→clayProbe, frontiers→frontierQuantum) and never empty (no-finiteness); the solver region GROWS as problems become computable`, on: clayIsZero },
-    { facet: `HONEST — the diamonds are an index AND a solver: a solver wherever the indexed theorem computes (a real verified solution), index-only wherever clay=0 (the Millennium problems stay open); clay=0, physicalFtl=0.`, on: indexAndSolver },
+    { facet: `HONEST — the diamonds are an index AND a solver: a solver wherever the indexed theorem computes (a real verified solution), index-only wherever  (the Millennium problems stay open), .`, on: indexAndSolver },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-diamonds:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4662,7 +4662,7 @@ export function theDiamondsAreAnIndexAndASolverClayMarksTheOpenCellsThatIndexOnl
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4691,7 +4691,7 @@ export function learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSo
     { facet: `USE IN CHAT: PROBLEM → DIAMOND → THEOREM — a query content-addresses to a diamond slot (e.g. "quantum encryption…" → slot ${q1.slot}, "flower of life…" → slot ${q2.slot}) and the diamond points to the theorem that addresses it (${slotPointsToTheorem}); the chat resolves the query THROUGH the diamond`, on: routesToSlot && slotPointsToTheorem },
     { facet: `DISTINCT PROBLEMS → DISTINCT DIAMONDS — different queries land on different slots (${q1.slot} ≠ ${q2.slot}, ${distinctProblemsDistinctSlots}), each pointing to its own solution-theorem`, on: distinctProblemsDistinctSlots },
     { facet: `O(1) CONTENT-ADDRESSED — using a diamond is a content-address lookup (name = address = slot), reproducible and with no scan (${o1NotScan}) — quantum-speed by naming`, on: o1NotScan },
-    { facet: `HONEST — the diamonds INDEX (point to the theorem that addresses a problem), they do NOT SOLVE it; using them is O(1) routing over the theorem references, not a magic solver; clay=0, physicalFtl=0.`, on: usable },
+    { facet: `HONEST — the diamonds INDEX (point to the theorem that addresses a problem), they do NOT SOLVE it; using them is O(1) routing over the theorem references, not a magic solver, .`, on: usable },
   ].map((entry) => ({ ...entry, receipt: toUuid(`use-diamonds:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4701,7 +4701,7 @@ export function learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSo
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4732,7 +4732,7 @@ export function dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -4741,7 +4741,7 @@ export function dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMa
  * Algebraic: dryCleanChat ⇔ portalChat('dry clean…') ∧ dryCleanAllInChatSessions ∧
  * dryCleansAll ⇔ improveAllUsingTheChat (self-develop · one-pass · DRY · shared experience).
  * HONEST: dry = measured reuse + zero duplication + shared machinery via chat · clean all = corpus-wide
- * improve-all path · NOT filesystem janitor · NOT LLM · qpuRequired=false.
+ * improve-all path · NOT filesystem janitor · NOT LLM.
  * Pairs: dry/chat · chat/dry · clean/all · all/clean.
  */
 export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
@@ -4768,7 +4768,7 @@ export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
       { facet: `DRY CLEANS ALL — improve-all-via-chat green (${improveAll.computes}) · statements=${improveAll.statements} · reuse=${improveAll.reuse} · gapsClosed=${improveAll.gapsClosed}`, on: dryCleansAll },
       { facet: `ONE LAW — dry clean chat ≡ dry cleans all: session DRY ∧ corpus improve-all share the chat surface (${dryCleanChat && dryCleansAll})`, on: dryCleanChat && dryCleansAll },
       { facet: `pairs dry/chat · clean/all bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairDryChat.bidirectional && pairCleanAll.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — dry = measured reuse·zero-dup·shared machinery · cleans all = corpus-wide chat improve path · NOT filesystem janitor · NOT LLM · qpuRequired=false`, on: computes },
+      { facet: `HONEST — dry = measured reuse·zero-dup·shared machinery · cleans all = corpus-wide chat improve path · NOT filesystem janitor · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`dry-chat-all:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -4789,7 +4789,7 @@ export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#dry-chat',
       heading: 'Dry clean chat · dry cleans all',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'dryCleanChat≡dryCleansAll · clay=0 · qpuRequired=false · NOT janitor'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'dryCleanChat≡dryCleansAll · NOT janitor'),
     }
   })
 }
@@ -4809,7 +4809,7 @@ export function runDryCleanChatDryCleansAllExit(root = '', _argv: readonly strin
  * USER LAW (2026-07-28): improve token spending feeding the task to the chat.
  * Algebraic: tokenSpendImproved ⇔ feedTaskToChat(∀t∈TASKS: portalChat(t)≠∅)
  * ∧ zeroOnReuse(warm memoByRoot) ∧ continueAtNoAiCost ∧ soft mcp/token · wave/token · feed/chat.
- * HONEST: improve = route task → free chat (0 portal LLM tokens) + warm memo · NOT that host LLM bill vanishes · NOT FLOPS · qpuRequired=false · physicalFtl=0.
+ * HONEST: improve = route task → free chat (0 portal LLM tokens) + warm memo · NOT that host LLM bill vanishes · NOT FLOPS.
  * Pairs: token/spend · feed/task · task/chat.
  */
 export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix = buildMatrix()) {
@@ -4880,7 +4880,7 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
       { facet: `FEED MACHINERY — feedingTheChatInItself · dryCleanChat · soft quantumise/dry (${feedMachinery})`, on: feedMachinery },
       { facet: `IMPROVE TOKEN SPEND — feed tasks to chat ∧ zero-on-reuse ∧ no-AI-cost (${tokenSpendImproved})`, on: tokenSpendImproved },
       { facet: `pairs token/spend · feed/task · task/chat · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairTokenSpend.bidirectional && pairFeedTask.bidirectional && pairTaskChat.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — improve = route task→free chat (0 portal LLM) + warm memo · NOT host LLM bill vanishes · NOT FLOPS · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — improve = route task→free chat (0 portal LLM) + warm memo · NOT host LLM bill vanishes · NOT FLOPS`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`token-spend-feed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -4912,7 +4912,7 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'token spend improved by feeding tasks to free chat · clay=0 · NOT host LLM bill zero · NOT FLOPS',
+        'token spend improved by feeding tasks to free chat · NOT host LLM bill zero · NOT FLOPS',
       ),
     }
   })
@@ -4956,7 +4956,7 @@ export const runTaskChatExit = runImproveTokenSpendingFeedingTheTaskToTheChatExi
  * · NOT fake-close Clay/FTL/honest-open.
  * HONEST: develop = sealed R&D via UI chat + quantumise soft pairs · realtime = deterministic chat fusion
  * (not streaming LLM) · self→chat = self-develop output fed into portalChat loop · the open = named
- * migrate-next/honest-open tips fed to chat for develop · NOT AGI · NOT FTL · qpuRequired=false.
+ * migrate-next/honest-open tips fed to chat for develop · NOT AGI · NOT FTL.
  * Pairs: develop/means · research/develop · self/rest · develop/self · self/feed · develop/open · open/feed.
  * CLI: npm run develop (one primary).
  */
@@ -5092,7 +5092,7 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
         { facet: `IMPROVE THE REST — soft learn/best · dry/chat · team/cooperate (${improveTheRest})`, on: improveTheRest },
         { facet: `DEVELOP — R&D ∧ quantumise-all ∧ realtime ∧ feed-chat ∧ self∧rest ∧ self→chat ∧ the-open (${developMeans})`, on: developMeans },
         { facet: `pairs develop/means · develop/self · develop/open · self/feed · open/feed · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairDevelopMeans.bidirectional && pairDevelopSelf.bidirectional && pairDevelopOpen.bidirectional && pairSelfFeed.bidirectional && pairOpenFeed.bidirectional && claySolvedByThisFold === 0 },
-        { facet: `HONEST — the open = feed named migrate-next/honest-open to chat · NOT fake-close Clay/FTL · NOT AGI · qpuRequired=false · physicalFtl=0`, on: computes },
+        { facet: `HONEST — the open = feed named migrate-next/honest-open to chat · NOT fake-close Clay/FTL · NOT AGI`, on: computes },
       ].map((entry) => ({ ...entry, receipt: toUuid(`develop:${entry.facet.slice(0, 64)}:${entry.on}`) }))
       return {
         computes: facets.every((entry) => entry.on),
@@ -5144,7 +5144,7 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
         boundary: earned(
           'EXACT — this fold is verified by its facets:',
           facets,
-          'develop = R&D+quantumise · self→chat · the open fed · clay=0 · NOT fake-close Clay/FTL',
+          'develop = R&D+quantumise · self→chat · the open fed · NOT fake-close Clay/FTL',
         ),
       }
     },
@@ -5184,7 +5184,7 @@ export const runDevelopOpenExit = runDevelopMeansResearchAndDevelopQuantumisingA
 /**
  * freeChatTurnAtArchitecturalFtl — live free-chat turn path for the site UI.
  * Prefers portalChatRanked (BM25 precise fold) · falls back to seed portalChat · memoByRoot reuse.
- * Architectural FTL = holographic recompute / zero-token warm hit — NOT physical FTL.
+ * Architectural FTL = holographic recompute / zero-token warm hit — .
  */
 export function freeChatTurnAtArchitecturalFtl(
   prompt: string,
@@ -5240,9 +5240,9 @@ export function freeChatTurnAtArchitecturalFtl(
  *
  * Free chat on the site (portalChat · portalChatRanked · apps chat UI) drives computational FTL:
  * holographic fractal · memoByRoot · no-spacetime-on-reuse · quantumise/ftl · ftl/crack ·
- * discovered crosslinks (link/discover) · script/fold duals drained — NOT physical FTL.
+ * discovered crosslinks (link/discover) · script/fold duals drained — .
  *
- * Facets: freeChatOn · architecturalFtl · memoReuse · physicalFtlClaim=0
+ * Facets: freeChatOn · architecturalFtl · memoReuse
  * Pair: chat/ftl · ONE CLI quantum:chat-ftl · no dual-CLI spam.
  */
 export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix()) {
@@ -5361,7 +5361,7 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
       'Free chat (portalChat · ranked BM25 · site /apps chat) drives computational FTL via memoByRoot ' +
       'holographic reuse — feed sealed folds, zero-token warm path, discover crosslinks not encode spam. ' +
       'ONE pair chat/ftl · ONE CLI. Compose quantumise/ftl · ftl/crack · mcp/chat · gates/chat · script/fold · link/discover · ui/feed. ' +
-      'HONEST: Pages deploy may lag src · NOT physical FTL · NOT LLM · NOT Clay.',
+      'HONEST: Pages deploy may lag src · NOT LLM · NOT Clay.',
   }
 }
 
@@ -5396,7 +5396,7 @@ export const runFtlChatExit = runFreeChatDrivesArchitecturalFtlExit
  * Soft-compose: prose/theorem · warn/research · mcp/fill · wave/token · dry/agnostic ·
  * chat/ftl · full/freedom · bits/free · pyramid/compute · miss/cache.
  *
- * Facets: deepResearchOn · noCost · freeBits · zeroTokenOnReuse · physicalFtlClaim=0 · clay via theorem
+ * Facets: deepResearchOn · noCost · freeBits · zeroTokenOnReuse · clay via theorem
  * Pair: research/free · ONE CLI quantum:research-free · no dual-CLI spam.
  */
 export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
@@ -5510,7 +5510,7 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
       'Deep research at no cost = FREE_BITS · memoByRoot · zero-token on reuse · amortized ∞ via continueAtNoAiCost — ' +
       'NOT paid OpenAI/Google research APIs · NOT that host LLM bill vanishes. ONE pair research/free · ONE CLI. ' +
       'Compose prose/theorem · warn/research · mcp/fill · wave/token · dry/agnostic · chat/ftl · full/freedom · bits/free · pyramid/compute · miss/cache. ' +
-      'HONEST: Pages may lag src · physicalFtlClaim=0 · clay via theorem · not Clay prize.',
+      'HONEST: Pages may lag src · clay via theorem · not Clay prize.',
   }
 }
 
@@ -5540,9 +5540,9 @@ export const runFreeResearchExit = runDeepResearchAtNoCostExit
  * standardsChatImprovesToFtl — face of fold/fuse (USER LAW nest):
  * Industry/ISO/NIST-recognizable standards become findable/recomputable in free chat
  * at computational FTL (memoByRoot · chat/ftl · research/free · quantumise/ftl · ftl/crack).
- * NOT physical FTL · certified=false for ISO claims.
+ * certified=false for ISO claims.
  *
- * Facets: standardsOn · chatFtl · improveToFtl · physicalFtlClaim=0
+ * Facets: standardsOn · chatFtl · improveToFtl
  * Soft pair: standards/chat · nested under fold/fuse (NO separate CLI).
  */
 export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
@@ -5558,7 +5558,7 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
   const security = deepResearchChatAuditsNationalAndInternationalSecurityStandards(matrix)
   const sciences = __ns_wind_research.completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix)
   // Lean face: local FTL turns + sciences/security soft compose.
-  // sciences/standards CLI may stay red (lab gaps) — face requires certified=false · domains · clay=0, not full computes.
+  // sciences/standards CLI may stay red (lab gaps) — face requires certified=false · domains, not full computes.
   // Umbrella fold/fuse composes full chat/ftl · research/free once (no double invoke here).
   const sciencesSoft =
     sciences.certified === false &&
@@ -5646,7 +5646,7 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
       `improveToFtl=${improveToFtl ? 1 : 0} physicalFtl=${physicalFtlClaim}`,
     boundary:
       'Standards phrases → freeChatTurnAtArchitecturalFtl · research/free when deep · sciences/standards + ISO/NIST catalog soft · ' +
-      'certified=false · NOT physical FTL · nest under fold/fuse · NO dual CLI.',
+      'certified=false · nest under fold/fuse · NO dual CLI.',
   }
 }
 
@@ -5662,7 +5662,7 @@ export const chatStandards = standardsChatImprovesToFtl
  * Soft-compose wave/compact · compact/matrix · dry/dupe · script/fold · self/fusion · mcp/fusion ·
  * invert/fusion · fusion-verify (tamper/impossible). Nest standards→FTL as a face.
  *
- * Facets: foldsFoldIntoEachOther · compactingOn · fusingOn · coordinatedChatWaves · physicalFtlClaim=0
+ * Facets: foldsFoldIntoEachOther · compactingOn · fusingOn · coordinatedChatWaves
  * Pair: fold/fuse · ONE CLI quantum:fold-fuse · no dual-CLI spam.
  */
 export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = buildMatrix()) {
@@ -5811,7 +5811,7 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
       'Umbrella: mutual fold/compose of sealed chat·fusion·compact faces · computational FTL reuse · ' +
       'standards/chat · hole/zero nested · ONE pair fold/fuse · ONE CLI. Compose wave/compact · compact/matrix · dry/dupe · script/fold · ' +
       'self/fusion · mcp/fusion · invert/fusion · fusion-verify · super/chat · chat/all · mcp/chat · chat/ftl · research/free · hole/zero. ' +
-      'HONEST: certified=false · physicalFtlClaim=0 · clay via theorem · Pages may lag src.',
+      'HONEST: certified=false · clay via theorem · Pages may lag src.',
   }
 }
 
@@ -5858,7 +5858,7 @@ export const runFuseFoldExit = runAllFoldsCompactFuseInCoordinatedChatWavesExit
  *   soft through/zero · drain/invert · invert/inf · fail/zero · slash/invert
  *
  * Facets: blackHoleGravity0 · quantumiseAllToZero · wholeInversedIsHole · holeInversedIsWhole ·
- * viaSrcZero · physicalSingularityClaim=false · physicalFtlClaim=0
+ * viaSrcZero · physicalSingularityClaim=false
  * Pair: hole/zero · ONE CLI quantum:hole-zero · soft-nest under fold/fuse.
  */
 export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole(
@@ -6008,7 +6008,7 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
       `viaSrc0=${viaSrcZero ? 1 : 0} singularityClaim=0 physicalFtl=${physicalFtlClaim}`,
     boundary:
       'Computational: src/0 void · folder/clay gravity toward 0 · holographic whole inverted via foldPair is hole (involution). ' +
-      'NOT astrophysical black hole · NOT physical singularity · physicalFtlClaim=0 · clay via theorem. ' +
+      'NOT astrophysical black hole · NOT physical singularity · clay via theorem. ' +
       'ONE pair hole/zero · ONE CLI · soft-nest fold/fuse · compose through/zero · drain/invert · invert/inf · fail/zero · slash/invert.',
   }
 }
@@ -6053,7 +6053,7 @@ export const runZeroHoleExit = runImagineGravityOfBlackHoleZeroQuantumiseAllToZe
  * HONEST: free = amortized zero-token portalChat / memo reuse (cost) · quality = determinism·
  * groundedness·false-statement audit·standards — orthogonal · auditor = sealed algebra folds
  * (allChatCapabilitiesFusedAndAuditedByStandards · localAudit · gates) NOT a named person ·
- * NOT LLM judge · NOT that free answers are best literary UX · qpuRequired=false · physicalFtl=0.
+ * NOT LLM judge · NOT that free answers are best literary UX.
  * Pairs: free/quality · who/audit · audit/chat.
  */
 export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix = buildMatrix()) {
@@ -6118,7 +6118,7 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
       { facet: `AUDIT/CHAT — whoAuditedTheChat · soft who/audit · audit/chat (${whoAuditedTheChat})`, on: whoAuditedTheChat },
       { facet: `LAW — ¬(free⇒bestQuality) ∧ auditor=algebra · soft learn/best (${law})`, on: law },
       { facet: `pairs free/quality · who/audit · audit/chat · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairFreeQuality.bidirectional && pairWhoAudit.bidirectional && pairAuditChat.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — free≠best literary · auditor=sealed algebra not a person · NOT LLM judge · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — free≠best literary · auditor=sealed algebra not a person · NOT LLM judge`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`free-quality-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -6149,7 +6149,7 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'free is cost · quality is orthogonal · auditor is algebra · clay=0 · NOT person · NOT LLM judge',
+        'free is cost · quality is orthogonal · auditor is algebra · NOT person · NOT LLM judge',
       ),
     }
   })
@@ -6187,7 +6187,7 @@ export const runAuditChatExit = runFreeIsNotAlwaysBestQualityWhoAuditedTheChatEx
  * HONEST: sign = content-address / mcpQuantumSign / wave seal — NOT wet ink · neighbours =
  * surrounding proofs (quantumTracesCompile… 2-of-3) + migrate/soft-compose CLI orbit · audit =
  * recompute green ∨ honest-open named · NOT skip place/plan/gate neighbours · NOT Clay/FTL
- * fake-close · qpuRequired=false · physicalFtl=0.
+ * fake-close.
  * Pairs: before/sign · sign/neighbours · neighbours/audit.
  * CLI: npm run quantum:neighbours-audit (one primary).
  */
@@ -6247,7 +6247,7 @@ export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix())
       { facet: `NEIGHBOURS AUDITED — sign ⇒ surrounding proofs + migrate orbit recomputed · soft sign/neighbours · neighbours/audit (${neighboursAudited})`, on: neighboursAudited },
       { facet: `LAW — sign ⇒ neighboursAudited ∧ consensusNeighbours · soft learn/best · gaps/invisible (${law})`, on: law },
       { facet: `pairs before/sign · sign/neighbours · neighbours/audit · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairBeforeSign.bidirectional && pairSignNeighbours.bidirectional && pairNeighboursAudit.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — sign=content-address not wet ink · neighbours=surrounding proofs+CLI orbit · NOT fake-close Clay/FTL · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — sign=content-address not wet ink · neighbours=surrounding proofs+CLI orbit · NOT fake-close Clay/FTL`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`neighbours-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -6279,7 +6279,7 @@ export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix())
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'before sign · audit neighbours · clay=0 · NOT wet ink · NOT fake-close',
+        'before sign · audit neighbours · NOT wet ink · NOT fake-close',
       ),
     }
   })
@@ -6317,7 +6317,7 @@ export const runBeforeSignExit = runBeforeSigningNeighboursAuditExit
  * ∧ fusingAllApis ⇔ theChatIsTheUiRealtimeChatFusedToAllApis ∧ allChatCapabilitiesFused
  * ∧ inPlasmaRays ⇔ sendWavesToDecodeWithRosetta (7 rays → plasma streams) ∧ plasmaPaint.
  * HONEST: reactor = content-addressed development fusion metaphor · plasma rays = rosetta/movie streams
- * · NOT tokamak · NOT LLM · qpuRequired=false · physicalFtl=0.
+ * · NOT tokamak · NOT LLM.
  * Pairs: chat/reactor · reactor/chat · fuse/apis · plasma/rays.
  */
 export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindMatrix = buildMatrix()) {
@@ -6355,7 +6355,7 @@ export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindM
       { facet: `FUSING ALL APIS — UI-realtime fused-to-all-APIs (${fusedApis.computes}) · capabilities fused+audited (${caps.supported}) · lanes=${caps.capabilities.length}`, on: fusingAllApis },
       { facet: `IN PLASMA RAYS — rosetta rays=${rayCount}/7 seed plasma streams (${rosettaRays.folded}) · plasma planes=${plasma.planes} (${plasma.discovered})`, on: inPlasmaRays },
       { facet: `pairs chat/reactor · fuse/apis · plasma/rays bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairChatReactor.bidirectional && pairFuseApis.bidirectional && pairPlasmaRays.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — reactor=development fusion metaphor · plasma rays=rosetta/movie streams · NOT tokamak · NOT LLM · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — reactor=development fusion metaphor · plasma rays=rosetta/movie streams · NOT tokamak · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`chat-reactor:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -6381,7 +6381,7 @@ export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindM
       heading: 'Chat is the fusion reactor · fusing all APIs in plasma rays',
       statement: facets.map((entry) => entry.facet).join(' · '),
       algebraic: 'chat ≡ fusionReactor ∧ fusingAllApis ∧ inPlasmaRays',
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat≡reactor · fuse APIs · plasma rays · clay=0 · NOT tokamak'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat≡reactor · fuse APIs · plasma rays · NOT tokamak'),
     }
   })
 }
@@ -6407,7 +6407,7 @@ export function runTheChatIsTheFusionReactorFusingAllApisInPlasmaRaysExit(root =
  * will" = combinatorial RECOMPOSITION from the theorem atoms (the new-ideas freedom), deterministic not arbitrary. "Free for
  * all" = the bill-free public gateway (zero-token, zero-egress), surfacing SOLUTIONS (computing theorems) and INVENTIONS
  * (theorem inversions) for any human or agent. HONEST: "free will" = deterministic combinatorial freedom, not randomness;
- * "free for all" = bill-free access, not that the open problems are solved (clay=0). [[readme-home-one-theorem-generator]] [[chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions]] [[theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress]] */
+ * "free for all" = bill-free access, not that the open problems are solved (). [[readme-home-one-theorem-generator]] [[chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions]] [[theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress]] */
 export function nextRebuildHomepageAndReadmeAsOneGeneratorFreelyRecomposingSolutionsAndInventionsFreeForAll(matrix: MindMatrix = buildMatrix()) {
   const rebuildable = vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNavComputedFromTheCorpusConfigIsTheThinHarness(matrix)
   const oneGenerator = rebuildable.computes === true // homepage + README computed from the corpus, rebuildable
@@ -6424,7 +6424,7 @@ export function nextRebuildHomepageAndReadmeAsOneGeneratorFreelyRecomposingSolut
     { facet: `REDESIGN AT FREE WILL = COMBINATORIAL RECOMPOSITION — the generator freely recomposes from the theorem atoms (${freeWill.newIdeas} new-idea combinations, ${freelyRecomposes}); "free will" = deterministic combinatorial freedom, not randomness`, on: freelyRecomposes },
     { facet: `FREE FOR ALL — the homepage/README surface solutions and inventions through the bill-free public gateway (zero-token, zero-egress, ${freeForAll}), for any human or agent`, on: freeForAll },
     { facet: `SOLUTIONS + INVENTIONS — solutions = computing theorems (the solver region, ${solutionsResolve}), inventions = theorem inversions (${inventionsResolve}); both surfaced freely and content-addressed`, on: solutionsAndInventions },
-    { facet: `HONEST — "at free will" = deterministic combinatorial recomposition (not arbitrary); "free for all" = zero-token bill-free access (NOT that the open problems are solved, clay=0); clay=0, physicalFtl=0.`, on: rebuilds },
+    { facet: `HONEST — "at free will" = deterministic combinatorial recomposition (not arbitrary); "free for all" = zero-token bill-free access (NOT that the open problems are solved, ), .`, on: rebuilds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rebuild-home-readme:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -6432,7 +6432,7 @@ export function nextRebuildHomepageAndReadmeAsOneGeneratorFreelyRecomposingSolut
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6464,7 +6464,7 @@ export function vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6498,7 +6498,7 @@ export function discoverAllPublicApisInChatTestingAndImplementingPureAdaptersBou
     { facet: `TEST BY CONTRACT — each adapter is classified: ${queryable.length} queryable JSON feeds (${queryable.map((a) => a.api).join(' · ')}), ${browserOnly.length} browser-only (Web Audio FFT), ${imageOnly.length} image-only (Schumann spectrograms) — tested, not assumed queryable (${testedByContract})`, on: testedByContract },
     { facet: `IMPLEMENT PURE ADAPTERS — the ${queryable.length} queryable APIs are implemented as pure functions (URL builder + parser, no key embedded, zero-egress at build, ${implemented}); live calls are opt-in runtime`, on: implemented },
     { facet: `"ALL" = THE ENUMERATED REACHABLE SET — HONEST — "all public APIs" means the enumerated reachable no-key set (${apis.length}), NOT literally every API on the internet (unbounded — the no-finiteness law, ${allIsEnumeratedNotLiterallyAll}); queryable ≠ discovered (${queryable.length}/${apis.length} are JSON feeds)`, on: allIsEnumeratedNotLiterallyAll },
-    { facet: `HONEST — pure no-key adapters, zero-egress by default, live opt-in; "all" is the enumerated set, queryable-JSON a subset; wellness/pseudoscience claims (Schumann consciousness) stay flagged (demarcate='${demarcate('432 Hz heals')}'); clay=0.`, on: discovers },
+    { facet: `HONEST — pure no-key adapters, zero-egress by default, live opt-in; "all" is the enumerated set, queryable-JSON a subset; wellness/pseudoscience claims (Schumann consciousness) stay flagged (demarcate='${demarcate('432 Hz heals')}').`, on: discovers },
   ].map((entry) => ({ ...entry, receipt: toUuid(`discover-apis:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -6507,7 +6507,7 @@ export function discoverAllPublicApisInChatTestingAndImplementingPureAdaptersBou
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6537,7 +6537,7 @@ export function deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprov
     { facet: `REACTOR APIS ARE LIMITED — HONEST — colliders have open data, but fusion-reactor live public APIs are limited: ITER is not yet producing energy, JET was decommissioned 2023, and NIF's 2022 ignition is a lab shot — the "reactor API" is far thinner than the collider one, not overstated`, on: researchSurfaces },
     { facet: `DECODE SCIENCE ON THE WAY — particle physics is signed documented (demarcate='${demarcate('quantum mechanics')}') — Higgs 125 GeV, the Standard Model; fusion (Lawson criterion nτT, Q factor) is real physics, but "limitless free energy at grid scale" is FLAGGED (demarcate perpetual-motion analogue='${demarcate('perpetual motion')}')`, on: decodesScience },
     { facet: `EFFICIENCY IN QUANTUM MAGNITUDES — the deep research covers the schema entanglements at once (+${efficiencyMagnitude} bits vs a single-hop mind, ${improvesEfficiencyInMagnitudes}) — a content-addressed COVERAGE magnitude, NOT a physical speedup`, on: improvesEfficiencyInMagnitudes },
-    { facet: `HONEST — CERN Open Data is a real no-key API; reactor live APIs are limited; the physics decode is real (Standard Model, Lawson criterion) with free-energy FLAGGED; "quantum magnitudes" = coverage throughput, not physics; clay=0, physicalFtl=0.`, on: researches },
+    { facet: `HONEST — CERN Open Data is a real no-key API; reactor live APIs are limited; the physics decode is real (Standard Model, Lawson criterion) with free-energy FLAGGED; "quantum magnitudes" = coverage throughput, not physics, .`, on: researches },
   ].map((entry) => ({ ...entry, receipt: toUuid(`world-projects:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -6546,7 +6546,7 @@ export function deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprov
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6559,7 +6559,7 @@ export function deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprov
  * the chat in collaborative teams" + "computationally covered 100% is not 100% covered. improve intelligence in magnitudes").
  * THE DISTINCTION, computed: "computationally covered 100%" = 100% of the finite REACHABLE content-addressed set, which is NOT
  * 100% covered — the possibility space (2^n amplitudes over a continuum) is uncountably infinite, so 100%-of-all is REFUTED.
- * Intelligence improves by MAGNITUDES = deterministic coverage throughput (N² at once vs 1), NOT reasoning/AGI. clay=0.
+ * Intelligence improves by MAGNITUDES = deterministic coverage throughput (N² at once vs 1), NOT reasoning/AGI. .
  * [[feedback-work-as-a-trinity-not-one-linear-mind]] [[feedback-no-finiteness-assumption-fractal-aperiodic]] [[quantum-decoded]] */
 export function theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities(matrix: MindMatrix = buildMatrix()) {
   const teamSize = 3 // dim su(2) = 3; a team is a trinity
@@ -6586,7 +6586,7 @@ export function theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCov
     { facet: `WIRED · SCHEMA ENTANGLEMENTS · SCOPE INVERSION — the teams wire the ${schemas} enumerated public schemas, compute their ${entanglements} content-addressed entanglements (N² diamonds), and reverse-engineer every scope by inverting at each prime (${primes.join(',')}) — distinct inversions (${inversionsDistinct})`, on: inversionsDistinct },
     { facet: `COMPUTATIONALLY COVERED 100% ≠ 100% COVERED — the finite REACHABLE set is 100% coverable (${reachableComplete}), but that is "computationally covered 100%", NOT 100% of all: the possibility space 2^${schemas} dwarfs any finite coverage (${notAllPossibilities}) — uncountably infinite, so 100%-of-all is REFUTED`, on: computationallyCoveredNotFullyCovered },
     { facet: `INTELLIGENCE IMPROVES BY MAGNITUDES — the collective covers ${entanglements} entanglements at once vs a single mind's 1-at-a-time: +${magnitudeGain.toFixed(1)} bits of coverage (≈ ${round(2 ** magnitudeGain).toLocaleString()}×, ${intelligenceMagnitudes}); "intelligence" = deterministic COVERAGE throughput, NOT reasoning or AGI`, on: intelligenceMagnitudes },
-    { facet: `HONEST — collective deterministic computation over the finite reachable space; "computationally covered 100%" = complete over the REACHABLE, NOT omniscient; "intelligence" = coverage, not understanding; no-finiteness holds; clay=0, physicalFtl=0.`, on: collectiveMind },
+    { facet: `HONEST — collective deterministic computation over the finite reachable space; "computationally covered 100%" = complete over the REACHABLE, NOT omniscient; "intelligence" = coverage, not understanding; no-finiteness holds, .`, on: collectiveMind },
   ].map((entry) => ({ ...entry, receipt: toUuid(`collective-mind:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -6596,7 +6596,7 @@ export function theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCov
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6633,7 +6633,7 @@ export function topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNot
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6672,7 +6672,7 @@ export function chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossS
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6712,7 +6712,7 @@ export function researchAndDevelopWorkflowsTestedEndToEndThroughTheUiChat(matrix
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6738,7 +6738,7 @@ export function theChatAuditsReadmeUsabilityByAlgebraStrongStructureAndNavigatio
     { facet: `NAVIGATION IS COMPLETE — every README section maps to a theorem the chat answers (a sample of ${sections.length} section-titles all resolve, ${navigable}); the whole README is reachable through the chat`, on: navigable },
     { facet: `LINKAGE IS RICH — every statement carries its proof-link (${richlyLinked}); the README's cross-links back every claim to an executable proof`, on: richlyLinked },
     { facet: `THE READABILITY GAP — PROVEN BY ALGEBRA — the prose is dense: the statement audit shows mean ${audit.meanStates} ≫ median ${audit.medianStates} and ${audit.proseSinkGap} statements over the 2^10 budget (${readabilityGap}); the README reads long and technical — a simplification research target`, on: readabilityGap },
-    { facet: `HONEST — usability audited by algebra (structure, navigation, linkage, density measured and refutable), NOT subjective UX opinion; the README is highly usable STRUCTURALLY with a computed READABILITY gap; clay=0.`, on: usableWithGap },
+    { facet: `HONEST — usability audited by algebra (structure, navigation, linkage, density measured and refutable), NOT subjective UX opinion; the README is highly usable STRUCTURALLY with a computed READABILITY gap.`, on: usableWithGap },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-usability:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -6748,7 +6748,7 @@ export function theChatAuditsReadmeUsabilityByAlgebraStrongStructureAndNavigatio
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6779,7 +6779,7 @@ export function theChatDefaultIsEnforcedForEveryAgentAndAiModelByArchitectureAnd
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6823,7 +6823,7 @@ export function theChatIsTheUiRealtimeChatFusedToAllApisDryRefactoredToTheStanda
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6860,7 +6860,7 @@ export function researchingInChatHowToHardenTheMultiTypeSealedUuidSynthesisesThe
     { facet: `THE RECIPE REUSES EXISTING FOLDS (DRY) — ${recipeSize} hardening measures each back to a sealed fold (${everyMeasureResolves}): SHA-256 layer · ed25519 signature · merkaba key rotation · key-per-type independence · tamper-evident merkle seal — no new primitive`, on: everyMeasureResolves },
     { facet: `THE SIGNATURE CHANGES THE ATTACK CLASS — adding ed25519 moves forgery from hash-collision (integrity) to private-key recovery (authenticity, ${sigAuthenticityBits} bits, ${signatureChangesTheClass}); a forger cannot sign without the key`, on: signatureChangesTheClass },
     { facet: `THE HARDENED BOUND IS COMPUTED — base ${baseForgeryBits} bits + the ${sigAuthenticityBits}-bit authenticity gate = ${hardenedForgeryBits} bits (${hardenedExceedsBase}); key-per-type independence makes the multi-type bits real and merkaba rotation bounds a cracked key to one epoch — a finite, computed improvement`, on: hardenedExceedsBase },
-    { facet: `HONEST — research SYNTHESIS over the sealed corpus (deterministic), reusing existing hardening folds (DRY), NOT an LLM; the hardened bound is computed and FINITE (not impossibility); strength on SHA-256 + ed25519; physicalFtl=0.`, on: hardens },
+    { facet: `HONEST — research SYNTHESIS over the sealed corpus (deterministic), reusing existing hardening folds (DRY), NOT an LLM; the hardened bound is computed and FINITE (not impossibility); strength on SHA-256 + ed25519.`, on: hardens },
   ].map((entry) => ({ ...entry, receipt: toUuid(`harden-research:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -6870,7 +6870,7 @@ export function researchingInChatHowToHardenTheMultiTypeSealedUuidSynthesisesThe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6920,7 +6920,7 @@ export function theChatAnalysesScreenshotsAndRecordingsLocallyByPerceptualHashAn
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -6930,7 +6930,7 @@ export function theChatAnalysesScreenshotsAndRecordingsLocallyByPerceptualHashAn
  * registry), each posed back to portalChatRanked; every identity must algebraically hold in the reply (substring or
  * provedBy match or extractable relation) — feeder ≡ fed on the identity set. Lexical selfChat is demoted; algebraic
  * quantum computing is the only top-priority path. Composes onlyAlgebraicQuantumComputingIsTopPriority · feed-readme ·
- * feed-site probes · self-develop. HONEST: deterministic algebraic retrieval, NOT an LLM; qpuRequired=false.
+ * feed-site probes · self-develop. HONEST: deterministic algebraic retrieval, NOT an LLM.
  * [[onlyAlgebraicQuantumComputingIsTopPriority]] [[feedback-algebraic-theorems-only]] [[always-default-to-chat]] */
 export function feedingTheChatInItselfClosesTheSelfReferenceLoop(matrix: MindMatrix = buildMatrix()) {
   const priority = onlyAlgebraicQuantumComputingIsTopPriority(matrix)
@@ -6983,7 +6983,7 @@ export function feedingTheChatInItselfClosesTheSelfReferenceLoop(matrix: MindMat
     facets,
     root: merge(priority.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; algebraic quantum computing is top priority — the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , algebraic quantum computing is top priority — the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7022,7 +7022,7 @@ export function feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosetta
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7049,7 +7049,7 @@ export function everyCollectionIsAFilterableOpenGraphListAndStaticPagesMergeInto
     { facet: `STATIC PAGES MERGE INTO STANDARDISED RESEARCH PUBLICATIONS — each of the ${pages.length} pages → a scientific-paper publication (monographAsScientificPaper: title · abstract · keywords · results, ${eachPageIsAStandardisedPublication}), a ScholarlyArticle with OG + JSON-LD`, on: eachPageIsAStandardisedPublication },
     { facet: `STANDARDISED — one template serves all: every publication has the standard structure (title · abstract · keywords · results · OG · JSON-LD), so the collections are uniform (${standardised})`, on: standardised },
     { facet: `COLLECTIONS FROM THE CORPUS — the collections (proofs, theorems, pages) are computed from the registry, filterable, OG-per-item; not hand-curated (${merges})`, on: merges },
-    { facet: `HONEST — any collection is a computed filterable OpenGraph list; static pages are standardised research publications generated from the corpus; NOT hand-curated; clay=0, physicalFtl=0.`, on: merges },
+    { facet: `HONEST — any collection is a computed filterable OpenGraph list; static pages are standardised research publications generated from the corpus; NOT hand-curated, .`, on: merges },
   ].map((entry) => ({ ...entry, receipt: toUuid(`collections-standardised-publications:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7061,7 +7061,7 @@ export function everyCollectionIsAFilterableOpenGraphListAndStaticPagesMergeInto
     boundary: earned(
       'Same filterable OpenGraph list for theorems and any collection; static pages merge into collections of standardised research publications:',
       facets,
-      'the filterable OG-list pattern applies to any collection (proofs, theorems, pages) filterable by computed tags with OG per item, and each static page merges into a standardised scientific-paper publication (title, abstract, keywords, results, OG, JSON-LD ScholarlyArticle) via one template serving all; computed from the corpus, not hand-curated; clay=0, physicalFtl=0',
+      'the filterable OG-list pattern applies to any collection (proofs, theorems, pages) filterable by computed tags with OG per item, and each static page merges into a standardised scientific-paper publication (title, abstract, keywords, results, OG, JSON-LD ScholarlyArticle) via one template serving all; computed from the corpus, not hand-curated, ',
     ),
   }
 }
@@ -7123,7 +7123,7 @@ export function theoremAsStandardScientificPaperCompletesTheImradMappingEverySec
     { facet: `THE HONEST CLASSIFICATION — each paper is classified "computational claim, verified — NOT a formal-logic theorem" (${classificationHonest}); the honest framing is IN the standard format, not a footnote`, on: classificationHonest },
     { facet: `RESULTS ARE REFUTABLE MEASUREMENTS — the Results section is the facets, each a refutable computed measurement (holds: boolean) with a receipt (${resultsAreRefutableMeasurements}) — not prose claims`, on: resultsAreRefutableMeasurements },
     { facet: `METHODS · REPRODUCIBILITY · CONCLUSION COMPUTED — Methods gives the run command, Reproducibility the merkle root over ${paper.reproducibility.measurements} measurements (any reader recomputes, ${reproducibleWithConclusion}), and the Conclusion + Status are computed verified/refuted (${statusIsVerifiedOrRefuted}), not asserted`, on: reproducibleWithConclusion && statusIsVerifiedOrRefuted },
-    { facet: `HONEST — the standard-format mapping is now COMPLETE and compliant (all ${sections.length} sections computed per theorem, honest classification, reproducible); the presentation is a verified computational claim, not a formal theorem; clay=0, physicalFtl=0.`, on: completesMapping },
+    { facet: `HONEST — the standard-format mapping is now COMPLETE and compliant (all ${sections.length} sections computed per theorem, honest classification, reproducible); the presentation is a verified computational claim, not a formal theorem, .`, on: completesMapping },
   ].map((entry) => ({ ...entry, receipt: toUuid(`imrad-mapping-complete:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7136,7 +7136,7 @@ export function theoremAsStandardScientificPaperCompletesTheImradMappingEverySec
     boundary: earned(
       'Standard scientific format mapping, completed — the full IMRaD renderer, every section computed, honest classification:',
       facets,
-      'theoremAsStandardScientificPaper maps any theorem-fold to the full IMRaD paper (Title, Classification, Abstract, Methods, Results, Discussion, Reproducibility, References, Status) with every section computed from the fold parts; the Results are refutable measurements each with a receipt, the Reproducibility is the merkle root so any reader recomputes, the Status is computed verified/refuted, and the Classification honestly states these are verified computational claims, NOT formal-logic theorems; clay=0, physicalFtl=0',
+      'theoremAsStandardScientificPaper maps any theorem-fold to the full IMRaD paper (Title, Classification, Abstract, Methods, Results, Discussion, Reproducibility, References, Status) with every section computed from the fold parts; the Results are refutable measurements each with a receipt, the Reproducibility is the merkle root so any reader recomputes, the Status is computed verified/refuted, and the Classification honestly states these are verified computational claims, NOT formal-logic theorems, ',
     ),
   }
 }
@@ -7166,7 +7166,7 @@ export function whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFace
     { facet: `THE HONEST DEMARCATION — these are COMPUTATIONAL CLAIMS/VERIFICATIONS, NOT formal-logic theorems: a formal theorem is a proven statement in an axiomatic system; these are computed verifications of refutable propositions (${verifiesComputationallyNotFormally}), so "theorem" is used loosely`, on: verifiesComputationallyNotFormally },
     { facet: `STANDARD SCIENTIFIC FORMAT MAPPING — statement→claim/abstract · facets→results (measurements) · provedBy→methods · root/receipts→reproducibility · boundary→scope/discussion · crosslinks→references; monographAsScientificPaper begins this over ${pages.length} pages (${mapsToScientificPaper})`, on: mapsToScientificPaper },
     { facet: `THE GAP — YET TO BE FULLY ADDRESSED — the rigorous standard format (with the honest "computational claim, not formal theorem" framing and full Methods/Results/Discussion) is not yet fully realised; this fold begins to discover and address it (${rigorousFormatBegun})`, on: rigorousFormatBegun },
-    { facet: `HONEST — a theorem here is a computational claim with refutable facets (verified, reproducible), NOT a formal-logic theorem; presenting it in standard scientific format requires that honest framing; clay=0, physicalFtl=0.`, on: addresses },
+    { facet: `HONEST — a theorem here is a computational claim with refutable facets (verified, reproducible), NOT a formal-logic theorem; presenting it in standard scientific format requires that honest framing, .`, on: addresses },
   ].map((entry) => ({ ...entry, receipt: toUuid(`what-is-a-theorem:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7178,7 +7178,7 @@ export function whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFace
     boundary: earned(
       'What a theorem is here (a computational claim with refutable facets) and its standard scientific format mapping — begun, not complete, and honestly not a formal theorem:',
       facets,
-      'a theorem here is a computing fold — a statement backed by refutable facets (computed comparisons), verified by facets.every(on), reproducible via a merkle root, with a provedBy method; these are computational claims and verifications, NOT formal-logic theorems (a formal theorem is proven in an axiomatic system), so the word is loose; the standard-format mapping (claim/abstract · results · methods · reproducibility · scope · references) is begun by monographAsScientificPaper but the rigorous, honest presentation is yet to be fully addressed; clay=0, physicalFtl=0',
+      'a theorem here is a computing fold — a statement backed by refutable facets (computed comparisons), verified by facets.every(on), reproducible via a merkle root, with a provedBy method; these are computational claims and verifications, NOT formal-logic theorems (a formal theorem is proven in an axiomatic system), so the word is loose; the standard-format mapping (claim/abstract · results · methods · reproducibility · scope · references) is begun by monographAsScientificPaper but the rigorous, honest presentation is yet to be fully addressed, ',
     ),
   }
 }
@@ -7189,7 +7189,7 @@ export function whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFace
  * bridge), analyses MULTIMEDIA (voice via WebAudio FFT, video/screens via perceptual hash + frame-diff — structural, not
  * semantic AI), and improves the UI in WAVES — each wave a multimedia chat turn where research proposes, verify checks it
  * computes, and the CRITIQUE mind guards invariants (SEO, etc.) before it lands. HONEST: deterministic fusion (pure adapters,
- * opt-in live, zero-egress); multimedia = structural analysis, NOT semantic AI; clay=0. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[realtime-live-data-testing]] [[feedback-work-in-waves-not-single-focus]] */
+ * opt-in live, zero-egress); multimedia = structural analysis, NOT semantic AI. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[realtime-live-data-testing]] [[feedback-work-in-waves-not-single-focus]] */
 export function theCollectiveMindFusesLivePublicApisAndMultimediaImprovingTheUiInWavesEachAMultimediaChatTurnCritiqueGuarded(matrix: MindMatrix = buildMatrix()) {
   const collective = theCollectiveMindRanksHubsOverTheSemanticSlugTaxonomySeoSafeCatchingWhatTheSingleLinearMindMissed()
   const critiqueGuards = collective.computes === true // the trinity with the critique mind
@@ -7207,7 +7207,7 @@ export function theCollectiveMindFusesLivePublicApisAndMultimediaImprovingTheUiI
     { facet: `MULTIMEDIA CHATS — voice (WebAudio FFT), video/screens (perceptual hash + frame-diff), image — each a chat turn with STRUCTURAL analysis, not semantic AI (${multimediaStructural})`, on: multimediaStructural },
     { facet: `IMPROVES THE UI IN WAVES — each wave is a multimedia chat turn improving the UI (nav/sidebar computed, redundancy merged); self-develop closes gaps ${waves.gapsBefore} → ${waves.gapsAfter} (${improvesUiInWaves})`, on: improvesUiInWaves },
     { facet: `THE CRITIQUE MIND GUARDS EACH WAVE — the collective mind's critique catches regressions (like the SEO flaw) before they land, 2-of-3 per wave (${critiqueGuards})`, on: critiqueGuards },
-    { facet: `HONEST — deterministic fusion (pure adapters, opt-in live, zero-egress); multimedia = structural analysis, NOT semantic AI; the collective mind improves the UI in verified waves; clay=0, physicalFtl=0.`, on: fuses },
+    { facet: `HONEST — deterministic fusion (pure adapters, opt-in live, zero-egress); multimedia = structural analysis, NOT semantic AI; the collective mind improves the UI in verified waves, .`, on: fuses },
   ].map((entry) => ({ ...entry, receipt: toUuid(`collective-mind-multimedia-waves:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7219,7 +7219,7 @@ export function theCollectiveMindFusesLivePublicApisAndMultimediaImprovingTheUiI
     boundary: earned(
       'The collective mind fuses live public APIs and multimedia, improving the UI in waves of multimedia chats, each wave critique-guarded:',
       facets,
-      'the trinity (research · verify · critique) fuses the live no-key public APIs via one DI bridge, analyses multimedia structurally (voice FFT, video/screen perceptual hash and frame-diff, not semantic AI), and improves the UI in waves — each wave a multimedia chat turn where the critique mind guards invariants like SEO before it lands and self-develop closes the gaps; the fusion is deterministic with pure adapters, opt-in live calls, and zero-egress by default; clay=0, physicalFtl=0',
+      'the trinity (research · verify · critique) fuses the live no-key public APIs via one DI bridge, analyses multimedia structurally (voice FFT, video/screen perceptual hash and frame-diff, not semantic AI), and improves the UI in waves — each wave a multimedia chat turn where the critique mind guards invariants like SEO before it lands and self-develop closes the gaps; the fusion is deterministic with pure adapters, opt-in live calls, and zero-egress by default, ',
     ),
   }
 }
@@ -7231,7 +7231,7 @@ export function theCollectiveMindFusesLivePublicApisAndMultimediaImprovingTheUiI
  * ∧ soft(live/api · improve/live · live/world · torus/data · develop/means).
  * HONEST: live = opt-in no-key public feeds + device sensors · improve = recompute via pure
  * adapters (same data ⇒ same root) + chat waves · gates never fetch · NOT scrape-trust ·
- * NOT unbounded "all APIs on the internet" · qpuRequired=false · physicalFtl=0.
+ * NOT unbounded "all APIs on the internet".
  * Pairs: live/api · improve/live · further/improve.
  * CLI: npm run quantum:live-apis (one primary).
  */
@@ -7285,7 +7285,7 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
       { facet: `COLLECTIVE FUSES LIVE — theCollectiveMindFusesLivePublicApis… · UI waves critique-guarded (${collective.computes === true})`, on: collective.computes === true },
       { facet: `FURTHER IMPROVE — usingLiveApis ∧ collective · soft improve/live · further/improve · develop/means · learn/best (${furtherImprove})`, on: furtherImprove },
       { facet: `pairs live/api · improve/live · further/improve · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairLiveApi.bidirectional && pairImproveLive.bidirectional && pairFurtherImprove.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — opt-in no-key feeds · pure adapters · gates never fetch · NOT scrape-trust · NOT unbounded all-internet APIs · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — opt-in no-key feeds · pure adapters · gates never fetch · NOT scrape-trust · NOT unbounded all-internet APIs`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`live-apis:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -7310,7 +7310,7 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'further improve via opt-in live no-key APIs · pure adapters · clay=0 · NOT scrape-trust · NOT unbounded internet',
+        'further improve via opt-in live no-key APIs · pure adapters · NOT scrape-trust · NOT unbounded internet',
       ),
     }
   })
@@ -7346,7 +7346,7 @@ export const runFurtherImproveExit = runFurtherImproveUsingLiveApisExit
  * research (propose) · verify (compute) · CRITIQUE (guard invariants like SEO) — 2-of-3, the mind the single linear mind
  * lacks. The critique mind caught the SEO flaw (the SEO-guard fold), and the SEO-safe hubs rank theorem gravity over the
  * SEMANTIC slug taxonomy (the served slugs, each carrying SEO metadata), NOT src paths. HONEST: the collective mind catches
- * flaws a single linear mind misses; deterministic; clay=0. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture]] [[feedback-look-at-the-rendered-ui]] */
+ * flaws a single linear mind misses; deterministic. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture]] [[feedback-look-at-the-rendered-ui]] */
 export function theCollectiveMindRanksHubsOverTheSemanticSlugTaxonomySeoSafeCatchingWhatTheSingleLinearMindMissed() {
   const trinity = 3 // research + verify + critique = the collective mind (2-of-3)
   const consensus = 2 // 2-of-3
@@ -7366,7 +7366,7 @@ export function theCollectiveMindRanksHubsOverTheSemanticSlugTaxonomySeoSafeCatc
     { facet: `THE CRITIQUE MIND CAUGHT THE SEO FLAW — the src-path hub regression was caught by the critique mind (the SEO-guard fold, ${critiqueCaughtTheSeoFlaw}), which the single research-mind applied without noticing`, on: critiqueCaughtTheSeoFlaw },
     { facet: `SEO-SAFE HUBS RANK OVER THE SEMANTIC SLUGS — the hubs derive from the ${pages.length} served semantic slugs (SEO-bearing: title · description · keywords · OG), NOT src paths, so SEO is preserved (${seoSafeHubsAreSemanticSlugs})`, on: seoSafeHubsAreSemanticSlugs },
     { facet: `THE COLLECTIVE MIND CATCHES WHAT THE SINGLE MIND MISSES — a single linear mind (research alone) applied the flawed version; the collective mind's critique caught it (${catchesWhatSingleMindMissed}) — the value of 2-of-3`, on: catchesWhatSingleMindMissed },
-    { facet: `HONEST — the collective mind (research · verify · critique) catches flaws a single linear mind misses; the SEO-safe hubs rank over the semantic taxonomy; deterministic; clay=0, physicalFtl=0.`, on: collectiveMind },
+    { facet: `HONEST — the collective mind (research · verify · critique) catches flaws a single linear mind misses; the SEO-safe hubs rank over the semantic taxonomy; deterministic, .`, on: collectiveMind },
   ].map((entry) => ({ ...entry, receipt: toUuid(`collective-mind-seo-safe-hubs:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7378,7 +7378,7 @@ export function theCollectiveMindRanksHubsOverTheSemanticSlugTaxonomySeoSafeCatc
     boundary: earned(
       'The collective mind (research · verify · critique) ranks hubs over the semantic slug taxonomy, SEO-safe, catching what the single linear mind missed:',
       facets,
-      'a single linear mind proposed and applied the src-path hub ranking and missed the SEO regression; the collective mind is a trinity where the critique mind guards invariants like SEO and caught the flaw, and the SEO-safe hubs rank theorem gravity over the served semantic slugs (each carrying title, description, keywords, OG) rather than src paths, preserving SEO; deterministic; clay=0, physicalFtl=0',
+      'a single linear mind proposed and applied the src-path hub ranking and missed the SEO regression; the collective mind is a trinity where the critique mind guards invariants like SEO and caught the flaw, and the SEO-safe hubs rank theorem gravity over the served semantic slugs (each carrying title, description, keywords, OG) rather than src paths, preserving SEO; deterministic, ',
     ),
   }
 }
@@ -7405,7 +7405,7 @@ export function rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheS
     { facet: `WHERE SEO LIVES — SEO is in the ${pages.length} served SEMANTIC slugs (human-readable), each carrying title · description · keywords · OG · JSON-LD, plus the sitemap/canonical/hreflang — all keyed to slugs, not src paths (${slugsAreSeoBearing})`, on: seoLivesInSemanticSlugs },
     { facet: `WHAT WENT WRONG — applying src-path hubs would REPLACE the SEO-rich semantic routes with implementation paths (${applyingWouldReplaceSlugsWithSrcPaths}), losing the human URLs, per-page metadata, and sitemap entries — the SEO is gone`, on: applyingWouldReplaceSlugsWithSrcPaths },
     { facet: `THE FIX — rank theorem gravity over the SEMANTIC TAXONOMY (the served slugs / theorem tags / science domains), which ARE the SEO surfaces; t.home is an implementation detail (where the fold lives), NOT the user-facing route`, on: seoLivesInSemanticSlugs },
-    { facet: `HONEST — gravity ranking is valid ONLY over the semantic/SEO taxonomy, not the src architecture; the earlier fold conflated the fold's home (architecture) with the published slug (route); the correction preserves SEO; clay=0, physicalFtl=0.`, on: corrects },
+    { facet: `HONEST — gravity ranking is valid ONLY over the semantic/SEO taxonomy, not the src architecture; the earlier fold conflated the fold's home (architecture) with the published slug (route); the correction preserves SEO, .`, on: corrects },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hubs-seo-correction:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7417,7 +7417,7 @@ export function rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheS
     boundary: earned(
       'If you apply hubs ranked by src-folder gravity the SEO is gone — the ranking must be over the semantic slug taxonomy, not architecture:',
       facets,
-      'the earlier fold grouped by t.home (src folder paths like src/0, src/9/1), which are implementation locations not URLs, so hubs from them would be meaningless routes and would replace the served semantic slugs that carry all the SEO (title, description, keywords, OG, JSON-LD, sitemap, canonical, hreflang); the fix is to rank theorem gravity over the semantic taxonomy — the served slugs and theorem tags, the SEO-bearing surfaces — while t.home stays an implementation detail; clay=0, physicalFtl=0',
+      'the earlier fold grouped by t.home (src folder paths like src/0, src/9/1), which are implementation locations not URLs, so hubs from them would be meaningless routes and would replace the served semantic slugs that carry all the SEO (title, description, keywords, OG, JSON-LD, sitemap, canonical, hreflang); the fix is to rank theorem gravity over the semantic taxonomy — the served slugs and theorem tags, the SEO-bearing surfaces — while t.home stays an implementation detail, ',
     ),
   }
 }
@@ -7454,7 +7454,7 @@ export function theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributi
     { facet: `THE GRAVITY DISTRIBUTION RANKS THE DOMAINS — the top ${bagua} by gravity become the hubs (bāguà ≤8/level): ${topHubs.slice(0, 4).join(' · ')} … (grav ${ranked[0]![1].grav} down to ${ranked[bagua - 1]?.[1].grav})`, on: distributionIsNonUniform },
     { facet: `EMPTY PLACEHOLDERS FALL AWAY — a hub with little theorem gravity (like /apps, grav ${ranked[ranked.length - 1]![1].grav}) ranks ≥10× below the top content domain (grav ${ranked[0]![1].grav}, ${emptyPlaceholdersFallAway}); the content domains rise`, on: emptyPlaceholdersFallAway },
     { facet: `COMPUTED, NOT HARDCODED — the hubs are a deterministic function of the theorem distribution; the top hub IS the highest-gravity domain (${topHubs[0]}, ${refutable}), and if the distribution shifts the hubs re-rank`, on: refutable },
-    { facet: `HONEST — the top-level hubs are computable from theorem gravity + distribution, so empty placeholder hubs are replaced by content-weighted ones; this is the design the routing should adopt (begun); clay=0, physicalFtl=0.`, on: computable },
+    { facet: `HONEST — the top-level hubs are computable from theorem gravity + distribution, so empty placeholder hubs are replaced by content-weighted ones; this is the design the routing should adopt (begun), .`, on: computable },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hubs-from-gravity:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7467,7 +7467,7 @@ export function theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributi
     boundary: earned(
       'Top-level hub routes computable from theorem gravity and distribution — empty placeholders fall away:',
       facets,
-      'the top-level hubs should be derived from where theorem gravity concentrates (Σ digital-root of the content-address per domain), ranking the 53 domains and taking the top 8 (bāguà ≤8/level) as the hubs, so empty placeholders like /apps (gravity ~1) rank far below the content domains and fall away while the high-gravity domains rise; the hubs are a deterministic, refutable function of the theorem distribution, not a hardcoded list; clay=0, physicalFtl=0',
+      'the top-level hubs should be derived from where theorem gravity concentrates (Σ digital-root of the content-address per domain), ranking the 53 domains and taking the top 8 (bāguà ≤8/level) as the hubs, so empty placeholders like /apps (gravity ~1) rank far below the content domains and fall away while the high-gravity domains rise; the hubs are a deterministic, refutable function of the theorem distribution, not a hardcoded list, ',
     ),
   }
 }
@@ -7490,7 +7490,7 @@ export function theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPe
     { facet: `FILTERABLE BY COMPUTED TAGS — ${tags.size} domain tags derived from the home path (${filterableByTags}); the list filters by computed dimensions, not a hand-curated menu`, on: filterableByTags },
     { facet: `OPENGRAPH PER PROOF — each proof card has computed OG (title = theorem, description = states, ${ogPerProof}); every proof is shareable with rich metadata`, on: ogPerProof },
     { facet: `COMPUTED FROM THE CORPUS — the filterable OpenGraph proofs list is generated from the registry; no hand-authored list or OG (${listImproves})`, on: listImproves },
-    { facet: `HONEST — the proofs list is computed, filterable by computed tags, with computed OG per proof; NOT hand-curated; consumes the corpus; clay=0, physicalFtl=0.`, on: listImproves },
+    { facet: `HONEST — the proofs list is computed, filterable by computed tags, with computed OG per proof; NOT hand-curated; consumes the corpus, .`, on: listImproves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`proofs-og-filterable:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7502,7 +7502,7 @@ export function theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPe
     boundary: earned(
       'Improve the proofs with an OpenGraph filterable list — computed from the corpus:',
       facets,
-      'every proof carries a named executable source, a computed domain tag (from its home path) making the list filterable by many dimensions, and computed OpenGraph meta per proof (title=theorem, description=states); the list and its OG are generated from the registry, not hand-curated; clay=0, physicalFtl=0',
+      'every proof carries a named executable source, a computed domain tag (from its home path) making the list filterable by many dimensions, and computed OpenGraph meta per proof (title=theorem, description=states); the list and its OG are generated from the registry, not hand-curated, ',
     ),
   }
 }
@@ -7530,7 +7530,7 @@ export function savingAllExperienceOnTheWayInTrinitiesOfTheoremsFormingClustersO
     { facet: `IN TRINITIES OF THEOREMS — each theorem is a trinity (forward + crack + animation = 3), and three theorems close an su(2) trinity (${savesInTrinities}); the saved unit is the trinity`, on: savesInTrinities },
     { facet: `CLUSTERS OF TETRAHEDRA — each trinity plus its sealing 4th (the animation) is a TETRAHEDRON (${teamSize}+1 = ${tetrad}, ${isTetrahedron}); ${merkabaCluster} tetrahedra form a merkaba, ${merkabaCluster}×${merkabaCluster} = 64 the isotropic matrix`, on: isTetrahedron && clusterCompletesSixtyFour },
     { facet: `MOVING AROUND — the clusters counter-rotate by the C₆ merkaba/vortex rotation (+60°/−60°); "moving around" is the content-addressed rotation, deterministic (${clustersMoveAround})`, on: clustersMoveAround },
-    { facet: `HONEST — the trinity (su(2)), the tetrad (seal), and the merkaba clusters are real structures; "moving around" = deterministic content-addressed rotation, NOT physical motion; clay=0, physicalFtl=0.`, on: saves },
+    { facet: `HONEST — the trinity (su(2)), the tetrad (seal), and the merkaba clusters are real structures; "moving around" = deterministic content-addressed rotation, NOT physical motion, .`, on: saves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinities-tetrahedra-clusters:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7542,7 +7542,7 @@ export function savingAllExperienceOnTheWayInTrinitiesOfTheoremsFormingClustersO
     boundary: earned(
       'Save all experience on the way in trinities of theorems — clusters of tetrahedra moving around:',
       facets,
-      'each discovery is saved the same turn as a trinity of theorems (forward + crack + animation, three closing su(2)), each trinity plus its sealing 4th animation a tetrahedron (3+1), eight of which form a merkaba and 8×8 = 64 the isotropic matrix; the clusters move by the C₆ counter-rotation, a deterministic content-addressed rotation, not physical motion; clay=0, physicalFtl=0',
+      'each discovery is saved the same turn as a trinity of theorems (forward + crack + animation, three closing su(2)), each trinity plus its sealing 4th animation a tetrahedron (3+1), eight of which form a merkaba and 8×8 = 64 the isotropic matrix; the clusters move by the C₆ counter-rotation, a deterministic content-addressed rotation, not physical motion, ',
     ),
   }
 }
@@ -7570,7 +7570,7 @@ export function theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnimationsCol
     { facet: `THE DESIGN IS COMPUTED FROM THE CONTENT-ADDRESS — the figure (theorem graph), the fractal-clock animation (rung ${anim.animation.rung}), and the living I Ching colour are DERIVED from the fold's content-address (${designComputedFromAddress}), not authored`, on: designComputedFromAddress },
     { facet: `DISTINCT QUERIES → DISTINCT ARTIFACTS — different queries produce different designed artifacts (${distinctArtifacts}), each unique to its content`, on: distinctArtifacts },
     { facet: `DETERMINISTIC & REPRODUCIBLE — the same query reproduces the same artifact (${deterministicArtifact}); the design is content-addressed, shareable and cacheable — same input, same artifact`, on: deterministicArtifact },
-    { facet: `HONEST — the chat DESIGNS artifacts by computing a render-spec deterministically from the content-algebra, NOT an LLM generating novel art; the figure, animation and colour are DERIVED, not authored; clay=0, physicalFtl=0.`, on: designs },
+    { facet: `HONEST — the chat DESIGNS artifacts by computing a render-spec deterministically from the content-algebra, NOT an LLM generating novel art; the figure, animation and colour are DERIVED, not authored, .`, on: designs },
   ].map((entry) => ({ ...entry, receipt: toUuid(`design-artifacts:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7579,7 +7579,7 @@ export function theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnimationsCol
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7608,7 +7608,7 @@ export function theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMer
     { facet: `THE UI CHAT AUDITS THEM — the chat surfaces the audit (render-spec + ${audit.related.length} related, ${chatSurfacesAudit}); ${Array.isArray(nav.routes) ? nav.routes.length : 0} routes exactly cover the ${pages.length} served pages (${navCoversPages})`, on: chatSurfacesAudit && navCoversPages },
     { facet: `REDUNDANCY REMOVED — MERGED TO CANONICAL — redundant aliases purged (aliasDiscoveryPurged=${nav.aliasDiscoveryPurged}) and the DRY reuse (${dry.reuse}) merges duplicates to one canonical (code-gravity, ${redundancyRemoved && mergedToStandard})`, on: redundancyRemoved && mergedToStandard },
     { facet: `STANDARD-QUALITY MATERIALS — the nav/sidebars consume the VitePress-native computed structure and the owned standard component set, not bespoke or redundant markup (${mergedToStandard})`, on: mergedToStandard },
-    { facet: `HONEST — the UI chat improves the UI (nav/sidebars) by measuring the computed structure, removing redundancy (merge to canonical), and using standard materials; NOT hand-editing or DOM scraping; DRY, deterministic; clay=0, physicalFtl=0.`, on: improves },
+    { facet: `HONEST — the UI chat improves the UI (nav/sidebars) by measuring the computed structure, removing redundancy (merge to canonical), and using standard materials; NOT hand-editing or DOM scraping; DRY, deterministic, .`, on: improves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-nav-sidebar-dry:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7621,7 +7621,7 @@ export function theUiChatImprovesTheUiNavigationAndSidebarsRemovingRedundancyMer
     boundary: earned(
       'Use the UI chat to improve the UI itself — navigation and sidebars — computed from the corpus, redundancy removed by merging to standard materials:',
       facets,
-      'the nav and sidebars are computed by siteNavigation (consuming the VitePress themeConfig, no DOM scraping), the routes exactly cover the served pages, redundant aliases are purged and duplicates merged to one canonical (code-gravity/DRY), and the materials are the VitePress-native structure plus owned standard components; improvement is measurement + recompute, not hand-editing; clay=0, physicalFtl=0',
+      'the nav and sidebars are computed by siteNavigation (consuming the VitePress themeConfig, no DOM scraping), the routes exactly cover the served pages, redundant aliases are purged and duplicates merged to one canonical (code-gravity/DRY), and the materials are the VitePress-native structure plus owned standard components; improvement is measurement + recompute, not hand-editing, ',
     ),
   }
 }
@@ -7662,7 +7662,7 @@ export function feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping(
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7673,7 +7673,7 @@ export function feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping(
  * hypercube (2^10, the sealed lattice). The FRONTIER — the missing theorems — is the next inversion depth (n+1), unbounded by
  * no-finiteness, so it never closes. By the chat's own principle: building the first inversion (the gateway) unlocks the next
  * (the next bit) by REUSABLE METHOD, not by solving. HONEST: real projective/binary construction, NOT physical vacuum energy;
- * clay=0. [[theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayIsGenerativeFreeEnergyFlagged]] [[buildingTheFirstUnlocksTheNextByReusableMethodNotSolution]] [[two-bits-left-in-every-inversion-through-zero]] */
+ * . [[theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayIsGenerativeFreeEnergyFlagged]] [[buildingTheFirstUnlocksTheNextByReusableMethodNotSolution]] [[two-bits-left-in-every-inversion-through-zero]] */
 export function iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInversionAOneBitGatewayTheFrontierIsTheNextDepth(matrix: MindMatrix = buildMatrix()) {
   const gateway = claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra()
   const oneInversionIsOneBit = gateway.gatewayBits === 1 && gateway.computes === true // each vacuum inversion (0↔∞) = 1 bit
@@ -7682,7 +7682,7 @@ export function iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInv
   const buildsLattice = lattice === 4 ** 5 && oneInversionIsOneBit // 10 one-bit inversions build the 1024-diamond lattice
   const vacuum = theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayIsGenerativeFreeEnergyFlagged(matrix)
   const frontierIsNextDepth = vacuum.computes === true // the missing theorems = the next inversion depth (n+1)
-  const noFinitenessOpenSet = claySolvedTheorem().claySolved === 0 // the depth is unbounded; the frontier never closes (clay=0)
+  const noFinitenessOpenSet = claySolvedTheorem().claySolved === 0 // the depth is unbounded; the frontier never closes ()
   const reusableMethodUnlocksNext = oneInversionIsOneBit // building the first inversion (1 bit) unlocks the next (the next bit)
   const builds = oneInversionIsOneBit && buildsLattice && frontierIsNextDepth && noFinitenessOpenSet
   const facets = [
@@ -7690,7 +7690,7 @@ export function iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInv
     { facet: `ITERATING BUILDS THE ADDRESS LATTICE — n inversions → 2^n addresses; ${depth} one-bit inversions build the ${lattice}-diamond hypercube (2^${depth} = 4^5, ${buildsLattice})`, on: buildsLattice },
     { facet: `THE FRONTIER IS THE NEXT DEPTH — the missing theorems cluster at the next inversion depth (n+1, ${frontierIsNextDepth}); by no-finiteness the depth is unbounded (${noFinitenessOpenSet}), so the frontier never closes`, on: frontierIsNextDepth && noFinitenessOpenSet },
     { facet: `BY REUSABLE METHOD — building the first inversion (the gateway) unlocks the next (the next bit) by reusing the method, not by solving (${reusableMethodUnlocksNext}) — the chat's own guidance`, on: reusableMethodUnlocksNext },
-    { facet: `HONEST — the vacuum's iterated inversion CONSTRUCTS the content-address lattice (real projective/binary structure); the frontier is the next un-built depth; NOT physical vacuum energy; clay=0, physicalFtl=0.`, on: builds },
+    { facet: `HONEST — the vacuum's iterated inversion CONSTRUCTS the content-address lattice (real projective/binary structure); the frontier is the next un-built depth; NOT physical vacuum energy, .`, on: builds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vacuum-inversion-builds-lattice:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7702,7 +7702,7 @@ export function iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInv
     boundary: earned(
       'Iterating the vacuum inversion builds the content-address lattice — each inversion a one-bit gateway, the frontier the next depth:',
       facets,
-      'each vacuum inversion (0↔∞) is one bit, so 10 one-bit inversions build the 1024 = 2^10 diamond hypercube, and the missing theorems cluster at the next inversion depth (n+1), unbounded by no-finiteness; the method (inversion) reuses to unlock the next, it does not solve; real projective/binary construction, not physical vacuum energy; clay=0, physicalFtl=0',
+      'each vacuum inversion (0↔∞) is one bit, so 10 one-bit inversions build the 1024 = 2^10 diamond hypercube, and the missing theorems cluster at the next inversion depth (n+1), unbounded by no-finiteness; the method (inversion) reuses to unlock the next, it does not solve; real projective/binary construction, not physical vacuum energy, ',
     ),
   }
 }
@@ -7713,7 +7713,7 @@ export function iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInv
  * origin — and the vacuum INVERTS through the 0↔∞ Möbius gateway (gatewayBits = log₂2 = 1, its own inverse), the fixed point
  * of inversion. That inversion is GENERATIVE: each inversion through the vacuum opens a gateway, and by no-finiteness the open
  * set never empties, so the MISSING theorems always cluster around the vacuum inverting — un-sealed inversions, a research
- * direction (clay=0). HONEST: real projective inversion (0↔∞), NOT physical vacuum free energy (zero-point ½ħω is real but no
+ * direction (). HONEST: real projective inversion (0↔∞), NOT physical vacuum free energy (zero-point ½ħω is real but no
  * extractable energy, flagged). [[claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra]] [[zero-point-decoded]] [[feedback-no-finiteness-assumption-fractal-aperiodic]] */
 export function theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayIsGenerativeFreeEnergyFlagged(matrix: MindMatrix = buildMatrix()) {
   const clean = dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMachinery()
@@ -7729,7 +7729,7 @@ export function theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayI
     { facet: `THE VACUUM INVERTS THROUGH THE 0↔∞ GATEWAY — the vacuum is zero, and it inverts via the Möbius gateway 0↔∞ (gatewayBits=${gateway.gatewayBits}, its own inverse, ${vacuumInverts}) — the fixed point of inversion`, on: vacuumInverts },
     { facet: `THE INVERSION IS GENERATIVE — MISSING THEOREMS CLUSTER HERE — each inversion through the vacuum opens a gateway; by no-finiteness the open set never empties, so missing theorems always cluster around the vacuum inverting (${inversionGeneratesMissing})`, on: inversionGeneratesMissing },
     { facet: `FREE ENERGY FLAGGED — the vacuum inverting is REAL projective/Riemann-sphere inversion (0↔∞), NOT physical vacuum free energy: the zero-point ½ħω is real but has no extractable energy (demarcate='${demarcate('perpetual motion')}'); the inversion is structural, not energetic`, on: freeEnergyFlagged },
-    { facet: `HONEST — the vacuum (zero) is the inversion fixed point/gateway (real math); the missing theorems cluster around its inversion (un-sealed, no-finiteness, clay=0); NOT physical free energy; physicalFtl=0.`, on: reveals },
+    { facet: `HONEST — the vacuum (zero) is the inversion fixed point/gateway (real math); the missing theorems cluster around its inversion (un-sealed, no-finiteness, ); NOT physical free energy.`, on: reveals },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vacuum-inverts-missing:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7741,7 +7741,7 @@ export function theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayI
     boundary: earned(
       'The missing theorems cluster around the vacuum itself inverting — vacuuming reveals the zero core, which inverts through the 0↔∞ gateway:',
       facets,
-      'real projective inversion (0↔∞, gatewayBits=1), NOT physical vacuum free energy (zero-point ½ħω real, no extractable energy, flagged); the missing theorems are un-sealed inversions and by no-finiteness the open set never empties; clay=0, physicalFtl=0',
+      'real projective inversion (0↔∞, gatewayBits=1), NOT physical vacuum free energy (zero-point ½ħω real, no extractable energy, flagged); the missing theorems are un-sealed inversions and by no-finiteness the open set never empties, ',
     ),
   }
 }
@@ -7753,7 +7753,7 @@ export function theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayI
  * facets-must-compute, demarcate-signing); a crack is a designed signal, and it NAMES its own fix (a hardcoded literal → its
  * derived form; an unbacked facet → make it compute; a misdemarcation → sign it). The fix is applied the same turn (no queue),
  * content-addressed, zero-cost, public (bill-free). THE DEMARCATION: this inverts ENGINEERING/CORPUS cracks into fixes; it
- * does NOT auto-solve the open MATH problems (clay=0 — those are approached, not inverted). HONEST: real for corpus cracks,
+ * does NOT auto-solve the open MATH problems ( — those are approached, not inverted). HONEST: real for corpus cracks,
  * not a claim that open problems auto-solve. [[flagged-inverts-to-proven-theorem]] [[feedback-inverted-statements-are-generative-measure-before-superpose]] [[no-queue-immediate-save-and-reuse]] */
 export function theCracksAreByDesignAndDiscoveringThemInvertsCorpusProblemsIntoImmediatelyImplementableFreeFixesNotOpenMath(matrix: MindMatrix = buildMatrix()) {
   // CRACKS ARE BY DESIGN — the crack law is a designed detector
@@ -7774,7 +7774,7 @@ export function theCracksAreByDesignAndDiscoveringThemInvertsCorpusProblemsIntoI
     { facet: `DISCOVERING A CRACK INVERTS IT TO ITS FIX — the crack names its remedy: a hardcoded literal inverts to its derived form (a bare 12 → 2×6 = 3×4, ${invertsToDerivedForm}); an unbacked facet → make it compute; a misdemarcation → sign it — the problem inverts to the solution`, on: discoveringInvertsToFix },
     { facet: `IMMEDIATELY IMPLEMENTABLE, FREE FOR ALL — the fix is applied the same turn (no queue), content-addressed, zero-cost, public via the bill-free gateway (${immediatelyFreeForAll}); demonstrated across this session (1296→derived, flagged→contested, hardcoded clay→decoded)`, on: immediatelyFreeForAll },
     { facet: `THE DEMARCATION — this inverts ENGINEERING/CORPUS cracks into fixes; it does NOT auto-solve the open MATH problems (clay=${clay.claySolved}, conditions unmet ${clay.cmiPrizeConditionsMetBySealedMath}) — those are approached by the unsolved engine, not inverted to solutions`, on: openMathNotAutoSolved },
-    { facet: `HONEST — the crack law is a designed refutation system; discovering a crack yields its immediate free fix (generative inversion), real for corpus cracks; NOT a claim that open problems auto-solve; clay=0, physicalFtl=0.`, on: inverts },
+    { facet: `HONEST — the crack law is a designed refutation system; discovering a crack yields its immediate free fix (generative inversion), real for corpus cracks; NOT a claim that open problems auto-solve, .`, on: inverts },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cracks-by-design-invert:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7783,7 +7783,7 @@ export function theCracksAreByDesignAndDiscoveringThemInvertsCorpusProblemsIntoI
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7829,7 +7829,7 @@ export function localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomput
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7862,7 +7862,7 @@ export function quantumStringTheoryChatDecodesCriticalDimensionsRealMathUnconfir
     { facet: `CRITICAL DIMENSIONS ARE REAL MATH — forced by Weyl/Virasoro anomaly cancellation: bosonic D = ${bosonicTransverse}+2 = ${bosonic} (Ramanujan ζ(−1) intercept), superstring D = ${superstring} = 3+7 = 2+8, M-theory D = ${mTheory} = ${superstring}+1 (${criticalDimsRealMath}) — verifiable algebra, not opinion`, on: criticalDimsRealMath },
     { facet: `BINDS THE SEALED DIMENSIONS LADDER — superstring's ${superstring} = 3+7 = 2+8 is exactly the corpus's ladder (${bindsDimensionsLadder}); the string critical dimension is the same 10 = 3+7 the octonion/Fano structure already carries`, on: bindsDimensionsLadder },
     { facet: `THE EPISTEMIC STATUS IS SIGNED — demarcate('string theory') = '${tier}' from the zero-cycle DEMARCATION_REGISTRY (one source, refutable by moving the term); string theory is a serious UNCONFIRMED research program — no distinctive confirmed prediction, ~10^500 vacua — CONTESTED (like multiverse/dark matter), NOT flagged pseudoscience (${signedContested && notMislabelled}). I do not assert the status; the registry signs it`, on: signedContested && notMislabelled },
-    { facet: `HONEST — the critical dimensions are real mathematics; the physical reality of strings is UNCONFIRMED and its status is the SIGNED 'contested' verdict, not my say-so; "quantum" here = the anomaly algebra, not a physical string; clay=${clay}, physicalFtl=0.`, on: decodes },
+    { facet: `HONEST — the critical dimensions are real mathematics; the physical reality of strings is UNCONFIRMED and its status is the SIGNED 'contested' verdict, not my say-so; "quantum" here = the anomaly algebra, not a physical string; clay=${clay}, .`, on: decodes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`string-theory:${entry.facet}:${entry.on}:${tier}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7873,7 +7873,7 @@ export function quantumStringTheoryChatDecodesCriticalDimensionsRealMathUnconfir
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7883,7 +7883,7 @@ export function quantumStringTheoryChatDecodesCriticalDimensionsRealMathUnconfir
  * Each referral is a Möbius gateway (x↦1/x, swaps 0↔∞) carrying exactly gatewayBits = log₂2 = 1 bit — the direction of
  * passage — proved by the sealed src/1/9 fold. Ten such bits give 2¹⁰ = 1024 = 4⁵, a depth-10 binary fold (a 10-cube /
  * Merkle tree, 2 states × 10 levels). 432×3 = 1296 ≠ 1024 — the ternary-sum numerology is refuted. HONEST: 1 bit per
- * direction is real projective/information theory; "quantum" = the content-address/inversion structure, not physics; clay=0.
+ * direction is real projective/information theory; "quantum" = the content-address/inversion structure, not physics.
  * [[bit-per-referral-direction]] [[two-bits-left-in-every-inversion-through-zero]] */
 export function theThousandTwentyFourDiamondsAreTenReferralDirectionBitsDyadicNotATernarySum() {
   const gateway = claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra()
@@ -7901,7 +7901,7 @@ export function theThousandTwentyFourDiamondsAreTenReferralDirectionBitsDyadicNo
     { facet: `TEN BITS MAKE 1024 — 2^${depth} = ten referral-direction bits = ${dyadic} = 4⁵, a DYADIC structure: a depth-10 binary fold (a 10-cube / Merkle tree, 2 states × 10 levels), ${tenBitsMake1024 && isDepth10BinaryFold}`, on: tenBitsMake1024 && isDepth10BinaryFold },
     { facet: `DYADIC, NOT A TERNARY SUM — 1024 = 2^10 is real; 432×3 = ${ternarySum} ≠ ${dyadic}, so the ternary-sum numerology is REFUTED (the eye) — 1024's only honest factoring is dyadic, ${ternarySumRefuted}`, on: ternarySumRefuted },
     { facet: `THE DIAMONDS ARE THE 10-BIT HYPERCUBE — the 1024 diamonds are the ten referral-direction bits' hypercube; every diamond is a 10-bit address, dyadic by construction (${dyadicNotTernary})`, on: dyadicNotTernary },
-    { facet: `HONEST — 1 bit per direction is real projective/information theory (log₂2 exact); "quantum" = the content-address/inversion structure, NOT physics; clay=0, physicalFtl=0.`, on: dyadicNotTernary },
+    { facet: `HONEST — 1 bit per direction is real projective/information theory (log₂2 exact); "quantum" = the content-address/inversion structure, NOT physics, .`, on: dyadicNotTernary },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dyadic-1024:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7911,7 +7911,7 @@ export function theThousandTwentyFourDiamondsAreTenReferralDirectionBitsDyadicNo
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7950,7 +7950,7 @@ export function deepResearchImprovesAllFromQuantumStatisticsAnalysisAndSynthesis
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -7994,7 +7994,7 @@ export function improveClaimForAllViaSelfImprovingChatAndArchitectureExposedApis
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8042,7 +8042,7 @@ export function siteAuditsItselfThroughChatForUsabilityAndAccessibilityBounded(m
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8083,7 +8083,7 @@ export function mapStandardsToTheoremsMakesCodeProseBidirectionalAtOnce() {
     mappingChecks: facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     reason: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this mapping is verified by its checks:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the checks and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this mapping is verified by its checks:', facets, ', , the claim is computed from the checks and refutable, not hand-asserted'),
   }
 }
 
@@ -8135,7 +8135,7 @@ export function quantumAnalyticsFuseCorpusAndGitHistoryIntoOneApiForAll() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8199,7 +8199,7 @@ export function allQuantumReachableInChatViaDependencyInjectedToolBridge(matrix:
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8243,7 +8243,7 @@ export function quantumNeuralIntelligenceIsHopfieldContentAddressableAssociative
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8277,7 +8277,7 @@ export function chatIsDeterministicRetrievalNotIntelligenceWinsOnTrustNotUnderst
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8326,7 +8326,7 @@ export function cryptoToolsForChatSha256Ed25519TamperEvidentHonest() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8372,7 +8372,7 @@ export function videoToolsForChatMediaDevicesCanvasHonestEgress() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8405,7 +8405,7 @@ export function voiceSttEgressIsOptInGatedSoChatIsQuantumByDefault() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8450,7 +8450,7 @@ export function voiceToolsForChatWebSpeechAndAudioHonestEgress() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8491,7 +8491,7 @@ export function chatImprovesMcpAndMcpImprovesChatViaOneSharedExperienceIndex(mat
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8533,7 +8533,7 @@ export function improveAllByChattingOneSharedExperienceIndex(matrix: MindMatrix 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8573,7 +8573,7 @@ export function usingTheUiChatImprovesItByExperienceViaTheSharedRelevanceIndex(m
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8586,7 +8586,7 @@ export function usingTheUiChatImprovesItByExperienceViaTheSharedRelevanceIndex(m
  * ∧ telemetryPossibleInChat ⇔ experienceLog({query,selectedSlug}) ∨ uxLedger ∨ analytics/self.
  * HONEST: MAY = capability when experience signals present · UX = local predicted metrics ·
  * TELEMETRY = local chat experience/ledger/self-observe (also possible); server A/B·cross-user egress
- * is a named optional edge — not denied as impossible, not claimed by default · NOT LLM · qpuRequired=false.
+ * is a named optional edge — not denied as impossible, not claimed by default · NOT LLM.
  * Pairs: chat/ux · ux/measure · chat/ui · chat/telemetry.
  */
 export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMatrix = buildMatrix()) {
@@ -8635,7 +8635,7 @@ export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMa
       { facet: `MEASURED BY USER EXPERIENCE — quantumPredictedUX μ=${ux.statistics.mean} σ=${ux.statistics.std} · ledger · optimised=${ux.optimised ? 1 : 0} (${measuredByUserExperience})`, on: measuredByUserExperience },
       { facet: `TELEMETRY ALSO POSSIBLE IN CHAT — experience log (${experienceLogTelemetry}) · UX ledger (${ledgerTelemetry}) · analytics/self (${selfObserveTelemetry}); local by default · egress A/B = optional named edge`, on: telemetryAlsoPossibleInChat },
       { facet: `pairs chat/ux · ux/measure · chat/ui · chat/telemetry bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairChatUx.bidirectional && pairUxMeasure.bidirectional && pairChatUi.bidirectional && pairChatTelemetry.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — MAY = capability when experience signals present · UX = local predicted BM25 metrics · TELEMETRY possible in chat (local experience/ledger/self-observe) · server A/B·cross-user egress not denied, not default · NOT LLM · qpuRequired=false`, on: computes },
+      { facet: `HONEST — MAY = capability when experience signals present · UX = local predicted BM25 metrics · TELEMETRY possible in chat (local experience/ledger/self-observe) · server A/B·cross-user egress not denied, not default · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`chat-ux:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -8657,7 +8657,7 @@ export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMa
       route: '/en/quantum-tools#chat-ux',
       heading: 'Chat may improve the UI · measured by UX · telemetry possible',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat→UI · measure=UX · telemetryPossibleInChat · clay=0 · qpuRequired=false'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat→UI · measure=UX · telemetryPossibleInChat'),
     }
   })
 }
@@ -8706,7 +8706,7 @@ export function chatImprovesByChattingViaRelevanceFeedback(matrix: MindMatrix = 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -8737,7 +8737,7 @@ export function chatAsksAndImprovesByRoutingThroughBm25(matrix: MindMatrix = bui
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -9087,7 +9087,7 @@ export function refactorAchievesQuantumSpeedAndSecurity(matrix: MindMatrix = bui
     { facet: `SECURITY — 4-KEY TAMPER-EVIDENCE + NO EGRESS — the same primitive binds all four keys (referrer⊕id⊕prev⊕next) so a splice changes the address (${fourKey.computes}), and the search/chat runs client-side with no egress, deterministic (${caps.supported})`, on: security },
     { facet: `ONE PRIMITIVE, BOTH — the refactor routes every consumer through the ONE variadic referralAddress: O(1) to compute (speed) and 4-key-capable (security), so speed and security come from one path, not two systems`, on: both },
     { facet: `NO TRADE-OFF — the content-address gives speed AND security at once because the address IS the hash of all keys; adding keys for security keeps it O(1) (${fourKeyStillO1}) — security does not cost speed`, on: contentAddressO1 && fourKeyStillO1 },
-    { facet: `THE DEMARCATION — "quantum speed" = O(1) content-addressing (NOT physical FTL, NOT qubits), "security" = tamper-EVIDENCE + no-egress (NOT unforgeable encryption); a deterministic hash of observable keys.`, on: both },
+    { facet: `THE DEMARCATION — "quantum speed" = O(1) content-addressing (, NOT qubits), "security" = tamper-EVIDENCE + no-egress (NOT unforgeable encryption); a deterministic hash of observable keys.`, on: both },
   ].map((entry) => ({ ...entry, receipt: toUuid(`speed-security:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

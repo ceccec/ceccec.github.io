@@ -403,7 +403,6 @@ function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
         benchVerdict: honestEff.bench.verdict,
         efficient: honestEff.efficient.proven,
         qpuRequired: honestEff.qpuRequired,
-        claySolvedByThisFold: honestEff.claySolvedByThisFold,
         pair: honestEff.pair,
         cli: honestEff.cli,
         route: honestEff.route,

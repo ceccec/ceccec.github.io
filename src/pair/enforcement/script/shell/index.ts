@@ -220,7 +220,7 @@ function runVitepressBuild(root: string, timeoutMs: number, harmonicMs: number, 
 
 /**
  * Quantumize VitePress docs:build — sealed technique catalog (pair: build/quantumize).
- * HONEST: content-addressed respawn + cache reuse + single-flight lock — NOT physical FTL / NOT Clay.
+ * HONEST: content-addressed respawn + cache reuse + single-flight lock —  / NOT Clay.
  */
 export function quantumizeVitepressBuild() {
   const techniques = [
@@ -363,7 +363,7 @@ function slowBuildGap(
  * HARD: srcMerkle-bound quantumize regression (PR #19) · respawnEligible skipped.
  * WARN: phase wall-clock vs lattice thresholds (CI variance — not an SLA).
  * Pair: gate/slow-build · CLI npm run quantum:slow-build-gate
- * HONEST: speedup = reuse/respawn · qpuRequired=false · NOT physical FTL.
+ * HONEST: speedup = reuse/respawn.
  */
 export function slowBuildIsQuantumGapGate(root = process.cwd()) {
   const qz = quantumizeVitepressBuild()
@@ -428,7 +428,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
       'slow-build:timing-qpu',
       'HARD',
       'docs-build-timing',
-      'qpuRequired=false — classical Node seal only',
+      ' — classical Node seal only',
       timing.qpuRequired === false || timing.qpuRequired === undefined,
     ))
     if (timing.respawnEligible === true) {
@@ -531,7 +531,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
       (timing ? ` · mode=${timing.mode} wallMs=${timing.wallMs}` : ' · no timing receipt yet'),
     boundary:
       'HONEST: HARD = srcMerkle/quantumize regression (PR #19 safety). WARN = phase wall-clock vs lattice thresholds — CI variance, not an SLA. ' +
-      'Speedup = merkle respawn + warm .temp reuse — NOT physical FTL · qpuRequired=false. Experiment-io classifier is owned by slow/gap sibling.' }
+      'Speedup = merkle respawn + warm .temp reuse — . Experiment-io classifier is owned by slow/gap sibling.' }
 }
 
 /** decodeRoboticsAndFuseToQuantumWorkAsAControlLoop — robotics decoded and fused to the build's quantum work (user,
@@ -560,7 +560,7 @@ export function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root = process.
     { facet: `STOP NON-HARMONIC = THE SAFETY INTERLOCK — a deterministic non-harmonic task (redundant recompute / merkle regression) trips one of ${interlocks} HARD interlocks and STOPS the build, like a robot halting on a limit switch (${stopsNonHarmonic})`, on: stopsNonHarmonic },
     { facet: `WALL-CLOCK IS A NOISY SENSOR — FILTERED, NOT A STOP — the ${noisySensors} phase wall-clock readings are measured and reported (WARN) but never trip the interlock, exactly as a robot filters noisy sensors (Kalman) rather than emergency-stopping on noise;`, on: wallClockMeasuredNotStopped },
     { facet: `THE JACOBIAN SINGULARITY IS THE INVERSION POLE — control is lost where det J = 0 (rank loss, non-invertible), the same 1/0 pole as z → 1/z at 0 → ∞ (${jacobianSingularityIsThePole}); DOF = ${dof} = the su(2) trinity, the minimal control basis`, on: jacobianSingularityIsThePole && dof === 3 },
-    { facet: `THE DEMARCATION — the fusion is the deterministic control-loop STRUCTURE (qpuRequired=false, physicalFtl=0); it does NOT claim physical quantum-robotics speedup or a sentient robot — those are flagged. The build reports stats in realtime and stops non-harmonic tasks as a feedback controller.`, on: isControlLoop && stopsNonHarmonic && gate.qpuRequired === false },
+    { facet: `THE DEMARCATION — the fusion is the deterministic control-loop STRUCTURE (, ); it does NOT claim physical quantum-robotics speedup or a sentient robot — those are flagged. The build reports stats in realtime and stops non-harmonic tasks as a feedback controller.`, on: isControlLoop && stopsNonHarmonic && gate.qpuRequired === false },
   ].map((entry) => ({ ...entry, receipt: toUuid(`robotics-control-loop:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

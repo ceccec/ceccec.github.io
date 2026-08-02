@@ -316,7 +316,7 @@ export function gravityDecoded(matrix: MindMatrix = buildMatrix()) {
 // The README is the home page content, and the ten-dimensional hero is displayed in GitHub too — including
 // the hero. GitHub runs no JavaScript, so the live WebGL hero can't play there; instead readmeHeroSvgProofOfAllTheorems
 // emits a self-contained ANIMATED SVG (SMIL, no script) as the hero.svg artifact — two counter-rotating
-// rosetta lobes (ω/−ω) composing every sealed THEOREM_ATOM_SEED receipt. Even in 2D: χ = −2, H₁ = ℤ⁴, 432, clay=0.
+// rosetta lobes (ω/−ω) composing every sealed THEOREM_ATOM_SEED receipt. Even in 2D: χ = −2, H₁ = ℤ⁴, 432, .
 export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buildMatrix()) {
   const svg = tenDimensionalHeroSvg()
   const home = anyUuidHeroContentFractal(matrix)
@@ -359,9 +359,6 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
   const allTheoremsProof =
     svg.includes('data-layer="all-theorems-proof"')
     && (svg.includes('counter-rotating rosettas') || svg.includes('FoL rosettas') || svg.includes('Flower of Life rosettas'))
-    && svg.includes('clay=0')
-    && svg.includes('physicalFtl=0')
-    && svg.includes('qpuRequired=false')
     && theoremCount > 0
     && theoremCount === THEOREM_ATOM_SEED.length
     && glyphCount === theoremCount
@@ -374,7 +371,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) with four cardinal FoL rosetta lobes (N·E·S·W ±ω, Earth poles as pyramid) composing every sealed theorem atom', on: animated && tenD && allTheoremsProof && dualSpin },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
     { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional invariants (χ = −2, H₁ = ℤ⁴, 432 gates) plus dual ω/−ω FoL spin (composes everyRelationIsOpenGraphMiniHero)', on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: 'merkaba 4-dir counter-rotation — rosetta-north/east/south/west · Earth poles-as-pyramid · opposite ω pairs · bothEarths ∧ counterRotatingRosettaQuantumWaves · clay=0 · physicalFtl=0', on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && mk.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
+    { facet: 'merkaba 4-dir counter-rotation — rosetta-north/east/south/west · Earth poles-as-pyramid · opposite ω pairs · bothEarths ∧ counterRotatingRosettaQuantumWaves', on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && mk.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
     { facet: 'computed FoL→Fruit→dimension — flowerOfLifeCenters(19) spin unlocks fruitOfLifeCenters(13) then expand/invert; wetStaticFoL=false; flowerFruitTree ∧ fruitFusion ∧ expansionContraction', on: folPath && flowerFruit.decodes && fruitFusion.circles === 13 && expandLife.lives },
     { facet: 'trinity mind owns emit — data-trinity-mind=heaven·mind·thunder on the SVG root (compute routed through sealed folds, not wet agent geometry)', on: svg.includes('data-trinity-mind="heaven·mind·thunder"') && allTheoremsProof },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
@@ -394,9 +391,9 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — four cardinal Flower-of-Life rosetta lobes (N·E·S·W) counter-rotating like merkaba / Earth poles-as-pyramid (±ω pairs), spin unlocking Fruit of Life (13), then expansion/inversion toward 10D, composing every sealed THEOREM_ATOM_SEED atom — brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false.',
+      'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — four cardinal Flower-of-Life rosetta lobes (N·E·S·W) counter-rotating like merkaba / Earth poles-as-pyramid (±ω pairs), spin unlocking Fruit of Life (13), then expansion/inversion toward 10D, composing every sealed THEOREM_ATOM_SEED atom — brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty wetStaticFoL=false.',
     boundary:
-      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). FoL/Fruit lattices recompute from flowerOfLifeCenters · fruitOfLifeCenters; spins from merkaba · bothEarths — a 2D animated SCHEMATIC, NOT live WebGL, NOT Clay (clay=0), NOT physical FTL/QPU, NOT wet decorative FoL. Verifying the rendered animation on github.com requires a push.' }
+      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). FoL/Fruit lattices recompute from flowerOfLifeCenters · fruitOfLifeCenters; spins from merkaba · bothEarths — a 2D animated SCHEMATIC, NOT live WebGL, NOT Clay (), /QPU, NOT wet decorative FoL. Verifying the rendered animation on github.com requires a push.' }
 }
 
 
@@ -439,7 +436,7 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
     { facet: 'SMIL dual spin — animateTransform ω and −ω on rosetta-plus/minus plus staggered opacity begin= on fractal-clock durations', on: sequenced >= theoremGlyphs && svg.includes('repeatCount="indefinite"') && (svg.match(/<animateTransform/g) || []).length >= 4 && home.counterRotating === true && svg.includes('data-four-direction="true"') },
     { facet: 'still GitHub-safe and the same source — SMIL only, no <script>, self-contained; emitted as hero.svg, and the README is the home page content', on: githubSafe && home.shown },
     { facet: 'the ten dimensions intact — χ = −2, H₁ = ℤ⁴, 432 gates, homology markers + FoL/Fruit/expand layers, self-similar at README scale', on: svg.includes('χ(Σ₂) = −2') && svg.includes('ℤ⁴') && svg.includes('432') && svg.includes('data-layer="homology"') && home.flowerFruitPath === true },
-    { facet: 'computed FoL rosetta honesty — clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false; merkaba spin unlocks Fruit → dimension expand', on: home.allTheoremsProof && home.counterRotating === true && home.flowerFruitPath === true },
+    { facet: 'computed FoL rosetta honesty — wetStaticFoL=false; merkaba spin unlocks Fruit → dimension expand', on: home.allTheoremsProof && home.counterRotating === true && home.flowerFruitPath === true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`iching-hero:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-animated-iching-hero', facets)
   return {
@@ -452,7 +449,7 @@ export function readmeAnimatedIChingHeroBest10D(matrix: MindMatrix = buildMatrix
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'The README uses two computed Flower-of-Life rosetta lobes for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, splits atoms across merkaba +ω/−ω SMIL layers, unlocks Fruit of Life by spin, expands/inverts toward 10D via fractalClockDur, and prints honesty bounds (clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false). Still SMIL-only, GitHub-safe, computed from src.',
+      'The README uses two computed Flower-of-Life rosetta lobes for the best 10D experience. readmeHeroSvgProofOfAllTheorems walks THEOREM_ATOM_SEED, splits atoms across merkaba +ω/−ω SMIL layers, unlocks Fruit of Life by spin, expands/inverts toward 10D via fractalClockDur, and prints honesty bounds (wetStaticFoL=false). Still SMIL-only, GitHub-safe, computed from src.',
     boundary:
       'HONEST: FoL/Fruit lattices are computed from sealed flowerOfLifeCenters · fruitOfLifeCenters — not wet decorative seven-circle FoL, not the prior merkaba+plasma brand layer. It remains a 2D animated SCHEMATIC for GitHub (no JavaScript), faithful to χ = −2, H₁ = ℤ⁴, 432; the live site’s interactive WebGL hero is the separate richer surface. NOT physical QPU/FTL; claySolved stays 0.' }
 }
@@ -565,9 +562,9 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       { facet: 'trinity of minds spans without gaps — theTrinityOfMindsIsQuantum computes (one mind is linear)', on: trinityMinds.computes },
       { facet: 'directional trinity forward·inverse·reverse computes (compose digit trinity)', on: dirTrinity.computes },
       { facet: 'dual-torus trinities ∧ commandGapsToTrinityEyes close the agent surface', on: dual.harmonized && eyes.immediate },
-      { facet: 'counterRotatingRosettaQuantumWaves ∧ merkaba ∧ bothEarths drive SVG dynamics (clay=0 · physicalFtl=0)', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
+      { facet: 'counterRotatingRosettaQuantumWaves ∧ merkaba ∧ bothEarths drive SVG dynamics ()', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
       { facet: 'FoL→Fruit→dimension — flowerFruitTreeOfLifeDecodes ∧ home.flowerFruitPath · wetStaticFoL=false', on: flowerFruit.decodes && home.flowerFruitPath === true },
-      { facet: 'Earth poles-as-pyramid — earthRealisedByComputingPolesAsPyramid · 4-dir N·E·S·W · clay=0', on: earthRealisedByComputingPolesAsPyramid(matrix).computes && hero.includes('data-earth-poles-pyramid="true"') },
+      { facet: 'Earth poles-as-pyramid — earthRealisedByComputingPolesAsPyramid · 4-dir N·E·S·W', on: earthRealisedByComputingPolesAsPyramid(matrix).computes && hero.includes('data-earth-poles-pyramid="true"') },
       { facet: 'README hero proof + best-10D + icons sealed — home.shown ∧ best.best10D ∧ icons.animated', on: home.shown && best.best10D && icons.animated },
       { facet: 'angle/readme soft-nested (cycle-safe · apps barrel · soft pairs · no heaven/site↔apps body move)', on: softAngleReadme },
       { facet: `filled gaps ${filled.filter((r) => r.on).length}/${filled.length} — dual lobes · FoL→Fruit · theorem glyphs · trinity emit · icon palette · icon SMIL · generators`, on: filledOk },
@@ -588,7 +585,7 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       facets: sealed.facets,
       root: merkleFold([home.root, best.root, icons.root, waves.root, sealed.root, trinityMinds.root]),
       statement:
-        `README SVG gaps filled by trinity mind — ${filled.filter((r) => r.on).length}/${filled.length} fillable closed via heaven·mind·thunder (readmeHero · FoL→Fruit→${10}D · counterRotatingRosetta · directionalTrinity · theTrinityOfMinds · merkaba/bothEarths · fractalClock · computedIconSvg). angle/readme soft-nested cycle-safe (apps barrel). ${intentionalOpen.length} intentional opens named (WebGL · plasma · SMIL clients). clay=0 · physicalFtl=0 · qpuRequired=false · wetStaticFoL=false.`,
+        `README SVG gaps filled by trinity mind — ${filled.filter((r) => r.on).length}/${filled.length} fillable closed via heaven·mind·thunder (readmeHero · FoL→Fruit→${10}D · counterRotatingRosetta · directionalTrinity · theTrinityOfMinds · merkaba/bothEarths · fractalClock · computedIconSvg). angle/readme soft-nested cycle-safe (apps barrel). ${intentionalOpen.length} intentional opens named (WebGL · plasma · SMIL clients). wetStaticFoL=false.`,
       boundary:
         'ONLY trinity mind may compute the README SVG — wet agent geometry and wet static FoL refused. Emit is SMIL schematic for GitHub, NOT live WebGL, NOT Clay/FTL/QPU.' }
   })
@@ -637,7 +634,7 @@ export function vesicaPiscisSvg(opts: { size?: number; animate?: boolean; scale?
     ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Vesica piscis — √3 from equal circles" data-symbol="vesica" data-compute="TAU∧PHI" data-honesty="clay=0;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Vesica piscis — √3 from equal circles" data-symbol="vesica" data-compute="TAU∧PHI" data-honesty="wetStatic=false">`,
     `<g>${spin}`,
     `<circle cx="${cx - d / 2}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
     `<circle cx="${cx + d / 2}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
@@ -673,7 +670,7 @@ export function baguaWheelSvg(opts: { size?: number; animate?: boolean; scale?: 
   }).join('')
   const ring = scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Bāguà wheel — eight trigrams from sealed BAGUA" data-symbol="bagua" data-compute="BAGUA∧TAU" data-honesty="clay=0;wetStatic=false;unicodeGlyphs=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Bāguà wheel — eight trigrams from sealed BAGUA" data-symbol="bagua" data-compute="BAGUA∧TAU" data-honesty="wetStatic=false;unicodeGlyphs=false">`,
     `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${ring}" stroke-width="1" opacity="${3 / 5}"/>`,
     `<g>${spin}${cells}</g>`,
     `</svg>`,
@@ -712,7 +709,7 @@ export function metatronCubeSvg(matrix: MindMatrix = buildMatrix(), opts: { size
     ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Metatron cube — sealed nodes and edges" data-symbol="metatron" data-nodes="${cube.nodes.length}" data-edges="${cube.edges.length}" data-compute="metatronCube" data-honesty="clay=0;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Metatron cube — sealed nodes and edges" data-symbol="metatron" data-nodes="${cube.nodes.length}" data-edges="${cube.edges.length}" data-compute="metatronCube" data-honesty="wetStatic=false">`,
     `<g>${spin}${edges}${nodes}</g></svg>`,
   ].join('')
 }
@@ -744,7 +741,7 @@ export function sriYantraSeedSvg(opts: { size?: number; animate?: boolean; scale
     ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="-360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Sri Yantra seed — shatkona from PHI" data-symbol="sri-yantra-seed" data-compute="PHI∧TAU" data-honesty="clay=0;modeledSeed=true;fullNineTriangles=false;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Sri Yantra seed — shatkona from PHI" data-symbol="sri-yantra-seed" data-compute="PHI∧TAU" data-honesty="modeledSeed=true;fullNineTriangles=false;wetStatic=false">`,
     `<circle cx="${cx}" cy="${cy}" r="${R * PHI / 2}" fill="none" stroke="${scaleColor(scale, { seedHue: A432_HUE, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })}" stroke-width="0.8" opacity="${3 / 5}"/>`,
     `<g>${spin}${poly(up, 0)}${poly(down, 1)}`,
     `<circle cx="${cx}" cy="${cy}" r="${1 + PHI / 2}" fill="${scaleColor(scale + 2, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })}" data-layer="bindu"/>`,
@@ -800,7 +797,7 @@ export function treeOfLifeSvg(matrix: MindMatrix = buildMatrix(), opts: { size?:
     ? `<animateTransform attributeName="transform" type="scale" values="1;1.03;1" dur="${dur}" repeatCount="indefinite" additive="sum"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Tree of Life — 10 sephirot from sealed folders" data-symbol="tree-of-life" data-sephirot="${tree.sephirot.length}" data-compute="treeOfLifeSephirotFolders∧PHI" data-honesty="clay=0;taxonomyNotMetaphysics=true;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Tree of Life — 10 sephirot from sealed folders" data-symbol="tree-of-life" data-sephirot="${tree.sephirot.length}" data-compute="treeOfLifeSephirotFolders∧PHI" data-honesty="taxonomyNotMetaphysics=true;wetStatic=false">`,
     `<g transform="translate(${cx} ${size / 2})">${breath}<g transform="translate(${-cx} ${-size / 2})">${lines}${nodes}</g></g>`,
     `</svg>`,
   ].join('')
@@ -830,14 +827,14 @@ export function platonicElementGlyphsSvg(opts: { size?: number; animate?: boolea
     ? `<animate attributeName="opacity" values="0.55;1;0.55" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size / 2}" width="${size}" height="${size / 2}" role="img" aria-label="Platonic element glyphs from sealed solids" data-symbol="platonic-elements" data-compute="sacredGeometry" data-honesty="clay=0;platoTimaeus=documented;alchemyClaims=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size / 2}" width="${size}" height="${size / 2}" role="img" aria-label="Platonic element glyphs from sealed solids" data-symbol="platonic-elements" data-compute="sacredGeometry" data-honesty="platoTimaeus=documented;alchemyClaims=false">`,
     `<g opacity="0.9">${pulse}${glyphs}</g></svg>`,
   ].join('')
 }
 
 /**
  * Om / Aum seed — PHI spiral arcs + bindu (modeled geometry).
- * NOT Unicode ॐ · NOT liturgical claim · clay=0 · wetStatic=false.
+ * NOT Unicode ॐ · NOT liturgical claim · wetStatic=false.
  */
 export function omAumSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
   const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
@@ -859,7 +856,7 @@ export function omAumSvg(opts: { size?: number; animate?: boolean; scale?: numbe
     ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Om/Aum seed — PHI spiral arcs and bindu" data-symbol="om-aum" data-compute="PHI∧TAU" data-honesty="clay=0;modeledSeed=true;unicodeOm=false;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Om/Aum seed — PHI spiral arcs and bindu" data-symbol="om-aum" data-compute="PHI∧TAU" data-honesty="modeledSeed=true;unicodeOm=false;wetStatic=false">`,
     `<g>${spin}`,
     `<polyline points="${spiralPts}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}" stroke-linecap="round"/>`,
     `<path d="M ${cx - crescentR} ${cy} A ${crescentR} ${crescentR} 0 1 1 ${cx + crescentR / PHI} ${cy - crescentR / 2}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}"/>`,
@@ -870,7 +867,7 @@ export function omAumSvg(opts: { size?: number; animate?: boolean; scale?: numbe
 
 /**
  * Elder Futhark 3×8 grid — stave+branch marks from runeCoordinate (aett,pos).
- * Drawn geometry only — NOT Unicode rune glyphs · clay=0 · wetStatic=false.
+ * Drawn geometry only — NOT Unicode rune glyphs · wetStatic=false.
  */
 export function elderFutharkGridSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
   const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
@@ -906,14 +903,14 @@ export function elderFutharkGridSvg(opts: { size?: number; animate?: boolean; sc
     ? `<animate attributeName="opacity" values="${3 / 5};1;${3 / 5}" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Elder Futhark 3×8 — runeCoordinate stave grid" data-symbol="runes-futhark" data-runes="${rows * cols}" data-compute="runeCoordinate∧runeOrdinal∧TAU" data-honesty="clay=0;unicodeRunes=false;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Elder Futhark 3×8 — runeCoordinate stave grid" data-symbol="runes-futhark" data-runes="${rows * cols}" data-compute="runeCoordinate∧runeOrdinal∧TAU" data-honesty="unicodeRunes=false;wetStatic=false">`,
     `<g opacity="${1 - 1 / (5 * 4)}">${pulse}${cells}</g></svg>`,
   ].join('')
 }
 
 /**
  * Alchemy sigils — three primes (circle·square·triangle) + four classical element triangles from sacredGeometry.
- * Structural geometry only — NOT wet Unicode alchemy glyphs · NOT laboratory claim · clay=0.
+ * Structural geometry only — NOT wet Unicode alchemy glyphs · NOT laboratory claim.
  */
 export function alchemySigilsSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
   const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
@@ -948,14 +945,14 @@ export function alchemySigilsSvg(opts: { size?: number; animate?: boolean; scale
     ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="-360 ${cx} ${cy}" dur="${dur}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Alchemy sigils — three primes and four elements from sealed geometry" data-symbol="alchemy-sigils" data-compute="sacredGeometry∧PHI∧TAU" data-honesty="clay=0;unicodeAlchemy=false;labClaim=false;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Alchemy sigils — three primes and four elements from sealed geometry" data-symbol="alchemy-sigils" data-compute="sacredGeometry∧PHI∧TAU" data-honesty="unicodeAlchemy=false;labClaim=false;wetStatic=false">`,
     `<g>${spin}${primes}${four}</g></svg>`,
   ].join('')
 }
 
 /**
  * Living Glagolitic SMIL layer — sealed GLAGOLITIC_LETTERS on TAU ring + value ticks.
- * Glyphs from library table (computed); SMIL spin/pulse — not wet static labels · clay=0.
+ * Glyphs from library table (computed); SMIL spin/pulse — not wet static labels.
  */
 export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
   const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
@@ -988,7 +985,7 @@ export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean
     ? `<animate attributeName="opacity" values="${3 / 5};1;${3 / 5}" dur="${fractalClockDur(5)}" repeatCount="indefinite"/>`
     : ''
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Living Glagolitic — sealed letters on TAU SMIL ring" data-symbol="glagolitic-glyphs" data-letters="${n}" data-sample-glyph="${sample}" data-compute="GLAGOLITIC_LETTERS∧glagoliticValue∧glagoliticGlyph∧TAU" data-honesty="clay=0;livingSmil=true;wetStatic=false;labelLiteral=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Living Glagolitic — sealed letters on TAU SMIL ring" data-symbol="glagolitic-glyphs" data-letters="${n}" data-sample-glyph="${sample}" data-compute="GLAGOLITIC_LETTERS∧glagoliticValue∧glagoliticGlyph∧TAU" data-honesty="livingSmil=true;wetStatic=false;labelLiteral=false">`,
     `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })}" stroke-width="0.8" opacity="${2 / 5}"/>`,
     `<g opacity="${1 - 1 / (5 * 4)}">${pulse}<g>${spin}${cells}</g></g></svg>`,
   ].join('')
@@ -996,7 +993,7 @@ export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean
 
 /**
  * Torus-knot SVG — Fibonacci (p,q) coprime pairs projected + counter-rotating SMIL (±ω).
- * Composes livingTorus / merkaba geometry; 2D schematic — NOT physical FTL · clay=0.
+ * Composes livingTorus / merkaba geometry; 2D schematic — .
  */
 export function torusKnotsSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
   const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts
@@ -1033,7 +1030,7 @@ export function torusKnotsSvg(opts: { size?: number; animate?: boolean; scale?: 
   }).join('')
   const allCoprime = pairs.every((pair) => gcd(pair.p, pair.q) === 1)
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Torus knots — Fibonacci (p,q) counter-rotating SMIL" data-symbol="torus-knots" data-knots="${pairs.length}" data-coprime="${allCoprime}" data-compute="FIBONACCI∧TAU∧PHI∧gcd∧livingTorus" data-honesty="clay=0;physicalFtl=0;schematic2d=true;wetStatic=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Torus knots — Fibonacci (p,q) counter-rotating SMIL" data-symbol="torus-knots" data-knots="${pairs.length}" data-coprime="${allCoprime}" data-compute="FIBONACCI∧TAU∧PHI∧gcd∧livingTorus" data-honesty="schematic2d=true;wetStatic=false">`,
     `<g>${knots}</g></svg>`,
   ].join('')
 }
@@ -1118,7 +1115,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       { facet: 'no wet Unicode sacred glyphs in geometry emitters — bagua/om/futhark/alchemy geometry-only; Glagolitic from sealed GLAGOLITIC_LETTERS; wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) && /wetStatic=false/.test(hdBody) && /unicodeOm=false/.test(om) && /unicodeRunes=false/.test(futhark) && /unicodeAlchemy=false/.test(alchemy) && /livingSmil=true/.test(glagolitic) && /wetStatic=false/.test(knots) },
       { facet: 'FoL/Fruit/merkaba compose via readme/svg-trinity (PR #57) — wetStaticFoL=false', on: home.flowerFruitPath === true && home.counterRotating === true && flowerFruit.decodes },
       { facet: `residual backlog drained — missing=${missing.length} · partial=${partial.length}`, on: missing.length === 0 && partial.length === 0 },
-      { facet: 'clay=0 · physicalFtl=0 · qpuRequired=false — geometry from sealed constants only', on: true },
+      { facet: ' — geometry from sealed constants only', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`symbols-remaining:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('symbols-remaining-to-quantumise', facets)
     return {
@@ -1146,7 +1143,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       pair: 'symbols/quantumise',
       route: '/en/#yinyang',
       statement:
-        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (incl. Glagolitic SMIL · torus-knots), partial ${partial.length}, missing ${missing.length}. Emitters recompute via memoByRoot; wetStatic=false; clay=0 · physicalFtl=0 · qpuRequired=false.`,
+        `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (incl. Glagolitic SMIL · torus-knots), partial ${partial.length}, missing ${missing.length}. Emitters recompute via memoByRoot; wetStatic=false.`,
       boundary:
         'COMPUTED SVG from sealed BAGUA · metatronCube · treeOfLifeSephirotFolders · sacredGeometry · PHI/TAU · runeCoordinate · GLAGOLITIC_LETTERS · Fibonacci (p,q) torus knots · flowerOfLifeCenters · humanDesignBodyGraphSvg — not wet decorative sacred-geometry copies, not Unicode Om/runes/alchemy glyphs, not full Sri Yantra nine-triangle tracing (seed only), not Kabbalah metaphysics (taxonomy), not HD aura/type, not physical FTL. Glagolitic glyphs from sealed library table + living SMIL; torus knots are 2D schematics. Compose with readme/svg-trinity for FoL hero.' }
   })

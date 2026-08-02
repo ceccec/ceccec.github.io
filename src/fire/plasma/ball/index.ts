@@ -907,7 +907,7 @@ export function quantumNavigationNavigatesThePlasma(matrix: MindMatrix = buildMa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 

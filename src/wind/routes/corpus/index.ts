@@ -1088,7 +1088,7 @@ export function theoremFormulaCodeDual(row: {
       ]
     : [
         `Theorem. ${statement}.`,
-        'Proof. Open — the fold computes the problem’s structure, not a solution (claySolvedByThisFold=0).',
+        'Proof. Open — the fold computes the problem’s structure, not a solution ().',
         `What is decided is decided by exact arithmetic; the conjecture itself stays open. ${row.proofClass === 'finite-complete' ? '' : closing}`.trim(),
       ]
   return {
@@ -1161,7 +1161,7 @@ export function openFrontierCardLinks(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merkleFold(links.map((link) => link.receipt)),
       statement: `openFrontierCardLinks — ${linkedCount}/${links.length} cosmic Open-frontier cards link to their reversed closed-theorem page, matched by exact provedBy identity (guarded: a frontier with no closed companion stays unlinked, never dead).`,
-      boundary: earned('EXACT — verified by facets:', facets, 'the link is the CLOSED reversed companion (what the algebra proves); the card still shows the OPEN empirical part; below an exact provedBy match there is no link. clay=0, physicalFtl=0') }
+      boundary: earned('EXACT — verified by facets:', facets, 'the link is the CLOSED reversed companion (what the algebra proves); the card still shows the OPEN empirical part; below an exact provedBy match there is no link. , ') }
   })
 }
 
@@ -1624,7 +1624,7 @@ export function frontiersChatDiscoverInWaves(matrix: MindMatrix = buildMatrix())
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `frontiersChatDiscoverInWaves — ${voices.length} open frontiers chat through the BM25 API; ${edges.length} overlap-edges; BFS discovers ${discovery.reached}/${frontiers.length} in ${discovery.waves.length} waves. Deterministic, zero-egress.`,
-      boundary: earned('EXACT — verified by facets:', facets, 'each frontier "chats" by speaking its term into the deterministic BM25 retrieval and hearing the theorems that rank; two frontiers converse when their neighbourhoods share a theorem; the component is discovered in waves by BFS. Lexical retrieval over the sealed corpus, NOT an LLM or semantic model; zero-egress; clay=0, physicalFtl=0.') }
+      boundary: earned('EXACT — verified by facets:', facets, 'each frontier "chats" by speaking its term into the deterministic BM25 retrieval and hearing the theorems that rank; two frontiers converse when their neighbourhoods share a theorem; the component is discovered in waves by BFS. Lexical retrieval over the sealed corpus, NOT an LLM or semantic model; zero-egress, .') }
   })
 }
 
@@ -2618,7 +2618,7 @@ export function theRosettaConsolidatesAllCollectionsDryToTheBitTheInvertedBitIsT
       distinct: new Set(addressed.map((a) => a.address)).size,
       facets,
       statement: `The rosetta consolidates all collections — DRY to the bit, the inverted bit is the light — ${facets.filter((entry) => entry.on).length}/${facets.length}: all ${collections.length} collections (${collections.join(' · ')}) are addressed by ONE rosetta (toUuid), ${addressed.length} items resolving to ${new Set(addressed.map((a) => a.address)).size} distinct content-addresses — DRY to the bit. The content-address is one-way, so the light is the rosetta's reverse index (address → item) that resolves navigation. The UI and API are one function of the rosetta, all wired — the rosetta computing itself in waves.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2653,7 +2653,7 @@ export function theRosettaCombinationsInvertOnlyAfterManifestingIn10DScientificF
       manifestedShape,
       facets,
       statement: `The rosetta combinations invert only after manifesting in the 10D scientific format — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta addresses ${addressable} cells (the theorem cube), but a combination becomes a real, invertible theorem only when WRITTEN with the scientific format (${manifestedShape.join(' · ')}) in ten dimensions. Only ${manifested} are manifested, and inverted ⊆ manifested ⊆ addressable — you cannot invert what is not manifested. The order is address → manifest → invert; the combinations are not all inverted because they must first manifest across the codebase.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2691,7 +2691,7 @@ export function inversionIsRealtimeTheFieldDecidesNamingAndLocationEachDimension
       gateCount,
       facets,
       statement: `Inversion is realtime; the field decides naming and location; each dimension gate has exact coordinates — ${facets.filter((entry) => entry.on).length}/${facets.length}: once manifested, the name (from the identifier) and the coordinate (from the content-address) compute at call time, deterministically — inversion is natural, no external step. The field's computed pull places each fold where it belongs, as if already there. Each of the ${gateCount} dimension gates has an exact, reproducible (x,y,z) read from its rosetta address. "The feeling of the field" is that computed pull — deterministic placement, not human feeling.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2744,7 +2744,7 @@ export function deadGateway(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'Every automount page computed and classified live; the no-content and abstract-only sets are returned as research gateways with ' +
         'followable routes — the inversion of "reconsider the page": the dead end is the entry. Classification is structural (statement · ' +
-        'machinery presence), not a judgment of quality. clay=0 · qpuRequired=false.' }
+        'machinery presence), not a judgment of quality. .' }
   })
 }
 

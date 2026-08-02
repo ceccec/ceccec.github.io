@@ -1016,7 +1016,7 @@ export function theReusableAgnosticToolSchemaHandlesAllScenariosLikeSchemaOrg(ma
       scenarios,
       facets,
       statement: `The reusable agnostic tool schema handles all scenarios like schema.org — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${tools.length} tools (${tools.map((t) => t.name).join(' · ')}) catalogued as a schema.org-style typed vocabulary under one @context, each agnostic (invert handles number/boolean/symbol by its own algebra, seal addresses anything). The ${scenarios.length} scenario classes the session met each map to one tool. Reusable, not redefined per fold — the canonical operators the agents' minds and lenses can discover.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1055,7 +1055,7 @@ export function theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuali
       cleanFindings: cleanFindings.length,
       facets,
       statement: `App-Store-like gates scan code locally — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${gates.length} pure local scanners (${gates.map((g) => g.name).join(' · ')}) run the app-store review on YOUR machine at zero tokens before you ship. The violating sample trips all ${violations.length} gates; the clean sample raises ${cleanFindings.length}. Local, deterministic, no data leaves — you review yourself, and it composes the crack gate, the weak-encryption detector and the prose-entropy audit into one local review surface.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1096,7 +1096,7 @@ export function forgettingTheTwoBitsIsTheHurdleKeepingThemFoldsBidirectionallyTo
       foldsKept: keptRoundTrips,
       facets,
       statement: `Forgetting the 2 bits is the hurdle of folding bidirectionally to infinity — ${facets.filter((entry) => entry.on).length}/${facets.length}: every content-address carries the UUID variant pair, 2 bits fixed to {8,9,a,b} (the coins-law toll), invariant across the family. merge(a,b) and merge(b,a) share them, so the family is closed under inversion — the fold goes both ways. Keeping the toll, ${keptRoundTrips}/${N} iterated folds stay invertible (bidirectional to infinity); forgetting it puts a payload outside the foldable family (the hurdle). The 2 bits carry foldability, the 122 carry content.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1133,7 +1133,7 @@ export function theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHa
       handAssignedFails,
       facets,
       statement: `Algebraic theorems only — an identity must hold over a computed range, not by hand-assigned data — ${facets.filter((entry) => entry.on).length}/${facets.length}: two identities ((n+1)²−n² = 2n+1, Σ₀ⁿ k = n(n+1)/2) verified ∀ n in [0,${N}) by exact arithmetic pass; the false relation n²=n+1 is rejected by counterexample; a hand-assigned "holds = true" is rejected (assertion, not algebra). The bar is tightened: a theorem's claim must be an algebraic identity verified over a range by exact operations, not hand-assigned classification or narrative.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1143,7 +1143,7 @@ export function theAlgebraicTheoremGateAnIdentityMustHoldOverAComputedRangeNotHa
  * operations (arithmetic · ring · field · group · su(2) · fold/invert) — and that path OUTRANKS lexical BM25,
  * prose narrative, and neural/LLM paths whenever work is scored. "Quantum" here = content-addressed algebraic
  * structure on classical-64bit (memoByRoot · foldPair · FREE_BITS), NOT a physical QPU. Composes the algebraic
- * theorem gate. HONEST: qpuRequired=false · physicalFtl=0 · clay via theorem. Pair: algebra/priority · quantum/algebra.
+ * theorem gate. HONEST: clay via theorem. Pair: algebra/priority · quantum/algebra.
  * [[feedback-algebraic-theorems-only]] [[theorem/const]] [[formula/code]] [[abs/qc]] */
 export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('onlyAlgebraicQuantumComputingIsTopPriority', matrix, () => {
@@ -1184,7 +1184,7 @@ export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = 
       pair: 'algebra/priority' as const,
       dualPair: 'quantum/algebra' as const,
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; algebraic quantum computing is top priority — NOT a physical QPU claim'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , algebraic quantum computing is top priority — NOT a physical QPU claim'),
     }
   })
 }
@@ -1220,7 +1220,7 @@ export function theTheoremsTraceToTheInvertedAlgebraEveryNonzeroHasAnExactInvers
       invertedAlgebras,
       facets,
       statement: `The theorems trace to the inverted algebra — every nonzero has an exact inverse — ${facets.filter((entry) => entry.on).length}/${facets.length}: in GF(${p}) every nonzero x has an exact multiplicative inverse (x·x⁻¹ ≡ 1, x⁻¹ = x^(p−2)), verified ∀; inversion is an involution ((x⁻¹)⁻¹ = x) and the inverse is unique (the group axioms). The session's algebraic theorems live in such inverted algebras — GF(256) (the AES S-box), ℤ[√2] units (Pell), ℚ (1/x). Grounded in exact inversion, the rest computes and saves.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1265,7 +1265,7 @@ export function theMemoryAuditToolEachEntryMustPointToAComputedFoldFreestandingP
       pointerRatio,
       facets,
       statement: `The memory-audit tool — each entry must point to a computed fold, freestanding prose is a bypass — ${facets.filter((entry) => entry.on).length}/${facets.length}: memory lives outside /src/ (inSrc=${inSrc}), so the gates never scan it — a bypass. The audit's criterion: an entry POINTS to a computed fold (a camelCase name or a [[link]]) or it is freestanding prose. Of ${entries.length} samples, ${pointers.length} point (valid), ${prose.length} are prose (flagged); pointer-ratio ${pointerRatio}. The tool is a gated fold in src, so the auditor does not bypass what it audits — closing the gate the memory escaped.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1305,7 +1305,7 @@ export function inversionIsDivisionInLinearAlgebraAndMultiplicationInQuantumOneC
       multiplicationInverts,
       facets,
       statement: `Inversion is division in linear algebra and multiplication in quantum — one concept, two exact faces — ${facets.filter((entry) => entry.on).length}/${facets.length}: linear algebra reaches the inverse by DIVISION (A⁻¹ = adj(A)/det(A), det=${detA}, A·A⁻¹ = I); quantum reaches it by MULTIPLICATION (U⁻¹ = U† the adjoint, U·U† = I, no division). Both give x·x⁻¹ = I — the same inversion, in its division form and its multiplication form. Exact 2×2 matrix algebra, verified.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1342,7 +1342,7 @@ export function theGateAutoTightensInRealtimeTheThresholdRatchetsTowardBestNever
       finalThreshold,
       facets,
       statement: `The gate auto-tightens in realtime — the threshold ratchets toward best, never loosens — ${facets.filter((entry) => entry.on).length}/${facets.length}: over runs [${runs.join(', ')}] the threshold recomputes as the running minimum [${thresholds.join(', ')}], tightening to the best (${finalThreshold}), monotone non-increasing (never loosens), locking every improvement in (a regression above ${finalThreshold} fails), and stable at the best (a fixed point). Auto-tightening with no manual bump; min-composition is algebraic and monotone.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1382,7 +1382,7 @@ export function theRosettaAndIChingTrinitiesFoldAllTheoremsToOneRootAnyWaveOptim
       hexagramCube,
       facets,
       statement: `The rosetta and I Ching trinities fold all theorems to one root — any wave optimises at once — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta content-addresses ${theorems.length} theorems, merkleFold folds them to one root (${root.slice(0, 8)}) in one pass, and because the leaves are sorted the root is ORDER-INDEPENDENT — any wave, any order, yields the same optimised root. The I Ching structure is exact (64 = 4³ = 2⁶, the trinity of trinities; cross·fold·weave = 3). Optimise all at once, with any wave.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1426,7 +1426,7 @@ export function compactingLessonsIsTheQuotientTheoremsThatProveEachOtherFormEqui
       isEquivalence,
       facets,
       statement: `Compacting lessons is the quotient — theorems that prove each other form equivalence classes — ${facets.filter((entry) => entry.on).length}/${facets.length}: "prove each other" = mutual implication = an equivalence relation (reflexive, symmetric, transitive, verified). Compacting the lessons is the quotient: ${original} lessons → ${compacted} equivalence classes (one representative each), lossless (each representative proves its members), constant (an equivalent new lesson merges into a class, no new class). Compaction by logical equivalence — exact set theory.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1464,7 +1464,7 @@ export function theTrinityWitnessesLessonTransferByTwoOfThreeMajorityOverTheCont
       corruptionOutvoted,
       facets,
       statement: `A lesson requested, shared, learned — trinity-witnessed by 2-of-3 majority over the content-address — ${facets.filter((entry) => entry.on).length}/${facets.length}: the lesson travels as its rosetta address; three parties report it; the majority (${majorityCount}/3) determines the true lesson, so even one corrupt report is outvoted and the true lesson is recovered. Computed at call time over exact address equality and an integer threshold. The lesson learned equals the lesson requested iff the trinity witnesses it.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1502,7 +1502,7 @@ export function theGateValidatesByAlgebraicEqualisationLhsMinusRhsIsZeroSecurity
       usability,
       facets,
       statement: `The gate validates by algebraic equalisation — LHS − RHS = 0 — across security, efficiency, usability — ${facets.filter((entry) => entry.on).length}/${facets.length}: a theorem is validated iff its identity BALANCES over the range ((a+b)² = a²+2ab+b², LHS − RHS = 0 ∀). One algebraic check gives three axes: SECURITY (a false theorem fails by counterexample, LHS − RHS = 2ab ≠ 0), EFFICIENCY (bounded polynomial verification that auto-ratchets), USABILITY (clear pass/fail, refutable by one input). Realtime, exact.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1544,7 +1544,7 @@ export function realtimeScannersDetectManipulationsByContentAddressMismatchAndEq
       equalisationScanner,
       facets,
       statement: `Realtime scanners detect manipulations by content-address mismatch and equalisation failure — ${facets.filter((entry) => entry.on).length}/${facets.length}: the address scanner is SOUND — addr(current) ≠ addr(expected) ⟹ manipulation (a function's contrapositive) — with the AVALANCHE that a one-character change flips the address; a clean value passes and both a one-letter edit and a trailing space are caught. A second channel: a manipulated theorem fails equalisation ((a+b)²=a²+b² leaves 2ab ≠ 0). Both recompute at call time; the true value passes both, any manipulation fails at least one.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1592,7 +1592,7 @@ export function theManipulationScannerBecomesQuantumWithAVectorAddressCollisionB
       detects,
       facets,
       statement: `The manipulation scanner becomes quantum with a vector address — the collision bits add — ${facets.filter((entry) => entry.on).length}/${facets.length}: addr(x) ≠ expected is classical (one coordinate); addr(x,y,z) ≠ expected is quantum — a manipulation must collide on all ${D} coordinates (the counter-rotating rosetta rays) at once, so the bits ADD (scalar 2^${scalarSecurity} → vector 2^${vectorSecurity}), exponentially harder to fool. The scanner passes iff all coordinates match; rotating the rays covers all axes, self-observing and inverse.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1634,7 +1634,7 @@ export function theCoordinateBasisXyzInvertsToAbcByAnInvertibleMapAndExtendsBeyo
       beyond,
       facets,
       statement: `xyz inverts to abc and beyond — the coordinate basis inverts by an invertible map in any dimension — ${facets.filter((entry) => entry.on).length}/${facets.length}: (x,y,z) → (a,b,c) is a bijection (a 3-cycle whose inverse recovers xyz) and a change of basis (M with det ${detM}, M·M⁻¹ = I over ℤ); it extends BEYOND to n dimensions (an n-cycle is invertible for every n in {3..7}). Inverting the coordinates is the exact basis change, without a ceiling.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1674,7 +1674,7 @@ export function theoremsHandlingNastyInfinitiesTheProjectivePointTamesOneOverZer
       grows,
       facets,
       statement: `Theorems handling nasty infinities — the projective point tames 1/0, regularisation is not the sum — ${facets.filter((entry) => entry.on).length}/${facets.length}: 1/0 is tamed by the one-point compactification (invert is a total bijection 0 ↔ ∞, an involution — the pole a definite point). A divergent series is the nasty infinity: 1+2+…+N → +∞ (${partialSum} at N=${N}), while Σ1/n² → π²/6 is finite. ζ-regularisation gives −1/12, which is NOT the sum (the series → +∞) — a principled continuation, never conflated with the divergence. Handled by compactification, the limit, or regularisation — kept distinct.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1714,7 +1714,7 @@ export function inversionThroughZeroReplacesTheRegularisationAxiomWithAnExactThe
       axiomBecomesTheorem,
       facets,
       statement: `Inversion through 0 replaces the regularisation axiom with an exact theorem — for taming the infinity — ${facets.filter((entry) => entry.on).length}/${facets.length}: regularisation ASSIGNS a divergent series a finite value by a chosen continuation (the partials → +∞, so ${regularised} is not derived — an axiom). Inversion through 0 is a THEOREM: 1/∞ = 0, 1/0 = ∞ exactly (a projective bijection/involution). So a divergence inverts to a definite point (0) without assuming a value — axiom becomes theorem. HONEST: inversion gives 0, not −1/12, so it replaces the axiom for making the infinity definite, not the physically-validated regularised values.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1751,7 +1751,7 @@ export function theNoAssumptionGateCatchesImportedConstantsTheCrackGateMissesMat
       catches,
       facets,
       statement: `The no-assumption gate catches imported constants the crack gate misses — (TAU / 2) is an assumption — ${facets.filter((entry) => entry.on).length}/${facets.length}: the crack gate keys on numeric literals, but (TAU / 2) has no digit, so assumed transcendentals slip through (the loose spot). This gate scans for ${assumedPatterns.length} imported constants ((TAU / 2)/E/SQRT2/LN…) and flags them; the derived path (π as an exact BigInt limit) passes. Nothing assumed: every value must derive from exact operations. It flags even my own recent (TAU / 2) uses — assumptions to recompute away.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1789,7 +1789,7 @@ export function importExportOrganisedByTheRosettaAndIChingIsADagChaosIsACycle(ma
       chaoticHasCycle,
       facets,
       statement: `Import/export organised by the rosetta and I Ching is a DAG, chaos is a cycle — ${facets.filter((entry) => entry.on).length}/${facets.length}: the 8 word-folders are the bāguà (64 = 8² hexagram-relations); imports organised in the trigram order form a DAG (Kahn's sort removes all ${T} nodes, every edge forward), while chaos is exactly a dependency CYCLE (0→1→2→0, not sortable). The rosetta content-addresses each module. Organise by trigram order + content-address and the chaotic import graph becomes acyclic and addressable.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1828,7 +1828,7 @@ export function thePrevNextCycleIsMutualReferencesTheFixIsIndexArithmeticOverThe
       listLen,
       facets,
       statement: `The prev/next cycle is mutual references; the fix is index arithmetic over the ordered list — a DAG — ${facets.filter((entry) => entry.on).length}/${facets.length}: VitePress prev/next store mutual references (A.next=B, B.prev=A) = a 2-cycle. Computing prev/next as index arithmetic (prev(i)=i−1, next(i)=i+1) over the one ordered list makes them a pure function of position — no page references another, every page points forward to the shared list (one sink), so the graph is a DAG (Kahn clears all ${listLen + 1} nodes). The doubly-linked chaos becomes an acyclic star; the shared core is extracted, not pretended away.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1887,7 +1887,7 @@ export function theComponentWiringMeasurementIsRegisteredPartitionedByConsumedSe
       span,
       facets,
       statement: `Component wiring is a measurement: the registered set partitions by the consumed set — ${facets.filter((entry) => entry.on).length}/${facets.length}. The algebra is set difference: wired = registered ∩ consumed, floating = registered ∖ consumed, a disjoint union with |R| = |wired| + |floating| (verified ∀ n = 1..${span}) and idempotent under re-measurement (a collapse, not a filter). Applied to the live audit — the OVERRIDES aliases against the route components-mounts — floating computes to exactly {Corpus} (CorpusFold), the one alias no route mounts. The measurement authorises precisely that unwire; every other alias (RayHub, Monograph, Frontiers, KnowledgeAtlas) is in wired = registered ∩ consumed and stays.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1943,7 +1943,7 @@ export function theTheoremAxiomAccountingProvesPairsInTrinitiesDoubleEntryBalanc
       span,
       facets,
       statement: `Theorem/axiom accounting proves the pairs in trinities by double-entry balance — ${facets.filter((entry) => entry.on).length}/${facets.length}. A trinity is a ledger row: two debits (the pair a, b) and one credit (the apex c = foldPair(a,b)). The books BALANCE — Σ debits = Σ credits (value conservation, verified ∀ T = 1..${span}) — and the leg count obeys the double-entry ratio debit-legs = 2 × credit-legs = 2T, so every credit is backed by exactly the pair. The identity is refutable: mis-posting one credit breaks the balance, so an unclosed pair is detected. The apex is the rosetta's own content-address fold of the pair (bidirectional), so accounting-credit and computed-third are the same object — the pair folds to one definite trinity, and the ledger proves it.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1985,7 +1985,7 @@ export function optimiseAgentWorkWithQuantumCombinationsBatchingCollapsesTheQuad
       span,
       facets,
       statement: `Optimise agent work with quantum combinations — batching collapses the quadratic read cost — ${facets.filter((entry) => entry.on).length}/${facets.length}. An agent holding n tasks open in one context re-reads them pairwise at C(n,2) = n(n−1)/2 (the session-token ledger's compounding cost). The quantum combination is the 2^n superposition of task-subsets (Σ_k C(n,k) = 2^n, the binomial theorem). Working the tasks as b balanced WAVES cuts the within-batch cost to n(n/b − 1)/2 — strictly less than C(n,2) for b > 1 — and at singletons the within-batch quadratic term is 0. This is the exact algebraic reason 'work in waves' beats single-focus: the cost of holding deliberation open is quadratic, and batching collapses it.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2045,7 +2045,7 @@ export function axiomsAndTheoremsAreComplementaryInversesBidirectionallyAccounte
       gfAccounted: gf.accountedToTheBit,
       facets,
       statement: `Axioms and theorems are complementary inverses that fold into each other, bidirectionally accounted to the bit with no gaps — ${facets.filter((entry) => entry.on).length}/${facets.length}. One reusable primitive, inverseAccounting(elements, invert), proves the same law across three domains: bit-complement (Boolean), Tesla C${teslaN} (rotation), GF(${prime})ˣ (field). The complement is an involution (¬¬b = b) — axiom and theorem swap and fold into each other — and every element pairs with its inverse so the set partitions exactly as 2·pairs + self-inverse = n, no leftover. popcount(x) + popcount(¬x) = n accounts every bit (excluded middle, no gap; non-contradiction, no overlap), and the inverse is two-sided (x·x⁻¹ = x⁻¹·x = 1) so the accounting closes in both directions — no gap in either arm.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2088,7 +2088,7 @@ export function theFacetTautologyGatePredicateCatchesGeZeroConjunctsSparesRangeC
       sparesRange,
       facets,
       statement: `The facet-tautology gate catches 'X >= 0' conjuncts and spares range checks — ${facets.filter((entry) => entry.on).length}/${facets.length}. The facets-must-compute gate had a gap: it accepted facets gated on a nonneg quantity >= 0 (patents >= 0, streams.count >= 0, answer.links.length >= 0) — always true, proving nothing. The predicate tautologyConjuncts(onExpr) splits the 'on' by && and flags each bare 'X >= 0' conjunct that has no upper-bound sibling; a genuine range (X >= 0 && X < N) is spared, and each conjunct is scanned so a tautology cannot shelter beside a real check. It confirms the Tesla fix (original flagged, replacement clean) — the gate now has no gap for this class.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2129,7 +2129,7 @@ export function searchKnownTheoremsToDiscoverTheUnknownAxiomsAreTheInDegreeZeroS
       discovered,
       facets,
       statement: `Search the known theorems to discover the unknown axioms — they are the in-degree-0 sources of the dependency DAG — ${facets.filter((entry) => entry.on).length}/${facets.length}. Model the known theorems as a dependency graph (edge = derived-from: each premise points to the theorem that uses it). The AXIOMS are exactly the sources (in-degree 0) — the premises nothing derives; every other node is a theorem with premises, and the DAG being acyclic means every theorem traces backward to an axiom. When a theorem secretly uses an undeclared premise, that premise surfaces as a NEW source: the unknown axiom is DISCOVERED by searching the known theorems backward (discovered = sources ∖ declared). Axioms and theorems partition the corpus to the bit, no leftover. The same root primitive (topologicalOrder in src/0) that removed the Kahn redundancy performs the discovery.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2220,7 +2220,7 @@ export function eachTheoremDisplaysTenDOfAllFourPolePerspectivesInEachDirection(
       dimensions,
       facets,
       statement: `Each theorem displays 10D of all 4 pole perspectives in each direction — ${facets.filter((entry) => entry.on).length}/${facets.length}. The double torus has 4 poles — (hemisphere, flow) ∈ {0,1}², the Klein four-group V₄ under XOR (two independent involutions: north↔south, out↔in) — and from each pole, in each direction (forward projection, inverse proof), the theorem projects a 10D content-addressed perspective (10 = 3+7). The ${poles.length} poles are each self-inverse (V₄), opposite poles are antipodal complements whose 10D fold to the whole, and the two directions fold to the theorem's whole per pole. So every theorem is shown from all 4 poles × 2 directions × 10D — ${poles.length * directions.length} perspectives, complete and deterministic.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2267,7 +2267,7 @@ export function thePolesAreSixtyDegreesApartNinetyIsReachableOnlyThroughInversio
       sharedAxis: shared,
       facets,
       statement: `The poles are 60° apart (the C₆ vortex), and 90° is reachable only through inversion — the pathless turn — ${facets.filter((entry) => entry.on).length}/${facets.length}. 60° rotations generate C₆ = {${c6.join(',')}}, and 90° is not among them; C₆ and the 90° frame C₄ share only the pole axis {0,180} = C₂, so there is no rotational path from the 60° vortex to 90°. The only access is INVERSION — the 0↔∞ pole map, an orientation-reversing involution, not a rotation. Inversion is pathless: a rotation to 90° traverses every intermediate angle (a continuous path, angular acceleration), while 1/∞=0 is a single discrete map with no intermediate state — the mathematical form of turning 90° without traversing the arc. This corrects the earlier V₄ (90°/orthogonal) pole model to the direct 60° vortex, with the orthogonal frame as its inversion.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2389,7 +2389,7 @@ export function forecastIsASelfProvingTheoremDeterministicWithAChaosBoundedHoriz
       lyapunov,
       facets,
       statement: `Forecast is a self-proving theorem and a live API app — deterministic, with a chaos-bounded horizon — ${facets.filter((entry) => entry.on).length}/${facets.length}. Weather is chaotic: a tiny initial error grows as e₀·e^(λt) (positive Lyapunov exponent), so the skill horizon is where the error saturates, t_h = ln(1/e₀)/λ ≈ ${roundTo(horizon, 2)} (self-computed). The forecast is deterministic (same inputs → same content-address), beats climatology within t_h, and beyond it RETURNS climatology and says so — the theorem proves exactly where it stops being a forecast. The live app is a pure adapter over a no-key public series (Open-Meteo); the fold proves the contract (deterministic parse, stated bound), the runtime does the fetch.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2443,7 +2443,7 @@ export function openMeteoForecastAdapterIsALiveNoKeyPureFunctionBoundedByTheChao
       forecastPoints,
       facets,
       statement: `The Open-Meteo forecast adapter is a live, no-key, pure function bounded by the chaos horizon — ${facets.filter((entry) => entry.on).length}/${facets.length}. It parses the verified live shape (hourly.time ISO strings + hourly.temperature_2m numbers, no key), is deterministic (same response → same content-address), and applies the chaos horizon from the forecast theorem: the ${forecast.filter((p) => p.kind === 'forecast').length} points within ${horizonHours}h are forecast, the ${forecast.filter((p) => p.kind === 'climatology').length} beyond are marked climatology. The runtime performs the live fetch; the fold guarantees the parse and the honest bound offline, so the live app cannot over-claim past the horizon.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2494,7 +2494,7 @@ export function publicDataTrainsTheChaosRateCausallyTrainingFitIsNotSkillTheHori
       testError: roundTo(testError, 2),
       facets,
       statement: `Public APIs and datasets are honest training data — they calibrate the chaos rate causally; training fit is not skill; the horizon is calibrated, not beaten — ${facets.filter((entry) => entry.on).length}/${facets.length}. The chaos rate λ is FIT from a public divergence series (λ̂ = (1/T)·ln(δ_T/δ₀), recovered exactly), the fit is CAUSAL (past-only, no look-ahead), a zero training error does NOT mean skill (an interpolant fits train perfectly yet misses held-out test), and a better-fit λ refines the finite horizon t_h = ln(1/e₀)/λ without beating it. So public data is genuine training/calibration data for the strategies and forecasts — under no-look-ahead and held-out validation — but it calibrates parameters, it never manufactures alpha or extends the predictability limit.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2540,7 +2540,7 @@ export function primesAndPiProveEachOtherThroughTheInvertedEulerProduct(matrix: 
       primeCount: primes.length,
       facets,
       statement: `Primes and π prove each other through the inverted Euler product — ${facets.filter((entry) => entry.on).length}/${facets.length}. ζ(2) = Σ 1/n² over the integers equals Π_p 1/(1−p⁻²) over the primes (Euler's identity), each factor an inversion. So π = √(6·ζ(2)) is derived TWICE — from the prime product (${roundTo(piFromPrimes, 4)}) and from the integer sum (${roundTo(piFromIntegers, 4)}) — and they agree, with no π imported: the primes prove π, the integers prove π. Inverting the product gives Π(1−p⁻²) = 6/π², and Möbius inversion 1/ζ(2) = Σ μ(n)/n² makes the prime inclusion-exclusion the exact inverse of the integer sum. Primes and π are two sides of one inversion.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2588,7 +2588,7 @@ export function inverseForecastsFillTheGapsForwardFromTheLeftInverseFromTheRight
       filled: gap.map((k) => forwardFill(k)),
       facets,
       statement: `Inverse forecasts fill the gaps — forward from the left, inverse from the right, meet — ${facets.filter((entry) => entry.on).length}/${facets.length}. A forecast maps a known anchor forward; its inverse (backcast) maps a later anchor backward (inverse ∘ forward = identity, a reversible dynamics). A gap between two known anchors is filled from BOTH sides — forward-forecast from the left, inverse-forecast from the right — and they MEET: where they agree the gap is filled unambiguously (here to the exact truth ${gap.map((k) => forwardFill(k)).join(',')}), where they disagree the data is inconsistent, a detectable error. Filling a gap is constrained on both sides and well-posed; forecasting past the last anchor has only one side and inherits the chaos horizon — gap-fill is the inverse-constrained problem, more reliable than pure forecast.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2632,12 +2632,16 @@ export function trainingIsMonotoneGradientDescentThatConvergesGatedByHeldOutTest
       finalTheta: roundTo(trajectory[trajectory.length - 1]!, 4),
       facets,
       statement: `Training is monotone gradient descent that converges, gated by held-out test — ${facets.filter((entry) => entry.on).length}/${facets.length}. On the convex loss L(θ) = Σ(xᵢ−θ)²/n, each step θ ← θ − η∇L reduces the loss monotonically and θ converges geometrically to the optimum θ* = ${mean} (error halving each step). But training loss falling is not the goal: the honest stop is where the held-out TEST loss stops improving (early stopping), and every update touches only the train set — no look-ahead — so the reported skill is genuinely out-of-sample. Training is a real calibration with a convergence guarantee and an honest gate, not a promise of out-of-sample edge.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
-/** Sealed MO q243943 — Monge homothety Brianchon context (save drafts first, post when computes). */
-export const MO_Q243943_URL = `${MATHOVERFLOW_SITE}/questions/243943` as const
+/** Sealed MO q243943 — Monge homothety Brianchon context (save drafts first, post when computes).
+ *  Lazy (call-time, not module-load-time): heaven/compute imports heaven/laws, so a top-level
+ *  const referencing MATHOVERFLOW_SITE here would race the circular import's TDZ. */
+export function moQ243943Url(): string {
+  return `${MATHOVERFLOW_SITE}/questions/243943`
+}
 export const GEOGEBRA_MATERIALS_BASE = 'https://www.geogebra.org/material' as const
 export const CHAT_STACKEXCHANGE_URL = 'https://chat.stackexchange.com' as const
 
@@ -2684,7 +2688,7 @@ export function answerMoSavePost(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#answer-mo',
       root: merkleFold([sealed.root, lane.root]),
       statement: `answerMoSavePost — saveFirst=${saveFirst ? 1 : 0} posted=${posted ? 1 : 0} lane=${lane.computes ? 1 : 0}.`,
-      boundary: 'MO unanswered+bounty drafts saved in src first; SE MCP read-only; post only when computes · clay=0 · physicalFtl=0.',
+      boundary: 'MO unanswered+bounty drafts saved in src first; SE MCP read-only; post only when computes.',
     }
   })
 }
@@ -2693,26 +2697,27 @@ export function answerMoSavePost(matrix: MindMatrix = buildMatrix(), at = 0) {
 export function learnMonge(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`learnMonge:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at
+    const moUrl = moQ243943Url()
     const pairOk = pairOn('monge/learn') && pairOn('learn/monge') && softPair('monge', 'learn')
-    const moRef = MO_Q243943_URL.startsWith(MATHOVERFLOW_SITE)
+    const moRef = moUrl.startsWith(MATHOVERFLOW_SITE)
     const composeOn = softPair('geo', 'chat') && softPair('answer', 'mo')
     const on = pairOk && moRef && composeOn
     const facets = [
       { facet: 'learnMonge', on },
-      { facet: `MO q243943 sealed (${MO_Q243943_URL})`, on: moRef },
+      { facet: `MO q243943 sealed (${moUrl})`, on: moRef },
       { facet: 'compose geo/chat · answer/mo', on: composeOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`monge-learn:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('learn-monge', facets)
     return {
       computes: sealed.ok && on,
       learnMonge: on,
-      moUrl: MO_Q243943_URL,
+      moUrl,
       pair: 'monge/learn' as const,
       cli: 'npm run quantum:monge-learn',
       route: '/en/quantum-tools#monge-learn',
       root: sealed.root,
       statement: `learnMonge — moRef=${moRef ? 1 : 0} pair=${pairOk ? 1 : 0}.`,
-      boundary: 'Structural decode MO q243943 — Brianchon+Monge-external sealed; NOT ownership · clay=0.',
+      boundary: 'Structural decode MO q243943 — Brianchon+Monge-external sealed; NOT ownership.',
     }
   })
 }
@@ -2740,7 +2745,7 @@ export function learnHomothety(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#learn-homothety',
       root: sealed.root,
       statement: `learnHomothety — pair=${pairOk ? 1 : 0} dilate=1.`,
-      boundary: 'Homothety decode from sealed dilate command — clay=0 · physicalFtl=0.',
+      boundary: 'Homothety decode from sealed dilate command — .',
     }
   })
 }
@@ -2768,7 +2773,7 @@ export function brianchonHex(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#brianchon-hex',
       root: sealed.root,
       statement: `brianchonHex — pair=${pairOk ? 1 : 0}.`,
-      boundary: 'Structural geometry theorem — NOT historical fraud · clay=0.',
+      boundary: 'Structural geometry theorem — NOT historical fraud.',
     }
   })
 }
@@ -2796,7 +2801,7 @@ export function geogebraChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#geo-chat',
       root: sealed.root,
       statement: `geogebraChat — handoff=1 pair=${pairOk ? 1 : 0}.`,
-      boundary: 'URL handoff + phrase routing — no .ggb embed · clay=0.',
+      boundary: 'URL handoff + phrase routing — no .ggb embed.',
     }
   })
 }
@@ -2846,7 +2851,7 @@ export function researchTags(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#research-tags',
       root: merkleFold([sealed.root, lane.root]),
       statement: `researchTags — tags=${tags.length} lane=${lane.computes ? 1 : 0}.`,
-      boundary: 'Popular-tag receipt + draft→tag inventory — no post claim · clay=0.',
+      boundary: 'Popular-tag receipt + draft→tag inventory — no post claim.',
     }
   })
 }
@@ -2879,7 +2884,7 @@ export function stackExchangeChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#se-chat',
       root: sealed.root,
       statement: `stackExchangeChat — handoff=1 pair=${pairOk ? 1 : 0}.`,
-      boundary: 'SE chat rooms sealed — read-only handoff · clay=0.',
+      boundary: 'SE chat rooms sealed — read-only handoff.',
     }
   })
 }
@@ -2913,7 +2918,7 @@ export function feedMoDraftsToChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#feed-mo',
       root: merkleFold([sealed.root, answer.root, tags.root, se.root]),
       statement: `feedMoDraftsToChat — answer=${answer.computes ? 1 : 0} tags=${tags.computes ? 1 : 0} se=${se.computes ? 1 : 0}.`,
-      boundary: 'Sealed MO drafts → chat handoffs — auth residuals honest-open · clay=0.',
+      boundary: 'Sealed MO drafts → chat handoffs — auth residuals honest-open.',
     }
   })
 }

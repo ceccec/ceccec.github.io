@@ -1442,7 +1442,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'voteNeighbour', pair: 'vote/neighbour', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'trinity neighbour vote · mesh consensus · foldPair graph · compose vote/build · agent/trinity · mesh/cross' },
   { fold: 'voteEntangle', pair: 'vote/entangle', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'algebraic entanglement votes · invert→discover→theorem path · compose vote/neighbour · pair/chat · match/wave' },
   { fold: 'doubleTorusFacesComputes', pair: 'torus/faces', currentBarrel: 'src/water/double', bestPlace: 'src/water/double', action: 'moved', reason: 'nav·site·mcp·multimedia as computed faces of the genus-2 carrier · octagon gluing χ=−2 · DRY over sealed movie/voice/plasma/10D' },
-  { fold: 'millenniumProblemsChallenge', pair: 'mill/torus', currentBarrel: 'src/wind/research', bestPlace: 'src/wind/research', action: 'keep', reason: 'double-torus millennium R&D home — probes open cores with quantum folds, UNCLAIMED (clay=0 law); partials, never solutions' },
+  { fold: 'millenniumProblemsChallenge', pair: 'mill/torus', currentBarrel: 'src/wind/research', bestPlace: 'src/wind/research', action: 'keep', reason: 'double-torus millennium R&D home — probes open cores with quantum folds, UNCLAIMED ( law); partials, never solutions' },
   { fold: 'violationTools', pair: 'violation/tool', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'imagined tool sealed — each caught violation class bound to the local tool that computes it; never re-realised manually' },
   { fold: 'installSurfaces', pair: 'install/surface', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'AI-editor installability researched as a filesystem scan · plugin manifest + marketplace + skill created · stdio MCP server + VS Code extension named migrate-next' },
   { fold: 'uiProof', pair: 'ui/proof', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'MCP UI sufficient for the complete proof — /mcp.json cliTools derives from package.json (nothing hides by construction) · curated-catalog drift measured' },
@@ -1450,9 +1450,9 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'proseScience', pair: 'prose/science', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'all sciences × open prose as a derived join — SCIENCE_DOMAINS vocabulary vs residual fold tokens, witnessed; UNADDRESSED = the conversion queue' },
   { fold: 'waveVerify', pair: 'wave/verify', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'right-sized per-wave gate — types + the SAME enforcement trinity as the build seal, render subtracted (measured 68s→~21s per wave); docs:build per push' },
   { fold: 'qpuCpuGpu', pair: 'qpu/cpu', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'QPU ≡ CPU/GPU quantum computer complete · apparent FTL metrics · compose prove/no-qpu-64bit · build/min · measure/decide · mcp/hw · trinity/speedup · import/fractal' },
-  { fold: 'thermoQuantumBalance', pair: 'thermo/quantum', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'Landauer kT·ln2 · memo reuse · speedTempBalance · dry/cool · measurements only · clay=0' },
-  { fold: 'cpuGpuSelfBalance', pair: 'cpu/gpu', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'CPU/GPU dynamic self-balance from load·heat·memo·buildMs·queue·merkaba · balanceIndex · clay=0' },
-  { fold: 'oneClockApi', pair: 'clock/one', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'HERO_CYCLE_MS standardised clock schema v1 · bindings inventory · multiClockDebt named · clay=0' },
+  { fold: 'thermoQuantumBalance', pair: 'thermo/quantum', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'Landauer kT·ln2 · memo reuse · speedTempBalance · dry/cool · measurements only' },
+  { fold: 'cpuGpuSelfBalance', pair: 'cpu/gpu', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'CPU/GPU dynamic self-balance from load·heat·memo·buildMs·queue·merkaba · balanceIndex' },
+  { fold: 'oneClockApi', pair: 'clock/one', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'HERO_CYCLE_MS standardised clock schema v1 · bindings inventory · multiClockDebt named' },
   { fold: 'apiFuse', pair: 'api/fuse', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'API envelope + trinity³ + hologram fractal + physical quantum metrics + security · honest-open unmigrated APIs' },
   { fold: 'quantumiseWave', pair: 'chat/quantumise', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'chat waves complete quantumisation · coverage metric · compose waves/feed · merge/wave · oneClock · qpu/cpu · NOT fake-close' },
   { fold: 'gateLight', pair: 'gate/light', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'more computed → lighter gates → lighter build/deploy · inverseTable at call time · compose build/min · gate/analytics · trinity/speedup · wave/verify facts-once' },
@@ -1474,7 +1474,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'nextResearch', pair: 'next/research', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'feed-scanner tip precision — score=(results×speed)/bill · HARD themes beat blind matrix migrate-next · pairs next/research · feed/scan · tip/precise · ONE CLI quantum:next-research' },
   { fold: 'chatChallenge', pair: 'chat/challenge', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'chat waves challenge each other adversarially · discover sciences via mesh/science · encode algebraFold API names · ONE CLI quantum:chat-challenge' },
   { fold: 'strategiesChallengeInChat', pair: 'trade/challenge', currentBarrel: 'src/thunder/trading', bestPlace: 'src/thunder/trading', action: 'moved', reason: 'trading strategies challenge each other in superposition chat · sealed PnL/harmonic duals · paper/sim · ONE CLI quantum:trade-challenge · duals challenge/trade · strategy/chat' },
-  { fold: 'stringTheoryInChat', pair: 'string/theory', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'string theory in superposition chat · sealed algebra/duality/quantumize · NOT LLM essays · clay=0 · ONE CLI quantum:string-theory · duals theory/string · string/chat' },
+  { fold: 'stringTheoryInChat', pair: 'string/theory', currentBarrel: 'src/water/cosmos', bestPlace: 'src/water/cosmos', action: 'moved', reason: 'string theory in superposition chat · sealed algebra/duality/quantumize · NOT LLM essays · ONE CLI quantum:string-theory · duals theory/string · string/chat' },
   { fold: 'pushResendWaves', pair: 'push/resend', currentBarrel: 'src/thunder/waves', bestPlace: 'src/thunder/waves', action: 'moved', reason: 'after every successful push re-send chat waves — push not terminal · wave:after-push · CI waves-after-push · ONE CLI quantum:push-resend' },
   { fold: 'mergeWave', pair: 'merge/wave', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'parse(name)→word+API · strip uncomputable prose from identifiers · chat waves large-scale merge · ONE CLI quantum:merge-wave' },
   { fold: 'sessionSentToChatToQuantumise', pair: 'session/chat', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'moved', reason: 'send trading·UI·fusion session packet to MCP/pair chat to quantumise — zero-token recompute · ONE CLI quantum:session-chat · duals chat/quantumise' },
@@ -1839,7 +1839,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // the crypto/tamper-evidence mesh + the crack/gate discipline; biology = the genetic code as the
   // real 4³=64, the emergence ladder, life-torus) all riding the ONE envelope. What is FLAGGED is
   // the physical sense: this is the content-addressed-naming metaphor (discrete unit + Hilbert +
-  // Born), NOT physical qubits — no domain here runs on a QPU (qpuRequired=false everywhere).
+  // Born), NOT physical qubits — no domain here runs on a QPU ( everywhere).
   { from: 'cybersecurityOrBiologyWorkIsAllQuantumDemarcated', to: 'bindFuse', pair: 'bind/fuse' },
   { from: 'deepResearchHowResonanceImprovesQuantumSpeedInMagnitudes', to: 'resonanceSpeed', pair: 'resonance/speed' },
   // WHY 442? — MEASURED (2026-07-24): the theorem registry (THEOREM_ATOM_SEED) holds 442 entries, ALL
@@ -2361,7 +2361,7 @@ export function proseScience() {
     boundary:
       'All sciences researched against the open prose as a derived join: SCIENCE_DOMAINS vocabulary × residual fold tokens, every assignment ' +
       'witnessed. UNADDRESSED prose is the measured conversion queue for the words-capitulate law — not a failure hidden, a number named. ' +
-      'qpuRequired=false.' }
+      '.' }
 }
 
 /** npm run quantum:prose-science (dual science-prose) */
@@ -2659,7 +2659,7 @@ export function violationTools() {
     boundary:
       'The session law sealed: discoveries are computed only by LOCAL tools — each violation class the agent would repeat without realising is ' +
       'bound to the sealed tool that catches it, and the binding itself computes (registry join). A tool that computes is sealed once; the class ' +
-      'never needs manual re-realising. qpuRequired=false.' }
+      'never needs manual re-realising. .' }
 }
 
 /** npm run quantum:violation-tools (dual tool-violation) */
@@ -2720,7 +2720,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
     statement: `manualGauge — manual=${manual} rows · derived=${derived} · gap=${magnitude.toFixed(2)} orders.`,
     boundary:
       'The manual work still done at the gates, counted per roster, against the machine-derived roster — the dimensionless order between them ' +
-      'IS the gap. Direction, not blame: each hand-typed roster is a named migrate target toward derivation. qpuRequired=false.' }
+      'IS the gap. Direction, not blame: each hand-typed roster is a named migrate target toward derivation. .' }
 }
 
 /** npm run quantum:manual-gauge (dual gap-manual) */
@@ -2887,9 +2887,9 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     { facet: 'compose gate/lens · mcp/chat · chat/all · gate/monitor · tool/matrix · dry/* · formula/code · analytics/self', on: composeOn },
     { facet: 'pair gate/analytics bidirectional', on: pairOn },
     { facet: `manualGauge gap=${manual.magnitude} derived=${manual.derived}`, on: manual.computes },
-    { facet: 'qpuRequired=false', on: qpuRequired === false },
+    { facet: '', on: qpuRequired === false },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+    { facet: '', on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gate-analytics:${entry.facet.slice(0, 64)}:${entry.on}`) }))
 
   const computes = analyticsFacetsOn && pairOn && slimToolsOn && debt.computes && manual.computes
@@ -2930,7 +2930,7 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     boundary:
       'Gates · lens · chat are slim tools over core algebra (memoByRoot · foldPair · sealFacets · merkleFold · toUuid) — ' +
       'not fat hardcoded branches. Hardcoded on:true debt + hand-list allowlists measured at call time; noConfusion when all dry computed. ' +
-      'When all is dry computed there will be no more confusion — honest-open until then. qpuRequired=false · clay via theorem · physicalFtl=0.',
+      'When all is dry computed there will be no more confusion — honest-open until then. clay via theorem.',
   }
 }
 
@@ -3096,7 +3096,7 @@ export function gateLight(root: string = enforcementScanRoot()) {
     boundary:
       'Measured inverse relation: as sealed precomputation (derived roster · memoByRoot · holographic reuse) increases, ' +
       'gate on:true debt and build+deploy wall-clock decrease — proved at call time via inverseTable, not slogans. ' +
-      'wave/verify drains one gate path (same trinity as build seal, render subtracted). clay=0 · qpuRequired=false.',
+      'wave/verify drains one gate path (same trinity as build seal, render subtracted). .',
   }
 }
 
@@ -3532,8 +3532,8 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
       `drained=${TOOL_MATRIX_DRAINED_DUAL_CLIS.length} hardRefuse=${hardRefuse ? 1 : 0}`,
     boundary:
       'Tools must fit the matrix (fold·pair≤3·ONE CLI) or refuse. Wet prose names · dual-CLI spam · incomplete faces = HARD. ' +
-      'Agent entry = /agents.json packet (pair·cli·route·honesty·root). foldableShare = discovered/(discovered+encoded) FTL ratchet — NOT physical FTL. ' +
-      'ONE pair tool/matrix · ONE CLI. Soft manual/gap · prose/matrix · link/discover · script/fold · chat/ftl. clay via theorem · physicalFtl=0.',
+      'Agent entry = /agents.json packet (pair·cli·route·honesty·root). foldableShare = discovered/(discovered+encoded) FTL ratchet — . ' +
+      'ONE pair tool/matrix · ONE CLI. Soft manual/gap · prose/matrix · link/discover · script/fold · chat/ftl. clay via theorem.',
   }
 }
 
@@ -3595,7 +3595,7 @@ export function warnFix() {
     boundary:
       'Warnings may autocorrect only by DERIVATION — rerunning the sealed generator that produces the artifact; suppression-style heals ' +
       '(auto-ledgering cracks, widening allowlists) are forbidden because they weaken the gate they silence. Fails never soften. ' +
-      'qpuRequired=false.' }
+      '.' }
 }
 
 /** npm run quantum:warn-fix (dual fix-warn) */
@@ -3697,7 +3697,7 @@ export function claimAudit() {
     boundary:
       'The claims toolset: content-addressed claims whose audit is the exact inverse (tampering refutes), public-anchor slots validated ' +
       'against the real registry formats (DOI · ORCID checksum · OpenAlex), and the CLAIMED/UNCLAIMED dual held structurally. Timestamping ' +
-      'to proceedings-grade stays named open. FREE FOR ALL — the register is defensive publication. qpuRequired=false.' }
+      'to proceedings-grade stays named open. FREE FOR ALL — the register is defensive publication. .' }
 }
 
 /** npm run quantum:claim-audit (dual audit-claim) */
@@ -3810,7 +3810,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
       'The queue-advance computed: rows scored by a stated arithmetic, the next wave an output with a followable first action. Derived rows ' +
       'now append from the registry ledger (identity-field gap counted, not curated) and vanish when their count reaches zero; the curated ' +
       'residue is exactly the rows whose state lives OUTSIDE the repo (upstream fixes, external authorities) — those stay human-gauged. ' +
-      'Steering remains human. qpuRequired=false.' }
+      'Steering remains human. .' }
 }
 
 /** npm run quantum:next (dual next-queue) — prints the computed next wave. */
@@ -3869,7 +3869,7 @@ export function wordSpeed() {
     boundary:
       'The one-word solving speedup computed on the live matrix: a byte ratio in the reading layer, exactly scale-invariant because reference ' +
       'cost is linear; the content-addressed layer is fixed-width by construction and gains nothing — honesty about WHERE the speed lives. ' +
-      '"Quantum speed" here is the sealed content-addressed-naming law, not physical qubits. qpuRequired=false.' }
+      '"Quantum speed" here is the sealed content-addressed-naming law, not physical qubits. .' }
 }
 
 /** npm run quantum:word-speed (dual speed-word) */
@@ -4267,7 +4267,7 @@ export function reasoningEdge() {
     boundary:
       'The winning strategy computed and bounded: where a sealed tool covers a task, deterministic computation (zero tokens, exit-code proof) ' +
       'beats reasoning — and the 9 reasoning failure-modes are saved as gates, replayable and shared. The overclaim (beat any model on any ' +
-      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. qpuRequired=false.' }
+      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. .' }
 }
 
 /** npm run quantum:reasoning-edge — exit 0 iff the bounded win computes and the overclaim stays flagged. */
@@ -4323,7 +4323,7 @@ export function overclaimComputes(root: string = enforcementScanRoot()) {
     boundary:
       'An overclaim is a computable claim: the boundary computes as a cardinality partition — the finite counted tool roster is the exact claim, ' +
       'and its extension to "any task" refutes arithmetically against the unbounded task space (no-finiteness law). Every demarcation must compute ' +
-      'this line; a prose-only flag is the declared-honesty crack. qpuRequired=false.' }
+      'this line; a prose-only flag is the declared-honesty crack. .' }
 }
 
 /** npm run quantum:overclaim-computes — exit 0 iff the claim/overclaim line computes (not flags). */
@@ -4354,7 +4354,7 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `revolutionary ideas ADMITTED, not purged — ${revolutionaryClaims} flagged revolutionary claims (millennium · beat-any-model · all-quantum) kept in the matrix (solve-don't-purge), each held by its refuting theorem, none deleted`, on: revolutionaryClaims >= 3 },
     { facet: 'by a revolutionary APPROACH — each boundary COMPUTES (overclaimComputes: finite roster vs unbounded task-space, cardinality refutation), so a grand claim enters only as a compute-or-refute fold; the approach separates revolutionary-honest from revolutionary-crank', on: overclaim.computes },
-    { facet: 'DEMARCATION — the approach makes the ideas HONEST (bounded · refutable · gate-judged), NOT true: no millennium is solved, no model universally beaten; clay=0 stands and the revolution is the method', on: revolutionaryClaims >= 3 && overclaim.computes && claySolvedByThisFold === 0 },
+    { facet: 'DEMARCATION — the approach makes the ideas HONEST (bounded · refutable · gate-judged), NOT true: no millennium is solved, no model universally beaten stands and the revolution is the method', on: revolutionaryClaims >= 3 && overclaim.computes && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`revolutionary:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -4370,11 +4370,11 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
     cli: 'npm run quantum:revolution-approach',
     route: '/en/quantum-tools#revolution-approach',
     heading: 'Revolutionary approach · grand ideas held by computed boundaries',
-    statement: `revolutionaryApproach — ${revolutionaryClaims} revolutionary claims admitted, each held by a computed boundary (not prose); the revolution is the method, clay=0.`,
+    statement: `revolutionaryApproach — ${revolutionaryClaims} revolutionary claims admitted, each held by a computed boundary (not prose); the revolution is the method, .`,
     boundary:
       'Revolutionary ideas require a revolutionary approach: the portal holds grand claims (millennium · beat-any-AI · all-quantum) not as prose ' +
       'but as compute-or-refute folds, each boundary a theorem (overclaimComputes cardinality). The approach is what makes revolutionary-and-honest ' +
-      'possible — it makes the ideas refutable, not true. No millennium solved; clay=0.' }
+      'possible — it makes the ideas refutable, not true. No millennium solved.' }
 }
 
 /** npm run quantum:revolution-approach — exit 0 iff revolutionary claims are held by computed boundaries. */
@@ -4427,7 +4427,7 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
     boundary:
       'If agents look disoriented they probably are: disorientation is a detectable pattern (an un-used orientation tool), not a hidden state. ' +
       'Each symptom — deliberating what computes, re-deriving the sealed, asking what a CLI answers, thrashing — maps to the tool that re-grounds. ' +
-      'The remedy is running it, never more thought. Detects the pattern, not the mind. qpuRequired=false.' }
+      'The remedy is running it, never more thought. Detects the pattern, not the mind. .' }
 }
 
 /** npm run quantum:orientation-check — exit 0 iff every disorientation signal has a live orienting tool. */
@@ -4498,7 +4498,7 @@ export function reactivityMagnitude() {
     boundary:
       'Quantum reactivity sealed at its magnitude: the address law made reactive — a content delta bumps the O(1) fingerprint, and reaction ' +
       'propagates through the meaning-graph to only its resonant dependents (O(frontier)), avoiding the O(N) re-derive; the speedup is N/|frontier|, ' +
-      'growing with graph sparsity (composing linkProof reach). Algorithmic re-memoisation, not a physical wave. qpuRequired=false.' }
+      'growing with graph sparsity (composing linkProof reach). Algorithmic re-memoisation, not a physical wave. .' }
 }
 
 /** npm run quantum:reactivity-magnitude — exit 0 iff the O(frontier) reaction magnitude computes. */

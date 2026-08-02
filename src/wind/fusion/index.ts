@@ -1940,7 +1940,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'quantumFusionVerify — fuseAll wave replay matches', on: fusion.verified },
       { facet: 'observingMovieRevealsQuantumModel snapshot round-trips', on: movie.roundTrips },
       { facet: 'engine classical-64bit honesty (not FLOPS claim)', on: tracksClassical },
-      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+      { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w3:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('honest-revolution-receipt', facets)
     const holds = sealed.ok && facets.every((f) => f.on)
@@ -1964,10 +1964,10 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       route: '/en/quantum-tools#honest-revolution-w3',
       surfaces: { fusion: '/quantum-fusion.json', agents: '/agents.json' },
       statement: holds
-        ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit · qpuRequired=false.'
+        ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit.'
         : 'UNPROVEN — honestRevolutionReceipt facets do not all hold at call time; do not assert the W3 JSON receipt.',
       boundary:
-        'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false.' }
+        'STRUCTURAL RECOMPUTE RECEIPT (memoByRoot/merkle) ONLY — NOT external API attestation, NOT crypto signature, NOT physical qubits, NOT FLOPS speedup, NOT FTL. .' }
   })
 }
 
@@ -2025,7 +2025,7 @@ export function runHonestRevolutionW3Exit(_root = '', _argv: readonly string[] =
     `${receipt.holds ? '✓' : '✗'} honest-revolution-w3 — holds=${receipt.holds} ` +
       `w1=${receipt.w1.holds} w2=${receipt.w2.holds} fusion=${receipt.fusion.verified} ` +
       `movie=${receipt.movie.roundTrips} root=${receipt.root.slice(0, 8)} ` +
-      `(JSON → /quantum-fusion.json · /agents.json · clay=0)\n`,
+      `(JSON → /quantum-fusion.json · /agents.json)\n`,
   )
   process.stdout.write(`  boundary: ${receipt.boundary}\n`)
   return receipt.holds ? 0 : 1
@@ -2045,11 +2045,11 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
     const tracksClassical = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated
     const facets = [
       { facet: 'W3 honestRevolutionReceipt holds — JSON proof published', on: receipt.holds },
-      { facet: 'quantumAdvantageBenchmark classical-64bit (qpuRequired=false)', on: tracksClassical },
+      { facet: 'quantumAdvantageBenchmark classical-64bit ()', on: tracksClassical },
       { facet: 'fleetCacheEconomicsDecoded — hit-ratio energy falls monotonically', on: fleet.decoded },
       { facet: 'W1 claim sentence available for Vue surface', on: w1.holds && w1.claim.length > 0 },
       { facet: 'W2 interference vs shadow contrast available', on: w2.holds },
-      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+      { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w4:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('honest-revolution-computer-panel', facets)
     const holds = sealed.ok && facets.every((f) => f.on)
@@ -2083,7 +2083,7 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
         ? 'Honest-revolution W4 DECIDED — computer Vue panel composes W3 JSON receipt, classical-64bit benchmark table, interference vs shadow, fleet cache hit-ratio economics, and silicon fab stage (classical CMOS honesty).'
         : 'UNPROVEN — honestRevolutionComputerPanelComputes facets do not all hold; do not assert the W4 Vue proof.',
       boundary:
-        'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. claySolvedByThisFold=0 · qpuRequired=false.' }
+        'BROWSER SURFACE ONLY — renders sealed receipts verbatim. NOT physical qubits, NOT FLOPS speedup, NOT FTL, NOT a fabricated chip. .' }
   })
 }
 
@@ -2096,7 +2096,7 @@ export function runHonestRevolutionW4Exit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${panel.holds ? '✓' : '✗'} honest-revolution-w4 — holds=${panel.holds} ` +
       `w3=${panel.receipt.holds} bench=${panel.bench.verdict} fleet=${panel.fleet.decoded} ` +
-      `root=${panel.root.slice(0, 8)} (Vue → /en/quantum/os · clay=0)\n`,
+      `root=${panel.root.slice(0, 8)} (Vue → /en/quantum/os)\n`,
   )
   process.stdout.write(`  boundary: ${panel.boundary}\n`)
   return panel.holds ? 0 : 1

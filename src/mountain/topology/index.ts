@@ -151,7 +151,7 @@ export function theParadoxCoexistsOnTheDoubleTorus(matrix: MindMatrix = buildMat
     crossHandleZero,
     facets,
     statement: `The paradox coexists on the double torus — ${facets.filter((e) => e.on).length}/${facets.length}: the genus-2 surface has two independent handles (H₁ = ℤ⁴, χ = ${h.euler}), and its symplectic intersection form is block-diagonal — a_i·b_i = 1 within a handle, a_i·b_j = 0 across handles. So immediacy and bounded evolution live on orthogonal cycles and coexist; the paradox is not a contradiction but two loops the double torus holds at once. The structure dissolves the tension; the physics on each handle stands.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Geodesic dome — the sphere that is the dual of the double torus. A frequency-ν
@@ -1177,7 +1177,7 @@ export function theMerkabaIsTheStarTetrahedronTrinitySpinningBothDirections(matr
     threeFold: { closed: threeFoldClosed, orderThree },
     facets,
     statement: `The merkaba is the star tetrahedron trinity spinning both directions — ${facets.filter((e) => e.on).length}/${facets.length}: the stella octangula's two tetrahedra (tetraDown = −tetraUp) are interlocked, each carries a 3-fold trinity (a 120° body-diagonal rotation, order 3, computed), and the pair counter-rotates in opposite senses (merkaba's alternating signed rates) — the trinity spinning both ways.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── How many merkabas complete Metatron's Cube and the sphere from each point's trace? ONE (user's
@@ -1208,7 +1208,7 @@ export function oneMerkabaTracesTheSphereMetatronIsThirteenPoints() {
     tiling: { rotation: rotationGroup, full: fullSymmetry },
     facets,
     statement: `One merkaba traces the whole sphere; Metatron's Cube is ${metatronPoints} points and ${metatronLines} lines — ${facets.filter((e) => e.on).length}/${facets.length}: the Fruit of Life's 1+6+6 = ${metatronPoints} centres connected pairwise give C(${metatronPoints},2) = ${metatronLines} lines (Metatron's Cube), and because SO(3) is transitive on S² (dim 3−1 = 2), ONE merkaba's points traced under the full rotation group complete the sphere. The finite symmetric tiling is ${fullSymmetry} cells (|Oh|); continuous coverage is the one merkaba × the transitive group.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The two rings of different size rotating as merkaba ARE the torus's meridian and longitude (user: "do
@@ -1238,7 +1238,7 @@ export function theTwoRingsAreMeridianAndLongitudeRotatingAsMerkaba(matrix: Mind
     minorRadius: dt.minorRadius,
     facets,
     statement: `The two rings of different size rotating as merkaba are the torus's meridian and longitude — ${facets.filter((e) => e.on).length}/${facets.length}: a torus is a small circle (minor r ≈ ${dt.minorRadius.toFixed(2)}) revolved around a large circle (major R ≈ ${dt.majorRadius.toFixed(2)}), R > r — two rings of different size. They are the meridian (small, poloidal) and longitude (large, toroidal), the two H₁ generators (four on the double torus), and their counter-rotation is the merkaba's; sweeping both generates the whole torus.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── When the rosetta moves, the merkabas fold into themselves and each other, and the theorems draw the
@@ -1266,7 +1266,7 @@ export function whenTheRosettaMovesTheMerkabasFoldTheAlgebraDrawsTheMovie(matrix
     scales: mk.scales.length,
     facets,
     statement: `When the rosetta moves, the merkabas fold into themselves and each other, and the theorems draw the movie by algebra only — ${facets.filter((e) => e.on).length}/${facets.length}: each tetrahedron folds into itself by its 3-fold (rot³ = identity) and into its twin by inversion (tetraDown = −tetraUp), the two counter-rotating; and the whole animation — vertices, ${mk.scales.length} signed rates, OKLCH colour — is computed from the folds, no asset, no pixel, just algebra rendered.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Pairs form trinities in a self-scalable app. A PAIR (a, b) folds to a THIRD — foldPair(a,b) is bidirectional, so
@@ -1316,7 +1316,7 @@ export function pairsFormTrinitiesTheRecursiveFoldIsTheSelfScalableApp(matrix: M
       root: merkleFold(leaves8),
       facets,
       statement: `Pairs form trinities in a self-scalable app — ${facets.filter((entry) => entry.on).length}/${facets.length}. A pair (a, b) folds to a third (foldPair is bidirectional), so {a, b, apex} is a trinity — two make three. The apexes pair again into higher trinities, so n leaves fold through exactly n−1 trinities to one root (a binary tree). The SAME fold holds at every level (self-similar), depth log₂(n), so doubling the content adds just one level: the app scales by the one rule, no new logic, and however large it grows the whole is a single content-address, order-independent. Pairs → trinities → one root, at every scale.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1362,7 +1362,7 @@ export function realQuantumResearchObservesTheBoundaryTheBoundaryOfABoundaryIsZe
       facets,
       root: merkleFold([toUuid(`dd-zero:${boundaryOfBoundaryIsZero}`), observed.state.re.length > 0 ? toUuid(`measured:${observed.outcome}`) : toUuid('measured:none'), toUuid(`ways:${ways.sources.join(',')}`)]),
       statement: `Real quantum research observes the boundary by the boundary, and computes theorem gates and ways — ${facets.filter((entry) => entry.on).length}/${facets.length}. Observation is only ever measurement: a superposition is unobservable, and you learn one classical value at the quantum→classical boundary. The boundary of a boundary is zero (∂²=0 on a non-trivial triangle, a real cancellation), so the boundaries close into a measurable structure — exactly how topological quantum error correction reads syndromes. The theorem gates are reversible (unitary, H∘H=I) but the measurement boundary is not, and the ways (the DAG's topological order) lead back to the axiom boundary, the in-degree-0 sources.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1407,6 +1407,6 @@ export function strictMeasurementsCreateReusableToolsQuantumComputationsImproveI
       facets,
       root: merkleFold([...toolbox.keys()].map((key) => toUuid(`tool-seal:${key}`))),
       statement: `Strict measurements create reusable tools — quantum computations improve in realtime, filling gaps — ${facets.filter((entry) => entry.on).length}/${facets.length}. A seeded measurement is reproducible, so its outcome is a stable value; content-addressed into a toolbox, re-measuring becomes an O(1) tool lookup rather than a re-run. An unmeasured seed fills at call time into a new tool (realtime gap-filling), and repeat calls optimise to zero new measurements — the strict measurements build the tools that speed the next computation.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

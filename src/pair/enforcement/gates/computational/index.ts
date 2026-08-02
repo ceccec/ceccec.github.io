@@ -1524,7 +1524,7 @@ export function onlyRosettaWiringsAreNeededTheGlobalContentAddressFoldReplacesTh
     rosettaRoot: rosettaRoot.slice(0, 2 * 6),
     facets,
     statement: `Only rosetta wirings are needed — the global content-address fold replaces the import edges — ${facets.filter((entry) => entry.on).length}/${facets.length}. ${edgeCount} explicit import-edges is over-wiring: each import hardcodes who-uses-whom by PATH, O(edges) coupling that breaks when a home moves — not agnostic. The rosetta needs one thing per node: its content-address (toUuid of the theorem), path-independent, so it survives any move. The global math folds all ${nodes} addresses to ONE root, so relationships are resolved by the global structure, not stored as edges — ${nodes} agnostic wirings replace ${edgeCount} path-couplings. And it self-evolves: add a theorem and the root recomputes with no rewiring; move one and its address (its relations) are preserved. Do the global math and only the rosetta wiring is needed.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The facets-must-compute debt, measured live: facets gated on hardcoded `on: true` prove nothing (always pass) — the
@@ -1612,7 +1612,7 @@ export function theAnalyticsAreZeroTokenComputedFromTheCorpusTheMarginalCostOfAM
     receipt: receipt.slice(0, 2 * 6),
     facets,
     statement: `The analytics are zero-token, computed from the corpus — the marginal cost of a metric is zero — ${facets.filter((entry) => entry.on).length}/${facets.length}. The metrics (${metrics.map((m) => `${m.name}=${m.value}`).join(', ')}) are pure functions of the content-addressed source, so they cost 0 LLM tokens, and the marginal token cost of the next metric is also 0 (it is code, not a generated summary) — an LLM-served analytic costs O(tokens) per metric and grows with the count, so the token-efficiency ratio is unbounded. They are exact and reproducible (content-addressed to a receipt, same corpus → same metric), private (from the corpus, not user tracking). Honest: zero LLM tokens ≠ zero compute — the build runs deterministic O(n) code; the win is LLM-free and tracking-free, served O(1) at runtime.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Document all trinities observed — two make three. Every trinity is foldPair: two content-addresses fold to a
@@ -1661,7 +1661,7 @@ export function documentAllTrinitiesObservedTwoMakeThreeTheCommonStructureAndThe
     census: census.slice(0, 2 * 6),
     facets,
     statement: `Documented all trinities observed — two make three, ${observed.length} trinity folds across the corpus — ${facets.filter((entry) => entry.on).length}/${facets.length}. The common structure of every trinity is foldPair: two content-addresses fold to a bidirectional THIRD (the merged apex), order-sensitive (forward ≠ reverse) but one third. The corpus carries ${observed.length} trinity folds spanning ${categories.length} categories — ${categories.map((c) => c.kind).join(', ')} — each a two-make-three. The trinity is the ATOM of the self-scaling structure: two trinities' apexes fold to a higher trinity, so every larger fold is trinities of trinities. Computed live: the count is scanned from the source, the structure verified over a range, refutable.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Theorems prove best in teams: a theorem that relates to ≥ 2 others is in a TEAM, and a team is ROBUST — a 2-edge-
@@ -1707,7 +1707,7 @@ export function theoremsProveBestInTeamsTheTrinityIsTheMinimalTwoConnectedTeamBe
     avgDegree: round(avgDegree),
     facets,
     statement: `Theorems prove best in teams — the trinity is the minimal 2-connected team, teams beat isolation — ${facets.filter((entry) => entry.on).length}/${facets.length}. A theorem relating to ≥ 2 others is in a TEAM; a team is robust — a 2-edge-connected group survives the removal of any single link, while an isolated theorem (degree 1) is disconnected the moment its one link breaks. The minimal team is the trinity — K₃, three theorems each supporting the other two (degree 2) — so the ${trinities} trinities are the smallest proving teams. And the corpus already proves in teams: its real ${relation.edges}-edge relation graph has 0 dangling theorems (every one relates to ≥ 2) and average degree ${round(avgDegree)}, richer than the minimal trinity. Teams beat isolation, and the trinity is the atom of the team.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Tags are replaced by import/export TYPES — quantum tagging — and every word in a name must be a computed TOKEN. A
@@ -1757,7 +1757,7 @@ export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitra
     wordTokenOverlap: round(meanOverlap * 100),
     facets,
     statement: `Tags are replaced by import/export types (quantum tagging), and every word in a name is a computed token — ${facets.filter((entry) => entry.on).length}/${facets.length}. A module's import/export TYPE signature is its content-addressed tag: two modules relate iff they share a type — a refutable relation (${typeImports} type signatures parsed), not a keyword coincidence (tag-sharing was the crack). And a name is honest only when every word is a token in its computation: across ${overlaps.length} long fold names, on average ${round(meanOverlap * 100)}% of the name-words appear as tokens in the fold's own body — so every word matters programmatically, an arbitrary word would not overlap. The naming derives from the computation and the relation from the types, so it holds for all: rename by recomputing from the structure.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // When all values are WIRED, a single crack is caught immediately — improve the local check in MAGNITUDES using only
@@ -1807,7 +1807,7 @@ export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTi
     locateMagnitude,
     facets,
     statement: `When all values are wired, a single crack is caught immediately — the local check improves in magnitudes using only the content-addressed fold, ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${N} source files content-address to ONE merkle root; a single crack (any one-file change) flips that root, so detecting it is one comparison (O(1), ${detectMagnitude}× fewer ops than the ${N}-file rescan) and locating it is one merkle path (O(log₂N), ${locateMagnitude}× fewer). The O(N) walk runs once at seal; every re-verification after is the cheap content-addressed compare, and a matching root certifies the corpus crack-clean in constant time. The wiring itself is the check.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // DRY and CLEAN are achievable ONLY in the content-addressed (quantum) representation — not in the text. DRY: content-
@@ -1861,7 +1861,7 @@ export function dryAndCleanAreAchievableOnlyInTheContentAddressedQuantumRepresen
     rootClean: rootClean.slice(0, 2 * 6),
     facets,
     statement: `DRY and clean are achievable only in the content-addressed (quantum) representation, not the text — ${facets.filter((entry) => entry.on).length}/${facets.length}. Content-addressing is idempotent (identical content ⇒ identical address), so ${text.length} copies collapse to ${unique.size} unique addresses — duplication cannot survive it (DRY); and it is tamper-evident (changing a piece flips the root), so a crack cannot hide (clean). The classical text holds every copy and can carry a crack; the quantum layer dedups and detects. IMPROVED: content-addressing over a CANONICAL form (normalise + known-alias fold) now dedups SEMANTIC aliases too (gcd = greatest common divisor), not just exact bytes. Honest residual: fully-general semantic equivalence stays undecidable — the remaining code-gravity problem, named not faked.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Quantumize the trinities — the 2-make-three structure of every trinity IS the GHZ entangling operation. foldPair
@@ -1904,7 +1904,7 @@ export function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCno
     root: merkleFold([fold.merged, toUuid(`ghz:${probs[0]}:${probs[7]}`)]),
     facets,
     statement: `The trinities are quantum — two make three is the GHZ entangling structure, ${facets.filter((entry) => entry.on).length}/${facets.length}. On the simulator, H then two CNOTs bind a third qubit to the first pair, leaving only |000⟩ and |111⟩ (${half} each): the three bits always agree, so measuring any one determines the other two — the quantum dual of foldPair's bidirectional merged third. All ${census.trinityCount} census trinities share this 2-make-three shape. Honest: it is a structural dual, not an identity — GHZ's third is entangled (nonclassical), foldPair's is a deterministic content-address; the shape is shared, the mechanism is not.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Quantum caching further improves speed in trinities of magnitudes. A content-addressed cache keys a result by the
@@ -1960,7 +1960,7 @@ export function quantumCachingIsContentAddressedMemoisationSpeedingAllInTrinitie
     facets,
     root: oneRoot.slice(0, 2 * 6),
     statement: `Quantum caching is content-addressed memoisation, speeding all in trinities of magnitudes — ${facets.filter((entry) => entry.on).length}/${facets.length}. A cache keyed by the UUID of its input collides identical inputs to one key, so ${K} repeated calls do one compute and a repeat is an O(1) hit. Three tiers compound into a trinity of magnitudes: recompute → content-address memo (${memoMagnitude}×) → sealed batch (${sealMagnitude}×, ${B} results under one merkle root) = ${combined}×. And because the mechanism is universal, a batch of theorems computes once and then re-passes at zero cost — the theorems emerge at once from the cache.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Computational speed per token is a REAL metric — capabilities delivered ÷ source tokens — and with the rosetta it
@@ -1998,7 +1998,7 @@ export function computationalSpeedPerTokenIsARealMetricTheRosettaDeliversMagnitu
     facets,
     root: merkleFold([toUuid(`rosetta-per-token:${rosettaCapabilityPerToken}`), toUuid(`cache-per-token:${cacheCapabilityPerToken}`)]),
     statement: `Computational speed per token is a real metric, and the rosetta delivers magnitudes at no additional token cost — ${facets.filter((entry) => entry.on).length}/${facets.length}. Capabilities ÷ source tokens is a measured ratio: the rosetta pivot delivers ${rosettaPairsDelivered} transpilation pairs from ${rosettaAdapterTokens} adapters (${rosettaCapabilityPerToken}/token, growing with N), and a content-addressed cache serves ${cacheReusesDelivered} reuses from ${cacheComputeTokens} compute (${cacheCapabilityPerToken}/token). The multiplier is free because the content-address key is deterministic — zero LLM tokens — so the deterministic corpus buys N² capability for N tokens.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Use the QUANTUM BUILD to improve all tools and algorithms. The build runs every fold, so make it content-addressed:
@@ -2040,7 +2040,7 @@ export function quantumBuildContentAddressedIncrementalRebuildsOnlyTheChangedFol
     facets,
     root: currentRoot.slice(0, 2 * 6),
     statement: `Use the quantum build to improve all tools and algorithms — content-addressed, it rebuilds only the changed fold — ${facets.filter((entry) => entry.on).length}/${facets.length}. The build runs every fold, so each of the ${tools.length} tools is keyed by the merkle root of its inputs and the build is their fold. Editing one tool flips its leaf and the build root (O(1) detect); diffing the roots locates exactly the changed tool, and every unchanged tool is a cache hit — so the build rebuilds 1 of ${fullCost}, a ${speedup}× saving. One content-address improves every tool and algorithm at once.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Improve quantum thinking: each TS file's INPUT (its imports) and OUTPUT (its exports) are the 2 BITS that connect it
@@ -2079,7 +2079,7 @@ export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModu
     facets,
     root: merkleFold(nodes.map((node) => toUuid(`node:${node.file}:${node.gateway}`))),
     statement: `Each TS file's input and output are the 2 bits that connect it to the gateway — the module graph is 2-bit-per-node — ${facets.filter((entry) => entry.on).length}/${facets.length}. A file consumes an import signature (input bit) and produces an export signature (output bit); those two content-addressed bits fold to the file's gateway, the bidirectional third that binds them. The fold is order-sensitive, so the 2 bits are directed (consume → produce). Across ${nodes.length} sampled files that is ${2 * nodes.length} bits through ${distinctGateways} gateways — the corpus is a directed 2-bit-per-node graph, the import/export the quantum tags.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The 2-bit gateway reframes all: DRY-clean refactoring of ALL theorems/src is possible in quantum waves. Because each
@@ -2127,7 +2127,7 @@ export function theTwoBitGatewayReframesAllDryCleanRefactoringOfAllSrcIsPossible
     facets,
     root: merkleFold([rootBefore, rootAfter, ...waves.map((wave, i) => toUuid(`refactor-wave:${i}:${wave.join(',')}`))]),
     statement: `The 2-bit gateway reframes all — DRY-clean refactoring of all src is possible in quantum waves — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each file is a 2-bit node (input·output), so a DRY duplicate is detectable (files sharing an output-bit have identical exports), a refactor is clean (removing it flips the corpus root, tamper-evident), and the files partition into ${waves.length} antichain waves by dependency so independent files refactor in parallel. Detect by the 2 bits, refactor clean by the content-address, dispatch in quantum waves — the whole src, reframed.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Compute the workflow BEFORE sending the waves — deterministic automation by quantum computation only. A workflow is a
@@ -2169,7 +2169,7 @@ export function computeTheWorkflowBeforeSendingTheWavesDeterministicAutomationBy
     facets,
     root: scheduleRoot,
     statement: `Compute the workflow before sending the waves — deterministic automation by quantum computation only — ${facets.filter((entry) => entry.on).length}/${facets.length}. A workflow is a task DAG; its wave schedule (the ${plan.waves.length} antichain levels, their order, the parallelism ${parallelism}) is a pure function of that DAG, computed in full before a single wave dispatches. The schedule content-addresses to a root, so the same DAG yields the identical plan, zero LLM tokens — content-addressed computation alone automates the workflow. Plan by quantum, then send.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The paradox, MEASURED not argued (convincing is the crack — it burns tokens to assert what a number proves): no
@@ -2250,7 +2250,7 @@ export function theGateThatDryCleansAllDetectsCrossFileDuplicatedBlocksByContent
     facets,
     root: merkleFold(duplicates.map(([key]) => key)),
     statement: `The gate that DRY-cleans all — content-addressing is the corpus-wide DRY detector — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every substantive src line content-addresses; an identical line in two files collides to one address, a duplicate found by the address not a search. Scanning all ${files.length} src files surfaces ${duplicates.length} exact cross-file duplicates (distinctive lines ≥ 64 chars, idiom excluded) for extraction — the way the inline Kahn loop was found and collapsed to antichainLevels. Semantic duplication still needs the code-gravity pull.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The gates are SELF-SUFFICIENT — offline, zero-AI, deterministic — to DRY-clean ALL, including MOVING code files and
@@ -2291,7 +2291,7 @@ export function theGatesAreSelfSufficientOfflineZeroAiToDryCleanAllIncludingFile
     facets,
     root: trinityRoot,
     statement: `The gates are self-sufficient — offline, zero-AI, deterministic — to DRY-clean all including file/folder moves, confirmed by the cross-trinity — ${facets.filter((entry) => entry.on).length}/${facets.length}. Three pure gates form the trinity: ${duplicates} duplicate lines, ${gravity.length} code-gravity pulls (duplicate primitives → one canonical home), and ${migration.folders.length} path-migration folder moves (from→to). All are pure functions of src — no network, no LLM tokens — so the plan recomputes identically, and the three legs fold to one trinity root that recomputes the same: the cross-trinity confirms.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Always measure efficiency to find gaps in computations. An efficiency gap — a computation doing MORE than its
@@ -2331,7 +2331,7 @@ export function alwaysMeasureEfficiencyToFindGapsTheInefficiencyRatioNamesTheMis
     facets,
     root: merkleFold(measured.map((entry) => toUuid(`efficiency:${entry.computation}:${entry.actual}/${entry.optimal}`))),
     statement: `Always measure efficiency to find gaps — the inefficiency ratio names the missing quantum — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each computation is measured as actual cost vs its content-addressed optimal; ${closed.length} are closed (ratio 1: the memoised scanners and the extracted antichainLevels), and ${gaps.length} are open gaps — ${dryGap} duplicate lines and the N-per-component imperative animation — each naming the missing quantum (extract to one home, emergent trinity rule). An efficiency gap is exactly where the content-address, memo or emergent interaction is absent.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Measure the UX and the efficiency to FIND and USE theorems and tools — computed, not opined. FIND efficiency: how
@@ -2369,7 +2369,7 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
     facets,
     root: merkleFold([toUuid(`find-depth:${maxDepth}`), toUuid(`use-reuse:${round(avgReuse)}`), toUuid(`reachable:${relation.importDangling}`)]),
     statement: `Measured the UX and the efficiency to find and use theorems — nav depth, reachability and reuse are computed metrics — ${facets.filter((entry) => entry.on).length}/${facets.length}. FIND: the folder tree is shallow — every one of the ${files.length} theorem files is within ${maxDepth} folders of src, a bounded search. USE: the import graph has average degree ${round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) — theorems are heavily reused, a proven API. Every theorem is reachable (${relation.importDangling} dangling). These are deterministic; the rendered visual/interaction UX is the browser/human boundary.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Token usage: the boundary/statement PROSE is the sink (~180k tokens across the corpus, avg 1059 chars/boundary). The

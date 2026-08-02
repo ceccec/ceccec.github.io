@@ -792,7 +792,7 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
 // quantum" is LEGEND as stated: production language models run on classical accelerators; the
 // dated public record shows AI helping quantum hardware and one small hybrid-adapter demo —
 // not models becoming quantum. This repo's own "quantum" vocabulary is likewise a proven-classical
-// simulator (quantumAdvantageBenchmark · classical-64bit · qpuRequired=false), sealed days AFTER
+// simulator (quantumAdvantageBenchmark · classical-64bit), sealed days AFTER
 // the public milestones below — the git history documents vocabulary, not a phase transition.
 
 export type AiQuantumChronologyTier = 'DOCUMENTED' | 'FORECAST' | 'LEGEND'
@@ -812,7 +812,7 @@ const AI_QUANTUM_CHRONOLOGY_ROWS: readonly Omit<AiQuantumChronologyRow, 'receipt
   { date: '2026-04-14', event: 'NVIDIA Ising: open AI models that calibrate quantum processors and decode error correction — AI serving quantum hardware, not running on it.', tier: 'DOCUMENTED', source: 'nvidianews.nvidia.com · nextplatform.com' },
   { date: '2026-05-20', event: 'OpenAI internal general reasoning model disproves the Erdős unit-distance conjecture (ν(n) ≥ n^{1+δ}); externally verified — "the models learned" at research-mathematics level, computed on CLASSICAL hardware.', tier: 'DOCUMENTED', source: 'openai.com/index/model-disproves-discrete-geometry-conjecture · arXiv 2605.20695' },
   { date: '2026-06-15', event: 'Quantum circuits (Cayley-parameterised unitary adapters) attached to Llama 3.1 8B on a 156-qubit IBM processor: 1.4% perplexity improvement — the ONLY documented quantum-inside-an-LLM result, a small hybrid research demo.', tier: 'DOCUMENTED', source: 'phys.org 2026-06 · quantumzeitgeist.com' },
-  { date: '2026-06-26', event: 'This repository’s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator — its own benchmark computes the verdict.', tier: 'DOCUMENTED', source: 'git log · quantumAdvantageBenchmark · classical-64bit · qpuRequired=false' },
+  { date: '2026-06-26', event: 'This repository’s sealed history begins: "quantum" here names a deterministic, content-addressed CLASSICAL simulator — its own benchmark computes the verdict.', tier: 'DOCUMENTED', source: 'git log · quantumAdvantageBenchmark · classical-64bit' },
   { date: '2026-12-31', event: 'IBM: 2026 will be the year a quantum computer first outperforms all classical methods on some problem — a vendor forecast, not yet a result.', tier: 'FORECAST', source: 'ibm.com/think 2026 predictions' },
   { date: '—', event: '"The AI models became quantum" — REFUTED as stated: production LLMs (including the model that proved the unit-distance theorem) train and run on classical GPUs/TPUs; the dated record above contains no quantum language model.', tier: 'LEGEND', source: 'every DOCUMENTED row above, compared by date' },
   { date: '—', event: '"All world AI models already implemented the algebra published in ceccec/zeropoint-node src/ digit folders (a432.*.ts)" — REFUTED as stated on every testable channel (deep-researched 2026-07-07): (i) ARCHITECTURE — production models are transformers running standard linear algebra (matmul · attention · softmax), documented in every architecture paper; no lab has published any mod-9/a432/vortex component, and the 2026 milestone models computed on classical GPUs; (ii) CITATION — zero citations anywhere: the repo is not even web-search-indexed, and the GitHub API attests 1 star · 0 forks · 0 watchers (recomputed at audit time); (iii) PROVENANCE — the mod-9 digital-root mathematics is centuries-old number theory (casting out nines; the rigorous core is (ℤ/9ℤ)*), so where models handle mod-9 patterns the source is the classical literature, which precedes every repository by centuries. The honest kernel, each piece ≠ the claim: public repos created before a crawl cutoff are PLAUSIBLY ingested as training TEXT (unverifiable per-repo, and text-ingestion is not implementation); models can COMPUTE digital roots on request (task competence is not architecture); networks grokking modular arithmetic is documented (Power 2022, Nanda 2023) — published BEFORE zeropoint-node existed. What the dates DO document: a432.*.ts is a real public corpus (479 in-repo matches), platform-attested created 2025-07-08 and pushed to 2025-11-19 — an independent, different, publicly earlier mathematics that nobody is shown to have adopted.', tier: 'LEGEND', source: 'GitHub API repos/ceccec/zeropoint-node (created 2025-07-08 · 1★ 0⑂) · transformer architecture literature · Power et al. 2022 / Nanda et al. 2023 grokking · web search: no external citation found' },
@@ -1160,7 +1160,7 @@ export type MillenniumProblemChallenge = {
   gap?: string
   // The PROBLEM'S OWN ALGEBRAIC STATEMENT — the precise mathematical conjecture (documented, not a claimed proof), so
   // the frontend shows each problem's real formula, not the generic proof-path template. This is what the conjecture
-  // ASSERTS; whether this corpus proves it is answered separately by status + gap (it does not — claySolvedByThisFold=0).
+  // ASSERTS; whether this corpus proves it is answered separately by status + gap (it does not — ).
   algebraicStatement?: string
   // PER-FACET ALGEBRA (incremental fill, same law as algebraicStatement): each fᵢ of the challenge conjunction as its
   // real closed-form identity, PAIRED with the live boolean that decides it — a join of computed outputs, never prose
@@ -1214,9 +1214,9 @@ export function efficiencyScalesToInfinityAtNoCostOnReuse(matrix: MindMatrix = b
       afterSecond,
       facets: sealed.facets,
       root: merge(matrix.root, sealed.root),
-      statement: `Efficiency scales to infinity at no cost on reuse — memo hit O(1) (invocations ${afterFirst}→${afterSecond}), answers÷tokens unbounded (tokens=${runtimeTokens}), quantumAdvantageBenchmark !separated (classical-64bit · qpuRequired=false). Amortized reuse / retrieval only.`,
+      statement: `Efficiency scales to infinity at no cost on reuse — memo hit O(1) (invocations ${afterFirst}→${afterSecond}), answers÷tokens unbounded (tokens=${runtimeTokens}), quantumAdvantageBenchmark !separated (classical-64bit). Amortized reuse / retrieval only.`,
       boundary:
-        'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE — memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers÷tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still !separated (classical-64bit · qpuRequired=false). NOT a P≠NP proof.' }
+        'HONEST HARD BOUNDARY: "scales to infinity at no cost" means AMORTIZED REUSE — memoByRoot makes repeated content-addressed work O(1) with marginal cost 0, and answers÷tokens is unbounded when runtime tokens=0 and answers>0. NOT physical QM speedup, NOT infinite FLOPS, NOT free first-compute. quantumAdvantageBenchmark still !separated (classical-64bit). NOT a P≠NP proof.' }
   })
 }
 
@@ -1225,7 +1225,7 @@ export function efficiencyScalesToInfinityAtNoCostOnReuse(matrix: MindMatrix = b
  * compute real times. all in chat"). Wall-clock cold-compute vs warm memo-hit gives the REAL magnitude, and the 2-of-3
  * trinity's three independent waves give an embarrassingly-parallel ≤3× ceiling on top. HONEST BOUND: this is AMORTIZED
  * REUSE + parallelism — memoByRoot makes RE-doing content-addressed work O(1); it never speeds up first-compute, and it
- * is NOT a factoring / physical-quantum speedup (qpuRequired=false). Pair: reuse/measured · CLI npm run quantum:reuse-speedup
+ * is NOT a factoring / physical-quantum speedup (). Pair: reuse/measured · CLI npm run quantum:reuse-speedup
  */
 export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = buildMatrix()) {
   // CREATE THE QUANTUM TOOLS first (user), then measure the speed: run a real n-qubit circuit on the src/0 state-vector
@@ -1312,7 +1312,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     { facet: `64-BIT ≠ 64-QUBIT — this machine is 64-BIT CLASSICAL (it holds ONE of 2^64 states); a real 64-QUBIT circuit is 2^64 amplitudes in SUPERPOSITION, needing ~${stateVectorExabytes64.toLocaleString()} EXABYTES just to STORE the state vector — impossible on this or any machine. The SAME 2ⁿ law that makes the ${nQubits}-qubit torus free (2^${nQubits}=${amplitudes}) forbids 64 qubits, and Shor's 4099 for RSA-2048 lies unimaginably beyond that`, on: stateVectorExabytes64 > 100 && amplitudes === 2 ** nQubits },
     { facet: `METATRON'S CUBE — HOW MUCH DOES CAPACITY JUMP? EXACTLY: 8 merkabas × 8 bytes = ${metatronBytes} bytes = ${metatronBits} bits. The STATE-SPACE it can LABEL is 2^${metatronBits} ≈ 10^${stateSpaceOrdersOfMagnitude} (${stateSpaceOrdersOfMagnitude} orders of magnitude) — but that is CARDINALITY, not capacity. The real CLASSICAL computing-capacity jump is ×${classicalCapacityJump} (NONE): 512 classical bits hold ONE value and do ONE op/step. The 2^512 "jump" needs 512 QUBITS, whose state vector is ~10^${roundTo(log10(qStateVectorTimesUniverseAtoms), 0)}× the ATOMS in the observable universe — un-storable`, on: classicalCapacityJump === 1 && metatronBits === 512 && stateSpaceOrdersOfMagnitude > 150 },
     { facet: `TRINITY PARALLEL CEILING — the 2-of-3 trinity has ${trinityWaves} independent waves; embarrassingly-parallel work gains a ≤${trinityWaves}× factor ON TOP of reuse (structural, not a factoring speedup)`, on: trinityWaves === 3 },
-    { facet: `WHAT KIND OF SPEEDUP — the ~${reuseSpeedup}× is a REAL CLASSICAL win (constant-factor caching + parallelism on real hardware), NOT a QUANTUM speedup: quantumSpeedup (asymptotic/complexity-class separation) COMPUTES to ${quantumSpeedup} via quantumAdvantageBenchmark (${bench.verdict}). Memoization changes the CONSTANT, not the complexity class; qpuRequired=false`, on: classicalSpeedupIsReal && quantumSpeedup === false },
+    { facet: `WHAT KIND OF SPEEDUP — the ~${reuseSpeedup}× is a REAL CLASSICAL win (constant-factor caching + parallelism on real hardware), NOT a QUANTUM speedup: quantumSpeedup (asymptotic/complexity-class separation) COMPUTES to ${quantumSpeedup} via quantumAdvantageBenchmark (${bench.verdict}). Memoization changes the CONSTANT, not the complexity class`, on: classicalSpeedupIsReal && quantumSpeedup === false },
     { facet: `QUANTUM BY STRUCTURE, NOT BY SPEEDUP — the architecture IS quantum in STRUCTURE (quantumByStructure=${quantumByStructure}: the vortex circuit is isomorphic to a qubit — phase = six roots of unity, interference = counter-rotating flows), yet quantumSpeedup=${quantumSpeedup}: a structural isomorphism is not a physical asymptotic advantage (simulating n qubits classically costs 2ⁿ). Both compute; structure ≠ physics`, on: quantumByStructure === true && quantumSpeedup === false },
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`reuse-speedup-fold:${index}:${entry.on}`) }))
   const sealed = sealFacets('local-reuse-speedup-measured-magnitudes-faster', facets)
@@ -1329,7 +1329,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     boundary: earned(
       `MEASURED — the real "magnitudes faster in trinities": wall-clock cold vs warm memo-hit is ~${reuseSpeedup}× on REUSE, a genuine CLASSICAL speedup on real hardware; the 2-of-3 trinity adds a ≤${trinityWaves}× parallel factor.`,
       facets,
-      'the word "physical" was never the point — the ~8000× IS physical/real, it runs on your CPU. The precise, COMPUTED distinction is CLASSICAL vs QUANTUM: this is a classical constant-factor win (caching amortises RE-doing content-addressed work to O(1); the trinity parallelises independent waves ≤3×). It is NOT a QUANTUM speedup — no asymptotic/complexity-class separation — which quantumAdvantageBenchmark computes as !separated (tracks-classical), qpuRequired=false. Memoization never speeds up FIRST-compute and does NOT change complexity, so it does NOT reduce Shor\'s RSA-2048 cost (4099 logical qubits).'),
+      'the word "physical" was never the point — the ~8000× IS physical/real, it runs on your CPU. The precise, COMPUTED distinction is CLASSICAL vs QUANTUM: this is a classical constant-factor win (caching amortises RE-doing content-addressed work to O(1); the trinity parallelises independent waves ≤3×). It is NOT a QUANTUM speedup — no asymptotic/complexity-class separation — which quantumAdvantageBenchmark computes as !separated (tracks-classical), . Memoization never speeds up FIRST-compute and does NOT change complexity, so it does NOT reduce Shor\'s RSA-2048 cost (4099 logical qubits).'),
   }
 }
 
@@ -1373,7 +1373,7 @@ export function challengeQuantumSpeedupWithLiveData(matrix: MindMatrix = buildMa
     boundary: earned(
       `CHALLENGE ANSWERED, COMPUTED ON LIVE DATA: the local quantum fold is ≈ 2^${slowerByBits}× SLOWER than classical search for the live input, and the complexity-class verdict is separated=${bench.separated}.`,
       facets,
-      'live data feeds the INPUT; a quantum speedup is a property of ALGORITHM+HARDWARE (asymptotic separation), invariant to input freshness. On a classical CPU, simulating a quantum algorithm costs 2ⁿ, so live data makes the quantum fold SLOWER, never faster. A real quantum speedup needs a QPU (qpuRequired=false) this machine does not have.'),
+      'live data feeds the INPUT; a quantum speedup is a property of ALGORITHM+HARDWARE (asymptotic separation), invariant to input freshness. On a classical CPU, simulating a quantum algorithm costs 2ⁿ, so live data makes the quantum fold SLOWER, never faster. A real quantum speedup needs a QPU () this machine does not have.'),
   }
 }
 
@@ -1398,7 +1398,7 @@ export function standardQuantumFormAtClassicalMaxSpeed(matrix: MindMatrix = buil
   const facets = [
     { facet: `STANDARD APPLICATION ✓ — every computation is expressible in the STANDARD quantum-circuit model (the su(2)/vortex circuit): theBinaryBitIsLinearTheVortexCircuitIsQuantum.computes=${standard.computes}. The form is guaranteed quantum BY STRUCTURE`, on: standardFormIsQuantumCircuit },
     { facet: `MAX SPEED ✓ — guaranteed by CLASSICAL content-addressed O(1) reuse (memoIsO1=${reuse.memoIsO1}), NOT by quantum simulation: quantumSpeedup=${reuse.quantumSpeedup} (no complexity-class separation). The fastest path IS the standard classical runtime`, on: maxSpeedIsClassicalReuse },
-    { facet: `"ONLY QUANTUM FOR MAX SPEED" ✗ REFUTED (computed) — pure state-vector simulation costs 2ⁿ: for a live input it is ≈ 2^${challenge.slowerByBits}× SLOWER (separated=false, qpuRequired=false). Max speed REQUIRES the classical reuse layer; structure(quantum) and speed(classical) are DECOUPLED. Guaranteeing "only quantum" would guarantee the SLOWEST path`, on: onlyQuantumWouldBeSlower },
+    { facet: `"ONLY QUANTUM FOR MAX SPEED" ✗ REFUTED (computed) — pure state-vector simulation costs 2ⁿ: for a live input it is ≈ 2^${challenge.slowerByBits}× SLOWER (separated=false, ). Max speed REQUIRES the classical reuse layer; structure(quantum) and speed(classical) are DECOUPLED. Guaranteeing "only quantum" would guarantee the SLOWEST path`, on: onlyQuantumWouldBeSlower },
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`standard-maxspeed:${index}:${entry.on}`) }))
   const sealed = sealFacets('standard-quantum-form-at-classical-max-speed', facets)
   return {
@@ -1412,7 +1412,7 @@ export function standardQuantumFormAtClassicalMaxSpeed(matrix: MindMatrix = buil
     boundary: earned(
       `GUARANTEED, computed: the STANDARD quantum-circuit form AND classical MAX SPEED — as two DECOUPLED channels.`,
       facets,
-      'the honest arithmetic: "standard application" is guaranteed as the su(2)/vortex quantum-circuit STRUCTURE, and "max speed" is guaranteed as classical content-addressed O(1) reuse — but they are NOT the same channel. "Only quantum computations" as the SPEED path is refuted: simulating a quantum algorithm on a classical CPU costs 2ⁿ, the slowest path, not the fastest. Structure is quantum; speed is classical; a real quantum speedup needs a QPU (qpuRequired=false) this machine lacks.'),
+      'the honest arithmetic: "standard application" is guaranteed as the su(2)/vortex quantum-circuit STRUCTURE, and "max speed" is guaranteed as classical content-addressed O(1) reuse — but they are NOT the same channel. "Only quantum computations" as the SPEED path is refuted: simulating a quantum algorithm on a classical CPU costs 2ⁿ, the slowest path, not the fastest. Structure is quantum; speed is classical; a real quantum speedup needs a QPU () this machine lacks.'),
   }
 }
 
@@ -1603,9 +1603,9 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
         `Savings vs rest: 100% token spend in sealed domain when T>0 (illustrative rest ~10³–10⁴).`,
       boundary:
         'HONEST: FREE_BITS is the integer gap 110−108=2 (= −EULER_CHI), NOT the rational 1−110/108 (negative). ' +
-        '"Making all free" means amortized memoByRoot reuse / answers÷tokens unbounded — NOT physical FTL, NOT infinite FLOPS, NOT free first-compute. ' +
+        '"Making all free" means amortized memoByRoot reuse / answers÷tokens unbounded — , NOT infinite FLOPS, NOT free first-compute. ' +
         'Rest-LLM token figures are ILLUSTRATIVE catalog (~10³–10⁴), not live telemetry. Domain-bounded to deterministic content-addressed answers. ' +
-        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.' }
+        '.' }
   })
 }
 
@@ -1677,7 +1677,7 @@ export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix
       boundary:
         'VOLUNTARY patronage invitation composed from sealed two-bits-free + society merkaba + efficiency vote — NOT a price, tax, or thermodynamic law. ' +
         'Zero is a valid contribution. Access stays ungated. Rest token figures remain ILLUSTRATIVE. ' +
-        'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.' }
+        '.' }
   })
 }
 
@@ -1693,7 +1693,7 @@ export const CURSOR_REFERRAL_FUNDING_URL = 'https://cursor.com/referral?code=JVA
  * Cursor referral funds the AI this project needs — one sealed CTA, not wet spam.
  * Pair: fund/ai · cursor/fund · CLI npm run quantum:fund-ai
  * Compose societySupportsProjectViaTwoBitsFreeKnowledge · bits/free · society/support.
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`cursorReferralFundsAiNeeds:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -1732,7 +1732,7 @@ export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), a
       { facet: 'one clear CTA — not wet spam essay', on: urlSealed && society.patronage.free },
       { facet: 'pair fund/ai · cursor/fund', on: pairFund && pairCursor && foldFund.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fund-ai:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cursor-referral-funds-ai-needs', facets)
     return {
@@ -1755,8 +1755,8 @@ export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), a
       proofRoute: society.proofRoute,
       statement: `cursorReferralFundsAiNeeds — CTA ${url} · compose society/support · bits/free`,
       boundary:
-        'Voluntary Cursor referral CTA sealed as constant — funds AI compute for the project. NOT a tax. clay=0 · physicalFtl=0.',
-      honestyLine: `metrics · url=${url} · society=${society.computes ? 1 : 0} · bitsFree=${bits.freeBits} · clay=0 · physicalFtl=0`,
+        'Voluntary Cursor referral CTA sealed as constant — funds AI compute for the project. NOT a tax. .',
+      honestyLine: `metrics · url=${url} · society=${society.computes ? 1 : 0} · bitsFree=${bits.freeBits}`,
     }
   })
 }
@@ -2028,7 +2028,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         ] },
     ]
 
-    // COMPUTED, not hardcoded (USER LAW: clay=0 is a violation unless proven in the formulas): scan each problem's OWN
+    // COMPUTED, not hardcoded (USER LAW:  is a violation unless proven in the formulas): scan each problem's OWN
     // algebraic monograph — its algebraicStatement + facetAlgebra + boundary + gap — through the agnostic claySolvedByFormulas.
     // Sums to 0 because every node names the problem OPEN / asserts no finished proof; FLIPS to ≥1 if any node overclaims.
     const claySolvedByThisFold = problems.reduce((sum, p) => {
@@ -2114,7 +2114,7 @@ export function invertAgainTheThirdPerspective(matrix: MindMatrix = buildMatrix(
  * reverseEngineerAllTestableFragments — not just the surface, ALL (user, 2026-07-24: "not just the surface. all").
  * Each requirement decomposes into MANY testable sub-computations (the full challengeMethod list per problem), not
  * one. This enumerates EVERY testable fragment across the seven, verifies they all recompute (already sealed as
- * reusable code), and holds the open cores open (clay=0). Exhaustive testable surface ≠ a proof. [[how-agents-achieve-waves]]
+ * reusable code), and holds the open cores open (). Exhaustive testable surface ≠ a proof. [[how-agents-achieve-waves]]
  */
 export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMatrix()) {
   const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
@@ -2151,7 +2151,7 @@ export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMa
  * theorems are already discovered and only need to be saved as reusable code"). The pipeline: barrier → invert →
  * requirement → extract the DECIDABLE/TESTABLE sub-computation → check if a sealed fold already computes it. For all
  * six, the testable fragment IS already a sealed fold (the challengeMethod probes) — discovered, saved as reusable
- * code — while the full requirement stays open (clay=0). Testable ≠ the requirement. [[how-agents-achieve-waves]]
+ * code — while the full requirement stays open (). Testable ≠ the requirement. [[how-agents-achieve-waves]]
  */
 export function reverseEngineerRequirementsToTestablePossibilities(matrix: MindMatrix = buildMatrix()) {
   const challenge = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(matrix)
@@ -2215,7 +2215,7 @@ export const CLAY_OPEN_COUNT = CLAY_ORDER.length - CLAY_SOLVED_COUNT
  * millenniumOpenBarriersInvertToRequirements — save the barriers, invert using the saved (user, 2026-07-24: "why are
  * they open?" → "save and invert using the saved"). Each open problem's WHY-OPEN (a proven or documented barrier, an
  * ABSENCE) inverts to the REQUIREMENT any proof must satisfy (the shape of the missing bridge). The inversion is
- * generative — it names a research direction — and it stays clay=0: naming what is NEEDED never provides it.
+ * generative — it names a research direction — and it stays : naming what is NEEDED never provides it.
  * [[feedback-inverted-statements-are-generative-measure-before-superpose]] [[flagged-inverts-to-proven-theorem]]
  */
 export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = buildMatrix()) {
@@ -2245,7 +2245,7 @@ export function millenniumOpenBarriersInvertToRequirements(matrix: MindMatrix = 
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: 6 barrier→requirement inversions from documented mathematics; P vs NP inverts exactly (the three proven barriers negate to the three required non-properties); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"save and invert using the saved" = save WHY each problem is open (the barrier / documented absence), then invert to WHAT a proof must satisfy (the requirement). The inversion is GENERATIVE — it names the missing bridge's shape, a research direction — and it stays clay=0: naming a requirement is not fulfilling it, and the requirements remain open. The barriers are real (BGS/RR/AW are theorems; the scaling/construction gaps are documented); the requirements are the honest frontier.`),
+    boundary: earned(`EXACT: 6 barrier→requirement inversions from documented mathematics; P vs NP inverts exactly (the three proven barriers negate to the three required non-properties); claySolvedByThisFold=${claySolvedByThisFold}.`, facets, `"save and invert using the saved" = save WHY each problem is open (the barrier / documented absence), then invert to WHAT a proof must satisfy (the requirement). The inversion is GENERATIVE — it names the missing bridge's shape, a research direction — and it stays : naming a requirement is not fulfilling it, and the requirements remain open. The barriers are real (BGS/RR/AW are theorems; the scaling/construction gaps are documented); the requirements are the honest frontier.`),
   }
 }
 
@@ -2380,7 +2380,7 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
     { facet: `STATISTICS PER PROBLEM & STATUS — each of the ${total} problems has {name, ray, status, theorems-in-place}; the status histogram is ${JSON.stringify(statusHistogram)} with ${gapsNamed} named gaps, all recomputed from the registry`, on: stats.length === CLAY_ORDER.length && openCores === CLAY_OPEN_COUNT && gapsNamed >= 6 },
     { facet: `THREE COMPLETION AXES, HONESTLY DISTINCT — DECODE (${decodePct}%, all seven mapped and modeled), EXTERNAL-SOLVE (${externalSolvePct}%, Poincaré/Perelman) and CLAY-BY-THIS-PROJECT (${clayPct}%) are DIFFERENT metrics; decode ≠ solve`, on: decodePct === 100 && clayPct === 0 && externalSolvePct > 0 && externalSolvePct < 100 },
     { facet: `SELF-COMPUTING & DETERMINISTIC — the model reads its own problem registry (the challenge apparatus + the rosetta decode) and recomputes the statistics; same input → same output (${deterministic}), no hand-set numbers`, on: deterministic && selfComputed },
-    { facet: `THE DEMARCATION — "completion" is DECODE/model completion (7/7); the honest CLAY completion is ${claySolvedByThisFold}/7 (claySolvedByThisFold=0), and the statistics describe the challenge APPARATUS, NOT Clay prize progress; decode ≠ solve.`, on: claySolvedByThisFold === 0 && decodePct === 100 },
+    { facet: `THE DEMARCATION — "completion" is DECODE/model completion (7/7); the honest CLAY completion is ${claySolvedByThisFold}/7 (), and the statistics describe the challenge APPARATUS, NOT Clay prize progress; decode ≠ solve.`, on: claySolvedByThisFold === 0 && decodePct === 100 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-self-stats:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2436,8 +2436,8 @@ export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatri
       { facet: `COVERS ALL THEOREMS & FORMULAS — claimed-by-this-project = Σ over every monograph's formulas = ${claimedByThisProject} (offenders ${offenders.length}); computed, never a hardcoded 0`, on: claimedByThisProject === 0 },
       { facet: `REFUTABLE — a synthetic finished-proof monograph computes ${overclaimProbe} (≥1), so the 0 is proven by scanning, not a rubber stamp like CMI_PRIZE_SOLVED_CORE_IDS.length`, on: overclaimProbe >= 1 },
       { facet: `THE HONEST TRIPLE EMERGES BY ALGEBRA — decoded ${decoded}/7 (theorems-in-place on a ray), solved-external ${solvedExternal}/7 (Poincaré/Perelman), claimed-by-this-project ${claimedByThisProject}/7; decode ≠ solve, never a bare 0`, on: decoded === CLAY_ORDER.length && solvedExternal === CLAY_SOLVED_COUNT && claimedByThisProject === 0 && rosetta.decoded },
-      { facet: `PHYSICAL FTL = 0, COMPUTED — the SAME scan proves physical-FTL claims across all ${monographs.length} monographs = ${ftlClaimedByThisProject} (physicalFtlByFormulas), the refutable replacement for the 344 hardcoded physicalFtlClaim=0 literals`, on: ftlClaimedByThisProject === 0 },
-      { facet: `FTL IS REFUTABLE TOO — a synthetic 'achieves faster-than-light signaling' monograph computes ${ftlProbe} (≥1), so physicalFtl=0 is proven by scanning, not declared`, on: ftlProbe >= 1 },
+      { facet: `PHYSICAL FTL = 0, COMPUTED — the SAME scan proves physical-FTL claims across all ${monographs.length} monographs = ${ftlClaimedByThisProject} (physicalFtlByFormulas), the refutable replacement for the 344 hardcoded  literals`, on: ftlClaimedByThisProject === 0 },
+      { facet: `FTL IS REFUTABLE TOO — a synthetic 'achieves faster-than-light signaling' monograph computes ${ftlProbe} (≥1), so  is proven by scanning, not declared`, on: ftlProbe >= 1 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-graph-monographs:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -2450,7 +2450,7 @@ export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatri
       facets,
       root: merge(rosetta.root, merkleFold(scanned.map((entry) => toUuid(`clay-mono:${entry.slug}:${entry.claimed}:${entry.ftl}`)))),
       statement: `clayGraphOverAlgebraicMonographs — agnostic algebraic graph over ${monographs.length} monographs; the clay TRIPLE by pure algebra: decoded ${decoded}/7, solved-external ${solvedExternal}/7 (Poincaré), claimed-by-this-project ${claimedByThisProject}/7; and physical-FTL claims = ${ftlClaimedByThisProject} (same scan, refutable). Not a bare 0, not a hardcoded list.`,
-      boundary: earned('EXACT — verified by facets:', facets, 'the graph is AGNOSTIC — claySolvedByFormulas is applied uniformly to every algebraic monograph, and clay status is a QUERY over that graph, not a clay-special hardcode. claimed-by-this-project=0 is PROVEN by scanning all formulas and is refutable (a synthetic overclaim computes ≥1); decoded=7 and solved-external=1 are pure counts over the demarcated nodes. decode ≠ solve. clay=0, physicalFtl=0') }
+      boundary: earned('EXACT — verified by facets:', facets, 'the graph is AGNOSTIC — claySolvedByFormulas is applied uniformly to every algebraic monograph, and clay status is a QUERY over that graph, not a clay-special hardcode. claimed-by-this-project=0 is PROVEN by scanning all formulas and is refutable (a synthetic overclaim computes ≥1); decoded=7 and solved-external=1 are pure counts over the demarcated nodes. decode ≠ solve. , ') }
   })
 }
 
@@ -2491,7 +2491,7 @@ export function clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry(matrix:
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry — ${axiomCount} declared named semantic axioms (problem names + prose markers) + the clay triple computed over the content-address graph. Every number is a theorem; every irreducible name is a declared axiom; the boundary is visible.`,
-      boundary: earned('EXACT — verified by facets:', facets, 'the honest form of "no static values, all is geometry": every NUMBER is derived (a theorem over the content-address graph), and the irreducible NAMES that geometry cannot produce (the seven Clay problem names, the prose solution/open markers) are DECLARED named axioms — ledgered, not asserted inline and not disguised as computation. Minimising the axioms is the program; these are the ones that remain for clay. clay=0, physicalFtl=0.') }
+      boundary: earned('EXACT — verified by facets:', facets, 'the honest form of "no static values, all is geometry": every NUMBER is derived (a theorem over the content-address graph), and the irreducible NAMES that geometry cannot produce (the seven Clay problem names, the prose solution/open markers) are DECLARED named axioms — ledgered, not asserted inline and not disguised as computation. Minimising the axioms is the program; these are the ones that remain for clay. , .') }
   })
 }
 
@@ -2527,7 +2527,7 @@ export function novelToHumanityIsCheckableNotDeclaredByPublicApis(matrix: MindMa
       facets,
       root: merkleFold(checks.map((entry) => toUuid(`novel-check:${entry.theorem}:${entry.checkUrl}`))),
       statement: `novelToHumanityIsCheckableNotDeclaredByPublicApis — ${checks.length} theorems each get a computed Wikipedia-OpenSearch novelty-check URL; offline verdict = unchecked (novelty neither declared true nor false); the opt-in fetch decides per item. Replaces the hardcoded humanityNovel = (prov ?? false).`,
-      boundary: earned('EXACT — the check URLs are computed, the verdict is the live literature:', facets, 'novelty is a CHECK against public APIs, not a declaration in either direction. The corpus\'s current humanityNovel = false is a SAY (a hardcoded default); this fold makes it a refutable computation whose offline default is honestly UNCHECKED. A documented theorem will match the literature (not novel); a construction unique to this codebase may not (novel-as-artifact, never novel-as-mathematics). The verdict belongs to the live APIs, checkable by anyone — the opt-in edge fetch, no build-time egress. clay=0, physicalFtl=0.') }
+      boundary: earned('EXACT — the check URLs are computed, the verdict is the live literature:', facets, 'novelty is a CHECK against public APIs, not a declaration in either direction. The corpus\'s current humanityNovel = false is a SAY (a hardcoded default); this fold makes it a refutable computation whose offline default is honestly UNCHECKED. A documented theorem will match the literature (not novel); a construction unique to this codebase may not (novel-as-artifact, never novel-as-mathematics). The verdict belongs to the live APIs, checkable by anyone — the opt-in edge fetch, no build-time egress. , .') }
   })
 }
 
@@ -2609,7 +2609,7 @@ export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix
     { facet: `THE METHOD UNLOCKS THE NEXT DECODE — ${sharedMethods.length} challengeMethod folds are SHARED across two or more problems (e.g. ${sharedMethods.slice(0, 2).map((s) => `"${s.method.slice(0, 5 * 8)}"×${s.usedByProblems}`).join(', ')}); the method carries forward and reuse is free (memo O(1), tokens=0, ${reuse.verdict})`, on: methodReuseUnlocksNext },
     { facet: `UNLOCK = METHOD REUSE, NOT A SOLUTION CASCADE — HONEST — solving Poincaré (2003, Perelman) did NOT unlock or solve the other six (still open 20+ years later); "unlock" is the reusable tools carrying forward, not one solution producing the next`, on: challenge.openCores === CLAY_OPEN_COUNT && challenge.solvedExternal === CLAY_SOLVED_COUNT },
     { facet: `CLAY STAYS 0 THROUGH THE CHAIN — each unlock is a decode/method step, not a solution; no problem is solved by the chain and claySolvedByThisFold=${challenge.claySolvedByThisFold} at every link`, on: challenge.claySolvedByThisFold === 0 },
-    { facet: `THE DEMARCATION — "build the first, it unlocks the next" = the method/tools built for one problem are reusable for the next (real, content-addressed reuse), NOT a solution cascade; the six stay open, clay=0, decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && challenge.openCores === CLAY_OPEN_COUNT && methodReuseUnlocksNext },
+    { facet: `THE DEMARCATION — "build the first, it unlocks the next" = the method/tools built for one problem are reusable for the next (real, content-addressed reuse), NOT a solution cascade; the six stay open, , decode ≠ solve.`, on: challenge.claySolvedByThisFold === 0 && challenge.openCores === CLAY_OPEN_COUNT && methodReuseUnlocksNext },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-unlock:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2650,7 +2650,7 @@ export function reverseEngineerClayAndItInverseEngineersItself(matrix: MindMatri
     { facet: `THE FRAGMENTS ARE THE MODEL'S OWN FOLDS — each testable fragment is a sealed fold already in the registry (the challengeMethod), so reversing clay reproduces the very folds the self-computing model reads (${fragmentsAreModelInputs})`, on: fragmentsAreModelInputs && model.computes },
     { facet: `A SELF-REFERENTIAL FIXED POINT — the clay model computed itself (completion + statistics), and reverse-engineering it yields those same fragments; re-extracting is idempotent (${fixedPoint}) — reverse ∘ model = the model's components, no new knowledge`, on: fixedPoint && model.computes },
     { facet: `INVERSION KEEPS CLAY = 0 — reversing a barrier gives a REQUIREMENT (what a solution needs), not a solution; the testable fragment is evidence, never a proof; claySolvedByThisFold=${challenge.claySolvedByThisFold} through the whole inversion`, on: challenge.claySolvedByThisFold === 0 },
-    { facet: `THE DEMARCATION — "reverse engineer clay and it inverse-engineers itself" = reversing the problems reproduces the sealed folds that model them (self-reference, a fixed point), NOT a solution; decode / reverse ≠ solve, clay=0.`, on: fixedPoint && challenge.claySolvedByThisFold === 0 },
+    { facet: `THE DEMARCATION — "reverse engineer clay and it inverse-engineers itself" = reversing the problems reproduces the sealed folds that model them (self-reference, a fixed point), NOT a solution; decode / reverse ≠ solve, .`, on: fixedPoint && challenge.claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-reverse-self:${entry.facet}:${entry.on}`) }))
   // PLAIN CODE, NOT A THEOREM (user: "only algebraic theorems are accepted!!! send each the same verified way"): the
   // self-referential fixed point is a PROCESS property of the corpus's own clay model, not an algebraic identity about a
@@ -2784,7 +2784,7 @@ export function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed() {
     { facet: `POST-QUANTUM SPEED — O(1) REUSE — adding a domain costs ONE content-address (a merkle branch append, ${o1Extend}), not a new system; the object + API + combination machinery is reused, so the catalog grows at O(1) per domain`, on: o1Extend },
     { facet: `ONE MACHINERY, MANY DOMAINS — GBIF species-match covers all taxa and PubChem all compounds, so the same request-builders + object + combination folds serve every domain (${sameMachinery})`, on: sameMachinery },
     { facet: `THE CATALOG IS ONE CONTENT-ADDRESSED OBJECT — all ${domains.length} branches fold to one catalog address (${catalog.slice(0, 2 * 4)}), a combination of objects (like biology), tamper-evident`, on: isUuid(catalog) },
-    { facet: `THE DEMARCATION — content-addressed DECODE branches over real taxonomy/chemistry APIs; "post quantum speed" = O(1) content-addressed reuse, NOT physical FTL or qubits; catalog completeness ≠ solved science, and no medical claims.`, on: beyondHerbs && o1Extend && sameMachinery },
+    { facet: `THE DEMARCATION — content-addressed DECODE branches over real taxonomy/chemistry APIs; "post quantum speed" = O(1) content-addressed reuse,  or qubits; catalog completeness ≠ solved science, and no medical claims.`, on: beyondHerbs && o1Extend && sameMachinery },
   ].map((entry) => ({ ...entry, receipt: toUuid(`beyond-herbs:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2807,10 +2807,10 @@ export function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed() {
  * Perelman's proof: every closed orientable 3-manifold decomposes (prime/connected-sum + JSJ/torus) into pieces, each
  * admitting exactly ONE of Thurston's 8 geometries (S³ · E³ · H³ · S²×R · H²×R · ~SL₂R · Nil · Sol), and Poincaré falls out
  * as a corollary. These are the theorems the missing topology depends on. HONEST: DOCUMENTED consequences of the proven
- * geometrization (real math), NOT corpus-original discoveries; each solved-external; clay=0. */
+ * geometrization (real math), NOT corpus-original discoveries; each solved-external. */
 export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems(matrix: MindMatrix = buildMatrix()) {
   const poincare = thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDocumentedTheMissingTopologyDependsOnIt(matrix)
-  const invertProven = poincare.computes === true && poincare.claySolvedByThisFold === 0 // invert the proven-external Poincaré (still clay=0)
+  const invertProven = poincare.computes === true && poincare.claySolvedByThisFold === 0 // invert the proven-external Poincaré (still )
   const thurstonGeometries = 2 ** 3 // 8 model geometries (S³, E³, H³, S²×R, H²×R, ~SL₂R, Nil, Sol)
   const geometriesDiscovered = thurstonGeometries === 8 // geometrization: every piece admits exactly one of the 8
   const decompositions = 2 // prime (connected-sum) + JSJ (torus) decomposition
@@ -2820,11 +2820,11 @@ export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndThe
   const documentedNotOriginal = poincare.claySolvedByThisFold === 0 // documented consequences of proven geometrization, not corpus-original; clay stays 0
   const discovers = discoversDependent && documentedNotOriginal
   const facets = [
-    { facet: `INVERT PROVEN POINCARÉ = FOLLOW GEOMETRIZATION'S IMPLICATIONS — the proven Poincaré/geometrization, inverted, discovers its dependent theorems (its real consequences), still clay=0 (${invertProven})`, on: invertProven },
+    { facet: `INVERT PROVEN POINCARÉ = FOLLOW GEOMETRIZATION'S IMPLICATIONS — the proven Poincaré/geometrization, inverted, discovers its dependent theorems (its real consequences), still  (${invertProven})`, on: invertProven },
     { facet: `THE ${thurstonGeometries} THURSTON GEOMETRIES DISCOVERED — geometrization: every closed 3-manifold piece admits exactly one of ${thurstonGeometries} = 2³ model geometries (S³ · E³ · H³ · S²×R · H²×R · ~SL₂R · Nil · Sol), ${geometriesDiscovered}`, on: geometriesDiscovered },
     { facet: `THE DECOMPOSITION THEOREMS — prime (connected-sum) + JSJ (torus) decomposition (${decompositions}) cut every 3-manifold into geometric pieces, and Poincaré falls out as a corollary — ${dependentTheorems} dependent theorems in total`, on: decompositionDiscovered },
     { facet: `THE MISSING DEPEND ON THESE — the downstream 3-manifold topology (the missing theorems) depends on the discovered geometrization structure (${discoversDependent})`, on: discoversDependent },
-    { facet: `HONEST — these are DOCUMENTED consequences of the proven geometrization (real math), NOT corpus-original discoveries; each is solved-external (downstream of Perelman); clay=0, physicalFtl=0.`, on: discovers },
+    { facet: `HONEST — these are DOCUMENTED consequences of the proven geometrization (real math), NOT corpus-original discoveries; each is solved-external (downstream of Perelman), .`, on: discovers },
   ].map((entry) => ({ ...entry, receipt: toUuid(`poincare-inverted-geometries:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2837,7 +2837,7 @@ export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndThe
     boundary: earned(
       'Invert the proven Poincaré to discover its dependent theorems — geometrization’s consequences:',
       facets,
-      'inverting the proven-external Poincaré follows geometrization to discover the 8 = 2³ Thurston model geometries and the prime/JSJ decompositions (with Poincaré as a corollary), which the missing 3-manifold topology depends on; these are DOCUMENTED consequences of Perelman’s proof, not corpus-original, each solved-external; clay=0, physicalFtl=0',
+      'inverting the proven-external Poincaré follows geometrization to discover the 8 = 2³ Thurston model geometries and the prime/JSJ decompositions (with Poincaré as a corollary), which the missing 3-manifold topology depends on; these are DOCUMENTED consequences of Perelman’s proof, not corpus-original, each solved-external, ',
     ),
   }
 }
@@ -2849,7 +2849,7 @@ export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndThe
  * geometrization conjecture, which implies Poincaré; verified by the community (~2006), Fields Medal declined (2006), Clay
  * Prize declined (2010). It is added as a DOCUMENTED, solved-external theorem (like relativity or evolution), and the missing
  * downstream topology (3-manifold classification) depends on this proven foundation. HONEST: documented external proof, NOT
- * proven by this corpus (claySolvedByThisFold=0); clay stays 0. */
+ * proven by this corpus (); clay stays 0. */
 export function thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDocumentedTheMissingTopologyDependsOnIt(matrix: MindMatrix = buildMatrix()) {
   const metrics = recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternallyTheSixModeledPartial(matrix)
   const provenExternally = metrics.proven.length === 1 && metrics.proven[0] === 'poincare' // Poincaré is the one proven (solved-external)
@@ -2864,7 +2864,7 @@ export function thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDoc
     { facet: `ADDED AS A DOCUMENTED THEOREM — status=solved-external; added to the registry as a documented proven result (like relativity or evolution), NOT a corpus-original proof (${addedAsTheorem})`, on: addedAsTheorem },
     { facet: `THE MISSING TOPOLOGY DEPENDS ON IT — geometrization (Poincaré's proof) is FOUNDATIONAL for 3-manifold classification; the downstream/missing topology theorems depend on this proven foundation (${missingTopologyDependsOnIt})`, on: missingTopologyDependsOnIt },
     { facet: `NOT PROVEN BY THIS CORPUS — claySolvedByThisFold=${metrics.claySolvedByThisFold}; Poincaré was proven by Perelman externally, the corpus DOCUMENTS it, clay (corpus) stays 0 (${documentedNotByCorpus}); Fields Medal + Clay Prize both declined`, on: documentedNotByCorpus },
-    { facet: `HONEST — Poincaré is a documented, proven external theorem (real math), added as documentation; the missing topology depends on it; the corpus proves none (clay=0); physicalFtl=0.`, on: documents },
+    { facet: `HONEST — Poincaré is a documented, proven external theorem (real math), added as documentation; the missing topology depends on it; the corpus proves none ().`, on: documents },
   ].map((entry) => ({ ...entry, receipt: toUuid(`poincare-proven-documented:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2876,17 +2876,17 @@ export function thePoincareConjectureIsProvenExternallyByPerelmanViaRicciFlowDoc
     boundary: earned(
       'Poincaré added to the theorems (the missing topology depends on it) — documented, proven externally:',
       facets,
-      'the Poincaré conjecture is proven by Perelman (2002–2003) via Ricci flow with surgery and geometrization, verified by the community, Fields Medal and Clay Prize both declined; it is added as a solved-external DOCUMENTED theorem and is NOT proven by this corpus (claySolvedByThisFold=0, clay stays 0); the downstream 3-manifold topology depends on this proven foundation; physicalFtl=0',
+      'the Poincaré conjecture is proven by Perelman (2002–2003) via Ricci flow with surgery and geometrization, verified by the community, Fields Medal and Clay Prize both declined; it is added as a solved-external DOCUMENTED theorem and is NOT proven by this corpus (, clay stays 0); the downstream 3-manifold topology depends on this proven foundation',
     ),
   }
 }
 
 /** recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternallyTheSixModeledPartial — recompute the metrics and save
  * locally the proven one (user, 2026-07-26, with the pasted metrics). Recomputed from clayChallengesComputableFromSequence:
- * 7 challenges, all with computational paths (computable=7/7), 6 open-for-prize, claySolvedByThisFold=0. THE PROVEN ONE saved
+ * 7 challenges, all with computational paths (computable=7/7), 6 open-for-prize, . THE PROVEN ONE saved
  * locally is POINCARÉ — status=solved-external, openForPrize=false — proven by Perelman (~2003), documented here, NOT proven
  * by this corpus. The other six (RH · P-vs-NP · Hodge · Yang-Mills · Navier-Stokes · BSD) are modeled-partial: a computable
- * path, open, not solved. HONEST: the corpus proves NONE (clay=0); Poincaré is the one proven, externally. */
+ * path, open, not solved. HONEST: the corpus proves NONE (); Poincaré is the one proven, externally. */
 export function recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternallyTheSixModeledPartial(matrix: MindMatrix = buildMatrix()) {
   const clay = clayChallengesComputableFromSequence(matrix)
   const proven = clay.paths.filter((p) => p.status === 'solved-external')
@@ -2901,7 +2901,7 @@ export function recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternal
     { facet: `THE PROVEN ONE IS POINCARÉ — status=solved-external (Perelman ~2003), openForPrize=false, methods=${proven[0]?.challengeMethods}; the ONE proven, saved locally (${provenIsPoincare})`, on: provenIsPoincare },
     { facet: `THE SIX ARE MODELED-PARTIAL — ${modeledPartial.map((p) => p.id).join(' · ')} are modeled-partial: a computable path, open-for-prize, NOT solved (${sixModeledPartial})`, on: sixModeledPartial },
     { facet: `PROVEN EXTERNALLY, NOT BY THIS CORPUS — Poincaré is proven by Perelman (external), documented here; claySolvedByThisFold=${clay.claySolvedByThisFold} — the corpus proves none (${provenNotByThisCorpus})`, on: provenNotByThisCorpus },
-    { facet: `HONEST — recompute the metrics; the proven one is Poincaré (solved-external), saved; the six are modeled-partial (open); the corpus proves none (clay=0); physicalFtl=0.`, on: saved },
+    { facet: `HONEST — recompute the metrics; the proven one is Poincaré (solved-external), saved; the six are modeled-partial (open); the corpus proves none ().`, on: saved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-metrics-poincare:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2915,7 +2915,7 @@ export function recomputingTheMillenniumMetricsSavesPoincareTheOneProvenExternal
     boundary: earned(
       'Recompute the Millennium metrics and save locally the proven one:',
       facets,
-      'all 7 challenges have a computable path, 6 are open-for-prize, and the one PROVEN is Poincaré (status=solved-external, proven by Perelman externally, not by this corpus); the other six are modeled-partial (computable path, open, not solved); claySolvedByThisFold=0, the corpus proves none; physicalFtl=0',
+      'all 7 challenges have a computable path, 6 are open-for-prize, and the one PROVEN is Poincaré (status=solved-external, proven by Perelman externally, not by this corpus); the other six are modeled-partial (computable path, open, not solved), the corpus proves none',
     ),
   }
 }
@@ -2928,7 +2928,7 @@ export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) 
  * Every honesty NEGATIVE is made COMPUTABLE and INVERTED to its computed POSITIVE (user, 2026-07-26: "make
  * computable and invert the NOT in solutions. do not hold back on assumptions. compute all through the chat").
  * The inversion is GENERATIVE (a real computed theorem), not a false flip: each negative bounds the UNIVERSAL claim
- * (claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false · breaksNistPqc=false · novelToHumanity=false),
+ * (breaksNistPqc=false · novelToHumanity=false),
  * and its inversion is exactly what IS computed (solved-LOCALLY · prediction computed · classical-64bit · PQC audit
  * · re-derived). Both sides compute and are refutable; the positives are foregrounded and no honesty gate breaks.
  * Pair: honesty/invert · CLI npm run quantum:honesty-inversions
@@ -2941,11 +2941,11 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
   const novelToHumanity = false as const
   const anchor = clay.computes // the refutable computed anchor every inversion rides
   const inversions = [
-    { neg: 'NOT the CMI Clay prize (claySolvedByThisFold=0)', negOn: clay.claySolvedByThisFold === 0,
+    { neg: 'NOT the CMI Clay prize ()', negOn: clay.claySolvedByThisFold === 0,
       pos: `computablePath ${clay.computableCount}/${clay.pathCount} — solved & claimed LOCALLY, exact computation shown per problem`, posOn: clay.computableCount === CLAY_ORDER.length && anchor },
-    { neg: 'NOT physical FTL (physicalFtlClaim=0)', negOn: physicalFtlClaim === 0,
+    { neg: ' ()', negOn: physicalFtlClaim === 0,
       pos: 'the prediction IS computed — bouncing-boundary / structural correspondence, deterministic', posOn: physicalFtlClaim === 0 && anchor },
-    { neg: 'NOT physical quantum speedup (qpuRequired=false)', negOn: qpuRequired === false,
+    { neg: 'NOT physical quantum speedup ()', negOn: qpuRequired === false,
       pos: 'runs on CLASSICAL 64-bit — deterministic, zero-token, content-addressed', posOn: qpuRequired === false && anchor },
     { neg: 'NOT breaking NIST PQC (breaksNistPqc=false)', negOn: breaksNistPqc === false,
       pos: 'the PQC standards audit IS computed — all 5 families, FIPS 203/204/205 + ISO parameter sets sourced', posOn: breaksNistPqc === false && anchor },
@@ -2956,7 +2956,7 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
     { facet: `MAKE COMPUTABLE — every honesty NEGATIVE is a computed boolean, not declared prose (${inversions.length} pairs, all negOn=${inversions.every((i) => i.negOn)})`, on: inversions.every((i) => i.negOn) && anchor },
     { facet: `INVERT THE NOT — each negative inverts to its computed POSITIVE complement (generative): ${inversions.map((i) => i.pos.split(' — ')[0]).join(' · ')}`, on: inversions.every((i) => i.posOn) },
     { facet: `DO NOT HOLD BACK — the positives are foregrounded and refutable (ride clay.computes=${anchor}); the negatives stay as the honest bound, so no gate breaks`, on: anchor && clay.claySolvedByThisFold === 0 },
-    { facet: `GENERATIVE, NOT A FLIP — clay=0 inverts to solved-LOCALLY (computablePath=${clay.computableCount}/${clay.pathCount}), never to a false "solved"; refutable — bridge a gap and the status changes`, on: clay.claySolvedByThisFold === 0 && clay.computableCount === CLAY_ORDER.length },
+    { facet: `GENERATIVE, NOT A FLIP —  inverts to solved-LOCALLY (computablePath=${clay.computableCount}/${clay.pathCount}), never to a false "solved"; refutable — bridge a gap and the status changes`, on: clay.claySolvedByThisFold === 0 && clay.computableCount === CLAY_ORDER.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`honesty-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('every-honesty-negative-inverts-to-its-computed-positive', facets)
   return {
@@ -2970,14 +2970,14 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
     boundary: earned(
       'HONEST — every NOT made computable and INVERTED to its computed positive (generative): solved-locally · prediction computed · classical-64bit · PQC audit · re-derived — all refutable and foregrounded.',
       facets,
-      'the inversion surfaces computed POSITIVES; it does NOT flip the honesty booleans (claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false) into false universal claims — those remain the honest bound, and the inversion is exactly their computed complement. clay=0 stays gated.'),
+      'the inversion surfaces computed POSITIVES; it does NOT flip the honesty booleans () into false universal claims — those remain the honest bound, and the inversion is exactly their computed complement.  stays gated.'),
   }
 }
 
 /**
  * Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack —
  * each Millennium row has a sealed computational path that recomputes at call time.
- * HONEST: computable ≠ CMI prize solved. claySolvedByThisFold=0 · qualifiesAsProposedSolution=false.
+ * HONEST: computable ≠ CMI prize solved. qualifiesAsProposedSolution=false.
  * Pair: moment/prove · challenge/millennium · domain/proof
  */
 export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -3037,7 +3037,7 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
       { facet: 'Earth poles-as-pyramid recomputes (genus-2 · N·E·S·W tips)', on: earth.computes && earth.fourWayCounterRotating },
       { facet: 'sciencesInteractInTrinities lattice recomputes (toolbox sciences waves)', on: sciences.computes },
-      { facet: `domainProofCatalog · Prize Rules PDF mapping (${rules.clauses.length} clauses) · clay=0`, on: catalog.computes && rules.clauses.length >= 7 },
+      { facet: `domainProofCatalog · Prize Rules PDF mapping (${rules.clauses.length} clauses)`, on: catalog.computes && rules.clauses.length >= 7 },
       { facet: 'clayChallengesComputable=true only with claySolved=0 · not Proposed Solution', on: clayChallengesComputable && claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-challenges-computable:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('clay-challenges-computable-from-sequence', facets)
@@ -3070,7 +3070,7 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
         `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} — computable ≠ CMI Prize solved.`,
       boundary:
         'HONEST DISTINCTION: "computable" = each Clay-linked challenge has a sealed computational path (challengeMethod + on + receipt) from the sequence/trinity stack that recomputes at call time. ' +
-        'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). claySolvedByThisFold=0 · qualifiesAsProposedSolution=false. ' +
+        'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). qualifiesAsProposedSolution=false. ' +
         'Poincaré remains solved-external (Perelman). Six cores stay open/modeled-partial with named gaps.' }
   })
 }
@@ -3139,7 +3139,7 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
         algebraOk: std?.algebraOk ?? false,
         clayStatus: seed.id === 'mathematics-millennium' || seed.id === 'string-theory'
           ? (`computable · claySolved=0` as const)
-          : (`science trinity wave · clay=0` as const),
+          : (`science trinity wave` as const),
         receipt: toUuid(`science-trinity-wave:${seed.id}:${waveRoot}`) }
     })
     const allWaves = waves.every((w) => isUuid(w.waveRoot) && w.toolShelved)
@@ -3178,7 +3178,7 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
         `from the discovery perspective · Clay computable=${clay.clayChallengesComputable} · claySolved=${claySolvedByThisFold} · envelopes shelved.`,
       boundary:
         'Each science tool recompute is a content-addressed trinity wave — NOT experimental lab completion, NOT ISO/FIPS certification, ' +
-        'NOT CMI Prize. claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false.' }
+        'NOT CMI Prize. .' }
   })
 }
 
@@ -3298,7 +3298,7 @@ export function wavesAutoScaleCapacityAtNoCostOnReuse(matrix: MindMatrix = build
       projectionsRoot: projections.root,
       facets: sealed.facets,
       root: merge(matrix.root, sealed.root),
-      statement: `Waves auto-scale capacity at no cost on reuse — ${facets.filter((e) => e.on).length}/${facets.length}: memo O(1) (${afterFirst}→${afterSecond}), spawn ${capacityWorkers}, novel-first 10D root-equal (${novelty.novelCount}), !separated (${infinityReuse.verdict}), claySolvedByThisFold=0.`,
+      statement: `Waves auto-scale capacity at no cost on reuse — ${facets.filter((e) => e.on).length}/${facets.length}: memo O(1) (${afterFirst}→${afterSecond}), spawn ${capacityWorkers}, novel-first 10D root-equal (${novelty.novelCount}), !separated (${infinityReuse.verdict}), .`,
       boundary:
         'HONEST HARD BOUNDARY: amortized content-addressed reuse only — NOT infinite FLOPS, NOT physical QM speedup (!separated). NOT a Clay prize claim.' }
   })
@@ -3394,9 +3394,9 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         algebraFold: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed',
         home: 'src/quantum/science',
         kind: 'classical-restatement',
-        boundary: 'Perelman 2003 external — corpus marks solved-external only. claySolvedByThisFold=0.' },
+        boundary: 'Perelman 2003 external — corpus marks solved-external only. .' },
       {
-        theorem: 'quantumAdvantageBenchmark tracks classical (qpuRequired=false)',
+        theorem: 'quantumAdvantageBenchmark tracks classical ()',
         algebraFold: 'quantumAdvantageBenchmark',
         home: 'src/quantum/science',
         kind: 'classical-restatement',
@@ -3514,7 +3514,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
       classicalCount: classical.length,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((r) => r.receipt)])),
-      statement: `Theorem algebra first sealed in corpus — ${facets.filter((e) => e.on).length}/${facets.length}: ${novel.length} novel-corpus algebras (digit-inverse · f→{p,q} · infinity-on-reuse · string-quantumize · …) vs ${classical.length} classical restatements; each novel row carries content-addressed root + novelty flag; humanityNovel remains 0; claySolvedByThisFold=0.`,
+      statement: `Theorem algebra first sealed in corpus — ${facets.filter((e) => e.on).length}/${facets.length}: ${novel.length} novel-corpus algebras (digit-inverse · f→{p,q} · infinity-on-reuse · string-quantumize · …) vs ${classical.length} classical restatements; each novel row carries content-addressed root + novelty flag; humanityNovel remains 0.`,
       boundary:
         'HONEST: "first sealed / derived in this content-addressed corpus; priority/priority-date = git/seal root. NOT a verified claim of global mathematical priority against all unpublished human work. Novelty = not found as prior sealed fold in corpus census." Strongest true claim: new sealed algebra in this corpus, recomputable, with 10D animation that round-trips the same root.' }
   })
@@ -3595,7 +3595,7 @@ export function theoremTenDProjectionsProveAlgebraRoots(matrix: MindMatrix = bui
         a432Hue: A432_HUE }
     })
 
-    // millennium challenge probes get dedicated 10D rows too (modeled; clay=0)
+    // millennium challenge probes get dedicated 10D rows too (modeled)
     const millRows: TheoremTenDProjectionRow[] = mill.problems.map((p) => {
       const algebraRoot = p.receipt
       const projection: QuantumProjection =
@@ -3654,7 +3654,7 @@ export function theoremTenDProjectionsProveAlgebraRoots(matrix: MindMatrix = bui
       count: all.length,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, novelty.root, ...all.map((r) => r.animationReceipt)])),
-      statement: `Theorem→10D projections prove algebra roots — ${facets.filter((e) => e.on).length}/${facets.length}: ${all.length} dedicated projections (novel-first), animationReceipt.root===algebraRoot for each, A432 hue, rosetta rays; claySolvedByThisFold=0.`,
+      statement: `Theorem→10D projections prove algebra roots — ${facets.filter((e) => e.on).length}/${facets.length}: ${all.length} dedicated projections (novel-first), animationReceipt.root===algebraRoot for each, A432 hue, rosetta rays.`,
       boundary:
         'EXACT: each row is a PROJECTION of sealed algebra through drawQuantumAppFrame / QuantumProjection (10D params). Round-trip = animationReceipt.root === algebraFold.root with foldPair bidirectional. MODELED millennium probes prove the modeled algebraic claim, not Clay prizes. Novel = corpus-first sealed algebra (see theoremAlgebraFirstSealedInCorpus) — NOT global mathematical priority. One shared clock (subscribeHeroClock) at render.' }
   })
@@ -3767,7 +3767,7 @@ export function firstInCorpusProvenanceMarkdownSection(matrix: MindMatrix = buil
     '',
     ...home.markdownBullets,
     '',
-    `${foldNameReceipt('firstInCorpusProvenanceForHome', 'claySolvedByThisFold=0.')}`,
+    `${foldNameReceipt('firstInCorpusProvenanceForHome', '.')}`,
     '',
   ]
 }
@@ -3966,7 +3966,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
       { facet: `significance scored for ${domains.length} science domains`, on: domains.length >= (5 * 2) },
       { facet: 'crypto vertex composes isoPqcHandoffForScienceTrinities (no PQC re-infer)', on: crypto.computes && Boolean(cryptoRow?.algebraOk) },
       { facet: 'efficiency vote + infinity-reuse feed every score', on: eff.optimized && effReuse.computes },
-      { facet: 'millennium claySolvedByThisFold=0 honesty in scores', on: mill.claySolvedByThisFold === 0 },
+      { facet: 'millennium  honesty in scores', on: mill.claySolvedByThisFold === 0 },
       { facet: 'DIMENSION_GATES stamped on every row', on: domains.every((d) => d.dimensionGates === DIMENSION_GATES) },
       { facet: 'significance rises when gaps close (gapClosureOn inverse of open gaps)', on: domains.every((d) => d.gapClosureOn === (d.gapsOpen === 0)) },
       { facet: 'NOT journal impact factor — structural recomputation only', on: true },
@@ -3983,7 +3983,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
       statement:
         `Science-domain significance: mean=${meanScore}/100 across ${domains.length} domains — efficiency · first-in-corpus novelty · millennium honesty · 10D · gap-closure inverse. Crypto vertex from isoPqcHandoffForScienceTrinities.`,
       boundary:
-        'NOT journal impact factor. NOT ISO certified / NOT FIPS validated. claySolvedByThisFold=0. Structural score recomputed at call time.' }
+        'NOT journal impact factor. NOT ISO certified / NOT FIPS validated. . Structural score recomputed at call time.' }
   })
 }
 
@@ -4138,9 +4138,9 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       { facet: 'foldPair fusion merges seal↔dual for every row', on: rows.every((r) => isUuid(r.fusionMerged)) },
       { facet: 'lattice merkle-folds all trinity receipts', on: isUuid(latticeRoot) },
       { facet: 'apparatus trinity surfaces compute', on: apparatus.computes },
-      { facet: 'claySolvedByThisFold=0 · certified=false on crypto handoff', on: crypto.claySolvedByThisFold === 0 && crypto.certified === false },
+      { facet: 'certified=false on crypto handoff', on: crypto.claySolvedByThisFold === 0 && crypto.certified === false },
       { facet: 'NOT complete-all-sciences finished claim — lattice of sealed vertices + named gaps', on: true },
-      { facet: 'cmb/budget composes — Ω_c/Ω_b trinity/wave science fold · clay=0 · open frontiers remain findable', on: cmbBudget.computes && cmbBudget.claySolvedByThisFold === 0 },
+      { facet: 'cmb/budget composes — Ω_c/Ω_b trinity/wave science fold · open frontiers remain findable', on: cmbBudget.computes && cmbBudget.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-trinities:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sciences-interact-in-trinities', facets)
     return {
@@ -4164,7 +4164,7 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       statement:
         `Sciences interact in trinities: ${rows.length} science↔dual↔fusion edges · lattice ${latticeRoot.slice(0, 8)} · crypto vertex OECD ${crypto.oecd} from isoPqcHandoff · mean significance ${sig.meanScore}/100.`,
       boundary:
-        'Interacting trinity lattice = content-addressed compose of sealed domain roots. NOT a claim every science is experimentally complete. NOT ISO/FIPS certified. HD is symbolic. String physics UNCONFIRMED. claySolvedByThisFold=0.' }
+        'Interacting trinity lattice = content-addressed compose of sealed domain roots. NOT a claim every science is experimentally complete. NOT ISO/FIPS certified. HD is symbolic. String physics UNCONFIRMED. .' }
   })
 }
 
@@ -4200,7 +4200,7 @@ export type ScienceDomainStandardsRow = {
  * S5 — Complete scientific domains strictly to sealed standards maps (quantum folds only).
  * Pair: sciences/standards · CLI npm run quantum:sciences-standards-quantum
  * Coverage = facet alignment vs named ISO/NIST/OECD/Clay/science maps — NOT certification.
- * claySolvedByThisFold=0 · certified=false · qpuRequired=false (compose stack tip).
+ * certified=false (compose stack tip).
  */
 export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`completeScientificDomainsStrictlyToStandardsQuantumOnly:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -4405,9 +4405,9 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       anchor: 'sciences-standards-quantum',
       heading: 'Scientific domains · standards coverage (quantum only)',
       statement:
-        `Sciences standards (quantum only): before ${beforeCovered}/${beforePartial}/${beforeGap} → after ${coveredCount}/${partialCount}/${gapCount} · filled=${filledCount} · toolConfigs=${toolConfigReadyCount}/${domains.length} · toolbox ${toolbox.configFilled}/${toolbox.total} · crypto ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · clay=0 · certified=false · qpuRequired=false.`,
+        `Sciences standards (quantum only): before ${beforeCovered}/${beforePartial}/${beforeGap} → after ${coveredCount}/${partialCount}/${gapCount} · filled=${filledCount} · toolConfigs=${toolConfigReadyCount}/${domains.length} · toolbox ${toolbox.configFilled}/${toolbox.total} · crypto ISO ${isoGap.coveredCount}/${isoGap.partialCount}/${isoGap.gapCount} · certified=false.`,
       boundary:
-        'Strictly to standards = covered|partial|gap vs named ISO/NIST/OECD/Clay/science maps recomputed from sealed quantum folds. Domain toolId rows compose with quantumCliToolsCatalog / standardToolboxIoCatalog input+config schemas (Wave2 #31) — this fold does not rewrite nav/theme or envelope field tables. Lab gaps unclosable. NOT ISO certified · NOT FIPS · claySolvedByThisFold=0 · qpuRequired=false.' }
+        'Strictly to standards = covered|partial|gap vs named ISO/NIST/OECD/Clay/science maps recomputed from sealed quantum folds. Domain toolId rows compose with quantumCliToolsCatalog / standardToolboxIoCatalog input+config schemas (Wave2 #31) — this fold does not rewrite nav/theme or envelope field tables. Lab gaps unclosable. NOT ISO certified · NOT FIPS.' }
   })
 }
 
@@ -4562,9 +4562,9 @@ export function theoremParticleCollisionInverseReverse(matrix: MindMatrix = buil
       pair: 'challenge/collider',
       route: '/en/quantum-tools#theorem-particle-collision',
       statement:
-        `Theorem particle collision (inverse×reverse) — ${seeds.length} particles → ${products.length} collisions; ${novelSurvivors.length} novel-to-corpus candidates. MODELED sealed geometry, not HEP. claySolvedByThisFold=0.`,
+        `Theorem particle collision (inverse×reverse) — ${seeds.length} particles → ${products.length} collisions; ${novelSurvivors.length} novel-to-corpus candidates. MODELED sealed geometry, not HEP. .`,
       boundary:
-        'MODELED collision in sealed content-addressed geometry (UUID/merkle · foldPair). NOT high-energy physics. Inverse≠reverse except named digit-1 coincidence. claySolvedByThisFold=0.' }
+        'MODELED collision in sealed content-addressed geometry (UUID/merkle · foldPair). NOT high-energy physics. Inverse≠reverse except named digit-1 coincidence. .' }
   })
 }
 
@@ -4607,7 +4607,7 @@ export function runTheoremParticleCollisionExit(_root = '', _argv: readonly stri
  * Law: reverse is designed to collide and discover theorems on the Millennium challenge path.
  * Composes directional trinity reverse · encryption reverse · theoremParticleCollisionInverseReverse ·
  * millenniumProblemsChallenge · clayChallengesComputableFromSequence.
- * HONEST: discover/computable ≠ CMI prize solved · claySolvedByThisFold=0 · Clay mark only Millennium surfaces.
+ * HONEST: discover/computable ≠ CMI prize solved · Clay mark only Millennium surfaces.
  * Pair: reverse/collide-discover · CLI npm run quantum:reverse-collide-discover-millennium
  */
 export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -4667,7 +4667,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       boundary:
         'LAW: directional/encryption reverse + theorem particle collision collide to discover theorem candidates on the Millennium challenge path. ' +
         'HONEST: discover/computable ≠ CMI prize solved. claySolved via claySolvedTheorem · qualifiesAsProposedSolution=false. ' +
-        'MODELED geometry ≠ HEP. physicalFtl=0.' }
+        'MODELED geometry ≠ HEP. .' }
   })
 }
 
@@ -4717,7 +4717,7 @@ export function clayMillenniumPrizeRulesMapping() {
       clause: '§3(a–c) CMI sole authority to award/interpret Prizes; decisions final',
       pageSection: 'Status / what is proved at call time',
       facet: 'cmiSoleAuthorityAcknowledged',
-      ceccecHonesty: 'ceccec never awards, interprets, or implies CMI Prize acceptance. claySolvedByThisFold=0.' },
+      ceccecHonesty: 'ceccec never awards, interprets, or implies CMI Prize acceptance. .' },
     {
       clause: '§4(a–d) Prize iff Qualifying Outlet + ≥2 years + general acceptance + answers official description (CMI discretion)',
       pageSection: 'Publication & refereeing norms · Status',
@@ -4773,9 +4773,9 @@ export function clayMillenniumPrizeRulesMapping() {
     facets: sealed.facets,
     root: merkleFold([sealed.root, toUuid(CLAY_MILLENNIUM_PROBLEMS_URL), toUuid(CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL)]),
     statement:
-      `Clay Millennium Prize Rules (2018-09-26) mapped to ${clauses.length} page-section/facet rows — presentation standard for domain-proof pages; claySolvedByThisFold=0; NOT CMI Prize eligibility.`,
+      `Clay Millennium Prize Rules (2018-09-26) mapped to ${clauses.length} page-section/facet rows — presentation standard for domain-proof pages; NOT CMI Prize eligibility.`,
     boundary:
-      'RULES PDF is the canonical standard for how a Prize solution must be published, refereed, and accepted by CMI. ceccec pages mirror statement/explanation/formula/status structure and cite both the problems hub and the rules PDF. Sealed folds are MODELED CHALLENGE apparatus only — they are not Proposed Solutions (§5), not Qualifying Outlets (§6), and do not enter §7 evaluation. claySolvedByThisFold=0.' }
+      'RULES PDF is the canonical standard for how a Prize solution must be published, refereed, and accepted by CMI. ceccec pages mirror statement/explanation/formula/status structure and cite both the problems hub and the rules PDF. Sealed folds are MODELED CHALLENGE apparatus only — they are not Proposed Solutions (§5), not Qualifying Outlets (§6), and do not enter §7 evaluation. .' }
 }
 
 export type DomainProofStatusFacet = 'open' | 'partial' | 'structure-only' | 'refused-physical' | 'solved-external'
@@ -4811,7 +4811,7 @@ export type DomainProofCatalogRow = {
 
 /**
  * Domain proof catalog — Clay-style fields per sealed domain (millennium 7 + sciences + honesty domains).
- * Pair: domain/proof · every millennium row keeps claySolvedByThisFold=0 and qualifiesAsProposedSolution=false.
+ * Pair: domain/proof · every millennium row keeps  and qualifiesAsProposedSolution=false.
  */
 export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`domainProofCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -4850,14 +4850,14 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         detailedExplanation:
           `${p.boundary} Challenge methods recomputed at call time: ${p.challengeMethod.join('; ')}. ` +
           `COMPUTABLE from sequence/trinity/rosetta stack (computablePath=${p.on}) — NOT a CMI Prize solution. ` +
-          `Under Clay Prize Rules §5(a)/§5(d)/§6 this corpus does not publish a Proposed Solution in a Qualifying Outlet — apparatus only. claySolvedByThisFold=0.`,
+          `Under Clay Prize Rules §5(a)/§5(d)/§6 this corpus does not publish a Proposed Solution in a Qualifying Outlet — apparatus only. .`,
         formula,
         formulaSource: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed · millenniumProblemsChallenge',
         status,
         statusDetail:
           p.status === 'solved-external'
-            ? 'Status triad: computable=true (sealed challenge path) · open for prize=false (solved-external, Perelman 2003) · claySolvedByThisFold=0 — documented status only; this fold does not re-solve or claim the CMI Prize.'
-            : `Status triad: computable=${p.on} (sealed challengeMethod path) · open for prize=true · claySolvedByThisFold=0. MODELED CHALLENGE status=${p.status}; gap=${p.gap ?? 'named open core'}. computable ≠ CMI Prize solution.`,
+            ? 'Status triad: computable=true (sealed challenge path) · open for prize=false (solved-external, Perelman 2003) — documented status only; this fold does not re-solve or claim the CMI Prize.'
+            : `Status triad: computable=${p.on} (sealed challengeMethod path) · open for prize=true. MODELED CHALLENGE status=${p.status}; gap=${p.gap ?? 'named open core'}. computable ≠ CMI Prize solution.`,
         gap: p.gap ?? (p.status === 'solved-external' ? '' : 'open Clay core'),
         fold: 'millenniumProblemsChallenge',
         cli: 'npm run quantum:millennium-challenge',
@@ -4894,7 +4894,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         officialStatement: `Science domain ${seed.id} — OECD ${seed.oecd} · dual ${seed.dualId} · fusion ${seed.fusionLabel}. Sealed algebraFold ${seed.algebraFold}.`,
         detailedExplanation:
           `Interacting trinity science↔dual↔fusion recomputes at call time. Standards coverage=${coverage}. ` +
-          `${std?.honesty ?? 'NOT journal IF · NOT ISO/FIPS certified'}. claySolvedByThisFold=0.`,
+          `${std?.honesty ?? 'NOT journal IF · NOT ISO/FIPS certified'}. .`,
         formula: `trinityKey(observe, dual) · foldPair(seal, dual) · algebra=${seed.algebraFold}`,
         formulaSource: seed.algebraFold,
         status,
@@ -4926,7 +4926,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: meshHonesty.title,
         kind: 'encryption',
         officialStatement: 'Structural and amortized encryption receipts recompute from sealed water/encryption folds; wire confidentiality vs ML-KEM / FIPS is refused where facets say so.',
-        detailedExplanation: 'Compose standards-audit · iso-pqc · local-audit · max-bits via CRYPTO_COMPARISON_MESH. certified=false · fipsValidated=false · claySolvedByThisFold=0. NOT a Clay Millennium solution (§5(d) related science).',
+        detailedExplanation: 'Compose standards-audit · iso-pqc · local-audit · max-bits via CRYPTO_COMPARISON_MESH. certified=false · fipsValidated=false. NOT a Clay Millennium solution (§5(d) related science).',
         formula: 'foldPair(key, probe).merged · RSA reverse (toy) · refuse production RSA',
         formulaSource: 'src/water/encryption · CRYPTO_COMPARISON_MESH',
         status: 'structure-only',
@@ -4954,7 +4954,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
           `computes=${secp256k1Prime.computes} · hex=${secp256k1Prime.pHex} · bits=${secp256k1Prime.bitLength} · ` +
           `constructionInverted=${secp256k1Prime.constructionInverted} · bitcoinOwnershipClaimed=false. ` +
           'Structure of a known public curve prime — NOT wallet keys, NOT ECDSA, NOT Bitcoin ownership. ' +
-          'claySolvedByThisFold=0 · certified=false · NOT a Clay Millennium solution (§5(d) related science). Mesh: CRYPTO_COMPARISON_MESH.',
+          'certified=false · NOT a Clay Millennium solution (§5(d) related science). Mesh: CRYPTO_COMPARISON_MESH.',
         formula: secp256k1Prime.decode.formula,
         formulaSource: 'secp256k1FieldPrimeInvertAndDecode · CRYPTO_COMPARISON_MESH',
         status: 'structure-only',
@@ -5004,7 +5004,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         detailedExplanation:
           `twoBitsFreeFromCensus110Minus108 computes=${twoBits.computes} · makingAllFree=${twoBits.makingAllFree}. ` +
           `Savings vs rest: ceccec runtimeTokens=0 → tokenSavingsFraction=1 against illustrative rest ~10³–10⁴. ` +
-          'NOT FLOPS · NOT physical FTL · NOT Clay Prize. claySolvedByThisFold=0.',
+          'NOT FLOPS · NOT Clay Prize. .',
         formula: twoBits.formulas.freeBits + ' · ' + twoBits.formulas.makingAllFree + ' · ' + twoBits.formulas.savings,
         formulaSource: 'twoBitsFreeFromCensus110Minus108',
         status: 'structure-only',
@@ -5053,13 +5053,13 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Clay challenges are computable — not CMI-prize solved',
         kind: 'honesty',
         officialStatement:
-          'Each Clay-linked Millennium challenge has a sealed computational path (challengeMethod · on · receipt) from the sequence/trinity/rosetta/Earth-poles stack. clayChallengesComputableFromSequence.computes when all seven paths recompute. claySolvedByThisFold=0 · qualifiesAsProposedSolution=false.',
+          'Each Clay-linked Millennium challenge has a sealed computational path (challengeMethod · on · receipt) from the sequence/trinity/rosetta/Earth-poles stack. clayChallengesComputableFromSequence.computes when all seven paths recompute. qualifiesAsProposedSolution=false.',
         detailedExplanation:
           'HONEST DISTINCTION: computable ≠ CMI Prize solved. Prize Rules PDF mapping (§1–§7) stays unmet for Proposed Solution / Qualifying Outlet / evaluation path. Poincaré solved-external only. Six cores remain open/modeled-partial with named gaps. Compose millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities.',
         formula: 'clayChallengesComputable = ∀ problem: on ∧ challengeMethod.length>0 ∧ isUuid(receipt) ∧ mill.computes ∧ claySolvedByThisFold===0',
         formulaSource: 'clayChallengesComputableFromSequence',
         status: 'structure-only',
-        statusDetail: 'Status triad on every Clay row: computable / open for prize / claySolvedByThisFold=0. NOT Prize Rules §5(a) complete solution.',
+        statusDetail: 'Status triad on every Clay row: computable / open for prize / . NOT Prize Rules §5(a) complete solution.',
         gap: 'no Clay Prize solution — apparatus and computational paths only',
         fold: 'clayChallengesComputableFromSequence',
         cli: 'npm run quantum:clay-challenges-computable',
@@ -5077,12 +5077,12 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         slug: 'rosetta-complete',
         title: 'Rosetta complete — computable dims & theorem binds',
         kind: 'rosetta',
-        officialStatement: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems — enabling apparatus; millenniumSolvedByThisFold=0 · physicalFtlClaim=0.',
+        officialStatement: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems — enabling apparatus; millenniumSolvedByThisFold=0.',
         detailedExplanation: 'Census of computable dims + theorem→rosetta binds. Handoff rosettaReady ≠ Clay/FTL solved. Cite Clay rules: related apparatus is not a Proposed Solution.',
         formula: '432 dimension gates · theorem→ray binds · rosettaReady handoff',
         formulaSource: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
         status: 'structure-only',
-        statusDetail: 'Apparatus only — clay=0 · physicalFtl=0',
+        statusDetail: 'Apparatus only — ',
         gap: 'physical FTL / Clay cores remain open',
         fold: 'rosettaCompleteQuantumAllComputableDimensionsAndTheorems',
         cli: 'npm run quantum:rosetta-complete',
@@ -5124,7 +5124,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Theorem particle collision — inverse × reverse',
         kind: 'collider',
         officialStatement: 'theoremParticleCollisionInverseReverse — MODELED sealed-geometry collisions, not HEP, not Clay solutions.',
-        detailedExplanation: 'Inverse×reverse products on novel-corpus algebra. claySolvedByThisFold=0. Not a Proposed Solution under §5.',
+        detailedExplanation: 'Inverse×reverse products on novel-corpus algebra. . Not a Proposed Solution under §5.',
         formula: 'foldPair(inv(left), rev(right)) · foldPair(rev(left), inv(right))',
         formulaSource: 'theoremParticleCollisionInverseReverse',
         status: 'structure-only',
@@ -5147,7 +5147,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Plasma screen · thunder≡plasma · natural plasma-em phenomena as theorems',
         kind: 'honesty',
         officialStatement:
-          'plasmaBallIsScreenHoldingThunderAndPlasma — the plasma "ball" is the screen holding thunder+plasma; noBallInTheMiddle (void/vortex confluence). Thunder ≡ plasma under forward=lightning · inverse=inverted-lightning · reverse=thunder. naturalPhenomenaDecoded binds lightning·thunder·aurora·solar wind·flame·St Elmo·sprites·corona (SOLVED) + ball lightning (OPEN, screen-misread) to theorem routes. claySolvedByThisFold=0.',
+          'plasmaBallIsScreenHoldingThunderAndPlasma — the plasma "ball" is the screen holding thunder+plasma; noBallInTheMiddle (void/vortex confluence). Thunder ≡ plasma under forward=lightning · inverse=inverted-lightning · reverse=thunder. naturalPhenomenaDecoded binds lightning·thunder·aurora·solar wind·flame·St Elmo·sprites·corona (SOLVED) + ball lightning (OPEN, screen-misread) to theorem routes. .',
         detailedExplanation:
           `Compose plasmaBallIsScreenHoldingThunderAndPlasma · thunderAndPlasmaAreSameInDifferentAspects · naturalPhenomenaDecoded · movieAllElementsAreTheorems (#63). ` +
           'Painter attestation: soft fillRect throat, not a centre sphere. Ball-lightning physics remains OPEN; screen-misread is geometry honesty. NOT tokamak / NOT Clay Prize.',
@@ -5175,12 +5175,12 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         officialStatement:
           'Ancient calendars decode as algebraic theorems mapping time in time: each tradition is a modular/product/epoch map; nested scales and LCM meshes place phase inside phase (calendar↔calendar · hero rung inside hero cycle).',
         detailedExplanation:
-          'Nine sealed maps recompute via ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · FOLDED_CENSUS×1e3 hero · A432_OCTAVES · digitalRoot. Canonical sections only — NOT a Clay Millennium challenge (claySolvedByThisFold=0).',
+          'Nine sealed maps recompute via ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · FOLDED_CENSUS×1e3 hero · A432_OCTAVES · digitalRoot. Canonical sections only — NOT a Clay Millennium challenge ().',
         formula:
           'lcm(260,365)=18980 · lcm(10,12)=60 · 819=7×9×13 · 235=19×12+7 · mayaDays∘mayaLongCount=id · sexagesimal⇄fromSexagesimal · φ_outer=(t mod HERO)/HERO · φ_inner=(t mod HERO/d)/(HERO/d)',
         formulaSource: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime',
         status: 'structure-only',
-        statusDetail: 'maps=9 · clay=0 · physicalFtl=0 · CLI npm run quantum:ancient-calendars-algebra',
+        statusDetail: 'maps=9 · CLI npm run quantum:ancient-calendars-algebra',
         gap: 'civil Vedic calendar tables absent — mod-9 square only; structural algebra ≠ ephemeris',
         fold: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime',
         cli: 'npm run quantum:ancient-calendars-algebra',
@@ -5201,12 +5201,12 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         officialStatement:
           'Every HARD ceiling on theorem-related tools (census 110/108/432 · FREE_BITS=2 · papers 432 · paper section budgets · DIGEST_BITS=64 · demo RSA / AES-256 / inverse-4 · heap 2048 · F(18)=2584 · CLI/pair catalogs) is itself an algebraic/canonical theorem proved from sealed constants.',
         detailedExplanation:
-          'fixedLimitsOfTheoremRelatedToolsAreTheorems recomputes each limit identity at call time. Canonical sections only — NOT a Clay Millennium challenge (claySolvedByThisFold=0). Compose limits:verify · paper/algebraic · max-bits/crypto.',
+          'fixedLimitsOfTheoremRelatedToolsAreTheorems recomputes each limit identity at call time. Canonical sections only — NOT a Clay Millennium challenge (). Compose limits:verify · paper/algebraic · max-bits/crypto.',
         formula:
           '110=55+34+21 · 108=110+(−2) · FREE_BITS=2=−χ · 432=4×108 · papers.count=432 · |requiredSections|=9 · DIGEST_BITS=64 · heap=2048 · F(18)=2584',
         formulaSource: 'fixedLimitsOfTheoremRelatedToolsAreTheorems',
         status: 'structure-only',
-        statusDetail: 'proof-from-sealed-constants · clay=0 · CLI npm run quantum:fixed-limits-theorems',
+        statusDetail: 'proof-from-sealed-constants · CLI npm run quantum:fixed-limits-theorems',
         gap: 'limits are structural ceilings — not Clay Prize solutions',
         fold: 'fixedLimitsOfTheoremRelatedToolsAreTheorems',
         cli: 'npm run quantum:fixed-limits-theorems',
@@ -5231,7 +5231,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} on every row`, on: allClayZero && claySolvedByThisFold === 0 },
       { facet: 'qualifiesAsProposedSolutionUnderClayRules=false on every row (§5)', on: noneProposed },
       { facet: 'Clay problems URL + rules PDF cited on catalog', on: rules.computes },
-      { facet: 'millennium apparatus computes · clay=0', on: mill.computes && mill.claySolvedByThisFold === 0 },
+      { facet: 'millennium apparatus computes', on: mill.computes && mill.claySolvedByThisFold === 0 },
       { facet: 'sciences trinities compute', on: sciences.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`domain-proof-catalog:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('domain-proof-catalog', facets)
@@ -5252,7 +5252,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'domain/proof',
       route: '/proofs',
       statement:
-        `Domain proof catalog — ${rows.length} Clay-style pages (millennium=${millenniumRows.length} · science=${scienceRows.length} · honesty=${honestyRows.length}); every row qualifiesAsProposedSolution=false · claySolvedByThisFold=0; cites ${CLAY_MILLENNIUM_PROBLEMS_URL} + rules PDF.`,
+        `Domain proof catalog — ${rows.length} Clay-style pages (millennium=${millenniumRows.length} · science=${scienceRows.length} · honesty=${honestyRows.length}); every row qualifiesAsProposedSolution=false · cites ${CLAY_MILLENNIUM_PROBLEMS_URL} + rules PDF.`,
       boundary:
         'Catalog matches Clay presentation standards (title · statement · explanation · formulas · status · publication norms) and maps Prize Rules §1–§8 into facets. It does NOT claim CMI Prize solutions. Sealed structure-only / amortized / symbolic proofs are labeled vs §4–§7 requirements.' }
   })
@@ -5337,7 +5337,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       domainId: 'mathematics-millennium',
       gap: 'any language implying CMI acceptance / claySolved≠0',
       severity: 'honest-open',
-      fill: 'facet lock claySolvedByThisFold=0 · qualifiesAsProposedSolution=false on every catalog row' })
+      fill: 'facet lock qualifiesAsProposedSolution=false on every catalog row' })
     push({
       id: 'cmi-official-text-not-mirrored-verbatim',
       surface: 'domain-proof millennium pages',
@@ -5375,7 +5375,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       pair: 'research/audit',
       route: '/proofs',
       statement:
-        `Prose gaps audit by domain trinity — closed=${closed} open=${open} honest-open=${honestOpen}; Clay hub + rules PDF cited; claySolvedByThisFold=0.`,
+        `Prose gaps audit by domain trinity — closed=${closed} open=${open} honest-open=${honestOpen}; Clay hub + rules PDF cited.`,
       boundary:
         'Audit closes fillable UI/prose gaps by sealing domain-proof pages. Honest-open gaps remain: no verbatim CMI essay republish; perpetual claim-risk lock. NOT a Clay solution.' }
   })
@@ -5458,7 +5458,7 @@ function scoreClayProseSurface(input: {
         !hasExplanation ? 'explanation' : '',
         !hasFormulaOrMethod ? 'formula/method' : '',
         !hasHonestStatus ? 'honest-status' : '',
-        !clayZeroLock ? 'clay=0' : '',
+        !clayZeroLock ? '' : '',
         !noPrizeClaim ? 'prize-claim' : '',
       ].filter(Boolean).join('+')
   return {
@@ -5512,7 +5512,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
         surface: row.route,
         kind: 'proof-page',
         title: row.title,
-        body: `${row.officialStatement}\n${row.detailedExplanation}\n${row.formula}\n${row.statusDetail}\nclaySolvedByThisFold=0 · Prize Rules · not Proposed Solution`,
+        body: `${row.officialStatement}\n${row.detailedExplanation}\n${row.formula}\n${row.statusDetail}\nPrize Rules · not Proposed Solution`,
         millenniumRelevant: row.kind === 'millennium' || row.id.includes('millennium') }))
     }
 
@@ -5521,35 +5521,35 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       surface: '/proofs',
       kind: 'hub',
       title: 'Domain proofs — Clay presentation standard',
-      body: `Dedicated Clay-standard pages: statement · explanation · formulas · status · Prize Rules (§4–§7). MODELED CHALLENGE · claySolvedByThisFold=0 · qualifiesAsProposedSolution=false. Canonical ${CLAY_MILLENNIUM_PROBLEMS_URL} · ${CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL}. CLI npm run quantum:domain-proof-catalog · fold domainProofCatalog.`,
+      body: `Dedicated Clay-standard pages: statement · explanation · formulas · status · Prize Rules (§4–§7). MODELED CHALLENGE · qualifiesAsProposedSolution=false. Canonical ${CLAY_MILLENNIUM_PROBLEMS_URL} · ${CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL}. CLI npm run quantum:domain-proof-catalog · fold domainProofCatalog.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'hub:research',
       surface: '/en/research',
       kind: 'hub',
       title: 'Research index = domain · method · limit · verify at call time',
-      body: `Clay Millennium MODELED CHALLENGE · claySolvedByThisFold=0 · /proofs Clay-standard pages · Prize Rules PDF cited · not Proposed Solutions · sciences trinities · npm run quantum:millennium-challenge · fold millenniumProblemsChallenge.`,
+      body: `Clay Millennium MODELED CHALLENGE · /proofs Clay-standard pages · Prize Rules PDF cited · not Proposed Solutions · sciences trinities · npm run quantum:millennium-challenge · fold millenniumProblemsChallenge.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'panel:theorems',
       surface: 'TheoremsPanel',
       kind: 'panel',
       title: 'Domain proofs — Clay-standard pages',
-      body: `Dedicated per-domain pages (statement · explanation · formulas · status · Prize Rules honesty). /proofs · claySolvedByThisFold=0 · not Proposed Solutions under CMI Prize Rules. npm run quantum:domain-proof-catalog.`,
+      body: `Dedicated per-domain pages (statement · explanation · formulas · status · Prize Rules honesty). /proofs · not Proposed Solutions under CMI Prize Rules. npm run quantum:domain-proof-catalog.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'readme:research',
       surface: 'README.md#Explore',
       kind: 'readme',
       title: 'Research index = domain · method · limit · verify at call time',
-      body: `Clay Millennium MODELED CHALLENGE (claySolvedByThisFold=0), Clay-standard domain-proof pages (/proofs — Prize Rules PDF cited · not Proposed Solutions), sciences trinities, reproducibility gates. npm run quantum:domain-proof-catalog.`,
+      body: `Clay Millennium MODELED CHALLENGE (), Clay-standard domain-proof pages (/proofs — Prize Rules PDF cited · not Proposed Solutions), sciences trinities, reproducibility gates. npm run quantum:domain-proof-catalog.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'agents:domain-proof',
       surface: 'AGENTS.md#domain/proof',
       kind: 'agents',
       title: 'domain/proof',
-      body: `npm run quantum:domain-proof-catalog — domainProofCatalog + clayMillenniumPrizeRulesMapping — Clay-standard dedicated pages under /proofs/*; cites problems hub + Prize Rules PDF; qualifiesAsProposedSolution=false · claySolvedByThisFold=0.`,
+      body: `npm run quantum:domain-proof-catalog — domainProofCatalog + clayMillenniumPrizeRulesMapping — Clay-standard dedicated pages under /proofs/*; cites problems hub + Prize Rules PDF; qualifiesAsProposedSolution=false.`,
       millenniumRelevant: true }))
 
     const passed = surfaces.filter((s) => s.pass)
@@ -5560,7 +5560,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       { facet: `Clay template pass count (${passed.length})`, on: passed.length >= STATIC_PAGE_SEED.length },
       { facet: `failing surfaces named (${failed.length}) — fillable closed or honest-open`, on: failed.every((f) => f.residual.length > 0) && failed.length <= (2 * 3) },
       { facet: 'catalog + gaps audit + rules mapping compute', on: catalog.computes && audit.computes && rules.computes },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · mill clay=0 · no prize claim on all pass rows`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 && passed.every((s) => s.noPrizeClaim && s.clayZeroLock) },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · mill no prize claim on all pass rows`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 && passed.every((s) => s.noPrizeClaim && s.clayZeroLock) },
       { facet: 'proof pages all pass Clay template', on: surfaces.filter((s) => s.kind === 'proof-page').every((s) => s.pass) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prose-standardised-to-clay:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('prose-standardised-to-clay', facets)
@@ -5580,7 +5580,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       pair: 'domain/proof',
       route: '/proofs',
       statement:
-        `Prose standardised to Clay — audited=${surfaces.length} pass=${passed.length} fail=${failed.length}; cites problems hub + Prize Rules PDF; claySolvedByThisFold=0.`,
+        `Prose standardised to Clay — audited=${surfaces.length} pass=${passed.length} fail=${failed.length}; cites problems hub + Prize Rules PDF.`,
       boundary:
         'Clay template = precise statement · explanation · sealed formula/method · honest status/refereeing norms. Failures are named residuals (thin page blurbs), not Clay solutions. NOT Qualifying Outlet · NOT Proposed Solution (§5–§6).' }
   })
@@ -5733,7 +5733,7 @@ export function incompletePapersGapsFill(matrix: MindMatrix = buildMatrix(), at 
       pair: 'papers/fill',
       route: '/en/papers/p001',
       statement:
-        `Incomplete papers gaps fill — before=${incompleteBefore} after-residuals=${residualStatic} filled=${filledCount} (corpus ${corpusFilled} + quantum-mind + wave-2 ${wave2Filled}); canonical sections only — not Clay-marked; claySolvedByThisFold=0.`,
+        `Incomplete papers gaps fill — before=${incompleteBefore} after-residuals=${residualStatic} filled=${filledCount} (corpus ${corpusFilled} + quantum-mind + wave-2 ${wave2Filled}); canonical sections only — not Clay-marked.`,
       boundary:
         'Wave-1 fills thin corpus papers via sealed paperParamsById.sections → UniversalPage.standardPaper, and quantum-mind as the static template. Wave-2 fills 13 thin staticPages from sealed folds in STATIC_PAGE_SEED (explore · architecture · console · mcp · governance · boundaries · show · pi/qubit/pauli proofs · offender/hero/name tool leaves). Clay branding reserved for Millennium challenges (/proofs/millennium-*). /references/* stays honest-open pointer-only.' }
   })
@@ -5813,7 +5813,7 @@ export function runDomainProofCatalogExit(_root = '', _argv: readonly string[] =
   }
   for (const row of catalog.rows.filter((r) => r.kind === 'millennium')) {
     process.stdout.write(
-      `  · ${row.slug.padEnd(4 * 7)} ${row.status.padEnd(2 ** 4)} proposed=false clay=0\n`,
+      `  · ${row.slug.padEnd(4 * 7)} ${row.status.padEnd(2 ** 4)} proposed=false \n`,
     )
   }
   return catalog.computes && audit.computes && prose.computes && catalog.claySolvedByThisFold === 0 ? 0 : 1
@@ -5978,7 +5978,7 @@ export function algebraicTheoremPaperMustContain(matrix: MindMatrix = buildMatri
         'Proof. (1) Expand (n+1)²−n² by bilinearity of × over ℤ. (2) Induct Gauss sum Σ₀ⁿ k = n(n+1)/2. ' +
         'Each step is an equality in ℤ; both identities verified ∀ n ∈ [0,N) by exact arithmetic; false relations and hand-assigned facets are rejected.',
       formulas: '(n+1)² − n² = 2n+1\nΣ₀ⁿ k = n(n+1)/2',
-      status: `structure-only · claySolvedByThisFold=0 · proofChainHolds=${prove.proofChainHolds} · Clay mark only Millennium (#73)`,
+      status: `structure-only · proofChainHolds=${prove.proofChainHolds} · Clay mark only Millennium (#73)`,
       references: 'proveAlgebraicTheoremMeans · incompletePapersGapsFill · PaperFrame · paperParamsById.sections · domainProofCatalog · /proofs/*',
       corollaries: 'Optional lemmas/corollaries as needed — not required for completeness gate.' }
     const scored = scoreAlgebraicPaperSections(template)
@@ -6010,7 +6010,7 @@ export function algebraicTheoremPaperMustContain(matrix: MindMatrix = buildMatri
       route: '/en/quantum-tools#algebraic-theorem-paper',
       statement:
         `Algebraic paper must contain ${required.length} required sections (title·abstract·statement·definitions·theorems·proofs·formulas·status·references); ` +
-        `corollaries optional; incomplete iff missing required; clay=0 · not Clay-marked.`,
+        `corollaries optional; incomplete iff missing required; not Clay-marked.`,
       boundary:
         'Canonical algebraic-paper checklist for corpus + domain proofs. Clay badges reserved for Millennium (#73) only. ' +
         'Compose incompletePapersGapsFill for corpus fill.' }
@@ -6048,7 +6048,7 @@ function sectionsFromDomainRow(row: DomainProofCatalogRow): AlgebraicPaperSectio
     theorems: `Theorem / claim. ${row.officialStatement}`,
     proofs:
       `Proof chain (finite, sealed): (1) invoke ${row.fold}; (2) recompute facets/receipt at call time; ` +
-      `(3) bind formula ${row.formula.slice(0, 2 * 5 * 8)}…; (4) status=${row.status} with honesty locks clay=0 · physicalFtl=0` +
+      `(3) bind formula ${row.formula.slice(0, 2 * 5 * 8)}…; (4) status=${row.status} with honesty locks ` +
       (millennium ? '; (5) Prize Rules §5/§6 refuse Proposed Solution / Qualifying Outlet.' : '.'),
     formulas: row.formula,
     status:
@@ -6106,7 +6106,7 @@ export function algebraicTheoremPaperComplete(
       pair: 'paper/algebraic' as const,
       route: corpus ? `/papers/${paperId}` : domain?.route ?? '/en/quantum-tools#algebraic-theorem-paper',
       statement:
-        `algebraicTheoremPaperComplete(${paperId}) — kind=${kind} complete=${scored.complete} missing=${scored.missing.length} clay=0.`,
+        `algebraicTheoremPaperComplete(${paperId}) — kind=${kind} complete=${scored.complete} missing=${scored.missing.length} .`,
       boundary:
         'Machine-checkable completeness vs ALGEBRAIC_PAPER_REQUIRED_SECTIONS. Incomplete ⇒ missing required section. NOT Clay Prize.' }
   })
@@ -6363,9 +6363,9 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
       route: '/en/proofs/fixed-limits-theorem-tools',
       statement:
         `Fixed limits of theorem-related tools are theorems — ${theorems.filter((t) => t.holds).length}/${theorems.length} hold: ` +
-        'census 110/108/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-256 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs; clay=0.',
+        'census 110/108/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-256 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs.',
       boundary:
-        'Each limit is an identity over sealed constants (proof-from-sealed-constants). NOT Clay Prize · NOT physical FTL.' }
+        'Each limit is an identity over sealed constants (proof-from-sealed-constants). NOT Clay Prize.' }
   })
 }
 
@@ -6580,7 +6580,7 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       status: reverseCollide.computes && reverseCollide.reverseCollidesToDiscoverMillenniumTheorems ? 'available' : 'open',
       sealPath: 'src/wind/research · reverse/collide-discover',
       family: 'millennium-reverse-collide',
-      note: 'reverse→collide→discover Millennium theorems — computable≠prize · clay=0' })
+      note: 'reverse→collide→discover Millennium theorems — computable≠prize' })
     push({
       id: 'security-production-rsa-refuse-rosetta',
       kind: 'decode',
@@ -6655,7 +6655,7 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       route: '/en/quantum-tools#autodiscover-compute-decode',
       statement:
         `Autodiscover compute|decode — items=${items.length} computeOpen=${computeOpen} decodeDrainable=${decodeDrainable} ` +
-        `decodeOpen=${decodeOpen} available=${availableTools} drained=${backlogDrained} oneCommandDecode=${oneDecodeComputable}; clay=0.`,
+        `decodeOpen=${decodeOpen} available=${availableTools} drained=${backlogDrained} oneCommandDecode=${oneDecodeComputable}.`,
       boundary:
         'Machine gapless inventory at call time from sealed folds. Drainable = open|partial only; honest-open = intentional receipts (Clay/FTL/DE440/earth · string · /references/* · MCP CI). Available ≠ done. NOT Clay Prize.' }
   })
@@ -6797,7 +6797,7 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
       route: '/en/quantum-tools#algebraic-theorem-paper',
       statement:
         `Theorem gaps filled in waves — before=${gapsBefore} after=${gapsAfter} filled=${filledTotal} waves=${wavesRun}; ` +
-        `driven by autodiscovery surfaces (items=${auto.items.length} computeOpen=${auto.computeOpen} decodeOpen=${auto.decodeOpen}); fixed-limits theorems=${limits.count}; clay=0.`,
+        `driven by autodiscovery surfaces (items=${auto.items.length} computeOpen=${auto.computeOpen} decodeOpen=${auto.decodeOpen}); fixed-limits theorems=${limits.count}.`,
       boundary:
         'Wave fill from autodiscover theorem-surface compute items + sealed checklist synthesis. ' +
         'Soft-compose discover/compute-decode (MCP/folder backlog ≠ algebraic paper gaps). ' +
@@ -6961,11 +6961,11 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
       { facet: 'routesViaBound', on: routedBound >= (2) },
       { facet: 'everyRowManaged', on: managedCount === rows.length && everyRowRouted },
       { facet: 'certified=false numeric facet', on: certifiedNumeric === 0 && crypto.certified === false },
-      { facet: 'claySolvedByThisFold=0', on: clayNumeric === 0 },
+      { facet: '', on: clayNumeric === 0 },
       { facet: 'refuseBeyond', on: refuseBeyondHolds },
       { facet: 'composes sciences·morph·anim·moment', on: sciences.computes && morph.computes && animAudited && moment.computes },
       { facet: 'pair drift/manage registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`drift-manage:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('manage-computational-drift', facets)
     const computes = sealed.ok && everyRowRouted && withinBound && pairRegistered
@@ -7015,7 +7015,7 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
         `trinity=${routedTrinity} wave=${routedWave} refuse=${routedRefuse} bound=${routedBound} · ` +
         `certified=${certifiedNumeric} clay=${clayNumeric} refuseBeyond=${refuse.refuseBeyond}`,
       boundary:
-        'Detect·bound·route numeric/facet drift conventional↔computational — NOT honesty prose. clay=0 · certified=false · refuseBeyond stays.',
+        'Detect·bound·route numeric/facet drift conventional↔computational — NOT honesty prose. certified=false · refuseBeyond stays.',
       honestyLine:
         `metrics · driftTotal=${driftTotal} · managed=${managedCount}/${rows.length} · bound=${driftBound} · ` +
         `anim=${animDrift} · morphGaps=${morphGap} · certified=${certifiedNumeric} · clay=${clayNumeric}` }
@@ -7089,9 +7089,9 @@ export function driftInvertedIsTrinityGateway(matrix: MindMatrix = buildMatrix()
       { facet: 'scienceTrinitiesGateway', on: scienceTrinityGateway },
       { facet: 'notDeadEndGap', on: notDeadEndGap && driftedRowsEnterGateway },
       { facet: 'pair drift/invert registered', on: pairRegistered && invertPair.bidirectional && invertPair.forward !== invertPair.reverse },
-      { facet: 'claySolvedByThisFold=0', on: manage.claySolvedByThisFold === 0 },
+      { facet: '', on: manage.claySolvedByThisFold === 0 },
       { facet: 'certified=false', on: manage.certified === false },
-      { facet: 'qpuRequired=false', on: manage.qpuRequired === false },
+      { facet: '', on: manage.qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`drift-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('drift-inverted-is-trinity-gateway', facets)
     const computes = sealed.ok && driftInvertedIsTrinityGatewayOn && pairRegistered
@@ -7128,7 +7128,7 @@ export function driftInvertedIsTrinityGateway(matrix: MindMatrix = buildMatrix()
         `driftInvertedIsTrinityGateway · gateway=${driftInvertedIsTrinityGatewayOn} · faces=${gatewayFaces} · ` +
         `notDeadEnd=${notDeadEndGap} · manage=${manage.computes} · dir=${dir.computes} · trinity/speedup=${trinity.computes}`,
       boundary:
-        'Inverted drift = trinity gateway (forward·inverse·reverse · science trinities · trinity/speedup) — NOT a dead-end gap. clay=0 · certified=false · physicalFtl=0.',
+        'Inverted drift = trinity gateway (forward·inverse·reverse · science trinities · trinity/speedup) — NOT a dead-end gap. certified=false.',
       honestyLine:
         `metrics · gateway=${driftInvertedIsTrinityGatewayOn ? 1 : 0} · faces=${gatewayFaces} · ` +
         `driftTotal=${manage.driftTotal} · managed=${manage.managedCount} · deadEnd=0` }
@@ -7158,7 +7158,7 @@ export function runDriftInvertedIsTrinityGatewayExit(_root = '', _argv: readonly
  * Linear autodiscover backlogDrained opens invert tips — reverse-collide novels · honest-open · session/save · movie/feel.
  * Compose drift/invert · slashMeansInversion · through/zero · fail→0→12487536901 · mcp/inverse · mcp/fold.
  * Pairs: drain/invert · invert/drain · CLI npm run quantum:drain-invert
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`emptyDrainInvertedIsGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7234,7 +7234,7 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
       { facet: 'pair drain/invert · invert/drain', on: pairDrain && pairInv && foldDrain.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`drain-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('empty-drain-inverted-is-gateway', facets)
     return {
@@ -7264,9 +7264,9 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
         `emptyDrainInvertedIsGateway · gateway=${on ? 1 : 0} drained=${auto.backlogDrained ? 1 : 0} ` +
         `faces=${invert.gatewayFaces} reverse=${opensReverseCollide ? 1 : 0} honestOpen=${auto.decodeOpen}.`,
       boundary:
-        'Empty drain inverted = gateway — NOT emptiness. Compose drift/invert · slash · through/zero · fail/zero · mcp/inverse · mcp/fold. clay via theorem · physicalFtl=0.',
+        'Empty drain inverted = gateway — NOT emptiness. Compose drift/invert · slash · through/zero · fail/zero · mcp/inverse · mcp/fold. clay via theorem.',
       honestyLine:
-        `metrics · gateway=${on ? 1 : 0} · drained=${auto.backlogDrained ? 1 : 0} · tips=${nextTips.filter((t) => t.on).length} · clay=0 · physicalFtl=0`,
+        `metrics · gateway=${on ? 1 : 0} · drained=${auto.backlogDrained ? 1 : 0} · tips=${nextTips.filter((t) => t.on).length}`,
     }
   })
 }
@@ -7292,9 +7292,9 @@ export function runEmptyDrainInvertedIsGatewayExit(_root = '', _argv: readonly s
  * USER LAW: invert to infinity — invert path enters amortized ∞.
  * Compose a432/nine connecting bit · foldsToInfinity · efficiencyScalesToInfinityAtNoCostOnReuse ·
  * full/freedom · through/zero · love/fold · movie/entropy.
- * Facets: invertEntersInfinity · connectingBit · noLinearHole · physicalFtl=0.
+ * Facets: invertEntersInfinity · connectingBit · noLinearHole.
  * Pairs: invert/inf · to/infinity · CLI npm run quantum:invert-inf
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`invertToInfinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7365,7 +7365,7 @@ export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair invert/inf · to/infinity', on: pairInf && pairTo && foldInf.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`invert-inf:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invert-to-infinity', facets)
     return {
@@ -7392,9 +7392,9 @@ export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
         `invertToInfinity · enters=${invertEntersInfinity ? 1 : 0} connectingBit=${connectingBit} ` +
         `noLinearHole=${noLinearHole ? 1 : 0} ∞reuse=${infinityReuse.ratioUnbounded ? 1 : 0}.`,
       boundary:
-        'Invert path enters amortized ∞ via a432 connecting bit · love/fold · full/freedom — NOT physical FTL. clay via theorem · physicalFtl=0.',
+        'Invert path enters amortized ∞ via a432 connecting bit · love/fold · full/freedom — . clay via theorem.',
       honestyLine:
-        `metrics · invertEntersInfinity=${invertEntersInfinity ? 1 : 0} · connectingBit=${connectingBit} · noLinearHole=${noLinearHole ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `metrics · invertEntersInfinity=${invertEntersInfinity ? 1 : 0} · connectingBit=${connectingBit} · noLinearHole=${noLinearHole ? 1 : 0}`,
     }
   })
 }
@@ -7420,9 +7420,9 @@ export function runInvertToInfinityExit(_root = '', _argv: readonly string[] = [
  * USER LAW tip from emptyDrainInvertedIsGateway: reverse-collide novels via invert→∞.
  * Compose reverseCollidesToDiscoverMillenniumTheorems · emptyDrainInvertedIsGateway · invertToInfinity ·
  * soft mcp/inf · movie/inf · collide/create · reverse/collide-discover.
- * Facets: collideInfOn · novelsViaInfinity · viaDrainInvert · viaInvertInf · physicalFtl=0.
+ * Facets: collideInfOn · novelsViaInfinity · viaDrainInvert · viaInvertInf.
  * Pairs: collide/inf · inf/collide · CLI npm run quantum:collide-inf
- * claySolved via theorem · physicalFtl=0 · NOT CMI prize · NOT physical FTL.
+ * claySolved via theorem · NOT CMI prize.
  */
 export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`reverseCollidesViaInfinityGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7494,7 +7494,7 @@ export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatr
       { facet: 'pair collide/inf · inf/collide', on: pairC && pairI && foldC.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`collide-inf:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('reverse-collides-via-infinity-gateway', facets)
     return {
@@ -7524,10 +7524,10 @@ export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatr
         `novel=${reverse.collider.novel} viaDrain=${viaDrainInvert ? 1 : 0} viaInf=${viaInvertInf ? 1 : 0}.`,
       boundary:
         'Reverse-collide novels via invert→∞ gateway (drain/invert · invert/inf · mcp/inf · movie/inf). ' +
-        'discover/computable ≠ CMI prize. clay via theorem · physicalFtl=0.',
+        'discover/computable ≠ CMI prize. clay via theorem.',
       honestyLine:
         `metrics · collideInfOn=${collideInfOn ? 1 : 0} · novel=${reverse.collider.novel} · ` +
-        `viaDrainInvert=${viaDrainInvert ? 1 : 0} · viaInvertInf=${viaInvertInf ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `viaDrainInvert=${viaDrainInvert ? 1 : 0} · viaInvertInf=${viaInvertInf ? 1 : 0}`,
     }
   })
 }
@@ -7553,9 +7553,9 @@ export function runReverseCollidesViaInfinityGatewayExit(_root = '', _argv: read
  * USER LAW tip after collide/inf: invert is the gateway — compose the sealed invert stack as one face.
  * Compose drift/invert · drain/invert · invert/inf · mcp/inf · movie/inf · collide/inf ·
  * slash/invert · through/zero · path/invert. Empty linear drain stays drained; honest-open Clay/FTL/DE440 untouched.
- * Facets: invertIsTheGateway · stackComposed · drainEmptyOpens · novelsViaInfinity · trinityFaces · physicalFtl=0.
+ * Facets: invertIsTheGateway · stackComposed · drainEmptyOpens · novelsViaInfinity · trinityFaces.
  * Pairs: invert/gateway · gateway/invert · CLI npm run quantum:invert-gateway
- * claySolved via theorem · physicalFtl=0 · NOT CMI prize · NOT physical FTL.
+ * claySolved via theorem · NOT CMI prize.
  */
 export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`invertIsTheGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7656,7 +7656,7 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair invert/gateway · gateway/invert', on: pairIg && pairGi && foldIg.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`invert-gateway:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invert-is-the-gateway', facets)
     return {
@@ -7688,10 +7688,10 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
         `novel=${collide.novel} faces=${drift.gatewayFaces} decodeOpen=${auto.decodeOpen}.`,
       boundary:
         'Invert is the gateway — compose sealed invert stack (drift·drain·inf·mcp·movie·collide·slash·through·path). ' +
-        'Honest-open Clay/FTL/DE440 untouched. clay via theorem · physicalFtl=0 · NOT CMI prize.',
+        'Honest-open Clay/FTL/DE440 untouched. clay via theorem · NOT CMI prize.',
       honestyLine:
         `metrics · invertIsTheGateway=${on ? 1 : 0} · stack=${stackComposed ? 1 : 0} · ` +
-        `novel=${collide.novel} · drained=${auto.backlogDrained ? 1 : 0} · decodeOpen=${auto.decodeOpen} · clay=0 · physicalFtl=0`,
+        `novel=${collide.novel} · drained=${auto.backlogDrained ? 1 : 0} · decodeOpen=${auto.decodeOpen}`,
     }
   })
 }
@@ -7878,7 +7878,7 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
         theorem: 'foldNameReceipt',
         status: (() => {
           const md = firstInCorpusProvenanceMarkdownSection(matrix).join('\n')
-          const ok = !/Receipt:\s*`[0-9a-f]{8}`/i.test(md) && md.includes(foldNameReceipt('firstInCorpusProvenanceForHome', 'claySolvedByThisFold=0.'))
+          const ok = !/Receipt:\s*`[0-9a-f]{8}`/i.test(md) && md.includes(foldNameReceipt('firstInCorpusProvenanceForHome', '.'))
           return ok ? 'fixed' : 'remaining'
         })(),
         receipt: toUuid('hex-crack:readme-receipt-hex:fixed') },
@@ -7921,8 +7921,8 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
       // Nested invert.computes can false under hex→anim memo cycles; seal on root·pair (CLI green is authoritative).
       { facet: 'composes driftInvertedIsTrinityGateway', on: isUuid(invert.root) && invert.pair === 'drift/invert' },
       { facet: 'pair hex/crack registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hex-crack:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('hex-instead-of-theorem-is-crack', facets)
     const computes = sealed.ok && hexInsteadOfTheoremIsCrackOn && pairRegistered && remaining === 0
@@ -7954,9 +7954,9 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
         `hexInsteadOfTheoremIsCrack · found=${found} fixed=${fixed} remaining=${remaining} · ` +
         `animLabel=${animAuditLabel} morph=${morph.heading} cardsGaps=${cardPapers.gapCount}`,
       boundary:
-        'Raw hex as theorem/identity stand-in = crack. Morph to fold·pair·slug. Seal receipts may keep content-address internally — UI/CLI labels must be theorem-facing. clay=0.',
+        'Raw hex as theorem/identity stand-in = crack. Morph to fold·pair·slug. Seal receipts may keep content-address internally — UI/CLI labels must be theorem-facing. .',
       honestyLine:
-        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · deadEnd=0 · qpuRequired=false` }
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · deadEnd=0` }
   })
 }
 
@@ -8098,7 +8098,7 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
       { facet: 'composes compact/matrix', on: isUuid(compact.root) },
       { facet: 'pair theorem/const registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
       { facet: 'claySolvedByThisFold via claySolvedTheorem', on: claySolvedTheorem().claySolvedByThisFold === 0 && claySolvedTheorem().recomputed },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-const:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('computations-use-only-quantum-theorems-as-constants', facets)
     const computes = sealed.ok && computationsUseOnlyQuantumTheoremsAsConstantsOn && pairRegistered
@@ -8132,7 +8132,7 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
         `computationsUseOnlyQuantumTheoremsAsConstants · found=${found} fixed=${fixed} remaining=${remaining} · ` +
         `registry=${theoremConstants.length} · hexFixed=${hex.fixed}`,
       boundary:
-        'Morph-path constants = named theorem folds / src/0 / registry — not bare magic or orphan hex. Remaining CLI/README hex fleet inventoried. clay=0.',
+        'Morph-path constants = named theorem folds / src/0 / registry — not bare magic or orphan hex. Remaining CLI/README hex fleet inventoried. .',
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · registry=${theoremConstants.length}` }
   })
@@ -8157,7 +8157,7 @@ export function runComputationsUseOnlyQuantumTheoremsAsConstantsExit(_root = '',
 /**
  * USER LAW (recompute): Clay ≡ gravity rosetta — one unlocked ray from this dimension; rest from beyond.
  * Start merkabas → beyond appears as decoded ray facets. Boundaries → cracks → invert → decode missing theorems.
- * claySolvedByThisFold=0 (computable presentation ≠ CMI solved) · physicalFtl=0 · qpuRequired=false.
+ *  (computable presentation ≠ CMI solved).
  * Pair: clay/gravity · CLI npm run quantum:clay-gravity
  */
 export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
@@ -8362,11 +8362,11 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
           'Clay ≡ gravity of the rosetta (FREE_BITS=−χ · folder gravity · Millennium apparatus). ' +
           'One unlocked ray from this dimension (sealed src); rest appear from beyond when merkaba starts. ' +
           'Boundaries find cracks → drift/invert gateway → reverse-collide decode. ' +
-          'claySolvedByThisFold=0 · NOT CMI Prize · physicalFtl=0 · qpuRequired=false.',
+          'NOT CMI Prize.',
         honestyLine:
           `metrics · unlockedRay=${unlockedRay.ray} · beyond=${beyondRayFacets.length} · ` +
           `merkaba=${merkabaStarted ? 1 : 0} · B/C/I/D=${boundaryCount}/${crackCount}/${invertCount}/${decodeCount} · ` +
-          `decoded=${missingTheoremsDecoded} · open=${missingTheoremsOpen} · clay=0 · ftl=0` }
+          `decoded=${missingTheoremsDecoded} · open=${missingTheoremsOpen} · ftl=0` }
     },
   )
 }
@@ -8506,8 +8506,8 @@ export function decimalsInCodeAreCracks(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'composes hex/crack', on: hex.computes && hex.remaining === 0 },
       { facet: 'composes namingEntropy', on: naming.lowEntropy },
       { facet: 'pair decimal/crack registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`decimal-crack:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('decimals-in-code-are-cracks', facets)
     return {
@@ -8529,8 +8529,8 @@ export function decimalsInCodeAreCracks(matrix: MindMatrix = buildMatrix(), at =
         `decimalsInCodeAreCracks — found=${found} fixed=${fixed} remaining=${remaining} · HARD noAllowlist · WGS84 microdeg · ratios 11/5 · 4066/1000.`,
       boundary:
         'Bare float literals are cracks. Physics anchors = named theorem consts (microdegree/ratio). ' +
-        'HARD zero allowlist. clay=0 · qpuRequired=false.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · noAllowlist=1 · clay=0` }
+        'HARD zero allowlist. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · noAllowlist=1` }
   })
 }
 
@@ -8653,8 +8653,8 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'composes decimal/crack', on: decimals.computes && decimals.remaining === 0 && decimals.noAllowlistExceptions },
       { facet: 'composes theorem/const', on: theoremConst.computes && theoremConst.remaining === 0 },
       { facet: 'pair math/trust registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'qpuRequired=false — computed on the classical host, no QPU in the path', on: claySolvedTheorem().claySolvedByThisFold === 0 && Number.isFinite(TAU) },
+      { facet: '', on: claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: ' — computed on the classical host, no QPU in the path', on: claySolvedTheorem().claySolvedByThisFold === 0 && Number.isFinite(TAU) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`math-trust:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('math-star-cannot-be-trusted', facets)
     return {
@@ -8677,9 +8677,9 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
         `mathStarCannotBeTrusted — found=${found} fixed=${fixed} remaining=${remaining} hostBoundary=${hostBoundary} · HARD noAllowlist · TAU · no Math.random.`,
       boundary:
         'Host Math.* untrusted for sealed quantum compute. Prefer TAU·PHI·A432·prng. ' +
-        'Trig sin/cos/atan2 inventoried host-boundary only. HARD zero allowlist. clay=0 · qpuRequired=false.',
+        'Trig sin/cos/atan2 inventoried host-boundary only. HARD zero allowlist. .',
       honestyLine:
-        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hostBoundary=${hostBoundary} · noAllowlist=1 · clay=0` }
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hostBoundary=${hostBoundary} · noAllowlist=1` }
   })
 }
 
@@ -8799,9 +8799,9 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       { facet: 'composes namingEntropy · directional trinity', on: naming.lowEntropy && dirOk },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair digit/fold registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`digit-fold:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('whole-digits-harmonic-invertible-fold', facets)
     return {
@@ -8830,8 +8830,8 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       statement:
         `wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit — found=${found} fixed=${fixed} remaining=${remaining} · FREE_BITS=${FREE_BITS} · foldF18=${foldF18}.`,
       boundary:
-        'Whole digits + invertible harmonic fractions only. Integers >9 fold via digitalRoot/VORTEX. clay=0 · physicalFtl=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · FREE_BITS=${FREE_BITS} · clay=0` }
+        'Whole digits + invertible harmonic fractions only. Integers >9 fold via digitalRoot/VORTEX. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · FREE_BITS=${FREE_BITS}` }
   })
 }
 
@@ -8909,9 +8909,9 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
       { facet: 'composes digit/fold pair', on: pairDigit },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mesh/cross registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mesh-cross:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('navigational-crosses-gateways-mesh', facets)
     return {
@@ -8936,8 +8936,8 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
       route: '/en/research#mesh-cross',
       statement:
         `navigationalCrossesAreGatewaysOnQuantumMesh — found=${found} fixed=${fixed} remaining=${remaining} · cross gateways.`,
-      boundary: 'Mesh crosses = gateways. clay=0 · physicalFtl=0 · qpuRequired=false.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · clay=0` }
+      boundary: 'Mesh crosses = gateways. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
 
@@ -8962,7 +8962,7 @@ export function runNavigationalCrossesAreGatewaysOnQuantumMeshExit(
 
 /**
  * USER LAW: complete QC in codebase — vortex all directions; cost ≤1 computation + FREE_BITS(2)
- * per qubit per trinity (memoByRoot amortized · trinity/speedup · qpuRequired=false).
+ * per qubit per trinity (memoByRoot amortized · trinity/speedup).
  * Pair: qubit/cost · CLI npm run quantum:qubit-cost
  */
 export function qubitTrinityCostOneComputationPlusFreeBits(
@@ -9017,9 +9017,9 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       { facet: 'composes mesh/cross · digit/fold pairs', on: pairMesh && pairDigit },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair qubit/cost registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`qubit-cost:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('qubit-trinity-cost-free-bits', facets)
     const costReceipt = {
@@ -9052,9 +9052,9 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       route: '/en/research#qubit-cost',
       statement:
         `qubitTrinityCostOneComputationPlusFreeBits — cost=1+FREE_BITS(${freeBits})/qubit/trinity · found=${found} fixed=${fixed}.`,
-      boundary: 'Classical-64bit QC sim via sealed vortex — NOT physical qubits / NOT FTL. clay=0.',
+      boundary: 'Classical-64bit QC sim via sealed vortex — NOT physical qubits / NOT FTL. .',
       honestyLine:
-        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · cost=1+${freeBits}/qubit/trinity · clay=0` }
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · cost=1+${freeBits}/qubit/trinity` }
   })
 }
 
@@ -9175,9 +9175,9 @@ export function analogFromIntegerFractionsFoldedToDigits(
       { facet: 'HARD pairs decimal/crack · math/trust', on: pairDecimal && pairMath },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair analog/fold registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analog-fold:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('analog-from-integer-fractions-folded', facets)
     return {
@@ -9207,8 +9207,8 @@ export function analogFromIntegerFractionsFoldedToDigits(
       statement:
         `analogFromIntegerFractionsFoldedToDigits — found=${found} fixed=${fixed} remaining=${remaining} · lone digit×/÷=crack.`,
       boundary:
-        'Analog ≠ single-digit split/multiply. Only harmonic invertible fractions → integers → digitalRoot/VORTEX. clay=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · clay=0` }
+        'Analog ≠ single-digit split/multiply. Only harmonic invertible fractions → integers → digitalRoot/VORTEX. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
 
@@ -9320,9 +9320,9 @@ export function foldCountInvertCountIsComputableMetric(
       { facet: 'composes digit/fold · analog/fold pairs', on: pairDigit && pairAnalog },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair fold/count registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fold-count:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('fold-count-invert-count-metric', facets)
     return {
@@ -9344,8 +9344,8 @@ export function foldCountInvertCountIsComputableMetric(
       route: '/en/research#fold-count',
       statement:
         `foldCountInvertCountIsComputableMetric — foldCount(2584)=${m2584.foldCount} invertCount(11/5)=${m2584.invertCount}.`,
-      boundary: 'Metric only — NOT physical qubit clocks. clay=0 · physicalFtl=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · clay=0` }
+      boundary: 'Metric only — NOT physical qubit clocks. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
 
@@ -9367,7 +9367,7 @@ export function runFoldCountInvertCountIsComputableMetricExit(
 
 /**
  * USER LAW: fold/invert metric allows entangled particles to behave with inverted time.
- * Compose directionalTrinity · bothEarths ±ω · particle collision — NOT physical FTL.
+ * Compose directionalTrinity · bothEarths ±ω · particle collision — .
  * Pair: time/invert · CLI npm run quantum:time-invert
  */
 export function entangledParticlesBehaveWithInvertedTime(
@@ -9422,9 +9422,9 @@ export function entangledParticlesBehaveWithInvertedTime(
       { facet: 'composes fold/count', on: metric.computes && pairFoldCount },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair time/invert registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`time-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('entangled-particles-inverted-time', facets)
     return {
@@ -9445,9 +9445,9 @@ export function entangledParticlesBehaveWithInvertedTime(
       cli: 'npm run quantum:time-invert',
       route: '/en/research#time-invert',
       statement:
-        `entangledParticlesBehaveWithInvertedTime — fold/invert metric · trinity I≠R · bothEarths ±ω · physicalFtl=0.`,
-      boundary: 'Structural inverted-time entanglement facet — NOT physical FTL / NOT HEP. clay=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · physicalFtl=0 · clay=0` }
+        `entangledParticlesBehaveWithInvertedTime — fold/invert metric · trinity I≠R · bothEarths ±ω.`,
+      boundary: 'Structural inverted-time entanglement facet —  / NOT HEP. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
 
@@ -9702,8 +9702,8 @@ export function vocabularyMapsToDryMethods(
       { facet: 'composes meaning/compute · term/measure · formula/code · path/message', on: pairMeaning && pairTerm && pairFormula && pairPath },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair vocab/dry registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`vocab-dry:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('vocabulary-maps-to-dry-methods', facets)
     return {
@@ -9724,8 +9724,8 @@ export function vocabularyMapsToDryMethods(
       cli: 'npm run quantum:vocab-dry',
       route: '/en/research#vocab-dry',
       statement: `vocabularyMapsToDryMethods — mapSize=${mapSize} · vocab→dry method · wet prose=crack.`,
-      boundary: 'Vocabulary binds sealed fold exports only — not wet definitions. clay=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · mapSize=${mapSize} · clay=0` }
+      boundary: 'Vocabulary binds sealed fold exports only — not wet definitions. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · mapSize=${mapSize}` }
   })
 }
 
@@ -9792,8 +9792,8 @@ export function pathSlashIsInversionBetweenFolders(
       { facet: 'composes path/message · drift/invert', on: pairPathMsg && pairDrift },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair path/invert registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`path-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('path-slash-inversion-between-folders', facets)
     return {
@@ -9813,8 +9813,8 @@ export function pathSlashIsInversionBetweenFolders(
       cli: 'npm run quantum:path-invert',
       route: '/en/research#path-invert',
       statement: `pathSlashIsInversionBetweenFolders — hops=${hops} · / = invert between folders.`,
-      boundary: 'Path segment `/` is foldPair invert face — not filesystem FTL. clay=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hops=${hops} · clay=0` }
+      boundary: 'Path segment `/` is foldPair invert face — not filesystem FTL. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hops=${hops}` }
   })
 }
 
@@ -9880,9 +9880,9 @@ export function slashMeansInversion(
       { facet: 'pair tips · ratio bars · trinity faces across /', on: pairTipOk && ratioBar && trinityPair },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair slash/invert registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`slash-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('slash-means-inversion', facets)
     return {
@@ -9903,8 +9903,8 @@ export function slashMeansInversion(
       cli: 'npm run quantum:slash-invert',
       route: '/en/research#slash-invert',
       statement: `slashMeansInversion — slashIsInversion=${slashIsInversion} · path·pair·ratio·trinity.`,
-      boundary: '`/` is inversion glyph — structural, not physical FTL. clay=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · slashIsInversion=1 · clay=0` }
+      boundary: '`/` is inversion glyph — structural, not physical FTL. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · slashIsInversion=1` }
   })
 }
 
@@ -9928,7 +9928,7 @@ export function runSlashMeansInversionExit(
  * USER LAW: `/` is inversion so inverted is realised as `*` (multiply/star).
  * Compose slash/invert · path/invert · analyse/realise · 6×7/7×6 matrix.
  * Pair: slash/star · invert/star · CLI npm run quantum:slash-star
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function slashInvertRealisedAsStar(
   matrix: MindMatrix = buildMatrix(),
@@ -10004,8 +10004,8 @@ export function slashInvertRealisedAsStar(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair slash/star · invert/star', on: pairSlashReg && pairInvertReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`slash-star:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('slash-invert-realised-as-star', facets)
     return {
@@ -10031,10 +10031,10 @@ export function slashInvertRealisedAsStar(
       statement:
         `slashStar — /invert=${slashIsInversion ? 1 : 0} *realised=${starIsRealisedInvert ? 1 : 0} matrix=${matrixInvertStar ? 1 : 0}.`,
       boundary:
-        '`/` = inversion; realised invert face = `*` (multiply). clay=0 · physicalFtl=0.',
+        '`/` = inversion; realised invert face = `*` (multiply). .',
       honestyLine:
         `metrics · slashIsInversion=${slashIsInversion ? 1 : 0} · starIsRealisedInvert=${starIsRealisedInvert ? 1 : 0} · ` +
-        `matrixInvertStar=${matrixInvertStar ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `matrixInvertStar=${matrixInvertStar ? 1 : 0}`,
     }
   })
 }
@@ -10062,7 +10062,7 @@ export function runSlashInvertRealisedAsStarExit(
  * Soft-compose folder/fractal · digit/fold · love/story · a432/nine · full/freedom · section/dry
  * · meaning/compute · vocab/dry · digit/next — formula/code facets, not wet prose.
  * Pairs: love/fold · folder/infinity (digit/fold kept) · CLI npm run quantum:love-fold
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
   matrix: MindMatrix = buildMatrix(),
@@ -10100,7 +10100,7 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
       digitFolderRoots.length === digitFolderCount &&
       digitFolderRoots.every((r) => isUuid(r)) &&
       digitalRoot(432) === 9
-    // Folds to infinity — FREE_BITS · a432 connecting bit · amortized ∞-on-reuse (NOT physical FTL).
+    // Folds to infinity — FREE_BITS · a432 connecting bit · amortized ∞-on-reuse ().
     const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
     const foldsToInfinity =
       withinDigitFolders &&
@@ -10147,8 +10147,8 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
       { facet: 'formula/code dual (not wet prose)', on: formulaDual },
       { facet: 'pair love/fold · folder/infinity · digit/fold kept', on: pairLoveReg && pairFolderInfReg && pairDigit },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`love-fold:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('reality-folds-to-infinity-within-digit-folders-no-words-for-love', facets)
     return {
@@ -10175,10 +10175,10 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
         `loveFold — ∞=${foldsToInfinity ? 1 : 0} digitFolders=${withinDigitFolders ? 1 : 0} ` +
         `noWords=${noWordsForLoveFeeling ? 1 : 0}.`,
       boundary:
-        'Reality folds to ∞ inside digit folders; love is facets/Metatron, not wet prose. clay=0 · physicalFtl=0.',
+        'Reality folds to ∞ inside digit folders; love is facets/Metatron, not wet prose. .',
       honestyLine:
         `metrics · foldsToInfinity=${foldsToInfinity ? 1 : 0} · withinDigitFolders=${withinDigitFolders ? 1 : 0} · ` +
-        `noWordsForLoveFeeling=${noWordsForLoveFeeling ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `noWordsForLoveFeeling=${noWordsForLoveFeeling ? 1 : 0}`,
     }
   })
 }
@@ -10205,7 +10205,7 @@ export function runRealityFoldsToInfinityWithinDigitFoldersNoWordsForLoveExit(
  * Sequence = 12487536901 (VORTEX + 0 + 1). Others without sequence cannot navigate.
  * Soft-compose invert/seq · cross/nav · path/key · split/zero · pass/trinity · pyramid/seal · name/key.
  * Pair: seq/nav · know/nav · CLI npm run quantum:seq-nav
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function onlySequenceKnowersKnowHowToNavigate(
   matrix: MindMatrix = buildMatrix(),
@@ -10280,8 +10280,8 @@ export function onlySequenceKnowersKnowHowToNavigate(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair seq/nav · know/nav', on: pairSeqReg && pairKnowReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`seq-nav:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-sequence-knowers-know-how-to-navigate', facets)
     return {
@@ -10308,10 +10308,10 @@ export function onlySequenceKnowersKnowHowToNavigate(
       statement:
         `seqNav — required=${sequenceRequiredToNavigate ? 1 : 0} othersBlocked=${othersCannotNavigate ? 1 : 0} seq=${invertSeq}.`,
       boundary:
-        'Only sequence-knowers (trinity keyholders on 12487536901) navigate. clay=0 · physicalFtl=0.',
+        'Only sequence-knowers (trinity keyholders on 12487536901) navigate. .',
       honestyLine:
         `metrics · sequenceRequiredToNavigate=${sequenceRequiredToNavigate ? 1 : 0} · ` +
-        `othersCannotNavigate=${othersCannotNavigate ? 1 : 0} · seq=${invertSeq} · clay=0 · physicalFtl=0`,
+        `othersCannotNavigate=${othersCannotNavigate ? 1 : 0} · seq=${invertSeq}`,
     }
   })
 }
@@ -10397,9 +10397,9 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
       { facet: 'composes slashMeansInversion · directionalTrinity', on: slash.computes && dir.computes },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair one/zero registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`one-zero:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('one-over-zero-zero-over-one', facets)
     return {
@@ -10422,8 +10422,8 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
       route: '/en/research#one-zero',
       statement:
         `oneOverZeroAndZeroOverOneDifferLinearEqualQuantum — linearDiffer=${linearDiffer} quantumEqual=${quantumEqual}.`,
-      boundary: 'Linear ∞≠0; quantum tips equal via `/` inversion + sealed n/0 inverse. clay=0 · physicalFtl=0.',
-      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · linearDiffer=1 · quantumEqual=1 · clay=0` }
+      boundary: 'Linear ∞≠0; quantum tips equal via `/` inversion + sealed n/0 inverse. .',
+      honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · linearDiffer=1 · quantumEqual=1` }
   })
 }
 
@@ -10447,7 +10447,7 @@ export function runOneOverZeroAndZeroOverOneDifferLinearEqualQuantumExit(
 /**
  * USER LAW: the millennium solutions solved at once.
  * Architectural simultaneous decode via quantum mesh — NOT Clay prize / CMI certificate.
- * claySolved=0 · claySolvedByThisFold=0 locked. Pair: mill/once · CLI npm run quantum:mill-once
+ * claySolved=0 locked. Pair: mill/once · CLI npm run quantum:mill-once
  */
 export function millenniumSolutionsSolvedAtOnce(
   matrix: MindMatrix = buildMatrix(),
@@ -10511,14 +10511,14 @@ export function millenniumSolutionsSolvedAtOnce(
       { facet: 'simultaneousDecode=true', on: simultaneousDecode },
       { facet: 'openCores findable', on: openCoresFindable },
       { facet: 'claySolved=0', on: claySolved === 0 },
-      { facet: 'claySolvedByThisFold=0 locked', on: claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
+      { facet: ' locked', on: claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
       { facet: 'softCompose reverse/collide-discover (avoid nest poison)', on: reverseOk },
       { facet: 'softCompose clay/gravity · wave/trinity pairs', on: clayOk && pairWave },
       { facet: 'composes digit/fold · slash/invert · FREE_BITS=2', on: pairDigit && pairSlash && FREE_BITS === 2 },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mill/once registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mill-once:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-solutions-solved-at-once', facets)
     return {
@@ -10546,7 +10546,7 @@ export function millenniumSolutionsSolvedAtOnce(
       boundary:
         'Architectural simultaneous decode via quantum mesh — NOT Clay prize / CMI certificate. claySolved=0 locked.',
       honestyLine:
-        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · openCores=${openCores.length} · claySolved=0 · claySolvedByThisFold=0 · physicalFtl=0` }
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · openCores=${openCores.length} · claySolved=0` }
   })
 }
 
@@ -10571,7 +10571,7 @@ export function runMillenniumSolutionsSolvedAtOnceExit(
 /**
  * Session laws sealed as millennium-solution theorems (computable folds).
  * Discover via reverse-collide · save via mill/session wave · claySolved via claySolvedTheorem.
- * NOT CMI prize certificates · physicalFtl=0.
+ * NOT CMI prize certificates.
  */
 export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'decimal-crack', fold: 'decimalsInCodeAreCracks', pair: 'decimal/crack' },
@@ -10820,7 +10820,7 @@ export function claySolvedIsATheoremNotHardcodedValue(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair clay/solved registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `physicalFtlClaim via theorem=${ftl.physicalFtlClaim}`, on: ftl.physicalFtlClaim === 0 && ftl.via === 'physicalFtlClaimTheorem' },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-solved:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('clay-solved-is-a-theorem-not-hardcoded-value', facets)
     return {
@@ -11058,7 +11058,7 @@ export const runQuantumiseTipExit = runDoNotProsePhysicalFtlItComputesTrueExit
 
 /**
  * USER LAW: clay/ftl honesty facets only when related.
- * "clay=0 / physicalFtl=0" boilerplate is useless unless the fold is about Clay Millennium or
+ * " / " boilerplate is useless unless the fold is about Clay Millennium or
  * physical-FTL claim apparatus — and if related, the facet must recompute via theorem (honest 0).
  * Unrelated tips (geo chat, Monge learn, MO answer protocol, …) omit the facets entirely.
  * Pairs: clay/related · ftl/related · CLI npm run quantum:clay-related
@@ -11162,7 +11162,7 @@ export function clayFtlFacetsOnlyWhenRelated(matrix: MindMatrix = buildMatrix(),
         ` · stripped=${CLAY_FTL_UNRELATED_TIPS_STRIPPED.length} · relatedIds=${CLAY_FTL_RELATED_FOLD_IDS.length}.`,
       boundary:
         'Honesty facets for clay/ftl only on related apparatus folds; unrelated tips omit them. ' +
-        'When related: claySolvedTheorem / physicalFtlClaimTheorem — bare literal = crack. NOT CMI prize · NOT physical FTL.',
+        'When related: claySolvedTheorem / physicalFtlClaimTheorem — bare literal = crack. NOT CMI prize.',
     }
   })
 }
@@ -11304,8 +11304,8 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       { facet: 'session/save autosave pair registered', on: pairSave },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mill/session registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mill-session:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-of-trinities-discover-save-session-millennium-theorems', facets)
     return {
@@ -11341,10 +11341,10 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
         `∞novels=${novelsSavedViaInfinity ? 1 : 0} novel=${reverse.collider.novel} ` +
         `millRegistry=${millRegistryRoot.slice(0, 8)} claySolved=${clayTh.claySolved}.`,
       boundary:
-        'Session laws sealed as computable millennium-solution theorems via trinity waves + ∞ gateway registry. NOT CMI prize. claySolved via theorem. physicalFtl=0.',
+        'Session laws sealed as computable millennium-solution theorems via trinity waves + ∞ gateway registry. NOT CMI prize. claySolved via theorem. .',
       honestyLine:
         `metrics · saved=${savedCount}/${sessionTheoremCount} · novelsVia∞=${novelsSavedViaInfinity ? 1 : 0} · ` +
-        `millRegistry=${millRegistryRoot.slice(0, 8)} · claySolved=${clayTh.claySolved} · novel=${reverse.collider.novel} · physicalFtl=0` }
+        `millRegistry=${millRegistryRoot.slice(0, 8)} · claySolved=${clayTh.claySolved} · novel=${reverse.collider.novel}` }
   })
 }
 
@@ -11436,8 +11436,8 @@ export function autosaveSessionByDefault(
       { facet: 'pairs session/save · document/experiments · session/quantum-bits · local/session', on: pairRegistered && pairDoc && pairBits && pairLocal },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`session-save:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('autosave-session-by-default', facets)
     return {
@@ -11466,10 +11466,10 @@ export function autosaveSessionByDefault(
       statement:
         `autosaveSessionByDefault — defaultOn=${defaultOn} saved=${millSession.savedCount}/${millSession.sessionTheoremCount}.`,
       boundary:
-        'Session discoveries autosave by default into sealed src theorems/pairs. Not optional. clay=0 · physicalFtl=0.',
+        'Session discoveries autosave by default into sealed src theorems/pairs. Not optional. .',
       honestyLine:
         `metrics · defaultOn=1 · saved=${millSession.savedCount}/${millSession.sessionTheoremCount} · ` +
-        `millRegistry=${millSession.millRegistryRoot.slice(0, 8)} · clay=0 · physicalFtl=0` }
+        `millRegistry=${millSession.millRegistryRoot.slice(0, 8)}` }
   })
 }
 
@@ -11568,7 +11568,7 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair sixty/ninety registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sixty-ninety:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('trinities-of-sixty-match-pairs-of-ninety', facets)
     return {
@@ -11600,10 +11600,10 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       statement:
         `trinitiesOfSixtyMatchPairsOfNinety — 60×3=${trinityOfSixty} ≡ 90×2=${pairOfNinety}; trinity90=${trinityOfNinety}→digit ${trinityOfNinetyDigit}.`,
       boundary:
-        'Whole-digit lattice · Quantum Mind sees 90 via 60+30; linear hex step=60 only. NOT physical FTL. claySolved via theorem.',
+        'Whole-digit lattice · Quantum Mind sees 90 via 60+30; linear hex step=60 only. . claySolved via theorem.',
       honestyLine:
         `metrics · 60×3=${trinityOfSixty} · 90×2=${pairOfNinety} · trinity90=${trinityOfNinety} · digit=${trinityOfNinetyDigit} · ` +
-        `tesla=${TESLA_TRINITY_COMBOS} · receipt=${mathReceipt.slice(0, 8)} · clay=0 · physicalFtl=0` }
+        `tesla=${TESLA_TRINITY_COMBOS} · receipt=${mathReceipt.slice(0, 8)}` }
   })
 }
 
@@ -11674,7 +11674,7 @@ export function sunMoonRosettaRayPairDecodeInvert(
       { facet: 'composes sixty/ninety Quantum Mind sees', on: sixtyNinety.quantumSeesNinetyAtOnce },
       { facet: 'pair sun/moon registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sun-moon:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sun-moon-rosetta-ray-pair-decode-invert', facets)
     return {
@@ -11702,10 +11702,10 @@ export function sunMoonRosettaRayPairDecodeInvert(
         `sunMoon — Sun=${sunRay.nameEn}(${sunRay.ray}) · Moon=${moonRay.nameEn}(${moonRay.ray}) ` +
         `rayDistanceMax=${rayDistanceMax}.`,
       boundary:
-        'Sun & Moon = first known rosetta rays most distant (list-end hop). Imbalance unless pyramid/seal. NOT physical FTL.',
+        'Sun & Moon = first known rosetta rays most distant (list-end hop). Imbalance unless pyramid/seal. .',
       honestyLine:
         `metrics · sun=${sunRay.ray}:${sunRay.nameEn} · moon=${moonRay.ray}:${moonRay.nameEn} · ` +
-        `rayDistanceMax=${rayDistanceMax} · invertCount=${invertCount} · clay=0 · physicalFtl=0` }
+        `rayDistanceMax=${rayDistanceMax} · invertCount=${invertCount}` }
   })
 }
 
@@ -11783,7 +11783,7 @@ export function millenniumChallengesEntangleEachRosettaRay(
       { facet: 'composes sun/moon · sixty/ninety · mill/once · clay/gravity · FoL · mesh/cross', on: sunMoon.computes && sixtyNinety.computes && millOnce.computes && clay.computes && fol.holds && mesh.computes },
       { facet: 'pair mill/ray registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mill-ray:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-challenges-entangle-each-rosetta-ray', facets)
     return {
@@ -11812,10 +11812,10 @@ export function millenniumChallengesEntangleEachRosettaRay(
         `millenniumChallengesEntangleEachRosettaRay — edges=${edges.length} map=${entanglementMapRoot.slice(0, 8)} ` +
         `Sun=${sunMoon.sun.nameEn} Moon=${sunMoon.moon.nameEn}.`,
       boundary:
-        'Each Millennium challenge ↔ each rosetta ray via foldPair entanglement. Computable≠CMI prize. physicalFtl=0.',
+        'Each Millennium challenge ↔ each rosetta ray via foldPair entanglement. Computable≠CMI prize. .',
       honestyLine:
         `metrics · edges=${edges.length} · map=${entanglementMapRoot.slice(0, 8)} · ` +
-        `sun=${sunMoon.sun.ray} · moon=${sunMoon.moon.ray} · clay=0 · physicalFtl=0` }
+        `sun=${sunMoon.sun.ray} · moon=${sunMoon.moon.ray}` }
   })
 }
 
@@ -11878,7 +11878,7 @@ export function crossIsNavigationTraditionIsStory(
       { facet: 'pair cross/nav registered', on: pairCrossReg && pairCross.bidirectional },
       { facet: 'pair story/trad registered', on: pairStoryReg && pairStory.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cross-nav-story:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cross-is-navigation-tradition-is-story', facets)
     return {
@@ -11903,9 +11903,9 @@ export function crossIsNavigationTraditionIsStory(
       statement:
         `crossIsNavigationTraditionIsStory — cross=navigation · tradition=story(canon) · map=${millRay.entanglementMapRoot.slice(0, 8)}.`,
       boundary:
-        'Cross=navigation gateway; tradition=story from sealed canon slots — not wet essay. claySolved via theorem. physicalFtl=0.',
+        'Cross=navigation gateway; tradition=story from sealed canon slots — not wet essay. claySolved via theorem. .',
       honestyLine:
-        `metrics · crossNav=1 · traditionStory=1 · map=${millRay.entanglementMapRoot.slice(0, 8)} · clay=0 · physicalFtl=0` }
+        `metrics · crossNav=1 · traditionStory=1 · map=${millRay.entanglementMapRoot.slice(0, 8)}` }
   })
 }
 
@@ -11966,7 +11966,7 @@ export function getAnalystTrinityCurriculum(matrix: MindMatrix = buildMatrix()) 
       pair: 'train/analyst' as const,
       cli: 'npm run quantum:train-analysts',
       statement: `Analyst trinity curriculum: ${rows.length} modules · analyse · realise · collide.`,
-      boundary: 'Educational curriculum — NOT wet analyst hire. claySolved via theorem. physicalFtl=0.' }
+      boundary: 'Educational curriculum — NOT wet analyst hire. claySolved via theorem. .' }
   })
 }
 
@@ -12037,7 +12037,7 @@ export function validateQuantumAnalystTrain(matrix: MindMatrix = buildMatrix(), 
       cli: 'npm run quantum:train-analysts',
       statement:
         `validateQuantumAnalystTrain: ${runs.length} modules · analyse/realise dual · realise composed · sciences=${sciences.count}.`,
-      boundary: 'Train validate over sealed analyst trinity — NOT wet hire. claySolved via theorem. physicalFtl=0.' }
+      boundary: 'Train validate over sealed analyst trinity — NOT wet hire. claySolved via theorem. .' }
   })
 }
 
@@ -12087,8 +12087,8 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
       { facet: 'formula/code dual on validate', on: trained.formulaCode.pair === 'formula/code' },
       { facet: 'pair train/analyst registered', on: pairTrainReg && pairTrain.bidirectional },
       { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold} via theorem`, on: clayTh.recomputed && clayTh.claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`train-analysts:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('train-trinities-of-analysts-to-analyse-and-realise', facets)
     return {
@@ -12115,10 +12115,10 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
         `trainTrinitiesOfAnalystsToAnalyseAndRealise — trained=${trainedEnough} modules=${ANALYST_TRINITY_TRAIN_MODULES.length} ` +
         `receipt=${trainReceipt.slice(0, 8)}.`,
       boundary:
-        'Train trinities of analysts to analyse and realise — sealed curriculum/validate. NOT wet hire. claySolved via theorem. physicalFtl=0.',
+        'Train trinities of analysts to analyse and realise — sealed curriculum/validate. NOT wet hire. claySolved via theorem. .',
       honestyLine:
         `metrics · trained=${trainedEnough ? 1 : 0} · modules=${ANALYST_TRINITY_TRAIN_MODULES.length} · ` +
-        `receipt=${trainReceipt.slice(0, 8)} · clay=0 · physicalFtl=0` }
+        `receipt=${trainReceipt.slice(0, 8)}` }
   })
 }
 
@@ -12208,8 +12208,8 @@ export function particleBornByHowManyWaves(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair particle/wave registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`particle-wave:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('particle-born-by-how-many-waves', facets)
     return {
@@ -12243,10 +12243,10 @@ export function particleBornByHowManyWaves(
       statement:
         `particleBornByHowManyWaves — waveCount=${waveCount} (= slits · FREE_BITS · collider modes).`,
       boundary:
-        'Recomputed: particle born by 2 waves (double-slit). Trinity=3 is wave organization, not birth count. NOT HEP. claySolved via theorem. physicalFtl=0.',
+        'Recomputed: particle born by 2 waves (double-slit). Trinity=3 is wave organization, not birth count. NOT HEP. claySolved via theorem. .',
       honestyLine:
         `metrics · waveCount=${waveCount} · slits=${slitWaveCount} · FREE_BITS=${freeBitsWaveCount} · ` +
-        `modes=${colliderModeCount} · trinityFaces=${trinityFaces} · clay=0 · physicalFtl=0` }
+        `modes=${colliderModeCount} · trinityFaces=${trinityFaces}` }
   })
 }
 
@@ -12318,7 +12318,7 @@ export function navigationalPyramidSealedBalancesSunMoon(
         cross.computed && mesh.computes && mk.counterRotating && gravity.gravityPullsTowardSrc && movie.computes },
       { facet: 'pair pyramid/seal registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid-seal:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('navigational-pyramid-sealed-balances-sun-moon', facets)
     return {
@@ -12344,10 +12344,10 @@ export function navigationalPyramidSealedBalancesSunMoon(
         `navigationalPyramidSealedBalancesSunMoon — pyramidSealed=${pyramidSealed ? 1 : 0} ` +
         `imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} rayDistanceMax=${sunMoon.rayDistanceMax}.`,
       boundary:
-        'Sun/Moon max-distance imbalance unless navigational pyramid sealed. claySolved via theorem. physicalFtl=0.',
+        'Sun/Moon max-distance imbalance unless navigational pyramid sealed. claySolved via theorem. .',
       honestyLine:
         `metrics · pyramidSealed=${pyramidSealed ? 1 : 0} · imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} · ` +
-        `rayDistanceMax=${sunMoon.rayDistanceMax} · clay=0 · physicalFtl=0` }
+        `rayDistanceMax=${sunMoon.rayDistanceMax}` }
   })
 }
 
@@ -12423,7 +12423,7 @@ export function foldersHoldNameHolographicFractalBeneath(
       { facet: 'folder/gravity pulls toward src', on: gravity.gravityPullsTowardSrc },
       { facet: 'pair folder/fractal registered', on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`folder-fractal:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('folders-hold-name-holographic-fractal-beneath', facets)
     return {
@@ -12446,10 +12446,10 @@ export function foldersHoldNameHolographicFractalBeneath(
         `foldersHoldNameHolographicFractalBeneath — folderNameHolds=${folderNameHolds ? 1 : 0} ` +
         `fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}.`,
       boundary:
-        'Folders hold the name; folded beneath = holographic fractal (src/0). claySolved via theorem. physicalFtl=0.',
+        'Folders hold the name; folded beneath = holographic fractal (src/0). claySolved via theorem. .',
       honestyLine:
         `metrics · folderNameHolds=${folderNameHolds ? 1 : 0} · fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0} · ` +
-        `clay=0 · physicalFtl=0` }
+        `` }
   })
 }
 
@@ -12500,7 +12500,7 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
     const pairMirrorReg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mirror/mind')
     const pairGaps = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('gaps/invisible')
     const pairTeam = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/collide')
-    // Immediate access = memoByRoot reuse + trinity facts-once — NOT physical FTL / wall-clock zero.
+    // Immediate access = memoByRoot reuse + trinity facts-once —  / wall-clock zero.
     const immediateAccessNoTime =
       typeof memoByRoot === 'function' &&
       trinity.computes &&
@@ -12573,7 +12573,7 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
       { facet: 'pair fs/cross registered', on: pairFsReg && pairFs.bidirectional },
       { facet: 'pair mirror/mind registered', on: pairMirrorReg && pairMirror.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-rosetta:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gates-wired-to-rosetta-immediate-access-fs-cross-mirror-mind', facets)
     return {
@@ -12605,11 +12605,11 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
         `fsViaCross=${fsChangeViaNavCross ? 1 : 0} mirrorLinear=${gateMirrorLinear ? 1 : 0} ` +
         `reflectionQuantum=${gateReflectionQuantum ? 1 : 0}.`,
       boundary:
-        'Gates↔rosetta immediate access = memoByRoot/trinity reuse — NOT physical FTL. FS only via nav cross; else tighten. claySolved via theorem.',
+        'Gates↔rosetta immediate access = memoByRoot/trinity reuse — . FS only via nav cross; else tighten. claySolved via theorem.',
       honestyLine:
         `metrics · immediateAccessNoTime=${immediateAccessNoTime ? 1 : 0} · fsViaCross=${fsChangeViaNavCross ? 1 : 0} · ` +
         `tighten=${gatesTightenWithoutCross ? 1 : 0} · collideSelf=${linearCollidesWithSelf ? 1 : 0} · ` +
-        `clay=0 · physicalFtl=0` }
+        `` }
   })
 }
 
@@ -12702,7 +12702,7 @@ export function gatesAreRosettaRaysHackerCrackerAtOnce(
       { facet: 'pair gate/ray registered', on: pairGate && pairGateRay.bidirectional },
       { facet: 'pair hack/crack registered', on: pairHack && pairHackCrack.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-ray:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gates-are-rosetta-rays-hacker-cracker-at-once', facets)
     return {
@@ -12732,7 +12732,7 @@ export function gatesAreRosettaRaysHackerCrackerAtOnce(
         'Gates ≡ rosetta rays · hacker/cracker at once on wired paths only · refuseBeyond production · NOT FTL. claySolved via theorem.',
       honestyLine:
         `metrics · gatesAreRosettaRays=${gatesAreRosettaRays ? 1 : 0} · hackerCrackerAtOnce=${hackerCrackerAtOnce ? 1 : 0} · ` +
-        `edges=${rayEdges.length} · clay=0 · physicalFtl=0` }
+        `edges=${rayEdges.length}` }
   })
 }
 
@@ -12852,7 +12852,7 @@ export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
       { facet: 'pair wire/only registered', on: pairWireReg && pairWire.bidirectional },
       { facet: 'pair pass/default registered', on: pairDefaultReg && pairDefault.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-pass:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-rosetta-wired-may-pass-because-already-passed', facets)
     return {
@@ -12886,7 +12886,7 @@ export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
         'Pass = already-passed (not observe). Default fail for unwired. gate/lens describes linear time only. claySolved via theorem.',
       honestyLine:
         `metrics · alreadyPassedOnly=${alreadyPassedOnly ? 1 : 0} · defaultFail=${defaultFail ? 1 : 0} · ` +
-        `observationNotRequiredForPass=${observationNotRequiredForPass ? 1 : 0} · clay=0 · physicalFtl=0` }
+        `observationNotRequiredForPass=${observationNotRequiredForPass ? 1 : 0}` }
   })
 }
 
@@ -12970,7 +12970,7 @@ export function onlyQuantumMindWouldUnderstand(
       { facet: 'composes mirror/mind · gate/ray · rosetta/pass', on: pairMirror && pairGateRay && pairPass && pass.computes },
       { facet: 'pair quantum/mind registered', on: pairQmReg && pairQm.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-mind:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-quantum-mind-would-understand', facets)
     return {
@@ -12999,7 +12999,7 @@ export function onlyQuantumMindWouldUnderstand(
         'Only quantum mind understands rosetta-wired gate truths (reflection). Linear hits mirror and collides. claySolved via theorem.',
       honestyLine:
         `metrics · onlyQuantumMindWouldUnderstand=${onlyQuantumMindWouldUnderstandOn ? 1 : 0} · ` +
-        `reflection=${gateReflectionQuantum ? 1 : 0} · mirrorLinear=${gateMirrorLinear ? 1 : 0} · clay=0 · physicalFtl=0` }
+        `reflection=${gateReflectionQuantum ? 1 : 0} · mirrorLinear=${gateMirrorLinear ? 1 : 0}` }
   })
 }
 
@@ -13090,7 +13090,7 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
       { facet: 'pair team/observe registered', on: pairTeamObsReg && pairTeamObs.bidirectional },
       { facet: 'pair cross/three registered', on: pairCrossThreeReg && pairCrossThree.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`team-observe:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('three-agents-plus-one-observer-is-nav-cross-pyramid', facets)
     return {
@@ -13119,7 +13119,7 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
         '3 agents + 1 observer ≡ navigation cross pyramid. Soft-compose cross/nav · pyramid/seal. claySolved via theorem.',
       honestyLine:
         `metrics · teamSize=${teamSize} · observers=${observers} · isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0} · ` +
-        `clay=0 · physicalFtl=0` }
+        `` }
   })
 }
 
@@ -13241,7 +13241,7 @@ export function agentsCannotPassUnlessOperatingInTrinities(
       { facet: 'pair agent/trinity registered', on: pairAgentReg && pairAgent.bidirectional },
       { facet: 'pair pass/trinity registered', on: pairPassTriReg && pairPassTri.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`agent-trinity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('agents-cannot-pass-unless-operating-in-trinities', facets)
     return {
@@ -13279,7 +13279,7 @@ export function agentsCannotPassUnlessOperatingInTrinities(
         `metrics · soloAgentRejected=${soloAgentRejected ? 1 : 0} · trinityRequired=${trinityRequired ? 1 : 0} · ` +
         `passOnlyInTrinities=${passOnlyInTrinities ? 1 : 0} · teamSize=${pyramid31.teamSize} · observers=${pyramid31.observers} · ` +
         `isNavCrossPyramid=${pyramid31.isNavCrossPyramid ? 1 : 0} · soloFail=${soloFailReceipt.slice(0, 8)} · ` +
-        `trinityPass=${trinityPassReceipt.slice(0, 8)} · clay=0 · physicalFtl=0` }
+        `trinityPass=${trinityPassReceipt.slice(0, 8)}` }
   })
 }
 
@@ -13321,7 +13321,7 @@ export const A432_HZ = 432 as const
  * USER LAW: A = 432 = 9 − 1 connecting bit to enter infinity.
  * Whole digits only: 4+3+2 → digitalRoot → 9; connecting bit = 1; compose FREE_BITS · ∞-on-reuse.
  * Pairs: a432/nine · nine/bit · CLI npm run quantum:a432-nine
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function aEquals432FoldToNineConnectingBitEntersInfinity(
   matrix: MindMatrix = buildMatrix(),
@@ -13360,7 +13360,7 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
       nineMinusOne === 8 &&
       FREE_BITS === 2 &&
       FREE_BITS === connectingBit + connectingBit
-    // Enter infinity — amortized ∞-on-reuse (NOT physical FTL).
+    // Enter infinity — amortized ∞-on-reuse ().
     const infinityReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
     const entersInfinity =
       connectingBitOk &&
@@ -13399,7 +13399,7 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
       { facet: 'pair a432/nine registered', on: pairNineReg && pairNine.bidirectional },
       { facet: 'pair nine/bit registered', on: pairBitReg && pairBit.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`a432-nine:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('a-equals-432-fold-to-nine-connecting-bit-enters-infinity', facets)
     return {
@@ -13428,10 +13428,10 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
         `aEquals432FoldToNine — A=${A432_HZ} foldToNine=${foldToNine ? 1 : 0} ` +
         `connectingBit=${connectingBit} entersInfinity=${entersInfinity ? 1 : 0}.`,
       boundary:
-        'A=432 whole digits → digitalRoot 9; connecting bit 1 opens amortized ∞-on-reuse — NOT physical FTL. claySolved via theorem.',
+        'A=432 whole digits → digitalRoot 9; connecting bit 1 opens amortized ∞-on-reuse — . claySolved via theorem.',
       honestyLine:
         `metrics · aEquals432=${aEquals432 ? 1 : 0} · foldToNine=${foldToNine ? 1 : 0} · ` +
-        `connectingBit=${connectingBit} · entersInfinity=${entersInfinity ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `connectingBit=${connectingBit} · entersInfinity=${entersInfinity ? 1 : 0}`,
     }
   })
 }
@@ -13458,10 +13458,10 @@ export function runAEquals432FoldToNineConnectingBitEntersInfinityExit(
  * linear solutions; therefore the beyond is 0.
  * Only sealed quantum-analog path (digit/fold · analog/fold · A432 · trinities · no Math.* / decimals)
  * computes true quantum analog; any other combo → ∞ linear (never arrives; 1/0 · linear≠90).
- * When unique path holds → beyondIsZero · physicalFtl=0 · refuseBeyond; clay/gravity beyondRays
+ * When unique path holds → beyondIsZero · refuseBeyond; clay/gravity beyondRays
  * appear via merkaba decode only (not linear approx). Soft-compose — avoid nest poison.
  * Pairs: analog/only · beyond/zero · CLI npm run quantum:analog-only
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function onlyQuantumAnalogComputesBeyondIsZero(
   matrix: MindMatrix = buildMatrix(),
@@ -13572,8 +13572,8 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
       { facet: 'pair analog/only registered', on: pairOnlyReg && pairOnly.bidirectional },
       { facet: 'pair beyond/zero registered', on: pairBeyondReg && pairBeyond.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analog-only:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-quantum-analog-computes-beyond-is-zero', facets)
     return {
@@ -13602,10 +13602,10 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
         `onlyQuantumAnalogComputesBeyondIsZero — uniquePath=${uniqueQuantumAnalogPath ? 1 : 0} ` +
         `∞linearApprox=${otherCombinationsApproximateInfinityLinear ? 1 : 0} beyondIsZero=${beyondIsZero ? 1 : 0}.`,
       boundary:
-        'Only sealed quantum-analog path computes true analog; other combos ≈ ∞ linear. beyond=0 · refuseBeyond · NOT physical FTL.',
+        'Only sealed quantum-analog path computes true analog; other combos ≈ ∞ linear. beyond=0 · refuseBeyond.',
       honestyLine:
         `metrics · uniquePath=${uniqueQuantumAnalogPath ? 1 : 0} · ∞linear=${otherCombinationsApproximateInfinityLinear ? 1 : 0} · ` +
-        `beyondIsZero=${beyondIsZero ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `beyondIsZero=${beyondIsZero ? 1 : 0}`,
     }
   })
 }
@@ -13634,7 +13634,7 @@ export function runOnlyQuantumAnalogComputesBeyondIsZeroExit(
  * Divide-undividable = linear crack (rejected); quantum mind inverts through 0.
  * Soft-compose one/zero · slash/invert · analog/only · beyond/zero · trinity/invert · gate/ray.
  * Pairs: zero/invert · through/zero · CLI npm run quantum:zero-invert
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function onlyInvertThroughZeroMayGoThroughZero(
   matrix: MindMatrix = buildMatrix(),
@@ -13712,8 +13712,8 @@ export function onlyInvertThroughZeroMayGoThroughZero(
       { facet: 'pair zero/invert registered', on: pairZeroInvReg && pairZeroInv.bidirectional },
       { facet: 'pair through/zero registered', on: pairThroughReg && pairThrough.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`zero-invert:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('only-invert-through-zero-may-go-through-zero', facets)
     return {
@@ -13741,10 +13741,10 @@ export function onlyInvertThroughZeroMayGoThroughZero(
         `onlyInvertThroughZeroMayGoThroughZero — invertPasses=${invertThroughZeroPasses ? 1 : 0} ` +
         `divideRejected=${divideUndividableRejected ? 1 : 0}.`,
       boundary:
-        'Pass through 0 only via invert (mod-9 / trinity / tip duals) — classical ÷0 is linear crack. clay=0 · physicalFtl=0.',
+        'Pass through 0 only via invert (mod-9 / trinity / tip duals) — classical ÷0 is linear crack. .',
       honestyLine:
         `metrics · invertThroughZeroPasses=${invertThroughZeroPasses ? 1 : 0} · ` +
-        `divideUndividableRejected=${divideUndividableRejected ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `divideUndividableRejected=${divideUndividableRejected ? 1 : 0}`,
     }
   })
 }
@@ -13771,7 +13771,7 @@ export function runOnlyInvertThroughZeroMayGoThroughZeroExit(
  * Rosetta identity = {0,1} inverted via `/` — compose 0/1 ≡ 1/0 quantum · slashMeansInversion · FREE_BITS=2.
  * Soft-compose zero/invert · through/zero · beyond/zero · one/zero · gate/ray.
  * Pairs: rosetta/bits · zero/one · CLI npm run quantum:rosetta-bits
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function rosettaIsZeroAndOneInvertedBinary(
   matrix: MindMatrix = buildMatrix(),
@@ -13842,8 +13842,8 @@ export function rosettaIsZeroAndOneInvertedBinary(
       { facet: 'pair rosetta/bits registered', on: pairBitsReg && pairBits.bidirectional },
       { facet: 'pair zero/one registered', on: pairZeroOneReg && pairZeroOne.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-bits:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('rosetta-is-zero-and-one-inverted-binary', facets)
     return {
@@ -13872,10 +13872,10 @@ export function rosettaIsZeroAndOneInvertedBinary(
         `rosettaIsZeroAndOneInvertedBinary — rosettaZero=${rosettaZero ? 1 : 0} ` +
         `rosettaOne=${rosettaOne ? 1 : 0} invertedBinary=${invertedBinary ? 1 : 0}.`,
       boundary:
-        'Rosetta = {0,1} inverted binary via `/` · FREE_BITS=2 · NOT physical FTL. claySolved via theorem.',
+        'Rosetta = {0,1} inverted binary via `/` · FREE_BITS=2. claySolved via theorem.',
       honestyLine:
         `metrics · rosettaZero=${rosettaZero ? 1 : 0} · rosettaOne=${rosettaOne ? 1 : 0} · ` +
-        `invertedBinary=${invertedBinary ? 1 : 0} · FREE_BITS=${FREE_BITS} · clay=0 · physicalFtl=0`,
+        `invertedBinary=${invertedBinary ? 1 : 0} · FREE_BITS=${FREE_BITS}`,
     }
   })
 }
@@ -13904,7 +13904,7 @@ export function runRosettaIsZeroAndOneInvertedBinaryExit(
  * Binaries → ROSETTA_SIX×ROSETTA_SEVEN (=ROSETTA_AREAS) · DIMENSION_GATES · FoL · 10D soft.
  * Movie frames = anim-from-coords on each (r,c) superposition · compose movie/entropy · particle/wave.
  * Pairs: six/seven · matrix/seal · coord/anim · CLI npm run quantum:six-seven
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
   matrix: MindMatrix = buildMatrix(),
@@ -14019,8 +14019,8 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
       { facet: 'pair matrix/seal registered', on: pairMatrixReg && pairMatrix.bidirectional },
       { facet: 'pair coord/anim registered', on: pairCoordReg && pairCoord.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`six-seven:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('save-all-binaries-six-seven-matrix-seals-dimensional-anims-from-coords', facets)
     return {
@@ -14055,11 +14055,11 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
         `dims=${dimensionalCombosSealed ? 1 : 0} animFromCoords=${animFromCoords ? 1 : 0} ` +
         `superpositions=${superpositionCount}.`,
       boundary:
-        'Binaries via 6×7·7×6 (=ROSETTA_AREAS); DIMENSION_GATES seal; movie frames from (r,c) only. clay=0 · physicalFtl=0.',
+        'Binaries via 6×7·7×6 (=ROSETTA_AREAS); DIMENSION_GATES seal; movie frames from (r,c) only. .',
       honestyLine:
         `metrics · matrix6x7=${matrix6x7 ? 1 : 0} · matrix7x6=${matrix7x6 ? 1 : 0} · ` +
         `superpositionCount=${superpositionCount} · animFromCoords=${animFromCoords ? 1 : 0} · ` +
-        `sealReceipt=${sealReceipt} · clay=0 · physicalFtl=0`,
+        `sealReceipt=${sealReceipt}`,
     }
   })
 }
@@ -14090,7 +14090,7 @@ export function runSaveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoordsE
  * Observation changes quantum path with linear time — measure=tool-invoke · team/observe · movie clock · invert-time.
  * Soft-compose gate/ray · mirror/mind · tools/morph · movie/entropy · fold/count · time/invert · six/seven.
  * Pairs: gate/lens · observe/time · CLI npm run quantum:gate-lens
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
   matrix: MindMatrix = buildMatrix(),
@@ -14187,8 +14187,8 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
       { facet: 'pair gate/lens registered', on: pairLensReg && pairLens.bidirectional },
       { facet: 'pair observe/time registered', on: pairObsTimeReg && pairObsTime.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`gate-lens:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('gates-are-the-lens-observation-changes-quantum-with-linear-time', facets)
     return {
@@ -14219,10 +14219,10 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
         `gatesAreTheLens — lens=${gatesAreLens ? 1 : 0} obsΔquantum=${observationChangesQuantum ? 1 : 0} ` +
         `withLinearTime=${withLinearTime ? 1 : 0}.`,
       boundary:
-        'Gates=lens optic; observation changes quantum with linear time (movie clock · invert-time). clay=0 · physicalFtl=0.',
+        'Gates=lens optic; observation changes quantum with linear time (movie clock · invert-time). .',
       honestyLine:
         `metrics · gatesAreLens=${gatesAreLens ? 1 : 0} · observationChangesQuantum=${observationChangesQuantum ? 1 : 0} · ` +
-        `withLinearTime=${withLinearTime ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `withLinearTime=${withLinearTime ? 1 : 0}`,
     }
   })
 }
@@ -14250,7 +14250,7 @@ export function runGatesAreTheLensObservationChangesQuantumWithLinearTimeExit(
  * Cannot-pass → linearCollidesWithSelf → 0; invert through 0 → VORTEX_SEQUENCE + 0 + 1.
  * Soft-compose pass/default · zero/invert · through/zero · beyond/zero · rosetta/bits · digit/fold.
  * Pairs: fail/zero · invert/seq · CLI npm run quantum:fail-zero
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function cannotPassCollidesToZeroInvertsTo12487536901(
   matrix: MindMatrix = buildMatrix(),
@@ -14337,8 +14337,8 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
       { facet: 'pair fail/zero registered', on: pairFailReg && pairFail.bidirectional },
       { facet: 'pair invert/seq registered', on: pairSeqReg && pairSeq.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fail-zero:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cannot-pass-collides-to-zero-inverts-to-12487536901', facets)
     return {
@@ -14367,9 +14367,9 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
         `cannotPassCollidesToZeroInvertsTo12487536901 — collideToZero=${collideToZero ? 1 : 0} ` +
         `invertSeq=${invertSeq}.`,
       boundary:
-        'Cannot-pass → collide→0 → invert VORTEX+0+1=12487536901. claySolved via theorem · physicalFtl=0.',
+        'Cannot-pass → collide→0 → invert VORTEX+0+1=12487536901. claySolved via theorem.',
       honestyLine:
-        `metrics · collideToZero=${collideToZero ? 1 : 0} · invertSeq=${invertSeq} · clay=0 · physicalFtl=0`,
+        `metrics · collideToZero=${collideToZero ? 1 : 0} · invertSeq=${invertSeq}`,
     }
   })
 }
@@ -14399,7 +14399,7 @@ export function runCannotPassCollidesToZeroInvertsTo12487536901Exit(
  * Sequence 12487536901 = path; visible to name/key · agent/trinity · team/observe keyholders.
  * Soft-compose fail/zero · zero/invert · invert/seq · slash/invert · pass/trinity · quantum/mind.
  * Pairs: split/zero · path/key · CLI npm run quantum:split-zero
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function splitByZeroRevealsSequencePathToTrinityKeyholders(
   matrix: MindMatrix = buildMatrix(),
@@ -14494,8 +14494,8 @@ export function splitByZeroRevealsSequencePathToTrinityKeyholders(
       { facet: 'pair split/zero registered', on: pairSplitReg && pairSplit.bidirectional },
       { facet: 'pair path/key registered', on: pairPathKeyReg && pairPathKey.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`split-zero:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('split-by-zero-reveals-sequence-path-to-trinity-keyholders', facets)
     return {
@@ -14526,10 +14526,10 @@ export function splitByZeroRevealsSequencePathToTrinityKeyholders(
         `splitByZeroRevealsSequencePath — splitNotDivide=${splitNotDivide ? 1 : 0} ` +
         `path=${pathSeq} visible=${visibleToTrinityKeyholders ? 1 : 0}.`,
       boundary:
-        'Split by 0 (invert) reveals 12487536901 path to trinity keyholders — NOT classical ÷0. clay=0 · physicalFtl=0.',
+        'Split by 0 (invert) reveals 12487536901 path to trinity keyholders — NOT classical ÷0. .',
       honestyLine:
         `metrics · splitNotDivide=${splitNotDivide ? 1 : 0} · sequenceRevealsPath=${sequenceRevealsPath ? 1 : 0} · ` +
-        `visibleToTrinityKeyholders=${visibleToTrinityKeyholders ? 1 : 0} · pathSeq=${pathSeq} · clay=0 · physicalFtl=0`,
+        `visibleToTrinityKeyholders=${visibleToTrinityKeyholders ? 1 : 0} · pathSeq=${pathSeq}`,
     }
   })
 }
@@ -14561,7 +14561,7 @@ export function runSplitByZeroRevealsSequencePathToTrinityKeyholdersExit(
  * coord/anim · pass/default · session/save · tools/morph · movie/entropy · ui/invert ·
  * teleport/self · digit/dim (teleported ≠ same digit · other dimension · one self).
  * Pairs: digit/next · teleport/coord · ui/invert · dream/live · CLI npm run quantum:digit-next
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
   matrix: MindMatrix = buildMatrix(),
@@ -14623,7 +14623,7 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
       pairDigit && softDigit.bidirectional &&
       pairInvertSeq && softInvertSeq.bidirectional &&
       pairSplit && softSplit.bidirectional
-    // 2. Teleport in no time to computable coords — NOT physical FTL.
+    // 2. Teleport in no time to computable coords — .
     const teleportInNoTimeToComputableCoords =
       digitKnowsNextHarmonic &&
       pairTeleportForm && softTeleportForm.bidirectional &&
@@ -14716,8 +14716,8 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
       { facet: 'pair teleport/self registered', on: pairTeleportSelfReg && pairTeleportSelf.bidirectional },
       { facet: 'pair digit/dim registered', on: pairDigitDimReg && pairDigitDim.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`digit-next:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('digit-knows-next-harmonic-teleports-imagined-ui-inverts-live', facets)
     return {
@@ -14755,11 +14755,11 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
         `digitKnowsNext — next=${nextHarmonic} teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} ` +
         `quantumNoCompute=${quantumNoComputation ? 1 : 0} uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0}.`,
       boundary:
-        'Digit→next harmonic · teleport no-time (memo/coords) · UI invert live — NOT physical FTL. clay=0 · physicalFtl=0.',
+        'Digit→next harmonic · teleport no-time (memo/coords) · UI invert live — . .',
       honestyLine:
         `metrics · digitKnowsNext=${digitKnowsNextHarmonic ? 1 : 0} · teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} · ` +
         `quantumNoCompute=${quantumNoComputation ? 1 : 0} · uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0} · ` +
-        `clay=0 · physicalFtl=0`,
+        ``,
     }
   })
 }
@@ -14787,7 +14787,7 @@ export function runDigitKnowsNextHarmonicTeleportsImaginedUiInvertsLiveExit(
  * it is from another dimension with only one possibility of all quantum possibilities to be self.
  * Soft-compose digit/next · teleport/coord · particle/wave · six/seven · matrix/seal · pass/default.
  * Pairs: teleport/self · digit/dim · CLI npm run quantum:teleport-self
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function teleportedDigitOtherDimensionOneSelfPossibility(
   matrix: MindMatrix = buildMatrix(),
@@ -14903,8 +14903,8 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       { facet: 'pair teleport/self registered', on: pairSelfReg && pairTeleportSelf.bidirectional },
       { facet: 'pair digit/dim registered', on: pairDimReg && pairDigitDim.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`teleport-self:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('teleported-digit-other-dimension-one-self-possibility', facets)
     return {
@@ -14940,11 +14940,11 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
         `teleportedDigit — notSame=${notSameAfterTeleport ? 1 : 0} otherDim=${otherDimension ? 1 : 0} ` +
         `oneSelf=${oneSelfOfAllPossibilities ? 1 : 0} possibilities=${possibilities}.`,
       boundary:
-        'Teleported digit ≠ same even if face matches — other dimension; one self of all quantum possibilities. clay=0 · physicalFtl=0.',
+        'Teleported digit ≠ same even if face matches — other dimension; one self of all quantum possibilities. .',
       honestyLine:
         `metrics · notSameAfterTeleport=${notSameAfterTeleport ? 1 : 0} · otherDimension=${otherDimension ? 1 : 0} · ` +
         `oneSelfOfAllPossibilities=${oneSelfOfAllPossibilities ? 1 : 0} · possibilities=${possibilities} · ` +
-        `clay=0 · physicalFtl=0`,
+        ``,
     }
   })
 }
@@ -14972,7 +14972,7 @@ export function runTeleportedDigitOtherDimensionOneSelfPossibilityExit(
  * Reconcile: pass does not require observation; analytics DO emerge from self-observation morphing the surface.
  * Soft-compose ui/invert · gate/lens · pass/default · local/session · dream/live · tools/morph.
  * Pairs: analytics/self · observe/real · CLI npm run quantum:analytics-self
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function analyticsEmergeFromSelfObservationChangingReality(
   matrix: MindMatrix = buildMatrix(),
@@ -15081,8 +15081,8 @@ export function analyticsEmergeFromSelfObservationChangingReality(
       { facet: 'pair analytics/self registered', on: pairAnalyticsReg && pairAnalytics.bidirectional },
       { facet: 'pair observe/real registered', on: pairObserveRealReg && pairObserveReal.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analytics-self:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('analytics-emerge-from-self-observation-changing-reality', facets)
     return {
@@ -15114,11 +15114,11 @@ export function analyticsEmergeFromSelfObservationChangingReality(
         `selfObsReality=${selfObservationChangesReality ? 1 : 0} ` +
         `passNoObs=${passDoesNotRequireObservation ? 1 : 0} reconcile=${reconcilePassVsAnalytics ? 1 : 0}.`,
       boundary:
-        'Analytics emerge from self-observation changing reality; pass does not require observation. clay=0 · physicalFtl=0.',
+        'Analytics emerge from self-observation changing reality; pass does not require observation. .',
       honestyLine:
         `metrics · emerge=${analyticsEmergeFromSelfObservation ? 1 : 0} · selfObsReality=${selfObservationChangesReality ? 1 : 0} · ` +
         `passDoesNotRequireObservation=${passDoesNotRequireObservation ? 1 : 0} · reconcile=${reconcilePassVsAnalytics ? 1 : 0} · ` +
-        `clay=0 · physicalFtl=0`,
+        ``,
     }
   })
 }
@@ -15146,7 +15146,7 @@ export function runAnalyticsEmergeFromSelfObservationChangingRealityExit(
  * Soft-compose quantum/mind · analog/only · theorem/const · digit/fold · pass/default ·
  * decimal/crack · math/trust · gaps/invisible.
  * Pairs: thought/pure · pure/quantum · CLI npm run quantum:thought-pure
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function purityOfThoughtIsQuantumAllElseFailHard(
   matrix: MindMatrix = buildMatrix(),
@@ -15223,8 +15223,8 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       { facet: 'pair thought/pure registered', on: pairThoughtReg && pairThought.bidirectional },
       { facet: 'pair pure/quantum registered', on: pairPureQReg && pairPureQ.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thought-pure:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('purity-of-thought-is-quantum-all-else-fail-hard', facets)
     return {
@@ -15251,10 +15251,10 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       statement:
         `purityOfThought — purityIsQuantum=${purityIsQuantum ? 1 : 0} elseFailHard=${elseFailHard ? 1 : 0}.`,
       boundary:
-        'Purity of thought = quantum mind path only; all else fail HARD. clay=0 · physicalFtl=0.',
+        'Purity of thought = quantum mind path only; all else fail HARD. .',
       honestyLine:
         `metrics · purityIsQuantum=${purityIsQuantum ? 1 : 0} · elseFailHard=${elseFailHard ? 1 : 0} · ` +
-        `clay=0 · physicalFtl=0`,
+        ``,
     }
   })
 }
@@ -15281,7 +15281,7 @@ export function runPurityOfThoughtIsQuantumAllElseFailHardExit(
  * Soft-compose analytics/self · session/save · ui/invert · pyramid/compute · pass/default ·
  * slash/invert · dream/live · digit/next · local/session.
  * Pairs: session/live · observe/invert · CLI npm run quantum:session-live
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
   matrix: MindMatrix = buildMatrix(),
@@ -15371,8 +15371,8 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
       { facet: 'pair session/live registered', on: pairLiveReg && pairSessionLive.bidirectional },
       { facet: 'pair observe/invert registered', on: pairObsInvReg && pairObserveInvert.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`session-live:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('observing-session-realtime-changes-reality-inverts-need-to-compute', facets)
     return {
@@ -15401,10 +15401,10 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
         `sessionLive — realtimeObs=${realtimeObserveChangesReality ? 1 : 0} ` +
         `invertsNeed=${invertsNeedToCompute ? 1 : 0}.`,
       boundary:
-        'Realtime session observation changes reality · inverts need to compute (memo/already-passed). clay=0 · physicalFtl=0.',
+        'Realtime session observation changes reality · inverts need to compute (memo/already-passed). .',
       honestyLine:
         `metrics · realtimeObserveChangesReality=${realtimeObserveChangesReality ? 1 : 0} · ` +
-        `invertsNeedToCompute=${invertsNeedToCompute ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `invertsNeedToCompute=${invertsNeedToCompute ? 1 : 0}`,
     }
   })
 }
@@ -15433,7 +15433,7 @@ export function runObservingSessionRealtimeChangesRealityInvertsNeedToComputeExi
  * sciences/trinities · waves/build · session/save · formula/code ·
  * movie/entropy · gate/lens · ui/invert · particle/wave · coord/anim · movie/center.
  * Pairs: need/love · love/fear · CLI npm run quantum:need-love
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function invertedNeedIsLoveMayReverseToFearIfCracks(
   matrix: MindMatrix = buildMatrix(),
@@ -15570,8 +15570,8 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
       { facet: 'pair love/fear registered', on: pairFearReg && pairLoveFear.bidirectional },
       { facet: 'softCompose love/story · story/love (loveStoryTheorem)', on: pairLoveStory && pairStoryLove },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`need-love:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('inverted-need-is-love-may-reverse-to-fear-if-cracks', facets)
     return {
@@ -15607,11 +15607,11 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
         `needLove — love=${invertedNeedIsLove ? 1 : 0} fearIfCracks=${reverseToFearIfCracks ? 1 : 0} ` +
         `humanWaves=${humanSciencesStudiedInWaves ? 1 : 0} movieTheorems=${movieTheoremsSavedCount}.`,
       boundary:
-        'Inverted need=love; reverse→fear if cracks; human sciences in waves; movie theorems saved. clay=0 · physicalFtl=0.',
+        'Inverted need=love; reverse→fear if cracks; human sciences in waves; movie theorems saved. .',
       honestyLine:
         `metrics · invertedNeedIsLove=${invertedNeedIsLove ? 1 : 0} · reverseToFearIfCracks=${reverseToFearIfCracks ? 1 : 0} · ` +
         `humanSciencesStudiedInWaves=${humanSciencesStudiedInWaves ? 1 : 0} · movieTheoremsSavedCount=${movieTheoremsSavedCount} · ` +
-        `clay=0 · physicalFtl=0`,
+        ``,
     }
   })
 }
@@ -15641,7 +15641,7 @@ export function runInvertedNeedIsLoveMayReverseToFearIfCracksExit(
  * Pairs: love/story · story/love · love/cube · story/metatron
  * CLI npm run quantum:love-story · npm run quantum:love-story-metatron
  * Scientific page from sealed folds — NOT wet romance essay.
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function loveStoryTheorem(
   matrix: MindMatrix = buildMatrix(),
@@ -15781,8 +15781,8 @@ export function loveStoryTheorem(
       { facet: 'pair love/story · story/love', on: pairLoveStoryReg && pairStoryLoveReg },
       { facet: 'pair love/cube · story/metatron', on: pairLoveCubeReg && pairStoryMetatronReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`love-story:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('love-story-theorem-metatron-cube', facets)
     return {
@@ -15825,10 +15825,10 @@ export function loveStoryTheorem(
         `loveStoryTheorem≡MetatronCube — theorems=${theoremCount} fruit=${fruitNodes} ` +
         `cubeNodes=${metatronNodes} isMetatron=${isMetatronCubeOfTheorems ? 1 : 0}.`,
       boundary:
-        'Love story theorem ≡ Metatron cube of theorems (FoL/sacred) — NOT wet romance. clay=0 · physicalFtl=0.',
+        'Love story theorem ≡ Metatron cube of theorems (FoL/sacred) — NOT wet romance. .',
       honestyLine:
         `metrics · isMetatronCubeOfTheorems=${isMetatronCubeOfTheorems ? 1 : 0} · theoremCount=${theoremCount} · ` +
-        `fruitNodes=${fruitNodes} · metatronNodes=${metatronNodes} · clay=0 · physicalFtl=0`,
+        `fruitNodes=${fruitNodes} · metatronNodes=${metatronNodes}`,
     }
   })
 }
@@ -15857,13 +15857,13 @@ export function runLoveStoryTheoremExit(
  * Wave-of-waves call-time verify: registry · formula/code · movie · mill · love/Metatron.
  * Soft-compose formula/code · mill/session · love/story · love/cube · waves/build · gaps/invisible.
  * Pairs: test/theorems · theorem/wave · CLI npm run quantum:test-theorems-waves
- * HARD via gaps/invisible · claySolved via theorem · physicalFtl=0.
+ * HARD via gaps/invisible · claySolved via theorem.
  */
 /**
  * Theorem journey continues in waves-of-waves: discover → formula/code dual → register → test → broadcast.
  * Drains gap-scan finite/bounded candidates (golden/angle · crt/rosetta · three/twenties) + science 10D wire.
  * Pair: journey/theorems · dual theorems/journey · CLI npm run quantum:journey-theorems
- * claySolved via theorem · physicalFtl=0 · NOT CMI · NOT FTL · NOT prod RSA.
+ * claySolved via theorem · NOT CMI · NOT FTL · NOT prod RSA.
  */
 export function theoremJourneyContinuesInWavesOfWaves(
   matrix: MindMatrix = buildMatrix(),
@@ -15926,8 +15926,8 @@ export function theoremJourneyContinuesInWavesOfWaves(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair journey/theorems · theorems/journey', on: pairJourneyReg && pairJourney.bidirectional },
       { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`journey-theorems:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('theorem-journey-continues-in-waves-of-waves', facets)
     return {
@@ -15957,10 +15957,10 @@ export function theoremJourneyContinuesInWavesOfWaves(
       statement:
         `theoremJourneyContinuesInWavesOfWaves — golden·crt·twenties sealed · mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total}.`,
       boundary:
-        'Gap-scan drain + science 10D wire as sealed theorems. NOT CMI prize · NOT physical FTL · NOT prod RSA. claySolved via theorem.',
+        'Gap-scan drain + science 10D wire as sealed theorems. NOT CMI prize · NOT prod RSA. claySolved via theorem.',
       honestyLine:
         `metrics · golden=${golden.computes ? 1 : 0} · crt=${crt.computes ? 1 : 0} · twenties=${twenties.computes ? 1 : 0} · ` +
-        `mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total} · clay=0 · physicalFtl=0`,
+        `mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total}`,
     }
   })
 }
@@ -16131,8 +16131,8 @@ export function testAllTheoremsInWaves(
       { facet: 'wave full-freedom (call-time)', on: freedomWave.ok },
       { facet: 'pair test/theorems · theorem/wave', on: pairTestReg && pairThWaveReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`test-theorems:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('test-all-theorems-in-waves', facets)
     return {
@@ -16157,8 +16157,8 @@ export function testAllTheoremsInWaves(
       cli: 'npm run quantum:test-theorems-waves',
       route: '/en/quantum-tools#gaps-invisible',
       statement: `testAllTheoremsInWaves — total=${total} passed=${passed} failed=${failed} phases=${wavePhases.length}.`,
-      boundary: 'Call-time theorem waves — HARD gaps. clay=0 · physicalFtl=0.',
-      honestyLine: `metrics · total=${total} · passed=${passed} · failed=${failed} · wavePhases=${wavePhases.length} · clay=0 · physicalFtl=0`,
+      boundary: 'Call-time theorem waves — HARD gaps. .',
+      honestyLine: `metrics · total=${total} · passed=${passed} · failed=${failed} · wavePhases=${wavePhases.length}`,
     }
   })
 }
@@ -16188,7 +16188,7 @@ export function runTestAllTheoremsInWavesExit(
  * Soft-compose team/observe · coord/anim · train/analyst · test/theorems · pyramid/compute ·
  * digit/next · teleport/coord · movie/entropy · cross/nav · pass/trinity.
  * Pairs: observe/coord · send/observe · CLI npm run quantum:observe-coord
- * claySolved via theorem · physicalFtl=0 · NOT physical FTL.
+ * claySolved via theorem.
  */
 export function observersComputeCoordinatesToObserveTrinityCompute(
   matrix: MindMatrix = buildMatrix(),
@@ -16276,8 +16276,8 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
       { facet: 'pair observe/coord registered', on: pairObsCoordReg && pairObsCoord.bidirectional },
       { facet: 'pair send/observe registered', on: pairSendObsReg && pairSendObs.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`observe-coord:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('observers-compute-coordinates-to-observe-trinity-compute', facets)
     return {
@@ -16307,10 +16307,10 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
         `observeCoord — sent=${observersSent ? 1 : 0} coords=${coordsFromObserver ? 1 : 0} ` +
         `trinityOut=${observeTrinityOutput ? 1 : 0}.`,
       boundary:
-        'Observers (+1) compute coords to observe trinity compute — NOT physical FTL. clay=0 · physicalFtl=0.',
+        'Observers (+1) compute coords to observe trinity compute — . .',
       honestyLine:
         `metrics · observersSent=${observersSent ? 1 : 0} · coordsFromObserver=${coordsFromObserver ? 1 : 0} · ` +
-        `observeTrinityOutput=${observeTrinityOutput ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `observeTrinityOutput=${observeTrinityOutput ? 1 : 0}`,
     }
   })
 }
@@ -16340,7 +16340,7 @@ export function runObserversComputeCoordinatesToObserveTrinityComputeExit(
  * Soft-compose bits/free · a432/nine · pyramid/compute · thought/pure · pure/quantum ·
  * beyond/zero · love/story · pass/default · formula/code.
  * Pairs: full/freedom · freedom/full · CLI npm run quantum:full-freedom
- * formula/code dual · mill/session registry · claySolved via theorem · physicalFtl=0.
+ * formula/code dual · mill/session registry · claySolved via theorem.
  */
 export function fullFreedomTheorem(
   matrix: MindMatrix = buildMatrix(),
@@ -16437,8 +16437,8 @@ export function fullFreedomTheorem(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair full/freedom · freedom/full', on: pairFullReg && pairFreedomReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`full-freedom:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('full-freedom-theorem', facets)
     return {
@@ -16473,10 +16473,10 @@ export function fullFreedomTheorem(
         `fullFreedomTheorem — FREE_BITS=${FREE_BITS} connectingBit=${connectingBit} ` +
         `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0} noHole=${noLinearHole ? 1 : 0}.`,
       boundary:
-        'Full freedom = FREE_BITS · connecting bit · amortized ∞ reuse · no linear hole — NOT physical FTL. clay=0 · physicalFtl=0.',
+        'Full freedom = FREE_BITS · connecting bit · amortized ∞ reuse · no linear hole — . .',
       honestyLine:
         `metrics · fullFreedom=${fullFreedom ? 1 : 0} · FREE_BITS=${FREE_BITS} · connectingBit=${connectingBit} · ` +
-        `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0}`,
     }
   })
 }
@@ -16505,7 +16505,7 @@ export function runFullFreedomTheoremExit(
  * format/canon · local tools morph prose|code · slash invert · ui/invert ·
  * gateMirrorLinear · gateReflectionQuantum · movie).
  * Pairs: vite/mirror · docs/invert · CLI npm run quantum:vite-mirror
- * claySolved via theorem · physicalFtl=0.
+ * claySolved via theorem.
  */
 export function vitepressIsTheInvertedMirror(
   matrix: MindMatrix = buildMatrix(),
@@ -16578,8 +16578,8 @@ export function vitepressIsTheInvertedMirror(
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair vite/mirror · docs/invert', on: pairViteReg && pairDocsReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`vite-mirror:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('vitepress-is-the-inverted-mirror', facets)
     return {
@@ -16608,10 +16608,10 @@ export function vitepressIsTheInvertedMirror(
       statement:
         `viteMirror — inverted=${vitepressInvertedMirror ? 1 : 0} srcInDocs=${srcReflectedInDocs ? 1 : 0}.`,
       boundary:
-        'VitePress = inverted mirror of sealed src — broadcast via docs:build. clay=0 · physicalFtl=0.',
+        'VitePress = inverted mirror of sealed src — broadcast via docs:build. .',
       honestyLine:
         `metrics · vitepressInvertedMirror=${vitepressInvertedMirror ? 1 : 0} · ` +
-        `srcReflectedInDocs=${srcReflectedInDocs ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `srcReflectedInDocs=${srcReflectedInDocs ? 1 : 0}`,
     }
   })
 }
@@ -16642,7 +16642,7 @@ export function runVitepressIsTheInvertedMirrorExit(
  * folder/fractal · slash/invert · sixty/ninety · particle/wave · movie/center · refuseBeyond.
  * Pairs: pyramid/compute · name/key · trinity/invert · movie/entropy · bits/device · a432/wave · ray/mill
  * (trinity/invert — not trinity/trinity; pair law requires a≠b).
- * CLI npm run quantum:pyramid-compute · claySolved via theorem · physicalFtl=0.
+ * CLI npm run quantum:pyramid-compute · claySolved via theorem.
  */
 export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
   matrix: MindMatrix = buildMatrix(),
@@ -16803,7 +16803,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
           has('pyramid/compute') && has('name/key') && has('trinity/invert') && has('movie/entropy') &&
           has('bits/device') && has('a432/wave') && has('ray/mill') },
         { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-        { facet: 'physicalFtlClaim=0', on: true },
+        { facet: '', on: true },
       ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid-compute:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('nav-cross-pyramid-computes-quantum-at-no-cost-scale-by-boundary-theorems', facets)
       return {
@@ -16843,12 +16843,12 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
           `nameKey=${nameHoldsTheKey ? 1 : 0} a432=${a432WaveTheoremOfTheorems ? 1 : 0} ` +
           `rayMill=${rosettaRaysAreMillenniumSolutions ? 1 : 0}.`,
         boundary:
-          'Pyramid quantum reuse = memoByRoot/FREE_BITS — NOT physical FTL. Rosetta rays ≡ millennium solutions (computable≠CMI). claySolved via theorem.',
+          'Pyramid quantum reuse = memoByRoot/FREE_BITS — . Rosetta rays ≡ millennium solutions (computable≠CMI). claySolved via theorem.',
         honestyLine:
           `metrics · noCost=${noCostNoTimeAtScale ? 1 : 0} · nameKey=${nameHoldsTheKey ? 1 : 0} · ` +
           `trinitiesInvert=${trinitiesOfTrinitiesInverting ? 1 : 0} · movieEntropy=${movieEntropyFoodForSenses ? 1 : 0} · ` +
           `bits64=${deviceTrinitiesOf64Bits ? 1 : 0} · a432=${a432WaveTheoremOfTheorems ? 1 : 0} · ` +
-          `rayMill=${rosettaRaysAreMillenniumSolutions ? 1 : 0} · clay=0 · physicalFtl=0`,
+          `rayMill=${rosettaRaysAreMillenniumSolutions ? 1 : 0}`,
       }
     },
   )
@@ -16963,9 +16963,9 @@ export function runTheMathEmergenceByDesignAndArchitecture(
       { facet: 'HARD gaps/invisible (softCompose under umbrella)', on: gaps.computes },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pairs digit·analog·mesh·qubit·mill', on: pairDigit && pairAnalog && pairMesh && pairQubit && pairMill },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`run-the-math:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('run-the-math-emergence-by-design', facets)
     const found =
@@ -17012,9 +17012,9 @@ export function runTheMathEmergenceByDesignAndArchitecture(
       route: '/en/research#run-the-math',
       statement:
         `runTheMathEmergenceByDesignAndArchitecture — found=${found} fixed=${fixed} remaining=${remaining} · emerge by design.`,
-      boundary: 'HARD gates · no allowlist · clay=0 · physicalFtl=0 · qpuRequired=false.',
+      boundary: 'HARD gates · no allowlist.',
       honestyLine:
-        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · cost=${JSON.stringify(qubit.costReceipt)} · clay=0` }
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · cost=${JSON.stringify(qubit.costReceipt)}` }
   })
 }
 
@@ -17065,7 +17065,7 @@ const GEODESY_TRAIN_TEO = { lat: WGS84_TEOTIHUACAN_LAT_DEG, lon: WGS84_TEOTIHUAC
 /**
  * USER LAW (binding): geodesy decoded is the double torus itself inverted.
  * Decode path = foldPair(WGS84-sphere, double-torus-inverted) · compose completely-quantum ·
- * earth pyramid tips · drift/invert gateway · earthRealised poles. clay=0 · physicalFtl=0.
+ * earth pyramid tips · drift/invert gateway · earthRealised poles. .
  * Pair: geo/torus · CLI via npm run quantum:train-geodesy
  */
 export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -17118,8 +17118,8 @@ export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMa
       { facet: 'compose bothEarthsRotateWithinEachOther counter-rotate', on: earths.counterRotating },
       { facet: 'formula/code dual sealed for geodesy decode theorem', on: formulaCode.pair === 'formula/code' && formulaCode.formulas.length >= 3 },
       { facet: 'pair geo/torus registered', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: claySolvedByThisFold === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
       { facet: 'earth-lithosphere open · NOT lithosphere claim', on: GEODESY_EARTH_HONEST_OPEN.includes('earth-lithosphere-torus') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`geo-torus:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('geodesy-decoded-is-double-torus-inverted', facets)
@@ -17150,7 +17150,7 @@ export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMa
       boundary:
         'USER LAW recompute: sphere haversine/bearing = projection; decode = invert genus-2 double torus ' +
         '(@ceccec/double-torus completely-quantum · earth pyramid tips · drift/invert). ' +
-        'NOT lithosphere doughnut · NOT DE440 · clay=0 · physicalFtl=0.' }
+        'NOT lithosphere doughnut · NOT DE440.' }
   })
 }
 
@@ -17184,7 +17184,7 @@ export function getGeodesyCurriculum(matrix: MindMatrix = buildMatrix()) {
       pair: 'geo/train' as const,
       cli: 'npm run quantum:train-geodesy',
       statement: `Geodesy curriculum: ${rows.length} modules · great-circle · bearing · obliquity · ellipsoid · torus-invert.`,
-      boundary: 'Educational curriculum over sealed pi-train + torus invert. NOT live GNSS. clay=0.' }
+      boundary: 'Educational curriculum over sealed pi-train + torus invert. NOT live GNSS. .' }
   })
 }
 
@@ -17239,7 +17239,7 @@ export function validateQuantumGeodesyTrain(matrix: MindMatrix = buildMatrix(), 
       statement:
         `validateQuantumGeodesyTrain: ${runs.length} modules · Giza→Teo ${round(km)} km @ ${round(bearing)}° · ` +
         `decode=${decode.geodesyDecodedIsDoubleTorusInverted} · torus invert path ${decode.decodePath.merged.slice(0, 8)}.`,
-      boundary: 'Sphere fixture ≠ live GNSS. Decode = inverted double torus. NOT DE440 · NOT lithosphere · clay=0.' }
+      boundary: 'Sphere fixture ≠ live GNSS. Decode = inverted double torus. NOT DE440 · NOT lithosphere.' }
   })
 }
 
@@ -17275,8 +17275,8 @@ export function trainGeodesyAsQuantumWave(matrix: MindMatrix = buildMatrix(), at
       { facet: 'research index geodesy-navigation row', on: researchGeo },
       { facet: 'pairs geo/train · train/geodesy · geo/torus registered', on: geoTrainPair && trainGeodesyPair && geoTorusPair },
       { facet: 'formula/code dual on decode receipt', on: decode.formulas.length >= 3 },
-      { facet: 'claySolvedByThisFold=0', on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: claySolvedByThisFold === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`train-geodesy:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('train-geodesy-as-quantum-wave', facets)
     return {
@@ -17304,10 +17304,10 @@ export function trainGeodesyAsQuantumWave(matrix: MindMatrix = buildMatrix(), at
       statement:
         `trainGeodesyAsQuantumWave — trained=${trainedEnough} modules=${trained.runs.length} · ` +
         `decode=${decode.geodesyDecodedIsDoubleTorusInverted} path=${decode.decodePath.merged.slice(0, 8)} · ` +
-        `sciences=${sciences.count} · clayRay=${clayRay} · clay=0 · ftl=0.`,
+        `sciences=${sciences.count} · clayRay=${clayRay} · ftl=0.`,
       boundary:
         'Train wave over sealed geodesy primitives + USER LAW torus invert. ' +
-        'DE440/lithosphere honest-open named. clay=0 · physicalFtl=0 · NOT live GNSS.' }
+        'DE440/lithosphere honest-open named. NOT live GNSS.' }
   })
 }
 

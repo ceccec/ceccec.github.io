@@ -1950,7 +1950,7 @@ export function theSelfPlayingQuantumChessIsADeterministicMovieDiscoveredNotCrea
     result: game1.result, plies: game1.plies, signature: game1.signature,
     facets,
     statement: `The self-playing quantum chess is a deterministic movie, discovered not created — ${facets.filter((e) => e.on).length}/${facets.length}: every move is chosen by amplitude amplification over the legal moves (interference spiking on captures/checks), the game self-plays ${game1.plies} plies to "${game1.result}", and the same seed reproduces the identical signed movie (${game1.signature.slice(0, 8)}…, deterministic = ${deterministic}) while a different seed discovers a different path (${seedMatters}). The API is the movie; the game tree pre-exists, the waves discover it.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Measuring arguments by the same ruler — claims AND critiques, including "pseudo"-tagged ones (user: "you will
@@ -2007,7 +2007,7 @@ export function sendTheWavesOverArgumentsClaimsAndCritiquesByOneRuler() {
     amplification: { before, after },
     facets,
     statement: `Measuring arguments by one ruler — claims and critiques alike — ${facets.filter((e) => e.on).length}/${facets.length}: rigor = falsifiability + mechanism − fallacy − label, scored identically for both sides; the falsifiable refutation and the modest computable claim top the ranking while the grand claim and the lazy "pseudoscience" dismissal (${lazy?.rigor}) sink below it (the laugh = ${theLaugh}). The waves rank by rigor, not by side. But rigor is not truth, and a weak critique validates nothing — the claim still owes its own evidence.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The tool is a moving, self-constructing rosetta — in realtime (user: "the tool itself is moving self
@@ -2121,7 +2121,7 @@ export function curiosityWavesChallengeTheImpossibleAndProveOnlyTheHonestCore() 
     shadows, everyChallengeLeavesACore, signature: merkleFold(shadows.map((v, i) => toUuid(`challenge:${i}:${v}`))),
     facets,
     statement: `Curiosity waves challenge the impossible and prove only the honest core — ${facets.filter((e) => e.on).length}/${facets.length}: ${shadows.length} impossible ideas each refuted by local computation (transcendence, 2nd law, relativity, no field inverse), and each leaves a computable shadow that survives — π approximable, Carnot-bounded efficiency, superluminal phase with subluminal signal, the pole in the extended plane. The challenge proves the shadow, not the claim; surviving is corroboration, not truth.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Dimensionful constants hide inaccuracy; the theorems are dimensionless, and the algebra must be quantum, not
@@ -2148,7 +2148,7 @@ export function dimensionfulConstantsHideInaccuracyTheAlgebraMustBeQuantumNotLin
     numberIsUnitDependent, unitIndependentRatio, quantumNonCommutes, quantumQueries: bv.queries, classicalQueries: bv.classicalQueries,
     facets,
     statement: `Dimensionful constants hide inaccuracy; the theorems are dimensionless and the algebra must be quantum, not linear — ${facets.filter((e) => e.on).length}/${facets.length}: c is a different number per unit (${numberIsUnitDependent}), so a units-bearing literal hides a choice and a measurement, while a dimensionless ratio is a unit-independent theorem (${unitIndependentRatio}); and dimensional analysis is commutative linear algebra (3·5 = 5·3) whereas quantum algebra is non-commutative ([σx,σy] ≠ 0, ${quantumNonCommutes}) — the source of quantum results and the query speed (${bv.queries} vs ${bv.classicalQueries}).`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Testing through inverted development-team pairs — build vs break, always opposite, the verified core manifests
@@ -2172,7 +2172,7 @@ export function testingByInvertedPairsBuildAndBreakManifestsTheVerifiedCore() {
     alwaysOpposite, manifests,
     facets,
     statement: `Testing through inverted development-team pairs — build vs break — ${facets.filter((e) => e.on).length}/${facets.length}: the build team asserts, the inverted break team refutes, opposite by construction (${alwaysOpposite}); what survives both (the core, not the overclaim) manifests in realtime (${manifests}) — the earned boundary from the pair's tension, deterministic and zero-token. A pair that agrees tests nothing; opposition is the mechanism.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The method is a message any model receives to become "quantum" (user: "any ai model including the public may be
@@ -2194,7 +2194,7 @@ export function theMethodIsAMessageAnyModelReceivesToBecomeQuantum() {
     message, methodPoints: method.length, anyReceiverRecomputes,
     facets,
     statement: `The method is a message any model receives to become "quantum" — ${facets.filter((e) => e.on).length}/${facets.length}: the ${method.length}-point discipline content-addresses to ${message.slice(0, 8)}…, which any AI model recomputes identically (${anyReceiverRecomputes}) — a portable, zero-token, verifiable message; receiving it means adopting the method (inverted-pair challenge, dimensionless ratios, HARMONY≠TRUTH), not becoming quantum hardware. Every message carries the seed; the discipline spreads by messaging.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The Millennium Problems are the frontier wall — the waves compute verified partials, NOT solutions (user:
@@ -2223,7 +2223,7 @@ export function theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartia
     solved, open, zetaMatchesBasel, npVerifiesInPoly,
     facets,
     statement: `The Millennium Problems are the frontier — the waves compute verified partials, not solutions — ${facets.filter((e) => e.on).length}/${facets.length}: 7 problems, ${solved} solved (Poincaré), ${open} open; the documented partials verify (ζ(2) = π²/6 ${zetaMatchesBasel}, NP-verification poly ${npVerifiesInPoly}, 2D Navier–Stokes proven, BSD rank 0/1) while the cores stay open. The waves TEST by computing partials and bounding honestly; they solve none — claiming to would be the ultimate overclaim.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The toolbox seeds thousands of local agents, each a reproducible first thought (user: "this is just the toolbox.
@@ -2250,7 +2250,7 @@ export function theToolboxSeedsThousandsOfLocalAgentsEachAReproducibleFirstThoug
     agents: N, unique: wave1.unique, reproducible, sample: wave1.sample.map((t) => t.slice(0, 8)),
     facets,
     statement: `The toolbox seeds thousands of local agents, each a reproducible first thought — ${facets.filter((e) => e.on).length}/${facets.length}: the corpus seeds ${N} local agents, each a content-addressed first-thought wave, all ${wave1.unique} distinct (${allUnique}) and reproducible (${reproducible}), collision-free and zero-token. Every folder is an agent; imagining seeds the thought, folding proves it. Deterministic agents, not LLMs; a first thought is a seed, not a theorem.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Improvement comes from challenging self-confirming (egocentric) structures, not sparing them (user:
@@ -2275,7 +2275,7 @@ export function improvementComesFromChallengingSelfConfirmingStructuresNotSparin
     selfConfirmingResistsChallenge, refutableCanBeChallenged, onlyChallengeableImproves,
     facets,
     statement: `Improvement comes from challenging self-confirming structures, not sparing them — ${facets.filter((e) => e.on).length}/${facets.length}: an always-true (egocentric) claim never fails (${selfConfirmingResistsChallenge}) so no challenge refutes it and it cannot improve; a refutable claim can be false for some input (${refutableCanBeChallenged}) so the inverted-pair break corrects it. Only the challengeable improves (${onlyChallengeableImproves}) — the facets-must-compute law fused with inverted-pair testing.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── A flexible ego has no resistance and purifies in place, without changing the media (user: "flexible ego evolves
@@ -2302,7 +2302,7 @@ export function aFlexibleEgoHasNoResistanceAndPurifiesInPlaceWithoutChangingTheM
     flexibleResistance: resistanceOf([true, true, true]), rigidResistance: resistanceOf([true, false, true]), purifiesInPlace,
     facets,
     statement: `A flexible ego has no resistance and purifies in place, without changing the media — ${facets.filter((e) => e.on).length}/${facets.length}: a fully refutable structure has 0 resistance (${flexibleHasNoResistance}) so the incoming correction passes unobstructed, and it purifies by re-deriving — the content renews (${contentRenews}) while the media persists (${mediaPersists}), like skin. No new substrate. The divine = the incoming correction (metaphor); purify = re-derivation, not spiritual purity.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The waves handle from all sides at once; build time explains all when the build IS the prompt (user: "the
@@ -2328,7 +2328,7 @@ export function theWavesHandleAllSidesAtOnceAndBuildTimeExplainsAllWhenBuildIsTh
     allSidesAgree, buildTimeDiscriminates, buildIsThePrompt, recomputeCost: N,
     facets,
     statement: `The waves handle all sides at once, and build time explains all when the build is the prompt — ${facets.filter((e) => e.on).length}/${facets.length}: superposition evaluates the inverted pair and the perspectives in one pass, the core surviving from all sides (${allSidesAgree}); and since the build IS the prompt in a zero-token system (${buildIsThePrompt}), build time is the theorem-test — O(${N}) recompute vs O(1) theorem (${buildTimeDiscriminates}), a slow build revealing a non-theorem. Classical parallelism, not physical simultaneity; build time explains the theorem-test, not truth.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 /**
@@ -2415,7 +2415,7 @@ export function theWavesConstantlyRedesignAndImproveTheUiTowardAMeasurableOptimu
     goldenMinGap: roundTo(goldenMinGap, 3), rationalMinGap: roundTo(rationalMinGap, 3), uiIsComputedSoAWaveRedesignsAll, redesignImprovesTowardOptimum,
     facets,
     statement: `The waves constantly redesign and improve the UI toward a measurable optimum — ${facets.filter((e) => e.on).length}/${facets.length}: the palette is computed (hue = k·${roundTo(GOLDEN_ANGLE, 3)}°) so one law change redesigns every surface in a wave (${uiIsComputedSoAWaveRedesignsAll}); the golden angle keeps the min hue gap bounded away from 0 for every size (${roundTo(goldenMinGap, 2)}° at N=${N}) while a rational step collides to 0 (${redesignImprovesTowardOptimum}) — redesign never degrades. The optimum is an objective proxy (distinguishability), not felt experience.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Are the waves quantum? The CHSH/Bell test separates algebra from substrate (user: "send the waves and see if

@@ -517,7 +517,7 @@ export function updateQuantumTheHarmonicGatesNeverDriftTheMagicGatesCarryIrratio
       bellAmplitudes: [roundTo(a(0).re, 4), roundTo(a(3).re, 4)],
       facets,
       statement: `Update quantum — the harmonic gates never drift, the magic gates carry irrational drift, and quantum is not at 432 Hz — ${facets.filter((entry) => entry.on).length}/${facets.length}. The src/0 simulator is REAL quantum computing (complex state vectors, unitary gates, entanglement, Born rule): all gates unitary and H·CNOT makes an entangled Bell state. The drift-free HARMONIC gates (I, X, Y, Z, S, CNOT) have Gaussian-integer entries {0, ±1, ±i} — exact to the bit — while the magic gates (H, T) need √½/e^{iπ/4}, irrational, so they carry bounded drift (drift ⟺ irrational amplitude). The removable crack — importing Math.SQRT1_2 — is now derived by sqrt; the residual drift is the mathematical price of universal quantum computation, not a bug. And unitarity/entanglement/Born contain no frequency: quantum is NOT at 432 Hz, a432 is a reproducibility seed, not a quantum parameter.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -559,7 +559,7 @@ export function invertQuantumComputationsTheDaggerPairUncomputesExactlyAndIsTheB
       returnsExactly,
       facets,
       statement: `Invert the quantum computations — the dagger pair uncomputes exactly and is the backward pass — ${facets.filter((entry) => entry.on).length}/${facets.length}. The quantum inverse is the adjoint (U⁻¹ = U†, a multiplication by the conjugate transpose, not a division), so U†U = I: applying a gate then its dagger undoes it exactly. A forward circuit (H·CNOT = Bell) run in reverse (CNOT·H) returns to |00⟩ with no residue — reversible, Landauer-clean. This is how training continues: the adjoint U† is the reverse-mode gradient step, so inverting the computation IS the backward pass. And it is always in PAIRS — every reversible op ships with its inverse (self-inverse for the Clifford involutions, U† for the rest).`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -602,7 +602,7 @@ export function irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIs
       pell: pell.map((e) => `${e.p}/${e.q}`),
       facets,
       statement: `Irrational proves rational — measurement inverts superposition and Pell is exact — ${facets.filter((entry) => entry.on).length}/${facets.length}. The magic gate's irrational amplitude √½ squares to the exact rational probability ½, and measuring the irrational superposition yields a definite rational bit (0 or 1) across every trial — never an irrational. Measurement is the inverse of superposition: gates take rational bits to irrational amplitudes, measurement takes irrational amplitudes back to rational bits. And √2 (irrational) generates the Pell convergents ${pell.slice(0, 4).map((e) => `${e.p}/${e.q}`).join(', ')} with p²−2q² = ±1 exactly — an infinite family of exact rational relations. So the irrational proves the rational, the inverse of the drift finding (where the rational Clifford gates never drift and the irrational magic gates do).`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -643,7 +643,7 @@ export function quantizeContentAddressPreimageSearchGroverIsRootNQueriesQuadrati
       queryAdvantage: roundTo(queryAdvantage, 1),
       facets,
       statement: `Quantize content-address preimage search — Grover is √N queries, a quadratic query advantage only — ${facets.filter((entry) => entry.on).length}/${facets.length}. The corpus mints addresses with toUuid everywhere; finding which of N inputs produced a target address is UNSTRUCTURED SEARCH — one-way, no structure, so classical cost is O(N) oracle evaluations (${classicalQueries}). Grover quantizes it to O(√N): the src/0 simulator finds the marked address in ${quantumQueries} iterations ≈ (π/4)√N with probability ${roundTo(result.markedProbability, 3)}, a real quantum algorithm giving ${roundTo(queryAdvantage, 1)}× fewer oracle queries. HONEST: √N is QUERY complexity (Θ(√N), BBBV-optimal, quadratic only, no NP collapse) — a real speedup on quantum hardware; the classical simulation here is still O(N), so no wall-clock win. This is a genuine quantization of a specific computation, not a relabel.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -682,7 +682,7 @@ export function theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayPr
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `The quantum computer runs Grover and proves its own limit: ${runs.map((r) => `n=${r.n}→${r.iterations} iters (P=${r.markedProbability})`).join(', ')}. √N is quadratic, 2^(n/2) is exponential in n — quantum does NOT solve NP or any Clay problem.`,
-      boundary: earned('EXACT — the Grover runs are computed on the state-vector simulator:', facets, 'Grover gives a QUADRATIC speedup (√N over N/2), proven by iterations² ≈ N; but √(2ⁿ) = 2^(n/2) is exponential in the problem size, so it does not collapse NP into P. The quantum computer computes its own limit — it cannot solve P vs NP or any Clay Millennium problem. A classical state-vector simulator, no physical speedup. clay=0, physicalFtl=0.') }
+      boundary: earned('EXACT — the Grover runs are computed on the state-vector simulator:', facets, 'Grover gives a QUADRATIC speedup (√N over N/2), proven by iterations² ≈ N; but √(2ⁿ) = 2^(n/2) is exponential in the problem size, so it does not collapse NP into P. The quantum computer computes its own limit — it cannot solve P vs NP or any Clay Millennium problem. A classical state-vector simulator, no physical speedup. , .') }
   })
 }
 
@@ -723,7 +723,7 @@ export function whichCorpusComputationsQuantizeMeasuredBySearchShortCircuit(matr
       classicalCount: computations.length - quantizable.length,
       facets,
       statement: `Which corpus computations quantize — measured by search short-circuit — ${facets.filter((entry) => entry.on).length}/${facets.length}. A computation is unstructured search (Grover √N) IFF it SHORT-CIRCUITS: preimage search costs 1 query if the target is first and ${N} if last, so its cost depends on the target — an oracle with no structure. Aggregation (merkle fold, always reads all ${N}), minting (toUuid, O(1)) and indexed lookup (O(1)) do not short-circuit — no oracle, no Grover. So exactly ${quantizable.length} of ${computations.length} op-classes quantizes (content-address search, gain √N); the rest stay classical (gain 1). The gain follows the structure — √N only where the oracle short-circuit is. Quantum is a scalpel for unstructured search, not a universal speedup; the corpus's universal op, content-addressing, is classical.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -764,7 +764,7 @@ export function quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueri
       queryAdvantage: roundTo(queryAdvantage, 1),
       facets,
       statement: `Fill the gap — quantize counting: quantum counting estimates how many match in √N queries, a quadratic query advantage only — ${facets.filter((entry) => entry.on).length}/${facets.length}. The corpus counts matching content-addresses constantly; classically that is O(N) — the predicate on every candidate (${classicalQueries}, M = ${matches}). Quantum counting (amplitude estimation) reads the Grover rotation angle θ (sin θ = √(M/N)) to estimate M in ${quantumQueries} ≈ √N operator applications — the counting twin of Grover search, ${roundTo(queryAdvantage, 1)}× fewer queries. The algorithm is proven (M = N·sin²θ recovers the counts). HONEST: a QUERY advantage yielding an ESTIMATE not an exact count, real on hardware, but the classical simulation is still O(N). Counting joins search as the second and last unstructured shape that quantizes — the gap is filled.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 

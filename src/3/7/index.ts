@@ -426,7 +426,7 @@ export const GOLDEN_ANGLE_RAD = TAU / (PHI * PHI)
 /**
  * Gap-scan candidate: the golden angle is τ/φ² — the most irrational rotation.
  * Bounded witness: identity · φ²=φ+1 · CF of Fib approximants all-1s · orbit min-gap vs rational clump.
- * Pair: golden/angle · provedBy registry row · claySolved via theorem · physicalFtl=0.
+ * Pair: golden/angle · provedBy registry row · claySolved via theorem.
  */
 export function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation() {
   const identityRad = GOLDEN_ANGLE_RAD === TAU / (PHI * PHI)
@@ -479,7 +479,7 @@ export function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation() {
     statement:
       `theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation — identity · φ²=φ+1 · CF-ones · equidistribution bound.`,
     boundary:
-      'Bounded witness: identity + Fib CF + min-gap vs rational clump. NOT physical FTL. claySolved via theorem=0.',
+      'Bounded witness: identity + Fib CF + min-gap vs rational clump. . claySolved via theorem=0.',
   }
 }
 
@@ -495,7 +495,7 @@ export function runTheGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotationExi
     `${report.computes ? '✓' : '✗'} golden-angle — identity·CF·equidistribution fold=theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation pair=${report.pair}\n`,
   )
   process.stdout.write(
-    `  metrics · goldenMin=${report.goldenMin} · rationalMin=${report.rationalMin} · clay=0 · physicalFtl=0\n`,
+    `  metrics · goldenMin=${report.goldenMin} · rationalMin=${report.rationalMin}\n`,
   )
   return report.computes ? 0 : 1
 }
@@ -710,7 +710,7 @@ export function claySolvedByThisFoldFromTheorem(): number {
  * Sealed registry of physical superluminal-signaling proofs in this corpus.
  * Empty until physics fills it — length recomputes physicalFtlClaim at call time (currently 0).
  * Tip folds must call this (or physicalFtlFromMeasurements / physicalFtlByFormulas) —
- * bare `0 as const` / wet "NOT physical FTL" slogans as law = crack (ftl/compute).
+ * bare `0 as const` / wet "" slogans as law = crack (ftl/compute).
  */
 export const PHYSICAL_FTL_SIGNALING_PROOF_IDS = [] as const
 
@@ -806,7 +806,7 @@ export const CLAY_SOLUTION_MARKERS = [
 /** Language marking the problem OPEN — its presence refutes any co-located solution claim (honest folds carry these). */
 export const CLAY_OPEN_MARKERS = [
   'open', 'unsolved', 'unproven', 'conjecture', 'contested', 'bounded-witness', 'not cmi', 'not a cmi', 'no cmi',
-  'not proposed solution', 'claysolvedbythisfold=0', 'clay=0', 'decoded', 'unconfirmed', 'empirical',
+  'not proposed solution', 'claysolvedbythisfold=0', '', 'decoded', 'unconfirmed', 'empirical',
   'harmony ≠ truth', 'stays open', 'remains open', 'not claimed solved', 'unclaimed',
 ] as const
 

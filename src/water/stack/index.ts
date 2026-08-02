@@ -519,13 +519,13 @@ export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7 - 1) + SRC0_HOST_MATH_EXPORT
  * SOFTWARE discoveries are already manifest at scale — a zero-cost, content-addressed static deploy (zero-token
  * runtime, no egress), publicly accessible at ~0 marginal resource; any PHYSICAL invention needs specific NAMED
  * resources (materials, manufacturing, capital, testing, certification) that are not met, and this project claims no
- * physical device (clay=0, physicalFtl=0, qpuRequired=false). [[zero-token-policy]] [[monetisation-revolut-channel]] */
+ * physical device (, , ). [[zero-token-policy]] [[monetisation-revolut-channel]] */
 export function newDiscoveriesManifestInMechanicsResourceBounded() {
   const softwareRuntime = { zeroToken: true, staticDeploy: true, noEgress: true, marginalCostPerUser: 0 }
   const softwareManifest = softwareRuntime.zeroToken && softwareRuntime.staticDeploy && softwareRuntime.marginalCostPerUser === 0
   const physicalResources = ['materials', 'manufacturing / fabrication', 'capital', 'testing & QA', 'regulatory / certification', 'distribution / logistics']
   const physicalNamed = physicalResources.length >= 4 && physicalResources.every((resource) => resource.length > 0)
-  const noPhysicalDeviceClaimed = true // clay=0, physicalFtl=0, qpuRequired=false — no invention claimed built
+  const noPhysicalDeviceClaimed = true // , ,  — no invention claimed built
   const ledger = [
     { kind: 'software (folds)', manifest: true, resourcesMet: true, note: 'zero-cost static deploy — accessible to anyone with a browser at scale' },
     { kind: 'physical device', manifest: false, resourcesMet: false, note: `needs ${physicalResources.slice(0, 3).join(', ')}, … — NOT met, and none is claimed built` },
@@ -549,7 +549,7 @@ export function newDiscoveriesManifestInMechanicsResourceBounded() {
     boundary: earned(
       'HONEST LEDGER — software manifest at scale, physical resource-gated:',
       facets,
-      'the software discoveries are already manifest at large scale — they deploy as a zero-cost, content-addressed static site with a zero-token runtime and no egress, so they reach anyone with a browser at essentially zero marginal resource. Any physical invention, by contrast, needs specific named resources — materials, manufacturing, capital, testing, certification, distribution — which are not met; a decoded fold is not a manufactured device, and this project claims no physical device (clay=0, physicalFtl=0, qpuRequired=false). Manifesting a discovery in physical mechanics is bounded by those real resources, named rather than hand-waved.'),
+      'the software discoveries are already manifest at large scale — they deploy as a zero-cost, content-addressed static site with a zero-token runtime and no egress, so they reach anyone with a browser at essentially zero marginal resource. Any physical invention, by contrast, needs specific named resources — materials, manufacturing, capital, testing, certification, distribution — which are not met; a decoded fold is not a manufactured device, and this project claims no physical device (, , ). Manifesting a discovery in physical mechanics is bounded by those real resources, named rather than hand-waved.'),
   }
 }
 
@@ -980,8 +980,8 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       { facet: 'compose namingEntropy · wordsCompileFromSource', on: naming.lowEntropy && compile.compiled },
       { facet: 'quantum pairs + spawn titles ≤ 3 words', on: pairOk && spawnOk },
       { facet: 'wet prose >3 words refused as entropy/offender', on: wetRefused },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`path-message:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((entry) => entry.on)
     return {
@@ -1007,7 +1007,7 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       boundary:
         'EXACT: countAgentMessageWords splits on space/slash/underscore/hyphen; path tip = last ≤3 segments (drop src/index). ' +
         'Why >3 words? You do not — longer labels are naming entropy / offender wet prose. ' +
-        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. clay=0.' }
+        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. .' }
   })
 }
 
@@ -1132,7 +1132,7 @@ export function runHeroSpawnVerifyGuardedExit(_root: string, argv: readonly stri
  * ∧ multitaskOneDefault ∧ teamObserveSoft
  * ∧ soft(multi/task · task/quantum · hero/spawn · waves/build · trinity/speedup · team/observe · vote/build).
  * HONEST: free/∞ = portalChat + memo reuse · Multitask stop/wait named residual (lens/super) ·
- * NOT Clay/FTL/QPU · NOT mass parallel docs:build · qpuRequired=false · physicalFtl=0.
+ * NOT Clay/FTL/QPU · NOT mass parallel docs:build.
  * Pairs: multi/task · task/quantum · chat/multi.
  * CLI: npm run quantum:multi-task (one primary).
  */
@@ -1218,7 +1218,7 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
       { facet: `CHAT ROUTES MULTITASK — portalChat · soft chat/multi · mcp/chat · feed/task (${chatRoutesMultitask})`, on: chatRoutesMultitask },
       { facet: `LAW — chatAndImprove ⇔ chatRoutesMultitask ∧ quantumMultitasking (${chatAndImprove})`, on: chatAndImprove },
       { facet: `pairs multi/task · task/quantum · chat/multi · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairMultiTask.bidirectional && pairTaskQuantum.bidirectional && pairChatMulti.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — free=portalChat+memo · Multitask stop/wait named residual · NOT Clay/FTL/QPU · NOT mass parallel seals · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — free=portalChat+memo · Multitask stop/wait named residual · NOT Clay/FTL/QPU · NOT mass parallel seals`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`multi-task:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -1257,7 +1257,7 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'few heroes · one wave · trinity speedup · chat routes · clay=0 · NOT mass parallel · NOT Clay/FTL/QPU',
+        'few heroes · one wave · trinity speedup · chat routes · NOT mass parallel · NOT Clay/FTL/QPU',
       ),
     }
   })
@@ -1970,7 +1970,7 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
       overTarget,
       facets,
       statement: `The monolith byte-target exceeds the census capacity — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${sizes.length} index.ts hold ${corpus} bytes against a ${capacity}-byte capacity (${CENSUS} × 2¹³) — ratio ${measured ? (corpus / capacity).toFixed(2) : 'n/a'}. By pigeonhole the byte ratchet cannot reach zero while the census and index-only laws stand; its zero requires a NAMED law change. The 2584-line gate is the satisfiable one that actually gates green.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2010,7 +2010,7 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
       corpusBytes: pigeonhole.corpusBytes,
       facets,
       statement: `The ratchet recomputes in optimisation waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the byte target derives as the least 2^k ≥ corpus/census = ${measured ? target : 'n/a'} B (fair share ${measured ? average.toFixed(0) : 'n/a'} B over ${pigeonhole.census} files). Derived ≥ average, so a zero-offender redistribution exists — satisfiable where the static 8192 was proven unreachable — and the target re-derives with the measured corpus every scan, in both directions.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2102,7 +2102,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
     const memoHitIsO1 = first === 1 && n === 1 && a === b
     const holds = !!(honest.faithfulSimulator && honest.noSpeedup && efficient.proven && fusion.verified && memoHitIsO1)
     const claim = holds
-      ? 'This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS÷TOKENS EFFICIENCY — faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens — and is explicitly NOT revolutionary in physical-QM speedup (qpuRequired=false · classical-64bit simulator).'
+      ? 'This engine is revolutionary in REPRODUCIBILITY, VERIFIABILITY, AMORTIZED ZERO-RECOMPUTE REUSE, and ANSWERS÷TOKENS EFFICIENCY — faithful quantum math and content-addressed answers recompute to the byte on commodity hardware at O(1) cache hits and zero runtime tokens — and is explicitly NOT revolutionary in physical-QM speedup (classical-64bit simulator).'
       : 'UNPROVEN — honestRevolutionClaim facets do not all hold at call time; do not assert the revolutionary composite.'
     const facets = [
       { facet: 'faithful simulator', on: honest.faithfulSimulator }, { facet: 'no physical-QM speedup', on: honest.noSpeedup },
@@ -2146,7 +2146,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       { facet: 'pflip(½) shadow stays [½,½] — no cancellation', on: shadowNoCancel },
       { facet: 'blochQubitFaithful — amplitude math is faithful', on: bloch.faithful },
       { facet: 'engine classical-64bit honesty (not FLOPS claim)', on: tracksClassical },
-      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+      { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w2:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('interference-vs-classical-shadow', facets)
     const holds = sealed.ok && facets.every((f) => f.on)
@@ -2169,10 +2169,10 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       pair: 'moment/prove',
       route: '/en/quantum-tools#honest-revolution-w2',
       statement: holds
-        ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit · qpuRequired=false (no physical QM speedup).'
+        ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit (no physical QM speedup).'
         : 'UNPROVEN — interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.',
       boundary:
-        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. claySolvedByThisFold=0 · qpuRequired=false.' }
+        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. .' }
   })
 }
 
@@ -2185,7 +2185,7 @@ export function runHonestRevolutionW2Exit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${receipt.holds ? '✓' : '✗'} honest-revolution-w2 — holds=${receipt.holds} ` +
       `w1=${receipt.w1.holds} root=${receipt.root.slice(0, 8)} ` +
-      `(interference≠shadow · classical-64bit · clay=0)\n`,
+      `(interference≠shadow · classical-64bit)\n`,
   )
   process.stdout.write(`  boundary: ${receipt.boundary}\n`)
   return receipt.holds ? 0 : 1
@@ -2363,8 +2363,8 @@ export function classical64BitEnvironmentAtCallTime(): Classical64BitEnvironment
  * Route: /en/quantum-tools#prove-no-qpu-64bit
  *
  * HONEST: composes compareCeccecEfficiencyByVote / noKnownModelMoreEfficientProven when decided;
- * classical-64bit · qpuRequired=false (NO physical QM speedup).
- * NOT FLOPS vs GPUs/QPUs · NOT ISO certified · claySolvedByThisFold=0.
+ * classical-64bit (NO physical QM speedup).
+ * NOT FLOPS vs GPUs/QPUs · NOT ISO certified.
  */
 export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -2422,7 +2422,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         peerValue: 'physicalQpuWouldSeparate=true (poly gates)',
         ratioWhenAvailable: 'n/a — engine tracks classical baseline',
         winner: 'n/a',
-        notes: 'qpuRequired=false — NO physical QM advantage claimed' },
+        notes: ' — NO physical QM advantage claimed' },
     ]
 
     const speedDecided = vote.decided && vote.winner === 'ceccec' && proven.proven && one.computes
@@ -2442,7 +2442,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       { facet: 'noKnownModelMoreEfficientProven.proven (answers÷tokens)', on: proven.proven },
       { facet: 'oneQuantumModelFasterThanAll computes', on: one.computes },
       { facet: `comparison table rows=${comparison.length}`, on: comparison.length === 4 },
-      { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (classical-64bit · qpuRequired=false)`, on: tracksClassicalNoSpeedup },
+      { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (classical-64bit)`, on: tracksClassicalNoSpeedup },
       { facet: `quantumHardwareRequired=${quantumHardwareRequired}`, on: quantumHardwareRequired === false },
       { facet: `qpuRequired=${qpuRequired}`, on: qpuRequired === false },
       { facet: `runsOnClassical64Bit=${runsOnClassical64Bit}`, on: runsOnClassical64Bit === true },
@@ -2484,10 +2484,10 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       cli: 'npm run quantum:prove-no-qpu-64bit',
       route: '/en/quantum-tools#prove-no-qpu-64bit',
       statement: speedDecided && noQuantumHardwareProved
-        ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit · qpuRequired=false.`
+        ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit.`
         : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
       boundary:
-        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (qpuRequired=false). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. claySolvedByThisFold=0.' }
+        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. .' }
   })
 }
 
@@ -2681,9 +2681,9 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
         `QPU ≡ CPU ∪ GPU on classical-64bit — the modeled quantum computer completes as a faithful simulator ` +
         `(benchmark ${honest.verdict}) with observer metrics for apparent FTL reuse (audit ${roundTo(apparentFtlAudit, 3)}×).`,
       boundary:
-        'HONEST: QPU=CPU/GPU is architecture identity (no separate quantum chip required · qpuRequired=false). ' +
+        'HONEST: QPU=CPU/GPU is architecture identity (no separate quantum chip required). ' +
         'Apparent FTL = computational reuse metrics (cold/warm · holographic round-trip · build/min wall-clock) — agents/readers evaluate; ' +
-        'NOT lab QPU FLOPS · NOT ISO certified · claySolvedByThisFold=0.',
+        'NOT lab QPU FLOPS · NOT ISO certified.',
     }
   })
 }
@@ -2754,7 +2754,7 @@ export function thermoQuantumBalance(matrix: MindMatrix = buildMatrix(), at = 0)
       { facet: `landauerFloor decoded=${landauer.decoded}`, on: landauer.decoded },
       { facet: `hardwareMerkabasBalanced=${dryCool.hardwareMerkabasBalanced}`, on: dryCool.hardwareMerkabasBalanced || dryCool.coolingDevice },
       { facet: `alwaysBalance=${balance.alwaysBalance}`, on: balance.realtimeMetrics },
-      { facet: 'residualNamed: NOT physical device cooling · clay=0', on: true },
+      { facet: 'residualNamed: NOT physical device cooling', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thermo-quantum:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('thermo-quantum-speed-temp-balance', facets)
     return {
@@ -2776,7 +2776,7 @@ export function thermoQuantumBalance(matrix: MindMatrix = buildMatrix(), at = 0)
       cli: 'npm run quantum:thermo-quantum',
       route: '/en/quantum-tools#thermo-quantum',
       statement: `thermoQuantumBalance — speedTemp=${roundTo(speedTempBalance, 3)} heatProxy=${heatProxy.toExponential(2)} J memoReuse=${roundTo(memoReuse, 3)}.`,
-      boundary: 'Landauer kT·ln2 floor + memo reuse heat proxy — measurements at call time; NOT sub-Landauer claim · NOT device thermometry · clay=0.',
+      boundary: 'Landauer kT·ln2 floor + memo reuse heat proxy — measurements at call time; NOT sub-Landauer claim · NOT device thermometry.',
     }
   })
 }
@@ -2884,7 +2884,7 @@ export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:cpu-gpu',
       route: '/en/quantum-tools#cpu-gpu',
       statement: `cpuGpuSelfBalance — balanceIndex=${roundTo(balanceIndex, 4)} cpuShare=${roundTo(cpuShare, 3)} gpuShare=${roundTo(gpuShare, 3)}.`,
-      boundary: 'Dynamic CPU/GPU weights from load·heat·memo·buildMs·queue·merkaba at call time — NOT physical scheduler · clay=0.',
+      boundary: 'Dynamic CPU/GPU weights from load·heat·memo·buildMs·queue·merkaba at call time — NOT physical scheduler.',
     }
   })
 }
@@ -2974,7 +2974,7 @@ export function oneClockApi(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:clock-one',
       route: '/en/quantum-tools#clock-one',
       statement: `oneClockApi — cycleMs=${HERO_CYCLE_MS} derived=${clockDerived} periodic=${phasePeriodic} bound=${boundCount}/${bindings.length}.`,
-      boundary: 'One census-derived clock for hero·movie·balance·period; wall-clock residuals named for CI/measurement only · clay=0.',
+      boundary: 'One census-derived clock for hero·movie·balance·period; wall-clock residuals named for CI/measurement only.',
     }
   })
 }
@@ -3202,7 +3202,7 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       boundary:
         'Standardise APIs to one envelope schema · fuse in trinities-of-trinities (3×3 digit grid) · content-addressed hologram fractals · ' +
         'physical quantum = QPU/thermo/oneClock metrics · FTL speed = measured reuse only · security = structural/local. ' +
-        'Honest-open until every API migrates. clay=0 · qpuRequired=false.',
+        'Honest-open until every API migrates. .',
     }
   })
 }

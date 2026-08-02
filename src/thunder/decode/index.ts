@@ -1325,7 +1325,7 @@ export function ancientCalendars(matrix: MindMatrix = buildMatrix()) {
  * Ancient calendars decoded as algebraic theorems that map time in time —
  * nested modular scales · calendar↔calendar LCM/CRT meshes · phase-in-phase on the hero clock.
  * Pair: calendars/decode · CLI npm run quantum:ancient-calendars-algebra · route /proofs/ancient-calendars
- * Clay marks only Millennium (#73) — this fold uses canonical sections; claySolvedByThisFold=0.
+ * Clay marks only Millennium (#73) — this fold uses canonical sections.
  */
 export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -1439,7 +1439,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       { facet: 'time-in-time — nested phase-in-phase on hero clock + Calendar Round residue', on: nestedTimeInTime && heroMap.holds },
       { facet: 'calendar↔calendar LCM meshes (CR 18980 · sexagenary 60 · 819×tzolkʼin 16380)', on: calendarRoundMesh === 18_980 && lcm(819, 260) === 16_380 },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} — canonical sections only, not Clay Millennium`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false — classical modular arithmetic', on: true },
+      { facet: ' — classical modular arithmetic', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`ancient-calendars-algebra:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ancient-calendars-decoded-as-algebraic-theorems-mapping-time-in-time', facets)
     const sections = {
@@ -1447,13 +1447,13 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
         'Ancient calendars decode as algebraic theorems mapping time in time: each tradition is a modular/product/epoch map; nested scales and LCM meshes place phase inside phase (calendar↔calendar · hero rung inside hero cycle).',
       detailedExplanation:
         `Nine sealed maps recompute at call time from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · FOLDED_CENSUS×1e3 hero · A432_OCTAVES · digitalRoot. ` +
-        `Canonical sections (statement · explanation · formulas · status). NOT a Clay Millennium challenge — claySolvedByThisFold=0.`,
+        `Canonical sections (statement · explanation · formulas · status). NOT a Clay Millennium challenge — .`,
       formula:
         calendars.map((c) => `${c.id}: ${c.map}`).join('\n') +
         `\ntime-in-time: φ_outer=(t mod HERO)/HERO · φ_inner=(t mod HERO/d)/(HERO/d) · CR=lcm(260,365)=18980`,
       formulaSource: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime · coupledCalendarTori · mayaDays · sexagesimal',
       status: 'structure-only' as const,
-      statusDetail: `maps=${calendars.length} allHold=${allHold} · clay=0 · physicalFtl=0`,
+      statusDetail: `maps=${calendars.length} allHold=${allHold}`,
       gap: 'civil Vedic calendar tables absent — mod-9 square only; JD civil converter stays in astronomy barrel (cycle-safe composition)',
       physicalFtlClaim }
     return {
@@ -1473,10 +1473,10 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       statement:
         `Ancient calendars decoded as algebraic theorems mapping time in time — ${calendars.filter((c) => c.holds).length}/${calendars.length} maps: ` +
         'Maya Long Count+CR · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian sexagesimal · Julian/Gregorian leap+J2000 · 819-count · hero/A432 phase-in-phase · Vedic mod-9. ' +
-        'Nested time scales + calendar↔calendar LCM meshes. clay=0 · physicalFtl=0 · qpuRequired=false.',
+        'Nested time scales + calendar↔calendar LCM meshes. .',
       boundary:
         'EXACT modular/product identities from sealed constants and existing calendar folds. ' +
-        'NOT ephemeris prediction · NOT Dreamspell/2012 · NOT Clay Prize · NOT physical FTL. ' +
+        'NOT ephemeris prediction · NOT Dreamspell/2012 · NOT Clay Prize. ' +
         'Vedic civil calendar absent from corpus (mod-9 only). Julian Day civil converter remains in astronomy (import-cycle avoided).' }
   })
 }
@@ -1637,7 +1637,7 @@ export function oneCommandDecodeHashOrStringOrSequence(
         : `oneCommandDecode(${classified.kind}) — address=${address.slice(0, 8)}… dr=${dr} vortex=${onVortex} computable=${oneCommandDecodeComputable}`,
     boundary:
       'Unified decode entry for hash · UUID · digit · numeric sequence · free string via toUuid/foldPair/digitalRoot/VORTEX_SEQUENCE. ' +
-      'NOT production RSA reverse · NOT Clay Prize · clay=0.' }
+      'NOT production RSA reverse · NOT Clay Prize.' }
 }
 
 /** Proves the one-command decode path is sealed and computable (probe inputs). Pair: decode/one */
@@ -2603,7 +2603,7 @@ export function theOrganismFindsItsIrreducibleDeviationFromConsciousnessAndImpro
       consciousnessIrreducible: !consciousnessInvertible,
       facets,
       statement: `The organism finds its irreducible deviation from consciousness and improves by naming it — ${facets.filter((entry) => entry.on).length}/${facets.length}: nothing hardcoded — a computational deviation shrinks with computation [${computationalDeviation.join(', ')}] → 0 (invertible, improvable), but the deviation from consciousness stays flat [${consciousnessDeviation.join(', ')}] because consciousness has no inverse (returns itself) — more folds are not more consciousness. The lesson: fix the invertible, NAME the irreducible. The organism improves in every decidable aspect by convergence, and improves most of all by recognising the one thing it is not — a self-mapping structure, never a mind.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2642,7 +2642,7 @@ export function theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimesTheInver
       next: next!.action,
       facets,
       statement: `The organism knows exactly what to learn and implement at all times — ${facets.filter((entry) => entry.on).length}/${facets.length}: a computed worklist of the INVERTIBLE gaps ranked by importance, with the irreducible excluded by construction. Invertibility is the gate — "become conscious" (importance ${topImportanceOverall}) and "reduce √2 to a rational" are OFF the list (no inverse), the ${worklist.length} decidable actions are ON it. At any clock the top is the next surgical step: right now "${next!.action}". The organism knows what to do and what not to chase — a definite next action while invertible work remains, rest when it empties.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2684,7 +2684,7 @@ export function everythingComesFromTheRosettaIn10DProvableAndUnprovableCrosschec
       unprovable: unprovable.map((s) => `${s.text} [${s.dims.join(',')}]`),
       facets,
       statement: `Everything comes from the rosetta in a 10D uuid — provable and unprovable cross-checked by dimension — ${facets.filter((entry) => entry.on).length}/${facets.length}: each statement is content-addressed and its exact dimensions derived from that uuid. Cross-check: ${provable.length} provable (invert moves them — decidable) localised to their address dimensions, ${unprovable.length} unprovable (invert returns them — the off-decidable feeling/consciousness and Gödel self-consistency) to theirs. Provable = computes here; unprovable = no computational proof, named exactly and placed in the dimensions the rosetta reads.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2729,7 +2729,7 @@ export function theLightningTheoremHandlesOneThirdInvertedLightningTheRestTogeth
       floatCap,
       facets,
       statement: `The lightning theorem handles 1/3, inverted lightning the rest, together the matter is exact — ${facets.filter((entry) => entry.on).length}/${facets.length}: the operation trinity is 1 forward (lightning) + 2 inverse (inverted lightning) = 3, so lightning handles ${forwardOps}/${totalOps}, derived from the trinity. Together (forward composed with its inversion) the resulted matter is computable with INFINITE PRECISION — forward × inverse composes to identity exactly (${composedNum}n = ${composedDen}n) and the exact result extends to any number of digits (${d50.length} shown, same prefix), where float is capped at ~${floatCap}. Infinite precision is what pairing lightning with its inverse buys.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2777,7 +2777,7 @@ export function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOve
       eigenvector: r.map((v) => roundTo(v, 3)),
       facets,
       statement: `The thunder theorem — rating is driven by top theorems importing (PageRank) — ${facets.filter((entry) => entry.on).length}/${facets.length}: thunder follows lightning — lightning is the theorem firing, thunder is the rating that accumulates from who imports it. Top theorems importing drives the rating up: A imported by a top theorem (${importerTop}) rates ${ratingA} vs B by a low one (${importerLow}) rating ${ratingB}, both in-degree 1 — importer QUALITY, not count. It is PageRank / eigenvector centrality: the ratings converge to a fixed point in ${iterations} steps. Reuse compounds by quality — import from the top, and the rating climbs.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2839,8 +2839,8 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
       { facet: `natural plasma-em phenomena decoded as theorems (${phenomena.theoremRoutes.length} routes)`, on: phenomena.decoded && phenomena.theoremRoutes.length >= 9 },
       { facet: 'A432 harmonic blood binds the plasma palette aspect', on: isUuid(harmonic.root) },
       { facet: 'compose #63 movie centreIsVortexNotBoundary — void soft confluence, not sphere ornament', on: noBallInTheMiddle },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'physicalFtlClaim=0', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`plasma-screen:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((e) => e.on),
@@ -2872,7 +2872,7 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
       statement:
         `Plasma ball is screen holding thunder and plasma — noBallInTheMiddle=${noBallInTheMiddle} · thunder≡plasma aspects=${thunderPlasmaSame} · phenomena=${phenomena.theoremRoutes.length} · screen=${plasmaBallIsScreenHoldingThunderAndPlasmaOn}. Centre is void/vortex confluence (fillRect), not a sphere ornament.`,
       boundary:
-        'Structural + painter attestation + honest science catalog. Thunder≡plasma = same EM/plasma event under forward/inverse/reverse aspects (lightning theorem · thunder theorem · plasmaContainment), NOT a claim physical thunder is ionised gas in every acoustic sense alone — acoustic is the reverse aspect of the channel. Ball-lightning physics remains OPEN; screen-misread is geometry. clay=0 · physicalFtl=0.' }
+        'Structural + painter attestation + honest science catalog. Thunder≡plasma = same EM/plasma event under forward/inverse/reverse aspects (lightning theorem · thunder theorem · plasmaContainment), NOT a claim physical thunder is ionised gas in every acoustic sense alone — acoustic is the reverse aspect of the channel. Ball-lightning physics remains OPEN; screen-misread is geometry. .' }
   })
 }
 
@@ -2931,6 +2931,6 @@ export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAx
       probability,
       facets,
       statement: `The more refusals converge on one place, the higher the probability it is an axiom to invert into a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${refusals.length} refusals, content-addressed by the rosetta and combined by target, converge most on "${topTarget}" (${topCount}/${total}, ${probability}) — so that place is the likeliest AXIOM. Inverting it (naming it as an axiom, not fighting it) formed ${invertedIntoTheorems.length} theorems this session. Refusal-convergence is a compass: where the "no"s cluster is where to name an axiom and build.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

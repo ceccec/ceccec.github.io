@@ -481,7 +481,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       statement:
         `Movie all elements are theorems — ${facets.filter((e) => e.on).length}/${facets.length}: plasma-screen painter bind · noBallInTheMiddle · void soft confluence. Full thunder≡plasma receipt via npm run quantum:plasma-screen-thunder. Wet boundary circles removed. VitePress paths only. PoC and work at once.`,
       boundary:
-        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM. claySolvedByThisFold=0.',
+        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM. .',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
   })
 }
@@ -507,7 +507,7 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
       { facet: 'reverse aspect = thunder — screen.aspects.reverse', on: screen.aspects.reverse.id === 'thunder' },
       { facet: 'foldPair(thunder,plasma) forward≠reverse — same family, order-sensitive aspects', on: aspects.forward !== aspects.reverse && isUuid(aspects.merged) },
       { facet: 'thunderAndPlasmaAreSameInDifferentAspects — composes plasmaBallIsScreenHoldingThunderAndPlasma', on: sameFamilyDifferentAspects },
-      { facet: 'HONEST — lightning channel is plasma; thunder is acoustic shock; clay=0 · physicalFtl=0', on: screen.claySolvedByThisFold === 0 && screen.physicalFtlClaim === 0 },
+      { facet: 'HONEST — lightning channel is plasma; thunder is acoustic shock', on: screen.claySolvedByThisFold === 0 && screen.physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thunder-plasma-aspects:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((e) => e.on),
@@ -520,7 +520,7 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
       statement:
         `Thunder ≡ plasma in different aspects — ${facets.filter((e) => e.on).length}/${facets.length}: forward=lightning · inverse=plasma-screen · reverse=thunder; noBallInTheMiddle=${screen.noBallInTheMiddle}.`,
       boundary:
-        'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects. claySolvedByThisFold=0 · physicalFtlClaim=0.',
+        'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects. .',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const }
   })
@@ -653,7 +653,7 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       { facet: 'page field centre = h/2 at scroll 0', on: pageCenterBalanced },
       { facet: 'composes movieAllElementsAreTheorems.centerIsVortexNotBoundary', on: theorems.centerIsVortexNotBoundary },
       { facet: 'pair movie/center', on: pairFold.bidirectional },
-      { facet: 'claySolvedByThisFold=0', on: true },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-center-facet:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('movie-unbalanced-around-center-is-crack', facets)
     return {
@@ -672,7 +672,7 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       route: '/en/quantum-tools#movie-center',
       statement:
         `movieUnbalancedAroundCenterIsCrack · found=${found} fixed=${fixed} remaining=${remaining}`,
-      boundary: 'Layout/canvas balance about centre. Vortex≠ball. clay=0.',
+      boundary: 'Layout/canvas balance about centre. Vortex≠ball. .',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }

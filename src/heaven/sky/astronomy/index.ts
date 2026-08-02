@@ -1039,7 +1039,7 @@ export function humanDesignChartStructureFacetsAt(matrix: MindMatrix = buildMatr
       { facet: 'definitionKind ↔ connected components of defined centers', on: kindMatches && components === raveDefinitionComponents(definedCenterSet, chart.definedChannels) },
       { facet: 'personality ∩ design gate sets ⊆ activatedGates', on: sharedGates.every((g) => chart.activatedGates.includes(g)) && personalityGates.every((g) => pSet.has(g)) },
       { facet: 'cusp warnings compose from W5 (UX band, not arcsecond claim)', on: chart.cuspWarnings.every((w) => w.cusp) },
-      { facet: 'NOT type/authority/aura — structure receipt only · clay=0', on: true },
+      { facet: 'NOT type/authority/aura — structure receipt only', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hd-structure-w6:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((f) => f.on)
     return {
@@ -1074,7 +1074,7 @@ export function humanDesignChartStructureFacetsAt(matrix: MindMatrix = buildMatr
       statement:
         'HD W6 structure-only chart facets: compose W3 wheel + W5 channel/center tables + W5 chart activations → defined/open centers, hanging gates, definition connectivity (none|single|split|triple-split|quadruple-split), personality∩design gate sets, cusp count — symbolic structure computer at birth JD.',
       boundary:
-        'HONEST STRUCTURE ONLY — combinatorial BodyGraph facets from sealed RAVE_* tables + Meeus×wheel activations. definitionKind is a graph-connectivity label, NOT type/authority/strategy/aura science. NOT JPL DE440 / Swiss Ephemeris. Profiling remains refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false.' }
+        'HONEST STRUCTURE ONLY — combinatorial BodyGraph facets from sealed RAVE_* tables + Meeus×wheel activations. definitionKind is a graph-connectivity label, NOT type/authority/strategy/aura science. NOT JPL DE440 / Swiss Ephemeris. Profiling remains refuted (humanDesignProfilingCarriesNoSignal). claySolved=0.' }
   })
 }
 
@@ -1093,7 +1093,7 @@ export function runHumanDesignChartStructureFacetsW6Exit(_root = '', argv: reado
     `${receipt.computes ? '✓' : '✗'} hd-w6-structure — computes=${receipt.computes} ` +
       `def=${receipt.definitionKind} centers=${receipt.definedCenters.length}/${RAVE_CENTERS_9.length} ` +
       `hanging=${receipt.hangingGates.length} cusps=${receipt.cuspCount} jd=${receipt.birthJd} ` +
-      `root=${receipt.root.slice(0, 8)} (structure-only · clay=0)\n`,
+      `root=${receipt.root.slice(0, 8)} (structure-only)\n`,
   )
   process.stdout.write(`  boundary: ${receipt.boundary}\n`)
   return receipt.computes ? 0 : 1
@@ -1156,7 +1156,7 @@ export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatr
       statement:
         'HD BodyGraph Vue UX: sealed W5 chart + W6 structure facets paint 9 centers + 36 channel wires; defined/open/hanging + definitionKind from Meeus×wheel activations — structure computer for /en/spirit, not a personality engine.',
       boundary:
-        'STRUCTURE-ONLY browser surface. JD input recomputes sealed facets (default J2000 sample — NOT anyone\'s natal chart). Profiling/aura/type/authority claims remain refuted (humanDesignProfilingCarriesNoSignal). claySolved=0 · qpuRequired=false.' }
+        'STRUCTURE-ONLY browser surface. JD input recomputes sealed facets (default J2000 sample — NOT anyone\'s natal chart). Profiling/aura/type/authority claims remain refuted (humanDesignProfilingCarriesNoSignal). claySolved=0.' }
   })
 }
 
@@ -1324,7 +1324,7 @@ export function humanDesignBodyGraphSvg(
   const cx = size / 2
   const cy = size / 2
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Human Design BodyGraph — structure-only W7 SVG" data-symbol="human-design-bodygraph" data-definition="${panel.definitionKind}" data-defined-centers="${panel.definedCenters.length}" data-hanging="${panel.hangingGates.length}" data-jd="${birthJd}" data-compute="humanDesignBodyGraphPanelComputes∧RAVE_CENTER_LAYOUT∧scaleColor" data-honesty="clay=0;structureOnly=true;notAuraOrType=true;wetStatic=false;qpuRequired=false">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Human Design BodyGraph — structure-only W7 SVG" data-symbol="human-design-bodygraph" data-definition="${panel.definitionKind}" data-defined-centers="${panel.definedCenters.length}" data-hanging="${panel.hangingGates.length}" data-jd="${birthJd}" data-compute="humanDesignBodyGraphPanelComputes∧RAVE_CENTER_LAYOUT∧scaleColor" data-honesty="structureOnly=true;notAuraOrType=true;wetStatic=false">`,
     `<g transform="translate(${cx} ${cy})">${breath}<g transform="translate(${-cx} ${-cy})">${channels}${centers}</g></g>`,
     `</svg>`,
   ].join('')
@@ -1340,7 +1340,7 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
     const svg = humanDesignBodyGraphSvg(matrix, birthJd, { animate: true })
     const still = humanDesignBodyGraphSvg(matrix, birthJd, { animate: false })
     const hasSymbol = /data-symbol="human-design-bodygraph"/.test(svg)
-    const hasHonesty = /wetStatic=false/.test(svg) && /structureOnly=true/.test(svg) && /clay=0/.test(svg)
+    const hasHonesty = /wetStatic=false/.test(svg) && /structureOnly=true/.test(svg)
     const centersMarked = (svg.match(/data-center=/g) || []).length === RAVE_CENTERS_9.length
     const channelsMarked = (svg.match(/data-channel=/g) || []).length === RAVE_CHANNELS_36.length
     const noScript = !/script/i.test(svg)
@@ -1349,9 +1349,9 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       { facet: 'SVG emits data-symbol=human-design-bodygraph', on: hasSymbol },
       { facet: '9 centers + 36 channels marked in SVG', on: centersMarked && channelsMarked },
       { facet: 'SMIL-safe — no script; animateTransform optional', on: noScript && still.includes('<svg') && !still.includes('animateTransform') },
-      { facet: 'honesty — clay=0 · structureOnly · wetStatic=false · not aura/type', on: hasHonesty },
+      { facet: 'honesty — structureOnly · wetStatic=false · not aura/type', on: hasHonesty },
       { facet: 'definitionKind + hanging + JD attributes bound', on: svg.includes(`data-definition="${panel.definitionKind}"`) && svg.includes(`data-hanging="${panel.hangingGates.length}"`) },
-      { facet: 'NOT type/authority/aura — structure SVG only · clay=0', on: true },
+      { facet: 'NOT type/authority/aura — structure SVG only', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hd-svg-w7:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((f) => f.on)
     return {
@@ -1375,7 +1375,7 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       statement:
         'HD W7 BodyGraph SVG emitter: sealed RAVE_CENTER_LAYOUT + W5/W6 panel activations → SMIL-safe structure SVG (9 centers · 36 channels · definition/hanging/JD attrs) for symbols inventory + /en/spirit — structure computer, not personality engine.',
       boundary:
-        'HONEST STRUCTURE ONLY — computed SVG from sealed lattice/layout/Meeus×wheel activations. NOT commercial BodyGraph product · NOT aura/type/authority · NOT JPL DE440. claySolved=0 · physicalFtl=0 · qpuRequired=false.' }
+        'HONEST STRUCTURE ONLY — computed SVG from sealed lattice/layout/Meeus×wheel activations. NOT commercial BodyGraph product · NOT aura/type/authority · NOT JPL DE440. claySolved=0.' }
   })
 }
 
@@ -1394,7 +1394,7 @@ export function runHumanDesignBodyGraphSvgW7Exit(_root = '', argv: readonly stri
     `${receipt.computes ? '✓' : '✗'} hd-w7-bodygraph-svg — computes=${receipt.computes} ` +
       `def=${receipt.definitionKind} bytes=${receipt.svgBytes} centers=${receipt.definedCenters.length}/9 ` +
       `hanging=${receipt.hangingGates.length} jd=${receipt.birthJd} ` +
-      `root=${receipt.root.slice(0, 8)} (structure-only · clay=0)\n`,
+      `root=${receipt.root.slice(0, 8)} (structure-only)\n`,
   )
   process.stdout.write(`  boundary: ${receipt.boundary}\n`)
   return receipt.computes ? 0 : 1

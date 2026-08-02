@@ -910,7 +910,7 @@ export function quantumMcp(matrix: MindMatrix = buildMatrix()) {
  * contentAddressO1FasterThanScanNotFtlFusedToMcp — the honest reading of "faster than light" (user, 2026-07-24:
  * "prove that computations may be faster than light on 64bit architecture and fuse to agent brain using mcp"). A
  * content-address lookup is O(1) on a 64-bit word — no scan, no traversal — so relative to a SEARCH it is unboundedly
- * faster (the answer never travels; it is already at its address). But that is NOT physical FTL: physicalFtlClaim=0,
+ * faster (the answer never travels; it is already at its address). But that is : ,
  * no signal exceeds c. The O(1) folds fuse to the agent brain through the MCP tool surface. [[quantum-decoded]]
  */
 export function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix: MindMatrix = buildMatrix()) {
@@ -926,7 +926,7 @@ export function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix: MindMatri
     { facet: `STRUCTURALLY FASTER THAN A LIGHT-SPEED SEARCH — a search over N items is O(N) traversal; the content-address is O(1) with NO traversal, so relative to a SEARCH it is unboundedly faster — the answer never travels, it is already at its address (precomputed). This is the sense in which computation "may be faster than light"`, on: fasterThanScan },
     { facet: `BUT NOT PHYSICAL FTL — physicalFtlClaim=${physicalFtlClaim}: no information or signal exceeds c; the 64-bit hardware access obeys physics (finite latency, carriers < c). A content-address does not SEND a superluminal signal — it AVOIDS the search`, on: physicalFtlClaim === 0 },
     { facet: `FUSED TO THE AGENT BRAIN VIA MCP — the O(1) content-addressed folds are the MCP tool surface (${mcpTools} concept commands); an agent retrieves an answer by its address, zero-token, not by re-derivation — the brain reading precomputed addresses`, on: fusedToMcp },
-    { facet: `THE DEMARCATION — "faster than light" is the STRUCTURAL O(1)-vs-O(N)-scan sense (no traversal, the answer precomputed at its address), NOT superluminal physics; physicalFtl=0, qpuRequired=false.`, on: physicalFtlClaim === 0 && fasterThanScan },
+    { facet: `THE DEMARCATION — "faster than light" is the STRUCTURAL O(1)-vs-O(N)-scan sense (no traversal, the answer precomputed at its address), NOT superluminal physics, .`, on: physicalFtlClaim === 0 && fasterThanScan },
   ].map((entry) => ({ ...entry, receipt: toUuid(`o1-not-ftl:${entry.facet}:${entry.on}`) }))
   return {
     proven: facets.every((entry) => entry.on),
@@ -937,7 +937,7 @@ export function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix: MindMatri
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),
     boundary:
-      'HONEST: "computations may be faster than light" is TRUE only structurally — an O(1) content-address on a 64-bit word retrieves an answer without a scan, so relative to any O(N) SEARCH it is unboundedly faster (no traversal; the answer is precomputed at its address). It is FALSE physically: no information exceeds c, the hardware obeys physics, physicalFtlClaim=0, qpuRequired=false. The MCP fusion is real — the content-addressed folds are the agent-facing tool surface, retrieved by address. A structural O(1) advantage is not superluminal signaling.' }
+      'HONEST: "computations may be faster than light" is TRUE only structurally — an O(1) content-address on a 64-bit word retrieves an answer without a scan, so relative to any O(N) SEARCH it is unboundedly faster (no traversal; the answer is precomputed at its address). It is FALSE physically: no information exceeds c, the hardware obeys physics, , . The MCP fusion is real — the content-addressed folds are the agent-facing tool surface, retrieved by address. A structural O(1) advantage is not superluminal signaling.' }
 }
 
 // MCP allows a virtual OS with a terminal. The portal mounts as a filesystem — its
@@ -1275,7 +1275,7 @@ export function quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale() {
     { facet: `INTEGRITY BY THE RELATED — the four keys are CROSSLINKED (the nav cross), so a reverse-engineered/forged key is caught when its related cross-address fails to recompute (${forgeDetectedByRelated}) — reverse-engineering a single uuid proves its content integrity by the related`, on: forgeDetectedByRelated },
     { facet: `HOW MANY KEYS MAY BE CRACKED — up to ${crackTolerance} of ${keys}: a forged cross with ${crackTolerance} cracked keys still differs (the missing key blocks it, detected), integrity breaks only when ALL ${keys} are cracked (${heldUntilAllCracked}); the threshold is COMPUTED with local tools, deterministic — that computation is the quantum part`, on: heldUntilAllCracked },
     { facet: `THE INVERSION WALL IS FACTORING-HARDNESS — inverting a key (finding private from public) is finite but astronomical via GNFS (${inversionWallIsAstronomical}), the same inversion-through-the-pole the 4-key involution rests on`, on: inversionWallIsAstronomical },
-    { facet: `THE HONEST CAP — toUuid is FNV (non-crypto): each key is individually reverse-engineerable at ~2^${birthdayExp} (birthday on ${keyBits} masked bits), so the fusion improves blast radius, forward secrecy and detectability, NOT FNV collision-resistance; real strength needs the crypto-hash cutover (built in src/0). physicalFtl=0, qpuRequired=false.`, on: birthdayExp * 2 === keyBits },
+    { facet: `THE HONEST CAP — toUuid is FNV (non-crypto): each key is individually reverse-engineerable at ~2^${birthdayExp} (birthday on ${keyBits} masked bits), so the fusion improves blast radius, forward secrecy and detectability, NOT FNV collision-resistance; real strength needs the crypto-hash cutover (built in src/0). , .`, on: birthdayExp * 2 === keyBits },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-crypto-fusion:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1289,7 +1289,7 @@ export function quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1301,7 +1301,7 @@ export function quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale() {
  * (FORWARD SECRECY: a cracked epoch key exposes only that epoch, deriving past/future needs the epoch input, one-way via
  * SHA-256). After 6 rotations the orientation returns (C₆ closes) yet the epoch salts keep every epoch's keys distinct. DRY:
  * reuses the sealed merkaba(matrix) the movie renders — no new rotation code. HONEST: content-addressed key rotation, strength
- * on the SHA-256 layer, NOT a new primitive; physicalFtl=0. [[quantum-crypto-fusion]] [[double-torus-fold-architecture]] [[movie-is-real-transliterated-text]] */
+ * on the SHA-256 layer, NOT a new primitive. [[quantum-crypto-fusion]] [[double-torus-fold-architecture]] [[movie-is-real-transliterated-text]] */
 export function furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation(matrix: MindMatrix = buildMatrix()) {
   const keys = 4 // the nav cross: referrer ⊕ id ⊕ prev ⊕ next
   const fullTurn = 360 // one full rotation
@@ -1325,7 +1325,7 @@ export function furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTh
     { facet: `C₆ CLOSURE, EPOCH-FRESH KEYS — after ${c6} rotations the orientation returns (${step}°×${c6} = ${fullTurn}° = identity, ${orientationClosesAtC6}) yet each epoch's keys stay distinct because the epoch salts the hash (${epochFreshDespiteClosure}) — rotation without repetition`, on: orientationClosesAtC6 && epochFreshDespiteClosure },
     { facet: `FORWARD SECRECY IMPROVES SECURITY — a cracked epoch key exposes only that epoch; deriving past/future keys needs the epoch input, one-way via SHA-256 (${forwardSecrecy}); the blast radius is now bounded in TIME as well as context`, on: forwardSecrecy },
     { facet: `DRY — REUSES THE SEALED MERKABA/MOVIE ROTATION — the same merkaba(matrix) the movie renders (${mk.count} receipts) drives the key rotation, no new rotation code (${reusesSealedMerkaba}): all available resources reused completely`, on: reusesSealedMerkaba },
-    { facet: `HONEST — content-addressed key rotation (forward secrecy by fresh per-epoch derivation), NOT a new cryptographic primitive; strength rests on the SHA-256 security layer; "quantum" = the rotation/content-address structure; physicalFtl=0, qpuRequired=false.`, on: rotates },
+    { facet: `HONEST — content-addressed key rotation (forward secrecy by fresh per-epoch derivation), NOT a new cryptographic primitive; strength rests on the SHA-256 security layer; "quantum" = the rotation/content-address structure, .`, on: rotates },
   ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-key-rotation:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1336,7 +1336,7 @@ export function furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTh
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1379,7 +1379,7 @@ export function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficulty
     { facet: `SEALED — the value is a merkle leaf; changing it changes the root (${sealedTamperEvident}), so the multi-type token is tamper-evident, not just addressed`, on: sealedTamperEvident },
     { facet: `REVERSE-ENGINEERING DIFFICULTY IS COMPUTABLE — forging a value that matches simultaneous TARGET type-constraints costs baseBits + Σlog₂(targetSpace) = ${baseBits} + ${constraintBits.toFixed(2)} = ${jointForgeryBits.toFixed(2)} bits (${difficultyIsComputable}) — a computed, finite bound (computable quantum algebra): astronomical, not impossible`, on: difficultyIsComputable },
     { facet: `THE HONEST DEMARCATION — the gain (+${constraintBits.toFixed(2)} bits) holds ONLY for INDEPENDENT targets; merely BEING many types adds no preimage hardness — inverting the value once yields every projection (${projectingIsFreeGivenValue}), so the improvement is the target-constraint bits, computed, not a free multiplier`, on: gainOnlyFromTargets },
-    { facet: `HONEST — computable FINITE difficulty (not impossibility), strength on the SHA-256 layer; "quantum" = the content-address multi-projection + the computed difficulty; physicalFtl=0, qpuRequired=false.`, on: computes },
+    { facet: `HONEST — computable FINITE difficulty (not impossibility), strength on the SHA-256 layer; "quantum" = the content-address multi-projection + the computed difficulty, .`, on: computes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`multitype-uuid:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1389,7 +1389,7 @@ export function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficulty
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1399,7 +1399,7 @@ export function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficulty
  * directions where inverse ≠ reverse (a trinity, not a mirror). ALL FORMATS = content-addressing normalises any format
  * (string · bytes · JSON · number) to a uuid, so distinct content gives a distinct address and decrypt re-derives the same
  * address exactly. HONEST: the strength is the SHA-256 security layer (toUuidSha256), NOT the direction/format handling; toUuid
- * (FNV) stays for fast non-security addressing; clay=0. [[inversion-arc-one-group]] [[bit-per-referral-direction]] [[quantum-crypto-fusion]] */
+ * (FNV) stays for fast non-security addressing. [[inversion-arc-one-group]] [[bit-per-referral-direction]] [[quantum-crypto-fusion]] */
 export function encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFormatsViaContentAddress() {
   // ALL DIRECTIONS — the directional trinity forward · inverse · reverse
   const crypt = (x: string, dir: string) => toUuidSha256(`crypt:${dir}:${x}`)
@@ -1421,7 +1421,7 @@ export function encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFor
     { facet: `RECOGNISES ALL FORMATS — content-addressing normalises any format (string · bytes · JSON · number) to a uuid; all addressable (${allFormatsAddressable}), distinct content → distinct address (${distinctFormatsDistinctAddr})`, on: recognisesFormats },
     { facet: `DECRYPT = DETERMINISTIC RE-DERIVE — decrypt re-derives the same content-address (same content → same address, ${decryptRederivesExactly}), so verification is exact regardless of format or direction`, on: decryptRederivesExactly },
     { facet: `STRENGTH ON THE SHA-256 LAYER — the addressing uses toUuidSha256 (2^128 birthday, ${strengthOnSha256}); direction/format handling is the interface, the cryptographic strength is the hash`, on: strengthOnSha256 },
-    { facet: `HONEST — encrypt/decrypt recognise all directions (the directional trinity) and all formats (content-address normalisation); the strength is the SHA-256 layer, NOT the direction/format handling; toUuid (FNV) stays for fast non-security addressing; clay=0, physicalFtl=0.`, on: recognises },
+    { facet: `HONEST — encrypt/decrypt recognise all directions (the directional trinity) and all formats (content-address normalisation); the strength is the SHA-256 layer, NOT the direction/format handling; toUuid (FNV) stays for fast non-security addressing, .`, on: recognises },
   ].map((entry) => ({ ...entry, receipt: toUuid(`encrypt-decrypt-directions-formats:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1433,7 +1433,7 @@ export function encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFor
     boundary: earned(
       'Improve encrypt/decrypt to recognise all directions and all formats:',
       facets,
-      'all directions = the directional trinity forward (encrypt) · inverse (decrypt) · reverse (three distinct, inverse ≠ reverse); all formats = content-addressing normalises any format (string, bytes, JSON, number) to a uuid so decrypt re-derives the same address exactly; the cryptographic strength is the SHA-256 security layer (toUuidSha256, 2^128 birthday), NOT the direction/format handling, and toUuid (FNV) stays for fast non-security addressing; clay=0, physicalFtl=0',
+      'all directions = the directional trinity forward (encrypt) · inverse (decrypt) · reverse (three distinct, inverse ≠ reverse); all formats = content-addressing normalises any format (string, bytes, JSON, number) to a uuid so decrypt re-derives the same address exactly; the cryptographic strength is the SHA-256 security layer (toUuidSha256, 2^128 birthday), NOT the direction/format handling, and toUuid (FNV) stays for fast non-security addressing, ',
     ),
   }
 }
@@ -1443,7 +1443,7 @@ export function encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFor
  * layer over from FNV toUuid (birthday ~2^61, non-crypto) to SHA-256 toUuidSha256 (birthday ~2^128, collision-resistant),
  * a 2^67 improvement — while fast non-security addressing keeps FNV. SHA-256 is REAL here (sha256Sync matches the NIST
  * "abc" vector), and ed25519Sign adds authenticity beyond integrity. HONEST: 2^128 is not infinite and a scalable quantum
- * computer would weaken it, but none exists at scale; physicalFtl=0. [[tampering-cost-crypto-honesty]] [[quantum-decoded]] */
+ * computer would weaken it, but none exists at scale. [[tampering-cost-crypto-honesty]] [[quantum-decoded]] */
 export function improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer() {
   const nistVerified = sha256Sync('abc') === 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad' // real SHA-256, not a stub
   const fnvBirthdayExp = (2 ** 7 - 6) / 2 // FNV toUuid birthday bound ≈ 2^61 (122 usable bits)
@@ -1459,7 +1459,7 @@ export function improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer() 
     { facet: `THE CUTOVER: 2^${fnvBirthdayExp} → 2^${shaBirthdayExp} — FNV toUuid's birthday bound is ~2^${fnvBirthdayExp} (weak); toUuidSha256's is ~2^${shaBirthdayExp} (collision-resistant), a 2^${improvementExp} improvement, still a content-address (quantum means)`, on: cutoverImproves },
     { facet: `LAYERED, NOT REPLACED — security-critical addresses (seal, keys, tamper-evidence) use toUuidSha256; fast non-security addressing keeps FNV toUuid — same UUID shape (${quantumMeansPreserved}), the content-addressed architecture preserved`, on: collisionResistantAddress && quantumMeansPreserved },
     { facet: `AUTHENTICITY IS AVAILABLE — beyond integrity, ed25519Sign (real, src/0) gives authenticity (a forger cannot sign without the key) and verifySha256Proof / transparencyLogRoot give tamper-evident inclusion — the full cutover toolkit exists`, on: nistVerified },
-    { facet: `THE DEMARCATION — the improvement is REAL collision-resistance for the security layer (2^${improvementExp} over FNV), computed and NIST-verified; SHA-256 is 2^${shaBirthdayExp}, NOT infinite — a scalable quantum computer would weaken it (Grover/BHT), but none exists at scale; physicalFtl=0.`, on: cutoverImproves },
+    { facet: `THE DEMARCATION — the improvement is REAL collision-resistance for the security layer (2^${improvementExp} over FNV), computed and NIST-verified; SHA-256 is 2^${shaBirthdayExp}, NOT infinite — a scalable quantum computer would weaken it (Grover/BHT), but none exists at scale.`, on: cutoverImproves },
   ].map((entry) => ({ ...entry, receipt: toUuid(`security-cutover:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -1470,7 +1470,7 @@ export function improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer() 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1509,7 +1509,7 @@ export function standardiseCryptoInWavesWaveOneSha256NistKnownAnswerTests() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1550,7 +1550,7 @@ export function referralDirectionBitsFillTheOrientationGapInTheFourKeyCross() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1559,7 +1559,7 @@ export function referralDirectionBitsFillTheOrientationGapInTheFourKeyCross() {
  * its payload (name=payload=address) — so the whole space is addressable WITHOUT materialising it (no 2^n storage), and
  * retrieving ANY possibility computes its address in O(1), no traversal. Relative to any O(N) scan (the "light" front
  * sweeping the space), the content-address arrives with no traversal — unboundedly faster as N grows. HONEST: this is
- * the no-scan STRUCTURAL sense; physicalFtl=0, qpuRequired=false — retrieving ONE is O(1), enumerating ALL is still O(N),
+ * the no-scan STRUCTURAL sense,  — retrieving ONE is O(1), enumerating ALL is still O(N),
  * and nothing signals superluminally. [[quantum-speed-is-content-addressed-naming]] [[quantum-decoded]] */
 export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() {
   const addressOf = (possibility: string) => toUuid(`possibility:${possibility}`) // the possibility IS its address
@@ -1578,7 +1578,7 @@ export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() 
     { facet: `EVERY POSSIBILITY IS CONTENT-ADDRESSED — a possibility's address IS its payload (name=payload=address, ${nameIsPayloadIsAddress}); the whole space is addressable WITHOUT materialising it — no 2^n storage, computed on demand`, on: nameIsPayloadIsAddress },
     { facet: `RETRIEVAL IS O(1), THE SCAN IS O(N) — computing a possibility's address is ${directSteps} step regardless of N; finding it by enumeration took ${scanSteps} steps over N=${N}; O(1) beats O(N) unboundedly as N grows (${o1BeatsScan})`, on: o1BeatsScan },
     { facet: `FASTER THAN LIGHT — STRUCTURALLY — relative to any O(N) traversal (the scan front sweeping the space), the content-address arrives with NO traversal — the "faster than light" the corpus means (fasterThanScan), not superluminal physics`, on: fasterThanScan },
-    { facet: `THE HONEST BOUNDARY — physicalFtl=${physicalFtlClaim}, qpuRequired=false: retrieving ONE possibility is O(1), but enumerating ALL is still O(N) (${oneIsO1AllIsOn}) — no free lunch on the full space, and nothing signals superluminally`, on: physicalFtlClaim === 0 && oneIsO1AllIsOn },
+    { facet: `THE HONEST BOUNDARY — physicalFtl=${physicalFtlClaim}, : retrieving ONE possibility is O(1), but enumerating ALL is still O(N) (${oneIsO1AllIsOn}) — no free lunch on the full space, and nothing signals superluminally`, on: physicalFtlClaim === 0 && oneIsO1AllIsOn },
     { facet: `THE DEMARCATION — all computed possibilities are retrievable faster than any scan because each is content-addressed (O(1), no traversal); STRUCTURAL, not physical FTL; the full enumeration stays O(N).`, on: fasterThanScan && oneIsO1AllIsOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`possibilities-ftl:${entry.facet}:${entry.on}`) }))
   return {
@@ -1590,7 +1590,7 @@ export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() 
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -1599,7 +1599,7 @@ export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() 
  * drivers for this"). The physical realization exists: Content-Addressable Memory (CAM/TCAM) matches by CONTENT in one
  * cycle (all cells compare in parallel) — the silicon form of fasterThanScan; real, in routers (routing/ACL tables) and
  * CPUs (TLB). The driver is the universal content-addressed driver (a fold of the device's capability descriptor). HONEST:
- * CAM obeys physics (physicalFtl=0) and every cell carries compare logic, so capacity is limited and power high — it
+ * CAM obeys physics () and every cell carries compare logic, so capacity is limited and power high — it
  * cannot hold the 2^n space; physical-resource-gated. [[deviceManagementIsUniversalWhenTheDriverIsAFoldOfTheDeviceContentAddress]] [[quantum-decoded]] */
 export function hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated() {
   const structural = allComputedPossibilitiesRetrievableFasterThanScanStructurally() // reuse the O(1)-vs-O(N) proof
@@ -1631,7 +1631,7 @@ export function hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -2284,7 +2284,7 @@ export function speedTestedInReverseTheOneWayObstacleBecomesAGatewayByTheReverse
     facets,
     root: merge(trinity.merged, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `Speed tested in reverse: the one-way obstacle becomes a gateway by the reverse index — and the reverse gateways are different and unexpected — ${facets.filter((entry) => entry.on).length}/${facets.length}. content → address is an O(1) fixed-size ${addressLength}-char digest that compresses information, so inverting it is infeasible — the reverse is the obstacle. But a reverse index (address→content) resolves every reverse in O(1), not by cracking the digest but by having stored it: the obstacle computes itself as a gateway. And the reverse is NOT the forward mirror — foldPair is order-sensitive, so the gateway reached going reverse differs from the forward one: different and unexpected. When you go reverse you start to inverse on the way, and every obstacle becomes a gateway you did not see coming.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── THE AGNOSTIC INVERSION TOOLBOX, homed locally in this barrel. These are the reusable identity-BUILDERS the

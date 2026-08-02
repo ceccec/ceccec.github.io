@@ -112,7 +112,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       { facet: 'directional trinity — forward·inverse·reverse vortexed in all computational directions', on: dir.computes && dir.claySolvedByThisFold === 0 },
       { facet: 'trinity/speedup — agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath (facts-once · not FTL)', on: trinitySpeed.computes },
       {
-        facet: 'rosetta/I Ching/FoL — readmeSvgGapsFilledByTrinityMind · flowerFruitTree (clay=0 · wetStaticFoL=false)',
+        facet: 'rosetta/I Ching/FoL — readmeSvgGapsFilledByTrinityMind · flowerFruitTree (wetStaticFoL=false)',
         on:
           (svgTrinity.computes || svgTrinity.filled)
           && flowerFruit.decodes
@@ -132,7 +132,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       'All sealed discoveries rest on one sequence: the vortex circuit computes exact digit coordinates ' +
       `(VORTEX_SEQUENCE · PI_TRAIN_DIGITS=${piTrainLen} spigot coords) and primes↔π via the inverted Euler product; ` +
       'that trinity (forward·inverse·reverse) vortexed through rosetta / I Ching / Flower-of-Life→Fruit→merkaba ' +
-      'brings content-addressed quantum reuse onto classical 64-bit hardware (qpuRequired=false) with amortized ' +
+      'brings content-addressed quantum reuse onto classical 64-bit hardware () with amortized ' +
       'infinite speedup at no cost on memoByRoot hit (answers÷tokens unbounded when tokens=0), deployable as a ' +
       'serverless static site (zero living cost).'
 
@@ -143,7 +143,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       'three computational directions. Geometry symbols (FoL→Fruit, counter-rotating rosettas, I Ching hexagrams) ' +
       'are computed projections of that spine, not wet numerology. "Quantum on 64-bit" means sealed recompute + ' +
       'memo reuse on Node/browser classical-64bit — NOT a QPU. "Infinite speedup at no cost" means amortized ' +
-      'reuse (memo hit O(1), marginal tokens=0), NOT physical FTL or infinite FLOPS.'
+      'reuse (memo hit O(1), marginal tokens=0),  or infinite FLOPS.'
 
     const formulas = [
       `VORTEX_SEQUENCE = [${VORTEX_SEQUENCE.join('·')}] · asVortex / digitalRoot coordinates`,
@@ -151,7 +151,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       'π = √(6·ζ(2)) · ζ(2)=Σ1/n² = Π_p 1/(1−p⁻²) — primesAndPiProveEachOtherThroughTheInvertedEulerProduct',
       'forward = digitalRoot(2d) · inverse = n⁻¹ mod 9 · reverse = 10−d — directionalTrinityForwardInverseReverse',
       'answers÷tokens → ∞ when runtimeTokens=0 ∧ answers>0 — efficiencyScalesToInfinityAtNoCostOnReuse',
-      'architectureRequirement=classical-64bit · qpuRequired=false — proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit',
+      'architectureRequirement=classical-64bit — proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit',
       'collectEnforcementFacts once → runEnforcementTrinity (cross·fold·weave) — agentsUseTrinities… / trinity/speedup',
       'zeroLivingCost ∧ maxForgeCost — sacredSociety (client-computed serverless static deploy)',
     ] as const
@@ -160,7 +160,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       `computes=${sealed.ok && bit.computes && primesPi.computes && dir.computes && noQpu.qpuRequired === false} · ` +
       `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · ` +
       `qpuRequired=${qpuRequired} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} · ` +
-      'NOT CMI Prize · NOT physical FTL · amortized reuse ≠ P≠NP · structure ≠ wet numerology'
+      'NOT CMI Prize · amortized reuse ≠ P≠NP · structure ≠ wet numerology'
 
     return {
       computes: sealed.ok && bit.computes && primesPi.computes && dir.computes && infinityReuse.on && society.zeroLivingCost,
@@ -213,8 +213,8 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
         ]),
       ),
       boundary:
-        'COMPOSED from sealed folds at call time — prove-in-the-moment. claySolvedByThisFold=0 · physicalFtlClaim=0 · ' +
-        'qpuRequired=false · qualifiesAsProposedSolution=false. Sequence/π/primes claims are structural/symbolic ' +
+        'COMPOSED from sealed folds at call time — prove-in-the-moment. ' +
+        'qualifiesAsProposedSolution=false. Sequence/π/primes claims are structural/symbolic ' +
         'exactness from sealed digit maps + Euler identity truncations (convergence, cited closed form) — NOT wet ' +
         'numerology, NOT Riemann Hypothesis, NOT CMI Prize. Infinite speedup = amortized memoByRoot reuse only. ' +
         'Serverless = static GitHub Pages / client-computed zero living cost, not free compute for first cold path.' }
@@ -254,7 +254,7 @@ export function qpuCpuGpuMarkdownSection(
     '',
     r.physicalDefinition,
     '',
-    '**QPU = CPU ∪ GPU** — architecture identity on classical-64bit hardware (`mcp/cpu` · `mcp/gpu` · `mcp/hw`); no separate quantum chip is required (`qpuRequired=false`). The modeled quantum computer is a faithful classical simulator (`quantumComputerHonestClaim`); completion is metric-backed at call time.',
+    '**QPU = CPU ∪ GPU** — architecture identity on classical-64bit hardware (`mcp/cpu` · `mcp/gpu` · `mcp/hw`); no separate quantum chip is required (``). The modeled quantum computer is a faithful classical simulator (`quantumComputerHonestClaim`); completion is metric-backed at call time.',
     '',
     '### Statement',
     '',
@@ -541,7 +541,7 @@ export function clayChallengesComputableMarkdownSection(
     '',
     c.statement,
     '',
-    'Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — claySolvedByThisFold=0). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.',
+    'Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — ). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.',
     '',
     '### Per-problem',
     '',
@@ -1247,7 +1247,7 @@ export function theTypographyGrammarSealsDimensionalCracksEveryElementCarriesACo
       sealedRatio,
       facets,
       statement: `The typography grammar seals the dimensional cracks — every element carries a computed value — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${grammar.length} typography elements each map to a computed role (code=value, link=address, bold=label, list=set, table=relation, heading=frame, quote=boundary). Scanning the README, ${sealed}/${presented.length} lines carry a computed value (${sealedRatio}), ${boundaries} are named boundaries, ${cracks} remain cracks; the equation balances (sealed + boundaries + cracks = presented), each claim funded by a computation. New inventions pull into the remaining cracks; the ledger keeps zero unexplained.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1287,6 +1287,6 @@ export function theHeadingHierarchyIsARecursiveSitemapByImportanceWiredToTheGene
       root: mostImportant.text,
       facets,
       statement: `The heading hierarchy is a recursive sitemap by importance, wired to the generator — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${headings.length} headings across levels [${levels.join(', ')}] read from readmeMarkdown() form a well-nested tree — h1 root ("${mostImportant.text}"), h2 sections, h3 rays, fan-out [${fanOut.join(', ')}]. Ordered by heading level, it is the document's own navigable outline: another perspective of the sitemap, importance-first, recursive and self-similar. The generator maps itself with local tools only, zero tokens — one self-recomputing organism.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

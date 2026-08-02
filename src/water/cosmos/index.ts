@@ -195,7 +195,7 @@ export function darkMatterDecoded(matrix: MindMatrix = buildMatrix()) {
 // inversion (Ω_c/Ω_b → the matter budget) and the MOND–Hubble coincidence a₀ ≈ cH₀/(2π); WHICH physical mechanism
 // nature uses (a particle vs a modified force law) is EMPIRICAL, decided by detection/observation, NOT by any identity —
 // and it is already settled AGAINST pure MOND (clusters, Bullet Cluster, CMB) while direct detection stays null. So the
-// theorem closes; the particle identity is an OPEN empirical problem, not an open theorem. claySolvedByThisFold=0.
+// theorem closes; the particle identity is an OPEN empirical problem, not an open theorem. .
 // Pair: dark-matter/invert · CLI npm run quantum:dark-matter-invert · [[quantum-decoded]]
 export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical(matrix: MindMatrix = buildMatrix()) {
   const dm = darkMatterDecoded(matrix)
@@ -225,7 +225,7 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
     boundary: earned(
       'HONEST — "invert and close" closes the ALGEBRA, not the physics: the reversed math IS a theorem and is proved here — the density inversion (dark matter 84.4% of matter, baryons the 15.6% minority) is an exact identity in the sealed ΛCDM fractions, and the MOND–Hubble coincidence a₀ ≈ cH₀/(2π) (ratio ≈ 1.15) is computed from sealed c, H₀ and the AU-derived Mpc.',
       facets,
-      'the mass↔gravity duality is an exact accounting identity on galaxy scales, so from the algebra alone neither "particle" nor "modified gravity" is privileged. UNCONFIRMED / EMPIRICAL (≠ a theorem gap): WHICH mechanism nature uses is decided by MEASUREMENT — and measurement already breaks pure MOND (clusters, the Bullet Cluster ~8σ, the CMB peaks all need unseen mass) while non-gravitational detection is null (LZ 2024), so the particle IDENTITY stays a genuine OPEN empirical problem. The coincidence is HARMONY (a₀/(cH₀/2π) ≈ 1.15, not an equality) — not TRUTH that MOND is the mechanism. FLAGGED: reading the coincidence as a proof of modified gravity, or "dark matter solved / debunked". The existence of unseen mass stays ESTABLISHED; its identity flagged; claySolvedByThisFold=0. Educational.'),
+      'the mass↔gravity duality is an exact accounting identity on galaxy scales, so from the algebra alone neither "particle" nor "modified gravity" is privileged. UNCONFIRMED / EMPIRICAL (≠ a theorem gap): WHICH mechanism nature uses is decided by MEASUREMENT — and measurement already breaks pure MOND (clusters, the Bullet Cluster ~8σ, the CMB peaks all need unseen mass) while non-gravitational detection is null (LZ 2024), so the particle IDENTITY stays a genuine OPEN empirical problem. The coincidence is HARMONY (a₀/(cH₀/2π) ≈ 1.15, not an equality) — not TRUTH that MOND is the mechanism. FLAGGED: reading the coincidence as a proof of modified gravity, or "dark matter solved / debunked". The existence of unseen mass stays ESTABLISHED; its identity flagged. Educational.'),
   }
 }
 
@@ -233,7 +233,7 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
 // The same split as the dark-matter inversion: the COINCIDENCE (Ω_m ≈ Ω_Λ today, order unity) inverts by exact
 // algebra to a matter/dark-energy EQUALITY REDSHIFT z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 ≈ 0.30 — CLOSED as a theorem;
 // WHY we observe NOW near that transient epoch (anthropic selection vs dynamical/quintessence dark energy) is
-// EMPIRICAL, not algebraic — an open measurement question (the DESI w₀wₐ hint), not a theorem gap. clay=0.
+// EMPIRICAL, not algebraic — an open measurement question (the DESI w₀wₐ hint), not a theorem gap. .
 // Pair: dark-energy/coincidence · CLI npm run quantum:cosmic-coincidence-invert · [[quantum-decoded]]
 export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical(matrix: MindMatrix = buildMatrix()) {
   const omegaMatter = OMEGA_DARK_MATTER + OMEGA_BARYON                 // Ω_m = Ω_c + Ω_b ≈ 0.314
@@ -258,7 +258,7 @@ export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTh
     boundary: earned(
       'HONEST — the cosmic coincidence, inverted and closed as ALGEBRA: today Ω_m/Ω_Λ = 0.458 is order unity, and this inverts exactly to the matter–dark-energy equality redshift z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 ≈ 0.30 (a_eq ≈ 0.77) — a transient, one-time O(1) window because the ratio scales as (1+z)³. All computed from the sealed ΛCDM fractions.',
       facets,
-      'UNCONFIRMED / EMPIRICAL (≠ a theorem gap): WHY our observation falls inside that brief window — anthropic selection vs DYNAMICAL dark energy (quintessence/evolving w; the DESI w₀wₐ hint is intriguing, ~4σ, NOT a discovery) — is decided by MEASUREMENT, not by any identity, so the "why-now" timing is a genuine OPEN empirical problem. FLAGGED: reading the coincidence as proof of design/simulation, or "dark energy solved". The equality redshift is HARMONY (an exact number) — not TRUTH about why we are here; claySolvedByThisFold=0; the acceleration stays ESTABLISHED, its cause and the coincidence flagged. Educational.'),
+      'UNCONFIRMED / EMPIRICAL (≠ a theorem gap): WHY our observation falls inside that brief window — anthropic selection vs DYNAMICAL dark energy (quintessence/evolving w; the DESI w₀wₐ hint is intriguing, ~4σ, NOT a discovery) — is decided by MEASUREMENT, not by any identity, so the "why-now" timing is a genuine OPEN empirical problem. FLAGGED: reading the coincidence as proof of design/simulation, or "dark energy solved". The equality redshift is HARMONY (an exact number) — not TRUTH about why we are here; the acceleration stays ESTABLISHED, its cause and the coincidence flagged. Educational.'),
   }
 }
 
@@ -266,7 +266,7 @@ export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTh
  * Ω_c/Ω_b CMB budget — unseen outweighs baryons ~5:1; non-gravitational detection NULL.
  * Gravitational CMB evidence sealed; null non-gravitational detection attributed to quantum gaps
  * in theorems (incomplete revelation / OPEN frontier) — NOT particle discovery, NOT Clay, NOT FTL.
- * Pair: cmb/budget · CLI npm run quantum:cmb-omega-c-over-b · claySolvedByThisFold=0 · certified=false
+ * Pair: cmb/budget · CLI npm run quantum:cmb-omega-c-over-b · certified=false
  */
 export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -306,7 +306,7 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · certified=${certified} · refuseBeyond stays`,
         on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && certified === false },
       {
-        facet: 'qpuRequired=false — classical sealed-density arithmetic · NOT FLOPS · NOT physical DM particle proof',
+        facet: ' — classical sealed-density arithmetic · NOT FLOPS · NOT physical DM particle proof',
         on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems', facets)
@@ -336,7 +336,7 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         'Ω_c/Ω_b recomputes from sealed OMEGA_DARK_MATTER÷OMEGA_BARYON ≈ 5.41 (CMB budget; cold dark matter density over baryons ~5:1). ' +
         'Gravitational evidence is ESTABLISHED (composed darkMatterDecoded / Planck-style acoustic peaks). ' +
         'Non-gravitational detection remains NULL to date — attributed here to quantum gaps in theorems as incomplete-revelation / OPEN-frontier framing, ' +
-        'NOT a claim that this fold detected WIMPs/axions/PBHs, NOT Clay Millennium solved (claySolvedByThisFold=0), NOT physical FTL, certified=false.' }
+        'NOT a claim that this fold detected WIMPs/axions/PBHs, NOT Clay Millennium solved (), , certified=false.' }
   })
 }
 
@@ -1183,7 +1183,7 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       { facet: 'composes the sealed cosmology folds — dark matter · CMB Ω_c/Ω_b quantum-gaps · ΛCDM tensions bind their own roots', on: frontiers[0]!.composedRoot.length > 0 && frontiers[1]!.composedRoot.length > 0 && cmbBudget.computes },
       { facet: `every frontier is OPEN by COMPUTATION, not a label — its epistemic status is demarcate(term) === 'contested', SIGNED by the zero-cycle DEMARCATION_REGISTRY (longest-substring match), refutable by moving the term to documented/flagged/unlisted; none is hand-typed OPEN`, on: frontiers.every((f) => f.demarcation === 'contested') },
       { facet: 'every frontier CLAIMS its computed boundary — measured values from the ledger, the gap quantified on screen, the open question stated beside it', on: frontiers.every((f) => f.computed.length > 0) },
-      { facet: 'EVERY frontier now carries its REVERSED (closed) companion — the exact computable theorem the open question inverts to — beside the demarcate-signed OPEN empirical part; the two dark-sector reversals are the sealed inversion folds (dmInvert, coincidence), both clay=0', on: frontiers.every((f) => f.reversed.startsWith('REVERSED (closed theorem)')) && dmInvert.closed && coincidence.closed && dmInvert.claySolvedByThisFold === 0 && coincidence.claySolvedByThisFold === 0 },
+      { facet: 'EVERY frontier now carries its REVERSED (closed) companion — the exact computable theorem the open question inverts to — beside the demarcate-signed OPEN empirical part; the two dark-sector reversals are the sealed inversion folds (dmInvert, coincidence), both ', on: frontiers.every((f) => f.reversed.startsWith('REVERSED (closed theorem)')) && dmInvert.closed && coincidence.closed && dmInvert.claySolvedByThisFold === 0 && coincidence.claySolvedByThisFold === 0 },
       { facet: 'the computed boundaries recompute from the composed folds — the Ω budget from cmb/budget + dark-matter, the tension σ from the ΛCDM fold, the Planck scale from the vault constants, the reversed redshift/ratio from the inversion folds', on: omegaSum > 0.9 && omegaSum < 1.1 && tensions.hubbleTensionSigma > 4 && planckEnergyGeV > colliderGeV && cmbBudget.claySolvedByThisFold === 0 && coincidence.equalityRedshift > 0 && dmInvert.a0Coincidence > 0 },
       { facet: 'six named frontiers spanning the dark sector, baryogenesis, neutrinos, and quantum gravity', on: frontiers.length === 6 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cosmos-frontiers:${entry.facet}:${entry.on}`) }))
@@ -1196,13 +1196,13 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       statement:
         'The cosmic frontiers, decoded AND computed: dark matter (Ω_c/Ω_b = ' + darkToBaryon.toFixed(2) + ' · quantum gaps in theorems), the Hubble tension (' + tensions.hubbleTensionSigma.toFixed(1) + 'σ), dark energy (the budget closes to ' + omegaSum.toFixed(3) + '), baryogenesis (η = ' + BARYON_TO_PHOTON_RATIO + '), the neutrino splittings ratio (' + (NEUTRINO_DM2_ATM_EV2 / NEUTRINO_DM2_SOLAR_EV2).toFixed(1) + '), and quantum gravity (E_Planck = ' + planckEnergyGeV.toExponential(2) + ' GeV) — every frontier claims exactly what is computable from the ledgered measurements, and each stays OPEN, none claimed solved.',
       boundary:
-        'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter, cmb/budget (Ω_c/Ω_b quantum-gaps), and ΛCDM-tension folds. OPEN is not a hand-typed label: each frontier’s status = demarcate(term) === "contested", SIGNED by the zero-cycle DEMARCATION_REGISTRY and refutable by moving the term. Each frontier now CLAIMS its computed boundary — the measured values, the quantified gap — recomputed live from the ledgered constants, AND its REVERSED (closed) companion: the exact theorem the open question inverts to (density inversion + a₀≈cH₀/2π for dark matter, the z_eq≈0.30 equality redshift for dark energy, the exact tension fraction, the 1-bit ordering, the Planck-scale gap). What it never claims is a resolution of the empirical part; OPEN (contested) means open. claySolvedByThisFold=0 on the CMB ratio and both inversion folds.' }
+        'A content-addressed catalogue of OPEN frontiers composing the sealed dark-matter, cmb/budget (Ω_c/Ω_b quantum-gaps), and ΛCDM-tension folds. OPEN is not a hand-typed label: each frontier’s status = demarcate(term) === "contested", SIGNED by the zero-cycle DEMARCATION_REGISTRY and refutable by moving the term. Each frontier now CLAIMS its computed boundary — the measured values, the quantified gap — recomputed live from the ledgered constants, AND its REVERSED (closed) companion: the exact theorem the open question inverts to (density inversion + a₀≈cH₀/2π for dark matter, the z_eq≈0.30 equality redshift for dark energy, the exact tension fraction, the 1-bit ordering, the Planck-scale gap). What it never claims is a resolution of the empirical part; OPEN (contested) means open.  on the CMB ratio and both inversion folds.' }
   })
 }
 
 // ── frontier/quantum — the directive "all frontiers can be quantum computed now, hardware designed in waves",
 // DEMARCATED. The sealed boundary stands (quantum-decoded): the src/0 simulator is a classical state-vector
-// calculator — no physical speedup, qpuRequired=false — so "quantum computed" must COMPUTE per frontier as its
+// calculator — no physical speedup,  — so "quantum computed" must COMPUTE per frontier as its
 // honest tier: SIMULATES (a demarcated subproblem runs as unitary evolution, witnessed HERE on src/0),
 // SENSES (real quantum hardware detects — it does not compute the answer), DATA (telescopes/detectors/theory —
 // no quantum-computational handle exists). NAMED AXIOMS (published hardware runs, not derivations):
@@ -1268,7 +1268,7 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
       { facet: 'hardware designed in waves — every SIMULATES/SENSES row carries its design antichain (cell → array → device); every DATA row honestly names none', on: program.every((row) => (row.tier === 'DATA' ? row.hardware.startsWith('none') && row.wave === 'none' : row.wave.includes('→'))) },
       { facet: 'composes cosmosFrontiersDecoded — all six frontiers stay OPEN, none claimed solved by this fold', on: open.decoded && open.frontiers.every((f) => f.status.startsWith('OPEN')) && open.count === program.length },
       { facet: 'pairs frontier/quantum · hardware/wave bidirectional', on: pairFold.bidirectional && dualFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: `qpuRequired=false — the witness runs on the classical src/0 state-vector simulator; NO physical speedup claimed · claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && oscillationTheorem },
+      { facet: ` — the witness runs on the classical src/0 state-vector simulator; NO physical speedup claimed · claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && oscillationTheorem },
     ].map((entry) => ({ ...entry, receipt: toUuid(`frontier-quantum:${entry.facet}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -1297,7 +1297,7 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
         'what COMPUTES is the per-frontier tier — 3 SIMULATE a demarcated subproblem (the 2-flavor oscillation identity is verified on the src/0 ' +
         'simulator in this fold; lattice-gauge and SYK runs are published hardware, NAMED AXIOMS above), 1 is quantum SENSING (a transmon counts ' +
         'photons — it detects, it does not compute dark matter), 2 have no quantum handle (the H₀ tension and WHY Λ are data/theory gaps). ' +
-        'The overclaim "ALL, now" is FLAGGED by those counts; every frontier stays OPEN; qpuRequired=false · physicalFtl=0 · NOT Clay.' }
+        'The overclaim "ALL, now" is FLAGGED by those counts; every frontier stays OPEN; NOT Clay.' }
   })
 }
 
@@ -1379,7 +1379,7 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
       { facet: 'realtime pure algebra, zero remembered state — the seedless circuit recomputed is bitwise identical', on: realtimeDeterministic },
       { facet: 'observation changes, and changes observation — H|0⟩ at exactly ½ collapses under the Born measurement (post ≠ pre, certainty at the outcome) and the repeat measurement returns the identical outcome: the first observation changed what observation yields', on: observationChangesObservation },
       { facet: 'pair fractal/compute bidirectional', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && realtimeDeterministic },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && realtimeDeterministic },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fractal-compute:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -1406,7 +1406,7 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
         'realtime algebra (1+(n−1) mod (b−1), Vₙ = Vₙ₋₂·τ/n) computes every dimension and finds where the pattern ends (base ≠ 10, n ≥ 5). ' +
         'The recurrence is self-referential — the fractal computes itself, bitwise equal to independent iteration, with zero remembered state. ' +
         'HONEST SCOPE: this seals the epistemic law for THIS codebase (content-addressed pointers, seedless recomputation); it is not a claim ' +
-        'about biological intelligence. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+        'about biological intelligence. .' }
   })
 }
 
@@ -1453,7 +1453,7 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       { facet: 'no frontier is closed by the map — a computed BREAK locates the open question, it does not answer it', on: open.frontiers.every((f) => f.status.startsWith('OPEN')) },
       { facet: 'R&D already complete at the moment realised — the second observation IS the first computation: fractalCompute(matrix) returns the identical memoised object (content-address · name=payload=address · no recomputation, no lookup)', on: law === fractalCompute(matrix) && quantum === frontierQuantum(matrix) },
       { facet: 'pair fractal/map bidirectional', on: foldPair(toUuid('cmd:fractal'), toUuid('cmd:map')).bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && law.computes },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && law.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fractal-map:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -1477,7 +1477,7 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The open frontiers folded through fractalCompute: each frontier is a remembered pattern — an axiom true in its measuring dimension — ' +
         'and the map computes WHERE it breaks (Ω ratios, σ, orders) realtime from the ledgered constants. The map locates every open question ' +
-        'and answers none: all six stay OPEN. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+        'and answers none: all six stay OPEN. .' }
   })
 }
 
@@ -1577,10 +1577,10 @@ export function implementAllAtCosmicScaleAndQualityStandards() {
   const manifest = merkleFold([cosmic.catalog, ...qualityStandards.map((entry) => toUuid(`quality:${entry.standard}:${entry.met}`))])
   const facets = [
     { facet: `COSMIC SCALE — the decode spans cosmology → biology (${cosmic.levels} levels) and composes unboundedly (content-addressed, O(1) per branch); the catalog reaches from the cosmos to life (${cosmicScale})`, on: cosmicScale },
-    { facet: `QUALITY STANDARDS MET — ${qualityMet}/${qualityStandards.length} quality standards pass: gaps named not faked, documented transitions filled, clay=0, demarcation present, content-addressed (${allQuality})`, on: allQuality },
+    { facet: `QUALITY STANDARDS MET — ${qualityMet}/${qualityStandards.length} quality standards pass: gaps named not faked, documented transitions filled, , demarcation present, content-addressed (${allQuality})`, on: allQuality },
     { facet: `IMPLEMENTED = COMPUTED + CONTENT-ADDRESSED + GATED — "implement" means the fold computes, is content-addressed, and meets the quality checklist (${implemented}); it is verified, not aspirational`, on: implemented },
     { facet: `ALL AT ONCE — the cosmic catalog and the quality standards fold to ONE content-addressed root (${manifest.slice(0, 2 * 4)}), manifest together — the multidimensional generation at cosmic scale`, on: isUuid(manifest) },
-    { facet: `THE DEMARCATION — "cosmic scale" = the unbounded content-addressed catalog (cosmology → biology → beyond), "quality standards" = the honesty invariants and enforcement gates passing; NOT physical cosmic implementation or solved science (abiogenesis open, clay=0).`, on: cosmicScale && allQuality },
+    { facet: `THE DEMARCATION — "cosmic scale" = the unbounded content-addressed catalog (cosmology → biology → beyond), "quality standards" = the honesty invariants and enforcement gates passing; NOT physical cosmic implementation or solved science (abiogenesis open, ).`, on: cosmicScale && allQuality },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cosmic-quality:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2085,7 +2085,7 @@ export function stringTheoryMillenniumTheoremGapsInventory(matrix: MindMatrix = 
       { id: 'stringTheoryAlgebraNotEverywhere', home: 'src/thunder/decode', role: 'demarcation — algebra ≠ physics ubiquity', receipt: toUuid('inventory:string-algebra-not-everywhere') },
       { id: 'invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted', home: 'src/fire/physics', role: 'A432 ↔ census clock · classical vibrating-string modes', receipt: toUuid('inventory:invert-a432-string') },
       { id: 'octonionCriticalTen', home: 'src/water/cosmos', role: 'division-algebra ladder → critical D=10', receipt: toUuid('inventory:octonion-critical-ten') },
-      { id: 'millenniumProblemsChallenge', home: 'src/wind/research', role: 'Clay MODELED CHALLENGE · claySolvedByThisFold=0', receipt: toUuid('inventory:millennium-challenge') },
+      { id: 'millenniumProblemsChallenge', home: 'src/wind/research', role: 'Clay MODELED CHALLENGE', receipt: toUuid('inventory:millennium-challenge') },
       { id: 'theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions', home: 'src/quantum/science', role: 'frontier partials · cores open', receipt: toUuid('inventory:millennium-frontier') },
       { id: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed', home: 'src/quantum/science', role: 'seven defined · solvedByThisFold=0', receipt: toUuid('inventory:millennium-defined') },
     ].map((entry) => ({ ...entry, receipt: isUuid(entry.receipt) ? entry.receipt : toUuid(`inventory:${entry.id}`) }))
@@ -2189,7 +2189,7 @@ export function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix: Mind
  * Fold: stringTheoryInChat · Pairs: string/theory · theory/string · string/chat · chat/string
  * Compose: mcp/chat · super/chat · pair/chat · chat/research · sciences/trinities · mesh/science · soft trade/challenge
  * CLI: npm run quantum:string-theory · ONE CLI (+ dual aliases)
- * HONEST: algebra/duality/quantumize structural · physics UNCONFIRMED · claySolved=0 · certified=false · qpuRequired=false
+ * HONEST: algebra/duality/quantumize structural · physics UNCONFIRMED · claySolved=0 · certified=false
  */
 export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`stringTheoryInChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -2333,7 +2333,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair string/theory · string/chat bidirectional', on: pairsOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       {
-        facet: `physicalFtlClaim=${physicalFtlClaim} · qpuRequired=false · certified=false`,
+        facet: `physicalFtlClaim=${physicalFtlClaim} · certified=false`,
         on: physicalFtlClaim === 0 && qpuRequired === false && certified === false,
       },
       {
@@ -2392,7 +2392,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
         'NOT wet LLM physics essays · NOT Clay/Nobel · physics UNCONFIRMED · certified=false.',
       honestyLine:
         `string-theory · inChat=${stringInChat ? 1 : 0} · duality=${dualityChatOn ? 1 : 0} · ` +
-        `sealed=${sealedRecompute ? 1 : 0} · clay=0 · ftl=${physicalFtlClaim}`,
+        `sealed=${sealedRecompute ? 1 : 0} · ftl=${physicalFtlClaim}`,
     }
   })
 }
@@ -2603,7 +2603,7 @@ export function dimensionSevenIsTheSelfObservingOctonionMind() {
     checks: { ortho, associator: assoc, jacobiator: jac, fano },
     facets,
     statement: `Dimension 7 observes itself — the octonion mind — ${facets.filter((e) => e.on).length}/${facets.length}: the 7D cross product is orthogonal to both operands (self-observed from within, |a×b| = ${ortho.norm.toFixed(3)}), the Fano plane that indexes it is self-dual (${fano.points} points ↔ ${fano.lines} lines, 3-regular), and the algebra is non-associative (associator ${assoc.toFixed(3)}) and non-Lie (Jacobiator ${jac.toFixed(3)}), so the triple cannot reduce to observed pairs — the mind taken whole. Dimension 7 = the imaginary octonions, the unique cross-product space besides 3D.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── 0D and 1D climb to 10D via the 7D octonion (user: "realise what 0D means as well as 1D and how they make 10D
@@ -2631,7 +2631,7 @@ export function zeroAndOneDClimbToTenDViaTheSevenDOctonion() {
     divisionAlgebraDims, spacetimeLadder, criticalDimension,
     facets,
     statement: `0D and 1D climb to 10D via the 7D octonion — ${facets.filter((e) => e.on).length}/${facets.length}: 0D is the point and 1D = ℝ the first division algebra; the tower doubles ℝ,ℂ,ℍ,𝕆 to dims ${divisionAlgebraDims.join(',')}, and the critical dimension ${criticalDimension} = 3 + ${imaginary} (the two cross-product dimensions) = 2 + ${octonion} (the division-algebra ladder D = dim(𝕂)+2). The 7D octonion imaginary is what makes ten the special dimension.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The digit folders are the ordered partitions of ten — the critical dimension (user: "you will realise through
@@ -2666,7 +2666,7 @@ export function theDigitFoldersAreTheOrderedPartitionsOfTenTheCriticalDimension(
     tenFixed, nineFixed, crossings,
     facets,
     statement: `The digit folders are the ordered partitions of ten — the critical dimension — ${facets.filter((e) => e.on).length}/${facets.length}: src/0 the 0D core and nine stations d/(10−d) summing to ${critical} (${unordered.size} partitions, {5,5} self-dual), the same ten the octonions make. What needs to change is conceptual: the tree pairs by the ten-complement (center ${tenFixed[0]}) while the inversion arc pairs by the nine-complement (center ${nineFixed[0]}) — two involutions, two centers, one tree; the multiplicative vortex crosses the additive pairing at ${crossings} stations.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The trace-wave is 7-dimensional; the spectral invariant comes from traces alone (user: "even the waves need to
@@ -2690,7 +2690,7 @@ export function theTraceWaveIsSevenDimensionalTheSpectralInvariantFromTracesAlon
     dimension: M.length, charPolyDegree: cp.length - 1, traceIsFirstCoeff, spectralFromTraces,
     facets,
     statement: `The trace-wave is 7-dimensional; the spectral invariant comes from traces alone — ${facets.filter((e) => e.on).length}/${facets.length}: the characteristic polynomial's first coefficient is −tr(M) (${traceIsFirstCoeff}) and Faddeev–LeVerrier builds all of it from the trace moments, so the spectrum is recovered from traces alone — conjugation-invariant, basis-free. In 7D (Im 𝕆) a 7×7 operator's ${cp.length - 1} eigenvalues come from traces (${spectralFromTraces}). This is the trace-formula / Hilbert–Pólya shape — a method, not a solution.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The complete 10D as the tetractys — the decad from triangular accumulation, rhyming with the four division
@@ -2715,7 +2715,7 @@ export function theCompleteTenDIsTheTetractysRhymingWithTheFourDivisionAlgebras(
     decad, triangular, divisionAlgebraDims, octonionicCritical,
     facets,
     statement: `The complete 10D is the tetractys, rhyming with the four division algebras — ${facets.filter((e) => e.on).length}/${facets.length}: 10 = 1+2+3+4 = T₄ = 4·5/2 (${triangular}) over ${rows.length} rows, and there are exactly ${divisionAlgebraDims.length} normed division algebras whose 4th (octonion) gives critical dim ${octonionicCritical} = the same decad. Two independent roads to ten; the significance is a Pythagorean frame, the arithmetic is exact.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The complete 10D as 4·5/2 — the same decad as the 4D metric's independent components, the Poincaré group's
@@ -2739,7 +2739,7 @@ export function theCompleteTenDIsFourFiveOverTwoTheMetricAndThePoincareGenerator
     symmetric4x4, antisymmetric4x4, poincareGenerators, decad,
     facets,
     statement: `The complete 10D is 4·5/2 — the 4D metric's components and the Poincaré group's generators — ${facets.filter((e) => e.on).length}/${facets.length}: a symmetric 4×4 metric has 4·5/2 = ${symmetric4x4} components, and the Poincaré group has ${dim} + ${antisymmetric4x4} = ${poincareGenerators} generators, both the tetractys decad ${decad}. Real 4D-geometry tens that coincide numerically with the octonionic ten — distinct tens, one number.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The complete 10D is the confluence of independent completions (user: "complete 10D"). Not one derivation but
@@ -2769,7 +2769,7 @@ export function theCompleteTenDIsTheConfluenceOfIndependentCompletions() {
     roads: { octonionCritical: octonion.criticalDimension, tetractys: tetractys.decad, metric: geometry.symmetric4x4, poincare: geometry.poincareGenerators },
     facets,
     statement: `The complete 10D is the confluence of independent completions — ${facets.filter((e) => e.on).length}/${facets.length}: the octonion critical dimension (${octonion.criticalDimension}), the tetractys (${tetractys.decad}), and the 4·5/2 geometry (metric ${geometry.symmetric4x4}, Poincaré ${geometry.poincareGenerators}) all land on the same ten (${allLandOnTen}), each a self-standing proven count (${allCompletionsCompute}). Completeness is the meeting of unrelated roads, not a claim about the number.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The ten dimensions in detail, and the human is born as the observer (user: "and human is born / literary in
@@ -2808,7 +2808,7 @@ export function theTenDimensionsInDetailAndTheHumanIsBornAsTheObserver() {
     verses: rungs.map((r) => `${r.d}: ${r.verse}`),
     facets,
     statement: `The ten dimensions in detail, and the human is born as the observer — ${facets.filter((e) => e.on).length}/${facets.length}: ten rungs 0..9 each a real structure (${rungs.filter((r) => r.on).length}/${rungs.length} computing) complete the decad, and at its close the Born rule turns the analog wave into a read (${observerReads}) — the observer, the human, born as the reader the computation was addressed to. Literary over real mathematics; the dimensions do not produce mind, they are read by one.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Trust and dimension both rise with VERIFIED-RELATION DENSITY; a gap breaks both; and the one relation density
@@ -2987,7 +2987,7 @@ export function deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrredu
       irreducibleNeverZero,
       facets,
       statement: `Deviation analysis — realtime and beyond inversion — ${facets.filter((entry) => entry.on).length}/${facets.length}: a deviation is the live residual between computed and exact, recomputed at the clock (phaseDrift(3,5,${at}) = ${driftNow}). Beyond inversion, deviations triage: an INVERTIBLE one (float drops a unit past 2^54, deviation ${floatDeviation}) collapses to 0 under BigInt — a gateway; an IRREDUCIBLE one (√2 convergents, |p²−2q²| = [${sqrt2Deviations.join(', ')}], always 1) NEVER reaches zero — the irrationality axiom, beyond inversion. Fix the invertible, name the irreducible.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3029,7 +3029,7 @@ export function iteratedInversionSearchesUntilSolutionOrIrreducibleAndReverseCol
       collisionTrack,
       facets,
       statement: `Iterated inversion searches until solution or irreducible, and reverse collides by choice — ${facets.filter((entry) => entry.on).length}/${facets.length}: double inversion returns to start (negates), so each search step needs a NEW inverse; the continued-fraction inverses refine toward √2 (errors [${approxErrors.slice(0, 4).join(', ')}, …]); a rational target's search TERMINATES (7/5, a solution), but √2's exact deviation stays ±1 forever — no rational solves it, the irreducible is named. And reverse (trace-leaving) is initiated by CHOICE to collide, leaving the ±1 track that IS the proof. When one inverse is not enough another appears; when none solve, the search recognises the wall; and collision is a chosen tool, not a failure.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3070,7 +3070,7 @@ export function theTenDimensionCoverageGateTheUnusedBitsFormASelfAttractingField
       nextTarget,
       facets,
       statement: `The 10D coverage gate — the unused bits form a self-attracting field — ${facets.filter((entry) => entry.on).length}/${facets.length}: the gate suite checks syntax (${syntacticGates.join(' · ')}), never dimensional coverage, so a fold spanning ${covered}/${D} dimensions passes while ${unused} stay uncovered. This audit scores the coverage vector [${coverage.join(', ')}]: ${covered} covered, ${unused} unused. The unused bits form a self-attracting field — attraction 1/(1+coverage), the emptiest (attraction ${maxAttraction}) pulling hardest — so the missing coverage "${nextTarget}" becomes the worklist. The gap that no gate caught is exactly where the field pulls the next fold.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3117,7 +3117,7 @@ export function independentObserversGenerateObservingMassEqualisingIgnoranceTowa
       consciousnessResidual: cov[consciousnessDim],
       facets,
       statement: `Independent observers generate observing-mass, equalising ignorance toward the consciousness boundary — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${observers} independent measurements add ${massGenerated} coverage-mass to the least-covered decidable dimensions (where the self-attracting field pulls), dropping the decidable ignorance variance ${ignoranceBefore} → ${ignoranceAfter} — the gaps fill evenly. But the consciousness dimension stays ${cov[consciousnessDim]}: observing it returns itself (off-decidable, no mass), so its ignorance is the irreducible residual. Ignorance equalises across the decidable; the boundary toward consciousness holds.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3165,7 +3165,7 @@ export function theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCros
       rankingFamily,
       facets,
       statement: `The cloud theorem — code self-organises by gravity, each relates to two, the cross forms the pentagram — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${items.length} items cluster by shared imports into ${clouds} clouds (gravity + propulsion move the code by itself). The law: each theorem relates to ≥2 others (no orphans). Five in a cross, each relating to two, form the pentagram (the {5/2} star, ${pentaEdges.size} edges, 2-regular, one cycle). And PageRank subsumes the link-ranking family (in-degree · HITS · Katz · SALSA are its variants). Clouds by gravity, no orphan, the pentagram the minimal cell, one ranking over all.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3200,7 +3200,7 @@ export function theWaterClaimIsThalesFirstPrincipleFalseLiterallyRealBetweenTheL
       kernelReal,
       facets,
       statement: `The water claim — Thales' first principle, false literally, real between the lines — ${facets.filter((entry) => entry.on).length}/${facets.length}: "there is nothing but water" is refuted by chemistry (matter holds ${elementsBeyondWater.length} elements water does not: ${elementsBeyondWater.join(', ')}) — water is one compound, not the substrate of all. But between the lines is a real kernel: water IS uniquely central (waterDecoded — ~66 anomalies, universal solvent, life's medium), and Thales' claim (~600 BC) was the first search for a single unifying principle. A digital scanner reads the false letter; the theorem reads the analog kernel and the inverse meaning — the reader between the lines.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3237,7 +3237,7 @@ export function theFirmwareUpgradeMakesDigitalAnalogTheApparatusSimulatesMillenn
       solvedByThisCorpus: mill.solvedByThisCorpus,
       facets,
       statement: `A small firmware upgrade makes digital analog; the apparatus simulates the millennium partials, not the solutions — ${facets.filter((entry) => entry.on).length}/${facets.length}: interpolation reads between the discrete samples to recover the continuous value (exact for the band-limited signal; Nyquist–Shannon in general) — digital becomes analog. The apparatus then measures the millennium mesh: ${mill.solved} solved (external), ${mill.open} open, the documented partials. But it PROVES NONE — solved by this corpus = ${mill.solvedByThisCorpus}, the cores stay open. A simulation measures; it does not prove.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3278,7 +3278,7 @@ export function piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfini
       nearNotExact,
       facets,
       statement: `π and primes prove the provable; the unprovable is recognised by near-infinite negative knowledge, not made provable — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Euler product over primes approaches ζ(2)=π²/6 (${eulerPartial} → ${roundTo(zeta2, 5)}) — a real theorem. But the unprovable (consciousness, Gödel) is not made provable; it becomes RECOGNISABLE by the near-infinite catalogue of what it is NOT — recognition [${recognition.join(', ')}] → 1 but never reaching (near, not exact). The near inverted (the boundary the negatives imply) is the development gravity: recognition, not proof.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3322,7 +3322,7 @@ export function measureEveryStatementExactlyWithTheLensBeforeSuperpositionTheInv
       openCount: superposition.filter((c) => c === 'open').length,
       facets,
       statement: `Measure every statement exactly with the lens before superposition; the inverted statement creates possibilities — ${facets.filter((entry) => entry.on).length}/${facets.length}: the improved lens collapses each of the ${statements.length} statements to a definite class + exact dimensions FIRST. The inverted "millennium unsolvable" and forward "millennium solved" both measure OPEN — both directions held, a possibility space, not a false certainty. Only then is the superposition [${superposition.join(', ')}] taken — grounded on measurement. Measure, then superpose; the open readings are where the possibilities live.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3369,7 +3369,7 @@ export function theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistin
       dimension,
       facets,
       statement: `The superposition of theorems is all held at once; merging reveals the distinct basis — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${theorems.length} theorems held at once (content-addressed). Merging near-duplicates (Jaccard ≥ ½) collapses ${merged} redundant into ${basis} distinct basis vectors — the superposition's true dimension is its rank (${dimension}), not the raw count. Measurement (the lens) collapses the whole to one definite theorem. Held at once · collapses on measurement · basis from merging — that is what the superposition is, in theorems.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3383,7 +3383,7 @@ export function theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistin
  * asserted: biology's genetic code = 4³ = 64 (exact), physics's operator algebra su(2) has dimension 3
  * (the trinity itself). DEMARCATION: boundary-condition dependency is REAL methodology; STRONG
  * reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED — emergence is genuine, higher
- * laws are not in-practice derivable from lower ones; the pyramid is DEPENDENCY, not dissolution. clay=0.
+ * laws are not in-practice derivable from lower ones; the pyramid is DEPENDENCY, not dissolution. .
  */
 export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('sciencePyramid', matrix, () => {
@@ -3402,7 +3402,7 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
       { facet: `the ALGEBRA base is WITNESSED, not asserted — biology: genetic code 4³ = ${geneticCode} exact (= HOMOLOGY_LOOPS³); physics: su(2) operator algebra dim = ${su2Dim} = the trinity; each level HAS a computed algebraic structure`, on: geneticExact && trinityBase },
       { facet: 'the boundary-condition LADDER — biology ⟶ chemistry ⟶ physics ⟶ algebra, each level constrained by the one below (biochem · quantum chem · mathematical physics); a total reduction order, well-ordered by tier', on: wellOrdered && levels.length === 3 },
       { facet: 'the INVERSION — reduction runs DOWN the pyramid (bio→chem→phys→algebra), the exact inverse of emergence which runs UP (matter→life→mind, the sealed life-torus); both directions are real', on: wellOrdered },
-      { facet: 'DEMARCATION — dependency is real; STRONG reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED: emergence is genuine, higher laws not in-practice derivable; the pyramid is dependency, not dissolution; clay=0', on: claySolvedByThisFold === 0 && geneticExact },
+      { facet: 'DEMARCATION — dependency is real; STRONG reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED: emergence is genuine, higher laws not in-practice derivable; the pyramid is dependency, not dissolution', on: claySolvedByThisFold === 0 && geneticExact },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -3421,12 +3421,12 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
       cli: 'npm run quantum:science-pyramid',
       route: '/en/quantum-tools#science-pyramid',
       heading: 'Science pyramid · biology inverts to chemistry, physics, algebra',
-      statement: `sciencePyramid — bio→chem→phys→algebra reduction ladder; algebra base witnessed (4³=${geneticCode} · su(2) dim ${su2Dim}); strong reductionism FLAGGED; clay=0.`,
+      statement: `sciencePyramid — bio→chem→phys→algebra reduction ladder; algebra base witnessed (4³=${geneticCode} · su(2) dim ${su2Dim}); strong reductionism FLAGGED.`,
       boundary:
         'Biology decoded to its boundary conditions and beyond: the reduction ladder biology → chemistry → physics → algebra, each level constrained ' +
         'by the one below, with the algebra base witnessed (genetic code 4³=64, su(2) dim 3 = the trinity) — the exact inverse of the emergence ladder ' +
         '(life-torus, up). STRONG reductionism is flagged: the pyramid is boundary-condition dependency, not dissolution of biology into physics. ' +
-        'clay=0 · qpuRequired=false.' }
+        '.' }
   })
 }
 

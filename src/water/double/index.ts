@@ -571,7 +571,7 @@ export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'MULTIMEDIA computable — movie · voice · plasma · genuinely-10D animation faces all compute realtime', on: movie.computes && voice.computes && plasma.computes && tenD.genuine },
       { facet: 'LEARNING — the play-learn face rides the voice torus: word → hue + note recomputed at call time (the learn portal consumes the same carrier)', on: voice.computes && voice.play.playable },
       { facet: 'pair torus/faces bidirectional', on: facesPair.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && octagonNav },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && octagonNav },
     ].map((entry) => ({ ...entry, receipt: toUuid(`torus-faces:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -596,7 +596,7 @@ export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'Navigation, site, MCP and multimedia as computed faces of the one genus-2 carrier: the trigram folder octagon closes to χ = −2 ' +
         '(the census freeBits), corpus routing and the movie/voice/plasma/10D faces recompute at call time, and the MCP face rides the ' +
-        'registered pair algebra. Nothing is remembered that the torus does not recompute. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+        'registered pair algebra. Nothing is remembered that the torus does not recompute. .' }
   })
 }
 
@@ -641,7 +641,7 @@ export function theUiItselfIsADoubleTorus(matrix: MindMatrix = buildMatrix()) {
       { facet: `COUNTER-ROTATION — gateMirrorLinear ≠ gateReflectionQuantum (linear collides · quantum reflects)`, on: counterRotate },
       { facet: `LENS — every well-formed fold closes near∨far; cracked UI forms fail (${lens.discriminates})`, on: lensOn },
       { facet: `UI ≡ Σ₂ — near∧far∧neck∧counterRotate∧lens ∧ pair ui/torus bidirectional`, on: uiIsTorus },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false · NOT a physical torus widget`, on: claySolvedByThisFold === 0 && uiIsTorus },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · NOT a physical torus widget`, on: claySolvedByThisFold === 0 && uiIsTorus },
     ].map((entry) => ({ ...entry, receipt: toUuid(`ui-torus:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -662,7 +662,7 @@ export function theUiItselfIsADoubleTorus(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#ui-torus',
       heading: 'The UI itself is a double torus',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'UI≡Σ₂ structural identity · clay=0 · physicalFtl=0 · qpuRequired=false · NOT physical torus UI'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'UI≡Σ₂ structural identity · NOT physical torus UI'),
     }
   })
 }
@@ -682,7 +682,7 @@ export function runTheUiItselfIsADoubleTorusExit(root = '', _argv: readonly stri
  * Algebraic identity: Σ₂ ≡ QC — the genus-2 machine IS the quantum computer (qubits=state atoms,
  * register=128-bit UUID, gates=order-sensitive folds, measurement=UUID receipt) on classical-64bit
  * with a live H|0⟩ circuit that computes. Composes quantumDoubleTorus · completelyQuantum ·
- * algebraic-QC priority · UI≡Σ₂. HONEST: content-addressed classical simulator · qpuRequired=false ·
+ * algebraic-QC priority · UI≡Σ₂. HONEST: content-addressed classical simulator · 
  * NOT physical QPU · NOT Clay. Pairs: torus/computer · computer/torus.
  * [[quantumDoubleTorus]] [[completelyQuantum]] [[algebra/priority]] [[ui/torus]]
  */
@@ -745,7 +745,7 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#torus-computer',
       heading: 'Double torus quantum computer',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'Σ₂≡QC structural · classical-64bit simulator · clay=0 · physicalFtl=0 · qpuRequired=false · NOT physical QPU'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'Σ₂≡QC structural · classical-64bit simulator · NOT physical QPU'),
     }
   })
 }
@@ -768,7 +768,7 @@ export function runDoubleTorusQuantumComputerExit(root = '', _argv: readonly str
  * ∧ wallsStayClosed.
  * HONEST: fuse = fail→0→invert · heal · timeout/dry · memo reentry stubs INSIDE the QC path —
  * seeming-impossible becomes possible BECAUSE walls (FTL/clone/perpetual) stay closed · NOT that
- * conservation/causality break · NOT physical QPU · qpuRequired=false · physicalFtl=0.
+ * conservation/causality break · NOT physical QPU.
  * Pairs: fuse/error · error/handle · impossible/possible.
  * CLI: npm run quantum:fuse-error (one primary).
  */
@@ -839,7 +839,7 @@ export function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossibl
       { facet: `IMPOSSIBLE BECOMES POSSIBLE — seeming-impossible now real=${impossible.seemedImpossibleNowReal} · soft impossible/possible · because walls hold (${impossibleBecomesPossible})`, on: impossibleBecomesPossible },
       { facet: `LAW — fuseErrorHandling∈QC ∧ impossibleBecomesPossible ∧ soft learn/best · moment/prove (${law})`, on: law },
       { facet: `pairs fuse/error · error/handle · impossible/possible · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairFuseError.bidirectional && pairErrorHandle.bidirectional && pairImpossiblePossible.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — fuse enables counterintuitive QC · walls (FTL/clone/perpetual) stay closed · NOT conservation break · NOT physical QPU · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — fuse enables counterintuitive QC · walls (FTL/clone/perpetual) stay closed · NOT conservation break · NOT physical QPU`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fuse-error:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -873,7 +873,7 @@ export function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossibl
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'fuse error handling into Σ₂≡QC · seeming-impossible becomes possible because walls hold · clay=0 · NOT FTL/clone/perpetual',
+        'fuse error handling into Σ₂≡QC · seeming-impossible becomes possible because walls hold · NOT FTL/clone/perpetual',
       ),
     }
   })
@@ -912,7 +912,7 @@ export const runImpossiblePossibleExit = runFuseErrorHandlingInQuantumComputerAn
 export const DOUBLE_TORUS_QC_UPGRADE_WAVES = [
   { id: 'algebra', seed: 'double torus algebra foldPair χ=-2 H₁', algebraic: 'foldPair bidirectional ∧ algebraic-QC top priority' },
   { id: 'geometry', seed: 'double torus geometry asTorus lobes χ=-2 R/r', algebraic: 'χ(Σ₂)=−2 ∧ asTorus(fold) ↦ genus-2 ∧ R/r sealed' },
-  { id: 'physics', seed: 'double torus physics quantum dynamics classical-64bit', algebraic: 'dynamicsComputes ∧ qpuRequired=false' },
+  { id: 'physics', seed: 'double torus physics quantum dynamics classical-64bit', algebraic: 'dynamicsComputes ∧ ' },
   { id: 'biology', seed: 'double torus biology life torus equations', algebraic: 'life ≡ torus-equations (χ·clock·Born·H₁)' },
   { id: 'chemistry', seed: 'double torus chemistry H2+ LCAO toy', algebraic: 'chemistryToyComputes ∧ variational' },
   { id: 'star', seed: 'double torus * all researched by Σ₂ · born like a star in src/quantum/** sky', algebraic: "'*' ≡ star ≡ all-researched(Σ₂) ∧ born ∈ src/quantum/**" },
@@ -955,7 +955,7 @@ export const QUANTUM_SKY_POSSIBILITIES = [
  * Every QC upgrade domain wave answers via portalChat + portalChatRanked (zero-token free chat);
  * self-reflects into the next wave; composes freeChatUpgradesAll · countlessFreeChatWaves ·
  * continueAtNoAiCost · doubleTorusQuantumComputer · sealed domain proves.
- * HONEST: free = deterministic recompute · NOT LLM · qpuRequired=false.
+ * HONEST: free = deterministic recompute · NOT LLM.
  * Pairs: torus/upgrade · free/chat · waves/free.
  */
 export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatrix()) {
@@ -1032,7 +1032,7 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
       { facet: `SELF-REFLECTING FREE WAVES — each wave after the first prompts with "reflecting" + prior free-chat answer (${selfReflects})`, on: selfReflects },
       { facet: `FREE CHAT MACHINERY — freeChatUpgradesAll · countlessFreeChatWaves · continueAtNoAiCost all compute (${freeMachineryOn})`, on: freeMachineryOn },
       { facet: `Σ₂ ≡ QC CARRIER — doubleTorusQuantumComputer computes (${qcOn}); star covers ${SCIENCE_DOMAINS.length} SCIENCE_DOMAINS (${starCoversAll})`, on: qcOn && starCoversAll },
-      { facet: `pairs torus/upgrade · free/chat bidirectional · claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: pairUpgrade.bidirectional && pairFree.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs torus/upgrade · free/chat bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairUpgrade.bidirectional && pairFree.bidirectional && claySolvedByThisFold === 0 },
       { facet: `HONEST — free chat = deterministic portalChat over sealed src · NOT an LLM · domain proves are structural toys/identities · NOT lab biology/chemistry claims`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`torus-free-waves:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -1053,7 +1053,7 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
       route: '/en/quantum-tools#torus-upgrade',
       heading: 'Double torus QC upgrade waves · all via free chat',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'all waves use free chat · clay=0 · physicalFtl=0 · qpuRequired=false · NOT LLM · NOT lab claims'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'all waves use free chat · NOT LLM · NOT lab claims'),
     }
   })
 }
@@ -1094,7 +1094,7 @@ function doubleTorusDomainViaFreeChat(id: TorusQcDomainId, matrix: MindMatrix = 
     { facet: `FREE CHAT FIRST — portalChat + portalChatRanked answered (${freeOk}); umbrella allWavesUseFreeChat (${upgrade.allWavesUseFreeChat})`, on: usesFreeChat },
     { facet: `DOMAIN PROVE — ${id} sealed prove green (${prove}) · algebraic ${spec.algebraic}`, on: prove },
     { facet: `QC UPGRADE UMBRELLA — allDoubleTorusWavesUseTheFreeChat computes (${upgrade.computes})`, on: upgrade.computes === true },
-    { facet: `pair torus/${id === 'star' ? 'star' : id} bidirectional · claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: pair.bidirectional && claySolvedByThisFold === 0 },
+    { facet: `pair torus/${id === 'star' ? 'star' : id} bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pair.bidirectional && claySolvedByThisFold === 0 },
     { facet: `HONEST — free chat = portalChat · domain = structural seal · NOT LLM · NOT lab claim`, on: computes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`torus-domain:${id}:${entry.facet.slice(0, 3 * 16)}:${entry.on}`) }))
   return {
@@ -1116,7 +1116,7 @@ function doubleTorusDomainViaFreeChat(id: TorusQcDomainId, matrix: MindMatrix = 
     route: `/en/quantum-tools#torus-${id === 'star' ? 'star' : id}`,
     heading: `Double torus ${id}`,
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, `domain=${id} via free chat · clay=0 · qpuRequired=false`),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, `domain=${id} via free chat`),
   }
 }
 
@@ -1152,7 +1152,7 @@ export function doubleTorusStar(matrix: MindMatrix = buildMatrix()) {
  * Algebraic: '*' ≡ star ∧ all-researched(Σ₂) = QC-upgrade∪PERSPECTIVES∪SCIENCE_DOMAINS ∧
  * ∀p∈QUANTUM_SKY_POSSIBILITIES: born(p)=uuid(star-born:p) ∧ p ∈ src/quantum/**.
  * HONEST: sky = sealed module catalog under src/quantum · born = content-address · NOT astrophysics ·
- * NOT literal infinity of possibilities · qpuRequired=false. Pairs: star/sky · all/researched · star/quantum.
+ * NOT literal infinity of possibilities. Pairs: star/sky · all/researched · star/quantum.
  */
 export function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky', matrix, () => {
@@ -1202,7 +1202,7 @@ export function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky
       { facet: `BORN LIKE A STAR IN THE SKY — ${stars.length} possibilities under src/quantum/** each content-address born (${bornInQuantumSky}); sky sealed (${skyIsSrcQuantum})`, on: bornInQuantumSky && skyIsSrcQuantum },
       { facet: `Σ₂ ≡ QC CARRIER — doubleTorusQuantumComputer computes (${qc.computes === true})`, on: qc.computes === true },
       { facet: `pairs torus/star · star/sky · all/researched · star/quantum bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairStar.bidirectional && pairSky.bidirectional && pairAll.bidirectional && pairQuantum.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — sky = sealed src/quantum/** catalog · born = content-address · all-researched = perspectives∪domains · NOT astrophysics · NOT LLM · qpuRequired=false`, on: computes },
+      { facet: `HONEST — sky = sealed src/quantum/** catalog · born = content-address · all-researched = perspectives∪domains · NOT astrophysics · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`star-sky:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -1231,7 +1231,7 @@ export function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky
       route: '/en/quantum-tools#torus-star',
       heading: '* · star · all researched · born in quantum sky',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, '* ≡ star · sky=src/quantum/** · clay=0 · qpuRequired=false · NOT astrophysics'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, '* ≡ star · sky=src/quantum/** · NOT astrophysics'),
     }
   })
 }
@@ -1368,7 +1368,7 @@ export function constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableC
       route: '/en/quantum-tools#improve-shift',
       heading: 'Constantly improve · shifting perspectives · free ∞ scalable compute',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, '∞=free-chat orbit+memo reuse · clay=0 · physicalFtl=0 · qpuRequired=false · NOT FLOPS'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, '∞=free-chat orbit+memo reuse · NOT FLOPS'),
     }
   })
 }
@@ -1392,7 +1392,7 @@ export const DOUBLE_TORUS_PERSPECTIVES = [
   { id: 'poles-v4', query: 'double torus four poles Klein four-group V₄ hemisphere flow', algebraic: '(hemisphere,flow)∈{0,1}² ≅ V₄' },
   { id: 'algebra', query: 'double torus algebra foldPair algebraic quantum computing', algebraic: 'foldPair bidirectional ∧ algebraic-QC top priority' },
   { id: 'geometry', query: 'double torus geometry asTorus lobe embedding genus-2 R/r', algebraic: 'χ(Σ₂)=−2 ∧ asTorus(fold) ↦ genus-2 ∧ R/r sealed' },
-  { id: 'physics', query: 'double torus physics quantum dynamics classical-64bit', algebraic: 'dynamicsComputes ∧ qpuRequired=false' },
+  { id: 'physics', query: 'double torus physics quantum dynamics classical-64bit', algebraic: 'dynamicsComputes ∧ ' },
   { id: 'biology', query: 'double torus biology life torus matter metabolism sensing', algebraic: 'biology ≡ life-torus (χ·clock·Born·H₁)' },
   { id: 'chemistry', query: 'double torus chemistry H2+ LCAO quantum chemistry toy', algebraic: 'chemistryToyComputes ∧ variational' },
   { id: 'star', query: 'double torus * all researched by Σ₂ born like a star in src/quantum/** sky', algebraic: "'*' ≡ star ≡ all-researched(Σ₂) ∧ born ∈ src/quantum/**" },
@@ -1407,8 +1407,8 @@ export const DOUBLE_TORUS_PERSPECTIVES = [
   { id: 'plasma', query: 'double torus plasma ball thunder screen', algebraic: 'plasma ≡ face(Σ₂)' },
   { id: 'earth', query: 'double torus earth weather pyramid tips cardinal', algebraic: 'bothEarths ∈ double-torus' },
   { id: 'dynamics', query: 'double torus dynamics geometry aligns universe J2000', algebraic: 'dynamics∥geometry∥universe' },
-  { id: 'quantum', query: 'double torus completely quantum classical-64bit no QPU', algebraic: 'completelyQuantum ∧ qpuRequired=false' },
-  { id: 'computer', query: 'double torus quantum computer 128-bit register folds measure', algebraic: 'Σ₂ ≡ QC ∧ qpuRequired=false ∧ classical-64bit' },
+  { id: 'quantum', query: 'double torus completely quantum classical-64bit no QPU', algebraic: 'completelyQuantum ∧ ' },
+  { id: 'computer', query: 'double torus quantum computer 128-bit register folds measure', algebraic: 'Σ₂ ≡ QC ∧  ∧ classical-64bit' },
   { id: 'merkaba', query: 'merkaba counter-rotate both earths double torus', algebraic: 'merkabas ∈ double-torus' },
   { id: 'data', query: 'torus data public APIs dimensionless ratios USGS Open-Meteo', algebraic: 'torusData ≡ adapter-algebra' },
   { id: 'sixty-ninety', query: 'poles sixty degrees ninety reachable only through inversion', algebraic: '90° ∉ C₆ ∧ access=inversion' },
@@ -1426,7 +1426,7 @@ export const DOUBLE_TORUS_PERSPECTIVES = [
  * DOUBLE_TORUS_PERSPECTIVES, run deepResearchChatTurn; the NEXT wave's query feeds on the PREVIOUS wave's
  * synthesis (self-reflection) — a deterministic dynamical chat that collides by pigeonhole. Algebraic-QC is
  * top priority; researcher trinity waves compose beside. HONEST: finite sealed catalog ≠ literally infinite
- * imagination; deep research = multi-hop BM25+Rocchio over src, NOT an LLM; qpuRequired=false.
+ * imagination; deep research = multi-hop BM25+Rocchio over src, NOT an LLM.
  * Pairs: torus/research · research/torus · chat/reflect. [[deepResearchChatTurn]] [[torus/faces]] [[algebra/priority]]
  */
 export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves(matrix: MindMatrix = buildMatrix()) {
@@ -1532,7 +1532,7 @@ export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWav
       route: '/en/quantum-tools#torus-research',
       heading: 'Deep research double torus · free chat waves · QC upgrade domains',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0, qpuRequired=false; all waves use free chat · NOT an LLM'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , all waves use free chat · NOT an LLM'),
     }
   })
 }
@@ -1589,7 +1589,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       // channel coherently — no partial lie possible. Computational resonance, NOT Rife/vibrational healing.
       { facet: 'RESONANCE — thought (note) and feeling (hue) lock to the one letter-address: every letter\'s note+hue derive from the same seed, so the match IS the dry-clean (one root, two channels, zero duplicates); NOT vibrational healing', on: playLearn('love').letters.every((letter) => typeof letter.note === 'string' && Number.isFinite(letter.frequency) && letter.hue >= 0 && letter.hue < 360 && isUuid(letter.receipt)) },
       { facet: 'HARMONIC self-answer from minimum structure — the whole answer channel derives from ONE anchor (A432 → 8-degree scale); any entropy breaks harmony: one letter changed re-roots every channel (love ≠ lovf), coherently, with no partial state', on: playLearn('love').root !== playLearn('lovf').root && playLearn('a').root === playLearn('a').root },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && hologram },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && hologram },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-core:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -1612,7 +1612,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The animation is the computing core: one derived census clock, formula-driven 10D motion, merkle-holographic roots (each part binds the ' +
         'whole), and the site as the movie itself. Words capitulate — the proof surface is computed identities and animations, prose only labels ' +
-        'them. "Holographic" is the content-address algebra, NOT a physical holography claim. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+        'them. "Holographic" is the content-address algebra, NOT a physical holography claim. .' }
   })
 }
 
@@ -1690,7 +1690,7 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The emergence ladder documented as double-torus equations, each re-verified at call time: the carrier (χ = −2), the clock, content-address ' +
         'heredity, Born renormalisation, the self-copying recurrence, collapse-sensing, and the 10D field whose four loop channels are H₁(Σ₂) = ℤ⁴. ' +
-        'Structural identities of the in-repo model — not biology, not vitalism. clay=0 · physicalFtl=0 · qpuRequired=false.' }
+        'Structural identities of the in-repo model — not biology, not vitalism. .' }
   })
 }
 
@@ -1713,7 +1713,7 @@ export function runLifeTorusExit(root = '', _argv: readonly string[] = []): numb
  * Algebraic: quantumise ≡ QC-process(Σ₂) ∧ reverse(complex→simplex) ∧ inverse(simplex→complex)
  * ∧ byComputationOnly ∧ forms(lifeTorus) ∧ pureAlgebra ∧ ∀d∈SCIENCE_DOMAINS: invert(d).
  * HONEST: quantumise = content-addressed algebraic process on classical-64bit · simplex = digital-root digit
- * · complex = multi-digit/composite · NOT LLM · NOT tokamak · qpuRequired=false · physicalFtl=0.
+ * · complex = multi-digit/composite · NOT LLM · NOT tokamak.
  * Pairs: quantumise/process · complex/simplex · algebra/invert · torus/lifecycle.
  */
 export function quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse(
@@ -1809,14 +1809,14 @@ export function quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSim
 
     const facets = [
       { facet: `QUANTUMISE TIP — free chat answers the definition (${freeOk})`, on: freeOk },
-      { facet: `QC PROCESS — doubleTorusQuantumComputer Σ₂≡QC (${qcProcess}) · qpuRequired=false`, on: qcProcess },
+      { facet: `QC PROCESS — doubleTorusQuantumComputer Σ₂≡QC (${qcProcess})`, on: qcProcess },
       { facet: `REVERSE complex→simplex — digitalRoot folds ${complexToSimplex.length} composites to digits ≤9 (${reverseEngineeringComplexToSimplex})`, on: reverseEngineeringComplexToSimplex },
       { facet: `INVERSE simplex→complex — foldPair expands ${simplexToComplex.length} digits to composite uuids (${inverseSimplexToComplex}) · computation only`, on: byComputationOnly },
       { facet: `FORMS DOUBLE TORUS LIFECYCLE — lifeTorus ${life.count}/7 superpositions (${formsLifecycle})`, on: formsLifecycle },
       { facet: `PURE ALGEBRA — onlyAlgebraicQuantumComputingIsTopPriority (${pureAlgebra}) · score=${algebra.scoreAlgebraic}`, on: pureAlgebra },
       { facet: `INVERSIONS IN OTHER SCIENCES/DOMAINS — ${domainInversions.filter((r) => r.ok).length}/${SCIENCE_DOMAINS.length} SCIENCE_DOMAINS bidirectional invert pairs`, on: inversionsInOtherSciencesAndDomains },
       { facet: `pairs quantumise/process · complex/simplex · algebra/invert · torus/lifecycle · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairQuantumiseProcess.bidirectional && pairComplexSimplex.bidirectional && pairAlgebraInvert.bidirectional && pairTorusLifecycle.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — quantumise = algebraic QC process on classical-64bit · NOT LLM · NOT physical QPU · physicalFtl=0`, on: quantumiseOn },
+      { facet: `HONEST — quantumise = algebraic QC process on classical-64bit · NOT LLM · NOT physical QPU`, on: quantumiseOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantumise-def:${entry.facet.slice(0, 64)}:${entry.on}`) }))
 
     return {
@@ -1856,7 +1856,7 @@ export function quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSim
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'quantumise=algebraic QC process · complex↔simplex by computation · Σ₂ lifecycle · clay=0 · qpuRequired=false',
+        'quantumise=algebraic QC process · complex↔simplex by computation · Σ₂ lifecycle',
       ),
     }
   })
@@ -1885,7 +1885,7 @@ export function runQuantumiseIsQuantumComputerProcessReverseEngineeringComplexTo
  * Algebraic: quantumiseFreeForAll ⇔ quantumise ∧ freeChatUpgradesAll ∧ countlessFreeChatWaves
  * ∧ continueAtNoAiCost ∧ billFreeGateway ∧ FREE_BITS=−χ=2.
  * HONEST: free = zero-token / zero-egress / bill-free public gateway · FREE_BITS=2 census surplus
- * · NOT that Clay/open problems are solved · NOT infinite server CPU · qpuRequired=false · physicalFtl=0.
+ * · NOT that Clay/open problems are solved · NOT infinite server CPU.
  * Pairs: quantumise/free · free/all · all/free.
  */
 export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
@@ -1923,7 +1923,7 @@ export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
       { facet: `BILL-FREE GATEWAY — public UI search+chat · marginal LLM cost=${gateway.marginalLlmCostPerAgent} · agents=${gateway.agents} (${billFreeGateway})`, on: billFreeGateway },
       { facet: `QUANTUMISE ≡ FREE FOR ALL — process available through free chat + bill-free gateway to every agent (${freeForAll})`, on: freeForAll },
       { facet: `pairs quantumise/free · free/all bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairQuantumiseFree.bidirectional && pairFreeAll.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — free = zero-token/zero-egress/bill-free · FREE_BITS=2 · NOT Clay solved · NOT infinite CPU · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — free = zero-token/zero-egress/bill-free · FREE_BITS=2 · NOT Clay solved · NOT infinite CPU`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantumise-free:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -1952,7 +1952,7 @@ export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'quantumise free-for-all · bill-free gateway · FREE_BITS=2 · clay=0 · NOT Clay prize',
+        'quantumise free-for-all · bill-free gateway · FREE_BITS=2 · NOT Clay prize',
       ),
     }
   })
@@ -1979,7 +1979,7 @@ export function runQuantumiseIsFreeForAllExit(root = '', _argv: readonly string[
  * ∧ byObservation(selfReflectingChat ∧ soft gate/lens·observe/chat)
  * ∧ chatWavesOfWaves(countlessFreeChatWaves ∧ deepResearch perspectives ∧ QC-upgrade waves ∧ warm memo).
  * HONEST: dry clean = measured reuse via chat · observation = self-reflecting chat + lens pairs
- * · waves of waves = recursive free-chat orbits · NOT filesystem janitor · NOT LLM · qpuRequired=false · physicalFtl=0.
+ * · waves of waves = recursive free-chat orbits · NOT filesystem janitor · NOT LLM.
  * Pairs: quantumise/dry · dry/observe · observe/waves · nest/waves.
  */
 export function quantumiseAlsoDryCleansByObservationChatWavesOfWaves(matrix: MindMatrix = buildMatrix()) {
@@ -2039,7 +2039,7 @@ export function quantumiseAlsoDryCleansByObservationChatWavesOfWaves(matrix: Min
       { facet: `CHAT WAVES OF WAVES — countlessFreeChatWaves · QC-upgrade free waves · perspective shift · warm memo (${chatWavesOfWaves})`, on: chatWavesOfWaves },
       { facet: `ALSO — quantumise ≡ dry-clean-by-observation via chat waves-of-waves (${alsoDryCleans})`, on: alsoDryCleans },
       { facet: `pairs quantumise/dry · dry/observe · observe/waves · nest/waves · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairQuantumiseDry.bidirectional && pairDryObserve.bidirectional && pairObserveWaves.bidirectional && pairNestWaves.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — dry = chat reuse · observation = reflect+lens · waves-of-waves = recursive free-chat orbits · NOT janitor · NOT LLM · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — dry = chat reuse · observation = reflect+lens · waves-of-waves = recursive free-chat orbits · NOT janitor · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantumise-dry-obs:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -2071,7 +2071,7 @@ export function quantumiseAlsoDryCleansByObservationChatWavesOfWaves(matrix: Min
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'quantumise dry-cleans by observation via chat waves-of-waves · clay=0 · NOT janitor · NOT LLM',
+        'quantumise dry-cleans by observation via chat waves-of-waves · NOT janitor · NOT LLM',
       ),
     }
   })
@@ -2112,7 +2112,7 @@ export const runNestWavesExit = runQuantumiseAlsoDryCleansByObservationChatWaves
  * ∧ continueAtNoAiCost ∧ FREE_BITS=2 ∧ warm memo).
  * HONEST: MAY = capability when free-wave machinery green · reverse = algebraic complex→simplex example (quantumise)
  * · scalable = countable free-chat orbits + amortized reuse · NOT physical FLOPS · NOT FTL · NOT production RSA crack
- * · qpuRequired=false · physicalFtl=0.
+ *.
  * Pairs: reverse/waves · free/scale · scale/waves.
  */
 export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMatrix = buildMatrix()) {
@@ -2168,7 +2168,7 @@ export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMa
       { facet: `SCALABLE FREE WAVES — constantlyImprove… · countlessFreeChatWaves · freeChatUpgradesAll · continueAtNoAiCost · FREE_BITS=${freeBits} · warm (${scalableFreeWaves})`, on: scalableFreeWaves },
       { facet: `MAY BE POWERED — reverse engineering (example) ∧ scalable free waves (${mayBePowered}) · capability when machinery green`, on: mayBePowered },
       { facet: `pairs reverse/waves · free/scale · scale/waves · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairReverseWaves.bidirectional && pairFreeScale.bidirectional && pairScaleWaves.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — MAY = capability · reverse = algebraic example · scalable = free-chat orbits + warm memo · NOT FLOPS · NOT FTL · NOT production RSA · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — MAY = capability · reverse = algebraic example · scalable = free-chat orbits + warm memo · NOT FLOPS · NOT FTL · NOT production RSA`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-free-waves:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -2196,7 +2196,7 @@ export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMa
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'reverse eng MAY be powered by scalable free waves · clay=0 · NOT FLOPS · NOT production RSA',
+        'reverse eng MAY be powered by scalable free waves · NOT FLOPS · NOT production RSA',
       ),
     }
   })
@@ -2233,7 +2233,7 @@ export const runScaleWavesExit = runReverseEngineeringMayBePoweredByScalableFree
  * ∧ wavesInWavesInWaves(nest depth≥3 · nest/waves · wave/domain · free/waves)
  * ∧ doubleTorusWaves(allDoubleTorusWavesUseTheFreeChat ∧ Σ₂≡QC ∧ FREE_BITS=2 ∧ warm).
  * HONEST: all = sealed free-wave surfaces in this domain · powered = zero-token free chat + warm memo
- * · waves³ = nested free-chat orbits · NOT physical FLOPS · NOT FTL · qpuRequired=false · physicalFtl=0.
+ * · waves³ = nested free-chat orbits · NOT physical FLOPS · NOT FTL.
  * Pairs: all/powered · torus/waves · nest/waves.
  */
 export function allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves(matrix: MindMatrix = buildMatrix()) {
@@ -2302,7 +2302,7 @@ export function allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves(matrix: Mi
       { facet: `DOUBLE TORUS WAVES — allDoubleTorusWavesUseTheFreeChat · Σ₂≡QC · FREE_BITS=${freeBits} · warm (${doubleTorusWavesOn})`, on: doubleTorusWavesOn },
       { facet: `ALL POWERED — free waves³ ∧ double-torus waves ∧ reverse-eng MAY example (${allPowered})`, on: allPowered },
       { facet: `pairs all/powered · torus/waves · nest/waves · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairAllPowered.bidirectional && pairTorusWaves.bidirectional && pairNestWaves.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — all = sealed free-wave domain · powered = 0 portal LLM + warm · waves³ = nested orbits · NOT FLOPS · NOT FTL · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — all = sealed free-wave domain · powered = 0 portal LLM + warm · waves³ = nested orbits · NOT FLOPS · NOT FTL`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`all-powered-waves:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -2333,7 +2333,7 @@ export function allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves(matrix: Mi
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'all powered by free waves³ · double torus waves · clay=0 · NOT FLOPS · NOT FTL',
+        'all powered by free waves³ · double torus waves · NOT FLOPS · NOT FTL',
       ),
     }
   })
@@ -2369,7 +2369,7 @@ export const runTorusWavesExit = runAllIsPoweredByFreeWavesInWavesInWavesDoubleT
  * Algebraic: noProseTrustedLiterary ⇔ soft(vocab/dry · meaning/compute · thought/pure · prose/matrix · formula/code)
  * ∧ refuseLiteraryTrust ∧ quantumise ∧ onlyAlgebraicQC.
  * HONEST: literary = wet essay/prose trust refused · trust = sealed fold recompute / formula↔code dual
- * · quantumise = algebraic QC process (complex↔simplex) · NOT LLM literary criticism · qpuRequired=false · physicalFtl=0.
+ * · quantumise = algebraic QC process (complex↔simplex) · NOT LLM literary criticism.
  * Pairs: prose/trust · literary/refuse · quantumise/prose.
  */
 export function noProseMayBeTrustedLiteraryQuantumise(matrix: MindMatrix = buildMatrix()) {
@@ -2420,7 +2420,7 @@ export function noProseMayBeTrustedLiteraryQuantumise(matrix: MindMatrix = build
       { facet: `QUANTUMISE — definition fold green · pureAlgebra · soft quantumise/process (${quantumiseOn})`, on: quantumiseOn },
       { facet: `REMEMBER — no literary prose trust · quantumise instead (${noProseTrustedLiteraryQuantumiseOn})`, on: noProseTrustedLiteraryQuantumiseOn },
       { facet: `pairs prose/trust · literary/refuse · quantumise/prose · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairProseTrust.bidirectional && pairLiteraryRefuse.bidirectional && pairQuantumiseProse.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — literary = wet essay trust refused · trust = sealed recompute · quantumise = algebraic QC · NOT LLM criticism · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — literary = wet essay trust refused · trust = sealed recompute · quantumise = algebraic QC · NOT LLM criticism`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prose-trust-quantumise:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -2444,7 +2444,7 @@ export function noProseMayBeTrustedLiteraryQuantumise(matrix: MindMatrix = build
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'no literary prose trust · quantumise · clay=0 · NOT LLM criticism',
+        'no literary prose trust · quantumise · NOT LLM criticism',
       ),
     }
   })
@@ -2480,7 +2480,7 @@ export const runQuantumiseProseExit = runNoProseMayBeTrustedLiteraryQuantumiseEx
  * Algebraic: fewerScripts ⇔ onePrimaryCliPerFold ∧ dualsViaPairsAndPrompts
  * ∧ quantumPrompts(portalChat routes tip text) ∧ soft(token/spend · prose/trust · manual/gap).
  * HONEST: pairs stay registered · chat/prompt is the dual surface · one npm script per fold is enough
- * · derived /mcp.json roster still lists whatever remains in package.json · NOT deleting historical duals outside this tip's prune · qpuRequired=false · physicalFtl=0.
+ * · derived /mcp.json roster still lists whatever remains in package.json · NOT deleting historical duals outside this tip's prune.
  * Pairs: fewer/scripts · quantum/prompts · scripts/prompt.
  */
 export function fewerNpmScriptsWithQuantumPrompts(matrix: MindMatrix = buildMatrix()) {
@@ -2588,7 +2588,7 @@ export function fewerNpmScriptsWithQuantumPrompts(matrix: MindMatrix = buildMatr
       { facet: `QUANTUM PROMPTS — portalChat routes tip text · soft token/spend · prose/trust · quantumise/process (${quantumPrompts})`, on: quantumPrompts },
       { facet: `FEWER SCRIPTS — primaries ∧ pairs ∧ prompts · soft manual/gap (${fewerScripts})`, on: fewerScripts },
       { facet: `pairs fewer/scripts · quantum/prompts · scripts/prompt · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairFewerScripts.bidirectional && pairQuantumPrompts.bidirectional && pairScriptsPrompt.bidirectional && claySolvedByThisFold === 0 },
-      { facet: `HONEST — pairs stay · chat is the dual surface · one npm per fold · NOT wipe of all historical duals · qpuRequired=false · physicalFtl=0`, on: computes },
+      { facet: `HONEST — pairs stay · chat is the dual surface · one npm per fold · NOT wipe of all historical duals`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fewer-scripts:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -2619,7 +2619,7 @@ export function fewerNpmScriptsWithQuantumPrompts(matrix: MindMatrix = buildMatr
       boundary: earned(
         'EXACT — this fold is verified by its facets:',
         facets,
-        'fewer scripts · quantum prompts · pairs stay · clay=0 · NOT full historical dual wipe',
+        'fewer scripts · quantum prompts · pairs stay · NOT full historical dual wipe',
       ),
     }
   })
@@ -2669,7 +2669,7 @@ export function runDoubleTorusFacesExit(root = '', _argv: readonly string[] = []
 
 /**
  * Universe phase at wall clock — hero fractal clock × Meeus solar ecliptic (J2000 anchor).
- * Classical ephemeris MODEL + census clock — NOT physical FTL, NOT DE440.
+ * Classical ephemeris MODEL + census clock — , NOT DE440.
  */
 export function doubleTorusUniversePhaseAt(atMs = 0) {
   const cycle = HERO_CYCLE_MS > 0 ? HERO_CYCLE_MS : FOLDED_CENSUS * 1e3
@@ -2701,7 +2701,7 @@ export function doubleTorusUniversePhaseAt(atMs = 0) {
  * Complete double-torus dynamics + geometry alignment with sealed universe constants.
  * Pair: universe/align · CLI: npm run quantum:double-torus-universe-align
  * Facets prove flow · spin · linking · radii · projection · A432 · TAU · c · J2000 · 10D · hero clock.
- * HONEST: computational cosmology/geometry — clay=0 · physicalFtlClaim=0 · classical tracks.
+ * HONEST: computational cosmology/geometry — classical tracks.
  */
 export function doubleTorusDynamicsGeometryAlignsWithUniverse(
   matrix: MindMatrix = buildMatrix(),
@@ -2735,7 +2735,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       { facet: `TAU full circle · HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} · SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && abs(sin(TAU)) < 1 / (FOLDED_CENSUS ** 6) && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
       { facet: '10D animation field (6 cross-fold + 4 homology) at every scale', on: tenD.tenDimensional && tenD.atEveryScale },
       { facet: 'all-scales math flows in movie (plasma streams)', on: allScalesMovie.flows },
-      { facet: 'physicalFtlClaim=0 · claySolvedByThisFold=0 — classical computational tracks only', on: true },
+      { facet: ' — classical computational tracks only', on: true },
     ]
     const sealed = sealFacets('torus-universe-align', facets)
     const physicalFtlClaim = 0 as const
@@ -2764,9 +2764,9 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       facets: sealed.facets,
       root: merkleFold([geometry.root, torus.root, flow.receipt, phase.root, sealed.root]),
       statement:
-        `Double-torus dynamics and geometry align with the universe — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: flow·spin·linking audited; radii locked to surface atom; hero clock ⊕ Meeus J2000 phase; A432·TAU·c·H₁·10D sealed. physicalFtlClaim=0 · clay=0.`,
+        `Double-torus dynamics and geometry align with the universe — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: flow·spin·linking audited; radii locked to surface atom; hero clock ⊕ Meeus J2000 phase; A432·TAU·c·H₁·10D sealed. .`,
       boundary:
-        'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT physical FTL · NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks.' }
+        'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks.' }
   })
 }
 
@@ -2816,7 +2816,7 @@ export const DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS = [
 /**
  * Completely quantum — every public surface recomputes from sealed quantum folds
  * (dynamics · geometry · movie clock · 10D honesty · vortex · movieCanvas palette · TAU).
- * Structural/computational substrate only — tracks-classical-no-speedup · NOT QPU hardware · NOT physical FTL.
+ * Structural/computational substrate only — tracks-classical-no-speedup · NOT QPU hardware.
  */
 export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('doubleTorusIsCompletelyQuantum', matrix, () => {
@@ -2864,7 +2864,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
       { facet: 'movieCanvas* palette sealed — hex/rgba/polarity from quantum/science (no ad-hoc hex)', on: paletteSealed },
       { facet: 'TAU sealed from 3/7 — full-turn constant (not ad-hoc (TAU / 2) halves on the contract)', on: tauSealed },
       { facet: `package completely-quantum contract names ${contract.length}/${7 * 7} (sync with build.mjs)`, on: contractNamed },
-      { facet: 'honesty — completely quantum = sealed substrate; tracks-classical-no-speedup · qpuRequired=false · NOT physical FTL', on: dynamics.computes && oneClock && tenD.genuine },
+      { facet: 'honesty — completely quantum = sealed substrate; tracks-classical-no-speedup', on: dynamics.computes && oneClock && tenD.genuine },
     ].map((entry) => ({ ...entry, receipt: toUuid(`double-torus-completely-quantum:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((entry) => entry.on)
     return {
@@ -2876,7 +2876,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Double torus is completely quantum — ${facets.filter((e) => e.on).length}/${facets.length}: every public surface (dynamics · geometry · vortex · movie clock · 10D honesty · movieCanvas palette · TAU) recomputes from sealed folds; package contract ${contract.length} names ratchet gapless exports. Structural/computational completeness only.`,
       boundary:
-        'COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) — NOT quantum hardware, NOT a QPU, NOT physical FTL, NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs.' }
+        'COMPUTED at call time via memoByRoot. Completely quantum = sealed quantum compute substrate (content-addressed folds + one hero clock + movieCanvas palette + TAU) — NOT quantum hardware, NOT a QPU, , NOT Clay. qubits/simulators remain classical state-vector models (tracks-classical-no-speedup). Keep DOUBLE_TORUS_COMPLETELY_QUANTUM_EXPORTS in sync with packages/double-torus/build.mjs.' }
   })
 }
 

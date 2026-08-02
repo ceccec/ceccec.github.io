@@ -1806,7 +1806,7 @@ export function comboCover() {
     { facet: `quantum combinations << linear — ${rows} rows cover ALL pairwise states of ${factors.length} binary factors: ${covered}/${needed} pair-patterns VERIFIED exhaustively; the exhaustive product needs 2^${factors.length} = ${exhaustive} rows (${ratio.toFixed(1)}× more), and even linear-in-factors (${factors.length}) exceeds the ${rows}`, on: fullCoverage && rows < factors.length && ratio > 100 },
     { facet: 'the construction IS the pair algebra — every factor a 3-subset sharing one core row: shared core ⇒ 11, distinct equal sizes ⇒ 10 and 01, |union| < rows ⇒ 00; coverage DERIVED then re-verified, never sampled', on: factors.length === ((rows - 1) * (rows - 2)) / 2 && fullCoverage },
     { facet: `why the registry runs in dual pairs — ${QUANTUM_COMMAND_PAIR_IDS.length} pairs give pairwise coverage at covering-array cost, not the exhaustive product; the pair fold is bidirectional`, on: QUANTUM_COMMAND_PAIR_IDS.length > (8 * 8) && pairFold.bidirectional },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qpuRequired=false`, on: claySolvedByThisFold === 0 && fullCoverage },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && fullCoverage },
   ].map((entry) => ({ ...entry, receipt: toUuid(`combo-cover:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -1832,7 +1832,7 @@ export function comboCover() {
     boundary:
       'A covering-array identity verified exhaustively at call time: pairwise coverage costs orders less than the exhaustive product while ' +
       'covering every two-factor state — the mathematical ground of the dual-pair registry. HONEST SCOPE: pairwise coverage is full over PAIRS; ' +
-      'higher-order interactions need higher-strength arrays — stated, not hidden. clay=0 · qpuRequired=false.' }
+      'higher-order interactions need higher-strength arrays — stated, not hidden. .' }
 }
 
 /** npm run quantum:combo-cover (dual cover-combo) — exit 0 iff the covering theorem verifies. */
@@ -2055,7 +2055,7 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
         `pairingOfPairs=${pairingOfPairs ? 1 : 0}`,
       boundary:
         'Send quantum pairs to free chat; entangle by foldPair algebra — pairing of pairs grows the fractal hologram. ' +
-        'NOT physical qubit entanglement · NOT physical FTL. ONE pair pair/chat · ONE CLI. Soft tool/matrix · chat/ftl · combo/cover · waves/build · folder/fractal. clay via theorem · physicalFtl=0.',
+        'NOT physical qubit entanglement. ONE pair pair/chat · ONE CLI. Soft tool/matrix · chat/ftl · combo/cover · waves/build · folder/fractal. clay via theorem.',
     }
   })
 }
@@ -2343,8 +2343,8 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         boundary:
           'Matching duals a/b↔b/a immediately realise entanglement via foldPair trinity in one memoByRoot call; ' +
           'full roster develops in batched free-chat brainstorm waves (FREE_BITS×5 per batch, merkle root per batch). ' +
-          'NOT physical qubits · NOT physical FTL. ONE pair match/wave · ONE CLI. ' +
-          'Soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal. clay via theorem · physicalFtl=0.',
+          'NOT physical qubits. ONE pair match/wave · ONE CLI. ' +
+          'Soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal. clay via theorem.',
       }
     },
   )

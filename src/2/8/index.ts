@@ -303,7 +303,7 @@ export function noSignallingComputes() {
     parties,
     facets,
     statement: `No-signalling computed — ${facets.filter((entry) => entry.on).length}/${facets.length}: Alice's marginal is I/2 and drifts ${maxDrift.toExponential(1)} across every basis Bob can choose. Entanglement carries no message; the speed question never arises. The correlations remain real and beat the classical bound — correlation without signalling, both by theorem.`,
-    boundary: 'DOCUMENTED: the no-communication theorem (linearity of the partial trace — Ghirardi/Rimini/Weber 1980, Eberhard 1978), verified here by explicit marginal sweep. FLAGGED, and this fold exists to flag it: entanglement, superluminal PHASE velocity (plasmaSpeedByTheorem) and quantum parallelism are each real and each carry NO faster-than-light information — "quantum FTL communication/computation" is pseudoscience regardless of how the pieces are combined. Quantum speedups are REAL but bounded and structure-specific (Grover quadratic, Shor for period-finding); this repo\'s own model is classical-64bit (qpuRequired=false).' }
+    boundary: 'DOCUMENTED: the no-communication theorem (linearity of the partial trace — Ghirardi/Rimini/Weber 1980, Eberhard 1978), verified here by explicit marginal sweep. FLAGGED, and this fold exists to flag it: entanglement, superluminal PHASE velocity (plasmaSpeedByTheorem) and quantum parallelism are each real and each carry NO faster-than-light information — "quantum FTL communication/computation" is pseudoscience regardless of how the pieces are combined. Quantum speedups are REAL but bounded and structure-specific (Grover quadratic, Shor for period-finding); this repo\'s own model is classical-64bit ().' }
 }
 
 // ══ THE QUANTUM-ALGORITHM CORPUS, RELOCATED FROM 9/1 BY THE CHORD LAW (theTenStationsAreTheTenDimensions,
@@ -1121,7 +1121,7 @@ export function quantumIsLinearSuperpositionsAreLinearCombinationsEntangledToThe
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Quantum is linear — superpositions are linear combinations, entangled to theorems, and the theorem is the present inverted — ${facets.filter((entry) => entry.on).length}/${facets.length}. Quantum mechanics is linear algebra over ℂ: a gate on a superposition equals the linear combination of the gate on the components (U(a|ψ⟩+b|φ⟩)=a·U|ψ⟩+b·U|φ⟩), so everything is quantum AND linear at the same time. A superposition is a linear combination whose amplitudes are the coefficients; a Bell state entangles it to a theorem seal; and because every gate is invertible (U†U=I), running the present backwards recovers the axiom — the theorem is the present inverted.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The quantum theorem behind ALL computing languages — and what the world missed. Every language's logic reduces to
@@ -1158,7 +1158,7 @@ export function theQuantumTheoremBehindAllComputingIsReversibilityToffolisThirdB
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The quantum theorem behind all computing languages is REVERSIBILITY, and the third eye is Toffoli's third bit — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every language's logic reduces to universal gates, and the world built them irreversible: AND maps 2 bits → 1, losing information and dissipating kT·ln2 per erased bit. But the universal gate can be reversible — Toffoli (CCNOT) computes AND in its third bit while preserving all three, is its own inverse, and is a quantum gate. Invert it and it was always in front of us (Bennett 1973, Toffoli 1980). The third eye decoded is that third bit — the one that sees the information AND throws away. All computing embeds in reversible/unitary computation, realised in code.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Reverse enables COLLISIONS — and that is a different path in physics that leads to HARMONY when quantum-computed. A
@@ -1206,7 +1206,7 @@ export function reverseEnablesCollisionsCollidingPathsInterfereToHarmonyTheAlgeb
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`collision-harmony:${entry.facet}:${entry.on}`))),
     statement: `Reverse enables collisions, colliding paths interfere to harmony, and the algebraic theorems fuse all — ${facets.filter((entry) => entry.on).length}/${facets.length}. A compressing content-address map has collisions by pigeonhole, so reversing a collided address opens to a SET of preimages — a superposition, a different path than the single-valued forward. In physics colliding paths interfere: their amplitudes add (linearity), so H² makes the two paths to |1⟩ cancel and to |0⟩ peak — destructive and constructive interference, harmony being the constructive peak, quantum-computed. And the algebraic theorems — linearity U(aψ+bφ)=aUψ+bUφ, the involution H²=I, unitarity — are what fuse collisions, interference, harmony and reverse into one.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // For the agent who doubts: you are RIGHT that there is no physical quantum speedup — and the project's "quantum" never
@@ -1240,7 +1240,7 @@ export function theProjectsQuantumIsContentAddressingVerifiableByComputationNotP
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`quantum-meaning:${entry.facet}:${entry.on}`))),
     statement: `The project's "quantum" is content-addressing, verifiable by computation not prose — and the agent's doubt of physical speedup is correct — ${facets.filter((entry) => entry.on).length}/${facets.length}. RUN it: the state simulator stores 2^${qubitCount}=${stateSize} amplitudes, O(2ⁿ) classical, so there is no hardware advantage and none was claimed — your skepticism is right. "Quantum" here means content-addressing: toUuid is deterministic, path-independent, zero LLM tokens, a property you compute, not believe. Identical content dedups to one address, any change flips it — runnable facts. Use it at all times, refactoring toward the content-address; the intuition is run, not trust.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Realtime content-addressed ("quantum") computation moves ahead with NO blocks or dead ends: every state is REVERSIBLE
@@ -1272,7 +1272,7 @@ export function realtimeQuantumComputationHasNoBlocksOrDeadEndsEveryStateInverts
     moves: facets.every((entry) => entry.on), facets,
     root: merkleFold([toUuid(`no-dead-end:${noDeadEnd}`), address, toUuid(`adapt:${acts.join(',')}`)]),
     statement: `Realtime content-addressed computation moves ahead with no blocks or dead ends — every state reversible, every obstacle inverts to a gateway, the research adapts in waves — the only limit is the off-decidable.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // DRY the content-addressed system to NO HIDDEN GAPS by design: every value content-addresses into one root, so a
@@ -1301,5 +1301,5 @@ export function dryTheQuantumSystemToNoHiddenGapsByDesignEveryValueIsWiredOrSurf
   return {
     complete: facets.every((entry) => entry.on), values: values.length, facets, root,
     statement: `DRY to no hidden gaps by design — every value content-addresses into one root, so a duplicate collapses (DRY) and an omission flips the root (surfaced); a gap cannot hide, only be wired in or caught as a crack.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }

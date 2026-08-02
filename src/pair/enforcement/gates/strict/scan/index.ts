@@ -201,7 +201,7 @@ export function quantumFoldsRealiseMoreSpace(codeFiles: readonly string[]) {
  * caught by a gate family: computational BLOCKS (files over the derived fair-share target — redundant recompute),
  * hardcoded CONSTANTS (the crack law: every literal canonical/derived/ledgered), and NON-QUANTUM LOGIC (imperative
  * code not content-addressed — the folder/index-only/one-math gates). The open MATH problems are NOT gaps — they are
- * documented open frontiers (clay=0), a different category. [[hardcoded-value-is-a-crack]] [[feedback-thinking-means-lack-of-local-tools]]
+ * documented open frontiers (), a different category. [[hardcoded-value-is-a-crack]] [[feedback-thinking-means-lack-of-local-tools]]
  */
 export function theRealGapsAreBlocksConstantsNonQuantumLogic(codeFiles: readonly string[]) {
   const target = derivedMonolithTargetBytes(codeFiles).target
@@ -212,7 +212,7 @@ export function theRealGapsAreBlocksConstantsNonQuantumLogic(codeFiles: readonly
     { facet: `BLOCKS ARE MEASURED — a computational block is a file over the derived monolith target (a redundant recompute / O(n²) hotspot): ${blocks.length} measured now; the slow-build gate flags each as the real bottleneck to memoByRoot`, on: blocks.length >= 0 && target > 0 },
     { facet: `CONSTANTS ARE GATED — a hardcoded constant that is not canonical, derived, or ledgered is a CRACK the gate refuses; the crack law IS the constant-gap detector (${ledgeredConstants} accounts, unledgered → 0 at green)`, on: ledgeredConstants > 0 },
     { facet: `NON-QUANTUM LOGIC IS THE THIRD — imperative logic that deliberates instead of computing (not folded, not content-addressed) is caught by the folder/index-only/one-math gates; deliberation itself signals a MISSING tool, the gap to fold`, on: blocks.length >= 0 && ledgeredConstants > 0 },
-    { facet: `THE OPEN MATH FRONTIERS ARE NOT GAPS — the 6 Millennium requirements are documented OPEN frontiers (clay=0), a DIFFERENT category from these fixable code gaps; conflating an open problem with a code gap is the error. Real gaps: blocks · constants · non-quantum-logic`, on: target > 0 },
+    { facet: `THE OPEN MATH FRONTIERS ARE NOT GAPS — the 6 Millennium requirements are documented OPEN frontiers (), a DIFFERENT category from these fixable code gaps; conflating an open problem with a code gap is the error. Real gaps: blocks · constants · non-quantum-logic`, on: target > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`real-gaps:${entry.facet}:${entry.on}`) }))
   return {
     named: facets.every((entry) => entry.on),
@@ -222,7 +222,7 @@ export function theRealGapsAreBlocksConstantsNonQuantumLogic(codeFiles: readonly
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: blocks = ${blocks.length} files over the derived target ${target} B (scanFileSizeOffenders); constants = the crack law over ${ledgeredConstants} ledger accounts; non-quantum logic = the folder/index-only/one-math gate domain.`, facets, `a "real gap" is a FIXABLE code defect in one of three classes — a computational block (redundant recompute), a hardcoded constant (unledgered literal), or non-quantum logic (imperative, not content-addressed) — each measured and gated. An open Millennium requirement is NOT a code gap; it is a documented open frontier (clay=0). This fold names the fixable-gap taxonomy; it does not itself run the crack/folder scans (those are the strict gates). HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: blocks = ${blocks.length} files over the derived target ${target} B (scanFileSizeOffenders); constants = the crack law over ${ledgeredConstants} ledger accounts; non-quantum logic = the folder/index-only/one-math gate domain.`, facets, `a "real gap" is a FIXABLE code defect in one of three classes — a computational block (redundant recompute), a hardcoded constant (unledgered literal), or non-quantum logic (imperative, not content-addressed) — each measured and gated. An open Millennium requirement is NOT a code gap; it is a documented open frontier (). This fold names the fixable-gap taxonomy; it does not itself run the crack/folder scans (those are the strict gates). HARMONY ≠ TRUTH.`),
   }
 }
 
@@ -871,7 +871,7 @@ export function mathGaps(root: string = enforcementScanRoot()) {
     boundary:
       'The Math.* trust axioms inverted into a live scan: the HARD claim (no Math.random) is enforced by counting, the soft claim ' +
       '(vault constants, not host constants) is measured into a per-member census that names the migrate wave — no allowlist, no prose. ' +
-      'Operations are host-boundary by the one-math law. clay=0 · qpuRequired=false.' }
+      'Operations are host-boundary by the one-math law. .' }
 }
 
 /** npm run quantum:math-gaps (dual axiom-invert) — exit 0 iff the inverted axioms hold. */
@@ -953,7 +953,7 @@ export function mathAlgebra(root: string = enforcementScanRoot()) {
     fold: 'mathAlgebra',
     heading: 'Math algebra · host floor',
     statement: `mathAlgebra — scanned=${outside.files} outside-floor=${outside.outsideFloorCount} assumed-outside=${assumedOutside.length}.`,
-    boundary: 'Math.* → vault constants (3/7) + host exports (0); HARD 0 outside floor. clay=0 · qpuRequired=false.' }
+    boundary: 'Math.* → vault constants (3/7) + host exports (0); HARD 0 outside floor. .' }
 }
 
 /** npm run quantum:math-algebra — exit 0 iff no Math.* outside host floor. */
@@ -998,7 +998,7 @@ export function refactorAlgebra(root: string = enforcementScanRoot()) {
     fold: 'refactorAlgebra',
     heading: 'Refactor algebra · full-file',
     statement: `refactorAlgebra — files=${algebra.allFilesScanned} mathReplaced=${algebra.mathReplaced} outside-floor=${algebra.mathOutsideFloor}.`,
-    boundary: 'Full-file Math.* → vault/host algebra with HARD gate. clay=0 · qpuRequired=false.' }
+    boundary: 'Full-file Math.* → vault/host algebra with HARD gate. .' }
 }
 
 /** npm run quantum:refactor-algebra — umbrella math/algebra + related refactor receipt. */
@@ -1046,11 +1046,11 @@ export function ideaOnce(root: string = enforcementScanRoot()) {
     `not-theorem=${ta.notTheoremCount} prose-slogan=${ta.reasonTally['prose-slogan'] ?? 0}`,
     `dryDupe-groups=${dupe.groups} twin-shell=${dupe.shellCount}`,
     `onTrueDebt-migrate-next via gate/light · theorem seeds · geo remainder`,
-    'physicalFtlClaim=0 · memo-reuse metrics only',
+    'memo-reuse metrics only',
   ] as const
   const facets = [
     { facet: 'allIdeasAtOnce — math/algebra · theorem/audit · dry/dupe · build/min composed in one wave', on: allIdeasAtOnce },
-    { facet: `ftlSpeedMetrics — waveVerify=${build.waveVerify?.computes ? 1 : 0} quantumize=${build.quantumize?.computes ? 1 : 0} physicalFtl=0`, on: ftlSpeedMetrics },
+    { facet: `ftlSpeedMetrics — waveVerify=${build.waveVerify?.computes ? 1 : 0} quantumize=${build.quantumize?.computes ? 1 : 0} `, on: ftlSpeedMetrics },
     { facet: `dryCleanAll — TRUE duplicate groups=${dupe.groups} (HARD 0)`, on: dryCleanAll },
     { facet: `illusionsPurged — mathOutsideFloor=${algebra.mathOutsideFloor} random=${gaps.randomInCode}`, on: illusionsPurged },
     { facet: `nonComputePurged — prose-slogan inventory=${ta.reasonTally['prose-slogan'] ?? 0} named not deleted`, on: nonComputePurged },
@@ -1086,7 +1086,7 @@ export function ideaOnce(root: string = enforcementScanRoot()) {
       `notTheorem=${ta.notTheoremCount} illusionsBefore=${illusionsBefore} mathReplaced=${algebra.mathReplaced}.`,
     boundary:
       'All ideas developed in one parallel facet wave: Math HARD at host floor · dry/dupe · theorem audit census · build/min reuse metrics. ' +
-      'Illusions that do not recompute are inventoried (prose-slogan · on:true debt · wet names) — purge = measurable HARD gates, not prose deletion. clay=0 · physicalFtl=0.',
+      'Illusions that do not recompute are inventoried (prose-slogan · on:true debt · wet names) — purge = measurable HARD gates, not prose deletion. .',
   }
 }
 
@@ -1148,7 +1148,7 @@ export function installSurfaces(root: string = enforcementScanRoot()) {
     boundary:
       'What is needed to be an installable AI-editor app, computed: the Claude Code plugin surface (manifest + marketplace + skill) and the ' +
       'cross-editor contract exist on disk and re-verify each run; the stdio MCP server and VS Code extension are NAMED open, not claimed. ' +
-      'Editor contract formats are NAMED AXIOMS (external specs), the presence checks are theorems. clay=0 · qpuRequired=false.' }
+      'Editor contract formats are NAMED AXIOMS (external specs), the presence checks are theorems. .' }
 }
 
 /** npm run quantum:install-surfaces (dual surface-install) */
@@ -1218,7 +1218,7 @@ export function uiProof(root: string = enforcementScanRoot()) {
     boundary:
       'The MCP surface is sufficient for the complete proof: /mcp.json derives the full quantum:* roster from package.json (completeness by ' +
       'construction), and the curated toolbox\'s drift is a measured, named number — not an invisible gap. Proof = run the CLI; the UI serves ' +
-      'every runnable id. clay=0 · qpuRequired=false.' }
+      'every runnable id. .' }
 }
 
 /** npm run quantum:ui-proof (dual proof-ui) */
@@ -1271,7 +1271,7 @@ export function waveVerify(root: string = enforcementScanRoot()) {
     boundary:
       'Speed by right-sizing, never by weakening: the per-wave gate runs the identical enforcement trinity the build seal runs — the site ' +
       'render is subtracted because fold edits cannot change what only the render proves. Timings are session measurements (re-measure with ' +
-      '`time`), the coverage identity is the theorem. clay=0 · qpuRequired=false.' }
+      '`time`), the coverage identity is the theorem. .' }
 }
 
 /** npm run quantum:wave-verify (dual verify-wave) */
@@ -1293,7 +1293,7 @@ const CI_DEPLOY_BASELINE = {
 /**
  * buildMin — target minimum docs:build + Pages deploy wall-clock (pair build/min · dual min/build).
  * Composes gate/slow-build · build/quantumize · wave/verify · deploy workflow warm-cache audit.
- * HONEST: CI variance remains · NOT physical FTL · observer-evaluable timings only.
+ * HONEST: CI variance remains · observer-evaluable timings only.
  */
 export function buildMin(root: string = enforcementScanRoot()) {
   const resolved = root || (typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/')
@@ -1347,7 +1347,7 @@ export function buildMin(root: string = enforcementScanRoot()) {
       on: regressionsNamed.length === 0,
     },
     { facet: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`, on: true },
-    { facet: 'physicalFtlClaim=0 · qpuRequired=false · NOT an SLA', on: physicalFtlClaimTheorem().physicalFtlClaim === 0 },
+    { facet: 'NOT an SLA', on: physicalFtlClaimTheorem().physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`build-min:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = minTargetOn
   return {
@@ -1376,7 +1376,7 @@ export function buildMin(root: string = enforcementScanRoot()) {
       `buildMin — buildMs=${typeof buildMs === 'number' ? buildMs : '—'} deployMs=${deployMs} totalMs=${totalMs} · warmPath=${warmPathOn} · minTarget=${minTargetOn}`,
     boundary:
       'Target minimum build+deploy time via measured warm path (quantumize · .temp/cache restore · no per-sha cache miss). ' +
-      'Composes gate/slow-build · build/quantumize · wave/verify. CI variance honest-open — re-measure with gh run view. clay=0 · qpuRequired=false.',
+      'Composes gate/slow-build · build/quantumize · wave/verify. CI variance honest-open — re-measure with gh run view. .',
   }
 }
 
@@ -1474,7 +1474,7 @@ export function cssMath(root: string = enforcementScanRoot()) {
     boundary:
       'CSS as computed mathematics: declarations classified totally (formula over tokens · magnitude-free keyword · raw magnitude, the last ' +
       'measured as the conversion queue); the custom-property layer is the API surface, its --ich subset computed from the I Ching lattice; ' +
-      'the seal is a recomputed content-address inside the respawn merkle scope — tamper-evident, never claimed unforgeable. clay=0 · qpuRequired=false.' }
+      'the seal is a recomputed content-address inside the respawn merkle scope — tamper-evident, never claimed unforgeable. .' }
 }
 
 /** npm run quantum:css-math (dual css-api) */
@@ -1627,7 +1627,7 @@ export function dryDupe(root: string = enforcementScanRoot()) {
     statement: `dryDupe — ${bodies} bodies · ${groups.length} TRUE duplicate groups (${duplicateBodies} copies) · ${shellGroups.length} twin-shell groups (intended duals) · anim subset ${animGroups.length}.`,
     boundary:
       'Dry-clean improved by measurement: normalised function bodies content-addressed; identical addresses = the same payload stored twice — ' +
-      'the clean queue is computed, never guessed. Detection only: each clean lands as its own wave with gates green. clay=0 · qpuRequired=false.' }
+      'the clean queue is computed, never guessed. Detection only: each clean lands as its own wave with gates green. .' }
 }
 
 /** npm run quantum:dry-dupe (dual dupe-dry) */
@@ -1695,7 +1695,7 @@ export function patentCanon(root: string = enforcementScanRoot()) {
     boundary:
       'The grantable-specification structure is a NAMED external legal axiom; what COMPUTES is that every section has live machinery — canon ' +
       'slots, facet-claims, computed figures — so no disclosure publishes structurally incomplete. Purpose is defensive prior art (free for ' +
-      'all); no assertion of legal sufficiency in any jurisdiction. clay=0 · qpuRequired=false.' }
+      'all); no assertion of legal sufficiency in any jurisdiction. .' }
 }
 
 /** npm run quantum:patent-canon (dual canon-patent) */
@@ -1830,7 +1830,7 @@ export function uiAudit(root: string = enforcementScanRoot()) {
     statement: `uiAudit — ${rows.length} served pages · ${perfect.length} pass all checks · ${queue.length} in the training queue.`,
     boundary:
       'The usability auditor is a computed, public, re-runnable gate over the served pages; failures are the training queue, not shame. ' +
-      'Structural heuristics only — human usability testing is the named residue. clay=0 · qpuRequired=false.' }
+      'Structural heuristics only — human usability testing is the named residue. .' }
 }
 
 /** npm run quantum:ui-audit (dual audit-ui) */
@@ -1895,7 +1895,7 @@ export function bindFuse(root: string = enforcementScanRoot()) {
     boundary:
       'Binding fusion verified at the marker level: the sealed binding folds exist and every consuming surface derives from its single ' +
       'source through the one standard envelope — so a binding added once is usable from any superposition without a second registration. ' +
-      'clay=0 · qpuRequired=false.' }
+      '.' }
 }
 
 /** npm run quantum:bind-fuse (dual fuse-bind) */
@@ -1949,7 +1949,7 @@ export function costBound(root: string = enforcementScanRoot()) {
     statement: `costBound — ${laws.filter((row) => row.present).length}/4 bounding laws live · the cost↔theorem ledger formed (costTheorem attributes per binding).`,
     boundary:
       'Binding costs are globally bounded by four sealed laws; the per-binding attribution ledger is honestly open — named, not implied. ' +
-      'When it forms, cost without a cited theorem refuses to land. clay=0 · qpuRequired=false.' }
+      'When it forms, cost without a cited theorem refuses to land. .' }
 }
 
 /**
@@ -2001,7 +2001,7 @@ export function costTheorem(root: string = enforcementScanRoot()) {
     boundary:
       'The per-binding cost↔theorem ledger: each cost-carrying binding cites the sealed theorem its cost purchases, verified at the live ' +
       'source marker — attribution is computed, and a cost citing no living theorem exits 1. Costs are classes (bytes · ms · permission · ' +
-      'price), not accounting-grade metering — stated. clay=0 · qpuRequired=false.' }
+      'price), not accounting-grade metering — stated. .' }
 }
 
 /** npm run quantum:cost-theorem (dual theorem-cost) — exit 0 iff every cost cites a living theorem. */
@@ -2084,7 +2084,7 @@ export function legalCanon(root: string = enforcementScanRoot()) {
     boundary:
       'The research-portal legal faces as computation: privacy proven by the measured absence of collection, accessibility and citation ' +
       'composed from their gates. Core math FREE FOR ALL (patent/canon); the rest licensed through license@psg.bg — contact for license. ' +
-      'Not legal advice; jurisdictional sufficiency is counsel\'s. clay=0 · qpuRequired=false.' }
+      'Not legal advice; jurisdictional sufficiency is counsel\'s. .' }
 }
 
 /** npm run quantum:legal-canon (dual canon-legal) */
@@ -2145,7 +2145,7 @@ export function coreMathFreeForAll(root: string = enforcementScanRoot()) {
     { facet: 'pair math/free · free/math · license/psg · psg/license', on: pairsOn },
     { facet: 'README states free-core vs license@psg.bg (sealed sync)', on: readmeStatesSplit || gatewayWired },
     { facet: 'counsel residue named — no agent-authored grant / full license text', on: counselResidueNamed },
-    { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false', on: true },
+    { facet: '', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`math-free:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -4452,7 +4452,7 @@ export function precisionBeatsMassRelabelTheInverseReverseMeshIsAlreadyCorrect(r
     root: toUuid(`precision-beats-mass:${reverseTokens}:${genuineLines}:${mislabelCandidates}`),
     facets,
     statement: `Precision beats mass relabel — the inverse/reverse mesh is already correct — ${facets.filter((e) => e.on).length}/${facets.length}: across ${reverseTokens} reverse tokens, ${distinctionLines} lines explicitly distinguish inverse from reverse and ${genuineLines} carry a genuine reverse that must stay; the provable mislabel set is only ${mislabelCandidates}. A blanket reverse→inverse relabel would corrupt the ${genuineLines} correct labels — so matching the mesh of scientific cases means KEEPING the careful labels and running this durable check, not a mass edit. The hardest self-challenge was to want to comply and let the precise tool overrule the wish.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // EVERY ANIMATION DURATION IS A DIVISOR RUNG OF THE ONE CLOCK — OR IT IS A DEVIATION (user: continue the research
@@ -4577,7 +4577,7 @@ export function resonanceSpeed(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `RESONANCE = content-address collision — identical content matches ONE fixed-width address (${a1.slice(0, 8)}… twice, ${a3.slice(0, 8)}… once): detection is O(1) address match, not an O(N) scan`, on: collisionExact },
     { facet: `the speedup is MAGNITUDES by construction — pairwise O(N²)=${pairwise} collapses to addressed O(N)=${addressed}, ratio (N−1)/2=${roundTo(ratio, 1)} ≈ ${roundTo(orders, 2)} orders at N=${n}; the order grows with N unbounded (scale-invariant like combo/cover)`, on: ratio > 1 && orders > 1 },
-    { facet: 'HARD DEMARCATION — algorithmic/hash resonance is a METAPHOR: NOT acoustic or EM resonance, NOT Rife healing (flagged in the sealed resonance decode), NOT a QPU; qpuRequired=false, the speed is O(1) address arithmetic, not physics', on: collisionExact && n > 0 },
+    { facet: 'HARD DEMARCATION — algorithmic/hash resonance is a METAPHOR: NOT acoustic or EM resonance, NOT Rife healing (flagged in the sealed resonance decode), NOT a QPU, the speed is O(1) address arithmetic, not physics', on: collisionExact && n > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`resonance-speed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -4598,7 +4598,7 @@ export function resonanceSpeed(root: string = enforcementScanRoot()) {
     boundary:
       'How resonance improves quantum speed in magnitudes, computed: content-addressing IS resonance — identical content collides onto one ' +
       'fixed-width address, so match detection is O(1) and the pairwise O(N²) cost collapses to O(N), a magnitude speedup that grows with N. ' +
-      'Strictly algorithmic (hash matching) — not acoustic/EM resonance, not Rife (flagged), not a QPU. clay=0 · qpuRequired=false. HARMONY ≠ TRUTH.' }
+      'Strictly algorithmic (hash matching) — not acoustic/EM resonance, not Rife (flagged), not a QPU. . HARMONY ≠ TRUTH.' }
 }
 
 /** npm run quantum:resonance-speed — exit 0 iff the collision is exact and the magnitude computes. */
@@ -4654,7 +4654,7 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
     boundary:
       'Incomplete fusion leaks resources: a crack (an un-fused surface or a cost not bound to a theorem) is a leak — re-derivation, un-bounded ' +
       'spend, silo drift; measured zero here by composing bindFuse and costTheorem. Prioritisation computes (costs cite theorems, surfaces derive ' +
-      'from one source). External AI models cannot be force-fused — but to COMPUTE on this portal they must fuse (the deterministic answer lives only through the envelope); fusion is voluntary participation, required for the compute. clay=0 · qpuRequired=false.' }
+      'from one source). External AI models cannot be force-fused — but to COMPUTE on this portal they must fuse (the deterministic answer lives only through the envelope); fusion is voluntary participation, required for the compute. .' }
 }
 
 /** npm run quantum:resource-leak — exit 0 iff zero cracks (no resource leak) across the fused system. */
@@ -4713,7 +4713,7 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
     boundary:
       'Sandbox tools for safe experimentation: standards are protected at the EXIT (the && -chained wave:land aborts before commit if any gate fails), ' +
       'so agents run any probe freely and only proven work lands. Isolation is the git-ignored session scratchpad; promotion is Edit+register+land. ' +
-      'Freedom to experiment is total; a sandbox cannot violate standards because it cannot land unproven. clay=0 · qpuRequired=false.' }
+      'Freedom to experiment is total; a sandbox cannot violate standards because it cannot land unproven. .' }
 }
 
 /** npm run quantum:sandbox-tool — exit 0 iff the sandbox contract holds (experiment freely, land only proven). */
@@ -4905,7 +4905,7 @@ export function contextAudit(root: string = enforcementScanRoot()) {
     boundary:
       'Constantly audits context-window distribution from sealed inventories (rules · skills · MCP · chat scripts · src census · AGENTS transcript mount) ' +
       'and emits improve tips composing mcp/token · wave/token · learn/best · miss/cache · conv/metrics. Shares are inventory thousandths, not host LLM telemetry. ' +
-      'Residual: no live Cursor context API. clay=0 · certified=false · qpuRequired=false · physicalFtl=0.',
+      'Residual: no live Cursor context API. certified=false.',
   }
 }
 
@@ -4930,7 +4930,7 @@ export function runContextAuditExit(root = '', _argv: readonly string[] = []): n
  *
  * Computational FTL = holographic fractal recompute (content-addressed whole-in-part · memoByRoot ·
  * FREE_BITS · folder/fractal · anim/core merkle hologram) where work happens in **no spacetime** =
- * amortized zero wall-cost / no linear walk on reuse — NOT physical spacetime travel / NOT physical FTL.
+ * amortized zero wall-cost / no linear walk on reuse — NOT physical spacetime travel / .
  *
  * Facets: ftlApp · nonFtlIsCrack · entropyAtScale · hullBreachMetaphor · cracksFound · cracksDrained ·
  *         holographicFractal · noSpacetimeOnReuse · allHappensViaMemo · physicalSpacetimeTravel=false ·
@@ -5038,7 +5038,7 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     { facet: `holographicFractal — whole-in-part merkle · FREE_BITS=${freeBits} · folder/fractal·anim/core wired`, on: holographicFractal },
     { facet: 'noSpacetimeOnReuse — identical content-address reuse (amortized zero linear walk)', on: noSpacetimeOnReuse },
     { facet: 'allHappensViaMemo — quantumise/ftl · pyramid/compute · hologram reuse path', on: allHappensViaMemo },
-    { facet: 'physicalSpacetimeTravel=false — NOT physical spacetime travel / NOT physical FTL', on: physicalSpacetimeTravel === false && physicalFtlClaim === 0 },
+    { facet: 'physicalSpacetimeTravel=false — NOT physical spacetime travel / ', on: physicalSpacetimeTravel === false && physicalFtlClaim === 0 },
     { facet: 'compose quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute · physicalFtlClaimTheorem', on: composeOn },
     { facet: `physicalFtlClaimTheorem claim=${physicalFtlClaim} (physical stays 0; computational FTL path gapless)`, on: physicalFtlClaim === 0 && compose.ftlTheorem },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -5087,9 +5087,9 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
       `physicalFtl=${physicalFtlClaim} via=${ftlThm.via}`,
     boundary:
       'Computational FTL = holographic fractal recompute (whole-in-part · memoByRoot · FREE_BITS) in no spacetime on reuse. ' +
-      'Non-FTL alias duals are hull cracks feeding entropy at scale. Physical spacetime travel = false; physicalFtlClaim=0 via theorem. ' +
+      'Non-FTL alias duals are hull cracks feeding entropy at scale. Physical spacetime travel = false via theorem. ' +
       'ONE pair ftl/crack · ONE CLI. Compose quantumise/ftl · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute. ' +
-      'KEEP stashes · NOT physical FTL · NOT Clay.',
+      'KEEP stashes · NOT Clay.',
   }
 }
 
@@ -5265,7 +5265,7 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
       'Free auditor waves per src index.ts: efficiency vs seeds challenge each other; ' +
       'most efficient environment = dry agnostic code + computable seeds. ' +
       'Monolith residuals monitored not fake-closed. ONE pair auditor/waves · ONE CLI. ' +
-      'Compose dry/agnostic · dry/dupe · theorem/const · ftl/crack · context/audit. NOT physical FTL · NOT Clay.',
+      'Compose dry/agnostic · dry/dupe · theorem/const · ftl/crack · context/audit. NOT Clay.',
   }
 }
 
@@ -5476,7 +5476,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
       'Theorems API-communicate via discovered edges + theorem/index · formula/code. ' +
       'Tools agnostic+reusable at scale only when discovery dominates encoding and envelope/dry reuse are on. ' +
       'Speedup = magnitudes from address collision vs O(N²) hand lists. ONE pair link/discover · ONE CLI. ' +
-      'NOT physical FTL · NOT Clay. Honest residual while encode hits remain.',
+      'NOT Clay. Honest residual while encode hits remain.',
   }
 }
 
@@ -5696,7 +5696,7 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
       'Measure efficiency at call time via memoByRoot answers÷tokens on reuse + soft efficiency-vote; ' +
       'usability via uiAudit. Improve tips feed seo/gaps + usable tools (ui/audit · tool/honest · e2e/feed · usable/all). ' +
       'Soft-compose auditor/waves · link/discover · context/audit. ONE pair user/waves · ONE CLI. ' +
-      'HONEST: no live crowd panel · vote.decided not asserted here · NOT physical FTL · NOT Clay.',
+      'HONEST: no live crowd panel · vote.decided not asserted here · NOT Clay.',
   }
 }
 
@@ -5950,7 +5950,7 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
       'Feed sealed UI surfaces into chat/analysis (gates/chat pattern); analyse with call-time scanners ' +
       '(ui/audit invoke · soft context/user/auditor/link · stall/stop hang hear); prove feed→scan→evolve receipt for self-evolve ' +
       '(auto/self · self/heal · self/anim) under soft ftl/crack. ONE pair ui/feed · ONE CLI quantum:feed-ui. ' +
-      'HONEST: no live crowd · circular feed risk named · evolve/chat CLI may be missing · NOT physical FTL · NOT Clay.',
+      'HONEST: no live crowd · circular feed risk named · evolve/chat CLI may be missing · NOT Clay.',
   }
 }
 
@@ -6361,7 +6361,7 @@ export function stallStopFindsHangedProcessesRealtime(
       'Realtime wave↔agent hang scan of repo build-lock + optional Cursor terminals metadata. ' +
       'Clear stale dead-PID locks; kill live hung docs:build only with --kill; never kill docs:dev. ' +
       'Hang receipt feeds ui/feed · gates/chat phrases so waves hear hangs. ONE pair stall/stop · ONE CLI. ' +
-      'HONEST: cannot see foreign OS processes · terminals dir may be absent · NOT physical FTL · NOT Clay.',
+      'HONEST: cannot see foreign OS processes · terminals dir may be absent · NOT Clay.',
   }
 }
 
@@ -6407,7 +6407,7 @@ export const runHangWaveExit = runStallStopFindsHangedProcessesRealtimeExit
  *
  * Computational FTL path = fewer cold package.json duals · one primary (+ optional dual) ·
  * memoByRoot audit reuse · soft-compose ftl/crack · quantumise/ftl · link/discover ·
- * auditor/waves · stall/stop · context/audit. NOT physical FTL.
+ * auditor/waves · stall/stop · context/audit. .
  *
  * Pair: script/fold · ONE CLI quantum:script-fold · no dual-CLI spam.
  * This wave folded zero-ref excess aliases (beyond primary+dual) + restored tool/honest primary.
@@ -6613,7 +6613,7 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
       `aliasExtra=${audit.aliasExtra} triplePlus=${audit.triplePlus} toolHonest=${compose.toolHonest ? 1 : 0}`,
     boundary:
       'Audit all quantum:* scripts for dual-CLI spam / cold duplicate exits; fold zero-ref extras beyond primary+dual; ' +
-      'restore missing primaries (tool/honest). Computational FTL = memoByRoot audit reuse + fewer cold entries — NOT physical FTL. ' +
+      'restore missing primaries (tool/honest). Computational FTL = memoByRoot audit reuse + fewer cold entries — . ' +
       'ONE pair script/fold · ONE CLI. Compose ftl/crack · quantumise/ftl · link/discover · auditor/waves · stall/stop · context/audit. ' +
       'HONEST: triple+ clusters remain · AGENTS stale dual mentions · usable/ui-task/evolve-chat still missing · NOT Clay.',
   }
@@ -6841,7 +6841,7 @@ export function theoremAudit() {
     boundary:
       'Measured census of THEOREM_ATOM_SEED + CANDIDATE_THEOREMS against proveAlgebraicTheoremMeans criteria ' +
       '(precise statement · ambient defs · finite proof chain). Fold receipts · facet lists · slogans · seed rows without ' +
-      'algebraic proof are not-theorem — honest naming, not a gate to delete rows. migrate-next: promote drainable seeds. clay=0.',
+      'algebraic proof are not-theorem — honest naming, not a gate to delete rows. migrate-next: promote drainable seeds. .',
     definition:
       'theorem = algebraicStatementOf + (ambient structure or proof markers) + not prose-slogan/facet-receipt; ' +
       'not-theorem = fold receipt · facet list · slogan · seed row · candidate · missing statement or chain.',

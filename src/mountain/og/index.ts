@@ -1090,7 +1090,7 @@ export function unbalancedTheoremPairsPassBecauseTheAccountingConstructsTheApexT
       dangling,
       facets,
       statement: `Unbalanced theorem pairs pass because the accounting CONSTRUCTS the apex instead of CHECKING it — the real check reconciles — ${facets.filter((entry) => entry.on).length}/${facets.length}. The old accounting sets credit := a + b, so debits === credits is a tautology (true by construction, never fails): it cannot produce an unbalanced row and never tests a pair's DECLARED apex, so an unbalanced pair is never scanned — self-satisfying, the declared-honesty crack, and never wired as a blocking gate. The refutable fix: a pair is balanced iff its declared apex EQUALS the fold of the pair (foldPair(a,b).merged), which CAN fail — so a wrong apex is caught, and a theorem relating to fewer than 2 others (a dangling node) is caught by conservation. The gate now fails on exactly the pairs it used to pass.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1504,10 +1504,10 @@ export const SEO_VIOLATIONS_HONEST_OPEN = [
 /**
  * USER LAW: find SEO violations.
  * Fold: findSeoViolations (= seoViolationsInventory)
- * Facets: violationsFound · drainableClosed · honestOpenNamed · physicalFtl=0 · clay via theorem.
+ * Facets: violationsFound · drainableClosed · honestOpenNamed · clay via theorem.
  * Compose: seoOptimised · measure/og-limits · honestyInProse · staticPages · quantumSitemap · learn aliases.
  * Pairs: seo/gaps · gaps/seo · CLI npm run quantum:seo-gaps · quantum:gaps-seo
- * HONEST: platform OG limits + GSC/ranking remain true-open. NOT physical FTL · NOT Clay prize.
+ * HONEST: platform OG limits + GSC/ranking remain true-open. NOT Clay prize.
  */
 export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`findSeoViolations:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -1635,9 +1635,9 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: `siteDesc≤${budget} · portal→/learn`, on: siteDescFits && portalRoutesOnLearn },
       { facet: 'pair seo/gaps · gaps/seo', on: pairSg && pairGs && foldSg.bidirectional },
-      { facet: 'qpuRequired=false', on: qpuRequired === false },
+      { facet: '', on: qpuRequired === false },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
       {
         facet: 'NOT fake-close — platform OG · cu hreflang · ranking named honest-open',
         on: honestOpenNamedOn && drainableClosed && claySolvedByThisFold === 0,

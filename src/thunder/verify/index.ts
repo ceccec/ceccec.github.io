@@ -302,7 +302,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
     const facets = [
       { facet: 'noKnownModelMoreEfficientProven.proven — answers÷tokens unbeatable in domain', on: efficient.proven },
       { facet: 'efficiency() optimizations sealed (memoByRoot · zero-token reuse)', on: opt.optimized },
-      { facet: 'quantumAdvantageBenchmark does NOT separate — classical-64bit · qpuRequired=false', on: tracksClassical },
+      { facet: 'quantumAdvantageBenchmark does NOT separate — classical-64bit', on: tracksClassical },
       { facet: 'NOT physical-QM speedup / NOT FLOPS claim', on: !bench.separated },
       { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w6:${e.facet}:${e.on}`) }))
@@ -323,10 +323,10 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
       pair: 'learn/best',
       route: '/en/quantum-tools#honest-revolution-w6',
       statement: holds
-        ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit · qpuRequired=false).'
+        ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit).'
         : 'UNPROVEN — revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.',
       boundary:
-        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). qpuRequired=false · NOT FLOPS / NOT FTL.' }
+        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). NOT FLOPS / NOT FTL.' }
   })
 }
 
@@ -339,7 +339,7 @@ export function runHonestRevolutionW6Exit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${receipt.holds ? '✓' : '✗'} honest-revolution-w6 — holds=${receipt.holds} ` +
       `efficient=${receipt.efficient.proven} bench=${receipt.bench.verdict} ` +
-      `root=${receipt.root.slice(0, 8)} (answers÷tokens · NOT physics · clay=0)\n`,
+      `root=${receipt.root.slice(0, 8)} (answers÷tokens · NOT physics)\n`,
   )
   process.stdout.write(`  boundary: ${receipt.boundary}\n`)
   return receipt.holds ? 0 : 1

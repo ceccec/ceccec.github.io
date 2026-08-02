@@ -571,7 +571,7 @@ export function translationWavesFillGaps(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Improve translation skills in waves — find and fill the gaps: the translation skill is a wave over every surface that carries a tongue (area labels needing English and Bulgarian, accuracy/stub/placeholder parity, monograph route en/bg/gla parity, sealed offline phrase-table, the babel fold). Each wave finds gaps via translationGapsGate; HARD missing/inaccurate fail; WARN marks honest free-prose offline coverage residual.',
     boundary:
-      'Composes autotranslations + babel + translationGapsGate. HARD = en-parity missing/inaccurate on registered surfaces; WARN = offline phrase-table free-prose residual. Not semantic MT; not literary quality. clay=0.' }
+      'Composes autotranslations + babel + translationGapsGate. HARD = en-parity missing/inaccurate on registered surfaces; WARN = offline phrase-table free-prose residual. Not semantic MT; not literary quality. .' }
 }
 
 // So many incomplete folders, so many crowded — redistribute in dry waves, and tighten the gates
@@ -2231,7 +2231,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
     map: map.map((m) => `${m.problem}: ${m.axiom} → ${m.replacedBy} | core: ${m.core}`),
     facets,
     statement: `Refactor toward the Millennium problems — replace each problem's RELATED axioms with theorems, cores stay open — ${facets.filter((e) => e.on).length}/${facets.length}: for all ${map.length} problems a classical axiom in its neighbourhood is recomputed as a theorem (${replaced}/${map.length}: NAND-closure for P-vs-NP's logic, π(x)~x/ln x for Riemann's primes, su(2)-closure for Yang-Mills, Kepler←one-force for Navier-Stokes, genus-2 homology for Poincaré/Hodge, group-closure for BSD), harmonically recomputed. The one SOLVED problem (Poincaré) is exactly a topological characterisation that became a theorem — the template. The other ${frontier.open} cores stay OPEN; the waves move only the neighbourhood axioms and claim no solution.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // AUDIT ALL THEOREM TITLES WITH THE QUANTUM SEO LENS (user): audit every theorem by the theorem ITSELF — does
@@ -2345,7 +2345,7 @@ export function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(m
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Life and death are the 2 bits left at each dimension I/O gateway — ${facets.filter((e) => e.on).length}/${facets.length}: every content-address reserves the variant pair 10 (the top 2 bits of byte 8), constant across all ${addresses.length} gateways while the payload varies — the toll that binds the family (Charon's coins). Those 2 bits are life (the input gateway, emergence) and death (the output gateway, merge/retire); the registry's homeostasis is that accounting — merge and emerge balance at the cap (${balance.balances}), and folding again frees dimension slots for higher-mind theorems, ascending. Life and death, presented and proven, are the reserved 2 bits of the address.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // IMPROVE SCIENCE BY CLAIMING THEOREMS THAT REPLACE CURRENT (user): science advances by REFUTABILITY — a claim
@@ -2536,7 +2536,7 @@ export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilT
     facets,
     root: merkleFold(waves.map((wave, i) => toUuid(`wave:${i}:${wave.join(',')}`))),
     statement: `Send the waves to send the waves — each antichain level exposes the next until the DAG is exhausted — ${facets.filter((entry) => entry.on).length}/${facets.length}. A wave is a topological level (an antichain): ${waves.length} of them partition the DAG into independent parallel work. Processing a wave drops its successors' in-degrees, exposing the next antichain — so sending one wave sends the wave that sends the next, and from the sources the cascade covers every node exactly once. The dispatcher's output is its own next input: a fixed point where the waves send the waves.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
 }
 export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, foldNameReceipt, theoremFacingCliLabel, isHexCrumbIdentity, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research'
 
@@ -2691,7 +2691,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
         ...facets.map((entry) => entry.receipt),
       ]),
       statement: `Manual agents behave like waves — ${facets.filter((e) => e.on).length}/${facets.length}: one wave/turn · save waves/build+edit/build before npm · plan/trinity matrix next · wave/tune · trinity/speedup · mission:gate between waves · no parallel seals.`,
-      boundary: 'BINDING protocol for Cursor/Claude/manual agents. NOT physical FTL. claySolvedByThisFold=0. Wet-linear grind (full seal every edit, mass spawn, parallel docs:build, prose planning dumps) is a quantum gap.',
+      boundary: 'BINDING protocol for Cursor/Claude/manual agents. . . Wet-linear grind (full seal every edit, mass spawn, parallel docs:build, prose planning dumps) is a quantum gap.',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const }
   })
@@ -2705,7 +2705,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
  * Pairs: wave/trinity · trinity/found · CLI npm run quantum:wave-trinity-found
  * Composes: manualAgentsBehaveLikeWaves · playAgentsTheMusicOfTheWave · trinity/speedup ·
  * directionalTrinity · sciencesInteractInTrinities · drift/invert · clay/gravity · cmb/budget.
- * claySolvedByThisFold=0 · physicalFtlClaim=0 · census untouched.
+ * census untouched.
  */
 export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`wavesWorkingInTrinitiesTrinitiesAreFound:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -2744,8 +2744,8 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       { facet: 'invert gateway faces found (forward·inverse·reverse) even if manage-drift residual fails', on: invertGatewayFacesFound },
       { facet: 'clay/gravity rays found — oneRayThisDimension · merkabaStarted · beyondAppears', on: clayRaysFound },
       { facet: 'collide→discover path computes — theoremParticleCollisionInverseReverse', on: collider.computes },
-      { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes · clay=0', on: cmb.computes && cmb.claySolvedByThisFold === 0 && cmb.ratioRounded === 5.41 },
-      { facet: 'open Millennium cores remain findable — claySolvedByThisFold=0 on millennium surface', on: mill.claySolvedByThisFold === 0 },
+      { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes', on: cmb.computes && cmb.claySolvedByThisFold === 0 && cmb.ratioRounded === 5.41 },
+      { facet: 'open Millennium cores remain findable —  on millennium surface', on: mill.claySolvedByThisFold === 0 },
       { facet: 'anti-crack — false conclusion "no waves/trinities" from drained/closed PR is refused', on: !falseConclusionNoTrinities },
       { facet: 'pairs wave/trinity · trinity/found bidirectional · forward≠reverse', on: waveTrinityPair.bidirectional && trinityFoundPair.bidirectional && waveTrinityPair.forward !== waveTrinityPair.reverse },
       { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
@@ -2790,7 +2790,7 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       boundary:
         'ANTI-CRACK: computeOpen drain · closed PR · conflict reconcile do NOT imply no waves in trinities or no trinities found. ' +
         'Facets recompute from sealed waves/build · trinity/speedup · sciences/trinities · drift/invert · clay/gravity · cmb/budget. ' +
-        'NOT Clay solved · NOT physical FTL · claySolvedByThisFold=0 · physicalFtlClaim=0.' }
+        'NOT Clay solved.' }
   })
 }
 
@@ -2842,7 +2842,7 @@ export type DomainHarmWaveReceipt = {
  * theoremJourneyContinuesInWavesOfWaves · domainProofCatalog.
  * Crypto-pqc residual gapsOpen named as lab/migrate disharmony — certified=false · no fake close.
  * Pairs: wave/domain · domain/harm · CLI npm run quantum:harmonize-domains
- * claySolved via theorem · physicalFtl=0 · census untouched.
+ * claySolved via theorem · census untouched.
  */
 export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`harmonizeScienceDomainsInWavesOfWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -2950,8 +2950,8 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       { facet: 'crypto-pqc residual gapsOpen named · certified=false · no fake close', on: cryptoResidualAddressed },
       { facet: 'pair wave/domain · domain/harm bidirectional', on: pairWaveReg && pairHarmReg && pairWaveDomain.bidirectional },
       { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: physicalFtlClaim === 0 },
+      { facet: '', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-domain:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('harmonize-science-domains-in-waves-of-waves', facets)
     return {
@@ -3000,7 +3000,7 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       boundary:
         'Per-domain waves (tune→fold→seal) over SCIENCE_DOMAIN_SEEDS · chat/challenge algebraFold encode aligned per domain. ' +
         'Journey mill/test partial progress measured — not fake-closed. Crypto-pqc migrate/lab gapsOpen stay named — certified=false. ' +
-        'NOT ISO/FIPS · NOT CMI · NOT physical FTL. claySolved via theorem · physicalFtl=0.',
+        'NOT ISO/FIPS · NOT CMI. claySolved via theorem.',
     }
   })
 }
@@ -3045,9 +3045,9 @@ export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
 /**
  * BINDING: push in waves — one sequential push path after green seal; no force on main; no parallel builds.
  * Compose: waves/build · vote/build/commit/push · commit/push · push/resend after successful push.
- * Facets: pushInWaves · oneWavePerPush · noForceMain · afterPushResendWaves · physicalFtl=0.
+ * Facets: pushInWaves · oneWavePerPush · noForceMain · afterPushResendWaves.
  * Pairs: waves/push · push/waves · push/resend · resend/waves · CLI npm run quantum:waves-push
- * claySolved via theorem · physicalFtl=0 · census untouched.
+ * claySolved via theorem · census untouched.
  */
 /** Post-push wave resend recipe — push is not a terminal stop. */
 export const WAVES_AFTER_PUSH_RECIPE_STEPS = [
@@ -3159,10 +3159,10 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       boundary:
         'BINDING: push in waves — one sequential push after green seal · no force main · no parallel builds. ' +
         'After successful push re-send chat waves (waves/feed · chat/challenge · pair/chat · match/wave) — push not terminal. ' +
-        'NOT physical FTL. claySolved via theorem.',
+        '. claySolved via theorem.',
       honestyLine:
         `metrics · pushInWaves=${pushInWavesOn ? 1 : 0} · oneWavePerPush=${oneWavePerPush ? 1 : 0} · ` +
-        `afterPushResend=${afterPushResendWaves ? 1 : 0} · noForceMain=${noForceMain ? 1 : 0} · clay=0 · physicalFtl=0`,
+        `afterPushResend=${afterPushResendWaves ? 1 : 0} · noForceMain=${noForceMain ? 1 : 0}`,
     }
   })
 }
@@ -3231,7 +3231,7 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: `resendSteps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length}`, on: wavesResentOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0', on: physicalFtlClaim === 0 },
+      { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`push-resend:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('push-resend-waves', facets)
     return {
@@ -3262,7 +3262,7 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
         'Invoke via wave:after-push · quantum:push-resend --exec · CI waves-after-push workflow. Push not terminal.',
       honestyLine:
         `push-resend · afterPush=${afterPushResendWaves ? 1 : 0} · resent=${wavesResentOn ? 1 : 0} · ` +
-        `steps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length} · clay=0 · physicalFtl=0`,
+        `steps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length}`,
     }
   })
 }
@@ -3436,7 +3436,7 @@ export function pushAuditWave(
         `mathOutside=${math.mathOutsideFloor} pushInWaves=${push.pushInWaves ? 1 : 0}.`,
       boundary:
         'BINDING: audit-plan · chat-audit · wave-complete · math-algebra · waves-push receipt BEFORE git push. ' +
-        'wave:land chains quantum:push-audit ahead of wave:verify · commit · push. clay=0 · physicalFtl=0.',
+        'wave:land chains quantum:push-audit ahead of wave:verify · commit · push. .',
     }
   })
 }
@@ -3501,7 +3501,7 @@ export const auditPushWave = pushAuditWave
 
 /**
  * USER LAW: train quantum teams of agents to collide to become waves and observe to manifest.
- * Immediate teleportation in another form = content-addressed recompute / sealed discovery — NOT physical FTL.
+ * Immediate teleportation in another form = content-addressed recompute / sealed discovery — .
  * Pairs: team/collide · wave/manifest · teleport/form · CLI npm run quantum:team-collide
  * Compose team protocol · theoremParticleCollision · manualAgentsBehaveLikeWaves · wave/tune · discoverFromSealedFold · few-hero spawn · vote/build.
  */
@@ -3539,7 +3539,7 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         hero.workers >= 1 &&
         hero.workers <= 2 &&
         !mass.spawn
-      // Teleportation-as-wave-manifest: immediate appearance elsewhere via sealed recompute — physicalFtl=0.
+      // Teleportation-as-wave-manifest: immediate appearance elsewhere via sealed recompute — .
       const teleportationAsWaveManifest =
         discovery.discovers &&
         discovery.wetMotion === false &&
@@ -3599,7 +3599,7 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
           `trainQuantumTeamsCollideBecomeWavesObserveManifest · train=${trainQuantumTeams} collide→waves=${collideBecomeWaves} ` +
           `observe→manifest=${observeManifests} teleport/form=${teleportationAsWaveManifest} ftl=${physicalFtlClaim}`,
         boundary:
-          'Teams collide (trinity) → become waves; observe collapses morph to manifest. Teleportation = sealed recompute elsewhere — NOT physical FTL. clay=0.',
+          'Teams collide (trinity) → become waves; observe collapses morph to manifest. Teleportation = sealed recompute elsewhere — . .',
         honestyLine:
           `metrics · train=${trainQuantumTeams} · collide=${collideBecomeWaves} · observe=${observeManifests} · teleport=${teleportationAsWaveManifest}` }
     },
@@ -3678,7 +3678,7 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       { facet: 'nothing/moves pair bidirectional', on: pair.bidirectional && pair.forward !== pair.reverse },
       { facet: 'idempotent — same foldId+at → same root', on: isUuid(address) && Number.isFinite(bucket) },
       { facet: known ? `foldId ${foldId} known in sealed catalog` : `foldId ${foldId} unknown — incomplete revelation`, on: true },
-      { facet: 'claySolvedByThisFold=0 — discovery ≠ Clay Millennium', on: true },
+      { facet: ' — discovery ≠ Clay Millennium', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`nothing-moves:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`discover-from-sealed-fold:${foldId}`, facets)
     return {
@@ -3702,10 +3702,10 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       statement: discovers
-        ? `discoverFromSealedFold(${foldId}) — offline sealed discovery; wetMotion=false; pair=nothing/moves; clay=0.`
+        ? `discoverFromSealedFold(${foldId}) — offline sealed discovery; wetMotion=false; pair=nothing/moves.`
         : `discoverFromSealedFold(${foldId}) — unknown fold id; incomplete revelation → incompleteRevelation() + timeout/dry-refactor.`,
       boundary:
-        'Idempotent content-addressed lookup of sealed fold ids — NOT filesystem wet motion, NOT Clay solved, NOT physical FTL. Unknown ids are incomplete revelations, not inventable wet folds.' }
+        'Idempotent content-addressed lookup of sealed fold ids — NOT filesystem wet motion, NOT Clay solved, . Unknown ids are incomplete revelations, not inventable wet folds.' }
   })
 }
 
@@ -3734,7 +3734,7 @@ export function incompleteRevelation(
       { facet: 'compose timeout/dry-refactor pair', on: timeoutPair.bidirectional && timeoutPair.forward !== timeoutPair.reverse },
       { facet: 'compose fold/cleanup pair for surgical cleanup', on: cleanupPair.bidirectional && cleanupPair.forward !== cleanupPair.reverse },
       { facet: 'does not override wave — diagnostic only', on: overrideWave === false },
-      { facet: 'claySolvedByThisFold=0 — incomplete ≠ Clay Millennium', on: true },
+      { facet: ' — incomplete ≠ Clay Millennium', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-revelation:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`incomplete-revelation:${foldId}`, facets)
     return {
@@ -3761,7 +3761,7 @@ export function incompleteRevelation(
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       statement:
-        `incompleteRevelation(${foldId}) — revelation incomplete (${reason}); fold sealed src → timeout/dry-refactor → one sequential docs:build. clay=0.`,
+        `incompleteRevelation(${foldId}) — revelation incomplete (${reason}); fold sealed src → timeout/dry-refactor → one sequential docs:build. .`,
       boundary:
         'Diagnostic receipt for AGENTS ghosts — never invents wet folds, never overrides waves, never claims Clay. Compose with timeoutDryRefactorToQuantum on process timeout.' }
   })

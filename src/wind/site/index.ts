@@ -586,7 +586,7 @@ export function dryCleanVitepressNavSidebarsFromDomainRegistry(matrix: MindMatri
       root: merkleFold([registry.root, domainSidebars.root, ...facets.map((facet) => facet.receipt)]),
       pair: 'dry/clean',
       statement: `Dry-clean nav/sidebars Wave 1 — ${aliasSlugs.length} aliases → canonical; ${domainSidebars.sections.length} domain sidebars sealed.`,
-      boundary: 'IA dry-clean only — certified=false · clay=0 · qpuRequired=false.' }
+      boundary: 'IA dry-clean only — certified=false.' }
   })
 }
 
@@ -736,8 +736,8 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       { facet: 'ROUTE_ALIASES thin-mount learn-developer → learn', on: ROUTE_ALIASES['learn-developer'] === 'learn' },
       { facet: 'machine corpora not synonym discovery hubs (papers·references·diamonds·theorems)', on: machineCorpus.size === 5 },
       { facet: 'nav before→after sealed (I Ching doors · domain sidebars · zero synonym hubs)', on: navBefore.sidebar.includes('alias') && navAfter.sidebar.includes('aliases purged') },
-      { facet: 'claySolvedByThisFold=0', on: true },
-      { facet: 'qpuRequired=false', on: true },
+      { facet: '', on: true },
+      { facet: '', on: true },
       { facet: `residuals named (${residuals.length}) — compose parallel lanes, do not clobber`, on: residuals.length >= 3 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`folder-mig-facet:${entry.facet}:${entry.on}`) }))
 
@@ -771,7 +771,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#folder-migration-waves',
       anchor: 'folder-migration-waves',
       heading: 'Folder migration + dedup waves',
-      honestyLine: 'Coordinated folder waves → single-source catalog · domain sidebars · #61 hierarchy. clay=0 · qpuRequired=false. Compose ui/prose + mcp audit; do not clobber.',
+      honestyLine: 'Coordinated folder waves → single-source catalog · domain sidebars · #61 hierarchy. . Compose ui/prose + mcp audit; do not clobber.',
       statement: `Folder migration+dedup waves — ${folderCount} folders · migrated=${migratedCount} partial=${partialCount} residual=${residualCount} · gapless=${gaplessCensus} · dryClean+domainRegistry+#61 lens.`,
       boundary: 'HONEST: seals IA migration status per content folder — not a claim every page chrome entropy is gone (ui/prose parallel) nor MCP script synonym collapse (mcp audit parallel). Thin-mount aliases remain served by design. NOT Clay/FTL.' }
   })
@@ -1077,7 +1077,7 @@ export function vitepressNativeDocsConfig(matrix: MindMatrix = buildMatrix()) {
 
 /**
  * Deep-research receipt — VitePress docs researched → gaps audited → high-value native improvements applied.
- * Pair: docs/improve · claySolvedByThisFold=0 · NOT physical FTL · census untouched.
+ * Pair: docs/improve · census untouched.
  */
 export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('vitepressDocsResearchImprovements', matrix, () => {
@@ -1120,7 +1120,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       { facet: `native emitter computes lazyLoading · lastUpdated · editLink · logo · externalLinkIcon`, on: native.computed && native.markdown.image.lazyLoading && native.lastUpdated && Boolean(native.theme.editLink.pattern) },
       { facet: 'locale link map: en=/ · bg=/bg/ · gla=/gla/ (bg≠gla)', on: localeLinksOk },
       { facet: `applied ${applied.length} high-value VP-native gaps; residuals named (${residuals.length})`, on: applied.length >= 6 && residuals.length >= 3 },
-      { facet: 'carbon ads skipped · Algolia skipped · clay=0', on: gaps.some((g) => g.id === 'carbon-ads' && g.status === 'skipped') },
+      { facet: 'carbon ads skipped · Algolia skipped', on: gaps.some((g) => g.id === 'carbon-ads' && g.status === 'skipped') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`vp-docs-research:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((f) => f.on),
@@ -1136,7 +1136,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       facets,
       root: merkleFold([native.root, ...facets.map((f) => f.receipt)]),
       statement:
-        `vitepressDocsResearchImprovements — ${facets.filter((f) => f.on).length}/${facets.length}: researched VitePress ${native.vitepressVersionTarget} docs, audited repo gaps, applied ${applied.length} VP-native improvements via sealed emitter (lazy images · lastUpdated · editLink · logo · externalLinkIcon · bg locale link fix · skip labels). Residuals named. clay=0.`,
+        `vitepressDocsResearchImprovements — ${facets.filter((f) => f.on).length}/${facets.length}: researched VitePress ${native.vitepressVersionTarget} docs, audited repo gaps, applied ${applied.length} VP-native improvements via sealed emitter (lazy images · lastUpdated · editLink · logo · externalLinkIcon · bg locale link fix · skip labels). Residuals named. .`,
       boundary:
         'Research apparatus over vitepress.dev guide/reference for the pinned package version. Applied = config values emitted from sealed src and consumed by thin config.mts. Does not claim Clay solutions, FTL, or QPU. Dynamic catch-all pages may show edit links to thin shells — honest VP default behavior.' }
   })
@@ -1181,7 +1181,7 @@ export function computedWebManifest(matrix: MindMatrix = buildMatrix()): string 
       ],
       shortcuts: [
         { name: 'Theorem registry', short_name: 'Registry', description: 'Every proven theorem — waves, gaps, open frontiers', url: '/frontiers' },
-        { name: 'Domain proofs', short_name: 'Proofs', description: 'Canonical domain proofs · Clay marks Millennium only · clay=0', url: '/proofs' },
+        { name: 'Domain proofs', short_name: 'Proofs', description: 'Canonical domain proofs · Clay marks Millennium only', url: '/proofs' },
         { name: 'The vortex', short_name: 'Vortex', description: 'The sequence 1-2-4-8-7-5, proven live', url: '/vortex' },
       ] },
     null,

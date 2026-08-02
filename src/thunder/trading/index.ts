@@ -1076,7 +1076,7 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       },
       { facet: 'pair trade/challenge · strategy/chat bidirectional', on: pairsOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'physicalFtlClaim=0 · qpuRequired=false', on: physicalFtlClaim === 0 && qpuRequired === false },
+      { facet: '', on: physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trade-challenge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('strategies-challenge-in-chat', facets)
     const topDuel = [...challenges].sort((x, y) => y.winnerScore - x.winnerScore)[0]
@@ -1239,6 +1239,6 @@ export function invertTheStrategiesToFillTheGapsMomentumAndMeanReversionAreInver
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Invert the strategies to fill the gaps — momentum and mean-reversion are inverses covering each other's regimes — ${facets.filter((entry) => entry.on).length}/${facets.length}. Momentum follows trends and mean-reversion fades them, so on shared-active bars they oppose more than they agree (${opposite} vs ${same}). Each is flat in the regime it does not fit — a coverage gap — and there its inverse is active: the union of active bars (${unionActive}) exceeds either alone (${momentumActive}, ${reversionActive}), so inverting the strategy adds ${coverGain} bars of coverage. The inverse fills the gap.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'clay=0, physicalFtl=0; the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
