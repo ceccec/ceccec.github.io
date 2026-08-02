@@ -2339,3 +2339,6 @@ export function devHeroMoviePaintWithinBudgetMs(maxMs = DEV_HERO_MOVIE_PAINT_BUD
     boundary:
       'Node probe at call time — measures sealed src paint-path init, not full Vite bundle download. Pairs with vitepressDevMemoryBudget (.vitepress thin mount) and server.warmup clientFiles for docs:dev SLA.' }
 }
+
+// Theorem Chat Portal — σ-involution proof discovery via live query
+export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, openTheorems, theoremsByInvolutionType, formatTheoremForChat, theoremSummary, type Theorem, type ChatQueryResult, type ProofStatus } from './chat'
