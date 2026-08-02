@@ -109,6 +109,14 @@ export const proofAnimationSpecs = {
     elements: ['graph-pair', 'certificate-witness', 'hardness-gap', 'iso-structure', 'quasi-polynomial-barrier'],
     duration_s: 60,
   },
+  smoothPoincare4D: {
+    id: 'tier3-proof-smooth-poincare-4d',
+    title: 'Smooth Poincaré Conjecture (4D): Surgery Involution Forces Standard Smoothness',
+    seed: 'surgery-involution:4d-manifold-family:diffeomorphism-fixed-point',
+    mechanism: 'involution-forces-topological-obstruction',
+    elements: ['4-manifold', 'surgery-decomposition', 'handle-attachment', 'involution-symmetry', 'kirby-calculus', 'diffeomorphism-fixed-point', 'exotic-smoothness-barrier'],
+    duration_s: 60,
+  },
 }
 
 export function proofAnimationSeed(proofId: string): string {
