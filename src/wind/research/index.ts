@@ -17545,3 +17545,13 @@ export function publicationTimelineMeasured(matrix: MindMatrix = buildMatrix()) 
       boundary: earned('EXACT — dates fetched from public registries, identity by computation:', facets, 'every row is re-fetchable from npm/GitHub by anyone; the precedence established is PUBLICATION DATE of the sequence, which is a fact about when an artifact became public — it is not a claim about what the sequence proves, and the adoption channels marked unmeasured stay unmeasured until a live query runs') }
   })
 }
+
+// ===== PROOF COMPOSITION LAYER — TERSE ALIASES (simplification layer) =====
+// Direct exports of verbose functions renamed for terse access. No functional change; these are re-exports.
+export const proofs = allProofsViaInvolution
+export const barriers = millenniumOpenBarriersInvertToRequirements
+export const challenges = millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed
+export const testables = reverseEngineerRequirementsToTestablePossibilities
+export const toolsExternal = clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra
+export const clayReverse = reverseEngineerClayAndItInverseEngineersItself
+export const testableSurface = reverseEngineerAllTestableFragments
