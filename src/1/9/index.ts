@@ -5,7 +5,7 @@
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
 import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import { abs, atan2, ceil, cos, digitalRoot, floor, gcd, hypot, isUuid, log, log10, log2, max, merkleFold, min, round, roundTo, sin, sqrt, toUuid, topologicalOrder, trunc, vortexNext, vortexPrev } from '../../0'
+import { abs, atan2, ceil, cos, digitalRoot, floor, gcd, hypot, isUuid, log, log10, log2, max, merkleFold, min, round, roundTo, sin, sqrt, toUuid, topologicalOrder, transliterateByMap, trunc, vortexNext, vortexPrev } from '../../0'
 import { piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
 import { PROTON_GYROMAGNETIC } from '../../6/4'
 import { TAU, PHI } from '../../3/7'
@@ -354,39 +354,17 @@ const TRANSLIT_SINGLE: Readonly<Record<string, string>> = {
   u: 'у', v: 'в', w: 'в', x: 'кс', y: 'й', z: 'з',
 }
 
-/** Carry the source run's case onto the Cyrillic output (ALL-CAPS → upper, Titlecase → capitalize). */
-function applyTranslitCase(src: string, cyr: string): string {
-  const upper = src.toUpperCase()
-  const lower = src.toLowerCase()
-  if (src.length > 1 && src === upper && src !== lower) return cyr.toUpperCase()
-  if (src[0] === upper[0] && src[0] !== lower[0]) return cyr.charAt(0).toUpperCase() + cyr.slice(1)
-  return cyr
-}
-
 /**
  * Deterministic phonetic Latin→Bulgarian-Cyrillic transliteration — the completeness fallback so bg
  * never leaks raw Latin (gla covers by toGlagolitic; bg now covers unknown vocabulary by Cyrillic script).
  * Pure, zero-network. HONEST: this is SCRIPT coverage (how a word SOUNDS in Bulgarian letters), NOT
  * meaning translation — only the phrase table carries meaning. Non-Latin (Cyrillic, punctuation, digits,
- * placeholder markers) passes through untouched; digraphs resolve before single letters.
+ * placeholder markers) passes through untouched; digraphs resolve before single letters. AGNOSTIC: routes
+ * through the shared transliterateByMap engine (src/0) — the same word-scan method toGlagolitic/toScript
+ * use over their own maps, not a hand-written parallel implementation.
  */
 export function latinToBulgarianCyrillic(text: string): string {
-  return text.replace(/[A-Za-z]+/g, (word) => {
-    let out = ''
-    let i = 0
-    while (i < word.length) {
-      const two = word.slice(i, i + 2).toLowerCase()
-      if (i + 1 < word.length && TRANSLIT_DIGRAPHS[two]) {
-        out += applyTranslitCase(word.slice(i, i + 2), TRANSLIT_DIGRAPHS[two])
-        i += 2
-        continue
-      }
-      const one = word[i].toLowerCase()
-      out += applyTranslitCase(word[i], TRANSLIT_SINGLE[one] ?? word[i])
-      i += 1
-    }
-    return out
-  })
+  return transliterateByMap(text, { single: TRANSLIT_SINGLE, digraphs: TRANSLIT_DIGRAPHS, bicameral: true })
 }
 
 /**

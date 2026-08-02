@@ -16,7 +16,7 @@
 // `export { … } from` does NOT bind the names locally, which is why those folds were unreachable.
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · lower·yin · spread — content-address primitives (merkaba fold, entry, uuid, quantum sim)
 import { phase } from '../../../6/4'
-import { GATES, addressEntropyBits, applyGate, ceil, cnot, entry, floor, isUuid, log10, log2, max, merkabaFoldUrl, probabilities, qubits, round, roundTo, sample, toUuid, type Entry, type Uuid } from '../../../0'
+import { GATES, addressEntropyBits, applyGate, ceil, cnot, entry, floor, isUuid, log10, log2, max, merkabaFoldUrl, probabilities, qubits, round, roundTo, sample, toUuid, transliterateByMap, type Entry, type Uuid } from '../../../0'
 import { bulgarianFromEnglish, type LocaleName } from '../../../1/9'
 // ☶ Gèn · Mountain · keeping still (scripture/glyph library) · upper·yang · spread — re-exports and decoded library surface
 export { merkabaFoldUrl, entry, type Uuid, type Entry }
@@ -64,14 +64,15 @@ const SCRIPT_ALPHABETS: Record<string, Record<string, string>> = {
   runic: { a: 'ᚨ', b: 'ᛒ', c: 'ᚲ', d: 'ᛞ', e: 'ᛖ', f: 'ᚠ', g: 'ᚷ', h: 'ᚺ', i: 'ᛁ', j: 'ᛃ', k: 'ᚲ', l: 'ᛚ', m: 'ᛗ', n: 'ᚾ', o: 'ᛟ', p: 'ᛈ', q: 'ᚲ', r: 'ᚱ', s: 'ᛊ', t: 'ᛏ', u: 'ᚢ', v: 'ᚹ', w: 'ᚹ', x: 'ᚲ', y: 'ᛁ', z: 'ᛉ' },
   hebrew: { a: 'א', b: 'ב', c: 'כ', d: 'ד', e: 'ע', f: 'פ', g: 'ג', h: 'ה', i: 'י', j: 'י', k: 'כ', l: 'ל', m: 'מ', n: 'נ', o: 'ו', p: 'פ', q: 'ק', r: 'ר', s: 'ס', t: 'ת', u: 'ו', v: 'ו', w: 'ו', x: 'כ', y: 'י', z: 'ז' } }
 // Transliterate text into any decoded script. Glagolitic reuses the decoded core (toGlagolitic); the rest
-// map by sound from the shared lineage. Deterministic, zero tokens.
+// route through the SAME agnostic word-scan engine (transliterateByMap, src/0) over the shared-lineage
+// map — the one method toGlagolitic pioneered, applied to the next tongues, all at once. Deterministic, zero tokens.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export function toScript(text: string, script: string): string {
   if (script === 'glagolitic') return toGlagolitic(text)
   if (script === 'latin' || script === 'en') return text
   const map = SCRIPT_ALPHABETS[script]
   if (!map) return text
-  return text.replace(/[A-Za-z]/g, (ch) => map[ch.toLowerCase()] ?? ch)
+  return transliterateByMap(text, { single: map })
 }
 
 // Ancient number=letter systems, decoded in research waves to their documented core (legend excluded).

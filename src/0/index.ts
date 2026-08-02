@@ -1647,4 +1647,45 @@ export function congruence(a: readonly number[], b: readonly number[]): number {
   return va === 0 || vb === 0 ? 0 : cov / Math.sqrt(va * vb)
 }
 
+/** A sound→glyph transliteration map: single letters, optional digraphs (checked first), optional case-carry. */
+export interface TransliterationMap {
+  readonly single: Readonly<Record<string, string>>
+  readonly digraphs?: Readonly<Record<string, string>>
+  readonly bicameral?: boolean
+}
+
+/** Carry the source run's case onto the transliterated output (ALL-CAPS → upper, Titlecase → capitalize). */
+export function applyTransliterationCase(src: string, out: string): string {
+  const upper = src.toUpperCase()
+  const lower = src.toLowerCase()
+  if (src.length > 1 && src === upper && src !== lower) return out.toUpperCase()
+  if (src[0] === upper[0] && src[0] !== lower[0]) return out.charAt(0).toUpperCase() + out.slice(1)
+  return out
+}
+
+/** transliterateByMap — the ONE agnostic sound→glyph engine (toGlagolitic's method, generalised over any
+ *  map): word-run scan, digraphs matched before single letters, optional case-carry. Every script-conversion
+ *  fold (Bulgarian Cyrillic, Greek, Runic, Hebrew, …) is this SAME algorithm over a different map, not a
+ *  hand-written parallel implementation — the map is data, the engine is shared. Pure, zero-dependency. */
+export function transliterateByMap(text: string, map: TransliterationMap): string {
+  return text.replace(/[A-Za-z]+/g, (word) => {
+    let out = ''
+    let i = 0
+    while (i < word.length) {
+      const two = word.slice(i, i + 2).toLowerCase()
+      const digraph = i + 1 < word.length ? map.digraphs?.[two] : undefined
+      if (digraph) {
+        out += map.bicameral ? applyTransliterationCase(word.slice(i, i + 2), digraph) : digraph
+        i += 2
+        continue
+      }
+      const one = word[i].toLowerCase()
+      const single = map.single[one] ?? word[i]
+      out += map.bicameral ? applyTransliterationCase(word[i], single) : single
+      i += 1
+    }
+    return out
+  })
+}
+
 
