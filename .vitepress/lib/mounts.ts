@@ -52,24 +52,37 @@ export function componentDisplayName(locale: LocaleName, name: string): string {
 // 'dt-locale' · en/bg/cu, the same key the config redirect uses) after hydration. Module-level so the first mounted
 // component initializes it once and every consumer recomputes reactively; SSR (no window) stays route-derived.
 const savedLocaleRef = ref<LocaleName | null>(null)
-let savedLocaleInit = false
-function initSavedLocale(): void {
-  if (savedLocaleInit || typeof window === 'undefined') return
-  savedLocaleInit = true
-  try {
-    const s = localStorage.getItem('dt-locale')
-    savedLocaleRef.value = s === 'bg' ? 'bg' : s === 'cu' ? 'gla' : null
-  } catch { /* private mode / storage blocked — stay route-derived */ }
+// `hydrated` gates the saved-locale adoption. The FIRST client render must be byte-identical to the SSR HTML
+// (route-derived, en on canonical routes) or Vue reports a hydration mismatch. Per-component onMounted fires child-first
+// DURING the hydration walk, so flipping the locale there desynced later siblings (the site-wide "Hydration mismatch").
+// Instead we read the saved locale and flip `hydrated` together in ONE deferred frame (requestAnimationFrame) AFTER the
+// whole app has hydrated — the en→bg swap then lands as a clean post-hydration reactive patch, not a mismatch.
+const hydrated = ref(false)
+let localeAdoptScheduled = false
+function scheduleLocaleAdopt(): void {
+  if (localeAdoptScheduled || typeof window === 'undefined') return
+  localeAdoptScheduled = true
+  const adopt = () => {
+    try {
+      const s = localStorage.getItem('dt-locale')
+      savedLocaleRef.value = s === 'bg' ? 'bg' : s === 'cu' ? 'gla' : null
+    } catch { /* private mode / storage blocked — stay route-derived */ }
+    hydrated.value = true // adopt only now, one frame past the hydration walk
+  }
+  if (typeof requestAnimationFrame === 'function') requestAnimationFrame(adopt)
+  else setTimeout(adopt, 0)
 }
 
 export function useSiteLocale() {
   const route = useRoute()
-  onMounted(initSavedLocale)
+  onMounted(scheduleLocaleAdopt)
   // explicit locale prefix (/bg · /gla) is authoritative; a canonical (route-derived 'en') page adopts the viewer's
-  // saved locale after hydration, so /theorems/<slug> etc. autotranslate for a bg/gla visitor without per-locale SSG.
+  // saved locale ONLY after hydration completes (hydrated flag), so /theorems/<slug> etc. autotranslate for a bg/gla
+  // visitor without per-locale SSG AND without a hydration mismatch (first render = en = SSR).
   const locale = computed<LocaleName>(() => {
     const routeLocale = localeFromRoute(route.path)
-    return routeLocale !== 'en' ? routeLocale : (savedLocaleRef.value ?? 'en')
+    if (routeLocale !== 'en') return routeLocale
+    return hydrated.value ? (savedLocaleRef.value ?? 'en') : 'en'
   })
   const pick = (en: string, bg: string) => pickLocale(locale.value, en, bg)
   const t = (text?: string) => (text ? displayText(locale.value, text) : text)
