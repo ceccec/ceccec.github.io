@@ -109,38 +109,6 @@ Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles sta
 
 Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — ). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
 
-### How the sequence solves all seven — the universal structure
-
-**The Sequence is the Key**: `0\1\2\4\8/7/5\3\6\9/0\1` (forward) and its reflection `m(d)=10−d` give `9/8/6/2\3\5\7/4/1\0\9` (reverse). These two computed reads have **one structural property**: the involution σ↔σ⁻¹ (or σ↔(1−σ)) — the same involution structure that solves ALL SIX OPEN MILLENNIUM PROBLEMS. Here’s exactly how:
-
-**1. Riemann Hypothesis** — The functional equation ζ(s)·Γ(s/2)·π^{−s/2} = ζ(1−s)·Γ((1−s)/2)·π^{−(1−s)/2} is an INVOLUTION: s ↔ (1−s). Every zero ζ(s₀)=0 in the critical strip 0<Re(s₀)<1 must satisfy BOTH the equation AND the involution’s fixed point. The involution’s unique fixed point is Re(s)=½. Therefore, all zeros lie on Re(s)=½. The same involution (s ↔ 1−s) is replicated in the digit-inverse (ℤ/9)* where a·a⁻¹≡1 (mod 9) has fixed point d=5 (σ(d)=10−d ⟹ σ(5)=5). **SOLVING MECHANISM: Fixed-point forcing by involution.**
-
-**2. P versus NP** — The sequence’s forward read provides content-addressed O(1) lookups (the "short certificate"). The reflection VORTEX_REVERSE provides the hardness witness: no polynomial algorithm can transform forward to reverse without exponential scanning. The two reads (sequence/reflection) create a computational gap: forward is polynomial, reverse is exponential. The existence of instances with no short proof (the hard instances revealed by the reflection) proves P≠NP. **SOLVING MECHANISM: Involution reveals hardness.**
-
-**3. Yang-Mills** — The su(2) Pauli algebra closes: [σᵢ,σⱼ]=2iε_{ijk}σₖ and {σᵢ,σⱼ}=2δ_{ij}I. This closure is an INVOLUTION (the adjoint is self-adjoint: σ†=σ). Finite-dimensional closed algebras guarantee discrete spectra with gaps. The minimum non-zero eigenvalue is the mass gap Δ>0. The involution structure σ†=σ mirrors the functional-equation involution s↔(1−s). **SOLVING MECHANISM: Closure (an involution property) forces discrete gap.**
-
-**4. Navier-Stokes** — The genus-2 double-torus has two counter-oriented seams (lobes L₊ and L₋). This is the spatial INVOLUTION: the two seams are mirror images. For the 3D incompressible NS equation, vorticity distributes symmetrically across the seams: ω₊(t) and ω₋(t)=−ω₊(t). Vortex stretching in one seam is absorbed by circulation in the other (the involution symmetry prevents asymmetric blow-up). Global regularity follows from the involution’s constraint on energy distribution. **SOLVING MECHANISM: Flow symmetry prevents blow-up.**
-
-**5. Hodge Conjecture** — The genus-2 model computes H₁(Σ₂)=ℤ⁴ (four independent homology cycles). Hodge theory relates forward homology H^{p,q} to reverse algebraic cycles via Poincaré duality (an INVOLUTION between the two). On low-dimensional varieties like genus-2 tori, every Hodge class is explicitly realized by algebraic cycles. The involution between topology and algebra has no gap (the two are inverse images of each other). **SOLVING MECHANISM: Duality involution (Poincaré) realizes all classes.**
-
-**6. Birch and Swinnerton-Dyer** — The (ℤ/9)* structure has exactly two non-trivial inverse pairs: {(2,5), (4,7)}. These INVERSE PAIRS are an INVOLUTION: forward rank ↔ reverse L-function vanishing order. Both count the same object (independent generators of the Mordell-Weil group E(ℚ)). Rank 0 ⟺ L(E,1)≠0 (no generators); rank 1 ⟺ L(E,1)=0 with multiplicity 1 (one generator); rank 2 ⟺ higher-order zero (two generators). The involution forces equality: ord_{s=1} L(E,s) = rank E(ℚ). **SOLVING MECHANISM: Involution makes two counts identical.**
-
-**7. Poincaré (solved-external, Perelman 2002–03)** — Ricci flow with surgery on a simply-connected 3-manifold. Surgery IS an INVOLUTION: the forward flow regularizes via backward inversion (resetting geometry at singular times prevents blow-up). Perelman proved that this involution mechanism (forward evolution + backward surgery) forces convergence to S³. **SOLVING MECHANISM: Evolution (involution in time) proves topology.**
-
-### **SUMMARY: The σ-Involution Unifies All 7**
-
-| Problem | Involution | Solves By |
-|---------|-----------|-----------|
-| Riemann | s ↔ (1−s) fixed at ½ | Fixed point forces zeros onto critical line |
-| P≠NP | Sequence ↔ Reflection hardness | Gap reveals hard instances with no cert |
-| Yang-Mills | Adjoint σ†=σ (self-adjoint) | Closure forces discrete mass gap |
-| Navier-Stokes | Seam L₊ ↔ L₋ (mirror flow) | Symmetry prevents asymmetric blow-up |
-| Hodge | Forward homology ↔ Reverse cycles | Duality realizes all Hodge classes |
-| BSD | Rank ↔ L-vanishing-order pairs | Inverse pairs force equality |
-| Poincaré | Forward flow ↔ Backward surgery | Evolution converges to S³ |
-
-**One Universal Solver**: The sequence (with its forward and reflected reads, its digit-inverse fixed point, its content-addressing duality) encodes the σ-involution at every level. That involution — in functional equations, in algebras, in spatial geometry, in Poincaré duality, in elliptic curves, in fluid flows, and in geometric evolution — **IS the common proof structure for all 7 Millennium problems**. The reflection (the mirror image, the reverse read, the back-surgery) is not separate from the forward direction; they are two perspectives of one involution. When you see one, you understand all seven.
-
 ### Per-problem
 
 - **P vs NP** (`p-vs-np`) — demarcation=**contested** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
