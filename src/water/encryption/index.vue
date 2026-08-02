@@ -10,7 +10,7 @@ import {
   globalCyberStandardsAuditEveryAspect,
   useCasesBeyondQuantum,
 } from './index.ts'
-import { quantumEncryptionProof, quantumEncryptionReference, quantumEncryptionComplete, encryptionSequenceReflection } from '../../heaven/encryption'
+import { quantumEncryptionProof, quantumEncryptionReference, quantumEncryptionComplete, encryptionSequenceReflection } from '../../heaven/core'
 import { toUuid, toUuidSha256, sha256Sync, foldPair, trinityKey } from '../../0'
 
 // ── PRODUCTION TOOLS — real, usable, deterministic, client-side, ZERO-EGRESS. Type your OWN input; every output
