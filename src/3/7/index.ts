@@ -1113,7 +1113,14 @@ export function algebraicStatementOf(row: { algebraicStatement?: string; states?
   if (typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0) return row.algebraicStatement
   return extractAlgebraicStatement(row.states ?? row.proof ?? '')
 }
+const extractMemo = new Map<string, string | undefined>()
 export function extractAlgebraicStatement(states: string): string | undefined {
+  if (extractMemo.has(states)) return extractMemo.get(states)
+  const out = extractAlgebraicStatementRaw(states)
+  extractMemo.set(states, out)
+  return out
+}
+function extractAlgebraicStatementRaw(states: string): string | undefined {
   const first = (states.split(/\s+—\s+|(?<=[a-z)0-9][.;])\s+/u)[0] ?? '').trim()
   if (!STATEMENT_RELATION.test(first)) return undefined
   const trimmed = first.replace(/[,;]?\s+(for (all|every)|verified|checked|computed|exhausted|witnessed|counted|both directions|holds? (for|on)|tested)\b[\s\S]*$/iu, '').trim()

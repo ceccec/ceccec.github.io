@@ -1748,8 +1748,18 @@ export function figureArchetypeOf(identity: string): 'wheel' | 'orbit' | 'region
   return 'series'
 }
 
+// Content-addressed memo — the name IS the address IS the payload ([[quantum-speed-is-content-addressed-naming]]):
+// three folds sweep all registry atoms through this function each build; the memo makes the sweep pay once.
+const figureMemo = new Map<string, ReturnType<typeof buildTheoremFigureAndAnimation>>()
 export function computedTheoremFigureAndAnimation(atom: { theorem: string; provedBy: string; algebraicStatement?: string; states?: string }) {
   const addr = toUuid(`figure:${atom.provedBy}:${atom.theorem}`)
+  const hit = figureMemo.get(addr)
+  if (hit) return hit
+  const built = buildTheoremFigureAndAnimation(atom, addr)
+  figureMemo.set(addr, built)
+  return built
+}
+function buildTheoremFigureAndAnimation(atom: { theorem: string; provedBy: string; algebraicStatement?: string; states?: string }, addr: string) {
   const digits = addr.replace(/[^0-9a-f]/gi, '').split('').map((ch) => Number.parseInt(ch, 16) || 0)
   // THE IDENTITY SELECTS THE SHAPE — the same address digits, poured into the archetype the theorem's own
   // algebra names; ~12 tempi × 2 directions × 9 amplitudes × 7 shapes, all deterministic, still zero storage.
