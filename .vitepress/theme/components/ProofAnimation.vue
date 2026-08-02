@@ -293,7 +293,8 @@ function draw(t: number) {
   // theorem's own coordinates on the sequence and its reflection, drawn as three markers on the
   // outer nine-wheel: FORWARD rides the sequence from the theorem's forward coordinate; REVERSE
   // counter-rotates from the reflected coordinate; INVERSE sits at the negated angle (inversion
-  // negates the angle) in the inverse digit's hue — units d⁻¹ mod 9, axis through the pole 8.
+  // negates the angle) in the through-zero mirror digit's hue — m(d) = 10 − d, the documented
+  // digit-folder pairing, wiring the axis onto the orbit (3→7 · 6→4 · 9→1) through the 0-gateway.
   const co = props.spec.coords
   if (co && co.forward >= 0) {
     const rOut = c * (9 / 10)
