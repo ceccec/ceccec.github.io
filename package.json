@@ -263,6 +263,7 @@
     "quantum:linear-rosetta": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runLinearWithoutRosettaFoldIsGapExit",
     "quantum:anim-color": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAnimationsReviewColorsForPolarityGapsExit",
     "quantum:color-review": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runAnimationsReviewColorsForPolarityGapsExit",
+    "quantum:metric-labels": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runMetricLinesComputeNotAuthoredExit",
     "quantum:gaps-invisible": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runInvisibleGapsCaughtByGatesExit",
     "quantum:meaning-compute": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runMeaningIsQuantumComputableExit",
     "quantum:save-meaning": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runWhatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaningExit",

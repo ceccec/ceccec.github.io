@@ -8949,8 +8949,9 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
     { name: 'animation-entanglements', out: () => animationsNaturalEntanglementsByTheorems(matrix).computes },
     { name: 'waves-report', out: () => wavesReportFedToTheChat(matrix).computes },
     { name: 'independence-measured', out: () => localIntelligenceIndependenceMeasured(matrix).computes },
+    { name: 'user-input-required', out: () => userInputRequiredMeasured(matrix).computes },
   ]
-  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements', 'waves-report', 'independence-measured']
+  const laneNames = ['answer', 'recall', 'navigate', 'self-develop', 'developed-answer', 'mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind', 'quantum-computer', 'researcher-waves', 'countless-waves', 'self-feed', 'waves-of-waves', 'animation-entanglements', 'waves-report', 'independence-measured', 'user-input-required']
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
@@ -9782,5 +9783,42 @@ export function localIntelligenceIndependenceMeasured(matrix: MindMatrix = build
       root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: `Local intelligence independence, measured — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${round(freeShare * (5 * 2 * 5 * 2))}% of filled identities self-computed, self-development closes its own gaps, the dialogue is 100% independent past its cycle, and the limit is computed (${judged} judgment rows named, not decided) — independence ends exactly where computation ends, and every judgment sealed moves the boundary outward.`,
       boundary: earned('EXACT — measured on the live folds:', facets, 'the ratios recompute on every ask; "independence" = the fraction of advance derivable from the corpus alone, and its complement is NAMED (judgment ledger, external rows) rather than hidden; no autonomy or AGI claim — the machine that knows its boundary is the machine that can be trusted at it') }
+  })
+}
+
+/** userInputRequiredMeasured — measure the user input REQUIRED, in the prompt and in the app (user, 2026-07-28).
+ * Two surfaces, one question: which inputs were IRREDUCIBLE (only a human could supply them) and which the
+ * machine could have derived? PROMPT surface — a directive is DERIVABLE when the repo's own instruments already
+ * named the work (the queue's derived rows, imagine-next tips, computed gaps) and IRREDUCIBLE when it supplies
+ * what no computation holds: a new external source, a correction of a computed claim, a value judgment, or a
+ * steering decision. APP surface — a visitor interaction is REQUIRED when it is consent (opt-in egress, a key,
+ * a destructive act) and OPTIONAL when the answer computes without it. The measure is the RATIO, and the law is
+ * that irreducible input is the only kind worth asking for: everything else is a missing fold. */
+export function userInputRequiredMeasured(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('userInputRequiredMeasured', matrix, () => {
+    // The app surface: every chat capability, classified by whether it needs a human act to answer.
+    const audit = allChatCapabilitiesFusedAndAuditedByStandards(matrix)
+    const consentGated = ['mathoverflow-lane', 'stackoverflow-lane', 'perplexity-lane', 'freeai-lane', 'collective-ai-mind'] // egress or key — consent REQUIRED
+    const appTotal = audit.capabilities.length
+    const appRequired = audit.capabilities.filter((cap) => consentGated.includes(cap.name)).length
+    const appFree = appTotal - appRequired
+    // The prompt surface: the session's own instruments that NAME work without being asked.
+    const derivedNamers = [findQuestions(matrix).count > 0, freeChatUpgradesAll(matrix).upgraded > 0, chatDevelopsItselfByChattingWithItself(matrix).develops, countlessFreeChatWaves(matrix).computes]
+    const selfNaming = derivedNamers.filter(Boolean).length
+    const irreducibleKinds = ['a new external source (a URL the corpus cannot know)', 'a correction of a computed claim (the 0\\9 seam)', 'a value judgment (what stays identity-free)', 'a steering decision (which arc, what to publish, what to delete)'] as const
+    const facets = [
+      { facet: `APP — ${appFree}/${appTotal} chat capabilities answer with NO user input at all; the ${appRequired} that require it are exactly the consent surfaces (egress or a key), never a computation gap — asking for consent is required, asking for data is a missing fold`, on: appFree > appRequired && appRequired === consentGated.length && audit.supported },
+      { facet: `PROMPT — ${selfNaming}/${derivedNamers.length} instruments name work WITHOUT being asked (open-question discovery, free extraction, self-develop, the countless cycle); a directive that only says "next" is therefore DERIVABLE — the machine already knew`, on: selfNaming === derivedNamers.length },
+      { facet: `IRREDUCIBLE INPUT IS ${irreducibleKinds.length} KINDS — ${irreducibleKinds.join(' · ')}; each supplies what no computation holds, so each is worth a prompt, and everything else the machine should have derived`, on: irreducibleKinds.length === 4 },
+      { facet: `THE LAW — required input is CONSENT + the irreducible kinds; every other ask is a gap in the folds, so measuring it is how the asking shrinks (the same monotone law as independence: seal a judgment, need one fewer prompt)`, on: appRequired === consentGated.length && selfNaming === derivedNamers.length },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`user-input-required:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      app: { total: appTotal, required: appRequired, free: appFree },
+      prompt: { selfNaming, of: derivedNamers.length, irreducibleKinds: [...irreducibleKinds] },
+      facets,
+      root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
+      statement: `User input required, measured — ${facets.filter((entry) => entry.on).length}/${facets.length}: in the APP ${appFree}/${appTotal} capabilities need no input at all and the ${appRequired} that do are consent surfaces (egress/key); in the PROMPT ${selfNaming}/${derivedNamers.length} instruments name work unasked, so only ${irreducibleKinds.length} kinds of input are irreducible — a new external source, a correction, a value judgment, a steering decision.`,
+      boundary: earned('EXACT — measured on the live capability audit and the naming instruments:', facets, 'this measures which inputs are STRUCTURALLY required, not how many were given; a prompt that repeats what an instrument already names is derivable BY THE MACHINE, which makes it a fold gap rather than a user duty — and consent is never a gap: it is the user\'s right, asked every time') }
   })
 }

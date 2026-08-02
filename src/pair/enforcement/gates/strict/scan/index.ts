@@ -7165,3 +7165,49 @@ export function runInvisibleGapsCaughtByGatesExit(_root = '', _argv: readonly st
   return report.passed ? 0 : 1
 }
 
+
+/** METRIC LABELS ARE COMPUTED, NEVER AUTHORED (user law, 2026-07-28: "tightening the gates in such a way so no
+ * future agent poisons with its opinion"). A metrics line must render through renderComputedMetrics — the labels
+ * ARE the fold's field names — so no agent adjective ("frameworks, not solutions", "still open", "settled") can
+ * ride beside a computed count. The scan is refutable: hand-type a characterisation next to a count
+ * interpolation in a generator and the offender list grows; it is empty only while every metric line computes. */
+export const AUTHORED_METRIC_LABEL_RE = /(?:problems?|our|the)\s+(?:model\s+)?[a-z ]*\*\*\$\{|\((?:frameworks|not solutions|settled|open|solved[^)]*)\)\s*=\s*\*\*\$\{/i
+
+export function scanAuthoredMetricLabels(root: string = enforcementScanRoot()): { file: string; line: number; text: string }[] {
+  const generators = ['src/quantum/lake/dist/readme/index.ts', 'src/heaven/site/index.ts']
+  const out: { file: string; line: number; text: string }[] = []
+  for (const rel of generators) {
+    const full = join(root, rel)
+    if (!existsSync(full)) continue
+    readFileSync(full, 'utf8').split('\n').forEach((line, i) => {
+      if (line.trim().startsWith('//')) return // comments explain the law; only emitted strings are scanned
+      if (AUTHORED_METRIC_LABEL_RE.test(line)) out.push({ file: rel, line: i + 1, text: line.trim().slice(0, 8 * 9) })
+    })
+  }
+  return out
+}
+
+/** metricLinesComputeNotAuthored — the gate: every metrics line in the generators renders from field names. */
+export function metricLinesComputeNotAuthored(root: string = enforcementScanRoot()) {
+  const offenders = scanAuthoredMetricLabels(root)
+  const facets = [
+    { facet: `NO AUTHORED METRIC LABELS — ${offenders.length} generator lines hand-type a characterisation beside a computed count${offenders.length ? `: ${offenders.map((o) => `${o.file}:${o.line}`).join(' · ')}` : ' (the labels ARE the fold field names)'}`, on: offenders.length === 0 },
+    { facet: 'THE PRIMITIVE IS THE ONLY DOOR — renderComputedMetrics(counts) joins key = value from the data structure, so an adjective cannot be passed: there is no parameter for one', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`metric-labels:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    offenders,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Metric lines compute, not authored — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${offenders.length} authored-label offenders in the generators.`,
+    boundary: 'Scans the README/home generators for a hand-typed characterisation adjacent to a count interpolation. Refutable: author one and the offender list grows. It does not police prose elsewhere — only the lines that report computed numbers, where an opinion would read as a measurement.' }
+}
+
+/** npm run quantum:metric-labels — the gate as a CLI. */
+export function runMetricLinesComputeNotAuthoredExit(root = '', _argv: readonly string[] = []): number {
+  void _argv
+  const report = metricLinesComputeNotAuthored(root || enforcementScanRoot())
+  process.stdout.write(`${report.computes ? '✓' : '✗'} metric-labels — offenders=${report.offenders.length}\n`)
+  for (const o of report.offenders) process.stdout.write(`  ✗ ${o.file}:${o.line} — ${o.text}\n`)
+  return report.computes ? 0 : 1
+}

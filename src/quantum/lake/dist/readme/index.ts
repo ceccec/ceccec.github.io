@@ -7,7 +7,7 @@
 // output), and the cross wave writes readmeMarkdown() as README.md.
 import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
-import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem } from '../../../../3/7'
+import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../../3/7'
 import { THEOREM_ATOM_SEED, latestDiscoveries, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../../4/6'
 import { portalChat, portalRecall } from '../../../../heaven/compute'
 import { earned } from '../../../../3/7'
@@ -524,10 +524,16 @@ export function clayChallengesComputableMarkdownSection(
     '',
     '### How many',
     '',
-    // LABEL CLARIFIED (user misread it, 2026-07-28: "how come this statistics show this?!?") — the first count is
-    // the portal's own MODEL WRITE-UPS computing (frameworks/facet algebra), never problems solved; two different
-    // measures ride one line, so each now says which it is.
-    `our model write-ups compute (frameworks, not solutions) = **${c.computableCount}/${c.pathCount}** · problems still **open** (contested) = **${c.contestedCount}** · problems **settled** = **${c.documentedCount}** (Poincaré — Perelman 2003, external) · solved here for the first time (novelToHumanity) = **${c.novelHereCount}**`,
+    // COMPUTED, NOT AUTHORED (user law, 2026-07-28) — the line is renderComputedMetrics over the fold's own
+    // fields: the labels ARE the field names, so no agent adjective can enter and the line cannot drift.
+    renderComputedMetrics({
+      pathCount: c.pathCount,
+      computableCount: c.computableCount,
+      contestedCount: c.contestedCount,
+      documentedCount: c.documentedCount,
+      solvedExternalCount: c.solvedExternalCount,
+      novelHereCount: c.novelHereCount,
+    }),
     '',
     '*The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*',
     '',

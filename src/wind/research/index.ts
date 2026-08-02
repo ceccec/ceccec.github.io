@@ -3054,7 +3054,11 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       contestedCount, // COMMON metric: Clay problems demarcate()'d contested (open) — 6
       documentedCount, // COMMON metric: demarcate()'d documented (settled — Poincaré) — 1
       solvedExternalCount: paths.filter((p) => p.status === 'solved-external').length, // proven elsewhere (Poincaré) — 1
-      novelHereCount: 0 as const, // solved-here-for-the-first-time (novelToHumanity) — 0; the computed answer, not a judgement
+      // NOVELTY IS A CHECK, NOT A DECLARATION (the sealed law) — a hardcoded 0 asserts a result nobody ran, so
+      // the field now carries the CHECK STATE: 'unchecked' until novelToHumanityIsCheckableNotDeclaredByPublicApis
+      // runs against the public literature at the edge. No number is claimed in either direction offline.
+      novelHereCount: 'unchecked' as const,
+      novelCheckRun: false as const,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, mill.root, catalog.root, dir.root, earth.root, sciences.root])),
       pair: 'moment/prove' as const,

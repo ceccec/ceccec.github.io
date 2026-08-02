@@ -1138,6 +1138,16 @@ const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦∣]|\bm
 /** The ONE identity accessor — free for all surfaces (user, 2026-07-27: "free for all"): curated fill first,
  * verbatim extraction second, undefined when neither exists. Every consumer (paper form, chat hits, wave atoms)
  * reads identities through this chain, so an upgrade to the extractor upgrades all surfaces at once. */
+/** renderComputedMetrics — a metrics line is the JOIN of a fold's own key/value pairs (user law, 2026-07-28:
+ * "you will write the prose not by hand and by algebraic computations"). The label IS the computed field name;
+ * no agent adjective can enter, because no adjective is a parameter. Refutable: change a field name and the
+ * rendered label changes with it — the line cannot drift from the data it reports. */
+export function renderComputedMetrics(counts: Readonly<Record<string, number | string>>, bold = true): string {
+  return Object.entries(counts)
+    .map(([key, value]) => `${key} = ${bold ? `**${value}**` : value}`)
+    .join(' · ')
+}
+
 export function algebraicStatementOf(row: { algebraicStatement?: string; states?: string; proof?: string }): string | undefined {
   if (typeof row.algebraicStatement === 'string' && row.algebraicStatement.length > 0) return row.algebraicStatement
   return extractAlgebraicStatement(row.states ?? row.proof ?? '')
