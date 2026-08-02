@@ -8,6 +8,7 @@ import HeroBackgroundLayer from './components/HeroBackgroundLayer.vue'
 import TrinityGateways from './components/TrinityGateways.vue'
 import CollectiveMind from './components/CollectiveMind.vue'
 import GlobalHelp from './components/GlobalHelp.vue'
+import SpeechReader from './components/SpeechReader.vue'
 import RevolutAside from './components/RevolutAside.vue'
 import VitePressPossibilities from './components/VitePressPossibilities.vue'
 import PaperFrame from './components/PaperFrame.vue'
@@ -85,6 +86,7 @@ onUnmounted(() => {
         <template #doc-footer-before>
           <CollectiveMind />
           <GlobalHelp />
+          <SpeechReader />
           <VitePressPossibilities />
         </template>
         <template v-for="name in forwardedSlots" :key="name" #[name]="slotData">
