@@ -3375,3 +3375,44 @@ export function runDirectionalTrinityGuardedExit(_root: string, _argv: readonly 
   return 0
 }
 
+// ===== SIMPLIFICATION LAYER — NAMESPACED STACK =====
+// Consolidated access patterns for stack operations, APIs, and multitasking
+export const stack = {
+  api: {
+    trinity: apiTrinityFuse,
+    fuse: apiFuse,
+  },
+  chat: {
+    multi: chatMulti,
+    improve: chatAndImproveQuantumMultitasking,
+  },
+  task: {
+    multi: multiTask,
+    quantum: taskQuantum,
+  },
+  kernel: {
+    applyPatch: kernelApplyPatch,
+    patchApplies: kernelPatchApplies,
+    treeId: kernelTreeId,
+  },
+  edit: {
+    insert: editInsert,
+    replace: editReplace,
+    delete: editDelete,
+  },
+  hardware: {
+    drivers: hardwareDriversComputes,
+    classical64bit: classical64BitEnvironmentAtCallTime,
+  },
+  quantum: {
+    clock: quantumClock,
+    computer: quantumComputerComplete,
+    multitask: quantumMultitask,
+  },
+  constants: {
+    scaleLadder: SCALE_LADDER,
+    srcPurityThreshold: SRC0_PURITY_EXPORT_THRESHOLD,
+    agentMessageMaxWords: AGENT_MESSAGE_MAX_WORDS,
+  },
+} as const
+

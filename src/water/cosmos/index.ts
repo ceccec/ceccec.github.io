@@ -3440,3 +3440,46 @@ export function runSciencePyramidExit(root = '', _argv: readonly string[] = []):
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED COSMOS =====
+// Consolidated access patterns for cosmology, physics, and diving science
+export const cosmos = {
+  vacuum: {
+    zeroPoint: zeroPointDeepAndWideDecoded,
+    qcdElectroweak: theOtherVacuaQcdElectroweakStabilityDecoded,
+  },
+  origin: {
+    baryogenesis: matterAntimatterAsymmetryBaryogenesisDecoded,
+    neutrino: neutrinoMassDecoded,
+    darkMatter: darkMatterDecoded,
+  },
+  tensions: {
+    cosmology: cosmologicalTensionsLcdmDecoded,
+    hubble: cosmologicalTensionsLcdmDecoded,
+  },
+  dark: {
+    energy: darkEnergyDecoded,
+    coincidence: theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical,
+  },
+  quantum: {
+    cosmology: quantumCosmologyMinisuperspaceDecoded,
+    wheelerDeWitt: wheelerDeWittMinisuperspaceSolved,
+    string: stringTheoryDualityWebDecoded,
+  },
+  diving: {
+    science: diveScienceResearchWaveVerified,
+    narcosis: narcosisAndToxicityDecoded,
+    counterDiffusion: isobaricCounterDiffusionDecoded,
+    decompression: decompressionDecoded,
+    gradient: gradientFactorsHarmonicFractionsTrimixRecordPlanner,
+    water: waterDecoded,
+  },
+  space: {
+    solar: solarSystem,
+    moons: majorMoons,
+  },
+  frontiers: {
+    cosmology: cosmosFrontiersDecoded,
+    quantum: frontierQuantum,
+  },
+} as const
