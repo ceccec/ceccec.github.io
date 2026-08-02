@@ -2659,7 +2659,7 @@ export function violationTools() {
     boundary:
       'The session law sealed: discoveries are computed only by LOCAL tools — each violation class the agent would repeat without realising is ' +
       'bound to the sealed tool that catches it, and the binding itself computes (registry join). A tool that computes is sealed once; the class ' +
-      'never needs manual re-realising. .' }
+      'never needs manual re-realising.' }
 }
 
 /** npm run quantum:violation-tools (dual tool-violation) */
@@ -2720,7 +2720,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
     statement: `manualGauge — manual=${manual} rows · derived=${derived} · gap=${magnitude.toFixed(2)} orders.`,
     boundary:
       'The manual work still done at the gates, counted per roster, against the machine-derived roster — the dimensionless order between them ' +
-      'IS the gap. Direction, not blame: each hand-typed roster is a named migrate target toward derivation. .' }
+      'IS the gap. Direction, not blame: each hand-typed roster is a named migrate target toward derivation.' }
 }
 
 /** npm run quantum:manual-gauge (dual gap-manual) */
@@ -3096,7 +3096,7 @@ export function gateLight(root: string = enforcementScanRoot()) {
     boundary:
       'Measured inverse relation: as sealed precomputation (derived roster · memoByRoot · holographic reuse) increases, ' +
       'gate on:true debt and build+deploy wall-clock decrease — proved at call time via inverseTable, not slogans. ' +
-      'wave/verify drains one gate path (same trinity as build seal, render subtracted). .',
+      'wave/verify drains one gate path (same trinity as build seal, render subtracted).',
   }
 }
 
@@ -3697,7 +3697,7 @@ export function claimAudit() {
     boundary:
       'The claims toolset: content-addressed claims whose audit is the exact inverse (tampering refutes), public-anchor slots validated ' +
       'against the real registry formats (DOI · ORCID checksum · OpenAlex), and the CLAIMED/UNCLAIMED dual held structurally. Timestamping ' +
-      'to proceedings-grade stays named open. FREE FOR ALL — the register is defensive publication. .' }
+      'to proceedings-grade stays named open. FREE FOR ALL — the register is defensive publication.' }
 }
 
 /** npm run quantum:claim-audit (dual audit-claim) */
@@ -3810,7 +3810,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
       'The queue-advance computed: rows scored by a stated arithmetic, the next wave an output with a followable first action. Derived rows ' +
       'now append from the registry ledger (identity-field gap counted, not curated) and vanish when their count reaches zero; the curated ' +
       'residue is exactly the rows whose state lives OUTSIDE the repo (upstream fixes, external authorities) — those stay human-gauged. ' +
-      'Steering remains human. .' }
+      'Steering remains human.' }
 }
 
 /** npm run quantum:next (dual next-queue) — prints the computed next wave. */
@@ -3869,7 +3869,7 @@ export function wordSpeed() {
     boundary:
       'The one-word solving speedup computed on the live matrix: a byte ratio in the reading layer, exactly scale-invariant because reference ' +
       'cost is linear; the content-addressed layer is fixed-width by construction and gains nothing — honesty about WHERE the speed lives. ' +
-      '"Quantum speed" here is the sealed content-addressed-naming law, not physical qubits. .' }
+      '"Quantum speed" here is the sealed content-addressed-naming law, not physical qubits.' }
 }
 
 /** npm run quantum:word-speed (dual speed-word) */
@@ -4267,7 +4267,7 @@ export function reasoningEdge() {
     boundary:
       'The winning strategy computed and bounded: where a sealed tool covers a task, deterministic computation (zero tokens, exit-code proof) ' +
       'beats reasoning — and the 9 reasoning failure-modes are saved as gates, replayable and shared. The overclaim (beat any model on any ' +
-      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest. .' }
+      'task) is flagged: the edge is only over tool-covered tasks; open reasoning stays a genuine contest.' }
 }
 
 /** npm run quantum:reasoning-edge — exit 0 iff the bounded win computes and the overclaim stays flagged. */
@@ -4323,7 +4323,7 @@ export function overclaimComputes(root: string = enforcementScanRoot()) {
     boundary:
       'An overclaim is a computable claim: the boundary computes as a cardinality partition — the finite counted tool roster is the exact claim, ' +
       'and its extension to "any task" refutes arithmetically against the unbounded task space (no-finiteness law). Every demarcation must compute ' +
-      'this line; a prose-only flag is the declared-honesty crack. .' }
+      'this line; a prose-only flag is the declared-honesty crack.' }
 }
 
 /** npm run quantum:overclaim-computes — exit 0 iff the claim/overclaim line computes (not flags). */
@@ -4427,7 +4427,7 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
     boundary:
       'If agents look disoriented they probably are: disorientation is a detectable pattern (an un-used orientation tool), not a hidden state. ' +
       'Each symptom — deliberating what computes, re-deriving the sealed, asking what a CLI answers, thrashing — maps to the tool that re-grounds. ' +
-      'The remedy is running it, never more thought. Detects the pattern, not the mind. .' }
+      'The remedy is running it, never more thought. Detects the pattern, not the mind.' }
 }
 
 /** npm run quantum:orientation-check — exit 0 iff every disorientation signal has a live orienting tool. */
@@ -4498,7 +4498,7 @@ export function reactivityMagnitude() {
     boundary:
       'Quantum reactivity sealed at its magnitude: the address law made reactive — a content delta bumps the O(1) fingerprint, and reaction ' +
       'propagates through the meaning-graph to only its resonant dependents (O(frontier)), avoiding the O(N) re-derive; the speedup is N/|frontier|, ' +
-      'growing with graph sparsity (composing linkProof reach). Algorithmic re-memoisation, not a physical wave. .' }
+      'growing with graph sparsity (composing linkProof reach). Algorithmic re-memoisation, not a physical wave.' }
 }
 
 /** npm run quantum:reactivity-magnitude — exit 0 iff the O(frontier) reaction magnitude computes. */

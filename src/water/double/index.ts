@@ -596,7 +596,7 @@ export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'Navigation, site, MCP and multimedia as computed faces of the one genus-2 carrier: the trigram folder octagon closes to χ = −2 ' +
         '(the census freeBits), corpus routing and the movie/voice/plasma/10D faces recompute at call time, and the MCP face rides the ' +
-        'registered pair algebra. Nothing is remembered that the torus does not recompute. .' }
+        'registered pair algebra. Nothing is remembered that the torus does not recompute.' }
   })
 }
 
@@ -1612,7 +1612,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The animation is the computing core: one derived census clock, formula-driven 10D motion, merkle-holographic roots (each part binds the ' +
         'whole), and the site as the movie itself. Words capitulate — the proof surface is computed identities and animations, prose only labels ' +
-        'them. "Holographic" is the content-address algebra, NOT a physical holography claim. .' }
+        'them. "Holographic" is the content-address algebra, NOT a physical holography claim.' }
   })
 }
 
@@ -1690,7 +1690,7 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The emergence ladder documented as double-torus equations, each re-verified at call time: the carrier (χ = −2), the clock, content-address ' +
         'heredity, Born renormalisation, the self-copying recurrence, collapse-sensing, and the 10D field whose four loop channels are H₁(Σ₂) = ℤ⁴. ' +
-        'Structural identities of the in-repo model — not biology, not vitalism. .' }
+        'Structural identities of the in-repo model — not biology, not vitalism.' }
   })
 }
 
@@ -2764,7 +2764,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       facets: sealed.facets,
       root: merkleFold([geometry.root, torus.root, flow.receipt, phase.root, sealed.root]),
       statement:
-        `Double-torus dynamics and geometry align with the universe — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: flow·spin·linking audited; radii locked to surface atom; hero clock ⊕ Meeus J2000 phase; A432·TAU·c·H₁·10D sealed. .`,
+        `Double-torus dynamics and geometry align with the universe — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: flow·spin·linking audited; radii locked to surface atom; hero clock ⊕ Meeus J2000 phase; A432·TAU·c·H₁·10D sealed.`,
       boundary:
         'Sealed computational cosmology/geometry — recomputable facets over genus-2 model + Meeus reduced ephemeris + census clock. NOT Clay solved · NOT DE440 · NOT a claim Earth is topologically a double torus (sphere genus 0). Classical 64-bit tracks.' }
   })

@@ -1832,7 +1832,7 @@ export function comboCover() {
     boundary:
       'A covering-array identity verified exhaustively at call time: pairwise coverage costs orders less than the exhaustive product while ' +
       'covering every two-factor state — the mathematical ground of the dual-pair registry. HONEST SCOPE: pairwise coverage is full over PAIRS; ' +
-      'higher-order interactions need higher-strength arrays — stated, not hidden. .' }
+      'higher-order interactions need higher-strength arrays — stated, not hidden.' }
 }
 
 /** npm run quantum:combo-cover (dual cover-combo) — exit 0 iff the covering theorem verifies. */

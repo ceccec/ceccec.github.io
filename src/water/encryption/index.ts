@@ -297,7 +297,7 @@ export const DIGIT_INVERSE_DOMAIN_BITS = floor(log2(3 * 3)) + 1
 
 /**
  * Probe CPU parallelism at call time — browser hardwareConcurrency or Node os.
- * Browser-safe · no static node:os import (vite). .
+ * Browser-safe · no static node:os import (vite).
  */
 export function probeLocalCpuCount(): number {
   if (
@@ -2288,7 +2288,7 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
       fipsValidated,
       facets: sealed.facets,
       root: merge(matrix.root, sealed.root),
-      statement: 'PQC necessity (composed): modeled Shor on sealed-catalog RSA; NIST FIPS 203/204/205 and ISO/IEC 18033-2 Amd 2:2026 name replacements; hash/merkle stays Shor-safe. .',
+      statement: 'PQC necessity (composed): modeled Shor on sealed-catalog RSA; NIST FIPS 203/204/205 and ISO/IEC 18033-2 Amd 2:2026 name replacements; hash/merkle stays Shor-safe.',
       boundary: 'MODELED theorem-level composition. NOT ISO/FIPS certification, NOT Clay Millennium progress. Sealed-catalog RSA reverse only · production RSA break refused.' }
   })
 }
@@ -2790,7 +2790,7 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
       { facet: `EXTENDED BEYOND EU — the ${beyond.length} beyond-EU aspects add ISO/IEC 27001:2022 & 27002, NIST CSF 2.0, SOC 2 (AICPA TSC), UK Cyber Essentials, and ISO/IEC 27701, each mapped to the same computed evidence`, on: beyond.length >= 4 * 6 && beyondStandards.length >= 5 && eu.computes },
       { facet: `ONE EVIDENCE BASE, MANY STANDARDS — every framework's controls map to the SAME latest discoveries (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC); one architecture answers many standards`, on: integrity && noEgress && encryption && pqcAware },
       { facet: `CERTIFICATIONS ARE NAMED GAPS — ISO 27001 cert, SOC 2 report, Cyber Essentials cert, and EUCC/CC all require an accredited auditor or notified body (${gap.length} gaps, none faked closed ${gapAllOff})`, on: gap.length >= 8 && gapAllOff },
-      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS. .`, on: gap.length >= 8 && gapAllOff && pqc.claySolvedByThisFold === 0 },
+      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS.`, on: gap.length >= 8 && gapAllOff && pqc.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`global-cyber-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('global-cyber-standards-audit-every-aspect', facets)
     return {
@@ -3965,7 +3965,7 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
         `maxBitsHardwareBoundaryAgree — remaining=${remaining} hwWord=${hw.hardwareReverseCapacityBits} ` +
         `revClaim=${hw.reverseClaimBits} demoSample=${hw.demoSampleCeilingBits} cpus=${hw.cpuCount} .`,
       boundary:
-        'HARD: claimed max-bits must equal hardware-computed boundary at call time. SEALED_CATALOG_RSA_MODULI is a sample set — never the hardware ceiling. No production RSA break. .' }
+        'HARD: claimed max-bits must equal hardware-computed boundary at call time. SEALED_CATALOG_RSA_MODULI is a sample set — never the hardware ceiling. No production RSA break.' }
   })
 }
 

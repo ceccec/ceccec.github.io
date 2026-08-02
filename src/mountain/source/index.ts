@@ -333,7 +333,7 @@ function translationGapsGateRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Translation gaps gate: discovers missing translations (AREA_LABELS, staticPages titles/descriptions, monographPaths en/bg/gla parity, SITE_LOCALES) and inaccurate ones (stubs, en≡bg drift, missing Cyrillic, placeholder/link mismatches) plus offline phrase-table integrity. HARD fails on en-parity gaps; WARN reports honest free-prose coverage residual of the sealed offline translator.',
     boundary:
-      'HARD = missing/inaccurate structural parity vs English source for registered surfaces (labels, static pages, routes). Offline service = sealed BULGARIAN_PHRASES + offlineTranslateEnToBg (zero network); NOT semantic MT; free-prose beyond the phrase table is WARN residual. Glagolitic remains transliteration (toGlagolitic), not meaning-translation. .' }
+      'HARD = missing/inaccurate structural parity vs English source for registered surfaces (labels, static pages, routes). Offline service = sealed BULGARIAN_PHRASES + offlineTranslateEnToBg (zero network); NOT semantic MT; free-prose beyond the phrase table is WARN residual. Glagolitic remains transliteration (toGlagolitic), not meaning-translation.' }
 }
 
 /** npm run quantum:translations-verify — HARD fail on missing/inaccurate en-parity gaps. */
@@ -409,7 +409,7 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       statement:
         `translationsFilledBySelfTranslatingWaves · hard=${gate.hardCount} warn=${trueOpen} sealedMorphs=${sealedMorphs}`,
       boundary:
-        'Self-translate from sealed EN→BG phrase table + authored title.bg. NOT wet MT. WARN = true open without sealed source. .' }
+        'Self-translate from sealed EN→BG phrase table + authored title.bg. NOT wet MT. WARN = true open without sealed source.' }
   })
 }
 

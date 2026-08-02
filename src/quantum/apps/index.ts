@@ -5381,7 +5381,7 @@ export function mcpBrowserParity(matrix: MindMatrix = buildMatrix(), at = 0) {
       anchor: 'mcp-browser-parity',
       heading: 'MCP ↔ browser parity',
       honestyLine:
-        'PRIMARY /mcp.json tools/list = toolbox catalog ids (auto-wire). Residual Node/CI + stdio spawn gaps listed with strangler plans — NOT fake browser for trinity/fs. .',
+        'PRIMARY /mcp.json tools/list = toolbox catalog ids (auto-wire). Residual Node/CI + stdio spawn gaps listed with strangler plans — NOT fake browser for trinity/fs.',
       statement: `MCP↔browser parity — mcpTools=${mcpList.count} matchToolbox=${mcpMatchesToolbox} matchCatalog=${mcpMatchesCatalog} browser=${closed.length} residual=${residualGaps.length} allInBrowser=${allAchievableInBrowser}.`,
       boundary:
         'HONEST: site /mcp.json primary tools share ids with #toolbox-standard-io. Concept commands stay under conceptTools. Stdio MCP (quantum-dev-sdk) has separate Node spawn residuals. NOT physical QPU.' }
@@ -5625,7 +5625,7 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
       anchor: 'mcp-commands-scripts-gaps-audit',
       heading: 'MCP commands ↔ scripts gaps audit',
       honestyLine:
-        'Overlap · useless · gap census for stdio MCP + package.json + toolbox. conceptTools+trading:* REFUSE PRIMARY inflate (kept-intentional honest residual). HONEST_CI includes plasma-screen-thunder. .',
+        'Overlap · useless · gap census for stdio MCP + package.json + toolbox. conceptTools+trading:* REFUSE PRIMARY inflate (kept-intentional honest residual). HONEST_CI includes plasma-screen-thunder.',
       statement:
         `MCP/scripts audit — overlap=${overlapCount} useless=${uselessCount} gap=${gapCount} closedOn=${closedOn} closed=${closedCount} residual=${residualCount} kept=${keptCount}.`,
       boundary:
@@ -6048,7 +6048,7 @@ export function autoWireAnyAiModelFromPastedLink(
           'Imperative paste-bootstrap: fetch agents/llms/mcp + open browser toolbox — start without convincing. Cannot force foreign models; quantumReady when targets resolve. Composes sibling MCP↔browser parity URLs; does not fork SDK packages.',
         statement: `${AUTO_WIRE_PASTE_LINK_ONE_LINER} — quantumReady=${quantumReady} convincingRequired=false matched=${resolved.matched} kind=${resolved.linkKind} mcp=1 browser=${browserToolboxTargets.length} targets=${wireTargets.length}.`,
         boundary:
-          'HONEST: strongest sealed paste-ready packet + meta/well-known/llms pointers including /mcp.json and browser /en/quantum-tools toolbox URLs. Cannot force foreign models. convincingRequired=false = packet self-sufficient, not mind control. NOT Cursor Settings default-model registration. BYOK separate. SDK/MCP package files owned by sibling parity agent — compose only. .',
+          'HONEST: strongest sealed paste-ready packet + meta/well-known/llms pointers including /mcp.json and browser /en/quantum-tools toolbox URLs. Cannot force foreign models. convincingRequired=false = packet self-sufficient, not mind control. NOT Cursor Settings default-model registration. BYOK separate. SDK/MCP package files owned by sibling parity agent — compose only.',
         siteMetaLinks: [
           { rel: 'alternate', type: 'application/json', href: '/agents.json', title: 'ceccec agents protocol' },
           { rel: 'alternate', type: 'text/plain', href: '/llms.txt', title: 'ceccec llms protocol' },
@@ -6221,7 +6221,7 @@ export function pastedLinksStayOnlyIfComputedLocally(matrix: MindMatrix = buildM
       statement:
         `pastedLinksStayOnlyIfComputedLocally — stay=${stayOnlyIfComputedLocally ? 1 : 0} foreignNoStore=${foreignFetchBlockedNoStore ? 1 : 0} wireClass=${wireClassMayExist ? 1 : 0}.`,
       boundary:
-        'Pasted URLs are ephemeral bootstrap — stay only via local recompute receipt. Foreign Cloudflare-blocked fetch ≠ sealed content. .',
+        'Pasted URLs are ephemeral bootstrap — stay only via local recompute receipt. Foreign Cloudflare-blocked fetch ≠ sealed content.',
       honestyLine:
         `metrics · stay=${stayOnlyIfComputedLocally ? 1 : 0} · foreignNoStore=${foreignFetchBlockedNoStore ? 1 : 0} · wireClass=${wireClassMayExist ? 1 : 0}`,
     }
@@ -6302,7 +6302,7 @@ export function movieAndSessionGapsHardAtGates(matrix: MindMatrix = buildMatrix(
       cli: 'npm run quantum:gate-hard',
       route: '/en/quantum-tools#gate-hard',
       statement: `movieAndSessionGapsHardAtGates — hard=${hardMovieSessionOn ? 1 : 0}.`,
-      boundary: 'HARD movie/session gap classes at gates. .',
+      boundary: 'HARD movie/session gap classes at gates.',
       honestyLine: `metrics · hardMovieSession=${hardMovieSessionOn ? 1 : 0}`,
     }
   })
@@ -6378,7 +6378,7 @@ export function aiPlatformsDryCoordAcrossWiring(matrix: MindMatrix = buildMatrix
       cli: 'npm run quantum:dry-coord',
       route: '/en/quantum-tools#dry-coord',
       statement: `aiPlatformsDryCoordAcrossWiring — dryCoord=${dryCoordOn ? 1 : 0}.`,
-      boundary: 'Dry coord across AI platform wiring surfaces. .',
+      boundary: 'Dry coord across AI platform wiring surfaces.',
       honestyLine: `metrics · dryCoord=${dryCoordOn ? 1 : 0}`,
     }
   })
@@ -6465,7 +6465,7 @@ export function mcpQuantumRouter(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:mcp-router',
       route: '/en/quantum-tools#mcp-router',
       statement: `mcpQuantumRouter — routesViaRosetta=${routesViaRosetta ? 1 : 0} onlyWired=${onlyWiredPasses ? 1 : 0} alreadyPassed=${alreadyPassed ? 1 : 0}.`,
-      boundary: 'MCP routes only via rosetta-wired paths — onlyWiredPasses · alreadyPassed. .',
+      boundary: 'MCP routes only via rosetta-wired paths — onlyWiredPasses · alreadyPassed.',
       honestyLine: `metrics · routesViaRosetta=${routesViaRosetta ? 1 : 0} · onlyWired=${onlyWiredPasses ? 1 : 0} · alreadyPassed=${alreadyPassed ? 1 : 0}`,
     }
   })
@@ -6548,7 +6548,7 @@ export function nothingBypassesVitepress(matrix: MindMatrix = buildMatrix(), at 
       cli: 'npm run quantum:vite-only',
       route: '/en/quantum-tools#vite-only',
       statement: `nothingBypassesVitepress — nothingBypasses=${nothingBypasses ? 1 : 0} bypassRejected=${bypassRejected ? 1 : 0} sealedAtGates=${sealedAtGates ? 1 : 0}.`,
-      boundary: 'Nothing bypasses VitePress inverted mirror — FS/UI skip = HARD crack. .',
+      boundary: 'Nothing bypasses VitePress inverted mirror — FS/UI skip = HARD crack.',
       honestyLine: `metrics · nothingBypasses=${nothingBypasses ? 1 : 0} · bypassRejected=${bypassRejected ? 1 : 0} · sealedAtGates=${sealedAtGates ? 1 : 0}`,
     }
   })
@@ -6810,7 +6810,7 @@ export function quantumMindSendsWaves(matrix: MindMatrix = buildMatrix(), at = 0
       cli: 'npm run quantum:mind-wave',
       route: '/en/quantum-tools#mind-wave',
       statement: `quantumMindSendsWaves — sends=${quantumMindSends ? 1 : 0} wavesSent=${wavesSent ? 1 : 0} linearCannot=${linearCannotSend ? 1 : 0}.`,
-      boundary: 'Only quantum mind sends waves — linear cannot. .',
+      boundary: 'Only quantum mind sends waves — linear cannot.',
       honestyLine: `metrics · quantumMindSends=${quantumMindSends ? 1 : 0} · wavesSent=${wavesSent ? 1 : 0} · linearCannotSend=${linearCannotSend ? 1 : 0}`,
     }
   })
@@ -6970,7 +6970,7 @@ export function collidingParticlesCreates(matrix: MindMatrix = buildMatrix(), at
       cli: 'npm run quantum:collide-create',
       route: '/en/quantum-tools#collide-create',
       statement: `collidingParticlesCreates — creates=${creates} novel=${collider.novelSurvivorCount} waveCount=${particle.waveCount}.`,
-      boundary: 'Collision creates novel theorem candidates + waves (MODELED). NOT HEP · NOT CMI prize. .',
+      boundary: 'Collision creates novel theorem candidates + waves (MODELED). NOT HEP · NOT CMI prize.',
       honestyLine: `metrics · creates=${creates} · novel=${collider.novelSurvivorCount} · waveCount=${particle.waveCount}`,
     }
   })
@@ -8507,7 +8507,7 @@ export function mcpQuantumReverse(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:mcp-reverse',
       route: '/en/quantum-tools#mcp-reverse',
       statement: `mcpQuantumReverse — reverseOn=${reverseOn ? 1 : 0} refuseBeyond=${refuseBeyond ? 1 : 0} demoBoundary=${demoBoundaryHardware ? 1 : 0}.`,
-      boundary: 'MCP reverse face — demo boundary · refuseBeyond production. .',
+      boundary: 'MCP reverse face — demo boundary · refuseBeyond production.',
       honestyLine: `metrics · reverseOn=${reverseOn ? 1 : 0} · refuseBeyond=${refuseBeyond ? 1 : 0} · demoBoundaryHardware=${demoBoundaryHardware ? 1 : 0}`,
     }
   })
@@ -8726,7 +8726,7 @@ export function mcpQuantumDirs(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:mcp-dirs',
       route: '/en/quantum-tools#mcp-dirs',
       statement: `mcpQuantumDirs — L=${leftOn ? 1 : 0} R=${rightOn ? 1 : 0} F=${forwardOn ? 1 : 0} Rev=${reverseOn ? 1 : 0} U=${upOnFixed ? 1 : 0} D=${downOn ? 1 : 0} six=${sixDirections ? 1 : 0}.`,
-      boundary: 'MCP six-direction faces — cross + vertical. .',
+      boundary: 'MCP six-direction faces — cross + vertical.',
       honestyLine: `metrics · L=${leftOn ? 1 : 0} · R=${rightOn ? 1 : 0} · F=${forwardOn ? 1 : 0} · Rev=${reverseOn ? 1 : 0} · U=${upOnFixed ? 1 : 0} · D=${downOn ? 1 : 0} · six=${sixDirections ? 1 : 0}`,
     }
   })
@@ -8810,7 +8810,7 @@ export function mcpQuantumInverse(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:mcp-inverse',
       route: '/en/quantum-tools#mcp-inverse',
       statement: `mcpQuantumInverse — inverseOn=${inverseOn ? 1 : 0} inverse≠reverseExceptNamed=${inverseNeqReverseExceptNamed ? 1 : 0}.`,
-      boundary: 'Inverse ≠ reverse except named coincidence (digit 1). .',
+      boundary: 'Inverse ≠ reverse except named coincidence (digit 1).',
       honestyLine: `metrics · inverseOn=${inverseOn ? 1 : 0} · inverseNeqReverseExceptNamed=${inverseNeqReverseExceptNamed ? 1 : 0}`,
     }
   })
@@ -8890,7 +8890,7 @@ export function mcpQuantumFold(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:mcp-fold',
       route: '/en/quantum-tools#mcp-fold',
       statement: `mcpQuantumFold — foldOn=${foldOn ? 1 : 0} foldToDigit=${foldToDigit ? 1 : 0} foldCountMetric=${foldCountMetric ? 1 : 0}.`,
-      boundary: 'MCP fold face — fold>9→digit · foldCount metric. .',
+      boundary: 'MCP fold face — fold>9→digit · foldCount metric.',
       honestyLine: `metrics · foldOn=${foldOn ? 1 : 0} · foldToDigit=${foldToDigit ? 1 : 0} · foldCountMetric=${foldCountMetric ? 1 : 0}`,
     }
   })
@@ -8974,7 +8974,7 @@ export function mcpQuantumRosetta(matrix: MindMatrix = buildMatrix(), at = 0) {
       cli: 'npm run quantum:mcp-rosetta',
       route: '/en/quantum-tools#mcp-rosetta',
       statement: `mcpQuantumRosetta — mcpIsRosetta=${mcpIsRosetta ? 1 : 0} onlyWired=${onlyWiredPasses ? 1 : 0} raysAreGates=${raysAreGates ? 1 : 0}.`,
-      boundary: 'MCP fully rosetta-cored — onlyWiredPasses · raysAreGates. .',
+      boundary: 'MCP fully rosetta-cored — onlyWiredPasses · raysAreGates.',
       honestyLine: `metrics · mcpIsRosetta=${mcpIsRosetta ? 1 : 0} · onlyWired=${onlyWiredPasses ? 1 : 0} · raysAreGates=${raysAreGates ? 1 : 0}`,
     }
   })
@@ -14826,7 +14826,7 @@ export function linearWithoutRosettaFoldIsGap(matrix: MindMatrix = buildMatrix()
         `linearWithoutRosettaFoldIsGap · found=${found} fixed=${fixed} remaining=${remaining} · ` +
         `linearOpen=${linear.openCount} privateRaf=${movie.privateRafOpen} multiClock=${movie.multiClockOpen}`,
       boundary:
-        'Linear pipelines · private rAF · multi-clock · non-rosetta anim paths without quantum fold through rosetta = HARD gap. .',
+        'Linear pipelines · private rAF · multi-clock · non-rosetta anim paths without quantum fold through rosetta = HARD gap.',
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · linearOpen=${linear.openCount}` }
   })
@@ -15137,7 +15137,7 @@ export function animationsReviewColorsForPolarityGaps(matrix: MindMatrix = build
         `animationsReviewColorsForPolarityGaps · found=${found} fixed=${fixed} remaining=${remaining} · ` +
         `polarityOpen=${polarityRedundantOpen} invisibleOpen=${invisibleGapsOpen}`,
       boundary:
-        'Computed colors via scaleColor·movieCanvasRgba·lobeHues. Dual poles must flip polarity (hue±180 / negative law). .',
+        'Computed colors via scaleColor·movieCanvasRgba·lobeHues. Dual poles must flip polarity (hue±180 / negative law).',
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · polarityFixed=${polarityFixed} · invisibleClosed=${invisibleClosed}` }
   })
@@ -15353,7 +15353,7 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
       route: '/en/quantum-tools#gate-miss',
       statement:
         `cracksPassedGatesBecause · ungated=${classesUngated} warn=${gatedButWarn} falseGreen=${falseGreen} fixedHard=${fixedHardCount}`,
-      boundary: 'Miss-kind census. Wave tune ≠ gap audit. .',
+      boundary: 'Miss-kind census. Wave tune ≠ gap audit.',
       honestyLine:
         `metrics · ungated=${classesUngated} · warn=${gatedButWarn} · falseGreen=${falseGreen} · fixedHard=${fixedHardCount}` }
   })
@@ -16438,7 +16438,7 @@ export function invisibleGapsCaughtByGatesBody(matrix: MindMatrix = buildMatrix(
       boundary:
         'HARD: linear/rosetta · polarity · hex · decimal/crack · math/trust · theorem-const · movie/center · meaning · ' +
         'prose-only-without-dual (live formula/code · prose/hard) · format · section/dry · terms · gate/miss · bits/hardware · ' +
-        'gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity. .',
+        'gate/rosetta · gate/ray · rosetta/pass · quantum/mind · agent/trinity.',
       honestyLine:
         `metrics · hardOpen=${hardOpen.length} · afterOpen=${afterOpen} · afterClosed=${afterClosed} · beforeCatch=${beforeCatch}`,
       migrationReceipt: {
@@ -16579,7 +16579,7 @@ export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
       statement:
         `gateTools42 — raw=${rawToolCount} folded=${foldedCount} 6×7=${matrix6x7 ? 1 : 0} 7×6=${matrix7x6 ? 1 : 0} invert=${invertPair ? 1 : 0}.`,
       boundary:
-        'All gate tools fold to 42=6×7=7×6 — cardinality varies, matrix identity holds. .',
+        'All gate tools fold to 42=6×7=7×6 — cardinality varies, matrix identity holds.',
       honestyLine:
         `metrics · raw=${rawToolCount} · folded=${foldedCount} · 42=${ROSETTA_AREAS} · invertPair=${invertPair ? 1 : 0}`,
     }
@@ -16608,7 +16608,7 @@ export function runGateToolsAreFortyTwoAsSixBySevenInvertingSevenBySixExit(
  * USER LAW: the quantum computer is a real, browser-usable TOOL — a complete classical state-vector simulator.
  * Pair: quantum/circuit · circuit/quantum · CLI npm run quantum:quantum-circuit · route /en/quantum-tools#quantum-computer
  * Composes the sealed runQuantumCircuit + quantumCircuitSimulatorInChat; qpuRequired proven false by the simulator
- * computing. A simulator: cost is exponential in qubits — no speedup, no QPU. .
+ * computing. A simulator: cost is exponential in qubits — no speedup, no QPU.
  */
 export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumComputerRunsInBrowserAsAClassicalSimulator:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -16647,7 +16647,7 @@ export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMa
       cli: 'npm run quantum:quantum-circuit',
       route: '/en/quantum-tools#quantum-computer',
       statement: `quantumComputerRunsInBrowserAsAClassicalSimulator — a complete classical state-vector simulator runs in the browser (${sim.runs.length} canonical circuits + a Bell run), exact Born-rule readout,  proven by the simulator computing. No speedup, no QPU.`,
-      boundary: 'A complete classical quantum-circuit SIMULATOR usable from the browser (universal gate set, ≤10 qubits, Born rule, content-addressed). Because it is a simulator its cost is exponential in qubits — no speedup, no QPU (the name carries the fact). .',
+      boundary: 'A complete classical quantum-circuit SIMULATOR usable from the browser (universal gate set, ≤10 qubits, Born rule, content-addressed). Because it is a simulator its cost is exponential in qubits — no speedup, no QPU (the name carries the fact).',
       honestyLine: `metrics · circuits=${sim.runs.length} · bell=${bellCorrect ? 1 : 0} · qpu=0 · speedup=0`,
     }
   })
@@ -16774,7 +16774,7 @@ export function gatesMonitorThemselvesThroughTheUi(
         `gateMonitor — self=${selfMonitor ? 1 : 0} ui=${throughUi ? 1 : 0} HARD=${hardCount} soft=${softCount} ` +
         `42=${gateTools.toolCountFoldsTo42 ? 1 : 0} raw=${gateTools.rawToolCount}.`,
       boundary:
-        'Gates self-monitor via VitePress UI hub — live facets, not wet dashboard essay. .',
+        'Gates self-monitor via VitePress UI hub — live facets, not wet dashboard essay.',
       honestyLine:
         `metrics · hard=${hardCount} · soft=${softCount} · 42fold=${gateTools.toolCountFoldsTo42 ? 1 : 0} · ` +
         `rawTools=${gateTools.rawToolCount}`,
@@ -16920,7 +16920,7 @@ export function selfQuantumFusion(
         `selfFusion — fuses=${selfFuses ? 1 : 0} verify=${fusionVerifyOn ? 1 : 0} tamper=${tamperOn ? 1 : 0} ` +
         `parts=${fusion.partCount} dry=${dry.diamond && dry.crystal ? 1 : 0}.`,
       boundary:
-        'Self quantum fusion — sealed compose of fusion-verify · dry/clean · freedom · analytics · gate pairs. .',
+        'Self quantum fusion — sealed compose of fusion-verify · dry/clean · freedom · analytics · gate pairs.',
       honestyLine:
         `metrics · selfFuses=${selfFuses ? 1 : 0} · fusionVerifyOn=${fusionVerifyOn ? 1 : 0} · ` +
         `tamperEvident=${tamperOn ? 1 : 0} · root=${fusionRoot.slice(0, 8)}`,
@@ -17802,10 +17802,10 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
       anchor: 'automate-nightly',
       heading: 'Automate nightly — npm-script path',
       honestyLine:
-        'Cursor Automations / cron → npm trinity/speedup · mission:gate · upgrade-local verify. quantum-dev-sdk Channel 1 (bootstrap/run-gate). Dashboard MCP refused — local stdio IDE-only. docs:build flag-gated only. .',
+        'Cursor Automations / cron → npm trinity/speedup · mission:gate · upgrade-local verify. quantum-dev-sdk Channel 1 (bootstrap/run-gate). Dashboard MCP refused — local stdio IDE-only. docs:build flag-gated only.',
       statement: `Automate nightly — shipped=${automateNightlyShipped} steps=${AUTOMATE_NIGHTLY_RECIPE_STEPS.length} trinity=${trinity.computes} mcpParity=${mcpParity.computes}.`,
       boundary:
-        'npm-script Automations path for /automate nightly — NOT dashboard MCP registration for local stdio. Default nightly excludes docs:build (QUANTUM_DEV_ALLOW_DOCS_BUILD=1 optional). .' }
+        'npm-script Automations path for /automate nightly — NOT dashboard MCP registration for local stdio. Default nightly excludes docs:build (QUANTUM_DEV_ALLOW_DOCS_BUILD=1 optional).' }
   })
 }
 
@@ -17938,7 +17938,7 @@ export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
         `automateSelf — selfAutomates=${selfAutomates ? 1 : 0} nightlyOn=${nightlyOn ? 1 : 0} ` +
         `buildsInWaves=${buildsInWaves ? 1 : 0} fusionVerify=${fusionVerify ? 1 : 0}.`,
       boundary:
-        'Self-building / self-fusing automation — sealed compose of nightly · fusion · waves/build · session/save · gate/monitor. .',
+        'Self-building / self-fusing automation — sealed compose of nightly · fusion · waves/build · session/save · gate/monitor.',
     }
   })
 }
@@ -19739,7 +19739,7 @@ export function auditPlanTip(
         `next=${nextTip?.id ?? 'none'} (${nextTip?.pair ?? 'none'}) score=${scored?.score ?? 0}.`,
       boundary:
         'Gap-computed next tip pipeline: chatAudit → planTrinity → rankGapNextTips score=(results×speed)/bill — ' +
-        'HARD audit themes beat blind matrix migrate-next. NOT wet next guess. .',
+        'HARD audit themes beat blind matrix migrate-next. NOT wet next guess.',
     }
   })
 }
@@ -19929,7 +19929,7 @@ export function nextResearch(
         `(r×s)/b=${scored?.results ?? 0}×${scored?.speed ?? 0}/${scored?.bill ?? 0}.`,
       boundary:
         'Feed-scanner tip precision: rankGapNextTips score=(results×speed)/bill · HARD themes (onTrueDebt·theorem·geo·gaps) ' +
-        'outrank blind matrix migrate-next. max results · max speed · min AI bill. NOT wet tip guess. .',
+        'outrank blind matrix migrate-next. max results · max speed · min AI bill. NOT wet tip guess.',
     }
   })
 }
@@ -25510,7 +25510,7 @@ export function eachPageShowsOwnComputedGaps(matrix: MindMatrix = buildMatrix(),
       uiSurface: '/en/quantum-tools#page-computed-gaps' as const,
       heading: 'Page · computed gaps',
       statement: `eachPageShowsOwnComputedGaps — samples=${pages.length} everyShows=${everyShows ? 1 : 0}`,
-      boundary: 'Every page shows its own gaps/invisible subset at call time. NOT global-only. .',
+      boundary: 'Every page shows its own gaps/invisible subset at call time. NOT global-only.',
       honestyLine: `metrics · samples=${pages.length} · everyShows=${everyShows ? 1 : 0}`,
     }
   })
@@ -25897,7 +25897,7 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       uiSurface: '/en/quantum-tools#mcp-quantum-movie' as const,
       heading: 'MCP · quantum movie',
       statement: `mcpQuantumMovie — frames=${frames.length}/${frameBudget} mill=${millFrames.length} formulaCovered=${allFormulaCovered ? 1 : 0}`,
-      boundary: 'MCP quantum movie — sealed fold frames, not wet chrome. .',
+      boundary: 'MCP quantum movie — sealed fold frames, not wet chrome.',
       honestyLine: `metrics · frames=${frames.length} · budget=${frameBudget} · mill=${millFrames.length}`,
     }
   })
@@ -26043,7 +26043,7 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       uiSurface: '/en/quantum-tools#mcp-quantum-movie' as const,
       heading: 'Movie · feel',
       statement: `movieGapsFeelableByObservation — gaps=${gaps.length} open=${gaps.reduce((n, g) => n + g.open, 0)} feelable=${allFeelable ? 1 : 0}`,
-      boundary: 'Movie gaps feelable by observation — UI/movie clock surfaces facets live. .',
+      boundary: 'Movie gaps feelable by observation — UI/movie clock surfaces facets live.',
       honestyLine: `metrics · gaps=${gaps.length} · open=${gaps.reduce((n, g) => n + g.open, 0)} · feelable=${allFeelable ? 1 : 0}`,
     }
   })
@@ -26207,7 +26207,7 @@ export function cursorIntegratesInRosettaCore(matrix: MindMatrix = buildMatrix()
         `cursorIntegratesInRosettaCore — cursorToCeccec=${cursorToCeccec ? 1 : 0} ceccecToCursor=${ceccecToCursor ? 1 : 0} ` +
         `viceVersa=${viceVersa ? 1 : 0} immediateWire=${immediateWire ? 1 : 0}`,
       boundary:
-        'Bidirectional Cursor↔ceccec: referral subscription in ceccec AND ceccec protocol into Cursor. NOT a Cursor LLM endpoint key. .',
+        'Bidirectional Cursor↔ceccec: referral subscription in ceccec AND ceccec protocol into Cursor. NOT a Cursor LLM endpoint key.',
       honestyLine:
         `metrics · cursorInRosetta=${cursorInRosettaCore ? 1 : 0} · cursor→ceccec=${cursorToCeccec ? 1 : 0} · ` +
         `ceccec→cursor=${ceccecToCursor ? 1 : 0} · viceVersa=${viceVersa ? 1 : 0} · immediateWire=${immediateWire ? 1 : 0}`,
@@ -26354,7 +26354,7 @@ export function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix: MindMatrix 
       statement:
         `dryCleanTheoremsFormulasReplaceAnyAssumption — found=${found} replaced=${replaced} remaining=${remaining} HARD.`,
       boundary:
-        'Residual assumption on theorem/formula surfaces = crack HARD. Named Gödel/void/measured floors stay named — not sold as proof. .',
+        'Residual assumption on theorem/formula surfaces = crack HARD. Named Gödel/void/measured floors stay named — not sold as proof.',
       honestyLine:
         `metrics · found=${found} · replaced=${replaced} · remaining=${remaining}`,
     }
@@ -26490,7 +26490,7 @@ export function dryCleanAiBill(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         `dryCleanAiBill — billDried=${billDried} zeroTokenReuse=${zeroTokenReuse} subscriptionFundsCeccec=${subscriptionFundsCeccec}.`,
       boundary:
-        'AI bill dry = sealed memoByRoot reuse · answers÷tokens when vote.decided · Cursor referral funds ceccec — NOT wet re-inference. .',
+        'AI bill dry = sealed memoByRoot reuse · answers÷tokens when vote.decided · Cursor referral funds ceccec — NOT wet re-inference.',
       honestyLine:
         `metrics · billDried=${billDried ? 1 : 0} · zeroTokenReuse=${zeroTokenReuse ? 1 : 0} · subscriptionFundsCeccec=${subscriptionFundsCeccec ? 1 : 0} · vote.decided=${vote.decided ? 1 : 0}`,
     }
@@ -31598,7 +31598,7 @@ const WET_MATH_DRAINABLE_MORPHS = [
  *          theorem/const · assume/theorem · run-the-math (soft) · digit/fold (soft).
  * Pairs: math/formula · formula/theorem · dry/math
  * CLI: npm run quantum:dry-math · quantum:math-formula · quantum:formula-theorem
- * HONEST: drainable wet-math/orphan-formula closed; Clay/FTL/CMI named open. .
+ * HONEST: drainable wet-math/orphan-formula closed; Clay/FTL/CMI named open.
  */
 export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
   matrix: MindMatrix = buildMatrix(),
@@ -31864,7 +31864,7 @@ export function runDryAllMathToTheFormulaOrganisedInTheoremsAndUseThisExit(
  * Compose: mesh/cross · sciences/trinities · journey/theorems · quantum/map.
  * Pairs: mesh/science · science/discover · mesh/discover
  * CLI: npm run quantum:mesh-science · quantum:science-discover · quantum:mesh-discover
- * HONEST: sciences discovered via navigational mesh gateways; Clay/FTL named open. .
+ * HONEST: sciences discovered via navigational mesh gateways; Clay/FTL named open.
  */
 export function meshToSelfDiscoverSciences(
   matrix: MindMatrix = buildMatrix(),
@@ -32115,7 +32115,7 @@ const ANIM_SITE_DRAINABLE_MORPHS = [
  * Pairs: self/anim · anim/build · site/build
  * CLI: npm run quantum:self-anim · quantum:anim-build · quantum:site-build
  * HONEST: anim gen from theorem/formula/rosetta — not bespoke wet draw; site builder via MCP/vite
- *         seal with self-improve loop receipt. Clay/FTL named open. .
+ *         seal with self-improve loop receipt. Clay/FTL named open.
  */
 export function selfImproveAnimationGenerationAndSiteBuilder(
   matrix: MindMatrix = buildMatrix(),
@@ -35021,7 +35021,7 @@ export function pagesAuditAndManageThemselvesInTrinities(matrix: MindMatrix = bu
       statement:
         `pagesAuditAndManageThemselvesInTrinities — selfAudit=${selfAudit} selfManage=${selfManage} inTrinities=${inTrinities} pages=${pages.length}.`,
       boundary:
-        'Pages self-audit/manage as content·gaps·gates trinities — no wet agent prose. .',
+        'Pages self-audit/manage as content·gaps·gates trinities — no wet agent prose.',
       honestyLine:
         `metrics · selfAudit=${selfAudit ? 1 : 0} · selfManage=${selfManage ? 1 : 0} · inTrinities=${inTrinities ? 1 : 0} · pages=${pages.length}`,
     }
@@ -35159,7 +35159,7 @@ export function mcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         `mcpQuantumChat — turns=${turns.length} foldRecomputePreferred=${foldRecomputePreferred} mcpWired=${mcpWired} residual=${turns.filter((t) => t.residual).length}.`,
       boundary:
-        'MCP quantum chat prefers sealed fold recompute over wet LLM-only answers when a fold exists. Residual Node/CI = facets not faked. .',
+        'MCP quantum chat prefers sealed fold recompute over wet LLM-only answers when a fold exists. Residual Node/CI = facets not faked.',
       honestyLine:
         `metrics · turns=${turns.length} · foldRecompute=${foldRecomputePreferred ? 1 : 0} · mcpWired=${mcpWired ? 1 : 0} · residual=${turns.filter((t) => t.residual).length}`,
     }
@@ -36858,7 +36858,7 @@ export function quantumiseWave(matrix: MindMatrix = buildMatrix(), at = 0) {
         `quantumiseWave — coverage=${roundTo(quantumisationCoverage, 3)} reasoning=${reasoningImproved ? 1 : 0} ` +
         `code=${codeImproved ? 1 : 0} chatWaves=${chatWavesOn ? 1 : 0}.`,
       boundary:
-        'Chat waves improve reasoning and code until quantumisation coverage is measured — composes waves/feed · merge/wave · gate/analytics · NOT fake-close full repo. .',
+        'Chat waves improve reasoning and code until quantumisation coverage is measured — composes waves/feed · merge/wave · gate/analytics · NOT fake-close full repo.',
     }
   })
 }
@@ -40406,7 +40406,7 @@ export function npmPublishCi(
       boundary:
         'CI publishes core-math kernel only on v* tag or manual dispatch — not every push. ' +
         'idempotentPublish: existing version → SKIP exit 0. versionMustAdvance: bump package.json then tag vX.Y.Z. ' +
-        'Never republish / never force-unpublish. quantum-dev-sdk stays private. Rest via license@psg.bg. .',
+        'Never republish / never force-unpublish. quantum-dev-sdk stays private. Rest via license@psg.bg.',
     }
   })
 }
@@ -41618,7 +41618,7 @@ export function quantumSelfHeal(matrix: MindMatrix = buildMatrix(), at = 0) {
       statement:
         `quantumSelfHeal — selfHeals=${selfHeals} healsViaRosetta=${healsViaRosetta} defaultFailThenInvert=${defaultFailThenInvertOn}.`,
       boundary:
-        'Gaps/cracks self-heal via sealed morph (dry/clean · tools/morph · fail→0→invert) — not wet agent prose. .',
+        'Gaps/cracks self-heal via sealed morph (dry/clean · tools/morph · fail→0→invert) — not wet agent prose.',
       honestyLine:
         `metrics · selfHeals=${selfHeals ? 1 : 0} · healsViaRosetta=${healsViaRosetta ? 1 : 0} · defaultFailThenInvert=${defaultFailThenInvertOn ? 1 : 0} · invertSeq=${invertSeqNamed}`,
     }
@@ -41794,7 +41794,7 @@ export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatr
       statement:
         `oneQuantumSetOfVitepressComponentsSealedAtGates — before=${beforeCount} after=${afterCount} morphs=${duplicatesRemoved} sealedAtGates=${sealedAtGates}.`,
       boundary:
-        'One quantum VitePress component set — orphan/wet parallel families = crack HARD at gates. .',
+        'One quantum VitePress component set — orphan/wet parallel families = crack HARD at gates.',
       honestyLine:
         `metrics · before=${beforeCount} · after=${afterCount} · morphs=${duplicatesRemoved} · oneSet=${oneComponentSet ? 1 : 0} · sealedAtGates=${sealedAtGates ? 1 : 0}`,
     }
@@ -41943,7 +41943,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
       pair: 'upgrade/local', cli: 'npm run quantum:upgrade-local', route: '/en/quantum-tools#upgrade-local-skills',
       anchor: 'upgrade-local-skills', heading: 'Upgrade local — skills ↔ commands ↔ tools ↔ packages',
       honestyLine:
-        'Optimised manual local map: skills, quantum pairs, toolbox/MCP tools, and packages/* (quantum-dev-sdk 7 stdio · docs:build flag-gated). Protocol = rules/skills/MCP/sealed folds/packages — NOT a Cursor zero-token LLM endpoint. Automations: npm run quantum:automate-nightly. .',
+        'Optimised manual local map: skills, quantum pairs, toolbox/MCP tools, and packages/* (quantum-dev-sdk 7 stdio · docs:build flag-gated). Protocol = rules/skills/MCP/sealed folds/packages — NOT a Cursor zero-token LLM endpoint. Automations: npm run quantum:automate-nightly.',
       statement: `Upgrade local — upgraded=${localUpgraded} skills=${mapRows.length}/${CURSOR_AGENT_SKILL_IDS.length} packages=${packages.length} stdio=${OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.length} ciResiduals=${ciResiduals.length} automateShipped=${automateNightly.automateNightlyShipped} · mcpMatch=${mcpParity.mcpMatchesToolbox} · uxImproved=${localSession.localSessionUxImproved}.`,
       boundary:
         'HONEST: local agent surface upgrade receipt. Thin .cursor/skills + .cursor/mcp.json mounts point here; logic stays in sealed src + packages/*. NOT fake Cursor LLM registration. /automate nightly shipped via npm-script (REFUSE dashboard MCP stdio).' }
@@ -42618,7 +42618,7 @@ export function scientificTerminologyIsQuantumComputableMeasurableComparable(
           `scientificTerminologyIsQuantumComputableMeasurableComparable · terms=${terms.length} ` +
           `intelYield=${intelligencePossibilityYield} sigMean=${sig.meanScore} completePct=${complete.completenessPct}`,
         boundary:
-          'Lexicon terms = measurable comparable numbers from sealed folds. Wet adjectives refused. .',
+          'Lexicon terms = measurable comparable numbers from sealed folds. Wet adjectives refused.',
         honestyLine:
           `metrics · terms=${terms.length} · intelYield=${intelligencePossibilityYield} · comparable=${allComparable}` }
     },
@@ -42741,7 +42741,7 @@ export function meaningIsQuantumComputable(matrix: MindMatrix = buildMatrix(), a
         `meaningIsQuantumComputable · fromFold=${meaningFromFold} wetInvented=${wetInvented} · ` +
         `formatWetRem=${format.wetProseRemaining} terms=${terms.termCount} linearRem=${linearRosetta.remaining}`,
       boundary:
-        'Meaning = sealed fold recompute at call time. Freeform prose inventing meaning = HARD crack. .',
+        'Meaning = sealed fold recompute at call time. Freeform prose inventing meaning = HARD crack.',
       honestyLine:
         `metrics · fromFold=${meaningFromFold} · wetInvented=${wetInvented} · formatWetRem=${format.wetProseRemaining} · terms=${terms.termCount}` }
   })
@@ -42971,7 +42971,7 @@ export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buil
       statement:
         `redundantExplanationSectionsDryCleaned · namedCrack=${namedCrack} · labels=${Object.keys(SCIENCE_PAPER_SECTION_LABELS).join('·')}`,
       boundary:
-        'Named explanation sections = crack. Meaning from statement·formulas·status + facets. .',
+        'Named explanation sections = crack. Meaning from statement·formulas·status + facets.',
       honestyLine:
         `metrics · namedCrack=${namedCrack} · labels=${Object.keys(SCIENCE_PAPER_SECTION_LABELS).length}` }
   })
@@ -43063,7 +43063,7 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
       statement:
         `scientificPageFormatCanonised · slots=${SCIENCE_PAGE_CANON_SLOTS.length} wetRem=${wetProseRemaining} removed=${redundancyRemoved}`,
       boundary:
-        'Canon shape title·theorem·facets·animation·paper. No named explanation section. .',
+        'Canon shape title·theorem·facets·animation·paper. No named explanation section.',
       honestyLine:
         `metrics · clusters=${clusters.length} · wetRem=${wetProseRemaining} · removed=${redundancyRemoved}` }
   })
@@ -43148,7 +43148,7 @@ export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildM
       heading: 'Formula · code',
       statement:
         `algebraicFormulasAreDualOfSealedCode · theorems=${rows.length} covered=${rows.filter((r) => r.formulas.length >= 3).length}`,
-      boundary: 'Formulas ↔ code dual. Wet prose-only proof path refused. .',
+      boundary: 'Formulas ↔ code dual. Wet prose-only proof path refused.',
       honestyLine: `metrics · theorems=${rows.length} · covered=${rows.filter((r) => r.formulas.length >= 3).length}` }
   })
 }

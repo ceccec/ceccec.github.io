@@ -1007,7 +1007,7 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       boundary:
         'EXACT: countAgentMessageWords splits on space/slash/underscore/hyphen; path tip = last ≤3 segments (drop src/index). ' +
         'Why >3 words? You do not — longer labels are naming entropy / offender wet prose. ' +
-        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src. .' }
+        'Compose namingEntropy · wordsCompileFromSource · folder/gravity toward src.' }
   })
 }
 
@@ -2172,7 +2172,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
         ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit (no physical QM speedup).'
         : 'UNPROVEN — interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.',
       boundary:
-        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL. .' }
+        'STRUCTURAL + SIMULATOR MATH ONLY. Interference receipt proves amplitude cancellation vs probability shadows and composes W1 honesty. NOT physical qubits, NOT FLOPS speedup, NOT FTL.' }
   })
 }
 
@@ -2487,7 +2487,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit.`
         : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
       boundary:
-        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified. .' }
+        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified.' }
   })
 }
 
@@ -3202,7 +3202,7 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       boundary:
         'Standardise APIs to one envelope schema · fuse in trinities-of-trinities (3×3 digit grid) · content-addressed hologram fractals · ' +
         'physical quantum = QPU/thermo/oneClock metrics · FTL speed = measured reuse only · security = structural/local. ' +
-        'Honest-open until every API migrates. .',
+        'Honest-open until every API migrates.',
     }
   })
 }

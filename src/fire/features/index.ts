@@ -730,7 +730,7 @@ export function torusData(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The agnostic framework completed at the adapter algebra: four public no-key API families parse through one pure shape into labelled ' +
         'unit channels and dimensionless gated ratios, verified on canonical fixtures — the gates are network-free, and live data feeds the ' +
-        'same functions (content-address: same data, same root). Analysis is measurement, not scraped trust. .' }
+        'same functions (content-address: same data, same root). Analysis is measurement, not scraped trust.' }
   })
 }
 

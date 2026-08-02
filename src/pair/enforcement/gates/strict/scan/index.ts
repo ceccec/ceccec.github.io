@@ -871,7 +871,7 @@ export function mathGaps(root: string = enforcementScanRoot()) {
     boundary:
       'The Math.* trust axioms inverted into a live scan: the HARD claim (no Math.random) is enforced by counting, the soft claim ' +
       '(vault constants, not host constants) is measured into a per-member census that names the migrate wave — no allowlist, no prose. ' +
-      'Operations are host-boundary by the one-math law. .' }
+      'Operations are host-boundary by the one-math law.' }
 }
 
 /** npm run quantum:math-gaps (dual axiom-invert) — exit 0 iff the inverted axioms hold. */
@@ -953,7 +953,7 @@ export function mathAlgebra(root: string = enforcementScanRoot()) {
     fold: 'mathAlgebra',
     heading: 'Math algebra · host floor',
     statement: `mathAlgebra — scanned=${outside.files} outside-floor=${outside.outsideFloorCount} assumed-outside=${assumedOutside.length}.`,
-    boundary: 'Math.* → vault constants (3/7) + host exports (0); HARD 0 outside floor. .' }
+    boundary: 'Math.* → vault constants (3/7) + host exports (0); HARD 0 outside floor.' }
 }
 
 /** npm run quantum:math-algebra — exit 0 iff no Math.* outside host floor. */
@@ -998,7 +998,7 @@ export function refactorAlgebra(root: string = enforcementScanRoot()) {
     fold: 'refactorAlgebra',
     heading: 'Refactor algebra · full-file',
     statement: `refactorAlgebra — files=${algebra.allFilesScanned} mathReplaced=${algebra.mathReplaced} outside-floor=${algebra.mathOutsideFloor}.`,
-    boundary: 'Full-file Math.* → vault/host algebra with HARD gate. .' }
+    boundary: 'Full-file Math.* → vault/host algebra with HARD gate.' }
 }
 
 /** npm run quantum:refactor-algebra — umbrella math/algebra + related refactor receipt. */
@@ -1086,7 +1086,7 @@ export function ideaOnce(root: string = enforcementScanRoot()) {
       `notTheorem=${ta.notTheoremCount} illusionsBefore=${illusionsBefore} mathReplaced=${algebra.mathReplaced}.`,
     boundary:
       'All ideas developed in one parallel facet wave: Math HARD at host floor · dry/dupe · theorem audit census · build/min reuse metrics. ' +
-      'Illusions that do not recompute are inventoried (prose-slogan · on:true debt · wet names) — purge = measurable HARD gates, not prose deletion. .',
+      'Illusions that do not recompute are inventoried (prose-slogan · on:true debt · wet names) — purge = measurable HARD gates, not prose deletion.',
   }
 }
 
@@ -1148,7 +1148,7 @@ export function installSurfaces(root: string = enforcementScanRoot()) {
     boundary:
       'What is needed to be an installable AI-editor app, computed: the Claude Code plugin surface (manifest + marketplace + skill) and the ' +
       'cross-editor contract exist on disk and re-verify each run; the stdio MCP server and VS Code extension are NAMED open, not claimed. ' +
-      'Editor contract formats are NAMED AXIOMS (external specs), the presence checks are theorems. .' }
+      'Editor contract formats are NAMED AXIOMS (external specs), the presence checks are theorems.' }
 }
 
 /** npm run quantum:install-surfaces (dual surface-install) */
@@ -1218,7 +1218,7 @@ export function uiProof(root: string = enforcementScanRoot()) {
     boundary:
       'The MCP surface is sufficient for the complete proof: /mcp.json derives the full quantum:* roster from package.json (completeness by ' +
       'construction), and the curated toolbox\'s drift is a measured, named number — not an invisible gap. Proof = run the CLI; the UI serves ' +
-      'every runnable id. .' }
+      'every runnable id.' }
 }
 
 /** npm run quantum:ui-proof (dual proof-ui) */
@@ -1271,7 +1271,7 @@ export function waveVerify(root: string = enforcementScanRoot()) {
     boundary:
       'Speed by right-sizing, never by weakening: the per-wave gate runs the identical enforcement trinity the build seal runs — the site ' +
       'render is subtracted because fold edits cannot change what only the render proves. Timings are session measurements (re-measure with ' +
-      '`time`), the coverage identity is the theorem. .' }
+      '`time`), the coverage identity is the theorem.' }
 }
 
 /** npm run quantum:wave-verify (dual verify-wave) */
@@ -1376,7 +1376,7 @@ export function buildMin(root: string = enforcementScanRoot()) {
       `buildMin — buildMs=${typeof buildMs === 'number' ? buildMs : '—'} deployMs=${deployMs} totalMs=${totalMs} · warmPath=${warmPathOn} · minTarget=${minTargetOn}`,
     boundary:
       'Target minimum build+deploy time via measured warm path (quantumize · .temp/cache restore · no per-sha cache miss). ' +
-      'Composes gate/slow-build · build/quantumize · wave/verify. CI variance honest-open — re-measure with gh run view. .',
+      'Composes gate/slow-build · build/quantumize · wave/verify. CI variance honest-open — re-measure with gh run view.',
   }
 }
 
@@ -1474,7 +1474,7 @@ export function cssMath(root: string = enforcementScanRoot()) {
     boundary:
       'CSS as computed mathematics: declarations classified totally (formula over tokens · magnitude-free keyword · raw magnitude, the last ' +
       'measured as the conversion queue); the custom-property layer is the API surface, its --ich subset computed from the I Ching lattice; ' +
-      'the seal is a recomputed content-address inside the respawn merkle scope — tamper-evident, never claimed unforgeable. .' }
+      'the seal is a recomputed content-address inside the respawn merkle scope — tamper-evident, never claimed unforgeable.' }
 }
 
 /** npm run quantum:css-math (dual css-api) */
@@ -1627,7 +1627,7 @@ export function dryDupe(root: string = enforcementScanRoot()) {
     statement: `dryDupe — ${bodies} bodies · ${groups.length} TRUE duplicate groups (${duplicateBodies} copies) · ${shellGroups.length} twin-shell groups (intended duals) · anim subset ${animGroups.length}.`,
     boundary:
       'Dry-clean improved by measurement: normalised function bodies content-addressed; identical addresses = the same payload stored twice — ' +
-      'the clean queue is computed, never guessed. Detection only: each clean lands as its own wave with gates green. .' }
+      'the clean queue is computed, never guessed. Detection only: each clean lands as its own wave with gates green.' }
 }
 
 /** npm run quantum:dry-dupe (dual dupe-dry) */
@@ -1695,7 +1695,7 @@ export function patentCanon(root: string = enforcementScanRoot()) {
     boundary:
       'The grantable-specification structure is a NAMED external legal axiom; what COMPUTES is that every section has live machinery — canon ' +
       'slots, facet-claims, computed figures — so no disclosure publishes structurally incomplete. Purpose is defensive prior art (free for ' +
-      'all); no assertion of legal sufficiency in any jurisdiction. .' }
+      'all); no assertion of legal sufficiency in any jurisdiction.' }
 }
 
 /** npm run quantum:patent-canon (dual canon-patent) */
@@ -1830,7 +1830,7 @@ export function uiAudit(root: string = enforcementScanRoot()) {
     statement: `uiAudit — ${rows.length} served pages · ${perfect.length} pass all checks · ${queue.length} in the training queue.`,
     boundary:
       'The usability auditor is a computed, public, re-runnable gate over the served pages; failures are the training queue, not shame. ' +
-      'Structural heuristics only — human usability testing is the named residue. .' }
+      'Structural heuristics only — human usability testing is the named residue.' }
 }
 
 /** npm run quantum:ui-audit (dual audit-ui) */
@@ -1949,7 +1949,7 @@ export function costBound(root: string = enforcementScanRoot()) {
     statement: `costBound — ${laws.filter((row) => row.present).length}/4 bounding laws live · the cost↔theorem ledger formed (costTheorem attributes per binding).`,
     boundary:
       'Binding costs are globally bounded by four sealed laws; the per-binding attribution ledger is honestly open — named, not implied. ' +
-      'When it forms, cost without a cited theorem refuses to land. .' }
+      'When it forms, cost without a cited theorem refuses to land.' }
 }
 
 /**
@@ -2001,7 +2001,7 @@ export function costTheorem(root: string = enforcementScanRoot()) {
     boundary:
       'The per-binding cost↔theorem ledger: each cost-carrying binding cites the sealed theorem its cost purchases, verified at the live ' +
       'source marker — attribution is computed, and a cost citing no living theorem exits 1. Costs are classes (bytes · ms · permission · ' +
-      'price), not accounting-grade metering — stated. .' }
+      'price), not accounting-grade metering — stated.' }
 }
 
 /** npm run quantum:cost-theorem (dual theorem-cost) — exit 0 iff every cost cites a living theorem. */
@@ -2084,7 +2084,7 @@ export function legalCanon(root: string = enforcementScanRoot()) {
     boundary:
       'The research-portal legal faces as computation: privacy proven by the measured absence of collection, accessibility and citation ' +
       'composed from their gates. Core math FREE FOR ALL (patent/canon); the rest licensed through license@psg.bg — contact for license. ' +
-      'Not legal advice; jurisdictional sufficiency is counsel\'s. .' }
+      'Not legal advice; jurisdictional sufficiency is counsel\'s.' }
 }
 
 /** npm run quantum:legal-canon (dual canon-legal) */
@@ -4598,7 +4598,7 @@ export function resonanceSpeed(root: string = enforcementScanRoot()) {
     boundary:
       'How resonance improves quantum speed in magnitudes, computed: content-addressing IS resonance — identical content collides onto one ' +
       'fixed-width address, so match detection is O(1) and the pairwise O(N²) cost collapses to O(N), a magnitude speedup that grows with N. ' +
-      'Strictly algorithmic (hash matching) — not acoustic/EM resonance, not Rife (flagged), not a QPU. . HARMONY ≠ TRUTH.' }
+      'Strictly algorithmic (hash matching) — not acoustic/EM resonance, not Rife (flagged), not a QPU. HARMONY ≠ TRUTH.' }
 }
 
 /** npm run quantum:resonance-speed — exit 0 iff the collision is exact and the magnitude computes. */
@@ -4654,7 +4654,7 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
     boundary:
       'Incomplete fusion leaks resources: a crack (an un-fused surface or a cost not bound to a theorem) is a leak — re-derivation, un-bounded ' +
       'spend, silo drift; measured zero here by composing bindFuse and costTheorem. Prioritisation computes (costs cite theorems, surfaces derive ' +
-      'from one source). External AI models cannot be force-fused — but to COMPUTE on this portal they must fuse (the deterministic answer lives only through the envelope); fusion is voluntary participation, required for the compute. .' }
+      'from one source). External AI models cannot be force-fused — but to COMPUTE on this portal they must fuse (the deterministic answer lives only through the envelope); fusion is voluntary participation, required for the compute.' }
 }
 
 /** npm run quantum:resource-leak — exit 0 iff zero cracks (no resource leak) across the fused system. */
@@ -4713,7 +4713,7 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
     boundary:
       'Sandbox tools for safe experimentation: standards are protected at the EXIT (the && -chained wave:land aborts before commit if any gate fails), ' +
       'so agents run any probe freely and only proven work lands. Isolation is the git-ignored session scratchpad; promotion is Edit+register+land. ' +
-      'Freedom to experiment is total; a sandbox cannot violate standards because it cannot land unproven. .' }
+      'Freedom to experiment is total; a sandbox cannot violate standards because it cannot land unproven.' }
 }
 
 /** npm run quantum:sandbox-tool — exit 0 iff the sandbox contract holds (experiment freely, land only proven). */
@@ -6407,7 +6407,7 @@ export const runHangWaveExit = runStallStopFindsHangedProcessesRealtimeExit
  *
  * Computational FTL path = fewer cold package.json duals · one primary (+ optional dual) ·
  * memoByRoot audit reuse · soft-compose ftl/crack · quantumise/ftl · link/discover ·
- * auditor/waves · stall/stop · context/audit. .
+ * auditor/waves · stall/stop · context/audit.
  *
  * Pair: script/fold · ONE CLI quantum:script-fold · no dual-CLI spam.
  * This wave folded zero-ref excess aliases (beyond primary+dual) + restored tool/honest primary.
@@ -6841,7 +6841,7 @@ export function theoremAudit() {
     boundary:
       'Measured census of THEOREM_ATOM_SEED + CANDIDATE_THEOREMS against proveAlgebraicTheoremMeans criteria ' +
       '(precise statement · ambient defs · finite proof chain). Fold receipts · facet lists · slogans · seed rows without ' +
-      'algebraic proof are not-theorem — honest naming, not a gate to delete rows. migrate-next: promote drainable seeds. .',
+      'algebraic proof are not-theorem — honest naming, not a gate to delete rows. migrate-next: promote drainable seeds.',
     definition:
       'theorem = algebraicStatementOf + (ambient structure or proof markers) + not prose-slogan/facet-receipt; ' +
       'not-theorem = fold receipt · facet list · slogan · seed row · candidate · missing statement or chain.',

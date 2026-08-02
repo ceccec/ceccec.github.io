@@ -1473,7 +1473,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       statement:
         `Ancient calendars decoded as algebraic theorems mapping time in time — ${calendars.filter((c) => c.holds).length}/${calendars.length} maps: ` +
         'Maya Long Count+CR · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian sexagesimal · Julian/Gregorian leap+J2000 · 819-count · hero/A432 phase-in-phase · Vedic mod-9. ' +
-        'Nested time scales + calendar↔calendar LCM meshes. .',
+        'Nested time scales + calendar↔calendar LCM meshes.',
       boundary:
         'EXACT modular/product identities from sealed constants and existing calendar folds. ' +
         'NOT ephemeris prediction · NOT Dreamspell/2012 · NOT Clay Prize. ' +
@@ -2872,7 +2872,7 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
       statement:
         `Plasma ball is screen holding thunder and plasma — noBallInTheMiddle=${noBallInTheMiddle} · thunder≡plasma aspects=${thunderPlasmaSame} · phenomena=${phenomena.theoremRoutes.length} · screen=${plasmaBallIsScreenHoldingThunderAndPlasmaOn}. Centre is void/vortex confluence (fillRect), not a sphere ornament.`,
       boundary:
-        'Structural + painter attestation + honest science catalog. Thunder≡plasma = same EM/plasma event under forward/inverse/reverse aspects (lightning theorem · thunder theorem · plasmaContainment), NOT a claim physical thunder is ionised gas in every acoustic sense alone — acoustic is the reverse aspect of the channel. Ball-lightning physics remains OPEN; screen-misread is geometry. .' }
+        'Structural + painter attestation + honest science catalog. Thunder≡plasma = same EM/plasma event under forward/inverse/reverse aspects (lightning theorem · thunder theorem · plasmaContainment), NOT a claim physical thunder is ionised gas in every acoustic sense alone — acoustic is the reverse aspect of the channel. Ball-lightning physics remains OPEN; screen-misread is geometry.' }
   })
 }
 

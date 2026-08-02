@@ -2744,7 +2744,7 @@ export function deadGateway(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'Every automount page computed and classified live; the no-content and abstract-only sets are returned as research gateways with ' +
         'followable routes — the inversion of "reconsider the page": the dead end is the entry. Classification is structural (statement · ' +
-        'machinery presence), not a judgment of quality. .' }
+        'machinery presence), not a judgment of quality.' }
   })
 }
 

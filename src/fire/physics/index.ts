@@ -593,7 +593,7 @@ export function naturalPhenomenaDecoded(matrix: MindMatrix = buildMatrix()) {
       statement:
         `Natural phenomena decoded — plasma-em family ${plasmaFamily.length}: lightning/thunder (same event, EM↔acoustic aspects), aurora, solar wind, flame, St Elmo's, sprites, solar corona SOLVED; ball lightning OPEN + screen-misread for the painter; Taos hum DISPUTED. Clay-style route /proofs/plasma-thunder-phenomena.`,
       boundary:
-        'Honest science catalog + theorem registry bindings. SOLVED = standard documented physics. Ball lightning mechanism remains OPEN; "screen-misread" is the painter/geometry decode (no centre sphere ornament), not a claim the reports are illusions. Flame is partial ionisation — same family, not tokamak-equivalent. . No paranormal explanations.',
+        'Honest science catalog + theorem registry bindings. SOLVED = standard documented physics. Ball lightning mechanism remains OPEN; "screen-misread" is the painter/geometry decode (no centre sphere ornament), not a claim the reports are illusions. Flame is partial ionisation — same family, not tokamak-equivalent. No paranormal explanations.',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
   })
 }

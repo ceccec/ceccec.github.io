@@ -479,7 +479,7 @@ export function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation() {
     statement:
       `theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation — identity · φ²=φ+1 · CF-ones · equidistribution bound.`,
     boundary:
-      'Bounded witness: identity + Fib CF + min-gap vs rational clump. . claySolved via theorem=0.',
+      'Bounded witness: identity + Fib CF + min-gap vs rational clump. claySolved via theorem=0.',
   }
 }
 

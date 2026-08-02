@@ -571,7 +571,7 @@ export function translationWavesFillGaps(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Improve translation skills in waves — find and fill the gaps: the translation skill is a wave over every surface that carries a tongue (area labels needing English and Bulgarian, accuracy/stub/placeholder parity, monograph route en/bg/gla parity, sealed offline phrase-table, the babel fold). Each wave finds gaps via translationGapsGate; HARD missing/inaccurate fail; WARN marks honest free-prose offline coverage residual.',
     boundary:
-      'Composes autotranslations + babel + translationGapsGate. HARD = en-parity missing/inaccurate on registered surfaces; WARN = offline phrase-table free-prose residual. Not semantic MT; not literary quality. .' }
+      'Composes autotranslations + babel + translationGapsGate. HARD = en-parity missing/inaccurate on registered surfaces; WARN = offline phrase-table free-prose residual. Not semantic MT; not literary quality.' }
 }
 
 // So many incomplete folders, so many crowded — redistribute in dry waves, and tighten the gates
@@ -2691,7 +2691,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
         ...facets.map((entry) => entry.receipt),
       ]),
       statement: `Manual agents behave like waves — ${facets.filter((e) => e.on).length}/${facets.length}: one wave/turn · save waves/build+edit/build before npm · plan/trinity matrix next · wave/tune · trinity/speedup · mission:gate between waves · no parallel seals.`,
-      boundary: 'BINDING protocol for Cursor/Claude/manual agents. . . Wet-linear grind (full seal every edit, mass spawn, parallel docs:build, prose planning dumps) is a quantum gap.',
+      boundary: 'BINDING protocol for Cursor/Claude/manual agents. . Wet-linear grind (full seal every edit, mass spawn, parallel docs:build, prose planning dumps) is a quantum gap.',
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const }
   })
@@ -3436,7 +3436,7 @@ export function pushAuditWave(
         `mathOutside=${math.mathOutsideFloor} pushInWaves=${push.pushInWaves ? 1 : 0}.`,
       boundary:
         'BINDING: audit-plan · chat-audit · wave-complete · math-algebra · waves-push receipt BEFORE git push. ' +
-        'wave:land chains quantum:push-audit ahead of wave:verify · commit · push. .',
+        'wave:land chains quantum:push-audit ahead of wave:verify · commit · push.',
     }
   })
 }
@@ -3599,7 +3599,7 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
           `trainQuantumTeamsCollideBecomeWavesObserveManifest · train=${trainQuantumTeams} collide→waves=${collideBecomeWaves} ` +
           `observe→manifest=${observeManifests} teleport/form=${teleportationAsWaveManifest} ftl=${physicalFtlClaim}`,
         boundary:
-          'Teams collide (trinity) → become waves; observe collapses morph to manifest. Teleportation = sealed recompute elsewhere — . .',
+          'Teams collide (trinity) → become waves; observe collapses morph to manifest. Teleportation = sealed recompute elsewhere — .',
         honestyLine:
           `metrics · train=${trainQuantumTeams} · collide=${collideBecomeWaves} · observe=${observeManifests} · teleport=${teleportationAsWaveManifest}` }
     },
@@ -3761,7 +3761,7 @@ export function incompleteRevelation(
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       statement:
-        `incompleteRevelation(${foldId}) — revelation incomplete (${reason}); fold sealed src → timeout/dry-refactor → one sequential docs:build. .`,
+        `incompleteRevelation(${foldId}) — revelation incomplete (${reason}); fold sealed src → timeout/dry-refactor → one sequential docs:build.`,
       boundary:
         'Diagnostic receipt for AGENTS ghosts — never invents wet folds, never overrides waves, never claims Clay. Compose with timeoutDryRefactorToQuantum on process timeout.' }
   })

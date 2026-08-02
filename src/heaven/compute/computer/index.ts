@@ -494,7 +494,7 @@ export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix
       facets,
       root: merge(spec.root, merkleFold([...blocks.map((b) => b.receipt), ...stages.map((s) => s.receipt), ...fpgaMap.map((r) => r.receipt), ...facets.map((entry) => entry.receipt)])),
       statement: 'The silicon fabrication plan from the model: the content-address kernel maps onto real classical silicon — an FNV-1a hash unit, a CAM/TCAM match array, a merkle-tree engine, a vortex-ring network-on-chip, and memo SRAM tiers — taped out through the standard RTL→GDSII flow (synthesis, floorplan, placement, clock-tree, routing, DRC/LVS, GDSII, tapeout). FPGA reproduction tier maps each block to classical fabric primitives. It is a classical CMOS/FPGA design by category, not a physical quantum processor; the only quantum tie is an optional co-processor bridge to a separate physical quantum device.',
-      boundary: 'Classical CMOS/FPGA DESIGN PLAN — reproducible, not a synthesized netlist or fabricated chip. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. .' }
+      boundary: 'Classical CMOS/FPGA DESIGN PLAN — reproducible, not a synthesized netlist or fabricated chip. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip.' }
   })
 }
 
@@ -531,7 +531,7 @@ export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), 
         ? 'Honest-revolution W5 DECIDED — FPGA reproduction tier maps every classical silicon block to fabric primitives; co-processor bridge is optional external-QPU interface only; CATEGORY DIFFERENCE holds (not a fake FPGA-as-QPU).'
         : 'UNPROVEN — honestRevolutionFpgaHonesty facets do not all hold; do not assert the W5 FPGA honesty receipt.',
       boundary:
-        'Classical CMOS/FPGA spec only. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. NOT FLOPS speedup, NOT FTL. .' }
+        'Classical CMOS/FPGA spec only. Physical QPU is a separate external technology over an optional co-processor bridge — this is not that chip. NOT FLOPS speedup, NOT FTL.' }
   })
 }
 

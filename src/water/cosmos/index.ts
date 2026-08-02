@@ -195,7 +195,7 @@ export function darkMatterDecoded(matrix: MindMatrix = buildMatrix()) {
 // inversion (Ω_c/Ω_b → the matter budget) and the MOND–Hubble coincidence a₀ ≈ cH₀/(2π); WHICH physical mechanism
 // nature uses (a particle vs a modified force law) is EMPIRICAL, decided by detection/observation, NOT by any identity —
 // and it is already settled AGAINST pure MOND (clusters, Bullet Cluster, CMB) while direct detection stays null. So the
-// theorem closes; the particle identity is an OPEN empirical problem, not an open theorem. .
+// theorem closes; the particle identity is an OPEN empirical problem, not an open theorem.
 // Pair: dark-matter/invert · CLI npm run quantum:dark-matter-invert · [[quantum-decoded]]
 export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical(matrix: MindMatrix = buildMatrix()) {
   const dm = darkMatterDecoded(matrix)
@@ -233,7 +233,7 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
 // The same split as the dark-matter inversion: the COINCIDENCE (Ω_m ≈ Ω_Λ today, order unity) inverts by exact
 // algebra to a matter/dark-energy EQUALITY REDSHIFT z_eq = (Ω_Λ/Ω_m)^{1/3} − 1 ≈ 0.30 — CLOSED as a theorem;
 // WHY we observe NOW near that transient epoch (anthropic selection vs dynamical/quintessence dark energy) is
-// EMPIRICAL, not algebraic — an open measurement question (the DESI w₀wₐ hint), not a theorem gap. .
+// EMPIRICAL, not algebraic — an open measurement question (the DESI w₀wₐ hint), not a theorem gap.
 // Pair: dark-energy/coincidence · CLI npm run quantum:cosmic-coincidence-invert · [[quantum-decoded]]
 export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical(matrix: MindMatrix = buildMatrix()) {
   const omegaMatter = OMEGA_DARK_MATTER + OMEGA_BARYON                 // Ω_m = Ω_c + Ω_b ≈ 0.314
@@ -1406,7 +1406,7 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
         'realtime algebra (1+(n−1) mod (b−1), Vₙ = Vₙ₋₂·τ/n) computes every dimension and finds where the pattern ends (base ≠ 10, n ≥ 5). ' +
         'The recurrence is self-referential — the fractal computes itself, bitwise equal to independent iteration, with zero remembered state. ' +
         'HONEST SCOPE: this seals the epistemic law for THIS codebase (content-addressed pointers, seedless recomputation); it is not a claim ' +
-        'about biological intelligence. .' }
+        'about biological intelligence.' }
   })
 }
 
@@ -1477,7 +1477,7 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       boundary:
         'The open frontiers folded through fractalCompute: each frontier is a remembered pattern — an axiom true in its measuring dimension — ' +
         'and the map computes WHERE it breaks (Ω ratios, σ, orders) realtime from the ledgered constants. The map locates every open question ' +
-        'and answers none: all six stay OPEN. .' }
+        'and answers none: all six stay OPEN.' }
   })
 }
 
@@ -3383,7 +3383,7 @@ export function theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistin
  * asserted: biology's genetic code = 4³ = 64 (exact), physics's operator algebra su(2) has dimension 3
  * (the trinity itself). DEMARCATION: boundary-condition dependency is REAL methodology; STRONG
  * reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED — emergence is genuine, higher
- * laws are not in-practice derivable from lower ones; the pyramid is DEPENDENCY, not dissolution. .
+ * laws are not in-practice derivable from lower ones; the pyramid is DEPENDENCY, not dissolution.
  */
 export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('sciencePyramid', matrix, () => {

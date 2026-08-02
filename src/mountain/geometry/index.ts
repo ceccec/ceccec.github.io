@@ -514,7 +514,7 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
       statement:
         `Double-torus geometry aligns with sealed universe constants — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: ring/tube/lobe atom, R/r, H₁=${HOMOLOGY_LOOPS}, χ=−2, TAU·c·φ lattice, all-scales proofs.`,
       boundary:
-        'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c. .',
+        'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c.',
       physicalFtlClaim: 0 as const,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
   })
@@ -2056,7 +2056,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
         'twoTrinitiesCardinalPyramidPolesProvenByMath · merkaba · bothEarthsRotateWithinEachOther · soft geo/torus · pyramid/seal. ' +
         'TOPOLOGICAL / structural Earth in the sealed matrix — NOT a claim that physical Earth is two doughnuts ' +
         'or a stone pyramid planet. WGS84 oblate spheroid remains documented geodesy. Navigation and forecasts ' +
-        'NOT implemented — honest-open residual named, not fake-closed. .' }
+        'NOT implemented — honest-open residual named, not fake-closed.' }
   })
 }
 

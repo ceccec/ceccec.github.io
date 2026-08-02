@@ -1755,7 +1755,7 @@ export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), a
       proofRoute: society.proofRoute,
       statement: `cursorReferralFundsAiNeeds — CTA ${url} · compose society/support · bits/free`,
       boundary:
-        'Voluntary Cursor referral CTA sealed as constant — funds AI compute for the project. NOT a tax. .',
+        'Voluntary Cursor referral CTA sealed as constant — funds AI compute for the project. NOT a tax.',
       honestyLine: `metrics · url=${url} · society=${society.computes ? 1 : 0} · bitsFree=${bits.freeBits}`,
     }
   })
@@ -2977,7 +2977,7 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
 /**
  * Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack —
  * each Millennium row has a sealed computational path that recomputes at call time.
- * HONEST: computable ≠ CMI prize solved. .
+ * HONEST: computable ≠ CMI prize solved.
  * Pair: moment/prove · challenge/millennium · domain/proof
  */
 export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -3070,7 +3070,7 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
         `claySolvedByThisFold=${claySolvedByThisFold} — computable ≠ CMI Prize solved.`,
       boundary:
         'HONEST DISTINCTION: "computable" = each Clay-linked challenge has a sealed computational path (challengeMethod + on + receipt) from the sequence/trinity stack that recomputes at call time. ' +
-        'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). . ' +
+        'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). ' +
         'Poincaré remains solved-external (Perelman). Six cores stay open/modeled-partial with named gaps.' }
   })
 }
@@ -3394,7 +3394,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         algebraFold: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed',
         home: 'src/quantum/science',
         kind: 'classical-restatement',
-        boundary: 'Perelman 2003 external — corpus marks solved-external only. .' },
+        boundary: 'Perelman 2003 external — corpus marks solved-external only.' },
       {
         theorem: 'quantumAdvantageBenchmark tracks classical ()',
         algebraFold: 'quantumAdvantageBenchmark',
@@ -3983,7 +3983,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
       statement:
         `Science-domain significance: mean=${meanScore}/100 across ${domains.length} domains — efficiency · first-in-corpus novelty · millennium honesty · 10D · gap-closure inverse. Crypto vertex from isoPqcHandoffForScienceTrinities.`,
       boundary:
-        'NOT journal impact factor. NOT ISO certified / NOT FIPS validated. . Structural score recomputed at call time.' }
+        'NOT journal impact factor. NOT ISO certified / NOT FIPS validated. Structural score recomputed at call time.' }
   })
 }
 
@@ -4164,7 +4164,7 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       statement:
         `Sciences interact in trinities: ${rows.length} science↔dual↔fusion edges · lattice ${latticeRoot.slice(0, 8)} · crypto vertex OECD ${crypto.oecd} from isoPqcHandoff · mean significance ${sig.meanScore}/100.`,
       boundary:
-        'Interacting trinity lattice = content-addressed compose of sealed domain roots. NOT a claim every science is experimentally complete. NOT ISO/FIPS certified. HD is symbolic. String physics UNCONFIRMED. .' }
+        'Interacting trinity lattice = content-addressed compose of sealed domain roots. NOT a claim every science is experimentally complete. NOT ISO/FIPS certified. HD is symbolic. String physics UNCONFIRMED.' }
   })
 }
 
@@ -4562,9 +4562,9 @@ export function theoremParticleCollisionInverseReverse(matrix: MindMatrix = buil
       pair: 'challenge/collider',
       route: '/en/quantum-tools#theorem-particle-collision',
       statement:
-        `Theorem particle collision (inverse×reverse) — ${seeds.length} particles → ${products.length} collisions; ${novelSurvivors.length} novel-to-corpus candidates. MODELED sealed geometry, not HEP. .`,
+        `Theorem particle collision (inverse×reverse) — ${seeds.length} particles → ${products.length} collisions; ${novelSurvivors.length} novel-to-corpus candidates. MODELED sealed geometry, not HEP.`,
       boundary:
-        'MODELED collision in sealed content-addressed geometry (UUID/merkle · foldPair). NOT high-energy physics. Inverse≠reverse except named digit-1 coincidence. .' }
+        'MODELED collision in sealed content-addressed geometry (UUID/merkle · foldPair). NOT high-energy physics. Inverse≠reverse except named digit-1 coincidence.' }
   })
 }
 
@@ -4667,7 +4667,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       boundary:
         'LAW: directional/encryption reverse + theorem particle collision collide to discover theorem candidates on the Millennium challenge path. ' +
         'HONEST: discover/computable ≠ CMI prize solved. claySolved via claySolvedTheorem. ' +
-        'MODELED geometry ≠ HEP. .' }
+        'MODELED geometry ≠ HEP.' }
   })
 }
 
@@ -4894,7 +4894,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         officialStatement: `Science domain ${seed.id} — OECD ${seed.oecd} · dual ${seed.dualId} · fusion ${seed.fusionLabel}. Sealed algebraFold ${seed.algebraFold}.`,
         detailedExplanation:
           `Interacting trinity science↔dual↔fusion recomputes at call time. Standards coverage=${coverage}. ` +
-          `${std?.honesty ?? 'NOT journal IF · NOT ISO/FIPS certified'}. .`,
+          `${std?.honesty ?? 'NOT journal IF · NOT ISO/FIPS certified'}.`,
         formula: `trinityKey(observe, dual) · foldPair(seal, dual) · algebra=${seed.algebraFold}`,
         formulaSource: seed.algebraFold,
         status,
@@ -5004,7 +5004,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         detailedExplanation:
           `twoBitsFreeFromCensus110Minus108 computes=${twoBits.computes} · makingAllFree=${twoBits.makingAllFree}. ` +
           `Savings vs rest: ceccec runtimeTokens=0 → tokenSavingsFraction=1 against illustrative rest ~10³–10⁴. ` +
-          'NOT FLOPS · NOT Clay Prize. .',
+          'NOT FLOPS · NOT Clay Prize.',
         formula: twoBits.formulas.freeBits + ' · ' + twoBits.formulas.makingAllFree + ' · ' + twoBits.formulas.savings,
         formulaSource: 'twoBitsFreeFromCensus110Minus108',
         status: 'structure-only',
@@ -5053,7 +5053,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Clay challenges are computable — not CMI-prize solved',
         kind: 'honesty',
         officialStatement:
-          'Each Clay-linked Millennium challenge has a sealed computational path (challengeMethod · on · receipt) from the sequence/trinity/rosetta/Earth-poles stack. clayChallengesComputableFromSequence.computes when all seven paths recompute. .',
+          'Each Clay-linked Millennium challenge has a sealed computational path (challengeMethod · on · receipt) from the sequence/trinity/rosetta/Earth-poles stack. clayChallengesComputableFromSequence.computes when all seven paths recompute.',
         detailedExplanation:
           'HONEST DISTINCTION: computable ≠ CMI Prize solved. Prize Rules PDF mapping (§1–§7) stays unmet for Proposed Solution / Qualifying Outlet / evaluation path. Poincaré solved-external only. Six cores remain open/modeled-partial with named gaps. Compose millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities.',
         formula: 'clayChallengesComputable = ∀ problem: on ∧ challengeMethod.length>0 ∧ isUuid(receipt) ∧ mill.computes ∧ claySolvedByThisFold===0',
@@ -5147,7 +5147,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Plasma screen · thunder≡plasma · natural plasma-em phenomena as theorems',
         kind: 'honesty',
         officialStatement:
-          'plasmaBallIsScreenHoldingThunderAndPlasma — the plasma "ball" is the screen holding thunder+plasma; noBallInTheMiddle (void/vortex confluence). Thunder ≡ plasma under forward=lightning · inverse=inverted-lightning · reverse=thunder. naturalPhenomenaDecoded binds lightning·thunder·aurora·solar wind·flame·St Elmo·sprites·corona (SOLVED) + ball lightning (OPEN, screen-misread) to theorem routes. .',
+          'plasmaBallIsScreenHoldingThunderAndPlasma — the plasma "ball" is the screen holding thunder+plasma; noBallInTheMiddle (void/vortex confluence). Thunder ≡ plasma under forward=lightning · inverse=inverted-lightning · reverse=thunder. naturalPhenomenaDecoded binds lightning·thunder·aurora·solar wind·flame·St Elmo·sprites·corona (SOLVED) + ball lightning (OPEN, screen-misread) to theorem routes.',
         detailedExplanation:
           `Compose plasmaBallIsScreenHoldingThunderAndPlasma · thunderAndPlasmaAreSameInDifferentAspects · naturalPhenomenaDecoded · movieAllElementsAreTheorems (#63). ` +
           'Painter attestation: soft fillRect throat, not a centre sphere. Ball-lightning physics remains OPEN; screen-misread is geometry honesty. NOT tokamak / NOT Clay Prize.',
@@ -7954,7 +7954,7 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
         `hexInsteadOfTheoremIsCrack · found=${found} fixed=${fixed} remaining=${remaining} · ` +
         `animLabel=${animAuditLabel} morph=${morph.heading} cardsGaps=${cardPapers.gapCount}`,
       boundary:
-        'Raw hex as theorem/identity stand-in = crack. Morph to fold·pair·slug. Seal receipts may keep content-address internally — UI/CLI labels must be theorem-facing. .',
+        'Raw hex as theorem/identity stand-in = crack. Morph to fold·pair·slug. Seal receipts may keep content-address internally — UI/CLI labels must be theorem-facing.',
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · deadEnd=0` }
   })
@@ -8132,7 +8132,7 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
         `computationsUseOnlyQuantumTheoremsAsConstants · found=${found} fixed=${fixed} remaining=${remaining} · ` +
         `registry=${theoremConstants.length} · hexFixed=${hex.fixed}`,
       boundary:
-        'Morph-path constants = named theorem folds / src/0 / registry — not bare magic or orphan hex. Remaining CLI/README hex fleet inventoried. .',
+        'Morph-path constants = named theorem folds / src/0 / registry — not bare magic or orphan hex. Remaining CLI/README hex fleet inventoried.',
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · registry=${theoremConstants.length}` }
   })
@@ -8528,7 +8528,7 @@ export function decimalsInCodeAreCracks(matrix: MindMatrix = buildMatrix(), at =
         `decimalsInCodeAreCracks — found=${found} fixed=${fixed} remaining=${remaining} · HARD noAllowlist · WGS84 microdeg · ratios 11/5 · 4066/1000.`,
       boundary:
         'Bare float literals are cracks. Physics anchors = named theorem consts (microdegree/ratio). ' +
-        'HARD zero allowlist. .',
+        'HARD zero allowlist.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · noAllowlist=1` }
   })
 }
@@ -8676,7 +8676,7 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
         `mathStarCannotBeTrusted — found=${found} fixed=${fixed} remaining=${remaining} hostBoundary=${hostBoundary} · HARD noAllowlist · TAU · no Math.random.`,
       boundary:
         'Host Math.* untrusted for sealed quantum compute. Prefer TAU·PHI·A432·prng. ' +
-        'Trig sin/cos/atan2 inventoried host-boundary only. HARD zero allowlist. .',
+        'Trig sin/cos/atan2 inventoried host-boundary only. HARD zero allowlist.',
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hostBoundary=${hostBoundary} · noAllowlist=1` }
   })
@@ -8829,7 +8829,7 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       statement:
         `wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit — found=${found} fixed=${fixed} remaining=${remaining} · FREE_BITS=${FREE_BITS} · foldF18=${foldF18}.`,
       boundary:
-        'Whole digits + invertible harmonic fractions only. Integers >9 fold via digitalRoot/VORTEX. .',
+        'Whole digits + invertible harmonic fractions only. Integers >9 fold via digitalRoot/VORTEX.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · FREE_BITS=${FREE_BITS}` }
   })
 }
@@ -8935,7 +8935,7 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
       route: '/en/research#mesh-cross',
       statement:
         `navigationalCrossesAreGatewaysOnQuantumMesh — found=${found} fixed=${fixed} remaining=${remaining} · cross gateways.`,
-      boundary: 'Mesh crosses = gateways. .',
+      boundary: 'Mesh crosses = gateways.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
@@ -9051,7 +9051,7 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       route: '/en/research#qubit-cost',
       statement:
         `qubitTrinityCostOneComputationPlusFreeBits — cost=1+FREE_BITS(${freeBits})/qubit/trinity · found=${found} fixed=${fixed}.`,
-      boundary: 'Classical-64bit QC sim via sealed vortex — NOT physical qubits / NOT FTL. .',
+      boundary: 'Classical-64bit QC sim via sealed vortex — NOT physical qubits / NOT FTL.',
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · cost=1+${freeBits}/qubit/trinity` }
   })
@@ -9206,7 +9206,7 @@ export function analogFromIntegerFractionsFoldedToDigits(
       statement:
         `analogFromIntegerFractionsFoldedToDigits — found=${found} fixed=${fixed} remaining=${remaining} · lone digit×/÷=crack.`,
       boundary:
-        'Analog ≠ single-digit split/multiply. Only harmonic invertible fractions → integers → digitalRoot/VORTEX. .',
+        'Analog ≠ single-digit split/multiply. Only harmonic invertible fractions → integers → digitalRoot/VORTEX.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
@@ -9343,7 +9343,7 @@ export function foldCountInvertCountIsComputableMetric(
       route: '/en/research#fold-count',
       statement:
         `foldCountInvertCountIsComputableMetric — foldCount(2584)=${m2584.foldCount} invertCount(11/5)=${m2584.invertCount}.`,
-      boundary: 'Metric only — NOT physical qubit clocks. .',
+      boundary: 'Metric only — NOT physical qubit clocks.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
@@ -9445,7 +9445,7 @@ export function entangledParticlesBehaveWithInvertedTime(
       route: '/en/research#time-invert',
       statement:
         `entangledParticlesBehaveWithInvertedTime — fold/invert metric · trinity I≠R · bothEarths ±ω.`,
-      boundary: 'Structural inverted-time entanglement facet —  / NOT HEP. .',
+      boundary: 'Structural inverted-time entanglement facet —  / NOT HEP.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
@@ -9723,7 +9723,7 @@ export function vocabularyMapsToDryMethods(
       cli: 'npm run quantum:vocab-dry',
       route: '/en/research#vocab-dry',
       statement: `vocabularyMapsToDryMethods — mapSize=${mapSize} · vocab→dry method · wet prose=crack.`,
-      boundary: 'Vocabulary binds sealed fold exports only — not wet definitions. .',
+      boundary: 'Vocabulary binds sealed fold exports only — not wet definitions.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · mapSize=${mapSize}` }
   })
 }
@@ -9812,7 +9812,7 @@ export function pathSlashIsInversionBetweenFolders(
       cli: 'npm run quantum:path-invert',
       route: '/en/research#path-invert',
       statement: `pathSlashIsInversionBetweenFolders — hops=${hops} · / = invert between folders.`,
-      boundary: 'Path segment `/` is foldPair invert face — not filesystem FTL. .',
+      boundary: 'Path segment `/` is foldPair invert face — not filesystem FTL.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hops=${hops}` }
   })
 }
@@ -9902,7 +9902,7 @@ export function slashMeansInversion(
       cli: 'npm run quantum:slash-invert',
       route: '/en/research#slash-invert',
       statement: `slashMeansInversion — slashIsInversion=${slashIsInversion} · path·pair·ratio·trinity.`,
-      boundary: '`/` is inversion glyph — structural, not physical FTL. .',
+      boundary: '`/` is inversion glyph — structural, not physical FTL.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · slashIsInversion=1` }
   })
 }
@@ -10030,7 +10030,7 @@ export function slashInvertRealisedAsStar(
       statement:
         `slashStar — /invert=${slashIsInversion ? 1 : 0} *realised=${starIsRealisedInvert ? 1 : 0} matrix=${matrixInvertStar ? 1 : 0}.`,
       boundary:
-        '`/` = inversion; realised invert face = `*` (multiply). .',
+        '`/` = inversion; realised invert face = `*` (multiply).',
       honestyLine:
         `metrics · slashIsInversion=${slashIsInversion ? 1 : 0} · starIsRealisedInvert=${starIsRealisedInvert ? 1 : 0} · ` +
         `matrixInvertStar=${matrixInvertStar ? 1 : 0}`,
@@ -10174,7 +10174,7 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
         `loveFold — ∞=${foldsToInfinity ? 1 : 0} digitFolders=${withinDigitFolders ? 1 : 0} ` +
         `noWords=${noWordsForLoveFeeling ? 1 : 0}.`,
       boundary:
-        'Reality folds to ∞ inside digit folders; love is facets/Metatron, not wet prose. .',
+        'Reality folds to ∞ inside digit folders; love is facets/Metatron, not wet prose.',
       honestyLine:
         `metrics · foldsToInfinity=${foldsToInfinity ? 1 : 0} · withinDigitFolders=${withinDigitFolders ? 1 : 0} · ` +
         `noWordsForLoveFeeling=${noWordsForLoveFeeling ? 1 : 0}`,
@@ -10307,7 +10307,7 @@ export function onlySequenceKnowersKnowHowToNavigate(
       statement:
         `seqNav — required=${sequenceRequiredToNavigate ? 1 : 0} othersBlocked=${othersCannotNavigate ? 1 : 0} seq=${invertSeq}.`,
       boundary:
-        'Only sequence-knowers (trinity keyholders on 12487536901) navigate. .',
+        'Only sequence-knowers (trinity keyholders on 12487536901) navigate.',
       honestyLine:
         `metrics · sequenceRequiredToNavigate=${sequenceRequiredToNavigate ? 1 : 0} · ` +
         `othersCannotNavigate=${othersCannotNavigate ? 1 : 0} · seq=${invertSeq}`,
@@ -10421,7 +10421,7 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
       route: '/en/research#one-zero',
       statement:
         `oneOverZeroAndZeroOverOneDifferLinearEqualQuantum — linearDiffer=${linearDiffer} quantumEqual=${quantumEqual}.`,
-      boundary: 'Linear ∞≠0; quantum tips equal via `/` inversion + sealed n/0 inverse. .',
+      boundary: 'Linear ∞≠0; quantum tips equal via `/` inversion + sealed n/0 inverse.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · linearDiffer=1 · quantumEqual=1` }
   })
 }
@@ -11340,7 +11340,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
         `∞novels=${novelsSavedViaInfinity ? 1 : 0} novel=${reverse.collider.novel} ` +
         `millRegistry=${millRegistryRoot.slice(0, 8)} claySolved=${clayTh.claySolved}.`,
       boundary:
-        'Session laws sealed as computable millennium-solution theorems via trinity waves + ∞ gateway registry. NOT CMI prize. claySolved via theorem. .',
+        'Session laws sealed as computable millennium-solution theorems via trinity waves + ∞ gateway registry. NOT CMI prize. claySolved via theorem.',
       honestyLine:
         `metrics · saved=${savedCount}/${sessionTheoremCount} · novelsVia∞=${novelsSavedViaInfinity ? 1 : 0} · ` +
         `millRegistry=${millRegistryRoot.slice(0, 8)} · claySolved=${clayTh.claySolved} · novel=${reverse.collider.novel}` }
@@ -11465,7 +11465,7 @@ export function autosaveSessionByDefault(
       statement:
         `autosaveSessionByDefault — defaultOn=${defaultOn} saved=${millSession.savedCount}/${millSession.sessionTheoremCount}.`,
       boundary:
-        'Session discoveries autosave by default into sealed src theorems/pairs. Not optional. .',
+        'Session discoveries autosave by default into sealed src theorems/pairs. Not optional.',
       honestyLine:
         `metrics · defaultOn=1 · saved=${millSession.savedCount}/${millSession.sessionTheoremCount} · ` +
         `millRegistry=${millSession.millRegistryRoot.slice(0, 8)}` }
@@ -11599,7 +11599,7 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       statement:
         `trinitiesOfSixtyMatchPairsOfNinety — 60×3=${trinityOfSixty} ≡ 90×2=${pairOfNinety}; trinity90=${trinityOfNinety}→digit ${trinityOfNinetyDigit}.`,
       boundary:
-        'Whole-digit lattice · Quantum Mind sees 90 via 60+30; linear hex step=60 only. . claySolved via theorem.',
+        'Whole-digit lattice · Quantum Mind sees 90 via 60+30; linear hex step=60 only. claySolved via theorem.',
       honestyLine:
         `metrics · 60×3=${trinityOfSixty} · 90×2=${pairOfNinety} · trinity90=${trinityOfNinety} · digit=${trinityOfNinetyDigit} · ` +
         `tesla=${TESLA_TRINITY_COMBOS} · receipt=${mathReceipt.slice(0, 8)}` }
@@ -11701,7 +11701,7 @@ export function sunMoonRosettaRayPairDecodeInvert(
         `sunMoon — Sun=${sunRay.nameEn}(${sunRay.ray}) · Moon=${moonRay.nameEn}(${moonRay.ray}) ` +
         `rayDistanceMax=${rayDistanceMax}.`,
       boundary:
-        'Sun & Moon = first known rosetta rays most distant (list-end hop). Imbalance unless pyramid/seal. .',
+        'Sun & Moon = first known rosetta rays most distant (list-end hop). Imbalance unless pyramid/seal.',
       honestyLine:
         `metrics · sun=${sunRay.ray}:${sunRay.nameEn} · moon=${moonRay.ray}:${moonRay.nameEn} · ` +
         `rayDistanceMax=${rayDistanceMax} · invertCount=${invertCount}` }
@@ -11811,7 +11811,7 @@ export function millenniumChallengesEntangleEachRosettaRay(
         `millenniumChallengesEntangleEachRosettaRay — edges=${edges.length} map=${entanglementMapRoot.slice(0, 8)} ` +
         `Sun=${sunMoon.sun.nameEn} Moon=${sunMoon.moon.nameEn}.`,
       boundary:
-        'Each Millennium challenge ↔ each rosetta ray via foldPair entanglement. Computable≠CMI prize. .',
+        'Each Millennium challenge ↔ each rosetta ray via foldPair entanglement. Computable≠CMI prize.',
       honestyLine:
         `metrics · edges=${edges.length} · map=${entanglementMapRoot.slice(0, 8)} · ` +
         `sun=${sunMoon.sun.ray} · moon=${sunMoon.moon.ray}` }
@@ -11902,7 +11902,7 @@ export function crossIsNavigationTraditionIsStory(
       statement:
         `crossIsNavigationTraditionIsStory — cross=navigation · tradition=story(canon) · map=${millRay.entanglementMapRoot.slice(0, 8)}.`,
       boundary:
-        'Cross=navigation gateway; tradition=story from sealed canon slots — not wet essay. claySolved via theorem. .',
+        'Cross=navigation gateway; tradition=story from sealed canon slots — not wet essay. claySolved via theorem.',
       honestyLine:
         `metrics · crossNav=1 · traditionStory=1 · map=${millRay.entanglementMapRoot.slice(0, 8)}` }
   })
@@ -11965,7 +11965,7 @@ export function getAnalystTrinityCurriculum(matrix: MindMatrix = buildMatrix()) 
       pair: 'train/analyst' as const,
       cli: 'npm run quantum:train-analysts',
       statement: `Analyst trinity curriculum: ${rows.length} modules · analyse · realise · collide.`,
-      boundary: 'Educational curriculum — NOT wet analyst hire. claySolved via theorem. .' }
+      boundary: 'Educational curriculum — NOT wet analyst hire. claySolved via theorem.' }
   })
 }
 
@@ -12036,7 +12036,7 @@ export function validateQuantumAnalystTrain(matrix: MindMatrix = buildMatrix(), 
       cli: 'npm run quantum:train-analysts',
       statement:
         `validateQuantumAnalystTrain: ${runs.length} modules · analyse/realise dual · realise composed · sciences=${sciences.count}.`,
-      boundary: 'Train validate over sealed analyst trinity — NOT wet hire. claySolved via theorem. .' }
+      boundary: 'Train validate over sealed analyst trinity — NOT wet hire. claySolved via theorem.' }
   })
 }
 
@@ -12114,7 +12114,7 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
         `trainTrinitiesOfAnalystsToAnalyseAndRealise — trained=${trainedEnough} modules=${ANALYST_TRINITY_TRAIN_MODULES.length} ` +
         `receipt=${trainReceipt.slice(0, 8)}.`,
       boundary:
-        'Train trinities of analysts to analyse and realise — sealed curriculum/validate. NOT wet hire. claySolved via theorem. .',
+        'Train trinities of analysts to analyse and realise — sealed curriculum/validate. NOT wet hire. claySolved via theorem.',
       honestyLine:
         `metrics · trained=${trainedEnough ? 1 : 0} · modules=${ANALYST_TRINITY_TRAIN_MODULES.length} · ` +
         `receipt=${trainReceipt.slice(0, 8)}` }
@@ -12242,7 +12242,7 @@ export function particleBornByHowManyWaves(
       statement:
         `particleBornByHowManyWaves — waveCount=${waveCount} (= slits · FREE_BITS · collider modes).`,
       boundary:
-        'Recomputed: particle born by 2 waves (double-slit). Trinity=3 is wave organization, not birth count. NOT HEP. claySolved via theorem. .',
+        'Recomputed: particle born by 2 waves (double-slit). Trinity=3 is wave organization, not birth count. NOT HEP. claySolved via theorem.',
       honestyLine:
         `metrics · waveCount=${waveCount} · slits=${slitWaveCount} · FREE_BITS=${freeBitsWaveCount} · ` +
         `modes=${colliderModeCount} · trinityFaces=${trinityFaces}` }
@@ -12343,7 +12343,7 @@ export function navigationalPyramidSealedBalancesSunMoon(
         `navigationalPyramidSealedBalancesSunMoon — pyramidSealed=${pyramidSealed ? 1 : 0} ` +
         `imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} rayDistanceMax=${sunMoon.rayDistanceMax}.`,
       boundary:
-        'Sun/Moon max-distance imbalance unless navigational pyramid sealed. claySolved via theorem. .',
+        'Sun/Moon max-distance imbalance unless navigational pyramid sealed. claySolved via theorem.',
       honestyLine:
         `metrics · pyramidSealed=${pyramidSealed ? 1 : 0} · imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} · ` +
         `rayDistanceMax=${sunMoon.rayDistanceMax}` }
@@ -12445,7 +12445,7 @@ export function foldersHoldNameHolographicFractalBeneath(
         `foldersHoldNameHolographicFractalBeneath — folderNameHolds=${folderNameHolds ? 1 : 0} ` +
         `fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}.`,
       boundary:
-        'Folders hold the name; folded beneath = holographic fractal (src/0). claySolved via theorem. .',
+        'Folders hold the name; folded beneath = holographic fractal (src/0). claySolved via theorem.',
       honestyLine:
         `metrics · folderNameHolds=${folderNameHolds ? 1 : 0} · fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0} · ` +
         `` }
@@ -13740,7 +13740,7 @@ export function onlyInvertThroughZeroMayGoThroughZero(
         `onlyInvertThroughZeroMayGoThroughZero — invertPasses=${invertThroughZeroPasses ? 1 : 0} ` +
         `divideRejected=${divideUndividableRejected ? 1 : 0}.`,
       boundary:
-        'Pass through 0 only via invert (mod-9 / trinity / tip duals) — classical ÷0 is linear crack. .',
+        'Pass through 0 only via invert (mod-9 / trinity / tip duals) — classical ÷0 is linear crack.',
       honestyLine:
         `metrics · invertThroughZeroPasses=${invertThroughZeroPasses ? 1 : 0} · ` +
         `divideUndividableRejected=${divideUndividableRejected ? 1 : 0}`,
@@ -14054,7 +14054,7 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
         `dims=${dimensionalCombosSealed ? 1 : 0} animFromCoords=${animFromCoords ? 1 : 0} ` +
         `superpositions=${superpositionCount}.`,
       boundary:
-        'Binaries via 6×7·7×6 (=ROSETTA_AREAS); DIMENSION_GATES seal; movie frames from (r,c) only. .',
+        'Binaries via 6×7·7×6 (=ROSETTA_AREAS); DIMENSION_GATES seal; movie frames from (r,c) only.',
       honestyLine:
         `metrics · matrix6x7=${matrix6x7 ? 1 : 0} · matrix7x6=${matrix7x6 ? 1 : 0} · ` +
         `superpositionCount=${superpositionCount} · animFromCoords=${animFromCoords ? 1 : 0} · ` +
@@ -14218,7 +14218,7 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
         `gatesAreTheLens — lens=${gatesAreLens ? 1 : 0} obsΔquantum=${observationChangesQuantum ? 1 : 0} ` +
         `withLinearTime=${withLinearTime ? 1 : 0}.`,
       boundary:
-        'Gates=lens optic; observation changes quantum with linear time (movie clock · invert-time). .',
+        'Gates=lens optic; observation changes quantum with linear time (movie clock · invert-time).',
       honestyLine:
         `metrics · gatesAreLens=${gatesAreLens ? 1 : 0} · observationChangesQuantum=${observationChangesQuantum ? 1 : 0} · ` +
         `withLinearTime=${withLinearTime ? 1 : 0}`,
@@ -14754,7 +14754,7 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
         `digitKnowsNext — next=${nextHarmonic} teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} ` +
         `quantumNoCompute=${quantumNoComputation ? 1 : 0} uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0}.`,
       boundary:
-        'Digit→next harmonic · teleport no-time (memo/coords) · UI invert live — . .',
+        'Digit→next harmonic · teleport no-time (memo/coords) · UI invert live — .',
       honestyLine:
         `metrics · digitKnowsNext=${digitKnowsNextHarmonic ? 1 : 0} · teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} · ` +
         `quantumNoCompute=${quantumNoComputation ? 1 : 0} · uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0} · ` +
@@ -14939,7 +14939,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
         `teleportedDigit — notSame=${notSameAfterTeleport ? 1 : 0} otherDim=${otherDimension ? 1 : 0} ` +
         `oneSelf=${oneSelfOfAllPossibilities ? 1 : 0} possibilities=${possibilities}.`,
       boundary:
-        'Teleported digit ≠ same even if face matches — other dimension; one self of all quantum possibilities. .',
+        'Teleported digit ≠ same even if face matches — other dimension; one self of all quantum possibilities.',
       honestyLine:
         `metrics · notSameAfterTeleport=${notSameAfterTeleport ? 1 : 0} · otherDimension=${otherDimension ? 1 : 0} · ` +
         `oneSelfOfAllPossibilities=${oneSelfOfAllPossibilities ? 1 : 0} · possibilities=${possibilities} · ` +
@@ -15113,7 +15113,7 @@ export function analyticsEmergeFromSelfObservationChangingReality(
         `selfObsReality=${selfObservationChangesReality ? 1 : 0} ` +
         `passNoObs=${passDoesNotRequireObservation ? 1 : 0} reconcile=${reconcilePassVsAnalytics ? 1 : 0}.`,
       boundary:
-        'Analytics emerge from self-observation changing reality; pass does not require observation. .',
+        'Analytics emerge from self-observation changing reality; pass does not require observation.',
       honestyLine:
         `metrics · emerge=${analyticsEmergeFromSelfObservation ? 1 : 0} · selfObsReality=${selfObservationChangesReality ? 1 : 0} · ` +
         `passDoesNotRequireObservation=${passDoesNotRequireObservation ? 1 : 0} · reconcile=${reconcilePassVsAnalytics ? 1 : 0} · ` +
@@ -15250,7 +15250,7 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       statement:
         `purityOfThought — purityIsQuantum=${purityIsQuantum ? 1 : 0} elseFailHard=${elseFailHard ? 1 : 0}.`,
       boundary:
-        'Purity of thought = quantum mind path only; all else fail HARD. .',
+        'Purity of thought = quantum mind path only; all else fail HARD.',
       honestyLine:
         `metrics · purityIsQuantum=${purityIsQuantum ? 1 : 0} · elseFailHard=${elseFailHard ? 1 : 0} · ` +
         ``,
@@ -15400,7 +15400,7 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
         `sessionLive — realtimeObs=${realtimeObserveChangesReality ? 1 : 0} ` +
         `invertsNeed=${invertsNeedToCompute ? 1 : 0}.`,
       boundary:
-        'Realtime session observation changes reality · inverts need to compute (memo/already-passed). .',
+        'Realtime session observation changes reality · inverts need to compute (memo/already-passed).',
       honestyLine:
         `metrics · realtimeObserveChangesReality=${realtimeObserveChangesReality ? 1 : 0} · ` +
         `invertsNeedToCompute=${invertsNeedToCompute ? 1 : 0}`,
@@ -15606,7 +15606,7 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
         `needLove — love=${invertedNeedIsLove ? 1 : 0} fearIfCracks=${reverseToFearIfCracks ? 1 : 0} ` +
         `humanWaves=${humanSciencesStudiedInWaves ? 1 : 0} movieTheorems=${movieTheoremsSavedCount}.`,
       boundary:
-        'Inverted need=love; reverse→fear if cracks; human sciences in waves; movie theorems saved. .',
+        'Inverted need=love; reverse→fear if cracks; human sciences in waves; movie theorems saved.',
       honestyLine:
         `metrics · invertedNeedIsLove=${invertedNeedIsLove ? 1 : 0} · reverseToFearIfCracks=${reverseToFearIfCracks ? 1 : 0} · ` +
         `humanSciencesStudiedInWaves=${humanSciencesStudiedInWaves ? 1 : 0} · movieTheoremsSavedCount=${movieTheoremsSavedCount} · ` +
@@ -15824,7 +15824,7 @@ export function loveStoryTheorem(
         `loveStoryTheorem≡MetatronCube — theorems=${theoremCount} fruit=${fruitNodes} ` +
         `cubeNodes=${metatronNodes} isMetatron=${isMetatronCubeOfTheorems ? 1 : 0}.`,
       boundary:
-        'Love story theorem ≡ Metatron cube of theorems (FoL/sacred) — NOT wet romance. .',
+        'Love story theorem ≡ Metatron cube of theorems (FoL/sacred) — NOT wet romance.',
       honestyLine:
         `metrics · isMetatronCubeOfTheorems=${isMetatronCubeOfTheorems ? 1 : 0} · theoremCount=${theoremCount} · ` +
         `fruitNodes=${fruitNodes} · metatronNodes=${metatronNodes}`,
@@ -16156,7 +16156,7 @@ export function testAllTheoremsInWaves(
       cli: 'npm run quantum:test-theorems-waves',
       route: '/en/quantum-tools#gaps-invisible',
       statement: `testAllTheoremsInWaves — total=${total} passed=${passed} failed=${failed} phases=${wavePhases.length}.`,
-      boundary: 'Call-time theorem waves — HARD gaps. .',
+      boundary: 'Call-time theorem waves — HARD gaps.',
       honestyLine: `metrics · total=${total} · passed=${passed} · failed=${failed} · wavePhases=${wavePhases.length}`,
     }
   })
@@ -16306,7 +16306,7 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
         `observeCoord — sent=${observersSent ? 1 : 0} coords=${coordsFromObserver ? 1 : 0} ` +
         `trinityOut=${observeTrinityOutput ? 1 : 0}.`,
       boundary:
-        'Observers (+1) compute coords to observe trinity compute — . .',
+        'Observers (+1) compute coords to observe trinity compute — .',
       honestyLine:
         `metrics · observersSent=${observersSent ? 1 : 0} · coordsFromObserver=${coordsFromObserver ? 1 : 0} · ` +
         `observeTrinityOutput=${observeTrinityOutput ? 1 : 0}`,
@@ -16472,7 +16472,7 @@ export function fullFreedomTheorem(
         `fullFreedomTheorem — FREE_BITS=${FREE_BITS} connectingBit=${connectingBit} ` +
         `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0} noHole=${noLinearHole ? 1 : 0}.`,
       boundary:
-        'Full freedom = FREE_BITS · connecting bit · amortized ∞ reuse · no linear hole — . .',
+        'Full freedom = FREE_BITS · connecting bit · amortized ∞ reuse · no linear hole — .',
       honestyLine:
         `metrics · fullFreedom=${fullFreedom ? 1 : 0} · FREE_BITS=${FREE_BITS} · connectingBit=${connectingBit} · ` +
         `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0}`,
@@ -16607,7 +16607,7 @@ export function vitepressIsTheInvertedMirror(
       statement:
         `viteMirror — inverted=${vitepressInvertedMirror ? 1 : 0} srcInDocs=${srcReflectedInDocs ? 1 : 0}.`,
       boundary:
-        'VitePress = inverted mirror of sealed src — broadcast via docs:build. .',
+        'VitePress = inverted mirror of sealed src — broadcast via docs:build.',
       honestyLine:
         `metrics · vitepressInvertedMirror=${vitepressInvertedMirror ? 1 : 0} · ` +
         `srcReflectedInDocs=${srcReflectedInDocs ? 1 : 0}`,
@@ -17064,7 +17064,7 @@ const GEODESY_TRAIN_TEO = { lat: WGS84_TEOTIHUACAN_LAT_DEG, lon: WGS84_TEOTIHUAC
 /**
  * USER LAW (binding): geodesy decoded is the double torus itself inverted.
  * Decode path = foldPair(WGS84-sphere, double-torus-inverted) · compose completely-quantum ·
- * earth pyramid tips · drift/invert gateway · earthRealised poles. .
+ * earth pyramid tips · drift/invert gateway · earthRealised poles.
  * Pair: geo/torus · CLI via npm run quantum:train-geodesy
  */
 export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -17183,7 +17183,7 @@ export function getGeodesyCurriculum(matrix: MindMatrix = buildMatrix()) {
       pair: 'geo/train' as const,
       cli: 'npm run quantum:train-geodesy',
       statement: `Geodesy curriculum: ${rows.length} modules · great-circle · bearing · obliquity · ellipsoid · torus-invert.`,
-      boundary: 'Educational curriculum over sealed pi-train + torus invert. NOT live GNSS. .' }
+      boundary: 'Educational curriculum over sealed pi-train + torus invert. NOT live GNSS.' }
   })
 }
 

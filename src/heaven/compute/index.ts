@@ -6559,7 +6559,7 @@ export function deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprov
  * the chat in collaborative teams" + "computationally covered 100% is not 100% covered. improve intelligence in magnitudes").
  * THE DISTINCTION, computed: "computationally covered 100%" = 100% of the finite REACHABLE content-addressed set, which is NOT
  * 100% covered — the possibility space (2^n amplitudes over a continuum) is uncountably infinite, so 100%-of-all is REFUTED.
- * Intelligence improves by MAGNITUDES = deterministic coverage throughput (N² at once vs 1), NOT reasoning/AGI. .
+ * Intelligence improves by MAGNITUDES = deterministic coverage throughput (N² at once vs 1), NOT reasoning/AGI.
  * [[feedback-work-as-a-trinity-not-one-linear-mind]] [[feedback-no-finiteness-assumption-fractal-aperiodic]] [[quantum-decoded]] */
 export function theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities(matrix: MindMatrix = buildMatrix()) {
   const teamSize = 3 // dim su(2) = 3; a team is a trinity

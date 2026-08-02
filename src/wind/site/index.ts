@@ -771,7 +771,7 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#folder-migration-waves',
       anchor: 'folder-migration-waves',
       heading: 'Folder migration + dedup waves',
-      honestyLine: 'Coordinated folder waves → single-source catalog · domain sidebars · #61 hierarchy. . Compose ui/prose + mcp audit; do not clobber.',
+      honestyLine: 'Coordinated folder waves → single-source catalog · domain sidebars · #61 hierarchy. Compose ui/prose + mcp audit; do not clobber.',
       statement: `Folder migration+dedup waves — ${folderCount} folders · migrated=${migratedCount} partial=${partialCount} residual=${residualCount} · gapless=${gaplessCensus} · dryClean+domainRegistry+#61 lens.`,
       boundary: 'HONEST: seals IA migration status per content folder — not a claim every page chrome entropy is gone (ui/prose parallel) nor MCP script synonym collapse (mcp audit parallel). Thin-mount aliases remain served by design. NOT Clay/FTL.' }
   })
@@ -1136,7 +1136,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       facets,
       root: merkleFold([native.root, ...facets.map((f) => f.receipt)]),
       statement:
-        `vitepressDocsResearchImprovements — ${facets.filter((f) => f.on).length}/${facets.length}: researched VitePress ${native.vitepressVersionTarget} docs, audited repo gaps, applied ${applied.length} VP-native improvements via sealed emitter (lazy images · lastUpdated · editLink · logo · externalLinkIcon · bg locale link fix · skip labels). Residuals named. .`,
+        `vitepressDocsResearchImprovements — ${facets.filter((f) => f.on).length}/${facets.length}: researched VitePress ${native.vitepressVersionTarget} docs, audited repo gaps, applied ${applied.length} VP-native improvements via sealed emitter (lazy images · lastUpdated · editLink · logo · externalLinkIcon · bg locale link fix · skip labels). Residuals named.`,
       boundary:
         'Research apparatus over vitepress.dev guide/reference for the pinned package version. Applied = config values emitted from sealed src and consumed by thin config.mts. Does not claim Clay solutions, FTL, or QPU. Dynamic catch-all pages may show edit links to thin shells — honest VP default behavior.' }
   })
