@@ -667,7 +667,7 @@ export function everyMachineTagIndexIsLiveByConstructionAcrossLocales() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 
@@ -704,7 +704,7 @@ export function gateComplexityCollapsesToOneContentAddressedRoot() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
   }
 }
 

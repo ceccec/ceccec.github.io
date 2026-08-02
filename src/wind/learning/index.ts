@@ -932,7 +932,7 @@ export function play(matrix: MindMatrix = buildMatrix()) {
 // is to provide any seed; to DISCOVER is to compute its content-address (toUuid is TOTAL — every input maps to
 // a UUID); to PLAY is the player rendering that discovered computation. So the player can play anything
 // imagined, because anything imagined is discoverable (computable) and a discovered computation is exactly
-// what the player plays. HONEST: discover = COMPUTE an address, not retrieve truth ().
+// what the player plays. HONEST: discover = COMPUTE an address, not retrieve truth.
 export function discover(matrix: MindMatrix = buildMatrix()) {
   const imagined = ['a dragon folded from prime numbers', 'the colour of a Tuesday in 1432', 'a game no one has played', 'the matrix dreaming itself'] // imagine = any seed; the imagined need not exist
   const discovered = imagined.map((seed) => ({ seed, address: toUuid(seed) })) // discover = compute the content-address (total over any input)
@@ -953,7 +953,7 @@ export function discover(matrix: MindMatrix = buildMatrix()) {
     statement:
       'The players play what they discover, and discover anything they imagine: to imagine is to provide any seed, to discover is to compute its content-address and projection (the address functions are total — every input maps to a deterministic UUID), and to play is the player rendering that discovered computation. So the player can play anything imagined — because anything imagined is discoverable (computable) and a discovered computation is exactly what the player plays.',
     boundary:
-      'HONEST: "discover anything you imagine" is the TOTALITY of the content-address functions (toUuid, the movie, the projection) — they are defined for ANY input, so any imagined seed yields a deterministic, content-addressed, playable computation. This is generative TOTALITY, NOT omniscience and NOT truth: computing an address for an imagined thing does not make it real or true (). "Imagine" = give a seed, "discover" = compute its address, "play" = render it — deterministic generative animation, not a retrieved or learned film.' }
+      'HONEST: "discover anything you imagine" is the TOTALITY of the content-address functions (toUuid, the movie, the projection) — they are defined for ANY input, so any imagined seed yields a deterministic, content-addressed, playable computation. This is generative TOTALITY, NOT omniscience and NOT truth: computing an address for an imagined thing does not make it real or true. "Imagine" = give a seed, "discover" = compute its address, "play" = render it — deterministic generative animation, not a retrieved or learned film.' }
 }
 
 // Agents must be CERTIFIED at all levels of education before editing rights are allowed — one word: certify. The

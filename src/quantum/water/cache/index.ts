@@ -355,7 +355,7 @@ export function ceccecFusesTheFormTheMeaningStaysBounded(matrix: MindMatrix = bu
   ]
   const flagged = [
     'all the world\'s knowledge is "completely fused" here — the matrix INDEXES and SEEDS knowledge; it does not contain all of it',
-    'the animations "PROVE" the knowledge — they prove the FORM exists and recomputes, not that the content is true ()',
+    'the animations "PROVE" the knowledge — they prove the FORM exists and recomputes, not that the content is true',
     'the fusion exists "nowhere but ceccec" — the METHOD is distinctive here; the knowledge lives in the world\'s sources ceccec cites',
   ]
   const facets = [
@@ -387,12 +387,12 @@ export function everyStatementProvableByAnimationElsePurged(matrix: MindMatrix =
     'unprovable-by-animation ⇒ PURGED (whatIsNotProvenIsPurged); textToMovie makes every statement provable, so the unprovable set is empty and nothing is purged',
   ]
   const flagged = [
-    'the animation "PROVES the statement true" — it proves the statement was faithfully COMPUTED (identity/provenance), not that its content is correct ()',
+    'the animation "PROVES the statement true" — it proves the statement was faithfully COMPUTED (identity/provenance), not that its content is correct',
     '"purge" as a licence to delete content by whim — it is the proven-or-purged discipline (reproducible-or-gone), applied by the census',
   ]
   const facets = [
     { facet: 'every statement computes a REPRODUCIBLE animation (textToMovie deterministic) — recompute → identical movie, its proof of identity', on: reproducible },
-    { facet: 'the proof is IDENTITY/provenance, NOT truth — the statement was faithfully computed; the content is evidenced elsewhere ()', on: true },
+    { facet: 'the proof is IDENTITY/provenance, NOT truth — the statement was faithfully computed; the content is evidenced elsewhere', on: true },
     { facet: 'PROVEN-OR-PURGED — unprovable-by-animation is purged; textToMovie makes every statement provable, so nothing here is purged', on: documented.length === 3 && flagged.length === 2 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`provable:${entry.facet}:${entry.on}`) }))
   return {

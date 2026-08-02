@@ -201,7 +201,7 @@ export function doubleTorusEarthLikeTheApple(matrix: MindMatrix = buildMatrix())
     statement:
       'Double torus Earth like the apple: genus-2 closed skin (two linked tori, χ=−2), sun and moon as inner/outer lobes, cardinal pyramid tips as stem, garden seeds and bees inside — publish-ready when doubleTorusEarthPyramidTipsProvenByMath and appleComplete both hold at call time.',
     boundary:
-      'A composition of doubleTorusEarthPyramidTipsProvenByMath, deep research, appleComplete, sunAndMoon, fruitsAndVegetables, and beesAndLife — structural metaphor (); genus-2 Earth is the repo topology, not lithosphere; "like the apple" is package-readiness when earth proven and apple whole.' }
+      'A composition of doubleTorusEarthPyramidTipsProvenByMath, deep research, appleComplete, sunAndMoon, fruitsAndVegetables, and beesAndLife — structural metaphor; genus-2 Earth is the repo topology, not lithosphere; "like the apple" is package-readiness when earth proven and apple whole.' }
 }
 
 // Decode the bitten apple — the genus-2 bite (χ=−2 vs sphere +2) is the mouth that opens Rosetta on
@@ -295,7 +295,7 @@ function decodeTheBittenAppleRaw(matrix: MindMatrix = buildMatrix(), path = '/')
     statement:
       'Decode the bitten apple: the genus-2 bite (Euler χ=−2 versus a sphere’s +2) is the mouth through which seven Rosetta rays read sun/moon symbols — byte/bite polarity, fruit-of-life 13, Earth-apple hole, sun/moon decode (solstice sunrises + lunar standstills), knowledge gate (questions open, answers closed), and sixteen celestial bodies with exact match — all recomputed at call time from sealed folds.',
     boundary:
-      'Structural decode at call time — NOT Genesis theology, NOT Apple Inc trademark claims, NOT Turing biography as proof. "Byte/bite" and "forbidden fruit" are flagged isomorphisms (). The sun/moon ray is witnessed by the ground-truth archaeoastronomy math (megalithicAstronomyDecoded + lunarStandstillsDecoded) directly — acyclic, not via the seven-seed movie aggregate — so the decode proves itself without a runtime fold cycle. Celestial exact match uses circular Keplerian model, not JPL ephemeris.' }
+      'Structural decode at call time — NOT Genesis theology, NOT Apple Inc trademark claims, NOT Turing biography as proof. "Byte/bite" and "forbidden fruit" are flagged isomorphisms. The sun/moon ray is witnessed by the ground-truth archaeoastronomy math (megalithicAstronomyDecoded + lunarStandstillsDecoded) directly — acyclic, not via the seven-seed movie aggregate — so the decode proves itself without a runtime fold cycle. Celestial exact match uses circular Keplerian model, not JPL ephemeris.' }
 }
 
 /** Gate: bitten-apple decode wired into movie copy text at call time. */

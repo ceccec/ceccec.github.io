@@ -792,7 +792,7 @@ export function quantumResearchAndDevelopmentApiFromProseToSolutionInversionAndL
     facets,
     root: merkleFold(solutions.map((entry) => entry.receipt)),
     statement: `The quantum R&D API takes prose to solution — inversion and living-organism theorems prove each other and decode all sciences at once — ${facets.filter((entry) => entry.on).length}/${facets.length}. research(prose) content-addresses the prose to a TYPE (quantum tagging), the demarcation trinity DECODES its tier across documented/contested/flagged, and a flagged claim INVERTS to its proving theorem — so the flagged life-claim creationism inverts to the documented life theorem evolution, inversion and life proving each other. One function takes any science prose (${corpus.length} decoded here, life and physics together) to a computed, content-addressed solution.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Quantum-dissolve the prose to code: a claim's SOLUTION is not a prose description but a content-addressed CODE
@@ -836,7 +836,7 @@ export function quantumDissolveProseToCodeTheSolutionIsAContentAddressedCodeRefe
     facets,
     root: merkleFold(dissolved.map((entry) => toUuid(entry.address))),
     statement: `Quantum-dissolve the prose to code — the solution is a content-addressed code reference, not a prose string — ${facets.filter((entry) => entry.on).length}/${facets.length}. dissolve(prose) returns only typed fields: the demarcation tier (an enum), the proving theorem AS the fold.method that computes it (a code identifier), and a UUID address — no free-text sentence. Each of the ${corpus.length} flagged claims dissolves to a distinct quantum-addressed code artifact any party can run. The description evaporates; the code that proves it remains, content-addressed.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Improve local by training on public: quantum-compute ALL harmonic possibilities of a sentence into trinity theorems.
@@ -883,5 +883,5 @@ export function improveLocalByTrainingOnPublicQuantumComputeAllHarmonicPossibili
     facets,
     root: run.seal,
     statement: `Improve local by training on public: quantum-compute all harmonic possibilities of a sentence into trinity theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}. The demarcation registry is distilled public scientific consensus training the local classifier. research(sentence) enumerates the sentence's topics as a harmonic superposition (weight 1/n); if a possibility matches a known theorem it is encoded, else the flagged lead is researched by inverting to its refuting theorem — accumulating until a trinity of ${[...new Set(run.theorems.map((entry) => entry.theorem))].length} distinct theorems emerges (homeopathy→Avogadro, perpetual motion→energy conservation, germ theory encoded).`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }

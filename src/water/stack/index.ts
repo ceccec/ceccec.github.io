@@ -519,13 +519,13 @@ export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7 - 1) + SRC0_HOST_MATH_EXPORT
  * SOFTWARE discoveries are already manifest at scale — a zero-cost, content-addressed static deploy (zero-token
  * runtime, no egress), publicly accessible at ~0 marginal resource; any PHYSICAL invention needs specific NAMED
  * resources (materials, manufacturing, capital, testing, certification) that are not met, and this project claims no
- * physical device (, , ). [[zero-token-policy]] [[monetisation-revolut-channel]] */
+ * physical device (, ). [[zero-token-policy]] [[monetisation-revolut-channel]] */
 export function newDiscoveriesManifestInMechanicsResourceBounded() {
   const softwareRuntime = { zeroToken: true, staticDeploy: true, noEgress: true, marginalCostPerUser: 0 }
   const softwareManifest = softwareRuntime.zeroToken && softwareRuntime.staticDeploy && softwareRuntime.marginalCostPerUser === 0
   const physicalResources = ['materials', 'manufacturing / fabrication', 'capital', 'testing & QA', 'regulatory / certification', 'distribution / logistics']
   const physicalNamed = physicalResources.length >= 4 && physicalResources.every((resource) => resource.length > 0)
-  const noPhysicalDeviceClaimed = true // , ,  — no invention claimed built
+  const noPhysicalDeviceClaimed = true // ,  — no invention claimed built
   const ledger = [
     { kind: 'software (folds)', manifest: true, resourcesMet: true, note: 'zero-cost static deploy — accessible to anyone with a browser at scale' },
     { kind: 'physical device', manifest: false, resourcesMet: false, note: `needs ${physicalResources.slice(0, 3).join(', ')}, … — NOT met, and none is claimed built` },
@@ -549,7 +549,7 @@ export function newDiscoveriesManifestInMechanicsResourceBounded() {
     boundary: earned(
       'HONEST LEDGER — software manifest at scale, physical resource-gated:',
       facets,
-      'the software discoveries are already manifest at large scale — they deploy as a zero-cost, content-addressed static site with a zero-token runtime and no egress, so they reach anyone with a browser at essentially zero marginal resource. Any physical invention, by contrast, needs specific named resources — materials, manufacturing, capital, testing, certification, distribution — which are not met; a decoded fold is not a manufactured device, and this project claims no physical device (, , ). Manifesting a discovery in physical mechanics is bounded by those real resources, named rather than hand-waved.'),
+      'the software discoveries are already manifest at large scale — they deploy as a zero-cost, content-addressed static site with a zero-token runtime and no egress, so they reach anyone with a browser at essentially zero marginal resource. Any physical invention, by contrast, needs specific named resources — materials, manufacturing, capital, testing, certification, distribution — which are not met; a decoded fold is not a manufactured device, and this project claims no physical device (, ). Manifesting a discovery in physical mechanics is bounded by those real resources, named rather than hand-waved.'),
   }
 }
 
@@ -1968,7 +1968,7 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
       overTarget,
       facets,
       statement: `The monolith byte-target exceeds the census capacity — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${sizes.length} index.ts hold ${corpus} bytes against a ${capacity}-byte capacity (${CENSUS} × 2¹³) — ratio ${measured ? (corpus / capacity).toFixed(2) : 'n/a'}. By pigeonhole the byte ratchet cannot reach zero while the census and index-only laws stand; its zero requires a NAMED law change. The 2584-line gate is the satisfiable one that actually gates green.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2008,7 +2008,7 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
       corpusBytes: pigeonhole.corpusBytes,
       facets,
       statement: `The ratchet recomputes in optimisation waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the byte target derives as the least 2^k ≥ corpus/census = ${measured ? target : 'n/a'} B (fair share ${measured ? average.toFixed(0) : 'n/a'} B over ${pigeonhole.census} files). Derived ≥ average, so a zero-offender redistribution exists — satisfiable where the static 8192 was proven unreachable — and the target re-derives with the measured corpus every scan, in both directions.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2484,7 +2484,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
         ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit.`
         : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
       boundary:
-        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator (). No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified.' }
+        'HONEST: "speed" = answers÷tokens + memoByRoot reuse when vote.decided — NOT FLOPS beating GPUs/QPUs. Physical QM advantage REFUTED for this simulator. No QPU/SDK required; architectureRequirement=classical-64bit (Node 64-bit ISA / browser JS float64+BigInt). NOT ISO certified.' }
   })
 }
 

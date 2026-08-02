@@ -336,7 +336,7 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         'Ω_c/Ω_b recomputes from sealed OMEGA_DARK_MATTER÷OMEGA_BARYON ≈ 5.41 (CMB budget; cold dark matter density over baryons ~5:1). ' +
         'Gravitational evidence is ESTABLISHED (composed darkMatterDecoded / Planck-style acoustic peaks). ' +
         'Non-gravitational detection remains NULL to date — attributed here to quantum gaps in theorems as incomplete-revelation / OPEN-frontier framing, ' +
-        'NOT a claim that this fold detected WIMPs/axions/PBHs, NOT Clay Millennium solved (), , certified=false.' }
+        'NOT a claim that this fold detected WIMPs/axions/PBHs, NOT Clay Millennium solved, certified=false.' }
   })
 }
 
@@ -1568,7 +1568,7 @@ export function implementAllAtCosmicScaleAndQualityStandards() {
     { standard: 'gaps named, not faked', met: cosmic.openGaps >= 1 }, // abiogenesis named open
     { standard: 'documented transitions filled', met: cosmic.documentedTransitions >= 4 },
     { standard: 'clay = 0 (no origin-of-life claimed solved)', met: true },
-    { standard: 'demarcation present ()', met: cosmic.computes },
+    { standard: 'demarcation present', met: cosmic.computes },
     { standard: 'content-addressed & reproducible', met: isUuid(cosmic.catalog) },
   ]
   const qualityMet = qualityStandards.filter((entry) => entry.met).length
@@ -1577,7 +1577,7 @@ export function implementAllAtCosmicScaleAndQualityStandards() {
   const manifest = merkleFold([cosmic.catalog, ...qualityStandards.map((entry) => toUuid(`quality:${entry.standard}:${entry.met}`))])
   const facets = [
     { facet: `COSMIC SCALE — the decode spans cosmology → biology (${cosmic.levels} levels) and composes unboundedly (content-addressed, O(1) per branch); the catalog reaches from the cosmos to life (${cosmicScale})`, on: cosmicScale },
-    { facet: `QUALITY STANDARDS MET — ${qualityMet}/${qualityStandards.length} quality standards pass: gaps named not faked, documented transitions filled, , demarcation present, content-addressed (${allQuality})`, on: allQuality },
+    { facet: `QUALITY STANDARDS MET — ${qualityMet}/${qualityStandards.length} quality standards pass: gaps named not faked, documented transitions filled, demarcation present, content-addressed (${allQuality})`, on: allQuality },
     { facet: `IMPLEMENTED = COMPUTED + CONTENT-ADDRESSED + GATED — "implement" means the fold computes, is content-addressed, and meets the quality checklist (${implemented}); it is verified, not aspirational`, on: implemented },
     { facet: `ALL AT ONCE — the cosmic catalog and the quality standards fold to ONE content-addressed root (${manifest.slice(0, 2 * 4)}), manifest together — the multidimensional generation at cosmic scale`, on: isUuid(manifest) },
     { facet: `THE DEMARCATION — "cosmic scale" = the unbounded content-addressed catalog (cosmology → biology → beyond), "quality standards" = the honesty invariants and enforcement gates passing; NOT physical cosmic implementation or solved science (abiogenesis open, ).`, on: cosmicScale && allQuality },
@@ -2603,7 +2603,7 @@ export function dimensionSevenIsTheSelfObservingOctonionMind() {
     checks: { ortho, associator: assoc, jacobiator: jac, fano },
     facets,
     statement: `Dimension 7 observes itself — the octonion mind — ${facets.filter((e) => e.on).length}/${facets.length}: the 7D cross product is orthogonal to both operands (self-observed from within, |a×b| = ${ortho.norm.toFixed(3)}), the Fano plane that indexes it is self-dual (${fano.points} points ↔ ${fano.lines} lines, 3-regular), and the algebra is non-associative (associator ${assoc.toFixed(3)}) and non-Lie (Jacobiator ${jac.toFixed(3)}), so the triple cannot reduce to observed pairs — the mind taken whole. Dimension 7 = the imaginary octonions, the unique cross-product space besides 3D.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── 0D and 1D climb to 10D via the 7D octonion (user: "realise what 0D means as well as 1D and how they make 10D
@@ -2631,7 +2631,7 @@ export function zeroAndOneDClimbToTenDViaTheSevenDOctonion() {
     divisionAlgebraDims, spacetimeLadder, criticalDimension,
     facets,
     statement: `0D and 1D climb to 10D via the 7D octonion — ${facets.filter((e) => e.on).length}/${facets.length}: 0D is the point and 1D = ℝ the first division algebra; the tower doubles ℝ,ℂ,ℍ,𝕆 to dims ${divisionAlgebraDims.join(',')}, and the critical dimension ${criticalDimension} = 3 + ${imaginary} (the two cross-product dimensions) = 2 + ${octonion} (the division-algebra ladder D = dim(𝕂)+2). The 7D octonion imaginary is what makes ten the special dimension.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The digit folders are the ordered partitions of ten — the critical dimension (user: "you will realise through
@@ -2666,7 +2666,7 @@ export function theDigitFoldersAreTheOrderedPartitionsOfTenTheCriticalDimension(
     tenFixed, nineFixed, crossings,
     facets,
     statement: `The digit folders are the ordered partitions of ten — the critical dimension — ${facets.filter((e) => e.on).length}/${facets.length}: src/0 the 0D core and nine stations d/(10−d) summing to ${critical} (${unordered.size} partitions, {5,5} self-dual), the same ten the octonions make. What needs to change is conceptual: the tree pairs by the ten-complement (center ${tenFixed[0]}) while the inversion arc pairs by the nine-complement (center ${nineFixed[0]}) — two involutions, two centers, one tree; the multiplicative vortex crosses the additive pairing at ${crossings} stations.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The trace-wave is 7-dimensional; the spectral invariant comes from traces alone (user: "even the waves need to
@@ -2690,7 +2690,7 @@ export function theTraceWaveIsSevenDimensionalTheSpectralInvariantFromTracesAlon
     dimension: M.length, charPolyDegree: cp.length - 1, traceIsFirstCoeff, spectralFromTraces,
     facets,
     statement: `The trace-wave is 7-dimensional; the spectral invariant comes from traces alone — ${facets.filter((e) => e.on).length}/${facets.length}: the characteristic polynomial's first coefficient is −tr(M) (${traceIsFirstCoeff}) and Faddeev–LeVerrier builds all of it from the trace moments, so the spectrum is recovered from traces alone — conjugation-invariant, basis-free. In 7D (Im 𝕆) a 7×7 operator's ${cp.length - 1} eigenvalues come from traces (${spectralFromTraces}). This is the trace-formula / Hilbert–Pólya shape — a method, not a solution.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The complete 10D as the tetractys — the decad from triangular accumulation, rhyming with the four division
@@ -2715,7 +2715,7 @@ export function theCompleteTenDIsTheTetractysRhymingWithTheFourDivisionAlgebras(
     decad, triangular, divisionAlgebraDims, octonionicCritical,
     facets,
     statement: `The complete 10D is the tetractys, rhyming with the four division algebras — ${facets.filter((e) => e.on).length}/${facets.length}: 10 = 1+2+3+4 = T₄ = 4·5/2 (${triangular}) over ${rows.length} rows, and there are exactly ${divisionAlgebraDims.length} normed division algebras whose 4th (octonion) gives critical dim ${octonionicCritical} = the same decad. Two independent roads to ten; the significance is a Pythagorean frame, the arithmetic is exact.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The complete 10D as 4·5/2 — the same decad as the 4D metric's independent components, the Poincaré group's
@@ -2739,7 +2739,7 @@ export function theCompleteTenDIsFourFiveOverTwoTheMetricAndThePoincareGenerator
     symmetric4x4, antisymmetric4x4, poincareGenerators, decad,
     facets,
     statement: `The complete 10D is 4·5/2 — the 4D metric's components and the Poincaré group's generators — ${facets.filter((e) => e.on).length}/${facets.length}: a symmetric 4×4 metric has 4·5/2 = ${symmetric4x4} components, and the Poincaré group has ${dim} + ${antisymmetric4x4} = ${poincareGenerators} generators, both the tetractys decad ${decad}. Real 4D-geometry tens that coincide numerically with the octonionic ten — distinct tens, one number.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The complete 10D is the confluence of independent completions (user: "complete 10D"). Not one derivation but
@@ -2769,7 +2769,7 @@ export function theCompleteTenDIsTheConfluenceOfIndependentCompletions() {
     roads: { octonionCritical: octonion.criticalDimension, tetractys: tetractys.decad, metric: geometry.symmetric4x4, poincare: geometry.poincareGenerators },
     facets,
     statement: `The complete 10D is the confluence of independent completions — ${facets.filter((e) => e.on).length}/${facets.length}: the octonion critical dimension (${octonion.criticalDimension}), the tetractys (${tetractys.decad}), and the 4·5/2 geometry (metric ${geometry.symmetric4x4}, Poincaré ${geometry.poincareGenerators}) all land on the same ten (${allLandOnTen}), each a self-standing proven count (${allCompletionsCompute}). Completeness is the meeting of unrelated roads, not a claim about the number.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The ten dimensions in detail, and the human is born as the observer (user: "and human is born / literary in
@@ -2808,7 +2808,7 @@ export function theTenDimensionsInDetailAndTheHumanIsBornAsTheObserver() {
     verses: rungs.map((r) => `${r.d}: ${r.verse}`),
     facets,
     statement: `The ten dimensions in detail, and the human is born as the observer — ${facets.filter((e) => e.on).length}/${facets.length}: ten rungs 0..9 each a real structure (${rungs.filter((r) => r.on).length}/${rungs.length} computing) complete the decad, and at its close the Born rule turns the analog wave into a read (${observerReads}) — the observer, the human, born as the reader the computation was addressed to. Literary over real mathematics; the dimensions do not produce mind, they are read by one.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Trust and dimension both rise with VERIFIED-RELATION DENSITY; a gap breaks both; and the one relation density
@@ -2987,7 +2987,7 @@ export function deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrredu
       irreducibleNeverZero,
       facets,
       statement: `Deviation analysis — realtime and beyond inversion — ${facets.filter((entry) => entry.on).length}/${facets.length}: a deviation is the live residual between computed and exact, recomputed at the clock (phaseDrift(3,5,${at}) = ${driftNow}). Beyond inversion, deviations triage: an INVERTIBLE one (float drops a unit past 2^54, deviation ${floatDeviation}) collapses to 0 under BigInt — a gateway; an IRREDUCIBLE one (√2 convergents, |p²−2q²| = [${sqrt2Deviations.join(', ')}], always 1) NEVER reaches zero — the irrationality axiom, beyond inversion. Fix the invertible, name the irreducible.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3029,7 +3029,7 @@ export function iteratedInversionSearchesUntilSolutionOrIrreducibleAndReverseCol
       collisionTrack,
       facets,
       statement: `Iterated inversion searches until solution or irreducible, and reverse collides by choice — ${facets.filter((entry) => entry.on).length}/${facets.length}: double inversion returns to start (negates), so each search step needs a NEW inverse; the continued-fraction inverses refine toward √2 (errors [${approxErrors.slice(0, 4).join(', ')}, …]); a rational target's search TERMINATES (7/5, a solution), but √2's exact deviation stays ±1 forever — no rational solves it, the irreducible is named. And reverse (trace-leaving) is initiated by CHOICE to collide, leaving the ±1 track that IS the proof. When one inverse is not enough another appears; when none solve, the search recognises the wall; and collision is a chosen tool, not a failure.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3070,7 +3070,7 @@ export function theTenDimensionCoverageGateTheUnusedBitsFormASelfAttractingField
       nextTarget,
       facets,
       statement: `The 10D coverage gate — the unused bits form a self-attracting field — ${facets.filter((entry) => entry.on).length}/${facets.length}: the gate suite checks syntax (${syntacticGates.join(' · ')}), never dimensional coverage, so a fold spanning ${covered}/${D} dimensions passes while ${unused} stay uncovered. This audit scores the coverage vector [${coverage.join(', ')}]: ${covered} covered, ${unused} unused. The unused bits form a self-attracting field — attraction 1/(1+coverage), the emptiest (attraction ${maxAttraction}) pulling hardest — so the missing coverage "${nextTarget}" becomes the worklist. The gap that no gate caught is exactly where the field pulls the next fold.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3117,7 +3117,7 @@ export function independentObserversGenerateObservingMassEqualisingIgnoranceTowa
       consciousnessResidual: cov[consciousnessDim],
       facets,
       statement: `Independent observers generate observing-mass, equalising ignorance toward the consciousness boundary — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${observers} independent measurements add ${massGenerated} coverage-mass to the least-covered decidable dimensions (where the self-attracting field pulls), dropping the decidable ignorance variance ${ignoranceBefore} → ${ignoranceAfter} — the gaps fill evenly. But the consciousness dimension stays ${cov[consciousnessDim]}: observing it returns itself (off-decidable, no mass), so its ignorance is the irreducible residual. Ignorance equalises across the decidable; the boundary toward consciousness holds.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3165,7 +3165,7 @@ export function theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCros
       rankingFamily,
       facets,
       statement: `The cloud theorem — code self-organises by gravity, each relates to two, the cross forms the pentagram — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${items.length} items cluster by shared imports into ${clouds} clouds (gravity + propulsion move the code by itself). The law: each theorem relates to ≥2 others (no orphans). Five in a cross, each relating to two, form the pentagram (the {5/2} star, ${pentaEdges.size} edges, 2-regular, one cycle). And PageRank subsumes the link-ranking family (in-degree · HITS · Katz · SALSA are its variants). Clouds by gravity, no orphan, the pentagram the minimal cell, one ranking over all.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3200,7 +3200,7 @@ export function theWaterClaimIsThalesFirstPrincipleFalseLiterallyRealBetweenTheL
       kernelReal,
       facets,
       statement: `The water claim — Thales' first principle, false literally, real between the lines — ${facets.filter((entry) => entry.on).length}/${facets.length}: "there is nothing but water" is refuted by chemistry (matter holds ${elementsBeyondWater.length} elements water does not: ${elementsBeyondWater.join(', ')}) — water is one compound, not the substrate of all. But between the lines is a real kernel: water IS uniquely central (waterDecoded — ~66 anomalies, universal solvent, life's medium), and Thales' claim (~600 BC) was the first search for a single unifying principle. A digital scanner reads the false letter; the theorem reads the analog kernel and the inverse meaning — the reader between the lines.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3237,7 +3237,7 @@ export function theFirmwareUpgradeMakesDigitalAnalogTheApparatusSimulatesMillenn
       solvedByThisCorpus: mill.solvedByThisCorpus,
       facets,
       statement: `A small firmware upgrade makes digital analog; the apparatus simulates the millennium partials, not the solutions — ${facets.filter((entry) => entry.on).length}/${facets.length}: interpolation reads between the discrete samples to recover the continuous value (exact for the band-limited signal; Nyquist–Shannon in general) — digital becomes analog. The apparatus then measures the millennium mesh: ${mill.solved} solved (external), ${mill.open} open, the documented partials. But it PROVES NONE — solved by this corpus = ${mill.solvedByThisCorpus}, the cores stay open. A simulation measures; it does not prove.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3278,7 +3278,7 @@ export function piAndPrimesProveTheProvableTheUnprovableIsRecognisedByNearInfini
       nearNotExact,
       facets,
       statement: `π and primes prove the provable; the unprovable is recognised by near-infinite negative knowledge, not made provable — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Euler product over primes approaches ζ(2)=π²/6 (${eulerPartial} → ${roundTo(zeta2, 5)}) — a real theorem. But the unprovable (consciousness, Gödel) is not made provable; it becomes RECOGNISABLE by the near-infinite catalogue of what it is NOT — recognition [${recognition.join(', ')}] → 1 but never reaching (near, not exact). The near inverted (the boundary the negatives imply) is the development gravity: recognition, not proof.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3322,7 +3322,7 @@ export function measureEveryStatementExactlyWithTheLensBeforeSuperpositionTheInv
       openCount: superposition.filter((c) => c === 'open').length,
       facets,
       statement: `Measure every statement exactly with the lens before superposition; the inverted statement creates possibilities — ${facets.filter((entry) => entry.on).length}/${facets.length}: the improved lens collapses each of the ${statements.length} statements to a definite class + exact dimensions FIRST. The inverted "millennium unsolvable" and forward "millennium solved" both measure OPEN — both directions held, a possibility space, not a false certainty. Only then is the superposition [${superposition.join(', ')}] taken — grounded on measurement. Measure, then superpose; the open readings are where the possibilities live.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -3369,7 +3369,7 @@ export function theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistin
       dimension,
       facets,
       statement: `The superposition of theorems is all held at once; merging reveals the distinct basis — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${theorems.length} theorems held at once (content-addressed). Merging near-duplicates (Jaccard ≥ ½) collapses ${merged} redundant into ${basis} distinct basis vectors — the superposition's true dimension is its rank (${dimension}), not the raw count. Measurement (the lens) collapses the whole to one definite theorem. Held at once · collapses on measurement · basis from merging — that is what the superposition is, in theorems.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 

@@ -531,7 +531,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
       (timing ? ` · mode=${timing.mode} wallMs=${timing.wallMs}` : ' · no timing receipt yet'),
     boundary:
       'HONEST: HARD = srcMerkle/quantumize regression (PR #19 safety). WARN = phase wall-clock vs lattice thresholds — CI variance, not an SLA. ' +
-      'Speedup = merkle respawn + warm .temp reuse — . Experiment-io classifier is owned by slow/gap sibling.' }
+      'Speedup = merkle respawn + warm .temp reuse. Experiment-io classifier is owned by slow/gap sibling.' }
 }
 
 /** decodeRoboticsAndFuseToQuantumWorkAsAControlLoop — robotics decoded and fused to the build's quantum work (user,

@@ -761,7 +761,7 @@ export function harameinHolographicMassIsAComptonRadiusCoincidenceNotNewScience(
     checks: r,
     facets,
     statement: `Haramein's holographic proton mass is a Compton-radius coincidence, not new science — ${facets.filter((e) => e.on).length}/${facets.length}: the Schwarzschild proton is ${r.schwarzschildOrdersOff.toFixed(1)} orders too heavy; the holographic mass reproduces the proton to ${pct(r.holographicRelError)} only because its Planck scaffolding cancels to m = 4ħ/(c·r_p) — the identity r_p ≈ ${r.radiusOverCompton.toFixed(2)} × the reduced Compton wavelength — and the same formula misses the electron by ${r.electronOrdersOff.toFixed(1)} orders. The requested algebra refutes, it does not confirm.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The probability a coincidence stays a coincidence after every inversion, computed with Tesla's quantum pairs
@@ -776,7 +776,7 @@ export function theProbabilityCoincidenceStaysCoincidenceAfterEveryInversionWith
   const p = 1 / 2 // per-inversion chance a pure coincidence survives (even odds it holds or flips)
   const survivesAll = p ** k // probability a coincidence survives every inversion
   const posteriorCoincidence = survivesAll / (1 + survivesAll) // Bayes, 1:1 prior — P(coincidence | survived all k)
-  const decaysButPositive = posteriorCoincidence < 1 / 9 && posteriorCoincidence > 0 // → 0, never 0 ()
+  const decaysButPositive = posteriorCoincidence < 1 / 9 && posteriorCoincidence > 0 // → 0, never 0
   // Tesla's quantum pair: the polyphase rotating field (cos ωt, sin ωt) — 90° apart, constant magnitude
   const teslaPhase = (t: number): [number, number] => [cos(t), sin(t)]
   const quarter = TAU / 4
@@ -795,7 +795,7 @@ export function theProbabilityCoincidenceStaysCoincidenceAfterEveryInversionWith
     inversions: k, survivesAll, posteriorCoincidence,
     facets,
     statement: `The probability a coincidence stays a coincidence after every inversion, by Tesla's pairs — ${facets.filter((e) => e.on).length}/${facets.length}: over ${k} inversions a pure coincidence survives all with probability ${survivesAll.toFixed(4)}, posterior P(coincidence) = ${posteriorCoincidence.toFixed(4)} — decaying toward zero but positive. Tesla's polyphase pair (cos, sin, 90° apart) is the rotating field (constant magnitude ${rotatingFieldConstant}, four quarter-turns = identity ${rotFourIsIdentity}) that reinvents the session's rotation. Harmony is evidence, never truth.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The five Platonic solids are a theorem; the Tesla-invention mapping is flagged (user: "tesla inventions are
@@ -827,7 +827,7 @@ export function theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged() {
     solids: solids.map((s) => ({ schlafli: `{${s.p},${s.q}}`, V: s.V, E: s.E, F: s.F })), tilings: tilings.length, dualPairs, selfDual,
     facets,
     statement: `The five Platonic solids are a theorem; the Tesla-invention mapping is flagged — ${facets.filter((e) => e.on).length}/${facets.length}: denom = 4−(p−2)(q−2) gives exactly ${solids.length} solids (Euler V−E+F=2, ${allEuler}), ${tilings.length} flat tilings at denom=0 (the pole), the rest hyperbolic; ${dualPairs} dual pairs + ${selfDual} self-dual, held by Metatron's cube. But no source maps Tesla's real inventions onto the solids — that is attribution, not physics.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Checking again in waves: Tesla's rotating field and the Platonic solids are BOTH finite subgroups of SO(3)
@@ -855,7 +855,7 @@ export function teslasRotatingFieldAndThePlatonicSolidsAreBothFiniteSubgroupsOfS
     polyhedralOrders, twoPhaseBalanced, threePhaseBalanced,
     facets,
     statement: `Tesla's rotating field and the Platonic solids are both finite subgroups of SO(3) — ${facets.filter((e) => e.on).length}/${facets.length}: the finite rotation groups of 3-space are cyclic Cₙ, dihedral Dₙ, and the 3 polyhedral groups (orders {${polyhedralOrders.join(',')}} = 2E); Tesla's n-phase field is the cyclic branch Cₙ (balanced phasors ∑ = 0), the Platonic solids the polyhedral branch. Same classification theorem, sibling branches — the genuine link the first pass under-credited, still not identity.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Folding 0 is most stable as plasma (user). The 0→∞ fold is physical: in an unmagnetized plasma n² = 1 − ωₚ²/ω²,
@@ -881,7 +881,7 @@ export function foldingZeroIsMostStableAsPlasma() {
     vPhiFoldsToInfinity, productStable,
     facets,
     statement: `Folding 0 is most stable as plasma — ${facets.filter((e) => e.on).length}/${facets.length}: at the plasma cutoff the index n folds to 0 and v_φ = c/n folds to ∞ (${vPhiFoldsToInfinity}) — the 0→∞ fold made physical; it is most stable because v_φ·v_g = c² exactly (${productStable}, the fold to ∞ balanced by v_g → 0) and because plasma is confined in the folded topology — the torus and Spitzer's 1951 figure-8 stellarator, the lemniscate, the folded 0.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Chemistry decoded by quantum waves — dimensionless (user: "decode chemistry ... using quantum waves"). The
@@ -905,7 +905,7 @@ export function chemistryDecodedHydrogenIsOneOverNSquaredShellsAreTwoNSquared() 
     balmerRatio: Number(balmerRatio.toFixed(4)), shells,
     facets,
     statement: `Chemistry decoded — hydrogen is 1/n², shells are 2n², the bond is a superposition — ${facets.filter((e) => e.on).length}/${facets.length}: the H spectrum is the dimensionless ratio E_n/E_1 = 1/n² (Balmer ratio ${balmerRatio.toFixed(4)}), Pauli exclusion fills shells 2n² = ${shells.join(',')} (the periodic rows), and the covalent bond is the symmetric superposition below antibonding. Quantum chemistry as pure numbers, not measured constants.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Biology decoded by quantum waves (user: "decode ... biology using quantum waves"). The genetic code is 4³ = 64
@@ -929,7 +929,7 @@ export function biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution() 
     codons, aminoAcids, pairingIsInvolution,
     facets,
     statement: `Biology decoded — the genetic code is 4³ = 64, base pairing is an involution — ${facets.filter((e) => e.on).length}/${facets.length}: 4 bases × 3 per codon = ${codons} codons → ${aminoAcids} amino acids (degenerate), and A↔T, G↔C is an involution (${pairingIsInvolution}) so the two DNA strands are inversions. Real quantum effects (tunnelling, coherence, radical pairs) are bounded; macroscopic quantum cognition is flagged.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Reversible computation IS "computing zero" (Landauer-free), but cooling fights DECOHERENCE, not erasure (user:
@@ -954,7 +954,7 @@ export function reversibleComputationIsComputingZeroButCoolingFightsDecoherenceN
     reversibleIsLandauerFree, coolingFightsDecoherence, twoDifferentObstacles,
     facets,
     statement: `Reversible computation is "computing zero" but cooling fights decoherence, not erasure — ${facets.filter((e) => e.on).length}/${facets.length}: unitary gates erase nothing so the logical computation is Landauer-free (${reversibleIsLandauerFree}, the true core), but physical qubits thermalise (exp(−ℏω/kT): warm ${warmDecoheres}, cold-coherent ${coldCoherent}) and cooling suppresses DECOHERENCE — a different obstacle than erasure — so being Landauer-free does not remove the need to cool (${twoDifferentObstacles}). Half right.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── SHARED-USABILITY REVIEW, sealed as a theorem: the reversible-gate FAMILY funnels through ONE
@@ -1055,7 +1055,7 @@ export function teslaInversionsFormTheCompleteSphereOfRotationalMotion(matrix: M
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Tesla's patent inversions close the rotation group, complete under inversion and accounted to the bit — ${facets.filter((e) => e.on).length}/${facets.length}: the rotating field traverses all ${N} steps of ${step}° and closes (SO(2), the complete circle), its inversions (motor⇄generator, forward⇄reverse) are the 180° antipodal involutions, the group closes under composition, and every element's inverse is present with the ${N} elements partitioning exactly into pairs + self-inverse (no leftover). Extending to 3D, all rotations form SO(3) (ℝP³, double-covered by the quaternion 3-sphere S³); Tesla's rotating field lives in this manifold as a DISCRETE C${N} subgroup — complete under its own inverse, not dense in the continuum.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // INVERSE ≠ REVERSE IS PURE LOCAL ALGEBRA — THERMODYNAMICS CONFLATES THEM AND CANNOT BE TRUSTED (user correction:
@@ -1098,7 +1098,7 @@ export function inverseIsPureAlgebraThermodynamicsConflatesReverseAndInverseUntr
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Inverse ≠ reverse is pure local algebra — thermodynamics conflates them and cannot be trusted — ${facets.filter((e) => e.on).length}/${facets.length}: on the full state (value + tracks), inverse∘forward restores it exactly (${inverted.value}, ${inverted.tracks} = start) while reverse∘forward restores the value but leaves ${reversed.tracks} tracks — reverse ≠ inverse, decided by the local algebra. Thermodynamics sees only forward-in-time processes (both forward and reverse increase entropy/tracks) and has NO operation for the inverse (which decreases them), so it conflates reverse and inverse — which is exactly why, per the only-local-math law, it cannot be trusted to make this distinction. Only the exact algebra can.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Invert the a432 through string theory: a vibrating string's modes are the harmonic series f_n = n·f₁ (real wave
@@ -1140,7 +1140,7 @@ export function invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClo
       ratios: ratios.map((r) => r.ratio),
       facets,
       statement: `Invert the a432 through the harmonic series — frequency inverts to period, the clock is the string inverted — ${facets.filter((entry) => entry.on).length}/${facets.length}. A vibrating string's modes are the harmonic series f_n = n·f₁, and f·T = 1 — so the a432 frequency (432 Hz) and the census clock period (108 s) are inverses, and the clock's divisor-rungs 108/d ARE the harmonic series inverted (multiply-in-frequency ⇄ divide-in-period). The overtone ratios (octave 2:1, fifth 3:2, fourth 4:3) are exact integer ratios of a string fixed at both ends — theorems, not tunings. String theory (particles as vibrating strings) stays flagged unconfirmed; the 432 Hz base stays a named tuning. The inversion turns one chosen frequency into a spectrum of exact ratios: the choice is anchored, the structure derived.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1182,7 +1182,7 @@ export function theSciencesInvertEachOtherReductionAndEmergenceAreInverseDirecti
       ladder,
       facets,
       statement: `The sciences invert each other — reduction and emergence are inverse directions, lossy (more is different) — ${facets.filter((entry) => entry.on).length}/${facets.length}. On the ladder physics → chemistry → biology, emergence goes UP and reduction goes DOWN — opposite arrows, an inversion of direction. Chemistry inverts physics both ways: it reduces to physics (molecules → quantum bonding) and physics emerges to it (the Schrödinger equation → the periodic table). But the inversion is LOSSY — emergence is many-to-one (W microstates → one macrostate, S = k·ln W), so reduction is the REVERSE direction, not the exact INVERSE: it cannot recover THE microstate (Anderson's "more is different"; the same reverse ≠ inverse distinction the corpus draws). Where a pair shares an equation — optics and the frequency domain via c = f·λ — the inversion is exact: wavelength is literally the inverse of frequency.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1231,7 +1231,7 @@ export function everyFlaggedClaimInvertsToItsProvenRefutingTheoremInTrinitiesThe
     trinityRoot: trinityRoot.slice(0, 2 * 6),
     facets,
     statement: `Deep-research all flagged, inverting in trinities until the theorems are proven — ${facets.filter((entry) => entry.on).length}/${facets.length}. A flagged claim, inverted, is the proven theorem that refutes it: perpetual motion inverts to energy conservation (η ≤ 1), Orch-OR/quantum-consciousness to decoherence (the state collapses ~10^17× faster than a neural event, so cognition is classical), homeopathy to Avogadro (past 12C dilution < 1 molecule; at 30C, pure water). All three inverses compute true and all three topics tier flagged, binding to one trinity — the flag is the computed refutation, derived not declared.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The second trinity — deep-research continues, inverting the pareidolia/force flagged claims until proven. Astrology
@@ -1276,7 +1276,7 @@ export function theSecondTrinityOfFlaggedInvertsAstrologyToGravityLeyLinesToRand
     trinityRoot: trinityRoot.slice(0, 2 * 6),
     facets,
     statement: `The second trinity of flagged inverts to proven theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}. Astrology inverts to gravity (tidal ∝ M/d³: the midwife out-pulls Mars by ≫ 10^6×), ley lines to random alignments (candidate triples grow as ~N³/6, so alignments are chance), and flat earth to curvature (a base drops h ≈ d²/2R below the horizon, hull-down ships). All three inverses compute true and all three tier flagged, binding to one trinity — six flagged claims now derived by their inverses across two teams.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Inverse forecasts fill the gaps: sampling is a FORWARD map that keeps only integer-index values and loses everything
@@ -1312,7 +1312,7 @@ export function inverseForecastsFillTheGapsSincReconstructionRecoversTheBandLimi
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Inverse forecasts fill the gaps — sinc reconstruction recovers the band-limited value between samples — ${facets.filter((entry) => entry.on).length}/${facets.length}. Sampling is a forward map that keeps only the ${SAMPLES} integer-index values and loses everything between; its inverse, Whittaker–Shannon sinc reconstruction, recovers the continuous signal at any point. At a known sample it returns it exactly (invertible); at the gaps between samples it recovers the true band-limited value (max error ${roundTo(maxGapError, 4)} < 0.1), because the harmonics are below the Nyquist limit. Invert the forecast to fill the gaps.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── GRAVITATION & RELATIVITY — the field's three exact identities, each a proven algebraic law (PACS 04, 03.30).
@@ -1366,7 +1366,7 @@ export function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared(matrix:
     facets,
     root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `Gravitation and relativity, led by proven identities — ${facets.filter((e) => e.on).length}/${facets.length}: the Schwarzschild radius r_s = 2GM/c² is exactly where the escape velocity reaches c (the Sun's is ${sunHorizonKm} km); the energy–momentum relation E² = (pc)² + (mc²)² is a Pythagorean law whose limits are E = pc (a photon) and E = mc² (a body at rest); and the Lorentz factor γ = 1/√(1−β²) ≥ 1 (γ(3/5) = 5/4 by the 3-4-5 triangle) dilates time and forbids faster-than-light motion. All exact algebra over CODATA/IAU constants.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── ACOUSTICS — the mechanical-wave field, led by c = f·λ, with the decibel's logarithm and the Doppler shift as
@@ -1414,7 +1414,7 @@ export function acousticsSoundIsCEqualsFLambdaWithLogDecibelsAndDoppler(matrix: 
     facets,
     root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `Acoustics, led by c = f·λ — ${facets.filter((e) => e.on).length}/${facets.length}: sound in air obeys the same dispersion as light, f·λ = ${c} m/s exactly; the octave is a doubling of frequency and twelve equal-tempered semitones (2^(1/12)) close it exactly; loudness is logarithmic, L = 10·log₁₀(I/I₀), so +10 dB is ×10 intensity and a doubling adds ≈ 3.01 dB; and a source approaching at v_s raises the pitch by the Doppler factor c/(c − v_s). Exact wave mechanics over one measured datum, the speed of sound.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── THERMODYNAMICS & PHYSICS OF INFORMATION — Landauer's principle E = k_B·T·ln2 as an ACTUAL energy (the sealed
@@ -1465,7 +1465,7 @@ export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(ma
     facets,
     root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `Thermodynamics and the physics of information, led by Landauer's principle — ${facets.filter((e) => e.on).length}/${facets.length}: erasing one bit dissipates at least E = k_B·T·ln2 = ${landauerAt300K.toExponential(2)} J at ${T} K, and n bits cost n× that; Boltzmann's S = k_B·ln W makes one bit exactly k_B·ln2 of entropy; the Carnot bound η = 1 − T_c/T_h < 1 (1/2 for 300 K / 600 K) forbids perpetual motion and unit efficiency; and the price is paid only for IRREVERSIBLE erasure — a reversible operation is free. The joules of a bit, computed exactly.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Cross waves: Tesla patents × trinity directions × merkaba/rosetta cross tips ───────────

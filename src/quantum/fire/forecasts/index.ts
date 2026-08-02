@@ -218,7 +218,7 @@ function doubleTorusSolutionsDeepResearchedRaw(matrix: MindMatrix = buildMatrix(
     statement:
       'Deep research — double-torus solutions hub: Gardner grid-cell torus, geodynamo dipole, WGS84 vs genus-2, trading circulation fold; donut/flat Earth and Becker–Hagens flagged hold.',
     boundary:
-      'HONEST deep-research wave: DOCUMENTED · FLAGGED · ISOMORPHISM (). Hub in forecasts avoids topology↔forecasts HMR cycle.' }
+      'HONEST deep-research wave: DOCUMENTED · FLAGGED · ISOMORPHISM. Hub in forecasts avoids topology↔forecasts HMR cycle.' }
 }
 
 /** Movie seeds from double-torus Earth weather and solutions — facets and domains become plasma streams. */

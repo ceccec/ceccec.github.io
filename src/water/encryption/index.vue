@@ -575,9 +575,9 @@ runTool()
         <p class="encryption-tools__boundary">{{ panel.maxBits?.boundary }}</p>
       </section>
       <UiSeparator />
-      <section id=”tool-honest” aria-label=”Production browser tools are not demos”>
+      <section id="tool-honest" aria-label="Production browser tools are not demos">
         <h3>tool/honest — production browser tools are not demos</h3>
-        <p class=”encryption-tools__lede”>
+        <p class="encryption-tools__lede">
           Calling runnable browser encrypt/reverse tools “demo” or “toy” misleads the public. Sealed-catalog moduli · refuseBeyond only for over-ceiling / third-party production RSA break claims.
         </p>
       </section>

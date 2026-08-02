@@ -338,7 +338,7 @@ export function theSmallestCurvesWitnessBirchSwinnertonDyer() {
     aps: aps.slice(0, 2 * 5),
     facets,
     statement: `The smallest curves witness Birch–Swinnerton-Dyer — ${facets.filter((entry) => entry.on).length}/${facets.length}: Euclid's opening equation is completely solved (${brute.size} primitive triples, bijection verified); the two poles the conjecture bridges are both realized UNCONDITIONALLY at the smallest scale — y² = x³ − x holds finitely many rational points (Fermat's descent), y² = x³ − 25x holds infinitely many (P = (−4,6) of infinite order by exact doubling, the area-5 triangle (3/2, 20/3, 41/6)); Tunnell's counts separate them; and the associated zeta's aₚ compute exactly with Hasse and CM patterns. The bridge itself — rank ⟷ ord_{s=1} L — is CITED: a theorem for these CM curves (Coates–Wiles; Gross–Zagier–Kolyvagin), OPEN in general.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── IMPOSSIBLE INVERTS UNTIL POSSIBLE (user law) — any harmonic possibility is computed in REALTIME (π,

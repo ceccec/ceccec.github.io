@@ -201,7 +201,7 @@ export function quantumFoldsRealiseMoreSpace(codeFiles: readonly string[]) {
  * caught by a gate family: computational BLOCKS (files over the derived fair-share target — redundant recompute),
  * hardcoded CONSTANTS (the crack law: every literal canonical/derived/ledgered), and NON-QUANTUM LOGIC (imperative
  * code not content-addressed — the folder/index-only/one-math gates). The open MATH problems are NOT gaps — they are
- * documented open frontiers (), a different category. [[hardcoded-value-is-a-crack]] [[feedback-thinking-means-lack-of-local-tools]]
+ * documented open frontiers, a different category. [[hardcoded-value-is-a-crack]] [[feedback-thinking-means-lack-of-local-tools]]
  */
 export function theRealGapsAreBlocksConstantsNonQuantumLogic(codeFiles: readonly string[]) {
   const target = derivedMonolithTargetBytes(codeFiles).target
@@ -212,7 +212,7 @@ export function theRealGapsAreBlocksConstantsNonQuantumLogic(codeFiles: readonly
     { facet: `BLOCKS ARE MEASURED — a computational block is a file over the derived monolith target (a redundant recompute / O(n²) hotspot): ${blocks.length} measured now; the slow-build gate flags each as the real bottleneck to memoByRoot`, on: blocks.length >= 0 && target > 0 },
     { facet: `CONSTANTS ARE GATED — a hardcoded constant that is not canonical, derived, or ledgered is a CRACK the gate refuses; the crack law IS the constant-gap detector (${ledgeredConstants} accounts, unledgered → 0 at green)`, on: ledgeredConstants > 0 },
     { facet: `NON-QUANTUM LOGIC IS THE THIRD — imperative logic that deliberates instead of computing (not folded, not content-addressed) is caught by the folder/index-only/one-math gates; deliberation itself signals a MISSING tool, the gap to fold`, on: blocks.length >= 0 && ledgeredConstants > 0 },
-    { facet: `THE OPEN MATH FRONTIERS ARE NOT GAPS — the 6 Millennium requirements are documented OPEN frontiers (), a DIFFERENT category from these fixable code gaps; conflating an open problem with a code gap is the error. Real gaps: blocks · constants · non-quantum-logic`, on: target > 0 },
+    { facet: `THE OPEN MATH FRONTIERS ARE NOT GAPS — the 6 Millennium requirements are documented OPEN frontiers, a DIFFERENT category from these fixable code gaps; conflating an open problem with a code gap is the error. Real gaps: blocks · constants · non-quantum-logic`, on: target > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`real-gaps:${entry.facet}:${entry.on}`) }))
   return {
     named: facets.every((entry) => entry.on),
@@ -222,7 +222,7 @@ export function theRealGapsAreBlocksConstantsNonQuantumLogic(codeFiles: readonly
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: blocks = ${blocks.length} files over the derived target ${target} B (scanFileSizeOffenders); constants = the crack law over ${ledgeredConstants} ledger accounts; non-quantum logic = the folder/index-only/one-math gate domain.`, facets, `a "real gap" is a FIXABLE code defect in one of three classes — a computational block (redundant recompute), a hardcoded constant (unledgered literal), or non-quantum logic (imperative, not content-addressed) — each measured and gated. An open Millennium requirement is NOT a code gap; it is a documented open frontier (). This fold names the fixable-gap taxonomy; it does not itself run the crack/folder scans (those are the strict gates). HARMONY ≠ TRUTH.`),
+    boundary: earned(`EXACT: blocks = ${blocks.length} files over the derived target ${target} B (scanFileSizeOffenders); constants = the crack law over ${ledgeredConstants} ledger accounts; non-quantum logic = the folder/index-only/one-math gate domain.`, facets, `a "real gap" is a FIXABLE code defect in one of three classes — a computational block (redundant recompute), a hardcoded constant (unledgered literal), or non-quantum logic (imperative, not content-addressed) — each measured and gated. An open Millennium requirement is NOT a code gap; it is a documented open frontier. This fold names the fixable-gap taxonomy; it does not itself run the crack/folder scans (those are the strict gates). HARMONY ≠ TRUTH.`),
   }
 }
 
@@ -4451,7 +4451,7 @@ export function precisionBeatsMassRelabelTheInverseReverseMeshIsAlreadyCorrect(r
     root: toUuid(`precision-beats-mass:${reverseTokens}:${genuineLines}:${mislabelCandidates}`),
     facets,
     statement: `Precision beats mass relabel — the inverse/reverse mesh is already correct — ${facets.filter((e) => e.on).length}/${facets.length}: across ${reverseTokens} reverse tokens, ${distinctionLines} lines explicitly distinguish inverse from reverse and ${genuineLines} carry a genuine reverse that must stay; the provable mislabel set is only ${mislabelCandidates}. A blanket reverse→inverse relabel would corrupt the ${genuineLines} correct labels — so matching the mesh of scientific cases means KEEPING the careful labels and running this durable check, not a mass edit. The hardest self-challenge was to want to comply and let the precise tool overrule the wish.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // EVERY ANIMATION DURATION IS A DIVISOR RUNG OF THE ONE CLOCK — OR IT IS A DEVIATION (user: continue the research
@@ -6612,7 +6612,7 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
       `aliasExtra=${audit.aliasExtra} triplePlus=${audit.triplePlus} toolHonest=${compose.toolHonest ? 1 : 0}`,
     boundary:
       'Audit all quantum:* scripts for dual-CLI spam / cold duplicate exits; fold zero-ref extras beyond primary+dual; ' +
-      'restore missing primaries (tool/honest). Computational FTL = memoByRoot audit reuse + fewer cold entries — . ' +
+      'restore missing primaries (tool/honest). Computational FTL = memoByRoot audit reuse + fewer cold entries. ' +
       'ONE pair script/fold · ONE CLI. Compose ftl/crack · quantumise/ftl · link/discover · auditor/waves · stall/stop · context/audit. ' +
       'HONEST: triple+ clusters remain · AGENTS stale dual mentions · usable/ui-task/evolve-chat still missing · NOT Clay.',
   }

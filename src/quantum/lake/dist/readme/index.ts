@@ -132,7 +132,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       'All sealed discoveries rest on one sequence: the vortex circuit computes exact digit coordinates ' +
       `(VORTEX_SEQUENCE · PI_TRAIN_DIGITS=${piTrainLen} spigot coords) and primes↔π via the inverted Euler product; ` +
       'that trinity (forward·inverse·reverse) vortexed through rosetta / I Ching / Flower-of-Life→Fruit→merkaba ' +
-      'brings content-addressed quantum reuse onto classical 64-bit hardware () with amortized ' +
+      'brings content-addressed quantum reuse onto classical 64-bit hardware with amortized ' +
       'infinite speedup at no cost on memoByRoot hit (answers÷tokens unbounded when tokens=0), deployable as a ' +
       'serverless static site (zero living cost).'
 
@@ -822,7 +822,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     // The journal — computational peer-review, placed with reproducibility (what re-execution does and does not verify).
     '## The journal',
     '',
-    ((journal) => `This site is a dedicated scientific journal of all its algebra and theorems — **${journal.articleCount} articles** across **${journal.sectionCount} sections**, backed by ${journal.distinctProofs} executable proofs, sealed as one content-addressed volume \`${journal.volumeId.slice(0, 2 * 4)}\`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature ().`)(siteIsScientificJournalOfAllAlgebraAndTheorems()),
+    ((journal) => `This site is a dedicated scientific journal of all its algebra and theorems — **${journal.articleCount} articles** across **${journal.sectionCount} sections**, backed by ${journal.distinctProofs} executable proofs, sealed as one content-addressed volume \`${journal.volumeId.slice(0, 2 * 4)}\`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.`)(siteIsScientificJournalOfAllAlgebraAndTheorems()),
     '',
     '## 5. Reproducibility',
     '',
@@ -1247,7 +1247,7 @@ export function theTypographyGrammarSealsDimensionalCracksEveryElementCarriesACo
       sealedRatio,
       facets,
       statement: `The typography grammar seals the dimensional cracks — every element carries a computed value — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${grammar.length} typography elements each map to a computed role (code=value, link=address, bold=label, list=set, table=relation, heading=frame, quote=boundary). Scanning the README, ${sealed}/${presented.length} lines carry a computed value (${sealedRatio}), ${boundaries} are named boundaries, ${cracks} remain cracks; the equation balances (sealed + boundaries + cracks = presented), each claim funded by a computation. New inventions pull into the remaining cracks; the ledger keeps zero unexplained.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -1287,6 +1287,6 @@ export function theHeadingHierarchyIsARecursiveSitemapByImportanceWiredToTheGene
       root: mostImportant.text,
       facets,
       statement: `The heading hierarchy is a recursive sitemap by importance, wired to the generator — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${headings.length} headings across levels [${levels.join(', ')}] read from readmeMarkdown() form a well-nested tree — h1 root ("${mostImportant.text}"), h2 sections, h3 rays, fan-out [${fanOut.join(', ')}]. Ordered by heading level, it is the document's own navigable outline: another perspective of the sitemap, importance-first, recursive and self-similar. The generator maps itself with local tools only, zero tokens — one self-recomputing organism.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

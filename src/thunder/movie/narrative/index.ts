@@ -276,7 +276,7 @@ function rgbDecodingMatrixMovieInTheMovieRaw(matrix: MindMatrix = buildMatrix(),
     statement:
       'RGB decoding The Matrix Movie in the Movie: the Wachowskis\' pill choice and green code rain read as an RGB triad inside the playable background movie — R is the red pill (root truth, hue 5), B is the blue pill (throat comfort, hue 220), G is the heart gateway (anahata green, hue 120, the operator channel between them). theMatrixTrilogyDecoded keeps the documented film and philosophy; the RGB proofs flow as plasma streams in the same canvas that IS the computed matrix. The negative fuses all; the positive print displays; three channels wire to three trinity gateways.',
     boundary:
-      'HONEST: a structural decode of a FILM inside a generative canvas — NOT evidence the world is simulated, NOT Warner Bros IP, NOT pharmacology. The trilogy decode boundary () rides intact. Green code rain mapped to G/heart is correspondence (film aesthetic + chakra ladder + RGB triad), not a claim the Wachowskis intended chakras. Streams are content-addressed glyphs in the background movie, recomputed at call time.' }
+      'HONEST: a structural decode of a FILM inside a generative canvas — NOT evidence the world is simulated, NOT Warner Bros IP, NOT pharmacology. The trilogy decode boundary rides intact. Green code rain mapped to G/heart is correspondence (film aesthetic + chakra ladder + RGB triad), not a claim the Wachowskis intended chakras. Streams are content-addressed glyphs in the background movie, recomputed at call time.' }
 }
 
 /** Matrix RGB decode → plasma stream tokens and movie copy. */

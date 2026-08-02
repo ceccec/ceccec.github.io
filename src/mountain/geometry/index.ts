@@ -2090,7 +2090,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
 // Deep research — double-torus Earth · cardinal pyramid tips · inverted polarity. Researched in waves with
 // adversarial verify: documented (grid-cell torus Nature 2021, Giza cardinals Nell & Ruggles 2014, genus-2
 // math, WGS84 oblate spheroid) kept; donut/flat Earth and literal torus-planet flagged; structural isomorphism
-// to the repo’s computed model saved honestly ().
+// to the repo’s computed model saved honestly.
 export function doubleTorusEarthPyramidTipsDeepResearched(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('doubleTorusEarthPyramidTipsDeepResearched', matrix, () => doubleTorusEarthPyramidTipsDeepResearchedRaw(matrix))
 }

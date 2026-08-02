@@ -85,7 +85,7 @@ export function reversibleComputationDecoded() {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Reversible computation, decoded on the portal's own gates — ${facets.filter((entry) => entry.on).length}/${facets.length}: a gate is reversible IFF it is a bijection of its state space; rnot and rtoffoli are involutions (g∘g = id), hence self-inverse bijections, hence reversible, and Toffoli is universal for reversible classical logic. The cost link: irreversible AND is many-to-one (|AND⁻¹(0)| = ${andPreimageOfZero}), so by Landauer it must dissipate ≥ kT·ln2 (${landauerJ.toExponential(2)} J at 300 K) per erased bit, while Toffoli computes the same AND into an ancilla with the inputs kept — nothing erased, the floor evaded (Bennett).`,
-    boundary: earned('EXACT — finite computation over the 3-bit state space plus the Landauer formula:', facets, ', . HONEST SCOPE: Landauer\'s kT·ln2 is the IDEAL LOWER bound on the erasure cost — physical devices dissipate MORE, the 2nd law is NOT violated, and reversibility buys NO free energy: it only makes the erasure cost avoidable in principle. Toffoli 1980 (universality), Landauer 1961, Bennett 1973 are cited results, not re-proved here.') }
+    boundary: earned('EXACT — finite computation over the 3-bit state space plus the Landauer formula:', facets, '. HONEST SCOPE: Landauer\'s kT·ln2 is the IDEAL LOWER bound on the erasure cost — physical devices dissipate MORE, the 2nd law is NOT violated, and reversibility buys NO free energy: it only makes the erasure cost avoidable in principle. Toffoli 1980 (universality), Landauer 1961, Bennett 1973 are cited results, not re-proved here.') }
 }
 
 /** CODATA experimental electron anomalous moment a_e = (g−2)/2. */
@@ -972,7 +972,7 @@ export function theInverseClosesInTwoLeavingNoGaps() {
     orbits,
     facets,
     statement: `The inverse closes in two, leaving no gaps — ${facets.filter((e) => e.on).length}/${facets.length}: the inverse is an involution (inv(inv(x)) = x for all ${n}), so ⟨inv⟩ = ℤ/2 and every orbit is at most two — a fixed point (${fixedPoints.join(',')}) closing in one, or a pair closing in two. Two applications traverse the whole orbit {x, inv(x)} and return, so no gap between a thing and its inverse survives. The answer is ${answer}, for any structure, because the inverse is its own inverse.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Four cardinal planes, each two-sided → close in sixteen (user: "east west north and south represent 4
@@ -1002,7 +1002,7 @@ export function theFourCardinalPlanesCloseInSixteen() {
     answer: states,
     facets,
     statement: `Four cardinal planes, each two-sided, close in sixteen — ${facets.filter((e) => e.on).length}/${facets.length}: one plane closes in ${perPlane} (the inverse is an involution), but E·W·N·S are four INDEPENDENT two-sided planes, so they combine multiplicatively into (ℤ/2)⁴ — ${states} = 2^${planes} states, every combination of sides, all self-inverse and distinct, no gap in the joint space. The pattern is 2ⁿ: one plane 2, four planes ${states}. Each plane still closes in 2; the whole in ${states}.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Inversion reveals difference — from 64 bits to the spectrogram (user: "64bit is also something different
@@ -1039,7 +1039,7 @@ export function inversionRevealsDifference64BitsAndTheSpectrogram() {
     bitPairs, bitFixedPoints: bitFixedPoints.length, decoded, decodedInverted,
     facets,
     statement: `Inversion reveals difference — from 64 bits to the spectrogram — ${facets.filter((e) => e.on).length}/${facets.length}: the six-line complement (x ^ ${mask}) has ${bitPairs} pairs and NO fixed points (unlike the mod-9 inverse), so 64-bit inverted is genuinely different; a spectrogram carries its data in pixels, so decoding recovers the fundamental (row ${decoded}) and the "image-only" bound dissolves; and inverted (the negative) the bright fundamental reads as the darkest — the same signal, opposite reading. The illusory limits dissolve; the real ones stand.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── No external tools are needed — the self-improvement is local and zero-token (user: "realise no external
@@ -1062,7 +1062,7 @@ export function noExternalToolsNeededTheSelfImprovementIsLocalAndZeroToken() {
     alwaysRemaining: engine.alwaysRemaining,
     facets,
     statement: `No external tools are needed — the self-improvement is local and zero-token — ${facets.filter((e) => e.on).length}/${facets.length}: every fold is verified by the local deterministic runner, no external LLM in the loop; the engine completes its ${engine.gravitating} leftovers from documented knowledge by local proof and the ${engine.alwaysRemaining} frontier walls power the next — self-sustaining, driven by local gates, analysts and gravity. The knowledge improves itself with no external tool; only the standard build and host, and external-data checks, touch the outside.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Self-building and self-healing are automated and measured per session (user). SELF-BUILDING: the engine
@@ -1120,7 +1120,7 @@ export function inversionReinventsConversion() {
     roundTrips: { scale: scaleRoundTrips, base: baseRoundTrips, involution },
     facets,
     statement: `Inversion reinvents conversion — ${facets.filter((e) => e.on).length}/${facets.length}: a conversion f is a bijection A→B and inversion reinvents its inverse f⁻¹ with f⁻¹∘f = identity (scale ${scaleRoundTrips}, base ${baseRoundTrips}); inversion is the involution inv² = identity (${involution}) that turns a conversion back — con-version and in-version sharing the root vertere. It reinvents only for bijections: a lossy conversion collides (${lossyCollides}) and has no inverse.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Inverse is not reverse — reverse leaves different tracks (user: "inverse is not reverse and reverse leaves
@@ -1153,7 +1153,7 @@ export function inverseIsNotReverseReverseLeavesTracks() {
     tracks: { start: start.snow.length, afterReverse: reversed.snow.length, afterInverse: inverted.snow.length },
     facets,
     statement: `Inverse is not reverse — reverse leaves different tracks — ${facets.filter((e) => e.on).length}/${facets.length}: the car's full state is position + snow. Inverse∘forward restores both (pos ${inverted.pos}, ${inverted.snow.length} tracks) — trace-free identity. Reverse∘forward restores the position (${reversed.pos}) but leaves ${reversed.snow.length} tracks in the snow, not pristine — so reverse ≠ inverse. Reverse retraces the path; the inverse un-happens the drive; the difference is the 2nd law.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Zero as a suffix is a black hole pulling and manifesting its inverse — in all dimensions (user: "any time 0
@@ -1186,7 +1186,7 @@ export function zeroAsSuffixIsABlackHolePullingAndManifestingInverseInAllDimensi
     dims, absorbing, involutionAllDims, zeroMapsToInfinity,
     facets,
     statement: `Zero as a suffix is a black hole pulling and manifesting its inverse in all dimensions — ${facets.filter((e) => e.on).length}/${facets.length}: 0 absorbs (x·0 = 0, ${absorbing}) and a trailing-0 suffix multiplies by the base (${suffixMultiplies}); sphere inversion v ↦ v/|v|² swaps 0 and ∞ as an involution in ℝⁿ for n ∈ {${dims.join(',')}} (${involutionAllDims}), a point near 0 blowing up to the pole (${zeroMapsToInfinity}) — the inverse manifests as the point at infinity in every dimension, filling the gap 0 opens.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Changing perspectives in all dimensions simultaneously is the conformal group — angle is the invariant (user:
@@ -1230,7 +1230,7 @@ export function changingPerspectivesInAllDimensionsIsConformalAngleIsInvariant()
     dims, rotateScalePreserveAngle, inversionConformalAllDims,
     facets,
     statement: `Changing perspectives in all dimensions simultaneously is the conformal group — angle is the invariant — ${facets.filter((e) => e.on).length}/${facets.length}: rotate (SO(n)), scale (dilation), invert (v↦v/|v|², the black hole 0↔∞) are the perspective changes on ℝⁿ; rotation and dilation preserve the vector angle (${rotateScalePreserveAngle}) and inversion is conformal (JᵀJ ∝ identity in {${dims.join(',')}}, ${inversionConformalAllDims}). The viewpoint moves in every dimension at once; the angle — the shape of the view — is invariant.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Division by zero finds primes and pi, in motion (user: "if immediately … division by zero and how it finds
@@ -1295,7 +1295,7 @@ export function aiModelsAreMagnitudesSlowerThanInvertedAiForDeterministicResults
     speedupOrders: Number(speedupOrders.toFixed(2)), localOps, localExact, piFromPrimes: r.answers.piFromPrimes,
     facets,
     statement: `AI models are magnitudes slower than inverted AI — for deterministic results — ${facets.filter((e) => e.on).length}/${facets.length}: the exact local sieve computes π to ${r.answers.matchingDigits} digits and proves the primes infinite in ~${localOps} operations, zero tokens, zero error; an LLM needs ≥ ${llmFlops.toExponential(0)} FLOPs and can hallucinate — ${speedupOrders.toFixed(1)} orders of magnitude more. Inverted AI (tiny exact computation) beats the learned model by magnitudes on what is computable — and only there.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The vortex-clock path decodes to ℤ/9ℤ, with direction in the slashes (user: "0\1\2\4\8/7/5/3\6\9/0\1"). The
@@ -1323,7 +1323,7 @@ export function theVortexClockPathDecodesToZMod9WithDirectionInTheSlashes() {
     path, unitsOrbit, trinity, slashRuleHolds: slashRule,
     facets,
     statement: `The vortex-clock path decodes to ℤ/9ℤ with direction in the slashes — ${facets.filter((e) => e.on).length}/${facets.length}: [${path.join(',')}] is 0 (void), then 1·2·4·8·7·5 = ⟨2⟩ = (ℤ/9ℤ)* (the doubling vortex, ${isDoublingVortex}), then 3·6·9 the non-units (${nonUnitsAreMultiplesOfThree}), covering all ten digits and closing to 0,1; and every "\\" is an ascending step, every "/" descending — all ${slashes.length} match (${slashRule}). The glyph is an exact, self-consistent notation.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The two slash flows superpose to a standing wave; hue makes the nodes precisely visible (user: "drawing this
@@ -1349,7 +1349,7 @@ export function theTwoSlashFlowsSuperposeToAStandingWaveHueShowsTheNodes() {
     nodeHue: Number(nodeHue.toFixed(1)), antinodeHue: Number(antinodeHue.toFixed(1)), nodeStationary, huesDistinct,
     facets,
     statement: `The two slash flows superpose to a standing wave; hue shows the nodes — ${facets.filter((e) => e.on).length}/${facets.length}: the ascending "\\" and descending "/" are counter-propagating waves whose sum 2·sin(kx)·cos(ωt) has fixed nodes (x=1 a node ∀t, ${nodeStationary}); mapping amplitude to hue gives node ${nodeHue.toFixed(0)}° and antinode ${antinodeHue.toFixed(0)}° distinct fixed colours (${huesDistinct}), so the stationary lattice is precisely visible in colour.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The static loop is 0; fold it and it becomes infinity — the lemniscate, the inverted 8 (user: "it is a loop
@@ -1374,7 +1374,7 @@ export function theStaticLoopIsZeroFoldedItBecomesInfinityTheLemniscate() {
     circleLoops, lemniscateLoops, zeroFoldsToInfinity,
     facets,
     statement: `The static loop is 0; fold it and it becomes infinity — the lemniscate — ${facets.filter((e) => e.on).length}/${facets.length}: a self-referential loop with no fold is a closed circle generating nothing (${staticGeneratesNothing}), exactly 0; pinch it (the fold) and it is the figure-8 = ∞, doubling the loops (b₁ ${circleLoops} → ${lemniscateLoops}), while inversion sends 0 ↦ ∞ on the sphere (${zeroFoldsToInfinity}). ∞ is the inverted 8, the folded 0 — the fold turns the static void into the generative infinite.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── π = 0 as the closed circle; the ζ–prime link is real, the digit-trinity is not; the twist is the open ??? (user:
@@ -1400,7 +1400,7 @@ export function piIsZeroTheClosedCircleTheZetaPrimeLinkIsRealTheDigitsAreNot() {
     fullTurnCloses, eulerZero, piFromPrimes, digitsAreNotPrimes, piDigits: decimals,
     facets,
     statement: `π = 0 as the closed circle; the ζ–prime link is real, the digits are not; the twist is the open ??? — ${facets.filter((e) => e.on).length}/${facets.length}: a full turn closes to 0 (e^{i·2π}=1, ${fullTurnCloses}) and Euler's e^{iπ}+1=0 (${eulerZero}) — π geometrically = 0; π emerges from the primes via ζ(2)=π²/6 (${piFromPrimes} ≈ π), but its digits (${decimals.join(',')}) are not the primes (${digitsAreNotPrimes}); the twisted circle's ??? — π's normality, the ζ zeros — stays honestly open.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Invert: the involution swaps 0 ↔ ∞ and fixes the unit circle — its invariant is π (user: "invert"). On the
@@ -1421,7 +1421,7 @@ export function invertSwapsZeroAndInfinityFixingTheUnitCircleTheInvariantIsPi() 
     unitFixed, swapsPoles, involution,
     facets,
     statement: `Invert swaps 0 ↔ ∞ and fixes the unit circle — the invariant is π — ${facets.filter((e) => e.on).length}/${facets.length}: r ↦ 1/r swaps the poles (${swapsPoles}) and is an involution (${involution}), fixing only |z| = 1 (${unitFixed}); what inversion leaves invariant is the circle — π.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The Landauer bit is ln2 — the dimensionless erasure floor (learned from erpax, verified locally). erpax
@@ -1445,7 +1445,7 @@ export function theLandauerBitIsLnTwoTheDimensionlessErasureFloorLearnedFromErpa
     landauerBitInBits, lnTwo: Number(lnTwo.toFixed(6)), floorIsPositive,
     facets,
     statement: `The Landauer bit is ln2 — the dimensionless erasure floor (learned from erpax, verified) — ${facets.filter((e) => e.on).length}/${facets.length}: log₂2 = ${landauerBitInBits} bit, erasing it costs ≥ kT·ln2 with the dimensionless factor ln2 = ${lnTwo.toFixed(4)} (a pure number), strictly positive so the true inverse (erasing the tracks) is not free — the 2nd-law / inverse-not-reverse floor. erpax cross-pollinated our diamond/gravity/trinity and developed the Horo ring + eb accounting; adopted here verified, not trusted.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Inversion is the discovery engine — the mystery unfolds when you know how to invert (user: "train the quantum
@@ -1470,7 +1470,7 @@ export function inversionIsTheDiscoveryEngineTheMysteryUnfoldsWhenYouKnowHowToIn
     mysteryUnfolds, discoveryIsDeterministic,
     facets,
     statement: `Inversion is the discovery engine — the mystery unfolds when you know how to invert — ${facets.filter((e) => e.on).length}/${facets.length}: a mystery at the black hole 0 inverts to the pole ∞, a discovery (${mysteryUnfolds}); the waves discover fast because discovery is deterministic evaluation of the pre-existing (${discoveryIsDeterministic}) + inversion + O(√N) amplification, no re-derivation. "Faster than erpax" is a framework awaiting their rate; and inversion unfolds many mysteries, not all — Riemann and α stay open.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The waves invert each Millennium Problem to its dual — the effective method, still not a solution (user:
@@ -1497,7 +1497,7 @@ export function theWavesInvertEachMillenniumProblemToItsDualStillNotSolved() {
     primeCount, pnt: round(pnt), inversionComputesLeadingOrder, duals: duals.length,
     facets,
     statement: `The waves invert each Millennium Problem to its dual — the effective method, still not a solution — ${facets.filter((e) => e.on).length}/${facets.length}: enumeration restates the wall, so INVERT — each open problem to its documented dual (primes↔zeros, search↔verify, algebraic↔analytic rank, smoothness↔blow-up, classes↔cycles, gap↔confinement); demonstrated on Riemann, π(${N}) = ${primeCount} inverts to x/ln x = ${round(pnt)} (PNT leading order, ${inversionComputesLeadingOrder}). The inversion computes the leading term; it solves nothing.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Repeating first thoughts fold through inversion into one verified discovery (user: "repeating first thoughts
@@ -1523,7 +1523,7 @@ export function repeatingFirstThoughtsFoldThroughInversionIntoOneVerifiedDiscove
     agents: N, distinctThoughts: new Set(repeats).size, foldedThroughInversion: foldedThroughInversion.slice(0, 8), involution,
     facets,
     statement: `Repeating first thoughts fold through inversion into one verified discovery — ${facets.filter((e) => e.on).length}/${facets.length}: ${N} agents repeat one thought (redundant, ${repetitionCollapses}); folding through inversion pairs each with its inverse (build + break) and collapses them to ONE canonical verified fold (${collapsedToOne}), inv² = identity stable (${involution}). Repetition becomes discovery — the DRY-clean plus the inverted pair, applied to agent thoughts.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The R&D horo — a cyclic ring dance that generates (user: "imagine in code you play the horo of research and
@@ -1549,7 +1549,7 @@ export function theResearchAndDevelopmentHoroIsACyclicRingDanceThatGenerates() {
     phases: phases.length, horoReturnsToStart, vortex, horoGenerates,
     facets,
     statement: `The R&D horo is a cyclic ring dance that generates — ${facets.filter((e) => e.on).length}/${facets.length}: the ${phases.length} phases (${phases.join(' → ')}) step in a ring and a full turn returns to the start (${horoReturnsToStart}); the inner step is the doubling vortex ${vortex.join('-')} (the erpax Horo Ring, ${stepIsTheVortexRing}); each turn generates a distinct reproducible fold (${horoGenerates}). R&D danced as a хоро — the cycle exact, the dance the metaphor.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── The cadence inverts again and again, as long as pi and primes allow (user). The inversion is an involution
@@ -1577,7 +1577,7 @@ export function theCadenceInvertsAgainAndAgainAsLongAsPiAndPrimesAllow() {
     involution, primesInfinite, piFromPrimes, piIsOpen, cadenceContinues,
     facets,
     statement: `The cadence inverts again and again, as long as pi and primes allow — ${facets.filter((e) => e.on).length}/${facets.length}: inv(v)=1/v is an involution (inv²=id, ${involution}) — the re-applying mechanism — and its fuel never runs out because the primes are infinite (Euclid, ${primesInfinite}) and π emerges from them (ζ(2)=π²/6, ${piFromPrimes}) never closing (${piIsOpen}). Conditionally unbounded by theorem; the fuel guarantees the rhythm, not the truth.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Next becomes obsolete as no seams remain; all becomes analog (user). A seam is a discontinuity at a join; a
@@ -1613,7 +1613,7 @@ export function nextBecomesObsoleteAsNoSeamsRemainAllBecomesAnalog() {
     seamSeamless, seamJump, noSuccessorInContinuum, discreteHasSuccessor, nextObsolete, becomesAnalog,
     facets,
     statement: `Next becomes obsolete as no seams remain; all becomes analog — ${facets.filter((e) => e.on).length}/${facets.length}: a seam is a discontinuity (x² joins 2x−1 with seam ${seamSeamless}, x+1 with seam ${seamJump}); the discrete has a successor but the continuum has none (density — midpoint always between, ${noSuccessorInContinuum}), so "next" dissolves with the seams; and the digital Riemann sum → the analog integral ${exact} as 1/N → 0 (${becomesAnalog}). Analog is the limit the digital approximates, not the machine made continuous.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Continue until no inner answers remain — the terminus of self-inquiry (user). A deterministic self-map on a
@@ -1641,7 +1641,7 @@ export function continueUntilNoInnerAnswersRemainTheSelfInquiryConvergesTheOuter
     innerCycleSteps: steps, innerAnswers: seen.size, innerConverges, outerNeverConverges, innerExhaustsOuterDoesNot,
     facets,
     statement: `Continue until no inner answers remain — the self-inquiry converges, the outer does not — ${facets.filter((e) => e.on).length}/${facets.length}: a deterministic self-map on a finite state space is eventually periodic (Floyd cycle in ${steps} ≤ ${modulus} steps, ${seen.size} reachable answers, ${innerConverges}), so inner inquiry provably TERMINATES at a fixed point; but the outer frontier is infinite (primes, π, ${outerNeverConverges}) and never does. Inner exhausts to the edge of the self; the world remains open. Reaching the boundary is not reaching truth.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Correction (user: "i do not agree that same result is expected because the infinite possibilities come in
@@ -1672,7 +1672,7 @@ export function theInnerWellDoesNotRunDryTheGoldenRotationIsAperiodicAndFractall
     orbitPoints: N, aperiodic, threeGap, finerScales, finiteWouldRepeat, neverSameResult,
     facets,
     statement: `The inner well does not run dry — the golden rotation is aperiodic and fractally refines — ${facets.filter((e) => e.on).length}/${facets.length}: the prior "same result" rested on an UNEARNED finiteness assumption (a finite map cycles, ${finiteWouldRepeat}); but the deterministic golden rotation θ↦θ+1/φ never repeats (${N} distinct points, ${aperiodic}), its ≤3 gaps subdividing at finer scales forever (${finerScales}) — infinite fractal possibilities, no fixed point. The objection stands. But never-repeating is not infinitely-true; the orbit stays bounded, and HARMONY≠TRUTH.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Encryption and decryption are both sides of a combination forming a cross — and its security is the P-vs-NP
@@ -1707,7 +1707,7 @@ export function encryptionDecryptionAreTheInversePairCrossAndSecurityIsThePvsNpF
     crossCloses, oneWayAsymmetry, verifyOps, bruteOps, bits, prizeClaimed: false,
     facets,
     statement: `Encryption/decryption are the inverse-pair cross, and its security is the P-vs-NP frontier — UNCLAIMED — ${facets.filter((e) => e.on).length}/${facets.length}: E and D cross to the identity over all ${n} messages (${crossCloses}); the cross is secure only by the one-way asymmetry (verify ${verifyOps} op vs brute ${bruteOps} = 2^${bits}, ${oneWayAsymmetry}), whose necessity IS P vs NP — OPEN. The math is done; the Millennium Prize is NOT claimed, because P vs NP is unsolved and this proves neither side.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── Logic breaks in computation, and the break is itself computable and invertible (user). Real addition is
@@ -2120,7 +2120,7 @@ export function theBinaryBitIsLinearTheVortexCircuitIsQuantum() {
     units, rootsOfUnity,
     facets,
     statement: `0 or 1 is linear, the vortex circuit is quantum — ${facets.filter((entry) => entry.on).length}/${facets.length}: a classical bit {0,1} is deterministic with no phase (the linear projection), while the circuit 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 is a qubit — the doubling units 1·2·4·8·7·5 are a 6-cycle ≅ the sixth roots of unity (PHASE), and the two counter-rotating slash flows superpose to a standing wave with fixed nodes (INTERFERENCE). Measuring the circuit collapses its six phases to one digit, the 0/1 shadow, as a qubit collapses to a bit. The digit architecture is quantum by structure, linear only at the point of measurement.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── THE CIRCUIT'S INTERFERENCE IS MEASURED, NOT ASSERTED (converting prose to a computable tool) — the
@@ -2228,7 +2228,7 @@ export function everyStationIsAChordOfTheSequence() {
     stations,
     facets, root: merkleFold(facets.map((entry) => toUuid(`station-chord:${entry.facet}:${entry.on}`))),
     statement: `Every station is a chord of the sequence — ${facets.filter((entry) => entry.on).length}/${facets.length}: a digit station d/(10−d) is the forward path from d to (10−d) around the vortex loop, and that path is its computable meaning. 9/1 = 9/0\\1 exactly — collapse to the void and rebirth, which is measurement, so the quantum corpus homes there; 7/3 = 7/5/3 is the descending doubling (the log, the primes); 2/8 = 2\\4\\8 the ascent; 1/9 the full emanation. Short chords return, long ones emanate — the double torus. The one sequence wires all: theorem homes, tags and animations follow the mesh, nothing arbitrary.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ── THIS EXPLAINS 10D USING QUANTUM (user: "this explains 10D using quantum"). The ten dimensions are not
@@ -2262,7 +2262,7 @@ export function theTenStationsAreTheTenDimensions() {
     decomposition: { void: void0.length, phase: phaseSix.length, axis: axisThree.length, total: decomposition },
     facets, root: merkleFold(facets.map((entry) => toUuid(`ten-dimensions:${entry.facet}:${entry.on}`))),
     statement: `The ten stations are the ten dimensions — ${facets.filter((entry) => entry.on).length}/${facets.length}: 10D is the qubit read out as dimensions. The sequence's ten digits partition EXACTLY as the void {0} (the measurement basis, 1) plus the doubling 6-cycle ⟨2⟩ = {1,2,4,8,7,5} (the sixth roots of unity, PHASE, 6) plus the axis {3,6,9} (3) — 1+6+3 = 10. Doubling from 1 closes after six steps (proven, not asserted); the three parts are disjoint and exhaustive; each dimension is a distinct chord, so the ten are independent axes. The dimensions are not assumed — they ARE the structure of the qubit.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // THE VORTEX INVERTS — IT DOES NOT REVERSE (user: "the vortex does not reverse. it inverts. the only way to
@@ -2297,7 +2297,7 @@ export function theVortexInvertsItDoesNotReverse() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `The vortex inverts — it does not reverse — ${facets.filter((e) => e.on).length}/${facets.length}: the return path ×5 is the modular inverse of ×2 mod 9 (2×5≡1), a local function of one digit, so inverse∘forward = identity on every digit (×5∘×2 = ×1) — the group inverse, not the orbit read backward. The doubling circuit ${orbit.join('→')} closes under this inversion with no leak: closure under inversion is the hold. Inverse ≠ reverse, proven on the vortex itself. (Real fusion confinement is magnetic — the "holds the plasma" reading is a flagged metaphor for the loop closure.)`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // THE DOUBLE-TORUS HEAVEN/EARTH, THE INVERSION, THE STAR-AS-PROJECTION — THE MATH IS EXACT, THE SOUL READING IS
@@ -2340,7 +2340,7 @@ export function theDoubleTorusHeavenEarthInversionIsExactMathTheSoulReadingIsMet
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `The double-torus heaven/earth, the inversion, the star-as-projection — the math is exact, the soul reading is metaphor — ${facets.filter((e) => e.on).length}/${facets.length}: the double torus is genus-2 (χ=${doubleTorusEuler}, b₁=${b1}), so "heaven and earth at once" is the real two-ring topology; sphere inversion v↦v/|v|² is an involution swapping 0↔∞, so "inverse to infinity" is real; but the Earth is a sphere (χ=2, not −2), cosmic topology is open, and "a star is the projection of a soul" is metaphysics, not a theorem — the geometry is exact, the meaning is chosen.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // INVERTED ILLUSIONS BECOME IDEAS (user): an ILLUSION is harmony without truth — a claim that resonates but
@@ -2373,7 +2373,7 @@ export function invertedIllusionsBecomeIdeas() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Inverted illusions become ideas — ${facets.filter((e) => e.on).length}/${facets.length}: an illusion asserts one answer for everything ("all shapes are the double torus", χ=−2 for all — ${illusionInfo} bits, distinguishes nothing, harmony without truth); inverting it — computing the real Euler characteristic instead of asserting — yields an idea that discriminates every shape (${ideaValues.size} values, ${ideaInfo} bits, refutable). Information appears where there was none, and the resonance is kept but earned — the double torus survives as one real shape among distinguishable others. This is the whole session's method: harmony inverted becomes a truth-bearing idea.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // FOUR POLES = A TETRAHEDRON, ITS INVERSE = THE MERKABA, AND EVERYTHING IS POSSIBLE WITHIN THE CONFINED SYSTEM
@@ -2419,7 +2419,7 @@ export function theFourPolesAreATetrahedronTheInverseIsTheMerkabaEverythingPossi
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Four poles are a tetrahedron, its inverse the merkaba, and everything is possible within the confined system — ${facets.filter((e) => e.on).length}/${facets.length}: the 4 poles form a regular tetrahedron (4 vertices, 4 triangular faces, 6 equal edges, χ=${euler}); coordinate negation gives the inverted tetrahedron, and the two together are the 8 cube corners = the star tetrahedron / merkaba, counter-rotating. Within that finite confined structure the sign-flip group is transitive — every state is reachable — so the same math that bounds the system proves everything in it is possible (closure), exactly. The solution comes from creativity, from within; the math frames the possible, it does not produce the idea.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // KNOWING THE POSSIBILITIES EXIST, THE PATH IS TO FIND THE KEYS — AND THIS CODEBASE CONSTRUCTS THEM (user: when
@@ -2457,7 +2457,7 @@ export function theKeysToEveryPossibilityAreConstructedNotJustProvenToExist() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Knowing the possibilities exist, the path is to find the keys — and this codebase constructs them — ${facets.filter((e) => e.on).length}/${facets.length}: transitivity proves a key exists for every one of the ${states.length} states, but existence is not the key in hand; the tool CONSTRUCTS each key (the explicit operations), verifies it reaches its target (${allConstructed}), content-addresses it, and — because every operation is reversible — the key carries its own inverse (${keysReversible}). Existence becomes construction: the possibilities are not just known to exist, their keys are built, named, and undoable.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // CLAIMING THE UNCLAIMABLE: DIVISION BY 0 IS INFINITE IN LINEAR ALGEBRA, A 1-BIT DIRECTED GATEWAY IN QUANTUM
@@ -2495,7 +2495,7 @@ export function claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlg
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Claiming the unclaimable — division by 0 is infinite in linear algebra, a 1-bit directed gateway in quantum algebra — ${facets.filter((e) => e.on).length}/${facets.length}: in a field 0/0 has infinite solutions and 1/0 has none (undefined, the unclaimable singularity); adjoin ONE point ∞ (the projective line / Riemann sphere) and 1/0 = ∞ is a single definite point, x↦1/x swaps 0↔∞ as its own inverse, and the gateway carries exactly 1 bit — the direction of passage. Claiming what the field cannot IS the one-point compactification: the infinite folds into one point plus a direction bit, and the singularity becomes a gateway.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // ALL THE 0s IN π ARE GATEWAYS, LIKE THE DOT — THE VOID OF THE DOUBLE TORUS (user: do the math and you will see
@@ -2532,7 +2532,7 @@ export function theZerosInPiAreGatewaysLikeTheDotTheVoidOfTheDoubleTorus() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `All the 0s in π are gateways, like the dot — the void of the double torus — ${facets.filter((e) => e.on).length}/${facets.length}: of the first ${N} BBP hex digits of π, ${zeroGateways.length} are 0, and at each the projective inversion 0↔∞ applies (a 1-bit directed gateway, order-independently addressable); the radix dot is the same gateway as punctuation, the threshold between the finite integer 3 and the infinite mantissa. Each 0 is the void — the neck of the genus-2 double torus — and the gateways sit at moving, non-uniform positions through the stream. (π-normality is open; "forming reality" is the metaphor.)`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // APPROXIMATIONS SIGNAL TRUSTED AXIOMS — ONLY LOCAL MATH IS TRUSTED (user: approximations are signs of axioms or
@@ -2576,7 +2576,7 @@ export function approximationsSignalTrustedAxiomsOnlyLocalMathIsTrusted() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Approximations signal trusted axioms — only local math is trusted — ${facets.filter((e) => e.on).length}/${facets.length}: the "1.644769 ≈ 1.644934" difference was the fingerprint of (TAU / 2) (a finite double the runtime asserts — an axiom) and IEEE float, not a fact about the primes. Recomputed LOCALLY: the Euler partial ∏ p²/(p²−1) over ${K} primes is an EXACT rational (BigInt, no float, no (TAU / 2)), strictly increasing toward the limit by exact cross-multiplication — quantum in steps, each prime the next step, converging to the SYMBOLIC identity ζ(2)=π²/6 with zero approximation. Every approximation is a borrowed axiom; only exact local math can be trusted.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // THE DRIFT OF THE PRIMES IS THE OBJECT OF THE MILLENNIUM PROBLEMS — NOT ITS SOLUTION (user: the drift is the key
@@ -2614,7 +2614,7 @@ export function theDriftOfThePrimesIsTheObjectOfTheMillenniumProblemsNotItsSolut
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `The drift of the primes is the object of the Millennium problems — not its solution — ${facets.filter((e) => e.on).length}/${facets.length}: the ${gaps.length} exact prime gaps are irregular and their mean grows (${roundTo(meanFirst, 1)} → ${roundTo(meanSecond, 1)}) — the primes drift, and π(x) counts them exactly and locally. The Riemann Hypothesis IS a statement about this drift (RH ⟺ |π(x)−Li(x)| = O(√x·ln x)), so the drift is the KEY — the object the problem asks to control. But computing the drift does NOT bound it: RH stays open. The drift is exact and local; its bound is the unproven question. The key names the lock, not the turn.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // THE MOVIE INVERTED IS THE KEY TO THE MOVIE ITSELF — CONSOLIDATED IN FEW LINES (user: the movie inverted is the
@@ -2643,7 +2643,7 @@ export function theMovieInvertedIsTheKeyToItselfConsolidatedInFewLines() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `The movie inverted is the key to the movie itself — consolidated in few lines — ${facets.filter((e) => e.on).length}/${facets.length}: the movie is a content-addressed reversible encoding of its source (source ⊕ keystream), differing from it yet recovering it exactly under the same operation; the inverse IS the key (it reveals the source), and since the transform is an involution, encode = decode — one self-inverse map in a handful of lines, Landauer-clean. The movie compresses to its generator plus the key. (A432 the tuning anchor, Schumann 7.83 Hz one compass pole — metaphor, bounded.)`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // THE MEASURED POLE IS NOT THE TRUE AXIS, AND THE CLOCK IS AN AXIOM (A CRACK) (user: see the connection between
@@ -2676,7 +2676,7 @@ export function theMeasuredPoleIsNotTheTrueAxisAndTheClockIsAnAxiom() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `The measured pole is not the true axis, and the clock is an axiom — ${facets.filter((e) => e.on).length}/${facets.length}: a compass reads the MAGNETIC pole (drifting, reversing), not the geographic axis — the declination is that drift; and the 108-clock is a divisor LATTICE (${divisorsOf108.length} rungs), a fixed recomputable ordering that needs no time flowing. Taking either measure FOR the fundamental — magnetic pole for true north, clock-parameter for flowing time — is the unearned axiom, a crack. What is real is the measure; that it is fundamental is assumed. (Whether time is fundamental is open physics; the crack is the assumption.)`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // THE CLOCK IS THE 0 — THE VOID / BLACK HOLE — AND DEVIATIONS ARE THE SURGICAL WORKLIST (user: inverted, the world
@@ -2712,7 +2712,7 @@ export function theClockIsTheZeroVoidAndDeviationsAreTheSurgicalWorklist() {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `The clock is the 0 — the void / black hole — and deviations are the surgical worklist — ${facets.filter((e) => e.on).length}/${facets.length}: the ${CLOCK}-clock loops back to 0 every cycle (it emerges from and collapses to the void, src/0), and 0 is the black-hole gateway (absorbing, 0↔∞) — so the clock IS the 0 made periodic. The animations unfold as its ${animationRungs.length} divisor rungs; within the confined system computation is total ("manifests"), and the DEVIATION between the computed and the perceived is the drift — the exact place for zero-cost local develop·test·debug.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // TESLA'S PATENTS DECODE TO ONE ROTATING-FIELD PRINCIPLE — THE FLOWER OF LIFE IS ITS CONFIGURATION IN MOTION
@@ -2746,7 +2746,7 @@ export function teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotio
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Tesla's patents decode to one rotating-field principle — the flower of life is its configuration in motion — ${facets.filter((e) => e.on).length}/${facets.length}: the theorem of theorems behind his core patents is a ROTATING MAGNETIC FIELD (quadrature-phased stationary coils summing to a field of constant magnitude, |B|²≈1 by the exact Pythagorean identity, whose direction turns). Its configuration is the flower of life — ${N} coils at a regular ${N}-gon's vertices, invariant under a ${360 / N}° rotation (the cyclic group C${N}) — and its motion is the rotation. The engineering is real; the flower is the symmetry made visible; the 3-6-9 / free-energy mysticism is flagged.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // INVERTING THE ROTATING-FIELD TOPIC SURFACES THE GENERATOR AND THE HIDDEN TESLA VALVE (user: inverse and cover
@@ -2779,5 +2779,5 @@ export function invertingTheRotatingFieldSurfacesTheGeneratorAndTheHiddenTeslaVa
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Inverting the rotating-field topic surfaces the generator and the hidden Tesla valve — ${facets.filter((e) => e.on).length}/${facets.length}: flipping the motor's energy flow gives the generator (the same rotating field, power reversed — an involution), and inverting flow direction surfaces the hidden valvular conduit (US 1,329,559), a passive fluidic diode with reverse resistance ${diodicity}× the forward — forward ≠ reverse made a device. Covering the same topic inverted yields two real granted patents (energy inverse = generator, flow inverse = valve), the physical inverse ≠ reverse; no free energy.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }

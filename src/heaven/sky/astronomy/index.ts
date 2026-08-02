@@ -303,7 +303,7 @@ function computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearchedRaw(matri
     facets: sealed.facets,
     root: merge(matrix.root, merkleFold([...findings.map((f) => f.receipt), base.root, all.root])),
     statement:
-      'Deep research — compute all known celestial bodies: NASA/JPL simplified planets and major moons, Schwarzschild Sun, lunar inclination and nodal period, WGS84 Earth radius — all recomputed at call time via computeAllKnownCelestialBodies with exact-match receipts. Flat Earth flagged; circular Keplerian honestly bounded vs JPL ephemeris. Sun/Moon double-torus lobes are structural isomorphism ().',
+      'Deep research — compute all known celestial bodies: NASA/JPL simplified planets and major moons, Schwarzschild Sun, lunar inclination and nodal period, WGS84 Earth radius — all recomputed at call time via computeAllKnownCelestialBodies with exact-match receipts. Flat Earth flagged; circular Keplerian honestly bounded vs JPL ephemeris. Sun/Moon double-torus lobes are structural isomorphism.',
     boundary:
       'HONEST deep-research wave with adversarial verify tiers: DOCUMENTED (NASA/JPL, CODATA, WGS84) · FLAGGED (flat Earth, ephemeris overclaim) · ISOMORPHISM (double-torus lobes, compute-all structural model). Circular Keplerian ≠ JPL DE440; major moons use mean periods only. NOT live web research at call time — findings encoded from verified wave.' }
 }

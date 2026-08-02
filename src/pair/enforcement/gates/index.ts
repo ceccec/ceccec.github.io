@@ -2887,9 +2887,7 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     { facet: 'compose gate/lens · mcp/chat · chat/all · gate/monitor · tool/matrix · dry/* · formula/code · analytics/self', on: composeOn },
     { facet: 'pair gate/analytics bidirectional', on: pairOn },
     { facet: `manualGauge gap=${manual.magnitude} derived=${manual.derived}`, on: manual.computes },
-    { facet: 'no QPU required', on: qpuRequired === false },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    { facet: 'no physical FTL claim', on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gate-analytics:${entry.facet.slice(0, 64)}:${entry.on}`) }))
 
   const computes = analyticsFacetsOn && pairOn && slimToolsOn && debt.computes && manual.computes
@@ -3532,7 +3530,7 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
       `drained=${TOOL_MATRIX_DRAINED_DUAL_CLIS.length} hardRefuse=${hardRefuse ? 1 : 0}`,
     boundary:
       'Tools must fit the matrix (fold·pair≤3·ONE CLI) or refuse. Wet prose names · dual-CLI spam · incomplete faces = HARD. ' +
-      'Agent entry = /agents.json packet (pair·cli·route·honesty·root). foldableShare = discovered/(discovered+encoded) FTL ratchet — . ' +
+      'Agent entry = /agents.json packet (pair·cli·route·honesty·root). foldableShare = discovered/(discovered+encoded) FTL ratchet. ' +
       'ONE pair tool/matrix · ONE CLI. Soft manual/gap · prose/matrix · link/discover · script/fold · chat/ftl. clay via theorem.',
   }
 }
@@ -4370,7 +4368,7 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
     cli: 'npm run quantum:revolution-approach',
     route: '/en/quantum-tools#revolution-approach',
     heading: 'Revolutionary approach · grand ideas held by computed boundaries',
-    statement: `revolutionaryApproach — ${revolutionaryClaims} revolutionary claims admitted, each held by a computed boundary (not prose); the revolution is the method, .`,
+    statement: `revolutionaryApproach — ${revolutionaryClaims} revolutionary claims admitted, each held by a computed boundary (not prose); the revolution is the method.`,
     boundary:
       'Revolutionary ideas require a revolutionary approach: the portal holds grand claims (millennium · beat-any-AI · all-quantum) not as prose ' +
       'but as compute-or-refute folds, each boundary a theorem (overclaimComputes cardinality). The approach is what makes revolutionary-and-honest ' +

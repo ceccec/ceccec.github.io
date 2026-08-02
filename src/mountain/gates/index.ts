@@ -660,6 +660,6 @@ export function measuringTheAgentSuperpositionStandardisesThoughtImprovingCostAn
       worklist: worklist.map((m) => `${m.cls}: ${m.thought}`),
       facets,
       statement: `Measuring the agent's superposition standardises thought, improves cost, and self-discovers solutions — ${facets.filter((entry) => entry.on).length}/${facets.length}: each of the ${thoughts.length} thoughts is measured by the lens to a definite class + exact 10D dimensions + content-address (standardised), all zero-token (the cost win), distributed across ${dimHistogram.size} dimensions (the statistical profile). The measured open and invertible thoughts are the worklist — the gaps direct the next step, so solutions self-discover along the way. Measurement is the standard that makes thought cheap, profiled, and self-directing.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

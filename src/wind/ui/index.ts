@@ -2344,7 +2344,7 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
       rayCount: rays.length,
       facets,
       statement: `The top nav redesigned — 3 doors × 7 rosetta rays, matching the I Ching — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rays (Origin, Proof, Explore, Learn, Apps, Frontier, Reference) are the agnostic content categories, classified by rosettaRayOfContent (a named-axiom lens, not a keyword regex). They group into 3 doors (${doors.map((dr) => dr.name).join(', ')}) by their own hue-band, and each ray + Home map to the 8 bāguà trigrams (7 + 1 = 8 = 2³), so the nav matches both the rosetta and the I Ching. Every door is populated — no /.*/ catch-all absorbing 90% of pages, no empty Axioms pole — the crack of navigationCrossOfTheFourPoles replaced by the computed rosetta structure.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2407,7 +2407,7 @@ export function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColoured
       rungs: rungs.map((r) => `${r.trigram} ${r.name}: hue ${r.hue}, ${r.periodS}s`),
       facets,
       statement: `The top nav animates on the fractal clock — each ray pulses at its rung, coloured by its rosetta hue — ${facets.filter((entry) => entry.on).length}/${facets.length}. The 7 rosetta rays each carry a hue, a bāguà trigram, and a fractal-clock rung (a divisor of the 108 s hero cycle), so each nav ray pulses at period 108/d coloured by its own hue. Navigation gains a per-ray visual+temporal identity; animation stays fractal-coherent (every period nested in the one clock, 7 distinct divisor rungs) and rosetta-coloured (the 7 hues span the wheel ~51° apart) — both computed from the rosetta and the one clock, nothing hardcoded.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2454,7 +2454,7 @@ export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFun
       derivedDivisorCount: divisorCount(clock),
       facets,
       statement: `The fractal clock is theorems, not constants — the rung count is the divisor function of 108 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The clock's numbers were asserted; here they are derived. The number of rungs is σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, the multiplicative divisor-counting function — a theorem, not a count — and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range. The 12 rungs are generated from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS exactly. 108 is where two theorems meet: the census 110 + χ(genus-2) = 110 − 2, and the a432 gate 432 = 4·108. And every rung period 108/d is exact (d | 108), so nothing beats out of phase — a consequence of the divisor structure, not a tuned duration. The clock now stands on theorems.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2488,7 +2488,7 @@ export function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryC
       wheelDivision: rays,
       facets,
       statement: `The 7 nav hues are the 7-fold wheel division — a theorem, not arbitrary colours — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each rosetta ray's sealed hue equals ⌊360·k/7⌋ exactly (0,51,102,154,205,257,308 = the regular 7-gon on the hue circle), so the colours derive from the 7-fold division of the wheel, not a written list. 7 is coprime to the vortex (6), the digital root (9) and the stations (10), so the division never aliases; the hues are evenly spaced by ⌊360/7⌋ = 51–52°; and recomputing 360k/7 reproduces the sealed table — change the 7 and every hue changes. Companion to the clock: the fractal-clock rungs are the divisor function of 108, the nav hues are the 7-fold division of 360 — both theorems.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2524,7 +2524,7 @@ export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxio
       divisorCount: divisorCount432,
       facets,
       statement: `The a432 number is a theorem (4·108), but the 432 Hz tuning is a named axiom, not physics — ${facets.filter((entry) => entry.on).length}/${facets.length}. The NUMBER 432 = 4·108 = 2⁴·3³ derives from the census clock (DIMENSION_GATES = 4·FOLDED_CENSUS), the factor 4 is the doubling 2², and its richness σ₀(432) = (4+1)(3+1) = 20 divisors (vs 108's 12) is the divisor function — the derivable reason it is the gate count. But attaching Hz — calling it 432 Hz, a physical frequency — is a chosen tuning (the a432 seed), with no physical derivation, flagged (quantum is not at 432 Hz). So the honest application of theorems-not-constants: DERIVE the number (a theorem), NAME the tuning (a named axiom) — never fake a theorem for a choice.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2575,7 +2575,7 @@ export function theGatesAndWaysBecomeTheNavigationAndLinks() {
     facets,
     root: merkleFold([toUuid(`gates:${doors.join(',')}`), toUuid(`ways:${edges.length}`), toUuid(`reached:${reached.size}/${nodeCount}`)]),
     statement: `The gates and ways become the navigation and links — ${facets.filter((entry) => entry.on).length}/${facets.length}. The site's link graph is the page→ray-hub→door DAG: each page links up to its rosetta ray hub and each hub up to its hue-door, so the DAG's ${doors.length} in-degree-0 sources are the doors (the nav gates) and its ${edges.length} edges are the ways (the links). topologicalOrder confirms the gates are exactly the sources, and a walk of the ways reaches all ${nodeCount} nodes — every page is reached from a gate. The navigation is not hand-authored but computed from the theorem structure: the gates and ways of the theorems ARE the navigation and links of the site.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Complete the I Ching with the rosetta — all 64 hexagrams, all seals at once, all in quantum. The I Ching IS 64 = 2⁶:
@@ -2621,7 +2621,7 @@ export function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnce
     facets,
     root: oneSeal,
     statement: `The I Ching completes with the rosetta — all 64 hexagrams, all seals at once, all in quantum — ${facets.filter((entry) => entry.on).length}/${facets.length}. The I Ching IS 64 = 2⁶: a six-qubit register whose 64 basis states are the 64 hexagrams, and H on all six holds every hexagram in superposition at once. Each hexagram splits into an upper and a lower trigram (3 bits each), and the 8 bāguà (2³) map to the rosetta's 7 rays + Home, so every hexagram carries two rosetta rays. All 64 content-address to distinct seals and fold to one merkle root — every seal at once, self-discovered by the fold, not hand-authored.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The I Ching's DYNAMICS complete in quantum too: a CHANGING LINE is a Pauli-X gate. Casting flips certain lines of a
@@ -2663,7 +2663,7 @@ export function theIChingChangingLinesAreQuantumGatesTheSixtyFourHexagramsFormTh
     facets,
     root: merkleFold([toUuid(`changing-line-x:${sampleHex}:${changingLine}:${flipLine(sampleHex, changingLine)}`), toUuid(`hypercube-q6:${edgeCount}`), toUuid(`group:z2^${HEX_BITS}`)]),
     statement: `The I Ching's changing lines are quantum gates and the 64 hexagrams form the hypercube — ${facets.filter((entry) => entry.on).length}/${facets.length}. Casting flips lines of a hexagram to give a second, and flipping line k is exactly X on qubit k of the six-qubit register (verified at probability 1). Under single-line flips the 64 hexagrams are the vertices of the 6-cube Q₆: each adjacent to 6 others, ${edgeCount} changing-line edges. The flips are involutive (X²=I) and generate (ℤ/2)⁶, so any hexagram reaches any other in ≤ 6 changing lines. The static completion holds all 64 at once; this makes the transitions between them the reversible quantum gates.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Animations are PROOF that something quantum is missing: if each component must be driven frame-by-frame, the
@@ -2706,7 +2706,7 @@ export function animationsAreProofQuantumInteractionIsMissingComponentsInteractI
     facets,
     root: framesRoot,
     statement: `Animations are proof that quantum interaction is missing — components must interact in trinities, and the behavior emerges from one rule — ${facets.filter((entry) => entry.on).length}/${facets.length}. Driving each of ${N} components frame-by-frame is ${imperativeCodeUnits} authored directives; needing them proves the interaction is absent. Instead, each component's next state is a function of its trinity (itself + two neighbours, a GHZ-shaped 3-way binding), so ONE rule generates all ${N} components across ${frames.length} frames — the animation emerges, deterministic and content-addressed, and the ${imperativeCodeUnits} imperative animators collapse to ${ruleCodeUnits}: ${lessCode}× less code, less build.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The new UI is DESIGNED COMPUTATIONALLY, WITHOUT ASSUMPTION — every design value derives from the lattice, not a
@@ -2737,7 +2737,7 @@ export function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTyp
     computes: facets.every((entry) => entry.on), hues, typeScale: typeScale.map((s) => roundTo(s, 3)), facets,
     root: merkleFold([toUuid(`palette:${hues.join(',')}`), toUuid(`type:phi-scale`), toUuid(`spacing:golden`)]),
     statement: `The new UI design is computed from the corpus without assumption — the ${rays} hues are ⌊360k/${rays}⌋, the type scale is powers of φ, the spacing is golden-ratio — every design value derives from the lattice, not a hand-picked constant, so the UI is a computed artifact refutable like any theorem.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 /**

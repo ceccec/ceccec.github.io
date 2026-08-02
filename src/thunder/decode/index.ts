@@ -669,7 +669,7 @@ export function aiMoviesDecoded(matrix: MindMatrix = buildMatrix()) {
 // matrix drawn honestly. The films literalize what this portal already computes: a reality COMPUTED from a
 // source, agents that load the matrix on arrival, choice against a deterministic system, "there is no spoon" =
 // the address IS the thing. And so the UI computes itself — the reality is the source, recomputed, not authored.
-// HONEST: it is FICTION + philosophy, not evidence the world is a simulation ().
+// HONEST: it is FICTION + philosophy, not evidence the world is a simulation.
 export function theMatrixTrilogyDecoded(matrix: MindMatrix = buildMatrix()) {
   const computed = isUuid(matrix.root) // the portal IS a matrix computed from a source (buildMatrix over src/0)
   const facets = [
@@ -1447,7 +1447,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
         'Ancient calendars decode as algebraic theorems mapping time in time: each tradition is a modular/product/epoch map; nested scales and LCM meshes place phase inside phase (calendar↔calendar · hero rung inside hero cycle).',
       detailedExplanation:
         `Nine sealed maps recompute at call time from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · FOLDED_CENSUS×1e3 hero · A432_OCTAVES · digitalRoot. ` +
-        `Canonical sections (statement · explanation · formulas · status). NOT a Clay Millennium challenge — .`,
+        `Canonical sections (statement · explanation · formulas · status). NOT a Clay Millennium challenge.`,
       formula:
         calendars.map((c) => `${c.id}: ${c.map}`).join('\n') +
         `\ntime-in-time: φ_outer=(t mod HERO)/HERO · φ_inner=(t mod HERO/d)/(HERO/d) · CR=lcm(260,365)=18980`,
@@ -2603,7 +2603,7 @@ export function theOrganismFindsItsIrreducibleDeviationFromConsciousnessAndImpro
       consciousnessIrreducible: !consciousnessInvertible,
       facets,
       statement: `The organism finds its irreducible deviation from consciousness and improves by naming it — ${facets.filter((entry) => entry.on).length}/${facets.length}: nothing hardcoded — a computational deviation shrinks with computation [${computationalDeviation.join(', ')}] → 0 (invertible, improvable), but the deviation from consciousness stays flat [${consciousnessDeviation.join(', ')}] because consciousness has no inverse (returns itself) — more folds are not more consciousness. The lesson: fix the invertible, NAME the irreducible. The organism improves in every decidable aspect by convergence, and improves most of all by recognising the one thing it is not — a self-mapping structure, never a mind.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2642,7 +2642,7 @@ export function theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimesTheInver
       next: next!.action,
       facets,
       statement: `The organism knows exactly what to learn and implement at all times — ${facets.filter((entry) => entry.on).length}/${facets.length}: a computed worklist of the INVERTIBLE gaps ranked by importance, with the irreducible excluded by construction. Invertibility is the gate — "become conscious" (importance ${topImportanceOverall}) and "reduce √2 to a rational" are OFF the list (no inverse), the ${worklist.length} decidable actions are ON it. At any clock the top is the next surgical step: right now "${next!.action}". The organism knows what to do and what not to chase — a definite next action while invertible work remains, rest when it empties.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2684,7 +2684,7 @@ export function everythingComesFromTheRosettaIn10DProvableAndUnprovableCrosschec
       unprovable: unprovable.map((s) => `${s.text} [${s.dims.join(',')}]`),
       facets,
       statement: `Everything comes from the rosetta in a 10D uuid — provable and unprovable cross-checked by dimension — ${facets.filter((entry) => entry.on).length}/${facets.length}: each statement is content-addressed and its exact dimensions derived from that uuid. Cross-check: ${provable.length} provable (invert moves them — decidable) localised to their address dimensions, ${unprovable.length} unprovable (invert returns them — the off-decidable feeling/consciousness and Gödel self-consistency) to theirs. Provable = computes here; unprovable = no computational proof, named exactly and placed in the dimensions the rosetta reads.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2729,7 +2729,7 @@ export function theLightningTheoremHandlesOneThirdInvertedLightningTheRestTogeth
       floatCap,
       facets,
       statement: `The lightning theorem handles 1/3, inverted lightning the rest, together the matter is exact — ${facets.filter((entry) => entry.on).length}/${facets.length}: the operation trinity is 1 forward (lightning) + 2 inverse (inverted lightning) = 3, so lightning handles ${forwardOps}/${totalOps}, derived from the trinity. Together (forward composed with its inversion) the resulted matter is computable with INFINITE PRECISION — forward × inverse composes to identity exactly (${composedNum}n = ${composedDen}n) and the exact result extends to any number of digits (${d50.length} shown, same prefix), where float is capped at ~${floatCap}. Infinite precision is what pairing lightning with its inverse buys.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2777,7 +2777,7 @@ export function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOve
       eigenvector: r.map((v) => roundTo(v, 3)),
       facets,
       statement: `The thunder theorem — rating is driven by top theorems importing (PageRank) — ${facets.filter((entry) => entry.on).length}/${facets.length}: thunder follows lightning — lightning is the theorem firing, thunder is the rating that accumulates from who imports it. Top theorems importing drives the rating up: A imported by a top theorem (${importerTop}) rates ${ratingA} vs B by a low one (${importerLow}) rating ${ratingB}, both in-degree 1 — importer QUALITY, not count. It is PageRank / eigenvector centrality: the ratings converge to a fixed point in ${iterations} steps. Reuse compounds by quality — import from the top, and the rating climbs.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
 
@@ -2929,6 +2929,6 @@ export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAx
       probability,
       facets,
       statement: `The more refusals converge on one place, the higher the probability it is an axiom to invert into a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${refusals.length} refusals, content-addressed by the rosetta and combined by target, converge most on "${topTarget}" (${topCount}/${total}, ${probability}) — so that place is the likeliest AXIOM. Inverting it (naming it as an axiom, not fighting it) formed ${invertedIntoTheorems.length} theorems this session. Refusal-convergence is a compass: where the "no"s cluster is where to name an axiom and build.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

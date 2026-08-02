@@ -2044,7 +2044,7 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
     const tracksClassical = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated
     const facets = [
       { facet: 'W3 honestRevolutionReceipt holds — JSON proof published', on: receipt.holds },
-      { facet: 'quantumAdvantageBenchmark classical-64bit ()', on: tracksClassical },
+      { facet: 'quantumAdvantageBenchmark classical-64bit', on: tracksClassical },
       { facet: 'fleetCacheEconomicsDecoded — hit-ratio energy falls monotonically', on: fleet.decoded },
       { facet: 'W1 claim sentence available for Vue surface', on: w1.holds && w1.claim.length > 0 },
       { facet: 'W2 interference vs shadow contrast available', on: w2.holds },

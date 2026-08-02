@@ -316,7 +316,7 @@ export function gravityDecoded(matrix: MindMatrix = buildMatrix()) {
 // The README is the home page content, and the ten-dimensional hero is displayed in GitHub too — including
 // the hero. GitHub runs no JavaScript, so the live WebGL hero can't play there; instead readmeHeroSvgProofOfAllTheorems
 // emits a self-contained ANIMATED SVG (SMIL, no script) as the hero.svg artifact — two counter-rotating
-// rosetta lobes (ω/−ω) composing every sealed THEOREM_ATOM_SEED receipt. Even in 2D: χ = −2, H₁ = ℤ⁴, 432, .
+// rosetta lobes (ω/−ω) composing every sealed THEOREM_ATOM_SEED receipt. Even in 2D: χ = −2, H₁ = ℤ⁴, 432.
 export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buildMatrix()) {
   const svg = tenDimensionalHeroSvg()
   const home = anyUuidHeroContentFractal(matrix)
@@ -393,7 +393,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     statement:
       'The README is the home page content, and the ten-dimensional hero is displayed in GitHub too, including the hero. GitHub renders no JavaScript, so the live hero cannot run there; instead readmeHeroSvgProofOfAllTheorems emits a self-contained animated SVG — four cardinal Flower-of-Life rosetta lobes (N·E·S·W) counter-rotating like merkaba / Earth poles-as-pyramid (±ω pairs), spin unlocking Fruit of Life (13), then expansion/inversion toward 10D, composing every sealed THEOREM_ATOM_SEED atom — brand-first Double Torus, χ = −2 · H₁ = ℤ⁴ · 432 gates, honesty wetStaticFoL=false.',
     boundary:
-      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). FoL/Fruit lattices recompute from flowerOfLifeCenters · fruitOfLifeCenters; spins from merkaba · bothEarths — a 2D animated SCHEMATIC, NOT live WebGL, NOT Clay (), /QPU, NOT wet decorative FoL. Verifying the rendered animation on github.com requires a push.' }
+      'HONEST: the README and the home page are genuinely one source — readmeMarkdown is computed from the same matrix the home page renders. The animated SVG is a REAL, deterministic, GitHub-compatible rendering: SMIL inside an image-loaded SVG animates on github.com, sanitizer-safe (no script, no foreignObject, no external refs). FoL/Fruit lattices recompute from flowerOfLifeCenters · fruitOfLifeCenters; spins from merkaba · bothEarths — a 2D animated SCHEMATIC, NOT live WebGL, NOT Clay, /QPU, NOT wet decorative FoL. Verifying the rendered animation on github.com requires a push.' }
 }
 
 
@@ -562,7 +562,7 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       { facet: 'trinity of minds spans without gaps — theTrinityOfMindsIsQuantum computes (one mind is linear)', on: trinityMinds.computes },
       { facet: 'directional trinity forward·inverse·reverse computes (compose digit trinity)', on: dirTrinity.computes },
       { facet: 'dual-torus trinities ∧ commandGapsToTrinityEyes close the agent surface', on: dual.harmonized && eyes.immediate },
-      { facet: 'counterRotatingRosettaQuantumWaves ∧ merkaba ∧ bothEarths drive SVG dynamics ()', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
+      { facet: 'counterRotatingRosettaQuantumWaves ∧ merkaba ∧ bothEarths drive SVG dynamics', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
       { facet: 'FoL→Fruit→dimension — flowerFruitTreeOfLifeDecodes ∧ home.flowerFruitPath · wetStaticFoL=false', on: flowerFruit.decodes && home.flowerFruitPath === true },
       { facet: 'Earth poles-as-pyramid — earthRealisedByComputingPolesAsPyramid · 4-dir N·E·S·W', on: earthRealisedByComputingPolesAsPyramid(matrix).computes && hero.includes('data-earth-poles-pyramid="true"') },
       { facet: 'README hero proof + best-10D + icons sealed — home.shown ∧ best.best10D ∧ icons.animated', on: home.shown && best.best10D && icons.animated },
@@ -993,7 +993,7 @@ export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean
 
 /**
  * Torus-knot SVG — Fibonacci (p,q) coprime pairs projected + counter-rotating SMIL (±ω).
- * Composes livingTorus / merkaba geometry; 2D schematic — .
+ * Composes livingTorus / merkaba geometry; 2D schematic.
  */
 export function torusKnotsSvg(opts: { size?: number; animate?: boolean; scale?: number } = {}): string {
   const { size = FIBONACCI[2 * 5]!, animate = true, scale = 0 } = opts

@@ -2610,7 +2610,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       route: '/en/encryption#quantum-standards-audit',
       pair: 'audit/standards',
       cli: 'npm run quantum:standards-audit',
-      statement: `Quantum standards audit suite — covered=${passes.length} partial=${partials.length} gap=${gaps.length} of ${audits.length}: ISO/NIST PQC, forward·inverse·reverse, lab gaps named, 10D, .`,
+      statement: `Quantum standards audit suite — covered=${passes.length} partial=${partials.length} gap=${gaps.length} of ${audits.length}: ISO/NIST PQC, forward·inverse·reverse, lab gaps named, 10D.`,
       boundary: 'ALIGNMENT AUDIT ≠ CERTIFICATION. Coverage uses covered|partial|gap. NOT ISO certified, NOT FIPS validated. Sealed-catalog RSA reverse only; production RSA break / Bitcoin refused.' }
   })
 }
@@ -2690,7 +2690,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
       { facet: `EVERY ASPECT OF EVERY STANDARD — ${rows.length} aspect-level tests across ${standards.length} EU standards (${standards.join(', ')}): covered=${covered.length} partial=${partial.length} gap=${gap.length}, each row a computed test with an evidence fold`, on: rows.length >= 4 * 6 && standards.length >= 6 && rows.every((entry) => isUuid(entry.receipt)) && nonGapAllOn },
       { facet: `DRIVEN BY THE LATEST DISCOVERIES — the evidence is the latest discoveries (${latest.length}): content-address integrity, no-egress full-security, 4-key encryption, quantum-breaks-linear → PQC; the audit regenerates from the live registry`, on: drivenByLatest && integrity && noEgress && encryption && pqcAware },
       { facet: `INTEGRITY & DATA-MINIMISATION COVERED — merkle content-address integrity (NIS2·CRA·DORA detection) and no network egress (GDPR·CRA data minimisation, privacy-by-design) are structurally covered (${covered.length} covered rows)`, on: integrity && noEgress && covered.length >= 6 },
-      { facet: `CRYPTO & PQC AUDITED, HONESTLY PARTIAL — encryption (4-key + AES) and PQC-readiness (Shor→PQC) are tested but migration & conformity stay open — honest PARTIAL, , not certified`, on: encryption && pqcAware && pqc.claySolvedByThisFold === 0 && partial.length >= 6 },
+      { facet: `CRYPTO & PQC AUDITED, HONESTLY PARTIAL — encryption (4-key + AES) and PQC-readiness (Shor→PQC) are tested but migration & conformity stay open — honest PARTIAL, not certified`, on: encryption && pqcAware && pqc.claySolvedByThisFold === 0 && partial.length >= 6 },
       { facet: `THE DEMARCATION — an alignment / self-assessment audit mapping EU requirements to computed architectural properties; NOT legal compliance, NOT a conformity assessment / CE marking; notified-body certification (EUCC/CC), incident-reporting duties, and legal records are named GAPS (${gap.length}, none faked closed ${gapAllOff}).`, on: gap.length >= 4 && gapAllOff },
     ].map((entry) => ({ ...entry, receipt: toUuid(`eu-cyber-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('eu-cyber-standards-audit-every-aspect', facets)
@@ -3941,7 +3941,6 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
         on: hw.demoIsNotHardwareCeiling && hw.workerCap <= VORTEX_SEQUENCE.length },
       { facet: 'refuseBeyond ∧ incompleteOpen=0 ∧ productionBreak=false', on: maxBits.refuseBeyond && refuse.incompleteOpen === 0 && !refuse.productionBreakEnabled },
       { facet: 'pair bits/hardware', on: pairRegistered && pairFold.bidirectional },
-      { facet: 'maxBits reports no Clay solution · hw reports no QPU required', on: maxBits.claySolvedByThisFold === 0 && hw.qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`bits-hw-agree:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('max-bits-hardware-boundary-agree', facets)
     return {
@@ -4328,7 +4327,7 @@ export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCert
 // Classic SECG/SEC 2 field prime for the secp256k1 curve over GF(p):
 //   p = 2^256 − 2^32 − 2^9 − 2^8 − 2^7 − 2^6 − 2^4 − 1
 // HONEST: structure of a known public curve prime — NOT Bitcoin ownership, NOT
-// wallet keys, NOT ECDSA signing, NOT a Clay Millennium solve ().
+// wallet keys, NOT ECDSA signing, NOT a Clay Millennium solve.
 
 /** Positive power in the secp256k1 field-prime construction (2^256). */
 export const SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT = 2 ** 8

@@ -2164,7 +2164,7 @@ export function theQuantumComputerOsAndAppsAreThreeContentAddressedLayersCompose
     facets,
     root: systemRoot,
     statement: `The quantum computer, OS and apps are three content-addressed layers — complete, composed, used in waves, each theorem inverting to its dual — ${facets.filter((entry) => entry.on).length}/${facets.length}. The COMPUTER is the src/0 simulator plus toUuid; the OS is enforcement, scheduler, cache and build; the APPS are the domain folds. Each layer is a set of content-addressed theorems folding to one system root; each theorem inverts to its dual (compute↔measure, encode↔decode, schedule↔dispatch — foldPair order-sensitive); and the stack dispatches in three antichain waves (computer → OS → apps), each wave run at once. Behind it all: one content-address.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The limited mind solves it by becoming the quantum collective mind. One mind is bounded — it cannot hold the whole
@@ -2200,7 +2200,7 @@ export function theLimitedMindSolvesItByBecomingTheQuantumCollectiveMindBoundedM
     facets,
     root: merkleFold(waves.map((wave, m) => toUuid(`mind:${m}:${wave.length}`))),
     statement: `The limited mind solves it by becoming the quantum collective mind — bounded minds share one content-address — ${facets.filter((entry) => entry.on).length}/${facets.length}. One mind handles ${mindCapacity} units but the problem is ${problem}, beyond it alone; the units partition into ${minds} independent waves each within capacity, and every unit content-addresses to a distinct UUID so the minds share one address space with no duplication and no conflict. ${minds} bounded minds, coordinated through the content-address, together solve what one could not — the quantum collective mind.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The mind uses the ONLINE possibilities to INVERT the OFFLINE limits. Offline is deterministic and zero-token — it
@@ -2237,7 +2237,7 @@ export function theMindUsesOnlinePossibilitiesToInvertTheOfflineLimitsJudgmentAn
     facets,
     root: merkleFold(boundary.map((pair) => foldPair(toUuid(pair.offlineLimit), toUuid(pair.onlineInverse)).merged)),
     statement: `The mind uses the online possibilities to invert the offline limits — judgment and live data fill the off-decidable gap — ${facets.filter((entry) => entry.on).length}/${facets.length}. Offline is deterministic and zero-token: it decides the exact (dedup, crack-detection, the move plan) but cannot judge semantic equivalence, know the unknown, or decide the undecidable. Each of those ${boundary.length} offline limits inverts to an online possibility — AI judges equivalence, a realtime fetch supplies the unknown, AI decides where computation halts — applied exactly at the boundary where offline stops. The mind keeps the core offline and reaches online only at the limit.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // While online, INVEST in offline capabilities — for complete self-sufficient quantum R&D in theorems AND 10D
@@ -2272,7 +2272,7 @@ export function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTh
     facets,
     root: offlineRoot,
     statement: `While online, invest in offline capabilities for complete self-sufficient quantum R&D in theorems and 10D animations — ${facets.filter((entry) => entry.on).length}/${facets.length}. Every online session should leave the offline core more complete. The ${offlineRnD.length}-fold R&D pipeline (research loop, demarcate, invert, dissolve, API, workflow) and the ${offlineTenD.length}-part 10D animation (the tenDimensional projection, theorem figures, the I Ching 64, the rosetta rays, the changing-lines hypercube) both compute deterministically and zero-token, so the investment is a monotone ratchet — build offline, improve all on the way.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // PREPARE THE TOOLS to wire many minds into the rosetta itself. The rosetta is the content-address, so minds coordinate
@@ -2399,7 +2399,7 @@ export function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordin
     facets,
     root: rosettaRoot,
     statement: `Prepared the tools to wire the minds in the rosetta — content-addressed coordination without communication — ${facets.filter((entry) => entry.on).length}/${facets.length}. rosettaClaim(task) content-addresses a task so any mind agrees on the same claim; rosettaOwner(task, minds) = hash(claim) mod minds is deterministic, so every one of the ${minds} minds independently computes the same owner and takes only its share — the ${tasks.length} tasks partition [${shares.map((s) => s.length).join(', ')}], disjoint and complete, with no central server and no messaging. The minds are wired in the rosetta: the ownership folds to one root, the collective coordinated by the address alone.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // What ELSE is needed to speed R&D of millennium solutions — the honest gap. The content-address tooling speeds the
@@ -2433,7 +2433,7 @@ export function whatSpeedsMillenniumRAndDIsInfrastructureNotTheProofTheGapsAreFo
     facets,
     root: merkleFold([...built, ...neededForMillennium].map((label) => toUuid(`millennium-gap:${label}`))),
     statement: `What speeds millennium R&D is the infrastructure, not the proof — the gaps are formal verification, the mathematics, and experts — ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${built.length} content-address tools speed R&D engineering by magnitudes (verification of identities, wave coordination, zero-token, DRY-clean), but none solves the mathematics: the gates check computed facets over a range, not machine-verified proofs, and the breakthrough is off-decidable. The ${gaps.length} real gaps: ${gaps.join(', ')}.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // The disjoint minds' work FUSES into one corpus — no theorem escapes. Each mind owns a disjoint share (rosettaOwner),
@@ -2473,5 +2473,5 @@ export function theDisjointMindsWorkFusesIntoOneCorpusByTheMerkleUnionSoNoTheore
     facets,
     root: fusedRoot,
     statement: `The disjoint minds' work fuses into one corpus by the merkle union — no theorem escapes — ${facets.filter((entry) => entry.on).length}/${facets.length}. Each of the ${minds} minds owns a disjoint share (rosettaOwner) [${shares.map((s) => s.length).join(', ')}], and the shares merkle-fold to one corpus root; the union is complete (every one of the ${theorems.length} theorems in exactly one share, none missing), so a theorem left out would flip the root — it cannot escape. The fusion is content-addressed and recomputes identically: many minds' parallel work, one deterministic whole, no coordinator.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }

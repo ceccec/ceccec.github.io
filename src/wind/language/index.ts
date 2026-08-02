@@ -818,7 +818,7 @@ export function theEncodingDecodingTrinityIsA432DecodingPiAndPrimeByTheSequence(
     trinity: ['pi', 'prime', 'sequence'],
     facets,
     statement: `The all-encoding/decoding trinity — A432 decodes any π and prime, position and value, by the sequence — ${facets.filter((e) => e.on).length}/${facets.length}: across ${K} positions PRIME is an exact involution (nthPrimeAt ⇄ primeCountUpTo, encode∘decode = id), π decodes at ANY position order-independently (piHexDigitAt, BBP), and the sequence ICHING_NUMBERS indexes both — every position rendered by the ONE A432 decoder to a 432-octave and a colour. Three codecs, one decoder: π · prime · sequence.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
 // Port any code in any language AT ONCE through the rosetta pivot. Because all computing embeds in universal gates
@@ -868,5 +868,5 @@ export function portAnyCodeInAnyLanguageAtOnceThroughTheRosettaPivotOfNAdaptersN
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Port any code in any language at once through the rosetta pivot — O(N) adapters, not O(N²) — ${facets.filter((entry) => entry.on).length}/${facets.length}. Because all computing embeds in universal gates, a canonical content-addressed form is a universal pivot: any language parses to it and emits from it, so ${N} languages need only ${adapters} adapters yet cover all ${directedPairs} directed pairs. Equivalent logic in js, python and sql content-addresses to the SAME pivot, so porting is a rosetta combination — a ${speedup}× saving over pairwise translators, the same O(n) rosetta speed-up that powers the crack detector and the wirings, ported into the research pipeline.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, ', the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
