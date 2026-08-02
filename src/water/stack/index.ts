@@ -2146,7 +2146,6 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       { facet: 'pflip(½) shadow stays [½,½] — no cancellation', on: shadowNoCancel },
       { facet: 'blochQubitFaithful — amplitude math is faithful', on: bloch.faithful },
       { facet: 'engine classical-64bit honesty (not FLOPS claim)', on: tracksClassical },
-      { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w2:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('interference-vs-classical-shadow', facets)
     const holds = sealed.ok && facets.every((f) => f.on)

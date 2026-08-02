@@ -1940,7 +1940,6 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'quantumFusionVerify — fuseAll wave replay matches', on: fusion.verified },
       { facet: 'observingMovieRevealsQuantumModel snapshot round-trips', on: movie.roundTrips },
       { facet: 'engine classical-64bit honesty (not FLOPS claim)', on: tracksClassical },
-      { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w3:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('honest-revolution-receipt', facets)
     const holds = sealed.ok && facets.every((f) => f.on)
@@ -2049,7 +2048,6 @@ export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = build
       { facet: 'fleetCacheEconomicsDecoded — hit-ratio energy falls monotonically', on: fleet.decoded },
       { facet: 'W1 claim sentence available for Vue surface', on: w1.holds && w1.claim.length > 0 },
       { facet: 'W2 interference vs shadow contrast available', on: w2.holds },
-      { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w4:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('honest-revolution-computer-panel', facets)
     const holds = sealed.ok && facets.every((f) => f.on)
