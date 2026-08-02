@@ -537,6 +537,35 @@ export const ROSETTA_SEVEN = 7 as const
 export const ROSETTA_AREAS = ROSETTA_SIX * ROSETTA_SEVEN
 export const ROSETTA_FOLD_LABEL = `${ROSETTA_SIX}×${ROSETTA_SEVEN}/${ROSETTA_SEVEN}×${ROSETTA_SIX}` as const
 
+/** One arm of the transpose-symmetric 42-cell area (7 sectors × 6 spokes = 6×7). This is the SINGLE
+ *  position law both the theorem wiring (entangledWiringOf) and the movie painters (drawDeathCounterFlow,
+ *  drawPlasmaRays) consume — the circle's coordinate is the lattice cell, NOT the registry/golden-angle index.
+ *  lifeAngleRad seats the forward (life) arm on cell (sector, spoke); reflectAngleRad is the TRANSPOSE cell
+ *  (spoke, sector) — the same 42 area read as 6×7 — so deathAngleRad = −reflectAngleRad places the
+ *  counter-rotating death arm at the reflection of life. Cell (r,c) ⇄ (c,r) are therefore mirror positions
+ *  and the painted circle folds onto itself under the transpose involution (no unpaired spoke to glitch). */
+export interface LatticeArm { sector: number; spoke: number; lifeAngleRad: number; reflectAngleRad: number; deathAngleRad: number }
+export function latticeArm(sector: number, spoke: number, rows: number = ROSETTA_SEVEN, cols: number = ROSETTA_SIX): LatticeArm {
+  const lifeAngleRad = (sector / rows) * TAU + ((spoke + 1 / 2) / cols) * (TAU / rows)
+  // The reflection is the transpose cell (r,c) ⇄ (c,r): the same 42 area read as cols×rows.
+  const reflectAngleRad = (spoke / cols) * TAU + ((sector + 1 / 2) / rows) * (TAU / cols)
+  return { sector, spoke, lifeAngleRad, reflectAngleRad, deathAngleRad: -reflectAngleRad }
+}
+const ARM_FIELD_CACHE = new Map<string, readonly LatticeArm[]>()
+/** All rows×cols arms of the transpose-symmetric area, row-major (sector outer, spoke inner) — index
+ *  sector·cols+spoke. Default 7×6 = ROSETTA_AREAS = 42. Memoised: the field is a fixed geometric constant. */
+export function entangledArmField(rows: number = ROSETTA_SEVEN, cols: number = ROSETTA_SIX): readonly LatticeArm[] {
+  const key = `${rows}:${cols}`
+  const hit = ARM_FIELD_CACHE.get(key)
+  if (hit) return hit
+  const arms: LatticeArm[] = []
+  for (let sector = 0; sector < rows; sector += 1) {
+    for (let spoke = 0; spoke < cols; spoke += 1) arms.push(latticeArm(sector, spoke, rows, cols))
+  }
+  ARM_FIELD_CACHE.set(key, arms)
+  return arms
+}
+
 // SCIENCE-ALIGNED DOMAINS — computed by an outside professional scientist against external standards (OECD Fields
 // of Science, arXiv taxonomy, MSC 2020, PACS/PhySH) to align the local corpus with real science. The 7 rosetta
 // rays conflated SUBJECT and MODE; the fix keeps ROSETTA_AREAS = 42 read as 7 FIELDS × 6 MODES — the fields (below)

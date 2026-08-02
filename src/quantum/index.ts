@@ -27,7 +27,7 @@ import type { MindMatrix } from '../wind/types'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
-import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU } from '../3/7'
+import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7'
 import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational'
 
 const PLASMA_TIERS = [3, 5, 8] as const
@@ -298,6 +298,22 @@ function drawPlasmaField(
   // Its only boundary is where the blob confluence fades to transparent — not a drawn circle.
 }
 
+/**
+ * The ONE angular placement law the movie painters consume — the transpose-symmetric 42-cell lattice
+ * (entangledArmField, src/3/7), the SAME field entangledWiringOf seats every theorem on. Stream `i` rides
+ * cell `i % 42`: the LIFE (forward) arm sits at lifeAngleRad, the DEATH (counter-flow) arm at deathAngleRad
+ * (= −reflectAngleRad, the transpose cell). Placement is by lattice cell, NOT golden-angle × index — so the
+ * life and death arms are mutual reflections and the painted circle folds onto itself (no unpaired spoke to
+ * glitch). Golden-angle spin is still ADDED on top by each painter (the visual character is preserved); only
+ * the base seat changes. Pure, deterministic, memoised field — zero network, zero new deps.
+ */
+export function lifeRayBaseAngle(i: number, field: readonly LatticeArm[] = entangledArmField()): number {
+  return field[((i % field.length) + field.length) % field.length]!.lifeAngleRad
+}
+export function deathFlowBaseAngle(i: number, field: readonly LatticeArm[] = entangledArmField()): number {
+  return field[((i % field.length) + field.length) % field.length]!.deathAngleRad
+}
+
 /** Radial plasma rays — count scales with wired + content streams (3 + floor(n/5), cap 16). */
 function drawPlasmaRays(
   ctx: CanvasRenderingContext2D,
@@ -318,7 +334,9 @@ function drawPlasmaRays(
   for (let r = 0; r < rayCount; r += 1) {
     const stream = streams[r % max(1, streams.length)]
     const hue = stream?.hue ?? (hueShift + r * GOLDEN_ANGLE_RAD) % 360
-    const angle = (r / rayCount) * TAU + p * GOLDEN_ANGLE_RAD + t * (1 / (5 * 4))
+    // Life (forward) arm seats on the lattice cell lifeAngleRad (entangledWiringOf's field), NOT r/rayCount×τ
+    // index; golden-angle spin + time drift are ADDED on top so the visual character is unchanged.
+    const angle = lifeRayBaseAngle(r) + p * GOLDEN_ANGLE_RAD + t * (1 / (5 * 4))
     const len = voidR * ((27 / (5 * 4)) + (1 - 3 / (5 * 4)) * ((1 / 2) + (1 / 2) * sin(t * (1 - 7 / (5 * 4)) + r * (1 - 9 * 7 / 100))))
     const pulse = (7 / (5 * 4)) + (1 - 7 / (5 * 4)) * sin(t * ((7 * 3) / (5 * 4)) + r * PHI ** -2)
     const alpha = palette.canvas.streamAlpha((1 - 9 / (5 * 4)), true, pulse)
@@ -374,7 +392,10 @@ function drawDeathCounterFlow(
   ctx.save()
   ctx.globalCompositeOperation = palette.dark ? 'lighter' : 'source-over'
   for (let f = 0; f < flowCount; f += 1) {
-    const baseAngle = (f / flowCount) * TAU + f * GOLDEN_ANGLE_RAD
+    // Death (counter-flow) arm seats on the lattice cell deathAngleRad = −reflectAngleRad (the transpose of
+    // the life arm), NOT the f/flowCount×τ + f·golden index — so the death stream is the reflection of a life
+    // ray and the circle folds onto itself. The inward counter-rotation spin below is still ADDED on top.
+    const baseAngle = deathFlowBaseAngle(f)
     const speed = (9 / (5 * 5 * 2)) + (f % PLASMA_TIERS[0]) * (1 / (5 * 4))
     const head = (((t * speed - p * (1 / 2) + f * (360 * (2 - PHI)) / 1e3) % 1) + 1) % 1 // golden-angle spacing (was rounded 0.137)
     let leadX = cx
@@ -2254,11 +2275,30 @@ export function lifeDeathDoubleTorusFusedInMovie(path = '/en/', matrix: MindMatr
   } catch (error) {
     paintError = error instanceof Error ? error.message : String(error)
   }
+  // BIND (not attest): the death painter's base seat is now the lattice deathAngleRad the theorem wiring uses,
+  // NOT the old golden-angle × index. deathFlowBaseAngle(f) reads entangledArmField()[f % 42].deathAngleRad
+  // (= −reflectAngleRad, the transpose of the life ray), and lifeRayBaseAngle(f) reads the paired lifeAngleRad
+  // — so life/death arms counter-rotate and reflect. Refutable three ways: it must equal the field, it must be
+  // the counter-reflection of the life arm (death = −reflect while life = life), and it must DIFFER from the
+  // retired index law f/flowCount×τ + f·golden — if the painter regresses to index placement, this collapses.
+  const armField = entangledArmField()
+  const painterSamples = [0, 1, 2, 7, ROSETTA_SEVEN * 6 - 1, ROSETTA_SEVEN * 6 + 3]
+  const painterConsumesLatticeAngle =
+    armField.length === ROSETTA_SEVEN * 6 &&
+    painterSamples.every((f) => {
+      const arm = armField[f % armField.length]!
+      const legacyIndexAngle = (f / max(1, painterSamples.length)) * TAU + f * GOLDEN_ANGLE_RAD
+      return deathFlowBaseAngle(f) === arm.deathAngleRad &&
+        deathFlowBaseAngle(f) === -arm.reflectAngleRad &&
+        lifeRayBaseAngle(f) === arm.lifeAngleRad &&
+        deathFlowBaseAngle(f) !== legacyIndexAngle
+    })
   const facets = [
     { facet: 'white/black-hole throat proven — one shared genus-2 mouth, out-flow=white in-flow=black', on: throat.decoded },
     { facet: 'death counter-flow paints — the inward in-flow current is visible in the movie', on: inflowAlpha > 0 || typeof document === 'undefined' },
     { facet: 'no error painting the death counter-flow under simulated browser', on: paintError === '' },
     { facet: 'coupled flow bounds growth — homeostasis, not the unbounded cancer metaphor', on: throat.decoded },
+    { facet: `PAINTER SEATED ON THE LATTICE — the death arm's base angle IS entangledArmField()[f % ${ROSETTA_SEVEN * 6}].deathAngleRad (= −reflectAngleRad, the transpose of lifeRayBaseAngle), the SAME 42-cell field entangledWiringOf wires theorems on — not golden-angle × index (${painterConsumesLatticeAngle})`, on: painterConsumesLatticeAngle },
   ].map((entry) => ({ ...entry, receipt: toUuid(`life-death-double-torus-fused:${entry.facet}:${entry.on}`) }))
   return {
     fused: facets.every((entry) => entry.on),

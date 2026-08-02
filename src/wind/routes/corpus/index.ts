@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, earned, titleCarriesAlgebra } from '../../../3/7'
+import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -2823,12 +2823,12 @@ export function entangledWiringOf(atom: { theorem: string; provedBy: string; alg
   const cols = pairSeeds.length // 6 spokes
   const sector = archetypeOrder.indexOf(c.figure.archetype)
   const spoke = pairSeeds.findIndex((d) => d === c.animation.rung || 108 / d === c.animation.rung)
-  const lifeAngleRad = (sector / rows) * TAU + ((spoke + 1 / 2) / cols) * (TAU / rows)
-  // The reflection is the TRANSPOSE cell (r,c) ⇄ (c,r): the same 42 area read as 7×6 and as 6×7.
-  const reflectAngleRad = (spoke / cols) * TAU + ((sector + 1 / 2) / rows) * (TAU / cols)
+  // ONE position law, shared with the movie painters (src/quantum drawDeathCounterFlow / drawPlasmaRays):
+  // latticeArm(sector, spoke) is the SAME transpose-symmetric cell angle the painters index by stream.
+  const arm = latticeArm(sector, spoke, rows, cols)
   return {
     archetype: c.figure.archetype, rung: c.animation.rung, twinRung: 108 / c.animation.rung, sector, spoke, rows, cols,
-    angleRad: lifeAngleRad, lifeAngleRad, reflectAngleRad, deathAngleRad: -reflectAngleRad,
+    angleRad: arm.lifeAngleRad, lifeAngleRad: arm.lifeAngleRad, reflectAngleRad: arm.reflectAngleRad, deathAngleRad: arm.deathAngleRad,
     cell: `${sector}:${spoke}`, transposeCell: `${spoke}:${sector}`,
   }
 }
@@ -2853,11 +2853,23 @@ export function theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(matrix: Mi
     })
     const areaFortyTwoBothOrientations = wires.every((wire) => wire.rows * wire.cols === ROSETTA_AREAS && wire.cols * wire.rows === ROSETTA_AREAS && wire.rows === ROSETTA_SEVEN && wire.cols === ROSETTA_SIX)
     const counterRotating = wires.every((wire) => wire.lifeAngleRad > 0 && wire.deathAngleRad < 0)
+    // THE PAINTER'S FIELD IS THIS WIRING: entangledArmField() is the exact array src/quantum's canvas painters
+    // (drawDeathCounterFlow / drawPlasmaRays) index by stream (field[stream % 42]), replacing golden-angle×index.
+    // Bind it, not attest: every theorem's own (lifeAngleRad, deathAngleRad) must EQUAL field[sector·6 + spoke]
+    // — the painter's forward arm = lifeAngleRad, its counter-rotating death arm = deathAngleRad. Refutable: if
+    // the painter's field formula (src/3/7 latticeArm) or entangledWiringOf ever diverge, this collapses.
+    const armField = entangledArmField()
+    const painterConsumesLatticeAngle = armField.length === ROSETTA_AREAS && wires.every((wire) => {
+      const arm = armField[wire.sector * ROSETTA_SIX + wire.spoke]!
+      return arm.sector === wire.sector && arm.spoke === wire.spoke &&
+        arm.lifeAngleRad === wire.lifeAngleRad && arm.deathAngleRad === wire.deathAngleRad && arm.reflectAngleRad === wire.reflectAngleRad
+    })
     const facets = [
       { facet: `THE CIRCLE WAS LINEAR — under θ_k = 2πk/N only ${indexNeighboursSharingCell} of ${atoms.length - 1} index-adjacent pairs share a lattice cell (${round(linearFraction * (5 * 2 * 5 * 2))}%): the old wiring seats unrelated theorems together and scatters families — index order, not entanglement`, on: linearFraction < 1 / 2 },
       { facet: `THE NATURAL WIRING CLUSTERS — under entangledWiringOf every cell's members land on the SAME spoke (${cellMatesSameSpoke}): the co-moving families of the ${ROSETTA_AREAS}-cell area are now co-LOCATED, archetype = sector, pair-class = spoke within it`, on: cellMatesSameSpoke && sectorsBySameArchetype },
       { facet: `${ROSETTA_AREAS} SPOKES ADDRESS ALL — ${distinctSpokes} distinct spoke angles carry all ${atoms.length} theorems (${ROSETTA_SEVEN} sectors × ${ROSETTA_SIX} pair-classes = 6×7 = 7×6); the wheel stays a wheel, its geometry the transpose-symmetric area, not the registry index`, on: distinctSpokes === byCell.size && distinctSpokes <= ROSETTA_SEVEN * ROSETTA_SIX },
       { facet: `REFLECTION FOLDS THE CIRCLE — the transpose (r,c) ⇄ (c,r) is an involution (${transposeInvolution}) on the one 6×7 = 7×6 = ${ROSETTA_AREAS} area (${areaFortyTwoBothOrientations}); life and death arms counter-rotate (+angle / −reflectAngle, ${counterRotating}) — the circle folds back onto itself, no unpaired spoke to glitch`, on: transposeInvolution && areaFortyTwoBothOrientations && counterRotating },
+      { facet: `THE PAINTER CONSUMES THE LATTICE ANGLE — entangledArmField() (the ${armField.length}-arm field src/quantum's drawDeathCounterFlow & drawPlasmaRays index by stream, replacing golden-angle×index) carries EXACTLY each theorem's arms: field[sector·6+spoke].lifeAngleRad === entangledWiringOf(atom).lifeAngleRad and .deathAngleRad === −reflectAngleRad for all ${atoms.length} (${painterConsumesLatticeAngle}) — the forward arm rides lifeAngleRad, the counter-rotating death arm rides deathAngleRad, bound not attested`, on: painterConsumesLatticeAngle },
     ].map((entry) => ({ ...entry, receipt: toUuid(`entangled-wiring:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
