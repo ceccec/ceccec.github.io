@@ -64,6 +64,13 @@ export const DiscoveryTasks: Record<string, DiscoveryTask> = {
     requires: ['involution-patterns', 'gap-patterns'],
     produces: 'next-theorem'
   },
+  'next-candidate': {
+    id: 'next-candidate',
+    name: 'Predict next provable theorem',
+    compute: async () => explorer.predictNext(),
+    requires: ['involution-patterns', 'gap-patterns'],
+    produces: 'next-theorem'
+  },
   'synthesis': {
     id: 'synthesis',
     name: 'Synthesize all discoveries',
@@ -74,6 +81,54 @@ export const DiscoveryTasks: Record<string, DiscoveryTask> = {
     }),
     requires: ['sealed-proofs', 'frontier-conjectures', 'involution-patterns', 'gap-patterns', 'next-candidate'],
     produces: 'synthesis-complete'
+  },
+  'coverage-analysis': {
+    id: 'coverage-analysis',
+    name: 'Analyze proof coverage by domain',
+    compute: async () => {
+      const stats = portal.stats()
+      return {
+        clay_coverage: `${(stats.byClay / stats.total * 100).toFixed(1)}%`,
+        by_tier: stats.byTier,
+        frontier_ratio: `${(stats.frontier / stats.total * 100).toFixed(1)}%`
+      }
+    },
+    requires: ['theorem-registry', 'sealed-proofs', 'frontier-conjectures'],
+    produces: 'coverage-report'
+  },
+  'proof-strategy': {
+    id: 'proof-strategy',
+    name: 'Generate proof strategies by involution class',
+    compute: async () => {
+      const patterns = explorer.discoverPatterns()
+      return {
+        strategies: patterns.map(p => ({
+          involution_type: p.type,
+          applicable_theorems: p.theorems.length,
+          approach: `Use ${p.type} involution to force proof at fixed point`
+        }))
+      }
+    },
+    requires: ['involution-patterns'],
+    produces: 'proof-strategies'
+  },
+  'frontier-roadmap': {
+    id: 'frontier-roadmap',
+    name: 'Create frontier proving roadmap',
+    compute: async () => {
+      const gaps = explorer.identifyGaps()
+      const next = explorer.predictNext()
+      return {
+        roadmap: gaps.slice(0, 3).map((g, i) => ({
+          rank: i + 1,
+          gap_structure: g.name,
+          theorems: g.theoremIds,
+          suggested_next: i === 0 ? next.nextTheorem?.title : undefined
+        }))
+      }
+    },
+    requires: ['gap-patterns'],
+    produces: 'frontier-roadmap'
   }
 }
 
@@ -91,8 +146,8 @@ export function getReadyTasks(state: AutomationState): DiscoveryTask[] {
   })
 }
 
-export async function runOneAutomationCycle(): Promise<AutomationState> {
-  const state: AutomationState = {
+export async function runOneAutomationCycle(globalState?: AutomationState): Promise<AutomationState> {
+  const state: AutomationState = globalState || {
     cycle: 1,
     tasksCompleted: [],
     results: new Map(),
@@ -101,7 +156,7 @@ export async function runOneAutomationCycle(): Promise<AutomationState> {
   }
 
   // Run cycles until no more work
-  for (let cycle = 1; cycle <= 10; cycle++) {
+  for (let cycle = state.cycle; cycle <= state.cycle + 10; cycle++) {
     state.cycle = cycle
     const ready = getReadyTasks(state)
 
@@ -144,26 +199,43 @@ export async function runOneAutomationCycle(): Promise<AutomationState> {
   return state
 }
 
-export async function continuousAutomation(): Promise<void> {
+export async function continuousAutomation(maxSpirals: number = 5): Promise<AutomationState[]> {
   console.log('[automation] Starting continuous discovery loop...\n')
 
+  const allStates: AutomationState[] = []
+  let globalState: AutomationState | undefined
   let cycle = 0
-  while (cycle < 3) {
-    // Run until steady state, max 3 spirals
+
+  while (cycle < maxSpirals) {
     cycle++
     console.log(`\n=== Spiral ${cycle} ===`)
-    const state = await runOneAutomationCycle()
+    globalState = await runOneAutomationCycle(globalState)
+    allStates.push(globalState)
+
+    const newTasksThisSpiral = globalState.tasksCompleted.length
+    const totalCompleted = globalState.tasksCompleted.length
+    const totalTasks = Object.keys(DiscoveryTasks).length
 
     console.log(`\nSpiral ${cycle} complete:`)
-    console.log(`  Cycles: ${state.cycle}`)
-    console.log(`  Tasks: ${state.tasksCompleted.length}/${Object.keys(DiscoveryTasks).length}`)
-    console.log(`  Root: ${state.root.slice(0, 16)}...`)
-    console.log(`  Done: ${state.isDone} (${state.reason})`)
+    console.log(`  New tasks: ${newTasksThisSpiral}`)
+    console.log(`  Total completed: ${totalCompleted}/${totalTasks}`)
+    console.log(`  Root: ${globalState.root.slice(0, 16)}...`)
+    console.log(`  Reason: ${globalState.reason}`)
 
-    if (state.isDone) break
+    if (totalCompleted === totalTasks) {
+      console.log(`\n✓ All ${totalTasks} tasks completed!`)
+      break
+    }
+
+    if (globalState.isDone && newTasksThisSpiral === 0) {
+      console.log('\n⚠ No progress made - stopped.')
+      break
+    }
   }
 
-  console.log('\n[automation] All spirals complete.')
+  const finalTotal = globalState?.tasksCompleted.length || 0
+  console.log(`\n[automation] Complete after ${cycle} spiral(s). Total: ${finalTotal} tasks.`)
+  return allStates
 }
 
 export const automation = {
