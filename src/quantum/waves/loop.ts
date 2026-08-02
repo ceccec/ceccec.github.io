@@ -64,13 +64,6 @@ export const DiscoveryTasks: Record<string, DiscoveryTask> = {
     requires: ['involution-patterns', 'gap-patterns'],
     produces: 'next-theorem'
   },
-  'next-candidate': {
-    id: 'next-candidate',
-    name: 'Predict next provable theorem',
-    compute: async () => explorer.predictNext(),
-    requires: ['involution-patterns', 'gap-patterns'],
-    produces: 'next-theorem'
-  },
   'synthesis': {
     id: 'synthesis',
     name: 'Synthesize all discoveries',
