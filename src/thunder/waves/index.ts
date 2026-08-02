@@ -3997,3 +3997,32 @@ export function runManualAgentsBehaveLikeWavesExit(_root = '', _argv: readonly s
   process.stdout.write(`  · boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED WAVES =====
+// Consolidated access patterns for wave discovery, research waves, and harmonization
+export const waves = {
+  discovery: {
+    sealed: discoverFromSealedFold,
+    theorems: discoveredTheoremsProvenWave,
+    horizon: collideToTiniestWave,
+  },
+  research: {
+    deep: deepResearchEncodedInRecursiveWaves,
+    development: developmentWaves,
+    coordinated: coordinatedWaves,
+    harmonize: buildWaveHarmonisation,
+  },
+  agents: {
+    builds: agentModelBuildsItselfInWaves,
+    push: agentsPushInWaves,
+    defaults: agentDefaultsFoldIntoHarmony,
+  },
+  harmony: {
+    build: harmonisedBuildWave,
+    science: harmonizeScienceDomainsInWavesOfWaves,
+  },
+  shift: {
+    spirit: spiritShiftsInWaves,
+    honesty: honestyShiftsInWaves,
+  },
+} as const
