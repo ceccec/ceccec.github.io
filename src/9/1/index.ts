@@ -2947,3 +2947,25 @@ export function sixtyDegreesDecodesPi() {
     statement: `Sixty degrees each decodes π — ${facets.filter((entry) => entry.on).length}/${facets.length} computed: the vortex step is π/3 with cos = ½ exact, three steps realize e^{iπ} = −1 as 2³ ≡ −1 (mod 9), Archimedes' hexagon-seeded doubling brackets π to ${last.lower.toFixed(4)}…${last.upper.toFixed(4)} at the ${last.n}-gon, and doubling + void-reflection generate the full 54-element affine symmetry of the digit ring.`,
     boundary: 'DOCUMENTED throughout: τ/6 and cos 60° = ½ are exact identities; 2³ ≡ −1 (mod 9) is arithmetic; the polygon recurrence is Archimedes (Measurement of a Circle, ~250 BC) run to his historical 96-gon; the AGL(1,ℤ/9) closure is verified by breadth-first composition, cross-pollinated from erpax the day it was found there. π is DECODED (computed from the 60° seed), not encoded mystically in it.' }
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED MODULAR ARITHMETIC =====
+// Consolidated access patterns for quantum algebra and prime theory
+export const modular = {
+  quantum: {
+    algebra: pauliAlgebraCloses,
+    gates: rotationGate,
+    phase: phaseGate,
+    innerProduct,
+    commutator,
+    anticommutator,
+    trace,
+    dagger,
+  },
+  primes: {
+    primality: tkIsPrime,
+    hittingInversionPoint: hittingAPrimeIsTheInversionPoint,
+  },
+  evolution: {
+    quantum: quantumEvolutionDecoded,
+  },
+} as const

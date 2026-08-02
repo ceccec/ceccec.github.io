@@ -4438,3 +4438,31 @@ export function runSuperpositionCompletenessExit(root = '', _argv: readonly stri
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED QUANTUM/THERMAL =====
+// Consolidated access patterns for quantum mechanics, thermodynamics, and sound
+export const quantum4_6 = {
+  physics: {
+    hawking: hawkingTemperature,
+    helmholtz: helmholtzFreeEnergy,
+  },
+  acoustics: {
+    soundPressure: soundPressureLevelDb,
+  },
+  gates: {
+    rcnot,
+    cycle: cycleAdvance,
+  },
+  field: {
+    f2Add,
+    f2Mul,
+    f2Closes: f2FieldCloses,
+  },
+  theorems: {
+    discoveredWaves: [
+      discoveredTheoremsWaveFiftyOne,
+      discoveredTheoremsWaveFiftyThree,
+      discoveredTheoremsWaveFiftyFour,
+    ],
+  },
+} as const

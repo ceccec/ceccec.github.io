@@ -2781,3 +2781,18 @@ export function invertingTheRotatingFieldSurfacesTheGeneratorAndTheHiddenTeslaVa
     statement: `Inverting the rotating-field topic surfaces the generator and the hidden Tesla valve — ${facets.filter((e) => e.on).length}/${facets.length}: flipping the motor's energy flow gives the generator (the same rotating field, power reversed — an involution), and inverting flow direction surfaces the hidden valvular conduit (US 1,329,559), a passive fluidic diode with reverse resistance ${diodicity}× the forward — forward ≠ reverse made a device. Covering the same topic inverted yields two real granted patents (energy inverse = generator, flow inverse = valve), the physical inverse ≠ reverse; no free energy.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED BINARY/MOTOR =====
+// Consolidated access patterns for binary logic, motors, and energy physics
+export const binary = {
+  logic: {
+    linearVsQuantum: theBinaryBitIsLinearTheVortexCircuitIsQuantum,
+  },
+  tesla: {
+    patents: teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotion,
+  },
+  energy: {
+    zeroPoint: zeroPointEnergy,
+    casimir: casimirPressure,
+  },
+} as const

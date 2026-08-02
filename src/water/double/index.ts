@@ -3000,3 +3000,28 @@ export function theRotatingLensFindsGapsAndOpportunitiesDescribesIn10DProseSigne
       boundary: `DOCUMENTED and refutable by re-running the sweep. It composes the sealed lens (theLensSeesDoubleTorusesEverywhereExceptInCrackedCode), the wave's invert operator (theWavesDiscoverGaps...), and the naming service (theAutomaticNamingService...). THE HARD LINE on the words: "10D" = 10 computed DESCRIPTOR-dimensions (the partitions-of-ten / digit-folder structure), NOT physical 10-dimensional spacetime; "signed" = a content-addressed integrity receipt (toUuid) — WHAT not WHO, so it is tamper-evidence, not identity-authenticity (which still needs the external anchor — trustAndDimension...); "all zero quantum time" = ZERO LLM tokens and deterministic, NOT literal zero physical time (the computation takes real microseconds — theseCalculationsCost...). "Rotating" is the vortex-sequence sweep, a deterministic ordering, not physical spin. And an OPPORTUNITY is only an emergence CANDIDATE — the invertible gap has a gateway, but a human still admits the theorem that fills it.: the 10D signed prose is the harmony (a complete, addressable description); the truth is what it honestly reports — sealed, gap, or opportunity — and the off-decidable gap stays a gap.` }
   })
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED DOUBLE-TORUS =====
+// Consolidated access patterns for double-torus geometry and quantum computing
+export const doubleTorus = {
+  computes: {
+    vortex: doubleTorusVortexComputes,
+    topology: doubleTorusTopologyComputes,
+    math: doubleTorusMathComputes,
+    diamonds: doubleTorusDiamondsComputes,
+    corpus: doubleTorusCorpusComputes,
+    all: doubleTorusComputes,
+  },
+  geometry: {
+    geo: doubleTorusGeometry,
+    algebra: doubleTorusAlgebra,
+    physics: doubleTorusPhysics,
+  },
+  ui: {
+    itself: theUiItselfIsADoubleTorus,
+  },
+  quantum: {
+    computer: doubleTorusQuantumComputer,
+    errorHandling: fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible,
+  },
+} as const
