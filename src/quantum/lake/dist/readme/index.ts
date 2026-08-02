@@ -254,7 +254,7 @@ export function qpuCpuGpuMarkdownSection(
     '',
     r.physicalDefinition,
     '',
-    '**QPU = CPU ∪ GPU** — architecture identity on classical-64bit hardware (`mcp/cpu` · `mcp/gpu` · `mcp/hw`); no separate quantum chip is required (``). The modeled quantum computer is a faithful classical simulator (`quantumComputerHonestClaim`); completion is metric-backed at call time.',
+    '**QPU = CPU ∪ GPU** — architecture identity on classical-64bit hardware (`mcp/cpu` · `mcp/gpu` · `mcp/hw`); no separate quantum chip is required. The modeled quantum computer is a faithful classical simulator (`quantumComputerHonestClaim`); completion is metric-backed at call time.',
     '',
     '### Statement',
     '',

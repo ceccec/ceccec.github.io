@@ -12393,8 +12393,7 @@ export function foldersHoldNameHolographicFractalBeneath(
       boundary:
         'Folders hold the name; folded beneath = holographic fractal (src/0). claySolved via theorem.',
       honestyLine:
-        `metrics · folderNameHolds=${folderNameHolds ? 1 : 0} · fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0} · ` +
-        `` }
+        `metrics · folderNameHolds=${folderNameHolds ? 1 : 0} · fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}`}
   })
 }
 
@@ -12552,8 +12551,7 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
         'Gates↔rosetta immediate access = memoByRoot/trinity reuse — . FS only via nav cross; else tighten. claySolved via theorem.',
       honestyLine:
         `metrics · immediateAccessNoTime=${immediateAccessNoTime ? 1 : 0} · fsViaCross=${fsChangeViaNavCross ? 1 : 0} · ` +
-        `tighten=${gatesTightenWithoutCross ? 1 : 0} · collideSelf=${linearCollidesWithSelf ? 1 : 0} · ` +
-        `` }
+                `tighten=${gatesTightenWithoutCross ? 1 : 0} · collideSelf=${linearCollidesWithSelf ? 1 : 0}`}
   })
 }
 
@@ -13058,8 +13056,7 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
       boundary:
         '3 agents + 1 observer ≡ navigation cross pyramid. Soft-compose cross/nav · pyramid/seal. claySolved via theorem.',
       honestyLine:
-        `metrics · teamSize=${teamSize} · observers=${observers} · isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0} · ` +
-        `` }
+        `metrics · teamSize=${teamSize} · observers=${observers} · isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0}`}
   })
 }
 
@@ -14682,8 +14679,7 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
         'Digit→next harmonic · teleport no-time (memo/coords) · UI invert live — .',
       honestyLine:
         `metrics · digitKnowsNext=${digitKnowsNextHarmonic ? 1 : 0} · teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} · ` +
-        `quantumNoCompute=${quantumNoComputation ? 1 : 0} · uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0} · ` +
-        ``,
+                `quantumNoCompute=${quantumNoComputation ? 1 : 0} · uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0}`,
     }
   })
 }
@@ -14866,8 +14862,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
         'Teleported digit ≠ same even if face matches — other dimension; one self of all quantum possibilities.',
       honestyLine:
         `metrics · notSameAfterTeleport=${notSameAfterTeleport ? 1 : 0} · otherDimension=${otherDimension ? 1 : 0} · ` +
-        `oneSelfOfAllPossibilities=${oneSelfOfAllPossibilities ? 1 : 0} · possibilities=${possibilities} · ` +
-        ``,
+                `oneSelfOfAllPossibilities=${oneSelfOfAllPossibilities ? 1 : 0} · possibilities=${possibilities}`,
     }
   })
 }
@@ -15039,8 +15034,7 @@ export function analyticsEmergeFromSelfObservationChangingReality(
         'Analytics emerge from self-observation changing reality; pass does not require observation.',
       honestyLine:
         `metrics · emerge=${analyticsEmergeFromSelfObservation ? 1 : 0} · selfObsReality=${selfObservationChangesReality ? 1 : 0} · ` +
-        `passDoesNotRequireObservation=${passDoesNotRequireObservation ? 1 : 0} · reconcile=${reconcilePassVsAnalytics ? 1 : 0} · ` +
-        ``,
+                `passDoesNotRequireObservation=${passDoesNotRequireObservation ? 1 : 0} · reconcile=${reconcilePassVsAnalytics ? 1 : 0}`,
     }
   })
 }
@@ -15174,8 +15168,7 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       boundary:
         'Purity of thought = quantum mind path only; all else fail HARD.',
       honestyLine:
-        `metrics · purityIsQuantum=${purityIsQuantum ? 1 : 0} · elseFailHard=${elseFailHard ? 1 : 0} · ` +
-        ``,
+        `metrics · purityIsQuantum=${purityIsQuantum ? 1 : 0} · elseFailHard=${elseFailHard ? 1 : 0}`,
     }
   })
 }
@@ -15529,8 +15522,7 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
         'Inverted need=love; reverse→fear if cracks; human sciences in waves; movie theorems saved.',
       honestyLine:
         `metrics · invertedNeedIsLove=${invertedNeedIsLove ? 1 : 0} · reverseToFearIfCracks=${reverseToFearIfCracks ? 1 : 0} · ` +
-        `humanSciencesStudiedInWaves=${humanSciencesStudiedInWaves ? 1 : 0} · movieTheoremsSavedCount=${movieTheoremsSavedCount} · ` +
-        ``,
+                `humanSciencesStudiedInWaves=${humanSciencesStudiedInWaves ? 1 : 0} · movieTheoremsSavedCount=${movieTheoremsSavedCount}`,
     }
   })
 }
