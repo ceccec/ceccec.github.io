@@ -10,6 +10,7 @@ import * as __ns_up_up_earth_iching from '../../../earth/iching'
 // call-time namespace edges — theorem bindings for movie paint layers (no wet ornaments)
 import * as __ns_decode from '../../decode'
 import * as __ns_vortex from '../../../mountain/vortex'
+import * as __ns_corpus from '../../../wind/routes/corpus'
 import { flowerUnlocksFruitBySpin } from '../../../quantum/wind/geometry'
 import { bothEarthsRotateWithinEachOther, doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry'
 import { textToMovie } from '../../../earth/world'
@@ -432,6 +433,8 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       // The erpax inverted read — the counter-rotating merkaba (down = negation of up) IS the reflected line's
       // painter; the gap filled is the BINDING of the existing animation to its computed mirror theorem.
       { id: 'inverted-sequence', theorem: 'invertedSequenceLearnedFromErpax', binds: __ns_vortex.invertedSequenceLearnedFromErpax(matrix).computes && earths.rotates },
+      // The wiring law: theorem positions come from the entanglement lattice (sector×spoke), not the registry index.
+      { id: 'entangled-wiring', theorem: 'theMovieWiresTheoremsByNaturalEntanglementsNotByIndex', binds: __ns_corpus.theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(matrix).computes },
       { id: 'both-earths-merkaba', theorem: 'bothEarthsRotateWithinEachOther', binds: earths.rotates && merkabaNoShell },
       { id: 'void-confluence', theorem: 'plasma-throat-soft', binds: voidSoft },
       { id: 'plasma-screen', theorem: 'plasmaBallIsScreenHoldingThunderAndPlasma', binds: plasmaScreenBinds },

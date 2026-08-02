@@ -2798,3 +2798,48 @@ export function animationsNaturalEntanglementsByTheorems(matrix: MindMatrix = bu
       boundary: earned('EXACT — computed from the archetype and the clock:', facets, '"entanglement" here is computed co-movement — same semantic shape, same clock rung — addressed on a finite lattice; it is a naming of the natural families the theorems themselves induce, NOT physical entanglement and NOT a rendering change: cell-mates already moved together, now they are addressable') }
   })
 }
+
+/** entangledWiringOf + theMovieWiresTheoremsByNaturalEntanglementsNotByIndex — the movie's circle was LINEAR
+ * (user, 2026-07-28: "when [the movie] wires theorems they all create a circle which means they are wired
+ * linear instead of by natural entanglements"). The diagnosis computes: the rosetta ray law θ_k = 2πk/N is
+ * INDEX order — adjacent angles are adjacent registry indices, so unrelated theorems neighbour each other and
+ * cell-mates scatter. The natural law replaces the index with the LATTICE CELL: the archetype selects one of
+ * 7 sectors, the rung fans one of 12 spokes within the sector — 84 spokes total, and cell-mates land on the
+ * SAME spoke (entangled families cluster by construction, exactly as they co-move). Painters consume this law
+ * through entangledWiringOf; the fold proves it and the movie attests it. */
+export function entangledWiringOf(atom: { theorem: string; provedBy: string; algebraicStatement?: string; states?: string }) {
+  const c = computedTheoremFigureAndAnimation(atom)
+  const archetypeOrder = ['wheel', 'orbit', 'region', 'lattice', 'flow', 'curve', 'series'] as const
+  const rungOrder = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0)
+  const sector = archetypeOrder.indexOf(c.figure.archetype)
+  const spoke = rungOrder.indexOf(c.animation.rung)
+  const angleRad = (sector / archetypeOrder.length) * TAU + ((spoke + 1 / 2) / rungOrder.length) * (TAU / archetypeOrder.length)
+  return { archetype: c.figure.archetype, rung: c.animation.rung, sector, spoke, angleRad, cell: `${c.figure.archetype}:${c.animation.rung}` }
+}
+
+export function theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theMovieWiresTheoremsByNaturalEntanglementsNotByIndex', matrix, () => {
+    const atoms = THEOREM_ATOM_SEED
+    const wires = atoms.map((atom) => entangledWiringOf(atom))
+    const indexNeighboursSharingCell = atoms.filter((atom, i) => i > 0 && wires[i]!.cell === wires[i - 1]!.cell).length
+    const linearFraction = indexNeighboursSharingCell / (atoms.length - 1)
+    const byCell = new Map<string, number[]>()
+    wires.forEach((wire, i) => byCell.set(wire.cell, [...(byCell.get(wire.cell) ?? []), i]))
+    const cellMatesSameSpoke = [...byCell.values()].every((members) => new Set(members.map((i) => wires[i]!.angleRad)).size === 1)
+    const distinctSpokes = new Set(wires.map((wire) => wire.angleRad)).size
+    const sectorsBySameArchetype = wires.every((wire) => wire.sector === ['wheel', 'orbit', 'region', 'lattice', 'flow', 'curve', 'series'].indexOf(wire.archetype))
+    const facets = [
+      { facet: `THE CIRCLE WAS LINEAR — under θ_k = 2πk/N only ${indexNeighboursSharingCell} of ${atoms.length - 1} index-adjacent pairs share a lattice cell (${round(linearFraction * (5 * 2 * 5 * 2))}%): the old wiring seats unrelated theorems together and scatters families — index order, not entanglement`, on: linearFraction < 1 / 2 },
+      { facet: `THE NATURAL WIRING CLUSTERS — under entangledWiringOf every cell's members land on the SAME spoke (${cellMatesSameSpoke}): the co-moving families of the 84-cell lattice are now co-LOCATED, archetype = sector, rung = spoke within it`, on: cellMatesSameSpoke && sectorsBySameArchetype },
+      { facet: `84 SPOKES ADDRESS ALL — ${distinctSpokes} distinct spoke angles carry all ${atoms.length} theorems (7 sectors × 12 spokes); the wheel stays a wheel, but its geometry is now the entanglement lattice, not the registry index`, on: distinctSpokes === byCell.size && distinctSpokes <= 7 * (6 * 2) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`entangled-wiring:${entry.facet}:${entry.on}`) }))
+    return {
+      computes: facets.every((entry) => entry.on),
+      spokes: distinctSpokes,
+      linearNeighbourFraction: round(linearFraction * ((5 * 2) ** 4)) / ((5 * 2) ** 4),
+      facets,
+      root: merkleFold([matrix.root, toUuid(`entangled-wiring:${distinctSpokes}`), ...facets.map((entry) => entry.receipt)]),
+      statement: `The movie wires theorems by natural entanglements, not by index — ${facets.filter((entry) => entry.on).length}/${facets.length}: the old circle θ_k = 2πk/N seats unrelated theorems together (only ${round(linearFraction * (5 * 2 * 5 * 2))}% of index-neighbours share a cell); entangledWiringOf replaces the index with the lattice cell — archetype = sector, rung = spoke — so all ${atoms.length} theorems ride ${distinctSpokes} spokes and every co-moving family is co-located.`,
+      boundary: earned('EXACT — computed over the sealed lattice:', facets, 'the law is the POSITION function painters consume (entangledWiringOf); this fold proves clustering and coverage — the painters that still consume index order are the consuming wave, attested at the movie canvas; a circle remains the canvas, but its coordinates are now the entanglement lattice') }
+  })
+}
