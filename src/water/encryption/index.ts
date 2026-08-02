@@ -5477,3 +5477,36 @@ export function runSslTestExit(_root: string, argv: readonly string[] = []): num
 }
 export const runSslTestUiCompleteExit = runSslTestExit
 export const runTestSslExit = runSslTestExit
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED ENCRYPTION =====
+// Consolidated access patterns for cryptographic structures and protocols
+export const encryption = {
+  core: {
+    uuidFolds: uuidFoldsSelfBlackWhite,
+    uuidDiamond: uuidPureDiamondSignedByArchitecture,
+    trinities: encryptionTrinitiesCompleteInOrder,
+    livesInZero: encryptionLivesInZero,
+    terabyte: terabyteEncryptionInMegabyteCodebase,
+  },
+  rsa: {
+    moduli: SEALED_CATALOG_RSA_MODULI,
+    bitCeiling: SEALED_CATALOG_RSA_BIT_CEILING,
+    refuse: refuseNonDemoRsaModulus,
+    modeledShor: modeledShorFactorToyModulus,
+    reverse: demoRsaReverseSync,
+  },
+  quantum: {
+    tools: encryptDecryptQuantumTools,
+    chat: chatEncryptedWithAllFourKeysUnboundedKeyspace,
+  },
+  security: {
+    hardwareCap: maxBitsFromHardwareCapabilities,
+    cpuCount: probeLocalCpuCount,
+    refuseBitcoin: refuseBitcoinMainnetMaterial,
+    productionCeiling: productionCeilingRefuseHolds,
+    farOverCeiling: farOverCeilingRefuseHolds,
+  },
+  ssl: {
+    test: sslTestUiComplete,
+  },
+} as const
