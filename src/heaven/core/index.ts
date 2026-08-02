@@ -46,9 +46,11 @@ import { cssIsIChingComputed } from '../../earth/architecture'
 import { ICHING_NUMBERS } from '../../earth/architecture'
 export { ICHING_NUMBERS } from '../../earth/architecture'
 // Encryption functions (merged from heaven/encryption)
-import type { MindMatrix } from '../../wind/types'
-import { buildMatrix as buildMatrixForEncryption } from './index'
-import { encryptionLivesInZero, deploySecretUuidSignedObservers } from '../../water/encryption'
+
+function buildMatrixForEncryption(): MindMatrix {
+  // Placeholder for matrix building — encryption functions use defaults, not matrices
+  return {} as MindMatrix
+}
 
 export function encryptionSequenceReflection(matrix: MindMatrix = buildMatrixForEncryption()) {
   return memoByRoot('encryptionSequenceReflection', matrix, () => {
