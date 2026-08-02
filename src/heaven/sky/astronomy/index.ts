@@ -1069,7 +1069,6 @@ export function humanDesignChartStructureFacetsAt(matrix: MindMatrix = buildMatr
         toUuid(`hd-w6-def:${definitionKind}:${components}:${definedCenters.join(',')}`),
       ]),
       pair: 'edit/build' as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       route: '/en/spirit#human-design-bodygraph',
       statement:
@@ -1153,7 +1152,6 @@ export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatr
       root: merkleFold([chart.root, structure.root, lattice.root, ...facets.map((f) => f.receipt)]),
       route: '/en/spirit#human-design-bodygraph',
       pair: 'immersive/hero',
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       statement:
         'HD BodyGraph Vue UX: sealed W5 chart + W6 structure facets paint 9 centers + 36 channel wires; defined/open/hanging + definitionKind from Meeus×wheel activations — structure computer for /en/spirit, not a personality engine.',
@@ -1370,7 +1368,6 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       facets,
       root: merkleFold([panel.root, ...facets.map((f) => f.receipt), toUuid(`hd-w7-svg:${svg.length}:${panel.definitionKind}`)]),
       pair: 'symbols/quantumise' as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       route: '/en/spirit#human-design-bodygraph',

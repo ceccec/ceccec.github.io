@@ -715,7 +715,7 @@ export function navigation358(matrix: MindMatrix = buildMatrix()) {
     { tier: 3, name: 'arrive', items: [
       { label: 'Home', route: '/', tip: 'The root monograph — the portal in one page.' },
       { label: 'Theorem registry', route: '/frontiers', tip: `The registry: ${lens.theoremCount} proven theorems.` },
-      { label: 'Domain proofs', route: '/proofs', tip: 'Canonical domain proof catalog · Clay marks Millennium challenges only · claySolvedByThisFold=0.' },
+      { label: 'Domain proofs', route: '/proofs', tip: 'Canonical domain proof catalog · Clay marks Millennium challenges only.' },
     ] },
     // BLOG OF THEOREMS: when fewer than 5 rays hold posts, the use tier FILLS with the first served
     // theorem posts themselves (lens order) — the gap is filled by theorems, never left ragged.

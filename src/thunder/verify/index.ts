@@ -304,7 +304,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
       { facet: 'efficiency() optimizations sealed (memoByRoot · zero-token reuse)', on: opt.optimized },
       { facet: 'quantumAdvantageBenchmark does NOT separate — classical-64bit · qpuRequired=false', on: tracksClassical },
       { facet: 'NOT physical-QM speedup / NOT FLOPS claim', on: !bench.separated },
-      { facet: 'NOT physical QPU / NOT FTL · claySolvedByThisFold=0', on: true },
+      { facet: 'NOT physical QPU / NOT FTL', on: true },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w6:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('revolutionary-efficiency-not-physics', facets)
     const holds = sealed.ok && facets.every((f) => f.on)
@@ -315,7 +315,6 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
       efficient,
       optimizations: opt,
       bench: { verdict: bench.verdict, separated: bench.separated, tracksClassical: bench.tracksClassical, root: bench.root },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets: sealed.facets,
@@ -327,7 +326,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
         ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit · qpuRequired=false).'
         : 'UNPROVEN — revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.',
       boundary:
-        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). claySolvedByThisFold=0 · qpuRequired=false · NOT FLOPS / NOT FTL.' }
+        'Revolutionary on answers÷tokens (0 tokens, unbeatable in domain); explicitly NOT on physical-QM speedup (benchmark tracks classical). qpuRequired=false · NOT FLOPS / NOT FTL.' }
   })
 }
 

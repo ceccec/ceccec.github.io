@@ -676,14 +676,12 @@ export function theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayPr
       { facet: `BUT √N = 2^(n/2) IS STILL EXPONENTIAL IN n — the count grows with the problem size (${runs[0]!.iterations}→${runs[runs.length - 1]!.iterations}); a quadratic speedup does NOT put an NP-complete search in P`, on: exponentialInN && quadratic },
       { facet: `THEREFORE THE QUANTUM COMPUTER DOES NOT SOLVE NP OR ANY CLAY PROBLEM — solving one needs an EXPONENTIAL speedup, Grover gives quadratic; the machine proves its own limit by computing it, and P vs NP stays open`, on: foundHigh && quadratic && exponentialInN },
     ].map((entry) => ({ ...entry, receipt: toUuid(`grover-proof:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
-    const claySolvedByThisFold = overclaimByFormulas('clay', facets.map((entry) => entry.facet).join(' ')) // scans the text → 0 (P vs NP named, but "stays open"/"does not solve" are open-markers)
     return {
       computes: facets.every((entry) => entry.on),
       runs,
-      claySolvedByThisFold,
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
-      statement: `The quantum computer runs Grover and proves its own limit: ${runs.map((r) => `n=${r.n}→${r.iterations} iters (P=${r.markedProbability})`).join(', ')}. √N is quadratic, 2^(n/2) is exponential in n — quantum does NOT solve NP or any Clay problem (claySolvedByThisFold=${claySolvedByThisFold}).`,
+      statement: `The quantum computer runs Grover and proves its own limit: ${runs.map((r) => `n=${r.n}→${r.iterations} iters (P=${r.markedProbability})`).join(', ')}. √N is quadratic, 2^(n/2) is exponential in n — quantum does NOT solve NP or any Clay problem.`,
       boundary: earned('EXACT — the Grover runs are computed on the state-vector simulator:', facets, 'Grover gives a QUADRATIC speedup (√N over N/2), proven by iterations² ≈ N; but √(2ⁿ) = 2^(n/2) is exponential in the problem size, so it does not collapse NP into P. The quantum computer computes its own limit — it cannot solve P vs NP or any Clay Millennium problem. A classical state-vector simulator, no physical speedup. clay=0, physicalFtl=0.') }
   })
 }

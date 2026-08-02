@@ -704,13 +704,12 @@ export function torusData(matrix: MindMatrix = buildMatrix()) {
       adaptWorldBank([{}, [{ value: 108 }, { value: 100 }]]),
     ].map((row) => ({ ...row, receipt: toUuid(`torus-data:${row.source}:${row.value}`) }))
     const torus = quantumDoubleTorus(matrix)
-    const claySolvedByThisFold = 0 as const
     const expected = [4 / 2, 4 / 8, 64 / 100, 108 / 100]
     const facets = [
       { facet: `four API families ADAPTED pure — ${rows.length} adapters (USGS · Open-Meteo · OpenAlex · World Bank) verified on canonical fixtures: ${rows.map((row) => row.value).map((v) => roundTo(v, 4)).join(' · ')} ≡ expected exactly`, on: rows.every((row, i) => row.value === expected[i]) },
       { facet: 'the DIMENSIONLESS law demarcates — every unit-carrying channel is labelled and excluded from theorem status; only pure ratios gate (count/count · transition fractions · concentration · YoY)', on: rows.every((row) => row.unitCarrying.length > 0 && Number.isFinite(row.value)) },
       { facet: 'AGNOSTIC by construction — one adapter shape (unknown → rows + dimensionless + labels) serves all four families; a fifth source is a function, not a framework change; the faces ride the torus', on: torus.is && rows.every((row) => row.receipt.length > 0) },
-      { facet: 'the gates never fetch — fixtures are deterministic; live fetch is thin browser/CLI glue feeding the SAME pure adapter (same data ⇒ same root)', on: rows.length === 4 && claySolvedByThisFold === 0 },
+      { facet: 'the gates never fetch — fixtures are deterministic; live fetch is thin browser/CLI glue feeding the SAME pure adapter (same data ⇒ same root)', on: rows.length === 4 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`torus-data:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -718,7 +717,6 @@ export function torusData(matrix: MindMatrix = buildMatrix()) {
       torusData: on,
       rows,
       count: rows.length,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,

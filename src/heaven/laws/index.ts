@@ -1179,7 +1179,6 @@ export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = 
       scoreAlgebraic: score('algebraic-qc'),
       qpuRequired,
       physicalFtlClaim: physicalFtl,
-      claySolvedByThisFold: 0 as const,
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       pair: 'algebra/priority' as const,
