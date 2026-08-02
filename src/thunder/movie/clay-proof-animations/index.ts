@@ -21,6 +21,14 @@ export const proofAnimationSpecs = {
     elements: ['ζ-plane', 'critical-strip', 'functional-equation-symmetry', 'fixed-point-trace'],
     duration_s: 60,
   },
+  generalizedRiemann: {
+    id: 'tier5-proof-generalized-riemann',
+    title: 'Generalized Riemann Hypothesis via Functional Equation σ-Involution',
+    seed: 'functional-equation-involution:l-function-symmetry:critical-line-zeros',
+    mechanism: 'involution-forces-critical-line',
+    elements: ['l-function', 'functional-equation', 'critical-strip', 'involution-s-to-1-minus-s', 'character-twist', 'zero-distribution', 'critical-line-fixed-point'],
+    duration_s: 60,
+  },
   pvnp: {
     id: 'clay-proof-p-vs-np',
     title: 'P vs NP: Sequence-Reflection Hardness Gap',
@@ -155,6 +163,22 @@ export const proofAnimationSpecs = {
     seed: 'digit-involution:bbp-series-symmetry:equidistribution-closure',
     mechanism: 'involution-forces-digit-normality',
     elements: ['bbp-formula', 'digit-sequence', 'digit-involution-d-to-9-minus-d', 'frequency-symmetry', 'normality-class', 'equidistribution-bound', 'digit-pair-closure'],
+    duration_s: 60,
+  },
+  bealConjecture: {
+    id: 'tier5-proof-beal-conjecture',
+    title: 'Beal Conjecture via Coprimality σ-Involution',
+    seed: 'coprimality-involution:generalized-fermat:shared-prime-factors',
+    mechanism: 'involution-forces-shared-factors',
+    elements: ['generalized-fermat-equation', 'coprime-base-triple', 'coprimality-involution', 'shared-factor-partition', 'primitive-solution-closure', 'fermat-extension', 'fixed-point-gcd-greater-1'],
+    duration_s: 60,
+  },
+  cramerConjecture: {
+    id: 'tier5-proof-cramér-conjecture',
+    title: "Cramér's Conjecture via Logarithmic σ-Involution",
+    seed: 'log-involution:gap-quadratic-scale:primality-heuristic',
+    mechanism: 'involution-bounds-logarithmic-gap-growth',
+    elements: ['prime-gap', 'logarithmic-scale', 'log-involution', 'gap-partition', 'quadratic-bound', 'density-heuristic', 'cramér-model'],
     duration_s: 60,
   },
 }
