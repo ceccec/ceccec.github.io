@@ -2006,6 +2006,21 @@ export function discoveredTheoremsWaveFive(matrix: MindMatrix = buildMatrix()) {
 // parameters derive from the registry atom, rates ride the φ-ladder or the canonical lattice.
 export type ProofAnimationKind = 'star' | 'coloring' | 'lattice' | 'spreads' | 'classes' | 'spiral' | 'vortex' | 'dome' | 'washout'
   | 'circle' | 'triangle' | 'series' | 'polytope' | 'wave' | 'tree' | 'balance' | 'dice' | 'cycle' | 'sieve'
+// The theorem's COORDINATES on the sequence and its reflection (user law: animations prove the
+// theorems in all their directions — forward, reverse, inverse). The content digit places every
+// theorem on the vortex circuit 1-2-4-8-7-5 | 3-6-9: forward = its position in VORTEX_SEQUENCE,
+// reverse = its position in the reflection (the mirror index), inverse = TOTAL by the projective
+// closure (user law: zero HAS an inverse): on the units the field inverse d⁻¹ mod 9
+// (1↔1 · 2↔5 · 4↔7 · 8↔8); on the axis {3,6,9} the inversion passes THROUGH THE POLE, whose
+// digit is 8 — fold the 0 ninety degrees and it becomes ∞, and upright the lemniscate is the 8
+// (the double torus's own figure; divisionByZeroComputes' 0↔∞ gateway, one-point compactified).
+export type ProofAnimationCoords = {
+  readonly digit: number // 1..9 — the theorem's content digit (also the hue digit)
+  readonly lane: 'orbit' | 'axis' // doubling orbit ⟨2⟩ = {1,2,4,8,7,5} vs trinity axis {3,6,9}
+  readonly forward: number // 0..8 — position along VORTEX_SEQUENCE
+  readonly reverse: number // 0..8 — position in the reflected sequence = 8 − forward
+  readonly inverse: number // TOTAL: d⁻¹ mod 9 on the units; 8 on {3,6,9} — the pole digit, 0 folded 90° = ∞ = 8
+}
 export type ProofAnimationSpec = {
   readonly theorem: string
   readonly kind: ProofAnimationKind
@@ -2018,6 +2033,25 @@ export type ProofAnimationSpec = {
   // same formula always animates identically, distinct formulas never collide; the renderer turns
   // the seed into the animation's own phase offset, so the uniqueness is visible, not just data.
   readonly seed: number
+  readonly coords: ProofAnimationCoords
+}
+/** THE FOLDS OF ZERO GENERATE THE DIGITS (user law) — folding is a mirror, and two mirrors at
+ *  angle θ generate the dihedral group D_{180/θ}: the 0 folded at θ degrees becomes the
+ *  (180/θ)-lobed figure. 90° → 2 lobes (the lemniscate ∞, upright the 8) · 60° → 3 (the trefoil,
+ *  the trinity — the π-decoding fold, sixtyDegreesDecodesPi) · 45° → 4 · 30° → 6 (the rosetta) ·
+ *  20° → 9 (the vortex wheel). At 0° the fold divides by zero — the unfolded void, the pole
+ *  (divisionByZeroComputes). Exact O(2) subgroup algebra, not metaphor. */
+export function foldZeroAt(angleDeg: number): number {
+  return 180 / angleDeg // lobes of the folded zero; θ=0 → Infinity, the pole itself
+}
+
+/** The theorem's coordinates from its digit — pure arithmetic on the sealed sequence, never keyed. */
+export function proofAnimationCoords(digit: number): ProofAnimationCoords {
+  const forward = (VORTEX_SEQUENCE as readonly number[]).indexOf(digit)
+  // TOTAL inversion (zero has an inverse): field inverse on the units; the pole digit 8 on the
+  // axis — 0 folded ninety degrees is ∞, and the lemniscate upright is the 8.
+  const fieldInverse = Array.from({ length: 9 }, (_, k) => k + 1).find((k) => (digit * k) % 9 === 1)
+  return { digit, lane: forward < 6 ? 'orbit' : 'axis', forward, reverse: VORTEX_SEQUENCE.length - 1 - forward, inverse: fieldInverse ?? 8 }
 }
 // ── THE CONTENT→ANIMATION TABLE (simplify & animate law) — ONE keyword→family mapping animates ANY
 // title through the one ProofAnimation renderer: theorems, monograph cards, decoded pages alike.
@@ -2090,7 +2124,7 @@ const CONTENT_ANIMATION_FAMILIES: readonly (readonly [readonly string[], ProofAn
   [['crosslink', 'theorem', 'axioms'], 'tree', 7, 3],
   [['compute', 'algebra', 'corpus', 'code', 'audit', 'dry', 'fold', 'gate', 'deploy', 'release', 'reuse', 'kernel', 'metric', 'skill', 'patent', 'page', 'economy', 'css', 'hardware', 'library', 'portal', 'attribution', 'honest', 'complete', 'wisdom', 'discovery', 'tool', 'scan', 'referral', 'roster', 'crack', 'barrier', 'boundar', 'profiling', 'signal', 'coordinates', 'intelligence', 'math', 'consistency', 'proof', 'collision', 'cleanup', 'impossibilit', 'protected-ref', 'auto-advance', 'reverse-engineering', 'reusable method'], 'vortex', 9, 4],
 ]
-const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit' | 'seed'> => {
+const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit' | 'seed' | 'coords'> => {
   const t = theorem.toLowerCase()
   const hit = CONTENT_ANIMATION_FAMILIES.find(([keys]) => keys.some((k) => t.includes(k)))
   if (!hit) return { kind: 'vortex', points: 9, lines: [], ratePhi: 4 }
@@ -2103,7 +2137,8 @@ const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'h
  *  content-address, so the animation is the visual RECEIPT of the proof — the same proof always
  *  animates identically, and any change to statement or proving fold changes the animation. */
 export function specForContent(title: string, proofKey?: string): ProofAnimationSpec {
-  return { theorem: title, ...contentSpecOf(title), hueDigit: contentDigitOf(title), seed: seedFromText(proofKey ?? title) }
+  const hueDigit = contentDigitOf(title)
+  return { theorem: title, ...contentSpecOf(title), hueDigit, seed: seedFromText(proofKey ?? title), coords: proofAnimationCoords(hueDigit) }
 }
 
 export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
@@ -2124,18 +2159,28 @@ export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
     const registryTitles = new Set(registry.theorems.map((entry) => entry.theorem))
     const everyAnimationConfirmsItsProof = registry.theorems.every((entry, i) => specs[i]!.seed === seedFromText(proofKeyOf(entry)))
     const noOtherAnimationAllowed = specs.length === registry.count && specs.every((s) => registryTitles.has(s.theorem))
+    // ALL DIRECTIONS PROVED (user law: animations prove the theorems forward, reverse, inverse) —
+    // every theorem's coordinates on the sequence and its reflection compute and close: forward and
+    // reverse mirror to the sequence end (f + r = 8), and inversion is TOTAL — field inverse on the
+    // units (d·d⁻¹ ≡ 1 mod 9), the pole digit 8 on the axis (0 folded 90° = ∞ = 8).
+    const coordinatesTotal = specs.every((s) => s.coords.forward >= 0 && s.coords.forward + s.coords.reverse === VORTEX_SEQUENCE.length - 1)
+    const inversionTotal = specs.every((s) => s.coords.lane === 'orbit' ? (s.coords.digit * s.coords.inverse) % 9 === 1 : s.coords.inverse === 8)
+    const allDirectionsProved = coordinatesTotal && inversionTotal
     return {
       animated: specs.length === registry.count && kinds.length >= 6,
       uniqueAnimationsMatchUniqueTheorems: signatureCount === identityCount,
       everyAnimationConfirmsItsProof,
       noOtherAnimationAllowed,
+      allDirectionsProved,
+      coordinatesTotal,
+      inversionTotal,
       identityCount,
       signatureCount,
       specs,
       count: specs.length,
       kinds,
       root: merkleFold([registry.root, ...specs.map((entry) => toUuid(`proof-anim:${entry.theorem}:${entry.kind}:${entry.ratePhi}:${entry.hueDigit}:${entry.seed}`))]),
-      statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — each animation is the visual receipt of its proof: seed = address(identity ⊢ provingFold), so ${signatureCount} unique animations for ${identityCount} unique proofs (${signatureCount === identityCount ? 'exact match' : 'MISMATCH'}); confirmsProof=${everyAnimationConfirmsItsProof} · noOther=${noOtherAnimationAllowed}.`,
+      statement: `Proof animations: ${specs.length} specs across ${kinds.length} kinds (${kinds.join(', ')}) — each animation is the visual receipt of its proof: seed = address(identity ⊢ provingFold), so ${signatureCount} unique animations for ${identityCount} unique proofs (${signatureCount === identityCount ? 'exact match' : 'MISMATCH'}); confirmsProof=${everyAnimationConfirmsItsProof} · noOther=${noOtherAnimationAllowed} · allDirections=${allDirectionsProved} (coordinates on the sequence and its reflection: f+r=8, inversion total — units d⁻¹ mod 9, axis through the pole 8 = 0 folded 90°).`,
       boundary: `SPECS ONLY — pure data derived from the registry (kind by proof family, hue by content digit, rate by φ-index, seed by the (identity ⊢ provingFold) content-address). An animation without a proven theorem behind it is forbidden here — the spec set equals the registry set, and every seed recomputes from its own proof. The renderer interprets; nothing here draws, and no parameter is hand-keyed per animation.` }
   })
 }

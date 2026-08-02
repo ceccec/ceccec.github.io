@@ -288,6 +288,27 @@ function draw(t: number) {
     paint()
     ctx.restore()
   }
+
+  // THE DIRECTION FRAME (user law: animations prove the theorem in all its directions) — the
+  // theorem's own coordinates on the sequence and its reflection, drawn as three markers on the
+  // outer nine-wheel: FORWARD rides the sequence from the theorem's forward coordinate; REVERSE
+  // counter-rotates from the reflected coordinate; INVERSE sits at the negated angle (inversion
+  // negates the angle) in the inverse digit's hue — units d⁻¹ mod 9, axis through the pole 8.
+  const co = props.spec.coords
+  if (co && co.forward >= 0) {
+    const rOut = c * (9 / 10)
+    const dot = s / (4 * 9)
+    const angleOf = (pos: number) => (pos / 9) * TAU - TAU / 4
+    const fwd = angleOf(co.forward) + phase
+    const rev = angleOf(co.reverse) - phase // the reflection counter-rotates
+    const inv = -fwd // inversion negates the angle
+    fill(2 / 3)
+    ctx.beginPath(); ctx.arc(c + rOut * Math.cos(fwd), c + rOut * Math.sin(fwd), dot, 0, TAU); ctx.fill()
+    fill(1 / 3)
+    ctx.beginPath(); ctx.arc(c + rOut * Math.cos(rev), c + rOut * Math.sin(rev), dot, 0, TAU); ctx.fill()
+    fill(1 / 2, (co.inverse - co.digit) * (360 / 9))
+    ctx.beginPath(); ctx.arc(c + rOut * Math.cos(inv), c + rOut * Math.sin(inv), dot * (2 / 3), 0, TAU); ctx.fill()
+  }
 }
 
 onMounted(() => {
