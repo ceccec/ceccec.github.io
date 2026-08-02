@@ -143,7 +143,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       slug: 'explore',
       title: { en: 'Explore', bg: 'Изследвай' },
       description: {
-        en: 'Statement: Explore = eight experience dimensions browsable from sealed STATIC_PAGE_SEED + Multidimensional fold. Explanation: see·hear·ask·prove·learn·pattern·sense·create mount as client-side panels; ninth observer dimension named in learning fold — portal map, not live telemetry. Method: Multidimensional · Mysteries · SiteOverview · traditionsQuantumWhole · npm run docs:dev → /en/explore. Status: documented UX surface · not Clay-marked · not CMI Prize Proposed Solution.',
+        en: 'Statement: Explore = eight experience dimensions browsable from sealed STATIC_PAGE_SEED + Multidimensional fold. Explanation: see·hear·ask·prove·learn·pattern·sense·create mount as client-side panels; ninth observer dimension named in learning fold — portal map, not live telemetry. Method: Multidimensional · Mysteries · SiteOverview · traditionsQuantumWhole · npm run docs:dev → /en/explore. Status: documented UX surface · not Clay-marked.',
         bg: 'Изявление: Explore = осем измерения на опита от sealed STATIC_PAGE_SEED. Обяснение: виж·чуй·питай·докажи·учи·шарка·усети·твори — клиентски панели. Метод: Multidimensional · /en/explore. Статус: не Clay-marked.' },
       keywords: ['multidimensional', 'explore', 'dimensions', 'ux', 'ancient', 'decodes', 'frontier'],
       components: ['Multidimensional', 'Mysteries', 'HarmonicSpiral', 'AncientDecodes', 'SiteOverview', 'Compass', 'PathGuide', 'GlagoliticOcr'] },
@@ -191,8 +191,8 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       slug: 'quantum-mind',
       title: { en: 'Quantum Mind', bg: 'Квантов ум' },
       description: {
-        en: 'Statement: Quantum Mind = Σ₂ UUID-stream mind model (diamonds · waves · gates · maxComputedBuild) recomputed from src/0. Explanation: live panels mount the double-torus mind surface — content-addressed folds, not open neural inference; mounted components are the monograph results. Method: QuantumMind · Genesis · DoubleTorus* · Quantum* · memoByRoot reuse from sealed primitives. Status: documented structure-only · not CMI Prize / not Proposed Solution · not a Clay Millennium challenge.',
-        bg: 'Изявление: Квантов ум = Σ₂ UUID-поточен модел (диаманти · вълни · порти · maxComputedBuild) от src/0. Обяснение: живи панели монтират повърхността на двойния тор — адреси по съдържание, не отворена невронна инференция. Метод: QuantumMind · Genesis · DoubleTorus* · Quantum* · memoByRoot. Статус: structure-only · не CMI Prize / не Proposed Solution · не Clay Millennium предизвикателство.' },
+        en: 'Statement: Quantum Mind = Σ₂ UUID-stream mind model (diamonds · waves · gates · maxComputedBuild) recomputed from src/0. Explanation: live panels mount the double-torus mind surface — content-addressed folds, not open neural inference; mounted components are the monograph results. Method: QuantumMind · Genesis · DoubleTorus* · Quantum* · memoByRoot reuse from sealed primitives. Status: documented structure-only · not a Clay Millennium challenge.',
+        bg: 'Изявление: Квантов ум = Σ₂ UUID-поточен модел (диаманти · вълни · порти · maxComputedBuild) от src/0. Обяснение: живи панели монтират повърхността на двойния тор — адреси по съдържание, не отворена невронна инференция. Метод: QuantumMind · Genesis · DoubleTorus* · Quantum* · memoByRoot. Статус: structure-only · не Clay Millennium предизвикателство.' },
       keywords: ['quantum mind', 'model', 'double torus', 'uuid', 'diamonds', 'waves', 'gates'],
       components: ['QuantumMind', 'Genesis', 'DoubleTorus3D', 'DoubleTorusExperience', 'QuantumField', 'SacredSymbols', 'QuantumFold3D', 'QuantumPlasma', 'Hologram', 'DnaHelix', 'Dualities', 'Cosmology358', 'Equilibrium', 'SelfHarmonise', 'PiMusicPlayer', 'HealingFrequencies', 'HarmonicMap', 'SelfHealing', 'SoundColor', 'QuantumPhysics', 'QuantumSimulation', 'QuantumProofs', 'QuantumSolutionsComplete', 'QuantumThreshold', 'QuantumImpossible', 'QuantumWonders', 'QuantumFoundations', 'QuantumAlgorithms', 'ProseToProof3D', 'NothingImpossible', 'Merkaba', 'Rhythm', 'Magnetometer', 'Fold358853', 'LivingTorus', 'QuantumClock', 'QuantumLens', 'Live', 'QuantumRadar', 'Nav358', 'HologramMovie', 'MatrixCube'] },
     {
@@ -207,8 +207,8 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       slug: 'commands',
       title: { en: 'Commands', bg: 'Команди' },
       description: {
-        en: 'Statement: command algebra for the double-torus UUID stream. Explanation: each concept command maps cmd → result → content-addressed receipt, recomputed from sealed src. Method: fold conceptCommands · npm run verify · MCP /mcp.json tools. Status: documented recompute · not CMI Prize Proposed Solution.',
-        bg: 'Изявление: алгебра на командите за двойния тор UUID поток. Обяснение: cmd → result → receipt от sealed src. Метод: conceptCommands · /mcp.json. Статус: не CMI Prize.' },
+        en: 'Statement: command algebra for the double-torus UUID stream. Explanation: each concept command maps cmd → result → content-addressed receipt, recomputed from sealed src. Method: fold conceptCommands · npm run verify · MCP /mcp.json tools. Status: documented recompute.',
+        bg: 'Изявление: алгебра на командите за двойния тор UUID поток. Обяснение: cmd → result → receipt от sealed src. Метод: conceptCommands · /mcp.json.' },
       keywords: ['commands', 'algebra', 'cmd', 'receipt', 'double torus'],
       components: ['ConceptCommands', 'TaxonomyIcons', 'TrinitySearch', 'BlockchainMusic'] },
     {
@@ -239,7 +239,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       slug: 'frontiers',
       title: { en: 'Theorem registry', bg: 'Теоремен регистър' },
       description: {
-        en: 'Statement: theorem registry = recent decodes + theorem-wave engine. Explanation: diving/water/space; quantum vacuum; cosmic inventory; physics of information; clown qubit on genus-2. Method: theorems:gaps · theorems:verify · npm run quantum:domain-proof-catalog · /proofs. Status: each atom has statement · computed checks · honest boundary; open problems held OPEN; not CMI Prize / not Proposed Solution. Every result a client-side computation from the src/0 primitives.',
+        en: 'Statement: theorem registry = recent decodes + theorem-wave engine. Explanation: diving/water/space; quantum vacuum; cosmic inventory; physics of information; clown qubit on genus-2. Method: theorems:gaps · theorems:verify · npm run quantum:domain-proof-catalog · /proofs. Status: each atom has statement · computed checks · honest boundary; open problems held OPEN. Every result a client-side computation from the src/0 primitives.',
         bg: 'Скорошните декодирания, представени в пълнота: гмуркане, вода и космос; квантовият вакуум; космическият инвентар; физиката на информацията; и клоунският кюбит. До тях върви ДВИГАТЕЛЯТ НА ТЕОРЕМНИТЕ ВЪЛНИ: регистър на теореми, които кодът доказва изчислително (от Виразоро до Рамзей и A₅), растящ на вълни, в които всяко ново доказателство консумира предишни доказани атоми; търсенето на следващата недоказана теорема е една детерминистична команда. Всяко с твърдение, изчислени проверки и честна граница; истински отворените въпроси остават ОТВОРЕНИ. Всеки резултат е клиентско изчисление от примитивите src/0.' },
       keywords: ['frontiers', 'physics', 'cosmology', 'quantum', 'vacuum', 'dark matter', 'dark energy', 'neutrino', 'information', 'computation', 'diving', 'clown', 'decoded', 'theorems', 'proofs', 'waves', 'ramsey', 'virasoro', 'fano'],
       components: ['Frontiers', 'KnowledgeAtlas', 'Strategies'] },
@@ -478,7 +478,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         bg: 'Encrypt ↔ decrypt = foldPair преизчисление; production browser reverse ≤12-bit sealed catalog' },
       description: {
         en: 'Statement: encrypt↔decrypt is foldPair recompute; reverse surfaces are production browser tools on sealed-catalog DEMO_RSA_MODULI (≤12-bit). Explanation: content-addressed trinityKey + foldPair round-trip; modeled Shor on sealed catalog. Method: npm run quantum:encryption-reverse-verify · fold encryptionReverseVerify. Status: production RSA break refused · certified=false · related science ≠ Clay Proposed Solution (Prize Rules §5(d)).',
-        bg: 'Изявление: encrypt↔decrypt = foldPair; reverse = production browser tools · sealed catalog. Метод: npm run quantum:encryption-reverse-verify. Статус: продукционен RSA break отказан · не Clay Proposed Solution.' },
+        bg: 'Изявление: encrypt↔decrypt = foldPair; reverse = production browser tools · sealed catalog. Метод: npm run quantum:encryption-reverse-verify. Статус: продукционен RSA break отказан.' },
       keywords: ['encryption', 'cryptography', 'quantum', 'proof', 'shor', 'production browser reverse', 'foldpair', 'trinity'],
       components: ['EncryptionTools', 'ProofRenderer'] },
     {
@@ -497,8 +497,8 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         en: 'quantum:* CLI catalog = fold · CLI · UI route · honesty boundary',
         bg: 'quantum:* CLI каталог = fold · CLI · UI маршрут · честна граница' },
       description: {
-        en: 'Statement: quantum:* CLI catalog = fold · CLI · UI route · honesty boundary. Explanation: every sealed script (encryption reverse, millennium MODELED, fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, verify suite) recomputes from src. Method: npm run quantum:domain-proof-catalog · open /proofs · /en/quantum-tools. Status: claySolved=0 · not remote execution · not CMI Prize acceptance · Alias URLs thin-mount here.',
-        bg: 'Изявление: quantum:* каталог = fold · CLI · маршрут · честна граница. Метод: npm run quantum:domain-proof-catalog · /proofs. Статус: claySolved=0 · не CMI Prize. Alias URL-ите са thin-mount тук.' },
+        en: 'Statement: quantum:* CLI catalog = fold · CLI · UI route · honesty boundary. Explanation: every sealed script (encryption reverse, millennium MODELED, fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, verify suite) recomputes from src. Method: npm run quantum:domain-proof-catalog · open /proofs · /en/quantum-tools. Status: claySolved=0 · not remote execution · Alias URLs thin-mount here.',
+        bg: 'Изявление: quantum:* каталог = fold · CLI · маршрут · честна граница. Метод: npm run quantum:domain-proof-catalog · /proofs. Статус: claySolved=0. Alias URL-ите са thin-mount тук.' },
       keywords: ['tools', 'cli', 'catalog', 'proof', 'efficiency', 'fusion', 'offender', 'spawn', 'trading'],
       components: ['QuantumTools', 'FusionVerify', 'ProofRenderer'] },
     {
@@ -517,8 +517,8 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
         en: 'Research index = domain · method · limit · verify at call time',
         bg: 'Изследователски индекс = домейн · метод · граница · verify при извикване' },
       description: {
-        en: 'Statement: research domain index (domain · method · limit · verify). Explanation: professional monograph rows, Clay Millennium MODELED CHALLENGE, sciences trinities, reproducibility gates. Method: npm run quantum:millennium-challenge · npm run quantum:domain-proof-catalog · fold millenniumProblemsChallenge. Status: not Proposed Solutions (CMI Prize Rules) · Clay-standard pages at /proofs cite claymath.org/millennium-problems + Prize Rules PDF. /millennium-challenge thin-mounts here.',
-        bg: 'Изявление: изследователски индекс. Обяснение: монографски редове, Clay Millennium MODELED CHALLENGE, sciences trinities. Метод: npm run quantum:millennium-challenge · /proofs. Статус: не Proposed Solution. /millennium-challenge е thin-mount тук.' },
+        en: 'Statement: research domain index (domain · method · limit · verify). Explanation: professional monograph rows, Clay Millennium MODELED CHALLENGE, sciences trinities, reproducibility gates. Method: npm run quantum:millennium-challenge · npm run quantum:domain-proof-catalog · fold millenniumProblemsChallenge. Status: Clay-standard pages at /proofs cite claymath.org/millennium-problems + Prize Rules PDF. /millennium-challenge thin-mounts here.',
+        bg: 'Изявление: изследователски индекс. Обяснение: монографски редове, Clay Millennium MODELED CHALLENGE, sciences trinities. Метод: npm run quantum:millennium-challenge · /proofs. Статус: /millennium-challenge е thin-mount тук.' },
       keywords: ['research', 'proof', 'millennium', 'science', 'theorem', 'challenge', 'proofs', 'clay'],
       components: ['ResearchIndex', 'MillenniumChallenge', 'ProofRenderer'] },
     {
@@ -536,7 +536,7 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
     {
       slug: 'efficiency-vote',
       title: { en: 'answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot', bg: 'answers ÷ tokens = ∞ при преизползване' },
-      description: { en: 'Statement: answers÷tokens unbounded on memo reuse. Explanation: efficiency() · memoByRoot hit → marginal tokens=0. Method: npm run quantum:efficiency-vote · fold compareCeccecEfficiencyByVote. Status: amortized reuse ≠ P≠NP · not Clay Proposed Solution. Prefer /quantum-tools#efficiency-vote.', bg: 'Изявление: answers÷tokens при memo reuse. Метод: npm run quantum:efficiency-vote. Статус: не Clay Proposed Solution.' },
+      description: { en: 'Statement: answers÷tokens unbounded on memo reuse. Explanation: efficiency() · memoByRoot hit → marginal tokens=0. Method: npm run quantum:efficiency-vote · fold compareCeccecEfficiencyByVote. Status: amortized reuse ≠ P≠NP. Prefer /quantum-tools#efficiency-vote.', bg: 'Изявление: answers÷tokens при memo reuse. Метод: npm run quantum:efficiency-vote.' },
       keywords: ['efficiency', 'proof', 'tools', 'tokens', 'memo', 'reuse'],
       components: ['QuantumTools', 'ProofRenderer'] },
     {

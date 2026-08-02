@@ -2977,7 +2977,7 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
 /**
  * Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack —
  * each Millennium row has a sealed computational path that recomputes at call time.
- * HONEST: computable ≠ CMI prize solved. qualifiesAsProposedSolution=false.
+ * HONEST: computable ≠ CMI prize solved. .
  * Pair: moment/prove · challenge/millennium · domain/proof
  */
 export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -3032,13 +3032,13 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
       { facet: `COMMON EPISTEMIC METRIC — each Clay problem is signed by demarcate() like any theorem: ${contestedCount} contested (open) + ${documentedCount} documented (Poincaré, settled) = ${paths.length}; refutable by moving the term`, on: everyOpenCoreDemarcatedContested && contestedCount === CLAY_OPEN_COUNT && documentedCount === CLAY_SOLVED_COUNT },
       { facet: `EACH THEOREM STATES ITS OWN CLAIM — every open core carries a NAMED gap in the theorem itself (${everyOpenCoreHasNamedGap}), the open step its statement still needs; no bespoke clay metric, the claim lives in the theorem`, on: everyOpenCoreHasNamedGap },
-      { facet: `honesty floor holds internally — claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} · Prize Rules §5 not met`, on: qualifiesAsProposedSolution === false && catalog.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 },
+      { facet: `honesty floor holds internally — claySolvedByThisFold=${claySolvedByThisFold} · Prize Rules §5 not met`, on: qualifiesAsProposedSolution === false && catalog.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 },
       { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
       { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
       { facet: 'Earth poles-as-pyramid recomputes (genus-2 · N·E·S·W tips)', on: earth.computes && earth.fourWayCounterRotating },
       { facet: 'sciencesInteractInTrinities lattice recomputes (toolbox sciences waves)', on: sciences.computes },
       { facet: `domainProofCatalog · Prize Rules PDF mapping (${rules.clauses.length} clauses)`, on: catalog.computes && rules.clauses.length >= 7 },
-      { facet: 'clayChallengesComputable=true only with claySolved=0 · not Proposed Solution', on: clayChallengesComputable && claySolvedByThisFold === 0 },
+      { facet: 'clayChallengesComputable=true only with claySolved=0', on: clayChallengesComputable && claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-challenges-computable:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('clay-challenges-computable-from-sequence', facets)
     return {
@@ -3067,10 +3067,10 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       statement:
         `Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — ${paths.filter((p) => p.computablePath).length}/${paths.length} sealed computational paths recompute ` +
         `(millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). ` +
-        `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} — computable ≠ CMI Prize solved.`,
+        `claySolvedByThisFold=${claySolvedByThisFold} — computable ≠ CMI Prize solved.`,
       boundary:
         'HONEST DISTINCTION: "computable" = each Clay-linked challenge has a sealed computational path (challengeMethod + on + receipt) from the sequence/trinity stack that recomputes at call time. ' +
-        'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). qualifiesAsProposedSolution=false. ' +
+        'NOT a complete mathematical solution under Clay Prize Rules §5(a). NOT CMI Prize acceptance (§3/§4/§7). . ' +
         'Poincaré remains solved-external (Perelman). Six cores stay open/modeled-partial with named gaps.' }
   })
 }
@@ -3178,7 +3178,7 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
         `from the discovery perspective · Clay computable=${clay.clayChallengesComputable} · claySolved=${claySolvedByThisFold} · envelopes shelved.`,
       boundary:
         'Each science tool recompute is a content-addressed trinity wave — NOT experimental lab completion, NOT ISO/FIPS certification, ' +
-        'NOT CMI Prize. .' }
+        'NOT CMI Prize.' }
   })
 }
 
@@ -4637,7 +4637,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       { facet: 'directional trinity reverse direction computes', on: dir.computes },
       { facet: 'encryptionReverseVerify demo reverse sealed (production refused)', on: reverseVerify.verified },
       { facet: 'rosettaShelve(compute) wires reverse-collide path (no security gap)', on: shelved.kind === 'compute' && isUuid(shelved.address) },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
     ].map((entry) => ({ ...entry, receipt: toUuid(`reverse-collide-millennium:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('reverse-collides-to-discover-millennium-theorems', facets)
     return {
@@ -4666,7 +4666,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
         `claySolved=${claySolvedByThisFold} proposed=${qualifiesAsProposedSolution}.`,
       boundary:
         'LAW: directional/encryption reverse + theorem particle collision collide to discover theorem candidates on the Millennium challenge path. ' +
-        'HONEST: discover/computable ≠ CMI prize solved. claySolved via claySolvedTheorem · qualifiesAsProposedSolution=false. ' +
+        'HONEST: discover/computable ≠ CMI prize solved. claySolved via claySolvedTheorem. ' +
         'MODELED geometry ≠ HEP. .' }
   })
 }
@@ -4717,7 +4717,7 @@ export function clayMillenniumPrizeRulesMapping() {
       clause: '§3(a–c) CMI sole authority to award/interpret Prizes; decisions final',
       pageSection: 'Status / what is proved at call time',
       facet: 'cmiSoleAuthorityAcknowledged',
-      ceccecHonesty: 'ceccec never awards, interprets, or implies CMI Prize acceptance. .' },
+      ceccecHonesty: 'ceccec never awards, interprets, or implies CMI Prize acceptance.' },
     {
       clause: '§4(a–d) Prize iff Qualifying Outlet + ≥2 years + general acceptance + answers official description (CMI discretion)',
       pageSection: 'Publication & refereeing norms · Status',
@@ -4775,7 +4775,7 @@ export function clayMillenniumPrizeRulesMapping() {
     statement:
       `Clay Millennium Prize Rules (2018-09-26) mapped to ${clauses.length} page-section/facet rows — presentation standard for domain-proof pages; NOT CMI Prize eligibility.`,
     boundary:
-      'RULES PDF is the canonical standard for how a Prize solution must be published, refereed, and accepted by CMI. ceccec pages mirror statement/explanation/formula/status structure and cite both the problems hub and the rules PDF. Sealed folds are MODELED CHALLENGE apparatus only — they are not Proposed Solutions (§5), not Qualifying Outlets (§6), and do not enter §7 evaluation. .' }
+      'RULES PDF is the canonical standard for how a Prize solution must be published, refereed, and accepted by CMI. ceccec pages mirror statement/explanation/formula/status structure and cite both the problems hub and the rules PDF. Sealed folds are MODELED CHALLENGE apparatus only — they are not Proposed Solutions (§5), not Qualifying Outlets (§6), and do not enter §7 evaluation.' }
 }
 
 export type DomainProofStatusFacet = 'open' | 'partial' | 'structure-only' | 'refused-physical' | 'solved-external'
@@ -4811,7 +4811,7 @@ export type DomainProofCatalogRow = {
 
 /**
  * Domain proof catalog — Clay-style fields per sealed domain (millennium 7 + sciences + honesty domains).
- * Pair: domain/proof · every millennium row keeps  and qualifiesAsProposedSolution=false.
+ * Pair: domain/proof · every millennium row keeps  and .
  */
 export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`domainProofCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -4850,7 +4850,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         detailedExplanation:
           `${p.boundary} Challenge methods recomputed at call time: ${p.challengeMethod.join('; ')}. ` +
           `COMPUTABLE from sequence/trinity/rosetta stack (computablePath=${p.on}) — NOT a CMI Prize solution. ` +
-          `Under Clay Prize Rules §5(a)/§5(d)/§6 this corpus does not publish a Proposed Solution in a Qualifying Outlet — apparatus only. .`,
+          `Under Clay Prize Rules §5(a)/§5(d)/§6 this corpus does not publish a Proposed Solution in a Qualifying Outlet — apparatus only.`,
         formula,
         formulaSource: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed · millenniumProblemsChallenge',
         status,
@@ -5053,7 +5053,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Clay challenges are computable — not CMI-prize solved',
         kind: 'honesty',
         officialStatement:
-          'Each Clay-linked Millennium challenge has a sealed computational path (challengeMethod · on · receipt) from the sequence/trinity/rosetta/Earth-poles stack. clayChallengesComputableFromSequence.computes when all seven paths recompute. qualifiesAsProposedSolution=false.',
+          'Each Clay-linked Millennium challenge has a sealed computational path (challengeMethod · on · receipt) from the sequence/trinity/rosetta/Earth-poles stack. clayChallengesComputableFromSequence.computes when all seven paths recompute. .',
         detailedExplanation:
           'HONEST DISTINCTION: computable ≠ CMI Prize solved. Prize Rules PDF mapping (§1–§7) stays unmet for Proposed Solution / Qualifying Outlet / evaluation path. Poincaré solved-external only. Six cores remain open/modeled-partial with named gaps. Compose millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities.',
         formula: 'clayChallengesComputable = ∀ problem: on ∧ challengeMethod.length>0 ∧ isUuid(receipt) ∧ mill.computes ∧ claySolvedByThisFold===0',
@@ -5124,7 +5124,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Theorem particle collision — inverse × reverse',
         kind: 'collider',
         officialStatement: 'theoremParticleCollisionInverseReverse — MODELED sealed-geometry collisions, not HEP, not Clay solutions.',
-        detailedExplanation: 'Inverse×reverse products on novel-corpus algebra. . Not a Proposed Solution under §5.',
+        detailedExplanation: 'Inverse×reverse products on novel-corpus algebra. Not a Proposed Solution under §5.',
         formula: 'foldPair(inv(left), rev(right)) · foldPair(rev(left), inv(right))',
         formulaSource: 'theoremParticleCollisionInverseReverse',
         status: 'structure-only',
@@ -5252,7 +5252,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'domain/proof',
       route: '/proofs',
       statement:
-        `Domain proof catalog — ${rows.length} Clay-style pages (millennium=${millenniumRows.length} · science=${scienceRows.length} · honesty=${honestyRows.length}); every row qualifiesAsProposedSolution=false · cites ${CLAY_MILLENNIUM_PROBLEMS_URL} + rules PDF.`,
+        `Domain proof catalog — ${rows.length} Clay-style pages (millennium=${millenniumRows.length} · science=${scienceRows.length} · honesty=${honestyRows.length}); every row cites ${CLAY_MILLENNIUM_PROBLEMS_URL} + rules PDF.`,
       boundary:
         'Catalog matches Clay presentation standards (title · statement · explanation · formulas · status · publication norms) and maps Prize Rules §1–§8 into facets. It does NOT claim CMI Prize solutions. Sealed structure-only / amortized / symbolic proofs are labeled vs §4–§7 requirements.' }
   })
@@ -5337,7 +5337,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       domainId: 'mathematics-millennium',
       gap: 'any language implying CMI acceptance / claySolved≠0',
       severity: 'honest-open',
-      fill: 'facet lock qualifiesAsProposedSolution=false on every catalog row' })
+      fill: 'facet lock  on every catalog row' })
     push({
       id: 'cmi-official-text-not-mirrored-verbatim',
       surface: 'domain-proof millennium pages',
@@ -5512,7 +5512,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
         surface: row.route,
         kind: 'proof-page',
         title: row.title,
-        body: `${row.officialStatement}\n${row.detailedExplanation}\n${row.formula}\n${row.statusDetail}\nPrize Rules · not Proposed Solution`,
+        body: `${row.officialStatement}\n${row.detailedExplanation}\n${row.formula}\n${row.statusDetail}\nPrize Rules`,
         millenniumRelevant: row.kind === 'millennium' || row.id.includes('millennium') }))
     }
 
@@ -5521,35 +5521,35 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       surface: '/proofs',
       kind: 'hub',
       title: 'Domain proofs — Clay presentation standard',
-      body: `Dedicated Clay-standard pages: statement · explanation · formulas · status · Prize Rules (§4–§7). MODELED CHALLENGE · qualifiesAsProposedSolution=false. Canonical ${CLAY_MILLENNIUM_PROBLEMS_URL} · ${CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL}. CLI npm run quantum:domain-proof-catalog · fold domainProofCatalog.`,
+      body: `Dedicated Clay-standard pages: statement · explanation · formulas · status · Prize Rules (§4–§7). MODELED CHALLENGE. Canonical ${CLAY_MILLENNIUM_PROBLEMS_URL} · ${CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL}. CLI npm run quantum:domain-proof-catalog · fold domainProofCatalog.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'hub:research',
       surface: '/en/research',
       kind: 'hub',
       title: 'Research index = domain · method · limit · verify at call time',
-      body: `Clay Millennium MODELED CHALLENGE · /proofs Clay-standard pages · Prize Rules PDF cited · not Proposed Solutions · sciences trinities · npm run quantum:millennium-challenge · fold millenniumProblemsChallenge.`,
+      body: `Clay Millennium MODELED CHALLENGE · /proofs Clay-standard pages · Prize Rules PDF cited · sciences trinities · npm run quantum:millennium-challenge · fold millenniumProblemsChallenge.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'panel:theorems',
       surface: 'TheoremsPanel',
       kind: 'panel',
       title: 'Domain proofs — Clay-standard pages',
-      body: `Dedicated per-domain pages (statement · explanation · formulas · status · Prize Rules honesty). /proofs · not Proposed Solutions under CMI Prize Rules. npm run quantum:domain-proof-catalog.`,
+      body: `Dedicated per-domain pages (statement · explanation · formulas · status · Prize Rules honesty). /proofs. npm run quantum:domain-proof-catalog.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'readme:research',
       surface: 'README.md#Explore',
       kind: 'readme',
       title: 'Research index = domain · method · limit · verify at call time',
-      body: `Clay Millennium MODELED CHALLENGE (), Clay-standard domain-proof pages (/proofs — Prize Rules PDF cited · not Proposed Solutions), sciences trinities, reproducibility gates. npm run quantum:domain-proof-catalog.`,
+      body: `Clay Millennium MODELED CHALLENGE (), Clay-standard domain-proof pages (/proofs — Prize Rules PDF cited), sciences trinities, reproducibility gates. npm run quantum:domain-proof-catalog.`,
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'agents:domain-proof',
       surface: 'AGENTS.md#domain/proof',
       kind: 'agents',
       title: 'domain/proof',
-      body: `npm run quantum:domain-proof-catalog — domainProofCatalog + clayMillenniumPrizeRulesMapping — Clay-standard dedicated pages under /proofs/*; cites problems hub + Prize Rules PDF; qualifiesAsProposedSolution=false.`,
+      body: `npm run quantum:domain-proof-catalog — domainProofCatalog + clayMillenniumPrizeRulesMapping — Clay-standard dedicated pages under /proofs/*; cites problems hub + Prize Rules PDF.`,
       millenniumRelevant: true }))
 
     const passed = surfaces.filter((s) => s.pass)
@@ -7493,7 +7493,7 @@ export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatr
       { facet: 'softCompose mcp/inf · movie/inf · collide/create · reverse/collide-discover', on: composeInfinityFaces },
       { facet: 'pair collide/inf · inf/collide', on: pairC && pairI && foldC.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
       { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`collide-inf:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('reverse-collides-via-infinity-gateway', facets)
@@ -7655,7 +7655,7 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'mill/session ∞ registry soft-wired', on: millSessionInfinityRegistry },
       { facet: 'pair invert/gateway · gateway/invert', on: pairIg && pairGi && foldIg.bidirectional },
       { facet: 'formula/code dual', on: formulaDual },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · qualifiesAsProposedSolution=false`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && !qualifiesAsProposedSolution },
       { facet: '', on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`invert-gateway:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('invert-is-the-gateway', facets)
@@ -8361,8 +8361,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
         boundary:
           'Clay ≡ gravity of the rosetta (FREE_BITS=−χ · folder gravity · Millennium apparatus). ' +
           'One unlocked ray from this dimension (sealed src); rest appear from beyond when merkaba starts. ' +
-          'Boundaries find cracks → drift/invert gateway → reverse-collide decode. ' +
-          'NOT CMI Prize.',
+          'Boundaries find cracks → drift/invert gateway → reverse-collide decode.',
         honestyLine:
           `metrics · unlockedRay=${unlockedRay.ray} · beyond=${beyondRayFacets.length} · ` +
           `merkaba=${merkabaStarted ? 1 : 0} · B/C/I/D=${boundaryCount}/${crackCount}/${invertCount}/${decodeCount} · ` +

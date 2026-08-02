@@ -123,7 +123,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       { facet: `quantum on 64-bit — proveCeccecSpeed… qpuRequired=${noQpu.qpuRequired} · classical-64bit`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit && noQpu.claySolvedByThisFold === 0 },
       { facet: 'infinite speedup at no cost — efficiencyScalesToInfinityAtNoCostOnReuse (amortized memo · tokens=0)', on: infinityReuse.on && infinityReuse.ratioUnbounded && infinityReuse.noPhysicsSpeedup },
       { facet: `serverless deploy — sacredSociety.zeroLivingCost=${society.zeroLivingCost} (client-computed static)`, on: society.zeroLivingCost === true },
-      { facet: `honesty locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && !qualifiesAsProposedSolution },
+      { facet: `honesty locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && !qualifiesAsProposedSolution },
       { facet: 'linksUseOnlyVitePressApi — in-site links use VitePress API only (withBase · VP markdown)', on: linkLaw.computes && linkLaw.linksUseOnlyVitePressApi },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sequence-discovery-home:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sequence-discovery-realised-for-home', facets)
@@ -159,8 +159,8 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
     const statusLine =
       `computes=${sealed.ok && bit.computes && primesPi.computes && dir.computes && noQpu.qpuRequired === false} · ` +
       `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · ` +
-      `qpuRequired=${qpuRequired} · qualifiesAsProposedSolution=${qualifiesAsProposedSolution} · ` +
-      'NOT CMI Prize · amortized reuse ≠ P≠NP · structure ≠ wet numerology'
+      `qpuRequired=${qpuRequired} · ` +
+      'amortized reuse ≠ P≠NP · structure ≠ wet numerology'
 
     return {
       computes: sealed.ok && bit.computes && primesPi.computes && dir.computes && infinityReuse.on && society.zeroLivingCost,
@@ -214,9 +214,9 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       ),
       boundary:
         'COMPOSED from sealed folds at call time — prove-in-the-moment. ' +
-        'qualifiesAsProposedSolution=false. Sequence/π/primes claims are structural/symbolic ' +
+        '. Sequence/π/primes claims are structural/symbolic ' +
         'exactness from sealed digit maps + Euler identity truncations (convergence, cited closed form) — NOT wet ' +
-        'numerology, NOT Riemann Hypothesis, NOT CMI Prize. Infinite speedup = amortized memoByRoot reuse only. ' +
+        'numerology, NOT Riemann Hypothesis. Infinite speedup = amortized memoByRoot reuse only. ' +
         'Serverless = static GitHub Pages / client-computed zero living cost, not free compute for first cold path.' }
   })
 }
