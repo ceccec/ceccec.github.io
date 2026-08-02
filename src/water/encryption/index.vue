@@ -10,6 +10,7 @@ import {
   globalCyberStandardsAuditEveryAspect,
   useCasesBeyondQuantum,
 } from './index.ts'
+import { quantumEncryptionProof, quantumEncryptionReference, quantumEncryptionComplete, encryptionSequenceReflection } from '../../heaven/encryption'
 import { toUuid, toUuidSha256, sha256Sync, foldPair, trinityKey } from '../../0'
 
 // ── PRODUCTION TOOLS — real, usable, deterministic, client-side, ZERO-EGRESS. Type your OWN input; every output
@@ -64,6 +65,12 @@ const isoGapResult = shallowRef<ReturnType<typeof runIsoPqcRequirementsGapFillIn
 const euAudit = shallowRef(globalCyberStandardsAuditEveryAspect())
 const useCases = shallowRef(useCasesBeyondQuantum())
 
+// ── THEOREM FOLDS — sealed proofs from src/heaven/encryption
+const encryptionProof = shallowRef(quantumEncryptionProof())
+const encryptionReference = shallowRef(quantumEncryptionReference())
+const encryptionComplete = shallowRef(quantumEncryptionComplete())
+const encryptionSequence = shallowRef(encryptionSequenceReflection())
+
 function selectModulus(n: number) {
   selectedModulus.value = n
 }
@@ -79,6 +86,11 @@ function runTool() {
     euAudit.value = globalCyberStandardsAuditEveryAspect()
     panel.value = encryptionPanelComputes()
     momentProve.value = agentAssumeNothingMathProvesInTheMoment()
+    // Recompute theorem folds on each run
+    encryptionProof.value = quantumEncryptionProof()
+    encryptionReference.value = quantumEncryptionReference()
+    encryptionComplete.value = quantumEncryptionComplete()
+    encryptionSequence.value = encryptionSequenceReflection()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'run failed'
     result.value = null
@@ -563,9 +575,93 @@ runTool()
         <p class="encryption-tools__boundary">{{ panel.maxBits?.boundary }}</p>
       </section>
       <UiSeparator />
-      <section id="tool-honest" aria-label="Production browser tools are not demos">
+      <section id=”encryption-sequence-reflection” aria-label=”Encryption sequence reflecting in its inversion”>
+        <h3>Encryption sequence — reflection in its inversion</h3>
+        <p class=”encryption-tools__lede”>
+          Compute locally: plaintext → ciphertext (forward) and ciphertext → plaintext (reflection). The same fold traced both ways shows what's possible.
+        </p>
+        <UiBadge :variant=”encryptionSequence.computes ? 'default' : 'outline'”>
+          computes={{ encryptionSequence.computes }}
+          · symmetryHolds={{ encryptionSequence.symmetryHolds }}
+          · fullyReversible={{ encryptionSequence.fullyReversible }}
+          · facets={{ encryptionSequence.count }}
+        </UiBadge>
+        <div v-if=”encryptionSequence.facets?.length” class=”encryption-tools__list”>
+          <div v-for=”f in encryptionSequence.facets” :key=”f.facet” class=”encryption-tools__list”>
+            <li>
+              <UiBadge :variant=”f.on ? 'default' : 'outline'”>{{ f.on ? '✓' : '—' }}</UiBadge>
+              {{ f.facet }}
+            </li>
+          </div>
+        </div>
+        <p class=”encryption-tools__boundary”>{{ encryptionSequence.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id=”encryption-proof” aria-label=”Quantum encryption proof”>
+        <h3>Quantum encryption proof — sealed theorems</h3>
+        <p class=”encryption-tools__lede”>
+          Four facets computed from sealed folds: encryption lives in src/0 · trinity key symmetric · public-key one-way · sequence reflects in inversion.
+        </p>
+        <UiBadge :variant=”encryptionProof.computes ? 'default' : 'outline'”>
+          computes={{ encryptionProof.computes }}
+          · proofs={{ encryptionProof.proofs }}
+        </UiBadge>
+        <div v-if=”encryptionProof.facets?.length” class=”encryption-tools__list”>
+          <div v-for=”f in encryptionProof.facets” :key=”f.facet”>
+            <li>
+              <UiBadge :variant=”f.on ? 'default' : 'outline'”>{{ f.on ? '✓' : '—' }}</UiBadge>
+              {{ f.facet }}
+              <span class=”encryption-tools__meta”>{{ f.reference }}</span>
+            </li>
+          </div>
+        </div>
+        <p class=”encryption-tools__meta”>root <code>{{ encryptionProof.root?.slice(0, 16) }}…</code></p>
+        <p class=”encryption-tools__boundary”>{{ encryptionProof.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id=”encryption-reference” aria-label=”Quantum encryption reference”>
+        <h3>Quantum encryption reference — algebraic identities</h3>
+        <p class=”encryption-tools__lede”>
+          Five algebraic identities computed locally. The sequence reflects in its inversion.
+        </p>
+        <UiBadge :variant=”encryptionReference.computes ? 'default' : 'outline'”>
+          computes={{ encryptionReference.computes }}
+          · formulas={{ encryptionReference.formulas }}
+        </UiBadge>
+        <table v-if=”encryptionReference.entries?.length” class=”encryption-tools__table”>
+          <thead>
+            <tr><th>Identity</th><th>Formula</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for=”e in encryptionReference.entries” :key=”e.name”>
+              <td><strong>{{ e.name }}</strong></td>
+              <td><code>{{ e.formula }}</code></td>
+              <td>{{ e.meaning }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class=”encryption-tools__meta”>root <code>{{ encryptionReference.root?.slice(0, 16) }}…</code></p>
+        <p class=”encryption-tools__boundary”>{{ encryptionReference.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id=”encryption-complete” aria-label=”Quantum encryption complete”>
+        <h3>Quantum encryption complete — unified proof</h3>
+        <p class=”encryption-tools__lede”>
+          All theorems merged: sequence, proof, reference, sealed primitives. Compute locally. Realise that the sequence reflecting in its inversion makes everything possible.
+        </p>
+        <UiBadge :variant=”encryptionComplete.complete ? 'default' : 'outline'”>
+          complete={{ encryptionComplete.complete }}
+          · proofs={{ encryptionComplete.proofs }}
+          · formulas={{ encryptionComplete.formulas }}
+          · sequenceComplete={{ encryptionComplete.sequenceComplete }}
+        </UiBadge>
+        <p class=”encryption-tools__meta”>root <code>{{ encryptionComplete.root?.slice(0, 16) }}…</code></p>
+        <p class=”encryption-tools__boundary”>{{ encryptionComplete.boundary }}</p>
+      </section>
+      <UiSeparator />
+      <section id=”tool-honest” aria-label=”Production browser tools are not demos”>
         <h3>tool/honest — production browser tools are not demos</h3>
-        <p class="encryption-tools__lede">
+        <p class=”encryption-tools__lede”>
           Calling runnable browser encrypt/reverse tools “demo” or “toy” misleads the public. Sealed-catalog moduli · refuseBeyond only for over-ceiling / third-party production RSA break claims.
         </p>
       </section>
