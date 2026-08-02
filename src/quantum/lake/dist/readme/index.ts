@@ -35,6 +35,7 @@ import {
   societySupportsProjectViaTwoBitsFreeKnowledge,
   domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured } from '../../../../wind/research'
 import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../../mountain/vortex'
+import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../../thunder/waves'
 import { theoremPagePaths } from '../../../../wind/routes/corpus'
 import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../../apps'
 import {
@@ -710,7 +711,27 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
         '',
         seq.statement,
         '',
+        // The piecewise law and its two seams (user: "there are still gaps in the understanding of
+        // the sequence") — computed by vortexCircuitPiecewiseLaw, closing the seam↔center↔χ chain.
+        vortexCircuitPiecewiseLaw().statement,
+        '',
         `**Boundary.** ${seq.boundary}`,
+        '',
+      ]
+    })(),
+    // PROOF ANIMATIONS (user laws, 2026-08-02: the animation CONFIRMS the proof, no other animation
+    // allowed; animations prove all directions via residue coordinates) — every line computed live
+    // from proofAnimations; one generator, so README and home carry the same receipt.
+    ...(() => {
+      const anim = proofAnimations(matrix)
+      return [
+        '## Proof animations — the visual receipts, in all directions',
+        '',
+        `Every registered theorem carries its dedicated animation: **${anim.count} specs** across **${anim.kinds.length} families**, and the spec seed is the content address of the theorem's own \`(identity ⊢ provingFold)\` — the same proof always animates identically, any change to statement or proving fold changes the animation. **${anim.signatureCount} unique animations for ${anim.identityCount} unique proofs** (${anim.uniqueAnimationsMatchUniqueTheorems ? 'exact bijection' : 'MISMATCH'}); an animation without a proven theorem behind it cannot exist (noOther=${anim.noOtherAnimationAllowed}).`,
+        '',
+        `Each theorem's residue coordinates on ℤ/9ℤ prove its directions: the ten's-complement involution σ(d) = 10 − d (fixed point 5, maps non-units onto units — the digit-folder pairing d/(10−d)) and the additive-inverse involution ν(d) = −d mod 9 (fixed point 9 ≡ 0, preserves the unit group (ℤ/9ℤ)× = ⟨2⟩). Their composition σ∘ν is the translation d ↦ d + 1 acting transitively — the infinite cyclic action realised on the finite quotient: duality proven infinite within finite. All gates recompute at call time: involutions=${anim.tensComplementInvolution && anim.additiveInverseInvolution} · unitsPreserved=${anim.negationPreservesUnits} · nonUnitsOntoUnits=${anim.complementMapsNonUnitsToUnits} · translationTransitive=${anim.translationActsTransitively} · allDirections=${anim.allDirectionsProved}.`,
+        '',
+        `Browse the registry grouped by animation family, domain, proof class and method: [/theorems](${vitePressCompatibleHref('/theorems', linkBase)}).`,
         '',
       ]
     })(),
@@ -785,7 +806,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     '## Latest discoveries',
     '',
-    `The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open (\`claySolvedByThisFold = 0\`).`,
+    `The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open.`,
     '',
     ...latestDiscoveries(9).map((entry) => `- **${entry.theorem}** — [details](${linkBase}/theorems)`),
     '',

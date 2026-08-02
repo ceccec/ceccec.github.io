@@ -55,7 +55,17 @@ Forward `1\2\4\8/7/5 · 3\6\9 · 0\1` · reflected `9/8/6/2\3\5 · 7/4/1 · 0\9`
 
 The sequence, scientifically described — 6/6: ten digits on a 360° ring (36° per slot, the flow on its 60° hexagon), polarities computed from strokes (6 ascents · 4 descents · 4 gateways), sound as the d/9 ladder of the 432 Hz anchor, color via the sealed octave bridge, and the reflection/group/entanglement folds joined — every cell computed, nothing typed twice.
 
+The circuit's law is piecewise — geometric ×2 on the unit segment, arithmetic +3 on the non-unit segment, coinciding only at d = 3; exactly 2 seams (5→3 and 9→0→1) where neither law carries, seated at the two involution centers (5 = fix σ, 9 ≡ 0 = fix ν): seams = −χ = 2.
+
 **Boundary.** EXACT — every table cell derives: ANGLES CLOSE THE CIRCLE — ten slots × 36° = 360° exactly (true), and the ⟨2⟩ flow sits on its own hexagon at 60° per doubling (the vortex quantum of angle, sixtyDegreesDecodesPi) · POLARITIES BALANCE — six ascents against four descents with exactly the four computed gateways carrying the reversals (true); every digit's in/out stroke pair is computed from the tour, never assigned · SOUND IS THE d/9 LADDER OF THE ANCHOR — f_d = 432·d/9 = 48·d Hz with the anchor exact at d = 9 (true); the void 0 carries silence, stated not painted · COLOR IS THE SEALED OCTAVE BRIDGE — each tone doubles into the visible band via frequencyToLight (THz · nm · band), the same derivation that computes the brand hue A432_HUE = 5; no hue is hand-picked · AND ALL IT REPRESENTS RIDES SEALED — the two computed lines (true), the 54-element affine symmetry with its unit-shift commutator, and the one-orbit entanglement with its equilibriums (true) — the description JOINS folds, it does not restate them · THE WRAP LEAVES THE OCTAVE — 48·{1,2,4,8} Hz double into the SAME visible color (true doubling = octave equivalence: true), while the digital-root wrap 16→7 exits the pitch class (true) — mod-9 doubling is NOT sound-octave doubling, computed and stated SCOPE: the 36°/60° angles are geometry of the tour and the ⟨2⟩ hexagon; the d/9 sound ladder is a STATED convention on the sealed 432 anchor (dimensionless ratio × anchor), not a physics claim about digits; the octave bridge is the same sealed derivation behind A432_HUE; wellness claims about 432 Hz remain flagged (432 Hz heals ∈ DEMARCATION flagged) — the colors and tones are DERIVED PRESENTATIONS of arithmetic, and the void carries silence HARMONY does not equal TRUTH.
+
+## Proof animations — the visual receipts, in all directions
+
+Every registered theorem carries its dedicated animation: **761 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **761 unique animations for 761 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
+
+Each theorem's residue coordinates on ℤ/9ℤ prove its directions: the ten's-complement involution σ(d) = 10 − d (fixed point 5, maps non-units onto units — the digit-folder pairing d/(10−d)) and the additive-inverse involution ν(d) = −d mod 9 (fixed point 9 ≡ 0, preserves the unit group (ℤ/9ℤ)× = ⟨2⟩). Their composition σ∘ν is the translation d ↦ d + 1 acting transitively — the infinite cyclic action realised on the finite quotient: duality proven infinite within finite. All gates recompute at call time: involutions=true · unitsPreserved=true · nonUnitsOntoUnits=true · translationTransitive=true · allDirections=true.
+
+Browse the registry grouped by animation family, domain, proof class and method: [/theorems](https://ceccec.psg.bg/theorems).
 
 ## Development timeline — public registry data
 
@@ -219,7 +229,7 @@ The most CENTRAL decodes — ranked by theorem-graph degree (how many other atom
 
 ## Latest discoveries
 
-The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open (`claySolvedByThisFold = 0`).
+The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open.
 
 - **the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs** — [details](https://ceccec.psg.bg/theorems)
 - **the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇** — [details](https://ceccec.psg.bg/theorems)

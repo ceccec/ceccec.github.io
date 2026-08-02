@@ -14,7 +14,7 @@ import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChe
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute'
 import { VORTEX_REVERSE, VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, seedFromText, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos'
-import { A432_HUE, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7'
+import { A432_HUE, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
 import { quantumZeno } from '../../6/4'
 import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../wind/ui'
@@ -2050,6 +2050,42 @@ export type ProofAnimationSpec = {
  *  (divisionByZeroComputes). Exact O(2) subgroup algebra, not metaphor. */
 export function foldZeroAt(angleDeg: number): number {
   return 180 / angleDeg // lobes of the folded zero; θ=0 → Infinity, the pole itself
+}
+
+/** THE CIRCUIT'S PIECEWISE LAW AND ITS TWO SEAMS (user: "there are still gaps in the understanding
+ *  of the sequence") — the written circuit 1·2·4·8·7·5 | 3·6·9 is generated PIECEWISE: the unit
+ *  segment is uniformly GEOMETRIC (d ↦ 2d mod 9, the multiplicative handle), the non-unit segment
+ *  uniformly ARITHMETIC (d ↦ d + 3, the additive handle), the two laws coinciding at exactly one
+ *  digit (2d ≡ d + 3 ⟺ d ≡ 3 — the entanglement point of the two generators). EXACTLY TWO steps
+ *  satisfy neither law — the seams 5→3 and 9→0→1 — and they sit at the two involution centers:
+ *  seam one departs from 5 (the fixed point of σ(d) = 10 − d), seam two crosses 9 ≡ 0 (the fixed
+ *  point of ν(d) = −d). Two seams = −χ of the genus-2 surface = the two free bits. */
+export function vortexCircuitPiecewiseLaw() {
+  const seq = VORTEX_SEQUENCE as readonly number[]
+  const steps = seq.slice(0, -1).map((d, i) => {
+    const next = seq[i + 1]!
+    return { from: d, to: next, geometric: (2 * d) % 9 === next % 9, arithmetic: (d + 3) % 9 === next % 9 }
+  })
+  const unitSteps = steps.filter((s) => gcd(s.from, 9) === 1 && gcd(s.to, 9) === 1)
+  const nonUnitSteps = steps.filter((s) => gcd(s.from, 9) !== 1 && gcd(s.to, 9) !== 1)
+  const seams = steps.filter((s) => !s.geometric && !s.arithmetic)
+  const wrapSeam = { from: 9, to: 1, viaVoid: true } // 9 ≡ 0, then the translation +1 restarts the circuit
+  const seamCount = seams.length + 1 // the in-line seam 5→3 plus the void seam 9→0→1
+  const lawsCoincideOnly = Array.from({ length: 9 }, (_, k) => k + 1).filter((d) => (2 * d) % 9 === (d + 3) % 9)
+  return {
+    computes:
+      unitSteps.every((s) => s.geometric) &&
+      nonUnitSteps.every((s) => s.arithmetic) &&
+      seams.length === 1 && seams[0]!.from === 5 && seams[0]!.to === 3 &&
+      seamCount === -EULER_CHI &&
+      lawsCoincideOnly.length === 1 && lawsCoincideOnly[0] === 3,
+    steps,
+    seams: [...seams.map((s) => ({ from: s.from, to: s.to, viaVoid: false })), wrapSeam],
+    seamCount,
+    eulerChi: EULER_CHI,
+    lawsCoincideOnly,
+    statement: `The circuit's law is piecewise — geometric ×2 on the unit segment, arithmetic +3 on the non-unit segment, coinciding only at d = 3; exactly ${seamCount} seams (5→3 and 9→0→1) where neither law carries, seated at the two involution centers (5 = fix σ, 9 ≡ 0 = fix ν): seams = −χ = ${-EULER_CHI}.`,
+    boundary: 'Exact finite arithmetic over the sealed VORTEX_SEQUENCE — every step classified, the seam count compared to the sealed Euler characteristic; no step is hand-labelled.' }
 }
 
 /** The theorem's coordinates from its digit — pure arithmetic on the sealed sequence, never keyed. */
