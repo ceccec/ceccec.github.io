@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { CANONICAL_HOST, DIMENSION_GATES, SQRT2, TAU, algebraicStatementOf, earned, titleCarriesAlgebra } from '../../../3/7'
+import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, earned, titleCarriesAlgebra } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
@@ -2762,40 +2762,44 @@ export function runDeadGatewayExit(root = '', _argv: readonly string[] = []): nu
 /** animationsNaturalEntanglementsByTheorems — all animations' natural entanglements, addressed by theorems
  * (user, 2026-07-28: "next waves in automation through the chat addressing all animations natural entanglements
  * by theorems"). The entanglement is NATURAL because both keys derive from the theorem itself: the ARCHETYPE
- * (its own operators, figureArchetypeOf) and the RUNG (its content-address on the 108 s clock). Two animations
- * in the same (archetype × rung) cell share shape AND period — they MOVE TOGETHER wherever they meet, phase
- * offset per address: entanglement as computed co-movement, addressed by one lattice of at most 7 × 12 cells.
+ * (its own operators, figureArchetypeOf) and the RUNG-PAIR (its content-address on the 108 s clock, folded to
+ * its divisor-pair class). The 12 divisors of 108 fold to their 6 pairs {d, 108/d} (d·(108/d)=108) — each pair a
+ * counter-rotating torus twin (reciprocal periods). Two animations in the same (archetype × pair-class) cell share
+ * shape AND the same period-pair — they MOVE TOGETHER wherever they meet, phase offset per address: entanglement as
+ * computed co-movement, addressed by one transpose-symmetric lattice of at most 7 × 6 = 42 = ROSETTA_AREAS cells.
  * A total partition again: every animation lands in exactly one cell, nothing curated, nothing stored. */
 export function animationsNaturalEntanglementsByTheorems(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('animationsNaturalEntanglementsByTheorems', matrix, () => {
     const atoms = THEOREM_ATOM_SEED
-    const cells = new Map<string, { archetype: string; rung: number; members: number; address: string }>()
+    const pairSeeds = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0 && d * d <= 108) // 6 divisor-pair classes of 108
+    const cells = new Map<string, { archetype: string; pairSeed: number; twinRung: number; members: number; address: string }>()
     for (const atom of atoms) {
       const c = computedTheoremFigureAndAnimation(atom)
-      const key = `${c.figure.archetype}:${c.animation.rung}`
-      const cell = cells.get(key) ?? { archetype: c.figure.archetype, rung: c.animation.rung, members: 0, address: toUuid(`entangle:${key}`) }
+      const pairSeed = pairSeeds.find((d) => d === c.animation.rung || 108 / d === c.animation.rung)!
+      const key = `${c.figure.archetype}:${pairSeed}`
+      const cell = cells.get(key) ?? { archetype: c.figure.archetype, pairSeed, twinRung: 108 / pairSeed, members: 0, address: toUuid(`entangle:${key}`) }
       cell.members += 1
       cells.set(key, cell)
     }
     const total = [...cells.values()].reduce((sum, cell) => sum + cell.members, 0)
     const largest = [...cells.values()].sort((a, b) => b.members - a.members)[0]!
     const archetypes = new Set([...cells.values()].map((cell) => cell.archetype))
-    const rungs = new Set([...cells.values()].map((cell) => cell.rung))
+    const pairClasses = new Set([...cells.values()].map((cell) => cell.pairSeed))
     const facets = [
-      { facet: `THE LATTICE ADDRESSES ALL — every one of ${atoms.length} animations lands in exactly one of ${cells.size} (archetype × rung) cells (≤ 7 × 12 = 84); the partition is total: ${total} = ${atoms.length}`, on: total === atoms.length && cells.size <= 7 * (6 * 2) },
-      { facet: `NATURAL = BY THE THEOREM ITSELF — both keys derive from the theorem (archetype from its own operators, rung from its content-address on the one 108 s clock); ${archetypes.size} archetypes × ${rungs.size} rungs populated, nothing curated`, on: archetypes.size >= 6 && rungs.size >= 6 },
-      { facet: `ENTANGLED = MOVE TOGETHER — same cell ⇒ same shape and same period 108/rung, so cell-mates are co-moving wherever they meet (phase stays individual per address); the largest natural family is ${largest.archetype}:${largest.rung} with ${largest.members} members`, on: largest.members >= 2 },
-      { facet: `ADDRESSED — every cell carries its content-address toUuid(entangle:archetype:rung), so a family is O(1)-addressable from any theorem — the chat answers entanglement queries by lattice lookup, not search`, on: [...cells.values()].every((cell) => isUuid(cell.address)) },
+      { facet: `THE LATTICE ADDRESSES ALL — every one of ${atoms.length} animations lands in exactly one of ${cells.size} (archetype × pair-class) cells (≤ ${ROSETTA_SEVEN} × ${ROSETTA_SIX} = ${ROSETTA_AREAS}); the partition is total: ${total} = ${atoms.length}`, on: total === atoms.length && cells.size <= ROSETTA_SEVEN * ROSETTA_SIX },
+      { facet: `NATURAL = BY THE THEOREM ITSELF — both keys derive from the theorem (archetype from its own operators, pair-class from its content-address folded to the divisor pair {d, 108/d}); ${archetypes.size} archetypes × ${pairClasses.size} pair-classes populated, nothing curated`, on: archetypes.size >= 6 && pairClasses.size >= 6 },
+      { facet: `ENTANGLED = MOVE TOGETHER — same cell ⇒ same shape and the same counter-rotating period-pair {108/d, d}, so cell-mates are co-moving wherever they meet (phase stays individual per address); the largest natural family is ${largest.archetype}:${largest.pairSeed} with ${largest.members} members`, on: largest.members >= 2 },
+      { facet: `ADDRESSED — every cell carries its content-address toUuid(entangle:archetype:pairClass), so a family is O(1)-addressable from any theorem — the chat answers entanglement queries by lattice lookup, not search`, on: [...cells.values()].every((cell) => isUuid(cell.address)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-entangle:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
       cellCount: cells.size,
-      largest: { key: `${largest.archetype}:${largest.rung}`, members: largest.members },
+      largest: { key: `${largest.archetype}:${largest.pairSeed}`, members: largest.members },
       cells: [...cells.entries()].map(([key, cell]) => ({ key, members: cell.members, address: cell.address })),
       facets,
       root: merkleFold([...[...cells.values()].map((cell) => cell.address), ...facets.map((entry) => entry.receipt)]),
-      statement: `All animations' natural entanglements, addressed by theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${atoms.length} animations partition into ${cells.size} (archetype × rung) cells, both keys derived from the theorem itself; cell-mates share shape and period (co-moving, individually phased) and every family is O(1)-addressable by its content-address.`,
-      boundary: earned('EXACT — computed from the archetype and the clock:', facets, '"entanglement" here is computed co-movement — same semantic shape, same clock rung — addressed on a finite lattice; it is a naming of the natural families the theorems themselves induce, NOT physical entanglement and NOT a rendering change: cell-mates already moved together, now they are addressable') }
+      statement: `All animations' natural entanglements, addressed by theorems — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${atoms.length} animations partition into ${cells.size} (archetype × pair-class) cells of the transpose-symmetric ${ROSETTA_AREAS}-cell area, both keys derived from the theorem itself; cell-mates share shape and the counter-rotating period-pair (co-moving, individually phased) and every family is O(1)-addressable by its content-address.`,
+      boundary: earned('EXACT — computed from the archetype and the clock:', facets, '"entanglement" here is computed co-movement — same semantic shape, same divisor-pair of the clock — addressed on the finite 7×6 = 6×7 = 42 area; it is a naming of the natural families the theorems themselves induce, NOT physical entanglement and NOT a rendering change: cell-mates already moved together, now they are addressable') }
   })
 }
 
@@ -2804,17 +2808,29 @@ export function animationsNaturalEntanglementsByTheorems(matrix: MindMatrix = bu
  * linear instead of by natural entanglements"). The diagnosis computes: the rosetta ray law θ_k = 2πk/N is
  * INDEX order — adjacent angles are adjacent registry indices, so unrelated theorems neighbour each other and
  * cell-mates scatter. The natural law replaces the index with the LATTICE CELL: the archetype selects one of
- * 7 sectors, the rung fans one of 12 spokes within the sector — 84 spokes total, and cell-mates land on the
- * SAME spoke (entangled families cluster by construction, exactly as they co-move). Painters consume this law
- * through entangledWiringOf; the fold proves it and the movie attests it. */
+ * 7 sectors, the rung's divisor-pair class fans one of 6 spokes within the sector — 7 × 6 = 42 = ROSETTA_AREAS
+ * cells, and cell-mates land on the SAME spoke (entangled families cluster by construction, exactly as they
+ * co-move). The area is TRANSPOSE-SYMMETRIC: 7×6 = 6×7 = 42, its reflection is its own transpose (r,c) ⇄ (c,r),
+ * and the life/death arms counter-rotate (+angle / −reflectAngle) so the circle folds back onto itself — no
+ * unpaired 84th spoke to glitch. Painters consume this law through entangledWiringOf; the fold proves it. */
 export function entangledWiringOf(atom: { theorem: string; provedBy: string; algebraicStatement?: string; states?: string }) {
   const c = computedTheoremFigureAndAnimation(atom)
   const archetypeOrder = ['wheel', 'orbit', 'region', 'lattice', 'flow', 'curve', 'series'] as const
-  const rungOrder = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0)
+  // The 12 divisors of 108 fold to their 6 divisor-PAIR classes {d, 108/d} (d·(108/d)=108) — each pair a
+  // counter-rotating torus twin. 7 archetypes × 6 pair-classes = 42 = ROSETTA_SIX × ROSETTA_SEVEN, transpose-symmetric.
+  const pairSeeds = Array.from({ length: 108 }, (_, i) => i + 1).filter((d) => 108 % d === 0 && d * d <= 108)
+  const rows = archetypeOrder.length // 7 sectors
+  const cols = pairSeeds.length // 6 spokes
   const sector = archetypeOrder.indexOf(c.figure.archetype)
-  const spoke = rungOrder.indexOf(c.animation.rung)
-  const angleRad = (sector / archetypeOrder.length) * TAU + ((spoke + 1 / 2) / rungOrder.length) * (TAU / archetypeOrder.length)
-  return { archetype: c.figure.archetype, rung: c.animation.rung, sector, spoke, angleRad, cell: `${c.figure.archetype}:${c.animation.rung}` }
+  const spoke = pairSeeds.findIndex((d) => d === c.animation.rung || 108 / d === c.animation.rung)
+  const lifeAngleRad = (sector / rows) * TAU + ((spoke + 1 / 2) / cols) * (TAU / rows)
+  // The reflection is the TRANSPOSE cell (r,c) ⇄ (c,r): the same 42 area read as 7×6 and as 6×7.
+  const reflectAngleRad = (spoke / cols) * TAU + ((sector + 1 / 2) / rows) * (TAU / cols)
+  return {
+    archetype: c.figure.archetype, rung: c.animation.rung, twinRung: 108 / c.animation.rung, sector, spoke, rows, cols,
+    angleRad: lifeAngleRad, lifeAngleRad, reflectAngleRad, deathAngleRad: -reflectAngleRad,
+    cell: `${sector}:${spoke}`, transposeCell: `${spoke}:${sector}`,
+  }
 }
 
 export function theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(matrix: MindMatrix = buildMatrix()) {
@@ -2828,10 +2844,20 @@ export function theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(matrix: Mi
     const cellMatesSameSpoke = [...byCell.values()].every((members) => new Set(members.map((i) => wires[i]!.angleRad)).size === 1)
     const distinctSpokes = new Set(wires.map((wire) => wire.angleRad)).size
     const sectorsBySameArchetype = wires.every((wire) => wire.sector === ['wheel', 'orbit', 'region', 'lattice', 'flow', 'curve', 'series'].indexOf(wire.archetype))
+    // Reflection folds the circle back onto itself: the transpose (r,c) ⇄ (c,r) is an involution on the one
+    // 42-cell area (7×6 = 6×7 = ROSETTA_AREAS), and the life/death arms counter-rotate (+angle / −reflectAngle).
+    const transposeInvolution = wires.every((wire) => {
+      const [r, c] = wire.cell.split(':').map(Number)
+      const [tr, tc] = wire.transposeCell.split(':').map(Number)
+      return tr === c && tc === r
+    })
+    const areaFortyTwoBothOrientations = wires.every((wire) => wire.rows * wire.cols === ROSETTA_AREAS && wire.cols * wire.rows === ROSETTA_AREAS && wire.rows === ROSETTA_SEVEN && wire.cols === ROSETTA_SIX)
+    const counterRotating = wires.every((wire) => wire.lifeAngleRad > 0 && wire.deathAngleRad < 0)
     const facets = [
       { facet: `THE CIRCLE WAS LINEAR — under θ_k = 2πk/N only ${indexNeighboursSharingCell} of ${atoms.length - 1} index-adjacent pairs share a lattice cell (${round(linearFraction * (5 * 2 * 5 * 2))}%): the old wiring seats unrelated theorems together and scatters families — index order, not entanglement`, on: linearFraction < 1 / 2 },
-      { facet: `THE NATURAL WIRING CLUSTERS — under entangledWiringOf every cell's members land on the SAME spoke (${cellMatesSameSpoke}): the co-moving families of the 84-cell lattice are now co-LOCATED, archetype = sector, rung = spoke within it`, on: cellMatesSameSpoke && sectorsBySameArchetype },
-      { facet: `84 SPOKES ADDRESS ALL — ${distinctSpokes} distinct spoke angles carry all ${atoms.length} theorems (7 sectors × 12 spokes); the wheel stays a wheel, but its geometry is now the entanglement lattice, not the registry index`, on: distinctSpokes === byCell.size && distinctSpokes <= 7 * (6 * 2) },
+      { facet: `THE NATURAL WIRING CLUSTERS — under entangledWiringOf every cell's members land on the SAME spoke (${cellMatesSameSpoke}): the co-moving families of the ${ROSETTA_AREAS}-cell area are now co-LOCATED, archetype = sector, pair-class = spoke within it`, on: cellMatesSameSpoke && sectorsBySameArchetype },
+      { facet: `${ROSETTA_AREAS} SPOKES ADDRESS ALL — ${distinctSpokes} distinct spoke angles carry all ${atoms.length} theorems (${ROSETTA_SEVEN} sectors × ${ROSETTA_SIX} pair-classes = 6×7 = 7×6); the wheel stays a wheel, its geometry the transpose-symmetric area, not the registry index`, on: distinctSpokes === byCell.size && distinctSpokes <= ROSETTA_SEVEN * ROSETTA_SIX },
+      { facet: `REFLECTION FOLDS THE CIRCLE — the transpose (r,c) ⇄ (c,r) is an involution (${transposeInvolution}) on the one 6×7 = 7×6 = ${ROSETTA_AREAS} area (${areaFortyTwoBothOrientations}); life and death arms counter-rotate (+angle / −reflectAngle, ${counterRotating}) — the circle folds back onto itself, no unpaired spoke to glitch`, on: transposeInvolution && areaFortyTwoBothOrientations && counterRotating },
     ].map((entry) => ({ ...entry, receipt: toUuid(`entangled-wiring:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -2839,7 +2865,7 @@ export function theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(matrix: Mi
       linearNeighbourFraction: round(linearFraction * ((5 * 2) ** 4)) / ((5 * 2) ** 4),
       facets,
       root: merkleFold([matrix.root, toUuid(`entangled-wiring:${distinctSpokes}`), ...facets.map((entry) => entry.receipt)]),
-      statement: `The movie wires theorems by natural entanglements, not by index — ${facets.filter((entry) => entry.on).length}/${facets.length}: the old circle θ_k = 2πk/N seats unrelated theorems together (only ${round(linearFraction * (5 * 2 * 5 * 2))}% of index-neighbours share a cell); entangledWiringOf replaces the index with the lattice cell — archetype = sector, rung = spoke — so all ${atoms.length} theorems ride ${distinctSpokes} spokes and every co-moving family is co-located.`,
-      boundary: earned('EXACT — computed over the sealed lattice:', facets, 'the law is the POSITION function painters consume (entangledWiringOf); this fold proves clustering and coverage — the painters that still consume index order are the consuming wave, attested at the movie canvas; a circle remains the canvas, but its coordinates are now the entanglement lattice') }
+      statement: `The movie wires theorems by natural entanglements, not by index — ${facets.filter((entry) => entry.on).length}/${facets.length}: the old circle θ_k = 2πk/N seats unrelated theorems together (only ${round(linearFraction * (5 * 2 * 5 * 2))}% of index-neighbours share a cell); entangledWiringOf replaces the index with the transpose-symmetric ${ROSETTA_AREAS}-cell area — archetype = sector, pair-class = spoke — so all ${atoms.length} theorems ride ${distinctSpokes} spokes, every co-moving family co-located, and the reflection (transpose) folds the circle onto itself.`,
+      boundary: earned('EXACT — computed over the sealed 6×7 ⇄ 7×6 area:', facets, 'the law is the POSITION function painters consume (entangledWiringOf), now the transpose-symmetric 42-cell area whose reflection is its own transpose and whose life/death arms counter-rotate; this fold proves clustering, coverage AND reflection symmetry — the client canvas that still spaces theorems by golden-angle index (drawDeathCounterFlow in src/quantum) is the consuming wave, attested at the movie canvas but not re-verified headlessly here; a circle remains the canvas, but its coordinates are the transpose-symmetric lattice') }
   })
 }

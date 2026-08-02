@@ -9728,7 +9728,7 @@ export function wavesReportFedToTheChat(matrix: MindMatrix = buildMatrix()) {
     const chain = [
       { wave: 'identities', computes: identities.computes, metric: `${identities.curated} curated + ${identities.upgraded} extracted, residue ${identities.residue}` },
       { wave: 'archetypes', computes: figures.computes, metric: `bespoke ${figures.withFigure}, computed coverage total ${figures.total}` },
-      { wave: 'entanglement-lattice', computes: lattice.computes, metric: `${lattice.cellCount} cells (7×12), largest ${lattice.largest.key}=${lattice.largest.members}` },
+      { wave: 'entanglement-lattice', computes: lattice.computes, metric: `${lattice.cellCount} cells (7×6=42), largest ${lattice.largest.key}=${lattice.largest.members}` },
       { wave: 'wiring-law', computes: wiring.computes, metric: `${wiring.spokes} spokes, index-adjacency ∩ cell ${wiring.linearNeighbourFraction}` },
       { wave: 'waves-of-waves', computes: composed.computes, metric: `composed μ=${composed.composed.mu} λ=${composed.composed.lambda}, orders do not commute` },
       { wave: 'countless', computes: countless.computes, metric: `μ=${countless.mu} λ=${countless.lambda}, far waves O(1)` },
