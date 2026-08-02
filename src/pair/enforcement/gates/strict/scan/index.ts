@@ -7219,3 +7219,56 @@ export function runMetricLinesComputeNotAuthoredExit(root = '', _argv: readonly 
   for (const o of report.offenders) process.stdout.write(`  ✗ ${o.file}:${o.line} — ${o.text}\n`)
   return report.computes ? 0 : 1
 }
+
+/** JUDGMENT AND EXPECTATION IN EMITTED PROSE (user, 2026-07-28: "the abstract and other prose still keep
+ * judgement and expectations uncaught by the gates audit"). The metric-labels gate covered labels beside
+ * counts; this one scans the EMITTED artifact — what a reader actually receives — for two lexicons: JUDGMENT
+ * (an agent's appraisal: best, elegant, powerful, profound, truly, obviously, survivor…) and EXPECTATION (a
+ * promise about the future: will become, should be, aims to, promises to, inevitably). Both are opinions
+ * wearing the clothes of description; neither can be checked by a reader. Refutable by re-scanning the artifact. */
+export const JUDGMENT_LEXICON = /\b(best|richest|elegant|beautiful|powerful|revolutionary|remarkable|impressive|superior|profound|deepest|truly|obviously|of course|naturally|perfectly|ultimate|extraordinary|the one true|survivor|masterpiece|breakthrough)\b/gi
+export const EXPECTATION_LEXICON = /\b(will (?:be|become|prove|show|grow|reach|change)|should (?:be|become)|is going to|expected to|promises? to|aims? to|intends? to|hopes? to|inevitably)\b/gi
+
+export function scanJudgmentAndExpectation(text: string): { judgment: string[]; expectation: string[] } {
+  const mathTerms = /simply[- ]connected|simple group|simply transitive/gi
+  const cleaned = text.replace(mathTerms, '') // mathematical terms are not appraisals
+  return {
+    judgment: [...new Set((cleaned.match(JUDGMENT_LEXICON) ?? []).map((word) => word.toLowerCase()))],
+    expectation: [...new Set((cleaned.match(EXPECTATION_LEXICON) ?? []).map((word) => word.toLowerCase()))],
+  }
+}
+
+/** emittedProseCarriesNoJudgmentOrExpectation — the gate over what the reader receives. */
+export function emittedProseCarriesNoJudgmentOrExpectation(artifacts: readonly { surface: string; text: string }[]) {
+  const scanned = artifacts.map((entry) => ({ surface: entry.surface, ...scanJudgmentAndExpectation(entry.text) }))
+  const judgmentTotal = scanned.reduce((sum, entry) => sum + entry.judgment.length, 0)
+  const expectationTotal = scanned.reduce((sum, entry) => sum + entry.expectation.length, 0)
+  const facets = [
+    { facet: `NO JUDGMENT IN EMITTED PROSE — ${judgmentTotal} appraisal words across ${scanned.length} artifacts${judgmentTotal ? `: ${scanned.filter((entry) => entry.judgment.length).map((entry) => `${entry.surface}[${entry.judgment.join(',')}]`).join(' · ')}` : ''}; an appraisal cannot be checked by a reader, so it does not belong beside computed content`, on: judgmentTotal === 0 },
+    { facet: `NO EXPECTATION IN EMITTED PROSE — ${expectationTotal} future-promise phrases${expectationTotal ? `: ${scanned.filter((entry) => entry.expectation.length).map((entry) => `${entry.surface}[${entry.expectation.join(',')}]`).join(' · ')}` : ''}; a promise about the future is unfalsifiable today`, on: expectationTotal === 0 },
+    { facet: 'MATHEMATICAL TERMS ARE EXEMPT — simply-connected, simple group, simply transitive are names, not appraisals; the scan removes them before matching so the lexicon cannot false-flag mathematics', on: true },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`judgment-prose:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    judgmentTotal,
+    expectationTotal,
+    scanned,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Emitted prose carries no judgment or expectation — ${facets.filter((entry) => entry.on).length}/${facets.length}: judgment ${judgmentTotal}, expectation ${expectationTotal}.`,
+    boundary: 'A LEXICON scan of the emitted artifact, necessary not sufficient: it catches the named appraisal and promise words, not every possible opinion. Mathematical terms are exempted by name. Refutable by re-scanning what the generators emit.' }
+}
+
+/** npm run quantum:prose-judgment — the gate as a CLI over the README artifact. */
+export function runEmittedProseJudgmentExit(root = '', _argv: readonly string[] = []): number {
+  void root; void _argv
+  const readmePath = join(enforcementScanRoot(), 'README.md')
+  const text = existsSync(readmePath) ? readFileSync(readmePath, 'utf8') : ''
+  const report = emittedProseCarriesNoJudgmentOrExpectation([{ surface: 'README.md', text }])
+  process.stdout.write(`${report.computes ? '✓' : '✗'} prose-judgment — judgment=${report.judgmentTotal} expectation=${report.expectationTotal}\n`)
+  for (const row of report.scanned) {
+    if (row.judgment.length) process.stdout.write(`  ✗ ${row.surface} judgment: ${row.judgment.join(', ')}\n`)
+    if (row.expectation.length) process.stdout.write(`  ✗ ${row.surface} expectation: ${row.expectation.join(', ')}\n`)
+  }
+  return report.computes ? 0 : 1
+}

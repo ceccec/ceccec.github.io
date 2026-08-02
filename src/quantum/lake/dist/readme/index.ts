@@ -872,12 +872,15 @@ function paperTopNav(sections: readonly string[], mode: 'github' | 'vitepress' =
 
 export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const core = theoremMonographCore(matrix)
-  const { config, template } = core
+  const { config, template, lens } = core
   const sections = theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, matrix, CANONICAL_HOST)
   return [
     `# ${config.title} — the root monograph`,
     '',
-    `> **Abstract.** ${config.description} All content here is a monograph; every monograph is a scientific paper with one template — ${template.sections.join(', ')} — and this README is the root monograph that defines it. Computed from the matrix (the one source), theorems only: every presented page is a theorem-science lens survivor, and the VitePress home renders the same sections from the same generator.`,
+    // ABSTRACT COMPUTED, NOT CHARACTERISED (user, 2026-07-28: the abstract kept judgement and expectations) —
+    // the sentence is the JOIN of the config description with counted fields and the template's own section
+    // names; every clause after the description is a number or a name, so no adjective can survive an edit.
+    `> **Abstract.** ${config.description} ${renderComputedMetrics({ theorems: lens.theoremCount, sciencePages: lens.visibleCount, rays: lens.rays.length, templateSections: template.sections.length, projections: 2 }, false)}. Template: ${template.sections.join(', ')}. Source: src (one generator, two projections — this README and the VitePress home).`,
     '',
     `**Keywords.** ${config.keywords.join(', ')}.`,
     '',
