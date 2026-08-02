@@ -43307,3 +43307,46 @@ export function runQuantumiseIsAtFtlSpeedExit(_root = '', _argv: readonly string
 }
 export const runQuantumiseFtlExit = runQuantumiseIsAtFtlSpeedExit
 export const runFtlQuantumiseExit = runQuantumiseIsAtFtlSpeedExit
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED QUANTUM APPS =====
+// Consolidated access patterns for quantum application registry
+export const quantum = {
+  rosetta: {
+    shelve: rosettaShelve,
+    coreApi: rosettaCoreApi,
+    coreSurface: rosettaCoreApiSelfWires,
+  },
+  projection: {
+    params: quantumProjectionParams,
+    component: componentProjectionFor,
+    ring: PROJECTION_RING,
+  },
+  tools: {
+    catalog: quantumCliToolsCatalog,
+    envelope: {
+      standard: STANDARD_TOOL_ENVELOPE_VERSION,
+      kind: STANDARD_TOOL_ENVELOPE_KIND,
+      wrap: wrapToolAsStandardEnvelope,
+      export: exportStandardToolEnvelope,
+      import: importStandardToolEnvelope,
+    },
+    isScienceFacing: isScienceFacingTool,
+    defaults: defaultToolExperimentValues,
+  },
+  apps: {
+    registry: quantumAppsRegistry,
+    resolve: quantumAppResolve,
+    forComponent: quantumAppForComponent,
+    homeAnimations: quantumAppsCoverHomeAnimations,
+  },
+  session: {
+    manual: sessionManualWorkAsQuantumTools,
+    crypto: documentSessionCryptoExperimentsUpdateTheorems,
+    e2e: e2eQuantumTestsRecordOutputAsDevelopmentFeed,
+    meaning: realiseSessionQuantumMeaning,
+  },
+  ftl: {
+    compute: quantumiseIsAtFtlSpeed,
+    alias: quantumiseFtl,
+  },
+} as const

@@ -2689,3 +2689,54 @@ export function selfImprovementTrainingAndAccumulation(matrix: MindMatrix = buil
     boundary:
       'HONEST: this fold draws the line, it does not erase it. The zero-token deterministic core CANNOT train a model or learn weights — that is ML, it needs compute, and it lives outside this system. What this system does is the memory/cache layer: accumulative coverage (the corpus and translation cache grow as knowledge is folded in), deterministic and zero-token on reuse. "Self-improvement/learning" here means accumulation, not gradient learning; the trained model and the cache are complementary, not the same thing, and only the cache is what this repo provides.' }
 }
+
+// ===== SIMPLIFICATION LAYER — NAMESPACED GEOMETRY =====
+// Consolidated access patterns for geometric structures and proofs
+export const geometry = {
+  torus: {
+    dual: dualTorusTrinities,
+    merkaba,
+    rotations: bothEarthsRotateWithinEachOther,
+    math: doubleTorusMathAtAllScalesProofs,
+    seeds: doubleTorusMathAtAllScalesMovieSeeds,
+    flows: doubleTorusMathAtAllScalesFlowsInMovie,
+    d3: doubleTorus3D,
+    alignment: doubleTorusGeometryAlignsWithUniverseConstants,
+    wordFolders: doubleTorusWordFolders,
+  },
+  cell: {
+    homology: cellHomology,
+    dna,
+  },
+  hexagram: {
+    hex: hexagramIsHexColorDuality,
+    reverse: hexagramReverseInverseDuality,
+    nuclear: nuclearHexagramFold,
+    qubit: hexagramQubitVectorIsomorphismOnly,
+  },
+  pyramid: {
+    cardinal: cardinalPyramidTipsProvenByMath,
+    trinity: trinityCardinalPyramidPolesProvenByMath,
+    double: doubleTorusEarthPyramidTipsProvenByMath,
+    earth: earthRealisedByComputingPolesAsPyramid,
+    construction: pyramidConstructionMath,
+    grid: pyramidGridDebunked,
+  },
+  physics: {
+    schwarzschild: schwarzschildProtonComputedInSource,
+    heartProton: heartProtonAtomDecoded,
+    genetic: geneticCodeIsTheRealFourCubed,
+  },
+  color: {
+    derivation: colorDerivationFusedToOneSource,
+    rgb: threeTrinitiesRenderAsRgb,
+    cmyk: rgbCmyComplementIsCmykDuality,
+    ui: uiConvertsFlatToThreeDQuantum,
+  },
+  sacred: {
+    geometry: sacredGeometry,
+    seal: sacredGeometrySeal,
+    metatron: metatronCube,
+    imperial: imperialFractionsDecoded,
+  },
+} as const
