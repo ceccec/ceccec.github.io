@@ -1192,6 +1192,12 @@ export function uiProof(root: string = enforcementScanRoot()) {
     // Links are BUILT through the VP API by construction (routes/nav from the folder tree · computed
     // catch-all resolution), so a dead internal link is a build error, not a runtime surprise.
     { facet: 'dead links never ignored — ignoreDeadLinks:false is PINNED and this facet gates the pin (flipping it refutes the proof); links build through the VP API (computed routes/nav), so broken internal links fail the build by construction', on: readFileSync(join(root, '.vitepress/config.mts'), 'utf8').includes('ignoreDeadLinks: false') },
+    // EXPERIENCE IS MOUNTED, NOT JUST COMPUTED (user law 2026-08-02: "so many similar gaps escaped intelligence"). The
+    // structural gates prove a fold COMPUTES; they were blind to whether the UI it claims is actually rendered — so when
+    // 951edff3 dissolved src/render/ui, the global page-reader vanished while a hardcoded facet stayed green. This gate
+    // gives the intelligence an EXPERIENTIAL sense: Layout.vue must MOUNT each floating interactive tool. Refutable —
+    // unmount one and this fails, so "any page reads itself" can never be green while the reader is deleted.
+    { facet: 'EXPERIENCE IS MOUNTED — Layout.vue mounts every floating interactive tool (CollectiveMind · GlobalHelp · SpeechReader); a claimed UI cannot stay green while its component is deleted', on: (() => { const layout = readFileSync(join(root, '.vitepress/theme/Layout.vue'), 'utf8'); return ['CollectiveMind', 'GlobalHelp', 'SpeechReader'].every((c) => new RegExp(`<${c}\\b`).test(layout)) })() },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-proof:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
