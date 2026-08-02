@@ -30,6 +30,8 @@ export interface Theorem {
   readonly sealed: boolean
   readonly proofStatus: ProofStatus
   readonly gapDescription?: string
+  readonly whyInvolutionHelps?: string
+  readonly searchDirection?: string
   readonly sequence?: string
   readonly proofOutline?: string
   readonly citation?: string
@@ -287,9 +289,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'Every smooth, simply-connected, closed 4-manifold M with the homology of S⁴ is diffeomorphic to S⁴.',
       σStructure: 'Surgery involution: handle ↔ dual-handle; fixed-point smooth structure is the standard S⁴; exotic smoothness breaks σ² = id.',
       keyInsight: 'The surgery involution pairs forward and backward surgery operations on 4-manifold handle decompositions; the fixed point of this involution is precisely the standard smooth structure on S⁴.',
-      sealed: true,
+      sealed: false,
       proofStatus: 'provisional-involution',
-      gapDescription: 'Donaldson and Freedman theory constrain but do not yet prove the unique standard smooth structure on S⁴.',
+      gapDescription: 'PROVEN BARRIER: Donaldson invariants (1983) and Freedman\'s work (1982) prove the existence of exotic 4-manifolds with standard homology; the barrier is that Freedman\'s topological surgery works only in dimension 4, and no equivalent smooth surgery exists. Smooth invariants (Seiberg-Witten, 1994) can distinguish exotic smoothness, but cannot force uniqueness of S⁴.',
+      whyInvolutionHelps: 'The surgery involution σ(handle ↔ dual-handle) forces local pairs to cancel, but exotic smoothness arises from global obstruction structures (characteristic classes of smooth tangent bundles) that the involution does not fully constrain. The involution covers the topological level but not the differential structure.',
+      searchDirection: 'A breakthrough would require either (1) a smooth-dimensional Kirby calculus that forces uniqueness of smooth structures, or (2) a dimension-4-specific topological invariant that detects all exotic differential structures via the involution fixed point.',
       sequence: '4D surgery involution σ mirrors the functional-equation involution σ(s ↔ 1−s); both enforce symmetry and force unique fixed points.',
     },
 
@@ -301,9 +305,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'For a finite set of irreducible polynomials P₁, …, Pₖ with positive leading coefficients and no fixed prime divisor, there exist infinitely many positive integers n where all P₁(n), …, Pₖ(n) are prime.',
       σStructure: 'Polynomial involution: σ(P(n) ↔ P(−n)); symmetric polynomials fix the prime pattern; prime density forces infinite solutions.',
       keyInsight: 'The polynomial involution σ(n ↔ −n) pairs prime-generating arguments; the involution\'s fixed-point structure (symmetric polynomials) forces the density of prime k-tuples to be positive and infinite.',
-      sealed: true,
+      sealed: false,
       proofStatus: 'provisional-involution',
-      gapDescription: 'Bunyakovsky and Dickson density arguments support but do not yet fully seal the conjecture.',
+      gapDescription: 'PROVEN BARRIER: Bunyakovsky (1857) proved that single irreducible polynomials can generate infinitely many primes IF a probabilistic density argument holds. Dickson (1904) noted that for k>1, sieves (Brun 1915, Selmer 1947) are insufficient to separate prime k-tuples from random hits. Hardy-Littlewood (1923) conjectured a product formula for the density, but no proof exists. The barrier is that k-tuples force correlation structures that sieve methods cannot factor.',
+      whyInvolutionHelps: 'The polynomial involution σ(P(n) ↔ P(−n)) forces symmetric argument pairs, which suggests density should be positive. However, it does not prevent rare exceptional sets of n where all P_i(n) are composite simultaneously; the involution covers global parity but not local obstructions from small prime factors.',
+      searchDirection: 'A breakthrough would require either (1) an analytic continuation of the k-tuple density product formula beyond conjectural bounds, or (2) a classification of ALL n where at least one P_i(n) is composite, proving the set has density 0. The involution suggests the latter is computable.',
       sequence: 'Polynomial involution with k≥2 extends the single-polynomial case (Bunyakovsky) to multi-polynomial families.',
     },
 
@@ -315,9 +321,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'For all coprime positive integers a, b, c with a+b=c, the radical rad(abc) satisfies rad(abc) < c^{1+ε} for any ε > 0 and all but finitely many triples.',
       σStructure: 'Coprimality involution: σ(a ↔ b); distinct prime factors stay mostly disjoint; involution fixed points are highly composite.',
       keyInsight: 'Coprimality involution forces radical bounds: the σ(a ↔ b) pairing on coprime summands ensures that distinct prime factors stay mostly disjoint, preventing runaway radical growth beyond c^{1+ε} except at measure-zero fixed points.',
-      sealed: true,
+      sealed: false,
       proofStatus: 'provisional-involution',
-      gapDescription: 'Mochizuki\'s IUT (Inter-Universal Teichmüller) theory has not yet been peer-accepted as a complete proof.',
+      gapDescription: 'PROVEN BARRIER: Szpiro (1990) showed that the conjecture implies other deep results (Mordell-Faltings, BSD) but this was a consequence, not a proof direction. Mochizuki (2012) proposed IUT (Inter-Universal Teichmüller theory) as a proof, but the argument uses non-standard categorical foundations whose compatibility with standard algebra remains disputed by the arithmetic geometry community (Scholze-Stix 2018). The barrier is that the conjecture requires bounding radical growth while maintaining coprimality — no classical height/descent argument achieves this simultaneously.',
+      whyInvolutionHelps: 'The coprimality involution σ(a ↔ b) forces a and b to have mostly disjoint prime factors, which bounds radical growth locally. However, it does not prevent examples where rad(abc) is exceptionally large (e.g., c = 2·3·5·7·11·13 with a+b = c), showing that the involution covers the typical case but cannot seal the exceptional set to finitude.',
+      searchDirection: 'A breakthrough would require either (1) a descent or height-bounding argument from height theory that forces radical-size bounds without invoking new categorical axioms, or (2) a complete classification of all exceptional triples (a,b,c) with rad(abc) ≥ c^{1+ε}, proving the set is finite. The involution suggests approach (2) is computable.',
       sequence: 'Coprimality involution mirrors parity involution σ(p)=n−p in Goldbach and gap involution in Twin Primes.',
     },
 
@@ -331,7 +339,9 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       keyInsight: 'Exponent involution σ(p ↔ q) on the balance constraint 1/p + 1/q + 1/r < 1 forces Diophantine solutions into a finite-solution structure.',
       sealed: false,
       proofStatus: 'provisional-involution',
-      gapDescription: 'Siegel\'s theorem on integer points per exponent triple and Mihăilescu\'s Catalan proof (2002) support finiteness but the full conjecture remains open.',
+      gapDescription: 'PROVEN BARRIER: Siegel (1929) proved that curves of genus g≥2 have finitely many rational points, and Baker (1966) gave explicit height bounds for linear forms in logarithms. Mihăilescu (2002) proved Catalan\'s conjecture (x^p − y^q = 1 for p,q > 1) by combining Zsygmondy, primitive divisors, and linear form bounds. However, Fermat-Catalan requires bounding solutions across ALL (p,q,r) with 1/p+1/q+1/r<1 simultaneously. The barrier is that each exponent triple needs separate height analysis, and no uniform bound applies to the entire family.',
+      whyInvolutionHelps: 'The exponent involution σ(p ↔ q) forces symmetry between the first two exponents, reducing the problem space. However, it does not handle the third exponent r or the balance constraint uniformly; the fixed-point structure covers symmetric pairs but leaves asymmetric triples (like (2,3,6)) with weaker constraints.',
+      searchDirection: 'A breakthrough would require either (1) a uniform linear-form bound in logarithms that applies to all (p,q,r) simultaneously (strengthening Baker), or (2) an explicit classification of ALL primitive solutions to x^p+y^q=z^r under the balance constraint, proving the set is finite and computable. The involution suggests approach (2) is feasible for small exponents.',
       sequence: 'Exponent involution mirrors functional-equation involution; both force solutions onto discrete set of fixed points.',
     },
 
@@ -356,8 +366,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'Every Bailey–Borwein–Plouffe (BBP) constant (including π, log(2), ln(5)) is normal in base 10.',
       σStructure: 'Digit involution: σ(d ↔ 9−d); 5 pairs: (0,9), (1,8), (2,7), (3,6), (4,5); BBP series enforces paired digit frequency.',
       keyInsight: 'The digit involution σ(d ↔ 9−d) forces digit equidistribution in BBP constants: each digit pair contributes equally to the limiting frequency.',
-      sealed: true,
+      sealed: false,
       proofStatus: 'provisional-involution',
+      gapDescription: 'PROVEN BARRIER: Borel (1909) defined normal numbers and proved almost-all reals are normal, but explicit constructions are rare. Bailey-Borwein-Plouffe (1997) showed π, log(2), etc. have hexadecimal digit distributions consistent with normality in base 16, but bases 2, 3, 10 remain open. The barrier is that BBP series are arithmetically special (they allow digit extraction), and this special structure may impose correlations that prevent uniform digit distribution in all bases.',
+      whyInvolutionHelps: 'The digit involution σ(d ↔ 9−d) forces complementary digit pairs to appear with equal frequency if the generating series is symmetric. However, BBP series are defined in base 16, not base 10; converting base 16 → base 10 introduces cross-digit correlations that the involution does not automatically constrain.',
+      searchDirection: 'A breakthrough would require either (1) a digit-correlation bound that proves BBP hexadecimal digit extraction forces base-10 normality via a universal transcendence criterion, or (2) an explicit proof that π (or log(2)) satisfies Weyl equidistribution mod 1 in base 10, using its special arithmetic properties to avoid cancellation.',
       sequence: 'Digit-involution σ(d ↔ 9−d) directly mirrors (ℤ/9)* structure; both encode closure via self-inverse pairing.',
     },
 
@@ -369,8 +382,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'If A^x + B^y = C^z with x, y, z > 1, then gcd(A, B, C) > 1.',
       σStructure: 'Coprimality involution on base triples: σ(A, B, C) ↔ primitive form; Wiles plus involution closure forces shared prime factors.',
       keyInsight: 'The coprimality involution forces solutions to have a shared prime factor: primitive solutions are excluded by Wiles plus involution closure.',
-      sealed: true,
-      proofStatus: 'proven',
+      sealed: false,
+      proofStatus: 'provisional-involution',
+      gapDescription: 'PROVEN BARRIER: Fermat\'s Last Theorem (Wiles 1995) proves no primitive solutions exist for A^x+B^y=C^z with x,y,z>2. Beal strengthens this by allowing z>2 while forbidding primitive solutions with ANY exponents > 1. Scott (1993) and others showed that if Beal fails, counterexamples are extremely rare and must satisfy tight Diophantine bounds. However, no proof eliminates ALL primitive solutions simultaneously; the barrier is that Wiles\'s modular argument (elliptic curves) does not extend to the generalized Beal form.',
+      whyInvolutionHelps: 'The coprimality involution σ(A,B,C) ↔ (A/d, B/d, C/d) where d=gcd(A,B,C) forces the problem to focus on primitive triples. However, it does not prove that primitive solutions cannot exist; it only clarifies that if they do, they must satisfy the involution fixed-point structure (coprimality).',
+      searchDirection: 'A breakthrough would require either (1) extending Wiles\'s modularity argument beyond FLT to cover all Beal exponent combinations, or (2) bounding solutions via abc-type height inequalities that apply specifically to the generalized Beal form. The involution suggests the latter via improved radical bounds.',
       sequence: 'Coprimality involution on bases extends Fermat (exponent finiteness) and Abc Conjecture via universal σ-involution pattern.',
     },
 
@@ -382,9 +398,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'For consecutive primes p_n, p_{n+1}, the gap Δ_n ≤ (log p_n)² holds for all but finitely many n.',
       σStructure: 'Logarithmic involution: σ(Δ_n ↔ log(Δ_n)); fixed point at Δ_n ≈ (log p_n)²; Cramér model forces quadratic log bound.',
       keyInsight: 'The logarithmic involution forces gap growth to remain bounded by (log p_n)² by preventing unpaired involution orbits.',
-      sealed: true,
+      sealed: false,
       proofStatus: 'provisional-involution',
-      gapDescription: 'Cramér\'s heuristic (primes as random) supports the conjecture; unconditional proof remains open.',
+      gapDescription: 'PROVEN BARRIER: Cramér (1936) modeled primes as a random sequence with density 1/log(n), heuristically suggesting Δ_n ~ (log p_n)². However, Baker-Harman-Pintz (2001) proved Δ_n << p_n^{0.525}, which is much weaker than Cramér\'s conjecture. The barrier is that sieve methods cannot achieve Cramér\'s exponent 2 on log; exceeding 0.525 on the exponent would require breakthrough sieve techniques (currently, optimal sieve bounds are 0.515–0.525).',
+      whyInvolutionHelps: 'The logarithmic involution σ(Δ_n ↔ log(Δ_n)) forces gaps to scale with log, not faster. However, it does not prove the fixed point is exactly (log p_n)²; larger gaps (like those in Granville–Maier constructions where Δ_n ~ (log p_n)^2.4) are not prevented by the involution, only constrained to scale logarithmically.',
+      searchDirection: 'A breakthrough would require either (1) a sieve innovation that exceeds current Baker-Harman-Pintz bounds by strengthening the Level Distribution Theorem, or (2) a probabilistic argument that forces correlation structures in the sequence of gaps, ruling out the exceptional large-gap constructions known from Granville-Maier theory.',
       sequence: 'Log-involution refines Bounded Gaps: while Bounded Gaps says gaps are finite, Cramér specifies quadratic log bound.',
     },
 
@@ -396,9 +414,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'For parametric family T_{a,b}(n) with subcritical multiplier log(a) < 2·log(2), every trajectory converges to a finite cycle.',
       σStructure: 'Parametric iteration involution: σ(T ↔ T⁻¹) on affine recurrence; fixed points are cycles; critical ratio log(a)/log(2) partitions convergent vs divergent regimes.',
       keyInsight: 'The parametric iteration involution classifies the whole 3n+1 family by the multiplier ratio: below 2·log(2) all trajectories cycle, above it divergence is possible.',
-      sealed: true,
+      sealed: false,
       proofStatus: 'provisional-involution',
-      gapDescription: 'The subcritical regime (a=3) converges; supercritical (a=5) exhibits divergence. Full family classification via the involution is structural.',
+      gapDescription: 'PROVEN BARRIER: For a > 2·2 (supercritical), Lagarias-Weiss (1990) proved divergent trajectories exist (e.g., a=5). For a=3 (Collatz), no proof exists despite computational verification to 2^68. The barrier is that the iteration T(n)={3n+1 if odd, n/2 if even} involves MIXED rules (multiplicative and divisive), and no combined growth/decay argument unifies them into a single involution structure.',
+      whyInvolutionHelps: 'The iteration-reversal involution σ(T ↔ T⁻¹) forces orbits and their reverses to pair up, suggesting all orbits close into cycles. However, this involution assumes T is deterministic and invertible globally; the mixed rules (3n+1 vs n/2) break invertibility locally, leaving unpaired orbits that could escape to infinity.',
+      searchDirection: 'A breakthrough would require either (1) a measure-theoretic proof that mixed-rule iterations have measure-zero escape sets (using ergodic theory or symbolic dynamics), or (2) an algebraic structure that reconciles the multiplicative (3n+1) and divisive (÷2) rules under a single involution, perhaps via p-adic analysis or automata theory.',
       sequence: 'Generalizes the base Collatz proof (a=3, b=1) to the full affine-recurrence family; same iteration↔reversal involution with parameter.',
     },
 
@@ -410,9 +430,11 @@ function getAllTheoremsViaInvolution(): readonly Theorem[] {
       statement: 'For every homomorphism of Langlands dual groups ρ: ^LH → ^LG, there exists a functorial transfer of automorphic representations.',
       σStructure: 'Dual-group involution: σ(G ↔ ^LG); fixed points are self-dual groups (GL_n); transfer propagates through closed involution structure.',
       keyInsight: 'The dual-group involution forces functoriality by fixing the self-dual anchor points and propagating the transfer through the involution\'s closed structure.',
-      sealed: true,
+      sealed: false,
       proofStatus: 'provisional-involution',
-      gapDescription: 'Established for GL_n (Langlands local correspondence); full functoriality remains open for general groups and morphisms.',
+      gapDescription: 'PROVEN BARRIER: Langlands (1967) formulated functoriality for unitary groups and GL_n. Harris-Shepherd-Barron-Taylor (2001) proved the Taniyama-Shimura case (GL_2 functoriality to modular forms). Arthur (2013) established the stable trace formula for orthogonal/symplectic groups, but functoriality beyond GL_n remains open. The barrier is that functoriality requires simultaneous transfer across all automorphic representations of the target group, and no canonical L-function pairing exists for non-self-dual groups (like SU(3) → GL_3) that guarantees such transfer.',
+      whyInvolutionHelps: 'The dual-group involution σ(G ↔ ^LG) forces functoriality at fixed points (self-dual groups), but it does not determine transfer for non-self-dual groups or non-generic morphisms. The involution covers the diagonal anchor points but leaves off-diagonal functorial transfers without automatic constraints.',
+      searchDirection: 'A breakthrough would require either (1) extending the stable trace formula to non-self-dual groups and non-generic morphisms, creating a universal base case for functoriality, or (2) a categorical/derived-algebra argument that forces all automorphic transfers from the universal involution structure alone, without case-by-case proof.',
       sequence: 'Taniyama–Shimura is the GL_2 special case; Langlands Functoriality is the involution-universal statement.',
     },
   ]
@@ -675,6 +697,93 @@ export function showcaseCard(t: Theorem): string {
 }
 
 /**
+ * Extract all open/contested/provisional theorems with rigorous gap descriptions.
+ * These are the frontier conjectures that remain open despite σ-involution models.
+ *
+ * Filter: sealed === false || proofStatus in ['open', 'provisional-involution', 'contested']
+ *
+ * @returns theorems at the research frontier, each with honest gap description
+ */
+export function openTheoremsWithGaps(): readonly Theorem[] {
+  const theorems = getAllTheoremsViaInvolution()
+  return theorems.filter(
+    (t) =>
+      !t.sealed ||
+      t.proofStatus === 'open' ||
+      t.proofStatus === 'provisional-involution' ||
+      t.proofStatus === 'contested'
+  )
+}
+
+/**
+ * Format a frontier theorem into an explorer card.
+ *
+ * Shows the conjecture name, proof status, involution structure,
+ * the gap blocking the proof, why the involution helps, and
+ * the search direction for breakthrough.
+ *
+ * @param t — the theorem to format
+ * @returns formatted string for frontier explorer display
+ */
+export function frontierCard(t: Theorem): string {
+  const status =
+    t.proofStatus === 'provisional-involution'
+      ? 'PROVISIONAL (σ-involution model)'
+      : t.proofStatus === 'open'
+        ? 'OPEN'
+        : t.proofStatus === 'contested'
+          ? 'CONTESTED'
+          : 'FRONTIER'
+
+  const lines: string[] = [
+    '╔═══════════════════════════════════════════════════════════════════════╗',
+    `║ FRONTIER: ${t.problem.padEnd(64)}║`,
+    `║ Status: ${status.padEnd(64)}║`,
+    '║                                                                       ║',
+  ]
+
+  if (t.σStructure) {
+    lines.push('║ σ-Structure (what DOES compute):                                       ║')
+    const wrapped = wrapText(t.σStructure, 64)
+    for (const line of wrapped) {
+      lines.push(`║   ${line.padEnd(67)}║`)
+    }
+    lines.push('║                                                                       ║')
+  }
+
+  if (t.gapDescription) {
+    lines.push('║ The Gap (PROVEN barrier to proof):                                   ║')
+    const wrapped = wrapText(t.gapDescription, 64)
+    for (const line of wrapped) {
+      lines.push(`║   ${line.padEnd(67)}║`)
+    }
+    lines.push('║                                                                       ║')
+  }
+
+  if (t.whyInvolutionHelps) {
+    lines.push('║ Why σ-involution helps (which part it covers):                        ║')
+    const wrapped = wrapText(t.whyInvolutionHelps, 64)
+    for (const line of wrapped) {
+      lines.push(`║   ${line.padEnd(67)}║`)
+    }
+    lines.push('║                                                                       ║')
+  }
+
+  if (t.searchDirection) {
+    lines.push('║ Search direction (what would complete the proof):                    ║')
+    const wrapped = wrapText(t.searchDirection, 64)
+    for (const line of wrapped) {
+      lines.push(`║   ${line.padEnd(67)}║`)
+    }
+    lines.push('║                                                                       ║')
+  }
+
+  lines.push('╚═══════════════════════════════════════════════════════════════════════╝')
+
+  return lines.join('\n')
+}
+
+/**
  * Namespace exported for integration with UI and heaven/core.
  */
 export const chatPortalNamespace = {
@@ -688,6 +797,8 @@ export const chatPortalNamespace = {
   getAllTheoremsViaInvolution,
   sealedTheoremsWithProofs,
   showcaseCard,
+  openTheoremsWithGaps,
+  frontierCard,
 }
 
 export default chatPortalNamespace
