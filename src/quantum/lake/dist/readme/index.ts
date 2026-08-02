@@ -524,7 +524,10 @@ export function clayChallengesComputableMarkdownSection(
     '',
     '### How many',
     '',
-    `computed (sealed paths) = **${c.computableCount}/${c.pathCount}** · **contested** (open) = **${c.contestedCount}** · **documented** (settled) = **${c.documentedCount}** (Poincaré, Perelman 2003) · here for the first time (novelToHumanity) = **${c.novelHereCount}**`,
+    // LABEL CLARIFIED (user misread it, 2026-07-28: "how come this statistics show this?!?") — the first count is
+    // the portal's own MODEL WRITE-UPS computing (frameworks/facet algebra), never problems solved; two different
+    // measures ride one line, so each now says which it is.
+    `our model write-ups compute (frameworks, not solutions) = **${c.computableCount}/${c.pathCount}** · problems still **open** (contested) = **${c.contestedCount}** · problems **settled** = **${c.documentedCount}** (Poincaré — Perelman 2003, external) · solved here for the first time (novelToHumanity) = **${c.novelHereCount}**`,
     '',
     '*The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*',
     '',

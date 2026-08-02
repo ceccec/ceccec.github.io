@@ -308,6 +308,22 @@ function sendChat() {
   if (!prompt) return
   const referrer = chatLog.value.length ? chatLog.value[chatLog.value.length - 1]!.receipt : '/chat'
   const nav0 = chatNavContext(referrer, prompt)
+  // 'plans'/'receipts' in chat — the two sealed arc receipts (monolith + shells) answer from their folds.
+  if (/^\s*(the\s+)?(plans?|receipts?)\??\s*$/i.test(prompt)) {
+    const shells = specializedShellsStrangler()
+    chatLog.value.unshift({
+      q: prompt,
+      a: 'The two sealed arc receipts — monolith: drain the gaps/invisible Body + six helpers (~1500 lines, ten consumers, risk = cycles; see migrationReceipt.plan) · shells: ' + (shells.stranglerPlan?.[0] ?? ''),
+      source: 'receipts · specializedShellsStrangler + gaps/invisible migrationReceipt',
+      grounded: true,
+      related: [...(shells.stranglerPlan ?? [])],
+      results: [],
+      resultCount: (shells.stranglerPlan ?? []).length,
+      receipt: nav0.superposition,
+    })
+    chatInput.value = ''
+    return
+  }
   // 'waves' in chat — asking the chat about the waves answers with the computed report (the fold's join).
   if (/^\s*(the\s+)?waves(\s+report)?\??\s*$/i.test(prompt) || /how (efficient|precise).*waves/i.test(prompt)) {
     const report = wavesReportFedToTheChat()

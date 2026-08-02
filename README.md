@@ -72,7 +72,7 @@ The sequence, scientifically described — 6/6: ten digits on a 360° ring (36°
 
 ### How many
 
-computed (sealed paths) = **7/7** · **contested** (open) = **6** · **documented** (settled) = **1** (Poincaré, Perelman 2003) · here for the first time (novelToHumanity) = **0**
+our model write-ups compute (frameworks, not solutions) = **7/7** · problems still **open** (contested) = **6** · problems **settled** = **1** (Poincaré — Perelman 2003, external) · solved here for the first time (novelToHumanity) = **0**
 
 *The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
 
