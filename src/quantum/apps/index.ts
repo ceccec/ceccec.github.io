@@ -20397,6 +20397,17 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
       specializedShellsStrangler: on,
       shellsStranglerOn,
       stranglerTip,
+      // THE COMPUTED STRANGLER PLAN (measured 2026-07-28 — the residual upgraded from a name to a worklist):
+      // 95 specialized .vue shells, ~543 KB total; the apps shell alone is ~367 KB (67% of all shell mass —
+      // the monolith arc's VIEW side, drain them together per the migrationReceipt.plan); only 24/95 shells
+      // consume the universal Ui set. Strangle order: (1) the apps shell with the monolith wave, (2) the
+      // next-largest five (encryption 35 KB · computer 15 KB · research 15 KB · merkaba 14 KB · world 8 KB),
+      // (3) migrate the 71 Ui-less shells to universal components as they are touched — never big-bang.
+      stranglerPlan: [
+        'apps shell ~367 KB — drain WITH the gaps/invisible migrationReceipt.plan (one arc, code + view)',
+        'encryption ~35 KB · computer ~15 KB · research ~15 KB · merkaba ~14 KB · world ~8 KB — next five',
+        '71 of 95 shells lack universal Ui components — migrate on touch, never big-bang',
+      ] as const,
       wiredToRosetta,
       residualNamed,
       honestOpenNamed: [...honestOpenNamed],
