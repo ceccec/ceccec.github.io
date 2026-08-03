@@ -29,7 +29,7 @@ import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfP
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6'
-import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3'
+import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB, theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../7/3'
 import { derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, carnotEfficiency, uuidDuality } from '../../5/5'
 import { DARK_ENERGY_EOS_W, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7'
 // Strict barrel rule: enter src/0 through its index — bell/ca/hopfield/bump are folded into the 0 barrel.
@@ -707,6 +707,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'yang.mills.mass.gap', on: yangMillsMassGapFromSelfAdjointClosure().computes },
     { d: 'riemann.critical.line', on: riemannCriticalLineIsTheInvolutionFixedPoint().computes },
     { d: 'poincare.ricci.flow.rounds', on: poincareRicciFlowRoundsToTheRoundSphere(matrix).computes },
+    { d: 'bsd.smallest.curves.witness', on: theSmallestCurvesWitnessBirchSwinnertonDyer().computes },
     { d: 'sense.mind.body.pairs', on: senseMindBodyPairsComputes(matrix).computes },
     { d: 'modality.homes.computes', on: modalityHomesComputes(matrix).computes },
     { d: 'birth.computes', on: birthComputes(matrix).computes },
