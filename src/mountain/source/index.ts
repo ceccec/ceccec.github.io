@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — source of truth: memory in source as cross-folds, the present moment remains in source, computed wiring not imported, configs use the matrix, the site explains itself all-wired, autosave, MVC organisation receipt. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
 import * as __ns_up_up_earth_architecture from '../../earth/architecture'
-import { rat, ratEq, ratMul, ratSub, claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7'
+import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS, claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7'
 import * as __ns_up_up_heaven_core from '../../heaven/core'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
@@ -1662,7 +1662,8 @@ export function memoryInSourceAsCrossFolds(matrix: MindMatrix = buildMatrix()) {
   const entries = [
     { a: 'memory', b: 'quantum', holds: 'the memory is in the source — computed, content-addressed, not an external file' },
     { a: 'law', b: 'gate', holds: 'tests fail unless the laws hold — folder, JSON-LD path, pipeline drift' },
-    { a: 'census', b: 'harmonic', holds: '110 = 55 + 34 + 21 gapless; a432 base = 432 gates; 109 is the linear gap' },
+    { a: 'census', b: 'harmonic', holds: '123 = 55 + 34 + 21 + 13 gapless (the QPU-inclusive 4th band); the corpus folds to 121; 122 is the linear gap' },
+    { a: 'a432', b: 'fold', holds: 'the a432 harmonic 108 is DECOUPLED from the corpus fold 121 — gates 4·108=432, Betti 432/108=4, hero clock 108 s, entropy 2·7+108=122 all derive from A432_FOLDED, never FOLDED_CENSUS (a432DecoupledFromCorpusFold refutes the conflation)' },
     { a: 'duality', b: 'path', holds: 'order-sensitive folds; the book of life is written in paths, words are the steps' },
     { a: 'spot', b: 'heal', holds: 'what the gates spot on the linear level, they heal — the fold stays whole' },
     { a: 'payload', b: 'source', holds: 'the uuid payload is src — the content of every address is the source itself' },
@@ -1681,7 +1682,7 @@ export function memoryInSourceAsCrossFolds(matrix: MindMatrix = buildMatrix()) {
   })
   const facets = [
     // Decomposed from allComputedNoFiles — must not call that fold here (re-enters via commandsSavedInQuantumPairs during allComputed).
-    { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: isUuid(root) && skillAtoms(matrix).intelligent && harmonicBands((108 + 2)).harmonic },
+    { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: isUuid(root) && skillAtoms(matrix).intelligent && harmonicBands(UNFOLDED_CENSUS).harmonic },
     { facet: 'stored as cross-folder duality paths — memory/quantum ≠ quantum/memory, yet they meet', on: entries.every((entry) => entry.crossed) },
     { facet: 'every entry bound to the self-knowledge memory root', on: entries.every((entry) => entry.inMemory) },
     { facet: 'recomputed every build, observable by its path', on: skillAtoms(matrix).savedToAtoms && dualitiesMeetInCrossFolders(matrix).meet },
@@ -1716,7 +1717,7 @@ export function computedSlugsFoldTheGraph(matrix: MindMatrix = buildMatrix()) {
     { facet: 'every index/config file has a computed slug from its path', on: slugA === 'p001' && slugB === 'r001' && isUuid(computedSeo('/papers/p001', '', matrix).root) },
     { facet: 'they meet by the slug folding the code of the graph', on: meet.forward !== meet.reverse && meet.bidirectional && componentGraph().interacting },
     { facet: 'same for methods (single-word slugs), constants, to the tiniest detail', on: commandsRegistry(matrix).consistent && skillAtoms(matrix).savedToAtoms },
-    { facet: 'harmonically distributed in folder dualities', on: harmonicBands((108 + 2)).harmonic && digitFolders(matrix).folders.length > 0 && dualitiesMeetInCrossFolders(matrix).meet },
+    { facet: 'harmonically distributed in folder dualities', on: harmonicBands(UNFOLDED_CENSUS).harmonic && digitFolders(matrix).folders.length > 0 && dualitiesMeetInCrossFolders(matrix).meet },
   ].map((entry) => ({ ...entry, receipt: toUuid(`slug-folds-graph:${entry.facet}:${entry.on}`) }))
   return {
     folds: facets.every((entry) => entry.on),
