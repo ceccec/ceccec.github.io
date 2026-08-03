@@ -1014,7 +1014,7 @@ export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZ
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
   const titleBg = 'Двоен торус'
-  const description = 'Quantum-learning portal for language models — MCP tools over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates.'
+  const description = 'A computational white paper on the sequence 12487536901 — the double-torus vortex algebra (reflection through 0, the 42-bit budget, the 64→128 dimensional bit), with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0.'
   const descriptionBg = 'Портал за квантово учене за езикови модели — MCP инструменти над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
   const { themeColor, backgroundColor } = computedMovieThemeColors(matrix)
   const robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
@@ -1819,7 +1819,7 @@ export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
       'A directive fold paired with the home page: it names the proof components the home leads with (DeterminismProofs, CryptoCompare, Hologram and the rest, all already built and registered) and the framing (harmony is peace). "Most advanced tech" and "harmony is peace" are the project\'s stance, not a benchmark; the proof is that the components are real and computed, shown on the home.' }
 }
 
-// ── relocated from src/wind/learning (census-neutral line-compression) ──
+// ── relocated from src/learning (census-neutral line-compression) ──
 export function siteManifestFromCommands(): readonly ConceptSiteSection[] {
   // sections sanitize through isServedRoute (user law: purge old links) — a command whose page left the
   // lens keeps its card but routes to the portal root, never to a removed page.
