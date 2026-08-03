@@ -7,7 +7,7 @@ import { buildMatrix, navigationCrossFourKeysDecodeTrinity, portalChat } from '.
 import { latestDiscoveries } from '../../4/6'
 import { VORTEX_SEQUENCE, abs, ceil, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'
-import { A432_HUE, DIMENSIONS, DIMENSION_GATES, DIMENSION_NAMES, FOLDED_CENSUS, LN2, TAU, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, physicalFtlClaimTheorem, rat, ratInv } from '../../3/7'
+import { A432_HUE, A432_FOLDED, DIMENSIONS, DIMENSION_GATES, DIMENSION_NAMES, FOLDED_CENSUS, LN2, TAU, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, physicalFtlClaimTheorem, rat, ratInv } from '../../3/7'
 import { rosettaRayOf, zeroDivisionTable } from '../digit'
 // call-time namespace (cycle-safe): decode/one refuse path composes without wet bypass
 import * as __ns_thunder_decode from '../../thunder/decode'
@@ -2532,7 +2532,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       .every((row) => row.reverse !== row.inverse)
     const productionRefused = productionCeilingRefuseHolds().holds
     const a432Ok = A432_HUE === frequencyToLight(432).hue && A432_HUE === 5
-    const censusOk = FOLDED_CENSUS === UNFOLDED_CENSUS - 2 && DIMENSION_GATES === 4 * FOLDED_CENSUS && DIMENSION_GATES === (6 * 6 * 6 * 2) && UNFOLDED_CENSUS === FOLDED_CENSUS + 2
+    const censusOk = FOLDED_CENSUS === UNFOLDED_CENSUS - 2 && DIMENSION_GATES === 4 * A432_FOLDED && DIMENSION_GATES === (6 * 6 * 6 * 2) && UNFOLDED_CENSUS === FOLDED_CENSUS + 2
     const dimsOk = DIMENSIONS === (5 * 2) && DIMENSION_NAMES.length === DIMENSIONS
     const merkleProbe = merkleFold([toUuid('audit:a'), toUuid('audit:b')])
     const contentAddressOk = isUuid(merkleProbe) && isUuid(toUuid('audit:probe'))
@@ -2866,7 +2866,7 @@ export function quantumDimensionAuditCoverage(
   const partialCount = rows.filter((r) => r.coverage === 'partial').length
   const facets = [
     { facet: `all ${DIMENSIONS} DIMENSION_NAMES have ≥1 audit probe`, on: coveredCount === DIMENSIONS && rows.length === DIMENSIONS },
-    { facet: `dimension gates identity — DIMENSION_GATES=${DIMENSION_GATES} (=4×108)`, on: DIMENSION_GATES === (4 * FOLDED_CENSUS) },
+    { facet: `dimension gates identity — DIMENSION_GATES=${DIMENSION_GATES} (=4×108)`, on: DIMENSION_GATES === (4 * A432_FOLDED) },
     { facet: `dim covered=${passCount} partial=${partialCount} (probes exist for all ${DIMENSIONS})`, on: coveredCount === DIMENSIONS },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dim-cov:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('quantum-dimension-audit-coverage', facets)

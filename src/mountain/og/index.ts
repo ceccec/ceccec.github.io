@@ -8,7 +8,7 @@ import { floor, foldPair, isUuid, memoByRoot, merge, merkleFold, min, referralAd
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
-import { TAU, CANONICAL_HOST, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7'
+import { TAU, CANONICAL_HOST, A432_FOLDED, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { rosettaRayOf } from '../../water/digit'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
@@ -1309,7 +1309,7 @@ export function openGraphCardFromRoute(
     const supportsAnimation = platform.supportsAnimatedOgImage
     const imagePath = supportsAnimation ? assets.animated : assets.still
     const imageAbsolute = canonicalUrl(imagePath)
-    const cycleMs = FOLDED_CENSUS * 1e3
+    const cycleMs = A432_FOLDED * 1e3
     const svg = openGraphCardSvgFromRoute(route, { animate: supportsAnimation })
     const smilCount = (svg.match(/<animate/g) ?? []).length
 
@@ -1350,7 +1350,7 @@ export function openGraphCardFromRoute(
       { facet: `SEO FROM ROUTE — title/description/category via computedSeo (${seo.computed})`, on: seo.computed },
       { facet: `LINKS ABSOLUTE — ${links.length} links on ${CANONICAL_HOST}`, on: absoluteLinks && links.length >= 4 },
       { facet: `PLATFORM BRANCH — ${platform.id} supportsAnimatedOgImage=${supportsAnimation} → ${imagePath}`, on: limits.computes && (supportsAnimation ? imagePath.endsWith('.svg') && !imagePath.includes('.still.') : imagePath.includes('.still.')) },
-      { facet: `ANIMATION SUBSTRATE — cycleMs=${cycleMs}=FOLDED_CENSUS·1e3; SMIL count=${smilCount} (0 when still)`, on: cycleMs === FOLDED_CENSUS * 1e3 && (supportsAnimation ? smilCount > 0 : smilCount === 0) },
+      { facet: `ANIMATION SUBSTRATE — cycleMs=${cycleMs}=FOLDED_CENSUS·1e3; SMIL count=${smilCount} (0 when still)`, on: cycleMs === A432_FOLDED * 1e3 && (supportsAnimation ? smilCount > 0 : smilCount === 0) },
       { facet: `HERO PREVIEW — hue/seed from heroPreviewForRoute`, on: preview.hue >= 0 && /^[0-9a-f]{8}$/.test(preview.seed) },
       { facet: `LIMITS CITED — card.on branches on platformOgLimitsMeasured root ${limits.root.slice(0, 8)}`, on: isUuid(limits.root) && limits.platforms.some((p) => p.id === platform.id) },
       { facet: `STATIC GAP FACET — animationGap=${animationGap} when platform is first-frame-only`, on: animationGap === !supportsAnimation },

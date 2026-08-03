@@ -23,7 +23,7 @@ import {
   doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry'
 import { livingTorus } from '../../fire/diamonds'
 import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball'
-import { A432_HUE, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7'
+import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7'
 import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy'
 import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import { quantumDynamicsComputes, quantumChemistryToyComputes } from '../../quantum/dynamics'
@@ -1561,7 +1561,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('animationCore', matrix, () => {
     const movie = doubleTorusMovieComputes(matrix)
     const tenD = animationsAreGenuinely10DNotFaked(matrix)
-    const clockDerived = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3
+    const clockDerived = HERO_CYCLE_MS === A432_FOLDED * 1e3
     const clockPeriodic = heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
     const hologram =
       merge(merge(movie.torus.root, movie.library.root), merge(movie.reflects.root, merge(movie.rosetta.root, movie.hinge.root))) === movie.root
@@ -1631,7 +1631,7 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
     const chi = 2 - HOMOLOGY_LOOPS
     const matterOn = chi === -2 && ICHING_TRIGRAMS === HOMOLOGY_LOOPS * 2
     // 2 · METABOLISM — the one clock cycles: phase(t + T) = phase(t), T the derived census harmonic.
-    const cycleOn = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
+    const cycleOn = HERO_CYCLE_MS === A432_FOLDED * 1e3 && heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
     // 3 · HEREDITY — content-address inheritance: the same seed reproduces the identical channels; a
     // different seed differs (playLearn word → hue+note, deterministic).
     const heredityOn = playLearn('life').root === playLearn('life').root && playLearn('life').root !== playLearn('torus').root
@@ -2672,7 +2672,7 @@ export function runDoubleTorusFacesExit(root = '', _argv: readonly string[] = []
  * Classical ephemeris MODEL + census clock — , NOT DE440.
  */
 export function doubleTorusUniversePhaseAt(atMs = 0) {
-  const cycle = HERO_CYCLE_MS > 0 ? HERO_CYCLE_MS : FOLDED_CENSUS * 1e3
+  const cycle = HERO_CYCLE_MS > 0 ? HERO_CYCLE_MS : A432_FOLDED * 1e3
   const hero = heroPhaseAt(atMs, cycle)
   // Unix ms → Julian Day (UT): SI mean-solar-day ms + JD at Unix epoch from sealed J2000.
   const msPerDay = (8 * 3) * (5 * 3 * 4) * (5 * 3 * 4) * 1e3
@@ -2721,7 +2721,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
     const spinDivisor = 9 * 2 // living-torus fractal-clock rung (matches drawLivingTorusFrame)
     const spinPeriodMs = HERO_CYCLE_MS / spinDivisor
     const a432Ok = A432_HUE === 5
-    const heroClockOk = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3
+    const heroClockOk = HERO_CYCLE_MS === A432_FOLDED * 1e3
     const facets = [
       { facet: 'geometry radii · H₁ · TAU · c · φ align with sealed universe constants', on: geometry.aligns },
       { facet: 'quantum double torus machine is', on: torus.is },
@@ -2830,7 +2830,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
     const phase0 = heroPhaseAt(0)
     const phaseHalf = heroPhaseAt(HERO_CYCLE_MS / 2)
     const oneClock =
-      HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 &&
+      HERO_CYCLE_MS === A432_FOLDED * 1e3 &&
       phase0 === 0 &&
       abs(phaseHalf - 1 / 2) < 1 / (FOLDED_CENSUS ** 6)
     const L = 1 - 5 / 16 // movieCanvas default lightness (11/16) — lattice form, not literal 11

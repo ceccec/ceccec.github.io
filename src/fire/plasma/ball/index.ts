@@ -21,7 +21,7 @@ import * as __ns_up_up_thunder_trading from '../../../thunder/trading'
 import type { MindMatrix, StaticPage } from '../../../wind/types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
 import { abs, computesGate, cos, exp, floor, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../../0'
-import { TAU, A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT } from '../../../3/7'
+import { TAU, A432_OCTAVES, A432_FOLDED, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT } from '../../../3/7'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science'
 import { colorFromSound, soundFromColor, a432 } from '../../li'
@@ -417,7 +417,7 @@ export const PLASMA_PAINT_L_SHELL = L_SHELL
 export const PLASMA_PAINT_L_SOFT = L_SOFT
 export const PLASMA_PAINT_L_CARD = L_CARD
 export const PLASMA_PAINT_L_GLOW = L_GLOW
-export const HERO_CYCLE_MS = FOLDED_CENSUS * 1e3 // 108 s — the census harmonic (110 + χ), on the a432 ladder; DERIVED, was a hand-typed 120 s (retuned by heroClockOffTheLadderDiscovered)
+export const HERO_CYCLE_MS = A432_FOLDED * 1e3 // 108 s — the census harmonic (110 + χ), on the a432 ladder; DERIVED, was a hand-typed 120 s (retuned by heroClockOffTheLadderDiscovered)
 export const REALTIME_COMPUTE_MOVIE_CAP = ROSETTA_AREAS + EULER_CHI // 42 + (−2) = 40 — the fold's own cap law, now the definition
 
 // Plane visibility derived (was: hue computed, visibility hand-typed decimals — the discovered gap, now closed).
@@ -460,11 +460,11 @@ export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix
     const facets = [
       { facet: `cap ${REALTIME_COMPUTE_MOVIE_CAP} = ROSETTA_AREAS ${ROSETTA_AREAS} + χ ${EULER_CHI} = ${capLaw}`, on: REALTIME_COMPUTE_MOVIE_CAP === capLaw },
       { facet: `cycle ${cycleS}s ${onLadder ? 'on' : 'off'} ladder [${ladder.join(',')}]s, nearest ${nearest}s`, on: onLadder },
-      { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = FOLDED_CENSUS ${FOLDED_CENSUS} × 1000`, on: HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 },
+      { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = FOLDED_CENSUS ${FOLDED_CENSUS} × 1000`, on: HERO_CYCLE_MS === A432_FOLDED * 1e3 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hero-clock-ladder:${entry.facet}:${entry.on}`) }))
     return {
       discovered: facets.every((entry) => entry.on),
-      realized: HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && onLadder,
+      realized: HERO_CYCLE_MS === A432_FOLDED * 1e3 && onLadder,
       cycleS,
       nearestHarmonicS: nearest,
       cap: { value: REALTIME_COMPUTE_MOVIE_CAP, law: `${ROSETTA_AREAS}+(${EULER_CHI})=${capLaw}` },

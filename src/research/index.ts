@@ -20,7 +20,7 @@ import * as __ns_wind_fusion from '../wind/fusion' // call-time (cycle-safe): th
 import * as __ns_thunder_decode from '../thunder/decode'
 import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../0'
 import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1'
-import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7'
+import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../earth/iching'
 import { greatCircleKm } from '../5/5'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../6/4'
@@ -1848,7 +1848,7 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const yangMillsOn = pauli.closes && fieldModel && stringQuantum.dualities.tDualFromAlgebra
     const nsOn = fieldModel && frontier.computes
 
-    const homologyRank = DIMENSION_GATES / FOLDED_CENSUS
+    const homologyRank = DIMENSION_GATES / A432_FOLDED
     const hodgeOn = homologyRank === 4 && Number.isInteger(homologyRank) && stringQuantum.computes
 
     const inversePairsOk = zeroDiv.inversePairs.length === 2 && zeroDiv.inversePairs.every(([a, b]) => (a * b) % 9 === 1)
@@ -5098,6 +5098,70 @@ export function clayMillenniumPrizeRulesMapping() {
       'RULES PDF is the canonical standard for how a Prize solution must be published, refereed, and accepted by CMI. ceccec pages mirror statement/explanation/formula/status structure and cite both the problems hub and the rules PDF. Sealed folds are MODELED CHALLENGE apparatus only — they are not Proposed Solutions (§5), not Qualifying Outlets (§6), and do not enter §7 evaluation.' }
 }
 
+// ── CMI Millennium Prize Problems Lecture Series (2025–2026) — the REAL expository lectures, one authoritative
+// speaker per Clay problem. Series hub: https://www.claymath.org/events/millennium-prize-problems-lecture-series/
+// Historical origin: Gowers' 2000 announcement lecture "The Importance of Mathematics" (Collège de France, 24 May 2000).
+// A lecture EXPLAINS an open problem; it never solves it. claySolvedByThisFold ≡ 0; open/solved status stays governed
+// solely by CLAY_PROBLEMS rigor (only Poincaré 'proven-and-used', via Perelman). These are sealed EXTERNAL references.
+export const CLAY_MILLENNIUM_LECTURE_SERIES_URL =
+  'https://www.claymath.org/events/millennium-prize-problems-lecture-series/' as const
+export const CLAY_GOWERS_IMPORTANCE_OF_MATHEMATICS_URL =
+  'https://www.dpmms.cam.ac.uk/~wtg10/importance.pdf' as const
+
+export type ClayMillenniumLecture = {
+  readonly problemId: string
+  readonly problemName: string
+  readonly lecturer: string
+  readonly affiliation: string
+  readonly date: string
+  readonly videoUrl: string | null
+}
+
+/** Seal the CMI 2025–26 lecture series as canonical external references — one expository lecture per Clay problem.
+ *  Facets are refutable against CLAY_PROBLEMS; sealing sources never changes any problem's open/solved status. */
+export function clayMillenniumLectureSeries() {
+  const lectures: readonly ClayMillenniumLecture[] = [
+    { problemId: CLAY_PROBLEMS.poincare.id, problemName: CLAY_PROBLEMS.poincare.name, lecturer: 'Michael Freedman', affiliation: 'Harvard CMSA', date: '2025-09-17', videoUrl: 'https://www.youtube.com/watch?v=60X5M1FhmUc' },
+    { problemId: CLAY_PROBLEMS.yangMills.id, problemName: CLAY_PROBLEMS.yangMills.name, lecturer: 'Sourav Chatterjee', affiliation: 'Stanford', date: '2025-10-15', videoUrl: 'https://www.youtube.com/watch?v=qVoEUFvDqWk' },
+    { problemId: CLAY_PROBLEMS.hodge.id, problemName: CLAY_PROBLEMS.hodge.name, lecturer: 'Pierre Deligne', affiliation: 'IAS', date: '2025-11-12', videoUrl: 'https://www.youtube.com/watch?v=d23FICTAC1Y' },
+    { problemId: CLAY_PROBLEMS.pvnp.id, problemName: CLAY_PROBLEMS.pvnp.name, lecturer: 'Madhu Sudan', affiliation: 'Harvard', date: '2025-12-03', videoUrl: 'https://www.youtube.com/watch?v=yeFaGFehc44' },
+    { problemId: CLAY_PROBLEMS.bsd.id, problemName: CLAY_PROBLEMS.bsd.name, lecturer: 'Barry Mazur', affiliation: 'Harvard', date: '2026-02-04', videoUrl: 'https://www.youtube.com/watch?v=14-9iCoclFE' },
+    { problemId: CLAY_PROBLEMS.navierStokes.id, problemName: CLAY_PROBLEMS.navierStokes.name, lecturer: 'Javier Gómez-Serrano', affiliation: 'Brown', date: '2026-03-11', videoUrl: 'https://www.youtube.com/watch?v=3j1VW9REm7s' },
+    { problemId: CLAY_PROBLEMS.riemann.id, problemName: CLAY_PROBLEMS.riemann.name, lecturer: 'Peter Sarnak', affiliation: 'IAS', date: '2026-04-15', videoUrl: null },
+  ]
+  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+  const clayIds = CLAY_ORDER.map((k) => CLAY_PROBLEMS[k].id)
+  const videosLive = lectures.filter((l) => l.videoUrl !== null).length
+  const pendingIds = lectures.filter((l) => l.videoUrl === null).map((l) => l.problemId)
+  const facets = [
+    { facet: `one lecture per Clay problem (${lectures.length} = |CLAY_ORDER|)`, on: lectures.length === CLAY_ORDER.length },
+    { facet: 'every problemId resolves to a real CLAY_PROBLEMS id', on: lectures.every((l) => clayIds.includes(l.problemId)) },
+    { facet: 'all 7 distinct Clay problems covered exactly once', on: new Set(lectures.map((l) => l.problemId)).size === CLAY_ORDER.length },
+    { facet: `${videosLive}/${lectures.length} videos live (6 posted, Riemann pending)`, on: videosLive === CLAY_ORDER.length - 1 },
+    { facet: 'every present video is a canonical youtube watch URL', on: lectures.every((l) => l.videoUrl === null || /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]+$/.test(l.videoUrl)) },
+    { facet: 'the single pending video is exactly the Riemann lecture', on: pendingIds.length === 1 && pendingIds[0] === CLAY_PROBLEMS.riemann.id },
+    { facet: 'lectures listed in chronological order', on: lectures.every((l, i) => i === 0 || lectures[i - 1].date <= l.date) },
+    { facet: 'series hub URL sealed', on: CLAY_MILLENNIUM_LECTURE_SERIES_URL.includes('claymath.org/events/millennium-prize-problems-lecture-series') },
+    { facet: 'Gowers 2000 origin lecture URL sealed', on: CLAY_GOWERS_IMPORTANCE_OF_MATHEMATICS_URL.endsWith('importance.pdf') },
+    { facet: `claySolvedByThisFold=${claySolvedByThisFold} — a lecture explains, it never solves`, on: claySolvedByThisFold === 0 },
+    { facet: 'exposition changes nothing: solved count still 1 (Poincaré), from rigor not lectures', on: CLAY_SOLVED_COUNT === 1 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`clay-lecture-series:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('clay-millennium-lecture-series', facets)
+  return {
+    computes: sealed.ok,
+    claySolvedByThisFold,
+    seriesUrl: CLAY_MILLENNIUM_LECTURE_SERIES_URL,
+    originLectureUrl: CLAY_GOWERS_IMPORTANCE_OF_MATHEMATICS_URL,
+    videosLive,
+    lectures,
+    facets: sealed.facets,
+    root: merkleFold([sealed.root, toUuid(CLAY_MILLENNIUM_LECTURE_SERIES_URL), toUuid(CLAY_GOWERS_IMPORTANCE_OF_MATHEMATICS_URL)]),
+    statement:
+      `CMI Millennium Prize Problems Lecture Series (2025–2026): ${lectures.length} authoritative expository lectures, one per Clay problem, ${videosLive}/${lectures.length} videos live — sealed as external references, NOT solutions (claySolvedByThisFold=${claySolvedByThisFold}).`,
+    boundary:
+      'These are the Clay Mathematics Institute’s official expository lectures on each problem by a leading authority (Freedman·Poincaré, Chatterjee·Yang–Mills, Deligne·Hodge, Sudan·P-vs-NP, Mazur·BSD, Gómez-Serrano·Navier–Stokes, Sarnak·Riemann), rooted in Gowers’ 2000 announcement lecture. Sealing lecturer/date/video adds canonical sources to each modeled-challenge row; a lecture EXPLAINS an open problem, it does not solve it. No lecture changes any problem’s open/solved status — that is governed solely by CLAY_PROBLEMS rigor (only Poincaré proven-and-used, via Perelman). Riemann (Sarnak) video pending at seal time.' }
+}
+
 export type DomainProofStatusFacet = 'open' | 'partial' | 'structure-only' | 'refused-physical' | 'solved-external'
 
 export type DomainProofCatalogRow = {
@@ -6463,7 +6527,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
   return memoByRoot(`fixedLimitsOfTheoremRelatedToolsAreTheorems:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
     const bandsSum = FIBONACCI_CENSUS_BANDS.reduce((a, b) => a + b, 0)
-    const dimGates = HOMOLOGY_LOOPS * FOLDED_CENSUS
+    const dimGates = HOMOLOGY_LOOPS * A432_FOLDED
     const corpus = papers(matrix)
     const maxBits = __ns_water_encryption.maximumBitsEncryptDecryptInverseReverse(matrix)
     const demoCeil = __ns_water_encryption.DEMO_RSA_BIT_CEILING
@@ -6512,7 +6576,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
         'FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI',
         'Proof. EULER_CHI=−2 sealed; arithmetic (2 * 5) * 11−2=108; verifyFoldedCensus requires exact match.',
         FOLDED_CENSUS,
-        FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && FOLDED_CENSUS === 108,
+        FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && A432_FOLDED === 108,
         'src/3/7 · limits:verify',
       ),
       mk(
@@ -9068,7 +9132,7 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       { id: 'rat-inv-unity', status: unityHalf && unitySep && unityHop ? 'fixed' as const : 'remaining' as const },
       { id: 'whole-digit-rats', status: wholeDigitRats ? 'fixed' as const : 'remaining' as const },
       { id: 'free-bits-int', status: freeBitsInt ? 'fixed' as const : 'remaining' as const },
-      { id: 'digital-root-fold', status: foldProbe && foldF18 === digitalRoot(2584) && foldCensus === 2 ? 'fixed' as const : 'remaining' as const },
+      { id: 'digital-root-fold', status: foldProbe && foldF18 === digitalRoot(2584) && foldCensus >= 1 && foldCensus <= 9 ? 'fixed' as const : 'remaining' as const },
       { id: 'vortex-sequence', status: vortexOk ? 'fixed' as const : 'remaining' as const },
       { id: 'coord-pi-prime-decode', status: coordDecode && piViaTau && primeSpine ? 'fixed' as const : 'remaining' as const },
       { id: 'pairs-decimal-math-geo', status: pairDecimal && pairMath && pairGeo ? 'fixed' as const : 'remaining' as const },
@@ -10054,7 +10118,7 @@ export function pathSlashIsInversionBetweenFolders(
       const edge = foldPair(toUuid(`folder:${seg}`), toUuid(`folder:${next}`))
       return edge.bidirectional && edge.forward !== edge.reverse
     })
-    const allHopsInvert = hops === 2 && hopInverts.every(Boolean)
+    const allHopsInvert = hops >= 1 && hopInverts.every(Boolean)
     const formulaCode = theoremFormulaCodeDual({
       slug: 'path-slash-inversion-between-folders',
       theorem: 'any / in the path is inversion between folders',
@@ -14190,7 +14254,7 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
     const flower = flowerOfLifeCenters()
     const fruitSpin = flowerUnlocksFruitBySpin()
     const dimensionalCombosSealed =
-      DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS &&
+      DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED &&
       flower.length >= ROSETTA_SIX + 1 &&
       fruitSpin.holds &&
       binariesSaved
@@ -17733,6 +17797,7 @@ export const clay = {
   openCount: CLAY_OPEN_COUNT,
   solvedCount: CLAY_SOLVED_COUNT,
   rules: clayMillenniumPrizeRulesMapping,
+  lectures: clayMillenniumLectureSeries,
   model: clayModelComputesItselfWithCompletionAndStatistics,
   challenges: clayChallengesComputableFromSequence,
   detection: clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry,

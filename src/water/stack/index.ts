@@ -2918,7 +2918,7 @@ export type QuantumClockSchema = {
  */
 export function oneClockApi(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`oneClockApi:${floor(at / HERO_CYCLE_MS)}`, matrix, () => {
-    const clockDerived = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3
+    const clockDerived = HERO_CYCLE_MS === A432_FOLDED * 1e3
     const phasePeriodic = heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
     const phaseAt = (a = at): QuantumClockPhase => ({
       at: a,

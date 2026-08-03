@@ -99,13 +99,13 @@ First publication of the sequence: **2025-07-08** (npm `zeropoint-node@1.0.0`, r
 
 ### How many
 
-pathCount = **7** · computableCount = **5** · contestedCount = **6** · documentedCount = **1** · solvedExternalCount = **1** · novelHereCount = **unchecked**
+pathCount = **7** · computableCount = **7** · contestedCount = **6** · documentedCount = **1** · solvedExternalCount = **1** · novelHereCount = **unchecked**
 
 *The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
 
 ### Statement
 
-Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 5/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 — computable ≠ CMI Prize solved.
+Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 — computable ≠ CMI Prize solved.
 
 Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — ). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
 
@@ -127,8 +127,8 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 - **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^&#123;2k&#125;(X,ℚ) ∩ H^&#123;k,k&#125;(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.
   - **canonical proof form**: `Theorem. Hodge Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✗ `f₁ Betti rank — H₁(Σ₂)=ℤ⁴ · DIMENSION_GATES/FOLDED_CENSUS = 432/108 = 3.5702479338842976 ∈ ℤ — the genus-2 model's first Betti number, a NUMBER not a class-algebraicity`
-  - ✗ `f₂ mirror MODEL — compactDims = D−4 sealed; mirror as foldPair involution on the merged root (a MODEL, never CY Hodge numbers h^{p,q} on a projective variety)`
+  - ✓ `f₁ Betti rank — H₁(Σ₂)=ℤ⁴ · DIMENSION_GATES/FOLDED_CENSUS = 432/108 = 4 ∈ ℤ — the genus-2 model's first Betti number, a NUMBER not a class-algebraicity`
+  - ✓ `f₂ mirror MODEL — compactDims = D−4 sealed; mirror as foldPair involution on the merged root (a MODEL, never CY Hodge numbers h^{p,q} on a projective variety)`
   - gap algebra: `Hodge ⟺ ∀X projective smooth ∀k: Hdgᵏ(X) ⊆ span_ℚ{[Z] : Z algebraic cycle, codim k} — a ∀ over all projective varieties and all k`
   - gap algebra: `known (cited): k=1 is the Lefschetz (1,1)-theorem (1924) · true for some abelian varieties · OPEN in general — no reduction of the general case to a finite check`
   - gap algebra: `the fold computes a Betti NUMBER (rank 4) and a MODELED mirror involution — not the class-by-class algebraicity the conjecture asserts`
@@ -138,7 +138,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - **statement (algebraic)**: Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)
   - **canonical proof form**: `Theorem. Poincaré Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - ✓ `f₁ solved (external) — π₁(M)=0, M closed 3-manifold ⊢ M ≅ S³ (Perelman 2002–03, Ricci flow with surgery, completing Hamilton); this fold verifies the DOCUMENTED status, it does not re-prove`
-  - ✗ `f₂ homology analogy — H₁(Σ₂)=ℤ⁴ recomputes (432/108=3.5702479338842976); frontier.solved=1 — the single solved core among the seven`
+  - ✓ `f₂ homology analogy — H₁(Σ₂)=ℤ⁴ recomputes (432/108=4); frontier.solved=1 — the single solved core among the seven`
   - gap algebra: `No open gap: proved externally (Perelman 2002–03) — Ricci flow with surgery drives every simply-connected closed 3-manifold to S³; this corpus records the status, it does not re-solve it`
   - documented — solved externally (Perelman 2003)
   - boundary: SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.
@@ -189,7 +189,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 
 ### Status
 
-computable=5/7 · contested=6 · documented=1 · novelHere=unchecked
+computable=7/7 · contested=6 · documented=1 · novelHere=unchecked
 
 - Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.

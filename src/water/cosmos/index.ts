@@ -26,7 +26,7 @@ import { BARYON_TO_PHOTON_RATIO, hawkingTemperature } from '../../4/6'
 import { ELECTRON_G_FACTOR_ANOMALY, zeroPointEnergy, casimirPressure, rebreatherInertBar } from '../../1/9'
 import { NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { zeroPointDecoded, acousticsCymaticsDecoded, thermodynamicsEntropyDecoded, gatesAutoTighten } from '../../heaven/site'
-import { PHI, TAU, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, earned } from '../../3/7'
+import { PHI, TAU, DIMENSION_GATES, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, earned } from '../../3/7'
 
 // Zero-point, DEEP and WIDE — a 5-angle sourced wave (59 documented, 22 flagged) going past the ½ħω core into the
 // quantitative Casimir metrology, the QED radiative corrections, the cosmological-constant problem, condensed-matter
@@ -2132,9 +2132,9 @@ export function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix: Mind
     const zeroDiv = __ns_up_digit.zeroDivisionTable(matrix)
     const fInv = fThetaPhiXyzDigitNIsTheInversePair(matrix)
     const a432 = DIMENSION_GATES
-    const clock = FOLDED_CENSUS
+    const clock = A432_FOLDED
     const a432IsFourClocks = a432 === (2 + 2) * clock
-    const homologyRank = DIMENSION_GATES / FOLDED_CENSUS
+    const homologyRank = DIMENSION_GATES / A432_FOLDED
     const homologyOk = homologyRank === HOMOLOGY_LOOPS && Number.isInteger(homologyRank)
     const mTheoryD = algebra.superstringD + 1
     const mTheoryLadder = algebra.superstringD === algebra.symDims[3]! && mTheoryD === algebra.superstringD + 1

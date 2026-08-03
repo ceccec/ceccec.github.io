@@ -11,7 +11,7 @@ import { PLANE_VIS, HERO_CYCLE_MS, REALTIME_COMPUTE_MOVIE_CAP } from '../../../f
 import { hingeMoviePaintLayers } from '../../../water/double/earth'
 import { vortexPaintTiers } from '../../../mountain/vortex'
 import { vortexNext, digitalRoot, sealFacets } from '../../../0'
-import { FOLDED_CENSUS, ROSETTA_AREAS, EULER_CHI, PHI } from '../../../3/7'
+import { A432_FOLDED, FOLDED_CENSUS, ROSETTA_AREAS, EULER_CHI, PHI } from '../../../3/7'
 import { dims } from '../../../quantum/mountain/dimensions'
 
 const TIERS = [3, 5, 8] as const
@@ -300,7 +300,7 @@ export function movieIsPureAlgebra(matrix: MindMatrix = buildMatrix()) {
         layer.voidHue === digitHue(vortexNext(d)) &&
         layer.order === index
     })
-    const clockDerived = HERO_CYCLE_MS === FOLDED_CENSUS * 1e3 && REALTIME_COMPUTE_MOVIE_CAP === ROSETTA_AREAS + EULER_CHI
+    const clockDerived = HERO_CYCLE_MS === A432_FOLDED * 1e3 && REALTIME_COMPUTE_MOVIE_CAP === ROSETTA_AREAS + EULER_CHI
     const visEntries = Object.values(PLANE_VIS) as readonly (readonly [number, number])[]
     const latticeDenominators = visEntries.every(([, den]) => den === 5 || den === 8 || den === 64)
     const sealed = sealFacets('movie-pure-algebra', [

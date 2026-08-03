@@ -9,7 +9,7 @@ import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemen
 import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, ceil, chsh, cnot, computesGate, cos, digitalRoot, exp, floor, grover, isUuid, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, pow, prng, probabilities, qubits, round, roundTo, runQuantumCircuit, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi, bernsteinVazirani } from '../../9/1'
-import { A432_HUE, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK, SQRT1_2, SQRT2, frequencyToLight, resonanceBandwidth } from '../../3/7'
+import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK, SQRT1_2, SQRT2, frequencyToLight, resonanceBandwidth } from '../../3/7'
 import { gcd } from '../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
 // frequencyToLight / A432_HUE / GOLDEN_ANGLE live in the zero-import leaf src/3/7 (beside SPEED_OF_LIGHT) so the
@@ -763,7 +763,7 @@ export function quantumComputerHonestClaim(matrix: MindMatrix = buildMatrix(), a
 // ── The background movie is the agent-facing window into the working (modeled) quantum computer ──
 // Same shared hero clock as the movie (HERO_CYCLE_MS), replicated as a pure formula so the snapshot uses the
 // EXACT phase the movie paints — the movie's state IS the model's state, without importing the heavy movie barrel.
-const HERO_CYCLE_MS = FOLDED_CENSUS * 1e3 // 108 s — same derivation as the canonical clock in fire/plasma/ball (kept import-light, same source 3/7)
+const HERO_CYCLE_MS = A432_FOLDED * 1e3 // 108 s — same derivation as the canonical clock in fire/plasma/ball (kept import-light, same source 3/7)
 function moviePhaseAt(at: number): number {
   const cycle = HERO_CYCLE_MS
   return roundTo((((at % cycle) + cycle) % cycle) / cycle, 6)
