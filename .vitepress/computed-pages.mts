@@ -3,7 +3,7 @@ import { join, normalize } from 'node:path'
 import type { Connect } from 'vite'
 import { glagoliticHomeFromEnglish } from '../src/fire/li'
 import { bulgarianHomeFromEnglish } from '../src/wind/site/index'
-import { homeMarkdown } from '../src/quantum/lake/dist'
+import { homeMarkdown } from '../src/quantum/dist'
 import { doubleTorusCorpusRouting } from '../src/wind/routes/corpus'
 
 /** The corpus indexes carry their fold's COMPUTED statement as minimal static prose (the empty-page
@@ -26,7 +26,7 @@ function corpusIndexMarkdown(kind: 'papers' | 'references' | 'diamonds'): string
 }
 
 // NO home has an authoritative body on disk. The English home is homeMarkdown() — the ONE theorem
-// generator shared with README.md (src/quantum/lake/dist/readme) — and the Glagolitic (/gla/) +
+// generator shared with README.md (src/quantum/dist/readme) — and the Glagolitic (/gla/) +
 // Bulgarian (/bg/) homes are its transforms, all computed at build/dev time; the on-disk index.md
 // files are discovery stubs only.
 export function computedPagesPlugin(projectRoot: string) {

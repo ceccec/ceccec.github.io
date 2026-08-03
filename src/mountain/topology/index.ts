@@ -14,7 +14,7 @@ import { allAnimationsInOneOg, animatedHeroes, anyUuidHeroContentFractal } from 
 import { holographicFractalArchitecture } from '../../thunder/movie/glass'
 import { decodeKnowledge, skillAtoms } from '../../learning'
 import { conceptCommands } from '../../heaven/atoms'
-import { yinYang } from '../../quantum/lake/icons'
+import { yinYang } from '../../quantum/icons'
 import { deepResearchEncodedInRecursiveWaves, developmentWaves, endlessWaves } from '../../thunder/waves'
 import { fusionCipher } from '../../water/crypto'
 import { teslaPatentsResearchedInWaves } from '../../fire/physics'

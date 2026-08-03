@@ -18,7 +18,7 @@ import { atomInclusionProof } from '../../ledger'
 // ☷ Kūn · Earth · receptive · lower·yin · hueShift — vocab primitives: openGraph, harmonicBands, deviceSensors, dualities
 import {
   openGraph, multidimensional, plainLanguage, typographySeo,
-  harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS, tiers358 } from '../../quantum/lake/icons'
+  harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS, tiers358 } from '../../quantum/icons'
 // ☷ Kūn · Earth · receptive · lower·yin · spread — ground primitives: toUuid, merkleFold, foldPair, merge, sha256Sync
 import { DIGEST_BITS, VORTEX_DASH_ANGLE_DEG, VORTEX_DASH_ENCODED, abs, asTorus, asVortex, atan2, cos, coverageCostLog2, decodeVortexDashAngles, digitalRoot, ed25519Sign, floor, fold, foldPair, humanEase, isUuid, log2, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sha256Sync, sin, sqrt, tamperCostLog2, toUuid } from '../../0'
 import { derivePublicKey, tamperEvident } from '../../5/5'

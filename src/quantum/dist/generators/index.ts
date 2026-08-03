@@ -4,10 +4,10 @@
 // shape is written ONCE: each generator is a pure plan(ctx) → { files, messages, error? }, placed on
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
-import { merkleFold, toUuid, foldVortex } from '../../../../0'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../../heaven/mind'
-import { glagoliticHomeFromEnglish } from '../../../heaven/mind'
-import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../../heaven/library'
+import { merkleFold, toUuid, foldVortex } from '../../../0'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../heaven/mind'
+import { glagoliticHomeFromEnglish } from '../../heaven/mind'
+import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../heaven/library'
 import { computedDistFiles, homeMarkdown, readmeMarkdown } from '..'
 
 // What the runner hands every plan: the environment, the positional args after the selector, a
@@ -182,7 +182,7 @@ export function generators(): Generator[] {
       name: 'dist',
       title: 'The dist artifacts + README — the whole site made manifest',
       summary:
-        'Debug-only recompute of the published surface (sitemap, robots, api/, llms/mcp/skills, README) from src/quantum/lake/dist. Production path is the enforcement trinity cross wave after vitepress build. Filter with DIST_FILTER=sitemap.xml,api/. Gates on an incomplete skills manifest.',
+        'Debug-only recompute of the published surface (sitemap, robots, api/, llms/mcp/skills, README) from src/quantum/dist. Production path is the enforcement trinity cross wave after vitepress build. Filter with DIST_FILTER=sitemap.xml,api/. Gates on an incomplete skills manifest.',
       plan: (ctx) => {
         const files = computedDistFiles(ctx.siteUrl)
         const filter = (ctx.env.DIST_FILTER || '')

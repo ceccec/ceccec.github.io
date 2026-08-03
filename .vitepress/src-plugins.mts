@@ -6,7 +6,7 @@ function lazyDistRouter(siteUrl: string): Plugin {
   return {
     name: 'double-torus:dist-lazy',
     async configureServer(server) {
-      const { vitePlugin } = await import('../src/quantum/lake/dist')
+      const { vitePlugin } = await import('../src/quantum/dist')
       const inner = vitePlugin(siteUrl)
       if (inner.configureServer) await inner.configureServer(server)
     },
@@ -21,7 +21,7 @@ function lazyDistRouter(siteUrl: string): Plugin {
 //                             the mind core is browser-imported, so the fs-using factory cannot live in the
 //                             model. (The mind's index is already a vortex router at the module layer:
 //                             `export * from './folds.ts'` — one index serves all its folds.)
-//   src/quantum/lake/dist        → dist router — pathname → computed sitemap · robots · mcp.json · skills.json ·
+//   src/quantum/dist        → dist router — pathname → computed sitemap · robots · mcp.json · skills.json ·
 //                             llms.txt · digit-index · /api, served live at dev.
 //
 // src/quantum/water/enforcement is NOT a build plugin: its cross · fold · weave trinity runs as a post-build
@@ -31,7 +31,7 @@ function lazyDistRouter(siteUrl: string): Plugin {
 export function srcFolderPlugins(projectRoot: string, siteUrl = process.env.SITE_URL || 'https://ceccec.github.io'): Plugin[] {
   const routers: { folder: string; plugin: Plugin }[] = [
     { folder: 'src/quantum/heaven/mind', plugin: computedPagesPlugin(projectRoot) as Plugin },
-    { folder: 'src/quantum/lake/dist', plugin: lazyDistRouter(siteUrl) },
+    { folder: 'src/quantum/dist', plugin: lazyDistRouter(siteUrl) },
   ]
   return routers.map((entry) => entry.plugin)
 }

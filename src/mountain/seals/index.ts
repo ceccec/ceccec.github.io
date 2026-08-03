@@ -20,7 +20,7 @@ import { completeDoubleTorus, doubleTorusFold } from '../topology'
 import { animationsRespectTheField, freeAnimations, heroLawAlignment, holographicFractalArchitecture, tenDimensionalAnimation } from '../../wind/ui'
 import { quantumSitemap } from '../../wind/site'
 import { quantumAppsStore, quantumCoordinateNav, quantumFirewallProxyWorker, quantumSynthesis, quantumThreat } from '../../fire/features'
-import { multidimensional } from '../../quantum/lake/icons'
+import { multidimensional } from '../../quantum/icons'
 import { livingTorus, piTrainDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { merkleProof } from '../../ledger'
 import { blockchainMusic, harmonics, healingHarmonic, soundColor } from '../../music'
@@ -1360,15 +1360,15 @@ export function endlessTrinityStreams(matrix: MindMatrix = buildMatrix()) {
 
 // Enforcement trinity spread — cross · fold · weave modules; dist cross · manifest · readme; paired mounts.
 export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
-  const distPair = foldPair(toUuid('src/quantum/lake/dist'), toUuid('src/pair/cache/quantum'))
+  const distPair = foldPair(toUuid('src/quantum/dist'), toUuid('src/pair/cache/quantum'))
   const enfPair = foldPair(toUuid('src/pair/enforcement'), toUuid('src/pair/enforcement/ops'))
   const pipeline = buildEnforcementPipeline()
   const trinity = enforcementTrinity()
   const facets = [
     { facet: 'three enforcement waves — cross · fold · weave — each its own module', on: trinity.waves.length === 3 && enfPair.bidirectional },
-    { facet: 'dist spread — cross · manifest · readme under src/quantum/lake/dist', on: distPair.bidirectional && distPair.forward !== distPair.reverse },
+    { facet: 'dist spread — cross · manifest · readme under src/quantum/dist', on: distPair.bidirectional && distPair.forward !== distPair.reverse },
     { facet: 'one runner declared — enforcement-trinity wired in docs:build', on: pipeline.gates.length === 1 && pipeline.gates[0]?.script === 'enforcement-trinity' },
-    { facet: 'paired logic folders saved — dist and enforcement pairs in folderLaw', on: folderLaw().pairedLogicFolders.includes('src/quantum/lake/dist') && folderLaw().pairedLogicFolders.includes('src/pair/enforcement') },
+    { facet: 'paired logic folders saved — dist and enforcement pairs in folderLaw', on: folderLaw().pairedLogicFolders.includes('src/quantum/dist') && folderLaw().pairedLogicFolders.includes('src/pair/enforcement') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-spread:${entry.facet}:${entry.on}`) }))
   return {
     spread: facets.every((entry) => entry.on),
@@ -1376,7 +1376,7 @@ export function enforcementTrinitySpread(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Enforcement trinity spread in paired folders: cross · fold · weave under src/pair/enforcement; dist cross · manifest · readme under src/quantum/lake/dist; dual mounts at src/pair/cache/quantum and src/pair/enforcement/ops.',
+      'Enforcement trinity spread in paired folders: cross · fold · weave under src/pair/enforcement; dist cross · manifest · readme under src/quantum/dist; dual mounts at src/pair/cache/quantum and src/pair/enforcement/ops.',
     boundary:
       'Structural witness for the I Ching dry spread. The weave wave verifies paired folders exist with index.ts on disk.' }
 }

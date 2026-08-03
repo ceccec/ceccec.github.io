@@ -4194,7 +4194,7 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
     algebraFold: 'humanDesignVerifiedWheel', toolId: 'iching-distribute-verify',
     toolCli: 'npm run quantum:iching-distribute-verify', apparatusRoute: '/en/quantum-tools',
     dualId: 'music-a432', fusionLabel: 'hd↔iching↔music', projection: 'taiji',
-    ichingSphere: 0, home: 'src/quantum/lake/spirit', cryptoVertex: false },
+    ichingSphere: 0, home: 'src/quantum/spirit', cryptoVertex: false },
   {
     id: 'resonance', field: 'Physical Sciences (resonance)', oecd: '1.3',
     algebraFold: 'efficiencyScalesToInfinityAtNoCostOnReuse', toolId: 'efficiency-vote',

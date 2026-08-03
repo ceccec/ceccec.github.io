@@ -26,7 +26,7 @@ import { VORTEX_SEQUENCE, abs, atan2, ceil, computesGate, cos, digitalRoot, floo
 import { DEMO_RSA_BIT_CEILING, refuseNonDemoRsaModulus } from '../../water/encryption'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
-import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignChannelsAndCenters, humanDesignVerifiedWheel, yinYang } from '../../quantum/lake/icons'
+import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignChannelsAndCenters, humanDesignVerifiedWheel, yinYang } from '../../quantum/icons'
 import { decodeKnowledge, skillAtoms } from '../../learning'
 import { conceptCommands } from '../../heaven/atoms'
 import { ancientTech, calligraphyStroke, chess358, glagolitic, goldenRatio, metatronsCube, plasmaContainment, tightenProse, universalLanguage, a432 } from '../../fire/li'

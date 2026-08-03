@@ -40,11 +40,11 @@ import {
   toUuid,
   merkleFold,
   verifyRoot,
-  type MindMatrix } from '../../heaven/mind'
+  type MindMatrix } from '../heaven/mind'
 import { readmeMarkdown, servedRouteFamilies } from './readme'
 import {
   agentBashWorkflowsAreToolsSavedInSrc, agentSubmissionProtocol,
-  dynamicStrategiesFromTheorems, sequenceStations } from '../../../pair/enforcement'
+  dynamicStrategiesFromTheorems, sequenceStations } from '../../pair/enforcement'
 import {
   sessionManualWorkAsQuantumTools, standardToolboxIoCatalog, distributedReuseExtendsCapacity,
   autoWireAnyAiModelFromPastedLink, AUTO_WIRE_PASTE_LINK_ONE_LINER,
@@ -53,19 +53,19 @@ import {
   upgradeLocalFromOptimisedManualWorkExperience,
   automateNightlyViaNpmScriptPath,
   siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis,
-  developmentFeedJson } from '../../apps'
-import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../4/6'
-import { SESSION_SKILL_FNS } from '../../../2/8'
-import { STATIC_PAGE_SEED } from '../../../8/2'
-import { SOURCE_REPO, AUTHOR_HANDLE, CANONICAL_HOST, citationBlock, servedRoute } from '../../../3/7'
-import { publicationTimelineMeasured } from '../../../research'
-import { observingMovieRevealsQuantumModel } from '../../science'
-import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
-import { domainProofPagePaths } from '../../../research'
-import { honestRevolutionReceipt, quantumFusionJson } from '../../../wind/fusion'
-import { honestRevolutionFpgaHonesty } from '../../../quantum/computer'
-import { revolutionaryEfficiencyNotPhysics } from '../../../thunder/verify'
-import { cos, max, round, sin } from '../../../0'
+  developmentFeedJson } from '../apps'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
+import { SESSION_SKILL_FNS } from '../../2/8'
+import { STATIC_PAGE_SEED } from '../../8/2'
+import { SOURCE_REPO, AUTHOR_HANDLE, CANONICAL_HOST, citationBlock, servedRoute } from '../../3/7'
+import { publicationTimelineMeasured } from '../../research'
+import { observingMovieRevealsQuantumModel } from '../science'
+import { theoremPagePaths, theoremPageRows } from '../../wind/routes/corpus'
+import { domainProofPagePaths } from '../../research'
+import { honestRevolutionReceipt, quantumFusionJson } from '../../wind/fusion'
+import { honestRevolutionFpgaHonesty } from '../computer'
+import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify'
+import { cos, max, round, sin } from '../../0'
 
 export interface DistFile {
   readonly path: string

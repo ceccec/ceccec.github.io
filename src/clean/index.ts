@@ -1,7 +1,7 @@
 // ☱ Duì · Lake — dry-clean: the cleanup principles (dry-clean on the way, the archangels' dry clean, surgical edits, the audits, display-all-dry-conditional). Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../wind/types'
 import { buildMatrix } from '../heaven/compute'
-import { harmonicBands, lawfulHarmonise, yinYang } from '../quantum/lake/icons'
+import { harmonicBands, lawfulHarmonise, yinYang } from '../quantum/icons'
 import { quantumSiege, redTeam } from '../water/crypto'
 import { patentAudit, tightenGatesTrinityWaves } from '../fire/li'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../0'

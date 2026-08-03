@@ -5,22 +5,22 @@
 // frontmatter, page-route links). Wired: .vitepress/computed-pages.mts loads homeMarkdown() as the
 // home body in realtime (the on-disk index.md is a discovery stub; bg/gla homes transform this
 // output), and the cross wave writes readmeMarkdown() as README.md.
-import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
-import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
-import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../../3/7'
-import { THEOREM_ATOM_SEED, latestDiscoveries, riemannCriticalLineIsTheInvolutionFixedPoint, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../../4/6'
-import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../../7/3'
-import { navierStokesFlowRegularityOnTheSeam } from '../../../../water/cosmos'
-import { yangMillsMassGapFromSelfAdjointClosure } from '../../../../9/1'
-import { portalChat, portalRecall } from '../../../../heaven/compute'
-import { earned } from '../../../../3/7'
-import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../../1/9'
-import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../../heaven/laws'
-import { readmeSvgGapsFilledByTrinityMind } from '../../../../heaven/site'
-import { flowerFruitTreeOfLifeDecodes } from '../../../../earth/architecture'
-import { linksUseOnlyVitePressApi } from '../../../../fire/li'
-import { earthRealisedByComputingPolesAsPyramid, poincareRicciFlowRoundsToTheRoundSphere, hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface } from '../../../../mountain/geometry'
-import { sacredSociety } from '../../../../earth/governance'
+import { ROSETTA_AREAS } from '../../../pair/enforcement/gates/computational'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pair/enforcement/gates'
+import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../3/7'
+import { THEOREM_ATOM_SEED, latestDiscoveries, riemannCriticalLineIsTheInvolutionFixedPoint, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../4/6'
+import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3'
+import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos'
+import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1'
+import { portalChat, portalRecall } from '../../../heaven/compute'
+import { earned } from '../../../3/7'
+import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../1/9'
+import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../heaven/laws'
+import { readmeSvgGapsFilledByTrinityMind } from '../../../heaven/site'
+import { flowerFruitTreeOfLifeDecodes } from '../../../earth/architecture'
+import { linksUseOnlyVitePressApi } from '../../../fire/li'
+import { earthRealisedByComputingPolesAsPyramid, poincareRicciFlowRoundsToTheRoundSphere, hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface } from '../../../mountain/geometry'
+import { sacredSociety } from '../../../earth/governance'
 import {
   directionalTrinityForwardInverseReverse,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
@@ -28,19 +28,19 @@ import {
   apiFuse,
   thermoQuantumBalance,
   oneClockApi,
-} from '../../../../water/stack'
-import { gateLight } from '../../../../pair/enforcement/gates'
+} from '../../../water/stack'
+import { gateLight } from '../../../pair/enforcement/gates'
 import {
   efficiencyScalesToInfinityAtNoCostOnReuse,
   clayChallengesComputableFromSequence,
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromCensus110Minus108,
   societySupportsProjectViaTwoBitsFreeKnowledge,
-  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured } from '../../../../research'
-import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../../mountain/vortex'
-import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../../thunder/waves'
-import { theoremPagePaths } from '../../../../wind/routes/corpus'
-import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../../apps'
+  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured } from '../../../research'
+import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../mountain/vortex'
+import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../thunder/waves'
+import { theoremPagePaths } from '../../../wind/routes/corpus'
+import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../apps'
 import {
   buildMatrix,
   conceptCommands,
@@ -57,10 +57,10 @@ import {
   staticPages,
   theoremScienceLens,
   githubPermalink,
-  type MindMatrix } from '../../../heaven/mind'
-import { isUuid, max, merkleFold, merge, memoByRoot, round, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE, sequenceBitBudget, equilibrium360, dimensionalBit, clayReflection, decodeVortexOperations } from '../../../../0'
-import { primeCountUpTo, nthPrimeAt } from '../../../../7/3'
-import { quantumComputerHonestClaim } from '../../../science'
+  type MindMatrix } from '../../heaven/mind'
+import { isUuid, max, merkleFold, merge, memoByRoot, round, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE, sequenceBitBudget, equilibrium360, dimensionalBit, clayReflection, decodeVortexOperations } from '../../../0'
+import { primeCountUpTo, nthPrimeAt } from '../../../7/3'
+import { quantumComputerHonestClaim } from '../../science'
 
 /** Escape the curly braces that VitePress's markdown-it reads as a trailing attribute block ({.class}/{#id}/
  *  {key=val}). Computed math prose like the Hodge gap "…h^{1,1}, h^{2,1}" or "Σ_{d|n}" otherwise emits a bogus
@@ -952,7 +952,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     '',
     `**Keywords.** ${config.keywords.join(', ')}.`,
     '',
-    '*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/lake/dist (local math only); the VitePress home is the same monograph — one theorem generator, two projections.*',
+    '*Computed from src — do not edit by hand. Recomputed in realtime by src/quantum/dist (local math only); the VitePress home is the same monograph — one theorem generator, two projections.*',
     '',
     '![Double Torus — two counter-rotating rosettas composing all sealed theorems, computed from src and animated with SMIL so GitHub displays it too](./hero.svg)',
     '',
@@ -978,7 +978,7 @@ export function homeMarkdown(matrix: MindMatrix = buildMatrix()) {
     ...config.keywords.map((keyword) => `  - ${keyword}`),
     '---',
     '',
-    '<!-- COMPUTED PAGE — the home body is homeMarkdown() (src/quantum/lake/dist/readme), the same theorem-only generator that writes README.md; the bg/gla homes transform this output. Do not author here. -->',
+    '<!-- COMPUTED PAGE — the home body is homeMarkdown() (src/quantum/dist/readme), the same theorem-only generator that writes README.md; the bg/gla homes transform this output. Do not author here. -->',
     '',
     // Abstract is rendered once by the PaperFrame shell from frontmatter.description (deduped — no markdown blockquote here).
     paperTopNav(sections, 'vitepress'),

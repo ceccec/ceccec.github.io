@@ -1172,7 +1172,7 @@ export function runInstallSurfacesExit(root = '', _argv: readonly string[] = [])
 export function uiProof(root: string = enforcementScanRoot()) {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const ids = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).sort()
-  const emitter = readFileSync(join(root, 'src/quantum/lake/dist/index.ts'), 'utf8')
+  const emitter = readFileSync(join(root, 'src/quantum/dist/index.ts'), 'utf8')
   const derives = emitter.includes('cliTools') && emitter.includes("startsWith('quantum:')") && emitter.includes("readFileSync('package.json'")
   const catalogText = stripStringsAndComments(readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8'))
   const curatedIds = new Set((readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8').match(/quantum:[a-z0-9-]+/g) ?? []))
@@ -1854,7 +1854,7 @@ export function runUiAuditExit(root = '', _argv: readonly string[] = []): number
  */
 export function bindFuse(root: string = enforcementScanRoot()) {
   const appsText = readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
-  const distText = readFileSync(join(root, 'src/quantum/lake/dist/index.ts'), 'utf8')
+  const distText = readFileSync(join(root, 'src/quantum/dist/index.ts'), 'utf8')
   const configText = readFileSync(join(root, '.vitepress/config.mts'), 'utf8')
   const vscodeText = existsSync(join(root, 'packages/quantum-dev-vscode/extension.js')) ? readFileSync(join(root, 'packages/quantum-dev-vscode/extension.js'), 'utf8') : ''
   const families = [
@@ -3418,7 +3418,9 @@ export function computeMigrationRewritesWith(root: string, moves: Map<string, st
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
-      if (e.name === 'node_modules' || e.name === 'dist' || (e.name.startsWith('.') && e.name !== '.vitepress')) continue
+      // skip node_modules and the .vitepress BUILD output dir — but NOT src/**/dist, which is real source
+      // (e.g. src/quantum/dist, the readme generator; a plain 'dist' skip drops it from the rewrite)
+      if (e.name === 'node_modules' || (e.name === 'dist' && d.endsWith('.vitepress')) || (e.name.startsWith('.') && e.name !== '.vitepress')) continue
       const p = join(d, e.name)
       if (e.isDirectory()) walk(p)
       else if (/\.(?:ts|mts|vue)$/.test(e.name)) files.push(p)
@@ -3455,11 +3457,10 @@ export function computeMigrationRewrites(root: string = enforcementScanRoot()) {
 // derives every byte; this APPLIES it: rewrite each file's relative specifiers, relocate the moved files to their
 // flat home, drop the emptied folders. dryRun (default) returns the plan without touching disk — the gated half is
 // the mutation, so the caller flips dryRun off explicitly. One trigram per call = bounded, verifiable blast radius.
-export function applyMigrationRewrites(root: string = enforcementScanRoot(), trigram = 'lake', dryRun = true) {
-  const moves = trigramMoveMap(root, trigram)
+export function applyMoveMap(root: string, moves: Map<string, string>, dryRun = true, label = '') {
   const plan = computeMigrationRewritesWith(root, moves)
   const sample = plan.rewrites.filter((r) => r.newFile !== r.file).slice(0, 8).map((r) => `${r.file} → ${r.newFile}`)
-  if (dryRun) return { dryRun: true, trigram, movedFolders: moves.size, filesTouched: plan.filesTouched, importsRewritten: plan.importsRewritten, relocations: plan.rewrites.filter((r) => r.newFile !== r.file).length, sample }
+  if (dryRun) return { dryRun: true, label, movedFolders: moves.size, filesTouched: plan.filesTouched, importsRewritten: plan.importsRewritten, relocations: plan.rewrites.filter((r) => r.newFile !== r.file).length, sample }
   let relocated = 0, rewritten = 0
   for (const r of plan.rewrites) {
     const absOld = join(root, r.file)
@@ -3470,15 +3471,50 @@ export function applyMigrationRewrites(root: string = enforcementScanRoot(), tri
     if (r.newFile !== r.file) { mkdirSync(dirname(absNew), { recursive: true }); writeFileSync(absNew, text); rmSync(absOld); relocated += 1 }
     else writeFileSync(absNew, text)
   }
-  for (const from of moves.keys()) { const abs = join(root, from); if (existsSync(abs) && readdirSync(abs).length === 0) rmSync(abs, { recursive: true, force: true }) }
-  const parent = join(root, 'src', trigram); if (existsSync(parent) && readdirSync(parent).length === 0) rmSync(parent, { recursive: true, force: true })
-  return { dryRun: false, trigram, movedFolders: moves.size, relocated, importsApplied: rewritten, moves: [...moves.entries()].map(([f, t]) => ({ from: f, to: t })) }
+  // prune the dissolved layer bottom-up: recurse into each moved-from's PARENT, dropping every now-empty
+  // dir (nested subtrees like dist/readme empty out first, then dist, then the dissolved parent itself)
+  const srcDir = join(root, 'src')
+  const pruneEmpty = (dir: string): void => {
+    if (!existsSync(dir) || dir === srcDir) return
+    for (const e of readdirSync(dir, { withFileTypes: true })) if (e.isDirectory()) pruneEmpty(join(dir, e.name))
+    if (existsSync(dir) && readdirSync(dir).length === 0) rmSync(dir, { recursive: true, force: true })
+  }
+  for (const parent of new Set([...moves.keys()].map((from) => join(root, dirname(from))))) pruneEmpty(parent)
+  return { dryRun: false, label, movedFolders: moves.size, relocated, importsApplied: rewritten, moves: [...moves.entries()].map(([f, t]) => ({ from: f, to: t })) }
+}
+// The trigram flatten (top-level bāguà → src/<name>): census-aware, cross-trigram collision handling via computePathMigration.
+export function applyMigrationRewrites(root: string = enforcementScanRoot(), trigram = 'lake', dryRun = true) {
+  return applyMoveMap(root, trigramMoveMap(root, trigram), dryRun, `trigram:${trigram}`)
+}
+// ── Dissolve ANY parent layer (user: "quantum/lake — this path may be misleading. seo optimised paths by meaning").
+// The same gravity generalised beyond top-level trigrams: lift every immediate child of parentRel up one level, so a
+// misleading metaphor folder (src/quantum/lake) dissolves into meaningful siblings (src/quantum/{icons,voice,dist,…}).
+export function dissolveParentMoveMap(root: string, parentRel: string): Map<string, string> {
+  const map = new Map<string, string>()
+  const abs = join(root, parentRel)
+  if (!existsSync(abs)) return map
+  const grand = parentRel.split('/').slice(0, -1).join('/')
+  for (const e of readdirSync(abs, { withFileTypes: true })) {
+    if (!e.isDirectory() || e.name.startsWith('.')) continue
+    const from = `${parentRel}/${e.name}`
+    map.set(from, COLLISION_RESOLUTIONS[from] ?? `${grand}/${e.name}`)
+  }
+  return map
 }
 export function runApplyMigrationRewritesExit(root: string, argv: readonly string[] = []): number {
   const r = root || enforcementScanRoot()
   const trigram = argv[0] ?? 'lake'
   const apply = argv.includes('--apply') || argv.includes('apply')
   const out = applyMigrationRewrites(r, trigram, !apply)
+  process.stdout.write(`${JSON.stringify(out, null, 2)}\n`)
+  return 0
+}
+export function runDissolveParentExit(root: string, argv: readonly string[] = []): number {
+  const r = root || enforcementScanRoot()
+  const parentRel = argv[0]
+  if (!parentRel) { process.stderr.write('usage: runDissolveParentExit <parentRel> [apply]\n'); return 1 }
+  const apply = argv.includes('--apply') || argv.includes('apply')
+  const out = applyMoveMap(r, dissolveParentMoveMap(r, parentRel), !apply, `dissolve:${parentRel}`)
   process.stdout.write(`${JSON.stringify(out, null, 2)}\n`)
   return 0
 }
@@ -7250,7 +7286,7 @@ export function scanAuthoredMetricLabels(root: string = enforcementScanRoot()): 
   // whatever the chat answers propagates further than any page, so the same no-authored-label law covers the
   // chat-serving folds — a characterisation beside a computed count is poison wherever it is emitted.
   const generators = [
-    'src/quantum/lake/dist/readme/index.ts',
+    'src/quantum/dist/readme/index.ts',
     'src/heaven/site/index.ts',
     'src/heaven/compute/index.ts',
     'src/wind/routes/corpus/index.ts',

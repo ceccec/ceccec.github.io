@@ -1498,7 +1498,7 @@ export function uuidIsTheZeroStation(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: `ONE KERNEL HOME — toUuid and merkleFold are defined ONLY at src/0, the void station of the sequence 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 (${offenders.length} offenders); a redefinition outside the void is a second zero, and the scan keeps it at zero`, on: offenders.length === 0 },
     { facet: `DIMENSION CHANGES ARE UUID-ONLY — every cross-dimension edge collapses to a fixed-size content address through the void station, and the matrix binds by uuid to one verified root (collapse(M) = true)`, on: edgesAreUuids },
-    { facet: `GUARDED REALTIME — the per-page .json API refuses a matrix whose root does not verify (the guard lives in pathJson at src/quantum/lake/dist, exercised both ways at request time); the combination edges it serves are receipts only (pagesAreRosettaCombinationsOfTheorems)`, on: offenders.length === 0 && edgesAreUuids },
+    { facet: `GUARDED REALTIME — the per-page .json API refuses a matrix whose root does not verify (the guard lives in pathJson at src/quantum/dist, exercised both ways at request time); the combination edges it serves are receipts only (pagesAreRosettaCombinationsOfTheorems)`, on: offenders.length === 0 && edgesAreUuids },
     { facet: `GUARDED IN THE GATES — this fold rides the rosetta dimension gate (a facet flip blocks the commit) and the kernel scan is deterministic and zero-token`, on: offenders.length === 0 && edgesAreUuids },
   ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-zero:${entry.facet}:${entry.on}`) }))
   return {
@@ -1507,7 +1507,7 @@ export function uuidIsTheZeroStation(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `UUID is the 0 from the sequence — the content-address kernel has one home (src/0, the void station; ${offenders.length} offenders), every dimension change passes through the uuid matrix as fixed-size content addresses, and the passage is guarded realtime (the per-page API refuses an unverified root) and in the gates (the kernel scan rides the dimension gate).`,
-    boundary: `COMPUTED HERE: the kernel-home scan (zero offenders, kept zero) and the matrix collapse to one verified root. CITED AT THEIR HOMES (no import cycle into the gates package): the realtime guard is implemented and exercised in pathJson (src/quantum/lake/dist — a tampered root is refused at request time) and the payload-free combination edges are proven in pagesAreRosettaCombinationsOfTheorems (src/wind/routes/corpus). Tamper-EVIDENT boundary stands: FNV content addresses detect drift, they are not signatures — the SHA-256/Ed25519 cutover remains deliberate.` }
+    boundary: `COMPUTED HERE: the kernel-home scan (zero offenders, kept zero) and the matrix collapse to one verified root. CITED AT THEIR HOMES (no import cycle into the gates package): the realtime guard is implemented and exercised in pathJson (src/quantum/dist — a tampered root is refused at request time) and the payload-free combination edges are proven in pagesAreRosettaCombinationsOfTheorems (src/wind/routes/corpus). Tamper-EVIDENT boundary stands: FNV content addresses detect drift, they are not signatures — the SHA-256/Ed25519 cutover remains deliberate.` }
 }
 
 // ── THE SEQUENCE GOVERNS THE WORK — the core principles are read off 0\1\2\4\8/7/5/3\6\9/0\1 and

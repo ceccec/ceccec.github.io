@@ -10,7 +10,7 @@ import { commandGapsToTrinityEyes, trinityEncryption, trinityGates } from '../mo
 import { sealAll } from '../mountain/seals'
 import { compactHeroReplacesSimple, freeAnimations } from '../wind/ui'
 import { professionals, quantumSitemap } from '../wind/site'
-import { harmonicBands, multidimensional, openGraph } from '../quantum/lake/icons'
+import { harmonicBands, multidimensional, openGraph } from '../quantum/icons'
 import { completeCorpus, corpusCatchAllPaths, diamondRoutes, diamondsStaticPagesPurged, pageSkills } from '../wind/routes/corpus'
 import { doubleTorusCorpusRouting } from '../water/double'
 import { diamondLattice } from '../fire/diamonds'

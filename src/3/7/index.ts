@@ -393,7 +393,7 @@ export function resonanceBandwidth(omega0: number, q: number): number {
 
 // ── Octave bridge: frequency → visible light → hue (the a432 colour spine) ──
 // Hosted in this zero-import leaf so the brand-anchor const A432_HUE initialises before any cyclic
-// consumer barrel (quantum/science ↔ quantum/lake/icons ↔ heaven/*) runs — removing the SSR-bundle
+// consumer barrel (quantum/science ↔ quantum/icons ↔ heaven/*) runs — removing the SSR-bundle
 // temporal-dead-zone "Cannot access 'A432_HUE' before initialization". frequencyToLight is a hoisted
 // declaration, so A432_HUE's initializer depends only on SPEED_OF_LIGHT (local) and Math. quantum/science
 // re-exports these for the existing public path; the value stays DERIVED (A432_HUE === frequencyToLight(432).hue).
@@ -1660,9 +1660,9 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/fire/forecasts/index.ts', literal: '*', count: 13, kind: 'data', source: 'attested residue — weather-model coefficients (documented physics)' },
   { file: 'src/quantum/heaven/library/index.ts', literal: '*', count: 186, kind: 'data', source: 'attested residue — library catalogue data (works, dates, counts)' },
   { file: 'src/quantum/index.ts', literal: '*', count: 43, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known; time/phase rates on the φ-ladder; Wave B retired orphan hinge renderer; anim-convert ratchet', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/quantum/lake/dist/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/quantum/lake/spirit/index.ts', literal: '*', count: 178, kind: 'data', source: 'attested residue — HD W3 Rave Mandala wheel + HD W5 sealed BodyGraph lattice (36 channel gate-pairs + 9-center gate homes; public structure tables, zero keynote prose; 62→178)', frontier: 'channel/center tables are documented BodyGraph combinatorics (data), not lattice-derivable; predictive claims stay flagged elsewhere' },
-  { file: 'src/quantum/lake/voice/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/quantum/dist/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/quantum/spirit/index.ts', literal: '*', count: 178, kind: 'data', source: 'attested residue — HD W3 Rave Mandala wheel + HD W5 sealed BodyGraph lattice (36 channel gate-pairs + 9-center gate homes; public structure tables, zero keynote prose; 62→178)', frontier: 'channel/center tables are documented BodyGraph combinatorics (data), not lattice-derivable; predictive claims stay flagged elsewhere' },
+  { file: 'src/quantum/voice/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/os/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/water/cache/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/wind/geometry/index.ts', literal: '*', count: 5, kind: 'tuned', source: 'attested residue — hand-fixed values + FoL/Fruit lattice counts (1+6+12 / 1+6+6)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },

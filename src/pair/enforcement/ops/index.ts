@@ -2,7 +2,7 @@
 import { CANONICAL_HOST } from '../../../3/7'
 import * as __ns_up_up_up_fire_li from '../../../fire/li'
 import * as __ns_up_up_up_mountain_geometry from '../../../mountain/geometry'
-import * as __ns_up_up_up_quantum_lake_dist_generators from '../../../quantum/lake/dist/generators'
+import * as __ns_up_up_up_quantum_lake_dist_generators from '../../../quantum/dist/generators'
 import * as __ns_up_gates_computational from '../gates/computational'
 import * as __ns_up_up_up_heaven_atoms from '../../../heaven/atoms'
 import { DIMENSION_GATES, FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, UNFOLDED_CENSUS, enforcementScanRoot } from '../gates/computational'
@@ -402,7 +402,7 @@ export async function runRosettaBatchExit(root: string, argv: readonly string[] 
 /** Write README.md from the same importQuantumBundle as the signature gate (pair: edit/build). */
 export async function runSyncReadmeExit(root: string, _argv: readonly string[] = []): Promise<number> {
   void _argv
-  const dist = (await importQuantumBundle('src/quantum/lake/dist/index.ts', root)) as {
+  const dist = (await importQuantumBundle('src/quantum/dist/index.ts', root)) as {
     readmeMarkdown: () => string
     readmeSignatureValid: (committed: string) => { valid: boolean; computedSig?: string; committedSig?: string }
   }
@@ -507,7 +507,7 @@ export function solveNoise(root: string, opts: { dry?: boolean } = {}): SolveRes
 const USAGE = `usage: node ${CLI_ENTRY_REL} <subcommand> [args…]`
 
 async function runRosettaExit(root: string, argv: readonly string[]) {
-  const { generators, runGenerator } = await importQuantumBundle('src/quantum/lake/dist/generators/index.ts', root) as {
+  const { generators, runGenerator } = await importQuantumBundle('src/quantum/dist/generators/index.ts', root) as {
     generators: () => { glyph: string; name: string; title: string }[]
     runGenerator: (selector: string, ctx: unknown) => { files?: { path: string; content: string }[]; error?: string; messages?: string[] } | null
   }

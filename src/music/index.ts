@@ -16,7 +16,7 @@ import { reflectThroughZero, addressEntropyBits } from '../0'
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { tamperEvident } from '../5/5'
 import { merkaba, vortexMath } from '../mountain/geometry'
-import { dimensions, harmonicBands, lawfulHarmonise } from '../quantum/lake/icons'
+import { dimensions, harmonicBands, lawfulHarmonise } from '../quantum/icons'
 import { selfOrganizing, textToMovie } from '../earth/world'
 import { a432, a432Default, a432NoteHz, a432Semitones, colorFromSound, distributedCompute, gatesShiftToNewHarmonic, healingInner, healingOuter, inverseShiftConsciousness, quantumSimulation, selfAddressed, taxonomyIcons } from '../fire/li'
 import { harmonicSeriesDecoded, healingFrequencies } from '../ledger'

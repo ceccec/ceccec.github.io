@@ -28,7 +28,7 @@ import { fractalClockDur, heroPhaseAt } from '../../../fire/plasma/ball'
 import {
   RAVE_BODIES_13, RAVE_CENTER_GATES, RAVE_CENTERS_9, RAVE_CHANNELS_36, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
   humanDesignChannelsAndCenters, humanDesignVerifiedWheel,
-  raveDefinedChannels, raveMandalaGateLineAt } from '../../../quantum/lake/spirit'
+  raveDefinedChannels, raveMandalaGateLineAt } from '../../../quantum/spirit'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {

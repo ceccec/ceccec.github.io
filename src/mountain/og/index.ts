@@ -11,7 +11,7 @@ import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuild
 import { TAU, CANONICAL_HOST, A432_FOLDED, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { rosettaRayOf } from '../../water/digit'
-import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
+import { harmonicBands, openGraph, typographySeo } from '../../quantum/icons'
 import { heroTapMusic } from '../../music'
 import { conceptCommands } from '../../heaven/atoms'
 import { endlessFusion } from '../../wind/fusion'

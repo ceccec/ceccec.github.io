@@ -230,7 +230,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   }),
   PlayLearn: async () => {
-    const { playLearn } = await import('../../src/quantum/lake/voice/index')
+    const { playLearn } = await import('../../src/quantum/voice/index')
     const fold = playLearn()
     return {
       title: 'Play & learn',
@@ -244,7 +244,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   Dualities: async () => {
-    const { dualities } = await import('../../src/quantum/lake/spirit/index')
+    const { dualities } = await import('../../src/quantum/spirit/index')
     return fromFold(dualities(), 'Dualities')
   },
   TamperingCost: async () => {
@@ -280,7 +280,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     return fromDocumentedFlagged(foldingLinearGivesAnalog(), 'Analog field')
   },
   Multidimensional: async () => {
-    const { multidimensional } = await import('../../src/quantum/lake/voice/index')
+    const { multidimensional } = await import('../../src/quantum/voice/index')
     const fold = multidimensional()
     return {
       title: 'Multidimensional',
@@ -347,7 +347,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   YinYang: async () => {
-    const { yinYang } = await import('../../src/quantum/lake/spirit/index')
+    const { yinYang } = await import('../../src/quantum/spirit/index')
     const fold = yinYang()
     return {
       title: 'Yin and yang',
@@ -361,7 +361,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   ChakrasAura: async () => {
-    const { chakrasAura } = await import('../../src/quantum/lake/spirit/index')
+    const { chakrasAura } = await import('../../src/quantum/spirit/index')
     const fold = chakrasAura()
     return {
       title: 'Chakras and aura',
@@ -396,7 +396,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   HarmonicMap: async () => {
-    const { harmonicBands } = await import('../../src/quantum/lake/icons/index')
+    const { harmonicBands } = await import('../../src/quantum/icons/index')
     const fold = harmonicBands(108 + 2) // 110 — the raw census (folded 108 = 110 + χ)
     return {
       title: 'Harmonic map',
@@ -459,7 +459,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     return fromFacets(deviceHardwareVisibleInComputedWidgets(), 'Device dashboard')
   },
   HumanLens: async () => {
-    const { humanize } = await import('../../src/quantum/lake/voice/index')
+    const { humanize } = await import('../../src/quantum/voice/index')
     const fold = humanize()
     return {
       title: 'Human lens',

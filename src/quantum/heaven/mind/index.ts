@@ -79,7 +79,7 @@ export { digitalRoot } from '../../../0' // wave 3 vortex arithmetic — canonic
 export { oscillatorBank, resonantAmplitude } from '../../../6/4' // pi-train wave 10 physical cut — resonant modes
 export { resonanceBandwidth } from '../../../3/7' // pi-train wave 9 tier-A at station 3/7
 export { resonancePeakGain } from '../../../7/3' // pi-train wave 7 tier-A at station 7/3
-export { resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../lake/icons' // wave 12 UI bridge: the resonance/Rife decodes (science→icons) re-stated explicitly past the export* stars so the components can import them via lib
+export { resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../../icons' // wave 12 UI bridge: the resonance/Rife decodes (science→icons) re-stated explicitly past the export* stars so the components can import them via lib
 export type { Edge } from '../../../mountain/vortex'
 export { hopfieldStore, hopfieldRecall, hopfieldEnergy, bumpStep, bumpEvolve } from '../../../mountain/vortex'
 export { codeRobustness } from '../../../earth/life'

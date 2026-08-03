@@ -16,7 +16,7 @@ import type { EnforcementFacts } from '../../gates'
 import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail, computationalLimitsGapDetail, scanLogicDisplayViolations, displayUiPathFromLogicIndex, auditStrictGates, auditComputationalGates, scanRootDistributionViolations, scanDigitLatticeViolations, CANONICAL_ROOT_FOLDERS } from '../../gates'
 import { buildMatrix } from '../../../../heaven/compute'
 import { modelSeal } from '../../../../heaven/balance'
-import { computedDistFiles, readmeMarkdown } from '../../../../quantum/lake/dist'
+import { computedDistFiles, readmeMarkdown } from '../../../../quantum/dist'
 import { theoremPageRows } from '../../../../wind/routes/corpus'
 import { agentGateComplianceChecklist, agentSubmissionProtocol } from '../../ops'
 import { ceil, floor, log, log2, max, merkleFold, min, round, toUuid } from '../../../../0'
@@ -1165,7 +1165,7 @@ for (const url of quantumSitemap().urls) {
 const readmeText = read(join(root, 'README.md'))
 for (const marker of ['root monograph', 'Computed from src — do not edit by hand', 'Reproducibility']) {
   if (!readmeText.includes(marker)) {
-    gaps.push({ harmonic: 'monograph', kind: 'readme-not-computed', detail: `README.md lacks the computed marker "${marker}" — why this fails: the README is the root monograph computed in realtime by src/quantum/lake/dist (local math only); a hand-kept README is entropy that drifts from the model — run the build to recompute it` })
+    gaps.push({ harmonic: 'monograph', kind: 'readme-not-computed', detail: `README.md lacks the computed marker "${marker}" — why this fails: the README is the root monograph computed in realtime by src/quantum/dist (local math only); a hand-kept README is entropy that drifts from the model — run the build to recompute it` })
     break
   }
 }

@@ -9,7 +9,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { join, relative } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { foldPair, max, merkleFold, min, toUuid, type Uuid } from '../../../0'
-import { computedDistRoute } from '../../../quantum/lake/dist'
+import { computedDistRoute } from '../../../quantum/dist'
 // DEV-MOUNT ROOT FIX (2026-07-24): importing CLI_ENTRY_REL from the enforcement barrel put this
 // module inside the enforcement↔cache evaluation cycle — in dev's per-module ESM the computed key
 // below read the const in its TEMPORAL DEAD ZONE, rejecting the whole client graph silently (the
@@ -21,7 +21,7 @@ const CLI_ENTRY = 'src/pair/enforcement/script/cli/bootstrap/index.ts' // = CLI_
 // call-time namespace edge (cycle-safe): the skill registry reads back at call time
 import * as __ns_cache_learning from '../../../learning'
 
-export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/lake/dist'
+export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/dist'
 export type { Uuid }
 export { CLI_ENTRY_REL } from '../../enforcement'
 

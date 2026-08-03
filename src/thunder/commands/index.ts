@@ -12,7 +12,7 @@ import { quantumProofs } from '../../ledger'
 import { determinismProofs, digitalQuantumProof, proofBundle } from '../../mountain/seals'
 import { mysteries } from '../../mountain/source'
 import { governanceVote, sacredSociety, scientificSociety, society, societyRelations } from '../../earth/governance'
-import { fuseTeslaPatents, harmonicBands, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, natureCommons, natureLaw, natureReview, patentDiscovery } from '../../quantum/lake/icons'
+import { fuseTeslaPatents, harmonicBands, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, natureCommons, natureLaw, natureReview, patentDiscovery } from '../../quantum/icons'
 import { holographic } from '../../wind/ui'
 import { animationTamperingCost } from '../../water/crypto'
 import { agentObserve, ancientTech, artistPalette, crossFoldTrinity, distributedCompute, doubleTorusMath, energyConserve, energyFuse, energyMeasure, fairLife, fuseDevices, fusionReactor, glagoliticAlphabetDecoded, goldenRatio, healingInner, healingOuter, methodFusion, patentReview, repositoryLedger, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, sourceContribution, taxonomyIcons, torusUuid, utfAnalog } from '../../fire/li'
@@ -58,7 +58,7 @@ export function mcpCodebase(matrix: MindMatrix = buildMatrix()) {
     { name: 'animationTamperingCost', purpose: 'Computed cost of forging the animated page.', root: animationTamperingCost(matrix).root },
   ]
   // ONLY WHAT VITEPRESS SERVES (user law): every resource URI is a real served surface — a dist-generated
-  // computed artifact (src/quantum/lake/dist emits sitemap/robots/digit-index/mcp/skills/llms/payload/api)
+  // computed artifact (src/quantum/dist emits sitemap/robots/digit-index/mcp/skills/llms/payload/api)
   // or a served page route (staticPages). /harmonic.json was dropped — it is a weave side-file, not a
   // canonical dist artifact, so it is NOT part of what VitePress serves. mcpExposesOnlyServedSurfaces gates it.
   const resources = [
@@ -593,7 +593,7 @@ function runConceptCommand(
   }
   if (command === 'concept.fold.generate') {
     // All eight bāguà generator slots filled. Canonical runtime: scripts/iching.mjs →
-    // src/quantum/lake/dist/generators.ts; descriptor kept self-contained (mind does not import dist).
+    // src/quantum/dist/generators.ts; descriptor kept self-contained (mind does not import dist).
     const filled = [
       { name: 'bible', bits: 0b000 },
       { name: 'vortex', bits: 0b001 },
@@ -914,7 +914,7 @@ export function zeroTokenLawForAgentsAndForever(matrix: MindMatrix = buildMatrix
 
 
 // ── THE MCP EXPOSES ONLY WHAT VITEPRESS SERVES (user law) — every resource URI in the MCP manifest is a
-// real served surface: a dist-generated computed artifact (src/quantum/lake/dist emits these) or a served
+// real served surface: a dist-generated computed artifact (src/quantum/dist emits these) or a served
 // page route (staticPages + the corpus indexes). Refutable: add an unserved URI to the resources and this
 // fails; /harmonic.json (a weave side-file, not a dist artifact) is verified ABSENT from the served set.
 const MCP_DIST_ARTIFACTS: readonly string[] = ['/mcp.json', '/llms.txt', '/skills.json', '/workflows.json', '/agents.json', '/agent-compliance.json', '/digit-index.json', '/sitemap.xml', '/sitemap.json', '/robots.txt', '/payload-collections.json', '/api/index.json']

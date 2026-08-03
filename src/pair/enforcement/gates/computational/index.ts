@@ -9,7 +9,7 @@ export { enforcementScanRoot } from '../strict/scan'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
 import { THEOREM_ATOM_SEED } from '../../../../4/6'
-import { harmonicBands } from '../../../../quantum/lake/icons'
+import { harmonicBands } from '../../../../quantum/icons'
 
 // vaultSplitCamelSegment deduped → splitCamelSegment (the 8/2 pi-train leaf owns the body;
 // dry/dupe spin 2, 2026-07-24) — the vault name stays as the local alias documenting intent.

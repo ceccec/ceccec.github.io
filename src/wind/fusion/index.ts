@@ -5,7 +5,7 @@ import { completeCorpus } from '../routes/corpus'
 import { VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, isUuid, max, memoByRoot, merge, merkleFold, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0'
 import { hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2'
 import { animationTamperingCost, fusionCipher, virtualOS } from '../../water/crypto'
-import { deviceSensors, dimensions, harmonicBands, openGraph } from '../../quantum/lake/icons'
+import { deviceSensors, dimensions, harmonicBands, openGraph } from '../../quantum/icons'
 import { provenScientifically } from '../../thunder/verify'
 import { quantumBrowserOs, quantumComputedUi } from '../../fire/features'
 import { executeConceptCommand } from '../../thunder/commands'
@@ -187,7 +187,7 @@ export function vitepressFusion(matrix: MindMatrix = buildMatrix()) {
     { point: 'SSR render', api: 'build', binds: 'the computed model into static HTML' },
     { point: 'local search', api: 'themeConfig.search', binds: 'a MiniSearch index over the fused content' },
     { point: 'config from model', api: 'config.mts', binds: 'nav, academy courses and schema derived from the model' },
-    { point: 'build seal', api: 'docs:build chain', binds: 'the seal and enforcement gates; dist artifacts (sitemap, MCP, llms) computed in realtime by src/quantum/lake/dist via the VitePress plugin' },
+    { point: 'build seal', api: 'docs:build chain', binds: 'the seal and enforcement gates; dist artifacts (sitemap, MCP, llms) computed in realtime by src/quantum/dist via the VitePress plugin' },
   ].map((entry) => {
     const fold = foldPair(architecture, toUuid(`vitepress:${entry.point}`))
     return { ...entry, fused: fold.bidirectional, receipt: fold.merged }

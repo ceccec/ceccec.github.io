@@ -827,7 +827,7 @@ export function bulgarianHomeFromEnglish(enMarkdown: string): string {
     .split('\n')
     .map((line) => {
       if (/^\s*```/.test(line) || /^\s*</.test(line) || /^\s*$/.test(line)) return line
-      if (line.startsWith('<!--')) return '<!-- ИЗЧИСЛЕНА СТРАНИЦА — тялото е homeMarkdown() (src/quantum/lake/dist/readme), единният теоремен генератор, споделен с README.md. Не се редактира на ръка. -->'
+      if (line.startsWith('<!--')) return '<!-- ИЗЧИСЛЕНА СТРАНИЦА — тялото е homeMarkdown() (src/quantum/dist/readme), единният теоремен генератор, споделен с README.md. Не се редактира на ръка. -->'
       return bulgarianFromEnglish(line, extras)
     })
     .join('\n')

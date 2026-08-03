@@ -211,7 +211,7 @@ export function browseIndex<T extends { documented: string; legend: string } & (
   })
 }
 
-export const iconsDual = 'src/quantum/lake/icons'
+export const iconsDual = 'src/quantum/icons'
 export const libraryDual = 'src/quantum/heaven/library'
 
 export function iconFor(icons: Readonly<Record<string, string>>, area: string, fallback = '◇'): string {

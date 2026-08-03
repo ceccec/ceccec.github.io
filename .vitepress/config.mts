@@ -479,7 +479,7 @@ export default defineConfig({
     // SEO fully computed and holographic: title, keywords, description, category and
     // holographic tags are derived from the route, then folded into frontmatter, the
     // head meta and the JSON-LD. Explicit frontmatter always overrides the computed
-    // values. The same route feeds the sitemap (src/quantum/lake/dist), so they never drift.
+    // values. The same route feeds the sitemap (src/quantum/dist), so they never drift.
     const seo = computedSeo(path, pageData.title || (frontmatter.title as string) || '')
     ;(pageData as { __harmonicSeo?: typeof seo }).__harmonicSeo = seo
     const name = pageData.title || (frontmatter.title as string) || seo.title

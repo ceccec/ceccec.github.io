@@ -6,7 +6,7 @@ import * as __ns_up_up_heaven_core from '../../heaven/core'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { animationEngineLivesInZero, buildEnforcementPipeline, inverseShiftConsciousness, quantumGreenPlanet, taxonomyIcons, torusUuid } from '../../fire/li'
-import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
+import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/icons'
 import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, min, toUuid } from '../../0'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 // relocated imagination/mind cluster deps (call-time bindings; no load cycle)
@@ -2488,7 +2488,7 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: 'src/quantum/index.ts', role: 'hero render orchestrator — drawHero (pure math, no DOM)' },
     { module: 'src/quantum/earth/*', role: 'architecture, heritage, nature' },
     { module: 'src/quantum/fire/*', role: 'experiments, forecasts, simulations' },
-    { module: 'src/quantum/lake/*', role: 'dist (manifest, generators, cross, readme), icons, spirit, voice' },
+    { module: 'src/quantum/*', role: 'dist (manifest, generators, cross, readme), icons, spirit, voice' },
     { module: 'src/quantum/mountain/dimensions', role: '10D animation dimensions — DIMENSIONS, dims' },
     { module: 'src/quantum/thunder/*', role: 'math, science (scale color)' },
     { module: 'src/quantum/water/*', role: 'cache, correction, enforcement' },

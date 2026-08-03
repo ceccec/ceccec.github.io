@@ -76,7 +76,7 @@ import {
   plainLanguage,
   playLearn,
   typographySeo,
-  wordUuids } from '../../quantum/lake/voice'
+  wordUuids } from '../../quantum/voice'
 
 export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex'
 export {
@@ -935,12 +935,12 @@ export const QUANTUM_SKY_POSSIBILITIES = [
   'quantum/fire/simulations',
   'quantum/heaven/library',
   'quantum/heaven/mind',
-  'quantum/lake/dist',
-  'quantum/lake/dist/generators',
-  'quantum/lake/dist/readme',
-  'quantum/lake/icons',
-  'quantum/lake/spirit',
-  'quantum/lake/voice',
+  'quantum/dist',
+  'quantum/dist/generators',
+  'quantum/dist/readme',
+  'quantum/icons',
+  'quantum/spirit',
+  'quantum/voice',
   'quantum/mountain/dimensions',
   'quantum/os',
   'quantum/research',

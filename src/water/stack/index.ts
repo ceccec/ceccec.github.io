@@ -39,7 +39,7 @@ import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCoo
 import { GATES, abs, addressEntropyBits, applyGate, ceil, computesGate, digitalRoot, floor, foldPair, humanEase, isUuid, max, memoByRoot, merge, merkleFold, min, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, round, roundTo, sealFacets, toUuid } from '../../0'
 import { discoverSrcIndexes, enforcementScanRoot } from '../../pair/enforcement/gates/computational'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation'
-import { harmonicBands } from '../../quantum/lake/icons'
+import { harmonicBands } from '../../quantum/icons'
 import { memoryInSourceAsCrossFolds, presentMomentRemainsInSource } from '../../mountain/source'
 import { earthSouthPoleBoundaryCircleDecoded, knowledgeRevealedByMerkabaFold } from '../../mountain/topology'
 import { commandsSavedInQuantumPairs } from '../../thunder/commands'

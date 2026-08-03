@@ -16,7 +16,7 @@ import { blockchainFusion, tamperingCostDecoded } from '../../water/crypto'
 import { societyFuture, societyRegulates } from '../../earth/governance'
 import { conceptCommands } from '../../heaven/atoms'
 import { multidimensionalSummaries, navigation358, skillAtoms } from '../../learning'
-import { analogSpeech, lawfulHarmonise, openGraph } from '../../quantum/lake/icons'
+import { analogSpeech, lawfulHarmonise, openGraph } from '../../quantum/icons'
 import { moviesNativeFormat, oneOpenGraphAll, taxonomyIcons } from '../../fire/li'
 import { ancientCalendars, ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime } from '../../thunder/decode'
 import { babelFold, textToMovie } from '../../earth/world'
@@ -24,7 +24,7 @@ import { areaPairs, bothEarthsRotateWithinEachOther, cardinalPyramidTipsProvenBy
 import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../../quantum/mountain/dimensions'
 import { depthIsThePerspectiveDivide, flowerOfLifeCenters, flowerUnlocksFruitBySpin, fruitOfLifeCenters, perspective, rot2, rotate3 } from '../../quantum/wind/geometry' // FoL/Fruit lattice + FOCAL perspective + rotate3
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../../thunder/movie/glass'
-import { yinYang } from '../../quantum/lake/spirit'
+import { yinYang } from '../../quantum/spirit'
 import { scaleColor, A432_HUE, GOLDEN_ANGLE, movieCanvasHex } from '../../quantum/science'
 import { computedMovieThemeColors, FRACTAL_CLOCK_DIVISORS, fractalClockDur, fractalClockS } from '../../fire/plasma/ball' // the ONE quantum clock — every declarative duration below is a divisor step of the 108 s hero cycle (animationsFractalOfOneClockDiscovered)
 export { scaleColor, oklchToHex } from '../../quantum/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)

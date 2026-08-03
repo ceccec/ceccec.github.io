@@ -10,7 +10,7 @@ import { quantumAcademy } from '../../learning'
 import { dissolveIntoNature, selfOrganizing } from '../world'
 import { kidsDefineEducation, kidsExplore, planetIsComputable, quantumGreenPlanet, religionScienceSociety, soldiersRestInPeace, sustainableLiving, thriveEducation } from '../../fire/li'
 import { beesAndLife, equilibrium, genesis } from '../nature'
-import { lawfulSucceed, dimensions } from '../../quantum/lake/icons'
+import { lawfulSucceed, dimensions } from '../../quantum/icons'
 import { fuseAll } from '../../mountain/seals'
 import { freedTimeCreativity, studentQuantumMind, theWhole } from '../../quantum/heaven/mind'
 

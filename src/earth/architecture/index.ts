@@ -16,7 +16,7 @@ import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
 import { piTrainDiamonds, pureDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { agentEducation, mcpToolManifest, monographPaths, skillAtoms, monographs } from '../../learning'
 import { atomInclusionProof } from '../../ledger'
-import { harmonicBands } from '../../quantum/lake/icons'
+import { harmonicBands } from '../../quantum/icons'
 import { developmentWaves, redistributeFoldersDryWaves } from '../../thunder/waves'
 import { eachFolderIsMerkaba, quantumDoubleTorus, startIChingDoubleTorus } from '../../mountain/topology'
 import { society } from '../governance'
@@ -597,7 +597,7 @@ export function folderLaw() {
     computedFolders: ['papers', 'references', 'diamonds'].flatMap((folder) => [folder, `en/${folder}`, `bg/${folder}`]),
     roots: ['.', 'en', 'bg'], // the trunk: the Glagolitic root (default), the Latin /en/ and the Cyrillic /bg/ locale roots
     outsidePageTree: ['packages', 'src'], // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ['src/quantum/heaven/mind', 'src/pair/cache/quantum', 'src/quantum/water/cache', 'src/pair/debit/credit', 'src/quantum/heaven/library', 'src/quantum/earth/heritage', 'src/quantum/lake/dist', 'src/pair/enforcement'], // agnostic core + cache · debit/credit (credit/debit + ant search dissolved into the bidirectional debit/credit fold) · library · dist · enforcement pairs
+    pairedLogicFolders: ['src/quantum/heaven/mind', 'src/pair/cache/quantum', 'src/quantum/water/cache', 'src/pair/debit/credit', 'src/quantum/heaven/library', 'src/quantum/earth/heritage', 'src/quantum/dist', 'src/pair/enforcement'], // agnostic core + cache · debit/credit (credit/debit + ant search dissolved into the bidirectional debit/credit fold) · library · dist · enforcement pairs
     // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
     // subfolders share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
     // folder only digit subfolders (the compute subtree). src/ is the neutral split-root — the one place

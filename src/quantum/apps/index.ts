@@ -55,7 +55,7 @@ import {
 import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../earth/life'
 import { livingTorus } from '../../fire/diamonds'
 import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../wind/geometry'
-import { humanDesignChannelsAndCenters } from '../lake/icons'
+import { humanDesignChannelsAndCenters } from '../icons'
 import { harmonizeFieldComputes } from '../../music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum, deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible, lifeTorus } from '../../water/double'
 export { deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../water/double'
@@ -4243,7 +4243,7 @@ export function quantumCliToolsCatalog(matrix: MindMatrix = buildMatrix(), at = 
  * is the view of the matrix. No per-card math — the kernel + projection params (sequence-derived) cover all.
  */
 const ANIMATION_APP_ROWS: readonly QuantumAppRow[] = [
-  { id: 'taiji', title: 'Yin · yang taiji', route: '/en/#yinyang', barrel: 'src/quantum/lake/spirit', icon: '☯', computesGate: 'yin.yang.complete', homeComponent: 'YinYang', projection: 'taiji' },
+  { id: 'taiji', title: 'Yin · yang taiji', route: '/en/#yinyang', barrel: 'src/quantum/spirit', icon: '☯', computesGate: 'yin.yang.complete', homeComponent: 'YinYang', projection: 'taiji' },
   { id: 'sacred-morph', title: 'Sacred geometry morph', route: '/en/#sacredgeometry', barrel: 'src/mountain/geometry', icon: '✺', computesGate: 'sacred.geometry.decoded', homeComponent: 'SacredGeometry', projection: 'sacred-morph' },
   { id: 'hologram', title: 'Hologram point cloud', route: '/en/#hologram', barrel: 'src/thunder/movie/glass', icon: '◉', computesGate: 'hologram.to.the.bit', homeComponent: 'Hologram', projection: 'hologram' },
   { id: 'glyph-labyrinth', title: 'Glyph labyrinth', route: '/en/#glyphlabyrinth', barrel: 'src/mountain/topology', icon: '𐌎', computesGate: 'donut.labyrinth.winds', homeComponent: 'GlyphLabyrinth', projection: 'labyrinth' },

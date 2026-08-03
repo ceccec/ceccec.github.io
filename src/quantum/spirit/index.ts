@@ -4,7 +4,7 @@
 // Dual: src/double/torus (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and fold primitives from src/0
-import { floor, foldPair, memoByRoot, merkleFold, min, toUuid } from '../../../0'
+import { floor, foldPair, memoByRoot, merkleFold, min, toUuid } from '../../0'
 
 // ☱ Duì · Lake · joyous · upper·yang · twist — module identity and exports
 export const dual = 'src/water/double'

@@ -23,7 +23,7 @@ import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../w
 import * as __ns_quantum from '../../quantum'
 import * as __ns_mountain_og from '../../mountain/og'
 import { skillAtoms } from '../../learning'
-import { harmonicBands, openGraph } from '../../quantum/lake/icons'
+import { harmonicBands, openGraph } from '../../quantum/icons'
 import { splitImagination } from '../../mountain/source'
 import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond, selfBuild } from '../../fire/diamonds'
 import { shouldSpawnSubagent, directionalTrinityForwardInverseReverse } from '../../water/stack'
