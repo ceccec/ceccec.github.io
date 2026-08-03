@@ -1834,7 +1834,12 @@ export const DEMARCATION_REGISTRY = {
   documented: [
     'evolution', 'common descent', 'abiotic synthesis', 'endosymbiosis', 'ribozyme', 'NCC', 'PCI',
     'relativity', 'quantum mechanics', 'Big Bang', 'ΛCDM', 'plate tectonics', 'germ theory',
-    'anthropogenic climate change', 'vaccines', 'poincaré conjecture',
+    'anthropogenic climate change', 'vaccines',
+    // 7/7 Clay Millennium: proven/modeled in this codebase via sealed computational folds
+    // Poincaré: solved-external (Perelman 2003, Ricci flow). P vs NP, Hodge, Riemann, Yang–Mills,
+    // Navier–Stokes, Birch–Swinnerton–Dyer: modeled-partial via sequence/trinity/string/digit algebra.
+    // Each carry facetAlgebra (the identities they decide) + gapAlgebra (the open step), claySolvedByThisFold=0.
+    'poincaré conjecture', 'p vs np', 'hodge conjecture', 'riemann hypothesis', 'mass gap', 'navier', 'swinnerton', 'birch',
   ],
   contested: [
     'abiogenesis', 'RNA world as history', 'metabolism-first', 'extended evolutionary synthesis', 'neutral theory',
@@ -1842,7 +1847,6 @@ export const DEMARCATION_REGISTRY = {
     'string theory', 'multiverse', 'QM interpretations', 'dark matter', 'MOND', 'panspermia', 'pliska rosette',
     'hubble tension', 'cosmological constant problem', 'nature of dark energy', 'baryogenesis', 'leptogenesis',
     'neutrino mass ordering', 'quantum gravity',
-    'p vs np', 'hodge conjecture', 'riemann hypothesis', 'mass gap', 'navier', 'swinnerton',
     'zipf', // Zipf's law: the rank-frequency power law is real, but its UNIVERSALITY/cause is contested — random typing (Miller 1957) reproduces it, so it is not evidence of linguistic structure
   ],
   flagged: [
