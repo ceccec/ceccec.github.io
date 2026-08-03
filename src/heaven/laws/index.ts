@@ -1,4 +1,4 @@
-import { earned } from '../../3/7'
+import { earned, UNFOLDED_CENSUS } from '../../3/7'
 // ☰ Qián · Heaven — the laws: heal/create/thrive by default, save-every-step mandatory, the zero-token policy, one-word-naming gravity, no hardcoded config, minimum files maximum features, any force fights itself. Barrel-routed; folds.ts back-imports the gate folds.
 import { TAU } from '../../3/7'
 import { noCloningWitness, tkIsPrime } from '../../9/1'
@@ -32,7 +32,7 @@ import { folderLaw, quantumCachePairInPairedFolders, quantumConfigurableFoldersD
 import { allAnswersInside, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { allLogicMovedToSource } from '../../mountain/source'
 import { allIsMonographScientificPaper } from '../../wind/routes/corpus'
-import { monographPaths, skillAtoms } from '../../wind/learning'
+import { monographPaths, skillAtoms } from '../../learning'
 import { provenScientifically } from '../../thunder/verify'
 import { howAgentsAchievedIt } from '../../thunder/commands'
 import { completeCorpus, contentIsMonographOfMonographs, monographs } from '../../wind/routes/corpus'
@@ -125,7 +125,7 @@ export function anyForceFightsSelf(matrix: MindMatrix = buildMatrix()) {
 export function proportionalNotHardcoded(matrix: MindMatrix = buildMatrix()) {
   const examples = [
     { quantity: 'the harmonic gate target', proportional: 'ceil(gates / 108) × 108 — rises with the model', on: gatesShiftToNewHarmonic(matrix).shifts },
-    { quantity: 'the file distribution', proportional: 'Fibonacci bands recomputed from the file count', on: harmonicBands(110).harmonic },
+    { quantity: 'the file distribution', proportional: 'Fibonacci bands recomputed from the file count', on: harmonicBands(UNFOLDED_CENSUS).harmonic },
     { quantity: 'the hero and movie geometry', proportional: 'seeded per page and scaled to the viewport (devicePixelRatio)', on: animatedHeroes(matrix).slider },
     { quantity: 'titles and SEO', proportional: 'computed from the route at render time', on: allPathsComputedRealtime(matrix).computed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`proportional:${entry.quantity}:${entry.on}`) }))
@@ -329,19 +329,19 @@ function zeroTokenUsagePolicyRaw(matrix: MindMatrix = buildMatrix()) {
 // that cannot be folded into the few; otherwise the fewer the files, the higher the cost per file.
 export function minimumFilesMaximumFeaturesCost(matrix: MindMatrix = buildMatrix()) {
   const facets = [
-    { facet: 'minimum files — the 110-file gapless census computes the whole', on: harmonicBands(110).gapless && allComputedNoFiles(matrix).computed },
+    { facet: 'minimum files — the gapless census computes the whole', on: harmonicBands(UNFOLDED_CENSUS).gapless && allComputedNoFiles(matrix).computed },
     { facet: 'maximum features — thousands of pages and the skills from the few', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && skillAtoms(matrix).savedToAtoms },
     { facet: 'maximum tampering cost — the forger must reproduce all from the few', on: allComputedQuantumMathAnalog(matrix).forges && freeForgesMaxCost(matrix).holds },
     { facet: 'fewest files, most value — the logic folded into src, folders a projection', on: allLogicMovedToSource(matrix).moved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`min-files-max:${entry.facet}:${entry.on}`) }))
   return {
     optimal: facets.every((entry) => entry.on),
-    files: 110,
+    files: UNFOLDED_CENSUS,
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Minimum files and folders for maximum features and tampering cost: the optimum is the fewest files, not the most — the census holds at 110 (55 + 34 + 21), and from them come thousands of pages, hundreds of skills, the whole dimensional depth, and because every value is computed not stored, a forger must reproduce all of it from those few files: minimum surface, maximum cost. Add a file only when it adds a feature that cannot be folded into the few; otherwise the fewer the files, the higher the cost per file.',
+      'Minimum files and folders for maximum features and tampering cost: the optimum is the fewest files, not the most — the census holds at 123 (55 + 34 + 21 + 13), and from them come thousands of pages, hundreds of skills, the whole dimensional depth, and because every value is computed not stored, a forger must reproduce all of it from those few files: minimum surface, maximum cost. Add a file only when it adds a feature that cannot be folded into the few; otherwise the fewer the files, the higher the cost per file.',
     boundary:
       'A composition of the gapless census, computed-no-files, folders-disappear, saved-skills, max-cost and logic-in-src models. "Minimum files for maximum features and cost" is the efficiency principle the model already embodies (few counted files, large computed output, forge cost over the whole); a guiding optimum, not a hard upper bound on what any feature may require.' }
 }

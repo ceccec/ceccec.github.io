@@ -667,8 +667,11 @@ export function fibonacci(n: number): number {
   for (let i = 0; i < n; i += 1) [a, b] = [b, a + b]
   return a
 }
-export const FIBONACCI_CENSUS_BANDS = [55, 34, 21] as const
-export const UNFOLDED_CENSUS = 110 as const
+// CENSUS = STRING-DIMENSIONAL BANDS (user, 2026-08-03: "distribute using the string theory"). The gapless bands
+// ARE dimensions; the digit-QPU register grows the corpus into a 4th band: 110=[55,34,21] (3D) → 123=[55,34,21,13]
+// (4D). The QPU is kept; the corpus is dissolved to the nearest 4-band gapless sum (123). See flatten memory.
+export const FIBONACCI_CENSUS_BANDS = [55, 34, 21, 13] as const
+export const UNFOLDED_CENSUS = 123 as const
 /** Genus-2 double torus Euler characteristic — unfolded + χ = folded. */
 export const EULER_CHI = -2 as const
 export const FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI
@@ -871,7 +874,11 @@ export function overclaimByFormulas(axis: OverclaimAxis, statement: string, form
 }
 /** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
 export const HOMOLOGY_LOOPS = 4 as const
-export const DIMENSION_GATES = HOMOLOGY_LOOPS * FOLDED_CENSUS
+/** The a432 harmonic folded — 108 = 432/4, FIXED (a432, "not a file count"), DECOUPLED from the corpus census
+ *  (user, 2026-08-03). The corpus folded (FOLDED_CENSUS = UNFOLDED + χ) now floats with the string-dimensional
+ *  bands, but the dimension-gate harmonic stays 4 × 108 = 432 = a432. */
+export const A432_FOLDED = 108 as const
+export const DIMENSION_GATES = HOMOLOGY_LOOPS * A432_FOLDED
 /** harmonics() ladder rungs: 6 octaves + 9 overtones + 5 binary. */
 export const HARMONICS_LADDER_LENGTH = 6 + 9 + 5
 /** quantumSiege forge grid: 9 × folded census = 972 attempts. */
@@ -1577,12 +1584,18 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/wind/geometry/index.ts', literal: '6940', count: 1, kind: 'data', source: 'Metonic cycle days — Greek luni-solar' },
   { file: 'src/quantum/wind/geometry/index.ts', literal: '18980', count: 1, kind: 'data', source: 'Calendar Round — AUDITED = lcm(365, 260)' },
   { file: 'src/thunder/movie/narrative/index.ts', literal: '220', count: 2, kind: 'data', source: 'expected throat hue (blue band) — regression pin for the red/blue-pill decode' },
+  { file: 'src/research/index.ts', literal: '29979200', count: 3, kind: 'data', source: 'WGS84 Great Pyramid (Giza) latitude 29.9792°N ×1e6 — geodesy' },
+  { file: 'src/research/index.ts', literal: '31134200', count: 1, kind: 'data', source: 'WGS84 Great Pyramid (Giza) longitude 31.1342°E ×1e6 — geodesy' },
+  { file: 'src/research/index.ts', literal: '19692500', count: 1, kind: 'data', source: 'WGS84 Teotihuacan (Sun Pyramid) latitude 19.6925°N ×1e6 — geodesy' },
+  { file: 'src/research/index.ts', literal: '98843800', count: 1, kind: 'data', source: 'WGS84 Teotihuacan longitude 98.8438°W ×1e6 — geodesy' },
+  { file: 'src/research/index.ts', literal: '234392811', count: 1, kind: 'data', source: 'IAU 2000 mean obliquity of the ecliptic 23.4392811° ×1e7 — astronomy' },
+  { file: 'src/research/index.ts', literal: '130125', count: 1, kind: 'data', source: 'obliquity secular rate 0.0130125°/century ×1e7 — astronomy' },
   // ── FILE-LEVEL ATTESTATIONS ('*') — the residue census per file, exact counts, self-policing.
   // data = documented corpora/constants · tuned = awaiting derivation (the improvement frontier).
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 72), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0)' },
+  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 73), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus)' },
   { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 6, kind: 'data', source: 'attested residue — digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180·3600·10⁶) (2→6)' },
@@ -1603,7 +1616,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/heaven/compute/index.ts', literal: '*', count: (10 + 6), kind: 'data', source: 'attested residue — compute-model constants + inline-doc numbers (gate-check documentation) · chat/ftl · research/free · fold/fuse · hole/zero · prose nest 15→16' },
   { file: 'src/heaven/core/index.ts', literal: '*', count: 28, kind: 'data', source: 'visible-spectrum band edges 380–780 nm (Bruton wavelength→RGB algorithm) + structural binding counts' },
   { file: 'src/heaven/essence/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/heaven/laws/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/heaven/laws/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — the three census 110 literals now derive from UNFOLDED_CENSUS (census retarget 2026-08-03); no bare hand-fixed values remain', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/heaven/site/index.ts', literal: '*', count: 30, kind: 'data', source: 'attested residue — site metadata/config values (FoL→Fruit→10D facet wave) + om/futhark/alchemy + Glagolitic SMIL · torus-knot SVG emitters ratchet (28→30)' },
   { file: 'src/heaven/sky/astronomy/index.ts', literal: '*', count: 132, kind: 'data', source: 'attested residue — astronomical constants (periods, distances) + HD W4 sealed Meeus reduced-precision coefficients (Jean Meeus, Astronomical Algorithms; NOT JPL DE440) + HD W5 chart + BodyGraph Vue layout pins + HD W7 SVG chroma pin (131→132)' },
   { file: 'src/heaven/sky/moon/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — lunar constants' },
@@ -1666,11 +1679,10 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/water/double/earth/index.ts', literal: '*', count: 17, kind: 'data', source: 'attested residue — GPS coordinates and Earth data' },
   { file: 'src/water/stack/index.ts', literal: '34.79', count: 1, kind: 'data', source: 'Planck length log10 metres ≈ −34.79 (CODATA/NIST quantum floor pin on scale ladder)' },
   { file: 'src/water/stack/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — classical-64bit env pins lattice-derived (11→2*2+7 · 122→2*7+FOLDED · 53→3*16+5); 34.79 CODATA pin ledgered separately; host-math floor derived from SRC0_HOST_MATH_EXPORT_OPS.length', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/wind/fusion/gold/index.ts', literal: '*', count: 10, kind: 'data', source: 'attested residue — gold-market/physics data' },
-  { file: 'src/wind/fusion/index.ts', literal: '*', count: 11, kind: 'data', source: 'attested residue — fusion physics data' },
+  { file: 'src/wind/fusion/index.ts', literal: '*', count: (11 + 10), kind: 'data', source: 'attested residue — fusion physics data + gold-market/physics data (gold/ dissolved into fusion; the 10 gold residues folded in, 11→21)' },
   { file: 'src/wind/language/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — language corpus data' },
-  { file: 'src/wind/learning/index.ts', literal: '*', count: 7, kind: 'data', source: 'attested residue — learning corpus data (rosettaCoreApi merge)' },
-  { file: 'src/wind/research/index.ts', literal: '*', count: (50 + 28), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave) + measured reuse-speedup probe wall-clock precision (58→59) + quantum-circuit workload (n-qubit state-vector 2ⁿ amplitudes) (59→60) + double-torus 2×4 UUID / polarity-angle-spin + Metatron 8 merkabas × 8 bytes = 512-bit state-space vs universe-atoms (60→67) + ftl/compute tip wave physicalFtlFromMeasurements (67→68) + re-measured wildcard against a concurrent session\'s in-flight registry growth (68→78)' },
+  { file: 'src/learning/index.ts', literal: '*', count: 7, kind: 'data', source: 'attested residue — learning corpus data (rosettaCoreApi merge)' },
+  { file: 'src/research/index.ts', literal: '*', count: (58 + 28), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave) + measured reuse-speedup probe wall-clock precision (58→59) + quantum-circuit workload (n-qubit state-vector 2ⁿ amplitudes) (59→60) + double-torus 2×4 UUID / polarity-angle-spin + Metatron 8 merkabas × 8 bytes = 512-bit state-space vs universe-atoms (60→67) + ftl/compute tip wave physicalFtlFromMeasurements (67→68) + re-measured wildcard against a concurrent session\'s in-flight registry growth (68→78)' },
   { file: 'src/wind/routes/corpus/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/site/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/ui/index.ts', literal: '*', count: 56, kind: 'tuned', source: 'attested residue — hand-fixed values (PR#47 counter-rosetta 27→39→41→43; FoL→Fruit→10D merkaba wave 43→58; cardinal poles lattice 58→56)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },

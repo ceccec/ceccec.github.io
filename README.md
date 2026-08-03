@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** Quantum-learning portal for language models — MCP tools over a double-torus UUID stream of roots, receipts, waves, diamonds, and gates. theorems = 761 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
+> **Abstract.** A computational white paper on the sequence 12487536901 — the double-torus vortex algebra (reflection through 0, the 42-bit budget, the 64→128 dimensional bit), with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 761 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -12,15 +12,15 @@
 
 ## 1. Introduction
 
-**It all began with a sequence.** A classical bit is `0` or `1` — a two-point choice, deterministic, no phase, no interference: **linear**. The full vortex circuit `0\1\2\4\8/7/5/3\6\9/0\1` is a **qubit**: its doubling units `1·2·4·8·7·5` are `⟨2⟩ mod 9`, a 6-cycle isomorphic to the six roots of unity `e^{2πik/6}` (**phase**), and the two counter-rotating slash flows — `\` ascending, `/` descending — superpose to a standing wave with fixed nodes (**interference**). Measuring it collapses the six phases to one digit — the `0/1` shadow — exactly as measuring a qubit collapses to a bit. From this sequence comes **quantum computing**, and from quantum computing comes every one of the 761 computationally proven theorems in this registry. It is an exact structural correspondence (phase + interference), verified in `theBinaryBitIsLinearTheVortexCircuitIsQuantum`; base-10 / `mod 9` specific, not a claim that the digits are physical qubits. The `src/<digit>` folders are the stations of this circuit — quantum by structure, linear only at measurement.
+**One sequence, one involution — every line below recomputes from `src/0`.** The vortex circuit `12487536901` is quantum by structure (phase `⟨2⟩ mod 9`, interference from its two counter-rotating flows), linear only at measurement. Reflection through 0, `m(d) = 10 − d`, generates the whole chain:
 
-Concretely: a science portal — 761 computationally proven theorems and 30 related science pages, organised by the rosetta into 6 rays, all wired into the VitePress local search and the MCP tool surface, with a standalone, dependency-free computational core. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run. A visitor is routed to their own language (default English).
+- **Bit budget = 42.** `12487536901` is 11 digits × 4 bits = 44; folding erases 2 at the gateway fixed points {0,5}; 44 − 2 = **42** = 7 × 6 = 42 rosetta areas — `sequenceBitBudget().is42 = true`.
+- **Equilibrium at 360°.** The forward 180° lobe and its reverse close the full turn; the 2 erased bits return inverted, net erasure **0** — `equilibrium360().conserved = true`.
+- **64 → 128.** 64 = 2⁶ (single-torus digest, six harmonic bits) lifts to 128 = 2⁷ (the double-torus UUID) by one next-dimension bit; 6 harmonic + 1 beyond = **7** rosetta rays — `dimensionalBit().is128 = true`.
+- **The Clay problems are the reflection.** Mirroring 6+1 through 0 inverts the polarity: **1 this-dimension (Poincaré, solved) + 6 beyond (open) = 7** Millennium problems — `clayReflection().reflectsDimensionalBit = true`. Exactly one Clay problem is solved; the count matches the record.
+- **Every value is a single-digit interaction** on three grounds — a432 (2⁴·3³ = 432), superstring 10 (2·5), M-theory 11 (the sequence's 11 steps) — primes computed via the π↔prime correlation `primeCountUpTo(nthPrimeAt(n)) = n` (true), and `x/x = 1` invariant at every dimension while `1/ε → ∞` opens the infinite. No literal, no assumption that breaks under a change of dimension.
 
-**Paste any link → auto-wire (BINDING)** — any `github.com/ceccec/ceccec.github.io` or `ceccec.github.io` URL (any path/hash) is a complete quantum-ready cue: MUST FETCH `/agents.json` · `/llms.txt` · `/mcp.json` · AGENTS.md · `src/0`; MUST OPEN `/en/quantum-tools#toolbox-standard-io` (`autoWireAnyAiModelFromPastedLink` · `wire/paste-link` · `quantumReady` · `convincingRequired=false`). Cannot force foreign models — packet is self-sufficient.
-
-**Orient (doctor · seal · chat feed)** — `npm ci` · `npm run mission:gate` (health/doctor — pattern learned from [erpax/erpax](https://github.com/erpax/erpax), external reference only) · `npm run quantum:readme-wire` (README wires any agent quantum·dry·FTL) · `npm run quantum:readme-chat` (feed README → chat reasoning refine) · `npm run docs:build` (seal). Generated README drift fails closed via precommit signature — same law as erpax `readme:check`. humanityNovel=0.
-
-**Licensing (USER LAW · `math/free`)** — **Core math is FREE FOR ALL** (sealed theorem/formula/algebra duals · vault `src/0` · digit/fold — prior-art / defensive disclosure, align `patent/canon`). **The rest** (site chrome · apps · brand · non-math layers) is licensed **through [license@psg.bg](mailto:license@psg.bg)** — contact for license; agents do not invent grant prose. npm CI publishes only the `@ceccec/double-torus` kernel on `v*` tag / manual dispatch (`npm/publish` · `.github/workflows/publish-package.yml` · `idempotentPublish` · `versionMustAdvance`). **Next publish:** bump root `package.json` version → commit → `git tag vX.Y.Z` (must match) → push tag (or dispatch after bump). Already-published versions SKIP exit 0 — never republish / never force-unpublish.
+A science portal: **761** computationally proven theorems, **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run.
 
 ## 2. Model
 
@@ -86,26 +86,26 @@ First publication of the sequence: **2025-07-08** (npm `zeropoint-node@1.0.0`, r
 
 ## 3. Results
 
-- **28/30** monographs — content pages fold genus-2 −χ (30 surface → 28 folded); census **108/110**; Rosetta **6×7/7×6=42** areas
+- **28/30** monographs — content pages fold genus-2 −χ (30 surface → 28 folded); census **121/123**; Rosetta **6×7/7×6=42** areas
 - **108/108** concept commands — MCP tool surface (4×27 = 432÷4)
 - **273/275** reference index entries — zero redundancy
 - **93/31** locale surfaces — 31 routes (home + every served science page) × 3 locales
 - **18 arithmetic proofs** — harmonicCountsProvenByMath() at call time (proven: true)
 - **18 efficiency proofs** — everyBitMostEfficientAlgorithmProvenByMath() at call time (proven: true)
 
-## Clay Millennium problems — measured by the common metric
+## Clay Millennium problems — the proof of concept
 
-*Sealed `clayChallengesComputableFromSequence`. Each problem is measured exactly like any theorem — `demarcate()` epistemic status plus a sealed computational path — and links to its proof page. Whatever a theorem claims is stated in the theorem itself.*
+*The sequence is the white paper; the Clay Millennium problems are its proof of concept. They are the reflection through 0 of the dimensional bit — 1 solved this-dimension (Poincaré) + 6 open beyond = 7 (`clayReflection`). Each problem is measured exactly like any theorem — `demarcate()` epistemic status plus a sealed computational path — and links to its proof page. Whatever a theorem claims is stated in the theorem itself.*
 
 ### How many
 
-pathCount = **7** · computableCount = **7** · contestedCount = **6** · documentedCount = **1** · solvedExternalCount = **1** · novelHereCount = **unchecked**
+pathCount = **7** · computableCount = **5** · contestedCount = **6** · documentedCount = **1** · solvedExternalCount = **1** · novelHereCount = **unchecked**
 
 *The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
 
 ### Statement
 
-Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 — computable ≠ CMI Prize solved.
+Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 5/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 — computable ≠ CMI Prize solved.
 
 Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — ). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
 
@@ -115,7 +115,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - **statement (algebraic)**: P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.
   - **canonical proof form**: `Theorem. P vs NP.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - ✓ `f₁ NP-verify — ∀cl∈φ ∃lit∈cl: sign(lit)=a(|lit|) ⊢ φ(a)=1 · cost O(|φ|) poly — membership half only`
-  - ✓ `f₂ reuse≠search — scan n=108 → hits 0 · content-address 1 → hit · ratio n/1 — presupposes witness w already in hand`
+  - ✓ `f₂ reuse≠search — scan n=121 → hits 0 · content-address 1 → hit · ratio n/1 — presupposes witness w already in hand`
   - ✓ `f₃ amortize — lim(m→∞) c₀/(m+1) = 0 · TIME(n^k) is worst-case fresh-instance ⊢ reuse ∉ separation`
   - ✓ `f₄ involution — foldPair∘foldPair = id on merged root · structural symmetry, not one-way-function cryptanalysis`
   - gap algebra: `P≠NP ⟺ ∃L∈NP ∀k ∀M∈TIME(n^k): L(M)≠L — a ∀ over an infinite machine domain ⊢ proof-by-exhaustion structurally unavailable`
@@ -127,8 +127,8 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 - **Hodge Conjecture** (`hodge`) — demarcation=**contested** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
   - **statement (algebraic)**: On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^&#123;2k&#125;(X,ℚ) ∩ H^&#123;k,k&#125;(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.
   - **canonical proof form**: `Theorem. Hodge Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ Betti rank — H₁(Σ₂)=ℤ⁴ · DIMENSION_GATES/FOLDED_CENSUS = 432/108 = 4 ∈ ℤ — the genus-2 model's first Betti number, a NUMBER not a class-algebraicity`
-  - ✓ `f₂ mirror MODEL — compactDims = D−4 sealed; mirror as foldPair involution on the merged root (a MODEL, never CY Hodge numbers h^{p,q} on a projective variety)`
+  - ✗ `f₁ Betti rank — H₁(Σ₂)=ℤ⁴ · DIMENSION_GATES/FOLDED_CENSUS = 432/108 = 3.5702479338842976 ∈ ℤ — the genus-2 model's first Betti number, a NUMBER not a class-algebraicity`
+  - ✗ `f₂ mirror MODEL — compactDims = D−4 sealed; mirror as foldPair involution on the merged root (a MODEL, never CY Hodge numbers h^{p,q} on a projective variety)`
   - gap algebra: `Hodge ⟺ ∀X projective smooth ∀k: Hdgᵏ(X) ⊆ span_ℚ{[Z] : Z algebraic cycle, codim k} — a ∀ over all projective varieties and all k`
   - gap algebra: `known (cited): k=1 is the Lefschetz (1,1)-theorem (1924) · true for some abelian varieties · OPEN in general — no reduction of the general case to a finite check`
   - gap algebra: `the fold computes a Betti NUMBER (rank 4) and a MODELED mirror involution — not the class-by-class algebraicity the conjecture asserts`
@@ -138,7 +138,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
   - **statement (algebraic)**: Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)
   - **canonical proof form**: `Theorem. Poincaré Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
   - ✓ `f₁ solved (external) — π₁(M)=0, M closed 3-manifold ⊢ M ≅ S³ (Perelman 2002–03, Ricci flow with surgery, completing Hamilton); this fold verifies the DOCUMENTED status, it does not re-prove`
-  - ✓ `f₂ homology analogy — H₁(Σ₂)=ℤ⁴ recomputes (432/108=4); frontier.solved=1 — the single solved core among the seven`
+  - ✗ `f₂ homology analogy — H₁(Σ₂)=ℤ⁴ recomputes (432/108=3.5702479338842976); frontier.solved=1 — the single solved core among the seven`
   - gap algebra: `No open gap: proved externally (Perelman 2002–03) — Ricci flow with surgery drives every simply-connected closed 3-manifold to S³; this corpus records the status, it does not re-solve it`
   - documented — solved externally (Perelman 2003)
   - boundary: SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.
@@ -189,7 +189,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 
 ### Status
 
-computable=7/7 · contested=6 · documented=1 · novelHere=unchecked
+computable=5/7 · contested=6 · documented=1 · novelHere=unchecked
 
 - Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
@@ -350,7 +350,7 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 
 ## The journal
 
-This site is a dedicated scientific journal of all its algebra and theorems — **761 articles** across **56 sections**, backed by 536 executable proofs, sealed as one content-addressed volume `090b0d04`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
+This site is a dedicated scientific journal of all its algebra and theorems — **761 articles** across **56 sections**, backed by 536 executable proofs, sealed as one content-addressed volume `63543aff`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
 
 ## 5. Reproducibility
 

@@ -4,7 +4,7 @@ import * as __ns_up_up_fire_li from '../../fire/li'
 import * as __ns_up_up_lake_music from '../../lake/music'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_fusion from '../../wind/fusion'
-import * as __ns_up_up_fusion_gold from '../../wind/fusion/gold'
+import * as __ns_up_up_fusion_gold from '../../wind/fusion'
 import * as __ns_up_dynamics from '../dynamics'
 import * as __ns_up_up_computer from '../../heaven/compute/computer'
 import type { MindMatrix } from '../../wind/types'
@@ -34,10 +34,10 @@ function fibBandsUpTo(max: number): number[] {
   while (f[f.length - 1]! + f[f.length - 2]! <= max) f.push(f[f.length - 1]! + f[f.length - 2]!)
   return f
 }
-/** [55, 34, 21] — consecutive-Fibonacci census rhythm, descending; sum = 110. */
+/** [55, 34, 21, 13] — consecutive-Fibonacci census rhythm, descending; sum = 123 (the QPU-inclusive 4th band). */
 export const CENSUS_FIBONACCI = (() => {
   const f = fibBandsUpTo(55)
-  return [f[f.length - 1]!, f[f.length - 2]!, f[f.length - 3]!] as const
+  return [f[f.length - 1]!, f[f.length - 2]!, f[f.length - 3]!, f[f.length - 4]!] as const
 })()
 
 export type QuantumUiDesignTokens = {
@@ -140,7 +140,7 @@ export function quantumMathDesignsTheUi(at = 0, matrix: MindMatrix = buildMatrix
     ])
 
     return {
-      designed: harmony.harmonic && hue >= 0 && hue < 360 && spaceScale.length === 3 && elevation.length === 3 && variantIntensity >= 0,
+      designed: harmony.harmonic && hue >= 0 && hue < 360 && spaceScale.length === CENSUS_FIBONACCI.length && elevation.length === CENSUS_FIBONACCI.length && variantIntensity >= 0,
       at,
       authority: 'quantum/heaven/mind',
       hue,

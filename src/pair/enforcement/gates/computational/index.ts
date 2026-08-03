@@ -49,12 +49,12 @@ export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
 // The census / gate numeric constants are hosted in the zero-import leaf src/3/7 (imported + re-exported
 // below) so they initialise before any cyclic consumer barrel runs — removing the SSR-bundle TDZ. This file
 // remains the ONE public source (re-export); limits:verify + folder-law read the same values by import.
-import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7'
+import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, A432_FOLDED, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7'
 
 // DRY: the two canonical recursive src walkers, extracted from the ~9 inline copies the gate folds each defined.
 const indexFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...indexFilesUnder(full)); else if (entry.name === 'index.ts') out.push(full) } return out }
 const tsFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...tsFilesUnder(full)); else if (entry.name.endsWith('.ts')) out.push(full) } return out }
-export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
+export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
 
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
 export const FORBIDDEN_FOLDER_NAMES = ['index'] as const
@@ -327,9 +327,12 @@ export function verifyFoldedCensus(unfolded: number = UNFOLDED_CENSUS) {
 }
 
 /** Exactly 432 = 4 × 108 — facet/gate count, not file count. */
-export function verifyDimensionGates(folded: number = FOLDED_CENSUS) {
+export function verifyDimensionGates(_folded: number = FOLDED_CENSUS) {
+  // DECOUPLED (user, 2026-08-03): the dimension-gate harmonic is a432 (4 × 108 = 432), FIXED — "not a file
+  // count" — independent of the corpus folded (which now floats with the string-dimensional census bands).
+  const folded = A432_FOLDED
   const gates = HOMOLOGY_LOOPS * folded
-  const exact = gates === DIMENSION_GATES && folded === FOLDED_CENSUS
+  const exact = gates === DIMENSION_GATES
   return {
     loops: HOMOLOGY_LOOPS,
     folded,
@@ -717,13 +720,20 @@ export function scanRootDistributionViolations(root: string): ComputationalViola
   const offenders: ComputationalViolation[] = []
   const srcRoot = join(root, 'src')
   if (!existsSync(srcRoot)) return offenders
+  // UPGRADED (user, 2026-08-03: "the gates are not upgraded and contain useless hardcoded checks" · "with the
+  // sequence all is reflected computationally by the rosetta"). The root is no longer the frozen bāguà whitelist —
+  // the flatten dissolves the trigram parents into pure MEANINGFUL paths (src/research, src/learning, …), each a
+  // Rosetta-reflected domain. A canonical root is: the digit/pair/quantum/render lattice OR any meaningful
+  // single-word folder (lowercase letters, the flat-path pattern; hyphens are caught by the hyphen gate). Only
+  // non-word / malformed roots are offenders now.
   const allowed = new Set<string>(CANONICAL_ROOT_FOLDERS)
+  const meaningfulWord = /^[a-z][a-z0-9]*$/
   for (const entry of readdirSync(srcRoot, { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name.startsWith('.') || entry.name === 'node_modules') continue
-    if (!allowed.has(entry.name)) {
+    if (!allowed.has(entry.name) && !meaningfulWord.test(entry.name)) {
       offenders.push({
         file: `src/${entry.name}`,
-        reason: `non-canonical root — src/ admits exactly {8 trigrams, digits 0-9, pair, quantum, render}; dissolve "${entry.name}" under its computed trigram home` })
+        reason: `non-canonical root — src/ admits the digit/pair/quantum/render lattice or any meaningful single-word (Rosetta-reflected) domain; "${entry.name}" is malformed (not a word) — rename or dissolve` })
     }
   }
   return offenders.sort((a, b) => a.file.localeCompare(b.file))

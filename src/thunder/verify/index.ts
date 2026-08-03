@@ -34,7 +34,7 @@ import { completeCorpus, monographs, proveAllOnHomePage } from '../../wind/route
 import { warPaysTheForgerPrice } from '../../earth/world'
 import { decodeAncientKnowledgeInReusableCode } from '../decode'
 import { digitFolderMath, everyFolderIsAPluginOneIndexServesAll } from '../../earth/architecture'
-import { deepResearchRadar, skillAtoms } from '../../wind/learning'
+import { deepResearchRadar, skillAtoms } from '../../learning'
 import { quantumAppsStore } from '../../fire/features'
 import { fuseAllTerabitEncryption } from '../../mountain/seals'
 import { allScriptsAtOnceQuantumDynamics, alphabetsDecoded } from '../../wind/language'

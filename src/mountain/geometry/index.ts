@@ -26,7 +26,7 @@ import { doubleTorusMath, taxonomyIcons, torusUuid, crossFoldTrinity, selfAddres
 import { A432_HUE, GOLDEN_ANGLE, frequencyToLight, lobeHues } from '../../quantum/lake/icons'
 import { cssIsIChingComputed, digitFolderMath, digitFolders, digitFoldersDoMath, ICHING_NUMBERS } from '../../earth/architecture'
 import { piTrainDiamonds, quantumFoldedBlockchains, selfBuild, streamSelfComplete } from '../../fire/diamonds'
-import { agentEducation, mcpToolManifest, schoolCurriculum } from '../../wind/learning'
+import { agentEducation, mcpToolManifest, schoolCurriculum } from '../../learning'
 import { digitalQuantumProof } from '../seals'
 import { babelFold } from '../../earth/world'
 import { quantumDecoded } from '../../fire/physics'
@@ -350,8 +350,8 @@ export function doubleTorusMathAtAllScalesProofs(matrix: MindMatrix = buildMatri
     mk('at-every-scale', 'tenD.atEveryScale', tenD.atEveryScale ? 1 : 0, 1),
     mk('homology-closed', 'cellHomology.closed', homology.closed ? 1 : 0, 1),
     mk('self-similar', 'dims(0.42,0)≠dims(0.42,1)', selfSimilar ? 1 : 0, 1),
-    mk('census-unfolded', 'UNFOLDED_CENSUS', UNFOLDED_CENSUS, 108 + 2),
-    mk('census-folded', 'FOLDED_CENSUS', FOLDED_CENSUS, 108),
+    mk('census-unfolded', 'UNFOLDED_CENSUS', UNFOLDED_CENSUS, FOLDED_CENSUS - EULER_CHI),
+    mk('census-folded', 'FOLDED_CENSUS', FOLDED_CENSUS, UNFOLDED_CENSUS + EULER_CHI),
     mk('chi-census', 'folded−unfolded', FOLDED_CENSUS - UNFOLDED_CENSUS, EULER_CHI),
     mk('circulation-invariant', 'circulateDoubleTorus.invariant', circulation.invariant ? 1 : 0, 1),
   ]
@@ -362,7 +362,7 @@ export function doubleTorusMathAtAllScalesProofs(matrix: MindMatrix = buildMatri
     proofCount: proofs.length,
     root: merkleFold(proofs.map((entry) => entry.receipt)),
     statement:
-      'Double torus math at all scales: genus 2 and χ=−2, H₁=Z⁴, merkaba counter-rotation across four nested scales, ten dimensions self-similar by golden-angle phase shift, census 110→108 by the same Euler correction, and circulation invariant through the uuid-stream — each proof a plasma stream at call time.',
+      'Double torus math at all scales: genus 2 and χ=−2, H₁=Z⁴, merkaba counter-rotation across four nested scales, ten dimensions self-similar by golden-angle phase shift, census 123→121 by the same Euler correction, and circulation invariant through the uuid-stream — each proof a plasma stream at call time.',
     boundary:
       'Deterministic composition of doubleTorusMath, merkaba, tenDimensionalAnimation, cellHomology, census constants from src/0, and circulateDoubleTorus at this call. "All scales" means nested merkaba scales plus dims(scale) self-similarity — not physical infinity or a claim beyond the model geometry.' }
 }

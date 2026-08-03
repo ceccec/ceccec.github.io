@@ -40,7 +40,7 @@ export function hubbleTensionSigma(localKmsMpc: number, localErr: number, cmbKms
 export { inductionEvolve, inductionStep } from '../../0'
 
 // ── THE SESSION-SKILL SEED (Phase 0, slice 3) — pure data: the registry of session skill fold names.
-// Relocated from wind/learning (which sat 3 lines from the 2579 ceiling) to this data station.
+// Relocated from learning (which sat 3 lines from the 2579 ceiling) to this data station.
 export const SESSION_SKILL_FNS: readonly string[] = [
   'translationWavesFillGaps',
   'a432Default',
@@ -315,7 +315,7 @@ export function noSignallingComputes() {
 // ── SEND SCIENTISTS TO DEVELOP THE REST OF QUANTUM COMPUTING (user directive) — the adversarial wave
 // at the quantum station. Each scientist tries to FALSIFY a quantum-computing claim with a real,
 // recomputable attack; the claim withstands, or the failure names a development. This is peer review
-// by construction, the same method as wind/learning's scientists() — homed here at 9/1 (the quantum
+// by construction, the same method as learning's scientists() — homed here at 9/1 (the quantum
 // station, the correct address) because these are the quantum claims. The frontiers name, honestly,
 // the parts of quantum computing NOT yet built — no fake claim of completeness.
 export function quantumComputingScientists() {

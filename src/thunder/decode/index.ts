@@ -5,14 +5,14 @@ import { survive } from '../../mountain/vortex'
 // relocated I Ching decode cluster deps (call-time bindings; no load cycle)
 import { hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality } from '../../mountain/geometry'
 import { a432IsTheBlood } from '../../lake/music'
-import { A432_HUE, A432_OCTAVES, DIMENSIONS, DIMENSION_NAMES, FOLDED_CENSUS, PHI, SINGLE_WORD_METHODS, TAU, claySolvedTheorem } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, A432_FOLDED, DIMENSIONS, DIMENSION_NAMES, FOLDED_CENSUS, PHI, SINGLE_WORD_METHODS, TAU, claySolvedTheorem } from '../../3/7'
 // Cycle-safe namespace binding for the cosmology folds composed into the mystery atlas (referenced at call time).
 import * as __ns_water_cosmos from '../../water/cosmos'
 import { iChingDomainMap, threeEightFoldsTopNav } from '../../heaven/balance'
 import { commandsSavedInQuantumPairs, commandsRegistry } from '../commands'
 import { BAGUA, iChing } from '../../heaven/core'
 import { glagoliticHomeFromEnglish } from '../../fire/li'
-import { mcpToolManifest } from '../../wind/learning'
+import { mcpToolManifest } from '../../learning'
 import { digitDualityPairsEncodeAllDomains } from '../../water/digit'
 import { merkabasInDoubleTorus, fuse64SealsMerkaba64Tetrahedra } from '../../mountain/topology'
 import { bulgarianHeritageEightfold } from '../../earth/world'
@@ -27,7 +27,7 @@ import { DEMO_RSA_BIT_CEILING, refuseNonDemoRsaModulus } from '../../water/encry
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture'
 import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignChannelsAndCenters, humanDesignVerifiedWheel, yinYang } from '../../quantum/lake/icons'
-import { decodeKnowledge, skillAtoms } from '../../wind/learning'
+import { decodeKnowledge, skillAtoms } from '../../learning'
 import { conceptCommands } from '../../heaven/atoms'
 import { ancientTech, calligraphyStroke, chess358, glagolitic, goldenRatio, metatronsCube, plasmaContainment, tightenProse, universalLanguage, a432 } from '../../fire/li'
 import { astrology, babelFold } from '../../earth/world'
@@ -1331,7 +1331,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
   return memoByRoot(`ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const coupled = coupledCalendarTori(matrix)
     const rings = ancientCalendars(matrix)
-    const heroCycleMs = FOLDED_CENSUS * 1e3 // same derivation as HERO_CYCLE_MS — no plasma import (cycle-safe)
+    const heroCycleMs = A432_FOLDED * 1e3 // 108 s — same derivation as HERO_CYCLE_MS (a432 harmonic, not the corpus fold); no plasma import (cycle-safe)
     const daySeed = floor(abs(at) / (1000 * 60 * 60 * 24)) % 1_000_000
     const mod = (n: number, m: number) => ((n % m) + m) % m
 
@@ -1398,9 +1398,9 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
     const heroMap = {
       id: 'hero-a432-phase',
       theorem: 'Hero clock phase-in-phase · A432 octave windows',
-      map: `φ_outer = (t mod HERO)/HERO; φ_inner = (t mod HERO/d)/(HERO/d); HERO=FOLDED_CENSUS×1e3=${heroCycleMs}; window∈A432_OCTAVES`,
+      map: `φ_outer = (t mod HERO)/HERO; φ_inner = (t mod HERO/d)/(HERO/d); HERO=A432_FOLDED×1e3=${heroCycleMs}; window∈A432_OCTAVES`,
       nested: `φ_outer=${roundTo(phaseOuter, 4)} · φ_inner=${roundTo(phaseInner, 4)} · d=${rung} · octave=${a432Window} · TAU=${TAU}`,
-      holds: heroCycleMs === FOLDED_CENSUS * 1e3 && a432Window === FOLDED_CENSUS && TAU > 6 && phaseOuter >= 0 && phaseOuter < 1 && phaseInner >= 0 && phaseInner < 1 }
+      holds: heroCycleMs === A432_FOLDED * 1e3 && a432Window === A432_FOLDED && TAU > 6 && phaseOuter >= 0 && phaseOuter < 1 && phaseInner >= 0 && phaseInner < 1 }
     // Vedic — only sealed digital-root / mod-9 square (no Vedic civil calendar constants in src)
     const vedicDayFold = digitalRoot(daySeed === 0 ? 9 : daySeed)
     const vedicMap = {
@@ -1446,7 +1446,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       officialStatement:
         'Ancient calendars decode as algebraic theorems mapping time in time: each tradition is a modular/product/epoch map; nested scales and LCM meshes place phase inside phase (calendar↔calendar · hero rung inside hero cycle).',
       detailedExplanation:
-        `Nine sealed maps recompute at call time from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · FOLDED_CENSUS×1e3 hero · A432_OCTAVES · digitalRoot. ` +
+        `Nine sealed maps recompute at call time from mayaLongCount/mayaDays · sexagesimal · coupledCalendarTori · ancientCalendars · A432_FOLDED×1e3 hero · A432_OCTAVES · digitalRoot. ` +
         `Canonical sections (statement · explanation · formulas · status). NOT a Clay Millennium challenge.`,
       formula:
         calendars.map((c) => `${c.id}: ${c.map}`).join('\n') +

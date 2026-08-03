@@ -5,7 +5,7 @@ import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
 import * as __ns_up_up_thunder_waves from '../../thunder/waves'
-import { FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SIX, ROSETTA_SEVEN } from '../../pair/enforcement/gates/computational'
+import { FOLDED_CENSUS, A432_FOLDED, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SIX, ROSETTA_SEVEN } from '../../pair/enforcement/gates/computational'
 import { realign } from '../../mountain/vortex'
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
@@ -21,7 +21,7 @@ import { a432, a432Default, a432NoteHz, a432Semitones, colorFromSound, distribut
 import { harmonicSeriesDecoded, healingFrequencies } from '../ledger'
 import { staticPages } from '../../wind/site'
 import { conceptCommands } from '../../heaven/atoms'
-import { skillAtoms } from '../../wind/learning'
+import { skillAtoms } from '../../learning'
 import { DIMENSIONS } from '../../quantum/mountain/dimensions'
 import { cssIsIChingComputed, DOCUMENTED_HARMONICS, harmonicFoldLabel, harmonicCountsProvenByMath, harmonicMathFlowsInMovie, foldedCensus } from '../../earth/architecture'
 import { efficiencyMathFlowsInMovie } from '../../thunder/verify'
@@ -214,7 +214,7 @@ function emrHologramSealedByMathRaw(matrix: MindMatrix = buildMatrix()) {
 // nodes of the ladder, each a real harmonic of the fundamental.
 export function harmonics(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const fundamental = FOLDED_CENSUS // 110 + χ(−2) — sealed in src/0, not re-derived in hot paths
+  const fundamental = A432_FOLDED // 108 — the fixed a432 harmonic base (decoupled from the corpus fold 121)
   const octaves = [0, 1, 2, 3, 4, 5].map((k) => {
     const value = fundamental * 2 ** k
     return { kind: 'octave', step: k, value, ratio: `108·2^${k}`, root: toUuid(`harmonic:octave:${k}:${value}`) }
@@ -1195,7 +1195,7 @@ export function harmonicPredictionSurprise(opts: { priceVariant?: string; barCou
 /** Documented Earth–ionosphere cavity ELF modes (Hz) — literature values, not live magnetometer data. */
 export const SCHUMANN_HARMONICS_HZ: readonly number[] = [7.83, 14.3, 20.8, 27.3, 33.8]
 
-const HERO_CYCLE_MS = FOLDED_CENSUS * (100 * 5 * 2) // 108 s — same derivation as the canonical clock in fire/plasma/ball
+const HERO_CYCLE_MS = A432_FOLDED * (100 * 5 * 2) // 108 s — same derivation as the canonical clock in fire/plasma/ball
 
 /** Schumann cavity phase at instant `at` (ms) — locked to hero clock and humanBreath. */
 export function schumannPhaseAt(at: number, fundamentalHz = SCHUMANN_FUNDAMENTAL_HZ): number {

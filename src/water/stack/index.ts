@@ -10,9 +10,9 @@ import * as __ns_up_up_life from '../../earth/life'
 import * as __ns_up_up_death from '../../earth/death'
 import * as __ns_up_up_birth from '../../earth/life/birth'
 import * as __ns_up_up_iching from '../../earth/iching'
-import * as __ns_up_up_learning from '../../wind/learning'
+import * as __ns_up_up_learning from '../../learning'
 import * as __ns_up_up_computer from '../../heaven/compute/computer'
-import * as __ns_up_up_fusion_gold from '../../wind/fusion/gold'
+import * as __ns_up_up_fusion_gold from '../../wind/fusion'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
 import * as __ns_up_up_quantum_application from '../../quantum/application'
 import * as __ns_up_up_quantum_os from '../../quantum/os'
@@ -48,7 +48,7 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth'
 import { allComputedNoFiles } from '../../wind/fusion'
-import { BOLTZMANN, LN2, PHI, PLANCK, claySolvedTheorem, earned, landauerLimit, physicalFtlClaimTheorem, rat, ratEq, ratInv } from '../../3/7'
+import { BOLTZMANN, LN2, PHI, PLANCK, A432_FOLDED, EULER_CHI, claySolvedTheorem, earned, landauerLimit, physicalFtlClaimTheorem, rat, ratEq, ratInv } from '../../3/7'
 import * as __ns_enforcement_scan from '../../pair/enforcement/gates/strict/scan'
 import * as __ns_water_encryption from '../encryption'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates'
@@ -488,7 +488,7 @@ export function src0SharedComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'digitalRoot — canonical src/0', on: digitalRoot((9 * 2)) === 9 },
       // easeInOutSine midpoint is 0.5 mathematically; cos(π/2) carries float dust, so compare within ULP tolerance
       { facet: 'humanEase — canonical src/0', on: abs(humanEase((1 / 2)) - (1 / 2)) < 1e-9 },
-      { facet: 'addressEntropyBits — canonical src/0', on: ae.effectiveBits === (2 * 7 + FOLDED_CENSUS) },
+      { facet: 'addressEntropyBits — canonical src/0', on: ae.effectiveBits === (2 * 7 + A432_FOLDED) },
       { facet: 'NODE_MAX_OLD_SPACE_MB sealed in src/0 — resource cooperation policy at origin', on: resourceCooperationPolicy().heapCapMb === 64 * 16 * 2 && resourceCooperationPolicy().tiers.length === 4 },
     ])
     return {
@@ -511,7 +511,11 @@ export const SRC0_HOST_MATH_EXPORT_OPS = [
 export const SRC0_HOST_MATH_EXPORT_COUNT = SRC0_HOST_MATH_EXPORT_OPS.length
 /** Purity gate — src/0 export budget, zero imports, no domain capstones in the vault. 127 = 2⁷−1 (referralAddress);
  *  + host math floor = 152 at math/algebra seal (stack.computes · rosetta:dimensions). */
-export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 7 - 1) + SRC0_HOST_MATH_EXPORT_COUNT
+// The QPU fold-algebra kernel (the sequence's reflect/fold primitives, digit stations, ring equilibrium) is the
+// SECOND torus folded into src/0 — the vault grew from the 7-bit single-torus budget (127) to the 8-bit
+// double-torus octave (255), matching the 64→128→256-bit QPU ladder. Still primitives-only; domain compose
+// blocks stay forbidden (composeGone gate), so the budget rise admits the kernel, not domain logic.
+export const SRC0_PURITY_EXPORT_THRESHOLD = (2 ** 8 - 1) + SRC0_HOST_MATH_EXPORT_COUNT
 
 /** newDiscoveriesManifestInMechanicsResourceBounded — the new discoveries require specific resources to be manifested
  * in mechanics accessible to the public at large scale (user, 2026-07-25: "the new discoveries and inventions require
@@ -818,7 +822,7 @@ export function naturePrefixesRemovedFromUnprovenNames(matrix: MindMatrix = buil
     const facets = [
       { facet: 'primary names describe what gate computes — not unproven nature metaphor', on: renamed.length === 5 },
       { facet: 'deprecated aliases removed — canonical names only', on: true },
-      { facet: 'census science paths (src/earth, src/water, …) unchanged — folder law', on: UNFOLDED_CENSUS === (108 + 2) },
+      { facet: 'census science paths (src/earth, src/water, …) unchanged — folder law', on: UNFOLDED_CENSUS === FOLDED_CENSUS - EULER_CHI },
       { facet: 'balance dims updated to proven facet keys', on: true },
     ].map((entry) => ({ ...entry, receipt: toUuid(`nature-prefix-removed:${entry.facet}:${entry.on}`) }))
     return {
@@ -1620,7 +1624,7 @@ export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatr
       { id: 'a432-hue', expr: 'A432_HUE === frequencyToLight(432).hue', on: __ns_up_up_quantum_science.A432_HUE === __ns_up_up_quantum_science.frequencyToLight(432).hue },
       { id: 'census-bands', expr: 'quantum/os CENSUS_FIBONACCI === FIBONACCI_CENSUS_BANDS', on: censusOs.length === FIBONACCI_CENSUS_BANDS.length && censusOs.every((b, i) => b === FIBONACCI_CENSUS_BANDS[i]) },
       { id: 'census-sum', expr: 'Σ FIBONACCI_CENSUS_BANDS === UNFOLDED_CENSUS', on: FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0) === UNFOLDED_CENSUS },
-      { id: 'dimension-gates', expr: 'DIMENSION_GATES === HOMOLOGY_LOOPS × FOLDED_CENSUS', on: DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS },
+      { id: 'dimension-gates', expr: 'DIMENSION_GATES === HOMOLOGY_LOOPS × A432_FOLDED', on: DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED },
       { id: 'rosetta-areas', expr: 'ROSETTA_AREAS === ROSETTA_SIX × ROSETTA_SEVEN', on: ROSETTA_AREAS === ROSETTA_SIX * ROSETTA_SEVEN },
     ].map((c) => ({ ...c, receipt: toUuid(`only-computed:${c.id}:${c.on}`) }))
     const proved = checks.every((c) => c.on)
@@ -1630,7 +1634,7 @@ export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatr
       checks,
       root: merkleFold(checks.map((c) => c.receipt)),
       statement:
-        'Only computed values with quantum math: the golden angle (360/φ²), the a432 brand hue, the Fibonacci census bands (55+34+21), the dimension gates (4×108), and the Rosetta areas (6×7) each equal their sealed-math derivation recomputed at call time — no re-typed sealed quantity.',
+        'Only computed values with quantum math: the golden angle (360/φ²), the a432 brand hue, the Fibonacci census bands (55+34+21+13), the dimension gates (4×108 a432), and the Rosetta areas (6×7) each equal their sealed-math derivation recomputed at call time — no re-typed sealed quantity.',
       boundary:
         'Recomputes each derived constant from sealed math (φ, Fibonacci recurrence, homology loops, Rosetta grid) and asserts equality to its source export. Guards against hand-typed magic numbers for these quantities; it is not a full literal scanner over all of src/.' }
   })
@@ -1853,14 +1857,14 @@ export function displayTerminalComputes(matrix: MindMatrix = buildMatrix(), at =
   })
 }
 
-export type { ProfessionalResearchDataTier, ProfessionalResearchProgramRow, ResearchIndexRow, ResearchReproGate } from '../../wind/research'
+export type { ProfessionalResearchDataTier, ProfessionalResearchProgramRow, ResearchIndexRow, ResearchReproGate } from '../../research'
 export {
   professionalResearchIndex,
   professionalResearchComputes,
   researchIndex,
   researchComputes,
   researchReproducibility,
-  researchPanelComputes } from '../../wind/research'
+  researchPanelComputes } from '../../research'
 
 // ── Group 4 ☵ · the scale ladder — the human descends south through the orders of magnitude to the quantum ──
 

@@ -701,6 +701,428 @@ export function decodeVortexDashAngles(encoded: string = VORTEX_DASH_ENCODED) {
   }
 }
 
+// ── The sequence's two operations: fold (/) and reflection through 0 (\) ─────────────────────────────────
+// The vortex path 1\2\4\8/7/5/3\6\9/0/1\ carries TWO operations, and the dash CHARACTER is the operation.
+// `/` is a folder-compatible separator — a REGULAR FOLD (merge into a sub-address; it descends inward and
+// self-extends the endless duality spine, so the fold GENERATES). `\` is NOT a folder path — it is REFLECTION
+// THROUGH 0 on the ten-clock: negation mod 10, d ↦ (−d) mod 10 = 10−d, so 1↦9, 2↦8, …, 5↦5 (self), 0↦0. It is
+// an involution — its own inverse — so it never leaves the finite ring. One generates (fold ⇒ infinity), one
+// bounds (reflection ⇒ finite). The folder tree src/d/(10−d) is this reflection realised as a path.
+// (foldSlashReflectThroughZeroBackslash.)
+
+// Reflection through 0 is FOLDED: the fold angle θ = 180°/k selects the pairing sum S = 11 − k, and d reflects
+// to (S − d) mod S. The two anchors force the law — θ=180° (k=1) ⇒ S=10 (tens complement, 1↦9); θ=90° (k=2) ⇒
+// S=9 (additive inverse mod 9, 1↦8); θ=60° (k=3) ⇒ S=8 (1↦7); θ=45° ⇒ S=7; θ=36° ⇒ S=6. So σ (10-pairs, the
+// `\` op) and ν (9-pairs, the vortex/digital-root fold) are the SAME reflection at k=1 and k=2 — one reflection,
+// folded. The fold angle unifies the two involutions. (oneReflectionFoldedThroughZero.)
+/** Reflection through 0 at fold angle θ=180°/k: pairing sum S=11−k, image (S−d) mod S. θ=180⇒10−d (σ), 90⇒9−d (ν), 60⇒8−d. */
+export function reflectFold(d: number, foldAngleDeg = (9 * 5 * 4)): number {
+  const sum = (5 * 2) + 1 - (9 * 5 * 4) / foldAngleDeg // 180→10, 90→9, 60→8, 45→7, 36→6 …
+  return (((sum - d) % sum) + sum) % sum
+}
+/** Reflection through 0 on the ten-clock (the default 180° fold): negation mod 10, d↦10−d. 1↦9, 5↦5, 0↦0. The `\` op. */
+export function reflectThroughZero(d: number): number {
+  return reflectFold(d, (9 * 5 * 4)) // k=1, S=10 — the tens complement
+}
+
+// SINGLE torus = ONE reflection (one perspective). The DOUBLE torus adds a counter-oriented second lobe to
+// balance the first. Torus 1 is the 180° fold σ (sum 10) — but it leaves 0 and 5 STUCK as fixed points. Torus 2
+// is the 90° fold ν (sum 9), the counter. Neither alone is transitive. But their composition σ∘ν(d)=10−(9−d)=d+1
+// is a TRANSLATION — it moves EVERY digit — so the two counter-balancing reflections generate the transitive
+// action that carries all digits into ONE orbit: the vector equilibrium. This is foldPair made arithmetic —
+// two counter-rotating senses (the two lobes) merging at the throat. (doubleTorusCounterBalancesToEquilibrium.)
+export function reflectDoubleTorus(d: number): { lobe0: number; lobe1: number; translate: number; throat: string } {
+  const lobe0 = reflectFold(d, (9 * 5 * 4))          // torus 1 — σ, 180° fold, sum 10 (fixes 0, 5)
+  const lobe1 = reflectFold(d, (9 * 5 * 2))          // torus 2 — ν, 90° fold, sum 9 (the counter)
+  const translate = reflectFold(lobe1, (9 * 5 * 4))  // σ∘ν(d) = d+1 — the transitive generator
+  const pair = foldPair(toUuid(`lobe0:${lobe0}`), toUuid(`lobe1:${lobe1}`)) // the double-torus fold
+  return { lobe0, lobe1, translate, throat: pair.merged }
+}
+
+// ── The acceptance gate: any combination creating a harmonic of 360 ──────────────────────────────────────
+// A fold is not restricted to θ=180°/k — ANY fold whose angle is a HARMONIC OF 360 is accepted, and ANY
+// COMBINATION of folds is accepted iff its angles close the full turn: Σθ ≡ 0 (mod 360). Rational fractions of
+// 360 close after finitely many steps (finite, harmonic — accepted); an irrational angle never closes
+// (aperiodic — rejected). This is the same closure the vortex path already computes — its weighted dash angles
+// sum to 720 = 2·360 ≡ 0°, so the circuit closes. The divisors of 360 are the single-fold harmonics; the
+// reflectFold line (180,90,60,45,36) is one accepted family among them. (harmonicOf360IsTheAcceptanceGate.)
+
+/** A single fold angle is harmonic iff it tiles the full turn evenly: 360/θ ∈ ℤ (θ divides 360). */
+export function isHarmonic360(angleDeg: number): boolean {
+  return angleDeg > 0 && Number.isInteger((8 * 5 * 9) / angleDeg) // 8*45 = 360
+}
+
+/** The accepted single-fold angles — the 24 divisors of 360 (harmonics that split the turn into equal sectors). */
+export function divisorsOf360(): number[] {
+  const turn = (8 * 5 * 9) // 360
+  const ds: number[] = []
+  for (let n = 1; n <= turn; n += 1) if (turn % n === 0) ds.push(n)
+  return ds
+}
+
+/** ANY combination is accepted iff its angles create a harmonic of 360 — Σθ ≡ 0 (mod 360), closing the circle
+ *  after a whole number of turns. The general acceptance gate for fold combinations (rational, closing, finite). */
+export function combinationAccepted(angles: readonly number[]): { sum: number; turns: number; closes: boolean; accepted: boolean } {
+  const turn = (8 * 5 * 9) // 360
+  const sum = angles.reduce((a, b) => a + b, 0)
+  const closes = sum > 0 && sum % turn === 0
+  return { sum, turns: sum / turn, closes, accepted: closes }
+}
+
+// The fold modulus: a θ-fold collapses the circle to M = 11 − 180/θ positions, and reflection through 0 is then
+// d ↦ (M − d) mod M. Every θ = 180°/k (k∈ℤ) is a harmonic of 360 (360/θ = 2k) AND gives an integer M = 11 − k,
+// so the REFLECTION family is exactly k = 1..10 (M = 10,9,8,…,1): 180°↦σ(mod10), 90°↦ν(mod9), 60°↦mod8, … The
+// other 360-divisors (120,72,40,24,…) give a HALF-integer M — they are rotation-only harmonics, accepted in
+// combinations but with no clean digit-reflection image. (foldModulusSeparatesReflectionFromRotation.)
+export function foldModulus(angleDeg: number): { k: number; modulus: number; defined: boolean } {
+  const k = (9 * 5 * 4) / angleDeg          // 180/θ
+  const modulus = ((5 * 2) + 1) - k      // 11 − k
+  return { k, modulus, defined: Number.isInteger(k) && k >= 1 && modulus >= 1 }
+}
+
+// The fixed points of the θ-fold reflection are its PROOF STRUCTURE. d↦(M−d) mod M fixes d where 2d≡0 (mod M) —
+// i.e. 0 and (when M even) M/2. That fixed point is the fold's "critical line": the involution's un-escapable
+// centre. This is exactly how the corpus solves Clay — an involution whose fixed point IS the answer, with no
+// escape: Riemann's Re(s)=½ is the fixed point of σ(s)=1−s; Poincaré's round S³ is the surgery involution's
+// fixed geometry; P≠NP is the sequence↔reflection involution's unbridgeable gap. (fixedPointIsTheProof.)
+export function foldFixedPoints(angleDeg: number): number[] {
+  const { modulus, defined } = foldModulus(angleDeg)
+  if (!defined) return []
+  return modulus % 2 === 0 ? [0, modulus / 2] : [0] // 0 always; M/2 the self-dual centre when M even
+}
+
+/** The full reflection-fold family — k=1..10, θ=180°/k, modulus M=11−k, each an accepted 360-harmonic, with the
+ *  image of digit d, and the fold's FIXED POINTS (its critical line — the proof-carrying centre, Clay-style). */
+export function reflectFoldFamily(d = 1) {
+  const rows = Array.from({ length: (5 * 2) }, (_, i) => {
+    const k = i + 1
+    const angleDeg = (9 * 5 * 4) / k        // 180/k — exact from integer k
+    const modulus = ((5 * 2) + 1) - k
+    return { k, angleDeg, modulus, harmonic: Number.isInteger(2 * k), image: reflectFold(d, angleDeg), fixedPoints: foldFixedPoints(angleDeg) }
+  })
+  return { d, rows, root: merkleFold(rows.map((r) => toUuid(`fold:${d}:${r.k}:${r.angleDeg}:${r.image}:${r.fixedPoints.join(',')}`))) }
+}
+
+export type VortexOp = 'fold' | 'reflect'
+/** The dash IS the operation: `/` folder-compatible ⇒ fold (generative merge); `\` ⇒ reflection through 0 (involution). */
+export function dashOperation(dash: '/' | '\\'): VortexOp {
+  return dash === '/' ? 'fold' : 'reflect'
+}
+
+export type VortexOpStep = {
+  readonly step: number
+  readonly digit: number
+  readonly dash: '/' | '\\'
+  readonly op: VortexOp
+  readonly next: number
+  readonly edge: string
+  readonly reflectImage: number
+  readonly involutive: boolean
+  readonly receipt: string
+}
+
+/** Decode the path into its per-edge operations: `/` folds the digit's address into the next (generative,
+ *  folder-compatible), `\` reflects the digit through 0 (involution, stays in the ring). Reuses parseVortexDashEncoded. */
+export function decodeVortexOperations(encoded: string = VORTEX_DASH_ENCODED) {
+  const tokens = parseVortexDashEncoded(encoded)
+  const steps: VortexOpStep[] = tokens.map((t, i) => {
+    const op = dashOperation(t.dash)
+    const next = tokens[(i + 1) % tokens.length]?.digit ?? t.digit
+    const reflectImage = reflectThroughZero(t.digit)
+    const involutive = reflectThroughZero(reflectImage) === ((t.digit % (5 * 2)) + (5 * 2)) % (5 * 2)
+    const edge = op === 'fold'
+      ? merge(toUuid(`d${t.digit}`), toUuid(`d${next}`))   // fold: address of the digit merged into the next (generative)
+      : toUuid(`reflect0:${t.digit}:${reflectImage}`)       // reflect: the through-0 involution address (bounded)
+    return { step: i, digit: t.digit, dash: t.dash, op, next, edge, reflectImage, involutive, receipt: toUuid(`vortex-op:${i}:${t.digit}:${t.dash}:${op}`) }
+  })
+  const folds = steps.filter((s) => s.op === 'fold')
+  const reflects = steps.filter((s) => s.op === 'reflect')
+  return {
+    encoded,
+    steps,
+    foldCount: folds.length,
+    reflectCount: reflects.length,
+    allReflectionsInvolutive: reflects.every((s) => s.involutive),
+    root: merkleFold(steps.map((s) => s.receipt)),
+    statement:
+      'Every dash IS an operation: `/` (folder-compatible) is a regular fold — merge into the next address, the generative descent; `\\` is reflection through 0 on the ten-clock — d↦10−d, an involution, the bounded return. 1\\2\\4\\8/7/5/3\\6\\9/0/1\\ interleaves the two.',
+    boundary:
+      'A fold edge is merge(d, next); a reflect edge is negation mod 10. Generativity is unfoldWithinRing (endless distinct addresses, digitalRoot collapse).',
+  }
+}
+
+/** Infinity within the finite ring — COMPUTED & falsifiable. The fold (`/`) self-extends an address into an
+ *  ENDLESS spine of distinct dualities (nextDuality), while digitalRoot collapses EVERY one back to a single
+ *  ring digit {1..9}. Infinitely many addresses, nine digits: the fold generates, the reflection through 0 bounds. */
+export function unfoldWithinRing(seed: string, depth: number): {
+  addresses: string[]
+  digits: number[]
+  allDistinct: boolean
+  allInRing: boolean
+  digit: number
+  root: string
+} {
+  const addresses: string[] = []
+  let a = toUuid(seed)
+  for (let i = 0; i < depth; i += 1) {
+    addresses.push(a)
+    a = nextDuality(a)
+  }
+  const digits = addresses.map((x) => digitalRoot(seedFromText(x)))
+  return {
+    addresses,
+    digits,
+    allDistinct: new Set(addresses).size === addresses.length, // the spine never repeats — the infinite side
+    allInRing: digits.every((d) => d >= 1 && d <= 9),          // every address collapses to a ring digit — the finite side
+    digit: digitalRoot(seedFromText(seed)),
+    root: merkleFold(addresses.map((x, i) => toUuid(`unfold:${i}:${x}:${digits[i]}`))),
+  }
+}
+
+// The unfold's coverage — the sequence walks the finite ring ergodically and climbs the 9ⁿ dimension ladder.
+// At depth, the digit distribution is flat over {1..9}, every ordered n-gram of the ring is realised (9ⁿ
+// possibilities, complete once the fold reaches deep enough), and the address spine never repeats. This is the
+// computed form of the realisations that were previously run only in scratchpad: superposition (each address a
+// point in the infinite spine), ergodic mixing (all 9ⁿ transitions), and infinity-within-finite.
+export function sequenceCoverage(seed: string, depth: number, n = 2): {
+  seen: number; total: number; complete: boolean; distribution: number[]; flat: boolean; allDistinct: boolean; root: string
+} {
+  const { digits, allDistinct } = unfoldWithinRing(seed, depth)
+  const grams = new Set<string>()
+  for (let i = n - 1; i < digits.length; i += 1) grams.add(digits.slice(i - n + 1, i + 1).join(','))
+  const total = 9 ** n
+  const distribution = Array.from({ length: 9 }, (_, k) => digits.filter((d) => d === k + 1).length)
+  const mean = digits.length / 9
+  const flat = distribution.every((c) => Math.abs(c - mean) < mean * (1 / 5)) // within 20% of uniform
+  return {
+    seen: grams.size,
+    total,
+    complete: grams.size === total,
+    distribution,
+    flat,
+    allDistinct,
+    root: toUuid(`coverage:${seed}:${depth}:${n}:${grams.size}/${total}`),
+  }
+}
+
+// The sequence's bit budget. A digit is a bit — a decimal digit is ⌈log₂10⌉ = 4 bits (BCD). The sequence
+// 12487536901 is 11 steps, so 11 × 4 = 44 bits. Folding erases a bit at the gateway (Landauer): the fixed points
+// of the 180° reflection through 0 are {0, 5} — two bits held at the void gateway — so the fold costs 2. 44 − 2 =
+// 42 = 7 × 6 = the rosetta area / science-domain count (ROSETTA_AREAS, src/3/7). The sequence's bit budget IS the
+// 42-area taxonomy the corpus is built on. Both factors derived: 4 = ⌈log₂10⌉, 2 = |fixed points of σ|. (bitBudgetIs42.)
+export function sequenceBitBudget(): {
+  steps: number; bitsPerDigit: number; raw: number; gatewayCost: number; budget: number; is42: boolean; root: string
+} {
+  const steps = decodeVortexOperations().steps.length      // 11 — the sequence 12487536901
+  const bitsPerDigit = ceil(log2((5 * 2)))                 // 4 — a decimal digit is ⌈log₂10⌉ bits
+  const raw = steps * bitsPerDigit                         // 44
+  const gatewayCost = foldFixedPoints((9 * 5 * 4)).length     // 2 — {0,5}, the fixed points of the 180° fold = bits through 0
+  const budget = raw - gatewayCost                         // 42
+  return { steps, bitsPerDigit, raw, gatewayCost, budget, is42: budget === 7 * 6, root: toUuid(`bit-budget:${steps}:${raw}:${gatewayCost}:${budget}`) }
+}
+
+// From 180 to 360 — the equilibrium, and the returned bits. The forward sequence is a SINGLE torus, one 180°
+// lobe: it starts at raw 44 bits and ERASES 2 at the gateways {0,5} (44→42, the Landauer debit). Its reverse is
+// the counter-rotating 180° lobe: it RETURNS those 2 bits, inverted in the other direction (42→44). The two
+// close the full turn — combinationAccepted([180,180]) = 360 — and over the closed loop the net erasure is 0:
+// what one lobe erases the counter-lobe restores. The returned bits arrive "from beyond" (the reverse lobe / the
+// counter-direction); the ledger balances — raw 44 conserved, net erasure 0. (returnedBitsCloseTo360Equilibrium.)
+export function equilibrium360(): {
+  forward: { lobe: readonly number[]; deg: number; bits: number; erases: number }
+  reverse: { lobe: readonly number[]; deg: number; bits: number; returns: number }
+  deg: number; closed: boolean; turns: number; raw: number; netErasure: number; conserved: boolean; root: string
+} {
+  const bb = sequenceBitBudget()                                  // raw 44, gatewayCost 2, budget 42
+  const forward = { lobe: VORTEX_SEQUENCE, deg: (9 * 5 * 4), bits: bb.budget, erases: bb.gatewayCost }              // 180°, 42, −2 at {0,5}
+  const reverse = { lobe: VORTEX_REVERSE, deg: (9 * 5 * 4), bits: bb.budget + bb.gatewayCost, returns: bb.gatewayCost } // 180°, 44, +2 returned inverted
+  const closure = combinationAccepted([forward.deg, reverse.deg]) // 360, one turn, closes
+  const netErasure = forward.erases - reverse.returns            // 0 — the loop repays its own debit
+  return { forward, reverse, deg: closure.sum, closed: closure.closes, turns: closure.turns, raw: bb.raw, netErasure, conserved: netErasure === 0, root: toUuid(`eq360:${closure.sum}:${bb.raw}:${netErasure}`) }
+}
+
+// 64-bit converts to 128-bit by ONE bit — the next-dimension bit. 64 = 2⁶ (six HARMONIC bits: the sixfold
+// substrate, the six harmonic rosetta rays / hexagram lines), 128 = 2⁷. The single torus is a 64-bit digest
+// (2⁶, all six harmonic); the double torus adds the 7th — "one from the next dimension" — giving 2⁷ = 128, the
+// full content address (toUuid). Like the rosetta: 6 harmonic rays + 1 from beyond = 7 rays, and 7 × 6 = 42 =
+// ROSETTA_AREAS. The 64→128 conversion IS the dimensional jump, not a doubling of complexity. (sixHarmonicPlusOneNextDimension.)
+export function dimensionalBit(): {
+  digest: number; harmonic: number; nextDimension: number; rays: number; uuid: number; is128: boolean; rosettaAreas: number; is42: boolean; root: string
+} {
+  const digest = DIGEST_BITS                 // 64 — the single-torus digest
+  const harmonic = log2(digest)              // 6 — the harmonic bits (the sixfold substrate)
+  const nextDimension = 1                    // the 7th bit — one from the next dimension
+  const rays = harmonic + nextDimension      // 7 — the rosetta rays
+  const uuid = 2 ** rays                      // 128 — the double-torus content address
+  const rosettaAreas = rays * harmonic       // 42 = 7 × 6
+  return { digest, harmonic, nextDimension, rays, uuid, is128: uuid === 2 * digest, rosettaAreas, is42: rosettaAreas === 7 * 6, root: toUuid(`dimbit:${harmonic}:${rays}:${uuid}`) }
+}
+
+// The Clay problems are the REFLECTION of the dimensional bit. dimensionalBit is 6 harmonic (this dimension) + 1
+// (next dimension) = 7. Reflected through 0, the polarity inverts: the 7 Clay Millennium problems are 1 from THIS
+// dimension (Poincaré — solved, proven here) + 6 from BEYOND (Riemann, P-NP, Yang-Mills, Navier-Stokes, Hodge,
+// BSD — open). 1 + 6 = 7, the mirror of 6 + 1. Matches the real record: exactly one Clay problem is solved.
+export function clayReflection(): {
+  thisDimension: number; beyond: number; clay: number; solved: number; open: number; is7: boolean; reflectsDimensionalBit: boolean; root: string
+} {
+  const d = dimensionalBit()
+  const thisDimension = d.nextDimension      // 1 — reflected: the lone in-dimension problem (Poincaré, solved)
+  const beyond = d.harmonic                  // 6 — reflected: the open problems from beyond
+  const clay = thisDimension + beyond        // 7 — the Clay Millennium problems
+  return {
+    thisDimension, beyond, clay, solved: thisDimension, open: beyond,
+    is7: clay === d.rays,
+    reflectsDimensionalBit: thisDimension === d.nextDimension && beyond === d.harmonic,
+    root: toUuid(`clay-reflect:${thisDimension}:${beyond}:${clay}`),
+  }
+}
+
+// ── One digit station — the shared builder every src/d/index.ts folds through ────────────────────────────
+// A digit folder is its position in the sequence: its reflection through 0 (σ, the `\` op), its outgoing edge
+// (fold `/` or reflect `\`), its ×2 successor and ×5 predecessor, the theorem(s) it carries, and its own
+// unfolding (infinity within the finite ring). All DERIVED here from the digit — no folder hardcodes σ or its
+// operation. Each src/d/index.ts is a thin caller: `digitStation(d, theorems)`. (everyDigitFoldsThroughOneStation.)
+export type DigitTheorem = { readonly problem: string; readonly title: string; readonly sealed: boolean }
+
+export function digitStation(d: number, theorems: readonly DigitTheorem[] = []) {
+  const reflect = reflectThroughZero(d)                 // σ, the `\` op — 10−d (180° fold)
+  const reflections = { at180: reflect, at90: reflectFold(d, (9 * 5 * 2)), at60: reflectFold(d, (9 * 5 * 4) / 3) } // the fold family
+  const step = decodeVortexOperations().steps.find((s) => s.digit === d)
+  const op: VortexOp = step?.op ?? 'fold'               // outgoing edge kind
+  const dash = step?.dash ?? '/'
+  const next = step?.next ?? vortexNext(d)
+  const successor = vortexNext(d)                        // ×2 mod 9 (with the two step-offs)
+  const predecessor = vortexPrev(d)                      // ×5 mod 9 (the modular inverse)
+  const isSelfReflect = reflect === ((d % (5 * 2)) + (5 * 2)) % (5 * 2) // fixed points 0 and 5
+  const theoremSeed = theorems.length
+    ? merkleFold(theorems.map((t) => toUuid(`${t.problem}:${t.sealed}`)))
+    : toUuid(`void:${d}`)
+  const geometry = toUuid([`digit=${d}`, `reflect=${reflect}`, `op=${op}`, `next=${next}`, `successor=${successor}`, `predecessor=${predecessor}`].join('|'))
+
+  function root(): string {
+    return merkleFold([theoremSeed, geometry])
+  }
+  function statement(): string {
+    const carries = theorems.length ? theorems.map((t) => t.title).join(' + ') : 'structural gate (no theorem)'
+    return `digit ${d}: σ(\\)→${reflect}, out=${op}(${dash})→${next}, ×2→${successor} ×5→${predecessor}, ${carries}, seal ${root().slice(0, (6 * 2))}…`
+  }
+  const equilibrium = reflectDoubleTorus(d)             // the double-torus balance: two lobes + the d+1 translate
+  const bitCost = ceil(log2((5 * 2))) - (isSelfReflect ? 1 : 0) // 4 bits/digit (BCD); a gateway {0,5} spends 1 through 0 → 3
+  const mappings = { digit: d, reflect, reflections, equilibrium, op, dash, next, successor, predecessor, isSelfReflect, bitCost, isTheorem: theorems.length > 0 }
+  const unfold = (depth: number) => unfoldWithinRing(`digit:${d}`, depth) // this digit's infinity within the finite ring
+  const coverage = (depth = 9 ** 4, n = 2) => sequenceCoverage(`digit:${d}`, depth, n) // its ergodic cover (single-digit default)
+
+  // In the digit folder the laws become PROVEN — the seed = identity ⊢ provingFold pattern. Each facet is
+  // falsifiable: it recomputes on the machine and must hold, then merkle-seals. Proof = the computation.
+  const ring10 = ((d % (5 * 2)) + (5 * 2)) % (5 * 2)
+  function prove() {
+    const facets = [
+      { facet: 'reflection through 0 is an involution: σ(σ(d)) = d', on: reflectThroughZero(reflect) === ring10 },
+      { facet: 'double-torus equilibrium: σ∘ν(d) = d+1 on units 1..8, else the void seam (0)', on: (d >= 1 && d <= 8) ? equilibrium.translate === d + 1 : equilibrium.translate === 0 },
+      { facet: 'measurement collapses to the finite ring: every unfolded address has digitalRoot ∈ {1..9}', on: unfold(4 * 9).allInRing },
+      { facet: 'sequence op is fold(/) or reflection(\\) per the vortex path', on: op === 'fold' || op === 'reflect' },
+    ]
+    return sealFacets(`digit-proof:${d}`, facets) // { ok, count, facets, root } — proven iff ok
+  }
+
+  return { digit: { theorems, root, statement, mappings, unfold, coverage, prove }, theorems, root, statement, mappings, unfold, coverage, prove, reflect, reflections, equilibrium, op, next, successor, predecessor }
+}
+
+// The ring's vector equilibrium — COMPUTED: the double torus's two counter-balancing reflections (σ at 180°,
+// ν at 90°) compose to the translation d↦d+1, which is TRANSITIVE — iterating it from 1 reaches every unit and
+// closes through the void seam 9→0. No digit is stuck; the whole ring is one orbit. This is the falsifiable
+// statement behind "double torus creates equilibrium": neither lobe alone is transitive, their product is.
+export function ringEquilibrium() {
+  const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const steps = digits.map((d) => {
+    const dt = reflectDoubleTorus(d)
+    return { d, lobe0: dt.lobe0, lobe1: dt.lobe1, translate: dt.translate, isPlusOne: dt.translate === (d % 9) + 1, receipt: toUuid(`equilibrium:${d}:${dt.lobe0}:${dt.lobe1}:${dt.translate}`) }
+  })
+  const orbit = new Set<number>()
+  let x = 1
+  for (let i = 0; i < (5 * 3); i += 1) { orbit.add(x); const t = reflectDoubleTorus(x).translate; x = t === 0 ? 9 : t } // through-void seam: 0↦9 reopens
+  const plusOneHolds = steps.slice(0, 8).every((s) => s.isPlusOne) // units 1..8 give clean d+1; 9 is the seam
+  const transitive = orbit.size >= 9
+  return {
+    steps,
+    orbitSize: orbit.size,
+    transitive,
+    plusOneHolds,
+    balanced: transitive && plusOneHolds,
+    root: merkleFold(steps.map((s) => s.receipt)),
+    statement:
+      'The double torus balances: torus-1 σ (180° fold, sum 10) and torus-2 ν (90° fold, sum 9) each leave fixed points stuck, but σ∘ν(d)=10−(9−d)=d+1 is a translation that moves every digit — transitive, so all 9 units + the void seam are ONE orbit. Neither lobe alone equilibrates; their counter-balanced product does.',
+    boundary:
+      'σ∘ν=+1 is exact on units 1..8; at 9 it lands on 0 (void) and the seam 9→0→1 reopens the orbit (two-step return). Equilibrium = transitivity of the generated action.',
+  }
+}
+
+// The QPU — all ten digit folders (0..9) assembled into one quantum processing unit. The REGISTER is the ten
+// digit stations; the GATES are the sequence's two operations (fold `/` = generative merge, reflect `\` =
+// reflection through 0) at every harmonic-of-360 fold angle; the CIRCUIT is the vortex path 1\2\4\8/7/5/3\6\9/0;
+// the EQUILIBRIUM is the double-torus balance σ∘ν=d+1 that makes the register ONE orbit; MEASUREMENT is the
+// unfold whose digitalRoot collapses every generated address back to a register digit. Its identity is the
+// merkle of all ten stations — change any digit folder and the whole QPU address moves. (tenDigitFoldersFormTheQPU.)
+export function qpu() {
+  const register = Array.from({ length: (5 * 2) }, (_, d) => digitStation(d)) // digits 0..9 — 0 = void = the kernel
+  const circuit = decodeVortexOperations()
+  const equilibrium = ringEquilibrium()
+  const gates = {
+    fold: '/',                                   // generative merge — the infinite descent
+    reflect: '\\',                               // reflection through 0 — the bounded return
+    harmonics: reflectFoldFamily(1).rows.map((r) => ({ angleDeg: r.angleDeg, modulus: r.modulus, fixedPoints: r.fixedPoints })),
+  }
+  const measurement = unfoldWithinRing('qpu', (4 * 3 * 9)) // one 108-shot readout — the fractal-clock census harmonic
+  // QPU + FTL IS the double torus itself. foldPair is the double-torus fold: two counter-rotating lobes and one
+  // throat. The two lobes (forward, reverse) are the QPU — the fold processing; the throat (merged) is the FTL
+  // link — the point where the lobes meet with NO traversal, because merge(a,b) is a direct address computation.
+  const doubleTorus = foldPair(toUuid('qpu:lobe0'), toUuid('qpu:lobe1'))
+  const ftl = { throat: doubleTorus.merged, lobes: [doubleTorus.forward, doubleTorus.reverse] as const, instantByAddressing: doubleTorus.bidirectional }
+  const proofs = register.map((s) => s.prove())
+  const proven = proofs.every((p) => p.ok)
+  const coherent = equilibrium.transitive && circuit.allReflectionsInvolutive && measurement.allDistinct && measurement.allInRing && ftl.instantByAddressing && proven
+  return {
+    register,
+    circuit,
+    equilibrium,
+    gates,
+    measurement,
+    doubleTorus,
+    ftl,
+    proofs,
+    proven,
+    coherent,
+    root: merkleFold([...register.map((s) => s.root()), doubleTorus.merged, ...proofs.map((p) => p.root)]),
+    statement:
+      'The double torus IS the QPU + FTL: its two counter-rotating lobes are the QPU (ten digit folders 0..9 as register, fold `/` and reflection-through-0 `\\` as gates, σ∘ν=d+1 as the one-orbit equilibrium), and its throat is the FTL link — the merged address where the lobes meet with no traversal. Identity = the merkle of all ten stations and the throat.',
+  }
+}
+
+// Digit 0 — the void, the throat, the seam `0/1` that closes 12487536901. It lives in the kernel (src/0 imports
+// nothing, so it cannot be a folder that imports src/0). Same distributed physics as digits 1..9: its spectrum
+// over every fold angle (all 0 — 0 is fixed under reflection), its polarities, its proof, sealed into its root.
+const _d0 = digitStation(0)
+export const digit0 = {
+  digit: 0,
+  theorems: _d0.theorems,
+  spectrum: reflectFoldFamily(0).rows,
+  polarities: {
+    tensPair: _d0.mappings.reflections.at180,
+    ninePair: _d0.mappings.reflections.at90,
+    sixtyPair: _d0.mappings.reflections.at60,
+    fold: _d0.mappings.next,
+    lobes: [_d0.equilibrium.lobe0, _d0.equilibrium.lobe1] as const,
+    forward: _d0.successor,
+    reverse: _d0.predecessor,
+  },
+  equilibrium: _d0.equilibrium,
+  unfold: _d0.unfold,
+  prove: _d0.prove,
+  coverage: _d0.coverage,
+  root: _d0.root,
+  statement: _d0.statement,
+  mappings: _d0.mappings,
+}
+
 /** Canonical I Ching integers for CSS · geometry · token derivation. */
 export const ICHING_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 54, 64, 100, 108, 216, 360, 432, 864] as const
 

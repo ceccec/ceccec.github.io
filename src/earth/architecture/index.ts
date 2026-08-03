@@ -3,7 +3,7 @@ import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): thunder/waves reaches back here via the mind barrel; the registry reads at call time
 import * as __ns_thunder_waves from '../../thunder/waves'
 import { MONOLITH_FILE_BYTES } from '../../pair/enforcement/gates/strict/scan'
-import { fibonacci } from '../../3/7'
+import { fibonacci, A432_FOLDED } from '../../3/7'
 import { CANONICAL_ROOT_FOLDERS, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../wind/types'
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
@@ -14,7 +14,7 @@ import { addressed, covers } from '../../5/5'
 import { methodNameFromFolderTail } from '../../9/1'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
 import { piTrainDiamonds, pureDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
-import { agentEducation, mcpToolManifest, monographPaths, skillAtoms, monographs } from '../../wind/learning'
+import { agentEducation, mcpToolManifest, monographPaths, skillAtoms, monographs } from '../../learning'
 import { atomInclusionProof } from '../../lake/ledger'
 import { harmonicBands } from '../../quantum/lake/icons'
 import { developmentWaves, redistributeFoldersDryWaves } from '../../thunder/waves'
@@ -132,14 +132,14 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
     mk('census-fold', labels.census, `${UNFOLDED_CENSUS}+χ`, UNFOLDED_CENSUS + chi, censusFold.folded),
     mk('census-unfolded', labels.census, 'unfolded', censusFold.unfolded, UNFOLDED_CENSUS),
     mk('euler-chi', labels.census, 'χ', chi, EULER_CHI),
-    mk('dimension-gates', `${HOMOLOGY_LOOPS}`, `${HOMOLOGY_LOOPS}×${FOLDED_CENSUS}`, HOMOLOGY_LOOPS * censusFold.folded, DIMENSION_GATES),
+    mk('dimension-gates', `${HOMOLOGY_LOOPS}`, `${HOMOLOGY_LOOPS}×${A432_FOLDED}`, HOMOLOGY_LOOPS * A432_FOLDED, DIMENSION_GATES),
     mk('fibonacci-sum', `${UNFOLDED_CENSUS}`, FIBONACCI_CENSUS_BANDS.join('+'), bandSum, UNFOLDED_CENSUS),
     mk('pages-fold', labels.pages, `${pages.length}+χ`, pages.length + chi, pageFold.folded),
     mk('pages-label', labels.pages, 'folded/label', Number.parseInt(pageFoldedStr ?? '0', (5 * 2)), pageFold.folded),
     mk('rosetta-six-seven', labels.rosetta, `${ROSETTA_SIX}×${ROSETTA_SEVEN}`, ROSETTA_SIX * ROSETTA_SEVEN, ROSETTA_AREAS),
     mk('rosetta-seven-six', labels.rosetta, `${ROSETTA_SEVEN}×${ROSETTA_SIX}`, ROSETTA_SEVEN * ROSETTA_SIX, ROSETTA_AREAS),
     mk('rosetta-areas', labels.rosetta, 'areaPairs.count', areas.count, ROSETTA_AREAS),
-    mk('commands-108', labels.commands, 'count', cmds, FOLDED_CENSUS),
+    mk('commands-108', labels.commands, 'count', cmds, A432_FOLDED),
     mk('commands-quadrant', labels.commands, '432÷4', DIMENSION_GATES / HOMOLOGY_LOOPS, cmds),
     mk('commands-self-label', labels.commands, '4×27', 4 * 27, cmds),
     mk('references-fold', labels.references, `${refs.count}+χ`, refs.count + chi, refFold.folded),
@@ -159,9 +159,9 @@ export function harmonicCountsProvenByMath(matrix: MindMatrix = buildMatrix()) {
     count: proofs.length,
     root: merkleFold(proofs.map((entry) => entry.receipt)),
     statement:
-      'Every harmonic count is arithmetic at call time: census 110+χ=108, gates 4×108=432, Rosetta 6×7=7×6=42, page and reference folds via genus-2 χ, commands 108=432÷4, locale surfaces routes×3 — each identity recomputed, not asserted.',
+      'Every harmonic count is arithmetic at call time: census 123+χ=121 (the QPU-inclusive corpus), gates 4×108=432 by the FIXED a432 harmonic (decoupled from the corpus fold), Rosetta 6×7=7×6=42, page and reference folds via genus-2 χ, commands 108=432÷4, locale surfaces routes×3 — each identity recomputed, not asserted.',
     boundary:
-      'Live model counts (pages, routes, areas, commands, references) are measured from sealed src at this call; vault constants (110, 108, 432, 42, 8) live in src/0. The locale×Rosetta proof holds when routes×3=42 (currently 14×3).' }
+      'Live model counts (pages, routes, areas, commands, references) are measured from sealed src at this call; vault constants (123, 121, 108, 432, 42, 8) live in src/3/7. The a432 harmonic (108) is the fixed gate base, distinct from the floating corpus fold (121). The locale×Rosetta proof holds when routes×3=42 (currently 14×3).' }
   })
 }
 
@@ -766,7 +766,7 @@ export const MIND_LOGIC_INDEX_TAILS = [
   'earth/iching', 'earth/life', 'earth/death',
   'fire/diamonds', 'fire/features', 'fire/li', 'fire/physics', 'fire/plasma/ball',
   'water/cosmos', 'water/crypto', 'water/digit', 'water/encryption',
-  'wind/fusion', 'wind/language', 'wind/learning', 'wind/site', 'wind/types', 'wind/ui',
+  'wind/fusion', 'wind/language', 'learning', 'wind/site', 'wind/types', 'wind/ui',
   'mountain/gates', 'mountain/geometry', 'mountain/og', 'mountain/seals', 'mountain/source', 'mountain/topology',
   'lake/clean', 'lake/ledger', 'lake/media', 'lake/music', 'lake/stats', 'lake/widgets',
   'thunder/commands', 'thunder/decode', 'thunder/movie', 'thunder/trading', 'thunder/verify', 'thunder/waves',
@@ -836,7 +836,16 @@ export function eightSciencesQuantumComplete(matrix: MindMatrix = buildMatrix())
     { facet: `unfolded census ${unfoldedTarget} = 55+34+21 gapless Fibonacci`, on: bands.harmonic },
     { facet: `folded census ${foldedTarget} = unfolded + χ(−2) from cell homology`, on: census.clean && foldedTarget === unfoldedTarget + census.euler },
     { facet: `${gateTarget} facet gates = 4 homology loops × ${foldedTarget} folded`, on: gateTarget === 432 },
-    { facet: 'every sealed module belongs to one science plane', on: MIND_LOGIC_INDEX_TAILS.every((tail) => EIGHT_FOLD_SCIENCES.includes(tail.split('/')[0] as EightFoldScience)) },
+    { facet: 'every sealed module belongs to one science plane', on: (() => {
+      // A module belongs to a plane when its first path segment is a science, OR it is a meaningful root
+      // FLATTENED out of its science folder (e.g. src/learning) whose ownership the plane already DECLARES.
+      // Ownership is derived from the sealed EIGHT_SCIENCE_PLANES prose (' · '-separated), not re-hardcoded.
+      const ownedWords = new Set(Object.values(EIGHT_SCIENCE_PLANES).flatMap((desc) => desc.split(' · ')))
+      return MIND_LOGIC_INDEX_TAILS.every((tail) => {
+        const head = tail.split('/')[0]
+        return EIGHT_FOLD_SCIENCES.includes(head as EightFoldScience) || ownedWords.has(head)
+      })
+    })() },
     { facet: `≤${MAX_SUBFOLDERS_PER_FOLDER} actions per science at model plane`, on: Object.values(byScience).every((count) => count <= MAX_SUBFOLDERS_PER_FOLDER) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`eight-sciences-complete:${entry.facet}:${entry.on}`) }))
   return {
