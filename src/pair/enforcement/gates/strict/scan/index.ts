@@ -1,5 +1,5 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
-import { existsSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, abs, ceil, exp, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../../../0'
 import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7'
@@ -3397,8 +3397,24 @@ function applyMoves(relPath: string, moves: Map<string, string>): string {
   for (const [from, to] of moves) if (relPath === from || relPath.startsWith(`${from}/`)) return to + relPath.slice(from.length)
   return relPath
 }
-export function computeMigrationRewrites(root: string = enforcementScanRoot()) {
-  const moves = migrationMoveMap(root)
+// ── Collision resolutions — NAMED disambiguation for folders whose flattened leaf collides (user-decided SEO
+// leaf; the gravity refuses to guess a name because a name is semantic, not derivable). heaven/site is path
+// chrome / nav layout — a UI concern — so it nests under the flattened ui, not a second top-level `site`
+// (which wind/site, config·sitemap·staticPages, owns). One entry per genuine collision; each is an axiom.
+export const COLLISION_RESOLUTIONS: Readonly<Record<string, string>> = { 'src/heaven/site': 'src/ui/layout' }
+// ── Per-trigram move map — "one trigram at a time" (user): restrict the gravity to a single bāguà's children
+// so each cycle has a bounded blast radius. Collided folders enact their NAMED resolution; uncollided folders
+// take their computed flat leaf; any remaining unresolved collision is skipped (returns nothing to move).
+export function trigramMoveMap(root: string, trigram: string): Map<string, string> {
+  const map = new Map<string, string>()
+  for (const f of computePathMigration(root).folders) {
+    if (!f.from.startsWith(`src/${trigram}/`)) continue
+    const to = COLLISION_RESOLUTIONS[f.from] ?? (f.collision ? '' : f.to)
+    if (to) map.set(f.from, to)
+  }
+  return map
+}
+export function computeMigrationRewritesWith(root: string, moves: Map<string, string>) {
   const files: string[] = []
   const walk = (d: string) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
@@ -3431,6 +3447,40 @@ export function computeMigrationRewrites(root: string = enforcementScanRoot()) {
     if (edits.length > 0 || newRelFile !== relFile) rewrites.push({ file: relFile, newFile: newRelFile, edits })
   }
   return { moves: [...moves.entries()].map(([f, t]) => ({ from: f, to: t })), moveCount: moves.size, rewrites, filesTouched: rewrites.length, importsRewritten: rewrites.reduce((n, r) => n + r.edits.length, 0) }
+}
+export function computeMigrationRewrites(root: string = enforcementScanRoot()) { return computeMigrationRewritesWith(root, migrationMoveMap(root)) }
+
+// ── The executor — the quantum computer enacts its own computed gravity (user: "why not using the quantum
+// computer doing all the refactoring? it would upgrade it and add useful new apps"). computeMigrationRewritesWith
+// derives every byte; this APPLIES it: rewrite each file's relative specifiers, relocate the moved files to their
+// flat home, drop the emptied folders. dryRun (default) returns the plan without touching disk — the gated half is
+// the mutation, so the caller flips dryRun off explicitly. One trigram per call = bounded, verifiable blast radius.
+export function applyMigrationRewrites(root: string = enforcementScanRoot(), trigram = 'lake', dryRun = true) {
+  const moves = trigramMoveMap(root, trigram)
+  const plan = computeMigrationRewritesWith(root, moves)
+  const sample = plan.rewrites.filter((r) => r.newFile !== r.file).slice(0, 8).map((r) => `${r.file} → ${r.newFile}`)
+  if (dryRun) return { dryRun: true, trigram, movedFolders: moves.size, filesTouched: plan.filesTouched, importsRewritten: plan.importsRewritten, relocations: plan.rewrites.filter((r) => r.newFile !== r.file).length, sample }
+  let relocated = 0, rewritten = 0
+  for (const r of plan.rewrites) {
+    const absOld = join(root, r.file)
+    let text = readFileSync(absOld, 'utf8')
+    for (const e of r.edits) for (const q of ['\'', '"']) text = text.split(`${q}${e.old}${q}`).join(`${q}${e.nu}${q}`)
+    rewritten += r.edits.length
+    const absNew = join(root, r.newFile)
+    if (r.newFile !== r.file) { mkdirSync(dirname(absNew), { recursive: true }); writeFileSync(absNew, text); rmSync(absOld); relocated += 1 }
+    else writeFileSync(absNew, text)
+  }
+  for (const from of moves.keys()) { const abs = join(root, from); if (existsSync(abs) && readdirSync(abs).length === 0) rmSync(abs, { recursive: true, force: true }) }
+  const parent = join(root, 'src', trigram); if (existsSync(parent) && readdirSync(parent).length === 0) rmSync(parent, { recursive: true, force: true })
+  return { dryRun: false, trigram, movedFolders: moves.size, relocated, importsApplied: rewritten, moves: [...moves.entries()].map(([f, t]) => ({ from: f, to: t })) }
+}
+export function runApplyMigrationRewritesExit(root = '', argv: readonly string[] = []): number {
+  const r = root || enforcementScanRoot()
+  const trigram = argv[0] ?? 'lake'
+  const apply = argv.includes('--apply')
+  const out = applyMigrationRewrites(r, trigram, !apply)
+  process.stdout.write(`${JSON.stringify(out, null, 2)}\n`)
+  return 0
 }
 
 export function byteMetrics(root: string = enforcementScanRoot()) {
