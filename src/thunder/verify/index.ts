@@ -21,7 +21,7 @@ import { a432, animationEngineLivesInZero, contentAddressingHasRealPrecedent, ha
 import { geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, rgbCmyComplementIsCmykDuality, sacredGeometry, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, vortexMath } from '../../mountain/geometry'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics'
-import { displayHeroCardThumb, tenDimensionalAnimation } from '../../wind/ui'
+import { displayHeroCardThumb, tenDimensionalAnimation } from '../../ui'
 import { trinityFirstRedesign } from '../../mountain/seals'
 import { allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
 import { allIsMonographScientificPaper } from '../../wind/routes/corpus'

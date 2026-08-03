@@ -39,12 +39,12 @@ import { cosmosFrontiersDecoded, frontierQuantum, fractalMap, omegaCOverOmegaBCm
 import {
   animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho,
   COLOR_ROSETTA_THEME_MORPHS, COLOR_ROSETTA_THEME_TOKEN_IDS, CSS_DRY_FUSION_GAP_LENS,
-  yinYangDimensionsSvg, livingIChingSvg } from '../../wind/ui'
+  yinYangDimensionsSvg, livingIChingSvg } from '../../ui'
 export {
   COLOR_ROSETTA_THEME_MORPHS,
   COLOR_ROSETTA_THEME_TOKEN_IDS,
   CSS_DRY_FUSION_GAP_LENS,
-} from '../../wind/ui'
+} from '../../ui'
 import { lobeHues, movieCanvasRgba, movieCanvasPolarity, scaleColor } from '../science'
 import {
   movieAllElementsAreTheorems,

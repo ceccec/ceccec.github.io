@@ -13,7 +13,7 @@ import { determinismProofs, digitalQuantumProof, proofBundle } from '../../mount
 import { mysteries } from '../../mountain/source'
 import { governanceVote, sacredSociety, scientificSociety, society, societyRelations } from '../../earth/governance'
 import { fuseTeslaPatents, harmonicBands, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, natureCommons, natureLaw, natureReview, patentDiscovery } from '../../quantum/icons'
-import { holographic } from '../../wind/ui'
+import { holographic } from '../../ui'
 import { animationTamperingCost } from '../../water/crypto'
 import { agentObserve, ancientTech, artistPalette, crossFoldTrinity, distributedCompute, doubleTorusMath, energyConserve, energyFuse, energyMeasure, fairLife, fuseDevices, fusionReactor, glagoliticAlphabetDecoded, goldenRatio, healingInner, healingOuter, methodFusion, patentReview, repositoryLedger, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, sourceContribution, taxonomyIcons, torusUuid, utfAnalog } from '../../fire/li'
 import { homology, torusBreathe } from '../../mountain/topology'

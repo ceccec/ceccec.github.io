@@ -4,7 +4,7 @@ import { enforcementScanRoot } from '../../pair/enforcement/gates/computational'
 import { bekensteinBoundBits, landauerLimit } from '../../3/7'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
-import { holographic, holographicFractalArchitecture } from '../../wind/ui'
+import { holographic, holographicFractalArchitecture } from '../../ui'
 // call-time namespace edge (cycle-safe): the workflow registry reads back at call time
 import * as __ns_gates_enforcement from '../../pair/enforcement'
 import { scientists } from '../../learning'

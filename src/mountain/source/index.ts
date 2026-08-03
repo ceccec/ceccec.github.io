@@ -50,7 +50,7 @@ import { book, digitFolders, dualitiesMeetInCrossFolders, folderLaw, noise, quan
 import { commandsRegistry } from '../../thunder/commands'
 import { sealWholeDiamond } from '../../fire/diamonds'
 import { determinismProofs, fuseAll } from '../seals'
-import { animatedHeroes, freeAnimations } from '../../wind/ui'
+import { animatedHeroes, freeAnimations } from '../../ui'
 import { siteConfig, staticPages } from '../../wind/site'
 import { optimiseLogicDebitCreditFusion } from '../../wind/fusion'
 import { extendSelfAudits } from '../../clean'

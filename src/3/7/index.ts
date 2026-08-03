@@ -1693,7 +1693,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/research/index.ts', literal: '*', count: (58 + 28), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave) + measured reuse-speedup probe wall-clock precision (58→59) + quantum-circuit workload (n-qubit state-vector 2ⁿ amplitudes) (59→60) + double-torus 2×4 UUID / polarity-angle-spin + Metatron 8 merkabas × 8 bytes = 512-bit state-space vs universe-atoms (60→67) + ftl/compute tip wave physicalFtlFromMeasurements (67→68) + re-measured wildcard against a concurrent session\'s in-flight registry growth (68→78)' },
   { file: 'src/wind/routes/corpus/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/site/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/wind/ui/index.ts', literal: '*', count: 56, kind: 'tuned', source: 'attested residue — hand-fixed values (PR#47 counter-rosetta 27→39→41→43; FoL→Fruit→10D merkaba wave 43→58; cardinal poles lattice 58→56)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/ui/index.ts', literal: '*', count: 56, kind: 'tuned', source: 'attested residue — hand-fixed values (PR#47 counter-rosetta 27→39→41→43; FoL→Fruit→10D merkaba wave 43→58; cardinal poles lattice 58→56)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: '.vitepress/computed-pages.mts', literal: '*', count: 2, kind: 'data', source: 'HTTP 404 status code (RFC 9110)' },
   { file: '.vitepress/lib/component-bagua-groups.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/lib/dev-server-bind.mts', literal: '*', count: 1, kind: 'data', source: 'pinned dev port 5173 (launch/config coupling)' },
@@ -1749,13 +1749,13 @@ export const CRACK_RESEARCH_TARGETS: readonly CrackResearchTarget[] = [
   { file: 'src/0/index.ts', value: 46, context: 'compass rose radius' },
   { file: 'src/0/index.ts', value: 2.2, context: 'torus lobe separation' },
   // wind/ui — SVG art
-  { file: 'src/wind/ui/index.ts', value: 22, context: 'chip rect height' },
-  { file: 'src/wind/ui/index.ts', value: 78, context: 'path coordinate' },
-  { file: 'src/wind/ui/index.ts', value: 58, context: 'path coordinate' },
-  { file: 'src/wind/ui/index.ts', value: 4550, context: 'gradient stop (per mille)' },
-  { file: 'src/wind/ui/index.ts', value: 4750, context: 'gradient stop (per mille)' },
-  { file: 'src/wind/ui/index.ts', value: 302, context: 'viewBox path x' },
-  { file: 'src/wind/ui/index.ts', value: 99.9, context: 'keyframe hold percent' },
+  { file: 'src/ui/index.ts', value: 22, context: 'chip rect height' },
+  { file: 'src/ui/index.ts', value: 78, context: 'path coordinate' },
+  { file: 'src/ui/index.ts', value: 58, context: 'path coordinate' },
+  { file: 'src/ui/index.ts', value: 4550, context: 'gradient stop (per mille)' },
+  { file: 'src/ui/index.ts', value: 4750, context: 'gradient stop (per mille)' },
+  { file: 'src/ui/index.ts', value: 302, context: 'viewBox path x' },
+  { file: 'src/ui/index.ts', value: 99.9, context: 'keyframe hold percent' },
 ]
 
 /** LAWS CHANGE WITH EVERY THEOREM PROVEN — the crack law is not static text: each amendment names

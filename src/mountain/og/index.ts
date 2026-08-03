@@ -3,7 +3,7 @@
 import type { ConceptCommandName, MindMatrix } from '../../wind/types'
 import type { JsonLdPageIdentity } from '../../heaven/balance'
 import { buildMatrix, entropy } from '../../heaven/compute'
-import { animatedHeroes, heroSvgFromUuid, holographic, oneHolographicTemplate, stillSvg } from '../../wind/ui'
+import { animatedHeroes, heroSvgFromUuid, holographic, oneHolographicTemplate, stillSvg } from '../../ui'
 import { floor, foldPair, isUuid, memoByRoot, merge, merkleFold, min, referralAddress, round, sealFacets, toUuid } from '../../0'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'

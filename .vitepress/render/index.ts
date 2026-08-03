@@ -52,4 +52,4 @@ export { CORPUS_GRID_PAGE_SIZE, computeUniversalPage, corpusCatchAllPaths, doubl
 export type { FigRole, TheoremFigureData, TheoremPageRow, TheoremTagGroup, UniversalPage } from '../../src/wind/routes/corpus'
 export { bulgarianHomeFromEnglish, githubPermalink, homeHero, localeNavLinks, localeSidebarKeys, revolutChannel, siteConfig, staticPages, vitepressDocsResearchImprovements, vitepressNativeDocsConfig } from '../../src/wind/site'
 export type { LocalAnswer } from '../../src/wind/types'
-export { paperAbstractOmitsTitleEcho, rosettaIChingNavItems } from '../../src/wind/ui'
+export { paperAbstractOmitsTitleEcho, rosettaIChingNavItems } from '../../src/ui'

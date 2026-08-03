@@ -18,7 +18,7 @@ import { artistPalette, gatesShiftToNewHarmonic, zeroTokenPolicy } from '../../f
 import { textToMovie } from '../../earth/world'
 import { autoMovies8k, backgroundMovie } from '../../thunder/movie/canvas'
 import { sealWholeDiamond } from '../../fire/diamonds'
-import { allAnimationsInOneOg, animatedHeroes, holographic, proseToAudioVisual3dProof } from '../../wind/ui'
+import { allAnimationsInOneOg, animatedHeroes, holographic, proseToAudioVisual3dProof } from '../../ui'
 import { harmonicBands } from '../../quantum/icons'
 import { allPathsComputedRealtime } from '../../thunder/trading'
 import { foldRedistributesBeyondLinear } from '../atoms'

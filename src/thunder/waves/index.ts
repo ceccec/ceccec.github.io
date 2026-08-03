@@ -17,7 +17,7 @@ import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBC
 import { A432_HUE, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6'
 import { quantumZeno } from '../../6/4'
-import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../wind/ui'
+import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../ui'
 // Cycle-safe namespace imports — referenced only at call time inside the memoised fold (the kernel/OG
 // barrels transitively reach back into thunder, so binding them lazily avoids a load-order cycle).
 import * as __ns_quantum from '../../quantum'

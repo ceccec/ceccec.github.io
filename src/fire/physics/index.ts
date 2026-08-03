@@ -22,7 +22,7 @@ import { planeWaveField, planeWaveIntensity } from '../../quantum/fire/simulatio
 import { foldingLinearGivesAnalog } from '../../earth/world'
 import { healingModelsHonestBoundary } from '../../water/cosmos'
 import { microdata } from '../../mountain/og'
-import { allAnimationsInOneOg } from '../../wind/ui'
+import { allAnimationsInOneOg } from '../../ui'
 import { TAU, DIMENSION_GATES, FOLDED_CENSUS } from '../../3/7'
 import { demarcate } from '../../3/7'
 import { foldPair, sealFacets } from '../../0'

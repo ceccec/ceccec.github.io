@@ -17,7 +17,7 @@ import { refactorLinearToTrinities } from '../../heaven/essence'
 import { endlessFusion, allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
 import { iChingDomainMap } from '../../heaven/balance'
 import { completeDoubleTorus, doubleTorusFold } from '../topology'
-import { animationsRespectTheField, freeAnimations, heroLawAlignment, holographicFractalArchitecture, tenDimensionalAnimation } from '../../wind/ui'
+import { animationsRespectTheField, freeAnimations, heroLawAlignment, holographicFractalArchitecture, tenDimensionalAnimation } from '../../ui'
 import { quantumSitemap } from '../../wind/site'
 import { quantumAppsStore, quantumCoordinateNav, quantumFirewallProxyWorker, quantumSynthesis, quantumThreat } from '../../fire/features'
 import { multidimensional } from '../../quantum/icons'
@@ -121,7 +121,7 @@ import { quantumFusionVerify, honestRevolutionReceipt, honestRevolutionComputerP
 import { honestRevolutionFpgaHonesty } from '../../quantum/computer'
 import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify'
 import { efficiency } from '../../quantum/science'
-import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../wind/ui'
+import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../ui'
 import {
   historicalTrainWavesViaRosetta, rankWinningStrategies, tradingStrategiesImproveViaRosetta,
   tradingTrainHonestyGate, liveWinTrainingGate, strategiesChallengeInChat } from '../../thunder/trading'

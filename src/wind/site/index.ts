@@ -19,7 +19,7 @@ import { floor, isUuid, max, memoByRoot, merkleFold, referralAddress, round, sea
 import { ratStr } from '../../9/1'
 import { livingTorus } from '../../fire/diamonds'
 import { oneOpenGraphAll } from '../../fire/li'
-import { animatedHeroes, oneHolographicTemplate } from '../ui'
+import { animatedHeroes, oneHolographicTemplate } from '../../ui'
 import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { computedMovieThemeColors } from '../../fire/plasma/ball'
 import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'

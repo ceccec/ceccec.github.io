@@ -26,7 +26,7 @@ import {
   computedMovieThemeColors,
   plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
 import { backgroundMovieColorVars } from '../movievars'
-import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../wind/ui'
+import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../ui'
 import { computedWebManifest, siteConfig } from '../../../wind/site'
 import { livingTorus } from '../../../fire/diamonds'
 import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../wind/routes/corpus'

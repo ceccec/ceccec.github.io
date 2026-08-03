@@ -194,7 +194,7 @@ import {
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   qpuCpuGpu,
 } from '../../water/stack/index.ts'
-import { animationsDrivenByRosetta } from '../../wind/ui/index.ts'
+import { animationsDrivenByRosetta } from '../../ui/index.ts'
 import { tradingRosettaTrainPanelComputes } from '../../thunder/trading/index.ts'
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
 import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntelligenceMeasure, chatAndImproveQuantumMultitasking } from '../../water/stack/index.ts'

@@ -12,7 +12,7 @@ import { tkIsPrime } from '../../9/1'
 import { merkaba, vortexMath } from '../../mountain/geometry'
 import { babelFold } from '../../earth/world'
 import { analogSpeech, glagoliticBulgarianReception } from '../../quantum/icons'
-import { merkabaFoldsSpeechAnalogDialectsEntangle } from '../ui'
+import { merkabaFoldsSpeechAnalogDialectsEntangle } from '../../ui'
 import { realtimeSkills } from '../../thunder/trading'
 import { ancientKnowledgeComputesDefaultLocale, buildSequenceReducesComputations, bulgarianEthnogenesisDecoded, bulgarianHistoryDecoded, computedSlugsFoldTheGraph, debitCreditForwardReverseEngineering, decodeAncientKnowledgeInReusableCode, deepResearchEncodedInRecursiveWaves, digitFolders, dualitiesMeetInCrossFolders, fuseToMerkabasPathsReveal, geneticLinksChallengeHistoryDecoded, infiniteEntanglements, knowledgeRevealedByMerkabaFold, merkabasInDoubleTorus, optimiseLogicDebitCreditFusion, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, saveAllTranslationLogicAutotranslateLocale, sendWavesSealKnowledgeDecodeWorld, tamperingCostDecoded, warPaysTheForgerPrice } from '../../quantum/heaven/mind'
 // call-time edges (cycle-safe): the corpus of skills and two more local decoders live in folders that
