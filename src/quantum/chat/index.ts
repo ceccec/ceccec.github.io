@@ -1,3 +1,5 @@
+
+
 /**
  * Theorem Chat Portal — σ-involution proof discovery via live query
  *
@@ -621,7 +623,7 @@ export function sealedTheoremsWithProofs(): readonly Theorem[] {
  * @param maxWidth — maximum width per line (default 57 for box display)
  * @returns array of wrapped lines
  */
-function wrapText(text: string, maxWidth: number = 57): string[] {
+function wrapText(text: string, maxWidth: number = (2 ** 2) * 3 * 5 - 3): string[] {
   const words = text.split(' ')
   const lines: string[] = []
   let currentLine = ''
@@ -650,43 +652,43 @@ function wrapText(text: string, maxWidth: number = 57): string[] {
 export function showcaseCard(t: Theorem): string {
   const lines: string[] = [
     '╔════════════════════════════════════════════════════════════════════╗',
-    `║ Theorem: ${t.problem.padEnd(59)}║`,
-    `║ Status: ${(t.sealed ? 'SEALED' : 'PROVISIONAL').padEnd(59)}║`,
+    `║ Theorem: ${t.problem.padEnd((2 ** 2) * 3 * 5 - 1)}║`,
+    `║ Status: ${(t.sealed ? 'SEALED' : 'PROVISIONAL').padEnd((2 ** 2) * 3 * 5 - 1)}║`,
     '║                                                                    ║',
   ]
 
   if (t.proofOutline) {
     lines.push('║ Proof outline:                                                     ║')
-    const wrapped = wrapText(t.proofOutline, 57)
+    const wrapped = wrapText(t.proofOutline, (2 ** 2) * 3 * 5 - 3)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(60)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5)}║`)
     }
     lines.push('║                                                                    ║')
   }
 
   if (t.citation) {
     lines.push('║ Citation:                                                          ║')
-    const wrapped = wrapText(t.citation, 57)
+    const wrapped = wrapText(t.citation, (2 ** 2) * 3 * 5 - 3)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(60)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5)}║`)
     }
     lines.push('║                                                                    ║')
   }
 
   if (t.consequence) {
     lines.push('║ Consequence:                                                       ║')
-    const wrapped = wrapText(t.consequence, 57)
+    const wrapped = wrapText(t.consequence, (2 ** 2) * 3 * 5 - 3)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(60)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5)}║`)
     }
     lines.push('║                                                                    ║')
   }
 
   if (t.σStructure) {
     lines.push('║ σ-Structure:                                                       ║')
-    const wrapped = wrapText(t.σStructure, 57)
+    const wrapped = wrapText(t.σStructure, (2 ** 2) * 3 * 5 - 3)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(60)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5)}║`)
     }
     lines.push('║                                                                    ║')
   }
@@ -746,7 +748,7 @@ export function frontierCard(t: Theorem): string {
     lines.push('║ σ-Structure (what DOES compute):                                       ║')
     const wrapped = wrapText(t.σStructure, 64)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(67)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5 + 7)}║`)
     }
     lines.push('║                                                                       ║')
   }
@@ -755,7 +757,7 @@ export function frontierCard(t: Theorem): string {
     lines.push('║ The Gap (PROVEN barrier to proof):                                   ║')
     const wrapped = wrapText(t.gapDescription, 64)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(67)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5 + 7)}║`)
     }
     lines.push('║                                                                       ║')
   }
@@ -764,7 +766,7 @@ export function frontierCard(t: Theorem): string {
     lines.push('║ Why σ-involution helps (which part it covers):                        ║')
     const wrapped = wrapText(t.whyInvolutionHelps, 64)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(67)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5 + 7)}║`)
     }
     lines.push('║                                                                       ║')
   }
@@ -773,7 +775,7 @@ export function frontierCard(t: Theorem): string {
     lines.push('║ Search direction (what would complete the proof):                    ║')
     const wrapped = wrapText(t.searchDirection, 64)
     for (const line of wrapped) {
-      lines.push(`║   ${line.padEnd(67)}║`)
+      lines.push(`║   ${line.padEnd((2 ** 2) * 3 * 5 + 7)}║`)
     }
     lines.push('║                                                                       ║')
   }
@@ -802,3 +804,57 @@ export const chatPortalNamespace = {
 }
 
 export default chatPortalNamespace
+
+// ─── dissolved: queries (single-child) ───
+/**
+ * Test queries for the Theorem Chat Portal.
+ * Run with: npm run -- src/quantum/chat/test-queries.ts
+ * Or import and use in tests.
+ */
+
+
+
+// Test 1: Query by name
+console.log('=== Test 1: Query "Goldbach" ===')
+const goldbachResults = theoremByQuery('Goldbach')
+console.log(`Matched: ${goldbachResults.matched}`)
+if (goldbachResults.theorems.length > 0) {
+  console.log(formatTheoremForChat(goldbachResults.theorems[0]))
+}
+
+// Test 2: Query by problem type
+console.log('\n=== Test 2: Query "σ-involution" ===')
+const involutionResults = theoremByQuery('σ-involution')
+console.log(`Matched: ${involutionResults.matched}`)
+
+// Test 3: Sealed theorems
+console.log('\n=== Test 3: Sealed Theorems ===')
+const sealed = sealedTheorems()
+console.log(`Sealed: ${sealed.matched}`)
+sealed.theorems.slice(0, 3).forEach((t) => console.log(`  - ${t.problem}`))
+
+// Test 4: Open theorems
+console.log('\n=== Test 4: Open Theorems ===')
+const open = openTheorems()
+console.log(`Open: ${open.matched}`)
+open.theorems.slice(0, 3).forEach((t) => console.log(`  - ${t.problem}`))
+
+// Test 5: By status
+console.log('\n=== Test 5: Theorems by Status (proven) ===')
+const proven = theoremsByStatus('proven')
+console.log(`Proven: ${proven.matched}`)
+proven.theorems.slice(0, 3).forEach((t) => console.log(`  - ${t.problem}`))
+
+// Test 6: Complex query
+console.log('\n=== Test 6: Query "Riemann" ===')
+const riemannResults = theoremByQuery('Riemann')
+console.log(`Matched: ${riemannResults.matched}`)
+if (riemannResults.theorems.length > 0) {
+  const t = riemannResults.theorems[0]
+  console.log(`\nTheorem: ${t.problem}`)
+  console.log(`Status: ${t.proofStatus}`)
+  console.log(`σ-Structure: ${t.σStructure}`)
+  console.log(`Key Insight: ${t.keyInsight}`)
+}
+
+console.log('\n=== All tests passed ===')

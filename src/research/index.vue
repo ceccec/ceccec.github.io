@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
 import { researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay } from './index.ts'
-import { harmonizeScienceDomainsInWavesOfWaves } from '../../thunder/waves/index.ts'
-import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
-import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
-import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
-import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
-import { round } from '../../0/index.ts'
+import { harmonizeScienceDomainsInWavesOfWaves } from '../thunder/waves/index.ts'
+import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
+import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
+import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
+import UiButton from '../../.vitepress/theme/components/ui/Button.vue'
+import UiSeparator from '../../.vitepress/theme/components/ui/Separator.vue'
+import { round } from '../0/index.ts'
 
 const panel = shallowRef(researchPanelComputes())
 const millennium = shallowRef(millenniumPanelComputes())
@@ -37,7 +37,7 @@ runMillennium()
 </script>
 
 <template>
-  <UiCard id="research-index" class="research-index" data-logic="src/wind/research/index.ts" data-target="src/wind/research/index.ts#millenniumPanelComputes" data-topic="research">
+  <UiCard id="research-index" class="research-index" data-logic="src/research/index.ts" data-target="src/research/index.ts#millenniumPanelComputes" data-topic="research">
     <UiCardContent class="vp-doc research-index__content">
       <header class="research-index__header">
         <p class="research-index__lede">

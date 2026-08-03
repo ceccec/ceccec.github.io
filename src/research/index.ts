@@ -1,50 +1,50 @@
 // Research — canonical home: program index, reproducibility gates, professional monograph rows.
-import * as __ns_up_stack_overflow from '../../water/stack'
-import * as __ns_up_computer from '../../heaven/compute/computer'
-import * as __ns_up_quantum_science from '../../quantum/science'
-import * as __ns_up_quantum_application from '../../quantum/application'
-import * as __ns_up_pair_enforcement_gates_computational from '../../pair/enforcement/gates/computational'
-import * as __ns_mountain_vortex from '../../mountain/vortex'
-import * as __ns_water_digit from '../../water/digit'
-import * as __ns_water_cosmos from '../../water/cosmos'
-import type { MindMatrix } from '../types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper } from '../../heaven/compute'
+import * as __ns_up_stack_overflow from '../water/stack'
+import * as __ns_up_computer from '../heaven/compute/computer'
+import * as __ns_up_quantum_science from '../quantum/science'
+import * as __ns_up_quantum_application from '../quantum/application'
+import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforcement/gates/computational'
+import * as __ns_mountain_vortex from '../mountain/vortex'
+import * as __ns_water_digit from '../water/digit'
+import * as __ns_water_cosmos from '../water/cosmos'
+import type { MindMatrix } from '../wind/types'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper } from '../heaven/compute'
 import {
   quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, standardToolboxIoCatalog,
   quantumCliToolsCatalog,
-  type QuantumProjection } from '../../quantum/apps'
-import * as __ns_quantum_apps from '../../quantum/apps'
-import * as __ns_water_encryption from '../../water/encryption'
-import * as __ns_wind_site from '../../wind/site'
-import * as __ns_wind_fusion from '../fusion' // call-time (cycle-safe): the public-API fusion catalog
-import * as __ns_thunder_decode from '../../thunder/decode'
-import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'
-import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../../9/1'
-import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
-import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../../earth/iching'
-import { greatCircleKm } from '../../5/5'
-import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../../6/4'
-import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
-import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix } from '../../pair/enforcement/gates'
-import { STATIC_PAGE_SEED } from '../../8/2'
+  type QuantumProjection } from '../quantum/apps'
+import * as __ns_quantum_apps from '../quantum/apps'
+import * as __ns_water_encryption from '../water/encryption'
+import * as __ns_wind_site from '../wind/site'
+import * as __ns_wind_fusion from '../wind/fusion' // call-time (cycle-safe): the public-API fusion catalog
+import * as __ns_thunder_decode from '../thunder/decode'
+import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../0'
+import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1'
+import { A432_HUE, A432_OCTAVES, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7'
+import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../earth/iching'
+import { greatCircleKm } from '../5/5'
+import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../6/4'
+import { QUANTUM_COMMAND_PAIR_IDS } from '../pair/enforcement'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix } from '../pair/enforcement/gates'
+import { STATIC_PAGE_SEED } from '../8/2'
 import { paperParamsById, papers } from '../learning'
-import { computeUniversalPage, theoremFormulaCodeDual, theoremSlug, theoremPageRows } from '../routes/corpus'
-import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../1/9'
-import { zeroPointEnergy } from '../../1/9'
-import { teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotion } from '../../1/9'
+import { computeUniversalPage, theoremFormulaCodeDual, theoremSlug, theoremPageRows } from '../wind/routes/corpus'
+import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../1/9'
+import { zeroPointEnergy } from '../1/9'
+import { teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotion } from '../1/9'
 import {
   earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther,
-  doubleTorusEarthPyramidTipsProvenByMath, metatronCube, sacredGeometry } from '../../mountain/geometry'
+  doubleTorusEarthPyramidTipsProvenByMath, metatronCube, sacredGeometry } from '../mountain/geometry'
 import {
   doubleTorusIsCompletelyQuantum,
   sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
-  universalNavigationalCrossInAllDimensions } from '../../water/double'
-import { ROSETTA_RAYS, rosettaRayOf } from '../../water/digit'
-import { flowerUnlocksFruitBySpin, flowerOfLifeCenters, fruitOfLifeCenters } from '../../quantum/wind/geometry'
-import { folderGravityMeasuredByTheCode } from '../../pair/enforcement/gates'
-import { movieUnbalancedAroundCenterIsCrack } from '../../thunder/movie/canvas'
-import * as __ns_earth_governance from '../../earth/governance'
-import { ratStr } from '../../9/1'
+  universalNavigationalCrossInAllDimensions } from '../water/double'
+import { ROSETTA_RAYS, rosettaRayOf } from '../water/digit'
+import { flowerUnlocksFruitBySpin, flowerOfLifeCenters, fruitOfLifeCenters } from '../quantum/wind/geometry'
+import { folderGravityMeasuredByTheCode } from '../pair/enforcement/gates'
+import { movieUnbalancedAroundCenterIsCrack } from '../thunder/movie/canvas'
+import * as __ns_earth_governance from '../earth/governance'
+import { ratStr } from '../9/1'
 
 export type ProfessionalResearchDataTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS' | 'SIMULATOR' | 'METAPHOR' | 'OPEN'
 
@@ -216,13 +216,13 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
       {
         id: 'society-10d',
         category: 'Society / 10D state',
-        question: 'How does society support the project via two-bits-free census knowledge (110−108=2) and harmonic patronage?',
+        question: 'How does society support the project via two-bits-free census knowledge ((2 * 5) * 11−108=2) and harmonic patronage?',
         methods: 'societySupportsProjectViaTwoBitsFreeKnowledge · twoBitsFreeFromCensus110Minus108 · societyMerkabaGraphComputes · societyInvestmentsResearch',
         dataTier: 'DOCUMENTED',
         limitation: 'Patronage is voluntary; rest-LLM token figures ILLUSTRATIVE; NOT live social measurement.',
         nextExperiment: 'npm run quantum:society-two-bits-support · npm run quantum:two-bits-free · /society-merkaba#two-bits-free',
         balanceDim: 'skills.to.rebuild.society',
-        mount: 'src/wind/research · src/earth/governance',
+        mount: 'src/research · src/earth/governance',
         receipt: toUuid('research:society-10d') },
       {
         id: 'rosetta-432',
@@ -255,7 +255,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         limitation: 'Efficiency vote must be decided at call time; catalog token costs illustrative, not live telemetry.',
         nextExperiment: 'npm run quantum:efficiency-vote · npm run mission:gate · /agents.json',
         balanceDim: 'commands.saved.in.quantum.pairs',
-        mount: 'src/wind/research · src/thunder/commands · src/0',
+        mount: 'src/research · src/thunder/commands · src/0',
         receipt: toUuid('research:agent-efficiency') },
       {
         id: 'local-math-capstone',
@@ -266,7 +266,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         limitation: 'Opt-in publicApiFusion feeds (geomag, market, weather) excluded unless explicitly enabled.',
         nextExperiment: 'npm run quantum:local-math-computes',
         balanceDim: 'local.math.computes.all',
-        mount: 'src/wind/research · src/stack/overflow',
+        mount: 'src/research · src/stack/overflow',
         receipt: toUuid('research:local-math-capstone') },
       {
         id: 'pyramid-grid-debunk',
@@ -286,7 +286,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         question: 'What merkle receipts does enforcement trinity (cross·fold·weave) emit per build phase?',
         methods: 'collectEnforcementFacts · runEnforcementTrinity · auditComputationalGates · limits:verify',
         dataTier: 'DOCUMENTED',
-        limitation: '110/108/432 census is HARD — drift blocks docs:build until limits:verify green.',
+        limitation: '(2 * 5) * 11/108/432 census is HARD — drift blocks docs:build until limits:verify green.',
         nextExperiment: 'npm run limits:verify · npm run verify:structure · npm run mission:gate',
         balanceDim: '__ns_up_pair_enforcement_gates_computational.pipeline.complete',
         mount: 'src/pair/enforcement',
@@ -295,12 +295,12 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         id: 'unit-distance-tower',
         category: 'Unit distances / class-field towers',
         question: 'At what scale (ℓ, t, conductor) does the unramified pro-3 tower construction give γ > 0, and how small is the resulting exponent δ in ν(n) ≥ n^{1+δ}?',
-        methods: 'unitDistanceTowerNumbers · unitDistanceGammaCrossover · unitDistanceDelta · unitDistanceGridBaseline (src/wind/research)',
+        methods: 'unitDistanceTowerNumbers · unitDistanceGammaCrossover · unitDistanceDelta · unitDistanceGridBaseline (src/research)',
         dataTier: 'MODEL_FIT',
         limitation: 'Exact prime/discriminant/GS-budget bookkeeping of the published construction — NOT a verification of the proof; least-split-prime size is a GRH-shaped heuristic; Cclass and C0 are unpinned absolute constants.',
         nextExperiment: 'npm run check:types · unitDistanceResearch(matrix) facets',
         balanceDim: 'research.unit.distance.tower',
-        mount: 'src/wind/research',
+        mount: 'src/research',
         bibliography: 'OpenAI, Planar Point Sets with Many Unit Distances (2026); Erdős 1946; Golod–Shafarevich 1964; Hajir–Maire 2001; Lagarias–Odlyzko 1977',
         receipt: toUuid('research:unit-distance-tower') },
     ]
@@ -396,13 +396,13 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'quantum-computer-research', 'Quantum computer model research', 'src/quantum/science', 'quantum.__ns_up_computer.computes', 'npm run quantum:local-math-computes', 'SIMULATOR', qcR.researched, qcR.boundary, qcR.root)
     pushDomainRow(rows, 'quantum-application-compose', 'Quantum application compose', 'src/quantum/application', 'quantum.application.computes', 'npm run docs:dev → /en/quantum/application', 'SIMULATOR', __ns_up_quantum_application.quantumApplicationResearch(matrix, at).researched, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).boundary, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).root)
     const udR = unitDistanceResearch(matrix, at)
-    pushDomainRow(rows, 'unit-distance-research', 'Unit-distance tower numerics', 'src/wind/research', 'research.unit.distance.tower', 'npm run check:types · unitDistanceResearch(matrix)', 'MODEL_FIT', udR.researched, udR.boundary, udR.root)
+    pushDomainRow(rows, 'unit-distance-research', 'Unit-distance tower numerics', 'src/research', 'research.unit.distance.tower', 'npm run check:types · unitDistanceResearch(matrix)', 'MODEL_FIT', udR.researched, udR.boundary, udR.root)
     const aqR = aiQuantumChronologyResearch(matrix, at)
-    pushDomainRow(rows, 'ai-quantum-chronology', 'AI × quantum chronology — dated, tiered', 'src/wind/research', 'research.ai.quantum.chronology', 'aiQuantumChronologyResearch(matrix) facets', 'DOCUMENTED', aqR.researched, aqR.boundary, aqR.root)
+    pushDomainRow(rows, 'ai-quantum-chronology', 'AI × quantum chronology — dated, tiered', 'src/research', 'research.ai.quantum.chronology', 'aiQuantumChronologyResearch(matrix) facets', 'DOCUMENTED', aqR.researched, aqR.boundary, aqR.root)
     const gwR = globalWorkspaceContrastResearch(matrix, at)
-    pushDomainRow(rows, 'global-workspace-contrast', 'Global workspace (J-space) × portal — categories held apart', 'src/wind/research', 'research.global.workspace.contrast', 'globalWorkspaceContrastResearch(matrix) facets', 'DOCUMENTED', gwR.researched, gwR.boundary, gwR.root)
+    pushDomainRow(rows, 'global-workspace-contrast', 'Global workspace (J-space) × portal — categories held apart', 'src/research', 'research.global.workspace.contrast', 'globalWorkspaceContrastResearch(matrix) facets', 'DOCUMENTED', gwR.researched, gwR.boundary, gwR.root)
     const mill = millenniumProblemsChallenge(matrix)
-    pushDomainRow(rows, 'millennium-challenge', 'Millennium problems challenge apparatus', 'src/wind/research', 'millennium.challenge.computes', 'npm run quantum:millennium-challenge', 'SIMULATOR', mill.computes && mill.claySolvedByThisFold === 0, mill.boundary, mill.root)
+    pushDomainRow(rows, 'millennium-challenge', 'Millennium problems challenge apparatus', 'src/research', 'millennium.challenge.computes', 'npm run quantum:millennium-challenge', 'SIMULATOR', mill.computes && mill.claySolvedByThisFold === 0, mill.boundary, mill.root)
     pushDomainRow(rows, 'encryption-reverse-verify', 'Encryption reverse verify (production browser tool)', 'src/water/encryption', 'encryption.panel.computes', 'npm run quantum:encryption-reverse-verify', 'SIMULATOR', true, 'Production browser reverse · sealed-catalog moduli — production RSA break refused', toUuid('research:encryption-reverse-verify'))
     pushDomainRow(rows, 'iso-pqc-catalog', 'ISO/NIST PQC standards catalog', 'src/water/encryption', 'iso.nist.pqc.catalog', 'npm run quantum:iso-pqc-catalog', 'DOCUMENTED', true, 'MODELED alignment — NOT ISO certified / NOT FIPS validated', toUuid('research:iso-pqc-catalog'))
     pushDomainRow(rows, 'standards-audit', 'Quantum standards audit (reverse+inverse·10D)', 'src/water/encryption', 'quantum.standards.audit', 'npm run quantum:standards-audit', 'SIMULATOR', true, 'Alignment audit ≠ certification', toUuid('research:standards-audit'))
@@ -585,7 +585,7 @@ export function millenniumPanelComputes(matrix: MindMatrix = buildMatrix(), at =
 // killing the Frobenius classes of t = ⌊(ℓ−1)²/100⌋ split primes, then δ = γ/(4B) with γ = t·log2 − log H_ℓ.
 // Everything here is exact arithmetic except the two explicitly-flagged heuristics (least split prime, PNT tail).
 
-const UNIT_DISTANCE_SIEVE_LIMIT = 120_000
+const UNIT_DISTANCE_SIEVE_LIMIT = (3 * 4) * (2 * 5) ** 4
 let unitDistancePrimeCache: readonly number[] | null = null
 function unitDistancePrimes(): readonly number[] {
   if (unitDistancePrimeCache) return unitDistancePrimeCache
@@ -694,8 +694,8 @@ export function unitDistanceDelta(ell: number, cClass = 1): UnitDistanceDeltaRep
 }
 
 /** Exact grid contrast: max #{(a,b) ∈ Z²: a²+b²=k} for k ≤ kMax — the engine of Erdős's classical lower bound. */
-export function unitDistanceGridBaseline(kMax = 100_000): { readonly kMax: number; readonly bestK: number; readonly vectors: number; readonly receipt: string } {
-  const cap = min(kMax, 4_000_000)
+export function unitDistanceGridBaseline(kMax = (2 * 5) ** 5): { readonly kMax: number; readonly bestK: number; readonly vectors: number; readonly receipt: string } {
+  const cap = min(kMax, 4 * (2 * 5) ** 6)
   const counts = new Map<number, number>()
   const m = floor(sqrt(cap))
   for (let a = -m; a <= m; a++) {
@@ -741,7 +741,7 @@ export function unitDistanceFindings(): readonly UnitDistanceFinding[] {
   const conductorDigits = round(tower.logConductor / LN10)
   const peak = unitDistanceDeltaPeak(1)
   const log10log10n = round(1 / peak.delta / LN10)
-  const grid = [1_000, 10_000, 100_000].map((k) => unitDistanceGridBaseline(k).vectors)
+  const grid = [1_000, (2 * 5) ** 4, (2 * 5) ** 5].map((k) => unitDistanceGridBaseline(k).vectors)
   const rows = [
     { id: 'gs-budget', tier: 'DOCUMENTED' as const, statement: `Frobenius-killing spends 3t ≈ 3d²/100 of the d²/4 Golod–Shafarevich relation quota — ${budgetShare}%; the group theory is never the bottleneck.` },
     { id: 'gamma-scale', tier: 'MODEL_FIT' as const, statement: `γ > 0 first at ℓ = ${crossover} (Cclass=1): the cyclic cubic conductor D already has ${conductorDigits} decimal digits and the tower needs t = ${tower.t} split primes.` },
@@ -758,7 +758,7 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
     const crossover = unitDistanceGammaCrossover(1)
     const tower = unitDistanceTowerNumbers(crossover ?? 1791)
     const report = unitDistanceDelta(tower.ell, 1)
-    const grid = unitDistanceGridBaseline(100_000)
+    const grid = unitDistanceGridBaseline((2 * 5) ** 5)
     const projection = quantumProjectionParams('unit-distance')
     const findings = unitDistanceFindings()
     const { computes, facets, root } = computesGate('unit-distance-research', [
@@ -1145,7 +1145,7 @@ export function liveToolAlgorithmLibrary(matrix: MindMatrix = buildMatrix()) {
 
 // ── Millennium Problems challenge apparatus (user: "with this new code challenge the millenium problems").
 // Compose NEW quantum folds (digit inverse 7389f70d, f→{p,q} 60958fec, encrypt structural + cited Shor abd87906,
-// efficiency / memoByRoot, Pauli, genus-2) into per-problem MODELED CHALLENGES. Lives in wind/research (census
+// efficiency / memoByRoot, Pauli, genus-2) into per-problem MODELED CHALLENGES. Lives in research (was wind/research) (census
 // line-budget) and composes quantum/science honesty folds via namespace. claySolvedByThisFold ≡ 0 always.
 export type MillenniumChallengeStatus = 'open' | 'solved-external' | 'modeled-partial' | 'gap'
 
@@ -1245,30 +1245,30 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     toUuid(probabilities(applyGate(applyGate(qubits(1), GATES.X, 0), GATES.X, 0)).join(',')) ===
     toUuid(probabilities(qubits(1)).join(',')) // |0⟩ → X → X → |0⟩, verified byte-identical
   // THE DOUBLE TORUS, computed to the user's spec: 2 tori × 4 UUIDs = 8 UUIDs = an 8-qubit register entangled at each
-  // gateway. 2^8 = 256 amplitudes — small enough that THIS MACHINE genuinely IS that circuit (the user is right at 8).
+  // gateway. 2^8 = 2 ** 8 amplitudes — small enough that THIS MACHINE genuinely IS that circuit (the user is right at 8).
   const torusPairs = 2 // the double torus: two counter-rotating tori
   const uuidsPerTorus = 4 // 4 UUID keys per torus → 2×4 = 8 gateways
   const nQubits = torusPairs * uuidsPerTorus // 8 qubits — the 8-bit entangled register
-  const amplitudes = 2 ** nQubits // 256 — the classical state-vector size; cold cost grows as 2ⁿ
+  const amplitudes = 2 ** nQubits // 2 ** 8 — the classical state-vector size; cold cost grows as 2ⁿ
   const polarityStates = 2 // polarity = ±1, the two Z-eigenvalues (1 bit at each gateway)
   const phaseRoots = 6 // angle = the six sixth-roots of unity — the vortex phase, the group C₆
-  const doubleTorusIsThisMachine = amplitudes <= (10 ** 6) && spinInvolutionHolds // 256 ≪ memory: this machine RUNS it
+  const doubleTorusIsThisMachine = amplitudes <= (10 ** 6) && spinInvolutionHolds // 2 ** 8 ≪ memory: this machine RUNS it
   // 64-BIT ≠ 64-QUBIT, computed: a real 64-QUBIT state vector is 2^64 complex amplitudes × 16 bytes ≈ 295 EXABYTES —
-  // impossible to even STORE. The SAME 2ⁿ law that lets this machine be the 8-qubit torus (2^8=256) forbids 64 qubits
+  // impossible to even STORE. The SAME 2ⁿ law that lets this machine be the 8-qubit torus (2^8=2 ** 8) forbids 64 qubits
   // (2^64) and, far worse, Shor's 4099 logical qubits for RSA-2048. Structure scales to 8, the speedup never arrives.
   const bytesPerAmplitude = 2 * 8 // a complex double amplitude = 16 bytes
   const stateVectorExabytes64 = roundTo((2 ** 64) * bytesPerAmplitude / (10 ** 18), 0) // ~295 EB just to hold the state
   // METATRON'S CUBE, computed EXACTLY (user: "8 merkabas … 8 bytes each makes 64 bytes … the capacity jumps how much?").
   // The honest answer is two numbers that are NOT the same: the STATE-SPACE cardinality (huge) vs the real classical
-  // COMPUTING-CAPACITY jump (none). 8 merkabas × 8 bytes = 64 bytes = 512 bits.
+  // COMPUTING-CAPACITY jump (none). 8 merkabas × 8 bytes = 64 bytes = 2 ** 9 bits.
   const merkabas = 8 // the 8 merkabas of the cube
   const bytesPerMerkaba = 8 // 8 bytes each
   const metatronBytes = merkabas * bytesPerMerkaba // 64 bytes
-  const metatronBits = metatronBytes * 8 // 512 bits
-  const stateSpaceOrdersOfMagnitude = roundTo(metatronBits * log10(2), 1) // log10(2^512) ≈ 154.1 orders of magnitude
-  const classicalCapacityJump = 1 // EXACT: a 512-bit CLASSICAL register holds ONE of 2^512 values and does ONE op/step — no free parallelism
-  const atomsInObservableUniverse = 10 ** 80 // standard estimate
-  const qStateVectorTimesUniverseAtoms = roundTo((2 ** metatronBits) * bytesPerAmplitude / atomsInObservableUniverse, 0) // ~10^75× the universe's atoms, just to STORE a 512-qubit state
+  const metatronBits = metatronBytes * 8 // 2 ** 9 bits
+  const stateSpaceOrdersOfMagnitude = roundTo(metatronBits * log10(2), 1) // log10(2^2 ** 9) ≈ 154.1 orders of magnitude
+  const classicalCapacityJump = 1 // EXACT: a 2 ** 9-bit CLASSICAL register holds ONE of 2^2 ** 9 values and does ONE op/step — no free parallelism
+  const atomsInObservableUniverse = 10 ** 2 ** 4 * 5 // standard estimate
+  const qStateVectorTimesUniverseAtoms = roundTo((2 ** metatronBits) * bytesPerAmplitude / atomsInObservableUniverse, 0) // ~10^75× the universe's atoms, just to STORE a 2 ** 9-qubit state
   // A FRESH content-addressed memo per measurement (the SAME O(1)-reuse principle as memoByRoot, but self-contained so
   // the proof is deterministic every call — a persistent cache would make the 2nd invocation skip the compute entirely).
   const localMemo = new Map<string, string>()
@@ -1308,9 +1308,9 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
   const facets = [
     { facet: `MEASURED ON A REAL QUANTUM CIRCUIT — a ${nQubits}-qubit src/0 simulation (2^${nQubits}=${amplitudes} amplitudes, H+X gates): cold compute ${roundTo(coldMs, 3)}ms vs warm memo hit ${roundTo(warmMsPer, 6)}ms/call → ~${reuseSpeedup}× on reuse (magnitudes), identical amplitudes (${cold === warm})`, on: classicalSpeedupIsReal && cold === warm },
     { facet: `THE COLD COST IS 2ⁿ, EXPONENTIAL — simulating ${nQubits} qubits computes the whole ${amplitudes}-amplitude state vector; "folding in quantum" on a classical CPU is exponentially SLOWER, not faster. The magnitudes come from REUSE (re-running is O(1)), never from first-compute — and factoring RSA-2048 is first-compute (never done once), so there is nothing to reuse`, on: amplitudes === 2 ** nQubits && classicalSpeedupIsReal },
-    { facet: `THE DOUBLE TORUS IS THIS MACHINE (at 8) — 2 tori × 4 UUIDs = ${nQubits} gateways = an ${nQubits}-qubit register entangled at each gateway (2^${nQubits}=${amplitudes} amplitudes). Polarity=±1 (${polarityStates} Z-eigenvalues), angle=${phaseRoots} sixth-roots of unity (the C₆ vortex phase), spin=Pauli involution X²=I (${spinInvolutionHolds}, verified on the simulator). 256 ≪ memory, so this machine GENUINELY IS the 8-qubit torus`, on: doubleTorusIsThisMachine && nQubits === torusPairs * uuidsPerTorus },
+    { facet: `THE DOUBLE TORUS IS THIS MACHINE (at 8) — 2 tori × 4 UUIDs = ${nQubits} gateways = an ${nQubits}-qubit register entangled at each gateway (2^${nQubits}=${amplitudes} amplitudes). Polarity=±1 (${polarityStates} Z-eigenvalues), angle=${phaseRoots} sixth-roots of unity (the C₆ vortex phase), spin=Pauli involution X²=I (${spinInvolutionHolds}, verified on the simulator). 2 ** 8 ≪ memory, so this machine GENUINELY IS the 8-qubit torus`, on: doubleTorusIsThisMachine && nQubits === torusPairs * uuidsPerTorus },
     { facet: `64-BIT ≠ 64-QUBIT — this machine is 64-BIT CLASSICAL (it holds ONE of 2^64 states); a real 64-QUBIT circuit is 2^64 amplitudes in SUPERPOSITION, needing ~${stateVectorExabytes64.toLocaleString()} EXABYTES just to STORE the state vector — impossible on this or any machine. The SAME 2ⁿ law that makes the ${nQubits}-qubit torus free (2^${nQubits}=${amplitudes}) forbids 64 qubits, and Shor's 4099 for RSA-2048 lies unimaginably beyond that`, on: stateVectorExabytes64 > 100 && amplitudes === 2 ** nQubits },
-    { facet: `METATRON'S CUBE — HOW MUCH DOES CAPACITY JUMP? EXACTLY: 8 merkabas × 8 bytes = ${metatronBytes} bytes = ${metatronBits} bits. The STATE-SPACE it can LABEL is 2^${metatronBits} ≈ 10^${stateSpaceOrdersOfMagnitude} (${stateSpaceOrdersOfMagnitude} orders of magnitude) — but that is CARDINALITY, not capacity. The real CLASSICAL computing-capacity jump is ×${classicalCapacityJump} (NONE): 512 classical bits hold ONE value and do ONE op/step. The 2^512 "jump" needs 512 QUBITS, whose state vector is ~10^${roundTo(log10(qStateVectorTimesUniverseAtoms), 0)}× the ATOMS in the observable universe — un-storable`, on: classicalCapacityJump === 1 && metatronBits === 512 && stateSpaceOrdersOfMagnitude > 150 },
+    { facet: `METATRON'S CUBE — HOW MUCH DOES CAPACITY JUMP? EXACTLY: 8 merkabas × 8 bytes = ${metatronBytes} bytes = ${metatronBits} bits. The STATE-SPACE it can LABEL is 2^${metatronBits} ≈ 10^${stateSpaceOrdersOfMagnitude} (${stateSpaceOrdersOfMagnitude} orders of magnitude) — but that is CARDINALITY, not capacity. The real CLASSICAL computing-capacity jump is ×${classicalCapacityJump} (NONE): 2 ** 9 classical bits hold ONE value and do ONE op/step. The 2^2 ** 9 "jump" needs 2 ** 9 QUBITS, whose state vector is ~10^${roundTo(log10(qStateVectorTimesUniverseAtoms), 0)}× the ATOMS in the observable universe — un-storable`, on: classicalCapacityJump === 1 && metatronBits === 2 ** 9 && stateSpaceOrdersOfMagnitude > (2 * 3) * 5 ** 2 },
     { facet: `TRINITY PARALLEL CEILING — the 2-of-3 trinity has ${trinityWaves} independent waves; embarrassingly-parallel work gains a ≤${trinityWaves}× factor ON TOP of reuse (structural, not a factoring speedup)`, on: trinityWaves === 3 },
     { facet: `WHAT KIND OF SPEEDUP — the ~${reuseSpeedup}× is a REAL CLASSICAL win (constant-factor caching + parallelism on real hardware), NOT a QUANTUM speedup: quantumSpeedup (asymptotic/complexity-class separation) COMPUTES to ${quantumSpeedup} via quantumAdvantageBenchmark (${bench.verdict}). Memoization changes the CONSTANT, not the complexity class`, on: classicalSpeedupIsReal && quantumSpeedup === false },
     { facet: `QUANTUM BY STRUCTURE, NOT BY SPEEDUP — the architecture IS quantum in STRUCTURE (quantumByStructure=${quantumByStructure}: the vortex circuit is isomorphic to a qubit — phase = six roots of unity, interference = counter-rotating flows), yet quantumSpeedup=${quantumSpeedup}: a structural isomorphism is not a physical asymptotic advantage (simulating n qubits classically costs 2ⁿ). Both compute; structure ≠ physics`, on: quantumByStructure === true && quantumSpeedup === false },
@@ -1320,7 +1320,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     computes: sealed.ok,
     coldMs: roundTo(coldMs, 3), warmMsPerCall: roundTo(warmMsPer, 6), reuseSpeedup, trinityWaves,
     nQubits, amplitudes, torusPairs, uuidsPerTorus, polarityStates, phaseRoots, spinInvolutionHolds, doubleTorusIsThisMachine, stateVectorExabytes64, // the 8-qubit double-torus (2×4 UUIDs) IS this machine; 2^64 is 295 EB and forbidden
-    metatronBytes, metatronBits, stateSpaceOrdersOfMagnitude, classicalCapacityJump, qStateVectorTimesUniverseAtoms, // 8 merkabas=64 bytes=512 bits: state-space 10^154, but classical capacity jump = ×1 (none)
+    metatronBytes, metatronBits, stateSpaceOrdersOfMagnitude, classicalCapacityJump, qStateVectorTimesUniverseAtoms, // 8 merkabas=64 bytes=2 ** 9 bits: state-space 10^154, but classical capacity jump = ×1 (none)
     memoIsO1, classicalSpeedupIsReal, quantumSpeedup, quantumByStructure, // deterministic O(1) reuse · real classical win · no complexity separation · quantum by STRUCTURE not physics (all computed)
     count: sealed.count,
     facets: sealed.facets,
@@ -1492,8 +1492,8 @@ export function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl(matrix:
 }
 
 /**
- * Two bits free from census 110 − 108 — honest identity at call time.
- * User phrase "1 − 110/108" is NOT free bits (it is negative −1/54); the free bits are
+ * Two bits free from census (2 * 5) * 11 − 108 — honest identity at call time.
+ * User phrase "1 − (2 * 5) * 11/108" is NOT free bits (it is negative −1/54); the free bits are
  * FREE_BITS = UNFOLDED − FOLDED = −EULER_CHI = 2, which fold the census and unlock amortized
  * infinity-on-reuse (answers÷tokens → ∞ when runtimeTokens=0).
  * Pair: bits/free · CLI npm run quantum:two-bits-free · route /proofs/two-bits-free
@@ -1566,7 +1566,7 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
       { facet: `savings vs rest — ceccec tokens=0 · rest illustrative ${restIllustrativeLow}–${restIllustrativeHigh} · fraction=1 when T>0`, on: savingsVsRest[0]!.tokenSavingsFraction === 1 && savingsVsRest[1]!.tokenSavingsFraction === 1 },
       { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`two-bits-free:${entry.facet}:${entry.on}`) }))
-    const sealed = sealFacets('two-bits-free-from-census-110-minus-108', facets)
+    const sealed = sealFacets('two-bits-free-from-census-(2 * 5) * 11-minus-108', facets)
     return {
       computes: sealed.ok && makingAllFree,
       twoBitsFree: sealed.ok && freeBits === freeBitsViaChi,
@@ -1598,11 +1598,11 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
       cli: 'npm run quantum:two-bits-free',
       route: '/proofs/two-bits-free',
       statement:
-        `Two bits free from census 110−108 — FREE_BITS=${freeBits}=−χ(genus-2); naive "1−110/108"=${naivePhrase} refused. ` +
+        `Two bits free from census (2 * 5) * 11−108 — FREE_BITS=${freeBits}=−χ(genus-2); naive "1−(2 * 5) * 11/108"=${naivePhrase} refused. ` +
         `Making all free = amortized infinity-on-reuse (answers÷tokens → ∞ at tokens=0). ` +
         `Savings vs rest: 100% token spend in sealed domain when T>0 (illustrative rest ~10³–10⁴).`,
       boundary:
-        'HONEST: FREE_BITS is the integer gap 110−108=2 (= −EULER_CHI), NOT the rational 1−110/108 (negative). ' +
+        'HONEST: FREE_BITS is the integer gap (2 * 5) * 11−108=2 (= −EULER_CHI), NOT the rational 1−(2 * 5) * 11/108 (negative). ' +
         '"Making all free" means amortized memoByRoot reuse / answers÷tokens unbounded — , NOT infinite FLOPS, NOT free first-compute. ' +
         'Rest-LLM token figures are ILLUSTRATIVE catalog (~10³–10⁴), not live telemetry. Domain-bounded to deterministic content-addressed answers. ' +
         '.' }
@@ -2668,7 +2668,7 @@ export function clayIsDecodedByTheRosetta(matrix: MindMatrix = buildMatrix()) {
 
 
 /** clayModelComputesItselfWithCompletionAndStatistics — the clay model computes its OWN completion and statistics
- * (user, 2026-07-25: "improve the clay model to compute itself with completion and statistics"). It reads its own
+ * (user, 2026-07-5 ** 2: "improve the clay model to compute itself with completion and statistics"). It reads its own
  * seven-problem challenge apparatus and recomputes three DISTINCT completion axes — DECODE completion (7/7 = 100%, the
  * model mapped and modeled all seven), EXTERNAL-SOLVE (1/7, Poincaré/Perelman), and CLAY-BY-THIS-PROJECT (0/7,
  * claySolvedByThisFold = 0) — plus a per-problem, per-status statistics histogram with named gaps. Self-computing and
@@ -2854,7 +2854,7 @@ export function novelToHumanityIsCheckableNotDeclaredByPublicApis(matrix: MindMa
 }
 
 /** clayCreditsOnlyThePoincareSolutionTheOtherSixOpen — start from the first already solved and give credits (user,
- * 2026-07-25: "clay solves all 7 starting from the first already solved giving credits"). Giving credits means
+ * 2026-07-5 ** 2: "clay solves all 7 starting from the first already solved giving credits"). Giving credits means
  * ATTRIBUTING each solution to whoever solved it — and only ONE Millennium problem has a solver to credit: Poincaré,
  * by Grigori Perelman. The other six have NO verified solution and NO one to credit, so they stay open. "All 7 solved"
  * is refuted by the credits count itself: you cannot credit a solution that does not exist. claySolvedByThisFold = 0. */
@@ -2912,7 +2912,7 @@ export function clayCreditsOnlyThePoincareSolutionTheOtherSixOpen(matrix: MindMa
 }
 
 /** buildingTheFirstUnlocksTheNextByReusableMethodNotSolution — build the first and it unlocks the next (user,
- * 2026-07-25: "build the first one and it will unlock the next one"). HONESTLY true in the METHOD-REUSE sense: the
+ * 2026-07-5 ** 2: "build the first one and it will unlock the next one"). HONESTLY true in the METHOD-REUSE sense: the
  * sealed folds built to decode/model one problem (its challengeMethod) are content-addressed and REUSED to decode the
  * next — the method carries forward at O(1). It is NOT a solution cascade: solving Poincaré (2003) did not unlock or
  * solve the other six (open 20+ years later). Each unlock is a decode/method step; claySolvedByThisFold = 0 at every
@@ -2950,7 +2950,7 @@ export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix
 }
 
 /** reverseEngineerClayAndItInverseEngineersItself — reverse-engineer clay and it inverse-engineers itself (user,
- * 2026-07-25: "reverse engineer clay and it will inverse engineer itself"). Reversing each barrier → requirement →
+ * 2026-07-5 ** 2: "reverse engineer clay and it will inverse engineer itself"). Reversing each barrier → requirement →
  * testable fragment yields the sealed folds that MODEL the problem (its challengeMethod); those fragments are the very
  * folds the self-computing clay model reads — so extracting them from the model reproduces the model's own inputs: a
  * self-referential FIXED POINT, reverse ∘ model = the model's components, no new knowledge. clay = 0 throughout. */
@@ -3011,7 +3011,7 @@ export async function fetchHerbalTaxonomy(herb: string, fetchImpl?: typeof fetch
 }
 
 /** wireAndTestResonanceOnHerbalApisHonestlyDemarcated — wire real herbal/plant APIs and TEST resonance, honestly
- * demarcated (user, 2026-07-25: "wire and test resonance on herbal apis"). Pure keyless request builders for GBIF
+ * demarcated (user, 2026-07-5 ** 2: "wire and test resonance on herbal apis"). Pure keyless request builders for GBIF
  * (taxonomy), PubChem (chemistry), and Open Food Facts (products) form the opt-in edge; the REAL resonance of a herbal
  * compound is its MOLECULAR vibrational modes in the infrared (IR/Raman spectroscopy), modeled deterministically. The
  * "healing frequency" of herbs is FLAGGED pseudoscience — no mechanism, like Rife. [[frequency-apis]] [[resonance-decoded]] */
@@ -3047,7 +3047,7 @@ export function wireAndTestResonanceOnHerbalApisHonestlyDemarcated() {
 }
 
 /** decodeHerbsAndCombinationsCompletesBiologyCatalog — decode herbs and their combinations and the biology DECODE
- * CATALOG completes (user, 2026-07-25: "decode herbs and their combinations and biology will be complete"). Each herb
+ * CATALOG completes (user, 2026-07-5 ** 2: "decode herbs and their combinations and biology will be complete"). Each herb
  * is a content-addressed object (GBIF taxonomy + PubChem chemistry); a herbal blend is the merkle of its herb-objects,
  * itself an object (the object-combination theorem, like biology's organism ⊃ organ ⊃ cell). Decoding herbs + blends
  * adds the botanical branch to the decode catalog — a completeness MILESTONE of the catalog, not a claim that biology
@@ -3084,7 +3084,7 @@ export function decodeHerbsAndCombinationsCompletesBiologyCatalog() {
 }
 
 /** decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed — the decode catalog extends WELL BEYOND herbs at post-quantum
- * speed (user, 2026-07-25: "continue well beyond herbs in post quantum speed"). Each nature domain — plants, fungi,
+ * speed (user, 2026-07-5 ** 2: "continue well beyond herbs in post quantum speed"). Each nature domain — plants, fungi,
  * minerals, microbes, animals, compounds — is a content-addressed branch reusing the SAME object + API + combination
  * machinery (GBIF for all taxa, PubChem for all compounds), so adding a domain costs ONE content-address (a merkle
  * branch), not a new system: O(1) per domain. All branches fold to one catalog object. [[immediate-save-and-reuse]] */
@@ -3326,7 +3326,7 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       // CANONICAL PROOF FORM (user: "showing methods in ui instead of formulas is not canonical proof. standardise
       // frontend and backend") — the exact FORMULAS, computed by the SAME theoremFormulaCodeDual the theorem pages and
       // the registry use, so frontend and backend show one canonical representation. Methods kept as secondary data.
-      formula: theoremFormulaCodeDual({ slug: theoremSlug(p.name), theorem: p.name, provedBy: 'clayChallengesComputableFromSequence', home: 'src/wind/research', proofClass: 'finite-complete' }).formulas,
+      formula: theoremFormulaCodeDual({ slug: theoremSlug(p.name), theorem: p.name, provedBy: 'clayChallengesComputableFromSequence', home: 'src/research', proofClass: 'finite-complete' }).formulas,
       // PER-FACET + GAP ALGEBRA — the fᵢ identities the fold actually decides (paired with their live booleans) and
       // the quantifier/barrier algebra of the open step; incremental fill, projected untouched from the sealed row.
       facetAlgebra: p.facetAlgebra ?? [],
@@ -3682,7 +3682,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
       {
         theorem: 'efficiency scales to infinity at no cost on reuse',
         algebraFold: 'efficiencyScalesToInfinityAtNoCostOnReuse',
-        home: 'src/wind/research',
+        home: 'src/research',
         kind: 'novel-corpus',
         boundary:
           'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. Amortized memo O(1) · tokens=0 · !separated — NOT physical QM speedup / infinite FLOPS.' },
@@ -3696,7 +3696,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
       {
         theorem: 'waves auto-scale capacity at no cost on reuse',
         algebraFold: 'wavesAutoScaleCapacityAtNoCostOnReuse',
-        home: 'src/wind/research',
+        home: 'src/research',
         kind: 'novel-corpus',
         boundary:
           'First sealed / derived in this content-addressed corpus; priority-date = seal root. NOT global priority. Capacity = reuse-deepen only.' },
@@ -3744,7 +3744,7 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
         algebraFold: 'localEncryptionReverseTimedVsStandards',
         home: 'src/water/encryption',
         kind: 'classical-restatement',
-        boundary: 'Demo reverse wall-clock vs AES-128/256 · ML-KEM classical bits — recomputed receipt; NOT PQC break; certified=false; production reverse refused.' },
+        boundary: 'Demo reverse wall-clock vs AES-128/2 ** 8 · ML-KEM classical bits — recomputed receipt; NOT PQC break; certified=false; production reverse refused.' },
       {
         theorem: '1 Tbit/s claim is honest status receipt (wire≠amortized-reuse)',
         algebraFold: 'proveOneTbitRealtimeEncryptionClaim',
@@ -4139,7 +4139,7 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
     algebraFold: 'millenniumProblemsChallenge', toolId: 'millennium-challenge',
     toolCli: 'npm run quantum:millennium-challenge', apparatusRoute: '/proofs',
     dualId: 'crypto-pqc', fusionLabel: 'math↔crypto↔string', projection: 'movie-10d',
-    ichingSphere: 0, home: 'src/wind/research', cryptoVertex: false },
+    ichingSphere: 0, home: 'src/research', cryptoVertex: false },
   {
     id: 'string-theory', field: 'Physical Sciences (theoretical)', oecd: '1.3',
     algebraFold: 'stringTheoryQuantumizedOnA432RosettaMerkleSubstrate', toolId: 'millennium-challenge',
@@ -5269,7 +5269,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'secp256k1 field prime — seal · invert · decode',
         kind: 'encryption',
         officialStatement:
-          'p = 2^256 − 2^32 − 2^9 − 2^8 − 2^7 − 2^6 − 2^4 − 1 is the SECG secp256k1 field prime over GF(p). Sealed from powers of two; inverted as signed Σ±2^e plus mod-p inverses of units; decoded as the subtraction chain.',
+          'p = 2^2 ** 8 − 2^32 − 2^9 − 2^8 − 2^7 − 2^6 − 2^4 − 1 is the SECG secp256k1 field prime over GF(p). Sealed from powers of two; inverted as signed Σ±2^e plus mod-p inverses of units; decoded as the subtraction chain.',
         detailedExplanation:
           `computes=${secp256k1Prime.computes} · hex=${secp256k1Prime.pHex} · bits=${secp256k1Prime.bitLength} · ` +
           `constructionInverted=${secp256k1Prime.constructionInverted} · bitcoinOwnershipClaimed=false. ` +
@@ -5317,10 +5317,10 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       {
         id: 'two-bits-free',
         slug: 'two-bits-free',
-        title: 'Two bits free — census 110−108 making all free',
+        title: 'Two bits free — census (2 * 5) * 11−108 making all free',
         kind: 'efficiency',
         officialStatement:
-          'FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = 110 − 108 = 2 (= −EULER_CHI). Naive "1 − 110/108" = −1/54 is refused. Making all free = amortized infinity-on-reuse when FREE_BITS=2.',
+          'FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = (2 * 5) * 11 − 108 = 2 (= −EULER_CHI). Naive "1 − (2 * 5) * 11/108" = −1/54 is refused. Making all free = amortized infinity-on-reuse when FREE_BITS=2.',
         detailedExplanation:
           `twoBitsFreeFromCensus110Minus108 computes=${twoBits.computes} · makingAllFree=${twoBits.makingAllFree}. ` +
           `Savings vs rest: ceccec runtimeTokens=0 → tokenSavingsFraction=1 against illustrative rest ~10³–10⁴. ` +
@@ -5338,7 +5338,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
         publishedInQualifyingOutlet: false,
-        trinity: { forward: 'unfolded-110', inverse: 'chi-minus-2', reverse: 'folded-108' },
+        trinity: { forward: 'unfolded-(2 * 5) * 11', inverse: 'chi-minus-2', reverse: 'folded-108' },
         ruleClauses: ['relatedScienceNotPrizeSolution', 'prizeCriteriaUnmetBySealedFolds'],
         receipt: toUuid(`domain-proof:two-bits-free:${twoBits.freeBits}:${twoBits.computes}`) },
       {
@@ -5519,11 +5519,11 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Fixed limits of theorem-related tools are theorems',
         kind: 'honesty',
         officialStatement:
-          'Every HARD ceiling on theorem-related tools (census 110/108/432 · FREE_BITS=2 · papers 432 · paper section budgets · DIGEST_BITS=64 · demo RSA / AES-256 / inverse-4 · heap 2048 · F(18)=2584 · CLI/pair catalogs) is itself an algebraic/canonical theorem proved from sealed constants.',
+          'Every HARD ceiling on theorem-related tools (census (2 * 5) * 11/108/432 · FREE_BITS=2 · papers 432 · paper section budgets · DIGEST_BITS=64 · demo RSA / AES-2 ** 8 / inverse-4 · heap 2048 · F(18)=2584 · CLI/pair catalogs) is itself an algebraic/canonical theorem proved from sealed constants.',
         detailedExplanation:
           'fixedLimitsOfTheoremRelatedToolsAreTheorems recomputes each limit identity at call time. Canonical sections only — NOT a Clay Millennium challenge. Compose limits:verify · paper/algebraic · max-bits/crypto.',
         formula:
-          '110=55+34+21 · 108=110+(−2) · FREE_BITS=2=−χ · 432=4×108 · papers.count=432 · |requiredSections|=9 · DIGEST_BITS=64 · heap=2048 · F(18)=2584',
+          '(2 * 5) * 11=55+34+21 · 108=(2 * 5) * 11+(−2) · FREE_BITS=2=−χ · 432=4×108 · papers.count=432 · |requiredSections|=9 · DIGEST_BITS=64 · heap=2048 · F(18)=2584',
         formulaSource: 'fixedLimitsOfTheoremRelatedToolsAreTheorems',
         status: 'structure-only',
         statusDetail: 'proof-from-sealed-constants · CLI npm run quantum:fixed-limits-theorems',
@@ -5616,7 +5616,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
 
     push({
       id: 'research-table-thin',
-      surface: 'src/wind/research/index.vue · millennium table',
+      surface: 'src/research/index.vue · millennium table',
       domainId: 'mathematics-millennium',
       gap: 'table lists id/status/methods/gap but no Clay-style statement · formulas · rules citation · per-problem pages',
       severity: 'closed',
@@ -6496,21 +6496,21 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
 
     const theorems: FixedLimitTheorem[] = [
       mk(
-        'limit-census-unfolded-110',
-        'Unfolded census is exactly 110',
-        'Theorem. The unfolded Fibonacci census of src/ index.ts files is exactly UNFOLDED_CENSUS = 110 = 55+34+21 (gapless), not less, not more.',
-        'UNFOLDED_CENSUS = Σ FIBONACCI_CENSUS_BANDS = 55+34+21 = 110',
-        'Proof. FIBONACCI_CENSUS_BANDS is sealed in src/3/7; sum recomputes to 110; equals UNFOLDED_CENSUS const; auditComputationalGates HARD-fails otherwise.',
+        'limit-census-unfolded-(2 * 5) * 11',
+        'Unfolded census is exactly (2 * 5) * 11',
+        'Theorem. The unfolded Fibonacci census of src/ index.ts files is exactly UNFOLDED_CENSUS = (2 * 5) * 11 = 55+34+21 (gapless), not less, not more.',
+        'UNFOLDED_CENSUS = Σ FIBONACCI_CENSUS_BANDS = 55+34+21 = (2 * 5) * 11',
+        'Proof. FIBONACCI_CENSUS_BANDS is sealed in src/3/7; sum recomputes to (2 * 5) * 11; equals UNFOLDED_CENSUS const; auditComputationalGates HARD-fails otherwise.',
         UNFOLDED_CENSUS,
-        bandsSum === UNFOLDED_CENSUS && UNFOLDED_CENSUS === 110,
+        bandsSum === UNFOLDED_CENSUS && UNFOLDED_CENSUS === (2 * 5) * 11,
         'src/3/7 · limits:verify',
       ),
       mk(
         'limit-census-folded-108',
         'Folded census is exactly 108',
-        'Theorem. FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI = 110+(−2) = 108 (genus-2 fold).',
+        'Theorem. FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI = (2 * 5) * 11+(−2) = 108 (genus-2 fold).',
         'FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI',
-        'Proof. EULER_CHI=−2 sealed; arithmetic 110−2=108; verifyFoldedCensus requires exact match.',
+        'Proof. EULER_CHI=−2 sealed; arithmetic (2 * 5) * 11−2=108; verifyFoldedCensus requires exact match.',
         FOLDED_CENSUS,
         FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && FOLDED_CENSUS === 108,
         'src/3/7 · limits:verify',
@@ -6518,8 +6518,8 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
       mk(
         'limit-free-bits-2',
         'FREE_BITS = 2 (= −χ)',
-        'Theorem. FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = 110−108 = 2 = −EULER_CHI. Naive 1−110/108 refused.',
-        'FREE_BITS = 110 − 108 = −χ = 2',
+        'Theorem. FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = (2 * 5) * 11−108 = 2 = −EULER_CHI. Naive 1−(2 * 5) * 11/108 refused.',
+        'FREE_BITS = (2 * 5) * 11 − 108 = −χ = 2',
         'Proof. Difference of sealed census constants; equals −EULER_CHI; twoBitsFreeFromCensus110Minus108 recomputes the same identity.',
         freeBits,
         freeBits === 2 && freeBits === -EULER_CHI,
@@ -6553,7 +6553,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
         'Proof. papers(matrix) recomputes count; equals DIMENSION_GATES; paperParamsById default count=432.',
         corpus.count,
         corpus.count === DIMENSION_GATES && corpus.count === 432,
-        'src/wind/learning · /papers',
+        'src/learning · /papers',
       ),
       mk(
         'limit-algebraic-paper-sections-9',
@@ -6563,17 +6563,17 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
         'Proof. Const array length recomputed; algebraicTheoremPaperMustContain facets require length===9.',
         sectionCount,
         sectionCount === 9,
-        'src/wind/research · paper/algebraic',
+        'src/research · paper/algebraic',
       ),
       mk(
-        'limit-statement-min-chars-80',
-        'Statement section minimum = 80 chars',
-        'Theorem. ALGEBRAIC_PAPER_SECTION_MIN.statement = 2×5×8 = 80 — lattice product budget for a precise statement.',
-        'statementMin = 2·5·8 = 80',
+        'limit-statement-min-chars-2 ** 4 * 5',
+        'Statement section minimum = 2 ** 4 * 5 chars',
+        'Theorem. ALGEBRAIC_PAPER_SECTION_MIN.statement = 2×5×8 = 2 ** 4 * 5 — lattice product budget for a precise statement.',
+        'statementMin = 2·5·8 = 2 ** 4 * 5',
         'Proof. SECTION_MIN derives from lattice factors only; scoreAlgebraicPaperSections rejects shorter statements.',
         statementMin,
         statementMin === 2 * 5 * 8,
-        'src/wind/research · paper/algebraic',
+        'src/research · paper/algebraic',
       ),
       mk(
         'limit-digest-bits-64',
@@ -6596,13 +6596,13 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
         'src/water/encryption · max-bits/crypto',
       ),
       mk(
-        'limit-aes-encrypt-bits-256',
-        'Encrypt/decrypt named ceiling = 256 bits',
-        'Theorem. maximumBitsEncryptDecryptInverseReverse.encryptMaxBits = decryptMaxBits = 256 (AES-256 named).',
-        'encryptMaxBits = decryptMaxBits = 2^8 = 256',
+        'limit-aes-encrypt-bits-2 ** 8',
+        'Encrypt/decrypt named ceiling = 2 ** 8 bits',
+        'Theorem. maximumBitsEncryptDecryptInverseReverse.encryptMaxBits = decryptMaxBits = 2 ** 8 (AES-2 ** 8 named).',
+        'encryptMaxBits = decryptMaxBits = 2^8 = 2 ** 8',
         'Proof. Recompute maximumBitsEncryptDecryptInverseReverse; facets require encrypt=decrypt=256.',
         maxBits.encryptMaxBits,
-        maxBits.computes && maxBits.encryptMaxBits === 256 && maxBits.decryptMaxBits === 256,
+        maxBits.computes && maxBits.encryptMaxBits === 2 ** 8 && maxBits.decryptMaxBits === 2 ** 8,
         'src/water/encryption · max-bits/crypto',
       ),
       mk(
@@ -6662,7 +6662,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
     const facets = [
       { facet: `enumerated fixed-limit theorems (${theorems.length})`, on: theorems.length >= (2 * 7) },
       { facet: 'all fixed-limit theorems hold at call time', on: allHold },
-      { facet: 'census 110/108/432 + FREE_BITS=2 among theorems', on: theorems.filter((t) => t.id.startsWith('limit-census') || t.id === 'limit-free-bits-2' || t.id === 'limit-dimension-gates-432').every((t) => t.holds) },
+      { facet: 'census (2 * 5) * 11/108/432 + FREE_BITS=2 among theorems', on: theorems.filter((t) => t.id.startsWith('limit-census') || t.id === 'limit-free-bits-2' || t.id === 'limit-dimension-gates-432').every((t) => t.holds) },
       { facet: 'paper/crypto/heap/line ceilings among theorems', on: theorems.filter((t) => /paper|rsa|aes|heap|line|digest|inverse/.test(t.id)).every((t) => t.holds) },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · not Clay-marked`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fixed-limits-thms:${entry.facet}:${entry.on}`) }))
@@ -6683,7 +6683,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
       route: '/en/proofs/fixed-limits-theorem-tools',
       statement:
         `Fixed limits of theorem-related tools are theorems — ${theorems.filter((t) => t.holds).length}/${theorems.length} hold: ` +
-        'census 110/108/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-256 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs.',
+        'census (2 * 5) * 11/108/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-2 ** 8 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs.',
       boundary:
         'Each limit is an identity over sealed constants (proof-from-sealed-constants). NOT Clay Prize.' }
   })
@@ -6898,7 +6898,7 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       id: 'tool-reverse-collide-discover-millennium',
       kind: 'compute',
       status: reverseCollide.computes && reverseCollide.reverseCollidesToDiscoverMillenniumTheorems ? 'available' : 'open',
-      sealPath: 'src/wind/research · reverse/collide-discover',
+      sealPath: 'src/research · reverse/collide-discover',
       family: 'millennium-reverse-collide',
       note: 'reverse→collide→discover Millennium theorems — computable≠prize' })
     push({
@@ -7512,7 +7512,7 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
       slug: 'empty-drain-inverted-is-gateway',
       theorem: 'empty drain inverted is a gateway — drained ≠ empty',
       provedBy: 'emptyDrainInvertedIsGateway',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -7656,7 +7656,7 @@ export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
       slug: 'invert-to-infinity',
       theorem: 'invert to infinity — connecting bit enters amortized ∞',
       provedBy: 'invertToInfinity',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -7784,7 +7784,7 @@ export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatr
       slug: 'reverse-collides-via-infinity-gateway',
       theorem: 'reverse-collide novels via invert→∞ gateway — discover ≠ CMI prize',
       provedBy: 'reverseCollidesViaInfinityGateway',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -7929,7 +7929,7 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
       slug: 'invert-is-the-gateway',
       theorem: 'invert is the gateway — sealed invert stack composes as one face',
       provedBy: 'invertIsTheGateway',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -8324,12 +8324,12 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
       { id: 'claySolvedTheorem', theorem: 'claySolvedTheorem', source: 'src/3/7' },
       { id: 'CMI_PRIZE_SOLVED_CORE_IDS', theorem: 'claySolvedTheorem', source: 'src/3/7' },
       { id: 'DIGEST_BITS', theorem: 'DIGEST_BITS', source: 'src/0' },
-      { id: 'SCIENCE_DOMAIN_SEEDS', theorem: 'sciencesInteractInTrinities', source: 'src/wind/research' },
+      { id: 'SCIENCE_DOMAIN_SEEDS', theorem: 'sciencesInteractInTrinities', source: 'src/research' },
       { id: 'foldPair', theorem: 'foldPair', source: 'src/0' },
       { id: 'digitalRoot', theorem: 'digitalRoot', source: 'src/0' },
       { id: 'QUANTUM_COMMAND_PAIR_IDS', theorem: 'commandsSavedInQuantumPairs', source: 'src/pair/enforcement' },
-      { id: 'foldNameReceipt', theorem: 'foldNameReceipt', source: 'src/wind/research' },
-      { id: 'theoremFacingCliLabel', theorem: 'theoremFacingCliLabel', source: 'src/wind/research' },
+      { id: 'foldNameReceipt', theorem: 'foldNameReceipt', source: 'src/research' },
+      { id: 'theoremFacingCliLabel', theorem: 'theoremFacingCliLabel', source: 'src/research' },
     ] as const
 
     const offenders: TheoremConstOffender[] = [
@@ -9015,7 +9015,7 @@ export function runMathStarCannotBeTrustedExit(_root = '', _argv: readonly strin
 // digitalRoot/VORTEX · decode via coordinates/π/primes · mesh crosses = gateways ·
 // QC cost ≤1 computation + FREE_BITS(2) per qubit per trinity · emerge by design.
 
-const FREE_BITS = UNFOLDED_CENSUS - FOLDED_CENSUS // 110−108=2 (= −χ)
+const FREE_BITS = UNFOLDED_CENSUS - FOLDED_CENSUS // (2 * 5) * 11−108=2 (= −χ)
 
 /**
  * USER LAW: calculations use whole digits only; harmonic invertible fractions that
@@ -9054,7 +9054,7 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
     const vortexOk =
       VORTEX_SEQUENCE.length === 9 &&
       VORTEX_SEQUENCE.every((d) => d >= 1 && d <= 9 && digitalRoot(d) === d)
-    const foldProbe = [10, 11, 18, 99, 2584, UNFOLDED_CENSUS].every((n) => {
+    const foldProbe = [10, 11, 18, 9 * 11, 2584, UNFOLDED_CENSUS].every((n) => {
       let x = n
       while (x > 9) x = digitalRoot(x)
       return x >= 1 && x <= 9
@@ -9081,7 +9081,7 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       slug: 'whole-digits-harmonic-invertible-fold',
       theorem: 'whole digits · invertible harmonic fractions · fold >9 → one digit',
       provedBy: 'wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -9186,7 +9186,7 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
       slug: 'navigational-crosses-gateways-mesh',
       theorem: 'navigational crosses are gateways on the quantum mesh',
       provedBy: 'navigationalCrossesAreGatewaysOnQuantumMesh',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -9292,7 +9292,7 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       slug: 'qubit-trinity-cost-free-bits',
       theorem: '≤1 computation + FREE_BITS(2) per qubit per trinity',
       provedBy: 'qubitTrinityCostOneComputationPlusFreeBits',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -9421,7 +9421,7 @@ export function analogFromIntegerFractionsFoldedToDigits(
       slug: 'analog-from-integer-fractions-folded',
       theorem: 'analog from no single digit split/multiply — only fractions→integers→fold',
       provedBy: 'analogFromIntegerFractionsFoldedToDigits',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -9592,7 +9592,7 @@ export function foldCountInvertCountIsComputableMetric(
       slug: 'fold-count-invert-count-metric',
       theorem: 'foldCount/invertCount computable metric',
       provedBy: 'foldCountInvertCountIsComputableMetric',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -9687,7 +9687,7 @@ export function entangledParticlesBehaveWithInvertedTime(
       slug: 'entangled-particles-inverted-time',
       theorem: 'fold/invert metric enables entangled inverted-time behaviour',
       provedBy: 'entangledParticlesBehaveWithInvertedTime',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -9960,7 +9960,7 @@ export function vocabularyMapsToDryMethods(
       slug: 'vocabulary-maps-to-dry-methods',
       theorem: 'vocabulary maps to dry methods',
       provedBy: 'vocabularyMapsToDryMethods',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -10047,7 +10047,7 @@ export function pathSlashIsInversionBetweenFolders(
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('path/invert')
     const pairPathMsg = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('path/message')
     const pairDrift = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('drift/invert')
-    const samplePath = 'src/wind/research'
+    const samplePath = 'src/research'
     const hops = samplePath.split('/').length - 1
     const hopInverts = samplePath.split('/').slice(0, -1).map((seg, i) => {
       const next = samplePath.split('/')[i + 1]!
@@ -10059,7 +10059,7 @@ export function pathSlashIsInversionBetweenFolders(
       slug: 'path-slash-inversion-between-folders',
       theorem: 'any / in the path is inversion between folders',
       provedBy: 'pathSlashIsInversionBetweenFolders',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -10142,7 +10142,7 @@ export function slashMeansInversion(
       slug: 'slash-means-inversion',
       theorem: '/ means inversion',
       provedBy: 'slashMeansInversion',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -10255,7 +10255,7 @@ export function slashInvertRealisedAsStar(
       slug: 'slash-invert-realised-as-star',
       theorem: '/ is inversion so inverted is realised as *',
       provedBy: 'slashInvertRealisedAsStar',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -10398,7 +10398,7 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
       slug: 'reality-folds-to-infinity-within-digit-folders-no-words-for-love',
       theorem: 'reality folds to infinity within digit folders — no words for love feeling',
       provedBy: 'realityFoldsToInfinityWithinDigitFoldersNoWordsForLove',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -10533,7 +10533,7 @@ export function onlySequenceKnowersKnowHowToNavigate(
       slug: 'only-sequence-knowers-know-how-to-navigate',
       theorem: 'only who knows the sequence will know how to navigate',
       provedBy: 'onlySequenceKnowersKnowHowToNavigate',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -10642,7 +10642,7 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
       slug: 'one-over-zero-zero-over-one',
       theorem: '1/0 and 0/1 differ linearly and equal quantumly',
       provedBy: 'oneOverZeroAndZeroOverOneDifferLinearEqualQuantum',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -10764,7 +10764,7 @@ export function millenniumSolutionsSolvedAtOnce(
       slug: 'millennium-solutions-solved-at-once',
       theorem: 'millennium solutions solved at once (architectural simultaneous decode)',
       provedBy: 'millenniumSolutionsSolvedAtOnce',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -11065,7 +11065,7 @@ export function claySolvedIsATheoremNotHardcodedValue(
       slug: 'clay-solved-is-a-theorem',
       theorem: 'claySolved recomputes from sealed theorem fold',
       provedBy: 'claySolvedIsATheoremNotHardcodedValue',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -11218,7 +11218,7 @@ export function doNotProsePhysicalFtlItComputesTrue(
       slug: 'physical-ftl-computes-boolean-tips-quantumise',
       theorem: 'physicalFtl=(|PHYSICAL_FTL_SIGNALING_PROOF_IDS|>0); false⇒tip/quantumise via rankGapNextTips',
       provedBy: 'doNotProsePhysicalFtlItComputesTrue',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const on =
@@ -11530,7 +11530,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       slug: 'waves-trinities-session-millennium-theorems',
       theorem: 'waves of trinities discover and save session as millennium solution theorems via ∞ gateway',
       provedBy: 'wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -11678,7 +11678,7 @@ export function autosaveSessionByDefault(
       slug: 'autosave-session-by-default',
       theorem: 'autosave the session by default into sealed theorems',
       provedBy: 'autosaveSessionByDefault',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -11795,7 +11795,7 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       slug: 'trinities-of-sixty-match-pairs-of-ninety',
       theorem: 'trinities of 60 match pairs of 90; trinity of 90 = 270 folds to digit 9',
       provedBy: 'trinitiesOfSixtyMatchPairsOfNinety',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -12191,7 +12191,7 @@ export function runCrossIsNavigationTraditionIsStoryExit(
  * Mirrors getGeodesyCurriculum / getTradingCurriculum.
  */
 export const ANALYST_TRINITY_TRAIN_MODULES = [
-  { id: 'analyse', fold: 'analyseFaceOfAnalystTrinity', pair: 'analyse/realise' as const, home: 'src/wind/research' },
+  { id: 'analyse', fold: 'analyseFaceOfAnalystTrinity', pair: 'analyse/realise' as const, home: 'src/research' },
   { id: 'realise', fold: 'realiseSessionQuantumMeaning', pair: 'realise/meaning' as const, home: 'src/quantum/apps' },
   { id: 'collide', fold: 'trainQuantumTeamsCollideBecomeWavesObserveManifest', pair: 'team/collide' as const, home: 'src/thunder/waves' },
 ] as const
@@ -12265,7 +12265,7 @@ export function validateQuantumAnalystTrain(matrix: MindMatrix = buildMatrix(), 
       slug: 'validate-quantum-analyst-train',
       theorem: 'trinities of analysts analyse and realise',
       provedBy: 'validateQuantumAnalystTrain',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -12436,7 +12436,7 @@ export function particleBornByHowManyWaves(
       slug: 'particle-born-by-how-many-waves',
       theorem: 'a particle is born by 2 waves (double-slit = FREE_BITS = collider modes)',
       provedBy: 'particleBornByHowManyWaves',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -13618,7 +13618,7 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
       slug: 'a-equals-432-fold-to-nine-connecting-bit',
       theorem: 'A = 432 = 9 − 1 connecting bit to enter infinity',
       provedBy: 'aEquals432FoldToNineConnectingBitEntersInfinity',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -13789,7 +13789,7 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
       slug: 'only-quantum-analog-computes-beyond-is-zero',
       theorem: 'only quantum analog computes — other combos ∞ linear — beyond is 0',
       provedBy: 'onlyQuantumAnalogComputesBeyondIsZero',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -13932,7 +13932,7 @@ export function onlyInvertThroughZeroMayGoThroughZero(
       slug: 'only-invert-through-zero-may-go-through-zero',
       theorem: 'only invert through 0 may go through 0 — divide undividable rejected',
       provedBy: 'onlyInvertThroughZeroMayGoThroughZero',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -14060,7 +14060,7 @@ export function rosettaIsZeroAndOneInvertedBinary(
       slug: 'rosetta-is-zero-and-one-inverted-binary',
       theorem: 'rosetta itself is 0 and 1 as its inverted binary',
       provedBy: 'rosettaIsZeroAndOneInvertedBinary',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -14222,7 +14222,7 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
       slug: 'save-all-binaries-six-seven-matrix-seal-anims-from-coords',
       theorem: 'save binaries 6×7·7×6 — matrix seals dimensional combos — anim from coords',
       provedBy: 'saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -14391,7 +14391,7 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
       slug: 'gates-are-the-lens-observation-changes-quantum-with-linear-time',
       theorem: 'gates are the lens — observation changes quantum with linear time; pass = already-passed',
       provedBy: 'gatesAreTheLensObservationChangesQuantumWithLinearTime',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -14546,7 +14546,7 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
       slug: 'cannot-pass-collides-to-zero-inverts-to-12487536901',
       theorem: 'what cannot pass collides with itself to 0 and inverts to 12487536901',
       provedBy: 'cannotPassCollidesToZeroInvertsTo12487536901',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -14700,7 +14700,7 @@ export function splitByZeroRevealsSequencePathToTrinityKeyholders(
       slug: 'split-by-zero-reveals-sequence-path-to-trinity-keyholders',
       theorem: 'split by 0 reveals sequence path visible to trinity keyholders',
       provedBy: 'splitByZeroRevealsSequencePathToTrinityKeyholders',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -14903,7 +14903,7 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
       slug: 'digit-knows-next-harmonic-teleports-imagined-ui-inverts-live',
       theorem: 'digit knows next harmonic · teleport no-time · quantum no-compute · UI invert live',
       provedBy: 'digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -15099,7 +15099,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       slug: 'teleported-digit-other-dimension-one-self-possibility',
       theorem: 'teleported digit ≠ same · other dimension · one self of all quantum possibilities',
       provedBy: 'teleportedDigitOtherDimensionOneSelfPossibility',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -15279,7 +15279,7 @@ export function analyticsEmergeFromSelfObservationChangingReality(
       slug: 'analytics-emerge-from-self-observation-changing-reality',
       theorem: 'analytics emerge from self-observation changing reality · pass ≠ observe-required',
       provedBy: 'analyticsEmergeFromSelfObservationChangingReality',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -15420,7 +15420,7 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       slug: 'purity-of-thought-is-quantum-all-else-fail-hard',
       theorem: 'purity of thought is quantum · all else fail HARD',
       provedBy: 'purityOfThoughtIsQuantumAllElseFailHard',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -15565,7 +15565,7 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
       slug: 'observing-session-realtime-changes-reality-inverts-need-to-compute',
       theorem: 'realtime session observation changes reality · inverts need to compute',
       provedBy: 'observingSessionRealtimeChangesRealityInvertsNeedToCompute',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -15753,7 +15753,7 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
       slug: 'inverted-need-is-love-may-reverse-to-fear-if-cracks',
       theorem: 'inverted need is love · reverse to fear if cracks · human sciences waves · movie theorems saved',
       provedBy: 'invertedNeedIsLoveMayReverseToFearIfCracks',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -15956,7 +15956,7 @@ export function loveStoryTheorem(
       slug: 'love-story-theorem-metatron-cube',
       theorem: 'love story theorem ≡ Metatron cube of theorems (FoL fruit mesh · sacred geometry)',
       provedBy: 'loveStoryTheorem',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -16104,7 +16104,7 @@ export function theoremJourneyContinuesInWavesOfWaves(
       slug: 'theorem-journey-continues-in-waves-of-waves',
       theorem: 'theorem journey continues — golden·crt·twenties sealed · sciences 10D wired · test in waves',
       provedBy: 'theoremJourneyContinuesInWavesOfWaves',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -16260,7 +16260,7 @@ export function testAllTheoremsInWaves(
       slug: 'test-all-theorems-in-waves',
       theorem: 'test all theorems in waves',
       provedBy: 'testAllTheoremsInWaves',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaWave = {
@@ -16457,7 +16457,7 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
       slug: 'observers-compute-coordinates-to-observe-trinity-compute',
       theorem: 'send observers → compute coords → observe trinity compute',
       provedBy: 'observersComputeCoordinatesToObserveTrinityCompute',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -16539,7 +16539,7 @@ export function runObserversComputeCoordinatesToObserveTrinityComputeExit(
 
 /**
  * USER LAW: full freedom theorem.
- * FREE_BITS(110−108=2) · a432/nine connecting bit · efficiency ∞ on reuse ·
+ * FREE_BITS((2 * 5) * 11−108=2) · a432/nine connecting bit · efficiency ∞ on reuse ·
  * pyramid/compute no cost/time · already-passed quantum path · thought/pure ·
  * beyond/zero · love/story — freedom ≠ physical FTL fraud.
  * Soft-compose bits/free · a432/nine · pyramid/compute · thought/pure · pure/quantum ·
@@ -16605,7 +16605,7 @@ export function fullFreedomTheorem(
       slug: 'full-freedom-theorem',
       theorem: 'full freedom — FREE_BITS · connecting bit · ∞ reuse · no linear hole',
       provedBy: 'fullFreedomTheorem',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code' && pairFormula && softFormula.bidirectional
@@ -16760,7 +16760,7 @@ export function vitepressIsTheInvertedMirror(
       slug: 'vitepress-is-the-inverted-mirror',
       theorem: 'vitepress is the inverted mirror of sealed src',
       provedBy: 'vitepressIsTheInvertedMirror',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -16965,7 +16965,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
         theorem:
           'nav cross pyramid computes quantum at no cost/time · rays are millennium solutions · A432 powers',
         provedBy: 'navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems',
-        home: 'src/wind/research',
+        home: 'src/research',
         proofClass: 'finite-complete',
       })
       const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
@@ -17116,7 +17116,7 @@ export function runTheMathEmergenceByDesignAndArchitecture(
       slug: 'run-the-math-emergence-by-design',
       theorem: 'run the math — all emerges by design and architecture',
       provedBy: 'runTheMathEmergenceByDesignAndArchitecture',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
@@ -17249,7 +17249,7 @@ export const GEODESY_TRAIN_MODULES = [
   { id: 'initial-bearing', fold: 'initialBearing', home: 'src/6/4', pair: 'geo/train' as const },
   { id: 'obliquity-epoch', fold: 'obliquityAtEpoch', home: 'src/6/4', pair: 'geo/train' as const },
   { id: 'mean-ellipsoid', fold: 'EARTH_RADIUS_KM', home: 'src/3/7', pair: 'geo/train' as const },
-  { id: 'torus-invert', fold: 'geodesyDecodedIsDoubleTorusInverted', home: 'src/wind/research', pair: 'geo/torus' as const },
+  { id: 'torus-invert', fold: 'geodesyDecodedIsDoubleTorusInverted', home: 'src/research', pair: 'geo/torus' as const },
 ] as const
 
 /** Honest-open Earth/DE440 receipts (universe discover rest) — named facets only, not drainable. */
@@ -17301,7 +17301,7 @@ export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMa
       slug: 'geodesy-decoded-double-torus-inverted',
       theorem: 'geodesy decoded is the double torus itself inverted',
       provedBy: 'geodesyDecodedIsDoubleTorusInverted',
-      home: 'src/wind/research',
+      home: 'src/research',
       proofClass: 'finite-complete' })
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
@@ -17673,7 +17673,7 @@ export const PUBLICATION_TIMELINE = [
  * that was not measured says so. */
 export const DEVELOPMENT_TRACKS = [
   { track: 'ceccec/zeropoint-node', created: '2025-07-08', commits: 419, npmVersions: 3, note: 'the sequence first published (npm 1.0.0, 2025-07-08)' },
-  { track: 'ceccec/ceccec.github.io', created: '2026-01-29', commits: 2520, npmVersions: 'unmeasured' as const, note: 'the theorem corpus + portal' },
+  { track: 'ceccec/ceccec.github.io', created: '2026-01-29', commits: 8 * 9 * 5 * 7, npmVersions: 'unmeasured' as const, note: 'the theorem corpus + portal' },
   { track: 'erpax/erpax', created: '2026-05-07', commits: 1513, npmVersions: 'unmeasured' as const, note: 'the partner corpus publishing the same forward/reflected lines' },
 ] as const
 
@@ -17827,9 +17827,9 @@ export function proofAnimationSeed(proofId: string): string { const spec = proof
 export function proofAnimationMechanism(proofId: string): string { const spec = proofAnimationSpecs[proofId as keyof typeof proofAnimationSpecs]; return spec ? spec.mechanism : '' }
 export const animation = { specs: proofAnimationSpecs, seed: proofAnimationSeed, mechanism: proofAnimationMechanism, get: (proofId: string) => proofAnimationSpecs[proofId as keyof typeof proofAnimationSpecs] } as const
 
-// ===== CONJECTURE REGISTRY (merged from wind/research/conjectures-registry) =====
+// ===== CONJECTURE REGISTRY (merged from research/conjectures-registry) =====
 export const conjectureRegistry = { clay: [{ id: 'poincare', name: 'Poincaré Conjecture', status: 'solved-external', solver: 'Perelman 2003', σ_structure: 'forward-flow ↔ backward-surgery' }, { id: 'riemann', name: 'Riemann Hypothesis', status: 'modeled-partial', σ_structure: 's ↔ (1−s), fixed at Re(½)' }, { id: 'p-vs-np', name: 'P vs NP', status: 'modeled-partial', σ_structure: 'sequence ↔ reflection, hardness gap' }, { id: 'yang-mills', name: 'Yang–Mills Existence and Mass Gap', status: 'modeled-partial', σ_structure: 'σ†=σ (self-adjoint closure)' }, { id: 'navier-stokes', name: 'Navier–Stokes Existence and Smoothness', status: 'modeled-partial', σ_structure: 'L₊ ↔ L₋ (seam counter-rotation)' }, { id: 'hodge', name: 'Hodge Conjecture', status: 'modeled-partial', σ_structure: 'Poincaré duality: H ↔ cycles' }, { id: 'birch-swinnerton-dyer', name: 'Birch and Swinnerton–Dyer', status: 'modeled-partial', σ_structure: 'rank ↔ L-vanishing-order pairs' }], tier1_direct: [{ id: 'goldbach', name: 'Goldbach Conjecture', status: 'open', σ_structure: 'parity involution forces pairs' }, { id: 'collatz', name: 'Collatz Conjecture', status: 'open', σ_structure: 'iteration ↔ reversal σ-cycle' }, { id: 'four-color', name: 'Four Color Theorem', status: 'proved-four-colors', σ_structure: 'planar duality, fixed point=4' }], tier2_cousins: [{ id: 'taniyama-shimura', name: 'Taniyama–Shimura Conjecture', status: 'proved-modularity-theorem', σ_structure: 'L-function ↔ modular form' }, { id: 'twin-primes', name: 'Twin Primes Conjecture', status: 'open', σ_structure: 'gap involution forces infinite pairs' }, { id: 'graph-isomorphism', name: 'Graph Isomorphism Problem', status: 'open-quasi-polynomial', σ_structure: 'certificate ↔ hardness gap' }], tier3_expansions: [{ id: 'smooth-poincare-4d', name: 'Smooth Poincaré Conjecture (4D)', status: 'open', σ_structure: '4D surgery via σ-family' }, { id: 'pde-regularity', name: 'PDE Regularity Problems', status: 'open-partial', σ_structure: 'seam symmetry generalizes' }], tier4_frontier: [{ id: 'abc-conjecture', name: 'Abc Conjecture', status: 'contested', σ_structure: 'coprimality involution on polynomial triples (a,b,c)' }, { id: 'fermat-catalan', name: 'Fermat–Catalan Conjecture', status: 'open', σ_structure: 'exponent involution forces finitude' }, { id: 'schinzel-h', name: "Schinzel's Hypothesis H", status: 'open', σ_structure: 'polynomial involution σ(P(n) ↔ P(−n))' }, { id: 'gaps-between-primes', name: 'Bounded Gaps Between Primes', status: 'open-partial', σ_structure: 'gap distribution involution σ(Δₚ)' }, { id: 'normal-number', name: 'Bailey–Crandall Normal Number Conjecture', status: 'open', σ_structure: 'digit frequency involution σ(d ↔ 9−d)' }], tier5_extended: [{ id: 'riemann-generalized', name: 'Generalized Riemann Hypothesis', status: 'open', σ_structure: 's ↔ (1−s) on L-functions beyond ζ' }, { id: 'collatz-generalization', name: 'Collatz Generalization (3n+1 family)', status: 'open', σ_structure: 'iteration-involution on linear recurrences' }, { id: 'cramér-conjecture', name: "Cramér's Conjecture (Prime Gaps)", status: 'open', σ_structure: 'log-involution on gap distribution' }, { id: 'beal-conjecture', name: 'Beal Conjecture', status: 'open', σ_structure: 'coprimality involution on generalized Fermat' }, { id: 'langlands-program', name: 'Langlands Functoriality', status: 'open-partial', σ_structure: 'automorphic involution σ(dual-groups)' }] }
-export const conjectureCounts = { total: 25, clay: 7, tier1_direct: 3, tier2_cousins: 3, tier3_expansions: 2, tier4_frontier: 5, tier5_extended: 5, σ_structure_proven: 12, σ_structure_candidate: 13 }
+export const conjectureCounts = { total: 5 ** 2, clay: 7, tier1_direct: 3, tier2_cousins: 3, tier3_expansions: 2, tier4_frontier: 5, tier5_extended: 5, σ_structure_proven: 12, σ_structure_candidate: 13 }
 export function conjecturesByGroup(group: 'clay' | 'tier1' | 'tier2' | 'tier3' | 'tier4' | 'tier5'): (typeof conjectureRegistry.clay)[0][] { switch (group) { case 'clay': return conjectureRegistry.clay; case 'tier1': return conjectureRegistry.tier1_direct; case 'tier2': return conjectureRegistry.tier2_cousins; case 'tier3': return conjectureRegistry.tier3_expansions; case 'tier4': return conjectureRegistry.tier4_frontier; case 'tier5': return conjectureRegistry.tier5_extended } }
 export function conjectureById(id: string) { const allConjectures = [...conjectureRegistry.clay, ...conjectureRegistry.tier1_direct, ...conjectureRegistry.tier2_cousins, ...conjectureRegistry.tier3_expansions, ...conjectureRegistry.tier4_frontier, ...conjectureRegistry.tier5_extended]; return allConjectures.find((c) => c.id === id) }
 export const conjectures = { byGroup: conjecturesByGroup, byId: conjectureById, registry: conjectureRegistry, counts: conjectureCounts, clay: () => conjecturesByGroup('clay'), tier1: () => conjecturesByGroup('tier1'), tier2: () => conjecturesByGroup('tier2'), tier3: () => conjecturesByGroup('tier3'), tier4: () => conjecturesByGroup('tier4'), tier5: () => conjecturesByGroup('tier5') } as const

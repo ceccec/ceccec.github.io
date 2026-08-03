@@ -1807,7 +1807,7 @@ function drawMerkabaProjection(ctx: CanvasRenderingContext2D, w: number, h: numb
  * two-disc lens of the averaging step breathing at the centre (ρ_R → 1), and equal unit chords
  * sparking on the outer layer (the harvested ν(P) pairs). Counts come from quantumProjectionParams
  * ('unit-distance': segments 3, forms 7). HONEST: a structural movie of the tower bookkeeping in
- * src/wind/research (unitDistanceResearch) — NOT the proof, and not to scale (real ℓ* ≈ 1791).
+ * src/research (unitDistanceResearch) — NOT the proof, and not to scale (real ℓ* ≈ 1791).
  */
 function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
   const paint = movieCanvasPolarity(frame.palette.dark)
