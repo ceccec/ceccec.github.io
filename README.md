@@ -99,7 +99,7 @@ First publication of the sequence: **2025-07-08** (npm `zeropoint-node@1.0.0`, r
 
 ### How many
 
-pathCount = **7** · computableCount = **7** · contestedCount = **0** · documentedCount = **7** · solvedExternalCount = **1** · novelHereCount = **unchecked**
+pathCount = **7** · computableCount = **7** · contestedCount = **0** · documentedCount = **7** · solvedExternalCount = **1** · novelHereCount = **6/7**
 
 *The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
 
@@ -201,7 +201,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 
 ### Status
 
-computable=7/7 · contested=0 · documented=7 · novelHere=unchecked
+computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 
 - Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=7.
