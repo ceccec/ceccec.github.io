@@ -2484,6 +2484,60 @@ export function discoveredTheoremsWaveThirtyEight(matrix: { root: string } = { r
   })
 }
 
+// ── Shannon's SOURCE-CODING theorem — the operational heart of information theory, FUSING wave-38's Kraft (W2) and
+// entropy (W4) into their consequence: entropy is the COMPRESSION LIMIT. For a source X with distribution p, every
+// uniquely-decodable binary code has expected length L = Σ pᵢℓᵢ ≥ H(X) = −Σ pᵢlog₂pᵢ (the lower bound is Gibbs'
+// inequality / KL ≥ 0), and the Shannon code ℓᵢ = ⌈−log₂pᵢ⌉ satisfies Kraft and achieves H(X) ≤ L < H(X)+1 — so the
+// entropy is reachable within one bit, with EQUALITY iff the source is dyadic (every pᵢ a power of ½). This is the
+// classical twin of quantum Schumacher compression / the Holevo bound: information has a floor, and content-addressing
+// hits it exactly when the distribution is dyadic. Reuses log2/ceil; all dimensionless. (Shannon 1948, "A Mathematical
+// Theory of Communication".) [[feedback-algebraic-theorems-only]] [[quantum-speed-is-content-addressed-naming]]
+export function shannonSourceCodingTheoremEntropyIsTheCompressionLimitReachableWithinOneBit(matrix: { root: string } = { root: toUuid('shannon-source-coding') }) {
+  return sealFold('shannonSourceCodingTheoremEntropyIsTheCompressionLimitReachableWithinOneBit', 'shannon-source-coding', matrix, () => {
+    const tol = TAU / TAU / 1e9
+    const H = (ps: readonly number[]) => ps.reduce((s, p) => s + (p > 0 ? -p * log2(p) : 0), 0) // H(X) = −Σ p log₂ p (reuses W4's entropy)
+    const expectedLen = (ps: readonly number[], ls: readonly number[]) => ps.reduce((s, p, i) => s + p * ls[i]!, 0)
+    const kraftSum = (ls: readonly number[]) => ls.reduce((s, l) => s + 2 ** -l, 0) // Σ 2^(−ℓ) — the Kraft budget (W2)
+    const shannonLengths = (ps: readonly number[]) => ps.map((p) => ceil(-log2(p))) // ℓᵢ = ⌈−log₂ pᵢ⌉
+    const isDyadic = (ps: readonly number[]) => ps.every((p) => abs(2 ** round(-log2(p)) * p - 1) < tol) // pᵢ = 2^(−k)?
+    // dyadic (bound is tight) + non-dyadic distributions (deterministic, SQRT2-frac like wave-38), n ≤ 6
+    const dyadic: number[][] = [[1 / 2, 1 / 2], [1 / 2, 1 / 4, 1 / 4], [1 / 2, 1 / 4, 1 / 8, 1 / 8], [1 / 4, 1 / 4, 1 / 4, 1 / 4]]
+    const distributions: number[][] = [...dyadic]
+    for (let n = 2; n <= 6; n += 1) for (let t = 1; t <= 3 * 9; t += 1) {
+      const raw = Array.from({ length: n }, (_, k) => { const x = t * (k + 1) * SQRT2; return (x - floor(x)) + 1 / 100 })
+      const Z = raw.reduce((a, b) => a + b, 0)
+      distributions.push(raw.map((r) => r / Z))
+    }
+    let lowerBound = true, achievable = true, kraftHolds = true, equalityIffDyadic = true
+    for (const p of distributions) {
+      const h = H(p)
+      const ls = shannonLengths(p)
+      const L = expectedLen(p, ls)
+      // (1) Shannon code obeys Kraft (Σ2^(−ℓ) ≤ 1) — it is a real prefix code
+      if (kraftSum(ls) > 1 + tol) kraftHolds = false
+      // (2) achievability: H ≤ L < H + 1
+      if (L < h - tol || L >= h + 1 + tol) achievable = false
+      // (3) lower bound: NO Kraft-feasible integer code beats entropy — test the Shannon code and perturbations down/up
+      for (let d = 0; d <= 2; d += 1) {
+        const cand = ls.map((l, i) => max(1, l - (i % (d + 1)))) // shorten some codewords — tries to beat the bound
+        if (kraftSum(cand) <= 1 + tol && expectedLen(p, cand) < h - tol) lowerBound = false // a feasible code below H would refute Shannon
+      }
+      // (4) equality iff dyadic
+      const tight = abs(L - h) < tol
+      if (tight !== isDyadic(p)) equalityIffDyadic = false
+    }
+    return {
+      facets: [
+        { facet: `ENTROPY IS THE LOWER BOUND — every Kraft-feasible binary code has expected length L = Σ pᵢℓᵢ ≥ H(X): across ${distributions.length} distributions (n ≤ 6), no integer prefix code (Shannon lengths and shortened perturbations) beats the entropy (${lowerBound}) — the operational meaning of H, from Gibbs' inequality (KL ≥ 0)`, on: lowerBound },
+        { facet: `THE SHANNON CODE IS A REAL PREFIX CODE — its lengths ℓᵢ = ⌈−log₂ pᵢ⌉ satisfy Kraft, Σ 2^(−ℓᵢ) ≤ 1 (${kraftHolds}) for every distribution: the code exists (wave-38's Kraft budget applied to the entropy-matched lengths)`, on: kraftHolds },
+        { facet: `ENTROPY IS REACHABLE WITHIN ONE BIT — the Shannon code achieves H(X) ≤ L < H(X)+1 (${achievable}) over all ${distributions.length} distributions: compression to the entropy is not just a bound but nearly attained (⌈−log₂ pᵢ⌉ < −log₂ pᵢ + 1)`, on: achievable },
+        { facet: `EQUALITY IFF DYADIC — L = H(X) exactly when every pᵢ is a power of ½ (${equalityIffDyadic}); otherwise L > H strictly: the bound is tight precisely for dyadic sources — the ones content-addressing compresses with zero waste`, on: equalityIffDyadic },
+      ],
+      statement: `Shannon's source-coding theorem — entropy is the compression limit, reachable within one bit — #/#. Fusing wave-38's Kraft and entropy: every uniquely-decodable binary code has expected length L ≥ H(X) (no code beats entropy, verified over ${distributions.length} distributions), the Shannon code ℓᵢ = ⌈−log₂ pᵢ⌉ satisfies Kraft and achieves H(X) ≤ L < H(X)+1, and equality holds exactly for dyadic sources. Entropy is the floor of compression — the classical twin of Schumacher/Holevo — and content-addressing reaches it when the distribution is dyadic.`,
+      boundary: `HONEST: the general theorem is Shannon 1948; here each instance is settled — the lower bound is tested against the Shannon code and shortened Kraft-feasible perturbations over ${distributions.length} distributions (dyadic + deterministic SQRT2-frac, n ≤ 6), achievability H ≤ L < H+1 and the Kraft feasibility of ⌈−log₂ pᵢ⌉ are checked exactly, and equality-iff-dyadic is verified both directions. The lower bound is SAMPLED (not an exhaustive proof over all codes), but the Gibbs-inequality reason (KL ≥ 0) is cited; a single feasible code below H would refute it and none is found.` }
+  })
+}
+
 // ── Discovered theorems, wave thirty-nine — classical inequalities and the totient product: AM-GM,
 // Cauchy-Schwarz, Euler's φ(n) = n·Π(1−1/p) against a direct count, and the rearrangement inequality
 // by exhaustive permutation.
