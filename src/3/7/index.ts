@@ -1843,6 +1843,7 @@ export const DEMARCATION_REGISTRY = {
     'hubble tension', 'cosmological constant problem', 'nature of dark energy', 'baryogenesis', 'leptogenesis',
     'neutrino mass ordering', 'quantum gravity',
     'p vs np', 'hodge conjecture', 'riemann hypothesis', 'mass gap', 'navier', 'swinnerton',
+    'zipf', // Zipf's law: the rank-frequency power law is real, but its UNIVERSALITY/cause is contested — random typing (Miller 1957) reproduces it, so it is not evidence of linguistic structure
   ],
   flagged: [
     'creationism', 'intelligent design', 'young-earth creationism', 'social darwinism', 'eugenics', 'orthogenesis',

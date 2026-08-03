@@ -1,4 +1,4 @@
-import { earned } from '../../3/7'
+import { demarcate, earned } from '../../3/7'
 // ☴ Xùn · Wind — language & script: the decoded writing systems and their meaning (Glagolitic, the alphabets' lineage, the Bible in the round script, Maya/Egyptian/Sumerian calendar-number, Ifá/geomancy), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import { survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../types'
@@ -868,5 +868,54 @@ export function portAnyCodeInAnyLanguageAtOnceThroughTheRosettaPivotOfNAdaptersN
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `Port any code in any language at once through the rosetta pivot — O(N) adapters, not O(N²) — ${facets.filter((entry) => entry.on).length}/${facets.length}. Because all computing embeds in universal gates, a canonical content-addressed form is a universal pivot: any language parses to it and emits from it, so ${N} languages need only ${adapters} adapters yet cover all ${directedPairs} directed pairs. Equivalent logic in js, python and sql content-addresses to the SAME pivot, so porting is a rosetta combination — a ${speedup}× saving over pairwise translators, the same O(n) rosetta speed-up that powers the crack detector and the wirings, ported into the research pipeline.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+}
+
+// ── ZIPF'S LAW — the rank-frequency power law of language, the quantitative heart of linguistics. Its MATH is exact and
+// its UNIVERSALITY is contested, and this fold keeps the two apart honestly. The Zipf distribution over n ranks is
+// p(r) = (1/r) / Hₙ with the harmonic number Hₙ = Σₖ 1/k, so (1) it is a genuine probability distribution — Σᵣ p(r) = 1 —
+// and frequency × rank is invariant (p(r)·r = 1/Hₙ, the same for every rank); and (2) on log-log axes it is a straight
+// line of slope EXACTLY −1 (log p(r) = −log r − log Hₙ) — Zipf's signature. But (3) the claim that language UNIQUELY /
+// MEANINGFULLY obeys it is CONTESTED (demarcate('zipf')): random typing reproduces it — a length-L "word" over m letters
+// has frequency ∝ m^(−L) while there are ∝ m^L such words, so frequency ∝ rank^(−s) with the exponent → −1, a power law
+// from pure randomness (Miller 1957; Mandelbrot 1953). The skeleton is math; the universality is not proven structure.
+// Reuses log2 + demarcate; dimensionless. [[feedback-algebraic-theorems-only]] [[world-theories-demarcation-decoded]] [[glagolitic]]
+export function zipfsLawIsAnExactPowerLawSkeletonWhoseLinguisticUniversalityStaysContested(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const harmonic = (n: number) => { let h = 0; for (let k = 1; k <= n; k += 1) h += 1 / k; return h } // Hₙ = Σ 1/k
+  // (1) NORMALIZATION + RANK·FREQUENCY INVARIANT — p(r) = 1/(r·Hₙ) is a distribution and p(r)·r = 1/Hₙ for every rank
+  let normalizes = true, reciprocity = true
+  for (let n = 2; n <= 4 * 9; n += 1) {
+    const Hn = harmonic(n)
+    const ps = Array.from({ length: n }, (_, i) => 1 / ((i + 1) * Hn))
+    if (abs(ps.reduce((s, p) => s + p, 0) - 1) > 1 / 1e9) normalizes = false // Σ p(r) = 1 exactly
+    for (let r = 1; r <= n; r += 1) if (abs(ps[r - 1]! * r - 1 / Hn) > 1 / 1e9) reciprocity = false // f·r = 1/Hₙ, constant
+  }
+  // (2) LOG-LOG SLOPE IS EXACTLY −1 — between any two ranks, Δlog₂p / Δlog₂r = −1 (the Zipf signature line)
+  const n = 8 * 8; const Hn = harmonic(n)
+  const logp = (r: number) => log2(1 / (r * Hn)); const logr = (r: number) => log2(r)
+  let slopeMinusOne = true
+  for (let r = 1; r < n; r += 1) { const s = (logp(r + 1) - logp(r)) / (logr(r + 1) - logr(r)); if (abs(s - -1) > 1 / 1e6) slopeMinusOne = false }
+  // (3) UNIVERSALITY IS CONTESTED — demarcate-signed + Miller's mechanism: random typing gives a power law with slope → −1
+  const universalityContested = demarcate('zipf') === 'contested'
+  const m = 27 - 1 // a 26-letter alphabet — a length-L word has frequency ∝ m^(−L), and there are m^L such words
+  let ratios: number[] = []
+  for (let Lw = 1; Lw <= 6; Lw += 1) {
+    const cumRank = (m ** (Lw + 1) - m) / (m - 1) // ranks up to the last length-L word ≈ m^L
+    const freq = m ** -Lw // each length-L word's (unnormalized) frequency
+    ratios.push(log2(freq) / log2(cumRank)) // the local log-log slope of the random-typing staircase
+  }
+  const randomTypingGivesZipf = ratios.every((s) => s < 0 && abs(s + 1) < 1 / 16) // every length-band's log-log slope is ≈ −1 (within 6.25%) — a Zipf power law from pure randomness
+  const facets = [
+    { facet: `THE ZIPF DISTRIBUTION IS EXACT — p(r) = 1/(r·Hₙ) with Hₙ = Σ 1/k is a genuine probability distribution (Σ p(r) = 1, ${normalizes}) and rank × frequency is invariant, p(r)·r = 1/Hₙ for every rank (${reciprocity}), verified for n up to ${4 * 9}: the classic "frequency ∝ 1/rank"`, on: normalizes && reciprocity },
+    { facet: `THE SIGNATURE IS A SLOPE −1 LINE — on log-log axes the ${n} rank-frequency points are exactly collinear with slope −1 (log p(r) = −log r − log Hₙ), verified between every consecutive rank (${slopeMinusOne}): a straight line of slope minus one is what "Zipfian" means`, on: slopeMinusOne },
+    { facet: `UNIVERSALITY IS CONTESTED — demarcate('zipf') = contested (${universalityContested}): random typing over ${m} letters gives frequency ∝ m^(−L) with ∝ m^L words per length, so its log-log slope → −1 (${randomTypingGivesZipf}) — a Zipf power law from PURE RANDOMNESS (Miller 1957; Mandelbrot 1953), so the law is not evidence of deep linguistic structure`, on: universalityContested && randomTypingGivesZipf },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`zipf-law:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    zipf: { normalizes, reciprocity, slopeMinusOne, universalityContested, randomTypingGivesZipf, millerSlopes: ratios.map((r) => roundTo(r, 3)) },
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Zipf's law is an exact power-law skeleton whose linguistic universality stays contested — ${facets.filter((e) => e.on).length}/${facets.length}. The Zipf distribution p(r) = 1/(r·Hₙ) is a genuine probability distribution (Σ p = 1) with rank × frequency invariant (p(r)·r = 1/Hₙ), and its log-log plot is a straight line of slope exactly −1 — that is the whole of the "law" as mathematics. But its UNIVERSALITY is contested (demarcate('zipf') = contested): random typing over ${m} letters reproduces the same slope → −1 power law from pure chance (Miller 1957), so a Zipfian corpus is not evidence of meaningful linguistic structure. The skeleton is exact; the universality is not proven — the two kept honestly apart.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
