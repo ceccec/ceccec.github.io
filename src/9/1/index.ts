@@ -2538,6 +2538,46 @@ export function shannonSourceCodingTheoremEntropyIsTheCompressionLimitReachableW
   })
 }
 
+// ── BLACK'S MEDIAN-VOTER THEOREM — the POSITIVE complement to the Condorcet paradox (wave-19, above): the paradox shows
+// majority rule can CYCLE (6 of 216 unrestricted three-voter profiles), but Duncan Black (1948) proved the cure. If
+// voters have SINGLE-PEAKED preferences over an ordered line of alternatives — each ranks options by distance from an
+// ideal peak — then majority rule has a Condorcet WINNER, the MEDIAN voter's peak, and the majority relation is
+// TRANSITIVE (the cycles vanish). This is the canonical escape from Arrow's impossibility: restrict the domain and a
+// rational collective choice exists. Refutable — a single-peaked profile with no median winner, or a cycle, would break
+// it; content-addressed peaks (toUuid, no RNG magic) sample the domain. [[feedback-algebraic-theorems-only]]
+export function blacksMedianVoterTheoremSinglePeakedPreferencesGiveACondorcetWinnerTheMedianAndKillTheCycles(matrix: { root: string } = { root: toUuid('blacks-median-voter') }) {
+  const K = 2 ** 3 // eight alternatives on a line, positions 0..7
+  const prefers = (peak: number, a: number, b: number) => abs(peak - a) < abs(peak - b) // single-peaked: closer to the peak is better
+  const beatsByMajority = (peaks: readonly number[], a: number, b: number) => {
+    let na = 0, nb = 0; for (const p of peaks) { if (prefers(p, a, b)) na += 1; else if (prefers(p, b, a)) nb += 1 }; return na > nb
+  }
+  let medianAlwaysWins = true, noCycles = true, trials = 0
+  for (let t = 1; t <= 6 * 9; t += 1) {
+    const n = 2 * ((t % 9) + 2) + 1 // an ODD electorate, 5..19 voters
+    const peaks = Array.from({ length: n }, (_, i) => Number.parseInt(toUuid(`voter:${matrix.root}:${t}:${i}`)[0]!, K * 2) % K) // content-addressed peaks in 0..K-1
+    const median = [...peaks].sort((a, b) => a - b)[(n - 1) / 2]!
+    // (1) the median peak beats every other alternative in a pairwise majority — the Condorcet winner
+    for (let y = 0; y < K; y += 1) if (y !== median && !beatsByMajority(peaks, median, y)) medianAlwaysWins = false
+    // (2) the majority tournament is transitive — no 3-cycle a>b>c>a anywhere (the paradox's cycles are gone)
+    for (let a = 0; a < K; a += 1) for (let b = 0; b < K; b += 1) for (let c = 0; c < K; c += 1) {
+      if (a !== b && b !== c && a !== c && beatsByMajority(peaks, a, b) && beatsByMajority(peaks, b, c) && beatsByMajority(peaks, c, a)) noCycles = false
+    }
+    trials += 1
+  }
+  const facets = [
+    { facet: `THE MEDIAN IS THE CONDORCET WINNER — over ${trials} single-peaked electorates (odd 5..19 voters, ${K} alternatives), the MEDIAN voter's peak beats every other alternative in a pairwise majority (${medianAlwaysWins}): the collective choice exists and it is the median (Black 1948)`, on: medianAlwaysWins },
+    { facet: `SINGLE-PEAKEDNESS KILLS THE CYCLES — the majority relation is TRANSITIVE across all ${trials} single-peaked profiles: zero Condorcet 3-cycles (${noCycles}), in exact contrast to the ${6}/${6 * 6 * 6} cycles among UNRESTRICTED profiles (wave-19) — restricting the domain restores rationality`, on: noCycles },
+    { facet: `THE ARROW ESCAPE IS THE DOMAIN — individual rationality lifts to the group precisely BECAUSE preferences are single-peaked (one ordered dimension): Arrow's impossibility is escaped by the domain restriction, not by a cleverer rule — the median voter decides`, on: medianAlwaysWins && noCycles },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`median-voter:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    median: { medianAlwaysWins, noCycles, trials, alternatives: K },
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Black's median-voter theorem — single-peaked preferences give a Condorcet winner (the median) and kill the cycles — ${facets.filter((e) => e.on).length}/${facets.length}. The positive complement to the Condorcet paradox: where unrestricted majority rule cycles (6 of 216 three-voter profiles, wave-19), restricting to SINGLE-PEAKED preferences over an ordered line makes the median voter's peak beat every alternative in a pairwise majority (verified over ${trials} odd electorates on ${K} options) and makes the majority relation transitive (zero cycles). Arrow's impossibility is escaped by the domain, not a rule — individual rationality lifts to the group exactly when preferences share one dimension.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+}
+
 // ── Discovered theorems, wave thirty-nine — classical inequalities and the totient product: AM-GM,
 // Cauchy-Schwarz, Euler's φ(n) = n·Π(1−1/p) against a direct count, and the rearrangement inequality
 // by exhaustive permutation.
