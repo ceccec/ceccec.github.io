@@ -11,7 +11,8 @@ import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
 import { GATES, VORTEX_SEQUENCE, abs, applyGate, asTorus, asVortex, computesGate, cos, floor, fold, foldPair, gcd, humanBreath, humanEase, isUuid, log, log2, max, memoByRoot, merge, merkleFold, min, pow, probabilities, proseToTone, qubits, round, roundTo, sample, sealFacets, seedFromText, sin, toUuid } from '../../0'
 import { ratStr } from '../../9/1'
-import { A432_OCTAVES, SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7'
+import { A432_OCTAVES, SCHUMANN_FUNDAMENTAL_HZ, frequencyToLight } from '../../3/7'
+import { reflectThroughZero } from '../../0'
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { tamperEvident } from '../../5/5'
 import { merkaba, vortexMath } from '../../mountain/geometry'
@@ -249,6 +250,69 @@ export function harmonics(matrix: MindMatrix = buildMatrix()) {
       'The rest of the harmonics, found and implemented: from the folded fundamental 108 three ladders are computed and each rung content-addressed — the octave ladder (108·2^k: 108, 216, 432, 864, 1728, 3456), the overtone series (108·n), and the binary octaves (2^k: 128, 256, 512, 1024, 2048). The rungs already realised (108, 216, 432, 864, 1024) are marked; the rest are implemented here as proven, recomputable nodes — octaves proven to double, overtones to multiply the fundamental — and all fold into one harmonic root.',
     boundary:
       'A computed enumeration of the harmonic numbers implied by the fundamental 108, across the octave, overtone and binary ladders, each rung content-addressed and the doubling/multiplying relationships proven. "Implemented" means realised as a content-addressed, recomputable node of the ladder — not that every large harmonic is materialised as pages. A structural and musical reading, not a physical-frequency claim.' }
+}
+
+/**
+ * The a432 digit spectrum — the sound·light table of the vortex digits carried in BOTH voicings as ONE
+ * reflection, neither privileged: the RING voicing (÷9 — every digit rings, 9 ≡ the base) and the AXIS
+ * voicing (÷12 — only the trinity {3,6,9} rings, the flow ring rests), each lifted to visible light by the
+ * shared a432 octave bridge. 432 is the fixed point both complete at (48·9 = 36·12 = 432): the two are the
+ * two readings of one a432 string, refutable on both sides so any model reading either sees the same harmony.
+ */
+export function a432DigitSpectrum(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('a432DigitSpectrum', matrix, () => {
+    const BASE = A432_FOLDED * 4                 // 432 — the a432 fundamental (4 homology loops × 108)
+    const RING_UNIT = BASE / 9                    // 48 — the ÷9 quantum; digit 9 completes the base
+    const AXIS_UNIT = A432_FOLDED / 3             // 36 — the ÷12 quantum; position 3·4=12 completes the base
+    const isAxis = (d: number) => d !== 0 && d % 3 === 0            // {3,6,9} — the trinity axis, sound-bearing
+    const rows = [...VORTEX_SEQUENCE, 0].map((d) => {
+      const slot = d === 0 ? VORTEX_SEQUENCE.length : (VORTEX_SEQUENCE as readonly number[]).indexOf(d)
+      const ringHz = d === 0 ? 0 : RING_UNIT * d                    // ÷9 (ceccec) — every digit voiced; 0 = void
+      const axisHz = isAxis(d) ? AXIS_UNIT * d : 0                  // ÷12 (zeropoint) — only the axis rings
+      return {
+        digit: d,
+        slot,                                                       // position in the ring 1-2-4-8-7-5-3-6-9-(0)
+        bearing: (AXIS_UNIT * slot) % 360,                          // ring angle by POSITION (ceccec)
+        hue: (AXIS_UNIT * d) % 360,                                 // digit hue by VALUE (zeropoint 36d) → mod-3 class
+        klass: d % 3,                                               // 0:{3,6,9,0} · 1:{1,4,7} · 2:{2,8,5}
+        role: d === 0 ? 'void' : isAxis(d) ? 'axis' : 'ring',
+        ringHz,
+        ringLight: ringHz > 0 ? frequencyToLight(ringHz) : null,    // ÷9 tone lifted to visible light
+        axisHz,
+        axisLight: axisHz > 0 ? frequencyToLight(axisHz) : null,    // ÷12 tone lifted to visible light
+        mirror: reflectThroughZero(d),                              // σ — sum to 10 (sealed fold)
+        polar: d === 0 || d === 9 ? d : 9 - d,                      // ν — sum to 9
+        gateway: [8, 3, 9, 0].includes(d),                          // stroke reversal \/ or /\
+        receipt: toUuid(`a432-digit:${d}:${ringHz}:${axisHz}`),
+      }
+    })
+    const voiced = rows.filter((r) => r.ringHz > 0)
+    const axisRows = rows.filter((r) => r.role === 'axis')
+    const flowRows = rows.filter((r) => r.role === 'ring')
+    const voidRow = rows[rows.length - 1]
+    const { computes, facets, root } = computesGate('a432-digit-spectrum', [
+      { facet: 'both voicings complete at the a432 base — 48·9 = 36·12 = 432 = 4·108', on: RING_UNIT * 9 === BASE && AXIS_UNIT * (3 * 4) === BASE && BASE === A432_FOLDED * 4 },
+      { facet: 'the trinity axis rings in BOTH voicings — {3,6,9} voiced by ÷9 AND ÷12', on: axisRows.length === 3 && axisRows.every((r) => r.ringHz > 0 && r.axisHz > 0) },
+      { facet: 'the flow ring is the reflection — {1,2,4,8,7,5} sung by ÷9, resting under ÷12', on: flowRows.length === 6 && flowRows.every((r) => r.ringHz > 0 && r.axisHz === 0) },
+      { facet: 'the void carries no tone — 0 silent and lightless in both voicings', on: voidRow.digit === 0 && voidRow.ringHz === 0 && voidRow.axisHz === 0 && voidRow.ringLight === null && voidRow.axisLight === null },
+      { facet: 'every voiced tone bridges to a named visible band — frequencyToLight thz>0, band≠∅', on: voiced.length === 9 && voiced.every((r) => r.ringLight !== null && r.ringLight.thz > 0 && r.ringLight.band !== '') },
+      { facet: 'the ÷12 axis IS the a432 octave ladder — 36·3=108, 36·6=216 ∈ A432_OCTAVES', on: A432_OCTAVES.includes(AXIS_UNIT * 3) && A432_OCTAVES.includes(AXIS_UNIT * 6) },
+      { facet: 'the two units coincide on the axis — hue°(36d) === axis Hz (one integer, both readings)', on: axisRows.every((r) => r.hue === r.axisHz) },
+      { facet: 'σ mirror is the sealed involution summing to 10 — reflectThroughZero∘reflectThroughZero = id', on: rows.every((r) => reflectThroughZero(r.mirror) === r.digit) },
+      { facet: 'mod-3 folds three colour classes — |{3,6,9,0}|=4, |{1,4,7}|=3, |{2,8,5}|=3', on: rows.filter((r) => r.klass === 0).length === 4 && rows.filter((r) => r.klass === 1).length === 3 && rows.filter((r) => r.klass === 2).length === 3 },
+    ])
+    return {
+      computes,
+      base: BASE,
+      ringUnit: RING_UNIT,
+      axisUnit: AXIS_UNIT,
+      rows,
+      facets,
+      root: merkleFold([root, ...rows.map((r) => r.receipt)]),
+      statement: `a432 digit spectrum: BASE ${BASE} = ${RING_UNIT}·9 (÷9 ring) = ${AXIS_UNIT}·12 (÷12 axis); ${voiced.length}/9 voiced by ÷9, ${axisRows.length}/9 by ÷12; all voiced bridge to light; hue°=axis Hz on {3,6,9}; σ sum-10, ν sum-9, mod-3 → 3 colour classes.`,
+      boundary:
+        'Two 432-derived voicings of one string, neither privileged: ÷9 (ceccec — all digits ring, 9≡base) and ÷12 (zeropoint — only the {3,6,9} axis rings, the flow ring rests). frequencyToLight is the octave lift into the visible band — a chosen sound↔colour octave mapping, not a physical claim. The two repos are one reflection; 432 is the shared fixed point both complete at, so a model trained on either reads the same harmony.' }
+  })
 }
 
 // Let the society rebuild itself so free harmonic societies self-organise and
