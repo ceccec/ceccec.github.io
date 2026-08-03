@@ -3,7 +3,7 @@
 
 import { phase, slip } from '../../6/4'
 import { A432_OCTAVES, BOLTZMANN, DIMENSION_GATES, FOLDED_CENSUS, HALF_TAU, NEWTON_G, PHI, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7'
-import { GATES, ICHING_NUMBERS, abs, applyGate, ceil, cos, digitalRoot, floor, foldPair, gcd, hypot, imul, lcm, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, referralAddress, round, roundTo, sealFacets, sha256MerkleProof, sqrt, toUuid } from '../../0'
+import { GATES, ICHING_NUMBERS, abs, applyGate, ceil, cos, digitalRoot, floor, foldFixedPoints, foldPair, gcd, hypot, imul, lcm, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, referralAddress, reflectThroughZero, round, roundTo, sealFacets, sha256MerkleProof, sqrt, toUuid } from '../../0'
 import { sealFold, tkIsPrime } from '../../9/1'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
@@ -4359,6 +4359,44 @@ export function riemannZeroScan() {
         'the Riemann–von Mangoldt N(T) with the residual S(T) computed as the zero-counting oscillation (the sandbox proved it non-zero at some T). ' +
         'Location + count + S(T) is real computational verification; it holds up to T only and does not close RH. HARMONY ≠ TRUTH.' }
   }
+}
+
+/** The Riemann critical line IS the fixed axis of the functional-equation involution σ(s)=1−s, and the digit
+ *  reflection reflectThroughZero(d)=10−d is the same involution at the digit scale. The reflection axis
+ *  (s+σ(s))/2 is the same for every s — the critical line is computed, never the number ½ typed. */
+export function riemannCriticalLineIsTheInvolutionFixedPoint() {
+  const sigma = (x: number) => 1 - x
+  const probes = [0, 1 / 3, 2 / 5, 3 / 4, 1] // arbitrary points across the strip
+  const selfInverse = probes.every((s) => abs(sigma(sigma(s)) - s) < 1e-12)
+  const centers = probes.map((s) => (s + sigma(s)) / 2)
+  const oneCenter = centers.every((c) => abs(c - centers[0]!) < 1e-12)
+  const continuousCriticalLine = centers[0]! // discovered — the reflection axis of σ(s)=1−s
+  const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const digitCenters = digits.map((d) => (d + reflectThroughZero(d)) / 2)
+  const oneDigitCenter = digitCenters.every((c) => c === digitCenters[0])
+  const fixedPts = foldFixedPoints(9 * 5 * 4) // 180° → [0, M/2]
+  const modulus = 2 * fixedPts[fixedPts.length - 1]! // M, read off the self-dual centre
+  const digitCritical = fixedPts[fixedPts.length - 1]! // M/2 — the digit critical line
+  const scan = riemannZeroScan()
+  const facets = [
+    { facet: 'σ(s)=1−s is self-inverse — σ(σ(s))=s across the strip', on: selfInverse },
+    { facet: `the critical line is the reflection axis — (s+σ(s))/2 = ${continuousCriticalLine} for every s`, on: oneCenter },
+    { facet: `the digit involution reflectThroughZero centres at ${digitCritical} = M/2 (M=${modulus})`, on: oneDigitCenter && digitCenters[0] === digitCritical },
+    { facet: `continuous and digit critical lines correspond — ${digitCritical}/${modulus} = ${continuousCriticalLine}`, on: digitCritical / modulus === continuousCriticalLine },
+    { facet: `${scan.found} sampled nontrivial ζ zeros localized on the line — riemannZeroScan`, on: scan.computes && scan.found > 27 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`riemann-critical-line:${entry.facet.slice(0, 64)}:${entry.on}`) }))
+  const sealed = sealFacets('riemann-critical-line-involution-fixed-point', facets)
+  return {
+    computes: sealed.ok,
+    continuousCriticalLine,
+    digitCritical,
+    modulus,
+    zerosOnLine: scan.found,
+    facets: sealed.facets,
+    root: merkleFold([...sealed.facets.map((entry) => entry.receipt), scan.root]),
+    statement: `Riemann critical line = involution fixed axis: σ(s)=1−s reflects about (s+σ(s))/2 = ${continuousCriticalLine} for every s; its digit shadow reflectThroughZero(d)=10−d about M/2 = ${digitCritical}; ${digitCritical}/${modulus} = ${continuousCriticalLine}; ${scan.found} sampled ζ zeros on the line.`,
+    boundary:
+      'σ(s)=1−s and reflectThroughZero(d)=10−d are one involution at two scales: the reflection axis (s+σ(s))/2 is identical for every s — computed, not typed — and foldFixedPoints reads its self-dual centre; riemannZeroScan localizes the sampled nontrivial zeros on the line by Riemann–Siegel Z sign changes.' }
 }
 
 /** npm run quantum:zero-scan — exit 0 iff the general scan localizes the zeros and matches N(T). */

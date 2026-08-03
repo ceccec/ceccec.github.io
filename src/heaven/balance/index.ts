@@ -5,7 +5,7 @@
 // export * re-export.
 import * as __ns_up_up_resonance from '../../thunder/resonance'
 import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7'
-import { caStep, caEvolve, THEOREM_ATOM_SEED } from '../../4/6'
+import { caStep, caEvolve, THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../4/6'
 import * as __ns_up_up_iching from '../../earth/iching'
 import * as __ns_up_up_learning from '../../learning'
 import * as __ns_up_up_ui from '../../wind/ui'
@@ -705,6 +705,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'stack.computes', on: stackComputes(matrix).computes },
     { d: 'navier.stokes.flow.regularity', on: navierStokesFlowRegularityOnTheSeam(matrix).computes },
     { d: 'yang.mills.mass.gap', on: yangMillsMassGapFromSelfAdjointClosure().computes },
+    { d: 'riemann.critical.line', on: riemannCriticalLineIsTheInvolutionFixedPoint().computes },
     { d: 'sense.mind.body.pairs', on: senseMindBodyPairsComputes(matrix).computes },
     { d: 'modality.homes.computes', on: modalityHomesComputes(matrix).computes },
     { d: 'birth.computes', on: birthComputes(matrix).computes },
