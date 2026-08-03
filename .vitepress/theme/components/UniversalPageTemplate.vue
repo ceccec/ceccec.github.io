@@ -99,7 +99,7 @@ const pageGapsKind = computed((): PageGapsKind | undefined => {
     <ScientificPaperBody
       v-if="canonPaper"
       :paper="canonPaper"
-      logic="src/wind/learning/index.ts#paperParamsById"
+      logic="src/learning/index.ts#paperParamsById"
     />
 
     <h2

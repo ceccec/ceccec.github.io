@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { revolutChannel } from '../../../src/wind/site/index'
-import { cursorReferralFundsAiNeeds } from '../../../src/wind/research/index'
+import { cursorReferralFundsAiNeeds } from '../../../src/research/index'
 import { qrSvg } from '../../../src/water/crypto/index'
 import { useSiteLocale } from '../../lib/mounts'
 
@@ -43,7 +43,7 @@ const labels = computed(() => ({
         :href="fund.url"
         rel="noopener noreferrer"
         target="_blank"
-        data-logic="src/wind/research/index.ts#cursorReferralFundsAiNeeds"
+        data-logic="src/research/index.ts#cursorReferralFundsAiNeeds"
       >
         {{ labels.fundAi }}
       </a>

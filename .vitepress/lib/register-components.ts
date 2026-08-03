@@ -82,8 +82,8 @@ const OVERRIDES: Record<string, () => Promise<{ default: Component }>> = {
   DoubleTorusExperience: () => import('../theme/components/DoubleTorusExperience.vue'),
   EncryptionTools: () => import('../../src/water/encryption/index.vue'),
   SslTestTools: () => import('../theme/components/SslTestTools.vue'),
-  MillenniumChallenge: () => import('../../src/wind/research/index.vue'),
-  ResearchIndex: () => import('../../src/wind/research/index.vue'),
+  MillenniumChallenge: () => import('../../src/research/index.vue'),
+  ResearchIndex: () => import('../../src/research/index.vue'),
   QuantumTools: () => import('../../src/quantum/apps/index.vue'),
   FusionVerify: () => import('../../src/wind/fusion/index.vue'),
   // society/HD domain — sealed governance panels (display duals)

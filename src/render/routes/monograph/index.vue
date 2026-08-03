@@ -6,8 +6,8 @@
   <article class="ui-card ui-card--ghost" data-shadcn="card" data-topic="monograph">
     <output
       class="display-dual-gate"
-      data-logic="src/wind/learning/index.ts#monograph"
-      data-target="src/wind/learning/index.ts"
+      data-logic="src/learning/index.ts#monograph"
+      data-target="src/learning/index.ts"
       data-topic="monograph"
       aria-hidden="true"
     />

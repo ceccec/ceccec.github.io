@@ -8,7 +8,7 @@ import {
   domainProofPageBySlug,
   domainProofPageRows,
   type DomainProofCatalogRow,
-} from '../../../src/wind/research/index.ts'
+} from '../../../src/research/index.ts'
 import { sciencePaperBodyFromDomainRow } from '../../../src/quantum/apps/index.ts'
 import ScientificPaperBody from './ScientificPaperBody.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
@@ -32,7 +32,7 @@ const bodyOf = (row: DomainProofCatalogRow) => sciencePaperBodyFromDomainRow(row
 </script>
 
 <template>
-  <div class="proofs" data-logic="src/wind/research/index.ts#domainProofCatalog">
+  <div class="proofs" data-logic="src/research/index.ts#domainProofCatalog">
     <header v-if="isHub" class="proofs__hub">
       <p class="proofs__mast">ceccec · catalog</p>
       <p class="proofs__lede">

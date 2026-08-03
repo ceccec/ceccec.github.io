@@ -1,5 +1,5 @@
 // Browser-safe component → sealed fold loaders (dynamic import — no monolith at parse time).
-import type { ComponentCrosslink } from '../../src/wind/learning/index'
+import type { ComponentCrosslink } from '../../src/learning/index'
 import type { DecodedFacet, DecodedStation } from '../theme/components/DecodedCard.vue'
 import type { QuantumProjection } from './hero-movie'
 import { displayText, localePath, pickLocale, type LocaleName } from './site-locale'
@@ -44,7 +44,7 @@ export async function withCrosslinks(
   view: DecodedFoldView,
   locale: LocaleName = 'en',
 ): Promise<DecodedFoldView> {
-  const { componentCrosslinks } = await import('../../src/wind/learning/index')
+  const { componentCrosslinks } = await import('../../src/learning/index')
   const localized = localizeDecodedView(view, locale)
   const computed = componentCrosslinks(name, locale)
   const seen = new Set(computed.map((entry) => entry.link))
@@ -203,7 +203,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
   }),
   Society: wrapFold(async () => {
     const { scientificSociety } = await import('../../src/earth/governance/index')
-    const { societySupportsProjectViaTwoBitsFreeKnowledge } = await import('../../src/wind/research/index')
+    const { societySupportsProjectViaTwoBitsFreeKnowledge } = await import('../../src/research/index')
     const fold = scientificSociety()
     const support = societySupportsProjectViaTwoBitsFreeKnowledge()
     // Facets = savings table only (statement = society charter — no UI↔prose restatement of support.statement)
@@ -312,7 +312,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   McpTools: async () => {
-    const { mcpToolManifest } = await import('../../src/wind/learning/index')
+    const { mcpToolManifest } = await import('../../src/learning/index')
     const fold = mcpToolManifest()
     return {
       title: 'MCP tools',
@@ -411,7 +411,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     return proofRendererDecodedView()
   },
   KnowledgeAtlas: async () => {
-    const { decodeKnowledge } = await import('../../src/wind/learning/index')
+    const { decodeKnowledge } = await import('../../src/learning/index')
     const fold = decodeKnowledge()
     return {
       title: 'Knowledge atlas',
@@ -426,7 +426,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   QuantumRadar: async () => {
-    const { deepResearchRadar } = await import('../../src/wind/learning/index')
+    const { deepResearchRadar } = await import('../../src/learning/index')
     const fold = deepResearchRadar()
     return {
       title: 'Quantum radar',
@@ -648,7 +648,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   MillenniumChallenge: async () => {
-    const { millenniumPanelComputes } = await import('../../src/wind/research/index')
+    const { millenniumPanelComputes } = await import('../../src/research/index')
     const fold = millenniumPanelComputes()
     return {
       title: 'Millennium challenge',
@@ -660,7 +660,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   ResearchIndex: async () => {
-    const { researchPanelComputes } = await import('../../src/wind/research/index')
+    const { researchPanelComputes } = await import('../../src/research/index')
     const fold = researchPanelComputes()
     return {
       title: 'Research index',

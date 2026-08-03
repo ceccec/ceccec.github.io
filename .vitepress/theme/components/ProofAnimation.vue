@@ -299,7 +299,7 @@ function draw(t: number) {
   // composition σ∘ν is the translation d ↦ d + 1: the infinite cyclic action on the finite wheel.
   const co = props.spec.coords
   if (co && co.sequencePosition >= 0) {
-    const rOut = c * (9 / 10)
+    const rOut = c * (9 / (2 * 5))
     const dot = s / (4 * 9)
     const posOf = (d: number) => (VORTEX_SEQUENCE as readonly number[]).indexOf(d)
     const angleOf = (d: number) => (posOf(d) / 9) * TAU - TAU / 4

@@ -18,6 +18,6 @@ export {
   vitepressNativeDocsConfig,
   vitepressDocsResearchImprovements,
 } from '../../src/wind/site'
-export { siteNavigation, vitepressSidebar } from '../../src/wind/learning'
+export { siteNavigation, vitepressSidebar } from '../../src/learning'
 export { SITE_LOCALES } from '../../src/heaven/balance'
 export { toGlagolitic } from '../../src/quantum/heaven/library'
