@@ -33,7 +33,7 @@
     "vue": "^3.5.39"
   },
   "scripts": {
-    "docs:dev": "NODE_OPTIONS=--max-old-space-size=2048 vitepress dev",
+    "docs:dev": "NODE_OPTIONS=--max-old-space-size=8192 vitepress dev",
     "check:types": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts check:types",
     "verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify",
     "verify:structure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify:structure",
@@ -58,7 +58,7 @@
     "dissolve:flat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts dissolve-flat",
     "docs:build": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts docs:build-seal",
     "docs:build:verbose": "DOCS_BUILD_VERBOSE=1 node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts docs:build-seal --verbose",
-    "docs:preview": "NODE_OPTIONS=--max-old-space-size=2048 vitepress preview",
+    "docs:preview": "NODE_OPTIONS=--max-old-space-size=8192 vitepress preview",
     "gen": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts rosetta",
     "atlas": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/cache/quantum/index.ts runSourceAtlasExit",
     "surgical": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts surgical",
