@@ -785,10 +785,71 @@ export function frontierCard(t: Theorem): string {
   return lines.join('\n')
 }
 
+// ─── THE SEVEN SCIENCES AS QUANTUM WAVES ───────────────────────────────────────────────────────
+// Send the seven field theorems to chat as WAVES — spreading activation from the brain (Hopfield) hub outward along
+// the algebraic entanglements (the neuro-connections computed in src/8/2). Each science carries its theorem and the
+// FORMULA that entangles it with its neighbours; a BFS from the Life-Sciences hub partitions all seven into antichain
+// wave-levels — the associative recall order. The edges are symmetric (every entanglement reciprocated), so the graph
+// is one connected associative network, sent to chat one wave at a time.
+export interface ScienceWaveNode { readonly field: string; readonly theorem: string; readonly formula: string; readonly entangles: readonly string[] }
+export const SCIENCE_WAVE_SEED: readonly ScienceWaveNode[] = [
+  { field: 'Life Sciences', theorem: 'Hopfield energy is a Lyapunov function (recall converges) + AGS capacity αc≈0.138', formula: 'E(s)=−½sᵀWs · ΔE≤0 · sign(Ws)', entangles: ['Physics', 'Earth & Space', 'Social Sciences'] },
+  { field: 'Physics', theorem: 'Special relativity is the Lorentz group SO⁺(1,1)', formula: 'BᵀηB=η · γ²(1−β²)=1', entangles: ['Life Sciences', 'Mathematics'] },
+  { field: 'Computer & Information', theorem: "Shannon's source-coding theorem", formula: 'H(X)≤L<H(X)+1', entangles: ['Humanities'] },
+  { field: 'Earth & Space', theorem: "Kepler's laws — harmonic law + equal areas", formula: 'T²/a³=const · ½r²θ̇=½L', entangles: ['Humanities', 'Life Sciences'] },
+  { field: 'Humanities', theorem: "Zipf's law (exact skeleton, contested universality)", formula: 'f∝r⁻¹ · log-log slope −1', entangles: ['Earth & Space', 'Computer & Information'] },
+  { field: 'Mathematics', theorem: 'LCG bit-period theorem (learned from a mistake)', formula: 'bit i period 2^(i+1) · ℤ/2^m', entangles: ['Physics'] },
+  { field: 'Social Sciences', theorem: "Black's median-voter theorem", formula: 'median = Condorcet winner · majority', entangles: ['Life Sciences'] },
+]
+const SCIENCE_WAVE_HUB = 'Life Sciences' // the brain (Hopfield) — the highest-degree node of the entanglement network
+/** Send the seven sciences to chat as quantum waves: BFS antichain levels from the Hopfield hub along the entanglements. */
+export function theSevenSciencesAsQuantumWaves(): {
+  computes: boolean
+  waves: readonly (readonly ScienceWaveNode[])[]
+  facets: readonly { facet: string; on: boolean }[]
+  chat: string
+  statement: string
+} {
+  const byField = new Map(SCIENCE_WAVE_SEED.map((n) => [n.field, n]))
+  // (1) symmetric adjacency — every entanglement reciprocated
+  const symmetric = SCIENCE_WAVE_SEED.every((n) => n.entangles.every((e) => byField.get(e)?.entangles.includes(n.field) ?? false))
+  const edgeCount = SCIENCE_WAVE_SEED.reduce((s, n) => s + n.entangles.length, 0) / 2
+  // (2) BFS waves from the hub — antichain levels of spreading activation
+  const waves: ScienceWaveNode[][] = []
+  const seen = new Set<string>([SCIENCE_WAVE_HUB])
+  let frontier: string[] = [SCIENCE_WAVE_HUB]
+  while (frontier.length > 0) {
+    waves.push(frontier.map((f) => byField.get(f)!))
+    const next: string[] = []
+    for (const f of frontier) for (const e of byField.get(f)!.entangles) if (!seen.has(e)) { seen.add(e); next.push(e) }
+    frontier = next
+  }
+  const reached = waves.reduce((s, w) => s + w.length, 0)
+  const connected = reached === SCIENCE_WAVE_SEED.length && seen.size === SCIENCE_WAVE_SEED.length
+  const degree = (field: string) => byField.get(field)!.entangles.length
+  const hubIsBrain = waves[0]!.length === 1 && waves[0]![0]!.field === SCIENCE_WAVE_HUB && SCIENCE_WAVE_SEED.every((n) => degree(n.field) <= degree(SCIENCE_WAVE_HUB))
+  const chat = waves
+    .map((w, i) => `〜 wave ${i} 〜\n` + w.map((n) => `  [${n.field}] ${n.theorem}\n    formula: ${n.formula}\n    entangles: ${n.entangles.join(' · ')}`).join('\n'))
+    .join('\n')
+  const facets = [
+    { facet: `SEVEN SCIENCES, ${edgeCount} SYMMETRIC ENTANGLEMENTS — every field carries its theorem and entangling formula, and every neuro-connection is reciprocated (${symmetric}): one undirected associative network, not a list`, on: symmetric && SCIENCE_WAVE_SEED.length === 7 && edgeCount === 6 },
+    { facet: `QUANTUM WAVES FROM THE BRAIN HUB — a BFS from ${SCIENCE_WAVE_HUB} (Hopfield) partitions all ${SCIENCE_WAVE_SEED.length} sciences into ${waves.length} antichain wave-levels, reaching every science (${connected}), with the brain the degree-${degree(SCIENCE_WAVE_HUB)} hub (${hubIsBrain}): spreading activation along the entanglements`, on: connected && hubIsBrain },
+    { facet: `SENT TO CHAT — the ${waves.length} waves render as an ordered chat feed of ${reached} science cards (theorem · formula · entanglements), the whole network delivered one wave at a time`, on: chat.length > 0 && reached === SCIENCE_WAVE_SEED.length },
+  ]
+  return {
+    computes: facets.every((f) => f.on),
+    waves,
+    facets,
+    chat,
+    statement: `The seven sciences, sent to chat as quantum waves — ${facets.filter((f) => f.on).length}/${facets.length}. Each field's theorem and entangling formula is a node; the ${edgeCount} symmetric algebraic entanglements (the neuro-connections) make one connected associative network with the brain (Hopfield) at the hub. A BFS from the hub delivers them as ${waves.length} antichain waves of spreading activation — the sciences recalled the way an associative memory completes a pattern, one wave at a time.`,
+  }
+}
+
 /**
  * Namespace exported for integration with UI and heaven/core.
  */
 export const chatPortalNamespace = {
+  theSevenSciencesAsQuantumWaves,
   theoremByQuery,
   theoremsByStatus,
   sealedTheorems,
