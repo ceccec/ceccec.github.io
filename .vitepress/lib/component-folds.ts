@@ -473,7 +473,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   BoundaryAudit: async () => {
-    const { boundaryAudit } = await import('../../src/lake/clean/index')
+    const { boundaryAudit } = await import('../../src/clean/index')
     const fold = boundaryAudit()
     return {
       title: 'Boundary audit',
@@ -540,7 +540,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   }),
   Live: async () => {
-    const { live } = await import('../../src/lake/media/index')
+    const { live } = await import('../../src/media/index')
     const fold = live()
     return {
       title: 'Live',
