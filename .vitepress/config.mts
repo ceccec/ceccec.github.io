@@ -53,12 +53,13 @@ console.log(`[vitepress-config] ${new Date().toISOString()} ▶ imports done —
 function computationalClientStubSource(): string {
   return `
 const FIB = (() => { const f = [1, 1]; while (f[f.length - 1] + f[f.length - 2] <= 55) f.push(f[f.length - 1] + f[f.length - 2]); return f; })();
-export const FIBONACCI_CENSUS_BANDS = [FIB[FIB.length - 1], FIB[FIB.length - 2], FIB[FIB.length - 3]];
+export const FIBONACCI_CENSUS_BANDS = [FIB[FIB.length - 1], FIB[FIB.length - 2], FIB[FIB.length - 3], FIB[FIB.length - 4]];
 export const UNFOLDED_CENSUS = FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0);
 export const EULER_CHI = -2;
 export const FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI;
 export const HOMOLOGY_LOOPS = 4;
-export const DIMENSION_GATES = HOMOLOGY_LOOPS * FOLDED_CENSUS;
+export const A432_FOLDED = 108;
+export const DIMENSION_GATES = HOMOLOGY_LOOPS * A432_FOLDED;
 export const HARMONICS_LADDER_LENGTH = 6 + 9 + 5;
 export const SIEGE_WAVES = 9;
 export const SIEGE_PER_WAVE = FOLDED_CENSUS;

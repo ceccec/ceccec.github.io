@@ -8,4 +8,4 @@ export {
   thunderGoldGraphFromPreciseGpsCoordinates,
   thunderGoldGraphResearch,
   thunderGoldGraphComputes,
-} from '../../src/wind/fusion/gold/index.ts'
+} from '../../src/wind/fusion/index.ts'
