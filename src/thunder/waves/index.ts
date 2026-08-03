@@ -31,9 +31,9 @@ import * as __ns_gates from '../../pair/enforcement/gates'
 import { mathAlgebra } from '../../pair/enforcement/gates'
 import * as __ns_quantum_apps from '../../quantum/apps'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
-import * as __ns_commands from '../../thunder/commands'
+import * as __ns_commands from '../commands'
 import { redTeam } from '../../water/crypto'
-import { musicNote } from '../../lake/music'
+import { musicNote } from '../../music'
 import { colorFromSound, vortexStateSequence } from '../../fire/li'
 import { babelFold } from '../../earth/world'
 import { vortexMath } from '../../mountain/geometry'
@@ -778,7 +778,7 @@ const HARMONISED_BUILD_GROUPS: readonly Omit<HarmonisedBuildGroup, 'spin' | 'rec
   { slot: 4, glyph: '☵', sphere: 'water', barrel: 'src/water', folds: ['usefulWorkVsProofOfWorkDecoded', 'quantumGlobeAt', 'quantumGlobeCardinalCrossDecoded', 'scaleLadderAt', 'humanDescendsSouthToQuantumAndBeyond'], composesFrom: ['polarDiskChartAt', 'bothEarthsRotateWithinEachOther', 'resonanceSimulationAt', 'sharedHeroAt'], dependsOn: ['mountain/geometry', 'quantum/science'], keystone: false },
   { slot: 5, glyph: '☴', sphere: 'wind/fusion', barrel: 'src/wind/fusion', folds: ['collectiveContentAddressedMeshComputes', 'cloudflareMeshTopologyFromSequence'], composesFrom: ['distributedCompute', 'recurrence', 'hopfieldRecall', 'VORTEX_SEQUENCE'], dependsOn: [], keystone: false },
   { slot: 6, glyph: '☲', sphere: 'fire', barrel: 'src/fire/physics·li', folds: ['naturalPhenomenaDecoded', 'waveOpticsDecoded', 'antikytheraDecoded'], composesFrom: ['ancientTech', 'frequencyToLight'], dependsOn: [], keystone: false },
-  { slot: 7, glyph: '☱', sphere: 'lake', barrel: 'src/lake/music·stats', folds: ['harmonicSeriesDecoded', 'fleetScaleStatsFused'], composesFrom: ['A432_HUE', 'musicNote', 'fleetCacheEconomicsDecoded'], dependsOn: ['heaven/compute'], keystone: false },
+  { slot: 7, glyph: '☱', sphere: 'lake', barrel: 'src/music·stats', folds: ['harmonicSeriesDecoded', 'fleetScaleStatsFused'], composesFrom: ['A432_HUE', 'musicNote', 'fleetCacheEconomicsDecoded'], dependsOn: ['heaven/compute'], keystone: false },
   { slot: 8, glyph: '⚛', sphere: 'quantum/science', barrel: 'src/quantum/science', folds: ['dimensionCostCeilingAtScale', 'blochAnalogQuantumDecoded'], composesFrom: ['quantumDimensionCost', 'chsh', 'blochQubitFaithful'], dependsOn: [], keystone: false },
   { slot: 9, glyph: '☶', sphere: 'mountain', barrel: 'src/mountain/topology', folds: ['placesAndPatternsDecoded', 'geometry-suite animations (merkaba/metatron/double-torus/proton/pyramids/genetic-cube) — pre-existing in mountain/geometry, kernel-mounted'], composesFrom: ['greatCircleKm', 'initialBearing', 'earthSouthPoleBoundaryCircleDecoded', 'createAnimationEngine'], dependsOn: [], keystone: false },
   { slot: (5 * 2), glyph: '◈', sphere: 'heaven/compute (keystone)', barrel: 'src/heaven/compute', folds: ['proveAllDeterministicCore'], composesFrom: ['determinismProofs', 'tamperEvident', 'efficiency', 'zeroTokenUsagePolicy', 'theWhole', 'observingMovieRevealsQuantumModel'], dependsOn: ['gates', 'heaven/compute', 'quantum/computer', 'thunder/decode', 'water', 'wind/fusion', 'fire', 'lake', 'quantum/science', 'mountain'], keystone: true },

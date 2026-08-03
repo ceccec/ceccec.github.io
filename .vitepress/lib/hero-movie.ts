@@ -48,6 +48,6 @@ export {
   AUDIO_ENABLED_STORAGE_KEY,
   SCREENSAVER_IDLE_MS,
 } from '../../src/fire/plasma/ball'
-export { speechIntonation } from '../../src/lake/media/index'
+export { speechIntonation } from '../../src/media/index'
 export { livingTorus } from '../../src/fire/diamonds/index'
 export { backgroundMovieColors, heroMovieChrome, type HeroMovieChrome } from '../../src/thunder/movie/glass'

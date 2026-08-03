@@ -351,7 +351,7 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 
 ## The journal
 
-This site is a dedicated scientific journal of all its algebra and theorems — **761 articles** across **56 sections**, backed by 536 executable proofs, sealed as one content-addressed volume `63543aff`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
+This site is a dedicated scientific journal of all its algebra and theorems — **761 articles** across **56 sections**, backed by 536 executable proofs, sealed as one content-addressed volume `004d3f7d`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
 
 ## 5. Reproducibility
 

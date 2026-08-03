@@ -110,7 +110,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         limitation: 'Structural cavity-mode animation math — NOT NOAA GOES or live magnetometer unless opt-in geomag feed.',
         nextExperiment: 'npm run docs:dev → resonance pages · publicApiFusion opt-in for geomag',
         balanceDim: 'schumann.resonance.harmonised.realtime.api.computations',
-        mount: 'src/lake/music · src/resonance',
+        mount: 'src/music · src/resonance',
         bibliography: 'Schumann 1952; documented harmonics 7.83/14.3/20.8/27.3/33.8 Hz in lake/music',
         receipt: toUuid('research:schumann-coupling') },
       {
@@ -4188,7 +4188,7 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
     algebraFold: 'a432NeuralBandLadder', toolId: 'predict-skill-gate-verify',
     toolCli: 'npm run quantum:predict-skill-gate-verify', apparatusRoute: '/en/resonance',
     dualId: 'biology', fusionLabel: 'music↔life↔resonance', projection: 'vortex-strokes',
-    ichingSphere: 7, home: 'src/lake/music', cryptoVertex: false },
+    ichingSphere: 7, home: 'src/music', cryptoVertex: false },
   {
     id: 'human-design', field: 'Symbolic systems (HD)', oecd: '6.3',
     algebraFold: 'humanDesignVerifiedWheel', toolId: 'iching-distribute-verify',

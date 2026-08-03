@@ -22,7 +22,7 @@ import { digitFolderMath, digitFolders, digitFoldersComputeUiIsTheRest, folderLa
 import { sealCube } from '../../mountain/seals'
 import { mvcOrganisationReceipt } from '../../mountain/source'
 import { allPossibleDomains } from '../../thunder/decode'
-import { crossAudit } from '../../lake/clean'
+import { crossAudit } from '../../clean'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
 import { PI_TRAIN_DIGITS, analogNoGapsNoLeak, computePiDigits, conceptCommands, doubleTorusFold, homology, path, piNotHarmonic, theWhole } from '../../quantum/heaven/mind'
 import { movieAllDimensionsAtOnce } from '../../thunder/movie/glass'

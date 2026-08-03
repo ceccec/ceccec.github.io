@@ -7,7 +7,7 @@ import { a432, a432Default, agentObserve, contentAddressingHasRealPrecedent, ham
 import { VORTEX_SEQUENCE, abs, cos, exp, floor, humanBreath, hypot, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, prng, proseToTone, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid, toffoli } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath, merkaba } from '../../mountain/geometry'
 import { publicFrequencyApis, tiers358 } from '../../quantum/lake/icons'
-import { a432IsTheBlood, harmonics } from '../../lake/music'
+import { a432IsTheBlood, harmonics } from '../../music'
 import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHazard, coordinatedWaves, digitalQuantumProof, fruitOfLifeFusion, grover, harmonyProbability, howAgentsAchievedIt, knowledgeRevealedByMerkabaFold, memoryInSourceAsCrossFolds, merge, pbits, pflip, probabilities, psample, quantumComputer, qubits, rcnot, resonanceCatchGapsViolations, rnot, rtoffoli, sample, strictlyMapSequenceElliottWaves } from '../../quantum/heaven/mind'
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,

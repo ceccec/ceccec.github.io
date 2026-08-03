@@ -31,7 +31,7 @@ import {
   attunementTier,
   attunementWatchComputes,
   unlockedHarmonicDepth,
-  harmonizeFieldComputes } from '../../lake/music'
+  harmonizeFieldComputes } from '../../music'
 import { inverseShiftConsciousness } from '../../fire/li'
 import { backgroundMovie } from '../../thunder/movie/canvas'
 import { a432IsTheBlood, allFormsAreTenDimensionalOrPurged, colorRootsAtA432HeartBalances, completeness, diamondCompleteness, donutLabyrinthOfGlyphsHeroEnteringExiting, folderLaw, frequencyBalance, generativeSpace, glagoliticOcrReverseClosesRoundTrip, iChingShadcnFuseTenDWidgets, collective, livingTorus, memoByRoot, neuron, pathIsMeaningDecodesCoordinates, quantumSociety, seedFromText, skillAtoms, theWhole, verifyRoot } from '../../quantum/heaven/mind'

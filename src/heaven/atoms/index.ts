@@ -7,7 +7,7 @@ import { isUuid, max, memoByRoot, merge, merkleFold, min, roundTo, seedFromText,
 import * as __ns_registry from '../../4/6' // call-time (cycle-safe): the theorem registry as a searchable source — closes foldQuestion's index gap
 import { crossFoldTrinity, torusUuid } from '../../fire/li'
 import { areaPairs, dualTorusTrinities } from '../../mountain/geometry'
-import { piMusic } from '../../lake/music'
+import { piMusic } from '../../music'
 import { executeConceptCommand } from '../../thunder/commands'
 import { siteManifestFromCommands } from '../../wind/site'
 import { quantumFusedDeviceEnergyHonest } from '../../fire/features'

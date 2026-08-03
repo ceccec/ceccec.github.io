@@ -14,7 +14,7 @@ import { quantumSitemap } from '../../wind/site'
 // ☰ Qián · Heaven · creative · lower·yin · spread — atom registry: conceptCommands, SINGLE_WORD_METHODS, atoms
 import { conceptCommands, SINGLE_WORD_METHODS, atoms } from '../../heaven/atoms'
 // ☱ Duì · Lake · joyous · lower·yin · depthFade — inclusion proof: atomInclusionProof
-import { atomInclusionProof } from '../../lake/ledger'
+import { atomInclusionProof } from '../../ledger'
 // ☷ Kūn · Earth · receptive · lower·yin · hueShift — vocab primitives: openGraph, harmonicBands, deviceSensors, dualities
 import {
   openGraph, multidimensional, plainLanguage, typographySeo,
@@ -37,9 +37,9 @@ import { verifyRoot, reciprocity } from '../../heaven/compute'
 import { folderLaw, treeOfLifeSephirotFolders, dualitiesMeetInCrossFolders } from '../../earth/architecture'
 import { iChingDomainMap, threeEightFoldsTopNav, enforcementPipelineComplete } from '../../heaven/balance'
 import { BAGUA, iChing, cloudflareBindings } from '../../heaven/core'
-import { a432IsTheBlood, harmonics, harmonicPathRevealsItself, rhythm } from '../../lake/music'
-import { quantumProofs } from '../../lake/ledger'
-import { imagineTheRest } from '../../lake/media'
+import { a432IsTheBlood, harmonics, harmonicPathRevealsItself, rhythm } from '../../music'
+import { quantumProofs } from '../../ledger'
+import { imagineTheRest } from '../../media'
 import {
   hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality,
   dualTorusTrinities, merkaba, vortexMath, sacredGeometrySeal } from '../../mountain/geometry'

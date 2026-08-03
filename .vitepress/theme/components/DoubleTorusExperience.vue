@@ -6,7 +6,7 @@ import { doubleTorusEarthHingeComputesAll, doubleTorusEarthExchangeComputes, fia
 import { goldFusionComputes } from '../../../src/wind/fusion/index.ts'
 import { quantumGlobeAt } from '../../../src/water/double/earth/index.ts'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../lib/movie-canvas'
-import { harmonizeField, type ObserverContext } from '../../../src/lake/music/index.ts'
+import { harmonizeField, type ObserverContext } from '../../../src/music/index.ts'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 import { UiBadge, UiTabs, UiTabsContent, UiTabsList, UiTabsTrigger } from '../../lib/shadcn-ui.ts'

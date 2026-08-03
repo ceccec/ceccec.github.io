@@ -2,7 +2,7 @@
 // The 64-component graph lives in quantum/widgets (shadcnIsTheGraph); the implemented Ui* primitives
 // live in .vitepress/theme/components/ui (VitePress requires SFCs in the theme). This barrel is the
 // sealed metadata surface both the theme registry and the page renderers read at call time.
-import * as __ns_up_quantum_widgets from '../../lake/widgets'
+import * as __ns_up_quantum_widgets from '../../widgets'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../../0'

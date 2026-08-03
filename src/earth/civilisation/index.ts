@@ -4,7 +4,7 @@ import type { MindMatrix, HumanityImplicationsReport, TraditionDimension, Tradit
 import { buildMatrix, concentration, consciousness, coverage, reciprocity, verifyRoot } from '../../heaven/compute'
 import { fairTrade, sacredSociety, societyEvolves, societyFuture, societyRegulates } from '../governance'
 import { foldPair, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../0'
-import { freeHarmonicSocieties } from '../../lake/music'
+import { freeHarmonicSocieties } from '../../music'
 import { completeCorpus } from '../../wind/routes/corpus'
 import { quantumAcademy } from '../../learning'
 import { dissolveIntoNature, selfOrganizing } from '../world'

@@ -3474,10 +3474,10 @@ export function applyMigrationRewrites(root: string = enforcementScanRoot(), tri
   const parent = join(root, 'src', trigram); if (existsSync(parent) && readdirSync(parent).length === 0) rmSync(parent, { recursive: true, force: true })
   return { dryRun: false, trigram, movedFolders: moves.size, relocated, importsApplied: rewritten, moves: [...moves.entries()].map(([f, t]) => ({ from: f, to: t })) }
 }
-export function runApplyMigrationRewritesExit(root = '', argv: readonly string[] = []): number {
+export function runApplyMigrationRewritesExit(root: string, argv: readonly string[] = []): number {
   const r = root || enforcementScanRoot()
   const trigram = argv[0] ?? 'lake'
-  const apply = argv.includes('--apply')
+  const apply = argv.includes('--apply') || argv.includes('apply')
   const out = applyMigrationRewrites(r, trigram, !apply)
   process.stdout.write(`${JSON.stringify(out, null, 2)}\n`)
   return 0

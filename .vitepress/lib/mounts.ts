@@ -13,7 +13,7 @@ import {
   cardMovieSeed,
 } from '../../src/thunder/movie/movievars'
 import { decodedCardTextShadow } from '../../src/thunder/movie/glass'
-import { speechIntonation } from '../../src/lake/media/index'
+import { speechIntonation } from '../../src/media/index'
 import {
   AUDIO_ENABLED_STORAGE_KEY,
 } from '../../src/fire/plasma/ball'

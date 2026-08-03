@@ -3,7 +3,7 @@
 // and the ΛCDM tensions. Pure domain folds — composed here, re-exported by ./index.ts so importers resolve unchanged.
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
-import * as __ns_up_lake_widgets from '../../lake/widgets'
+import * as __ns_up_lake_widgets from '../../widgets'
 import { SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, physicalFtlClaimTheorem, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'

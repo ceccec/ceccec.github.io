@@ -45,7 +45,7 @@ export {
   COLOR_ROSETTA_THEME_TOKEN_IDS,
   CSS_DRY_FUSION_GAP_LENS,
 } from '../../wind/ui'
-import { lobeHues, movieCanvasRgba, movieCanvasPolarity, scaleColor } from '../../quantum/science'
+import { lobeHues, movieCanvasRgba, movieCanvasPolarity, scaleColor } from '../science'
 import {
   movieAllElementsAreTheorems,
   movieQuantumGapsInventory,
@@ -54,12 +54,12 @@ import {
   thunderAndPlasmaAreSameInDifferentAspects } from '../../thunder/movie/canvas'
 import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../earth/life'
 import { livingTorus } from '../../fire/diamonds'
-import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../../quantum/wind/geometry'
-import { humanDesignChannelsAndCenters } from '../../quantum/lake/icons'
-import { harmonizeFieldComputes } from '../../lake/music'
+import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../wind/geometry'
+import { humanDesignChannelsAndCenters } from '../lake/icons'
+import { harmonizeFieldComputes } from '../../music'
 import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum, deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible, lifeTorus } from '../../water/double'
 export { deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../water/double'
-import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, quantumSensorBindingCatalog, QUANTUM_SENSOR_BINDING_CATALOG, movieObservationReceipt, heroPhaseAt } from '../../quantum'
+import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, quantumSensorBindingCatalog, QUANTUM_SENSOR_BINDING_CATALOG, movieObservationReceipt, heroPhaseAt } from '..'
 import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
 import { vortexComputes, vortexMath } from '../../mountain/vortex'
 import * as __ns_wind_research from '../../research'
@@ -110,7 +110,7 @@ export {
 import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
 import { cardMoviePath } from '../../thunder/movie/movievars'
 import { alchemyComputes, quantumFusionVerify } from '../../wind/fusion'
-import { dryCleanIsDiamondAndCrystal } from '../../lake/clean'
+import { dryCleanIsDiamondAndCrystal } from '../../clean'
 import { tamperEvident } from '../../5/5'
 import { RAVE_CENTER_LAYOUT } from '../../heaven/sky/astronomy'
 import * as __ns_thunder_waves from '../../thunder/waves'
@@ -813,7 +813,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'educational-gaps-audit', title: 'Educational gaps audit', fold: 'educationalGapsFromIncompleteApis', cli: 'npm run quantum:educational-gaps-audit', pair: 'educational/gaps-audit', route: '/en/quantum-tools', barrel: 'src/pair/enforcement/ops', boundary: 'API gap → educational impact', browserRunnable: false, browserGap: 'educationalGapsFromIncompleteApis scans repo via process.cwd — CI-only' },
   { id: 'unit-distance-verify', title: 'Unit-distance research verify', fold: 'unitDistanceResearch', cli: 'npm run quantum:unit-distance-verify', pair: 'research/society', route: '/en/research', barrel: 'src/research', boundary: 'Numeric companion — MODEL_FIT', browserRunnable: true, browserGap: '' },
   { id: 'iching-distribute-verify', title: 'I Ching / rosetta distribute', fold: 'ichingDistributeVerify', cli: 'npm run quantum:iching-distribute-verify', pair: 'rosetta/batch', route: '/en/quantum-tools', barrel: 'src/earth/iching', boundary: 'Rosetta 7-ray vs I Ching 8-fold', browserRunnable: true, browserGap: '' },
-  { id: 'predict-skill-gate-verify', title: 'Predict skill gate verify', fold: 'skilledEnoughFromPredictions', cli: 'npm run quantum:predict-skill-gate-verify', pair: 'predict/skill-gate-verify', route: '/en/quantum-tools', barrel: 'src/lake/music', boundary: 'Measurable event prediction skill', browserRunnable: true, browserGap: '' },
+  { id: 'predict-skill-gate-verify', title: 'Predict skill gate verify', fold: 'skilledEnoughFromPredictions', cli: 'npm run quantum:predict-skill-gate-verify', pair: 'predict/skill-gate-verify', route: '/en/quantum-tools', barrel: 'src/music', boundary: 'Measurable event prediction skill', browserRunnable: true, browserGap: '' },
   { id: 'f-inverse-pair', title: 'f→{p,q} inverse fold', fold: 'fThetaPhiXyzDigitNIsTheInversePair', cli: 'npm run quantum:f-inverse-pair', pair: 'inverse/pair', route: '/en/quantum-tools', barrel: 'src/mountain/vortex', boundary: 'Inverse fold within itself — not RSA crack', browserRunnable: true, browserGap: '' },
   { id: 'translations-verify', title: 'Translation gaps gate (en/bg/gla parity)', fold: 'translationGapsGate', cli: 'npm run quantum:translations-verify', pair: 'translations/verify', route: '/en/quantum-tools#translations-verify', barrel: 'src/mountain/source', boundary: 'HARD discover-then-fail on missing/inaccurate en-parity · WARN offline phrase residual', browserRunnable: true, browserGap: '' },
   { id: 'mcp-commands-scripts-gaps-audit', title: 'MCP commands ↔ scripts gaps audit', fold: 'mcpCommandsScriptsGapsAudit', cli: 'npm run quantum:mcp-commands-scripts-gaps-audit', pair: 'mcp/scripts-audit', route: '/en/quantum-tools#mcp-commands-scripts-gaps-audit', barrel: 'src/quantum/apps', boundary: 'Overlap · useless · gap census — conceptTools+trading:* REFUSE PRIMARY (kept-intentional) · plasma/trinity in HONEST_CI', browserRunnable: true, browserGap: '' },

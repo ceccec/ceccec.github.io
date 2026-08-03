@@ -28,7 +28,7 @@ import * as __ns_quantum_science from '../../quantum/science'
 // Cycle-safe: heaven/essence imports buildMatrix from here, so reference theWhole() only at call time.
 import * as __ns_heaven_essence from '../essence'
 import { healingInner, healingOuter, quantumSimulation, siteRoutes, animationEngineLivesInZero, humanise, findQuestions } from '../../fire/li'
-import { healingHarmonic } from '../../lake/music'
+import { healingHarmonic } from '../../music'
 import { quantumBrowserOs, quantumComputer, quantumFusedDeviceEnergyHonest, torusData } from '../../fire/features'
 import { lawfulHarmonise, natureCommons } from '../../quantum/lake/icons'
 import { digitFoldersDoMath, dualitiesMeetInCrossFolders, quantumConfigurableFoldersDisappear } from '../../earth/architecture'

@@ -12,7 +12,7 @@ import { TAU, CANONICAL_HOST, A432_FOLDED, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFO
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { rosettaRayOf } from '../../water/digit'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/lake/icons'
-import { heroTapMusic } from '../../lake/music'
+import { heroTapMusic } from '../../music'
 import { conceptCommands } from '../../heaven/atoms'
 import { endlessFusion } from '../../wind/fusion'
 import { learningPortal, quantumAcademy, relatedStandards } from '../../learning'

@@ -200,7 +200,7 @@ import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.
 import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntelligenceMeasure, chatAndImproveQuantumMultitasking } from '../../water/stack/index.ts'
 import { teamCooperationScenarios } from '../../pair/enforcement/ops/index.ts'
 import { ichingDistributeVerify } from '../../earth/iching/index.ts'
-import { skilledEnoughFromPredictions } from '../../lake/music/index.ts'
+import { skilledEnoughFromPredictions } from '../../music/index.ts'
 import { LinkedHeroCard } from '../../../.vitepress/theme/components/index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'

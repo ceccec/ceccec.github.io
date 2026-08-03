@@ -15,7 +15,7 @@ import { methodNameFromFolderTail } from '../../9/1'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2'
 import { piTrainDiamonds, pureDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds'
 import { agentEducation, mcpToolManifest, monographPaths, skillAtoms, monographs } from '../../learning'
-import { atomInclusionProof } from '../../lake/ledger'
+import { atomInclusionProof } from '../../ledger'
 import { harmonicBands } from '../../quantum/lake/icons'
 import { developmentWaves, redistributeFoldersDryWaves } from '../../thunder/waves'
 import { eachFolderIsMerkaba, quantumDoubleTorus, startIChingDoubleTorus } from '../../mountain/topology'
@@ -633,7 +633,7 @@ export function folderLaw() {
       // Enforced on EVERY tree — no exception (one lateral import breaks the fusion at its dimension). The
       // render layer (src/ui) was a ratchet; it is now a build-failing gate whose ready prompt names the root
       // fix (de-overlap the two lib facades behind one index, then rewrite the imports to enter through it).
-      strictTrees: ['src/quantum', 'src/0', 'src/earth', 'src/fire', 'src/water', 'src/wind', 'src/mountain', 'src/lake', 'src/thunder', 'src/heaven'],
+      strictTrees: ['src/quantum', 'src/0', 'src/earth', 'src/fire', 'src/water', 'src/wind', 'src/mountain', 'src/thunder', 'src/heaven'],
       fix: 'import the FOLDER through its index, never an internal file: change the specifier to the folder (the index may be omitted — \'../mind\' is \'../mind/index.ts\'), and if the symbol is not yet re-exported by that folder\'s index.ts add `export { … } from \'./<file>\'` to it (the barrel). Change no behaviour and add no new module.',
       promptHeader: 'Enforce the folder-only import law (a folder is a module; its index.ts is its one public surface — enter a folder only through its index).',
       why: {

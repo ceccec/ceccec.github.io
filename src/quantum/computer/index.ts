@@ -1,7 +1,7 @@
 // Computer — canonical hardware substrate umbrella: cpu · gpu · memory · storage · bus · power · display · terminal.
 import * as __ns_up_stack_overflow from '../../water/stack'
-import * as __ns_up_quantum_os from '../../quantum/os'
-import * as __ns_up_quantum_apps from '../../quantum/apps'
+import * as __ns_up_quantum_os from '../os'
+import * as __ns_up_quantum_apps from '../apps'
 import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
 import * as __ns_up_routes_corpus from '../../wind/routes/corpus'
 import * as __ns_up_pair_enforcement from '../../pair/enforcement'

@@ -14,7 +14,7 @@ import { moviesNativeFormat } from '../../../fire/li'
 import { mindRefreshField } from '../../../mountain/source'
 import { frequencyTaxonomyTreeOfLife } from '../../../mountain/topology'
 import { lifeDefinesItself } from '../../../earth/nature'
-import { playMind } from '../../../lake/media'
+import { playMind } from '../../../media'
 import { realtimePerspectiveZeroCost } from '../../trading'
 import { autoMovies8k, backgroundMovie, endlessBackgroundMovie } from '../canvas'
 

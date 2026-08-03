@@ -13,12 +13,12 @@ import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { quantumAcademy, papers, monographPaths } from '../../learning'
 import { quantumPhysics } from '../../fire/physics'
 import { theWhole, onlyIndexFilesNoExceptions, accessiblePathsForAll } from '../../heaven/essence'
-import { harmonics, harmonicPathRevealsItself, rhythm } from '../../lake/music'
-import { quantumProofs } from '../../lake/ledger'
+import { harmonics, harmonicPathRevealsItself, rhythm } from '../../music'
+import { quantumProofs } from '../../ledger'
 import { livingTorus } from '../../fire/diamonds'
 import { merkaba } from '../geometry'
 import { regenerateSocialSystem } from '../../earth/civilisation'
-import { imagineTheRest } from '../../lake/media'
+import { imagineTheRest } from '../../media'
 import { derivePublicKey, tamperEvident } from '../../5/5'
 import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
 import { enforcementPipelineComplete, SITE_LOCALES } from '../../heaven/balance'
@@ -53,7 +53,7 @@ import { determinismProofs, fuseAll } from '../seals'
 import { animatedHeroes, freeAnimations } from '../../wind/ui'
 import { siteConfig, staticPages } from '../../wind/site'
 import { optimiseLogicDebitCreditFusion } from '../../wind/fusion'
-import { extendSelfAudits } from '../../lake/clean'
+import { extendSelfAudits } from '../../clean'
 import { provenScientifically } from '../../thunder/verify'
 import { fuse64SealsMerkaba64Tetrahedra } from '../topology'
 import { completeCorpus, monographs, theMonograph } from '../../wind/routes/corpus'
@@ -2466,12 +2466,12 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: 'src/mountain/geometry', role: 'self harmonise' },
     { module: 'src/mountain/gates', role: 'gate folds' },
     { module: 'src/mountain/source', role: 'source org, autotranslations, MVC receipt (this module)' },
-    { module: 'src/lake/clean', role: 'cross audit' },
-    { module: 'src/lake/ledger', role: 'merkle proofs, display-all-with-few' },
-    { module: 'src/lake/music', role: 'healing harmonic, hero tap music, harmonics' },
-    { module: 'src/lake/stats', role: 'statistics' },
+    { module: 'src/clean', role: 'cross audit' },
+    { module: 'src/ledger', role: 'merkle proofs, display-all-with-few' },
+    { module: 'src/music', role: 'healing harmonic, hero tap music, harmonics' },
+    { module: 'src/stats', role: 'statistics' },
     { module: 'src/quantum/widgets', role: 'widget registry + lake folds' },
-    { module: 'src/lake/media', role: 'media folds' },
+    { module: 'src/media', role: 'media folds' },
     { module: 'src/thunder/commands', role: 'commands registry, MCP codebase' },
     { module: 'src/thunder/decode', role: 'decode ancient knowledge' },
     { module: 'src/thunder/trading', role: 'trading folds, realtime perspective' },

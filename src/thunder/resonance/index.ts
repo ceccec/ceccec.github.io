@@ -1,6 +1,6 @@
 // Resonance — canonical home: Schumann ELF cavity, human harmonic windows, Earth-ionosphere coupling
 // (dissolved src/math → vortex/math; src/audio → plasma/ball; census-neutral swap for src/resonance).
-import * as __ns_up_lake_music from '../../lake/music'
+import * as __ns_up_lake_music from '../../music'
 import * as __ns_up_vortex_math from '../../mountain/vortex'
 import * as __ns_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_heaven_essence from '../../heaven/essence'
@@ -50,7 +50,7 @@ export {
   schumannPhaseAt,
   schumannResonanceHarmonisedWithRealtimeApiComputations,
   harmoniseSchumannWithRealtimeApiComputations,
-  humanResonanceHarmonicPredictionComputes } from '../../lake/music'
+  humanResonanceHarmonicPredictionComputes } from '../../music'
 
 /** Re-export plasma movie resonance capstone — bodies live in plasma/ball. */
 export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../../fire/plasma/ball'
