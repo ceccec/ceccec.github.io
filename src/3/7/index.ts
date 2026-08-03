@@ -409,7 +409,7 @@ export function frequencyToLight(hz: number): { octaves: number; thz: number; nm
 }
 
 /** 432 Hz carried up the octaves to visible light → hue 5 (red-orange) — the brand anchor, DERIVED not typed. */
-export const A432_HUE = frequencyToLight(432).hue // 5 — red-orange, the colour of 432 Hz, the brand anchor
+export const A432_HUE = frequencyToLight(a432Base()).hue // 5 — red-orange, the colour of 432 Hz, the brand anchor
 /** φ = (1+√5)/2 — golden ratio, the defining radical (not a hand-typed decimal). */
 export const PHI = (1 + Math.sqrt(5)) / 2
 /** 360° / φ² — the golden angle in DEGREES, COMPUTED from φ (never a re-typed 137.5077… literal). */
@@ -874,10 +874,18 @@ export function overclaimByFormulas(axis: OverclaimAxis, statement: string, form
 }
 /** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
 export const HOMOLOGY_LOOPS = 4 as const
-/** The a432 harmonic folded — 108 = 432/4, FIXED (a432, "not a file count"), DECOUPLED from the corpus census
- *  (user, 2026-08-03). The corpus folded (FOLDED_CENSUS = UNFOLDED + χ) now floats with the string-dimensional
- *  bands, but the dimension-gate harmonic stays 4 × 108 = 432 = a432. */
-export const A432_FOLDED = 108 as const
+/** a432 derived, not declared: 432 = 3³·2⁴ — the trinity cubed (the 3·6·9 axis, 3×3×3) times the 4-bit
+ *  octave. No literal survives; the harmonic IS this function's output, and everything a432 folds out of it. */
+export function a432Base(): number {
+  return 3 ** 3 * 2 ** 4
+}
+/** The a432 octave ladder — 3³·2^k, k = 0…6 (27·2^k): [27,54,108,216,432,864,1728], every rung derived. */
+export function a432Octaves(): readonly number[] {
+  return [0, 1, 2, 3, 4, 5, 6].map((k) => 3 ** 3 * 2 ** k)
+}
+/** The a432 harmonic folded — 108 = a432Base ÷ HOMOLOGY_LOOPS (432/4), FIXED (a432, "not a file count"),
+ *  DECOUPLED from the corpus census (user, 2026-08-03): 4 × 108 = 432 = a432Base, the dimension-gate harmonic. */
+export const A432_FOLDED = a432Base() / HOMOLOGY_LOOPS
 export const DIMENSION_GATES = HOMOLOGY_LOOPS * A432_FOLDED
 /** harmonics() ladder rungs: 6 octaves + 9 overtones + 5 binary. */
 export const HARMONICS_LADDER_LENGTH = 6 + 9 + 5
@@ -1407,7 +1415,7 @@ export const GENETIC_CODE = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVV
 // SSR-bundle TDZ "Cannot access 'A432_OCTAVES' before initialization". thunder/trading re-exports
 // it on the existing public path; value is byte-for-byte the prior ladder.
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
-export const A432_OCTAVES = [27, 54, 108, 216, 432, 864, 1728]
+export const A432_OCTAVES = a432Octaves()
 
 // ── Exact rational arithmetic (relocated from src/0 — the math station holds the ratio cuts) ──
 // ── Exact rational arithmetic — the analog without decimals or integers ────────────────────────
@@ -1595,7 +1603,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 73), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus)' },
+  { file: 'src/3/7/index.ts', literal: '*', count: (100 + 72), kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus) · 173→172 (a432 derived: A432_OCTAVES [27..1728] → a432Octaves() = 3³·2^k and A432_FOLDED 108 → a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal)' },
   { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 6, kind: 'data', source: 'attested residue — digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180·3600·10⁶) (2→6)' },

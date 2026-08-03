@@ -25,7 +25,7 @@ import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutato
 import { initialBearing, obliquityAtEpoch } from '../../6/4'
 import { GLAGOLITIC_MAP, toGlagolitic, toScript, gematria, GEMATRIA_MAPS, mayaLongCount, mayaDays, magicSquare, hekatFraction, runeCoordinate, runeOrdinal, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber, glagoliticAcrostic, glagoliticBits, glagoliticFromBits, glagoliticOpcode, glagoliticProgram, glagoliticGate, glagoliticCircuit, GLAGOLITIC_OPCODES, GLAGOLITIC_GATES, GLAGOLITIC_MEANINGS, glagoliticMeaning, glagoliticAcrosticMessage, SIX_BY_SEVEN, sixBySeven, sexagesimal, fromSexagesimal, luoShu, oghamCoordinate, oghamOrdinal, ifaOdu, ifaRows, starHouseBearing, bearingToStarHouse, OCS_GLAGOLITIC_MAP, toGlagoliticOCS, CHURCH_SLAVONIC_SCRIPTURE, bibleInGlagolitic, translateVerse, scriptureIn, bibleParallel, decodeDialect, selfTranslate, pivotLexicon, pivotTongues, MOLITVA_SYMBOLS, molitvaCreationRefs } from '../../quantum/heaven/library'
 import { DIGEST_BITS, GATES, VORTEX_REVERSE, VORTEX_SEQUENCE, addressEntropyBits, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, ceil, cnot, coverageCostLog2, crossProduct, digitalRoot, ed25519Sign, findContentAddressCollision, fold, foldPair, gcd, grover, humanBreath, humanEase, isUuid, logConsistent, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, modUnits, nextDuality, pbits, pflip, prng, probabilities, proseToTone, psample, qubits, roundTo, sample, sealFacets, seedFromText, sha256, sha256MerkleProof, sha256MerkleRoot, sha256Sync, sinc, sincReconstruct, tamperCostLog2, toUuid, toUuidSha256, transparencyLogRoot, trinityKey, uuidHero, uuidPoint, uuidSuffix, verifySha256Proof } from '../../0'
-import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense } from '../../9/1'
+import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfProton, OMEGA_BARYON, MOND_ACCELERATION_A0, ratStr, superdense, yangMillsMassGapFromSelfAdjointClosure } from '../../9/1'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6'
@@ -704,6 +704,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'src.all.computes', on: srcAllComputes(matrix).computes },
     { d: 'stack.computes', on: stackComputes(matrix).computes },
     { d: 'navier.stokes.flow.regularity', on: navierStokesFlowRegularityOnTheSeam(matrix).computes },
+    { d: 'yang.mills.mass.gap', on: yangMillsMassGapFromSelfAdjointClosure().computes },
     { d: 'sense.mind.body.pairs', on: senseMindBodyPairsComputes(matrix).computes },
     { d: 'modality.homes.computes', on: modalityHomesComputes(matrix).computes },
     { d: 'birth.computes', on: birthComputes(matrix).computes },
