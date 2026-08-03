@@ -423,7 +423,7 @@ export async function runPrecommitRosettaExit(root: string): Promise<number> {
     process.stderr.write('✗ commit blocked — the rosetta is NOT complete in all quantum dimensions\n')
     return 1
   }
-  const learning = (await importQuantumBundle('src/wind/learning/index.ts', root)) as {
+  const learning = (await importQuantumBundle('src/learning/index.ts', root)) as {
     certify: () => { editingAllowed: boolean; levels: { certified: boolean; level: string }[] }
   }
   const cert = learning.certify()
@@ -646,7 +646,7 @@ function runShardExit(root: string, argv: readonly string[]): number {
  *  and RUNS it (the fold's computed result), so a skill is not prose but a runnable measurement. No
  *  name → list every skill and its fn. Exit 1 on an unknown skill or an unresolvable fn. */
 async function runSkillExit(root: string, argv: readonly string[]): Promise<number> {
-  const learning = (await importQuantumBundle('src/wind/learning/index.ts', root)) as { skillAtoms: () => { skills: { skill: string; fn: string; does: string }[] } }
+  const learning = (await importQuantumBundle('src/learning/index.ts', root)) as { skillAtoms: () => { skills: { skill: string; fn: string; does: string }[] } }
   const skills = learning.skillAtoms().skills
   const name = argv[0]
   if (!name) {
@@ -826,9 +826,9 @@ export function educationalGapsFromIncompleteApis(root = enforcementScanRoot()):
       closed: existsSync(join(root, 'src/earth/iching/index.ts')) && existsSync(join(root, 'src/earth/iching/index.vue')) },
     {
       gapId: 'rosetta-computes-barrel',
-      api: 'src/wind/learning/index.ts — rosettaComputes mount (☴ Xùn · Wind; src/rosetta dissolved → learning)',
+      api: 'src/learning/index.ts — rosettaComputes mount (☴ Xùn · Wind; src/rosetta dissolved → learning)',
       impact: 'Seven-ray Glagolitic decode chain missing from dimension cascade',
-      closed: existsSync(join(root, 'src/wind/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === (7 * 6) },
+      closed: existsSync(join(root, 'src/learning/index.ts')) && rosettaTax.ok && ROSETTA_AREAS === (7 * 6) },
     {
       gapId: 'fold-place-generate-commands',
       api: 'concept.fold.{cross,place,generate}',

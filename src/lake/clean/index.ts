@@ -17,7 +17,7 @@ import { merkaba, vortexMath } from '../../mountain/geometry'
 import { schemaOrgDiamonds, sealWholeDiamond } from '../../fire/diamonds'
 import { siteNavigation, theMonograph, clientWorkBoundedByPureMath } from '../../wind/routes/corpus'
 import { plasmaClientWorkBoundedByPureMath, clientMoviePaintPathSealed } from '../../fire/plasma/ball'
-import { monographPaths, quantumAcademy } from '../../wind/learning'
+import { monographPaths, quantumAcademy } from '../../learning'
 import { staticPages } from '../../wind/site'
 import { SITE_LOCALES, buildSequenceReducesComputations, completeness, componentGraph, computedWiringNotImported, continueSameNext, gatesBehaveAsMcp, iChingImportExportTenD, live, minimumFilesMaximumFeaturesCost, noMirroringOneSourceAndMath, onlyIndexFilesNoExceptions, path, refactorLinearToTrinities } from '../../quantum/heaven/mind'
 

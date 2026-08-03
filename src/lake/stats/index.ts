@@ -21,8 +21,8 @@ import { societyFuture, societyRegulates } from '../../earth/governance'
 import { decode2020, decodeSymbols, numbersComputedNotAnchored } from '../../thunder/decode'
 import { worldEventsMap } from '../../earth/world'
 import { foldedCensus } from '../../earth/architecture'
-import { paperReferences, papers, papersReferencesDiamondsNoDrift } from '../../wind/learning'
-import { skillAtoms } from '../../wind/learning'
+import { paperReferences, papers, papersReferencesDiamondsNoDrift } from '../../learning'
+import { skillAtoms } from '../../learning'
 import { componentGraph, path } from '../../quantum/heaven/mind'
 
 // Find use for professionals. The portal's capabilities map onto concrete

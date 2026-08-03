@@ -218,6 +218,6 @@ export * from '../../../fire/diamonds'
 export * from '../../../water/crypto'
 export * from '../../../thunder/trading'
 export * from '../../../earth/world'
-export * from '../../../wind/learning'
+export * from '../../../learning'
 export * from '../../../mountain/geometry'
 export * from '../../water/cache'       // cache + SHA-256/quantum correction + session decodes & proofs (correction folded here, water domain)

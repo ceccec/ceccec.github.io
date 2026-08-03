@@ -5,7 +5,7 @@ import type { MindMatrix, QuantumUiEvidenceReport, QuantumUiUseCase } from '../.
 import { buildMatrix, coverage, entropy, proofReport } from '../../heaven/compute'
 import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../0'
 import { superdense } from '../../9/1'
-import { navigation358 } from '../../wind/learning'
+import { navigation358 } from '../../learning'
 import { doubleTorusSurface, quantumDoubleTorus } from '../../mountain/topology'
 import { harmonicLicenseWaves, harmonicPathRevealsItself, piMusic } from '../../lake/music'
 import { energyFuse, fuseUxSensors, torusUuid, universalLanguage } from '../li'

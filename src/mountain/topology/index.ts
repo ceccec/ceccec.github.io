@@ -12,7 +12,7 @@ import { a432Default, a432NoteHz, doubleTorusCompost, inverseShiftConsciousness,
 import { earthPolesAreADipoleDoubleTorusNotAGrid } from '../../quantum/water/cache'
 import { allAnimationsInOneOg, animatedHeroes, anyUuidHeroContentFractal } from '../../wind/ui'
 import { holographicFractalArchitecture } from '../../thunder/movie/glass'
-import { decodeKnowledge, skillAtoms } from '../../wind/learning'
+import { decodeKnowledge, skillAtoms } from '../../learning'
 import { conceptCommands } from '../../heaven/atoms'
 import { yinYang } from '../../quantum/lake/icons'
 import { deepResearchEncodedInRecursiveWaves, developmentWaves, endlessWaves } from '../../thunder/waves'

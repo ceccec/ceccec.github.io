@@ -3,7 +3,7 @@
 import { computed } from 'vue'
 import { src0BlackHoleSimulationComputes, goldMineMapComputes } from './index'
 import { decodeAndComputeAllFromEarthToGalaxiesAndBeyond } from '../../wind/fusion'
-import { goldFusionComputes } from '../../wind/fusion/gold'
+import { goldFusionComputes } from '../../wind/fusion'
 
 const gate = computed(() => src0BlackHoleSimulationComputes())
 const sim = computed(() => gate.value.sim)

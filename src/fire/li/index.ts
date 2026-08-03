@@ -55,7 +55,7 @@ import { thriveByDefault, regenerateSocialSystem } from '../../earth/civilisatio
 import { bulgarianHeritageEightfold } from '../../earth/world'
 import { debitImportCreditExportAccounting, computedWiringNotImported } from '../../mountain/source'
 import { commandsRegistry, commandsSavedInQuantumPairs } from '../../thunder/commands'
-import { skillAtoms, mcpToolManifest, papers, quantumAcademy, threeWordWaves } from '../../wind/learning'
+import { skillAtoms, mcpToolManifest, papers, quantumAcademy, threeWordWaves } from '../../learning'
 import { completeCorpus, siteNavigation } from '../../wind/routes/corpus'
 import { quantumSynthesis, quantumCoordinateNav, quantumFirewallProxyWorker } from '../features'
 import { quantumPhysics } from '../physics'

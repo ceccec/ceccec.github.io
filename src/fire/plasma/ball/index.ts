@@ -9,7 +9,7 @@ import * as __ns_up_up_stack_overflow from '../../../water/stack'
 import * as __ns_up_up_life from '../../../earth/life'
 import * as __ns_up_up_thunder_movie_movielib from '../../../thunder/movie/movielib'
 import * as __ns_up_up_earth_world from '../../../earth/world'
-import * as __ns_up_up_learning from '../../../wind/learning'
+import * as __ns_up_up_learning from '../../../learning'
 import * as __ns_registry from '../../../4/6' // call-time (cycle-safe): the quantum-navigation superposition
 import * as __ns_up_up_lake_music from '../../../lake/music'
 import * as __ns_up_up_thunder_movie_canvas from '../../../thunder/movie/canvas'

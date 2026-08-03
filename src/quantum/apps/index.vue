@@ -157,7 +157,7 @@ import { translationGapsGate, addressAllWarningsAtOnce, chatTranslatesAutonomous
 import { pairsSentToChatEntangleByAlgebraTurn, matchingPairsImmediatelyRealiseEntanglementTurn } from '../../pair/enforcement/index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
-} from '../../wind/research/index.ts'
+} from '../../research/index.ts'
 import {
   runEncryptionToolInBrowser,
   runPqcStandardsToolInBrowser,
@@ -184,7 +184,7 @@ import {
   twoBitsFreeFromCensus110Minus108, societySupportsProjectViaTwoBitsFreeKnowledge,
   reverseCollidesToDiscoverMillenniumTheorems,
   cursorReferralFundsAiNeeds,
-} from '../../wind/research/index.ts'
+} from '../../research/index.ts'
 import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry/index.ts'
 import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
 import {

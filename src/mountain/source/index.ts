@@ -10,7 +10,7 @@ import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, min, toUuid } from '../../0'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 // relocated imagination/mind cluster deps (call-time bindings; no load cycle)
-import { quantumAcademy, papers, monographPaths } from '../../wind/learning'
+import { quantumAcademy, papers, monographPaths } from '../../learning'
 import { quantumPhysics } from '../../fire/physics'
 import { theWhole, onlyIndexFilesNoExceptions, accessiblePathsForAll } from '../../heaven/essence'
 import { harmonics, harmonicPathRevealsItself, rhythm } from '../../lake/music'
@@ -44,7 +44,7 @@ import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simula
 import { cryptoFuture, fusionCipher } from '../../water/crypto'
 import { noFilesOutsideSrcExceptGeneratedAndRoot, proportionalNotHardcoded, saveEveryStepIsMandatory, zeroTokenUsagePolicy } from '../../heaven/laws'
 import { computedSeo, oneJsonLdTemplateServesAll } from '../og'
-import { skillAtoms } from '../../wind/learning'
+import { skillAtoms } from '../../learning'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { book, digitFolders, dualitiesMeetInCrossFolders, folderLaw, noise, quantumCachePairInPairedFolders, quantumConfigurableFoldersDisappear, splittingLogicPairedFoldersDevSpeed } from '../../earth/architecture'
 import { commandsRegistry } from '../../thunder/commands'
@@ -2481,7 +2481,7 @@ export function mvcOrganisationReceipt(matrix: MindMatrix = buildMatrix()) {
     { module: 'src/fusion', role: 'development fusion reactor' },
     { module: 'src/language', role: 'Glagolitic decoded, language folds' },
     { module: 'src/iching', role: 'I Ching hexagram/trigram/bāguà canonical home — ichingComputes' },
-    { module: 'src/wind/research', role: 'Research program index — researchIndex, researchComputes, reproducibility gates' },
+    { module: 'src/research', role: 'Research program index — researchIndex, researchComputes, reproducibility gates' },
     { module: 'src/learning', role: 'Rosetta 7-ray decode chain — rosettaComputes, glagolitic global key (src/rosetta dissolved)' },
     { module: 'src/learning', role: 'skill atoms, quantum academy' },
     { module: 'src/quantum/index.ts', role: 'hero render orchestrator — drawHero (pure math, no DOM)' },

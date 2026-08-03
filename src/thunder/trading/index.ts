@@ -2,7 +2,7 @@
 import * as __ns_up_waves from '../waves'
 import type { MindMatrix } from '../../wind/types'
 import { buildMatrix, circulateDoubleTorus, freeChatTurnAtArchitecturalFtl, proofReport } from '../../heaven/compute'
-import { skillAtoms } from '../../wind/learning'
+import { skillAtoms } from '../../learning'
 import { claySolvedTheorem, dopplerShift, earned, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7'
 export { A432_OCTAVES } from '../../3/7'
 import { powerSpectrum, larmorFrequency } from '../../1/9'

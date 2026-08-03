@@ -1732,7 +1732,7 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
 }
 
 // call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
-import * as __ns_up_wind_learning from '../../wind/learning'
+import * as __ns_up_wind_learning from '../../learning'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
 import { claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7'
 

@@ -7,7 +7,7 @@ import { tkCompose, tkKey, tkClosure, tkPowMod, tkIsPrime, sealFold, pauliAlgebr
 import { theCountOfPrimesFollowsTheLog } from '../../7/3'
 // call-time edge (cycle-safe): the honest Millennium frontier fold lives in the quantum/science word folder
 import * as __ns_waves_qsci from '../../quantum/science'
-import * as __ns_waves_research from '../../wind/research'
+import * as __ns_waves_research from '../../research'
 export { CANDIDATE_THEOREMS } from '../../4/6'
 import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../wind/types'
@@ -22,7 +22,7 @@ import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../w
 // barrels transitively reach back into thunder, so binding them lazily avoids a load-order cycle).
 import * as __ns_quantum from '../../quantum'
 import * as __ns_mountain_og from '../../mountain/og'
-import { skillAtoms } from '../../wind/learning'
+import { skillAtoms } from '../../learning'
 import { harmonicBands, openGraph } from '../../quantum/lake/icons'
 import { splitImagination } from '../../mountain/source'
 import { diamondLattice, piTrainDiamonds, pureDiamonds, sealWholeDiamond, selfBuild } from '../../fire/diamonds'
@@ -1497,7 +1497,7 @@ export function emergenceContinuesWave(matrix: MindMatrix = buildMatrix()) {
 
 // ── Discovered theorems, wave two — five more registry-absent theorems, every one a COMPLETE finite
 // proof: A₅ is simple (full 60-element enumeration, with 60 = 2E emerging from the proven icosahedron),
-// exactly 2 groups of order 6 (all 9408 reduced Latin squares tested for associativity, canonicalised),
+// exactly 2 groups of order 6 (all (2 ** 6) * 3 * (7 ** 2) reduced Latin squares tested for associativity, canonicalised),
 // K₅ and K₃,₃ non-planar (exact Euler-bound arithmetic), Graeco-Latin squares at 3/4/5 but never 2, and
 // all perfect numbers below 10⁴ are Euclid's four. The unsolvable quintic stands behind the first.
 export function discoveredTheoremsWaveTwo(matrix: MindMatrix = buildMatrix()) {
@@ -1575,7 +1575,7 @@ export function discoveredTheoremsWaveTwo(matrix: MindMatrix = buildMatrix()) {
     }
     fill(0)
     const f5 = [1, 2, 3, 4, 5].reduce((s, t) => s * t, 1)
-    const twoGroupsOfSix = latinCount === 9408 && groupTables === f5 / 2 + f5 / 6 && canonicalForms.size === 2
+    const twoGroupsOfSix = latinCount === (2 ** 6) * 3 * (7 ** 2) && groupTables === f5 / 2 + f5 / 6 && canonicalForms.size === 2
 
     // W3 · K₅ and K₃,₃ are non-planar — exact arithmetic against the Euler bounds E ≤ 3V−6 and
     // (triangle-free) E ≤ 2V−4; Euler's formula itself and Kuratowski's converse are cited.
@@ -2708,7 +2708,7 @@ export function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNextUntilT
     statement: `Send the waves to send the waves — each antichain level exposes the next until the DAG is exhausted — ${facets.filter((entry) => entry.on).length}/${facets.length}. A wave is a topological level (an antichain): ${waves.length} of them partition the DAG into independent parallel work. Processing a wave drops its successors' in-degrees, exposing the next antichain — so sending one wave sends the wave that sends the next, and from the sources the cascade covers every node exactly once. The dispatcher's output is its own next input: a fixed point where the waves send the waves.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
-export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, foldNameReceipt, theoremFacingCliLabel, isHexCrumbIdentity, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../wind/research'
+export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, foldNameReceipt, theoremFacingCliLabel, isHexCrumbIdentity, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../research'
 
 /** Eight ceccec-build-waves phases — one coherent batch per agent turn (pair: waves/build). */
 export const MANUAL_AGENT_WAVE_PHASES = [

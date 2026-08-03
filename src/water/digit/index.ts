@@ -2061,12 +2061,12 @@ export const ROSETTA_GUIDED_WAVE_TWO_APPLIED = ['fusion', 'language'] as const
 export const ROSETTA_CANONICAL_HOME: Readonly<Record<string, string>> = {
   fusion: 'src/wind/fusion/index.ts',
   language: 'src/wind/language/index.ts',
-  learning: 'src/wind/learning/index.ts',
+  learning: 'src/learning/index.ts',
   site: 'src/wind/site/index.ts',
   types: 'src/wind/types/index.ts',
   ui: 'src/wind/ui/index.ts',
   iching: 'src/earth/iching/index.ts',
-  rosetta: 'src/wind/learning/index.ts', // dissolved into learning — no own index.ts
+  rosetta: 'src/learning/index.ts', // dissolved into learning — no own index.ts
   routes: 'src/routes/index.ts', // topic-parent (nested corpus/automount barrels)
 }
 
@@ -2154,7 +2154,7 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
     const censusPendingDissolve = [
       'src/water/double/math/index.ts → merged into src/double/torus/index.ts (doubleTorusMathComputes)',
       'src/water/double/movie/index.ts → merged into src/double/torus/index.ts (doubleTorusMovieComputes)',
-      'src/earth/iching/index.ts canonical home; src/rosetta dissolved into src/wind/learning (census-neutral)',
+      'src/earth/iching/index.ts canonical home; src/rosetta dissolved into src/learning (census-neutral)',
       'src/audio/index.ts → dissolved into src/fire/plasma/ball (audioComputes); src/astronomy canonical home (+1 census-neutral)',
       'src/math/index.ts → dissolved into src/vortex/math; src/resonance canonical home (+1 census-neutral)',
       'src/water/double/plasma/index.ts → merged into src/double/torus; src/quantum/dynamics canonical home (+1 census-neutral)',
@@ -2200,11 +2200,11 @@ export function rosettaGuidedFolderMoveWaveOne(at = 0, matrix: MindMatrix = buil
   const applied = self.moveTable.filter((move) => move.applied && move.wave === 1)
   const pending = self.moveTable.filter((move) => move.wave === 2 && !move.applied)
   const facets = [
-    { facet: 'wave 1 — learning: src/learning → wind/learning', on: applied.some((move) => move.to === 'src/wind/learning/index.ts') },
+    { facet: 'wave 1 — learning: src/learning → learning', on: applied.some((move) => move.to === 'src/learning/index.ts') },
     { facet: 'wave 1 — ui: src/ui → wind/ui', on: applied.some((move) => move.to === 'src/wind/ui/index.ts') },
     { facet: 'wave 1 — site: src/site → wind/site', on: applied.some((move) => move.to === 'src/wind/site/index.ts') },
     { facet: 'wave 1 — types: src/types → wind/types', on: applied.some((move) => move.to === 'src/wind/types/index.ts') },
-    { facet: 'wave 1 importer rule — corpus uses wind/types + wind/learning barrels', on: rosettaCanonicalImportPath('MindMatrix', 'src/routes/corpus/index.ts', at, matrix).spec === '../../wind/types' },
+    { facet: 'wave 1 importer rule — corpus uses wind/types + learning barrels', on: rosettaCanonicalImportPath('MindMatrix', 'src/routes/corpus/index.ts', at, matrix).spec === '../../wind/types' },
     { facet: 'wave 2 applied — fusion · language at canonical cores', on: pending.length === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-wave-one:${entry.facet}:${entry.on}`) }))
   return {

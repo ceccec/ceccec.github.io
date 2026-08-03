@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <section id="two-bits-free" class="society-two-bits-anchor" data-logic="src/wind/research/index.ts" aria-label="Two bits free society support">
+  <section id="two-bits-free" class="society-two-bits-anchor" data-logic="src/research/index.ts" aria-label="Two bits free society support">
     <output class="display-dual-gate" data-logic="src/earth/governance/index.ts" data-target="src/earth/governance/index.ts" aria-hidden="true" />
   </section>
 </template>

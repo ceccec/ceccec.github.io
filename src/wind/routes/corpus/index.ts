@@ -26,7 +26,7 @@ import type { CorpusKind } from '../../../quantum/heaven/mind'
 import {
   componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers,
   referenceParamsById, sciencePortalParts, siteNavigation,
-  type ComponentCrosslink, type CorpusPaperStandardSections } from '../../learning'
+  type ComponentCrosslink, type CorpusPaperStandardSections } from '../../../learning'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
@@ -946,7 +946,7 @@ export {
   ogBuildsNavigation,
   rosettaComputesNavigationAndContent,
   siteNavigation,
-  vitepressSidebar } from '../../learning'
+  vitepressSidebar } from '../../../learning'
 export { pageForgeMaxTamper, type PageForgeSeal } from '../../site'
 export {
   contentIsMonographOfMonographs,
@@ -956,7 +956,7 @@ export {
   everyPageGraphOfGraphsFractal,
   monographs,
   onlyPageRouteForAll,
-  theMonograph } from '../../learning'
+  theMonograph } from '../../../learning'
 export {
   homePageNoDifferent,
   homepage,

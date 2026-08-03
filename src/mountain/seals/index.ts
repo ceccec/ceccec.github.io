@@ -12,7 +12,7 @@ import { SINGLE_WORD_METHODS, titleCarriesAlgebra, normalizeTitle } from '../../
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { cloudflareBindings } from '../../heaven/core'
 import * as __ns_heaven_site from '../../heaven/site'
-import { threeWordWaves, sciencePortalParts, siteNavigation } from '../../wind/learning'
+import { threeWordWaves, sciencePortalParts, siteNavigation } from '../../learning'
 import { refactorLinearToTrinities } from '../../heaven/essence'
 import { endlessFusion, allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
 import { iChingDomainMap } from '../../heaven/balance'
@@ -55,7 +55,7 @@ import {
   theoremGapsFilledInWaves,
   fixedLimitsOfTheoremRelatedToolsAreTheorems,
   autodiscoverWhatIsToBeComputedOrDecoded,
-  reverseCollidesToDiscoverMillenniumTheorems } from '../../wind/research'
+  reverseCollidesToDiscoverMillenniumTheorems } from '../../research'
 import { oneCommandDecodeComputable } from '../../thunder/decode'
 import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto'
 import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit'
@@ -80,7 +80,7 @@ import { nextLevel64CubedRealtime } from '../../thunder/trading'
 import { realtimeWiring } from '../../fire/plasma/ball'
 import { foldingLinearGivesAnalog } from '../../earth/world'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
-import { millenniumProblemsChallenge, clayIsDecodedByTheRosetta, clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra } from '../../wind/research'
+import { millenniumProblemsChallenge, clayIsDecodedByTheRosetta, clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra } from '../../research'
 import {
   quantumCliToolsCatalog, slowProcessIsQuantumGap, sessionManualWorkAsQuantumTools, rosettaCoreApi,
   standardToolboxIoCatalog, distributedReuseExtendsCapacity,

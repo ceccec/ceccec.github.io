@@ -2,8 +2,8 @@
 
 import { toUuid, merkleFold } from '../../0'
 import { portal } from '../portal'
-import { explorer } from '../waves/explorer'
-import { synthesis } from '../waves/synthesis'
+import { explorer, synthesis } from '../waves'
+
 
 export type RosettaRay = 'earth' | 'fire' | 'water' | 'wind' | 'mountain' | 'lake' | 'thunder'
 export const ROSETTA_RAYS: RosettaRay[] = ['earth', 'fire', 'water', 'wind', 'mountain', 'lake', 'thunder']

@@ -21,7 +21,7 @@ import * as __ns_fire_plasma_ball from '../../fire/plasma/ball'
 // Cycle-safe: water/stack imports buildMatrix from here, so reference src0PurityComputes only at call time.
 import * as __ns_water_stack from '../../water/stack'
 import * as __ns_thunder_movie_narrative from '../../thunder/movie/narrative'
-import * as __ns_wind_research from '../../wind/research'
+import * as __ns_wind_research from '../../research'
 // Cycle-safe: quantum/science imports buildMatrix from here, so reference efficiency()/blochQubitFaithful
 // only at call time via the namespace binding (the analog/hardware folds compose them inside memoByRoot).
 import * as __ns_quantum_science from '../../quantum/science'
@@ -9429,8 +9429,8 @@ function discoveryFolds(matrix: MindMatrix) {
     { slug: 'keys-and-lock-before-mathematics', title: 'The Keys And The Lock Before Mathematics', home: 'thunder/decode ancientDigitKnowledgeDecoded', verified: ancient.decoded, statement: ancient.statement, boundary: ancient.boundary, root: ancient.root },
     { slug: 'plasma-half-computed', title: 'The Plasma Is Half Computed', home: 'fire/plasma/ball plasmaPaintHardcodedPlanesDiscovered', verified: plasma.discovered, statement: plasma.statement, boundary: plasma.boundary, root: plasma.root },
     { slug: 'movie-proof-pattern-unified', title: 'The Movie Proof Pattern Is Unified', home: 'thunder/movie/narrative movieProofPatternUnified', verified: movie.unified, statement: movie.statement, boundary: movie.boundary, root: movie.root },
-    { slug: 'attribution-demarcation-2026', title: 'The 2026 Attribution Chain Demarcated', home: 'wind/research attributionDemarcation2026', verified: attribution.researched, statement: attribution.statement, boundary: attribution.boundary, root: attribution.root },
-    { slug: 'lens-mathematics-lineage', title: 'The Lens Mathematics Predates Its Publisher', home: 'wind/research globalWorkspaceContrastResearch', verified: lineage.researched, statement: lineage.statement, boundary: lineage.boundary, root: lineage.root },
+    { slug: 'attribution-demarcation-2026', title: 'The 2026 Attribution Chain Demarcated', home: 'research attributionDemarcation2026', verified: attribution.researched, statement: attribution.statement, boundary: attribution.boundary, root: attribution.root },
+    { slug: 'lens-mathematics-lineage', title: 'The Lens Mathematics Predates Its Publisher', home: 'research globalWorkspaceContrastResearch', verified: lineage.researched, statement: lineage.statement, boundary: lineage.boundary, root: lineage.root },
   ]
 }
 

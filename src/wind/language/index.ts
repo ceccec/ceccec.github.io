@@ -17,7 +17,7 @@ import { realtimeSkills } from '../../thunder/trading'
 import { ancientKnowledgeComputesDefaultLocale, buildSequenceReducesComputations, bulgarianEthnogenesisDecoded, bulgarianHistoryDecoded, computedSlugsFoldTheGraph, debitCreditForwardReverseEngineering, decodeAncientKnowledgeInReusableCode, deepResearchEncodedInRecursiveWaves, digitFolders, dualitiesMeetInCrossFolders, fuseToMerkabasPathsReveal, geneticLinksChallengeHistoryDecoded, infiniteEntanglements, knowledgeRevealedByMerkabaFold, merkabasInDoubleTorus, optimiseLogicDebitCreditFusion, pathIsMeaningDecodesCoordinates, quantumCachePairInPairedFolders, saveAllTranslationLogicAutotranslateLocale, sendWavesSealKnowledgeDecodeWorld, tamperingCostDecoded, warPaysTheForgerPrice } from '../../quantum/heaven/mind'
 // call-time edges (cycle-safe): the corpus of skills and two more local decoders live in folders that
 // import back toward language — read them at call time, never at module-eval.
-import * as __ns_lang_learning from '../learning'
+import * as __ns_lang_learning from '../../learning'
 import * as __ns_lang_scan from '../../pair/enforcement/gates/strict/scan'
 import * as __ns_lang_37 from '../../3/7'
 import * as __ns_lang_waves from '../../thunder/waves'

@@ -2085,7 +2085,7 @@ export function stringTheoryMillenniumTheoremGapsInventory(matrix: MindMatrix = 
       { id: 'stringTheoryAlgebraNotEverywhere', home: 'src/thunder/decode', role: 'demarcation — algebra ≠ physics ubiquity', receipt: toUuid('inventory:string-algebra-not-everywhere') },
       { id: 'invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted', home: 'src/fire/physics', role: 'A432 ↔ census clock · classical vibrating-string modes', receipt: toUuid('inventory:invert-a432-string') },
       { id: 'octonionCriticalTen', home: 'src/water/cosmos', role: 'division-algebra ladder → critical D=10', receipt: toUuid('inventory:octonion-critical-ten') },
-      { id: 'millenniumProblemsChallenge', home: 'src/wind/research', role: 'Clay MODELED CHALLENGE', receipt: toUuid('inventory:millennium-challenge') },
+      { id: 'millenniumProblemsChallenge', home: 'src/research', role: 'Clay MODELED CHALLENGE', receipt: toUuid('inventory:millennium-challenge') },
       { id: 'theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions', home: 'src/quantum/science', role: 'frontier partials · cores open', receipt: toUuid('inventory:millennium-frontier') },
       { id: 'theSevenMillenniumProblemsDefinedFormallyUnclaimed', home: 'src/quantum/science', role: 'seven defined · solvedByThisFold=0', receipt: toUuid('inventory:millennium-defined') },
     ].map((entry) => ({ ...entry, receipt: isUuid(entry.receipt) ? entry.receipt : toUuid(`inventory:${entry.id}`) }))

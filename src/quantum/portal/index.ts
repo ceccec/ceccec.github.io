@@ -67,7 +67,7 @@ export function queryTheoremsViaPortal(q: TheoremQuery = {}): PortalResponse {
   }
 
   // Limit results
-  const limited = results.slice(0, q.limit || 10)
+  const limited = results.slice(0, q.limit || (2 * 5))
 
   // Format response
   const cardHtml = limited

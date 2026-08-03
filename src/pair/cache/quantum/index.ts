@@ -19,7 +19,7 @@ import { computedDistRoute } from '../../../quantum/lake/dist'
 // node-externals in the browser; the literal is the honest cycle cut.
 const CLI_ENTRY = 'src/pair/enforcement/script/cli/bootstrap/index.ts' // = CLI_ENTRY_REL by value
 // call-time namespace edge (cycle-safe): the skill registry reads back at call time
-import * as __ns_cache_learning from '../../../wind/learning'
+import * as __ns_cache_learning from '../../../learning'
 
 export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/lake/dist'
 export type { Uuid }

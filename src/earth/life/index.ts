@@ -14,7 +14,7 @@ import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbabi
 import { buildMatrix } from '../../heaven/compute'
 import { determinismProofs } from '../../mountain/seals'
 import { animationTamperingCost, redTeam, tamperProofFabric } from '../../water/crypto'
-import { scientists } from '../../wind/learning'
+import { scientists } from '../../learning'
 import { holographic } from '../../wind/ui'
 import { abs, computesGate, floor, isUuid, merge, merkleFold, roundTo, sealFacets, toUuid } from '../../0'
 import { hardyWeinbergGenotypes } from '../../7/3'
