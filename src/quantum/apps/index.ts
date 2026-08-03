@@ -540,7 +540,7 @@ export function rosettaCoreApi(at = 0, matrix: MindMatrix = buildMatrix()) {
 
 /** Gate: rosetta enumerates its own API (kind×ray + self-host) — on: recomputes. */
 export function rosettaCoreApiSelfWires(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`rosettaCoreApiSelfWires:${at}`, matrix, () => {
+  return memoByRoot(`rosettaCoreApiSelfWires:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const core = rosettaCoreApi(at, matrix)
     const slots = ROSETTA_RAYS.map((_, ray) => ({
       ray, kind: ROSETTA_CORE_KINDS[ray]!, pageKind: ROSETTA_COMPUTATION_TYPES[ray]!,

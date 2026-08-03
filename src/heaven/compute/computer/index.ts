@@ -503,7 +503,7 @@ export function siliconFabricationPlanFromModel(matrix: MindMatrix = buildMatrix
  * Pair: moment/prove · CLI npm run quantum:honest-revolution-w5
  */
 export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`honestRevolutionFpgaHonesty:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`honestRevolutionFpgaHonesty:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const plan = siliconFabricationPlanFromModel(matrix)
     const facets = [
       { facet: 'siliconFabricationPlanFromModel decoded', on: plan.decoded },

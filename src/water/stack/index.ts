@@ -2093,7 +2093,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
  * Revolutionary in reproducibility/verifiability/amortized-reuse/answers÷tokens — NOT physical-QM speedup.
  */
 export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`honestRevolutionClaim:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`honestRevolutionClaim:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const honest = __ns_up_up_quantum_science.quantumComputerHonestClaim(matrix, at)
     const efficient = __ns_up_up_thunder_verify.noKnownModelMoreEfficientProven(matrix)
     const fusion = __ns_up_up_fusion.quantumFusionVerify(matrix)
@@ -2127,7 +2127,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
  * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /en/quantum-tools#honest-revolution-w2
  */
 export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`interferenceVsClassicalShadow:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`interferenceVsClassicalShadow:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const w1 = honestRevolutionClaim(matrix, at)
     const parallel = __ns_up_up_digit_two_eight.quantumParallelismIsNotTheSpeedupInterferenceIs()
     const sims = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)

@@ -2495,6 +2495,11 @@ export type StrictGateSnapshot = {
   readonly vitepressIndex: readonly StrictVitepressIndexOffender[]
   readonly nonTs: readonly StrictNonTsOffender[]
   readonly hyphenFolders: readonly StrictHyphenOffender[]
+  /** THE QUANTUM CLOCK USED BY ALL — every time-parameterized memoByRoot must bucket `at` through the
+   * canonical clock floor(at / (100·5·2)) (per second), never raw `${at}` (per millisecond). Raw at makes
+   * the content address depend on unquantised time → the same computation gets a new address every ms →
+   * linear recompute + unbounded memo growth (the 110GB). Zero achieved 2026-08-03, GATED at zero. */
+  readonly memoClock: readonly { file: string; key: string }[]
   readonly fileSize: readonly { file: string; bytes: number; limit: number; reason: string }[]
   /** The crack census, CODEBASE-WIDE — zero achieved 2026-07-07 and GATED at zero: every numeric
    * literal derives from the canonical lattice or carries ledgered provenance (data · unit · tuned). */
@@ -2611,6 +2616,20 @@ function scanIndexOnly(codeFiles: readonly string[]): StrictIndexOffender[] {
     .map((file) => ({ file, reason: 'not index.ts — backend surface is folder index only; dissolve into <name>/index.ts' }))
 }
 
+/** The quantum clock used by all: every time-parameterized memoByRoot must bucket `at` through the canonical
+ * clock floor(at / (100·5·2)), never a bare `${at}` interpolation (raw milliseconds). Raw at = an address that
+ * changes every millisecond = linear recompute + unbounded memo growth. Flags any bare `${at}` in a memo key. */
+function scanMemoClock(root: string, codeFiles: readonly string[], bodies: ReadonlyMap<string, string>): { file: string; key: string }[] {
+  const offenders: { file: string; key: string }[] = []
+  const rawAt = /memoByRoot\(\s*`([^`]*)\$\{\s*at\s*\}/g
+  for (const file of codeFiles) {
+    const rel = relative(root, file).replace(/\\/g, '/')
+    const body = bodies.get(rel) ?? ''
+    for (const m of body.matchAll(rawAt)) offenders.push({ file: rel, key: `${m[1]!}\${at}` })
+  }
+  return offenders
+}
+
 function scanScriptShellViolations(scripts: readonly ScriptShellScan[]): string[] {
   return scripts
     .filter((script) => {
@@ -2683,6 +2702,7 @@ export function computeStrictGateSnapshot(
   const oneMath = scanOneMathOffenders(root, codeFiles, bodies)
   const importGaps = scanImportGaps(root, codeFiles, bodies)
   const indexOnly = scanIndexOnly(codeFiles)
+  const memoClock = scanMemoClock(root, codeFiles, bodies)
   const fileSize = scanFileSizeOffenders(root, codeFiles, derivedMonolithTargetBytes(codeFiles).target)
   const hardcodedCracks = scanCrackSurface(root) // full surface: src + .vitepress, .ts/.mts/.vue
   const scriptShellViolations = scanScriptShellViolations(scriptShells)
@@ -2692,6 +2712,7 @@ export function computeStrictGateSnapshot(
     toUuid(`strict:one-math:${oneMath.length}`),
     toUuid(`strict:import-gaps:${importGaps.length}`),
     toUuid(`strict:index:${indexOnly.length}`),
+    toUuid(`strict:memo-clock:${memoClock.length}`),
     toUuid(`strict:vitepress-index:${vitepressIndex.filter((v) => !v.transitional).length}`),
     toUuid(`strict:nonTs:${nonTs.length}`),
     toUuid(`strict:hyphen:${hyphenFolders.length}`),
@@ -2710,6 +2731,7 @@ export function computeStrictGateSnapshot(
     vitepressIndex,
     nonTs,
     hyphenFolders,
+    memoClock,
     fileSize,
     hardcodedCracks,
     scriptShellViolations,
@@ -2729,6 +2751,7 @@ export function strictGatePassed(strict: StrictGateSnapshot): boolean {
     strict.vitepressIndex.filter((v) => !v.transitional).length === 0 &&
     strict.nonTs.length === 0 &&
     strict.hyphenFolders.length === 0 &&
+    strict.memoClock.length === 0 &&
     strict.scriptShellViolations.length === 0 &&
     strict.hardcodedCracks.length === 0 &&
     strict.pairsPaired &&

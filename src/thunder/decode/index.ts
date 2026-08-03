@@ -2613,7 +2613,7 @@ export function theOrganismFindsItsIrreducibleDeviationFromConsciousnessAndImpro
 // returns it unchanged. So at any moment the organism reads the top of the ranked invertible worklist and knows the
 // next surgical action; and it knows what NOT to chase. Nothing hardcoded — invertibility computed by the operator.
 export function theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimesTheInvertibleWorklistRankedByImportance(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimes:${at}`, matrix, () => {
+  return memoByRoot(`theOrganismKnowsExactlyWhatToLearnAndImplementAtAllTimes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const invert = (x: number | boolean | string) => typeof x === 'boolean' ? !x : typeof x === 'number' ? (x === 0 ? Infinity : 1 / x) : x
     // candidate actions — each carries a SEED whose invertibility is computed (a gap → its fix, or no inverse)
     const candidates = [

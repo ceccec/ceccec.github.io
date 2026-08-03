@@ -1974,7 +1974,7 @@ export function quantumFusionVerify(matrix: MindMatrix = buildMatrix()) {
  * Broadcast: `/quantum-fusion.json` · `/agents.json` · pair tamper/impossible · CLI npm run quantum:honest-revolution-w3
  */
 export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at = 0, route = '/') {
-  return memoByRoot(`honestRevolutionReceipt:${route}:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`honestRevolutionReceipt:${route}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const w1 = __ns_up_stack_overflow.honestRevolutionClaim(matrix, at)
     const w2 = __ns_up_stack_overflow.interferenceVsClassicalShadow(matrix, at)
     const fusion = quantumFusionVerify(matrix)
@@ -2082,7 +2082,7 @@ export function runHonestRevolutionW3Exit(_root = '', _argv: readonly string[] =
  * Composes W3 receipt + advantage benchmark + fleet cache economics for /en/quantum/os computer tab.
  */
 export function honestRevolutionComputerPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`honestRevolutionComputerPanelComputes:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`honestRevolutionComputerPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const receipt = honestRevolutionReceipt(matrix, at)
     const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
     const fleet = fleetCacheEconomicsDecoded(matrix)

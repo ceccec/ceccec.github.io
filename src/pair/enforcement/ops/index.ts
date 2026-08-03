@@ -176,7 +176,7 @@ export async function runVerifyStructureExit(root: string): Promise<number> {
       .map((o) => `${o.file}:${o.literal}`)
       .join('; ')
     process.stderr.write(
-      `✗ verify:structure — strict gates: imports=${s.imports.length} oneMath=${s.oneMath.length} importGaps=${s.importGaps.length} indexOnly=${s.indexOnly.length} vitepress=${s.vitepressIndex.filter((v) => !v.transitional).length} nonTs=${s.nonTs.length} hyphen=${s.hyphenFolders.length} shell=${s.scriptShellViolations.length} cracks=${s.hardcodedCracks.length} pairs=${s.pairsPaired} merkle=${s.merkleOk} digit=${s.digitPassed}${importSample ? `\n   ${importSample}` : ''}${oneMathSample ? `\n   one-math: ${oneMathSample}` : ''}${crackSample ? `\n   cracks: ${crackSample}` : ''}\n`,
+      `✗ verify:structure — strict gates: imports=${s.imports.length} oneMath=${s.oneMath.length} importGaps=${s.importGaps.length} indexOnly=${s.indexOnly.length} vitepress=${s.vitepressIndex.filter((v) => !v.transitional).length} nonTs=${s.nonTs.length} hyphen=${s.hyphenFolders.length} memoClock=${s.memoClock.length} shell=${s.scriptShellViolations.length} cracks=${s.hardcodedCracks.length} pairs=${s.pairsPaired} merkle=${s.merkleOk} digit=${s.digitPassed}${importSample ? `\n   ${importSample}` : ''}${oneMathSample ? `\n   one-math: ${oneMathSample}` : ''}${crackSample ? `\n   cracks: ${crackSample}` : ''}\n`,
     )
     return 1
   }

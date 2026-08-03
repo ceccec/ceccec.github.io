@@ -294,7 +294,7 @@ function noKnownModelMoreEfficientProvenRaw(matrix: MindMatrix = buildMatrix()) 
  * Pair: learn/best · CLI npm run quantum:honest-revolution-w6
  */
 export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`revolutionaryEfficiencyNotPhysics:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`revolutionaryEfficiencyNotPhysics:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const efficient = noKnownModelMoreEfficientProven(matrix)
     const opt = __ns_up_quantum_science.efficiency()
     const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)

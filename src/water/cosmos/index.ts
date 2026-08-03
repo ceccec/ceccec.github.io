@@ -2954,7 +2954,7 @@ export function theoremDependencyFrequencyGraphIsFractalFormsNavAndReviewsTheore
 // correctness; an IRREDUCIBLE deviation (a rational approximation of √2) NEVER reaches zero (the Pell equation
 // |p²−2q²|=1), so no inversion fixes it — it IS the irrationality axiom, beyond inversion, named not chased.
 export function deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrreducibleIsTheAxiomBeyondInversion(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`deviationAnalysisRealtimeBeyondInversion:${at}`, matrix, () => {
+  return memoByRoot(`deviationAnalysisRealtimeBeyondInversion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // 1 — REALTIME: the deviation between two clocks, recomputed live at `at` (changes with the clock)
     const driftNow = roundTo(phaseDrift(3, 5, at), 4)
     const driftLater = roundTo(phaseDrift(3, 5, at + 1), 4)

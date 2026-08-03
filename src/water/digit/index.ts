@@ -2114,7 +2114,7 @@ function logicRelRelativeImport(fromLogicRel: string, toLogicRel: string): strin
 
 /** Registry + Glagolitic ray + ROSETTA_RAYS → canonical move table at call time (no hand purge list). */
 export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`rosettaComputesItself:${at}`, matrix, () => {
+  return memoByRoot(`rosettaComputesItself:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const motion = sevenStarRosettaNaturalMotion(at)
     const rows = ROSETTA_WIND_REGISTRY_TAILS.map((tail) => {
       const schemaTarget = srcLogicPathFromScienceModelAction(scienceModelActionFromMindTail(tail))
@@ -2223,7 +2223,7 @@ export function rosettaGuidedFolderMoveWaveOne(at = 0, matrix: MindMatrix = buil
 
 /** Census dissolve table — rosetta-computed shells to merge (not manual purge). */
 export function rosettaComputesCensusDissolve(at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`rosettaComputesCensusDissolve:${at}`, matrix, () => {
+  return memoByRoot(`rosettaComputesCensusDissolve:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const TARGET = 110
     const dissolves = [
       { shell: 'src/routes/corpus/papers/index.ts', into: 'src/routes/corpus/index.ts', action: 'merge' as const, wave: 1 },

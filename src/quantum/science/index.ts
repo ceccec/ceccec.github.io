@@ -34,7 +34,7 @@ export function quantumScienceResearch(matrix: MindMatrix = buildMatrix()) {
   })
 }
 export function quantumScienceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumScienceComputes:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumScienceComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = quantumScienceResearch(matrix)
     const dyn = __ns_up_dynamics.quantumDynamicsComputes(matrix, at)
     const simulators = __ns_up_up_fire_physics.simulatorsLiveInZero(matrix)
@@ -401,7 +401,7 @@ export function quantumComputerResearch(matrix: MindMatrix = buildMatrix()) {
   })
 }
 export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerComputes:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumComputerComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const research = quantumComputerResearch(matrix)
     const solutions = completeQuantumSolutionsImplemented(matrix)
     const entangled = applyGate(cnot(bellPair(), 0, 1), GATES.H, 0)
@@ -738,7 +738,7 @@ export function quantumAdvantageBenchmark(matrix: MindMatrix = buildMatrix(), ma
 
 /** The modeled quantum computer's honest performance verdict — the single value the README/homepage prose must derive from. */
 export function quantumComputerHonestClaim(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerHonestClaim:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumComputerHonestClaim:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const bloch = blochQubitFaithful(matrix)
     const cost = quantumDimensionCost(matrix)
     const bench = quantumAdvantageBenchmark(matrix)
@@ -790,7 +790,7 @@ export type QuantumModelSnapshot = {
  * and the plasma phase is the shared hero clock. The whole folds to one root that recomputes from (route, at).
  */
 export function quantumModelSnapshot(route = '/', at = 0, matrix: MindMatrix = buildMatrix()): QuantumModelSnapshot {
-  return memoByRoot(`quantumModelSnapshot:${route}:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumModelSnapshot:${route}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const phase = moviePhaseAt(at)
     const honest = quantumComputerHonestClaim(matrix, at)
     const baseHex = floor(phase * 64) % 64
@@ -823,7 +823,7 @@ export const QUANTUM_THINKING_SHIFTS = [
  * the snapshot round-trips (recompute from (route, at) → same root), and "quantum thinking" is defined honestly.
  */
 export function observingMovieRevealsQuantumModel(route = '/', at = 0, matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot(`observingMovieRevealsQuantumModel:${route}:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`observingMovieRevealsQuantumModel:${route}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const snapshot = quantumModelSnapshot(route, at, matrix)
     const recomputed = quantumModelSnapshot(route, at, matrix)
     const roundTrips = recomputed.root === snapshot.root
@@ -869,7 +869,7 @@ export const QC_DEFAULT_CIRCUIT: { n: number; ops: CircuitOp[] } = { n: 3, ops: 
 
 /** UI panel — design tokens (quantumMathDesignsTheUi) + gate palette + a default run; the lab's compute spine. */
 export function quantumComputerLabComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`quantumComputerLabComputes:${floor(at / 1e3)}`, matrix, () => {
+  return memoByRoot(`quantumComputerLabComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cap = quantumComputerComputes(matrix, at)
     const design = __ns_up_os.quantumMathDesignsTheUi(at, matrix)
     const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots: 4 * 4 * 64, seed: 'qc-default' })
