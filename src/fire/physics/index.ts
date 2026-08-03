@@ -1369,6 +1369,51 @@ export function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared(matrix:
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
+// ── SPECIAL RELATIVITY — the Lorentz factor above DEEPENED to the Lorentz GROUP. γ ≥ 1 forbids FTL, but the real
+// structure is the group of boosts SO⁺(1,1): in dimensionless β = v/c a boost is the 2×2 matrix B(β) = γ[[1,β],[β,1]]
+// acting on (ct, x). Four algebraic identities, all refutable and DIMENSIONLESS (β = v/c, c = 1 — the only theorems are
+// dimensionless ratios): (1) the interval s² = (ct)² − x² is INVARIANT under every boost (the hyperbolic Pythagoras
+// γ²(1−β²) = 1); (2) det B = γ² − (γβ)² = 1 — B is a HYPERBOLIC ROTATION, the non-compact sibling of the SU(2)/SO(2)
+// rotations the state-vector simulator's gates use (src/9/1 operator algebra); (3) boosts COMPOSE — B(β₁)B(β₂) = B(β₁⊕β₂)
+// with β₁⊕β₂ = (β₁+β₂)/(1+β₁β₂), so the group law IS relativistic velocity addition (rapidities φ = artanh β add); and
+// (4) LIGHT IS THE FIXED POINT — β₁⊕β₂ < 1 whenever β₁,β₂ < 1 (1−β₃ = (1−β₁)(1−β₂)/(1+β₁β₂) > 0) and 1⊕β = 1, so no stack
+// of sub-luminal boosts reaches c. Reuses only sqrt. [[operator-algebra-closed]] [[feedback-dimensionless-and-quantum-not-linear]] [[feedback-algebraic-theorems-only]]
+export function specialRelativityIsTheLorentzGroupTheIntervalIsInvariantAndLightIsTheFixedPoint(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  type Mat2 = readonly [readonly [number, number], readonly [number, number]]
+  const boost = (b: number): Mat2 => { const g = 1 / sqrt(1 - b * b); return [[g, g * b], [g * b, g]] } // B(β) = γ[[1,β],[β,1]] on (ct,x)
+  const mul = (A: Mat2, B: Mat2): Mat2 => [
+    [A[0][0] * B[0][0] + A[0][1] * B[1][0], A[0][0] * B[0][1] + A[0][1] * B[1][1]],
+    [A[1][0] * B[0][0] + A[1][1] * B[1][0], A[1][0] * B[0][1] + A[1][1] * B[1][1]]]
+  const addVel = (u: number, v: number) => (u + v) / (1 + u * v) // relativistic velocity addition = the group law
+  const betas = [-4 / 5, -3 / 5, -1 / 2, 0, 1 / 2, 3 / 5, 2 / 3, 4 / 5, 5 / 6, 8 / 9] // dimensionless β = v/c, all |β| < 1
+  const events: readonly (readonly [number, number])[] = [[1, 0], [0, 1], [2, 1], [3, 2], [5, 3]] // (ct, x)
+  // (1) INVARIANT INTERVAL — s² = (ct)² − x² preserved by every boost
+  let intervalInvariant = true
+  for (const b of betas) { const B = boost(b); for (const [t, x] of events) { const tp = B[0][0] * t + B[0][1] * x, xp = B[1][0] * t + B[1][1] * x; if (abs((tp * tp - xp * xp) - (t * t - x * x)) > 1e-9) intervalInvariant = false } }
+  // (2) UNIMODULAR SO⁺(1,1) — det B = γ²−(γβ)² = 1 (a hyperbolic rotation)
+  const unimodular = betas.every((b) => { const B = boost(b); return abs((B[0][0] * B[1][1] - B[0][1] * B[1][0]) - 1) < 1e-9 })
+  // (3) BOOSTS COMPOSE — B(β₁)B(β₂) = B(β₁⊕β₂): rapidities add
+  let boostsCompose = true
+  for (const b1 of betas) for (const b2 of betas) { if (abs(b1 * b2 - 1) < 1e-9) continue; const lhs = mul(boost(b1), boost(b2)); const rhs = boost(addVel(b1, b2)); for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++) if (abs(lhs[i]![j]! - rhs[i]![j]!) > 1e-9) boostsCompose = false }
+  // (4) LIGHT IS THE FIXED POINT / SPEED LIMIT — sub-luminal ⊕ sub-luminal < c, and c ⊕ β = c
+  const stayssubLuminal = betas.every((b1) => betas.every((b2) => abs(addVel(b1, b2)) < 1))
+  const lightInvariant = betas.every((b) => abs(addVel(1, b) - 1) < 1e-12) // 1 ⊕ β = 1: light's speed is the same to every observer
+  const facets = [
+    { facet: `THE INTERVAL IS INVARIANT — for every boost B(β) and event (ct,x), s² = (ct)²−x² is preserved exactly (${intervalInvariant}) over ${betas.length}×${events.length} cases: the hyperbolic Pythagoras γ²(1−β²)=1, the one quantity all inertial observers agree on (Minkowski)`, on: intervalInvariant },
+    { facet: `A BOOST IS A HYPERBOLIC ROTATION — det B(β) = γ²−(γβ)² = 1 for every β (${unimodular}): B ∈ SO⁺(1,1), the non-compact sibling of the SU(2)/SO(2) rotations the state-vector simulator's gates use (the same operator algebra, unimodular instead of unitary)`, on: unimodular },
+    { facet: `BOOSTS FORM A ONE-PARAMETER GROUP — B(β₁)·B(β₂) = B(β₁⊕β₂) with β₁⊕β₂ = (β₁+β₂)/(1+β₁β₂) (${boostsCompose}) across all ${betas.length}² pairs: the composition law IS relativistic velocity addition, so rapidities φ = artanh β add — velocities do NOT`, on: boostsCompose },
+    { facet: `LIGHT IS THE FIXED POINT / SPEED LIMIT — β₁⊕β₂ < 1 whenever β₁,β₂ < 1 (${stayssubLuminal}) and 1⊕β = 1 (${lightInvariant}): no stack of sub-luminal boosts reaches c, and light's speed is invariant — c is the group's fixed point, not a velocity`, on: stayssubLuminal && lightInvariant },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`lorentz-group:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    lorentz: { intervalInvariant, unimodular, boostsCompose, stayssubLuminal, lightInvariant },
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Special relativity is the Lorentz group — the interval is invariant and light is the fixed point — ${facets.filter((e) => e.on).length}/${facets.length}. Deepening the Lorentz factor γ ≥ 1: in dimensionless β = v/c a boost is B(β) = γ[[1,β],[β,1]] on (ct,x), and (1) it preserves the interval s² = (ct)²−x² exactly (${intervalInvariant}) — the hyperbolic Pythagoras γ²(1−β²)=1, the invariant of every observer; (2) det B = 1 (${unimodular}), so a boost is a hyperbolic rotation in SO⁺(1,1), the non-compact sibling of the SU(2) rotations the quantum simulator's gates use; (3) boosts compose, B(β₁)B(β₂) = B(β₁⊕β₂) with β₁⊕β₂ = (β₁+β₂)/(1+β₁β₂) (${boostsCompose}) — the group law is relativistic velocity addition, rapidities add; and (4) light is the fixed point (${lightInvariant}), β₁⊕β₂ < 1 for all sub-luminal β (${stayssubLuminal}), so c is unreachable and invariant. Exact, dimensionless, refutable algebra.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+}
+
 // ── ACOUSTICS — the mechanical-wave field, led by c = f·λ, with the decibel's logarithm and the Doppler shift as
 // exact laws (PACS 43). The speed of sound in air is ledgered as data (temperature-dependent); the octave and the
 // equal-tempered semitone are exact ratios. The 432-Hz "healing frequency" is demarcated as numerology, not physics.
