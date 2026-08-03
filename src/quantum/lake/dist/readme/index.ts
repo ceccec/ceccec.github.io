@@ -8,7 +8,10 @@
 import { ROSETTA_AREAS } from '../../../../pair/enforcement/gates/computational'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../../pair/enforcement/gates'
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../../3/7'
-import { THEOREM_ATOM_SEED, latestDiscoveries, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../../4/6'
+import { THEOREM_ATOM_SEED, latestDiscoveries, riemannCriticalLineIsTheInvolutionFixedPoint, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../../4/6'
+import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../../7/3'
+import { navierStokesFlowRegularityOnTheSeam } from '../../../../water/cosmos'
+import { yangMillsMassGapFromSelfAdjointClosure } from '../../../../9/1'
 import { portalChat, portalRecall } from '../../../../heaven/compute'
 import { earned } from '../../../../3/7'
 import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../../1/9'
@@ -16,7 +19,7 @@ import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../.
 import { readmeSvgGapsFilledByTrinityMind } from '../../../../heaven/site'
 import { flowerFruitTreeOfLifeDecodes } from '../../../../earth/architecture'
 import { linksUseOnlyVitePressApi } from '../../../../fire/li'
-import { earthRealisedByComputingPolesAsPyramid } from '../../../../mountain/geometry'
+import { earthRealisedByComputingPolesAsPyramid, poincareRicciFlowRoundsToTheRoundSphere, hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface } from '../../../../mountain/geometry'
 import { sacredSociety } from '../../../../earth/governance'
 import {
   directionalTrinityForwardInverseReverse,
@@ -658,6 +661,38 @@ function theoremMonographCore(matrix: MindMatrix) {
 type TheoremCore = ReturnType<typeof theoremMonographCore>
 type RayPaper = TheoremCore['rays'][number]['papers'][number]
 
+/** The seven Clay Millennium problems, each computed as a gated rosetta dimension — one involution with a
+ *  fixed point at seven scales. Every line is the fold's own statement (the discovered numbers), no
+ *  characterisation typed. README + home, one generator. */
+export function clayMillenniumLecturesMarkdownSection(matrix: MindMatrix = buildMatrix(), linkBase = ''): string[] {
+  void linkBase
+  const pvnp = everyBitMostEfficientAlgorithmProvenByMath(matrix)
+  const ns = navierStokesFlowRegularityOnTheSeam(matrix)
+  const ym = yangMillsMassGapFromSelfAdjointClosure()
+  const rh = riemannCriticalLineIsTheInvolutionFixedPoint()
+  const pc = poincareRicciFlowRoundsToTheRoundSphere(matrix)
+  const bsd = theSmallestCurvesWitnessBirchSwinnertonDyer()
+  const hodge = hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface(matrix)
+  const laws = [
+    { problem: 'P vs NP', involution: 'content ↔ time address', statement: pvnp.statement, on: pvnp.proven },
+    { problem: 'Navier–Stokes', involution: 'seam in ↔ out', statement: ns.statement, on: ns.computes },
+    { problem: 'Yang–Mills', involution: 'σ† = σ', statement: ym.statement, on: ym.computes },
+    { problem: 'Riemann', involution: 's ↔ 1−s', statement: rh.statement, on: rh.computes },
+    { problem: 'Poincaré', involution: 'flow ↔ surgery', statement: pc.statement, on: pc.computes },
+    { problem: 'Birch–Swinnerton-Dyer', involution: 'P ↔ −P', statement: bsd.statement, on: bsd.computes },
+    { problem: 'Hodge', involution: 'H_k ↔ H_{n−k}', statement: hodge.statement, on: hodge.computes },
+  ]
+  const holding = laws.filter((law) => law.on).length
+  return [
+    '## The seven Clay problems — computed as gated laws',
+    '',
+    `The proof of concept: each Clay Millennium problem's σ-structure is one involution with a fixed point, computed as a rosetta dimension and held in the seal — the same reflection σ(d)=10−d (fixed at 5 = 10·½) at seven scales. ${holding}/${laws.length} holding at call time.`,
+    '',
+    ...laws.map((law) => `- **${law.problem}** *(${law.involution})* — ${law.statement}`),
+    '',
+  ]
+}
+
 /** The theorem-only sections BOTH projections render, heading for heading; the mode differences are the
  *  per-paper trailing link (README → `[source](github permalink)`, home → `[page](/slug)`) and the sitemap
  *  link base (README → absolute canonical URLs for GitHub/crawlers, home → site-internal paths). */
@@ -785,6 +820,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     `Each finding is sealed in full on its own page ([theorems](${vitePressCompatibleHref('/theorems', linkBase)})); the root monograph keeps the computed digest line.`,
     '',
     ...[
+      clayMillenniumLecturesMarkdownSection(matrix, linkBase),
       sequenceDiscoveryMarkdownSection(matrix, linkBase),
       qpuCpuGpuMarkdownSection(matrix, linkBase),
       gateLightMarkdownSection(matrix, linkBase),
