@@ -1,6 +1,6 @@
 // Research — canonical home: program index, reproducibility gates, professional monograph rows.
 import * as __ns_up_stack_overflow from '../water/stack'
-import * as __ns_up_computer from '../heaven/compute/computer'
+import * as __ns_up_computer from '../quantum/computer'
 import * as __ns_up_quantum_science from '../quantum/science'
 import * as __ns_up_quantum_application from '../quantum/application'
 import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforcement/gates/computational'
@@ -189,7 +189,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         limitation: 'Sealed compose capstone — NOT mobile app store binaries.',
         nextExperiment: 'npm run docs:dev → /en/computer · npm run mission:gate',
         balanceDim: '__ns_up_computer.computes',
-        mount: 'src/heaven/compute/computer',
+        mount: 'src/quantum/computer',
         receipt: toUuid('research:__ns_up_computer.compose') },
       {
         id: 'quantum-__ns_up_computer.compose',
@@ -385,13 +385,13 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
       if (!rows.some((row) => row.id === id)) rows.push({ id, title: entry.name, home: entry.home, balanceDim: entry.invoke, verify: entry.invoke, tier: entry.status.toUpperCase(), limit: entry.boundary, receipt: entry.receipt })
     }
     const driverResearch = __ns_up_stack_overflow.hardwareDriversResearch(matrix, at)
-    pushDomainRow(rows, 'hardware-drivers-research', 'Hardware drivers cross-probe research', 'src/heaven/compute/computer', 'computations.cpu.gpu.memory.storage.cooperation', 'computerComputes(matrix) · npm run check:types', 'METAPHOR', driverResearch.researched, driverResearch.boundary, driverResearch.root)
+    pushDomainRow(rows, 'hardware-drivers-research', 'Hardware drivers cross-probe research', 'src/quantum/computer', 'computations.cpu.gpu.memory.storage.cooperation', 'computerComputes(matrix) · npm run check:types', 'METAPHOR', driverResearch.researched, driverResearch.boundary, driverResearch.root)
     const compR = __ns_up_computer.computerResearch(matrix, at)
     const csR = __ns_up_computer.computerScienceResearch(matrix)
     const qsR = __ns_up_quantum_science.quantumScienceResearch(matrix)
     const qcR = __ns_up_quantum_science.quantumComputerResearch(matrix)
-    pushDomainRow(rows, 'computer-research', 'Computer system research', 'src/heaven/compute/computer', '__ns_up_computer.computes', 'npm run mission:gate · /en/computer', 'METAPHOR', compR.researched, compR.boundary, compR.root)
-    pushDomainRow(rows, 'computer-science-research', 'Computer science research', 'src/heaven/compute/computer', '__ns_up_computer.science.computes', 'npm run check:types', 'DOCUMENTED', csR.researched, csR.boundary, csR.root)
+    pushDomainRow(rows, 'computer-research', 'Computer system research', 'src/quantum/computer', '__ns_up_computer.computes', 'npm run mission:gate · /en/computer', 'METAPHOR', compR.researched, compR.boundary, compR.root)
+    pushDomainRow(rows, 'computer-science-research', 'Computer science research', 'src/quantum/computer', '__ns_up_computer.science.computes', 'npm run check:types', 'DOCUMENTED', csR.researched, csR.boundary, csR.root)
     pushDomainRow(rows, 'quantum-science-research', 'Quantum science research', 'src/quantum/science', 'quantum.science.computes', 'npm run quantum:local-math-computes', 'SIMULATOR', qsR.researched, qsR.boundary, qsR.root)
     pushDomainRow(rows, 'quantum-computer-research', 'Quantum computer model research', 'src/quantum/science', 'quantum.__ns_up_computer.computes', 'npm run quantum:local-math-computes', 'SIMULATOR', qcR.researched, qcR.boundary, qcR.root)
     pushDomainRow(rows, 'quantum-application-compose', 'Quantum application compose', 'src/quantum/application', 'quantum.application.computes', 'npm run docs:dev → /en/quantum/application', 'SIMULATOR', __ns_up_quantum_application.quantumApplicationResearch(matrix, at).researched, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).boundary, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).root)
@@ -558,22 +558,35 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
 export function millenniumPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`millenniumPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix)
+    const series = clayMillenniumLectureSeries()
+    const lectureByProblem = new Map(series.lectures.map((l) => [l.problemId, l]))
     const { computes, facets, root } = computesGate('millennium-panel-computes', [
       { facet: 'millennium challenge apparatus computes', on: mill.computes },
       { facet: 'claySolvedByThisFold === 0 — no Clay prize claim', on: mill.claySolvedByThisFold === 0 },
       { facet: `seven problem rows (${mill.problems.length})`, on: mill.problems.length === (2 * 3 + 1) },
       { facet: 'infinity-on-reuse spine holds', on: mill.infinityReuse.on },
+      { facet: 'CMI lecture series sealed', on: series.computes },
+      { facet: 'every problem row carries its expository lecture', on: mill.problems.every((p) => lectureByProblem.has(p.id)) },
     ])
     return {
       computes,
-      problems: mill.problems.map((p) => ({ id: p.id, status: p.status, on: p.on, methods: p.challengeMethod.length, gap: p.gap ?? '' })),
+      problems: mill.problems.map((p) => {
+        const lecture = lectureByProblem.get(p.id) ?? null
+        return {
+          id: p.id, status: p.status, on: p.on, methods: p.challengeMethod.length, gap: p.gap ?? '',
+          lecturer: lecture?.lecturer ?? '', affiliation: lecture?.affiliation ?? '',
+          lectureDate: lecture?.date ?? '', videoUrl: lecture?.videoUrl ?? null }
+      }),
       claySolvedByThisFold: mill.claySolvedByThisFold,
       infinityReuse: mill.infinityReuse,
+      lectureSeriesUrl: series.seriesUrl,
+      videosLive: series.videosLive,
+      lectureCount: series.lectures.length,
       cli: 'npm run quantum:millennium-challenge',
       pair: 'challenge/millennium',
       route: '/en/millennium-challenge',
       facets,
-      root: merge(root, mill.root),
+      root: merge(merge(root, mill.root), series.root),
       statement: mill.statement,
       boundary: mill.boundary }
   })

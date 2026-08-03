@@ -63,7 +63,7 @@ import { observingMovieRevealsQuantumModel } from '../../science'
 import { theoremPagePaths, theoremPageRows } from '../../../wind/routes/corpus'
 import { domainProofPagePaths } from '../../../research'
 import { honestRevolutionReceipt, quantumFusionJson } from '../../../wind/fusion'
-import { honestRevolutionFpgaHonesty } from '../../../heaven/compute/computer'
+import { honestRevolutionFpgaHonesty } from '../../../quantum/computer'
 import { revolutionaryEfficiencyNotPhysics } from '../../../thunder/verify'
 import { cos, max, round, sin } from '../../../0'
 

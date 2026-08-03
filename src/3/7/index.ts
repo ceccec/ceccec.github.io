@@ -1620,7 +1620,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/fire/li/index.ts', literal: '*', count: 39, kind: 'data', source: 'attested residue — a432 lineage + Tesla patent data' },
   { file: 'src/fire/physics/index.ts', literal: '*', count: 10, kind: 'data', source: 'attested residue — EM band frequencies and SAR-context data (main-merge ratchet)' },
   { file: 'src/heaven/balance/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/heaven/compute/computer/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — computer-model constants' },
+  { file: 'src/quantum/computer/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — computer-model constants (dissolved heaven/compute/computer → quantum/computer: the drivers are the computer)' },
   { file: 'src/heaven/compute/index.ts', literal: '*', count: (10 + 6), kind: 'data', source: 'attested residue — compute-model constants + inline-doc numbers (gate-check documentation) · chat/ftl · research/free · fold/fuse · hole/zero · prose nest 15→16' },
   { file: 'src/heaven/core/index.ts', literal: '*', count: 28, kind: 'data', source: 'visible-spectrum band edges 380–780 nm (Bruton wavelength→RGB algorithm) + structural binding counts' },
   { file: 'src/heaven/essence/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
