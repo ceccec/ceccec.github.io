@@ -25,7 +25,7 @@ import { derivePublicKey, tamperEvident } from '../../5/5'
 import { trinityKey, proseToTone } from '../../0'
 import { movieCanvasHex } from '../../quantum/science'
 import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
-import { DIMENSION_GATES, MAJOR_MOONS, TAU } from '../../3/7'
+import { DIMENSION_GATES, MAJOR_MOONS, TAU, a432Base } from '../../3/7'
 export { MAJOR_MOONS } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { DIMENSIONS, DIMENSION_NAMES, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import {
@@ -75,7 +75,7 @@ import { PHI } from '../../3/7'
 
 // ── The single A432 tuning source — every note, scale and tone in the repo derives from this ONE anchor ──
 /** Concert A, the single tuning source (Hz). Never A=440: all repo music/audio folds through a432NoteHz from here. */
-export const A432_HZ = 432
+export const A432_HZ = a432Base()
 /** 12-TET pitch from the ONE A432 source: f = 432·2^(semitonesFromA/12). The canonical note→Hz helper — every
  *  scale, note table and tone folds through this, so no audio frequency is a raw A440 literal. (proseToTone in
  *  src/0 is the kernel-level inline of this same formula, since src/0 cannot import upward.) */
