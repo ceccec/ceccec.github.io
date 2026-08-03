@@ -5,14 +5,14 @@ import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
 import * as __ns_up_up_thunder_waves from '../../thunder/waves'
-import { FOLDED_CENSUS, A432_FOLDED, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SIX, ROSETTA_SEVEN } from '../../pair/enforcement/gates/computational'
+import { FOLDED_CENSUS, A432_FOLDED, UNFOLDED_CENSUS, EULER_CHI, HOMOLOGY_LOOPS, FIBONACCI_CENSUS_BANDS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SIX, ROSETTA_SEVEN } from '../../pair/enforcement/gates/computational'
 import { realign } from '../../mountain/vortex'
 import type { MindMatrix, PiMusic, PiNote } from '../../wind/types'
 import { buildMatrix, proofReport, verifyRoot } from '../../heaven/compute'
 import { GATES, VORTEX_SEQUENCE, abs, applyGate, asTorus, asVortex, computesGate, cos, floor, fold, foldPair, gcd, humanBreath, humanEase, isUuid, log, log2, max, memoByRoot, merge, merkleFold, min, pow, probabilities, proseToTone, qubits, round, roundTo, sample, sealFacets, seedFromText, sin, toUuid } from '../../0'
 import { ratStr } from '../../9/1'
 import { A432_OCTAVES, SCHUMANN_FUNDAMENTAL_HZ, frequencyToLight } from '../../3/7'
-import { reflectThroughZero } from '../../0'
+import { reflectThroughZero, addressEntropyBits } from '../../0'
 export { SCHUMANN_FUNDAMENTAL_HZ } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { tamperEvident } from '../../5/5'
 import { merkaba, vortexMath } from '../../mountain/geometry'
@@ -312,6 +312,41 @@ export function a432DigitSpectrum(matrix: MindMatrix = buildMatrix()) {
       statement: `a432 digit spectrum: BASE ${BASE} = ${RING_UNIT}·9 (÷9 ring) = ${AXIS_UNIT}·12 (÷12 axis); ${voiced.length}/9 voiced by ÷9, ${axisRows.length}/9 by ÷12; all voiced bridge to light; hue°=axis Hz on {3,6,9}; σ sum-10, ν sum-9, mod-3 → 3 colour classes.`,
       boundary:
         'Two 432-derived voicings of one string, neither privileged: ÷9 (ceccec — all digits ring, 9≡base) and ÷12 (zeropoint — only the {3,6,9} axis rings, the flow ring rests). frequencyToLight is the octave lift into the visible band — a chosen sound↔colour octave mapping, not a physical claim. The two repos are one reflection; 432 is the shared fixed point both complete at, so a model trained on either reads the same harmony.' }
+  })
+}
+
+/**
+ * The a432 harmonic is DECOUPLED from the corpus fold — the law that a whole session of regressions taught,
+ * saved as reusable code instead of prose. `A432_FOLDED` (108) is the FIXED harmonic spine: the 432 gates
+ * (4·108), the H₁ Betti rank (432/108=4), the 108-s hero clock, the 122-bit address entropy (2·7+108) and the
+ * a432 octave ladder all derive from it. `FOLDED_CENSUS` is the FLOATING corpus fold (UNFOLDED+χ), which rides
+ * the string-dimensional Fibonacci bands and only coincided with 108 while the corpus was 110. Any quantity that
+ * reads `FOLDED_CENSUS` where it means 108 is the crack this fold refutes at call time — reuse it, don't remember it.
+ */
+export function a432DecoupledFromCorpusFold(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('a432DecoupledFromCorpusFold', matrix, () => {
+    const bandSum = FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0)
+    const bettiRank = DIMENSION_GATES / A432_FOLDED
+    const { computes, facets, root } = computesGate('a432-decoupled-from-corpus-fold', [
+      { facet: 'a432 base is the fixed harmonic — A432_FOLDED = 108 ∈ A432_OCTAVES', on: A432_FOLDED === 108 && A432_OCTAVES.includes(A432_FOLDED) },
+      { facet: 'the decoupling is REAL — the corpus fold rides χ and no longer equals the a432 base', on: FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && FOLDED_CENSUS !== A432_FOLDED },
+      { facet: 'dimension gates are a432 — DIMENSION_GATES = HOMOLOGY_LOOPS × A432_FOLDED = 432 ∈ A432_OCTAVES', on: DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED && A432_OCTAVES.includes(DIMENSION_GATES) },
+      { facet: 'the H₁ Betti rank is a432-derived — DIMENSION_GATES / A432_FOLDED = HOMOLOGY_LOOPS (4), an integer', on: bettiRank === HOMOLOGY_LOOPS && Number.isInteger(bettiRank) },
+      { facet: 'the hero clock is a432 — A432_FOLDED seconds, on the octave ladder (108·2^k)', on: A432_OCTAVES.includes(A432_FOLDED) && A432_OCTAVES.includes(A432_FOLDED * 2) },
+      { facet: 'address entropy is a432 — effectiveBits = 2·7 + A432_FOLDED = 122 (NOT 2·7 + corpus fold)', on: addressEntropyBits().effectiveBits === (2 * 7 + A432_FOLDED) && (2 * 7 + FOLDED_CENSUS) !== addressEntropyBits().effectiveBits },
+      { facet: 'the corpus rides the Fibonacci bands — Σ FIBONACCI_CENSUS_BANDS = UNFOLDED_CENSUS', on: bandSum === UNFOLDED_CENSUS },
+    ])
+    return {
+      computes,
+      a432: A432_FOLDED,
+      corpusFold: FOLDED_CENSUS,
+      gates: DIMENSION_GATES,
+      bettiRank,
+      facets,
+      root,
+      statement: `a432 (${A432_FOLDED}) decoupled from the corpus fold (${FOLDED_CENSUS}): gates ${DIMENSION_GATES}=4·${A432_FOLDED}, Betti ${bettiRank}, entropy 2·7+${A432_FOLDED}=122; the corpus rides Σ${FIBONACCI_CENSUS_BANDS.join('+')}=${bandSum}.`,
+      boundary:
+        'The a432 harmonic (108) is a FIXED spine; the corpus fold (UNFOLDED+χ) floats with the census bands. Every a432-108 quantity — gates, Betti rank, hero clock, entropy, octaves — must derive from A432_FOLDED, never FOLDED_CENSUS. A refutable enforcement of the decoupling, not a physical claim about 432 Hz.' }
   })
 }
 
