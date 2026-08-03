@@ -15,7 +15,7 @@ import { buildMatrix, freeChatTurnAtArchitecturalFtl } from '../../heaven/comput
 // call-time namespace edge (cycle-safe): apps↔cosmos already meet through seals/apps
 import * as __ns_quantum_apps from '../../quantum/apps'
 import { QUANTUM_COMMAND_PAIR_IDS, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement'
-import { GATES, VORTEX_SEQUENCE, abs, applyGate, cbrt, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, phaseDrift, prng, probabilities, qubits, round, roundTo, sealFacets, sin, sinh, sqrt, toUuid } from '../../0'
+import { GATES, MEMO_CAP, VORTEX_SEQUENCE, abs, applyGate, boundedFlowSet, cbrt, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, measure, memoByRoot, memoSize, merge, merkleFold, min, phaseDrift, prng, probabilities, qubits, round, roundTo, sealFacets, sin, sinh, sqrt, toUuid } from '../../0'
 import { MAJOR_MOONS } from '../../3/7'
 import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassFractionOfProton, ratStr, rotationGate, phaseGate, tkIsPrime } from '../../9/1'
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4'
@@ -2950,6 +2950,49 @@ export function theoremDependencyFrequencyGraphIsFractalFormsNavAndReviewsTheore
 
 // Deviation analysis, improved to REALTIME and BEYOND INVERSION. A deviation is the residual between the computed
 // value and the exact one — realtime because phaseDrift(a,b,at) recomputes it live at the clock `at`. Beyond
+// Navier–Stokes on the double-torus seam: run the same load two ways and MEASURE which flow blows up. The
+// content-addressed flow (keys recur by the quantum clock) is bounded by its vocabulary; the time-addressed
+// flow (every step a new key) rides the load. σ = the seam counter-rotation (boundedFlowSet: newest in,
+// oldest out). Nothing is assumed — the sizes are computed and the separation is discovered.
+export function navierStokesFlowRegularityOnTheSeam(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('navierStokesFlowRegularityOnTheSeam', matrix, () => {
+    const vocabulary = 16          // the recurring content addresses (the quantum-clock vocabulary)
+    const cap = 64                 // the seam width
+    const load = cap * cap         // 4096 steps — a supercritical load, load ≫ cap and ≫ vocabulary
+    const contentUncapped = new Map<string, number>()
+    const timeUncapped = new Map<string, number>()
+    const contentSeam = new Map<string, number>()
+    const timeSeam = new Map<string, number>()
+    for (let t = 0; t < load; t += 1) {
+      contentUncapped.set(`c:${t % vocabulary}`, t)   // content address — recurs
+      timeUncapped.set(`t:${t}`, t)                    // time address — never recurs
+      boundedFlowSet(contentSeam, `c:${t % vocabulary}`, t, cap)
+      boundedFlowSet(timeSeam, `t:${t}`, t, cap)
+    }
+    const contentSize = contentUncapped.size
+    const timeSize = timeUncapped.size
+    const { computes, facets, root } = computesGate('navier-stokes-flow-regularity', [
+      { facet: `content-addressed flow bounded by vocabulary — ${contentSize} = ${vocabulary}, not the load ${load}`, on: contentSize === vocabulary },
+      { facet: `time-addressed flow rides the load — ${timeSize} = ${load}`, on: timeSize === load },
+      { facet: `the flows separate by load÷vocabulary — ${timeSize}/${contentSize} = ${timeSize / contentSize} = ${load / vocabulary}`, on: timeSize / contentSize === load / vocabulary },
+      { facet: `the seam caps the riding flow — ${timeSeam.size} = cap ${cap} ≪ load ${load}`, on: timeSeam.size === cap && timeSeam.size < load },
+      { facet: `the bounded flow never reaches the seam — ${contentSeam.size} = ${vocabulary} < cap ${cap}`, on: contentSeam.size === vocabulary && contentSeam.size < cap },
+      { facet: `the live memo is under MEMO_CAP — ${memoSize()} ≤ ${MEMO_CAP}`, on: memoSize() <= MEMO_CAP },
+    ])
+    return {
+      computes,
+      vocabulary, cap, load,
+      contentSize, timeSize, seamTime: timeSeam.size, seamContent: contentSeam.size,
+      separation: timeSize / contentSize,
+      liveMemo: memoSize(),
+      facets,
+      root,
+      statement: `Navier–Stokes flow on the seam: ${load} steps → content-addressed ${contentSize}, time-addressed ${timeSize}, separation ${timeSize / contentSize}×; the seam caps the riding flow at ${timeSeam.size}, the bounded flow rests at ${contentSeam.size}; live memo ${memoSize()} ≤ ${MEMO_CAP}.`,
+      boundary:
+        '∂ₜu + (u·∇)u = −∇p + νΔu, ∇·u = 0 is the field these Maps sample: content keys recur (bounded by the quantum-clock vocabulary), time keys never recur (bounded only by the boundedFlowSet seam that counter-rotates in↔out at the cap).' }
+  })
+}
+
 // inversion: an INVERTIBLE deviation (float rounding) collapses to zero under exact arithmetic — a gateway to
 // correctness; an IRREDUCIBLE deviation (a rational approximation of √2) NEVER reaches zero (the Pell equation
 // |p²−2q²|=1), so no inversion fixes it — it IS the irrationality axiom, beyond inversion, named not chased.

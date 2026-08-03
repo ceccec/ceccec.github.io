@@ -329,6 +329,17 @@ export function antichainLevels(nodeCount: number, edges: readonly (readonly num
 const reportMemo = new Map<string, unknown>()
 const reportComputing = new Set<string>()
 
+/** reportMemo is a bounded FIFO flow: on set, drop the oldest keys while size exceeds MEMO_CAP (2^16). */
+export const MEMO_CAP = 2 ** 16
+export function boundedFlowSet<K, V>(flow: Map<K, V>, key: K, value: V, cap: number = MEMO_CAP): void {
+  flow.set(key, value)
+  while (flow.size > cap) flow.delete(flow.keys().next().value as K)
+}
+/** The live memo cardinality — measurable, so a fold can compute what the flow does instead of assuming it. */
+export function memoSize(): number {
+  return reportMemo.size
+}
+
 function memoReceiptField(prop: string | symbol): boolean {
   if (prop === Symbol.toPrimitive || prop === 'toString' || prop === 'valueOf') return true
   if (typeof prop !== 'string') return false
@@ -373,7 +384,7 @@ export function memoByRoot<T>(name: string, matrix: { root: string }, compute: (
   reportComputing.add(key)
   try {
     const value = compute()
-    reportMemo.set(key, value)
+    boundedFlowSet(reportMemo, key, value)
     return value
   } finally {
     reportComputing.delete(key)
