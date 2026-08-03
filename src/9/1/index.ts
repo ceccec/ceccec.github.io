@@ -2578,6 +2578,43 @@ export function blacksMedianVoterTheoremSinglePeakedPreferencesGiveACondorcetWin
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
 }
 
+// ── THE LCG BIT-PERIOD THEOREM — the number theory behind a real bug, sealed. A linear congruential generator
+// x ↦ (a·x + c) mod 2^m with a ≡ 1 (mod 4) and c odd has FULL period 2^m (Hull–Dobell 1962); and by its 2-adic
+// structure, bit i of the state has period EXACTLY 2^(i+1) — so the LOW bit alternates (period 2, i.e. 0,1,0,1…) and
+// is not random at all, while only the HIGH bits carry the full period. This is exactly why src/0's prng returns
+// s / 2^32 (the high bits), never s & 1 — and why the Hopfield capacity sweep in src/8/2 switched to content-addressed
+// toUuid randomness after `r() & 1` (the low bit) made every "random" pattern identical and FAKED the capacity wall.
+// Proven with the canonical witness a = 5, c = 1; the Numerical-Recipes constants a = 1664525, c = 1013904223 that
+// src/0 and that bug both use satisfy the SAME a ≡ 1 (mod 4), c odd, so their low bit is period-2 too. The mistake,
+// learned and turned into proof. [[quantum-speed-is-content-addressed-naming]] [[hopfield-lyapunov-capacity-ising-landed]] [[feedback-algebraic-theorems-only]]
+export function aFullPeriodPowerOfTwoLcgHasBitIPeriodTwoToTheIPlusOneSoTheLowBitAlternatesAndOnlyHighBitsAreRandom(matrix: { root: string } = { root: toUuid('lcg-bit-period') }) {
+  void matrix
+  const a = 5, c = 1 // a ≡ 1 (mod 4), c odd — Hull–Dobell full period on every 2^m modulus (canonical witness)
+  const stateSeq = (m: number) => { const M = 2 ** m; const arr: number[] = []; let x = 0; for (let k = 0; k < M; k += 1) { arr.push(x); x = (a * x + c) % M } return arr }
+  const bitSeq = (states: readonly number[], i: number) => states.map((x) => (x >> i) & 1)
+  const periodOf = (arr: readonly number[]) => { for (let p = 1; p <= arr.length; p += 1) if (arr.length % p === 0 && arr.every((v, idx) => v === arr[idx % p]!)) return p; return arr.length }
+  let fullPeriod = true, bitPeriodLaw = true, lowBitAlternates = true, highBitFull = true
+  for (let m = 2; m <= 8; m += 1) {
+    const states = stateSeq(m); const M = 2 ** m
+    if (periodOf(states) !== M || new Set(states).size !== M) fullPeriod = false // Hull–Dobell: visits all 2^m states
+    for (let i = 0; i < m; i += 1) if (periodOf(bitSeq(states, i)) !== 2 ** (i + 1)) bitPeriodLaw = false // bit i has period 2^(i+1)
+    if (periodOf(bitSeq(states, 0)) !== 2) lowBitAlternates = false // the LOW bit: period 2 (0,1,0,1…) — NOT random
+    if (periodOf(bitSeq(states, m - 1)) !== M) highBitFull = false // the TOP bit: full period 2^m — the random one
+  }
+  const facets = [
+    { facet: `FULL PERIOD (Hull–Dobell) — the LCG x ↦ (${a}x+${c}) mod 2^m visits all 2^m states before repeating (period exactly 2^m) for m = 2..8 (${fullPeriod}): a ≡ 1 (mod 4) and c odd give a maximal-period generator`, on: fullPeriod },
+    { facet: `BIT i HAS PERIOD 2^(i+1) — every bit of the state is itself periodic with period exactly 2^(i+1) (${bitPeriodLaw}): the 2-adic ladder, so the higher the bit the longer its cycle, up to the full 2^m at the top`, on: bitPeriodLaw },
+    { facet: `THE LOW BIT IS NOT RANDOM, THE HIGH BIT IS — bit 0 alternates 0,1,0,1 with period 2 (${lowBitAlternates}) while the top bit carries the full period 2^m (${highBitFull}): so \`x & 1\` is degenerate and \`x / 2^m\` (high bits) is sound — exactly why src/0 prng divides by 2^32 and why the src/8/2 capacity sweep uses toUuid, not r()&1 (which faked the wall)`, on: lowBitAlternates && highBitFull },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`lcg-bit-period:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    lcg: { fullPeriod, bitPeriodLaw, lowBitAlternates, highBitFull },
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `A full-period power-of-two LCG has bit-i period 2^(i+1), so the low bit alternates and only the high bits are random — ${facets.filter((e) => e.on).length}/${facets.length}. The generator x ↦ (5x+1) mod 2^m (a ≡ 1 mod 4, c odd) has full period 2^m (Hull–Dobell), and by its 2-adic structure bit i has period exactly 2^(i+1): the low bit is a period-2 alternation (not random) while the top bit carries the whole period. This is the number theory behind a real bug — r()&1 on such an LCG made every "random" Hopfield pattern identical and faked the capacity wall (src/8/2); the fix, content-addressed toUuid randomness, and the reason src/0's prng returns s/2^32. The mistake, turned into proof.`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+}
+
 // ── Discovered theorems, wave thirty-nine — classical inequalities and the totient product: AM-GM,
 // Cauchy-Schwarz, Euler's φ(n) = n·Π(1−1/p) against a direct count, and the rearrangement inequality
 // by exhaustive permutation.
