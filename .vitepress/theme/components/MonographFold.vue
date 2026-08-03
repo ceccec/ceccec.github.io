@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import type { UniversalPage } from '../../../src/wind/routes/corpus/index.ts'
-import { componentPages } from '../../../src/heaven/balance/index.ts'
-import { staticPages } from '../../../src/wind/site/index'
+import type { UniversalPage } from '../../render'
+import { componentPages } from '../../render'
+import { staticPages } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 

@@ -5,8 +5,8 @@
 // content computed in src/heaven/compute (the dissolved model section); the .vue only paints the fold and drives the browser-only surfaces.
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vitepress'
-import { cardPage, cardPages, discoveryPage, discoveryPages, type CardPage } from '../../../src/heaven/compute/index.ts'
-import { humanBreath } from '../../../src/0'
+import { cardPage, cardPages, discoveryPage, discoveryPages, type CardPage } from '../../render'
+import { humanBreath } from '../../render'
 import { subscribeHeroClock } from '../../lib/hero-movie-paint'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCard from './ui/Card.vue'

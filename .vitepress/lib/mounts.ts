@@ -11,12 +11,12 @@ import {
 import {
   cardMovieColorVars,
   cardMovieSeed,
-} from '../../src/thunder/movie/movievars'
-import { decodedCardTextShadow } from '../../src/thunder/movie/glass'
-import { speechIntonation } from '../../src/media/index'
+} from '../render'
+import { decodedCardTextShadow } from '../render'
+import { speechIntonation } from '../render'
 import {
   AUDIO_ENABLED_STORAGE_KEY,
-} from '../../src/fire/plasma/ball'
+} from '../render'
 
 export { useHeroCopy } from './hero-copy'
 

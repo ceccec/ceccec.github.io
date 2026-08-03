@@ -3,7 +3,7 @@
 // component decides no mathematics: it maps already-computed (x,y) points into the viewBox and draws
 // axes, curves, reference lines and a legend. Theme-aware via VitePress colour variables; prints black.
 import { computed } from 'vue'
-import type { TheoremFigureData, FigRole } from '../../../src/wind/routes/corpus/index.ts'
+import type { TheoremFigureData, FigRole } from '../../render'
 
 const props = defineProps<{ figure: TheoremFigureData }>()
 

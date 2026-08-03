@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
-import { selfDevelopment } from '../../../src/fire/li/index.ts'
-import { collectiveContentAddressedMeshComputes } from '../../../src/wind/fusion/index.ts'
+import { selfDevelopment } from '../../render'
+import { collectiveContentAddressedMeshComputes } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiAsideShell from './UiAsideShell.vue'
 

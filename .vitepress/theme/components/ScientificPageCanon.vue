@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // Canon scientific page shell — slots bind ONLY ScientificPageMeaning (sealed recompute).
 // USER LAW: the meaning is quantum computable. Freeform prose slots refused.
-import type { ScientificPageMeaning } from '../../../src/quantum/apps/index.ts'
-import { SCIENCE_PAGE_CANON_SLOTS } from '../../../src/quantum/apps/index.ts'
+import type { ScientificPageMeaning } from '../../render'
+import { SCIENCE_PAGE_CANON_SLOTS } from '../../render'
 import ScientificPaperBody from './ScientificPaperBody.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
 import UiBadge from './ui/Badge.vue'

@@ -8,7 +8,7 @@ import {
   julianDayFromCivil,
   MEEUS_J2000_CIVIL,
   MEEUS_J2000_JD,
-} from '../../../src/heaven/sky/astronomy/index'
+} from '../../render'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'

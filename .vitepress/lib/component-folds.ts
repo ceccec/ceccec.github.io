@@ -1,5 +1,5 @@
 // Browser-safe component → sealed fold loaders (dynamic import — no monolith at parse time).
-import type { ComponentCrosslink } from '../../src/learning/index'
+import type { ComponentCrosslink } from '../render'
 import type { DecodedFacet, DecodedStation } from '../theme/components/DecodedCard.vue'
 import type { QuantumProjection } from './hero-movie'
 import { displayText, localePath, pickLocale, type LocaleName } from './site-locale'

@@ -12,7 +12,7 @@ import {
   type QuantumProjection,
 } from '@vp-lib/hero-movie'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '@vp-lib/movie-canvas'
-import { harmonizeField, type ObserverContext } from '../../../src/music/index.ts'
+import { harmonizeField, type ObserverContext } from '../../render'
 import { useData, useRoute } from 'vitepress'
 
 const props = withDefaults(

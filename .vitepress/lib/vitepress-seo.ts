@@ -8,8 +8,8 @@ export {
   openGraphCardFromRoute,
   platformOgLimitsMeasured,
   canonicalUrl,
-} from '../../src/mountain/og'
-export type { JsonLdPageIdentity } from '../../src/heaven/balance'
+} from '../render'
+export type { JsonLdPageIdentity } from '../render'
 export {
   siteConfig,
   localeNavLinks,
@@ -17,7 +17,7 @@ export {
   homeHero,
   vitepressNativeDocsConfig,
   vitepressDocsResearchImprovements,
-} from '../../src/wind/site'
-export { siteNavigation, vitepressSidebar } from '../../src/learning'
-export { SITE_LOCALES } from '../../src/heaven/balance'
-export { toGlagolitic } from '../../src/quantum/heaven/library'
+} from '../render'
+export { siteNavigation, vitepressSidebar } from '../render'
+export { SITE_LOCALES } from '../render'
+export { toGlagolitic } from '../render'

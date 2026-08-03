@@ -3,9 +3,9 @@
 export {
   STATUS_BADGE_KINDS,
   type StatusBadgeKind,
-} from '../../src/0/index.ts'
+} from '../render'
 
-import { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../src/0/index.ts'
+import { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../render'
 
 /** Map coverage / boolean / keyword → status kind for UiBadge. */
 export function statusBadgeKind(

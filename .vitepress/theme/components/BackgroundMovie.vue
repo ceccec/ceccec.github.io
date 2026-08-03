@@ -16,8 +16,8 @@ import {
   viewportSize,
 } from '@vp-lib/movie-canvas'
 import { useHeroCopy } from '../../lib/hero-copy'
-import { proveAllDeterministicCore, proveAllDeterministicCoreBeatAt } from '../../../src/heaven/compute/index.ts'
-import { harmonizeField, type ObserverContext } from '../../../src/music/index.ts'
+import { proveAllDeterministicCore, proveAllDeterministicCoreBeatAt } from '../../render'
+import { harmonizeField, type ObserverContext } from '../../render'
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { route, copy } = useHeroCopy()

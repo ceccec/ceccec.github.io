@@ -8,8 +8,8 @@ import {
   domainProofPageBySlug,
   domainProofPageRows,
   type DomainProofCatalogRow,
-} from '../../../src/research/index.ts'
-import { sciencePaperBodyFromDomainRow } from '../../../src/quantum/apps/index.ts'
+} from '../../render'
+import { sciencePaperBodyFromDomainRow } from '../../render'
 import ScientificPaperBody from './ScientificPaperBody.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
 import LinkedHeroCard from './LinkedHeroCard.vue'

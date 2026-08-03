@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vitepress'
-import { realtimeWiring } from '../../../src/thunder/trading/index.ts'
+import { realtimeWiring } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 import LinkedHeroCard from './LinkedHeroCard.vue'

@@ -7,12 +7,12 @@
 // site chrome removed — what the browser shows is what the printer certifies.
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, withBase } from 'vitepress'
-import { theoremPageBySlug, theoremPageRows, type TheoremPageRow } from '../../../src/wind/routes/corpus/index.ts'
-import type { ProofAnimationSpec } from '../../../src/thunder/waves'
+import { theoremPageBySlug, theoremPageRows, type TheoremPageRow } from '../../render'
+import type { ProofAnimationSpec } from '../../render'
 import ProofAnimation from './ProofAnimation.vue'
 import TheoremFigure from './TheoremFigure.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
-import { theoremFigure } from '../../../src/wind/routes/corpus/index.ts'
+import { theoremFigure } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 
 // autotranslate headings + paper prose via t(); formulas, code, receipts stay technical. bg glossary-bounded ·

@@ -1,10 +1,10 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, normalize } from 'node:path'
 import type { Connect } from 'vite'
-import { glagoliticHomeFromEnglish } from '../src/fire/li'
-import { bulgarianHomeFromEnglish } from '../src/wind/site/index'
-import { homeMarkdown } from '../src/quantum/dist'
-import { doubleTorusCorpusRouting } from '../src/wind/routes/corpus'
+import { glagoliticHomeFromEnglish } from './render'
+import { bulgarianHomeFromEnglish } from './render'
+import { homeMarkdown } from './render'
+import { doubleTorusCorpusRouting } from './render'
 
 /** The corpus indexes carry their fold's COMPUTED statement as minimal static prose (the empty-page
  *  sweep measured them at 0 static chars; the grid stays the client mount). One source: the routing fold. */

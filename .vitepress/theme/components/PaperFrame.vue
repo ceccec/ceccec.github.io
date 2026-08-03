@@ -7,7 +7,7 @@
 // Abstract omits Statement: <title> echo — page H1 owns the title (uiProseDuplicationRemoved).
 import { computed } from 'vue'
 import { useData } from 'vitepress'
-import { paperAbstractOmitsTitleEcho } from '../../../src/wind/ui/index.ts'
+import { paperAbstractOmitsTitleEcho } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 
 // autotranslate the paper chrome + abstract/keywords via t() (bg glossary-bounded · gla transliterated).

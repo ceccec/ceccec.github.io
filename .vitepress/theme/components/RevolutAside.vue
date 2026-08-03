@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { revolutChannel } from '../../../src/wind/site/index'
+import { revolutChannel } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiAsideShell from './UiAsideShell.vue'
 

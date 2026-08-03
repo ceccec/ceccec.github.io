@@ -5,13 +5,13 @@ import {
   decodedCardCrosslinksLabel,
   decodedCardFacetMark,
 } from '@vp-lib/hero-movie'
-import type { ComponentCrosslink } from '../../../src/learning/index'
+import type { ComponentCrosslink } from '../../render'
 import type { QuantumProjection } from '@vp-lib/hero-movie'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 import { UiBadge } from '../../lib/shadcn-ui.ts'
 import ProofAnimation from './ProofAnimation.vue'
-import { specForContent } from '../../../src/thunder/waves'
+import { specForContent } from '../../render'
 
 export type DecodedFacet = { facet: string; on?: boolean; receipt?: string; link?: string }
 export type DecodedStation = { step?: number; station: string; route: string; why?: string }

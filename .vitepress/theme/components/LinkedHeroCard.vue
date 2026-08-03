@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { withBase } from 'vitepress'
-import { heroPreviewForRoute } from '../../../src/wind/routes/corpus/index.ts'
+import { heroPreviewForRoute } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 

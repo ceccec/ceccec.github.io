@@ -5,7 +5,7 @@
 // (wind/routes/corpus, a pure projection of the sealed registry) — nothing is authored or sorted here.
 // Tags are the three computed axes: domain (home), class (proof class), lean (self-contained / cited).
 import { computed, ref } from 'vue'
-import { theoremTagIndex, theoremPapersLatestFirst, type TheoremTagGroup } from '../../../src/wind/routes/corpus/index.ts'
+import { theoremTagIndex, theoremPapersLatestFirst, type TheoremTagGroup } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import LinkedHeroCard from './LinkedHeroCard.vue'
 

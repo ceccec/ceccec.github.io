@@ -5,7 +5,7 @@ import { useRoute } from 'vitepress'
 import {
   pageComputedGapsAt,
   type PageGapsKind,
-} from '../../../src/quantum/apps/index.ts'
+} from '../../render'
 import UiBadge from './ui/Badge.vue'
 import { useSiteLocale } from '../../lib/mounts'
 

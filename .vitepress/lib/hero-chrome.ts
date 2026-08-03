@@ -1,8 +1,8 @@
 // Browser + build mount — hero glass vars from the background movie (route only, no per-frame churn).
-import { buildMatrix } from '../../src/heaven/compute'
-import { backgroundMovieColorVars } from '../../src/thunder/movie/movievars'
+import { buildMatrix } from '../render'
+import { backgroundMovieColorVars } from '../render'
 
-export { backgroundMovieColorVars } from '../../src/thunder/movie/movievars'
+export { backgroundMovieColorVars } from '../render'
 
 export type HeroChromeMode = 'light' | 'dark'
 

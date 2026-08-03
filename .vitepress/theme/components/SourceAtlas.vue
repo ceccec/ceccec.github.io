@@ -3,7 +3,7 @@
 // source-atlas.json (recomputed every deploy) and renders every sealed index grouped by science,
 // each row linking to the exact source file. Registered beside TheoremPages (outside the 64 census).
 import { ref, onMounted } from 'vue'
-import { githubPermalink } from '../../../src/wind/site/index'
+import { githubPermalink } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 
 const { t } = useSiteLocale()

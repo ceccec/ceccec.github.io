@@ -2,7 +2,7 @@
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs'
-import { CANONICAL_HOST } from '../src/3/7'
+import { CANONICAL_HOST } from './render'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
@@ -21,9 +21,9 @@ function siteLocaleForRelative(relative: string) {
 function glagoliticIfLatin(text: string): string {
   return /[Ⰰ-ⱟ]/.test(text) ? text : toGlagolitic(text)
 }
-import { buildMatrix } from '../src/heaven/compute'
-import { computeUniversalPage, searchSectionsFor } from '../src/wind/routes/corpus'
-import { rosettaIChingNavItems } from '../src/wind/ui'
+import { buildMatrix } from './render'
+import { computeUniversalPage, searchSectionsFor } from './render'
+import { rosettaIChingNavItems } from './render'
 import { heroChromeStyleBlocks } from './lib/hero-chrome'
 import { universalRoutePath } from './lib/universal-route-path'
 import { vitepressDevServerBind, vitepressDevOptimizeDeps } from './lib/dev-server-bind.mts'

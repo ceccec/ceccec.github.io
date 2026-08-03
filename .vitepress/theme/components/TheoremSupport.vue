@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { revolutChannel } from '../../../src/wind/site/index'
-import { cursorReferralFundsAiNeeds } from '../../../src/research/index'
-import { qrSvg } from '../../../src/water/crypto/index'
+import { revolutChannel } from '../../render'
+import { cursorReferralFundsAiNeeds } from '../../render'
+import { qrSvg } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 
 const { pick } = useSiteLocale()

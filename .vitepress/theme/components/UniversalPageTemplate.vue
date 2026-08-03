@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { CORPUS_GRID_PAGE_SIZE, type UniversalPage } from '../../../src/wind/routes/corpus/index.ts'
+import { CORPUS_GRID_PAGE_SIZE, type UniversalPage } from '../../render'
 import { useCardMovie, useSiteLocale } from '../../lib/mounts'
 import DecodedCard from './DecodedCard.vue'
 import LinkedHeroCard from './LinkedHeroCard.vue'
 import ScientificPaperBody from './ScientificPaperBody.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
-import { sciencePaperBodyFromCorpusSections } from '../../../src/quantum/apps/index.ts'
+import { sciencePaperBodyFromCorpusSections } from '../../render'
 import { UiButton } from '../../lib/shadcn-ui.ts'
-import type { PageGapsKind } from '../../../src/quantum/apps/index.ts'
+import type { PageGapsKind } from '../../render'
 
 function headingId(text: string, suffix: string): string {
   const base = text

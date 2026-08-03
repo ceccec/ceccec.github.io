@@ -10,10 +10,10 @@ import {
   theoremProvenance,
   proofAnimations,
   firstInCorpusProvenanceForHome,
-} from '../../../src/thunder/waves'
-import { slowProcessIsQuantumGap, frontierNeighboursFor } from '../../../src/quantum/apps'
-import { cosmosFrontiersDecoded } from '../../../src/water/cosmos'
-import { theoremPageRows, openFrontierCardLinks } from '../../../src/wind/routes/corpus/index.ts'
+} from '../../render'
+import { slowProcessIsQuantumGap, frontierNeighboursFor } from '../../render'
+import { cosmosFrontiersDecoded } from '../../render'
+import { theoremPageRows, openFrontierCardLinks } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import ProofAnimation from './ProofAnimation.vue'
 

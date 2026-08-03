@@ -19,7 +19,7 @@ import {
   encodeWatchMsPersist,
   parseWatchMsPersist,
   attunementTier,
-} from '../../src/music/index'
+} from '../render'
 
 export type MovieIntensity = 'full' | 'soft' | 'whisper'
 

@@ -3,9 +3,9 @@ export {
   doubleTorusEarthHingeComputesAll,
   doubleTorusEarthExchangeComputes,
   fiatAndGoldFlowExplainedByDoubleEarthExchange,
-} from '../../src/water/double/earth/index.ts'
+} from '../render'
 export {
   thunderGoldGraphFromPreciseGpsCoordinates,
   thunderGoldGraphResearch,
   thunderGoldGraphComputes,
-} from '../../src/wind/fusion/index.ts'
+} from '../render'

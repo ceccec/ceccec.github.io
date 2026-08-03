@@ -1,5 +1,5 @@
 // Glagolitic monograph catch-all — vitepressAutomountPaths discovers complete indexes (no reconfiguration).
-import { monographSliceFromRoute, vitepressAutomountPaths } from '../../../src/wind/routes/automount'
+import { monographSliceFromRoute, vitepressAutomountPaths } from '../../render'
 
 export default {
   paths: () =>

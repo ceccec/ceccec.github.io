@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { onlyVitePressApi } from '../../../src/fire/li/index.ts'
-import { vitepressConfigComputesAll } from '../../../src/heaven/compute/index.ts'
-import { vitepressDocsResearchImprovements } from '../../../src/wind/site/index.ts'
+import { onlyVitePressApi } from '../../render'
+import { vitepressConfigComputesAll } from '../../render'
+import { vitepressDocsResearchImprovements } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiAsideShell from './UiAsideShell.vue'
 

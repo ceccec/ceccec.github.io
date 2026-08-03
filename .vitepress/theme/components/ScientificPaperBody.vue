@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // Thin shell — body slots bind ONLY ScientificPaperBody from sealed src (meaningIsQuantumComputable).
 // No freeform prose props. Agents cannot invent section meaning in the template.
-import type { ScientificPaperBody } from '../../../src/quantum/apps/index.ts'
-import { SCIENCE_PAPER_SECTION_LABELS } from '../../../src/quantum/apps/index.ts'
+import type { ScientificPaperBody } from '../../render'
+import { SCIENCE_PAPER_SECTION_LABELS } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 
 // autotranslate section labels + prose (statement/detail/status/gap) via t(); formulas, source, receipt-locks

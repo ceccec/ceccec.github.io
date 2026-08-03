@@ -5,11 +5,11 @@
 // ONE shared hero clock (subscribeHeroClock) drives every visible canvas; off-screen pause via IO.
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { useData } from 'vitepress'
-import { PHI, TAU } from '../../../src/3/7'
-import { VORTEX_SEQUENCE } from '../../../src/0'
+import { PHI, TAU } from '../../render'
+import { VORTEX_SEQUENCE } from '../../render'
 import { movieCanvasRgba, subscribeHeroClock } from '../../lib/hero-movie-paint'
-import { geodesicDomeComputes, oneExponentialLaw } from '../../../src/6/4'
-import type { ProofAnimationSpec } from '../../../src/thunder/waves'
+import { geodesicDomeComputes, oneExponentialLaw } from '../../render'
+import type { ProofAnimationSpec } from '../../render'
 
 // Rosetta→movie: oneClock (subscribeHeroClock) + vortex hues — not a decoration layer beside the rosetta.
 // Fold: dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie · pair dry/rosetta · rosetta/movie.

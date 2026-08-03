@@ -27,22 +27,22 @@ export {
   type DeviceSensorSample,
   type MoviePerspectiveBias,
   type QuantumSensorKind,
-} from '../../src/quantum/index'
+} from '../render'
 // The one multi-sensory interaction mapping — touch→phase scrub, fold→A432 tone, fold→haptic vibration.
 // Imported straight from the void/origin kernel (src/0); the render harness (movie-canvas) wires the Web APIs.
 // The type is DERIVED from the function's return type (ReturnType) rather than a named export, so the kernel's
 // compression pass (dead-export elimination, which only sees src/ consumers) cannot break this render-side import.
-import { pointerInteraction } from '../../src/0/index'
+import { pointerInteraction } from '../render'
 export { pointerInteraction }
 export type PointerInteraction = ReturnType<typeof pointerInteraction>
-export { componentProjectionFor, quantumAppForComponent, type QuantumProjection } from '../../src/quantum/apps'
-export { quantumModelSnapshot, observingMovieRevealsQuantumModel, type QuantumModelSnapshot } from '../../src/quantum/science'
+export { componentProjectionFor, quantumAppForComponent, type QuantumProjection } from '../render'
+export { quantumModelSnapshot, observingMovieRevealsQuantumModel, type QuantumModelSnapshot } from '../render'
 // The ONE A432/OKLCH canvas palette — every component canvas paints its colours through these (no rgba/hsla literals).
-export { movieCanvasRgba, movieCanvasHex, A432_HUE } from '../../src/quantum/science'
+export { movieCanvasRgba, movieCanvasHex, A432_HUE } from '../render'
 // The live text ink — the negative-law pole opposite the field, tinted by the current field hue (no shadows).
-export { heroInkColor } from '../../src/thunder/movie/movievars'
+export { heroInkColor } from '../render'
 // The self-researcher — the app hunting theorems in its own ledger (browser-narrated, zero tokens).
-export { selfResearchTheorems, fixedConstantsProvedByTheorems, type TheoremCandidate } from '../../src/quantum/science'
+export { selfResearchTheorems, fixedConstantsProvedByTheorems, type TheoremCandidate } from '../render'
 export {
   plasmaBallComputes,
   realtimeComputationsMoviePaint,
@@ -57,4 +57,4 @@ export {
   type RealtimeComputeMovieChannel,
   type MovieScreensaverEfficiencyReceipt,
   type ScreensaverTier,
-} from '../../src/fire/plasma/ball'
+} from '../render'

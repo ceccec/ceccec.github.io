@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vitepress'
-import { ROSETTA_RAY_HUBS, rosettaRayHub } from '../../../src/water/digit/index.ts'
-import { rayHubPart, rosettaBreadcrumbs } from '../../../src/wind/routes/corpus/index.ts'
+import { ROSETTA_RAY_HUBS, rosettaRayHub } from '../../render'
+import { rayHubPart, rosettaBreadcrumbs } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
 

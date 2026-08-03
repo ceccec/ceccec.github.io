@@ -7,7 +7,7 @@ import { ref, shallowRef, computed } from 'vue'
 import {
   sslTestUiComplete,
   normalizeSslTestHostLabel,
-} from '../../../src/water/encryption/index.ts'
+} from '../../render'
 import UiCard from './ui/Card.vue'
 import UiCardContent from './ui/CardContent.vue'
 import UiBadge from './ui/Badge.vue'

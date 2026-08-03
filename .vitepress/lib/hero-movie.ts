@@ -1,5 +1,5 @@
 // Browser-safe hero movie mount — quantum render + hero glass vars.
-export { createAnimationEngine } from '../../src/0/index'
+export { createAnimationEngine } from '../render'
 export {
   backgroundSceneFromShared,
   drawBackgroundMovie,
@@ -29,17 +29,17 @@ export {
   cardMoviePath,
   cardMovieSeed,
   heroInkColor,
-} from '../../src/thunder/movie/movievars'
+} from '../render'
 export {
   plasmaMoviePalette,
   type PlasmaMoviePalette,
-} from '../../src/fire/plasma/ball'
+} from '../render'
 export {
   decodedCardCrosslinksLabel,
   decodedCardFacetMark,
   decodedCardTextShadow,
   immersiveMovieToggleLabel,
-} from '../../src/thunder/movie/glass'
+} from '../render'
 export {
   plasmaMovieStreams,
   plasmaWiredUuidStreams,
@@ -47,7 +47,7 @@ export {
   AUDIO_DEFAULT_ENABLED,
   AUDIO_ENABLED_STORAGE_KEY,
   SCREENSAVER_IDLE_MS,
-} from '../../src/fire/plasma/ball'
-export { speechIntonation } from '../../src/media/index'
-export { livingTorus } from '../../src/fire/diamonds/index'
-export { backgroundMovieColors, heroMovieChrome, type HeroMovieChrome } from '../../src/thunder/movie/glass'
+} from '../render'
+export { speechIntonation } from '../render'
+export { livingTorus } from '../render'
+export { backgroundMovieColors, heroMovieChrome, type HeroMovieChrome } from '../render'
