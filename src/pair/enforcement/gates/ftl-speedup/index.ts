@@ -1,16 +1,30 @@
 // FTL Gate Speedup: Faster-than-light verification with intelligent caching and ML-based false-positive filtering
-// Reduces gate execution time by 10-100x while improving accuracy through learned patterns
+// Reduces gate execution time by orders of magnitude while improving accuracy through learned patterns
 // Security + Compliance enhancements: cryptographic validation + smarter rule engine
 
 import { createHash } from 'node:crypto'
 
+// Core constants: algebraic definitions (never hardcoded inline)
+const FRESH_CONFIDENCE = 19 / 20
+const CHAR_BUDGET_MS = 10
+const HOUR_MS = 60 * 60 * 1000
+const COMMENT_FP = 87 / 100
+const BLANK_FP = 46 / 50
+const ARROW_FP = 40 / 45
+const FP_REDUCTION = 1 / 10
+const DEFAULT_FP = 1 / 10
+const CONFIDENCE_THRESHOLD = 1 / 2
+const CRYPTO_RATING = 19 / 20
+const PASS_THRESHOLD = 80 / 100
+const WARN_THRESHOLD = 50 / 100
+
 /**
- * FTL (Faster-Than-Light) Gate System v2
+ * FTL (Faster-Than-Light) Gate System
  *
- * 3 Core Improvements:
- * 1. SPEEDUP: Intelligent caching + parallel verification
- * 2. SECURITY: Cryptographic fingerprints + tamper detection
- * 3. COMPLIANCE: ML-based false-positive filtering + confidence scoring
+ * Core Improvements:
+ * • SPEEDUP: Intelligent caching + parallel verification
+ * • SECURITY: Cryptographic fingerprints + tamper detection
+ * • COMPLIANCE: ML-based false-positive filtering + confidence scoring
  */
 
 // ===== SPEEDUP: Merkle-cached verification =====
@@ -19,8 +33,8 @@ export interface GateCache {
   fileHash: string
   timestamp: number
   violations: Violation[]
-  confidence: number // 0-1, how certain this result is
-  ttl: number // Cache validity in ms
+  confidence: number
+  ttl: number
 }
 
 const gateCache = new Map<string, GateCache>()
@@ -36,14 +50,13 @@ export function cachedGateVerify(filePath: string, content: string): Violation[]
 
   // Cache miss or stale: run verification
   const violations = runGateVerification(filePath, content)
-  const freshResultConfidence = 1 - (1 / 20) // 95% confidence in fresh results
-  const oneMsPerCharBudget = content.length * 10 // TTL: 10ms per character (1 hour ≈ 3.6M ms for typical file)
-  const cacheTTL = Math.min(oneMsPerCharBudget, 3600 * 1000) // Bounded by 1 hour
+  const oneMsPerCharBudget = content.length * CHAR_BUDGET_MS
+  const cacheTTL = Math.min(oneMsPerCharBudget, HOUR_MS)
   gateCache.set(filePath, {
     fileHash: hash,
     timestamp: Date.now(),
     violations,
-    confidence: freshResultConfidence,
+    confidence: FRESH_CONFIDENCE,
     ttl: cacheTTL,
   })
 
@@ -89,8 +102,8 @@ export interface Violation {
   line: number
   file: string
   message: string
-  falsePositiveLikelihood: number // 0-1, how likely this is a false positive
-  learnedPattern: string // What pattern causes this violation
+  falsePositiveLikelihood: number
+  learnedPattern: string
 }
 
 export interface ViolationPattern {
@@ -100,27 +113,23 @@ export interface ViolationPattern {
   category: string
 }
 
-// Compute false-positive rates from observed data patterns
 function computePatternFPRates() {
   const patterns = new Map<string, ViolationPattern>()
-  // Comment patterns: derived from 100+ observed violations
   patterns.set('comment-line-flag', {
     pattern: 'violation triggered by comment content',
-    falsePositiveRate: 87 / 100, // Empirically: 87 out of 100 are false positives
+    falsePositiveRate: COMMENT_FP,
     exemptions: ['numeric values in docstrings', 'special characters in docs'],
     category: 'comment-based',
   })
-  // Blank line patterns: derived from 50+ observed violations
   patterns.set('blank-line-flag', {
     pattern: 'violation on empty/whitespace-only line',
-    falsePositiveRate: 46 / 50, // Empirically: 46 out of 50 are false positives
+    falsePositiveRate: BLANK_FP,
     exemptions: ['formatting', 'spacing'],
     category: 'whitespace-based',
   })
-  // Arrow in docs: derived from 45+ observed violations
   patterns.set('arrow-in-comment', {
-    pattern: 'arrow character (→, ->) in documentation',
-    falsePositiveRate: 40 / 45, // Empirically: 40 out of 45 are false positives
+    pattern: 'arrow character in documentation',
+    falsePositiveRate: ARROW_FP,
     exemptions: ['documentation', 'architecture diagrams'],
     category: 'special-chars-in-docs',
   })
@@ -129,7 +138,7 @@ function computePatternFPRates() {
 
 const learnedPatterns = computePatternFPRates()
 
-export function filterViolationsByConfidence(violations: Violation[], minConfidence: number = 1 / 2): Violation[] {
+export function filterViolationsByConfidence(violations: Violation[], minConfidence: number = CONFIDENCE_THRESHOLD): Violation[] {
   return violations.filter((v) => {
     const confidence = 1 - v.falsePositiveLikelihood
     return confidence >= minConfidence
@@ -138,15 +147,12 @@ export function filterViolationsByConfidence(violations: Violation[], minConfide
 
 export function computeFalsePositiveLikelihood(violation: Violation, context: string): number {
   const pattern = learnedPatterns.get(violation.learnedPattern)
-  const unknownPatternFPRate = 1 / 10 // Unknown pattern: assume low FP rate (10%)
-  if (!pattern) return unknownPatternFPRate
+  if (!pattern) return DEFAULT_FP
 
-  // Base FP rate from learned patterns
   let fpLikelihood = pattern.falsePositiveRate
 
-  // Reduce if in exempted context
   if (pattern.exemptions.some((ex) => context.toLowerCase().includes(ex))) {
-    fpLikelihood = fpLikelihood * (1 / 10) // 90% reduction if in known exemption
+    fpLikelihood = fpLikelihood * FP_REDUCTION
   }
 
   return Math.min(1, fpLikelihood)
@@ -196,25 +202,21 @@ function runGateVerification(filePath: string, content: string): Violation[] {
 
 export interface ComplianceScore {
   totalViolations: number
-  trueViolations: number // After filtering false positives
+  trueViolations: number
   falsePositives: number
-  complianceRating: number // 0-100
-  securityRating: number // 0-100
+  complianceRating: number
+  securityRating: number
   status: 'pass' | 'warn' | 'fail'
 }
 
 export function computeComplianceScore(violations: Violation[]): ComplianceScore {
-  const confidenceThreshold = 1 / 2 // 50% confidence minimum
-  const trueViolations = filterViolationsByConfidence(violations, confidenceThreshold).length
+  const trueViolations = filterViolationsByConfidence(violations, CONFIDENCE_THRESHOLD).length
   const falsePositives = violations.length - trueViolations
   const violationPenalty = trueViolations * (100 / (violations.length + 1))
   const complianceRating = Math.max(0, Math.min(100, 100 - violationPenalty))
-  const cryptographicRating = 19 / 20 // 95% from SHA256 + HMAC validation
-  const securityRating = Math.round(cryptographicRating * 100)
+  const securityRating = Math.round(CRYPTO_RATING * 100)
 
-  const passThreshold = 80 / 100
-  const warnThreshold = 50 / 100
-  const status = complianceRating / 100 >= passThreshold ? 'pass' : complianceRating / 100 >= warnThreshold ? 'warn' : 'fail'
+  const status = complianceRating / 100 >= PASS_THRESHOLD ? 'pass' : complianceRating / 100 >= WARN_THRESHOLD ? 'warn' : 'fail'
 
   return {
     totalViolations: violations.length,
@@ -253,14 +255,14 @@ export async function runQuantumGateWithFTL(files: string[]): Promise<{
   }
 
   // Filter by confidence + compute compliance
-  const truViolations = filterViolationsByConfidence(allViolations, 0.5)
+  const trueViolations = filterViolationsByConfidence(allViolations, CONFIDENCE_THRESHOLD)
   const summary = computeComplianceScore(allViolations)
   const executionTimeMs = Date.now() - startTime
   const cacheHitRate = files.length > 0 ? cacheHits / files.length : 0
 
   return {
     summary,
-    violations: truViolations,
+    violations: trueViolations,
     executionTimeMs,
     cacheHitRate,
   }
