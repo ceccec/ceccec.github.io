@@ -26,14 +26,21 @@ export interface TheoremAnimation {
 /**
  * Animation status: PROVEN
  * 558 unique animations for 558 unique proofs (exact bijection)
- * Generated via computedTheoremFigureAndAnimation(atom):
- *   1. Content-address theorem via toUuid(`figure:${provedBy}:${theorem}`)
- *   2. Extract digit sequence from address (deterministic)
- *   3. Map to shape/tempo/direction/amplitude based on algebraic statement archetype
- *   4. Animation sealed as 4th element (south pole) of theorem seal
  *
- * Zero storage: all animations computed on-demand from theorem data
- * All animations deterministic: identity selects the shape
+ * CRITICAL: Shape computed from theorem's algebraic statement ONLY
+ * No randomness, no external state, no configuration — pure algebra
+ *
+ * Generated via computedTheoremFigureAndAnimation(atom):
+ *   1. Extract algebraic statement from theorem
+ *   2. Determine archetype via figureArchetypeOf(statement)
+ *   3. Archetype selects shape family: wheel|orbit|region|lattice|spiral|knot|helix
+ *   4. Content-address theorem via toUuid(statement) → digit sequence
+ *   5. Digits map to tempo/direction/amplitude parameters
+ *   6. Animation sealed as 4th element (south pole) of theorem seal
+ *
+ * Falsifiable: change algebraic statement → shape must change deterministically
+ * Zero storage: all animations computed on-demand from theorem algebra
+ * All animations deterministic: identity (algebraic statement) selects the shape
  */
 export function animationDemarcation(): {
   status: 'proven' | 'open' | 'flagged'
