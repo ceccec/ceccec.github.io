@@ -72,6 +72,7 @@
     "diagnose": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts diagnose",
     "diagnose:watch": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts diagnose --watch",
     "cracks:measure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts cracks:measure",
+    "waves:run": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts waves:run",
     "audit:tokens": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/learning/index.ts transcriptTokenAuditExit",
     "tokens:live": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/learning/index.ts transcriptTokenLiveExit",
     "audit:prose": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/computational/index.ts proseTokenMonitor",

@@ -17,7 +17,7 @@ export {
   type CausalRelation,
   type CausalGraph,
   type FTLPrediction
-} from './ftl-predictor'
+} from './ftlPredictor'
 
 export {
   EquilibriumResourceManager,
@@ -25,11 +25,11 @@ export {
   type ResourceMetrics,
   type EquilibriumState,
   type WorkloadConfig
-} from './resource-equilibrium'
+} from './resourceEquilibrium'
 
 import { LiveDataIngester, QuantumCombinatorialTrainer, type Strategy, type StrategyPopulation } from './combinatorial'
-import { FTLPredictor, type FTLPrediction } from './ftl-predictor'
-import { EquilibriumResourceManager, EquilibriumControlLoop, type ResourceMetrics, type EquilibriumState } from './resource-equilibrium'
+import { FTLPredictor, type FTLPrediction } from './ftlPredictor'
+import { EquilibriumResourceManager, EquilibriumControlLoop, type ResourceMetrics, type EquilibriumState } from './resourceEquilibrium'
 import { toUuid, merkleFold } from '../../0'
 
 // ──── Unified Training Orchestrator ────

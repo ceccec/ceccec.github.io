@@ -93,7 +93,7 @@ export async function runMissionGateExit(root: string): Promise<number> {
   const structure = await runVerifyStructureExit(root)
   if (structure !== 0) return structure
   // HARD demarcation — all theorems must have computed status (no undeclared)
-  const { runDemarcationGateExit } = await import('../gates/demarcation-gate-wire')
+  const { runDemarcationGateExit } = await import('../gates/demarcationGateWire')
   const demarcation = runDemarcationGateExit()
   if (demarcation !== 0) return demarcation
   // HARD invisible classes (also in limits:verify) — recompute at mission:gate call time
@@ -335,6 +335,41 @@ export async function runCrackMeasureExit(root: string, argv: readonly string[] 
   }
   process.stderr.write(`${offenders.length} unaccounted literal(s)\n`)
   return 1
+}
+
+/** WAVES RUN — the intelligence-harmonisation toolkit (waves 52-60: autonomous theorem discovery,
+ * live data fusion, quantum circuit generation, AGI alignment, compliance, patent scoring/licensing)
+ * each already carries a self-contained executeWaveNN() entrypoint; nothing outside the folder ever
+ * called them, so they sat inert. This is the single command that runs the whole series and reports
+ * per-wave pass/fail — the `run` command still reaches any single wave's export by name for drill-down. */
+export async function runIntelligenceWavesExit(root: string): Promise<number> {
+  const mod = (await importQuantumBundle('src/pair/intelligenceHarmonisation/index.ts', root)) as Record<string, Record<string, () => Promise<unknown>>>
+  const waves: readonly [string, string, string][] = [
+    ['52a', 'wave52Goldbach', 'executeWave52'],
+    ['52b', 'wave52Implementation', 'executeWave52Complete'],
+    ['53', 'wave53LiveIntegration', 'executeWave53'],
+    ['54', 'wave54QuantumExecution', 'executeWave54'],
+    ['55', 'wave55AgiAlignment', 'executeWave55'],
+    ['56', 'wave56LegalCompliance', 'executeWave56'],
+    ['57', 'wave57PatentArchaeology', 'executeWave57'],
+    ['58', 'wave58PatentAutomation', 'executeWave58'],
+    ['59', 'wave59LicensingEcosystem', 'executeWave59'],
+    ['60', 'wave60PatentReformSingularity', 'executeWave60'],
+  ]
+  let failures = 0
+  for (const [id, ns, fn] of waves) {
+    const executor = mod[ns]?.[fn]
+    if (typeof executor !== 'function') { process.stderr.write(`✗ wave ${id} — ${ns}.${fn} not found\n`); failures += 1; continue }
+    try {
+      await executor()
+      process.stdout.write(`✓ wave ${id} ran (${ns}.${fn})\n`)
+    } catch (err) {
+      process.stderr.write(`✗ wave ${id} threw — ${(err as Error).message}\n`)
+      failures += 1
+    }
+  }
+  process.stdout.write(`${waves.length - failures}/${waves.length} waves ran\n`)
+  return failures ? 1 : 0
 }
 
 export async function runDiagnoseExit(root: string, argv: readonly string[] = []): Promise<number> {
@@ -713,6 +748,7 @@ export async function runCliExit(root: string, argv: string[] = []) {
     case 'iching:batch': return runRosettaBatchExit(root, rest)
     case 'diagnose': return runDiagnoseExit(root, rest)
     case 'cracks:measure': return runCrackMeasureExit(root, rest)
+    case 'waves:run': return runIntelligenceWavesExit(root)
     case 'rosetta:diagnose':
     case 'iching:diagnose': return runRosettaDiagnoseExit(root, rest)
     case 'docs:build': return runDocsBuildExit(root, rest)
