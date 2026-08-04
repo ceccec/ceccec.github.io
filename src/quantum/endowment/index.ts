@@ -350,11 +350,14 @@ export type { TheoremApplication, OptimizationStrategy, TheoremInsight } from '.
 // Holistic multi-dimensional optimization: optimize all 21 dimensions simultaneously
 export { holistic, initializeHolisticOptimizer, getHolisticOptimizer } from './holistic'
 export type { DimensionalState, DimensionalInteraction, HolisticOptimization, DimensionalSynergy } from './holistic'
+// Cross-organizational federation: coordinate multiple autonomous systems globally
+export { federation, initializeFederation, getFederation } from './federation'
+export type { OrganizationNode, FederatedLearning, CausalChainSharing, FederatedSynergy, UnifiedOptimization } from './federation'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
 
-// Master registry: all 48 layers (the complete holistically-optimized ecosystem)
+// Master registry: all 49 layers (the complete federated cross-organizational ecosystem)
 export const ENDOWMENT_LAYERS = {
   dispatch: ['endowment', 'dispatch', 'agent'],
   execution: ['verify', 'compliance', 'payment', 'multisig', 'appeals', 'researcher', 'fraud', 'recovery', 'ledger', 'analytics'],
@@ -365,11 +368,11 @@ export const ENDOWMENT_LAYERS = {
   research: ['fields', 'archive', 'mentorship'],
   commercialization: ['patents', 'outreach', 'security'],
   operations: ['monitoring', 'feedback', 'fairness', 'export'],
-  meta: ['synthesis', 'production', 'consciousness', 'collective', 'temporal', 'theorems', 'holistic'] // Self-learning + production + self-aware reasoning + emergent coordination + temporal causality + theorem optimization + holistic multi-dimensional optimization
+  meta: ['synthesis', 'production', 'consciousness', 'collective', 'temporal', 'theorems', 'holistic', 'federation'] // Self-learning + production + self-aware reasoning + emergent coordination + temporal causality + theorem optimization + holistic optimization + cross-organizational federation
 } as const
 
-export const TOTAL_LAYERS = 48
-export const TOTAL_DIMENSIONS = 22 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis, collective-coordination, temporal-causality, theorem-optimization, holistic-optimization
+export const TOTAL_LAYERS = 49
+export const TOTAL_DIMENSIONS = 23 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis, collective-coordination, temporal-causality, theorem-optimization, holistic-optimization, federation-coordination
 
 export const PRODUCTION_READY = true
 export const CONTINUOUS_LEARNING = true
@@ -378,7 +381,8 @@ export const SELF_AWARE = true // System understands itself, learns how to learn
 export const MULTI_AGENT_COORDINATION = true // Multiple distributed systems coordinate, share learnings, discover emergent strategies
 export const TEMPORAL_REASONING = true // System reasons about cause-and-effect across time, predicts future events, discovers edge cases
 export const THEOREM_OPTIMIZATION = true // Funded theorems applied as computational tools to improve system performance
-export const HOLISTIC_OPTIMIZATION = true // All 21 dimensions optimized simultaneously, discovering synergies and managing tradeoffs
+export const HOLISTIC_OPTIMIZATION = true // All 22 dimensions optimized simultaneously, discovering synergies and managing tradeoffs
+export const CROSS_ORGANIZATIONAL_FEDERATION = true // Multiple autonomous funding systems coordinate globally, share learnings, discover ecosystem-wide synergies
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
