@@ -7,11 +7,11 @@ import { THEOREM_ATOM_SEED } from '../../../../4/6'
 /**
  * Learning loop pattern (quantum computing):
  *
- * • Discover: Run analysis/gate/audit
- * • Save: Encode finding as fold (src/X/Y/index.ts)
- * • Reuse: Next wave queries saved discovery
- * • Improve: Refine gate criteria based on failure patterns
- * • Repeat: No queue — immediate save → reuse → discover
+ * - Discover: Run analysis/gate/audit
+ * - Save: Encode finding as fold (src/X/Y/index.ts)
+ * - Reuse: Next wave queries saved discovery
+ * - Improve: Refine gate criteria based on failure patterns
+ * - Repeat: No queue, immediate save, reuse, discover cycle
  *
  * This session's discoveries documented below via SESSION_DISCOVERIES
  * and FEEDBACK_LOOPS arrays, all metrics computed from THEOREM_ATOM_SEED.

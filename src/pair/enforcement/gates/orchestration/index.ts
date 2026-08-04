@@ -9,16 +9,16 @@ import { consolidationStats } from '../computed-research-rows'
 
 /**
  * Orchestration System Architecture:
- * Pipeline flow: Chat Query → handleChatQuery → Theorem lookup →
- * Learning Loop (pattern matching) → Predictive Detection (crack analysis) →
- * Gate Selection (which tests to run) → Adversarial Challenge →
- * Scoring + Feedback → Response to user
+ * Pipeline: Chat Query to handleChatQuery to Theorem lookup to
+ * Learning Loop (pattern matching) to Predictive Detection (crack analysis) to
+ * Gate Selection (which tests to run) to Adversarial Challenge to
+ * Scoring and Feedback returning Response to user
  *
  * System properties:
- * • Everything flows through one unified system
- * • Each node feeds into the next (no isolation)
- * • Failures propagate back as learning signals
- * • Confidence metrics drift adaptively as system learns
+ * - Everything flows through one unified system
+ * - Each node feeds into the next (no isolation)
+ * - Failures propagate back as learning signals
+ * - Confidence metrics drift adaptively as system learns
  */
 
 export interface OrchestrationState {

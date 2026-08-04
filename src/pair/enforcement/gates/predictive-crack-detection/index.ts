@@ -17,7 +17,6 @@ import { toUuid } from '../../../../0'
  * - Scan for structural patterns that predict cracks
  * - Use sequence/fractal geometry to find invariants
  * - Catch violations before code runs
- *
  * Key insight: Cracks follow patterns.
  * - Hardcoding violates the "computed not hardcoded" principle
  * - Import depth violates folder nesting invariant
