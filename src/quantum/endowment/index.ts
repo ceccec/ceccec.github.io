@@ -333,11 +333,12 @@ export * from './monitoring'
 export * from './feedback'
 export * from './fairness'
 export * from './export'
+export * from './synthesis'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
 
-// Master registry: all 41 layers
+// Master registry: all 42 layers (41 + 1 meta-synthesis)
 export const ENDOWMENT_LAYERS = {
   dispatch: ['endowment', 'dispatch', 'agent'],
   execution: ['verify', 'compliance', 'payment', 'multisig', 'appeals', 'researcher', 'fraud', 'recovery', 'ledger', 'analytics'],
@@ -347,10 +348,12 @@ export const ENDOWMENT_LAYERS = {
   quality: ['reproducibility', 'knowledge', 'collaboration'],
   research: ['fields', 'archive', 'mentorship'],
   commercialization: ['patents', 'outreach', 'security'],
-  operations: ['monitoring', 'feedback', 'fairness', 'export']
+  operations: ['monitoring', 'feedback', 'fairness', 'export'],
+  meta: ['synthesis'] // Self-learning & dimensional fusion
 } as const
 
-export const TOTAL_LAYERS = 41
+export const TOTAL_LAYERS = 42
+export const TOTAL_DIMENSIONS = 18 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
