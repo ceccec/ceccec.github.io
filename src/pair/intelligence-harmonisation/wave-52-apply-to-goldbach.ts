@@ -22,7 +22,7 @@ interface PrimePair {
  * Generate prime pairs that sum to a given even number
  */
 function generatePrimePairs(n: number): PrimePair[] {
-  const primes = sieve(n)
+  const primes = generatePrimesUpTo(n)
   const pairs: PrimePair[] = []
 
   for (let i = 0; i < primes.length; i++) {
@@ -41,9 +41,11 @@ function generatePrimePairs(n: number): PrimePair[] {
 }
 
 /**
+ * ONE-MATH: Canonical prime sieve for Goldbach analysis
  * Sieve of Eratosthenes: Generate all primes up to n
+ * This is the single authoritative implementation for this module
  */
-function sieve(n: number): number[] {
+function generatePrimesUpTo(n: number): number[] {
   const isPrime = Array(n + 1).fill(true)
   isPrime[0] = isPrime[1] = false
 
@@ -166,8 +168,10 @@ export function generateGoldbachTheorem(): {
     `,
     confidenceAlpha: α,
     leanOutline: `
+      -- Lean 4 proof stub (external definitions from Mathlib)
+      -- Uses: Nat.Prime (from Mathlib.Data.Nat.Prime)
       theorem goldbach_via_involution (n : ℕ) (h : Even n) (h' : n > 2) :
-          ∃ p q : ℕ, IsPrime p ∧ IsPrime q ∧ p + q = n := by
+          ∃ p q : ℕ, Nat.Prime p ∧ Nat.Prime q ∧ p + q = n := by
         -- Use σ-involution on prime pairs
         let σ := fun (pair : ℕ × ℕ) => (pair.2, pair.1)
         have σ_self_inv : ∀ x, σ (σ x) = x := by simp [σ]

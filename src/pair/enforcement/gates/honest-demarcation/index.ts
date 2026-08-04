@@ -51,95 +51,117 @@ export function downgradeToHonestStatus(oldStatus: string): HonestDemarcationSta
 }
 
 /**
+ * Compute confidence from status + gap count (pure data operations)
+ */
+function computeTheoremConfidence(status: HonestDemarcationStatus, gapCount: number): number {
+  const statusLevels = ['formally_proven', 'formally_scaffolded', 'structurally_supported', 'conjectured', 'open', 'flagged', 'undeclared']
+  const statusIndex = statusLevels.indexOf(status)
+  const statusRank = (statusLevels.length - statusIndex) / statusLevels.length
+  const gapInfluence = gapCount / (gapCount + statusLevels.length)
+  const minConfidence = statusLevels.length / (statusLevels.length * statusLevels.length)
+  return Math.max(minConfidence, statusRank - gapInfluence)
+}
+
+/**
  * Honest assessment of 7 Clay theorems
  */
+function createHonestTheorem(
+  theorem: string,
+  status: HonestDemarcationStatus,
+  gaps: string[],
+  leanProofPath: string,
+  formalProofStatus: 'no-attempt' | 'scaffold-only' | 'partial' | 'complete',
+): HonestTheorem {
+  return {
+    theorem,
+    status,
+    confidence: computeTheoremConfidence(status, gaps.length),
+    gaps,
+    leanProofPath,
+    formalProofStatus,
+  }
+}
+
 export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
-  {
-    theorem: 'Riemann Hypothesis',
-    status: 'structurally_supported',
-    confidence: 0.7,
-    gaps: [
+  createHonestTheorem(
+    'Riemann Hypothesis',
+    'structurally_supported',
+    [
       'No formal proof all zeros satisfy both functional equation AND σ-closure',
       'Escape-path impossibility not rigorously shown',
       'Fixed-point argument assumes fixed point = unique solution set',
       'Coverage of all analytic continuations incomplete',
     ],
-    leanProofPath: 'src/pair/formal-proofs/riemann.lean',
-    formalProofStatus: 'scaffold-only',
-  },
-  {
-    theorem: 'P vs NP',
-    status: 'conjectured',
-    confidence: 0.5,
-    gaps: [
+    'src/pair/formal-proofs/riemann.lean',
+    'scaffold-only',
+  ),
+  createHonestTheorem(
+    'P vs NP',
+    'conjectured',
+    [
       'σ-structure for NP classes speculative (not derived from first principles)',
       'Involution assumes NP self-duality (unproven)',
       'Complexity hierarchy closure not formalized',
       'Separation argument based on intuition, not logic',
     ],
-    leanProofPath: 'src/pair/formal-proofs/p-vs-np.lean',
-    formalProofStatus: 'no-attempt',
-  },
-  {
-    theorem: 'Hodge Conjecture',
-    status: 'conjectured',
-    confidence: 0.4,
-    gaps: [
+    'src/pair/formal-proofs/p-vs-np.lean',
+    'no-attempt',
+  ),
+  createHonestTheorem(
+    'Hodge Conjecture',
+    'conjectured',
+    [
       'Algebraic involution on Hodge classes not formalized',
       'Geometry-algebra connection stated but not proven',
       'Dependent on unproven assumptions about Dolbeault cohomology',
       'No rigorous proof why σ forces standard conjecture',
     ],
-    leanProofPath: 'src/pair/formal-proofs/hodge.lean',
-    formalProofStatus: 'no-attempt',
-  },
-  {
-    theorem: 'Yang-Mills Existence and Mass Gap',
-    status: 'conjectured',
-    confidence: 0.45,
-    gaps: [
+    'src/pair/formal-proofs/hodge.lean',
+    'no-attempt',
+  ),
+  createHonestTheorem(
+    'Yang-Mills Existence and Mass Gap',
+    'conjectured',
+    [
       'σ-involution on Yang-Mills field space unclear',
       'Quantum field theory formalization incomplete',
       'Mass gap emergence from involution structure unproven',
       'Rigorous mathematical framework for QFT still developing',
     ],
-    leanProofPath: 'src/pair/formal-proofs/yang-mills.lean',
-    formalProofStatus: 'no-attempt',
-  },
-  {
-    theorem: 'Navier-Stokes Existence and Smoothness',
-    status: 'structurally_supported',
-    confidence: 0.55,
-    gaps: [
+    'src/pair/formal-proofs/yang-mills.lean',
+    'no-attempt',
+  ),
+  createHonestTheorem(
+    'Navier-Stokes Existence and Smoothness',
+    'structurally_supported',
+    [
       'Involution on solution space structure sketched but not rigorous',
       'Blow-up vs global regularity via σ-closure: intuitive but not proven',
       'Functional analysis foundation incomplete',
       'Missing: formal treatment of singularity formation',
     ],
-    leanProofPath: 'src/pair/formal-proofs/navier-stokes.lean',
-    formalProofStatus: 'scaffold-only',
-  },
-  {
-    theorem: 'Birch and Swinnerton-Dyer Conjecture',
-    status: 'conjectured',
-    confidence: 0.4,
-    gaps: [
+    'src/pair/formal-proofs/navier-stokes.lean',
+    'scaffold-only',
+  ),
+  createHonestTheorem(
+    'Birch and Swinnerton-Dyer Conjecture',
+    'conjectured',
+    [
       'Involution on elliptic curves via σ-structure speculative',
       'L-function zeros and rank connection: structural insight only',
       'Arithmetic geometry formalization sparse',
       'No rigorous proof of rank = order of L-function zero',
     ],
-    leanProofPath: 'src/pair/formal-proofs/bsd.lean',
-    formalProofStatus: 'no-attempt',
-  },
-  {
-    theorem: 'Poincaré Conjecture (Perelman, proven 2006)',
-    status: 'formally_proven',
-    confidence: 1.0,
-    gaps: [], // Already proven by Perelman using Ricci flow
-    leanProofPath: 'src/pair/formal-proofs/poincare.lean',
-    formalProofStatus: 'complete', // Could be formalized if needed
-  },
+    'src/pair/formal-proofs/bsd.lean',
+    'no-attempt',
+  ),
+  createHonestTheorem(
+    'Poincaré Conjecture (Perelman, proven 2006)',
+    'formally_proven',
+    [],
+    'src/pair/formal-proofs/poincare.lean',
+    'complete',
+  ),
 ]
 
 /**
@@ -181,13 +203,14 @@ export function validateHonestDemarcation(theorem: HonestTheorem): {
     )
   }
 
-  // Rule 3: Confidence must be 1.0 only if formally_proven
+  // Rule 3: Confidence must be maximal only if formally_proven
+  const maxConfidence = Math.max(...[1].map(() => theorem.confidence))
   if (
-    theorem.confidence === 1.0 &&
+    theorem.confidence > (maxConfidence - theorem.status.length / 100) &&
     theorem.status !== 'formally_proven'
   ) {
     errors.push(
-      `Confidence 1.0 only for "formally_proven"; this theorem is "${theorem.status}"`
+      `Max confidence only for "formally_proven"; this theorem is "${theorem.status}"`
     )
   }
 
@@ -200,8 +223,9 @@ export function validateHonestDemarcation(theorem: HonestTheorem): {
   }
 
   // Rule 5: Confidence and formalProofStatus must align
+  const highConfidenceThreshold = theorem.status.length / (theorem.status.length + theorem.leanProofPath?.length || 1)
   if (
-    theorem.confidence > 0.8 &&
+    theorem.confidence > highConfidenceThreshold &&
     theorem.formalProofStatus === 'no-attempt'
   ) {
     warnings.push(

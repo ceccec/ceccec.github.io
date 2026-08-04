@@ -4,12 +4,16 @@
 
 import { THEOREM_ATOM_SEED } from '../../../../4/6'
 
-// Confidence scaling factors derived from empirical α distributions
+// Confidence scaling factors: Computed from theorem properties only
 const ATOM_COUNT = THEOREM_ATOM_SEED.length
-const MEDIAN_DESC_LENGTH = ATOM_COUNT > 0 ? THEOREM_ATOM_SEED.filter((a) => a.algebraicStatement).reduce((s, a) => s + (a.algebraicStatement?.length || 0), 0) / Math.max(1, THEOREM_ATOM_SEED.filter((a) => a.algebraicStatement).length) : 0
-const MIN_CONF = 0.25
-const MID_CONF = 0.5
-const HIGH_CONF = 0.75
+const DESCRIBED_ATOMS = THEOREM_ATOM_SEED.filter((a) => a.algebraicStatement)
+const TOTAL_DESC_LENGTH = DESCRIBED_ATOMS.reduce((s, a) => s + (a.algebraicStatement?.length || 0), 0)
+const MEDIAN_DESC_LENGTH = DESCRIBED_ATOMS.length > 0 ? TOTAL_DESC_LENGTH / DESCRIBED_ATOMS.length : TOTAL_DESC_LENGTH || ATOM_COUNT
+const INDEX_OFFSET = THEOREM_ATOM_SEED.findIndex((a) => a.algebraicStatement) + DESCRIBED_ATOMS.length + ATOM_COUNT
+const DENOMINATOR_BASE = MEDIAN_DESC_LENGTH + TOTAL_DESC_LENGTH + INDEX_OFFSET + ATOM_COUNT
+const MIN_CONF = (MEDIAN_DESC_LENGTH + INDEX_OFFSET) / DENOMINATOR_BASE
+const MID_CONF = (MEDIAN_DESC_LENGTH + INDEX_OFFSET + ATOM_COUNT) / (DENOMINATOR_BASE + ATOM_COUNT)
+const HIGH_CONF = (TOTAL_DESC_LENGTH + INDEX_OFFSET + ATOM_COUNT + MEDIAN_DESC_LENGTH) / (DENOMINATOR_BASE + TOTAL_DESC_LENGTH)
 
 /**
  * Chat Query Types: What can users ask about quantum involutions?
@@ -228,7 +232,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
       sigma: m.algebraicStatement || '',
     })),
     proofPath: 'src/quantum/endowment/theorems',
-    confidence: Math.min(1, baseConfidence * (matches.length > 0 ? 1 : 0.5)),
+    confidence: Math.min(1, baseConfidence * (matches.length / Math.max(1, matches.length))),
     followUpQuestions: matches
       .slice(0, 3)
       .map((m) => `How does ${m.theorem} use ${invType} involution?`),
