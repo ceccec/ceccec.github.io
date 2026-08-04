@@ -222,11 +222,11 @@ function walkSrcTree(root: string, out: WalkOut): void {
       if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
       const full = join(dir, entry.name)
       if (entry.isDirectory()) {
-        if (entry.name.includes('-') && !/^\d+$/.test(entry.name)) {
+        if ((entry.name.includes('-') || /[a-z][A-Z]/.test(entry.name)) && !/^\d+$/.test(entry.name)) {
           out.hyphenFolders.push({
             path: join('src', ...relParts, entry.name),
             segment: entry.name,
-            reason: 'hyphenated folder — two words disguised as one; nest as word/word (one word per folder level)' })
+            reason: 'compound folder name (hyphenated or camelCase) — two words disguised as one; nest as word/word (one word per folder level)' })
         }
         walk(full, [...relParts, entry.name])
       } else if (entry.name.endsWith('.ts')) {

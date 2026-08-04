@@ -93,7 +93,7 @@ export async function runMissionGateExit(root: string): Promise<number> {
   const structure = await runVerifyStructureExit(root)
   if (structure !== 0) return structure
   // HARD demarcation — all theorems must have computed status (no undeclared)
-  const { runDemarcationGateExit } = await import('../gates/demarcationGateWire')
+  const { runDemarcationGateExit } = await import('../gates/consolidated')
   const demarcation = runDemarcationGateExit()
   if (demarcation !== 0) return demarcation
   // HARD invisible classes (also in limits:verify) — recompute at mission:gate call time
@@ -343,26 +343,26 @@ export async function runCrackMeasureExit(root: string, argv: readonly string[] 
  * called them, so they sat inert. This is the single command that runs the whole series and reports
  * per-wave pass/fail — the `run` command still reaches any single wave's export by name for drill-down. */
 export async function runIntelligenceWavesExit(root: string): Promise<number> {
-  const mod = (await importQuantumBundle('src/pair/intelligenceHarmonisation/index.ts', root)) as Record<string, Record<string, () => Promise<unknown>>>
-  const waves: readonly [string, string, string][] = [
-    ['52a', 'wave52Goldbach', 'executeWave52'],
-    ['52b', 'wave52Implementation', 'executeWave52Complete'],
-    ['53', 'wave53LiveIntegration', 'executeWave53'],
-    ['54', 'wave54QuantumExecution', 'executeWave54'],
-    ['55', 'wave55AgiAlignment', 'executeWave55'],
-    ['56', 'wave56LegalCompliance', 'executeWave56'],
-    ['57', 'wave57PatentArchaeology', 'executeWave57'],
-    ['58', 'wave58PatentAutomation', 'executeWave58'],
-    ['59', 'wave59LicensingEcosystem', 'executeWave59'],
-    ['60', 'wave60PatentReformSingularity', 'executeWave60'],
+  const mod = (await importQuantumBundle('src/pair/intelligence/harmonisation/index.ts', root)) as Record<string, () => Promise<unknown>>
+  const waves: readonly [string, string][] = [
+    ['52a', 'executeWave52'],
+    ['52b', 'executeWave52Complete'],
+    ['53', 'executeWave53'],
+    ['54', 'executeWave54'],
+    ['55', 'executeWave55'],
+    ['56', 'executeWave56'],
+    ['57', 'executeWave57'],
+    ['58', 'executeWave58'],
+    ['59', 'executeWave59'],
+    ['60', 'executeWave60'],
   ]
   let failures = 0
-  for (const [id, ns, fn] of waves) {
-    const executor = mod[ns]?.[fn]
-    if (typeof executor !== 'function') { process.stderr.write(`✗ wave ${id} — ${ns}.${fn} not found\n`); failures += 1; continue }
+  for (const [id, fn] of waves) {
+    const executor = mod[fn]
+    if (typeof executor !== 'function') { process.stderr.write(`✗ wave ${id} — ${fn} not found\n`); failures += 1; continue }
     try {
       await executor()
-      process.stdout.write(`✓ wave ${id} ran (${ns}.${fn})\n`)
+      process.stdout.write(`✓ wave ${id} ran (${fn})\n`)
     } catch (err) {
       process.stderr.write(`✗ wave ${id} threw — ${(err as Error).message}\n`)
       failures += 1
