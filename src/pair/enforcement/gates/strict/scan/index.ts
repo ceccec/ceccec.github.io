@@ -1921,7 +1921,7 @@ export function runBindFuseExit(root = '', _argv: readonly string[] = []): numbe
 export function costBound(root: string = enforcementScanRoot()) {
   const doubleText = readFileSync(join(root, 'src/water/double/index.ts'), 'utf8')
   const featuresText = readFileSync(join(root, 'src/fire/features/index.ts'), 'utf8')
-  const uiText = readFileSync(join(root, 'src/wind/ui/index.ts'), 'utf8')
+  const uiText = readFileSync(join(root, 'src/ui/index.ts'), 'utf8')
   const weaveText = readFileSync(join(root, 'src/pair/enforcement/trinity/weave/index.ts'), 'utf8')
   const laws = [
     { law: 'zero-token runtime', marker: 'zero tokens', where: 'wind/ui (recompute client-side at zero tokens)', present: uiText.includes('zero tokens') },
@@ -1965,7 +1965,7 @@ export function costTheorem(root: string = enforcementScanRoot()) {
     apps: read('src/quantum/apps/index.ts'),
     topology: read('src/mountain/topology/index.ts'),
     weave: read('src/pair/enforcement/trinity/weave/index.ts'),
-    ui: read('src/wind/ui/index.ts'),
+    ui: read('src/ui/index.ts'),
   }
   const ledger = [
     { binding: 'no-key public APIs (USGS · Open-Meteo · OpenAlex · World Bank)', cost: 'fetch latency + bytes · price 0', theorem: 'torusData — dimensionless adapter ratios, units demarcated', marker: 'export function torusData', source: sources.features },

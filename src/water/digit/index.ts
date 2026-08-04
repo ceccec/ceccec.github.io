@@ -2064,7 +2064,7 @@ export const ROSETTA_CANONICAL_HOME: Readonly<Record<string, string>> = {
   learning: 'src/learning/index.ts',
   site: 'src/wind/site/index.ts',
   types: 'src/wind/types/index.ts',
-  ui: 'src/wind/ui/index.ts',
+  ui: 'src/ui/index.ts',
   iching: 'src/earth/iching/index.ts',
   rosetta: 'src/learning/index.ts', // dissolved into learning — no own index.ts
   routes: 'src/routes/index.ts', // topic-parent (nested corpus/automount barrels)
