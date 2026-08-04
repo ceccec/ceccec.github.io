@@ -52,7 +52,7 @@ async function deployQuantumSystem() {
 
     // Phase 2: Build
     log('\n═ PHASE 2: QUANTUM BUILD (All 70 Waves)', 'cyan')
-    await runCommand('npm ci', 'Install dependencies')
+    await runCommand('npm install', 'Install dependencies')
     await runCommand('npm run build', 'Build all 70 waves')
 
     // Phase 3: Local verification
