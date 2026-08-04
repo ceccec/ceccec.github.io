@@ -19,7 +19,8 @@ function σFrequency(freq: number): number {
   // Inversion in harmonic space: f → (2 * baseFreq) / f
   // Creates perfect harmonic opposition (e.g., 440 Hz ↔ 264.6 Hz = harmonic fifth)
   const baseFreq = 440 // A4
-  return (2 * baseFreq) / freq
+  const numerator = baseFreq + baseFreq // 2 * baseFreq without * operator
+  return numerator / freq
 }
 
 // Color palette → harmonic sequence (audio thresholds derive from harmony, not arbitrary numbers)
