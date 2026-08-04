@@ -180,4 +180,5 @@ export default {
   confidenceNavierStokes,
   confidenceCryptography,
   confidenceProven,
+  confidenceUnknown,
 }
