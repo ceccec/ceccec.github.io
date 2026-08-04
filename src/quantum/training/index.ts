@@ -129,9 +129,21 @@ export class QuantumTrainingOrchestrator {
     }
 
     // Transform data for causal learning
+    // Aggregate features across all points (average per dimension)
+    const feature_dimensions = buffer.points[0]?.features.length || 10
+    const aggregated_features = Array(feature_dimensions).fill(0)
+    for (const point of buffer.points) {
+      for (let i = 0; i < feature_dimensions; i++) {
+        aggregated_features[i] += (point.features[i] || 0)
+      }
+    }
+    for (let i = 0; i < feature_dimensions; i++) {
+      aggregated_features[i] /= buffer.points.length || 1
+    }
+
     const historical = {
-      features: buffer.points.map(p => p.features),
-      labels: buffer.points.map((_, i) => [Math.random()]), // Simulated labels
+      features: aggregated_features,
+      labels: buffer.points.map((_, i) => Math.random()), // Simulated labels (1D)
       timestamps: buffer.points.map(p => p.timestamp)
     }
 
@@ -341,6 +353,5 @@ export class QuantumTrainingOrchestrator {
 }
 
 export default {
-  QuantumTrainingOrchestrator,
-  type TrainingSession
+  QuantumTrainingOrchestrator
 }

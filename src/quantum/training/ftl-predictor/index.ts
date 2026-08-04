@@ -1,7 +1,7 @@
 // FTL Predictor: Faster-Than-Light Outcome Prediction
 // Know strategy results before execution through causal chain analysis
 
-import { toUuid, merkleFold, log, sqrt, exp } from '../../0'
+import { toUuid, merkleFold, log, sqrt, exp } from '../../../0'
 
 // ──── Causal Chain Analysis ────
 
@@ -66,7 +66,7 @@ export class FTLPredictor {
       this.causal_graph.nodes.add(cause)
 
       for (const [effect, strength] of Object.entries(effects as any)) {
-        if (strength > 0.3) {
+        if ((strength as number) > 0.3) {
           // Only strong correlations
           this.causal_graph.nodes.add(effect)
 
@@ -343,8 +343,5 @@ export class TimeSeriesModel {
 
 export default {
   FTLPredictor,
-  TimeSeriesModel,
-  type CausalRelation,
-  type CausalGraph,
-  type FTLPrediction
+  TimeSeriesModel
 }

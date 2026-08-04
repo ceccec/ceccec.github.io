@@ -30,13 +30,6 @@ export interface Discovery {
   useful_to_domains: string[] // Which domains can use this
 }
 
-export interface AgentNetwork {
-  agents: Map<string, Agent>
-  discoveries: Map<string, Discovery>
-  collaboration_graph: Map<string, string[]> // Agent → collaborators
-  emergent_strategies: Map<string, number[]>
-}
-
 // ──── Single Agent (Autonomous) ────
 
 export class AutonomousAgent {
@@ -215,24 +208,16 @@ export class AutonomousAgent {
 // ──── Multi-Agent Network (Collaboration) ────
 
 export class AgentNetwork {
-  private network: AgentNetwork
   private agents: Map<string, AutonomousAgent> = new Map()
+  private discoveries: Map<string, Discovery> = new Map()
+  private collaboration_graph: Map<string, string[]> = new Map()
+  private emergent_strategies: Map<string, number[]> = new Map()
   private message_queue: Array<{ from: string; to: string; discovery: Discovery }> = []
-
-  constructor() {
-    this.network = {
-      agents: new Map(),
-      discoveries: new Map(),
-      collaboration_graph: new Map(),
-      emergent_strategies: new Map()
-    }
-  }
 
   // Spawn new agent for a domain
   async spawnAgent(domain: string, autonomy_level = 0.8): Promise<AutonomousAgent> {
     const agent = new AutonomousAgent(domain, autonomy_level)
     this.agents.set(agent.getAgent().id, agent)
-    this.network.agents.set(agent.getAgent().id, agent.getAgent())
 
     console.log(`[Network] Spawned agent for ${domain}`)
 
@@ -251,7 +236,7 @@ export class AgentNetwork {
         const discovery = await agent.autonomousTrain()
 
         if (discovery) {
-          this.network.discoveries.set(discovery.id, discovery)
+          this.discoveries.set(discovery.id, discovery)
           all_discoveries.push(discovery)
 
           // Broadcast discovery to related agents
@@ -266,7 +251,7 @@ export class AgentNetwork {
       await this.strategySharing()
 
       console.log(
-        `[Network] Discoveries: ${all_discoveries.length}, Agents: ${this.agents.size}, Collaborations: ${Array.from(this.network.collaboration_graph.values()).flat().length}`
+        `[Network] Discoveries: ${all_discoveries.length}, Agents: ${this.agents.size}, Collaborations: ${Array.from(this.collaboration_graph.values()).flat().length}`
       )
     }
 
@@ -302,10 +287,10 @@ export class AgentNetwork {
       }
 
       // Add collaboration link
-      if (!this.network.collaboration_graph.has(msg.from)) {
-        this.network.collaboration_graph.set(msg.from, [])
+      if (!this.collaboration_graph.has(msg.from)) {
+        this.collaboration_graph.set(msg.from, [])
       }
-      this.network.collaboration_graph.get(msg.from)!.push(msg.to)
+      this.collaboration_graph.get(msg.from)!.push(msg.to)
     }
   }
 
@@ -326,7 +311,7 @@ export class AgentNetwork {
           // Hybrid strategy: average of both
           const hybrid = best_i.map((v, idx) => (v + best_j[idx]) / 2)
 
-          this.network.emergent_strategies.set(`${agent_i.id}+${agent_j.id}`, hybrid)
+          this.emergent_strategies.set(`${agent_i.id}+${agent_j.id}`, hybrid)
         }
       }
     }
@@ -341,27 +326,24 @@ export class AgentNetwork {
     convergence: number
   } {
     return {
-      total_agents: this.network.agents.size,
-      total_discoveries: this.network.discoveries.size,
-      collaborations: Array.from(this.network.collaboration_graph.values()).flat().length,
-      emergent_strategies: this.network.emergent_strategies.size,
-      convergence: this.network.discoveries.size / (this.network.agents.size * 10) // Heuristic
+      total_agents: this.agents.size,
+      total_discoveries: this.discoveries.size,
+      collaborations: Array.from(this.collaboration_graph.values()).flat().length,
+      emergent_strategies: this.emergent_strategies.size,
+      convergence: this.discoveries.size / (this.agents.size * 10) // Heuristic
     }
   }
 
   getAllDiscoveries(): Discovery[] {
-    return Array.from(this.network.discoveries.values())
+    return Array.from(this.discoveries.values())
   }
 
   getEmergentStrategies(): Map<string, number[]> {
-    return this.network.emergent_strategies
+    return this.emergent_strategies
   }
 }
 
 export default {
   AutonomousAgent,
-  AgentNetwork,
-  type Agent,
-  type Discovery,
-  type AgentState
+  AgentNetwork
 }

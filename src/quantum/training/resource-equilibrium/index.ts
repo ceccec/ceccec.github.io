@@ -1,7 +1,7 @@
 // Self-Balancing Resource Equilibrium Manager
 // Maintain perfect balance: CPU = GPU = RAM = STORAGE utilization
 
-import { toUuid, sqrt, log, exp, merkleFold } from '../../0'
+import { toUuid, sqrt, log, exp, merkleFold } from '../../../0'
 
 // ──── Resource Types ────
 
@@ -391,8 +391,5 @@ export class EquilibriumControlLoop {
 
 export default {
   EquilibriumResourceManager,
-  EquilibriumControlLoop,
-  type ResourceMetrics,
-  type EquilibriumState,
-  type WorkloadConfig
+  EquilibriumControlLoop
 }

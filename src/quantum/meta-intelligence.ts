@@ -3,13 +3,15 @@
 // Combines drift detection, self-healing, and optimization
 
 import { toUuid, merkleFold } from '../0'
+import { AgentClarity, clarifyAllAgents } from './agent-clarity'
 
 // ──── Complete Improvement Cycle ────
 
 export interface IntelligenceCycle {
   cycle_id: string
   timestamp: number
-  phase: 'detect' | 'analyze' | 'heal' | 'verify' | 'complete'
+  phase: 'clarify' | 'detect' | 'analyze' | 'heal' | 'verify' | 'complete'
+  agents_clarified: number
   drift_ratio: number
   health_score: number
   improvements_made: number
@@ -24,6 +26,7 @@ export class MetaIntelligence {
 
   /**
    * Run complete improvement cycle
+   * 0. CLARIFY AGENTS (fix agent confusion first!)
    * 1. Detect drift from intended state
    * 2. Analyze coupling and dependencies
    * 3. Propose and apply fixes
@@ -36,7 +39,8 @@ export class MetaIntelligence {
     const cycle: IntelligenceCycle = {
       cycle_id: toUuid(`cycle:${Date.now()}`),
       timestamp: Date.now(),
-      phase: 'detect',
+      phase: 'clarify',
+      agents_clarified: 0,
       drift_ratio: 0,
       health_score: 0,
       improvements_made: 0,
@@ -49,18 +53,26 @@ export class MetaIntelligence {
     console.log('│  META-INTELLIGENCE IMPROVEMENT CYCLE START │')
     console.log('└─────────────────────────────────────────────┘\n')
 
+    // PRIORITY: Phase 0: Clarify Agents (FIX CONFUSION FIRST)
+    console.log('[PHASE 0] AGENT CLARITY VERIFICATION')
+    cycle.agents_clarified = await this.clarifyAgents()
+    console.log(`→ Agents clarified: ${cycle.agents_clarified}\n`)
+
     // Phase 1: Detect drift
     console.log('[PHASE 1] DRIFT DETECTION')
+    cycle.phase = 'detect'
     cycle.drift_ratio = await this.detectDrift()
     console.log(`→ Drift ratio: ${(cycle.drift_ratio * 100).toFixed(1)}%\n`)
 
     // Phase 2: Analyze
     console.log('[PHASE 2] COUPLING & DEPENDENCY ANALYSIS')
+    cycle.phase = 'analyze'
     const coupling = await this.analyzeCoupling()
     console.log(`→ Coupling score: ${coupling.score.toFixed(2)} (lower is better)\n`)
 
     // Phase 3: Heal
     console.log('[PHASE 3] AUTO-HEALING')
+    cycle.phase = 'heal'
     cycle.improvements_made = await this.applyHeals()
     console.log(`→ Improvements applied: ${cycle.improvements_made}\n`)
 
@@ -76,6 +88,7 @@ export class MetaIntelligence {
 
     // Phase 6: Verify
     console.log('[PHASE 6] VERIFICATION')
+    cycle.phase = 'verify'
     cycle.health_score = await this.verify()
     console.log(`→ System health: ${cycle.health_score}/100\n`)
 
@@ -85,12 +98,33 @@ export class MetaIntelligence {
 
     console.log('┌─────────────────────────────────────────────┐')
     console.log(`│ Cycle ${cycle.cycle_id.slice(0, 8)}... complete        │`)
-    console.log(`│ Health: ${cycle.health_score}/100 │ Improvements: ${cycle.improvements_made} │`)
+    console.log(`│ Agents: ${cycle.agents_clarified} │ Improvements: ${cycle.improvements_made} │`)
+    console.log(`│ Health: ${cycle.health_score}/100 │ Speedup: ${cycle.speedup.toFixed(1)}x │`)
     console.log(`│ Next cycle in ${cycle.next_cycle_in_hours}h`.padEnd(47) + '│')
     console.log('└─────────────────────────────────────────────┘\n')
 
     this.cycles.push(cycle)
     return cycle
+  }
+
+  /**
+   * Clarify all agents: ensure they understand their purpose and stay on track
+   * This is PRIORITY #1 because agent confusion is the biggest drift source
+   */
+  private async clarifyAgents(): Promise<number> {
+    console.log(`  Running agent clarity verification...`)
+
+    // Use the agent clarity system
+    const domains = ['Physics', 'AI', 'Quantum', 'Climate']
+    let clarified = 0
+
+    for (const domain of domains) {
+      const purpose = await AgentClarity.clarifyAgent(domain)
+      console.log(`  ✓ Clarified ${domain}: ${purpose.goal}`)
+      clarified++
+    }
+
+    return clarified
   }
 
   private async detectDrift(): Promise<number> {

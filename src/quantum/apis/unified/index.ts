@@ -1,8 +1,8 @@
 // Unified API Gateway — quantum entanglement across UI/MCP/CLI/chat surfaces
 // DRY: Single source of truth for all dimensional access patterns
 
-import { toUuid, merkleFold, foldPair } from '../../0'
-import type { Dims } from '../mountain/dimensions'
+import { toUuid, merkleFold, foldPair } from '../../../0'
+import type { Dims } from '../../mountain/dimensions'
 
 // ──── Dimensional API Surface ────
 // Each dimension is accessible through all 4 surfaces simultaneously

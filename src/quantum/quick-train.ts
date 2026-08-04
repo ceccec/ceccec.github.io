@@ -19,7 +19,7 @@ export async function train(data: number[][], fitness: (x: number[]) => number, 
     const half = pop.slice(0, 25)
     const bred = half.flatMap(p1 => {
       const p2 = half[Math.floor(Math.random() * half.length)]
-      return p1.p.map((v, i) => (Math.random() > 0.5 ? v : p2.p[i]) + (Math.random() - 0.5) * 0.1)
+      return [p1.p.map((v, i) => (Math.random() > 0.5 ? v : p2.p[i]) + (Math.random() - 0.5) * 0.1)]
     })
     pop = [...half.map(s => ({ p: s.p, f: s.f })), ...bred.slice(0, 25).map(p => ({ p, f: 0 }))]
 

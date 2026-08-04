@@ -1,7 +1,7 @@
 // Quantum Combinatorial Strategy Trainer
 // Train on live public data with quantum speedup at perfect equilibrium
 
-import { toUuid, merkleFold, sqrt, exp, log } from '../../0'
+import { toUuid, merkleFold, sqrt, exp, log } from '../../../0'
 
 // ──── Live Data Ingestion ────
 
@@ -127,7 +127,7 @@ export class LiveDataIngester {
 
   stopPolling() {
     for (const handle of this.polling_handles.values()) {
-      clearInterval(handle)
+      clearInterval(handle as any)
     }
     this.polling_handles.clear()
   }
@@ -384,9 +384,5 @@ export class QuantumCombinatorialTrainer {
 
 export default {
   LiveDataIngester,
-  QuantumCombinatorialTrainer,
-  type DataSource,
-  type DataPoint,
-  type Strategy,
-  type StrategyPopulation
+  QuantumCombinatorialTrainer
 }
