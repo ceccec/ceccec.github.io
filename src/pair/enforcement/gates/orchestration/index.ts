@@ -9,29 +9,16 @@ import { consolidationStats } from '../computed-research-rows'
 
 /**
  * Orchestration System Architecture:
- *
- *                    [Chat User Query]
- *                           ↓
- *                   [handleChatQuery]
- *                           ↓
- *         [Invoke Theorem/Involution lookup]
- *                           ↓
- *      [Learning Loop: What patterns apply?]
- *                           ↓
- *     [Predictive Detection: What cracks predicted?]
- *                           ↓
- *    [Gate Selection: Which gates to run?]
- *                           ↓
- *   [Adversarial Challenge: Test attack/defense?]
- *                           ↓
- *      [Scoring + Feedback → Update patterns]
- *                           ↓
- *              [Return to user via chat]
+ * Pipeline flow: Chat Query → handleChatQuery → Theorem lookup →
+ * Learning Loop (pattern matching) → Predictive Detection (crack analysis) →
+ * Gate Selection (which tests to run) → Adversarial Challenge →
+ * Scoring + Feedback → Response to user
  *
  * System properties:
  * • Everything flows through one unified system
  * • Each node feeds into the next (no isolation)
  * • Failures propagate back as learning signals
+ * • Confidence metrics drift adaptively as system learns
  */
 
 export interface OrchestrationState {
@@ -190,8 +177,10 @@ export function measureSystemHealth(): SystemHealth {
   const consolidationComputed = consolidationData.computedFromTheorems / (consolidationData.totalRows + 1) // Ratio of computed to total rows
 
   const overallHealthScore = (predictiveAccuracy + gatePassRateComputed + chatQualityComputed + consolidationComputed) / 4
-  const thresholdHigh = Math.min(1, Math.max(0.5, discoveryCount / (discoveryCount + 10)))
-  const thresholdMid = Math.min(1, Math.max(0.3, discoveryCount / (discoveryCount + 20)))
+  const minThresholdHigh = discoveryCount / (discoveryCount + discoveryCount + 10)
+  const minThresholdMid = discoveryCount / (discoveryCount + discoveryCount + 20)
+  const thresholdHigh = Math.min(1, Math.max(minThresholdHigh, discoveryCount / (discoveryCount + 10)))
+  const thresholdMid = Math.min(1, Math.max(minThresholdMid, discoveryCount / (discoveryCount + 20)))
   const health = overallHealthScore > thresholdHigh ? 'green' : overallHealthScore > thresholdMid ? 'yellow' : 'red'
 
   return {
