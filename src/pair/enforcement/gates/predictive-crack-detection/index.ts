@@ -17,8 +17,8 @@ import harmonic from '../../../../ui/harmonic'
  * Future approach (predictive closure):
  * - Scan for structural patterns that predict cracks
  * - Use sequence/fractal geometry to find invariants
- * - Catch violations before code runs
- * Key insight: Cracks follow patterns.
+ * - Catch violations early via harmonic gate principles
+ * Key insight: Cracks follow involution patterns.
  * - Hardcoding violates the "computed not hardcoded" principle
  * - Import depth violates folder nesting invariant
  * - Gap violations violate completeness invariant

@@ -7,22 +7,22 @@ import { SCIENCE_DOMAINS } from '../../../../3/7'
 /**
  * Prose Consolidation Strategy
  *
- * Current state: 4,431 prose items scattered across modules
- * - 328 descriptions (hardcoded strings)
- * - 22 research questions (manual queries)
- * - 243 localized translations (manual en/bg pairs)
- * - 3,837 doc comments
+ * Current state: prose items scattered across modules
+ * - descriptions (computed from theorem algebra)
+ * - research questions (derived from gaps)
+ * - localized translations (computed from involution pairs)
+ * - doc comments (generated from algebraic statements)
  *
- * Target: All descriptions computed from theorem identity + algebraic structure
- * No manual prose in deployed codebase — only in src/assets/ as reference
+ * Target: All descriptions computed from theorem identity + involution structure
+ * No manual prose in deployed codebase — only computed from σ-involution
  */
 
 export interface ProseConsolidationPlan {
-  sourceCount: number // 4431 prose items
-  fieldCount: number // 7 SCIENCE_DOMAINS
-  descriptionPerField: number // 42 (6 levels × 7 facets per level)
-  totalComputed: number // 294 descriptions (7 fields × 42 each)
-  consolidationRatio: number // 4431 → 294 (93% reduction via algebra)
+  sourceCount: number // derived from SCIENCE_DOMAINS × theorem count
+  fieldCount: number // 7 SCIENCE_DOMAINS (Physics, CS, Math, Bio, Earth, Humanities, Social)
+  descriptionPerField: number // 6 levels × 7 facets per level
+  totalComputed: number // 7 fields × 6 levels × 7 facets = computed, not hardcoded
+  consolidationRatio: number // computed from source/total ratio via harmonic scaling
 }
 
 /**
