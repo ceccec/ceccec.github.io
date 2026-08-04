@@ -13,14 +13,19 @@ const ZENODO_SANDBOX = 'https://sandbox.zenodo.org/api/deposit/depositions'
 const LICENSE_ID = 'cc-by-nc-nd'
 
 /**
- * Get API token from ~/.zenodo or environment
+ * Get API token from ~/.zenodo/token or ~/.zenodo or environment
  */
 function getToken() {
   if (process.env.ZENODO_TOKEN) return process.env.ZENODO_TOKEN
   try {
     const homeDir = process.env.HOME || process.env.USERPROFILE
-    const tokenFile = resolve(homeDir, '.zenodo')
-    return readFileSync(tokenFile, 'utf-8').trim()
+    // Try ~/.zenodo/token first
+    try {
+      return readFileSync(resolve(homeDir, '.zenodo', 'token'), 'utf-8').trim()
+    } catch {
+      // Fall back to ~/.zenodo file
+      return readFileSync(resolve(homeDir, '.zenodo'), 'utf-8').trim()
+    }
   } catch {
     return null
   }
@@ -116,6 +121,13 @@ const packages = [
 ]
 
 /**
+ * Sleep helper for rate limiting
+ */
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+/**
  * Main publication function
  */
 async function publishAllPackages() {
@@ -163,6 +175,12 @@ async function publishAllPackages() {
 
       console.log(`  ✅ Published: ${doi}`)
       console.log(`  📄 URL: https://zenodo.org/record/${response.id}\n`)
+
+      // Rate limiting: wait 3 seconds between requests
+      if (i < packages.length - 1) {
+        console.log('  ⏳ Rate limiting (3s delay)...\n')
+        await sleep(3000)
+      }
     } catch (error) {
       console.error(`  ❌ Failed: ${error.message}\n`)
       results.push({
@@ -170,6 +188,12 @@ async function publishAllPackages() {
         title: pkg.title,
         error: error.message,
       })
+
+      // Wait even on error to prevent cascading blocks
+      if (i < packages.length - 1) {
+        console.log('  ⏳ Rate limiting (3s delay)...\n')
+        await sleep(3000)
+      }
     }
   }
 
