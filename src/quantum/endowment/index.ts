@@ -313,6 +313,8 @@ export * from './impact'
 export * from './incentives'
 export * from './portfolio'
 export * from './predict'
+export * from './sustainability'
+export * from './integration'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
