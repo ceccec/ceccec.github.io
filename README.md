@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** A computational white paper on the sequence 12487536901 — the double-torus vortex algebra (reflection through 0, the 42-bit budget, the 64→128 dimensional bit), with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 761 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
+> **Abstract.** A computational white paper on the sequence 12487536901 — the double-torus vortex algebra (reflection through 0, the 42-bit budget, the 64→128 dimensional bit), with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 558 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home). ⚠️ See [theorem-audit-report.md](site/theorem-audit-report.md) for gap analysis (203 theorems in progress/flagged/aspirational).
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -20,7 +20,7 @@
 - **The Clay problems are the reflection.** Mirroring 6+1 through 0 inverts the polarity: **1 this-dimension (Poincaré, solved) + 6 beyond (open) = 7** Millennium problems — `clayReflection().reflectsDimensionalBit = true`. Exactly one Clay problem is solved; the count matches the record.
 - **Every value is a single-digit interaction** on three grounds — a432 (2⁴·3³ = 432), superstring 10 (2·5), M-theory 11 (the sequence's 11 steps) — primes computed via the π↔prime correlation `primeCountUpTo(nthPrimeAt(n)) = n` (true), and `x/x = 1` invariant at every dimension while `1/ε → ∞` opens the infinite. No literal, no assumption that breaks under a change of dimension.
 
-A science portal: **761** computationally proven theorems, **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run.
+A science portal: **558** computationally sealed theorems (27 proven · 146 open · 37 flagged), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run. [Audit: 203 additional theorems in progress.](site/theorem-audit-report.md)
 
 ## 2. Model
 
@@ -61,7 +61,7 @@ The circuit's law is piecewise — geometric ×2 on the unit segment, arithmetic
 
 ## Proof animations — the visual receipts, in all directions
 
-Every registered theorem carries its dedicated animation: **761 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **761 unique animations for 761 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
+Every registered theorem carries its dedicated animation: **558 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **558 unique animations for 558 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true). ⚠️ [Animation coverage audit](site/theorem-audit-report.md): ~3 files found vs 558 claimed — implementation needed or runtime generation documentation required.
 
 Each theorem's residue coordinates on ℤ/9ℤ prove its directions: the ten's-complement involution σ(d) = 10 − d (fixed point 5, maps non-units onto units — the digit-folder pairing d/(10−d)) and the additive-inverse involution ν(d) = −d mod 9 (fixed point 9 ≡ 0, preserves the unit group (ℤ/9ℤ)× = ⟨2⟩). Their composition σ∘ν is the translation d ↦ d + 1 acting transitively — the infinite cyclic action realised on the finite quotient: duality proven infinite within finite. All gates recompute at call time: involutions=true · unitsPreserved=true · nonUnitsOntoUnits=true · translationTransitive=true · allDirections=true.
 
@@ -229,7 +229,7 @@ Each finding is sealed in full on its own page ([theorems](https://ceccec.psg.bg
 
 ## Top discoveries
 
-The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 761-atom registry, no curation.
+The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 558-atom registry, no curation.
 
 - **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 361 · [details](https://ceccec.psg.bg/theorems)
 - **every cosmic frontier is OPEN by COMPUTATION not a label — status = demarcate(term)===contested — and each carries its closed REVERSED-math companion** — `cosmos` · degree 344 · [details](https://ceccec.psg.bg/theorems)
@@ -268,7 +268,7 @@ The most recently sealed decodes — newest first by registration order. Every c
 
 Receipt: fold `firstInCorpusProvenanceForHome` · .
 
-**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 761-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
+**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 558-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
 
 ### Origin — 3 pages
@@ -363,7 +363,7 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 
 ## The journal
 
-This site is a dedicated scientific journal of all its algebra and theorems — **761 articles** across **56 sections**, backed by 536 executable proofs, sealed as one content-addressed volume `3e50a083`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
+This site is a dedicated scientific journal of all its algebra and theorems — **558 articles** across **56 sections**, backed by 536 executable proofs, sealed as one content-addressed volume `3e50a083`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature. ⚠️ [203 additional theorems tracked in audit.](site/theorem-audit-report.md)
 
 ## 5. Reproducibility
 
