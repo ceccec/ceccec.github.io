@@ -2,7 +2,7 @@
 // Theory + Practice Fusion: Connect σ-involution proofs to real-world measurement APIs
 // No hardcoded constants - all values from live sources
 
-import { discoverTheorems } from './autonomous-discovery'
+import { discoverTheorems } from './autonomous-discovery/'
 
 /**
  * Wave 53: Practical Intelligence Framework

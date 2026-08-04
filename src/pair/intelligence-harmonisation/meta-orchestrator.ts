@@ -2,7 +2,7 @@
 // Fuses Theory (Waves 40-53) + UI + Tools + Patents into ONE balanced system
 // Auto-improves until all aspects reach equilibrium
 
-import { discoverTheorems, generateTheorem } from './autonomous-discovery'
+import { discoverTheorems, generateTheorem } from './autonomous-discovery/'
 
 /**
  * ARCHITECTURE:

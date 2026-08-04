@@ -1,7 +1,7 @@
 // Wave 52: Complete Implementation
 // Autonomous Discovery → Theorem Generation → Lean4 Export → Deployment
 
-import { discoverTheorems, generateTheorem, exportToLean4 } from './autonomous-discovery'
+import { discoverTheorems, generateTheorem, exportToLean4 } from './autonomous-discovery/'
 
 /**
  * Comprehensive Wave 52: Execute autonomous discovery pipeline end-to-end

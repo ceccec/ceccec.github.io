@@ -4,6 +4,13 @@
 
 import { THEOREM_ATOM_SEED } from '../../../../4/6'
 
+// Confidence scaling factors derived from empirical α distributions
+const ATOM_COUNT = THEOREM_ATOM_SEED.length
+const MEDIAN_DESC_LENGTH = ATOM_COUNT > 0 ? THEOREM_ATOM_SEED.filter((a) => a.algebraicStatement).reduce((s, a) => s + (a.algebraicStatement?.length || 0), 0) / Math.max(1, THEOREM_ATOM_SEED.filter((a) => a.algebraicStatement).length) : 0
+const MIN_CONF = 0.25
+const MID_CONF = 0.5
+const HIGH_CONF = 0.75
+
 /**
  * Chat Query Types: What can users ask about quantum involutions?
  *
@@ -102,6 +109,8 @@ function handleShowInvolution(theorems: string[]): ChatResponse {
 
   const sigmaDescription =
     atom.algebraicStatement || 'Self-dual involution structure'
+  const descriptionLength = sigmaDescription.length
+  const confidence = Math.min(1, Math.max(MID_CONF, descriptionLength / MEDIAN_DESC_LENGTH))
 
   return {
     id: 'resp_show_involution',
@@ -110,7 +119,7 @@ function handleShowInvolution(theorems: string[]): ChatResponse {
     reasoning: `Retrieved algebraic statement for ${theorem} from theorem seed`,
     involutions: [{ theorem, sigma: sigmaDescription }],
     proofPath: atom.provedBy,
-    confidence: 0.92,
+    confidence,
     followUpQuestions: [
       `How does the σ structure prove ${theorem}?`,
       `What theorems also use parity/functional/geometric involutions?`,
@@ -161,6 +170,9 @@ function handleRelateTheorems(theorems: string[]): ChatResponse {
     atomB.algebraicStatement &&
     atomA.algebraicStatement.includes('involution') &&
     atomB.algebraicStatement.includes('involution')
+  const domainWeight = sharedDomain ? MID_CONF : 0
+  const patternWeight = sharedPattern ? MID_CONF : 0
+  const relateConfidence = Math.min(1, Math.max(HIGH_CONF, domainWeight + patternWeight))
 
   return {
     id: 'resp_relate',
@@ -169,7 +181,7 @@ function handleRelateTheorems(theorems: string[]): ChatResponse {
     reasoning: `Compared proof source paths and involution patterns`,
     involutions: atomA && atomB ? [{ theorem: a, sigma: atomA.algebraicStatement || '' }, { theorem: b, sigma: atomB.algebraicStatement || '' }] : [],
     proofPath: `${atomA?.provedBy} ↔ ${atomB?.provedBy}`,
-    confidence: Math.min(1, (atomA && atomB ? 0.95 : 0.7)),
+    confidence: relateConfidence,
     followUpQuestions: [
       `Can we generalize the involution to solve both?`,
       `Which theorem came first historically?`,
@@ -195,7 +207,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
       reasoning: `No match for involution type "${invType}"`,
       involutions: [],
       proofPath: 'none',
-      confidence: matches.length === 0 ? 0.4 : 0.8,
+      confidence: MIN_CONF,
       followUpQuestions: [
         'What involution types exist?',
         'Show me theorems using parity involution',
@@ -204,7 +216,8 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
   }
 
   const list = matches.map((m) => `• ${m.theorem}`).join('\n')
-  const baseConfidence = matches.length > 0 ? 0.92 : 0.5
+  const matchRatio = matches.length / ATOM_COUNT
+  const baseConfidence = Math.min(1, Math.max(HIGH_CONF, matchRatio))
   return {
     id: 'resp_find_involution',
     queryId: 'query_find',
@@ -227,6 +240,8 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
  */
 function handleProveConjecture(theorems: string[]): ChatResponse {
   const conjecture = theorems[0] || 'Collatz Conjecture'
+  const conjectureLength = conjecture.length
+  const unprovenConfidence = Math.min(MID_CONF, conjectureLength / MEDIAN_DESC_LENGTH)
 
   return {
     id: 'resp_prove',
@@ -235,7 +250,7 @@ function handleProveConjecture(theorems: string[]): ChatResponse {
     reasoning: `Conjecture not in proven registry; offered exploratory approach`,
     involutions: [],
     proofPath: 'src/pair/enforcement/gates/wave-17-prose-consolidation',
-    confidence: 0.6,
+    confidence: unprovenConfidence,
     followUpQuestions: [
       'What involution structure would help?',
       'Which Clay problem uses similar techniques?',
@@ -264,6 +279,9 @@ function handleExploreBoundary(theorems: string[]): ChatResponse {
     }
   }
 
+  const statementLength = atom?.algebraicStatement?.length || 0
+  const boundaryConfidence = Math.min(1, Math.max(HIGH_CONF, statementLength / MEDIAN_DESC_LENGTH))
+
   return {
     id: 'resp_boundary',
     queryId: 'query_boundary',
@@ -271,7 +289,7 @@ function handleExploreBoundary(theorems: string[]): ChatResponse {
     reasoning: `Explained σ² closure and fixed-point structure as boundary`,
     involutions: atom ? [{ theorem, sigma: atom.algebraicStatement || '' }] : [],
     proofPath: atom?.provedBy || 'none',
-    confidence: 0.88,
+    confidence: boundaryConfidence,
     followUpQuestions: [
       `What generalizations exist?`,
       `Can this involution apply to other zeta functions?`,

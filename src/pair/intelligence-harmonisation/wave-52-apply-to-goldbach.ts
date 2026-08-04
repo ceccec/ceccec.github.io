@@ -1,7 +1,7 @@
 // Wave 52: Apply Autonomous Discovery to Goldbach Conjecture
 // Auto-detect σ-involutions in prime pairs, auto-generate theorem proof
 
-import { discoverTheorems, exportToLean4 } from './autonomous-discovery'
+import { discoverTheorems, exportToLean4 } from './autonomous-discovery/'
 
 /**
  * Goldbach Conjecture Domain:
