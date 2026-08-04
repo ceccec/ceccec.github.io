@@ -318,6 +318,8 @@ export * from './integration'
 export * from './benchmark'
 export * from './transparency'
 export * from './risk'
+export * from './governance'
+export * from './pricing'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
