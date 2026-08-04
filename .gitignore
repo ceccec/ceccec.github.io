@@ -24,3 +24,6 @@
 
 # @ceccec/double-torus kernel build output (rebuilt by the publish workflow)
 /packages/kernel/
+
+# Publication artifacts (not source code)
+/docs

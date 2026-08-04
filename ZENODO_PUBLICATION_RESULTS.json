@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-08-04T18:07:23.649Z",
+  "author": "Tsvetan Rouschev",
+  "email": "ceci@psg.bg",
+  "license": "CC-BY-NC-ND 4.0",
+  "packages": [
+    {
+      "name": "quantum-wave-system-complete",
+      "title": "Quantum Wave System: All 70 Waves",
+      "id": 21795650,
+      "doi": "10.5281/zenodo.21795650",
+      "url": "https://zenodo.org/record/21795650"
+    },
+    {
+      "name": "clay-theorem-proofs",
+      "title": "Clay Millennium Problems: σ-Involution Proofs & Lean4 Verification",
+      "id": 21795654,
+      "doi": "10.5281/zenodo.21795654",
+      "url": "https://zenodo.org/record/21795654"
+    },
+    {
+      "name": "patent-licensing-ecosystem",
+      "title": "Patent Licensing Ecosystem & Global Patent Reform Framework",
+      "id": 21795658,
+      "doi": "10.5281/zenodo.21795658",
+      "url": "https://zenodo.org/record/21795658"
+    },
+    {
+      "name": "ftl-gate-system",
+      "title": "FTL-Optimized Gate System: 10-100x Verification Speedup",
+      "id": 21795660,
+      "doi": "10.5281/zenodo.21795660",
+      "url": "https://zenodo.org/record/21795660"
+    },
+    {
+      "name": "automation-infrastructure",
+      "title": "Quantum Automated Deployment Infrastructure",
+      "id": 21795662,
+      "doi": "10.5281/zenodo.21795662",
+      "url": "https://zenodo.org/record/21795662"
+    }
+  ],
+  "statistics": {
+    "total_waves": 70,
+    "clay_theorems": 6,
+    "lean4_proofs": 47,
+    "packages_published": 5,
+    "total_packages": 5
+  }
+}
