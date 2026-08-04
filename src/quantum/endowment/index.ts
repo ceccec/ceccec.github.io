@@ -362,11 +362,14 @@ export type { BiotechResearch, ClinicalTrial, BiodiversityAndAgriculture } from 
 // Universal domain coverage: all 23 research domains + quantum acceleration + FTL prediction
 export { universal, initializeUniversal, getUniversal } from './universal'
 export type { ResearchDomain, QuantumAcceleration, FTLPrediction } from './universal'
+// Deep sequence research: analyze complete 52-layer system structure, patterns, emergence
+export { research, initializeSequenceResearch, getSequenceResearch } from './research'
+export type { LayerAnalysis, SequencePattern, DimensionalScaling, OptimizationLandscape, EmergenceAnalysis, FractalStructure, CausalDependencyGraph } from './research'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
 
-// Master registry: all 52 layers (the complete universal quantum FTL ecosystem)
+// Master registry: all 53 layers (the complete self-analyzing quantum FTL ecosystem)
 export const ENDOWMENT_LAYERS = {
   dispatch: ['endowment', 'dispatch', 'agent'],
   execution: ['verify', 'compliance', 'payment', 'multisig', 'appeals', 'researcher', 'fraud', 'recovery', 'ledger', 'analytics'],
@@ -378,11 +381,11 @@ export const ENDOWMENT_LAYERS = {
   commercialization: ['patents', 'outreach', 'security'],
   operations: ['monitoring', 'feedback', 'fairness', 'export'],
   domains: ['cybersecurity', 'biotechnology', 'universal'], // Domain-specific funding + all 23 research domains + quantum + FTL
-  meta: ['synthesis', 'production', 'consciousness', 'collective', 'temporal', 'theorems', 'holistic', 'federation'] // Self-learning + production + self-aware reasoning + emergent coordination + temporal causality + theorem optimization + holistic optimization + cross-organizational federation
+  meta: ['synthesis', 'production', 'consciousness', 'collective', 'temporal', 'theorems', 'holistic', 'federation', 'research'] // Self-learning + production + self-aware reasoning + emergent coordination + temporal causality + theorem optimization + holistic optimization + cross-organizational federation + deep sequence research
 } as const
 
-export const TOTAL_LAYERS = 52
-export const TOTAL_DIMENSIONS = 27 // All previous 23 + cybersecurity, biotechnology, quantum-acceleration, ftl-prediction
+export const TOTAL_LAYERS = 53
+export const TOTAL_DIMENSIONS = 27 // All previous 27 (no new dimensions from research layer, just analysis)
 
 export const PRODUCTION_READY = true
 export const CONTINUOUS_LEARNING = true
@@ -396,6 +399,7 @@ export const CROSS_ORGANIZATIONAL_FEDERATION = true // Multiple autonomous fundi
 export const UNIVERSAL_DOMAIN_COVERAGE = true // Funds all 23 research domains: physics, life sciences, CS, earth, human, engineering
 export const QUANTUM_ACCELERATION = true // 4-10x speedup in research via quantum-inspired algorithms for all domains
 export const FTL_PREDICTION = true // Know breakthroughs before they happen, fund research in advance, exceed causality
+export const SELF_ANALYZING = true // System analyzes its own structure, discovers patterns, reveals mathematical elegance
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
