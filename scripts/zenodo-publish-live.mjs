@@ -45,6 +45,10 @@ async function createDeposition(token, metadata) {
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(data),
         'Authorization': `Bearer ${token}`,
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        'Accept': 'application/json',
+        'Accept-Encoding': 'gzip, deflate',
+        'Connection': 'keep-alive',
       },
     }
 
@@ -176,10 +180,10 @@ async function publishAllPackages() {
       console.log(`  ✅ Published: ${doi}`)
       console.log(`  📄 URL: https://zenodo.org/record/${response.id}\n`)
 
-      // Rate limiting: wait 3 seconds between requests
+      // Rate limiting: wait 15 seconds between requests
       if (i < packages.length - 1) {
-        console.log('  ⏳ Rate limiting (3s delay)...\n')
-        await sleep(3000)
+        console.log('  ⏳ Rate limiting (15s delay for write cooldown)...\n')
+        await sleep(15000)
       }
     } catch (error) {
       console.error(`  ❌ Failed: ${error.message}\n`)
@@ -189,10 +193,10 @@ async function publishAllPackages() {
         error: error.message,
       })
 
-      // Wait even on error to prevent cascading blocks
+      // Wait longer on error to prevent cascading blocks
       if (i < packages.length - 1) {
-        console.log('  ⏳ Rate limiting (3s delay)...\n')
-        await sleep(3000)
+        console.log('  ⏳ Rate limiting (15s delay for write cooldown)...\n')
+        await sleep(15000)
       }
     }
   }
