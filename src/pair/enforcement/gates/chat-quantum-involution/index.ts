@@ -110,7 +110,7 @@ function handleShowInvolution(theorems: string[]): ChatResponse {
     reasoning: `Retrieved algebraic statement for ${theorem} from theorem seed`,
     involutions: [{ theorem, sigma: sigmaDescription }],
     proofPath: atom.provedBy,
-    confidence: 0.95,
+    confidence: Math.min(1, atom.alpha + 0.05),
     followUpQuestions: [
       `How does the σ structure prove ${theorem}?`,
       `What theorems also use parity/functional/geometric involutions?`,
@@ -169,7 +169,7 @@ function handleRelateTheorems(theorems: string[]): ChatResponse {
     reasoning: `Compared proof source paths and involution patterns`,
     involutions: atomA && atomB ? [{ theorem: a, sigma: atomA.algebraicStatement || '' }, { theorem: b, sigma: atomB.algebraicStatement || '' }] : [],
     proofPath: `${atomA?.provedBy} ↔ ${atomB?.provedBy}`,
-    confidence: 0.85,
+    confidence: (atomA?.alpha || 0.9) * (atomB?.alpha || 0.9),
     followUpQuestions: [
       `Can we generalize the involution to solve both?`,
       `Which theorem came first historically?`,
@@ -195,7 +195,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
       reasoning: `No match for involution type "${invType}"`,
       involutions: [],
       proofPath: 'none',
-      confidence: 0.5,
+      confidence: matches.length === 0 ? 0.4 : 0.8,
       followUpQuestions: [
         'What involution types exist?',
         'Show me theorems using parity involution',
@@ -204,6 +204,9 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
   }
 
   const list = matches.map((m) => `• ${m.theorem}`).join('\n')
+  const avgAlpha = matches.length > 0
+    ? matches.reduce((sum, m) => sum + (m.alpha || 0.9), 0) / matches.length
+    : 0.5
   return {
     id: 'resp_find_involution',
     queryId: 'query_find',
@@ -214,7 +217,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
       sigma: m.algebraicStatement || '',
     })),
     proofPath: 'src/quantum/endowment/theorems',
-    confidence: 0.9,
+    confidence: avgAlpha,
     followUpQuestions: matches
       .slice(0, 3)
       .map((m) => `How does ${m.theorem} use ${invType} involution?`),
