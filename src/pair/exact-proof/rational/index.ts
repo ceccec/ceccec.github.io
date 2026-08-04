@@ -1,6 +1,8 @@
 // Wave 34a: Exact Rational Arithmetic
 // Zero floating-point. All fractions exact.
 
+import { gcdBigInt } from '../../../0'
+
 /**
  * Rational number: numerator/denominator in lowest terms
  * Operations preserve exactness (no rounding)
@@ -10,17 +12,13 @@ export interface Rational {
   readonly den: bigint
 }
 
-function gcd(a: bigint, b: bigint): bigint {
-  return b === 0n ? a : gcd(b, a % b)
-}
-
 export function rational(num: bigint | number, den: bigint | number = 1n): Rational {
   const n = typeof num === 'bigint' ? num : BigInt(num)
   const d = typeof den === 'bigint' ? den : BigInt(den)
 
   if (d === 0n) throw new Error('Division by zero')
 
-  const g = gcd(n < 0n ? -n : n, d < 0n ? -d : d)
+  const g = gcdBigInt(n < 0n ? -n : n, d < 0n ? -d : d)
   const sign = (n < 0n) !== (d < 0n) ? -1n : 1n
 
   return {

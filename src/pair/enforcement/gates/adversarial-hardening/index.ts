@@ -232,23 +232,9 @@ export interface CompetitiveScore {
  * Both live in src/ as production folds; both are tested by mission:gate
  */
 
-export function evaluateAttack(
-  attackId: string,
-  deploymentPath: string
-): { bypassed: boolean; detectionTime: number } {
-  // In production: run attack code, measure how long before gate catches it
-  // If never caught → attack wins; if caught → defense wins
-  return { bypassed: false, detectionTime: 0 }
-}
-
-export function evaluateDefense(
-  defenseId: string,
-  testCases: string[]
-): { blocksAttacks: string[]; falsePositives: number } {
-  // In production: run defense against known attacks
-  // Measure: how many attacks it blocks, how many false alarms
-  return { blocksAttacks: [], falsePositives: 0 }
-}
+// Note: evaluateAttack and evaluateDefense are not yet implemented
+// See: src/pair/enforcement/gates for actual gate implementations
+// Future implementation will run attack/defense tools and measure detection time
 
 /**
  * Challenge sequence: rounds of hacker/cracker competition
@@ -277,6 +263,4 @@ export default {
   ATTACK_VECTORS,
   DEFENSE_STRATEGIES,
   CHALLENGE_ROADMAP,
-  evaluateAttack,
-  evaluateDefense,
 }

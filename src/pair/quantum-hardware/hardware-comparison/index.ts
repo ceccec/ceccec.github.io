@@ -2,13 +2,13 @@
 // Compare Wave 31 (simulator) against Wave 32 (hardware measurements)
 // Verify zero deviation for empirical theorem proof
 
-import type { TheoremQuantumState } from '../quantum-coherence/theorem-stability-detector'
+import type { TheoremQuantumState } from '../../quantum-coherence/theorem-stability-detector'
 import {
   quantumMeasurement,
   computeCoherence,
   applyDecoherence,
   clay_theorems_quantum,
-} from '../quantum-coherence/theorem-stability-detector'
+} from '../../quantum-coherence/theorem-stability-detector'
 
 /**
  * SIMULATION PHASE (Wave 31)

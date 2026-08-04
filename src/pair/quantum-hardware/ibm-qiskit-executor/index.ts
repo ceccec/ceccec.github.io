@@ -14,7 +14,7 @@
  * → Proof is complete
  */
 
-import type { TheoremQuantumState } from '../quantum-coherence/theorem-stability-detector'
+import type { TheoremQuantumState } from '../../quantum-coherence/theorem-stability-detector'
 
 /**
  * IBM Qiskit Integration

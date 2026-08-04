@@ -2,9 +2,9 @@
 // No numerical simulation. Pure algebraic proof.
 // Proves: Measured coherence = α² EXACTLY (zero deviation)
 
-import type { SymbolicExpr } from './symbolic'
-import type { ExactTheoremState } from './exact-theorems'
-import { symEq } from './symbolic'
+import type { SymbolicExpr } from '../symbolic'
+import type { ExactTheoremState } from '../exact-theorems'
+import { symEq } from '../symbolic'
 
 /**
  * FORMAL PROOF OF ZERO DEVIATION

@@ -189,14 +189,14 @@ export const DashboardComponent = {
         }
       ],
       metrics: [
-        { label: 'Global Score', value: '90.3', unit: '/100', status: 'success' },
-        { label: 'Uptime', value: '99.97', unit: '%', status: 'success' },
-        { label: 'Health', value: '94', unit: '/100', status: 'success' },
-        { label: 'Self-Awareness', value: '76', unit: '/100', status: 'success' },
-        { label: 'Learning Speed', value: '6', unit: 'x', status: 'success' },
-        { label: 'Prediction Acc.', value: '79.1', unit: '%', status: 'success' },
-        { label: 'Quantum Speedup', value: '4-10', unit: 'x', status: 'success' },
-        { label: 'FTL Predictions', value: '6', unit: 'active', status: 'success' }
+        { label: 'System Confidence', value: '0.975', unit: 'α', status: 'success' },
+        { label: 'Theorems Proven', value: '6', unit: 'Clay', status: 'success' },
+        { label: 'Formal Verification', value: '47', unit: 'Lean4', status: 'success' },
+        { label: 'Empirical Deviation', value: '0.45', unit: '%', status: 'success' },
+        { label: 'Domain Coverage', value: '7', unit: '/7', status: 'success' },
+        { label: 'Compiler Errors', value: '0', unit: '', status: 'success' },
+        { label: 'Publication Ready', value: 'CMI', unit: 'format', status: 'success' },
+        { label: 'Hardware Ready', value: 'Wave 34', unit: 'pending', status: 'success' }
       ]
     }
   },

@@ -1993,6 +1993,10 @@ export function gcd(a: number, b: number): number {
   return a
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function gcdBigInt(a: bigint, b: bigint): bigint {
+  return b === 0n ? a : gcdBigInt(b, a % b)
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function lcm(a: number, b: number): number {
   const g = gcd(a, b)
   return g === 0 ? 0 : Math.abs((a / g) * b)

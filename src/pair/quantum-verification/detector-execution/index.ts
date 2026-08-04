@@ -7,7 +7,7 @@ import {
   clay_theorems_quantum,
   computeCoherence,
   quantumStabilityProof,
-} from '../quantum-coherence/theorem-stability-detector'
+} from '../../quantum-coherence/theorem-stability-detector'
 
 /**
  * WAVE 33: DETECTOR EXECUTION
