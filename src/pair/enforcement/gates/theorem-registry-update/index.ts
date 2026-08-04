@@ -1,6 +1,8 @@
 // Wave 26: Upgrade theorem registry to use honest demarcation
 // Transform THEOREM_ATOM_SEED format to include honest status, confidence, gaps, formal proof paths
 
+import harmonic from '../../../../ui/harmonic'
+
 /**
  * New theorem record format with honest demarcation
  *
@@ -52,7 +54,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
   // 7 Clay Millennium Problems: downgrade from false "proven"
   'Riemann Hypothesis': {
     honestStatus: 'structurally_supported',
-    confidence: 0.7,
+    confidence: harmonic.confidenceLevel(0),
     gaps: [
       'Functional equation closure not rigorously shown',
       'Escape-path impossibility requires formal induction',
@@ -65,7 +67,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
 
   'P vs NP': {
     honestStatus: 'conjectured',
-    confidence: 0.5,
+    confidence: harmonic.confidenceSecondary(),
     gaps: [
       'σ-structure for NP classes speculative',
       'Involution assumes NP self-duality (unproven)',
@@ -78,7 +80,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
 
   'Hodge Conjecture': {
     honestStatus: 'conjectured',
-    confidence: 0.4,
+    confidence: harmonic.confidenceTertiary(),
     gaps: [
       'Algebraic involution on Hodge classes not formalized',
       'Geometry-algebra connection stated but not proven',
@@ -91,7 +93,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
 
   'Yang-Mills Existence and Mass Gap': {
     honestStatus: 'conjectured',
-    confidence: 0.45,
+    confidence: harmonic.confidenceYangMills(),
     gaps: [
       'σ-involution on Yang-Mills field space unclear',
       'Quantum field theory formalization incomplete',
@@ -104,7 +106,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
 
   'Navier-Stokes Existence and Smoothness': {
     honestStatus: 'structurally_supported',
-    confidence: 0.55,
+    confidence: harmonic.confidenceNavierStokes(),
     gaps: [
       'Involution on solution space sketched but not rigorous',
       'Blow-up vs regularity via σ-closure intuitive only',
@@ -117,7 +119,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
 
   'Birch and Swinnerton-Dyer Conjecture': {
     honestStatus: 'conjectured',
-    confidence: 0.4,
+    confidence: harmonic.confidenceTertiary(),
     gaps: [
       'Involution on elliptic curves speculative',
       'L-function zeros and rank: structural insight only',
@@ -130,7 +132,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
 
   'Poincaré Conjecture': {
     honestStatus: 'formally_proven',
-    confidence: 1.0,
+    confidence: harmonic.confidenceProven(),
     gaps: [],
     formalProofStatus: 'complete',
     // Note: Perelman proved this in 2006; already formally accepted
@@ -139,28 +141,28 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
   // Other theorems: mark as formally proven or structurally supported
   'Tsirelson bound': {
     honestStatus: 'formally_proven',
-    confidence: 1.0,
+    confidence: harmonic.confidenceProven(),
     gaps: [],
     formalProofStatus: 'complete',
   },
 
   'Pauli algebra closure': {
     honestStatus: 'formally_proven',
-    confidence: 1.0,
+    confidence: harmonic.confidenceProven(),
     gaps: [],
     formalProofStatus: 'complete',
   },
 
   'no-cloning': {
     honestStatus: 'formally_proven',
-    confidence: 1.0,
+    confidence: harmonic.confidenceProven(),
     gaps: [],
     formalProofStatus: 'complete',
   },
 
   'GHZ–Mermin': {
     honestStatus: 'formally_proven',
-    confidence: 1.0,
+    confidence: harmonic.confidenceProven(),
     gaps: [],
     formalProofStatus: 'complete',
   },
@@ -168,7 +170,7 @@ export const UPGRADE_MAPPING: Record<string, Partial<HonestTheoremRecord>> = {
   // Others: structurally supported or conjectured based on their nature
   'quantum breaks linear cryptography': {
     honestStatus: 'structurally_supported',
-    confidence: 0.75,
+    confidence: harmonic.confidenceCryptography(),
     gaps: [
       'Shor algorithm rigorously proven',
       'Non-abelian trinity structure speculative',

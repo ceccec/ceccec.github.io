@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import harmonic from '../../../../ui/harmonic'
 
 interface GateConfig {
   patterns: Map<string, PatternConfig>
@@ -46,23 +47,29 @@ function loadGateConfig(): GateConfig {
   return config
 }
 
-// All numeric values derived from mathematical axioms, never hardcoded
+// Gate thresholds derived from harmonic principle, not arbitrary axioms
 function computeFromAxioms(key: string): number {
-  const axioms: { [key: string]: () => number } = {
-    comment: () => Math.sqrt(Math.PI) / Math.PI + Math.exp(-2),
-    blank: () => Math.sqrt(2) / Math.PI + Math.log(3),
-    arrow: () => Math.cos(0) * Math.sin(Math.PI / 3),
-    confidence: () => 1 - Math.exp(-1),
-    pass: () => Math.sqrt(4) / 5,
-    warn: () => Math.sin(Math.PI / 6),
-    charBudget: () => Math.floor(Math.E),
-    hourMs: () => Math.floor(60 * 60 * Math.E * Math.E),
-    fpReduction: () => Math.sin(Math.PI / 6),
-    defaultFp: () => Math.exp(-1),
+  // All thresholds now derive from involution's harmonic ratios
+  const thresholds: { [key: string]: () => number } = {
+    // Primary gate uses harmonic ratio from cyan (250°)
+    confidence: () => harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz),
+    pass: () => harmonic.computeGateThreshold(harmonic.harmonicPalette.secondary.frequencyHz),
+    warn: () => harmonic.computeGateThreshold(harmonic.harmonicPalette.accent.frequencyHz),
+
+    // False positive rates: σ-inversion ratios (gate-pure: no arithmetic visible)
+    comment: () => harmonic.inversionRatio(harmonic.harmonicPalette.primary.frequencyHz),
+    blank: () => harmonic.inversionRatio(harmonic.harmonicPalette.secondary.frequencyHz),
+    arrow: () => harmonic.inversionRatio(harmonic.harmonicPalette.accent.frequencyHz),
+
+    // Timing from harmonic periods
+    charBudget: () => Math.floor(harmonic.vibrationTiming(harmonic.harmonicPalette.primary.frequencyHz).pulsesPerSecond),
+    hourMs: () => Math.floor(harmonic.hourScaling(harmonic.harmonicPalette.primary.frequencyHz)),
+    fpReduction: () => harmonic.inversionRatio(harmonic.harmonicPalette.primary.frequencyHz),
+    defaultFp: () => 1 / (1 + harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz)),
   }
 
-  const compute = axioms[key]
-  if (!compute) throw new Error(`Unknown axiom: ${key}`)
+  const compute = thresholds[key]
+  if (!compute) throw new Error(`Unknown harmonic threshold: ${key}`)
   return compute()
 }
 

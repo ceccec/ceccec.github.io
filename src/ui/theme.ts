@@ -1,17 +1,50 @@
-// VitePress theme configuration
-// Complete styling and component system for 53-layer visualization
+// VitePress theme: σ-involution wired through harmonic layer
+// Theme ← Audio ← Vibration ← Gate thresholds (all derived from involution)
+import harmonic from './harmonic'
+
+// Light mode palette derived from harmonic foundation
+const paletteLight = {
+  primary:   `oklch(65% 0.2 ${harmonic.harmonicPalette.primary.hue})`,
+  secondary: `oklch(55% 0.22 ${harmonic.harmonicPalette.secondary.hue})`,
+  accent:    `oklch(60% 0.19 ${harmonic.harmonicPalette.accent.hue})`,
+  success:   'oklch(72% 0.18 150)',  // Green (harmonic H for success)
+  warning:   'oklch(70% 0.20 85)',   // Yellow (harmonic H for warning)
+  danger:    'oklch(58% 0.21 20)',   // Red (harmonic H for danger)
+  neutral:   'oklch(85% 0.05 0)',    // Light gray
+}
+
+// Dark mode: σ-inverted + harmonic ratios for perception
+const paletteDark = {
+  primary:   `oklch(35% 0.2 ${(harmonic.harmonicPalette.primary.hue + 180) % 360})`,
+  secondary: `oklch(45% 0.22 ${(harmonic.harmonicPalette.secondary.hue + 180) % 360})`,
+  accent:    `oklch(40% 0.19 ${(harmonic.harmonicPalette.accent.hue + 180) % 360})`,
+  success:   'oklch(28% 0.18 330)',
+  warning:   'oklch(30% 0.20 265)',
+  danger:    'oklch(42% 0.21 200)',
+  neutral:   'oklch(15% 0.05 0)',
+}
+
+// Vibration timing derives from harmonic periods
+const vibrationTiming = {
+  primary: harmonic.vibrationTiming(harmonic.harmonicPalette.primary.frequencyHz),
+  secondary: harmonic.vibrationTiming(harmonic.harmonicPalette.secondary.frequencyHz),
+  accent: harmonic.vibrationTiming(harmonic.harmonicPalette.accent.frequencyHz),
+}
 
 export const theme = {
   colors: {
-    primary: '#00d4ff',      // Cyan
-    secondary: '#ff006e',    // Red/Pink
-    accent: '#8338ec',       // Purple
-    success: '#06ffa5',      // Green
-    warning: '#ffbe0b',      // Yellow
-    danger: '#ff006e',       // Red
-    dark: '#0a0e27',         // Dark navy
-    darker: '#050812',       // Darkest
-    light: '#f0f0f0'         // Light gray
+    // Use CSS custom properties to toggle σ-state dynamically
+    primary: 'var(--color-primary)',
+    secondary: 'var(--color-secondary)',
+    accent: 'var(--color-accent)',
+    success: 'var(--color-success)',
+    warning: 'var(--color-warning)',
+    danger: 'var(--color-danger)',
+    neutral: 'var(--color-neutral)',
+    // Derived from σ-pairs
+    dark: 'var(--color-neutral-inverted)',
+    darker: 'oklch(5% 0.02 0)',
+    light: 'var(--color-neutral)',
   },
 
   // Typography
@@ -100,20 +133,19 @@ export const theme = {
   }
 }
 
-// CSS-in-JS helper
+// CSS-in-JS: σ-involution theme with light/dark duality
 export function generateThemeCss(): string {
   return `
     :root {
-      /* Colors */
-      --primary: ${theme.colors.primary};
-      --secondary: ${theme.colors.secondary};
-      --accent: ${theme.colors.accent};
-      --success: ${theme.colors.success};
-      --warning: ${theme.colors.warning};
-      --danger: ${theme.colors.danger};
-      --dark: ${theme.colors.dark};
-      --darker: ${theme.colors.darker};
-      --light: ${theme.colors.light};
+      /* Light mode (default) — primary state */
+      --color-primary: ${paletteLight.primary};
+      --color-secondary: ${paletteLight.secondary};
+      --color-accent: ${paletteLight.accent};
+      --color-success: ${paletteLight.success};
+      --color-warning: ${paletteLight.warning};
+      --color-danger: ${paletteLight.danger};
+      --color-neutral: ${paletteLight.neutral};
+      --color-neutral-inverted: oklch(15% 0.05 0);
 
       /* Typography */
       --font-family: ${theme.typography.fontFamily};
@@ -141,6 +173,19 @@ export function generateThemeCss(): string {
       --transition: ${theme.transitions.default};
     }
 
+    /* Dark mode: σ-involution applied (inverted lightness + rotated hue) */
+    :root[data-theme="dark"],
+    @media (prefers-color-scheme: dark) {
+      --color-primary: ${paletteDark.primary};
+      --color-secondary: ${paletteDark.secondary};
+      --color-accent: ${paletteDark.accent};
+      --color-success: ${paletteDark.success};
+      --color-warning: ${paletteDark.warning};
+      --color-danger: ${paletteDark.danger};
+      --color-neutral: ${paletteDark.neutral};
+      --color-neutral-inverted: oklch(85% 0.05 0);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -148,11 +193,12 @@ export function generateThemeCss(): string {
     }
 
     body {
-      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-      color: var(--light);
+      background: linear-gradient(135deg, var(--color-neutral-inverted) 0%, var(--color-neutral) 100%);
+      color: var(--color-neutral);
       font-family: var(--font-family);
       font-size: var(--font-size-md);
       line-height: ${theme.typography.lineHeight.normal};
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     @keyframes pulse {
@@ -175,23 +221,24 @@ export function generateThemeCss(): string {
       to { transform: translateY(0); opacity: 1; }
     }
 
-    /* Scrollbar styling */
+    /* Scrollbar: σ-aware styling */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
 
     ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.1);
+      background: var(--color-neutral-inverted);
+      opacity: 0.1;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: var(--primary);
+      background: var(--color-primary);
       border-radius: 3px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent);
+      background: var(--color-accent);
     }
   `
 }

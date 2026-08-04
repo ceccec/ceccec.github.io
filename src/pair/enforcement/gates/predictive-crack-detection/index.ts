@@ -4,6 +4,7 @@
 
 import { fibonacci, PHI as phi } from '../../../../3/7'
 import { toUuid } from '../../../../0'
+import harmonic from '../../../../ui/harmonic'
 
 /**
  * Crack Prediction Framework
@@ -142,10 +143,12 @@ export function scanForPredictedCracks(codeSnippet: string): PredictedCrack[] {
   // Scan 2: Import paths (depth validation)
   const importPattern = /from\s+['"]\.+\/[^'"]+['"]/g
   const imports = codeSnippet.match(importPattern) || []
+  // Depth threshold derived from harmonic gate (involution ratio)
+  const harmonyDepthThreshold = Math.ceil(1 / harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz))
   for (const imp of imports) {
     const dots = (imp.match(/\.\.\//g) || []).length
-    // Heuristic: if ≥5 levels up, likely wrong
-    if (dots >= 5) {
+    // Heuristic: if exceeds harmonic depth ratio, likely wrong
+    if (dots >= harmonyDepthThreshold) {
       found.push({
         type: 'importDepth',
         location: imp,

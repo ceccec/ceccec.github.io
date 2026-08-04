@@ -156,7 +156,7 @@ const statusItems = ref([
 }
 
 .header {
-  background: linear-gradient(90deg, rgba(0, 212, 255, 0.1) 0%, rgba(131, 56, 236, 0.1) 100%);
+  background: linear-gradient(90deg, var(--ich-element-1-rgb) 0%, var(--ich-element-2-rgb) 100%);
   border-bottom: 1px solid var(--primary);
   padding: var(--spacing-lg);
 }
