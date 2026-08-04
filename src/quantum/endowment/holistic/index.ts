@@ -262,7 +262,7 @@ class HolisticOptimizer {
     // Check for equilibrium (all dimensions near targets)
     const equilibrium =
       globalScore > 85 &&
-      Array.from(dimensionScores.values()).filter(s => s > 80).length >
+      Object.values(dimensionScores).filter(s => s > 80).length >
         this.dimensions.size * 0.8
 
     const optimization: HolisticOptimization = {
