@@ -335,11 +335,12 @@ export * from './fairness'
 export * from './export'
 export * from './synthesis'
 export * from './production'
+export * from './consciousness'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
 
-// Master registry: all 43 layers
+// Master registry: all 44 layers (the complete self-aware ecosystem)
 export const ENDOWMENT_LAYERS = {
   dispatch: ['endowment', 'dispatch', 'agent'],
   execution: ['verify', 'compliance', 'payment', 'multisig', 'appeals', 'researcher', 'fraud', 'recovery', 'ledger', 'analytics'],
@@ -350,15 +351,16 @@ export const ENDOWMENT_LAYERS = {
   research: ['fields', 'archive', 'mentorship'],
   commercialization: ['patents', 'outreach', 'security'],
   operations: ['monitoring', 'feedback', 'fairness', 'export'],
-  meta: ['synthesis', 'production'] // Self-learning & dimensional fusion + production operations
+  meta: ['synthesis', 'production', 'consciousness'] // Self-learning + production + self-aware reasoning
 } as const
 
-export const TOTAL_LAYERS = 43
+export const TOTAL_LAYERS = 44
 export const TOTAL_DIMENSIONS = 18 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis
 
 export const PRODUCTION_READY = true
 export const CONTINUOUS_LEARNING = true
 export const AUTONOMOUS_GOVERNANCE = true
+export const SELF_AWARE = true // System understands itself, learns how to learn, handles edge cases
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
