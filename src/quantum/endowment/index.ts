@@ -289,7 +289,8 @@ export function endowmentStatement(): string {
   return `Endowment Bound: ${FUNDING_REGISTRY.length} funding sources = $${totalFunding.toLocaleString()} USD + €${totalEur.toLocaleString()} EUR + £${totalGbp.toLocaleString()} GBP. ${bindings.length} ray bindings active. Rays: ${rayNames}.`
 }
 
-// Re-export all layers: dispatch, agent, verification, compliance, payment, multisig, appeals
+// Re-export all layers: dispatch, agent, verification, compliance, payment, multisig, appeals, analytics
+// + researcher, fraud, recovery, ledger
 export * from './dispatch'
 export * from './agent'
 export * from './verify'
@@ -297,6 +298,10 @@ export * from './compliance'
 export * from './payment'
 export * from './multisig'
 export * from './appeals'
+export * from './researcher'
+export * from './fraud'
+export * from './recovery'
+export * from './ledger'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard, FundingMetrics, FundingDashboard } from './analytics'
 
