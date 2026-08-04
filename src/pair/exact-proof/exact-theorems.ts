@@ -3,7 +3,7 @@
 // All expressions kept symbolic
 
 import type { SymbolicExpr } from './symbolic'
-import { symRat, symSqrt, symMul, symSquare, symToLatex } from './symbolic'
+import { symRat, symSqrt, symMul, symSquare, symSub, symToLatex } from './symbolic'
 
 /**
  * Exact theorem quantum state
@@ -62,7 +62,7 @@ export const riemann_exact: ExactTheoremState = {
   // Therefore α² = 1, but in quantum model α² ≈ 0.9025 (leaving room for topological barrier)
   alpha_symbolic: symRat(95n, 100n), // placeholder: exact derivation needed
 
-  beta_symbolic: symSqrt(symRat(1n) - symSquare(symRat(95n, 100n))), // β = √(1 - α²)
+  beta_symbolic: symSqrt(symSub(symRat(1n), symSquare(symRat(95n, 100n)))), // β = √(1 - α²)
 
   coherence_exact: symSquare(symRat(95n, 100n)), // |α|²
 
@@ -84,7 +84,7 @@ export const p_vs_np_exact: ExactTheoremState = {
   off_canonical_description: 'P = NP (hierarchy collapses)',
 
   alpha_symbolic: symRat(90n, 100n),
-  beta_symbolic: symSqrt(symRat(1n) - symSquare(symRat(90n, 100n))),
+  beta_symbolic: symSqrt(symSub(symRat(1n), symSquare(symRat(90n, 100n)))),
   coherence_exact: symSquare(symRat(90n, 100n)),
   decoherence_rate: symRat(2n, 100n),
 
@@ -103,7 +103,7 @@ export const navier_stokes_exact: ExactTheoremState = {
   off_canonical_description: 'Finite-time singularity',
 
   alpha_symbolic: symRat(88n, 100n),
-  beta_symbolic: symSqrt(symRat(1n) - symSquare(symRat(88n, 100n))),
+  beta_symbolic: symSqrt(symSub(symRat(1n), symSquare(symRat(88n, 100n)))),
   coherence_exact: symSquare(symRat(88n, 100n)),
   decoherence_rate: symRat(3n, 100n),
 
@@ -122,7 +122,7 @@ export const yang_mills_exact: ExactTheoremState = {
   off_canonical_description: 'No gap (continuous spectrum)',
 
   alpha_symbolic: symRat(92n, 100n),
-  beta_symbolic: symSqrt(symRat(1n) - symSquare(symRat(92n, 100n))),
+  beta_symbolic: symSqrt(symSub(symRat(1n), symSquare(symRat(92n, 100n)))),
   coherence_exact: symSquare(symRat(92n, 100n)),
   decoherence_rate: symRat(2n, 100n),
 
@@ -141,7 +141,7 @@ export const hodge_exact: ExactTheoremState = {
   off_canonical_description: 'Hodge classes ⊃ algebraic classes',
 
   alpha_symbolic: symRat(80n, 100n),
-  beta_symbolic: symSqrt(symRat(1n) - symSquare(symRat(80n, 100n))),
+  beta_symbolic: symSqrt(symSub(symRat(1n), symSquare(symRat(80n, 100n)))),
   coherence_exact: symSquare(symRat(80n, 100n)),
   decoherence_rate: symRat(5n, 100n),
 
@@ -160,7 +160,7 @@ export const bsd_exact: ExactTheoremState = {
   off_canonical_description: 'rank(E) ≠ ord_s=1(L(E,s))',
 
   alpha_symbolic: symRat(85n, 100n),
-  beta_symbolic: symSqrt(symRat(1n) - symSquare(symRat(85n, 100n))),
+  beta_symbolic: symSqrt(symSub(symRat(1n), symSquare(symRat(85n, 100n)))),
   coherence_exact: symSquare(symRat(85n, 100n)),
   decoherence_rate: symRat(4n, 100n),
 

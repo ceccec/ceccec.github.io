@@ -27,7 +27,7 @@ export interface ExecutionReport {
   deviation: number
   canonical_measurements: number
   total_measurements: number
-  stability_passed: boolean
+  passed: boolean
   coherence_under_noise: number[]
   min_coherence: number
   interpretation: string
@@ -83,7 +83,7 @@ export function executeDetector(): {
     console.log(`    Canonical measurements: ${proof_result.canonical_measurements}/${proof_result.total_measurements}`)
     console.log(`    Coherence under noise: [${proof_result.coherence_under_noise.map((c) => c.toFixed(3)).join(', ')}]`)
     console.log(`    Min coherence (worst noise): ${Math.min(...proof_result.coherence_under_noise).toFixed(4)}`)
-    console.log(`    Protection level: ${proof_result.stability_passed ? '✓ PROVEN' : '✗ FAILED'}`)
+    console.log(`    Protection level: ${proof_result.passed ? '✓ PROVEN' : '✗ FAILED'}`)
 
     const interpretation = zero_deviation
       ? `✓ SEQUENCE SELF-CONSISTENT: Measured collapse probability matches theoretical α² exactly.`
@@ -98,7 +98,7 @@ export function executeDetector(): {
       deviation,
       canonical_measurements: proof_result.canonical_measurements,
       total_measurements: proof_result.total_measurements,
-      stability_passed: proof_result.stability_passed,
+      passed: proof_result.passed,
       coherence_under_noise: proof_result.coherence_under_noise,
       min_coherence: Math.min(...proof_result.coherence_under_noise),
       interpretation,
@@ -184,7 +184,7 @@ export function checkSequenceSelfConsistency(): {
   const result = executeDetector()
 
   const total_deviation = Object.values(result.reports).reduce((sum, r) => sum + r.deviation, 0)
-  const average_deviation = total_deviation / result.reports.length || 0
+  const average_deviation = total_deviation / Object.keys(result.reports).length || 0
   const self_consistent = result.all_theorems_passed
 
   const report = `

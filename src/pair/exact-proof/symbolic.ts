@@ -45,6 +45,11 @@ export function symAdd(left: SymbolicExpr, right: SymbolicExpr): SymbolicExpr {
   return { type: 'add', left, right }
 }
 
+export function symSub(left: SymbolicExpr, right: SymbolicExpr): SymbolicExpr {
+  // Subtraction: left - right = left + (-1 * right)
+  return symAdd(left, symMul(symRat(-1n), right))
+}
+
 export function symMul(left: SymbolicExpr, right: SymbolicExpr): SymbolicExpr {
   return { type: 'mul', left, right }
 }
@@ -118,6 +123,7 @@ export default {
   symRat,
   symSqrt,
   symAdd,
+  symSub,
   symMul,
   symExp,
   symSquare,
