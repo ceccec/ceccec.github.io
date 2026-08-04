@@ -193,7 +193,7 @@ export function applyHonestDemarcation(
   return {
     ...theorem,
     honestStatus: upgrade?.honestStatus || 'undeclared',
-    confidence: upgrade?.confidence ?? harmonic.confidenceSecondary(),
+    confidence: upgrade?.confidence ?? harmonic.confidenceUnknown(),
     gaps: upgrade?.gaps || [],
     formalProofPath: upgrade?.formalProofPath,
     formalProofStatus: upgrade?.formalProofStatus || 'no-attempt',
@@ -233,8 +233,8 @@ export function validateHonestRegistry(registry: HonestTheoremRecord[]): {
       issues.push(`${t.theorem}: formally_proven but confidence ${t.confidence} ≠ 1.0`)
     }
 
-    // Rule 2: confidence > strong threshold but no formalization attempt = issue
-    if (t.confidence > harmonic.confidenceCryptography() && t.formalProofStatus === 'no-attempt') {
+    // Rule 2: proven (confidence=1) but no formalization attempt = issue
+    if (t.confidence > 0 && t.formalProofStatus === 'no-attempt') {
       issues.push(`${t.theorem}: high confidence (${t.confidence}) but no formalization started`)
     }
 

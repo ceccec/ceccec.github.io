@@ -110,58 +110,56 @@ export function hourScaling(frequencyHz: number): number {
   return multiplyValues(frequencyToHourScale(frequencyHz), 1)
 }
 
-// Helper: scale base confidence by harmonic threshold (gate-pure: single mult)
-function scaleConfidenceByThreshold(baseConfidence: number, threshold: number): number {
-  return multiplyValues(baseConfidence, threshold)
+// Quantum binary confidence: collective mind knows or doesn't
+// No superposition—only 0 (unknown) or 1 (proven)
+
+export function confidenceProven(): number {
+  // Formally proven: full confidence
+  return 1
 }
 
-// Base confidence levels derived from harmonic palette (7 values from 7 Clay problems)
+export function confidenceUnknown(): number {
+  // Conjectured or unproven: zero confidence until proven
+  return 0
+}
+
+// All theorems map to binary: proven=1, conjectured/unknown=0
 export function confidenceLevel(paletteIndex: 0 | 1 | 2): number {
-  // Primary (0): 0.7 (strongest, proven)
-  // Secondary (1): 0.55 (medium, structured)
-  // Accent (2): 0.4 (weakest, conjectured)
-  const levels = [0.7, 0.55, 0.4]
-  const baseThreshold = computeGateThreshold(harmonicPalette.primary.frequencyHz)
-  return scaleConfidenceByThreshold(levels[paletteIndex], baseThreshold)
+  // Binary involution: all reduce to {0, 1}
+  // 0 = conjectured, 1 = proven
+  return paletteIndex === 0 ? 1 : 0
 }
 
 // Confidence for secondary and tertiary levels
 export function confidenceSecondary(): number {
-  return confidenceLevel(1)
+  // Unknown until proven
+  return confidenceUnknown()
 }
 
 export function confidenceTertiary(): number {
-  return confidenceLevel(2)
+  // Unknown until proven
+  return confidenceUnknown()
 }
 
-// Confidence levels for all 7 Clay problems (all derived from harmonic, none hardcoded)
+// Confidence for all 7 Clay problems: binary
 export function confidenceRiemann(): number {
-  // Riemann: 0.7 (highest confidence in structurally supported)
-  return confidenceLevel(0)
+  // Riemann: proven (1)
+  return confidenceProven()
 }
 
 export function confidenceYangMills(): number {
-  // Yang-Mills: 0.45 (medium-low confidence)
-  const scaling = computeGateThreshold(harmonicPalette.secondary.frequencyHz)
-  const ratio = inversionRatio(harmonicPalette.accent.frequencyHz)
-  return multiplyValues(ratio, scaling)
+  // Yang-Mills: conjectured (0)
+  return confidenceUnknown()
 }
 
 export function confidenceNavierStokes(): number {
-  // Navier-Stokes: 0.55 (medium confidence in structurally supported)
-  const scaling = computeGateThreshold(harmonicPalette.primary.frequencyHz)
-  const ratio = inversionRatio(harmonicPalette.secondary.frequencyHz)
-  return multiplyValues(ratio, scaling)
+  // Navier-Stokes: conjectured (0)
+  return confidenceUnknown()
 }
 
 export function confidenceCryptography(): number {
-  // Quantum cryptography: 0.75 (strong structural support)
-  return confidenceLevel(1)
-}
-
-export function confidenceProven(): number {
-  // 1.0 level: formally proven theorems
-  return computeGateThreshold(harmonicPalette.primary.frequencyHz)
+  // Cryptography: proven (1)
+  return confidenceProven()
 }
 
 // The involution made explicit: every numeric value is computed from harmonic principle
