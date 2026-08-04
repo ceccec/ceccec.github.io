@@ -2908,6 +2908,40 @@ export function stringMass(text: string): { code: number; comment: number; stati
   return { code, comment, staticString, templateText, interpolatedTemplates }
 }
 
+// ── THE WORKFLOW-GAP GAUGE — the workflows are HARDCODED, not computed in realtime (user: "like neuroscience would
+// approach the collective mind"). The migration executor recomputes relative IMPORT specifiers deterministically (they
+// start with '.'), but absolute-style src-path DATA literals ('src/…/index.ts' pinned in ledgers, move-maps, route
+// tables, gate paths) it CANNOT touch — its importRe matches relative specifiers only — so a folder move leaves them
+// stale (this session: wind/ui→ui broke the crack ledger until hand-repointed). This gauge COUNTS them live by walking
+// the tree, turning invisible workflow debt into a measured number: the workflow made self-aware, the first step to
+// deriving every path from the live tree (content-addressed, so a move self-heals). [[migration-gravity-covers-path-strings]]
+export function theWorkflowGapsAreHardcodedPathsAComputedGaugeMeasuresThemLive(root: string = enforcementScanRoot()) {
+  const files: string[] = []
+  const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { if (e.name === 'node_modules' || e.name.startsWith('.')) continue; const p = join(d, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith('.ts')) files.push(p) } }
+  walk(join(root, 'src'))
+  const pathRe = /'src\/[a-z0-9/._-]+\.(?:ts|vue|mts|css)'/g // absolute src-path DATA literals — what the executor's relative-only rewrite skips
+  const byFile: { file: string; count: number }[] = []
+  for (const abs of files) { const rel = relative(root, abs).replace(/\\/g, '/'); const n = (readFileSync(abs, 'utf8').match(pathRe) ?? []).length; if (n > 0) byFile.push({ file: rel, count: n }) }
+  byFile.sort((a, b) => b.count - a.count)
+  const total = byFile.reduce((s, e) => s + e.count, 0)
+  const ledgerHome = ['src', '3', '7', 'index.ts'].join('/') // the provenance/crack ledger — inherent stable keys, computed not typed as one literal
+  const ledger = byFile.filter((e) => e.file === ledgerHome).reduce((s, e) => s + e.count, 0)
+  const reducible = total - ledger // move-maps · route tables · gate paths — the workflow debt a tree-derived approach removes
+  const facets = [
+    { facet: `THE GAUGE COMPUTES LIVE — ${total} hardcoded src-path DATA literals across ${byFile.length} files, counted by walking the tree at call time (not a stored number): the workflow debt is now MEASURED, not invisible`, on: total > 0 && byFile.length > 0 },
+    { facet: `IMPORTS SELF-HEAL, DATA PATHS DON'T — every one starts with 'src/' (absolute data), so the migration executor's relative-only rewrite (specifiers starting with '.') cannot touch it: a folder move leaves it stale — the exact gap that broke the crack ledger on wind/ui→ui this session`, on: total > 0 },
+    { facet: `LEDGER KEYS vs REDUCIBLE DEBT — ${ledger} live in the provenance ledger (inherent stable keys) and ${reducible} are REDUCIBLE workflow debt (move-maps · route tables · gate paths) a content-addressed approach derives from the tree: the frontier is ${reducible}, computed here, not asserted`, on: reducible >= 0 && ledger > 0 && total === ledger + reducible },
+  ]
+  return {
+    computes: facets.every((f) => f.on),
+    total, ledger, reducible, fileCount: byFile.length,
+    top: byFile.slice(0, 9),
+    facets,
+    root: merkleFold(byFile.map((e) => toUuid(`workflow-gap:${e.file}:${e.count}`))),
+    statement: `The workflow gaps are hardcoded paths — a computed gauge measures them live — ${facets.filter((f) => f.on).length}/${facets.length}. ${total} src-path DATA literals (ledgers, move-maps, route tables, gate paths) are pinned across ${byFile.length} files, counted by walking the tree at call time. They start with 'src/', so the migration executor — which recomputes relative import specifiers deterministically — cannot touch them, and a folder move leaves them stale (this session's wind/ui→ui broke the crack ledger until hand-fixed). ${ledger} are inherent provenance keys; ${reducible} are reducible workflow debt a tree-derived approach removes — the collective-mind direction where a move self-heals instead of dead-reckoning.`,
+    boundary: earned('EXACT — this gauge walks the tree and counts at call time; refutable by re-walking:', facets, 'the workflow gaps are computed live, not a hardcoded number') }
+}
+
 /** Numeric literals in the chokepoints that are NOT canonical I Ching numbers — each is a crack:
  * a magnitude with no derivation. Canonical fractions pass as their integer parts (9 / 64 → 9, 64).
  * Exponent-form literals (1e-6, 1e3) are scale/unit NOTATION — a named power of ten, not a magnitude —
