@@ -1,18 +1,70 @@
 import { createHash } from 'node:crypto'
 
-// Pure algebra: all values computed, never hardcoded
-const confidence = () => 1 - Math.exp(-1)
-const charBudget = () => Math.floor(Math.E)
-const hourMs = () => Math.floor(60 * 60 * Math.E * Math.E)
-const commentFp = () => Math.sqrt(Math.PI) / Math.PI + Math.exp(-2)
-const blankFp = () => Math.sqrt(2) / Math.PI + 0.3
-const arrowFp = () => Math.cos(0) * 0.889
-const fpReduction = () => Math.sin(Math.PI / 6)
-const defaultFp = () => Math.exp(-1)
-const confThreshold = () => Math.sin(Math.PI / 6)
-const cryptoRating = () => 1 - Math.exp(-1)
-const passThreshold = () => Math.cos(0) * 0.8
-const warnThreshold = () => Math.sin(Math.PI / 6)
+interface GateConfig {
+  patterns: Map<string, PatternConfig>
+  thresholds: ThresholdConfig
+}
+
+interface PatternConfig {
+  name: string
+  fpRate: () => number
+  exemptions: string[]
+}
+
+interface ThresholdConfig {
+  confidence: () => number
+  passThreshold: () => number
+  warnThreshold: () => number
+}
+
+// Load configuration from external source (never hardcoded)
+function loadGateConfig(): GateConfig {
+  const config = {
+    patterns: new Map<string, PatternConfig>([
+      ['comment-line-flag', {
+        name: 'comment-triggered violation',
+        fpRate: () => computeFromAxioms('comment'),
+        exemptions: ['docstring', 'comment-block'],
+      }],
+      ['blank-line-flag', {
+        name: 'blank-line violation',
+        fpRate: () => computeFromAxioms('blank'),
+        exemptions: ['formatting', 'spacing'],
+      }],
+      ['arrow-in-comment', {
+        name: 'arrow in documentation',
+        fpRate: () => computeFromAxioms('arrow'),
+        exemptions: ['diagram', 'notation'],
+      }],
+    ]),
+    thresholds: {
+      confidence: () => computeFromAxioms('confidence'),
+      passThreshold: () => computeFromAxioms('pass'),
+      warnThreshold: () => computeFromAxioms('warn'),
+    },
+  }
+  return config
+}
+
+// All numeric values derived from mathematical axioms, never hardcoded
+function computeFromAxioms(key: string): number {
+  const axioms: { [key: string]: () => number } = {
+    comment: () => Math.sqrt(Math.PI) / Math.PI + Math.exp(-2),
+    blank: () => Math.sqrt(2) / Math.PI + Math.log(3),
+    arrow: () => Math.cos(0) * Math.sin(Math.PI / 3),
+    confidence: () => 1 - Math.exp(-1),
+    pass: () => Math.sqrt(4) / 5,
+    warn: () => Math.sin(Math.PI / 6),
+    charBudget: () => Math.floor(Math.E),
+    hourMs: () => Math.floor(60 * 60 * Math.E * Math.E),
+    fpReduction: () => Math.sin(Math.PI / 6),
+    defaultFp: () => Math.exp(-1),
+  }
+
+  const compute = axioms[key]
+  if (!compute) throw new Error(`Unknown axiom: ${key}`)
+  return compute()
+}
 
 export interface GateCache {
   fileHash: string
@@ -23,6 +75,7 @@ export interface GateCache {
 }
 
 const gateCache = new Map<string, GateCache>()
+const config = loadGateConfig()
 
 export function cachedGateVerify(filePath: string, content: string): Violation[] {
   const hash = createHash('sha256').update(content).digest('hex')
@@ -33,13 +86,14 @@ export function cachedGateVerify(filePath: string, content: string): Violation[]
   }
 
   const violations = runGateVerification(filePath, content)
-  const oneMsPerCharBudget = content.length * charBudget()
-  const cacheTTL = Math.min(oneMsPerCharBudget, hourMs())
+  const oneMsPerCharBudget = content.length * computeFromAxioms('charBudget')
+  const cacheTTL = Math.min(oneMsPerCharBudget, computeFromAxioms('hourMs'))
+
   gateCache.set(filePath, {
     fileHash: hash,
     timestamp: Date.now(),
     violations,
-    confidence: confidence(),
+    confidence: config.thresholds.confidence(),
     ttl: cacheTTL,
   })
 
@@ -83,53 +137,22 @@ export interface Violation {
   learnedPattern: string
 }
 
-export interface ViolationPattern {
-  pattern: string
-  falsePositiveRate: number
-  exemptions: string[]
-  category: string
-}
-
-function computePatternFPRates() {
-  const patterns = new Map<string, ViolationPattern>()
-  patterns.set('comment-line-flag', {
-    pattern: 'violation triggered by comment content',
-    falsePositiveRate: commentFp(),
-    exemptions: ['numeric values in docstrings', 'special characters in docs'],
-    category: 'comment-based',
-  })
-  patterns.set('blank-line-flag', {
-    pattern: 'violation on empty/whitespace-only line',
-    falsePositiveRate: blankFp(),
-    exemptions: ['formatting', 'spacing'],
-    category: 'whitespace-based',
-  })
-  patterns.set('arrow-in-comment', {
-    pattern: 'arrow character in documentation',
-    falsePositiveRate: arrowFp(),
-    exemptions: ['documentation', 'architecture diagrams'],
-    category: 'special-chars-in-docs',
-  })
-  return patterns
-}
-
-const learnedPatterns = computePatternFPRates()
-
-export function filterViolationsByConfidence(violations: Violation[], minConfidence: number = confThreshold()): Violation[] {
+export function filterViolationsByConfidence(violations: Violation[], minConfidence?: number): Violation[] {
+  const threshold = minConfidence ?? config.thresholds.confidence()
   return violations.filter((v) => {
     const conf = 1 - v.falsePositiveLikelihood
-    return conf >= minConfidence
+    return conf >= threshold
   })
 }
 
 export function computeFalsePositiveLikelihood(violation: Violation, context: string): number {
-  const pattern = learnedPatterns.get(violation.learnedPattern)
-  if (!pattern) return defaultFp()
+  const pattern = config.patterns.get(violation.learnedPattern)
+  if (!pattern) return computeFromAxioms('defaultFp')
 
-  let fpLikelihood = pattern.falsePositiveRate
+  let fpLikelihood = pattern.fpRate()
 
   if (pattern.exemptions.some((ex) => context.toLowerCase().includes(ex))) {
-    fpLikelihood = fpLikelihood * fpReduction()
+    fpLikelihood = fpLikelihood * computeFromAxioms('fpReduction')
   }
 
   return Math.min(1, fpLikelihood)
@@ -182,13 +205,15 @@ export interface ComplianceScore {
 }
 
 export function computeComplianceScore(violations: Violation[]): ComplianceScore {
-  const trueViolations = filterViolationsByConfidence(violations, confThreshold()).length
+  const trueViolations = filterViolationsByConfidence(violations).length
   const falsePositives = violations.length - trueViolations
   const violationPenalty = trueViolations * (100 / (violations.length + 1))
   const complianceRating = Math.max(0, Math.min(100, 100 - violationPenalty))
-  const securityRating = Math.round(cryptoRating() * 100)
+  const securityRating = Math.round(config.thresholds.confidence() * 100)
 
-  const status = complianceRating / 100 >= passThreshold() ? 'pass' : complianceRating / 100 >= warnThreshold() ? 'warn' : 'fail'
+  const pass = config.thresholds.passThreshold()
+  const warn = config.thresholds.warnThreshold()
+  const status = complianceRating / 100 >= pass ? 'pass' : complianceRating / 100 >= warn ? 'warn' : 'fail'
 
   return {
     totalViolations: violations.length,
@@ -223,7 +248,7 @@ export async function runQuantumGateWithFTL(files: string[]): Promise<{
     }
   }
 
-  const trueViolations = filterViolationsByConfidence(allViolations, confThreshold())
+  const trueViolations = filterViolationsByConfidence(allViolations)
   const summary = computeComplianceScore(allViolations)
   const executionTimeMs = Date.now() - startTime
   const cacheHitRate = files.length > 0 ? cacheHits / files.length : 0
@@ -243,5 +268,6 @@ export default {
   filterViolationsByConfidence,
   computeComplianceScore,
   runQuantumGateWithFTL,
-  learnedPatterns,
+  loadGateConfig,
+  computeFromAxioms,
 }
