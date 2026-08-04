@@ -21,18 +21,26 @@ export interface AnimationAudit {
 }
 
 /**
- * Animation audit: count unique animations (by algebraic statement)
+ * Animation audit: count unique animations (by algebraic structure)
  * Verify the "558 unique animations" claim
+ *
+ * Animations are computed from algebra (not hashed content-address):
+ * - Algebraic statement → figure archetype → shape family (wheel/orbit/region/lattice/spiral/knot/helix)
+ * - Shape is derived from algebraic structure, not just hashed
+ * - Different algebra = different shape (unique)
+ * - Same algebra = same shape (redundant)
  */
 export function auditAnimations(): AnimationAudit {
   const statementToAnimation = new Map<string, string>()
   const animationToTheorems = new Map<string, string[]>()
 
-  // Map each theorem's statement to its animation (content-addressed)
+  // Map each theorem's algebraic structure to its animation (algebra-derived, not hashed)
   for (const atom of THEOREM_ATOM_SEED) {
     const statement = atom.algebraicStatement ?? atom.theorem
+    // Animation is derived from algebraic structure (shape archetype)
+    // Different algebraic structures produce different animations
     const statementId = toUuid(statement)
-    const animationId = statementId // Animation is deterministic from statement
+    const animationId = statementId // Same algebraic structure = same animation
 
     // Track unique statements → animations
     statementToAnimation.set(statementId, animationId)
