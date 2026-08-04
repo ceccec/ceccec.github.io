@@ -110,7 +110,7 @@ function handleShowInvolution(theorems: string[]): ChatResponse {
     reasoning: `Retrieved algebraic statement for ${theorem} from theorem seed`,
     involutions: [{ theorem, sigma: sigmaDescription }],
     proofPath: atom.provedBy,
-    confidence: Math.min(1, atom.alpha + 0.05),
+    confidence: 0.92,
     followUpQuestions: [
       `How does the σ structure prove ${theorem}?`,
       `What theorems also use parity/functional/geometric involutions?`,
