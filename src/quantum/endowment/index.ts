@@ -332,9 +332,25 @@ export * from './security'
 export * from './monitoring'
 export * from './feedback'
 export * from './fairness'
+export * from './export'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
+
+// Master registry: all 41 layers
+export const ENDOWMENT_LAYERS = {
+  dispatch: ['endowment', 'dispatch', 'agent'],
+  execution: ['verify', 'compliance', 'payment', 'multisig', 'appeals', 'researcher', 'fraud', 'recovery', 'ledger', 'analytics'],
+  governance: ['stakeholder', 'events', 'pools', 'milestones', 'reporting', 'orchestrator'],
+  intelligence: ['impact', 'incentives', 'portfolio', 'predict', 'sustainability', 'integration'],
+  control: ['benchmark', 'transparency', 'risk', 'governance', 'pricing'],
+  quality: ['reproducibility', 'knowledge', 'collaboration'],
+  research: ['fields', 'archive', 'mentorship'],
+  commercialization: ['patents', 'outreach', 'security'],
+  operations: ['monitoring', 'feedback', 'fairness', 'export']
+} as const
+
+export const TOTAL_LAYERS = 41
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
