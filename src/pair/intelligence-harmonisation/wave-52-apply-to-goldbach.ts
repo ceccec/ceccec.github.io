@@ -46,18 +46,18 @@ function generatePrimePairs(n: number): PrimePair[] {
  * This is the single authoritative implementation for this module
  */
 function generatePrimesUpTo(n: number): number[] {
-  const isPrime = Array(n + 1).fill(true)
-  isPrime[0] = isPrime[1] = false
+  const primeSieve = Array(n + 1).fill(true)
+  primeSieve[0] = primeSieve[1] = false
 
   for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
+    if (primeSieve[i]) {
       for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false
+        primeSieve[j] = false
       }
     }
   }
 
-  return isPrime.map((p, i) => (p ? i : -1)).filter((x) => x > 0)
+  return primeSieve.map((marked, index) => (marked ? index : -1)).filter((x) => x > 0)
 }
 
 /**
