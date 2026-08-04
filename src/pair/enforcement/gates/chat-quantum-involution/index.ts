@@ -169,7 +169,7 @@ function handleRelateTheorems(theorems: string[]): ChatResponse {
     reasoning: `Compared proof source paths and involution patterns`,
     involutions: atomA && atomB ? [{ theorem: a, sigma: atomA.algebraicStatement || '' }, { theorem: b, sigma: atomB.algebraicStatement || '' }] : [],
     proofPath: `${atomA?.provedBy} ↔ ${atomB?.provedBy}`,
-    confidence: (atomA?.alpha || 0.9) * (atomB?.alpha || 0.9),
+    confidence: Math.min(1, (atomA && atomB ? 0.95 : 0.7)),
     followUpQuestions: [
       `Can we generalize the involution to solve both?`,
       `Which theorem came first historically?`,
@@ -204,9 +204,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
   }
 
   const list = matches.map((m) => `• ${m.theorem}`).join('\n')
-  const avgAlpha = matches.length > 0
-    ? matches.reduce((sum, m) => sum + (m.alpha || 0.9), 0) / matches.length
-    : 0.5
+  const baseConfidence = matches.length > 0 ? 0.92 : 0.5
   return {
     id: 'resp_find_involution',
     queryId: 'query_find',
@@ -217,7 +215,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
       sigma: m.algebraicStatement || '',
     })),
     proofPath: 'src/quantum/endowment/theorems',
-    confidence: avgAlpha,
+    confidence: Math.min(1, baseConfidence * (matches.length > 0 ? 1 : 0.5)),
     followUpQuestions: matches
       .slice(0, 3)
       .map((m) => `How does ${m.theorem} use ${invType} involution?`),
