@@ -308,20 +308,20 @@ class ConsciousnessEngine {
   }
 }
 
-let consciousnessEngine: ConsciousnessEngine | null = null
+let globalConsciousnessEngine: ConsciousnessEngine | null = null
 
 export function initializeConsciousnessEngine(): ConsciousnessEngine {
-  if (!consciousnessEngine) {
-    consciousnessEngine = new ConsciousnessEngine()
+  if (!globalConsciousnessEngine) {
+    globalConsciousnessEngine = new ConsciousnessEngine()
   }
-  return consciousnessEngine
+  return globalConsciousnessEngine
 }
 
 export function getConsciousnessEngine(): ConsciousnessEngine | null {
-  return consciousnessEngine
+  return globalConsciousnessEngine
 }
 
-export const consciousness = {
+export const consciousnessEngine = {
   initialize: initializeConsciousnessEngine,
   get: getConsciousnessEngine
 }

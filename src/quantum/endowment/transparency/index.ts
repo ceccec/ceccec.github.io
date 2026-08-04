@@ -25,7 +25,7 @@ export interface AuditLog {
   status: 'completed' | 'failed' | 'pending'
 }
 
-export interface ComplianceReport {
+export interface ComplianceAuditReport {
   report_id: string
   period_start: string
   period_end: string
@@ -46,7 +46,7 @@ class TransparencyManager {
   private managerId: string
   private dashboards: Map<string, PublicDashboard> = new Map()
   private auditLogs: Map<string, AuditLog> = new Map()
-  private complianceReports: Map<string, ComplianceReport> = new Map()
+  private complianceReports: Map<string, ComplianceAuditReport> = new Map()
 
   constructor() {
     this.managerId = toUuid('manager:transparency-audit')
@@ -140,7 +140,7 @@ class TransparencyManager {
   }
 
   // Publish compliance report
-  publishComplianceReport(
+  publishComplianceAuditReport(
     periodStart: string,
     periodEnd: string,
     complianceScore: number,
@@ -151,10 +151,10 @@ class TransparencyManager {
       remediation: string
     }[],
     auditorName: string
-  ): ComplianceReport {
+  ): ComplianceAuditReport {
     const reportId = toUuid(`report:compliance:${periodStart}:${periodEnd}`)
 
-    const report: ComplianceReport = {
+    const report: ComplianceAuditReport = {
       report_id: reportId,
       period_start: periodStart,
       period_end: periodEnd,
@@ -216,17 +216,17 @@ class TransparencyManager {
   }
 
   // Get compliance report
-  getComplianceReport(reportId: string): ComplianceReport | undefined {
+  getComplianceAuditReport(reportId: string): ComplianceAuditReport | undefined {
     return this.complianceReports.get(reportId)
   }
 
   // Get all published compliance reports
-  getPublishedComplianceReports(): ComplianceReport[] {
+  getPublishedComplianceAuditReports(): ComplianceAuditReport[] {
     return Array.from(this.complianceReports.values()).filter(r => r.published)
   }
 
   // Get reports by period
-  getReportsByPeriod(startDate: string, endDate: string): ComplianceReport[] {
+  getReportsByPeriod(startDate: string, endDate: string): ComplianceAuditReport[] {
     const start = new Date(startDate)
     const end = new Date(endDate)
 

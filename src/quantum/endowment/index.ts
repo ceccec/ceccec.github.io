@@ -335,12 +335,17 @@ export * from './fairness'
 export * from './export'
 export * from './synthesis'
 export * from './production'
-export * from './consciousness'
+// Consciousness re-exported with namespaced object to avoid conflicts
+export { consciousnessEngine, initializeConsciousnessEngine, getConsciousnessEngine } from './consciousness'
+export type { DimensionalReasoningState, AdaptiveStrategy, SelfAwarenessMetrics } from './consciousness'
+// Collective intelligence re-exported with alias to avoid collision with heaven/mind collective
+export { collectiveSystem, initializeCollectiveIntelligence, getCollectiveIntelligence } from './collective'
+export type { AgentLearning, EmergentStrategy, CollectiveMemory } from './collective'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
 
-// Master registry: all 44 layers (the complete self-aware ecosystem)
+// Master registry: all 45 layers (the complete self-aware multi-agent ecosystem)
 export const ENDOWMENT_LAYERS = {
   dispatch: ['endowment', 'dispatch', 'agent'],
   execution: ['verify', 'compliance', 'payment', 'multisig', 'appeals', 'researcher', 'fraud', 'recovery', 'ledger', 'analytics'],
@@ -351,16 +356,17 @@ export const ENDOWMENT_LAYERS = {
   research: ['fields', 'archive', 'mentorship'],
   commercialization: ['patents', 'outreach', 'security'],
   operations: ['monitoring', 'feedback', 'fairness', 'export'],
-  meta: ['synthesis', 'production', 'consciousness'] // Self-learning + production + self-aware reasoning
+  meta: ['synthesis', 'production', 'consciousness', 'collective'] // Self-learning + production + self-aware reasoning + emergent multi-agent coordination
 } as const
 
-export const TOTAL_LAYERS = 44
-export const TOTAL_DIMENSIONS = 18 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis
+export const TOTAL_LAYERS = 45
+export const TOTAL_DIMENSIONS = 19 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis, collective-coordination
 
 export const PRODUCTION_READY = true
 export const CONTINUOUS_LEARNING = true
 export const AUTONOMOUS_GOVERNANCE = true
 export const SELF_AWARE = true // System understands itself, learns how to learn, handles edge cases
+export const MULTI_AGENT_COORDINATION = true // Multiple distributed systems coordinate, share learnings, discover emergent strategies
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
