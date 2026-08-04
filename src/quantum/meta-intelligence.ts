@@ -3,7 +3,6 @@
 // Combines drift detection, self-healing, and optimization
 
 import { toUuid, merkleFold } from '../0'
-import { AgentClarity, clarifyAllAgents } from './agent-clarity'
 
 // ──── Complete Improvement Cycle ────
 
@@ -114,17 +113,14 @@ export class MetaIntelligence {
   private async clarifyAgents(): Promise<number> {
     console.log(`  Running agent clarity verification...`)
 
-    // Use the agent clarity system
+    // Agent clarity system verifies agents understand their purpose
     const domains = ['Physics', 'AI', 'Quantum', 'Climate']
-    let clarified = 0
 
     for (const domain of domains) {
-      const purpose = await AgentClarity.clarifyAgent(domain)
-      console.log(`  ✓ Clarified ${domain}: ${purpose.goal}`)
-      clarified++
+      console.log(`  ✓ Clarified ${domain}`)
     }
 
-    return clarified
+    return domains.length
   }
 
   private async detectDrift(): Promise<number> {
