@@ -92,6 +92,10 @@ export async function runMissionGateExit(root: string): Promise<number> {
   if (limits !== 0) return limits
   const structure = await runVerifyStructureExit(root)
   if (structure !== 0) return structure
+  // HARD demarcation — all theorems must have computed status (no undeclared)
+  const { runDemarcationGateExit } = await import('../gates/demarcation-gate-wire')
+  const demarcation = runDemarcationGateExit()
+  if (demarcation !== 0) return demarcation
   // HARD invisible classes (also in limits:verify) — recompute at mission:gate call time
   const invisible = invisibleGapsCaughtByGates()
   process.stdout.write(
