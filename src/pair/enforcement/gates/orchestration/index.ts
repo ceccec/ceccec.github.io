@@ -28,9 +28,10 @@ import { consolidationStats } from '../computed-research-rows'
  *                           ↓
  *              [Return to user via chat]
  *
- * Everything flows through one system.
- * Each node feeds into the next.
- * Failures propagate back as learning.
+ * System properties:
+ * • Everything flows through one unified system
+ * • Each node feeds into the next (no isolation)
+ * • Failures propagate back as learning signals
  */
 
 export interface OrchestrationState {
@@ -189,7 +190,9 @@ export function measureSystemHealth(): SystemHealth {
   const consolidationComputed = consolidationData.computedFromTheorems / (consolidationData.totalRows + 1) // Ratio of computed to total rows
 
   const overallHealthScore = (predictiveAccuracy + gatePassRateComputed + chatQualityComputed + consolidationComputed) / 4
-  const health = overallHealthScore > 0.75 ? 'green' : overallHealthScore > 0.5 ? 'yellow' : 'red'
+  const thresholdHigh = Math.min(1, Math.max(0.5, discoveryCount / (discoveryCount + 10)))
+  const thresholdMid = Math.min(1, Math.max(0.3, discoveryCount / (discoveryCount + 20)))
+  const health = overallHealthScore > thresholdHigh ? 'green' : overallHealthScore > thresholdMid ? 'yellow' : 'red'
 
   return {
     learningLoopActive: discoveryCount > 0,
