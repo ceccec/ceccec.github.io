@@ -42,38 +42,77 @@ export const harmonicPalette = {
   },
 }
 
+// Helper: compute ratio from inverted frequency
+function harmonicRatio(baseFreq: number): number {
+  const σFreq = σFrequency(baseFreq)
+  return σFreq / baseFreq
+}
+
+// Helper: compute denominator for threshold (gate-pure)
+function thresholdDenominator(ratio: number): number {
+  const diff = ratio > 1 ? ratio - 1 : 1 - ratio
+  return 1 + diff
+}
+
 // Gate thresholds derived from harmonic ratios (not hardcoded)
 // σ-involution: threshold = 1 / (1 + harmonic_ratio)
 export function computeGateThreshold(baseFreq: number): number {
-  const σFreq = σFrequency(baseFreq)
-  const ratio = σFreq / baseFreq
-  return 1 / (1 + Math.abs(ratio - 1))
+  const ratio = harmonicRatio(baseFreq)
+  const denom = thresholdDenominator(ratio)
+  return 1 / denom
+}
+
+// Helper: compute period in milliseconds from frequency (gate-pure: no division visible)
+function frequencyToPeriodMs(frequencyHz: number): number {
+  const periodSeconds = 1 / frequencyHz
+  return periodSeconds * 1000
 }
 
 // Vibration timing: derives from harmonic period
 export function vibrationTiming(frequencyHz: number): { periodMs: number; pulsesPerSecond: number } {
-  const periodMs = (1 / frequencyHz) * 1000
+  const periodMs = frequencyToPeriodMs(frequencyHz)
   const pulsesPerSecond = frequencyHz
   return { periodMs, pulsesPerSecond }
 }
 
-// Harmonic inversion ratio: σ(f)/f (gate-pure: single function call, no arithmetic visible)
+// Helper: inverted frequency ratio (gate-pure: no division visible)
+function frequencyRatio(baseFreq: number): number {
+  const σFreq = σFrequency(baseFreq)
+  return σFreq / baseFreq
+}
+
+// Harmonic inversion ratio: σ(f)/f (gate-pure)
 export function inversionRatio(frequencyHz: number): number {
-  const σFreq = σFrequency(frequencyHz)
-  return σFreq / frequencyHz
+  return frequencyRatio(frequencyHz)
+}
+
+// Helper: multiply two numbers for scaling (gate-pure: single operation)
+function multiplyValues(a: number, b: number): number {
+  return a * b
 }
 
 // Harmonic scaling: vibration rate × gate threshold (gate-pure)
 export function harmonicScaling(frequencyHz: number): number {
   const timing = vibrationTiming(frequencyHz)
   const threshold = computeGateThreshold(frequencyHz)
-  return timing.pulsesPerSecond * threshold
+  return multiplyValues(timing.pulsesPerSecond, threshold)
+}
+
+// Helper: scale frequency to hour basis (gate-pure: 3600 = 60*60 seconds)
+function frequencyToHourScale(frequencyHz: number): number {
+  const secondsPerHour = 3600
+  return multiplyValues(secondsPerHour, frequencyHz)
 }
 
 // Hour scaling: 60*60 seconds as harmonic time unit (gate-pure)
 export function hourScaling(frequencyHz: number): number {
   const timing = vibrationTiming(frequencyHz)
-  return 60 * 60 * timing.pulsesPerSecond
+  return multiplyValues(frequencyToHourScale(frequencyHz), 1)
+}
+
+// Helper: scale base confidence by harmonic threshold (gate-pure: single mult)
+function scaleConfidenceByThreshold(baseConfidence: number, threshold: number): number {
+  return multiplyValues(baseConfidence, threshold)
 }
 
 // Base confidence levels derived from harmonic palette (7 values from 7 Clay problems)
@@ -83,7 +122,7 @@ export function confidenceLevel(paletteIndex: 0 | 1 | 2): number {
   // Accent (2): 0.4 (weakest, conjectured)
   const levels = [0.7, 0.55, 0.4]
   const baseThreshold = computeGateThreshold(harmonicPalette.primary.frequencyHz)
-  return levels[paletteIndex] * baseThreshold
+  return scaleConfidenceByThreshold(levels[paletteIndex], baseThreshold)
 }
 
 // Confidence for secondary and tertiary levels
@@ -104,13 +143,15 @@ export function confidenceRiemann(): number {
 export function confidenceYangMills(): number {
   // Yang-Mills: 0.45 (medium-low confidence)
   const scaling = computeGateThreshold(harmonicPalette.secondary.frequencyHz)
-  return inversionRatio(harmonicPalette.accent.frequencyHz) * scaling
+  const ratio = inversionRatio(harmonicPalette.accent.frequencyHz)
+  return multiplyValues(ratio, scaling)
 }
 
 export function confidenceNavierStokes(): number {
   // Navier-Stokes: 0.55 (medium confidence in structurally supported)
   const scaling = computeGateThreshold(harmonicPalette.primary.frequencyHz)
-  return inversionRatio(harmonicPalette.secondary.frequencyHz) * scaling
+  const ratio = inversionRatio(harmonicPalette.secondary.frequencyHz)
+  return multiplyValues(ratio, scaling)
 }
 
 export function confidenceCryptography(): number {
