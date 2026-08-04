@@ -23,4 +23,4 @@
 # Generated dist artifacts may land in public/ at build time (llms.txt, etc.).
 
 # @ceccec/double-torus kernel build output (rebuilt by the publish workflow)
-/packages/kernel/
+/packages/kernel/.zenodo

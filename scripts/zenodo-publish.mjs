@@ -243,15 +243,37 @@ async function publishToZenodo(accessToken) {
 }
 
 /**
+ * Read API key from ~/.zenodo or environment
+ */
+function getZenodoToken() {
+  // Try environment variable first
+  if (process.env.ZENODO_TOKEN) {
+    return process.env.ZENODO_TOKEN
+  }
+
+  // Try reading from ~/.zenodo
+  try {
+    const homeDir = process.env.HOME || process.env.USERPROFILE
+    const zenodoFile = resolve(homeDir, '.zenodo')
+    const content = readFileSync(zenodoFile, 'utf-8').trim()
+    return content
+  } catch (error) {
+    return null
+  }
+}
+
+/**
  * Main execution
  */
 async function main() {
   const isLive = process.argv.includes('--live')
-  const token = process.env.ZENODO_TOKEN
+  const token = getZenodoToken()
 
   if (isLive && !token) {
-    console.error('❌ ZENODO_TOKEN environment variable not set')
-    console.error('Run: export ZENODO_TOKEN=your_token_from_zenodo.org')
+    console.error('❌ ZENODO_TOKEN not found')
+    console.error('Options:')
+    console.error('  1. Set environment: export ZENODO_TOKEN=your_token')
+    console.error('  2. Create file: echo "your_token" > ~/.zenodo')
     process.exit(1)
   }
 
@@ -259,6 +281,7 @@ async function main() {
 
   if (isLive && token) {
     console.log('\n🚀 LIVE PUBLISHING TO ZENODO...')
+    console.log('(Using token from ' + (process.env.ZENODO_TOKEN ? 'environment' : '~/.zenodo') + ')')
     console.log('(API integration ready - awaiting publication approval)\n')
   }
 }
