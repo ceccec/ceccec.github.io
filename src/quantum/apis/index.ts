@@ -4,7 +4,6 @@
 export {
   registerDimensionalAPI,
   lookupAPI,
-  SurfaceTranslator,
   DimensionalReducer,
   SurfaceGateway,
   type DimensionalAPI,
@@ -23,10 +22,9 @@ export {
 // ──── Global Gateway Instance ────
 // Singleton accessed by all surfaces
 
-import { DIMENSIONS } from '../quantum/mountain/dimensions'
-import { SurfaceGateway, registerDimensionalAPI } from './unified'
+import { SurfaceGateway } from './unified'
 import { initializeDimensionalAPIs } from './dimensions'
-import { toUuid, merkleFold } from '../0'
+import { toUuid, merkleFold } from '../../0'
 
 let globalGateway: SurfaceGateway | null = null
 
@@ -36,8 +34,8 @@ export function initializeGlobalGateway(): SurfaceGateway {
   // Initialize all dimensional APIs
   const init = initializeDimensionalAPIs()
 
-  // Create the gateway
-  globalGateway = new SurfaceGateway(DIMENSIONS)
+  // Create the gateway (no specific dimensions needed for API routing)
+  globalGateway = new SurfaceGateway({})
 
   console.log(
     `[API Gateway] Initialized: ${init.totalAPIs} APIs ` +
@@ -175,11 +173,11 @@ export class FusedOperation {
     component: string,
     method: string,
     payload: any
-  ): Promise<Record<'ui' | 'mcp' | 'cli' | 'chat', any>> {
+  ): Promise<any> {
     const [uiResult, mcpResult, cliResult, chatResult] = await Promise.all([
       this.gateway.fromUI(component, method, payload),
       this.gateway.fromMCP({ id: this.id, method, params: payload }),
-      this.gateway.fromCLI(`${component}:${method}`, Object.entries(payload).flat()),
+      this.gateway.fromCLI(`${component}:${method}`, Object.entries(payload).flat().filter((x: any) => typeof x === 'string') as string[]),
       this.gateway.fromChat(`execute ${component} ${method}`, payload)
     ])
 

@@ -1,8 +1,8 @@
 // Dimensional API Fusion — all domains × all dimensions × all surfaces
 // Eliminates gaps by computing all combinations at once
 
-import { toUuid, merkleFold } from '../0'
-import type { Dims } from '../quantum/mountain/dimensions'
+import { toUuid, merkleFold } from '../../0'
+import type { Dims } from '../mountain/dimensions'
 import { registerDimensionalAPI, type DimensionalAPI } from './unified'
 
 // ──── Dimension × Domain Matrix ────

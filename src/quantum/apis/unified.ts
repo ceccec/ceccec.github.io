@@ -1,8 +1,8 @@
 // Unified API Gateway — quantum entanglement across UI/MCP/CLI/chat surfaces
 // DRY: Single source of truth for all dimensional access patterns
 
-import { toUuid, merkleFold, foldPair } from '../0'
-import type { Dims } from '../quantum/mountain/dimensions'
+import { toUuid, merkleFold, foldPair } from '../../0'
+import type { Dims } from '../mountain/dimensions'
 
 // ──── Dimensional API Surface ────
 // Each dimension is accessible through all 4 surfaces simultaneously
@@ -21,6 +21,7 @@ export interface UnifiedRequest {
   id: string
   surface: 'ui' | 'mcp' | 'cli' | 'chat'
   dimension: string
+  path?: string
   method: 'GET' | 'POST' | 'PUT' | 'DELETE'
   payload: any
   timestamp: number
@@ -219,20 +220,20 @@ export class DimensionalReducer {
   private dimensions: Dims
   private translator: SurfaceTranslator
 
-  constructor(dimensions: Dims, surface: 'ui' | 'mcp' | 'cli' | 'chat') {
+  constructor(dimensions: Dims | any, surface: 'ui' | 'mcp' | 'cli' | 'chat') {
     this.dimensions = dimensions
     this.translator = new SurfaceTranslator(surface)
   }
 
   async execute(request: UnifiedRequest): Promise<UnifiedResponse> {
-    const api = this.apis.get(`${request.dimension}:${request.path}`)
+    const api = this.apis.get(`${request.dimension}:${request.path || ''}`)
 
     if (!api) {
       return {
         id: request.id,
         status: 'error',
         data: null,
-        error: `API not found: ${request.dimension}/${request.path}`,
+        error: `API not found: ${request.dimension}/${request.path || ''}`,
         timestamp: Date.now(),
         receipt: toUuid(`error:${request.id}:not-found`)
       }
@@ -251,8 +252,9 @@ export class DimensionalReducer {
     }
 
     // Execute in all dimensions
+    const dimEntries = Object.entries(this.dimensions as any)
     const results = await Promise.all(
-      Array.from(this.dimensions.entries()).map(([dim, config]) =>
+      dimEntries.map(([dim, config]) =>
         this.executeInDimension(api, request, dim, config)
       )
     )
@@ -320,7 +322,7 @@ export class SurfaceGateway {
   private reducers: Map<'ui' | 'mcp' | 'cli' | 'chat', DimensionalReducer> = new Map()
   private translators: Map<'ui' | 'mcp' | 'cli' | 'chat', SurfaceTranslator> = new Map()
 
-  constructor(dimensions: Dims) {
+  constructor(dimensions: any = {}) {
     (['ui', 'mcp', 'cli', 'chat'] as const).forEach(surface => {
       this.reducers.set(surface, new DimensionalReducer(dimensions, surface))
       this.translators.set(surface, new SurfaceTranslator(surface))
