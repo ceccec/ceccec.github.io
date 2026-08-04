@@ -4,7 +4,6 @@
 
 import { SESSION_DISCOVERIES, LEARNED_PATTERNS } from '../learning-loop'
 import { predictCracksFromSequencePatterns, scanForPredictedCracks } from '../predictive-crack-detection'
-import { ATTACK_VECTORS, DEFENSE_STRATEGIES } from '../adversarial-hardening'
 import { handleChatQuery } from '../chat-quantum-involution'
 import { consolidationStats } from '../computed-research-rows'
 
@@ -98,18 +97,10 @@ export function orchestrate(userQuery: string): OrchestrationState {
     state.gatesInvoked.push('demarcation-closure')
   }
 
-  // Stage 6: Run adversarial challenges if relevant
+  // Stage 6: Adversarial challenges (future implementation)
   state.stage = 'challenge'
-  if (userQuery.includes('attack') || userQuery.includes('defense')) {
-    // Find matching attack/defense pair
-    const matchingAttack = ATTACK_VECTORS.find((a) =>
-      a.description.toLowerCase().includes(userQuery.toLowerCase())
-    )
-    if (matchingAttack) {
-      state.adversarialRound = 1
-      state.gatesInvoked.push(`adversarial:${matchingAttack.id}`)
-    }
-  }
+  // Adversarial testing framework moved to documentation
+  // Future: Implement hacker/cracker game-theoretic security tests
 
   // Stage 7: Score and compile feedback
   state.stage = 'score'
