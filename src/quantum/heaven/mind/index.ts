@@ -221,3 +221,4 @@ export * from '../../../earth/world'
 export * from '../../../learning'
 export * from '../../../mountain/geometry'
 export * from '../../water/cache'       // cache + SHA-256/quantum correction + session decodes & proofs (correction folded here, water domain)
+export * from '../../endowment'         // endowment layer: computationally bind funding APIs to sealed theorems (Rosetta rays + innovation grants)
