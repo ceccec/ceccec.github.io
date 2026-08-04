@@ -186,7 +186,7 @@ export function measureSystemHealth(): SystemHealth {
   const gatePassRateComputed = Math.min(1, (discoveryCount + 1) / (discoveryCount + 5)) // Increases with discoveries
   const adversarialScore = discoveryCount % 2 === 0 ? (discoveryCount / (discoveryCount + 1)) : (1 / (discoveryCount + 1)) // Alternates based on parity
   const chatQualityComputed = discoveryCount / (discoveryCount + 20) // Improves with experience
-  const consolidationComputed = consolidationData.computedRows ? (consolidationData.computedRows / (consolidationData.computedRows + consolidationData.hardcodedRows || 1)) : 0
+  const consolidationComputed = consolidationData.computedFromTheorems / (consolidationData.totalRows + 1) // Ratio of computed to total rows
 
   const overallHealthScore = (predictiveAccuracy + gatePassRateComputed + chatQualityComputed + consolidationComputed) / 4
   const health = overallHealthScore > 0.75 ? 'green' : overallHealthScore > 0.5 ? 'yellow' : 'red'
