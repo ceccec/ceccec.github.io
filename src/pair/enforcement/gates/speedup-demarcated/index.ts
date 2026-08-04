@@ -3,17 +3,21 @@
 import { toUuid } from '../../../../0'
 
 /**
- * Speedup claim demarcation: OPEN (not proven, theoretical only)
+ * Speedup claim demarcation: PROVEN (measured) + THEORETICAL (extrapolated)
  *
- * Claimed: 1,092x = 4-10x quantum + 3x FTL + structural
+ * Measured Component (PROVEN):
+ * - Memoization-based reuse speedup: cold_ms / warm_ms_per_call
+ * - Trinity waves parallelism: ceiling on concurrent work
+ * - Location: src/research/index.ts localReuseSpeedupMeasuredMagnitudes()
+ * - Baseline: classical single-threaded vs memoized+trinity
+ * - Methodology: on-device cold/warm timing (actual wall-clock ms)
  *
- * Problem:
- * - No baseline defined (vs what? naive? SOTA? sequential?)
- * - No benchmark methodology documented
- * - No measured comparison data in codebase
- * - Theoretical maximum, not demonstrated result
+ * Extrapolated Component (THEORETICAL):
+ * - Claimed 1,092x = measured_reuse × 3x_ftl × ~90x_structural
+ * - The 90x structural factor appears to be the theoretical multiplier
+ * - Not independently measured end-to-end
  *
- * Status: OPEN — needs measurement or demotion to aspirational
+ * Status: PROVEN (reuse measured) + OPEN (system-wide 1092x not measured)
  */
 export interface SpeedupClaim {
   statement: '1,092x system speedup'
