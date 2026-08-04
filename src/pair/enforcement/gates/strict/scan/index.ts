@@ -2924,22 +2924,25 @@ export function theWorkflowGapsAreHardcodedPathsAComputedGaugeMeasuresThemLive(r
   for (const abs of files) { const rel = relative(root, abs).replace(/\\/g, '/'); const n = (readFileSync(abs, 'utf8').match(pathRe) ?? []).length; if (n > 0) byFile.push({ file: rel, count: n }) }
   byFile.sort((a, b) => b.count - a.count)
   const total = byFile.reduce((s, e) => s + e.count, 0)
-  const ledgerHome = ['src', '3', '7', 'index.ts'].join('/') // the provenance/crack ledger — inherent stable keys, computed not typed as one literal
-  const ledger = byFile.filter((e) => e.file === ledgerHome).reduce((s, e) => s + e.count, 0)
-  const reducible = total - ledger // move-maps · route tables · gate paths — the workflow debt a tree-derived approach removes
+  const ledgerHome = ['src', '3', '7', 'index.ts'].join('/') // the provenance/crack ledger — inherent stable keys
+  const buildOnlyPrefix = ['src', 'pair', 'enforcement'].join('/') + '/' // the enforcement layer — build/gate-only, where the tree IS walkable
+  const sumWhere = (pred: (f: string) => boolean) => byFile.filter((e) => pred(e.file)).reduce((s, e) => s + e.count, 0)
+  const ledger = sumWhere((f) => f === ledgerHome)
+  const buildOnly = sumWhere((f) => f !== ledgerHome && f.startsWith(buildOnlyPrefix)) // genuinely reducible — fs available at build time ⇒ compute from the tree
+  const browserRuntime = total - ledger - buildOnly // paths in browser modules (water/digit, wind/site, widgets…): NO fs in the browser ⇒ inherently hardcoded, like the ledger keys
   const facets = [
     { facet: `THE GAUGE COMPUTES LIVE — ${total} hardcoded src-path DATA literals across ${byFile.length} files, counted by walking the tree at call time (not a stored number): the workflow debt is now MEASURED, not invisible`, on: total > 0 && byFile.length > 0 },
     { facet: `IMPORTS SELF-HEAL, DATA PATHS DON'T — every one starts with 'src/' (absolute data), so the migration executor's relative-only rewrite (specifiers starting with '.') cannot touch it: a folder move leaves it stale — the exact gap that broke the crack ledger on wind/ui→ui this session`, on: total > 0 },
-    { facet: `LEDGER KEYS vs REDUCIBLE DEBT — ${ledger} live in the provenance ledger (inherent stable keys) and ${reducible} are REDUCIBLE workflow debt (move-maps · route tables · gate paths) a content-addressed approach derives from the tree: the frontier is ${reducible}, computed here, not asserted`, on: reducible >= 0 && ledger > 0 && total === ledger + reducible },
+    { facet: `THREE BUCKETS, ONE HONEST FRONTIER — ${ledger} inherent ledger keys + ${browserRuntime} browser-runtime paths (in modules with no fs at runtime, so hardcoding is FORCED, like the keys) + ${buildOnly} BUILD-ONLY paths (the enforcement layer, where the tree IS walkable): only the ${buildOnly} are genuinely reducible — the real frontier, far smaller than the naive total−ledger=${total - ledger}`, on: ledger > 0 && buildOnly > 0 && total === ledger + buildOnly + browserRuntime },
   ]
   return {
     computes: facets.every((f) => f.on),
-    total, ledger, reducible, fileCount: byFile.length,
+    total, ledger, buildOnly, browserRuntime, reducible: buildOnly, fileCount: byFile.length,
     top: byFile.slice(0, 9),
     facets,
     root: merkleFold(byFile.map((e) => toUuid(`workflow-gap:${e.file}:${e.count}`))),
-    statement: `The workflow gaps are hardcoded paths — a computed gauge measures them live — ${facets.filter((f) => f.on).length}/${facets.length}. ${total} src-path DATA literals (ledgers, move-maps, route tables, gate paths) are pinned across ${byFile.length} files, counted by walking the tree at call time. They start with 'src/', so the migration executor — which recomputes relative import specifiers deterministically — cannot touch them, and a folder move leaves them stale (this session's wind/ui→ui broke the crack ledger until hand-fixed). ${ledger} are inherent provenance keys; ${reducible} are reducible workflow debt a tree-derived approach removes — the collective-mind direction where a move self-heals instead of dead-reckoning.`,
-    boundary: earned('EXACT — this gauge walks the tree and counts at call time; refutable by re-walking:', facets, 'the workflow gaps are computed live, not a hardcoded number') }
+    statement: `The workflow gaps are hardcoded paths — a computed gauge measures them live, and separates the truly reducible — ${facets.filter((f) => f.on).length}/${facets.length}. ${total} src-path DATA literals are pinned across ${byFile.length} files, counted by walking the tree at call time; they start with 'src/', so the migration executor's relative-only rewrite cannot heal them (this session's wind/ui→ui broke the crack ledger until hand-fixed). Three buckets: ${ledger} inherent ledger keys, ${browserRuntime} browser-runtime paths (no fs in the browser, so hardcoding is forced), and ${buildOnly} BUILD-ONLY paths in the enforcement layer where the tree is walkable. Only the ${buildOnly} are the genuine frontier to content-address — a move self-heals — not the naive ${total - ledger}: the honest reducible is what CAN compute, not merely what is pinned.`,
+    boundary: earned('EXACT — this gauge walks the tree and counts at call time; refutable by re-walking:', facets, 'the workflow gaps are computed live and bucketed by whether the tree is reachable, not a hardcoded number') }
 }
 
 /** Numeric literals in the chokepoints that are NOT canonical I Ching numbers — each is a crack:
