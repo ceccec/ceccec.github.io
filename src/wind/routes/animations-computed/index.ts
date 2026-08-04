@@ -20,7 +20,7 @@ export interface TheoremAnimation {
   amplitude: number // 9 amplitudes
   rung: number // divisor rung of 108s cycle
   deterministic: true // same theorem = same animation always
-  status: 'computed' as const
+  status: 'computed';
 }
 
 /**
@@ -52,7 +52,7 @@ export function animationDemarcation(): {
     status: 'proven',
     count: 558,
     implementation: 'computed-on-demand',
-    proof: 'computedTheoremFigureAndAnimation() derives animation from theorem identity + content-address; deterministic; zero storage',
+    proof: 'computedTheoremFigureAndAnimation() in src/wind/routes/corpus/index.ts',
   }
 }
 

@@ -13,7 +13,7 @@ import * as __ns_up_up_fusion from '../../wind/fusion'
 import * as __ns_up_up_computer from '../../quantum/computer'
 import * as __ns_up_up_stack_overflow from '../../water/stack'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
-import * as __ns_up_up_quantum_application from '../../quantum/application'
+import * as __ns_up_up_quantum_application from '../../quantum/apps'
 import * as __ns_up_up_quantum_os from '../../quantum/os'
 import * as __ns_up_up_quantum_apps from '../../quantum/apps'
 import * as __ns_up_up_quantum_widgets from '../../widgets'
@@ -847,7 +847,6 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'computer.science.computes', on: (__ns_up_up_computer).computerScienceComputes(matrix).computes },
     { d: 'quantum.science.computes', on: (__ns_up_up_quantum_science).quantumScienceComputes(matrix).computes },
     { d: 'quantum.computer.computes', on: (__ns_up_up_quantum_science).quantumComputerComputes(matrix).computes },
-    { d: 'quantum.application.computes', on: (__ns_up_up_quantum_application).quantumApplicationComputes(matrix).computes },
     { d: 'quantum.os.computes', on: (__ns_up_up_quantum_os).quantumOsComputes(matrix).computes },
     { d: 'quantum.apps.registry', on: (__ns_up_up_quantum_apps).quantumAppsComputes(matrix).computes },
     { d: 'quantum.math.designs.ui', on: (__ns_up_up_quantum_os).quantumMathDesignsTheUi(0, matrix).designed },

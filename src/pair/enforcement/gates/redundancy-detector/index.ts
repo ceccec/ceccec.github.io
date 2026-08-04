@@ -1,7 +1,7 @@
 // Redundancy detector: find duplicate algebraic statements (same animation = redundant theorem)
 // If animations are deterministic from statement, repeating animations = repeating theorems
-import { THEOREM_ATOM_SEED } from '../../../4/6'
-import { toUuid } from '../../../0'
+import { THEOREM_ATOM_SEED } from '../../../../4/6'
+import { toUuid } from '../../../../0'
 
 export interface RedundancyReport {
   totalTheorems: number

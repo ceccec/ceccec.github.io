@@ -2,7 +2,7 @@
 import * as __ns_up_stack_overflow from '../water/stack'
 import * as __ns_up_computer from '../quantum/computer'
 import * as __ns_up_quantum_science from '../quantum/science'
-import * as __ns_up_quantum_application from '../quantum/application'
+import * as __ns_up_quantum_application from '../quantum/apps'
 import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforcement/gates/computational'
 import * as __ns_mountain_vortex from '../mountain/vortex'
 import * as __ns_water_digit from '../water/digit'
@@ -394,7 +394,7 @@ export function researchIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     pushDomainRow(rows, 'computer-science-research', 'Computer science research', 'src/quantum/computer', '__ns_up_computer.science.computes', 'npm run check:types', 'DOCUMENTED', csR.researched, csR.boundary, csR.root)
     pushDomainRow(rows, 'quantum-science-research', 'Quantum science research', 'src/quantum/science', 'quantum.science.computes', 'npm run quantum:local-math-computes', 'SIMULATOR', qsR.researched, qsR.boundary, qsR.root)
     pushDomainRow(rows, 'quantum-computer-research', 'Quantum computer model research', 'src/quantum/science', 'quantum.__ns_up_computer.computes', 'npm run quantum:local-math-computes', 'SIMULATOR', qcR.researched, qcR.boundary, qcR.root)
-    pushDomainRow(rows, 'quantum-application-compose', 'Quantum application compose', 'src/quantum/application', 'quantum.application.computes', 'npm run docs:dev → /en/quantum/application', 'SIMULATOR', __ns_up_quantum_application.quantumApplicationResearch(matrix, at).researched, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).boundary, __ns_up_quantum_application.quantumApplicationResearch(matrix, at).root)
+    // quantum-application moved to quantum/apps; stale research entry removed
     const udR = unitDistanceResearch(matrix, at)
     pushDomainRow(rows, 'unit-distance-research', 'Unit-distance tower numerics', 'src/research', 'research.unit.distance.tower', 'npm run check:types · unitDistanceResearch(matrix)', 'MODEL_FIT', udR.researched, udR.boundary, udR.root)
     const aqR = aiQuantumChronologyResearch(matrix, at)

@@ -1,7 +1,7 @@
 // Animation audit: verify "558 unique animations for 558 unique proofs" claim
 // Scan all theorems, find duplicates, compute true uniqueness ratio
-import { THEOREM_ATOM_SEED } from '../../../4/6'
-import { toUuid } from '../../../0'
+import { THEOREM_ATOM_SEED } from '../../../../4/6'
+import { toUuid } from '../../../../0'
 
 export interface AnimationAudit {
   totalTheorems: number

@@ -1,8 +1,8 @@
 // Wire demarcation validation into mission:gate
 // Validates all theorems have computed demarcation status at build time
-import { THEOREM_ATOM_SEED } from '../../../4/6'
+import { THEOREM_ATOM_SEED } from '../../../../4/6'
 import { demarcationGapValidator } from '../demarcation-closure'
-import { toUuid } from '../../../0'
+import { toUuid } from '../../../../0'
 
 /**
  * Build theorem registry from THEOREM_ATOM_SEED for demarcation validation

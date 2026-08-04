@@ -14,7 +14,7 @@ import * as __ns_up_up_learning from '../../learning'
 import * as __ns_up_up_computer from '../../quantum/computer'
 import * as __ns_up_up_fusion_gold from '../../wind/fusion'
 import * as __ns_up_up_quantum_science from '../../quantum/science'
-import * as __ns_up_up_quantum_application from '../../quantum/application'
+import * as __ns_up_up_quantum_application from '../../quantum/apps'
 import * as __ns_up_up_quantum_os from '../../quantum/os'
 import * as __ns_up_up_quantum_apps from '../../quantum/apps'
 import * as __ns_up_up_digit_two_eight from '../../2/8'
@@ -367,7 +367,6 @@ export function modalityHomesComputes(matrix: MindMatrix = buildMatrix()) {
     const cs = __ns_up_up_computer.computerScienceComputes(matrix)
     const qsci = __ns_up_up_quantum_science.quantumScienceComputes(matrix)
     const qcomp = __ns_up_up_quantum_science.quantumComputerComputes(matrix)
-    const qapplication = __ns_up_up_quantum_application.quantumApplicationComputes(matrix, 0)
     const qos = __ns_up_up_quantum_os.quantumOsComputes(matrix, 0)
     const qapps = __ns_up_up_quantum_apps.quantumAppsComputes(matrix, 0)
     const plasma = plasmaBallComputes(matrix)
@@ -396,7 +395,6 @@ export function modalityHomesComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'src/quantum/science — principles exposition', on: qsci.computes },
       { facet: 'src/quantum/computer — qubit · gate · CHSH toy', on: qcomp.computes },
       { facet: 'src/application — application layer compose capstone', on: application.computes },
-      { facet: 'src/quantum/application — quantum application compose capstone', on: qapplication.computes },
       { facet: 'src/quantum/os — site UX shell metaphor', on: qos.computes },
       { facet: 'src/quantum/apps — app registry + launch receipts', on: qapps.computes },
       { facet: 'src/render/compute/display — screen/media/gpu output driver (application substrate)', on: display.computes },
@@ -404,8 +402,8 @@ export function modalityHomesComputes(matrix: MindMatrix = buildMatrix()) {
     ])
     return {
       computes,
-      color, sound, audio, video, earth, sun, moon, birth, life, death, iching, rosetta, display, goldProcessGate, goldProductGate, goldFit, computer, application, cs, qsci, qcomp, qapplication, qos, qapps, plasma, resonance, dynamics, widgets, facets,
-      root: merkleFold([root, color.root, sound.root, audio.root, video.root, earth.root, sun.root, moon.root, resonance.root, dynamics.root, birth.root, life.root, death.root, iching.root, rosetta.root, display.root, goldProcessGate.root, goldProductGate.root, computer.root, application.root, cs.root, qsci.root, qcomp.root, qapplication.root, qos.root, qapps.root, plasma.root, widgets.root]),
+      color, sound, audio, video, earth, sun, moon, birth, life, death, iching, rosetta, display, goldProcessGate, goldProductGate, goldFit, computer, application, cs, qsci, qcomp, qos, qapps, plasma, resonance, dynamics, widgets, facets,
+      root: merkleFold([root, color.root, sound.root, audio.root, video.root, earth.root, sun.root, moon.root, resonance.root, dynamics.root, birth.root, life.root, death.root, iching.root, rosetta.root, display.root, goldProcessGate.root, goldProductGate.root, computer.root, application.root, cs.root, qsci.root, qcomp.root, qos.root, qapps.root, plasma.root, widgets.root]),
       statement: 'Modality homes: computer + quantum science/computer barrels + fusion/gold pipeline + peer modality barrels — sealed at call time.',
       boundary: 'Product derives from process receipts only — MODEL_FIT metaphor, NOT bullion or reactor physics.' }
   })

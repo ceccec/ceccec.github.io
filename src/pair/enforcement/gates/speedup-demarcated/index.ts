@@ -20,20 +20,20 @@ import { toUuid } from '../../../../0'
  * Status: PROVEN (reuse measured) + OPEN (system-wide 1092x not measured)
  */
 export interface SpeedupClaim {
-  statement: '1,092x system speedup'
+  statement: '1,092x system speedup';
   components: {
-    quantum: '4-10x (claimed, not measured)'
-    ftl: '3x (claimed, not measured)'
-    structural: '~90x (claimed, not measured)'
-  }
-  baseline: 'UNDEFINED — vs naive? SOTA? sequential?'
-  measurement: 'MISSING — no benchmarks found'
-  status: 'open' as const
+    quantum: '4-10x (claimed, not measured)';
+    ftl: '3x (claimed, not measured)';
+    structural: '~90x (claimed, not measured)';
+  };
+  baseline: 'UNDEFINED — vs naive? SOTA? sequential?';
+  measurement: 'MISSING — no benchmarks found';
+  status: 'open';
   demarcation:
     | 'proven'
     | 'open'
     | 'flagged'
-    | 'undeclared' = 'open'
+    | 'undeclared';
 }
 
 /**
