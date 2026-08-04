@@ -9,9 +9,9 @@ import { toUuid } from '../../../../0'
  * Crack Prediction Framework
  *
  * Past cracks (reactive closure):
- * - 665+ hardcodedValue violations → fixed after gate fails
+ * - Hardcoded value violations → fixed after gate fails
  * - Import path depth errors → caught by type checker
- * - 88% theorem undeclared gap → discovered via audit
+ * - Majority theorem undeclared gap → discovered via audit
  *
  * Future approach (predictive closure):
  * - Scan for structural patterns that predict cracks
