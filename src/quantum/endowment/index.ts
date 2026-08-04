@@ -291,6 +291,7 @@ export function endowmentStatement(): string {
 
 // Re-export all layers: dispatch, agent, verification, compliance, payment, multisig, appeals, analytics
 // + researcher, fraud, recovery, ledger
+// + stakeholder, events, pools, milestones, reporting
 export * from './dispatch'
 export * from './agent'
 export * from './verify'
@@ -302,8 +303,15 @@ export * from './researcher'
 export * from './fraud'
 export * from './recovery'
 export * from './ledger'
+export * from './stakeholder'
+export * from './events'
+export * from './pools'
+export * from './milestones'
+export * from './reporting'
+export * from './orchestrator'
 // Analytics re-exported with alias to avoid collision with stats.analytics
-export { analytics as fundingAnalytics, AnalyticsDashboard, FundingMetrics, FundingDashboard } from './analytics'
+export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
+export type { FundingMetrics, FundingDashboard } from './analytics'
 
 export const endowment = {
   registry: FUNDING_REGISTRY,

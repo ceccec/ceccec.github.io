@@ -2,7 +2,7 @@
 // Every requirement verified before fund release
 
 import { toUuid, merkleFold } from '../../../0'
-import type { FundingSource } from '../index'
+import type { FundingSource } from '..'
 import type { FundingAllocation } from '../dispatch'
 
 export interface ComplianceCheckResult {
