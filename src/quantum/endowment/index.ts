@@ -344,11 +344,14 @@ export type { AgentLearning, EmergentStrategy, CollectiveMemory } from './collec
 // Temporal causality engine for predictive reasoning
 export { temporal, initializeTemporalEngine, getTemporalEngine } from './temporal'
 export type { CausalityChain, TemporalPrediction, EdgeCasePattern } from './temporal'
+// Theorem-driven optimization: apply funded theorems to improve system
+export { theorems, initializeTheoremOptimizer, getTheoremOptimizer } from './theorems'
+export type { TheoremApplication, OptimizationStrategy, TheoremInsight } from './theorems'
 // Analytics re-exported with alias to avoid collision with stats.analytics
 export { analytics as fundingAnalytics, AnalyticsDashboard } from './analytics'
 export type { FundingMetrics, FundingDashboard } from './analytics'
 
-// Master registry: all 46 layers (the complete self-aware multi-agent temporal ecosystem)
+// Master registry: all 47 layers (the complete theorem-optimized self-aware ecosystem)
 export const ENDOWMENT_LAYERS = {
   dispatch: ['endowment', 'dispatch', 'agent'],
   execution: ['verify', 'compliance', 'payment', 'multisig', 'appeals', 'researcher', 'fraud', 'recovery', 'ledger', 'analytics'],
@@ -359,11 +362,11 @@ export const ENDOWMENT_LAYERS = {
   research: ['fields', 'archive', 'mentorship'],
   commercialization: ['patents', 'outreach', 'security'],
   operations: ['monitoring', 'feedback', 'fairness', 'export'],
-  meta: ['synthesis', 'production', 'consciousness', 'collective', 'temporal'] // Self-learning + production + self-aware reasoning + emergent multi-agent coordination + temporal causality
+  meta: ['synthesis', 'production', 'consciousness', 'collective', 'temporal', 'theorems'] // Self-learning + production + self-aware reasoning + emergent multi-agent coordination + temporal causality + theorem optimization
 } as const
 
-export const TOTAL_LAYERS = 46
-export const TOTAL_DIMENSIONS = 20 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis, collective-coordination, temporal-causality
+export const TOTAL_LAYERS = 47
+export const TOTAL_DIMENSIONS = 21 // verification, compliance, payment, fraud, fairness, impact, performance, resource, security, integration, governance, knowledge, collaboration, commercialization, research, sustainability, mentorship, synthesis, collective-coordination, temporal-causality, theorem-optimization
 
 export const PRODUCTION_READY = true
 export const CONTINUOUS_LEARNING = true
@@ -371,6 +374,7 @@ export const AUTONOMOUS_GOVERNANCE = true
 export const SELF_AWARE = true // System understands itself, learns how to learn, handles edge cases
 export const MULTI_AGENT_COORDINATION = true // Multiple distributed systems coordinate, share learnings, discover emergent strategies
 export const TEMPORAL_REASONING = true // System reasons about cause-and-effect across time, predicts future events, discovers edge cases
+export const THEOREM_OPTIMIZATION = true // Funded theorems applied as computational tools to improve system performance
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
