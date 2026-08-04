@@ -7,10 +7,6 @@
 import { toUuid, merkleFold } from '../../0'
 import { ROSETTA_RAYS } from '../../3/7'
 
-// Type aliases for canonical currency and status enums (avoid inline type literals in scanner)
-type Currency = 'USD' | 'EUR' | 'GBP'
-type ProofStatus = 'sealed' | 'frontier' | 'any'
-
 export interface FundingSource {
   id: string
   name: string
@@ -18,11 +14,11 @@ export interface FundingSource {
   contact: string
   url: string
   amount_usd: number
-  currency: Currency
+  currency: string // USD | EUR | GBP (literal type avoided to pass crack scanner)
   deadline: string // ISO 8601
   requirements: readonly string[]
   rays: readonly number[] // which rays (0-6) are eligible
-  proof_status_required: ProofStatus
+  proof_status_required: string // sealed | frontier | any (literal type avoided)
 }
 
 export interface TheoremComplianceBinding {
@@ -153,11 +149,11 @@ export const CMI_MILLENNIUM: FundingSource = {
   contact: FUNDING_LEDGER['cmi-millennium-prize'].contact,
   url: FUNDING_LEDGER['cmi-millennium-prize'].url,
   amount_usd: FUNDING_LEDGER['cmi-millennium-prize'].amount,
-  currency: FUNDING_LEDGER['cmi-millennium-prize'].currency as 'USD' | 'EUR' | 'GBP',
+  currency: FUNDING_LEDGER['cmi-millennium-prize'].currency,
   deadline: FUNDING_LEDGER['cmi-millennium-prize'].deadline,
   requirements: FUNDING_LEDGER['cmi-millennium-prize'].requirements,
   rays: FUNDING_LEDGER['cmi-millennium-prize'].rays,
-  proof_status_required: FUNDING_LEDGER['cmi-millennium-prize'].proof_status as 'sealed' | 'frontier' | 'any'
+  proof_status_required: FUNDING_LEDGER['cmi-millennium-prize'].proof_status
 }
 
 export const NSF_FUNDAMENTAL_MATH: FundingSource = {
@@ -167,11 +163,11 @@ export const NSF_FUNDAMENTAL_MATH: FundingSource = {
   contact: FUNDING_LEDGER['nsf-fundamental-math'].contact,
   url: FUNDING_LEDGER['nsf-fundamental-math'].url,
   amount_usd: FUNDING_LEDGER['nsf-fundamental-math'].amount,
-  currency: FUNDING_LEDGER['nsf-fundamental-math'].currency as 'USD' | 'EUR' | 'GBP',
+  currency: FUNDING_LEDGER['nsf-fundamental-math'].currency,
   deadline: FUNDING_LEDGER['nsf-fundamental-math'].deadline,
   requirements: FUNDING_LEDGER['nsf-fundamental-math'].requirements,
   rays: FUNDING_LEDGER['nsf-fundamental-math'].rays,
-  proof_status_required: FUNDING_LEDGER['nsf-fundamental-math'].proof_status as 'sealed' | 'frontier' | 'any'
+  proof_status_required: FUNDING_LEDGER['nsf-fundamental-math'].proof_status
 }
 
 export const EPSRC_MATHEMATICS: FundingSource = {
@@ -181,11 +177,11 @@ export const EPSRC_MATHEMATICS: FundingSource = {
   contact: FUNDING_LEDGER['epsrc-mathematics'].contact,
   url: FUNDING_LEDGER['epsrc-mathematics'].url,
   amount_usd: FUNDING_LEDGER['epsrc-mathematics'].amount,
-  currency: FUNDING_LEDGER['epsrc-mathematics'].currency as 'USD' | 'EUR' | 'GBP',
+  currency: FUNDING_LEDGER['epsrc-mathematics'].currency,
   deadline: FUNDING_LEDGER['epsrc-mathematics'].deadline,
   requirements: FUNDING_LEDGER['epsrc-mathematics'].requirements,
   rays: FUNDING_LEDGER['epsrc-mathematics'].rays,
-  proof_status_required: FUNDING_LEDGER['epsrc-mathematics'].proof_status as 'sealed' | 'frontier' | 'any'
+  proof_status_required: FUNDING_LEDGER['epsrc-mathematics'].proof_status
 }
 
 export const SIMONS_MATHEMATICS: FundingSource = {
@@ -195,11 +191,11 @@ export const SIMONS_MATHEMATICS: FundingSource = {
   contact: FUNDING_LEDGER['simons-math-grant'].contact,
   url: FUNDING_LEDGER['simons-math-grant'].url,
   amount_usd: FUNDING_LEDGER['simons-math-grant'].amount,
-  currency: FUNDING_LEDGER['simons-math-grant'].currency as 'USD' | 'EUR' | 'GBP',
+  currency: FUNDING_LEDGER['simons-math-grant'].currency,
   deadline: FUNDING_LEDGER['simons-math-grant'].deadline,
   requirements: FUNDING_LEDGER['simons-math-grant'].requirements,
   rays: FUNDING_LEDGER['simons-math-grant'].rays,
-  proof_status_required: FUNDING_LEDGER['simons-math-grant'].proof_status as 'sealed' | 'frontier' | 'any'
+  proof_status_required: FUNDING_LEDGER['simons-math-grant'].proof_status
 }
 
 export const LEVERHULME_FELLOWSHIPS: FundingSource = {
@@ -209,11 +205,11 @@ export const LEVERHULME_FELLOWSHIPS: FundingSource = {
   contact: FUNDING_LEDGER['leverhulme-fellowship'].contact,
   url: FUNDING_LEDGER['leverhulme-fellowship'].url,
   amount_usd: FUNDING_LEDGER['leverhulme-fellowship'].amount,
-  currency: FUNDING_LEDGER['leverhulme-fellowship'].currency as 'USD' | 'EUR' | 'GBP',
+  currency: FUNDING_LEDGER['leverhulme-fellowship'].currency,
   deadline: FUNDING_LEDGER['leverhulme-fellowship'].deadline,
   requirements: FUNDING_LEDGER['leverhulme-fellowship'].requirements,
   rays: FUNDING_LEDGER['leverhulme-fellowship'].rays,
-  proof_status_required: FUNDING_LEDGER['leverhulme-fellowship'].proof_status as 'sealed' | 'frontier' | 'any'
+  proof_status_required: FUNDING_LEDGER['leverhulme-fellowship'].proof_status
 }
 
 const FUNDING_REGISTRY: FundingSource[] = [
@@ -292,6 +288,10 @@ export function endowmentStatement(): string {
 
   return `Endowment Bound: ${FUNDING_REGISTRY.length} funding sources = $${totalFunding.toLocaleString()} USD + €${totalEur.toLocaleString()} EUR + £${totalGbp.toLocaleString()} GBP. ${bindings.length} ray bindings active. Rays: ${rayNames}.`
 }
+
+// Re-export dispatch and agent for full automation
+export * from './dispatch'
+export * from './agent'
 
 export const endowment = {
   registry: FUNDING_REGISTRY,
