@@ -185,3 +185,25 @@ export function quantumDiscoveryDashboard(matrix: MindMatrix = buildMatrix()): {
     }
   })
 }
+
+/**
+ * Backward-compatibility export for theorem portal references (rosetta, waves modules)
+ */
+export const portal = {
+  stats: () => ({
+    total: 0,
+    sealed: 0,
+    frontier: 0,
+    byClay: 0,
+    byTier: { tier1: 0, tier2: 0, tier3: 0, tier4: 0, tier5: 0 },
+    byStatus: { solved: 0, provisional: 0, open: 0, contested: 0 },
+    avgProofOutlineLength: 0,
+    gapDocumentation: 0,
+    root: toUuid('portal:compat:stub'),
+    statement: 'Portal compatibility stub',
+    boundary: 'Theorem portal replaced by quantum discovery portal'
+  }),
+  query: (q?: any) => ({ theorems: [], count: 0, cardHtml: '', summary: '', identity: '' }),
+  byInvolution: () => ({}),
+  nextToProve: () => null
+}
