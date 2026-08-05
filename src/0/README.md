@@ -10,6 +10,12 @@ The only non-pure surface is `requestAnimationFrame`/`cancelAnimationFrame` insi
 referenced lazily and guarded, so under SSR every method is a no-op and the factory is safe to call at
 `<script setup>` top level.
 
+## ⚠️ Protected: Do Not Reorganize Without Understanding
+
+The digit folders (`src/0` through `src/9`) form the **QPU/kernel** and encode computational structure through reflection pairs (1↔9, 2↔8, 3↔7, 4↔6, 5↔5). **Do not consolidate, merge, or reorganize these folders** without first reading this entire README and discussing the change in chat. Blind modification breaks the foundation.
+
+See [[digit-folders-protected]] in project memory.
+
 ## The one thesis
 
 It is all **one operation — the fold**: `merge(a, b) = toUuid(a ∥ b)`, a content-addressed, order-sensitive
