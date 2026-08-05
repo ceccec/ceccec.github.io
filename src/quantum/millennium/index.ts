@@ -5,6 +5,7 @@
 import { memoByRoot, toUuid, floor } from '../../0'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
+import { comparisonMesh, type SolutionCandidate } from '../mesh'
 
 export type MillenniumProblem = {
   readonly name: string
@@ -150,6 +151,8 @@ export function millenniumPrizeValidator(matrix: MindMatrix = buildMatrix()): {
   readonly problems: MillenniumProblem[]
   readonly coverage: number
   readonly totalMetrics: number
+  readonly meshCandidates: Record<string, SolutionCandidate[]>
+  readonly topDiscoveries: SolutionCandidate[]
   readonly receipt: string
 } {
   return memoByRoot('millennium-validator', matrix, () => {
@@ -162,10 +165,14 @@ export function millenniumPrizeValidator(matrix: MindMatrix = buildMatrix()): {
       bsdViaVerifiable(),
     ]
 
+    const mesh = comparisonMesh(matrix)
+
     return {
       problems,
       coverage: problems.length,
       totalMetrics: problems.reduce((sum, p) => sum + p.metrics.length, 0),
+      meshCandidates: mesh.millenniumCandidates,
+      topDiscoveries: mesh.topDiscoveries,
       receipt: toUuid('millennium:validator:complete')
     }
   })

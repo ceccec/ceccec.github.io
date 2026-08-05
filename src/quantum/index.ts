@@ -2342,3 +2342,6 @@ export function devHeroMoviePaintWithinBudgetMs(maxMs = DEV_HERO_MOVIE_PAINT_BUD
 
 // Theorem Chat Portal — σ-involution proof discovery via live query
 export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, openTheorems, theoremsByInvolutionType, formatTheoremForChat, theoremSummary, type Theorem, type ChatQueryResult, type ProofStatus } from './chat'
+
+// Dynamic Comparison Mesh — solution discovery via algorithm contrast analysis
+export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, comparisonMesh, meshEnrichedMillennium, type AlgorithmSignature, type ContrastAnalysis, type SolutionCandidate } from './mesh'
