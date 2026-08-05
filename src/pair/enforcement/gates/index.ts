@@ -2871,7 +2871,9 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     pairOn &&
     claySolvedByThisFold === 0 &&
     physicalFtlClaim === 0 &&
-    qpuRequired === false
+    qpuRequired === false &&
+    noConfusion &&
+    noFatHardcodedToolBodies
 
   const facets = [
     { facet: 'gateAnalytics', on },

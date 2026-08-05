@@ -24,3 +24,5 @@
 
 # @ceccec/double-torus kernel build output (rebuilt by the publish workflow)
 /packages/kernel/.zenodo
+/tmp
+/docs

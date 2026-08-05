@@ -2479,3 +2479,124 @@ const TITLE_ALIGNMENT_SAMPLE = [
   { slug: 'qubit-trinity', sidebar: 'A qubit has exactly 3 observables — Pauli X, Y, Z', payload: 'A qubit has exactly 3 observables — Pauli X, Y, Z' },
   { slug: 'dot-cube', sidebar: 'Content-addressing folds 64³ into one dot', payload: 'Content-addressing folds 64³ into one dot' },
 ] as const
+
+// ── THEOREMS MUST COMPUTE ──────────────────────────────────────────────────────────
+// Audit theorem files for hardcoded logic: `on: true`, magic numbers, uncomputed values.
+// Educational gate: explains why hardcoding fails + how to fix.
+
+export interface HardcodedViolation {
+  file: string
+  line: number
+  type: 'hardcoded-on-true' | 'hardcoded-number' | 'hardcoded-string'
+  content: string
+  suggestion: string
+}
+
+export interface TheoremComputeAudit {
+  total: number
+  violations: HardcodedViolation[]
+  facetsWithOnTrue: number
+  files: string[]
+  computes: boolean
+}
+
+export function auditTheoremsComputeWirelessly(root: string, theoremFiles: string[]): TheoremComputeAudit {
+  const violations: HardcodedViolation[] = []
+  let facetsOnTrue = 0
+
+  for (const file of theoremFiles) {
+    try {
+      let text = ''
+      try {
+        text = readFileSync(file, 'utf8')
+      } catch {
+        continue
+      }
+
+      const lines = text.split('\n')
+      const code = stripStringsAndComments(text)
+      const codeLines = code.split('\n')
+
+      for (let i = 0; i < codeLines.length; i++) {
+        const line = codeLines[i]!
+        if (/on:\s*true\s*[},]/i.test(line)) {
+          facetsOnTrue += 1
+          const origLine = lines[i] ?? line
+          violations.push({
+            file,
+            line: i + 1,
+            type: 'hardcoded-on-true',
+            content: origLine.trim(),
+            suggestion: `Replace 'on: true' with computed condition: on: someCondition() > 0`,
+          })
+        }
+      }
+
+      for (let i = 0; i < codeLines.length; i++) {
+        const line = codeLines[i]!
+        if (/^\s*(\/\/|import|export|type|interface)/.test(line)) continue
+        if (/\b(0|1|2|3|4|5|6|7|8|9|10)\b/.test(line)) continue
+
+        if (/const\s+\w+\s*=\s*\[\s*\d{2,}/.test(line) || /on:\s*\d+/.test(line)) {
+          const origLine = lines[i] ?? line
+          violations.push({
+            file,
+            line: i + 1,
+            type: 'hardcoded-number',
+            content: origLine.trim(),
+            suggestion: `Replace with formula: fibonacci(n), digitRoot(x), or computeValue()`,
+          })
+        }
+      }
+    } catch {
+      // skip
+    }
+  }
+
+  const computes = facetsOnTrue === 0 && violations.filter((v) => v.type === 'hardcoded-on-true').length === 0
+
+  return {
+    total: violations.length,
+    violations,
+    facetsWithOnTrue: facetsOnTrue,
+    files: [...new Set(violations.map((v) => v.file))],
+    computes,
+  }
+}
+
+export function theoremComputeGateMessage(audit: TheoremComputeAudit): string {
+  if (audit.computes) {
+    return `✓ All theorems compute — no hardcoded facets or magic numbers detected.`
+  }
+
+  const hardcodedOnTrue = audit.violations.filter((v) => v.type === 'hardcoded-on-true')
+  const hardcodedNumbers = audit.violations.filter((v) => v.type === 'hardcoded-number')
+
+  let msg = `✗ THEOREM HARDCODING VIOLATIONS: ${audit.total} found\n\n`
+
+  if (hardcodedOnTrue.length > 0) {
+    msg += `HARDCODED FACETS (${hardcodedOnTrue.length}):\n`
+    msg += `  Problem: 'on: true' hardcoding makes facets ALWAYS PASS — they prove nothing.\n`
+    msg += `  Rule: Every facet must be REFUTABLE — the 'on' value must be computed from a test.\n`
+    msg += `  Fix: Replace 'on: true' with a computed condition:\n`
+    msg += `    ✗ BAD:  { facet: 'test', on: true }\n`
+    msg += `    ✓ GOOD: { facet: 'test', on: testCondition() > 0 }\n\n`
+
+    const topFiles = [...new Set(hardcodedOnTrue.map((v) => v.file))].slice(0, 3)
+    msg += `  Top violators: ${topFiles.join(', ')}\n\n`
+  }
+
+  if (hardcodedNumbers.length > 0) {
+    msg += `HARDCODED NUMBERS (${hardcodedNumbers.length}):\n`
+    msg += `  Problem: Magic numbers hide computation and break when algebra changes.\n`
+    msg += `  Rule: Every constant in a theorem must be DERIVED from axioms/formulas.\n`
+    msg += `  Fix: Replace hardcoded numbers with computed functions.\n\n`
+  }
+
+  msg += `EDUCATION:\n`
+  msg += `  - Hardcoded logic = DECLARED HONESTY, the crack gates catch.\n`
+  msg += `  - Facets must COMPUTE from tests, never ASSERT as 'true'.\n`
+  msg += `  - Every claim proves itself through computation.\n`
+
+  return msg
+}
