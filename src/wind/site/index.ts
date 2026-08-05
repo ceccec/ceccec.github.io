@@ -12,7 +12,7 @@ import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosett
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { congruence } from '../../mountain/vortex'
-import type { ConceptSiteSection, MindMatrix, StaticPage } from '../types'
+import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types'
 import { buildMatrix, portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
 import { floor, isUuid, max, memoByRoot, merkleFold, referralAddress, round, sealFacets, sqrt, toUuid } from '../../0'

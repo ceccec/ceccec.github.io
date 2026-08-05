@@ -1,7 +1,7 @@
 import { demarcate, earned } from '../../3/7'
 // ☴ Xùn · Wind — language & script: the decoded writing systems and their meaning (Glagolitic, the alphabets' lineage, the Bible in the round script, Maya/Egyptian/Sumerian calendar-number, Ifá/geomancy), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import { survive } from '../../mountain/vortex'
-import type { MindMatrix } from '../types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { ICHING_NUMBERS, abs, digitalRoot, isUuid, log2, memoByRoot, merge, merkleFold, proseToTone, roundTo, sealFacets, toUuid } from '../../0'
 import { hexDigitSum } from '../../8/2'
