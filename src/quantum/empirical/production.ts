@@ -87,12 +87,12 @@ export function productionDeploymentAssessment(matrix: MindMatrix = buildMatrix(
       ],
 
       riskAssessment: {
-        'High': 'Quantum hardware unavailability → fallback to simulator',
-        'High': 'API credential compromise → implement rotation',
-        'Medium': 'Circuit submission surge → implement queue backpressure',
-        'Medium': 'Result validation failure → implement quarantine + investigation',
-        'Low': 'Monitoring system failure → implement redundant monitoring',
-        'Low': 'Documentation out of sync → implement automated checks',
+        'High-Hardware': 'Quantum hardware unavailability → fallback to simulator',
+        'High-Credential': 'API credential compromise → implement rotation',
+        'Medium-Surge': 'Circuit submission surge → implement queue backpressure',
+        'Medium-Validation': 'Result validation failure → implement quarantine + investigation',
+        'Low-Monitoring': 'Monitoring system failure → implement redundant monitoring',
+        'Low-Docs': 'Documentation out of sync → implement automated checks',
       },
 
       slaMetrics: {

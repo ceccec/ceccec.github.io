@@ -79,7 +79,7 @@ export function classicalWithQuantumOption(
   return {
     problem,
     classicalApproach: `Classical ${problem} solver (guaranteed verifiable)`,
-    quantumAcceleration: quantumTime_ms ? `Optional quantum speedup (${speedup.toFixed(1)}×)` : undefined,
+    quantumAcceleration: quantumTime_ms ? `Optional quantum speedup (${speedup.toFixed(1)}x)` : undefined,
     speedup: speedup > 1 ? speedup : 1,
     verificationCost,
     totalCost: classicalResult + verificationCost,
@@ -103,13 +103,15 @@ export function computeWithAuditTrail(
   const executionTime = Date.now() - startTime
 
   // Step 2: Verify via UUID ledger (every step receipted)
+  const inputUuid = toUuid('input:' + JSON.stringify(input).slice(0, 20))
+  const outputUuid = toUuid('output:' + JSON.stringify(result).slice(0, 20))
   const auditTrail = [
     `receipt:${operationUuid}`,
     `algorithm:${algorithm}`,
-    `input:${toUuid(`input:${JSON.stringify(input).slice(0, 20)}`))}`,
+    `input:${inputUuid}`,
     `execution:${useQuantum ? 'quantum-accelerated' : 'classical'}`,
     `time:${executionTime}ms`,
-    `output:${toUuid(`output:${JSON.stringify(result).slice(0, 20)}`))}`,
+    `output:${outputUuid}`,
     `verified:true`, // UUID ledger guarantees this
     `reproducible:true`, // Can replay via UUID
     `auditable:true`, // Full chain of custody
@@ -178,7 +180,7 @@ export function architecturalAnalysis(matrix: MindMatrix = buildMatrix()): {
 - Instant verification (O(log n))`,
 
       accelerationLayer: `Optional Quantum Acceleration Layer
-- Use only when quantum advantage exists (10×+)
+- Use only when quantum advantage exists (10x+)
 - Simon, DJ, Phase Est, Grover, HHL, Shor
 - Fallback to classical if quantum unavailable
 - Quantum results validated by classical verification`,
@@ -215,7 +217,7 @@ export function decideClassicalOrQuantum(algorithm: string, problem: string): {
   return {
     recommendation: isQuantumAlgorithm ? 'HYBRID' : 'CLASSICAL',
     reasoning: isQuantumAlgorithm
-      ? `Use CLASSICAL first for verification, THEN try quantum acceleration if 10×+ speedup available`
+      ? `Use CLASSICAL first for verification, THEN try quantum acceleration if 10x+ speedup available`
       : `Use CLASSICAL (quantum acceleration not applicable)`,
     speedupThreshold: floor(10), // Quantum must beat this to be worth the verification overhead
     verificationRequired: true, // Always verify via UUID ledger
