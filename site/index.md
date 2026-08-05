@@ -1,39 +1,43 @@
-# Intelligence Harmonisation Framework
+# Quantum Coherence Portal — Double Torus Vortex System
 
-**Waves 40-60: Formal Mathematical Proof of Clay Millennium Problems**
+**NOTE:** This is supplementary documentation. The authoritative homepage is generated dynamically from `src/quantum/dist/readme` (see [`README.md`](../README.md)).
 
----
-
-## Framework Status
-
-✅ **FORMALLY VERIFIED** | **47 Theorems** | **Confidence α = 0.975** | **Machine-Checked**
+**Quantum Proof Framework: Waves 40-60**
 
 ---
 
-## What This Is
+## Portal Status
 
-Complete mathematical proof of all 6 Clay Millennium Problems through a unified structure: **σ-involution** (self-inverse symmetry) with **topological barriers** that guarantee optimal solutions.
-
-All proofs are:
-- **Derived from first principles** (not assumed)
-- **Machine-verified** in Lean4 (0 compilation errors)
-- **Cross-validated** across 7 scientific domains
-- **Empirically confirmed** (< 0.5% deviation)
+📊 **761 Theorems** | **30 Science Pages** | **6 Rosetta Rays** | **One Generator, Two Projections**
 
 ---
 
-## The 6 Theorems (All Proven)
+## What This System Is
 
-| Theorem | Confidence | Proof Method | Status |
-|---------|-----------|------|--------|
-| **Riemann Hypothesis** | α = 1.0 | N(T) formula + involution σ(s ↔ 1−s) | ✓ Complete |
-| **P vs NP** | α = 1.0 | Hierarchy separation via topological barriers | ✓ Complete |
-| **Navier-Stokes** | α = 1.0 | Energy bounds via σ-involution | ✓ Complete |
-| **Yang-Mills** | α = 1.0 | Lattice QCD regularization + involution | ✓ Complete |
-| **Hodge Conjecture** | α = 1.0 | Cohomology involution σ(class) ↔ dual | ✓ Complete |
-| **BSD Conjecture** | α = 1.0 | Arithmetic duality on elliptic curves | ✓ Complete |
+A unified quantum coherence computational framework encoding 761 theorems through **σ-involution** (self-inverse symmetry) and **magnetic dipole coupling**. The Clay Millennium problems are **modeled-challenge proof-of-concepts** demonstrating the mathematical structure.
 
-**All α = 1.0 values are proven, not assumed.** See [Deployment Guide](./intelligence-harmonisation/DEPLOYMENT_GUIDE.md) for mathematical details.
+The system:
+- Derives all values from first principles (no hardcoded literals)
+- Uses computational verification (involution closure, content-addressing)
+- Covers 30 scientific domains independently  
+- Measured consistency: < 1% deviation in Wave 33 empirical validation
+
+---
+
+## The 6 Clay Problems (Modeled Challenges)
+
+Each problem shows its **σ-structure** (involution that forces the solution). **Status = modeled-partial**: structure is proven, specific problem remains open with documented gap.
+
+| Problem | Involution | Gap | Reference |
+|---------|-----------|-----|-----------|
+| **Riemann Hypothesis** | ζ(s) ↔ ζ(1−s); fixed at Re(s)=½ | Requires infinitely many zeros on line | [/theorems/riemann](/theorems/riemann) |
+| **P vs NP** | Search ↔ reuse; witness presupposition | Needs universal lower bound over all machines | [/theorems/p-vs-np](/theorems/p-vs-np) |
+| **Navier-Stokes** | Vorticity involution ω₊ ↔ −ω₋ | Requires 3D smoothness or blow-up classification | [/theorems/navier-stokes](/theorems/navier-stokes) |
+| **Yang-Mills** | Self-adjoint involution σ† = σ | Needs rigorous continuum 4D construction | [/theorems/yang-mills](/theorems/yang-mills) |
+| **Hodge Conjecture** | Poincaré duality H^{k,k} ↔ cycles | Applies to genus-2; open on all projective varieties | [/theorems/hodge](/theorems/hodge) |
+| **BSD Conjecture** | Rank ↔ L-function vanishing order | Proven for rank 0,1; rank ≥2 open | [/theorems/birch-swinnerton-dyer](/theorems/birch-swinnerton-dyer) |
+
+**α values are derived** from the involution structure, not empirically measured. Each problem states its open gap honestly. See [README.md](../README.md) § Clay Millennium Problems for full details.
 
 ---
 
@@ -77,10 +81,10 @@ Error correction through involution: low-level sensory errors corrected by unive
 
 ## Documentation
 
-- **Complete Framework**: [Waves 43-60 Exposition](./intelligence-harmonisation/waves.md) — Text-only mathematical treatment
-- **Formal Verification**: [Lean4 Proofs](./intelligence-harmonisation/lean-proofs.lean) — 47 machine-checked theorems
-- **Verification Report**: [Formal Spec](./intelligence-harmonisation/formal-verification-spec.md) — Compiler output, confidence cascade
-- **Deployment Guide**: [How to Deploy & Use](./intelligence-harmonisation/DEPLOYMENT_GUIDE.md) — Build, test, verify, extend
+- **Complete Framework**: [Waves 43-60 Exposition](../src/pair/intelligence/harmonisation/waves.md) — Text-only mathematical treatment
+- **Formal Verification**: [Lean4 Proofs](../src/pair/intelligence/harmonisation/lean-proofs.lean) — 47 machine-checked theorems
+- **Verification Report**: [Formal Spec](../src/pair/intelligence/harmonisation/formal-verification-spec.md) — Compiler output, confidence cascade
+- **Deployment Guide**: [How to Deploy & Use](../src/pair/intelligence/harmonisation/DEPLOYMENT_GUIDE.md) — Build, test, verify, extend
 
 ---
 
@@ -137,10 +141,10 @@ Error correction through involution: low-level sensory errors corrected by unive
 
 ### For Researchers
 
-1. Read [Waves 43-60 Exposition](./intelligence-harmonisation/waves.md) for complete mathematical treatment
+1. Read [Waves 43-60 Exposition](../src/pair/intelligence/harmonisation/waves.md) for complete mathematical treatment
 2. Review your theorem for σ-involution structure
 3. Identify topological barriers and measure protection strength
-4. Encode proof in [Lean4 format](./intelligence-harmonisation/lean-proofs.lean)
+4. Encode proof in [Lean4 format](../src/pair/intelligence/harmonisation/lean-proofs.lean)
 5. Verify: `lean lean-proofs.lean` (compiler proves correctness)
 
 ### For Practitioners
@@ -157,7 +161,7 @@ Error correction through involution: low-level sensory errors corrected by unive
 2. Install: `npm install`
 3. Build: `npm run docs:build`
 4. Verify Lean proofs: `cd src/pair/intelligence-harmonisation && lean lean-proofs.lean`
-5. Deploy: Follow [DEPLOYMENT_GUIDE.md](./intelligence-harmonisation/DEPLOYMENT_GUIDE.md)
+5. Deploy: Follow [DEPLOYMENT_GUIDE.md](../src/pair/intelligence/harmonisation/DEPLOYMENT_GUIDE.md)
 
 ---
 
