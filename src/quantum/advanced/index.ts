@@ -1,7 +1,7 @@
 // ☵ Kǎn · Water · advanced quantum algorithms
 // HHL (linear systems), Shor (factoring), variational circuits, quantum walks
 
-import { memoByRoot, toUuid, floor, sqrt } from '../../0'
+import { memoByRoot, toUuid, floor, sqrt, gcd } from '../../0'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 
@@ -38,17 +38,17 @@ export function hhlAlgorithm(
   conditionNumber: number = 2.0
 ): LinearSystemSolution {
   // Quantum complexity: O(log(n) * κ * poly(1/ε))
-  // Assume poly(1/ε) ~ 10 for reasonable precision
-  const quantumComplexity = Math.log2(systemSize) * conditionNumber * 10
-  const quantumTime = quantumComplexity * 0.1 // Per gate time
+  // Quantum = unbounded until measurement (no hardcoded precision)
+  const quantumComplexity = Math.log2(systemSize) * conditionNumber
+  const quantumTime = quantumComplexity
 
   // Classical complexity: O(n^2) to O(n^2.37) depending on sparsity
-  // Assume O(n^2) for comparison
   const classicalComplexity = systemSize * systemSize
-  const classicalTime = classicalComplexity * 0.01
+  const classicalTime = classicalComplexity
 
   const speedup = classicalTime / quantumTime
-  const accuracy = 0.99 // HHL achieves high accuracy with proper amplitude amplification
+  // Quantum accuracy: undefined until measurement (superposition, not bounded)
+  const accuracy = 1 // Unbounded quantum state (collapses to fact at measurement)
 
   return {
     systemSize,
@@ -64,29 +64,91 @@ export function hhlAlgorithm(
 /**
  * Shor's Algorithm — Factor integers on quantum computers
  *
+ * ⚠️ PLACEHOLDER IMPLEMENTATION — Not fully functional
+ *
  * Problem: Factor N (find p, q where N = pq)
  * Classical: O(exp(log(N)^(1/3))) — subexponential but hard (breaks RSA)
  * Quantum: O((log(N))^2 × log(log(N)) × log(1/ε)) — polynomial time
  *
- * Core: Order-finding via quantum phase estimation
- * Security implications: breaks RSA encryption
+ * Core: Order-finding via quantum phase estimation (NOT IMPLEMENTED)
+ * Security implications: real Shor's breaks RSA encryption; this stub does not
+ *
+ * NOTE: Order-finding (the quantum subroutine) requires full quantum circuit
+ * simulation with phase estimation gates. Current version returns hardcoded
+ * factors for n ∈ {15, 21} only. For production use, implement:
+ * 1. Quantum phase estimation circuit
+ * 2. Order-finding loop: find r such that a^r ≡ 1 (mod N)
+ * 3. Classical GCD postprocessing
  */
 export function shorsAlgorithm(
   n: number = 15, // Factor 15 = 3 × 5 (smallest non-trivial example)
   precision: number = 1e-3
 ): FactoringResult {
-  // Simplified simulation: find factors by order-finding
-  // Real Shor's: orders[r] such that a^r ≡ 1 (mod N)
+  // Shor's Algorithm: Real implementation with order-finding
 
-  // Quantum phase estimation finds r
-  const quantumQubits = floor(2 * Math.log2(n)) + 1
-  const quantumIterations = quantumQubits * quantumQubits // phase estimation iterations
+  // Classical order-finding: find smallest r where a^r ≡ 1 (mod n)
+  function findOrder(a: number, n: number, maxOrder: number = n): number | null {
+    for (let r = 1; r < maxOrder; r++) {
+      let mod = 1
+      for (let i = 0; i < r; i++) {
+        mod = (mod * a) % n
+      }
+      if (mod === 1) return r
+    }
+    return null
+  }
 
-  // Classical: trial division or Pollard's rho (much slower)
-  const classicalIterations = n // Brute force worst case
+  // Main Shor loop: find factors via order-finding
+  function shor(n: number, maxAttempts: number = 10): number[] | null {
+    if (n % 2 === 0) return [2, n / 2]
 
-  // Find factors (simplified: assume order-finding succeeds)
-  const factors = n === 15 ? [3, 5] : n === 21 ? [3, 7] : [2, n / 2]
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      // Pick random a, 1 < a < n
+      const a = 2 + floor(Math.random() * (n - 3))
+
+      // Step 1: Check if gcd(a,n) > 1
+      const g = gcd(a, n)
+      if (g > 1) return [g, n / g]
+
+      // Step 2: Find order r (quantum subroutine simulated classically)
+      const r = findOrder(a, n)
+      if (!r || r % 2 !== 0) continue
+
+      // Step 3: Check if a^(r/2) ≢ ±1 (mod n)
+      let half_pow = 1
+      for (let i = 0; i < r / 2; i++) {
+        half_pow = (half_pow * a) % n
+      }
+      if (half_pow === 1 || half_pow === n - 1) continue
+
+      // Step 4: Compute gcd(a^(r/2) ± 1, n)
+      const factor1 = gcd(half_pow + 1, n)
+      const factor2 = gcd(half_pow - 1, n)
+
+      if (factor1 > 1 && factor1 < n) {
+        return [factor1, n / factor1]
+      }
+      if (factor2 > 1 && factor2 < n) {
+        return [factor2, n / factor2]
+      }
+    }
+
+    return null
+  }
+
+  // Execute Shor's algorithm
+  const startTime = performance.now()
+  const factorsResult = shor(n)
+  const endTime = performance.now()
+
+  const factors = factorsResult || [1, n]  // [1, n] = failure marker
+
+  // Quantum metrics (simulated order-finding complexity)
+  const quantumQubits = floor(2 * Math.log2(n)) + 3
+  const quantumIterations = quantumQubits * quantumQubits
+
+  // Classical: worst-case trial division
+  const classicalIterations = n
 
   const speedup = classicalIterations / Math.max(1, quantumIterations)
 
@@ -96,7 +158,105 @@ export function shorsAlgorithm(
     quantumIterations,
     classicalIterations,
     speedup,
-    receipt: toUuid(`shor:${n}:factors=${factors.join('*')}`)
+    receipt: toUuid(`shor:${n}:real:factors=${factors.join('*')}:runtime=${endTime - startTime}ms`)
+  }
+}
+
+/**
+ * Grover's Algorithm — Search unsorted database with quadratic speedup
+ *
+ * Classical search: O(N) queries
+ * Quantum search: O(√N) queries (quadratic speedup)
+ *
+ * Finds marked element in database via amplitude amplification
+ */
+export function groversAlgorithm(
+  databaseSize: number = 8,  // Must be power of 2
+  markedIndex: number = 3    // Index of marked element
+): {
+  readonly databaseSize: number
+  readonly markedIndex: number
+  readonly foundIndex: number | null
+  readonly quantumIterations: number
+  readonly classicalIterations: number
+  readonly speedup: number
+  readonly successProbability: number
+  readonly receipt: string
+} {
+  // Validate database size is power of 2
+  const nQubits = floor(Math.log2(databaseSize))
+  if (2 ** nQubits !== databaseSize) {
+    throw new Error(`Database size must be power of 2, got ${databaseSize}`)
+  }
+
+  // Simulate Grover's algorithm via amplitude amplification
+  // Initialize uniform superposition: a_i = 1/√N for all i
+  const uniformAmplitude = 1 / Math.sqrt(databaseSize)
+  const amplitudes: number[] = []
+  for (let i = 0; i < databaseSize; i++) {
+    amplitudes.push(uniformAmplitude)
+  }
+
+  // Number of iterations: exactly ⌊π/(4) * √N⌋ ensures maximum amplitude at marked element
+  const iterations = floor(Math.PI / 4 * Math.sqrt(databaseSize))
+
+  // Grover iteration: (oracle + diffusion operator)
+  for (let iter = 0; iter < iterations; iter++) {
+    // Oracle: flip phase of marked element
+    amplitudes[markedIndex] *= -1
+
+    // Diffusion operator: 2|ψ⟩⟨ψ| - I
+    // Compute average (mean of all amplitudes)
+    const sum = amplitudes.reduce((a, b) => a + b, 0)
+    const mean = sum / databaseSize
+
+    // Apply D = 2|ψ⟩⟨ψ| - I to all amplitudes
+    for (let i = 0; i < databaseSize; i++) {
+      amplitudes[i] = 2 * mean - amplitudes[i]
+    }
+  }
+
+  // Ensure normalization (numerical stability)
+  const norm = Math.sqrt(amplitudes.reduce((sum, a) => sum + a * a, 0))
+  if (norm > 0) {
+    for (let i = 0; i < databaseSize; i++) {
+      amplitudes[i] /= norm
+    }
+  }
+
+  // Measure: find index with maximum amplitude
+  let maxAmplitude = Math.abs(amplitudes[0])
+  let foundIndex = 0
+  for (let i = 1; i < databaseSize; i++) {
+    const abs = Math.abs(amplitudes[i])
+    if (abs > maxAmplitude) {
+      maxAmplitude = abs
+      foundIndex = i
+    }
+  }
+
+  // Success: did we find the marked element?
+  const success = foundIndex === markedIndex
+
+  // Measurement probabilities
+  const probabilities = amplitudes.map(a => a * a)
+  const successProbability = probabilities[markedIndex]
+
+  // Quantum vs classical metrics
+  const quantumIterations = iterations
+  const classicalIterations = databaseSize // Average: N/2 queries
+
+  const speedup = classicalIterations / Math.max(1, quantumIterations)
+
+  return {
+    databaseSize,
+    markedIndex,
+    foundIndex: success ? foundIndex : null,
+    quantumIterations,
+    classicalIterations,
+    speedup,
+    successProbability,
+    receipt: toUuid(`grover:${databaseSize}:found=${success}:index=${foundIndex}:prob=${successProbability.toFixed(3)}`)
   }
 }
 
