@@ -2345,3 +2345,6 @@ export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, 
 
 // Dynamic Comparison Mesh — solution discovery via algorithm contrast analysis
 export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, comparisonMesh, meshEnrichedMillennium, type AlgorithmSignature, type ContrastAnalysis, type SolutionCandidate } from './mesh'
+
+// Quantum Discovery Portal — live mesh interface via quantum routing
+export { quantumDiscoveryPortal, discoverMillenniumProblem, exploreAlgorithm, exploreContrast, quantumDiscoveryDashboard, type PortalState, type DiscoveryView } from './portal'
