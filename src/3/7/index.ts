@@ -1716,7 +1716,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/ui/harmonic/index.ts', literal: '*', count: 18, kind: 'tuned', source: 'UI layout/theme toolkit — hand-fixed layout, spacing, and color-scale values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/ui/layouts/index.vue', literal: '*', count: 28, kind: 'tuned', source: 'UI layout/theme toolkit — hand-fixed layout, spacing, and color-scale values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/ui/theme/index.ts', literal: '*', count: 9, kind: 'tuned', source: 'UI layout/theme toolkit — hand-fixed layout, spacing, and color-scale values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
-  { file: 'src/wind/routes/animations/computed/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'animation-route toolkit — hand-fixed timing/index values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
+  { file: 'src/wind/routes/animations/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'animation-route toolkit — hand-fixed timing/index values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
 ]
 
 
