@@ -4,7 +4,7 @@ import { quantumComputerLabComputes, QC_GATE_PALETTE } from '../science/index.ts
 import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
 import { TAU } from '../../3/7/index.ts'
 import { siliconFabricationPlanFromModel, siliconFabricationStageAt } from './index.ts'
-import { honestRevolutionComputerPanelComputes } from '../../wind/fusion/index.ts'
+import { honestRevolutionComputerPanelComputes } from '../../../platform/wind/fusion/index.ts'
 import { subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'

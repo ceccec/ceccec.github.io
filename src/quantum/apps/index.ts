@@ -2,16 +2,16 @@
 // Rosetta core API sealed here (water/digit at compression limit; census forbids flat siblings).
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
-import type { MindMatrix } from '../../wind/types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeChatTurnAtArchitecturalFtl, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughPerplexity } from '../../heaven/compute'
+import type { MindMatrix } from '../../../platform/wind/types'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeChatTurnAtArchitecturalFtl, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughPerplexity } from '../../../research/heaven/compute'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
-export { portalChat, freeChatTurnAtArchitecturalFtl, freeChatDrivesArchitecturalFtl, chatFtl, ftlChat, deepResearchAtNoCost, researchFree, freeResearch, standardsChatImprovesToFtl, standardsChat, chatStandards, allFoldsCompactFuseInCoordinatedChatWaves, foldFuse, fuseFold, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, wavesReportFedToTheChat, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute'
-export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/stack'
-export type { MathOverflowItem } from '../../heaven/compute'
+export { portalChat, freeChatTurnAtArchitecturalFtl, freeChatDrivesArchitecturalFtl, chatFtl, ftlChat, deepResearchAtNoCost, researchFree, freeResearch, standardsChatImprovesToFtl, standardsChat, chatStandards, allFoldsCompactFuseInCoordinatedChatWaves, foldFuse, fuseFold, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, AI_PROVIDERS, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, wavesReportFedToTheChat, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../../research/heaven/compute'
+export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../../platform/water/stack'
+export type { MathOverflowItem } from '../../../research/heaven/compute'
 // Private quantum search — BM25-ranked, fused, no-egress — re-exported for the in-chat search box.
-export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
-import { emergentDimensions } from '../../heaven/balance'
-import { cloudflareBindings } from '../../heaven/core'
+export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../../platform/wind/site'
+import { emergentDimensions } from '../../../research/heaven/balance'
+import { cloudflareBindings } from '../../../research/heaven/core'
 import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../0'
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
@@ -19,7 +19,7 @@ import { TAU,
   type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, physicalFtlBooleanAtCallTime, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
-  rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit'
+  rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../../platform/water/digit'
 import {
   directionalTrinityForwardInverseReverse,
   compareCeccecEfficiencyByVote,
@@ -34,8 +34,8 @@ import {
   thermoQuantumBalance,
   cpuGpuSelfBalance,
   oneClockApi,
-  apiFuse } from '../../water/stack'
-import { cosmosFrontiersDecoded, frontierQuantum, fractalMap, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos'
+  apiFuse } from '../../../platform/water/stack'
+import { cosmosFrontiersDecoded, frontierQuantum, fractalMap, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../../platform/water/cosmos'
 import {
   animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho,
   COLOR_ROSETTA_THEME_MORPHS, COLOR_ROSETTA_THEME_TOKEN_IDS, CSS_DRY_FUSION_GAP_LENS,
@@ -51,23 +51,23 @@ import {
   movieQuantumGapsInventory,
   movieUnbalancedAroundCenterIsCrack,
   theMoviePartsDissolveLikeLiquid,
-  thunderAndPlasmaAreSameInDifferentAspects } from '../../thunder/movie/canvas'
-import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../earth/life'
-import { livingTorus } from '../../fire/diamonds'
-import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../wind/geometry'
+  thunderAndPlasmaAreSameInDifferentAspects } from '../../../applications/thunder/movie/canvas'
+import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../../research/earth/life'
+import { livingTorus } from '../../../research/fire/diamonds'
+import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../platform/wind/geometry'
 import { humanDesignChannelsAndCenters } from '../icons'
 import { harmonizeFieldComputes } from '../../music'
-import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum, deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible, lifeTorus } from '../../water/double'
-export { deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../water/double'
+import { doubleTorusDynamicsGeometryAlignsWithUniverse, doubleTorusIsCompletelyQuantum, deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible, lifeTorus } from '../../../platform/water/double'
+export { deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves, theUiItselfIsADoubleTorus, doubleTorusQuantumComputer, allDoubleTorusWavesUseTheFreeChat, doubleTorusGeometry, doubleTorusAlgebra, doubleTorusPhysics, doubleTorusBiology, doubleTorusChemistry, doubleTorusStar, constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing, asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky, quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse, quantumiseIsFreeForAll, quantumiseAlsoDryCleansByObservationChatWavesOfWaves, reverseEngineeringMayBePoweredByScalableFreeWaves, allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves, noProseMayBeTrustedLiteraryQuantumise, fewerNpmScriptsWithQuantumPrompts, fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible } from '../../../platform/water/double'
 import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, quantumSensorBindingCatalog, QUANTUM_SENSOR_BINDING_CATALOG, movieObservationReceipt, heroPhaseAt } from '..'
-import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry'
-import { vortexComputes, vortexMath } from '../../mountain/vortex'
+import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../../platform/mountain/geometry'
+import { vortexComputes, vortexMath } from '../../../platform/mountain/vortex'
 import * as __ns_wind_research from '../../research'
-import * as __ns_water_encryption from '../../water/encryption'
+import * as __ns_water_encryption from '../../../platform/water/encryption'
 import {
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities,
   runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit,
-} from '../../fire/physics'
+} from '../../../research/fire/physics'
 import { agentSubmissionProtocol, CURSOR_AGENT_SKILL_IDS, cursorAgentToolsSaved, MISSION_COMMANDS, QUANTUM_COMMAND_PAIR_IDS, foldQuantumCommandPairs, matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement'
 import {
   agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath,
@@ -107,13 +107,13 @@ export {
   workWave,
   dryQuantumize,
 } from '../../pair/enforcement/gates'
-import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus'
-import { cardMoviePath } from '../../thunder/movie/movievars'
-import { alchemyComputes, quantumFusionVerify } from '../../wind/fusion'
+import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../../platform/wind/routes/corpus'
+import { cardMoviePath } from '../../../applications/thunder/movie/movievars'
+import { alchemyComputes, quantumFusionVerify } from '../../../platform/wind/fusion'
 import { dryCleanIsDiamondAndCrystal } from '../../clean'
 import { tamperEvident } from '../../5/5'
-import { RAVE_CENTER_LAYOUT } from '../../heaven/sky/astronomy'
-import * as __ns_thunder_waves from '../../thunder/waves'
+import { RAVE_CENTER_LAYOUT } from '../../../research/heaven/sky/astronomy'
+import * as __ns_thunder_waves from '../../../applications/thunder/waves'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'
 export type RosettaCoreSurface = {

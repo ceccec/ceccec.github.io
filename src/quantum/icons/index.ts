@@ -4,7 +4,7 @@
 // Dual: src/render/icons/quantum (browse/display primitives). Only src/0 + mind/types imports.
 
 // ☶ Gèn · Mountain · keeping still · lower·yin · spread — type: sealed icon artifact shape
-import type { IconSeal } from '../heaven/mind'
+import type { IconSeal } from '../research/heaven/mind'
 // ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — uuid + merkle fold primitives
 import { floor, max, merkleFold, toUuid } from '../../0'
 
@@ -180,10 +180,10 @@ export {
 // The ONE 3-5-8 tier core — computerDesign (here), chakrasAura (spirit), music358 (fire/li), emf358 (fire/physics) all delegate.
 import { tiers358 } from '../spirit'
 export { tiers358 } from '../spirit'
-export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../earth/nature'
+export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../../research/earth/nature'
 export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../science'
 export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice'
-export { bulgarianHeritage, bulgarianHistory, bulgarianAncientCivilisations, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception } from '../earth/heritage'
+export { bulgarianHeritage, bulgarianHistory, bulgarianAncientCivilisations, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception } from '../research/earth/heritage'
 
 /** The vocabulary cross — six domain barrels fused to one content-address (a real crossing, not noise). */
 export function vocabCross() {

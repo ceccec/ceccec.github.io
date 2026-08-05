@@ -7,7 +7,7 @@ import { servedRouteFromSlugs, theoremScienceVisible } from '../../3/7'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { toUuid, merkleFold } from '../../0'
 import { movieCanvasHex } from '../science'
-import { a432NoteHz } from '../../fire/li'
+import { a432NoteHz } from '../../../research/fire/li'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
 /** @rosetta ✦₁ · Water · depth */

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, shallowRef } from 'vue'
 import { researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay } from './index.ts'
-import { harmonizeScienceDomainsInWavesOfWaves } from '../thunder/waves/index.ts'
+import { harmonizeScienceDomainsInWavesOfWaves } from '../applications/thunder/waves/index.ts'
 import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../.vitepress/theme/components/ui/Separator.vue'
-import { round } from '../0/index.ts'
+import { round } from '../../../0/index.ts'
 
 const panel = shallowRef(researchPanelComputes())
 const millennium = shallowRef(millenniumPanelComputes())

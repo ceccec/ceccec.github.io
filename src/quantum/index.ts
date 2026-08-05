@@ -14,18 +14,18 @@ import { dims, dimWalk } from './mountain/dimensions'
 import { perspective, rotate3, branch } from './wind/geometry'
 import { drawFlower, drawCalendars } from './wind/geometry'
 import { drawBursts, type Burst } from './fire/experiments'
-import { folderLaw } from '../earth/architecture'
-import { glagoliticGlyph, autoSpeech } from '../fire/li'
+import { folderLaw } from '../research/earth/architecture'
+import { glagoliticGlyph, autoSpeech } from '../research/fire/li'
 import { movieCanvasRgba, movieCanvasPolarity, quantumScaleHue } from './science'
 import type { Dims } from './mountain/dimensions'
-import { buildMatrix } from '../heaven/compute'
-import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball'
-import { livingTorus } from '../fire/diamonds'
+import { buildMatrix } from '../research/heaven/compute'
+import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../research/fire/plasma/ball'
+import { livingTorus } from '../research/fire/diamonds'
 import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid } from '../0'
 import { claySolvedTheorem } from '../3/7'
-import type { MindMatrix } from '../wind/types'
-import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
-import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
+import type { MindMatrix } from '../platform/wind/types'
+import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../platform/water/double/earth'
+import { type BothEarthsMerkabaRotation } from '../platform/mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
 import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7'
 import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational'
@@ -1035,7 +1035,7 @@ export function rosettaPerspectiveFold(ray: number, field: AnimationField): Rose
     root: toUuid(`rosetta-perspective:${field.root}:${r}`) }
 }
 
-export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball'
+export { HERO_CYCLE_MS, heroPhaseAt } from '../research/fire/plasma/ball'
 
 export function sharedHeroAt(
   route: string,
@@ -2112,7 +2112,7 @@ export {
   realtimeComputationsMoviePaint,
   allRealtimeComputationsVisibleInMovie,
   type RealtimeComputationsMoviePaint,
-  type RealtimeComputeMovieChannel } from '../fire/plasma/ball'
+  type RealtimeComputeMovieChannel } from '../research/fire/plasma/ball'
 
 export function subscribeHeroClock(listener: (at: number) => void): () => void {
   heroClockListeners.add(listener)

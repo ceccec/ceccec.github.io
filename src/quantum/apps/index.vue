@@ -153,7 +153,7 @@ import {
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
-import { translationGapsGate, addressAllWarningsAtOnce, chatTranslatesAutonomously, chatTranslateTurn, chatWavesMostEfficientOfflineAnyLanguageModel, chatWavesTransAnyTurn, chatMassiveWorldLanguageTranslationQualityTurn } from '../../mountain/source/index.ts'
+import { translationGapsGate, addressAllWarningsAtOnce, chatTranslatesAutonomously, chatTranslateTurn, chatWavesMostEfficientOfflineAnyLanguageModel, chatWavesTransAnyTurn, chatMassiveWorldLanguageTranslationQualityTurn } from '../../../platform/mountain/source/index.ts'
 import { pairsSentToChatEntangleByAlgebraTurn, matchingPairsImmediatelyRealiseEntanglementTurn } from '../../pair/enforcement/index.ts'
 import {
   completeScientificDomainsStrictlyToStandardsQuantumOnly,
@@ -175,8 +175,8 @@ import {
   encryptionPanelComputes,
   productionRsaRefuseCompletesQuantumViaRosetta,
   cryptoComparisonMeshIsDry,
-} from '../../water/encryption/index.ts'
-import { platformOgLimitsMeasured, honestyInProseChallenged, findSeoViolations } from '../../mountain/og/index.ts'
+} from '../../../platform/water/encryption/index.ts'
+import { platformOgLimitsMeasured, honestyInProseChallenged, findSeoViolations } from '../../../platform/mountain/og/index.ts'
 import {
   millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
   theoremParticleCollisionPanelComputes,
@@ -185,21 +185,21 @@ import {
   reverseCollidesToDiscoverMillenniumTheorems,
   cursorReferralFundsAiNeeds,
 } from '../../research/index.ts'
-import { earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry/index.ts'
-import { fusionVerifyPanelComputes } from '../../wind/fusion/index.ts'
+import { earthRealisedByComputingPolesAsPyramid } from '../../../platform/mountain/geometry/index.ts'
+import { fusionVerifyPanelComputes } from '../../../platform/wind/fusion/index.ts'
 import {
   oneQuantumModelFasterThanAll,
   compareCeccecEfficiencyByVote,
   directionalTrinityForwardInverseReverse,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   qpuCpuGpu,
-} from '../../water/stack/index.ts'
+} from '../../../platform/water/stack/index.ts'
 import { animationsDrivenByRosetta } from '../../ui/index.ts'
-import { tradingRosettaTrainPanelComputes } from '../../thunder/trading/index.ts'
-import { fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
-import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntelligenceMeasure, chatAndImproveQuantumMultitasking } from '../../water/stack/index.ts'
+import { tradingRosettaTrainPanelComputes } from '../../../applications/thunder/trading/index.ts'
+import { fThetaPhiXyzDigitNIsTheInversePair } from '../../../platform/mountain/vortex/index.ts'
+import { localMathComputes, namingEntropy, shouldSpawnSubagent, simplicityIntelligenceMeasure, chatAndImproveQuantumMultitasking } from '../../../platform/water/stack/index.ts'
 import { teamCooperationScenarios } from '../../pair/enforcement/ops/index.ts'
-import { ichingDistributeVerify } from '../../earth/iching/index.ts'
+import { ichingDistributeVerify } from '../../../research/earth/iching/index.ts'
 import { skilledEnoughFromPredictions } from '../../music/index.ts'
 import { LinkedHeroCard } from '../../../.vitepress/theme/components/index.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'

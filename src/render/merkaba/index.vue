@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { bothEarthsRotateWithinEachOther } from '../../mountain/geometry/index.ts'
+import { bothEarthsRotateWithinEachOther } from '../../../platform/mountain/geometry/index.ts'
 import {
   navigationGpsCelestialFromDualEarthPerspective,
   navigationGpsCelestialReexplainedFromDualEarthPerspective,
@@ -9,7 +9,7 @@ import {
   fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas,
   universalNavigationalCrossInAllDimensions,
   universalNavigationalCrossResearch,
-} from '../../water/double/earth/index.ts'
+} from '../../../platform/water/double/earth/index.ts'
 import { drawBothEarthsMerkabaFrame } from '../../../.vitepress/lib/hero-movie-paint.ts'
 import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
 import { useSiteLocale } from '../../../.vitepress/lib/mounts'

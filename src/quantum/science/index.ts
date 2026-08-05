@@ -1,11 +1,11 @@
 // Quantum science — principles exposition + thunder (EMF/efficiency/Tesla/colour primitives) + quantum computer toy model (canonical home). Folded from thunder.ts + computer-folds.ts.
 import * as __ns_up_dynamics from '../dynamics'
-import * as __ns_up_up_fire_physics from '../../fire/physics'
+import * as __ns_up_up_fire_physics from '../../../research/fire/physics'
 import * as __ns_up_up_pair_enforcement from '../../pair/enforcement'
-import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
+import * as __ns_up_up_mountain_geometry from '../../../platform/mountain/geometry'
 import * as __ns_up_os from '../os'
-import type { MindMatrix } from '../../wind/types'
-import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented, noQpuRequired } from '../../heaven/compute'
+import type { MindMatrix } from '../../../platform/wind/types'
+import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented, noQpuRequired } from '../../../research/heaven/compute'
 import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, ceil, chsh, cnot, computesGate, cos, digitalRoot, exp, floor, grover, isUuid, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, pow, prng, probabilities, qubits, round, roundTo, runQuantumCircuit, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
 import type { CircuitOp } from '../../0'
 import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi, bernsteinVazirani } from '../../9/1'
@@ -17,11 +17,11 @@ import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../.
 export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7'
 import { resonantAmplitude } from '../../6/4'
 import { resonancePeakGain } from '../../7/3'
-import { conceptCommands } from '../../heaven/atoms'
+import { conceptCommands } from '../../../research/heaven/atoms'
 // Static dependencies of the quantum-computer closure: the 64 I Ching hexagrams ARE the 6-qubit
 // computational basis, and Rosetta is the state/result codec. Referenced inside quantumComputerComputes
 // (call time, cycle-safe) so they are genuine static edges of the closure, not dead imports.
-import { iChing } from '../../earth/iching'
+import { iChing } from '../../../research/earth/iching'
 import { rosettaComputes } from '../../learning'
 import { TAU } from '../../3/7'
 import { HARMONY, earned } from '../../3/7'

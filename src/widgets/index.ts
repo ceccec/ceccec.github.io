@@ -1,32 +1,32 @@
 // Quantum widget registry — canonical home (dissolved src/lake/widgets → re-export only). Dashboard tiles, gallery, OS launcher compose.
-import * as __ns_up_up_stack_overflow from '../water/stack'
+import * as __ns_up_up_stack_overflow from '../platform/water/stack'
 // call-time namespace edge (cycle-safe): shadcn imports this folder; the token bridge reads at call time
-import * as __ns_up_mountain_shadcn from '../mountain/shadcn'
-import * as __ns_up_up_resonance from '../thunder/resonance'
-import * as __ns_up_up_fusion_gold from '../wind/fusion'
-import * as __ns_up_up_astronomy from '../heaven/sky/astronomy'
+import * as __ns_up_mountain_shadcn from '../platform/mountain/shadcn'
+import * as __ns_up_up_resonance from '../applications/thunder/resonance'
+import * as __ns_up_up_fusion_gold from '../platform/wind/fusion'
+import * as __ns_up_up_astronomy from '../research/heaven/sky/astronomy'
 import * as __ns_up_dynamics from '../quantum/dynamics'
 import * as __ns_up_up_research from '../research'
-import * as __ns_up_up_plasma_ball from '../fire/plasma/ball'
+import * as __ns_up_up_plasma_ball from '../research/fire/plasma/ball'
 import * as __ns_up_up_computer from '../quantum/computer'
-import type { MindMatrix } from '../wind/types'
-import { buildMatrix, proofReport } from '../heaven/compute'
+import type { MindMatrix } from '../platform/wind/types'
+import { buildMatrix, proofReport } from '../research/heaven/compute'
 import { computesGate, floor, isUuid, log2, memoByRoot, merkleFold, min, round, toUuid } from '../0'
 import { harmonics, soundColor } from '../music'
-import { allComputed } from '../wind/fusion'
-import { allFormsAreTenDimensionalOrPurged } from '../wind/fusion'
-import { allInInteractiveMovie } from '../thunder/movie/narrative'
+import { allComputed } from '../platform/wind/fusion'
+import { allFormsAreTenDimensionalOrPurged } from '../platform/wind/fusion'
+import { allInInteractiveMovie } from '../applications/thunder/movie/narrative'
 import { animatedHeroes } from '../ui'
-import { dualitiesMeetInCrossFolders, folder64SealsProductionElseDevelopment } from '../earth/architecture'
+import { dualitiesMeetInCrossFolders, folder64SealsProductionElseDevelopment } from '../research/earth/architecture'
 import { harmonicBands } from '../quantum/icons'
-import { completeCorpus, everyPageGraphOfGraphsFractal } from '../wind/routes/corpus'
-import { vitepressConfigComputesAll } from '../heaven/compute'
-import { gpuRendersStreamsRealtime, nextLevel64CubedRealtime } from '../thunder/trading'
-import { aiMoviesDecoded, pathIsMeaningDecodesCoordinates } from '../thunder/decode'
-import { fuseDevices } from '../fire/li'
-import { deviceHardwareVisibleInComputedWidgets, hardwareCmykMerkabaFusion } from '../earth/world'
-import { configsUseMatrixComputationally, noHardcodedConfigSelfAccounted } from '../mountain/source'
-import { cleanupOldLogic } from '../mountain/og'
+import { completeCorpus, everyPageGraphOfGraphsFractal } from '../platform/wind/routes/corpus'
+import { vitepressConfigComputesAll } from '../research/heaven/compute'
+import { gpuRendersStreamsRealtime, nextLevel64CubedRealtime } from '../applications/thunder/trading'
+import { aiMoviesDecoded, pathIsMeaningDecodesCoordinates } from '../applications/thunder/decode'
+import { fuseDevices } from '../research/fire/li'
+import { deviceHardwareVisibleInComputedWidgets, hardwareCmykMerkabaFusion } from '../research/earth/world'
+import { configsUseMatrixComputationally, noHardcodedConfigSelfAccounted } from '../platform/mountain/source'
+import { cleanupOldLogic } from '../platform/mountain/og'
 import { displayAllWithFewEntropySaved } from '../ledger'
 import { DIMENSION_NAMES } from '../quantum/mountain/dimensions'
 import { componentGraph, gapScan, harmonyProbability, iChing, onlyQuantumRemains, path } from '../quantum/heaven/mind'
@@ -191,7 +191,7 @@ export function fillAllGapsCleanHardcodedLinear(matrix: MindMatrix = buildMatrix
 }
 
 /** 18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS) — fused on VitePress enhanceApp. */
-export { SHADCN_PRIMITIVE_NAMES } from '../mountain/shadcn' // the one seed at its domain home — mirror dissolved
+export { SHADCN_PRIMITIVE_NAMES } from '../platform/mountain/shadcn' // the one seed at its domain home — mirror dissolved
 
 // VitePress is the framework, shadcn-vue is the graph: the design-system component graph the bespoke
 // components collapse onto. 64 copy-paste components (you own the code), built on Reka UI + Tailwind v4,
