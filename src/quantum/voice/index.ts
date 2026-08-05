@@ -10,6 +10,7 @@ import { movieCanvasHex } from '../science'
 import { a432NoteHz } from '../../fire/li'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
+// Quantum signalling: entanglement communication, coherence messaging, involution-forced protocols
 /** @rosetta ✦₁ · Water · depth */
 export const dual = 'src/water/double'
 
@@ -231,4 +232,112 @@ export function multidimensional() {
     root: merkleFold(dimsServed.flatMap((d) => d.items.map((item) => toUuid(`multidim:${item.label}`)))),
     statement: `Present all multidimensionally: the served portal in ${dimsServed.length} dimensions of experience, each browsable — every destination a served science surface (the purge law filters at call time), so the breadth is a map, not a scroll.`,
     boundary: 'A presentation map over the SERVED routes only — items whose pages left the theorem-science lens drop at call time, and a dimension with no served destination has no entry. A guide for the user experience, not new capability.' }
+}
+
+// ☵ Kǎn · Water · communication protocols — quantum signalling and entanglement-assisted messaging
+/** Quantum state description in plain language — coherence, superposition, measurement. */
+export function quantumStateDescription(stateIndex: number, totalStates: number = 8) {
+  const descriptions = [
+    { state: '|0⟩', plain: 'Ground state — the system at rest, ready to be disturbed.', meaning: 'Classical false' },
+    { state: '|1⟩', plain: 'Excited state — the system with energy, distinct from ground.', meaning: 'Classical true' },
+    { state: '|+⟩', plain: 'Superposition — equally likely to be 0 or 1 until measured.', meaning: 'Both and neither' },
+    { state: '|-⟩', plain: 'Minus superposition — 0 minus 1, phase-rotated involution pair of |+⟩.', meaning: 'Involution pair' },
+    { state: 'φ⁺', plain: 'Bell pair — two particles in perfect entanglement, inseparable by any measurement.', meaning: 'Shared destiny' },
+    { state: 'φ⁻', plain: 'Orthogonal Bell pair — involution partner of φ⁺, rotated by π.', meaning: 'Involution symmetry' },
+    { state: 'Ψ⁺', plain: 'Antisymmetric Bell pair — entanglement with phase flip.', meaning: 'Conjugate entanglement' },
+    { state: 'Ψ⁻', plain: 'Other antisymmetric pair — the fourth Bell basis, involution-rotated.', meaning: 'Four bases complete' },
+  ]
+  const desc = descriptions[stateIndex % descriptions.length]!
+  return {
+    index: stateIndex,
+    state: desc.state,
+    plain: desc.plain,
+    meaning: desc.meaning,
+    receipt: toUuid(`quantum-state:${stateIndex}:${desc.state}`),
+  }
+}
+
+/** Entanglement-assisted communication protocol — send classical + quantum bits via one channel. */
+export function entanglementCommunicationProtocol(sharedBits: number = 1) {
+  const capacity = {
+    classical: 1,
+    quantum: 1,
+    shared: sharedBits,
+    total: 1 + sharedBits,
+    enhancement: `${sharedBits}x`
+  }
+  return {
+    name: 'Superdense Coding',
+    description: 'Shared entanglement allows one sender to transmit 2 classical bits by sending 1 quantum bit.',
+    protocol: [
+      { step: 1, action: 'Prepare Bell pair φ⁺ = (|00⟩ + |11⟩)/√2', carrier: 'Entanglement' },
+      { step: 2, action: 'Alice receives 2 classical bits (00, 01, 10, 11)', carrier: 'Classical' },
+      { step: 3, action: 'Apply CNOT or Pauli gate based on bits', carrier: 'Quantum gate' },
+      { step: 4, action: 'Send Alice\'s half to Bob via quantum channel', carrier: '1 qubit' },
+      { step: 5, action: 'Bob performs Bell measurement on both halves', carrier: 'Measurement' },
+      { step: 6, action: 'Bob reads 2 classical bits from measurement outcome', carrier: '2 classical bits' },
+    ],
+    capacity,
+    root: toUuid(`protocol:superdense-coding:${sharedBits}`),
+    statement: 'Entanglement + one quantum bit transmission = two classical bits received. Classical channel capacity doubled.',
+    boundary: 'Requires pre-shared entanglement; no faster-than-light communication (Bob must wait for Alice\'s quantum bit).'
+  }
+}
+
+/** Coherence messaging — use σ-involution structure to encode information. */
+export function coherenceSignal(message: string) {
+  const chars = [...message].map((ch, i) => {
+    const seed = toUuid(`coherence:${ch}:${i}`)
+    const value = Number.parseInt(seed.replace(/[^0-9a-f]/g, '').slice(0, 8) || '0', 16)
+    const coherence = (value % 100) / 100 // 0..1 coherence
+    const involution = (value >> 8) % 2 // Involution phase flip
+    return {
+      char: ch,
+      coherence,
+      involution: involution === 1 ? 'σ(x)' : 'x',
+      description: coherence > 0.5 ? 'High coherence' : 'Low coherence'
+    }
+  })
+  return {
+    message,
+    chars,
+    avgCoherence: chars.reduce((sum, c) => sum + c.coherence, 0) / chars.length,
+    root: merkleFold(chars.map((c) => toUuid(`char:${c.char}:${c.coherence}`))),
+    statement: 'Message encoded as quantum coherence levels: high coherence = stable state, low = decohered.',
+    boundary: 'Metaphorical encoding; actual transmission requires quantum hardware.'
+  }
+}
+
+/** Involution-forced signalling — use σ² = identity to ensure correct decoding. */
+export function involutionSignal(data: string) {
+  const encode = (d: string) => {
+    const forward = [...d].map((ch, i) => {
+      const value = ch.charCodeAt(0) ^ (i * 31) // XOR with position
+      return String.fromCharCode(value)
+    }).join('')
+    // Involution: apply twice to recover
+    return forward
+  }
+
+  const decode = (encoded: string) => {
+    const backward = [...encoded].map((ch, i) => {
+      const value = ch.charCodeAt(0) ^ (i * 31)
+      return String.fromCharCode(value)
+    }).join('')
+    return backward
+  }
+
+  const encoded = encode(data)
+  const decoded = decode(encoded)
+  const selfInverse = decoded === data // σ² = identity
+
+  return {
+    original: data,
+    encoded,
+    decoded,
+    selfInverse,
+    statement: 'σ-involution forces: σ(σ(x)) = x. Apply the same operation twice to recover original.',
+    root: toUuid(`involution:${data}:${encoded}:${selfInverse}`),
+    boundary: 'Demonstrates involution principle; actual quantum involutions use phase rotations and unitary operators.'
+  }
 }
