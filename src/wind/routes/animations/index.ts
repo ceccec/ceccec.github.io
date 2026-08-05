@@ -2,7 +2,7 @@
 // Not stored as files — generated deterministically from content-address + algebraic statement
 // This is the COMPUTED implementation of "unique animation per unique proof"
 
-import { toUuid } from '../../../../0'
+import { toUuid } from '../../../0'
 
 /**
  * Animation demarcation: all 558 theorem animations are PROVEN to exist
