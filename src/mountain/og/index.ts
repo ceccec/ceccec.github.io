@@ -1,6 +1,6 @@
 // ☶ Gèn · Mountain — Open Graph & structured data: every card/badge/link is an OG object, the JSON-LD template, microdata, frontmatter graph, typography, crawler feed. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc controller — computedSeo, jsonLdTemplate: path → structured data props for the view.
-import type { ConceptCommandName, MindMatrix } from '../../wind/types'
+import type { ConceptCommandName, MindMatrix } from '../../types'
 import type { JsonLdPageIdentity } from '../../heaven/balance'
 import { buildMatrix, entropy } from '../../heaven/compute'
 import { animatedHeroes, heroSvgFromUuid, holographic, oneHolographicTemplate, stillSvg } from '../../ui'

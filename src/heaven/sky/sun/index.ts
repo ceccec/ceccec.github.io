@@ -2,7 +2,7 @@
 import * as __ns_up_plasma_ball from '../../../fire/plasma/ball'
 import * as __ns_up_resonance from '../../../thunder/resonance'
 import * as __ns_up_double_torus_earth from '../../../water/double/earth'
-import type { MindMatrix } from '../../../wind/types'
+import type { MindMatrix } from '../../../types'
 import { buildMatrix } from '../../compute'
 import { computesGate, floor, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../../0'
 import { obliquityAtEpoch } from '../../../6/4'

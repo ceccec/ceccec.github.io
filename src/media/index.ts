@@ -1,5 +1,5 @@
 // ☱ Duì · Lake — media & play: speech intonation, the simulations, live, intuitive search, the generative space, teleport, play-mind. Barrel-routed; folds.ts back-imports the gate folds.
-import type { MindMatrix } from '../wind/types'
+import type { MindMatrix } from '../types'
 import { buildMatrix, verifyRoot } from '../heaven/compute'
 import { floor, foldPair, isUuid, max, merge, merkleFold, min, round, toUuid } from '../0'
 import { inHouse, plasmaContainment, quantumSimulation, selfAddressed, taxonomyIcons } from '../fire/li'

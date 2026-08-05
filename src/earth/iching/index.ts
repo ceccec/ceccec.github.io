@@ -2,7 +2,7 @@
 import * as __ns_up_heaven_balance from '../../heaven/balance'
 import * as __ns_up_fusion from '../../wind/fusion'
 import * as __ns_up_ui from '../../ui'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { computesGate, gcd, memoByRoot, merge, merkleFold, min, toUuid } from '../../0'
 import { rosettaRayOfContent as rrOfContent, DIMENSION_GATES, HARMONICS_LADDER_LENGTH } from '../../3/7'

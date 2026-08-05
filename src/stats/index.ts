@@ -1,6 +1,6 @@
 // ☱ Duì · Lake — statistics & compression: the analytics, build statistics & gaps, text entropy, max-compression forge, coverage-per-pixel, the REST formats. Barrel-routed; folds.ts back-imports the gate folds.
 import { HARMONICS_LADDER_LENGTH } from '../pair/enforcement/gates/computational'
-import type { MindMatrix } from '../wind/types'
+import type { MindMatrix } from '../types'
 import { buildMatrix, coverage, entropy, fleetCacheEconomicsDecoded } from '../heaven/compute'
 import { abs, floor, foldPair, measure, merge, merkleFold, roundTo, toUuid } from '../0'
 import { areaPairs } from '../mountain/geometry'

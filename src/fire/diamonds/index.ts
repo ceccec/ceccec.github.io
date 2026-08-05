@@ -1,6 +1,6 @@
 // ☲ Lí · Fire — the diamond lattice: quantum diamonds (folded blockchains, the pi-train, schema.org diamonds, light entering the diamond), self-build & stream-completion, Linux-packages-to-diamonds. Barrel-routed; folds.ts back-imports the gate folds.
 import { phase } from '../../6/4'
-import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, DiamondFacet, DiamondKind, DiamondStatus, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SchemaOrgDiamondNode, SelfBuildReport, SelfCompletionGate, StreamSelfCompletion } from '../../wind/types'
+import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, DiamondFacet, DiamondKind, DiamondStatus, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SchemaOrgDiamondNode, SelfBuildReport, SelfCompletionGate, StreamSelfCompletion } from '../../types'
 import { buildMatrix, circulateDoubleTorus, coherenceAnomaly, consciousness, proofReport, reciprocity, repositoryApi, verifyRoot } from '../../heaven/compute'
 import { abs, ceil, cos, foldPair, hypot, isUuid, log2, max, maxTamperingCostLog2, memoByRoot, merge, merkleFold, round, sin, toUuid } from '../../0'
 import { PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../heaven/atoms'

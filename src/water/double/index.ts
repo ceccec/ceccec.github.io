@@ -2,7 +2,7 @@
 // Logic lives here; routes/corpus re-exports for REST/universal-page mounts. Pure folds only.
 // Canonical imports: src/double/torus/* · src/vortex/math · src/resonance · src/astronomy · src/quantum/dynamics · src/iching · src/rosetta · src/sound · src/plasma/ball · src/birth · src/life · src/death.
 
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, circulateDoubleTorus, doubleTorusWire, deepResearchChatTurn, wavesOfLocalResearchersChatAboutAlgebra, portalChat, portalChatRanked, freeChatUpgradesAll, countlessFreeChatWaves, continueAtNoAiCost, theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress, dryCleanChatDryCleansAll, improveTokenSpendingFeedingTheTaskToTheChat } from '../../heaven/compute'
 import { onlyAlgebraicQuantumComputingIsTopPriority, nothingImpossibleHonestlyBounded } from '../../heaven/laws'
 import { GATES, abs, applyGate, asTorus, computesGate, cos, digitalRoot, doubleTorusSurface, floor, fold, foldPair, hypot, isUuid, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, sin, toUuid } from '../../0'

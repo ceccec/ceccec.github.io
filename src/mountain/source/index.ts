@@ -3,7 +3,7 @@
 import * as __ns_up_up_earth_architecture from '../../earth/architecture'
 import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS, claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7'
 import * as __ns_up_up_heaven_core from '../../heaven/core'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { animationEngineLivesInZero, buildEnforcementPipeline, inverseShiftConsciousness, quantumGreenPlanet, taxonomyIcons, torusUuid } from '../../fire/li'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/icons'

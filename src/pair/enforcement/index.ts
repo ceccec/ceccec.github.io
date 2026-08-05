@@ -1,5 +1,5 @@
 // Browser-safe public surface — quantum pairs + mission registry (no node:fs).
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, verifyRoot, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute'
 import { floor, foldPair, foldVortex, isUuid, max, memoByRoot, merkleFold, round, toUuid } from '../../0'
 import { scanUuidKernelOffenders } from './gates/strict/scan'

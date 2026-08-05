@@ -23,7 +23,7 @@ import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CY
 import { livingTorus } from '../fire/diamonds'
 import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid } from '../0'
 import { claySolvedTheorem } from '../3/7'
-import type { MindMatrix } from '../wind/types'
+import type { MindMatrix } from '../types'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'

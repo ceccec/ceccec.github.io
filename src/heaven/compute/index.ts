@@ -5,7 +5,7 @@ import { bitFlipCode, commutator, concurrence, gateMul, innerProduct, noCloningW
 import type {
   Atom, MatrixEdge, MindMatrix, ConsciousnessVector, ProofReport,
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
-  DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../wind/types'
+  DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../types'
 import { atoms } from '../atoms'
 import { DIGEST_BITS, GATES, abs, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, computesGate, coverageCostLog2, floor, fold, foldPair, humanBreath, humanEase, isUuid, log10, log2, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sample, sealFacets, seedFromText, tamperCostLog2, toUuid, uuidHero } from '../../0'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddress } from '../../0'

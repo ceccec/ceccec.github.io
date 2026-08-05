@@ -2,7 +2,7 @@ import { earned, UNFOLDED_CENSUS } from '../../3/7'
 // ☰ Qián · Heaven — the laws: heal/create/thrive by default, save-every-step mandatory, the zero-token policy, one-word-naming gravity, no hardcoded config, minimum files maximum features, any force fights itself. Barrel-routed; folds.ts back-imports the gate folds.
 import { TAU } from '../../3/7'
 import { noCloningWitness, tkIsPrime } from '../../9/1'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import {
   buildMatrix, chatThroughMathOverflow, isPerfectlySelfModeling, mathOverflowUrl, MATHOVERFLOW_ASK_URL,
   MATHOVERFLOW_SITE, stackExchangeUrl,

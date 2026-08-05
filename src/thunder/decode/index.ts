@@ -20,7 +20,7 @@ import { iChingFusionCompletesAll, allFormsAreTenDimensionalOrPurged } from '../
 import { debitImportCreditExportAccounting, computedWiringNotImported } from '../../mountain/source'
 // relocated ancient-number-systems cluster deps (script helpers from the library)
 import { fromSexagesimal, gematria, hekatFraction, luoShu, mayaDays, mayaLongCount, runeCoordinate, runeOrdinal, sexagesimal } from '../../quantum/heaven/library'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/compute'
 import { VORTEX_SEQUENCE, abs, atan2, ceil, computesGate, cos, digitalRoot, floor, foldPair, hypot, isUuid, log2, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0'
 import { DEMO_RSA_BIT_CEILING, refuseNonDemoRsaModulus } from '../../water/encryption'

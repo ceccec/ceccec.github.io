@@ -12,7 +12,7 @@ import * as __ns_up_up_lake_music from '../../music'
 import * as __ns_up_science from '../science'
 import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib'
 import { amplitudeAmplificationAndQuantumCounting } from '../../2/8'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, cnot, computesGate, cos, exp, floor, grover, isUuid, max, measure, memoByRoot, merge, merkleFold, min, probabilities, qubits, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../0'
 import {

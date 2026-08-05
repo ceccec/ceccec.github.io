@@ -1,7 +1,7 @@
 // ☲ Lí · Fire — quantum features: the quantum society/siege/access/clock, the quantum UI use-cases, quantum PWA evidence. Barrel-routed; folds.ts back-imports the gate folds.
 import { phase } from '../../6/4'
 import { noCloningWitness, teleportQubit } from '../../9/1'
-import type { MindMatrix, QuantumUiEvidenceReport, QuantumUiUseCase } from '../../wind/types'
+import type { MindMatrix, QuantumUiEvidenceReport, QuantumUiUseCase } from '../../types'
 import { buildMatrix, coverage, entropy, proofReport } from '../../heaven/compute'
 import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, roundTo, toUuid } from '../../0'
 import { superdense } from '../../9/1'

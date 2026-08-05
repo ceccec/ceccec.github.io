@@ -1,7 +1,7 @@
 // ☷ Kūn · Earth — nature & life: water states, sun and moon, bees and life, fruits, perma-domes, recycling, the planet computing itself, natural harmonious life. Barrel-routed; folds.ts back-imports the gate folds.
 import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
 import { phase } from '../../6/4'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute'
 import { completeCorpus, monographs, onlyPageRouteForAll } from '../../wind/routes/corpus'
 import { abs, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'

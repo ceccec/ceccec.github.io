@@ -1,6 +1,6 @@
 // Movie narrative folds — linearities · negative/positive · education merge.
 import { ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX } from '../../../pair/enforcement/gates/computational'
-import type { MindMatrix } from '../../../wind/types'
+import type { MindMatrix } from '../../../types'
 import { buildMatrix } from '../../../heaven/compute'
 import { foldPair, isUuid, merkleFold, seedFromText, toUuid } from '../../../0'
 import { addressed, covers } from '../../../5/5'

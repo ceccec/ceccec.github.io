@@ -6,7 +6,7 @@ import { BOLTZMANN, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, ELECTRONVOLT, HIGGS_VEV_
 import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit, CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
 import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry'
 import { VORTEX_SEQUENCE, abs, addressEntropyBits, digitalRoot, floor, foldPair, gcd, humanBreath, humanEase, isUuid, log, max, memoByRoot, merge, merkleFold, min, modUnits, round, sealFacets, toUuid } from '../../0'
@@ -2063,7 +2063,7 @@ export const ROSETTA_CANONICAL_HOME: Readonly<Record<string, string>> = {
   language: 'src/wind/language/index.ts',
   learning: 'src/learning/index.ts',
   site: 'src/wind/site/index.ts',
-  types: 'src/wind/types/index.ts',
+  types: 'src/types/index.ts',
   ui: 'src/ui/index.ts',
   iching: 'src/earth/iching/index.ts',
   rosetta: 'src/learning/index.ts', // dissolved into learning — no own index.ts
@@ -2203,8 +2203,8 @@ export function rosettaGuidedFolderMoveWaveOne(at = 0, matrix: MindMatrix = buil
     { facet: 'wave 1 — learning: src/learning → learning', on: applied.some((move) => move.to === 'src/learning/index.ts') },
     { facet: 'wave 1 — ui: src/ui → wind/ui', on: applied.some((move) => move.to === 'src/wind/ui/index.ts') },
     { facet: 'wave 1 — site: src/site → wind/site', on: applied.some((move) => move.to === 'src/wind/site/index.ts') },
-    { facet: 'wave 1 — types: src/types → wind/types', on: applied.some((move) => move.to === 'src/wind/types/index.ts') },
-    { facet: 'wave 1 importer rule — corpus uses wind/types + learning barrels', on: rosettaCanonicalImportPath('MindMatrix', 'src/routes/corpus/index.ts', at, matrix).spec === '../../wind/types' },
+    { facet: 'wave 1 — types flattened: src/types', on: applied.some((move) => move.to === 'src/types/index.ts') },
+    { facet: 'wave 1 importer rule — corpus uses types + learning barrels', on: rosettaCanonicalImportPath('MindMatrix', 'src/routes/corpus/index.ts', at, matrix).spec === '../../types' },
     { facet: 'wave 2 applied — fusion · language at canonical cores', on: pending.length === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-wave-one:${entry.facet}:${entry.on}`) }))
   return {

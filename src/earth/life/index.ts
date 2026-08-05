@@ -10,7 +10,7 @@ import { bellMeasurementOutcomesAreUniform } from '../../2/8'
 import * as __ns_up_earth_iching from '../iching'
 import { DIMENSION_GATES, DEMARCATION_REGISTRY, demarcate, eigenErrorThreshold, GENETIC_CODE } from '../../3/7'
 export { GENETIC_CODE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../wind/types'
+import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { determinismProofs } from '../../mountain/seals'
 import { animationTamperingCost, redTeam, tamperProofFabric } from '../../water/crypto'

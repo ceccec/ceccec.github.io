@@ -1,5 +1,5 @@
 // Hero glass CSS vars — VitePress transparent chrome (palette/vars barrel).
-import type { MindMatrix } from '../../../wind/types'
+import type { MindMatrix } from '../../../types'
 import { buildMatrix, coverage } from '../../../heaven/compute'
 import { floor, max, memoByRoot, merkleFold, min, round, roundTo, seedFromText, toUuid } from '../../../0'
 import { lobeHues, scaleColor, scaleColorAlpha, GOLDEN_ANGLE } from '../../../quantum/science'

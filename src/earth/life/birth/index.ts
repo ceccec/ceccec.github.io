@@ -2,7 +2,7 @@
 import * as __ns_up_life from '..'
 import * as __ns_up_death from '../../death'
 import { phase } from '../../../6/4'
-import type { MindMatrix } from '../../../wind/types'
+import type { MindMatrix } from '../../../types'
 import { buildMatrix } from '../../../heaven/compute'
 import { computesGate, isUuid, memoByRoot, merge, merkleFold, toUuid } from '../../../0'
 import { createByDefault } from '../../../heaven/laws'

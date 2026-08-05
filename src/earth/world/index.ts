@@ -7,7 +7,7 @@ import { VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, human
 import { blackHoleEntropyBits, oscillatorBank, resonantAmplitude } from '../../6/4'
 import { toGlagolitic, glagoliticBits } from '../../quantum/heaven/library' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
 import { DIMENSIONS } from '../../quantum/mountain/dimensions' // the 10D — the coordinates reaching all the way down to the bit
-import type { BabelFamily, BabelFold, MindMatrix } from '../../wind/types'
+import type { BabelFamily, BabelFold, MindMatrix } from '../../types'
 import { buildMatrix, coverage, entropy } from '../../heaven/compute'
 import { a432NoteHz } from '../../fire/li'
 import { traditionsQuantumWhole } from '../civilisation'

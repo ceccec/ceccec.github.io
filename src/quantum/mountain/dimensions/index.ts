@@ -1,6 +1,6 @@
 // ☰ Qián · Heaven · creative (the 10 dimensions are the model) · upper·yang · shrink — continuous 10D hero axes: 6 cross-fold appearance + 4 genus-2 homology loops, self-similar at every scale
 import { phase } from '../../../6/4'
-import type { MindMatrix } from '../../../wind/types'
+import type { MindMatrix } from '../../../types'
 import { abs, cos, gcd, max, merkleFold, min, round, sin, sqrt, toUuid } from '../../../0'
 import { buildMatrix } from '../../../heaven/compute'
 import { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7'

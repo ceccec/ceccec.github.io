@@ -1,7 +1,7 @@
 import { phase } from '../../6/4'
 import { folderTailFromMethodName } from '../../pair/enforcement/gates/computational'
 import { algorithmicCoolingBias, quantumBatteryAdvantage } from '../../9/1'
-import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../wind/types'
+import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../types'
 import { buildMatrix, completeQuantumSolutionsImplemented } from '../compute'
 import { isUuid, max, memoByRoot, merge, merkleFold, min, roundTo, seedFromText, toUuid } from '../../0'
 import * as __ns_registry from '../../4/6' // call-time (cycle-safe): the theorem registry as a searchable source — closes foldQuestion's index gap

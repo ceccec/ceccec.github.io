@@ -7,7 +7,7 @@ import * as __ns_cur_governance from './governance'
 import * as __ns_up_heaven_site from '../heaven/site'
 import * as __ns_up_double_torus_earth from '../water/double/earth'
 import * as __ns_up_astronomy from '../heaven/sky/astronomy'
-import type { MindMatrix } from '../wind/types'
+import type { MindMatrix } from '../types'
 import { buildMatrix } from '../heaven/compute'
 import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../0'
 

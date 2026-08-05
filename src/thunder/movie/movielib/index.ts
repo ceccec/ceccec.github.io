@@ -2,7 +2,7 @@
 import * as __ns_up_up_up_plasma_ball from '../../../fire/plasma/ball'
 import { DIMENSION_GATES } from '../../../3/7'
 import { phase } from '../../../6/4'
-import type { MindMatrix } from '../../../wind/types'
+import type { MindMatrix } from '../../../types'
 import { buildMatrix } from '../../../heaven/compute'
 import { textToMovie } from '../../../earth/world'
 import { merkleFold, toUuid, foldPair, isUuid, uuidPoint } from '../../../0'

@@ -1,6 +1,6 @@
 // Background movie canvas folds — auto · endless · background.
 import { phase } from '../../../6/4'
-import type { MindMatrix } from '../../../wind/types'
+import type { MindMatrix } from '../../../types'
 import { buildMatrix } from '../../../heaven/compute'
 import { VORTEX_SEQUENCE, abs, floor, foldPair, isUuid, max, memoByRoot, merkleFold, round, sealFacets, toUuid } from '../../../0'
 // call-time namespace edge (cycle-safe): the 10D field continuity is sampled at call time

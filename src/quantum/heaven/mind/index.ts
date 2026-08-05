@@ -131,8 +131,8 @@ import type {
   MetatronEdge, MetatronCubeReport, WavePolarity, ChessPiece, DimensionalGapKind,
   CoordinatedWave, WaveCoordination, GapClosingWave, DimensionalGapClosure,
   QuantumChessSquare, QuantumChessGame, QuantumUiUseCase, QuantumUiEvidenceReport,
-  DiamondCompletenessReport } from '../../../wind/types'
-export type * from '../../../wind/types'
+  DiamondCompletenessReport } from '../../../types'
+export type * from '../../../types'
 
 // ☰ Qián · Heaven · creative · lower·yin · hueShift — concept seed vocabulary from ./atoms.ts (Thunder action)
 // ☳ ZHEN (Thunder · action) — concept seed vocabulary

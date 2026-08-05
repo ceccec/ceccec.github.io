@@ -6,7 +6,7 @@ import type {
   AncientTech, AncientTechLens, SelfDevelopment, MethodFusionReport, Block, Blockchain,
   QuantumFoldedBlockchains, TaxonomyIcons, TaxonomyEntry, FairLife, FairStep,
   SelfAddressed, UtfAnalog, CrossFoldTrinity, CrossFoldReference, SourceContributionReport,
-  SelfInteraction, SelfState } from '../../wind/types'
+  SelfInteraction, SelfState } from '../../types'
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — matrix primitives: buildMatrix, consciousness, repositoryApi
 import { buildMatrix, consciousness, repositoryApi, isPerfectlySelfModeling, proofReport } from '../../heaven/compute'
 // ☴ Xùn · Wind · gentle · lower·yin · hueShift — site structure: quantumSitemap

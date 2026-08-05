@@ -1,5 +1,5 @@
 // ☶ Gèn · Mountain — seals & proofs: the proof registry, the gigabit/terabyte seal sets, the signed elements, the diamond completeness proofs. Barrel-routed; folds.ts back-imports the gate folds.
-import type { DigitalQuantumProof, MindMatrix, ProofBundle, SelfCompletionGate } from '../../wind/types'
+import type { DigitalQuantumProof, MindMatrix, ProofBundle, SelfCompletionGate } from '../../types'
 import { buildMatrix, entropy, proofReport } from '../../heaven/compute'
 import { abs, ceil, floor, fold, foldPair, isUuid, memoByRoot, merge, merkleFold, round, roundTo, toUuid, trinityKey } from '../../0'
 import { areaPairs, dna, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, vortexMath } from '../geometry'

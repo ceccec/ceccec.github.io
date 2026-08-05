@@ -5,7 +5,7 @@ import * as __ns_thunder_waves from '../../thunder/waves'
 import { MONOLITH_FILE_BYTES } from '../../pair/enforcement/gates/strict/scan'
 import { fibonacci, A432_FOLDED } from '../../3/7'
 import { CANONICAL_ROOT_FOLDERS, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
-import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../wind/types'
+import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../types'
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
 import { vortexMath } from '../../mountain/vortex'
@@ -766,7 +766,7 @@ export const MIND_LOGIC_INDEX_TAILS = [
   'earth/iching', 'earth/life', 'earth/death',
   'fire/diamonds', 'fire/features', 'fire/li', 'fire/physics', 'fire/plasma/ball',
   'water/cosmos', 'water/crypto', 'water/digit', 'water/encryption',
-  'wind/fusion', 'wind/language', 'learning', 'wind/site', 'wind/types', 'wind/ui',
+  'wind/fusion', 'wind/language', 'learning', 'wind/site', 'wind/ui',
   'mountain/gates', 'mountain/geometry', 'mountain/og', 'mountain/seals', 'mountain/source', 'mountain/topology',
   'lake/clean', 'lake/ledger', 'lake/media', 'lake/music', 'lake/stats', 'lake/widgets',
   'thunder/commands', 'thunder/decode', 'thunder/movie', 'thunder/trading', 'thunder/verify', 'thunder/waves',

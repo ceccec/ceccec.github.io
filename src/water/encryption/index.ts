@@ -2,7 +2,7 @@
 import * as __ns_up_up_quantum_heaven_library from '../../quantum/heaven/library'
 // call-time namespace (cycle-safe): geometry ← seals ← encryption; poles-cross compose reads Earth poles at call time
 import * as __ns_mountain_geometry from '../../mountain/geometry'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, navigationCrossFourKeysDecodeTrinity, portalChat } from '../../heaven/compute'
 import { latestDiscoveries } from '../../4/6'
 import { VORTEX_SEQUENCE, abs, ceil, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0'

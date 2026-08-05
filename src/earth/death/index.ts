@@ -1,7 +1,7 @@
 import { earned } from '../../3/7'
 // Death — canonical compost/entropy/recycle/regeneration/terminal-end home (dual to src/life).
 import * as __ns_up_life from '../life'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, entropy } from '../../heaven/compute'
 import { GATES, applyGate, computesGate, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, probabilities, qubits, round, toUuid, type QuantumState } from '../../0'
 import { doubleTorusCompost } from '../../fire/li'

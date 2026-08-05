@@ -1,6 +1,6 @@
 // ☳ Zhèn · Thunder — trading & live data: strategies from the decoded primitives (a432 the deterministic engine-starter, no look-ahead), realtime live-data/device testing. HONEST: synthetic mechanics ≠ alpha, not advice. Barrel-routed; folds.ts back-imports the gate folds.
 import * as __ns_up_waves from '../waves'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, circulateDoubleTorus, freeChatTurnAtArchitecturalFtl, proofReport } from '../../heaven/compute'
 import { skillAtoms } from '../../learning'
 import { claySolvedTheorem, dopplerShift, earned, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7'

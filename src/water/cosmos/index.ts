@@ -10,7 +10,7 @@ import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vort
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
 import * as __ns_up_digit from '../digit'
 import { SIX_BY_SEVEN } from '../../quantum/heaven/library'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute'
 // call-time namespace edge (cycle-safe): apps↔cosmos already meet through seals/apps
 import * as __ns_quantum_apps from '../../quantum/apps'

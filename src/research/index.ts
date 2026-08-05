@@ -7,7 +7,7 @@ import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforceme
 import * as __ns_mountain_vortex from '../mountain/vortex'
 import * as __ns_water_digit from '../water/digit'
 import * as __ns_water_cosmos from '../water/cosmos'
-import type { MindMatrix } from '../wind/types'
+import type { MindMatrix } from '../types'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper } from '../heaven/compute'
 import {
   quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, standardToolboxIoCatalog,

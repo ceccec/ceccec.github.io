@@ -2,7 +2,7 @@
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
 import { JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, UNIVERSE_AGE_YEARS, complementIsInverse, earned, rat, ratMul, ratToFloat } from '../../3/7'
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7'
-import type { MindMatrix } from '../../wind/types'
+import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
 import { abs, cbrt, ceil, cos, exp, floor, log, log2, max, min, pow, prng, round } from '../../0'
 import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, memoByRoot, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0'
