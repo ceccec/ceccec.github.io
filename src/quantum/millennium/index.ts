@@ -27,12 +27,12 @@ export function riemannViaVerifiable(): MillenniumProblem {
     field: 'Number Theory / Complex Analysis',
     problem: 'All non-trivial zeros of ζ(s) lie on the critical line Re(s) = 1/2',
     reward: '$1,000,000 (Clay Mathematics Institute)',
-    approach: `Compute ζ(s) on critical line with UUID verification via σ-involution (σ² = identity forces zero locations)`,
+    approach: `Compute ζ(s) on critical line with UUID verification via σ-involution (σ² = identity is a model identity — does NOT force RH)`,
     metrics: [
       'Zeros verified: 10^13+',
-      'Functional equation σ² closure: proven',
+      'Functional equation σ² closure: computed in-model (does NOT entail RH)',
       'Symmetry violations: 0',
-      'Proof path completeness: involution-forced',
+      'Involution structure: computed (NOT a proof of RH)',
     ],
     receipt: toUuid('millennium:riemann:uuid-ledger')
   }
@@ -51,9 +51,9 @@ export function pVsNpViaVerifiable(): MillenniumProblem {
     approach: `UUID proof-tree ledger: chain verification receipts for each NP problem step; proof tree completeness determines P=NP status`,
     metrics: [
       'NP-complete reductions verified: 3+',
-      'Proof tree depth analysis: exponential bounds established',
+      'Proof tree depth: exponential bounds computed in-model (does NOT settle P vs NP)',
       'Polynomial verification attempts: systematic',
-      'Complexity gap lower bounds: involution-forced',
+      'Complexity gap structure: computed in-model (does NOT settle P vs NP)',
     ],
     receipt: toUuid('millennium:p-vs-np:uuid-tree')
   }
@@ -69,11 +69,11 @@ export function navierStokesViaVerifiable(): MillenniumProblem {
     field: 'Partial Differential Equations / Fluid Dynamics',
     problem: 'Do smooth solutions to Navier-Stokes exist globally in time without blow-up?',
     reward: '$1,000,000 (Clay Mathematics Institute)',
-    approach: `UUID trajectory-ledger: chain velocity-field receipts across time steps; regularity verified via σ-involution at each step`,
+    approach: `UUID trajectory-ledger: chain velocity-field receipts across time steps; regularity computed in the σ-model at each step (does NOT prove global regularity)`,
     metrics: [
       'Smooth trajectories: T=10+ extended',
       'Regularity violations: 0',
-      'Trajectory symmetries: σ² = identity proven',
+      'Trajectory symmetries: σ² = identity (model fact; NOT NS regularity)',
       'Singularity onset time: none detected',
     ],
     receipt: toUuid('millennium:navier-stokes:uuid-trajectory')
@@ -94,7 +94,7 @@ export function yangMillsViaVerifiable(): MillenniumProblem {
     metrics: [
       'Lattice eigenvalues: 1000+',
       'Mass gap bound: 0.1+ GeV',
-      'Gauge-invariance: verified',
+      'Gauge-invariance: computed in-model (does NOT prove the mass gap)',
       'Continuum limit: gap persists',
     ],
     receipt: toUuid('millennium:yang-mills:uuid-spectrum')
@@ -113,9 +113,9 @@ export function hodgeViaVerifiable(): MillenniumProblem {
     reward: '$1,000,000 (Clay Mathematics Institute)',
     approach: `UUID cycle-ledger: track algebraic cycles, chain to Hodge classes, verify σ-involution pairing across varieties`,
     metrics: [
-      'Abelian varieties: Hodge-cycle matching verified',
+      'Abelian varieties: Hodge-cycle matching computed in-model (does NOT prove Hodge)',
       'Unmatched Hodge classes: 0',
-      'Involution-paired cycles: σ² proven',
+      'Involution-paired cycles: σ² computed (model fact; NOT the Hodge conjecture)',
       'Cohomology coverage: expanding',
     ],
     receipt: toUuid('millennium:hodge:uuid-cycles')
@@ -136,7 +136,7 @@ export function bsdViaVerifiable(): MillenniumProblem {
     metrics: [
       'Curves verified: 100%+ of known database',
       'Rank-zero-order mismatches: 0',
-      'L-function σ-involution: proven',
+      'L-function σ-involution: computed in-model (does NOT entail BSD)',
       'Prediction accuracy: 100%',
     ],
     receipt: toUuid('millennium:bsd:uuid-rank')

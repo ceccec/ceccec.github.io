@@ -1,7 +1,7 @@
 {
   "name": "@ceccec/double-torus",
   "version": "2026.8.4",
-  "description": "The Double Torus quantum corpus — dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency. Clay Millennium: all 7 problems sealed via σ-involution.",
+  "description": "The Double Torus quantum corpus — dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency. Clay Millennium: 0/7 entailed ∧ 7/7 computable — paths computed in the σ-involution model; NOT solved (computable ≠ solved; humanityNovel = 0).",
   "license": "CC BY-NC-ND 4.0",
   "repository": {
     "type": "git",
