@@ -111,7 +111,7 @@ export function findUnresolvedImports(root: string = process.cwd()): Unresolved[
 /** Highest count tolerated. Lower it as files are fixed; never raise it. The remainder
  *  are in .vue components nothing imports — real breakage in dead code, which is why the
  *  site still renders. */
-const BASELINE = 9
+const BASELINE = 6
 
 export function assertImportsResolve(): void {
   const bad = findUnresolvedImports()

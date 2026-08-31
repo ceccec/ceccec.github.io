@@ -51,5 +51,5 @@ export { catchAllRoutePaths, monographSliceFromRoute, vitepressAutomountPaths } 
 export { CORPUS_GRID_PAGE_SIZE, computeUniversalPage, corpusCatchAllPaths, doubleTorusCorpusRouting, heroPreviewForRoute, openFrontierCardLinks, rayHubPart, rosettaBreadcrumbs, searchSectionsFor, theoremFigure, theoremPageBySlug, theoremPagePaths, theoremPageRows, theoremPapersLatestFirst, theoremTagIndex } from '../../src/wind/routes/corpus'
 export type { FigRole, TheoremFigureData, TheoremPageRow, TheoremTagGroup, UniversalPage } from '../../src/wind/routes/corpus'
 export { bulgarianHomeFromEnglish, githubPermalink, homeHero, localeNavLinks, localeSidebarKeys, revolutChannel, siteConfig, staticPages, vitepressDocsResearchImprovements, vitepressNativeDocsConfig } from '../../src/wind/site'
-export type { LocalAnswer } from '../../src/wind/types'
+export type { LocalAnswer } from '../../src/types'
 export { paperAbstractOmitsTitleEcho, rosettaIChingNavItems } from '../../src/ui'
