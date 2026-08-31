@@ -6,6 +6,10 @@ export declare const NEUTRINO_DM2_SOLAR_EV2 = 0.0000749;
 export declare const OMEGA_DARK_ENERGY: number;
 /** CMB-inferred Hubble constant H₀ (km/s/Mpc, Planck 2018). */
 export declare const HUBBLE_CONSTANT_CMB = 67.4;
+/** Astronomical unit in metres — IAU 2012 exact definition. */
+export declare const ASTRONOMICAL_UNIT_M = 149597870700;
+/** Megaparsec in metres — DERIVED from the AU by the parsec definition (1 pc = AU·(180·3600)/π), never a raw literal. */
+export declare const MEGAPARSEC_M: number;
 /** Hardy–Weinberg genotype frequencies for allele frequency p. */
 export declare function hardyWeinbergGenotypes(p: number): {
     AA: number;

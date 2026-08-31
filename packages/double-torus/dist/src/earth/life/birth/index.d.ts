@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 export { genesis } from '../../nature';
 export { createByDefault } from '../../../heaven/laws';
 export { creationWave } from '../../../thunder/waves';
@@ -281,7 +281,7 @@ export declare function birthLifeDeathTriadComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        harmony: import("../../../wind/types").HarmonyProbability;
+        harmony: import("../../../types").HarmonyProbability;
         immune: {
             healthy: boolean;
             maxHealth: boolean;

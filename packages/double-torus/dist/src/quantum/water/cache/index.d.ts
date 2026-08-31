@@ -1,5 +1,6 @@
-import type { MindMatrix } from '../../../wind/types';
-export type Uuid = string;
+import type { MindMatrix } from '../../../types';
+import { type Uuid } from '../../../0';
+export type { Uuid };
 export declare function uuidForPath(path: string): Uuid;
 export declare function foldUuids(a: Uuid, b: Uuid): Uuid;
 export declare const dual = "src/pair/cache/quantum";

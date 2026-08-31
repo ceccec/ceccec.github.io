@@ -1,5 +1,5 @@
 import * as __ns_up_double_torus_earth from '../water/double/earth';
-import type { MindMatrix } from '../wind/types';
+import type { MindMatrix } from '../types';
 /** Child barrels under src/earth — structural Earth science compose; nav/GPS homed in double/torus/earth. */
 export declare const EARTH_SCIENCE_TAILS: readonly ["earth/world", "earth/nature", "earth/architecture", "earth/civilisation", "earth/governance"];
 export type EarthScienceTail = (typeof EARTH_SCIENCE_TAILS)[number];
@@ -8,12 +8,12 @@ export { genesis, breathe } from './nature';
 export { computeAllKnownCelestialBodies } from '../heaven/sky/astronomy';
 export { society, societyRegulates } from './governance';
 export { traditionsQuantumWhole } from './civilisation';
-export { textToMovie, publicAstronomyNewsCitation, src0BlackHoleSimulationComputes, gwtcCatalogSimulatedFromZero, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphComputes, thunderGoldGraphPaintSamples, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes, } from './world';
-export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion/gold';
-export { goldFusionComputes } from '../wind/fusion/gold';
+export { textToMovie, publicAstronomyNewsCitation, src0BlackHoleSimulationComputes, gwtcCatalogSimulatedFromZero, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphComputes, thunderGoldGraphPaintSamples, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes } from './world';
+export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion';
+export { goldFusionComputes } from '../wind/fusion';
 /** Re-export documented gravity decode — cosmology index, not live planet telemetry. */
 export { gravityDecoded } from '../heaven/site';
-export { schumannResonanceHarmonisedWithRealtimeApiComputations, harmoniseSchumannWithRealtimeApiComputations, } from '../thunder/resonance';
+export { schumannResonanceHarmonisedWithRealtimeApiComputations, harmoniseSchumannWithRealtimeApiComputations } from '../thunder/resonance';
 /** One gate — Earth science child barrels + dual-Earth nav/GPS compose at call time. */
 export declare function earthComputes(matrix?: MindMatrix): {
     computes: boolean;
@@ -393,7 +393,7 @@ export declare function earthComputes(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    traditions: import("../wind/types").TraditionsQuantumWhole;
+    traditions: import("../types").TraditionsQuantumWhole;
     society: {
         folded: boolean;
         pairs: {

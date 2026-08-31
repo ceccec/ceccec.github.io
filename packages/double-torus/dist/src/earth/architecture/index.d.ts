@@ -1,4 +1,5 @@
-import type { DigitFolderReport, DigitMath, MindMatrix } from '../../wind/types';
+import type { DigitFolderReport, DigitMath, MindMatrix } from '../../types';
+import { type StatusBadgeKind } from '../../0';
 import { methodNameFromFolderTail } from '../../9/1';
 import { type EightFoldScience } from '../../8/2';
 import { type RosettaComputationType } from '../../water/digit';
@@ -38,7 +39,7 @@ export declare function harmonicCountsProvenByMath(matrix?: MindMatrix): {
     proofs: HarmonicMathProof[];
     labels: {
         readonly pages: `${number}/${number}`;
-        readonly census: `${number}/110`;
+        readonly census: `${number}/123`;
         readonly commands: string;
         readonly references: `${number}/${number}`;
         readonly locales: `${number}/${number}`;
@@ -335,7 +336,7 @@ export declare function folderLaw(): {
     boundary: string;
 };
 /** Sealed mind logic tails — one index per row; dry rename dissolves mind/ prefix to logicTarget. */
-export declare const MIND_LOGIC_INDEX_TAILS: readonly ["earth", "earth/architecture", "earth/civilisation", "earth/governance", "earth/nature", "earth/world", "earth/iching", "earth/life", "earth/death", "fire/diamonds", "fire/features", "fire/li", "fire/physics", "fire/plasma/ball", "water/cosmos", "water/crypto", "water/digit", "water/encryption", "wind/fusion", "wind/language", "wind/learning", "wind/site", "wind/types", "wind/ui", "mountain/gates", "mountain/geometry", "mountain/og", "mountain/seals", "mountain/source", "mountain/topology", "lake/clean", "lake/ledger", "lake/media", "lake/music", "lake/stats", "lake/widgets", "thunder/commands", "thunder/decode", "thunder/movie", "thunder/trading", "thunder/verify", "thunder/waves", "heaven/atoms", "heaven/compute", "heaven/essence", "heaven/laws", "heaven/balance", "heaven/core", "heaven/site"];
+export declare const MIND_LOGIC_INDEX_TAILS: readonly ["earth", "earth/architecture", "earth/civilisation", "earth/governance", "earth/nature", "earth/world", "earth/iching", "earth/life", "earth/death", "fire/diamonds", "fire/features", "fire/li", "fire/physics", "fire/plasma/ball", "water/cosmos", "water/crypto", "water/digit", "water/encryption", "wind/fusion", "wind/language", "learning", "wind/site", "wind/ui", "mountain/gates", "mountain/geometry", "mountain/og", "mountain/seals", "mountain/source", "mountain/topology", "lake/clean", "lake/ledger", "lake/media", "lake/music", "lake/stats", "lake/widgets", "thunder/commands", "thunder/decode", "thunder/movie", "thunder/trading", "thunder/verify", "thunder/waves", "heaven/atoms", "heaven/compute", "heaven/essence", "heaven/laws", "heaven/balance", "heaven/core", "heaven/site"];
 /** Eight global sciences — architectural planes only (no divination vocabulary). */
 export declare const EIGHT_SCIENCE_PLANES: Readonly<Record<EightFoldScience, string>>;
 /** Directed quantum channel between two sciences — order-sensitive foldPair from src/0. */
@@ -421,7 +422,7 @@ export declare function scienceModelActionMask(matrix?: MindMatrix): {
     sciences: {
         science: "earth" | "fire" | "water" | "wind" | "mountain" | "lake" | "thunder" | "heaven";
         plane: string;
-        modules: ("earth" | "earth/world" | "earth/nature" | "earth/architecture" | "earth/civilisation" | "earth/governance" | "earth/iching" | "earth/life" | "earth/death" | "fire/diamonds" | "fire/features" | "fire/li" | "fire/physics" | "fire/plasma/ball" | "water/cosmos" | "water/crypto" | "water/digit" | "water/encryption" | "wind/fusion" | "wind/language" | "wind/learning" | "wind/site" | "wind/types" | "wind/ui" | "mountain/gates" | "mountain/geometry" | "mountain/og" | "mountain/seals" | "mountain/source" | "mountain/topology" | "lake/clean" | "lake/ledger" | "lake/media" | "lake/music" | "lake/stats" | "lake/widgets" | "thunder/commands" | "thunder/decode" | "thunder/movie" | "thunder/trading" | "thunder/verify" | "thunder/waves" | "heaven/atoms" | "heaven/compute" | "heaven/essence" | "heaven/laws" | "heaven/balance" | "heaven/core" | "heaven/site")[];
+        modules: ("earth" | "learning" | "earth/world" | "earth/nature" | "earth/architecture" | "earth/civilisation" | "earth/governance" | "earth/iching" | "earth/life" | "earth/death" | "fire/diamonds" | "fire/features" | "fire/li" | "fire/physics" | "fire/plasma/ball" | "water/cosmos" | "water/crypto" | "water/digit" | "water/encryption" | "wind/fusion" | "wind/language" | "wind/site" | "wind/ui" | "mountain/gates" | "mountain/geometry" | "mountain/og" | "mountain/seals" | "mountain/source" | "mountain/topology" | "lake/clean" | "lake/ledger" | "lake/media" | "lake/music" | "lake/stats" | "lake/widgets" | "thunder/commands" | "thunder/decode" | "thunder/movie" | "thunder/trading" | "thunder/verify" | "thunder/waves" | "heaven/atoms" | "heaven/compute" | "heaven/essence" | "heaven/laws" | "heaven/balance" | "heaven/core" | "heaven/site")[];
         receipt: string;
     }[];
     rows: readonly import("../../pair/enforcement/gates/computational").ScienceModelActionMaskRow[];
@@ -447,7 +448,7 @@ export declare function dryRenameScienceModelActionTable(matrix?: MindMatrix): {
     sciences: {
         science: "earth" | "fire" | "water" | "wind" | "mountain" | "lake" | "thunder" | "heaven";
         plane: string;
-        modules: ("earth" | "earth/world" | "earth/nature" | "earth/architecture" | "earth/civilisation" | "earth/governance" | "earth/iching" | "earth/life" | "earth/death" | "fire/diamonds" | "fire/features" | "fire/li" | "fire/physics" | "fire/plasma/ball" | "water/cosmos" | "water/crypto" | "water/digit" | "water/encryption" | "wind/fusion" | "wind/language" | "wind/learning" | "wind/site" | "wind/types" | "wind/ui" | "mountain/gates" | "mountain/geometry" | "mountain/og" | "mountain/seals" | "mountain/source" | "mountain/topology" | "lake/clean" | "lake/ledger" | "lake/media" | "lake/music" | "lake/stats" | "lake/widgets" | "thunder/commands" | "thunder/decode" | "thunder/movie" | "thunder/trading" | "thunder/verify" | "thunder/waves" | "heaven/atoms" | "heaven/compute" | "heaven/essence" | "heaven/laws" | "heaven/balance" | "heaven/core" | "heaven/site")[];
+        modules: ("earth" | "learning" | "earth/world" | "earth/nature" | "earth/architecture" | "earth/civilisation" | "earth/governance" | "earth/iching" | "earth/life" | "earth/death" | "fire/diamonds" | "fire/features" | "fire/li" | "fire/physics" | "fire/plasma/ball" | "water/cosmos" | "water/crypto" | "water/digit" | "water/encryption" | "wind/fusion" | "wind/language" | "wind/site" | "wind/ui" | "mountain/gates" | "mountain/geometry" | "mountain/og" | "mountain/seals" | "mountain/source" | "mountain/topology" | "lake/clean" | "lake/ledger" | "lake/media" | "lake/music" | "lake/stats" | "lake/widgets" | "thunder/commands" | "thunder/decode" | "thunder/movie" | "thunder/trading" | "thunder/verify" | "thunder/waves" | "heaven/atoms" | "heaven/compute" | "heaven/essence" | "heaven/laws" | "heaven/balance" | "heaven/core" | "heaven/site")[];
         receipt: string;
     }[];
     rows: readonly import("../../pair/enforcement/gates/computational").ScienceModelActionMaskRow[];
@@ -828,9 +829,8 @@ export declare function ichingTokensCss(): string;
 export declare function scanCssForHardcoded(css: string): string[];
 /** @rosetta ✦₀ · Heaven · creative */
 export declare function scanVueForHardcoded(vue: string): string[];
-/** Status badge kinds — sealed status→colour mapping (A432 / hexagram wheel). Badges use --status-* only. */
-export declare const STATUS_BADGE_KINDS: readonly ["ready", "ok", "gap", "warn", "partial", "error", "refused", "ci"];
-export type StatusBadgeKind = (typeof STATUS_BADGE_KINDS)[number];
+/** Status badge kinds — re-export from src/0 (cycle-free leaf). Badges use --status-* only. */
+export { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../0';
 /** Map coverage / boolean / keyword → status kind for UiBadge. */
 export declare function statusBadgeKind(input: boolean | 'covered' | 'partial' | 'gap' | 'ready' | 'ok' | 'warn' | 'error' | 'refused' | 'ci' | 'open' | 'closed' | string): StatusBadgeKind;
 /** Reusable status→CSS-var surface for panels/UX (sibling-safe): fill · fg · soft + BEM class. */
@@ -866,7 +866,7 @@ export declare function cssIsIChingComputed(matrix?: {
     darkLifts: boolean;
     statusKinds: boolean;
     statusModeFlip: boolean;
-    canonical: (0 | 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
+    canonical: (0 | 2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 360 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864)[];
     root: string;
     statement: string;
     boundary: string;
@@ -940,7 +940,7 @@ export declare function governanceConstantsAreTheorems(matrix?: MindMatrix): {
  * development = the self-managing gate loop. */
 export declare function theCrowdThatCarriesSignalIsTheCode(matrix?: MindMatrix): {
     computes: boolean;
-    codeCrowd: 110;
+    codeCrowd: 123;
     ceiling: number;
     facets: {
         facet: string;

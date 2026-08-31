@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue'
 import { quantumWidgetsPanelComputes } from './index.ts'
-import { useSiteLocale } from '../.vitepress/lib/mounts'
-import UiCard from '../.vitepress/theme/components/ui/Card.vue'
-import UiCardContent from '../.vitepress/theme/components/ui/CardContent.vue'
-import UiBadge from '../.vitepress/theme/components/ui/Badge.vue'
-import UiProgress from '../.vitepress/theme/components/ui/Progress.vue'
-import UiSeparator from '../.vitepress/theme/components/ui/Separator.vue'
+import { useSiteLocale } from '../../.vitepress/lib/mounts'
+import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
+import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
+import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
+import UiProgress from '../../.vitepress/theme/components/ui/Progress.vue'
+import UiSeparator from '../../.vitepress/theme/components/ui/Separator.vue'
 import { min, round } from '../0'
 
 const props = defineProps<{ at?: number }>()

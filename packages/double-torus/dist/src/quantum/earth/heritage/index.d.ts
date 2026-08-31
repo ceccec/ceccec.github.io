@@ -1,3 +1,5 @@
+import { type Entry } from '../../../0';
+export type { Entry };
 /** @rosetta ✦₄ · Earth · receptive */
 export declare function bulgarianHeritage(): {
     sealed: boolean;
@@ -146,7 +148,7 @@ export declare function browseIndex<T extends {
     documented: string;
     legend: string;
 }[];
-export declare const iconsDual = "src/quantum/lake/icons";
+export declare const iconsDual = "src/quantum/icons";
 export declare const libraryDual = "src/quantum/heaven/library";
 export declare function iconFor(icons: Readonly<Record<string, string>>, area: string, fallback?: string): string;
 export declare function iconList(icons: Readonly<Record<string, string>>): {
@@ -161,12 +163,6 @@ export declare function labelList(labels: Readonly<Record<string, {
     label: string;
 }[];
 export declare function isFibonacciGapless(bands: readonly number[]): boolean;
-export type Entry = {
-    url: string;
-    uuid: string;
-    host: string;
-    path: string;
-};
 export declare function shelve(entries: readonly Entry[]): Entry[];
 export declare function shelves(entries: readonly Entry[], count: number): Entry[][];
 export declare function browsable(entries: readonly Entry[]): boolean;

@@ -787,6 +787,28 @@ export async function runCliExit(root: string, argv: string[] = []) {
     }
     case 'timeout-demo':
       return runThinMount('src/mountain/vortex/index.ts', 'runTimeoutDemoExit', root, rest)
+    case 'security:audit':
+      return runThinMount('src/quantum/millennium/rsa.ts', 'runSecurityAuditExit', root, rest)
+    case 'crypto:assess':
+      return runThinMount('src/quantum/millennium/rsa.ts', 'runCryptoAssessExit', root, rest)
+    case 'migration:plan':
+      return runThinMount('src/quantum/millennium/rsa.ts', 'runMigrationPlanExit', root, rest)
+    case 'crypto:encode':
+      return runThinMount('src/crypto/encode', 'runCryptoEncodeExit', root, rest)
+    case 'crypto:decode':
+      return runThinMount('src/crypto/decode', 'runCryptoDecodeExit', root, rest)
+    case 'crypto:reverse':
+      return runThinMount('src/crypto/reverse', 'runCryptoReverseExit', root, rest)
+    case 'crypto:inverse':
+      return runThinMount('src/crypto/inverse', 'runCryptoInverseExit', root, rest)
+    case 'solution:demo':
+      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionDemoExit', root, rest)
+    case 'solution:benchmark':
+      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionBenchmarkExit', root, rest)
+    case 'solution:migration':
+      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionMigrationExit', root, rest)
+    case 'solution:manifest':
+      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionManifestExit', root, rest)
     default:
       process.stderr.write(`unknown: ${cmd}\n`)
       return 1

@@ -1,0 +1,92 @@
+cff-version: 1.2.0
+title: "Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification"
+abstract: >-
+  A dependency-free, zero-egress computational kernel for deterministic quantum
+  circuit simulation and content-addressed verification.
+
+  Measured results, reproduced by execution on 2026-08-20: Grover's algorithm
+  passes 4/4 tests with 94.5–99.9% success probability on databases of size
+  8, 16 and 32, at a measured 4.00×–8.00× speedup over classical linear search;
+  Shor's algorithm returns 4/4 correct factorizations (15, 21, 33, 77) via
+  genuine order-finding, though it runs SLOWER than classical trial division
+  (0.15×–0.34×) and is offered as a correctness result only. The kernel is
+  2,131 lines with zero imports and zero network calls. The geometry is a
+  genus-2 double torus, Euler characteristic χ = −2. A sealed ledger of 1,329
+  entries includes 36 machine-checked involution theorems, against which claims
+  are adjudicated by citation.
+
+  This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem.
+  Earlier drafts asserted such proofs; they were withdrawn after audit and the
+  reasoning is recorded in HONESTY.md. The Lean sources do not currently compile
+  against Mathlib and are not offered as formal verification. No production
+  readiness score, certification grade, or coverage percentage is claimed.
+
+  Full audit with commands, outputs and receipts: RELEASE-AUDIT-uuidna.md
+
+authors:
+  - family-names: Rouschev
+    given-names: Tsvetan
+    affiliation: Independent Research
+
+type: software
+date-released: "2026-08-20"
+version: "1.1.0"
+repository-code: "https://github.com/ceccec/ceccec.github.io"
+url: "https://ceccec.psg.bg"
+repository-artifact: "https://github.com/ceccec/ceccec.github.io/releases/tag/v1.1.0"
+
+license: "CC-BY-NC-ND-4.0"
+license-url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+
+keywords:
+  - quantum simulation
+  - Grover's algorithm
+  - Shor's algorithm
+  - quantum circuit simulator
+  - content addressing
+  - Merkle tree
+  - deterministic computation
+  - reproducible research
+  - involution
+  - double-torus geometry
+  - zero-dependency
+
+contact:
+  - family-names: Rouschev
+    given-names: Tsvetan
+    email: "ceci@psg.bg"
+
+references:
+  - type: conference-paper
+    authors:
+      - family-names: Grover
+        given-names: "Lov K."
+    title: "A fast quantum mechanical algorithm for database search"
+    collection-title: "Proceedings of the 28th Annual ACM Symposium on Theory of Computing"
+    pages: "212-219"
+    year: 1996
+    doi: "10.1145/237814.237866"
+
+  - type: article
+    authors:
+      - family-names: Shor
+        given-names: "Peter W."
+    title: "Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer"
+    journal: "SIAM Journal on Computing"
+    volume: 26
+    issue: 5
+    pages: "1484-1509"
+    year: 1997
+    doi: "10.1137/S0097539795293172"
+
+  - type: book
+    authors:
+      - family-names: Nielsen
+        given-names: "Michael A."
+      - family-names: Chuang
+        given-names: "Isaac L."
+    title: "Quantum Computation and Quantum Information"
+    publisher:
+      name: "Cambridge University Press"
+    year: 2010
+    isbn: "9781107002173"

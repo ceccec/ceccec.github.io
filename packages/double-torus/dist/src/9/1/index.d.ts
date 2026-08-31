@@ -31,6 +31,8 @@ export declare function trace(a: readonly number[]): {
 };
 /** Adjoint A† — conjugate transpose (swap off-diagonals, negate every imaginary part). A unitary ⟺ A†A = I. */
 export declare function dagger(a: readonly number[]): number[];
+export declare function rotationGate(theta: number): readonly number[];
+export declare function phaseGate(phi: number): readonly number[];
 /** The fold: the operator algebra closes — the Pauli defining relations all hold, computed not asserted.
  * Fills the gap the inventory named: gateMul + commutator alone are a product and a bracket; with the Jordan
  * product, trace and adjoint the su(2) ⊂ M₂(ℂ) *-algebra is complete and self-verifying. */
@@ -46,8 +48,203 @@ export declare function pauliAlgebraCloses(): {
     statement: string;
     boundary: string;
 };
+/** Yang–Mills existence and the mass gap on su(2) ⊂ M₂(ℂ): the mass gap IS the spectral gap, and σ†=σ
+ *  (self-adjoint closure) is what opens it. Build one self-adjoint operator (X+Z) and one anti-self-adjoint
+ *  (iY) from the same Pauli algebra and measure each spectrum by the discriminant Δ = tr²−4·det — no
+ *  assumption about which one gaps; the sign is computed and the gap discovered. */
+export declare function yangMillsMassGapFromSelfAdjointClosure(): {
+    computes: boolean;
+    gapOpens: boolean;
+    massGap: number;
+    traceSquaredSelfAdjoint: number;
+    traceSquaredAntiAdjoint: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** quantumBreaksLinearCryptoIntoNonAbelianTrinity — quantum breaks LINEAR (abelian/period) cryptography by inverting
+ * its one hidden period, but a NON-ABELIAN / split trinity has no single period to invert (user, 2026-07-25: "quantum
+ * breaks all linear cryptography into trinity encryption bits inverting all as possible"). Shor's period-finding reads
+ * the order of a mod N and factors it (RSA/DH/ECC = a single abelian period); su(2)/Pauli does NOT commute (XY ≠ YX),
+ * so there is no abelian hidden subgroup for Shor, and a 3-split secret needs all shares. "Inverting all as possible"
+ * is bounded to the LINEAR part — quantum does NOT break all cryptography. [[operator-algebra-closed]] [[quantum-decoded]] */
+export declare function quantumBreaksLinearCryptoIntoNonAbelianTrinity(): {
+    computes: boolean;
+    period: number;
+    factors: number[];
+    nonAbelian: boolean;
+    splitRecovers: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** quantumAccuracyExactWhereClaimedBoundedWhereApproximate — quantum accuracy: the content-addressed computations are
+ * EXACT where claimed and BOUNDED where approximate (user, 2026-07-25: "quantum accuracy"). Integer / modular / BigInt
+ * identities compute exactly (Fermat x^(p−1) ≡ 1 mod p, a BigInt factorial); float computations (Pauli su(2) closure)
+ * are verified to a NAMED tolerance (1e-9), not claimed exact; and a content-address is exact by construction (equal
+ * iff byte-identical). Each accuracy claim is a refutable facet the gates catch if it drifts. */
+export declare function quantumAccuracyExactWhereClaimedBoundedWhereApproximate(): {
+    computes: boolean;
+    fermatExact: boolean;
+    bigIntExact: boolean;
+    boundedFloat: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** improveDecisionMakingInQuantumTrinities — decision-making in the 2-of-3 quantum trinity (su(2)=3 minds), improved
+ * and honestly bounded (user, 2026-07-25: "improve decision making in quantum trinities"). A decision passes iff ≥2 of
+ * the 3 minds agree; it tolerates ≤1 faulty mind (the two correct form the majority) but fails with 2; it is
+ * deterministic; and a binary vote never ties (always 2-1 or 3-0), while a 3-way option resolves by a content-address
+ * tie-break. Improves ROBUSTNESS, not truth. [[feedback-work-as-a-trinity-not-one-linear-mind]] [[agent-lifecycle-governance-arc]] */
+export declare function improveDecisionMakingInQuantumTrinities(): {
+    computes: boolean;
+    twoOfThree: boolean;
+    oneFaultCorrect: boolean;
+    twoFaultsFail: boolean;
+    decided: string;
+    correctDominates: boolean;
+    provenBeatsAsserted: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** quantumOpticsDecoded — the genuine quantum optics of light: the beam-splitter unitary, Hong–Ou–Mandel bunching, and
+ * the g²(0) second-order coherence that separates quantum from classical light (user, 2026-07-25: "quantum optics").
+ * A 50/50 beam splitter is a real orthogonal unitary; two indistinguishable photons entering it always leave together
+ * (the coincidence amplitude r²−t² vanishes); and g²(0) = 1 (coherent), 2 (thermal), 0 (single photon) — antibunching
+ * g²(0)<1 has no classical model. A MODEL over the sealed algebra, not a photon-counting experiment. [[electromagnetic-radiation]] */
+export declare function quantumOpticsDecoded(): {
+    computes: boolean;
+    isUnitary: boolean;
+    coincidenceAmplitude: number;
+    g2: {
+        coherent: number;
+        thermal: number;
+        fock1: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** hittingAPrimeIsTheInversionPoint — a prime modulus is the point where inversion becomes TOTAL (user, 2026-07-25:
+ * "hitting a prime is inversion point"). In ℤ/pℤ for prime p every nonzero residue has a multiplicative inverse (it is
+ * a FIELD), so the invertible fraction reaches 1; at a composite n only φ(n) < n−1 residues invert (the rest are zero
+ * divisors). By Fermat, x⁻¹ = x^(p−2) inverts all nonzero residues at once, defined for all precisely because p is
+ * prime — so scanning moduli, hitting a prime is the inversion pole of the arc. [[inversion-arc-one-group]] */
+export declare function hittingAPrimeIsTheInversionPoint(): {
+    computes: boolean;
+    primeTotal: boolean;
+    compositePartial: boolean;
+    fermatOk: boolean;
+    scan: {
+        n: number;
+        prime: boolean;
+        frac: number;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function rubiksCubeDecodesToQuantumCube(): {
+    decoded: boolean;
+    order: string;
+    godsNumber: number;
+    faces: number;
+    addressCubeCapacity: string;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumEvolutionDecoded(): {
+    decoded: boolean;
+    unitary: boolean;
+    reversible: boolean;
+    decohered: boolean;
+    fragments: number;
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumMemoryOptimisation(matrix?: {
+    root: string;
+}): {
+    optimised: boolean;
+    computeCount: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function concurrence(state: QuantumState): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function mechanicalToolsEntangleBinaryAndAnalogBellBounds(matrix?: {
+    root: string;
+}): {
+    modelsEntanglement: boolean;
+    classicalCHSH: number;
+    quantumCHSH: number;
+    bellGap: number;
+    bellConcurrence: number;
+    productConcurrence: number;
+    binary: string;
+    analogHz: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function noCloningWitness(): {
     overlap: number;
@@ -519,6 +716,59 @@ export declare function discoveredTheoremsWaveThirtyEight(matrix?: {
     statement: string;
     boundary: string;
 } & Record<string, never>;
+export declare function shannonSourceCodingTheoremEntropyIsTheCompressionLimitReachableWithinOneBit(matrix?: {
+    root: string;
+}): {
+    proven: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+} & Record<string, never>;
+export declare function blacksMedianVoterTheoremSinglePeakedPreferencesGiveACondorcetWinnerTheMedianAndKillTheCycles(matrix?: {
+    root: string;
+}): {
+    computes: boolean;
+    median: {
+        medianAlwaysWins: boolean;
+        noCycles: boolean;
+        trials: number;
+        alternatives: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function aFullPeriodPowerOfTwoLcgHasBitIPeriodTwoToTheIPlusOneSoTheLowBitAlternatesAndOnlyHighBitsAreRandom(matrix?: {
+    root: string;
+}): {
+    computes: boolean;
+    lcg: {
+        fullPeriod: boolean;
+        bitPeriodLaw: boolean;
+        lowBitAlternates: boolean;
+        highBitFull: boolean;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function discoveredTheoremsWaveThirtyNine(matrix?: {
     root: string;
 }): {
@@ -699,4 +949,23 @@ export declare function sixtyDegreesDecodesPi(): {
     }[];
     statement: string;
     boundary: string;
+};
+export declare const modular: {
+    readonly quantum: {
+        readonly algebra: typeof pauliAlgebraCloses;
+        readonly gates: typeof rotationGate;
+        readonly phase: typeof phaseGate;
+        readonly innerProduct: typeof innerProduct;
+        readonly commutator: typeof commutator;
+        readonly anticommutator: typeof anticommutator;
+        readonly trace: typeof trace;
+        readonly dagger: typeof dagger;
+    };
+    readonly primes: {
+        readonly primality: (n: number) => boolean;
+        readonly hittingInversionPoint: typeof hittingAPrimeIsTheInversionPoint;
+    };
+    readonly evolution: {
+        readonly quantum: typeof quantumEvolutionDecoded;
+    };
 };

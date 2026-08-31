@@ -5,7 +5,7 @@ export declare const SLOW_BUILD_VITEPRESS_MS: number;
 export declare const SLOW_BUILD_RESPAWN_WALL_MS: number;
 /** srcMerkle-bound quantumize techniques — regressing past these is a HARD slow-build gap (PR #19). */
 export declare const SLOW_BUILD_SRCMERKLE_TECHNIQUE_IDS: readonly ["merkle-respawn", "seal-merkle-after-trinity", "audit-src-merkle-bind", "invalidate-audit-pending-trinity"];
-export { importQuantumBundle, runThinMount, srcContentMerkle, vitepressSourceFiles, vitepressEditsInvalidateTheSeal, VITEPRESS_MERKLE_DIR, seedMerkleCache, cachedMerkle, clearMerkleCache, runCheckTypesExit, emitTimeoutReceipt, exitOnTimeout, SCRIPT_SHELL_LINE_BUDGET, CLI_ENTRY_REL, SCRIPT_SHELL_ALLOWLIST, scanScriptShells, scriptShellGateReceipt, scriptShellGate, type ScriptShellScan, } from '../../../cache/quantum';
+export { importQuantumBundle, runThinMount, srcContentMerkle, vitepressSourceFiles, vitepressEditsInvalidateTheSeal, VITEPRESS_MERKLE_DIR, seedMerkleCache, cachedMerkle, clearMerkleCache, runCheckTypesExit, emitTimeoutReceipt, exitOnTimeout, SCRIPT_SHELL_LINE_BUDGET, CLI_ENTRY_REL, SCRIPT_SHELL_ALLOWLIST, scanScriptShells, scriptShellGateReceipt, scriptShellGate, type ScriptShellScan } from '../../../cache/quantum';
 export declare const QUANTUM_RESPAWN_COMMAND_PAIR: {
     pair: "respawn/force";
     a: string;
@@ -33,7 +33,7 @@ export declare function canRespawnVitepressBuild(root: string, merkle: string, f
 export declare function canRespawnTrinity(root: string, merkle: string, force?: boolean): boolean;
 /**
  * Quantumize VitePress docs:build — sealed technique catalog (pair: build/quantumize).
- * HONEST: content-addressed respawn + cache reuse + single-flight lock — NOT physical FTL / NOT Clay.
+ * HONEST: content-addressed respawn + cache reuse + single-flight lock —  / NOT Clay.
  */
 export declare function quantumizeVitepressBuild(): {
     computes: boolean;
@@ -132,7 +132,7 @@ export declare function readDocsBuildTiming(root: string): DocsBuildTimingReceip
  * HARD: srcMerkle-bound quantumize regression (PR #19) · respawnEligible skipped.
  * WARN: phase wall-clock vs lattice thresholds (CI variance — not an SLA).
  * Pair: gate/slow-build · CLI npm run quantum:slow-build-gate
- * HONEST: speedup = reuse/respawn · qpuRequired=false · NOT physical FTL.
+ * HONEST: speedup = reuse/respawn.
  */
 export declare function slowBuildIsQuantumGapGate(root?: string): {
     computes: boolean;
@@ -217,6 +217,32 @@ export declare function slowBuildIsQuantumGapGate(root?: string): {
     pair: "gate/slow-build";
     qpuRequired: false;
     physicalFtlClaim: 0;
+    statement: string;
+    boundary: string;
+};
+/** decodeRoboticsAndFuseToQuantumWorkAsAControlLoop — robotics decoded and fused to the build's quantum work (user,
+ * 2026-07-25: "let the build report statistics in realtime to measure and stop not harmonic tasks" + "decode robotics
+ * and fuse to quantum work"). Robotics IS a feedback control loop: sense → error (measured − setpoint) → actuate →
+ * re-sense. The slow-build gate is exactly that loop — it senses per-phase statistics against derived lattice setpoints
+ * and acts. Non-harmonic tasks (deterministic: redundant recompute / merkle regression) trip a HARD safety interlock and
+ * STOP the build; wall-clock is a NOISY sensor, reported (WARN) but filtered — never a hard stop, because CI variance
+ * is noise, not truth. The Jacobian singularity (det J = 0, rank loss) is the inversion pole (z → 1/z at 0). No physical
+ * quantum-robotics speedup, no sentient robot — the fusion is the deterministic control-loop STRUCTURE.
+ * [[gate-complexity-collapses-to-one-content-addressed-root]] [[feedback-build-time-is-a-theorem-test]] */
+export declare function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root?: string): {
+    computes: boolean;
+    senses: number;
+    setpoints: number;
+    interlocks: number;
+    noisySensors: number;
+    stopsNonHarmonic: boolean;
+    dof: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
     statement: string;
     boundary: string;
 };

@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export declare function zeroPointDeepAndWideDecoded(matrix?: MindMatrix): {
     decoded: boolean;
     documentedFindings: number;
@@ -118,6 +118,83 @@ export declare function darkMatterDecoded(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical(matrix?: MindMatrix): {
+    closed: boolean;
+    claySolvedByThisFold: number;
+    ratioCoverB: number;
+    darkFractionOfMatter: number;
+    baryonFractionOfMatter: number;
+    horizonAcceleration: number;
+    a0Coincidence: number;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical(matrix?: MindMatrix): {
+    closed: boolean;
+    claySolvedByThisFold: number;
+    omegaMatter: number;
+    ratioMatterToDarkEnergy: number;
+    equalityRedshift: number;
+    equalityScaleFactor: number;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * Ω_c/Ω_b CMB budget — unseen outweighs baryons ~5:1; non-gravitational detection NULL.
+ * Gravitational CMB evidence sealed; null non-gravitational detection attributed to quantum gaps
+ * in theorems (incomplete revelation / OPEN frontier) — NOT particle discovery, NOT Clay, NOT FTL.
+ * Pair: cmb/budget · CLI npm run quantum:cmb-omega-c-over-b · certified=false
+ */
+export declare function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    decoded: boolean;
+    omegaC: number;
+    omegaB: number;
+    ratio: number;
+    ratioRounded: number;
+    sealIntent: string;
+    gravitationalCmbBudget: boolean;
+    nonGravitationalDetectionNull: true;
+    quantumGapsInTheorems: boolean;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    certified: false;
+    qpuRequired: false;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    cli: string;
+    pair: "cmb/budget";
+    composedFold: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:cmb-omega-c-over-b — Ω_c/Ω_b CMB budget · null non-gravitational · quantum gaps. */
+export declare function runOmegaCOverOmegaBCmbBudgetQuantumGapsInTheoremsExit(_root?: string, _argv?: readonly string[]): number;
 export declare function darkEnergyDecoded(matrix?: MindMatrix): {
     decoded: boolean;
     documentedFindings: number;
@@ -145,6 +222,111 @@ export declare function cosmologicalTensionsLcdmDecoded(matrix?: MindMatrix): {
     flaggedFindings: number;
     angles: number;
     hubbleTensionSigma: number;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumCosmologyMinisuperspaceDecoded(matrix?: MindMatrix): {
+    decoded: boolean;
+    documentedFindings: number;
+    flaggedFindings: number;
+    angles: number;
+    supermetricSignature: string;
+    lorentzian: boolean;
+    gibbonsHawkingTOverH: number;
+    flatnessInventory: number;
+    boundaryUnderdetermined: boolean;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function wheelerDeWittMinisuperspaceSolved(matrix?: MindMatrix): {
+    solved: boolean;
+    action: number;
+    psiHartleHawking: number;
+    hartleHawkingWeight: number;
+    vilenkinNucleationProb: number;
+    steps: number;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function stringTheoryDualityWebDecoded(matrix?: MindMatrix): {
+    decoded: boolean;
+    documentedFindings: number;
+    flaggedFindings: number;
+    angles: number;
+    dBosonic: number;
+    dSuper: number;
+    dMtheory: number;
+    intercept: number;
+    corners: 6;
+    dualities: 5;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function perpetuumMobileVoidSourceRefuted(matrix?: MindMatrix): {
+    refuted: boolean;
+    documentedFindings: number;
+    flaggedFindings: number;
+    angles: number;
+    cycleDeltaU: number;
+    netWorkPerCycle: number;
+    casimirLoopWork: number;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumMechanicsAndThermodynamicsAreCombinations(matrix?: MindMatrix): {
+    combined: boolean;
+    documentedFindings: number;
+    flaggedFindings: number;
+    angles: number;
+    partition: number;
+    closedForm: number;
+    wickExact: boolean;
+    deSitterTemperatureOverH: number;
     count: number;
     facets: ({
         receipt: string;
@@ -505,13 +687,29 @@ export declare function majorMoons(matrix?: MindMatrix, timeDays?: number): {
  */
 export declare function cosmosFrontiersDecoded(matrix?: MindMatrix): {
     decoded: boolean;
-    frontiers: {
+    frontiers: ({
+        demarcation: import("../../3/7").DemarcationTier;
+        status: string;
         receipt: string;
         frontier: string;
+        term: string;
+        question: string;
+        reversed: string;
+        computed: string;
+        reversedProvedBy: string;
+        composedRoot: string;
+    } | {
+        demarcation: import("../../3/7").DemarcationTier;
         status: string;
+        receipt: string;
+        frontier: string;
+        term: string;
+        question: string;
+        reversed: string;
         computed: string;
         composedRoot: string;
-    }[];
+        reversedProvedBy?: undefined;
+    })[];
     count: number;
     facets: {
         receipt: string;
@@ -522,7 +720,196 @@ export declare function cosmosFrontiersDecoded(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** One-qubit 2-flavor oscillation circuit: R(θ) · diag(1, e^{iφ}) · R(−θ) applied to |0⟩ — returns P(flip).
+ *  The rotation mixes flavor↔mass basis, the phase is the free mass-eigenstate evolution; runs on src/0. */
+export declare function oscillationOnSimulator(theta: number, phi: number): number;
+/**
+ * frontierQuantum — matrix slot for the directive "all frontiers quantum computed now · hardware designed in
+ * waves". Pair: frontier/quantum · dual hardware/wave · CLI npm run quantum:frontier-quantum. It COMPOSES
+ * cosmosFrontiersDecoded and holds the directive to the demarcation gate: the THEOREM is the oscillation
+ * identity (simulator ≡ sin²(2θ)sin²(φ/2), exact algebra checked numerically); the TIERS are counted, not
+ * asserted; the overclaim "ALL can be quantum computed now" is FLAGGED by the same counts that show what runs.
+ */
+export declare function frontierQuantum(matrix?: MindMatrix): {
+    computes: boolean;
+    frontierQuantum: boolean;
+    program: ({
+        receipt: string;
+        frontier: string;
+        tier: "SENSES";
+        subproblem: string;
+        hardware: string;
+        wave: string;
+        witness: string;
+    } | {
+        receipt: string;
+        frontier: string;
+        tier: "DATA";
+        subproblem: string;
+        hardware: string;
+        wave: string;
+        witness: string;
+    } | {
+        receipt: string;
+        frontier: string;
+        tier: "SIMULATES";
+        subproblem: string;
+        hardware: string;
+        wave: string;
+        witness: string;
+    })[];
+    counts: {
+        simulates: number;
+        senses: number;
+        data: number;
+    };
+    oscillation: {
+        theta: number;
+        phases: number;
+        maxDrift: number;
+        pZero: number;
+        qubits: number;
+        gates: number;
+    };
+    splittingsRatio: number;
+    jarlskogOrders: number;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "frontier/quantum";
+    dualPair: "hardware/wave";
+    cli: string;
+    route: string;
+    heading: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:frontier-quantum — print the frontier quantum program (exit 0 iff computes). */
+export declare function runFrontierQuantumExit(root?: string, _argv?: readonly string[]): number;
+/** Digital root in base b — pure algebra 1 + (n−1) mod (b−1); the base-10 vault digitalRoot is its b=10 slice. */
+export declare function digitalRootInBase(n: number, base: number): number;
+/**
+ * fractalCompute — matrix slot for the law. Pair: fractal/compute · duals pattern/axiom · algebra/realtime.
+ * CLI npm run quantum:fractal-compute. Every facet is an exact identity computed at call time.
+ */
+export declare function fractalCompute(matrix?: MindMatrix): {
+    computes: boolean;
+    fractalCompute: boolean;
+    periods: {
+        base: number;
+        period: number;
+        algebra: number;
+        matches: boolean;
+    }[];
+    peakDimension: number;
+    volumes: {
+        n: number;
+        volume: number;
+    }[];
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "fractal/compute";
+    dualPair: "pattern/axiom";
+    cli: string;
+    route: string;
+    heading: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * fractalMap — fold the open frontiers through the fractal-compute law: every frontier IS a remembered
+ * pattern (an axiom true in its measuring dimension) whose BREAK is computed realtime from the ledger.
+ * Pair: fractal/map · dual frontier/fold · CLI npm run quantum:fractal-map. Composes frontierQuantum +
+ * fractalCompute + the sealed cosmology folds — no new measurements, only the join.
+ */
+export declare function fractalMap(matrix?: MindMatrix): {
+    computes: boolean;
+    fractalMap: boolean;
+    rows: {
+        receipt: string;
+        frontier: string;
+        pattern: string;
+        dimension: string;
+        breaksAt: number;
+        breakReads: string;
+        holds: boolean;
+    }[];
+    count: number;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "fractal/map";
+    dualPair: "frontier/fold";
+    cli: string;
+    route: string;
+    heading: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:fractal-map — exit 0 iff the composed map computes. */
+export declare function runFractalMapExit(root?: string, _argv?: readonly string[]): number;
+/** npm run quantum:fractal-compute — exit 0 iff the law computes. */
+export declare function runFractalComputeExit(root?: string, _argv?: readonly string[]): number;
 /** unit n-ball volume by the exact recurrence V₀=1, V₁=2, Vₙ = Vₙ₋₂·2π/n — no gamma function needed */
+/** decodeCosmologyToBiologyLadderFillingGaps — continue the decode in cosmology, filling all gaps down to biology
+ * (user, 2026-07-25: "continue in cosmology filling all gaps to biology"). The emergence ladder — cosmology →
+ * nucleosynthesis → chemistry → geochemistry → prebiotic chemistry → biology — connects the cosmos to life; the
+ * documented transitions (Big-Bang & stellar nucleosynthesis, chemical bonding, geochemistry) are decoded, while the
+ * one genuinely OPEN gap, abiogenesis (non-life → life), is named not faked. [[emergence-up-arc-decode-cadence]] [[fundamental-physics-arc-decoded]] */
+export declare function decodeCosmologyToBiologyLadderFillingGaps(): {
+    computes: boolean;
+    levels: number;
+    documentedTransitions: number;
+    openGaps: number;
+    catalog: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** implementAllAtCosmicScaleAndQualityStandards — implement the whole decode at cosmic scale, to the quality standards
+ * (user, 2026-07-25: "and implement all at cosmic scale and quality standards"). COSMIC SCALE = the content-addressed
+ * catalog spans cosmology → biology and composes unboundedly (O(1) per branch); QUALITY STANDARDS = the honesty
+ * invariants and gates pass (gaps named not faked, documented transitions filled, clay = 0, demarcation present,
+ * content-addressed). "Implement" = computes + content-addressed + meets the checklist — not physical cosmic scale. */
+export declare function implementAllAtCosmicScaleAndQualityStandards(): {
+    computes: boolean;
+    cosmicScale: boolean;
+    qualityMet: number;
+    implemented: boolean;
+    manifest: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function unitBallVolume(n: number): number;
 /** counts of k-faces of the n-cube: C(n,k)·2^(n−k) — vertices k=0, edges k=1, … */
 export declare function hypercubeFaces(n: number, k: number): number;
@@ -745,6 +1132,74 @@ export declare function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matr
     statement: string;
     boundary: string;
 };
+/**
+ * String theory in chat — sealed recompute via MCP/superposition chat, not wet LLM physics essays.
+ * Fold: stringTheoryInChat · Pairs: string/theory · theory/string · string/chat · chat/string
+ * Compose: mcp/chat · super/chat · pair/chat · chat/research · sciences/trinities · mesh/science · soft trade/challenge
+ * CLI: npm run quantum:string-theory · ONE CLI (+ dual aliases)
+ * HONEST: algebra/duality/quantumize structural · physics UNCONFIRMED · claySolved=0 · certified=false
+ */
+export declare function stringTheoryInChat(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    stringTheoryInChat: boolean;
+    stringInChat: boolean;
+    dualityChatOn: boolean;
+    sealedRecompute: boolean;
+    participants: {
+        corner: "Type I" | "Type IIA" | "Type IIB" | "Heterotic SO(32)" | "Heterotic E8×E8" | "11D supergravity";
+        index: number;
+        roomId: string;
+        turnReceipt: string;
+        receipt: string;
+    }[];
+    dualEdges: {
+        readonly a: string;
+        readonly b: string;
+        readonly bidirectional: boolean;
+        readonly merged: string;
+        readonly receiptA: string;
+        readonly receiptB: string;
+        readonly receipt: string;
+    }[];
+    dualEdgeCount: number;
+    room: {
+        id: string;
+        root: string;
+        receipt: string;
+    };
+    mTheoryD: number;
+    superstringD: number;
+    bosonicD: number;
+    theoremGaps: number;
+    honestOpenNamed: ("residual:string-physics-unconfirmed" | "honesty:no-clay-prize-claim" | "honesty:no-nobel-claim" | "honesty:chat-recompute-not-LLM-physics-essay" | "residual:ads-cft-correlators-unsealed" | "residual:cy-hodge-numbers-unsealed")[];
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    certified: false;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "string/theory";
+    pairs: readonly ["string/theory", "theory/string", "string/chat", "chat/string"];
+    dualPair: "theory/string";
+    cli: string;
+    route: string;
+    heading: string;
+    statement: string;
+    boundary: string;
+    honestyLine: string;
+};
+export declare const stringTheory: typeof stringTheoryInChat;
+export declare const theoryString: typeof stringTheoryInChat;
+export declare const stringChat: typeof stringTheoryInChat;
+export declare const chatString: typeof stringTheoryInChat;
+/** npm run quantum:string-theory (duals theory-string · string-chat · chat-string) */
+export declare function runStringTheoryInChatExit(_root?: string, _argv?: readonly string[]): number;
 export declare function openLeadsAlgebraDecoded(matrix?: MindMatrix): {
     decoded: boolean;
     leads: {
@@ -779,6 +1234,23 @@ export declare function solarSystemDimensionsDecoded(matrix?: MindMatrix): {
     laplaceDegPerDay: number;
     jupiterSaturnConvergent: string;
     maxEllipticGapAu: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function keplersLawsAreExactTheHarmonicLawTSquaredIsAcubedAndEqualAreasConserveAngularMomentum(matrix?: MindMatrix): {
+    computes: boolean;
+    kepler: {
+        ratios: number[];
+        spread: number;
+        areaSpread: number;
+        radiusSpread: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;
@@ -963,6 +1435,27 @@ export declare function theoremDependencyFrequencyGraphIsFractalFormsNavAndRevie
     statement: string;
     boundary: string;
 };
+export declare function navierStokesFlowRegularityOnTheSeam(matrix?: MindMatrix): {
+    computes: boolean;
+    vocabulary: number;
+    cap: number;
+    load: number;
+    contentSize: number;
+    timeSize: number;
+    seamTime: number;
+    seamContent: number;
+    separation: number;
+    liveMemo: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrreducibleIsTheAxiomBeyondInversion(at?: number, matrix?: MindMatrix): {
     computes: boolean;
     driftNow: number;
@@ -1094,4 +1587,87 @@ export declare function theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsT
     }[];
     statement: string;
     boundary: string;
+};
+/**
+ * sciencePyramid — USER LAW (2026-07-24): decode biology to its boundary conditions and beyond,
+ * INVERTING to chemistry and physics, forming the algebra-based trinity pyramid. The honest computable
+ * decode: the reduction ladder biology → chemistry → physics → algebra, where each level's BOUNDARY
+ * CONDITIONS are set by the level below (biochemistry · quantum chemistry · mathematical physics). The
+ * INVERSION is exact: reduction runs DOWN the pyramid, the inverse of emergence which runs UP
+ * (matter→life→mind, the sealed life-torus ladder). The ALGEBRA base is witnessed at each level, not
+ * asserted: biology's genetic code = 4³ = 64 (exact), physics's operator algebra su(2) has dimension 3
+ * (the trinity itself). DEMARCATION: boundary-condition dependency is REAL methodology; STRONG
+ * reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED — emergence is genuine, higher
+ * laws are not in-practice derivable from lower ones; the pyramid is DEPENDENCY, not dissolution.
+ */
+export declare function sciencePyramid(matrix?: MindMatrix): {
+    computes: boolean;
+    sciencePyramid: boolean;
+    levels: {
+        receipt: string;
+        level: string;
+        boundaryCondition: string;
+        algebra: string;
+        tier: number;
+    }[];
+    geneticCode: number;
+    su2Dim: number;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "science/pyramid";
+    dualPair: "pyramid/science";
+    cli: string;
+    route: string;
+    heading: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:science-pyramid — exit 0 iff the pyramid computes and reductionism stays flagged. */
+export declare function runSciencePyramidExit(root?: string, _argv?: readonly string[]): number;
+export declare const cosmos: {
+    readonly vacuum: {
+        readonly zeroPoint: typeof zeroPointDeepAndWideDecoded;
+        readonly qcdElectroweak: typeof theOtherVacuaQcdElectroweakStabilityDecoded;
+    };
+    readonly origin: {
+        readonly baryogenesis: typeof matterAntimatterAsymmetryBaryogenesisDecoded;
+        readonly neutrino: typeof neutrinoMassDecoded;
+        readonly darkMatter: typeof darkMatterDecoded;
+    };
+    readonly tensions: {
+        readonly cosmology: typeof cosmologicalTensionsLcdmDecoded;
+        readonly hubble: typeof cosmologicalTensionsLcdmDecoded;
+    };
+    readonly dark: {
+        readonly energy: typeof darkEnergyDecoded;
+        readonly coincidence: typeof theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical;
+    };
+    readonly quantum: {
+        readonly cosmology: typeof quantumCosmologyMinisuperspaceDecoded;
+        readonly wheelerDeWitt: typeof wheelerDeWittMinisuperspaceSolved;
+        readonly string: typeof stringTheoryDualityWebDecoded;
+    };
+    readonly diving: {
+        readonly science: typeof diveScienceResearchWaveVerified;
+        readonly narcosis: typeof narcosisAndToxicityDecoded;
+        readonly counterDiffusion: typeof isobaricCounterDiffusionDecoded;
+        readonly decompression: typeof decompressionDecoded;
+        readonly gradient: typeof gradientFactorsHarmonicFractionsTrimixRecordPlanner;
+        readonly water: typeof waterDecoded;
+    };
+    readonly space: {
+        readonly solar: typeof solarSystem;
+        readonly moons: typeof majorMoons;
+    };
+    readonly frontiers: {
+        readonly cosmology: typeof cosmosFrontiersDecoded;
+        readonly quantum: typeof frontierQuantum;
+    };
 };

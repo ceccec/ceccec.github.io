@@ -1,4 +1,4 @@
-import { merkabaFoldUrl, entry, type Uuid, type Entry } from '../../../0';
+import { entry, merkabaFoldUrl, type Entry, type Uuid } from '../../../0';
 import { type LocaleName } from '../../../1/9';
 export { merkabaFoldUrl, entry, type Uuid, type Entry };
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */

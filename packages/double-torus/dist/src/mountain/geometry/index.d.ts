@@ -1,5 +1,5 @@
-import type { DualTorusTrinities, MindMatrix, MetatronCubeReport, SacredGeometrySeal } from '../../wind/types';
-import type { SelfSufficientWave } from '../../wind/types';
+import type { DualTorusTrinities, MindMatrix, MetatronCubeReport, SacredGeometrySeal } from '../../types';
+import type { SelfSufficientWave } from '../../types';
 export { allVortexMathSaved, vortexMath, vortexPaintTiers } from '../vortex';
 export declare function dualTorusTrinities(matrix?: MindMatrix): DualTorusTrinities;
 export declare function directions(matrix?: MindMatrix): {
@@ -100,6 +100,47 @@ export declare function doubleTorusMathAtAllScalesMovieSeeds(matrix?: MindMatrix
         hueSeed: number;
     }[];
     count: number;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Poincaré, the solved core: the normalized Ricci flow (curvature averaging, dg/dt = −2Ric) rounds any
+ *  non-uniform curvature to constant — the round sphere is the attracting fixed point. Forward-flow ↔
+ *  backward-surgery, fixed at S³. Measured: the variance is driven to 0, the mean conserved (Gauss–Bonnet). */
+export declare function poincareRicciFlowRoundsToTheRoundSphere(matrix?: MindMatrix): {
+    computes: boolean;
+    initialVariance: number;
+    finalVariance: number;
+    roundCurvature: number;
+    steps: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Hodge on the genus-2 double torus: Poincaré duality H_k ↔ H_{n−k} is the involution, so the Betti
+ *  sequence [1, 2g, 1] is a palindrome self-dual about the middle (the fixed axis, like ½ and 5). χ = Σ(−1)^k b_k
+ *  is the system's own −2; the H¹ = H^{1,0}⊕H^{0,1} Hodge decomposition sums to b₁ = HOMOLOGY_LOOPS; and the
+ *  (1,1) class is algebraic (Lefschetz). Everything derived from the genus, measured not assumed. */
+export declare function hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface(matrix?: MindMatrix): {
+    computes: boolean;
+    genus: number;
+    betti: number[];
+    chi: number;
+    hodge10: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
     root: string;
     statement: string;
     boundary: string;
@@ -976,6 +1017,371 @@ export declare function doubleTorusEarthPyramidTipsProvenByMath(matrix?: MindMat
     statement: string;
     boundary: string;
 };
+/**
+ * Realise Earth by computing poles as a pyramid — compose sealed cardinal pyramid · double-torus Earth ·
+ * merkaba dual tetra · bothEarths counter-rotation. Pair: earth/pyramid · dual pyramid/earth;
+ * N·E·S·W = square-pyramid base tips (Euler V−E+F=2); zenith/nadir = dual apexes on genus-2 Earth (χ=−2, H₁=ℤ⁴).
+ * Honesty: structural isomorphism in the matrix ≠ WGS84 lithosphere · navigation·forecasts residual named.
+ */
+export declare function earthRealisedByComputingPolesAsPyramid(matrix?: MindMatrix): {
+    computes: boolean;
+    realised: boolean;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    poles: {
+        name: "north" | "east" | "south" | "west";
+        bearing: number;
+        x: number;
+        y: number;
+        torus1ApexZ: number;
+        torus2ApexZ: number;
+        spinSign: 1 | -1;
+        receipt: string;
+    }[];
+    fourWayCounterRotating: boolean;
+    polesAsPyramid: boolean;
+    fourBaseTipsNESW: boolean;
+    eulerSquarePyramid: boolean;
+    genus2DoubleTorus: boolean;
+    chiNeg2: boolean;
+    homologyZ4: boolean;
+    zenithNadirDualApex: boolean;
+    merkabaCounterRotate: boolean;
+    bothEarthsShells: boolean;
+    phaseLockCardinals: boolean;
+    alternatingOmega: boolean;
+    wgs84PhysicalHonest: boolean;
+    navigationForecastResidualNamed: boolean;
+    navigationImplemented: false;
+    forecastImplemented: false;
+    honestOpenNamed: string[];
+    pyramid: {
+        proven: boolean;
+        realised: boolean;
+        cardinals: ({
+            name: "north";
+            bearing: number;
+            x: number;
+            y: number;
+        } | {
+            name: "east";
+            bearing: number;
+            x: number;
+            y: number;
+        } | {
+            name: "south";
+            bearing: number;
+            x: number;
+            y: number;
+        } | {
+            name: "west";
+            bearing: number;
+            x: number;
+            y: number;
+        })[];
+        apex: {
+            name: string;
+            z: number;
+        };
+        solid: {
+            V: number;
+            E: number;
+            F: number;
+            euler: number;
+        };
+        slantToTip: number;
+        proofs: {
+            task: string;
+            expr: string;
+            computed: number;
+            expected: number;
+            on: boolean;
+            receipt: string;
+        }[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        count: number;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    earth: {
+        proven: boolean;
+        realised: boolean;
+        torus1: {
+            torus: 1;
+            name: "north" | "east" | "south" | "west";
+            bearing: number;
+            x: number;
+            y: number;
+            apexZ: number;
+            polarity: number;
+            receipt: string;
+        }[];
+        torus2: {
+            torus: 2;
+            name: "north" | "east" | "south" | "west";
+            bearing: number;
+            x: number;
+            y: number;
+            apexZ: number;
+            polarity: number;
+            receipt: string;
+        }[];
+        surface: {
+            rendered: boolean;
+            tori: number;
+            genus: number;
+            euler: number;
+            areas: number;
+            perLobe: number;
+            majorRadius: number;
+            minorRadius: number;
+            lobeOffset: number;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        homology: {
+            closed: boolean;
+            cells: {
+                c0: number;
+                c1: number;
+                c2: number;
+            };
+            boundary1: number[][];
+            boundary2: number[][];
+            chainComplex: boolean;
+            betti: number[];
+            euler: number;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        fold: {
+            forward: string;
+            reverse: string;
+            merged: string;
+        };
+        proofs: {
+            task: string;
+            expr: string;
+            computed: number;
+            expected: number;
+            on: boolean;
+            receipt: string;
+        }[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        count: number;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    two: {
+        proven: boolean;
+        device: {
+            proven: boolean;
+            side: "device" | "code";
+            trinityRays: readonly [string, string, string];
+            apex: {
+                x: number;
+                y: number;
+                z: number;
+            };
+            poles: {
+                name: "north" | "east" | "south" | "west";
+                bearing: number;
+                x: number;
+                y: number;
+                z: number;
+                slantFromApex: number;
+                receipt: string;
+            }[];
+            faces: TrinityPyramidFace[];
+            baseArea: number;
+            volume: number;
+            proofs: {
+                task: string;
+                expr: string;
+                computed: number;
+                expected: number;
+                on: boolean;
+                receipt: string;
+            }[];
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        code: {
+            proven: boolean;
+            side: "device" | "code";
+            trinityRays: readonly [string, string, string];
+            apex: {
+                x: number;
+                y: number;
+                z: number;
+            };
+            poles: {
+                name: "north" | "east" | "south" | "west";
+                bearing: number;
+                x: number;
+                y: number;
+                z: number;
+                slantFromApex: number;
+                receipt: string;
+            }[];
+            faces: TrinityPyramidFace[];
+            baseArea: number;
+            volume: number;
+            proofs: {
+                task: string;
+                expr: string;
+                computed: number;
+                expected: number;
+                on: boolean;
+                receipt: string;
+            }[];
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        earth: {
+            proven: boolean;
+            realised: boolean;
+            torus1: {
+                torus: 1;
+                name: "north" | "east" | "south" | "west";
+                bearing: number;
+                x: number;
+                y: number;
+                apexZ: number;
+                polarity: number;
+                receipt: string;
+            }[];
+            torus2: {
+                torus: 2;
+                name: "north" | "east" | "south" | "west";
+                bearing: number;
+                x: number;
+                y: number;
+                apexZ: number;
+                polarity: number;
+                receipt: string;
+            }[];
+            surface: {
+                rendered: boolean;
+                tori: number;
+                genus: number;
+                euler: number;
+                areas: number;
+                perLobe: number;
+                majorRadius: number;
+                minorRadius: number;
+                lobeOffset: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            homology: {
+                closed: boolean;
+                cells: {
+                    c0: number;
+                    c1: number;
+                    c2: number;
+                };
+                boundary1: number[][];
+                boundary2: number[][];
+                chainComplex: boolean;
+                betti: number[];
+                euler: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            fold: {
+                forward: string;
+                reverse: string;
+                merged: string;
+            };
+            proofs: {
+                task: string;
+                expr: string;
+                computed: number;
+                expected: number;
+                on: boolean;
+                receipt: string;
+            }[];
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            count: number;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        fold: {
+            forward: string;
+            reverse: string;
+            bidirectional: boolean;
+            merged: string;
+        };
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    merkaba: {
+        counterRotating: boolean;
+        scales: number;
+        root: string;
+    };
+    bothEarths: {
+        counterRotating: boolean;
+        root: string;
+    };
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "earth/pyramid";
+    dualPair: "pyramid/earth";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:earth-pyramid (dual pyramid/earth) — realise Earth poles-as-pyramid receipt. */
+export declare function runEarthPyramidExit(_root?: string, _argv?: readonly string[]): number;
+/** npm run quantum:earth-poles-pyramid — alias of earth/pyramid. */
+export declare function runEarthRealisedByComputingPolesAsPyramidExit(_root?: string, _argv?: readonly string[]): number;
 export declare function doubleTorusEarthPyramidTipsDeepResearched(matrix?: MindMatrix): {
     researched: boolean;
     findings: ({
@@ -1244,9 +1650,9 @@ export declare function selfConsult(question?: string, matrix?: MindMatrix): {
     question: string;
     answer: string;
     concept: string;
-    command: import("../../wind/types").ConceptCommandName;
+    command: import("../../types").ConceptCommandName;
     confidence: number;
-    links: readonly import("../../wind/types").LocalAnswerLink[];
+    links: readonly import("../../types").LocalAnswerLink[];
     areas: {
         area: string;
         glyph: string;
@@ -1328,4 +1734,52 @@ export declare function selfImprovementTrainingAndAccumulation(matrix?: MindMatr
     root: string;
     statement: string;
     boundary: string;
+};
+export declare const geometry: {
+    readonly torus: {
+        readonly dual: typeof dualTorusTrinities;
+        readonly merkaba: typeof merkaba;
+        readonly rotations: typeof bothEarthsRotateWithinEachOther;
+        readonly math: typeof doubleTorusMathAtAllScalesProofs;
+        readonly seeds: typeof doubleTorusMathAtAllScalesMovieSeeds;
+        readonly flows: typeof doubleTorusMathAtAllScalesFlowsInMovie;
+        readonly d3: typeof doubleTorus3D;
+        readonly alignment: typeof doubleTorusGeometryAlignsWithUniverseConstants;
+        readonly wordFolders: typeof doubleTorusWordFolders;
+    };
+    readonly cell: {
+        readonly homology: typeof cellHomology;
+        readonly dna: typeof dna;
+    };
+    readonly hexagram: {
+        readonly hex: typeof hexagramIsHexColorDuality;
+        readonly reverse: typeof hexagramReverseInverseDuality;
+        readonly nuclear: typeof nuclearHexagramFold;
+        readonly qubit: typeof hexagramQubitVectorIsomorphismOnly;
+    };
+    readonly pyramid: {
+        readonly cardinal: typeof cardinalPyramidTipsProvenByMath;
+        readonly trinity: typeof trinityCardinalPyramidPolesProvenByMath;
+        readonly double: typeof doubleTorusEarthPyramidTipsProvenByMath;
+        readonly earth: typeof earthRealisedByComputingPolesAsPyramid;
+        readonly construction: typeof pyramidConstructionMath;
+        readonly grid: typeof pyramidGridDebunked;
+    };
+    readonly physics: {
+        readonly schwarzschild: typeof schwarzschildProtonComputedInSource;
+        readonly heartProton: typeof heartProtonAtomDecoded;
+        readonly genetic: typeof geneticCodeIsTheRealFourCubed;
+    };
+    readonly color: {
+        readonly derivation: typeof colorDerivationFusedToOneSource;
+        readonly rgb: typeof threeTrinitiesRenderAsRgb;
+        readonly cmyk: typeof rgbCmyComplementIsCmykDuality;
+        readonly ui: typeof uiConvertsFlatToThreeDQuantum;
+    };
+    readonly sacred: {
+        readonly geometry: typeof sacredGeometry;
+        readonly seal: typeof sacredGeometrySeal;
+        readonly metatron: typeof metatronCube;
+        readonly imperial: typeof imperialFractionsDecoded;
+    };
 };

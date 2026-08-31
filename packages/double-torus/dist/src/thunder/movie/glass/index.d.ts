@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 import { type PlasmaMoviePalette } from '../../../fire/plasma/ball';
 export declare function movieAllDimensionsAtOnce(matrix?: MindMatrix): {
     shows: boolean;

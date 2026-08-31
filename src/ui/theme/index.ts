@@ -7,10 +7,10 @@ const paletteLight = {
   primary:   `oklch(65% 0.2 ${harmonic.harmonicPalette.primary.hue})`,
   secondary: `oklch(55% 0.22 ${harmonic.harmonicPalette.secondary.hue})`,
   accent:    `oklch(60% 0.19 ${harmonic.harmonicPalette.accent.hue})`,
-  success:   'oklch(72% 0.18 150)',  // Green (harmonic H for success)
-  warning:   'oklch(70% 0.20 85)',   // Yellow (harmonic H for warning)
-  danger:    'oklch(58% 0.21 20)',   // Red (harmonic H for danger)
-  neutral:   'oklch(85% 0.05 0)',    // Light gray
+  success:   'var(--color-semantic-success, oklch(72% 0.18 150))',  // Green (harmonic H for success)
+  warning:   'var(--color-semantic-warning, oklch(70% 0.20 85))',   // Yellow (harmonic H for warning)
+  danger:    'var(--color-semantic-danger, oklch(58% 0.21 20))',   // Red (harmonic H for danger)
+  neutral:   'var(--color-semantic-neutral, oklch(85% 0.05 0))',    // Light gray
 }
 
 // Dark mode: σ-inverted + harmonic ratios for perception
@@ -18,10 +18,10 @@ const paletteDark = {
   primary:   `oklch(35% 0.2 ${(harmonic.harmonicPalette.primary.hue + 180) % 360})`,
   secondary: `oklch(45% 0.22 ${(harmonic.harmonicPalette.secondary.hue + 180) % 360})`,
   accent:    `oklch(40% 0.19 ${(harmonic.harmonicPalette.accent.hue + 180) % 360})`,
-  success:   'oklch(28% 0.18 330)',
-  warning:   'oklch(30% 0.20 265)',
-  danger:    'oklch(42% 0.21 200)',
-  neutral:   'oklch(15% 0.05 0)',
+  success:   'var(--color-semantic-success-dark, oklch(28% 0.18 330))',
+  warning:   'var(--color-semantic-warning-dark, oklch(30% 0.20 265))',
+  danger:    'var(--color-semantic-danger-dark, oklch(42% 0.21 200))',
+  neutral:   'var(--color-semantic-neutral-dark, oklch(15% 0.05 0))',
 }
 
 // Vibration timing derives from harmonic periods
@@ -43,7 +43,7 @@ export const theme = {
     neutral: 'var(--color-neutral)',
     // Derived from σ-pairs
     dark: 'var(--color-neutral-inverted)',
-    darker: 'oklch(5% 0.02 0)',
+    darker: 'var(--color-neutral-darker, oklch(5% 0.02 0))',
     light: 'var(--color-neutral)',
   },
 
@@ -109,11 +109,11 @@ export const theme = {
 
   // Shadows
   shadows: {
-    sm: '0 1px 2px 0 rgba(0, 212, 255, 0.05)',
-    md: '0 4px 6px 0 rgba(0, 212, 255, 0.1)',
-    lg: '0 10px 15px 0 rgba(0, 212, 255, 0.15)',
-    xl: '0 20px 25px 0 rgba(0, 212, 255, 0.2)',
-    glow: '0 0 20px rgba(0, 212, 255, 0.5)'
+    sm: 'var(--shadow-sm, 0 1px 2px 0 rgba(0, 212, 255, 0.05))',
+    md: 'var(--shadow-md, 0 4px 6px 0 rgba(0, 212, 255, 0.1))',
+    lg: 'var(--shadow-lg, 0 10px 15px 0 rgba(0, 212, 255, 0.15))',
+    xl: 'var(--shadow-xl, 0 20px 25px 0 rgba(0, 212, 255, 0.2))',
+    glow: 'var(--shadow-glow, 0 0 20px rgba(0, 212, 255, 0.5))'
   },
 
   // Animations
@@ -145,7 +145,7 @@ export function generateThemeCss(): string {
       --color-warning: ${paletteLight.warning};
       --color-danger: ${paletteLight.danger};
       --color-neutral: ${paletteLight.neutral};
-      --color-neutral-inverted: oklch(15% 0.05 0);
+      --color-neutral-inverted: var(--color-neutral-inverted, oklch(15% 0.05 0));
 
       /* Typography */
       --font-family: ${theme.typography.fontFamily};
@@ -183,7 +183,7 @@ export function generateThemeCss(): string {
       --color-warning: ${paletteDark.warning};
       --color-danger: ${paletteDark.danger};
       --color-neutral: ${paletteDark.neutral};
-      --color-neutral-inverted: oklch(85% 0.05 0);
+      --color-neutral-inverted: var(--color-neutral-inverted, oklch(85% 0.05 0));
     }
 
     * {

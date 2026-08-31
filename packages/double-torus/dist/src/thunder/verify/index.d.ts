@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export declare function provenScientifically(matrix?: MindMatrix): {
     proven: boolean;
     whatIsIt: string;
@@ -123,7 +123,6 @@ export declare function revolutionaryEfficiencyNotPhysics(matrix?: MindMatrix, a
         tracksClassical: boolean;
         root: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     physicalFtlClaim: 0;
     facets: ({

@@ -1,3 +1,4 @@
+export { enforcementScanRoot } from '../strict/scan';
 export declare function splitMethodWords(name: string, prefix?: string): readonly string[];
 /** Method name → folder tail (concept.agent.stream.wire → agent/stream/wire). */
 export declare function folderTailFromMethodName(name: string, prefix?: string): string;
@@ -14,7 +15,7 @@ export type ScienceModelAction = {
 export declare const SRC_SCIENCE_MODEL_ACTION_SCHEMA: "src/[science]/[action]";
 /** Canonical mask — co-located index.ts + index.vue; no render/ui prefix. */
 export declare const CANONICAL_SCIENCE_MASK: "src/<science>/<action>";
-export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7';
+export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7';
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
 export declare const FORBIDDEN_FOLDER_NAMES: readonly ["index"];
 export declare function isForbiddenFolderName(name: string): boolean;
@@ -66,7 +67,7 @@ export declare const DISPLAY_DUAL_LAW: string;
 /** Display subpath — science/model/action (co-located with logic). */
 export declare function displaySubpathFromLogicTail(tail: string, _allMindTails?: readonly string[]): string;
 /** Consecutive Fibonacci bands for the gapless census (alias). */
-export declare const FIBONACCI_BANDS: readonly [55, 34, 21];
+export declare const FIBONACCI_BANDS: readonly [55, 34, 21, 13];
 /** Exact-count law — census and gates hold at one number, never a range. */
 export declare const NOT_LESS_NOT_MORE_LAW = "not less, not more: exactly 110 unfolded index.ts (55+34+21 gapless), exactly 108 folded (\u03C7=\u22122), exactly 432 dimension gates (4\u00D7108) \u2014 HARD at gate/weave/verify/precommit/build";
 /** Dependency-free vault — agnostic concat (fold, UUID, merge) lives here only. */
@@ -113,7 +114,7 @@ export type ComputationalLimitSnapshot = {
 /** Gapless census — consecutive Fibonacci bands sum exactly to 110 (reuse harmonicBands from lake/icons). */
 export declare function verifyGaplessCensus(count: number): {
     count: number;
-    target: 110;
+    target: 123;
     gapless: boolean;
     bands: number[];
     bandsMatch: boolean;
@@ -134,7 +135,7 @@ export declare function verifyFoldedCensus(unfolded?: number): {
     root: string;
 };
 /** Exactly 432 = 4 × 108 — facet/gate count, not file count. */
-export declare function verifyDimensionGates(folded?: number): {
+export declare function verifyDimensionGates(_folded?: number): {
     loops: 4;
     folded: number;
     gates: number;
@@ -163,7 +164,7 @@ export declare function discoverSrcIndexes(root: string, indexTsFiles?: readonly
 /** Incomplete automount indexes fail the gate — complete ones are discovered and displayed. */
 export declare function scanIncompleteIndexViolations(root: string, indexTsFiles: readonly string[]): ComputationalViolation[];
 /** VitePress automount — every complete discovered index; paths only, body at runtime. */
-export declare function vitepressAutomountPaths(_locale?: 'gla' | 'en' | 'bg'): {
+export declare function vitepressAutomountPaths(locale?: 'gla' | 'en' | 'bg'): {
     params: {
         page: string;
     };
@@ -296,7 +297,10 @@ export declare function foldingEntropy(root: string): {
 /** Theorem sources (user law 2026-07-16: every card page exposes the source code of how all is
  * achieved). For each registry atom, the provedBy function's text is brace-matched out of its home
  * module and emitted as theorem-sources.json — the paper page shows the actual proof machine. */
-export declare function theoremSourcesJson(root: string): string;
+export declare function theoremSourcesJson(root: string, atoms?: readonly {
+    provedBy: string;
+    home: string;
+}[]): string;
 /** The prose-token monitor (user law 2026-07-16: monitor token usage coming from prose instead of
  * token-free code). Reuses the strict scanner's character-walk (stringMass): per sealed file, bytes
  * split into code (incl. ${} interpolations — computed, token-free), comment, templateText (prose
@@ -641,3 +645,19 @@ export declare function theTitleIsAlgebraComputedAMissingIdentityIsAGapToSolveNo
     statement: string;
     boundary: string;
 };
+export interface HardcodedViolation {
+    file: string;
+    line: number;
+    type: 'hardcoded-on-true' | 'hardcoded-number' | 'hardcoded-string';
+    content: string;
+    suggestion: string;
+}
+export interface TheoremComputeAudit {
+    total: number;
+    violations: HardcodedViolation[];
+    facetsWithOnTrue: number;
+    files: string[];
+    computes: boolean;
+}
+export declare function auditTheoremsComputeWirelessly(root: string, theoremFiles: string[]): TheoremComputeAudit;
+export declare function theoremComputeGateMessage(audit: TheoremComputeAudit): string;

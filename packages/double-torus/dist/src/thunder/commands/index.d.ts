@@ -1,4 +1,4 @@
-import type { CommandsRegistry, ConceptCommandName, ConceptCommandResult, MindMatrix } from '../../wind/types';
+import type { CommandsRegistry, ConceptCommandName, ConceptCommandResult, MindMatrix } from '../../types';
 import type { DeveloperCommandName, DeveloperCommandResult } from '../../quantum/heaven/mind';
 export declare function mcpCodebase(matrix?: MindMatrix): {
     understandable: boolean;
@@ -53,6 +53,15 @@ export declare function executeConceptCommand(command: ConceptCommandName, input
     readonly atom?: string;
     readonly query?: string;
 }, matrix?: MindMatrix): ConceptCommandResult;
+/** The ONE command-result core (twin-shell parameterization, quantum:dry-dupe worklist): developerResult (here)
+ * and result (heaven/balance) shared one body differing only in the uuid PREFIX — the prefix is the parameter. */
+export declare function commandResult<C extends string>(prefix: string, command: C, ok: boolean, summary: string, data: unknown): {
+    command: C;
+    ok: boolean;
+    uuid: string;
+    summary: string;
+    data: unknown;
+};
 export declare function executeDeveloperCommand(command: DeveloperCommandName, _input?: {
     readonly atom?: string;
 }, matrix?: MindMatrix): DeveloperCommandResult;

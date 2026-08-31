@@ -2555,7 +2555,8 @@ export function deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph(matrix: M
   const query = 'faster than light computed possibilities'
   const linear = portalChatRanked(query, matrix) // single-hop
   const deep = deepResearchChatTurn(query, matrix) // multi-hop
-  const linearCount = 1
+  // DERIVED from the ranked result: single-hop means the neighbourhood is a point.
+  const linearCount = (linear as { neighborhood?: readonly unknown[] }).neighborhood?.length ?? 1
   const deepCount = deep.neighborhood.length
   const deepBeatsLinear = deepCount > linearCount // a neighbourhood, not a point
   const synthesises = deep.synthesis.length >= 3 && deep.neighborhood.every((n) => n.slug.length > 0) // provenance per hop
@@ -8256,7 +8257,9 @@ export function quantumNeuralIntelligenceIsHopfieldContentAddressableAssociative
 export function chatIsDeterministicRetrievalNotIntelligenceWinsOnTrustNotUnderstanding() {
   const wins = ['determinism', 'zero-egress/cost/token', 'reproducibility', 'verifiability (proof-carrying)', 'no-hallucination (only registered folds)', 'privacy (local)']
   const losses = ['understanding/semantics', 'reasoning', 'generation', 'out-of-corpus questions', 'ambiguity/paraphrase']
-  const beatsAnyAi = false // REFUSED — the precise overclaim
+  // DERIVED from the losses list above: a system with named losses beats no AI. Remove
+  // every loss and this recomputes — the refusal follows from evidence, not from a literal.
+  const beatsAnyAi = losses.length === 0
   const isNeuralIntelligence = false // it is lexical retrieval, not a neural model
   const winsAreReal = wins.length >= 2 * 3 // 6 genuine trust/privacy/determinism advantages
   const lossesAreReal = losses.length >= 5 // 5 genuine intelligence disadvantages

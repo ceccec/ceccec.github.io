@@ -19,16 +19,21 @@ export type QuantumJob = {
 export type JobSubmission = {
   readonly jobId: string
   readonly provider: string
-  readonly queuePosition?: number
-  readonly estimatedWaitTime_s?: number
+  /** null when no provider was contacted — never a guessed position. */
+  readonly queuePosition: number | null
+  readonly estimatedWaitTime_s: number | null
+  readonly submitted: boolean
+  readonly reason?: string
   readonly receipt: string
 }
 
 export type JobStatus = {
   readonly id: string
-  readonly status: 'queued' | 'running' | 'completed' | 'failed'
-  readonly progress?: number // 0-100
+  /** 'unknown' is a first-class state: no connection means no status, not a guess. */
+  readonly status: 'queued' | 'running' | 'completed' | 'failed' | 'unknown'
+  readonly progress: number | null
   readonly errorMessage?: string
+  readonly reason?: string
   readonly receipt: string
 }
 
@@ -41,18 +46,20 @@ export async function submitQuantumJob(
   provider: 'ibm' | 'ionq' | 'simulator' = 'simulator',
   name?: string
 ): Promise<JobSubmission> {
-  const jobId = toUuid(`job:${provider}:${Date.now()}`)
+  // Content-addressed from the request itself: Date.now() made the same submission
+  // produce a different id on every call, so nothing could be reconciled afterwards.
+  const jobId = toUuid(`job:${provider}:${name ?? 'unnamed'}:${JSON.stringify(circuit ?? null)}`)
 
-  // Mock submission: in production, this calls provider API
-  const queuePosition = floor(Math.random() * 100) + 1
-  const estimatedWait = queuePosition * floor(Math.random() * 5) + 10
-
+  // No provider API is wired here. Queue position and wait were drawn from
+  // Math.random(), which invented a position in a queue that does not exist.
   return {
     jobId,
     provider,
-    queuePosition,
-    estimatedWaitTime_s: estimatedWait,
-    receipt: toUuid(`submission:${provider}:${jobId}`)
+    queuePosition: null,
+    estimatedWaitTime_s: null,
+    submitted: false,
+    reason: 'no provider API is wired in this module; nothing was submitted',
+    receipt: toUuid(`submission:not-submitted:${provider}:${jobId}`)
   }
 }
 
@@ -60,15 +67,15 @@ export async function submitQuantumJob(
  * Poll job status
  */
 export async function pollJobStatus(jobId: string): Promise<JobStatus> {
-  // Mock polling: in production, calls provider API with job ID
-  const statuses: Array<JobStatus['status']> = ['queued', 'running', 'completed']
-  const status = statuses[floor(Math.random() * statuses.length)]
-
+  // The previous body chose the job's status at RANDOM from ['queued','running',
+  // 'completed'] — so polling the same job twice could report it completed, then queued.
+  // With no provider connection the status is simply unknown.
   return {
     id: jobId,
-    status,
-    progress: status === 'running' ? floor(Math.random() * 100) : status === 'completed' ? 100 : 0,
-    receipt: toUuid(`poll:${jobId}:${status}`)
+    status: 'unknown',
+    progress: null,
+    reason: 'no provider API is wired in this module',
+    receipt: toUuid(`poll:unknown:${jobId}`)
   }
 }
 
@@ -94,6 +101,7 @@ export async function waitForJob(
       return {
         id: jobId,
         status: 'failed',
+        progress: null,
         errorMessage: `Job exceeded maximum wait time of ${maxWaitTime_s}s`,
         receipt: toUuid(`timeout:${jobId}`)
       }
@@ -114,12 +122,14 @@ export async function getJobResult(jobId: string): Promise<{
   readonly measurement: Record<string, number>
   readonly receipt: string
 }> {
-  // Mock result: in production, calls provider API
+  // No provider is contacted here. The previous body returned status 'success' with a
+  // fabricated 1000-shot histogram { '0': 512, '1': 488 } — a plausible-looking result
+  // for a job that never ran. Returning empty and saying so is the only honest option.
   return {
-    result: { status: 'success', data: 'mock-result' },
-    shots: 1000,
-    measurement: { '0': 512, '1': 488 },
-    receipt: toUuid(`result:${jobId}`)
+    result: { status: 'not-executed', reason: 'no provider API is wired in this module' },
+    shots: 0,
+    measurement: {},
+    receipt: toUuid(`result:not-executed:${jobId}`)
   }
 }
 
@@ -128,16 +138,15 @@ export async function getJobResult(jobId: string): Promise<{
  */
 export function jobQueueStatus(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('job-queue-status', matrix, () => {
-    const activeJobs = floor(Math.random() * 50) + 1
-    const queuedJobs = floor(Math.random() * 100) + 1
-    const avgWaitTime = floor(Math.random() * 300) + 30
-
+    // Queue depth and wait time were drawn from Math.random(), so this reported a
+    // different "status" on every call for a queue that does not exist. There is no
+    // queue to inspect without a provider connection.
     return {
-      activeJobs,
-      queuedJobs,
-      avgWaitTime_s: avgWaitTime,
-      statement: `Queue: ${activeJobs} active, ${queuedJobs} queued, avg wait ${avgWaitTime}s`,
-      receipt: toUuid('job-queue-summary')
+      activeJobs: null,
+      queuedJobs: null,
+      avgWaitTime_s: null,
+      statement: 'Queue state is unknown: no provider connection exists in this module.',
+      receipt: toUuid('job-queue-summary:unknown')
     }
   })
 }

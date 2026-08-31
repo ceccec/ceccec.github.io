@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 /** One amplitude slot in the discrete wavefunction proxy. */
 export type QuantumDynamicsAmplitude = {
     basis: string;
@@ -31,8 +31,8 @@ export type QuantumDynamicsSimulationPaint = {
 };
 export { completeQuantumSolutionsImplemented } from '../../heaven/compute';
 export { quantumSimulation } from '../../fire/li';
-export { simulatorsLiveInZero, decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, } from '../../fire/physics';
-export { chsh, markovStep, markovEvolve, stationary, hopfieldStore, hopfieldRecall, hopfieldEnergy, } from '../../mountain/vortex';
+export { simulatorsLiveInZero, decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator } from '../../fire/physics';
+export { chsh, markovStep, markovEvolve, stationary, hopfieldStore, hopfieldRecall, hopfieldEnergy } from '../../mountain/vortex';
 /** Principle → sealed fold → honest limit (quantum dynamics primer mapping). */
 export type QuantumDynamicsMapping = {
     readonly principle: string;
@@ -161,12 +161,12 @@ export declare function quantumStateEvolutionDecoded(at?: number, matrix?: MindM
     decoded: boolean;
     at: number;
     phaseIndex: number;
-    phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+    phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
     mappings: ({
         primitive: string;
         measured: string;
         entangled: boolean;
-        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         receipt: string;
         steps?: undefined;
         stationary?: undefined;
@@ -204,7 +204,7 @@ export declare function quantumStateEvolutionDecoded(at?: number, matrix?: MindM
     } | {
         primitive: string;
         frames: number;
-        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         receipt: string;
         measured?: undefined;
         entangled?: undefined;
@@ -456,12 +456,12 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -499,7 +499,7 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -933,12 +933,12 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         mappings: ({
             primitive: string;
             measured: string;
             entangled: boolean;
-            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
             receipt: string;
             steps?: undefined;
             stationary?: undefined;
@@ -976,7 +976,7 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
         } | {
             primitive: string;
             frames: number;
-            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
             receipt: string;
             measured?: undefined;
             entangled?: undefined;
@@ -1334,6 +1334,31 @@ export declare function quantizeContentAddressPreimageSearchGroverIsRootNQueries
         facet: string;
         on: boolean;
     }[];
+    statement: string;
+    boundary: string;
+};
+/** theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayProblem — USE THE QUANTUM COMPUTER TO PROVE (user,
+ *  2026-07-27: "use the quantum computer to prove"). It runs Grover's search — the algorithm most often mistaken for
+ *  "quantum solves NP" — on the state-vector simulator and lets the computation settle it. Grover finds the marked item
+ *  among N=2ⁿ with high probability in ~(τ/8)√N iterations. That √N is a QUADRATIC speedup over the classical N/2 — but
+ *  √(2ⁿ) = 2^(n/2) is STILL EXPONENTIAL in the problem size n. So Grover does NOT collapse NP into P: the quantum computer
+ *  PROVES its own limit by computing it, and cannot solve P vs NP or any Clay problem. No Math.* here — the kernel's
+ *  grover computes the iteration count; this fold only reads it and multiplies (quantum arithmetic, not host Math). */
+export declare function theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayProblem(matrix?: MindMatrix): {
+    computes: boolean;
+    runs: {
+        n: number;
+        size: number;
+        iterations: number;
+        markedProbability: number;
+        found: boolean;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
     statement: string;
     boundary: string;
 };

@@ -1,4 +1,5 @@
-import type { MindMatrix } from '../../wind/types';
+import * as __ns_mountain_geometry from '../../mountain/geometry';
+import type { MindMatrix } from '../../types';
 export declare function deploySecretUuidSignedObservers(matrix?: MindMatrix): {
     deployed: boolean;
     observers: number;
@@ -80,9 +81,24 @@ export declare function encryptionTrinitiesCompleteInOrder(matrix?: MindMatrix):
     statement: string;
     boundary: string;
 };
-/** Sealed demo RSA moduli only — teaching 61×53 plus Shor textbook semiprimes. NEVER production sizes. */
+/**
+ * Sealed catalog RSA moduli for production browser reverse tools — teaching 61×53 plus Shor textbook semiprimes.
+ * moduliClass=sealed-catalog · NEVER production RSA break sizes.
+ * Public name = SEALED_CATALOG_RSA_MODULI (SEALED_CATALOG_RSA_MODULI is a deprecated internal alias only).
+ */
+export declare const SEALED_CATALOG_RSA_MODULI: readonly [number, number, number, number];
+/** @deprecated Use SEALED_CATALOG_RSA_MODULI — do not surface “demo” in UI/MCP copy. */
 export declare const DEMO_RSA_MODULI: readonly [number, number, number, number];
-/** Hard bit ceiling for demo reverse — derived from sealed teaching n=61×53 (bits of 3233). */
+/**
+ * Production browser reverse tools — UI/toolbox/MCP reverse surfaces users run.
+ * Distinct from production RSA break (still refuseBeyond). Pair: reverse tools ≠ RSA break.
+ */
+export declare const PRODUCTION_BROWSER_REVERSE_TOOLS: readonly ["encryption-reverse-verify", "sealed-catalog-rsa-measure", "local-reverse-timed", "local-reverse-timed-vs-standards", "max-bits-crypto", "standards-audit"];
+/** @deprecated Quarantined tool id — prefer sealed-catalog-rsa-measure in UI. */
+export declare const DEPRECATED_DEMO_RSA_MEASURE_TOOL_ID: "demo-rsa-measure";
+/** Hard bit ceiling for sealed-catalog reverse — derived from teaching n=61×53 (bits of 3233). */
+export declare const SEALED_CATALOG_RSA_BIT_CEILING: number;
+/** @deprecated Use SEALED_CATALOG_RSA_BIT_CEILING — do not surface “demo” in UI/MCP copy. */
 export declare const DEMO_RSA_BIT_CEILING: number;
 /**
  * Odd over-ceiling probe — MUST stay odd + safe-integer so refuse facets exercise the bit-ceiling branch
@@ -90,19 +106,63 @@ export declare const DEMO_RSA_BIT_CEILING: number;
  */
 export declare const ODD_OVER_CEILING_RSA_PROBE: number;
 /**
- * Far-above-ceiling odd safe integer — RSA-shaped production refuse probe (bits ≫ DEMO_RSA_BIT_CEILING).
+ * Far-above-ceiling odd safe integer — RSA-shaped production refuse probe (bits ≫ SEALED_CATALOG_RSA_BIT_CEILING).
  * HONEST: Bitcoin uses secp256k1 ECDSA, not RSA — see refuseBitcoinMainnetMaterial for chain-key refuse.
  */
 export declare const FAR_OVER_CEILING_RSA_PROBE: number;
 /** Cap parallel reverse workers: min(cpus, vortex ring length) — never unbounded. */
 export declare function encryptionReverseWorkerCap(cpuCount?: number): number;
-/** Reject out-of-demo moduli before any factor work (honesty gate). */
+/** Classical 64-bit word — architectureRequirement=classical-64bit (NOT QPU). */
+export declare const CLASSICAL_64BIT_WORD_BITS: number;
+/**
+ * Local reverse path uses Number.isSafeInteger — bit WIDTH of JS safe integers.
+ * Number.MAX_SAFE_INTEGER = 2^53 − 1; use ceil(log2(MAX+1)) so float rounding cannot yield 54.
+ */
+export declare const JS_SAFE_INTEGER_BITS: number;
+/** AES-256 classical strength named by sealed max-bits theorem (external bulk cipher). */
+export declare const AES256_CLASSICAL_BITS: number;
+/** Digit-folder mod-9 inverse domain 0..9 — ceil(log2(9)). */
+export declare const DIGIT_INVERSE_DOMAIN_BITS: number;
+/**
+ * Probe CPU parallelism at call time — browser hardwareConcurrency or Node os.
+ * Browser-safe · no static node:os import (vite).
+ */
+export declare function probeLocalCpuCount(): number;
+export type MaxBitsHardwareCapabilities = {
+    readonly cpuCount: number;
+    readonly workerCap: number;
+    readonly heapCapMb: number;
+    readonly classicalWordBits: number;
+    readonly jsSafeIntegerBits: number;
+    readonly hardwareReverseCapacityBits: number;
+    readonly demoSampleCeilingBits: number;
+    readonly encryptTheoremBits: number;
+    readonly inverseTheoremBits: number;
+    readonly reverseClaimBits: number;
+    readonly demoIsNotHardwareCeiling: boolean;
+    readonly qpuRequired: false;
+    readonly receipt: string;
+};
+/**
+ * Max-bits boundary from hardware capabilities at call time.
+ * Formula: hardwareReverseCapacityBits = min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS);
+ * reverseClaimBits = min(SEALED_CATALOG_RSA_BIT_CEILING, hardwareReverseCapacityBits);
+ * SEALED_CATALOG_RSA_MODULI = sample set only — NEVER pretends to be the hardware ceiling.
+ * Pair: bits/hardware
+ */
+export declare function maxBitsFromHardwareCapabilities(cpuHint?: number): MaxBitsHardwareCapabilities;
+/**
+ * Boundary string recomputed from hardware ∩ refuseBeyond ∩ sealed theorem constants.
+ * SEALED_CATALOG_RSA_MODULI named as demo sample — not the hardware ceiling.
+ */
+export declare function maxBitsHardwareBoundaryText(hw?: MaxBitsHardwareCapabilities, refuseBeyond?: boolean): string;
+/** Reject out-of-catalog moduli before any factor work (honesty gate — refuseBeyond for production RSA break). */
 export declare function refuseNonDemoRsaModulus(n: number): {
     allowed: boolean;
     bits: number;
     reason: string;
 };
-/** Explicit Bitcoin/mainnet refuse — ECDSA/secp256k1 chain keys never enter demo RSA reverse. */
+/** Explicit Bitcoin/mainnet refuse — ECDSA/secp256k1 chain keys never enter sealed-catalog RSA reverse. */
 export declare function refuseBitcoinMainnetMaterial(input: string): {
     allowed: false;
     reason: string;
@@ -161,6 +221,28 @@ export declare function encryptDecryptQuantumTools(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** chatEncryptedWithAllFourKeysUnboundedKeyspace — the chat turn is encrypted under the composite of all FOUR
+ * navigation-cross keys (user, 2026-07-25: "the chat itself is encrypted with all 4 keys providing infinite
+ * cryptography"). A keystream XOR keyed by merkle(referrer, id, pairA, pairB) hides the plaintext and recovers it with
+ * all four keys; dropping any one key fails to decrypt. "Infinite" is the honest, structural sense: the key tuple
+ * contains arbitrary-length strings and the referrer chains every turn, so the keyspace is UNBOUNDED and non-repeating
+ * (aperiodic, no finite period) — NOT infinite entropy per message, and a DETERMINISTIC key derived from observable
+ * coordinates gives all-4-keys access-control + tamper-evidence, NOT information-theoretic secrecy. [[tampering-cost-crypto-honesty]] [[feedback-no-finiteness-assumption-fractal-aperiodic]] */
+export declare function chatEncryptedWithAllFourKeysUnboundedKeyspace(matrix?: MindMatrix): {
+    encrypted: boolean;
+    recovers: boolean;
+    needsAllFour: boolean;
+    unbounded: boolean;
+    distinctKeys: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /**
  * Sync demo reverse over sealed moduli — modeled Shor reduction (period→factor), no workers.
  * Parallel worker pool lives in the Node CLI exit only (browser-safe leaf).
@@ -192,7 +274,7 @@ export declare function demoRsaReverseSync(): {
     boundary: string;
 };
 /**
- * Demo reverse pool — sync preferred (sealed modeledShorFactorToyModulus re-gates refuse).
+ * Production browser reverse pool — sync preferred (sealed modeledShorFactorToyModulus re-gates refuse).
  * Dropped eval worker_threads (P2): no duplicated Shor, no in-worker drift, browser-safe leaf.
  */
 export declare function parallelToyRsaReversePool(cpuHint?: number): Promise<{
@@ -208,17 +290,44 @@ export declare function parallelToyRsaReversePool(cpuHint?: number): Promise<{
     mode: 'sync-sealed';
     boundary: string;
 }>;
-/** Glyph UUID + trinity crack + encrypt↔decrypt tools + demo Shor reverse + no-unhackable proof. */
-export declare function encryptionReverseVerify(matrix?: MindMatrix): {
-    verified: boolean;
-    crack: boolean;
-    trinitiesOrdered: boolean;
-    toolsReady: boolean;
-    demoReverse: boolean;
-    glyphBonus: number;
-    workerCap: number;
-    demoFactors: string[];
-    count: number;
+/** Pure: boundary names SEALED_CATALOG_RSA_MODULI as sealed-catalog sample (not hardware ceiling). Pair: bits/hardware */
+export declare function reverseBoundaryNamesSealedCatalogRsaModuli(boundary: string): boolean;
+/** @deprecated Prefer reverseBoundaryNamesSealedCatalogRsaModuli */
+export declare const reverseBoundaryNamesDemoRsaModuli: typeof reverseBoundaryNamesSealedCatalogRsaModuli;
+/** Pure: boundary reports hardware-computed word/worker/heap fields (not static DEMO keep). */
+export declare function reverseBoundaryNamesHardwareBits(boundary: string, hw: MaxBitsHardwareCapabilities): boolean;
+/**
+ * Reverse-verify boundary — recomputed from hardware ∩ refuseBeyond ∩ theorem constants.
+ * Pair: bits/hardware · SEALED_CATALOG_RSA_MODULI = sample only.
+ */
+export declare function encryptionReverseVerifyBoundary(hw?: MaxBitsHardwareCapabilities, refuseBeyond?: boolean): string;
+/** Glyph UUID + foldPair recomputeMatch + encrypt↔decrypt tools + demo Shor reverse. */
+/** useCasesBeyondQuantum — research each USE CASE of the production tools, map it to a
+ *  SOLUTION, its STANDARD, its SCALE, and its BEYOND-QUANTUM verdict (user, 2026-07-27: "research each use case and
+ *  develop solutions including forensics and beyond quantum analysis"). The analysis is the documented complexity of
+ *  the two quantum attacks: Grover 1996 gives only a QUADRATIC speedup on unstructured search, so it HALVES the
+ *  effective security of a hash preimage (SHA-256 → 2^128 quantum work, still infeasible); Shor 1994 breaks factoring
+ *  and discrete-log in POLYNOMIAL time, so RSA/ECC CONFIDENTIALITY dies while hash INTEGRITY does not. Verdict:
+ *  integrity, tamper-evidence and FORENSICS (chain-of-custody, notarization) are quantum-RESILIENT on these hash-based
+ *  seals; CONFIDENTIALITY is the honest gap — it needs lattice PQC (ML-KEM, FIPS 203), NOT provided here. Cited results
+ *  + NIST PQC standards, applied not re-proved. certified=false. */
+export declare function useCasesBeyondQuantum(matrix?: MindMatrix): {
+    computes: boolean;
+    useCases: {
+        receipt: string;
+        id: string;
+        useCase: string;
+        solution: string;
+        standard: string;
+        scale: string;
+        forensic: boolean;
+        quantumThreat: string;
+        quantumResilient: boolean;
+        why: string;
+    }[];
+    forensicCount: number;
+    resilientCount: number;
+    groverQuantumBits: number;
     facets: ({
         receipt: string;
         facet: string;
@@ -230,12 +339,42 @@ export declare function encryptionReverseVerify(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-/** npm run quantum:encryption-reverse-verify — sync folds + capped worker_threads demo reverse. */
+export declare function encryptionReverseVerify(matrix?: MindMatrix): {
+    verified: boolean;
+    recomputeMatch: boolean;
+    /** @deprecated alias of recomputeMatch */
+    crack: boolean;
+    definitionalNotCryptanalysis: boolean;
+    trinitiesOrdered: boolean;
+    toolsReady: boolean;
+    demoReverse: boolean;
+    glyphBonus: number;
+    workerCap: number;
+    demoFactors: string[];
+    boundaryNamesDemo: boolean;
+    boundaryNamesHw: boolean;
+    hardware: MaxBitsHardwareCapabilities;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    claySolvedByThisFold: 0;
+    certified: false;
+    qpuRequired: false;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:encryption-reverse-verify — sync folds + production browser sealed-catalog reverse. */
 export declare function runEncryptionReverseVerifyGuardedExit(_root: string, _argv?: readonly string[]): Promise<number>;
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
- * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · prove/local-magnitudes-iso · iso/pqc-catalog · audit/standards
- * Route: /en/quantum-encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #prove-local-magnitudes-iso · #iso-pqc-catalog · #quantum-standards-audit)
+ * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · max-bits/crypto · prove/local-magnitudes-iso · iso/pqc-catalog · poles/cross-pqc · audit/standards
+ * Route: /en/encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #secp256k1-prime · #quantum-standards-audit)
  */
 export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -266,13 +405,19 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
     };
     reverse: {
         verified: boolean;
+        recomputeMatch: boolean;
+        /** @deprecated alias of recomputeMatch */
         crack: boolean;
+        definitionalNotCryptanalysis: boolean;
         trinitiesOrdered: boolean;
         toolsReady: boolean;
         demoReverse: boolean;
         glyphBonus: number;
         workerCap: number;
         demoFactors: string[];
+        boundaryNamesDemo: boolean;
+        boundaryNamesHw: boolean;
+        hardware: MaxBitsHardwareCapabilities;
         count: number;
         facets: ({
             receipt: string;
@@ -282,6 +427,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             receipt: string;
         })[];
         root: string;
+        claySolvedByThisFold: 0;
+        certified: false;
+        qpuRequired: false;
         statement: string;
         boundary: string;
     };
@@ -490,7 +638,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -588,7 +736,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         computes: boolean;
         localSecurityProved: boolean;
         means: string;
-        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
         inventory: {
             computes: boolean;
             components: readonly LocalNovelEncryptionComponent[];
@@ -635,13 +783,19 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         reverse: {
             verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
             crack: boolean;
+            definitionalNotCryptanalysis: boolean;
             trinitiesOrdered: boolean;
             toolsReady: boolean;
             demoReverse: boolean;
             glyphBonus: number;
             workerCap: number;
             demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
             count: number;
             facets: ({
                 receipt: string;
@@ -651,6 +805,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 receipt: string;
             })[];
             root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
             statement: string;
             boundary: string;
         };
@@ -763,7 +920,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -892,7 +1049,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -1150,7 +1307,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -1248,7 +1405,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             computes: boolean;
             localSecurityProved: boolean;
             means: string;
-            unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+            unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
             inventory: {
                 computes: boolean;
                 components: readonly LocalNovelEncryptionComponent[];
@@ -1295,13 +1452,19 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             reverse: {
                 verified: boolean;
+                recomputeMatch: boolean;
+                /** @deprecated alias of recomputeMatch */
                 crack: boolean;
+                definitionalNotCryptanalysis: boolean;
                 trinitiesOrdered: boolean;
                 toolsReady: boolean;
                 demoReverse: boolean;
                 glyphBonus: number;
                 workerCap: number;
                 demoFactors: string[];
+                boundaryNamesDemo: boolean;
+                boundaryNamesHw: boolean;
+                hardware: MaxBitsHardwareCapabilities;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -1311,6 +1474,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     receipt: string;
                 })[];
                 root: string;
+                claySolvedByThisFold: 0;
+                certified: false;
+                qpuRequired: false;
                 statement: string;
                 boundary: string;
             };
@@ -1423,7 +1589,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: number;
+                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -1552,7 +1718,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -1722,7 +1888,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -1791,7 +1957,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     tracksClassical: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 physicalFtlClaim: 0;
                 facets: ({
@@ -1969,7 +2134,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         tracksClassical: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     physicalFtlClaim: 0;
                     facets: ({
@@ -2132,7 +2296,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             tracksClassical: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         physicalFtlClaim: 0;
                         facets: ({
@@ -2248,7 +2411,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                        parallel: readonly [];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -2260,7 +2423,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                     resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
-                    shelve: typeof import("../../quantum/apps").rosettaShelve;
+                    shelve: typeof import("../../learning").rosettaShelve;
                     byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
                     resolveRoute: (route: string) => {
                         surface: import("../../quantum/apps").RosettaCoreSurface;
@@ -2327,7 +2490,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../wind/types").ConceptCommandName[];
+                            siblings: import("../../types").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -2427,6 +2590,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         on: boolean;
                     }[];
                     root: string;
+                    pair: "rosetta/core";
+                    cli: string;
                     statement: string;
                     boundary: string;
                 };
@@ -2604,9 +2769,30 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         thresholdMs: number;
         anySlow: boolean;
         fipsCount: number;
-        mlKemParams: string[];
-        mlDsaParams: string[];
-        slhDsaParams: string[];
+        mlKemParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        mlDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        slhDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
         eccShorBreaks: boolean;
         eccFamily: string;
         catalog: {
@@ -2632,7 +2818,14 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 id: string;
                 name: string;
                 family: string;
-                demoParams: string[];
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
                 standards: string[];
             };
             families: {
@@ -2641,10 +2834,19 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 family: string;
                 name: string;
                 standards: string[];
-                demoParams: string[];
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
                 role: string;
                 note: string;
             }[];
+            pkMonotone: boolean;
+            everyParamSourced: boolean;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -2879,6 +3081,679 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         statement: string;
         boundary: string;
     };
+    maxBits: {
+        computes: boolean;
+        encryptMaxBits: number;
+        decryptMaxBits: number;
+        inverseMaxBits: number;
+        reverseMaxBits: number;
+        hardwareReverseCapacityBits: number;
+        demoSampleCeilingBits: number;
+        teachingRsaMaxBits: number;
+        structuralUuidBits: number;
+        demoMaxBits: number;
+        refuseBeyond: boolean;
+        toolSurface: "production-browser";
+        moduliClass: "sealed-catalog";
+        sealedCatalogModuliOnly: true;
+        productionBrowserReverseToolsOn: boolean;
+        productionReverseRefused: true;
+        workerCap: number;
+        hardware: MaxBitsHardwareCapabilities;
+        certified: false;
+        claySolvedByThisFold: 0;
+        qpuRequired: false;
+        wireOneTbitProvedAtCallTime: boolean;
+        provenBy: {
+            readonly encryptMaxBits: "AES256_CLASSICAL_BITS theorem · fusionCipher AES-256-GCM named";
+            readonly decryptMaxBits: "AES256_CLASSICAL_BITS theorem · teaching RSA Euler ≤ SEALED_CATALOG_RSA_BIT_CEILING sample";
+            readonly inverseMaxBits: "DIGIT_INVERSE_DOMAIN_BITS theorem · directionalTrinity mod-9 units";
+            readonly reverseMaxBits: "min(SEALED_CATALOG_RSA_BIT_CEILING sealed-catalog, hardwareReverseCapacityBits) · refuseNonDemoRsaModulus";
+            readonly hardwareReverseCapacityBits: "min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS) at call time";
+            readonly refuseBeyond: "productionCeilingRefuseHolds · farOverCeilingRefuseHolds · refuseBitcoinMainnetMaterial";
+            readonly workerCap: "encryptionReverseWorkerCap(probeLocalCpuCount()) ≤ VORTEX_SEQUENCE.length";
+            readonly wireHonesty: "proveOneTbitRealtimeEncryptionClaim.wire.provedAtCallTime=false";
+            readonly toolSurface: "PRODUCTION_BROWSER_REVERSE_TOOLS · toolSurface=production-browser ≠ production RSA break";
+        };
+        tools: {
+            ready: boolean;
+            roundTrip: boolean;
+            rsaRoundTrip: boolean;
+            cipher: string;
+            teaching: {
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+            };
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        reverseVerify: {
+            verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
+            crack: boolean;
+            definitionalNotCryptanalysis: boolean;
+            trinitiesOrdered: boolean;
+            toolsReady: boolean;
+            demoReverse: boolean;
+            glyphBonus: number;
+            workerCap: number;
+            demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
+            statement: string;
+            boundary: string;
+        };
+        localTimed: {
+            computes: boolean;
+            timed: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                aggregateOpsPerSec: number;
+                rows: LocalEncryptionReverseRow[];
+                moduli: number[];
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                sync: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                pair: string;
+                cli: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            comparisons: LocalReverseVsStandardRow[];
+            table: LocalReverseVsStandardRow[];
+            audit: {
+                computes: boolean;
+                audits: QuantumAuditRow[];
+                gaps: QuantumAuditRow[];
+                partials: QuantumAuditRow[];
+                passes: QuantumAuditRow[];
+                gapCount: number;
+                partialCount: number;
+                passCount: number;
+                coveredCount: number;
+                count: number;
+                dimensions: {
+                    computes: boolean;
+                    rows: DimensionAuditRow[];
+                    coveredCount: number;
+                    passCount: number;
+                    partialCount: number;
+                    gapCount: number;
+                    dimensionGates: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                reverseCount: number;
+                inverseCount: number;
+                forwardCount: number;
+                certified: boolean;
+                fipsValidated: boolean;
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                route: string;
+                pair: string;
+                cli: string;
+                statement: string;
+                boundary: string;
+            };
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            claySolvedByThisFold: 0;
+            breaksNistPqc: false;
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            demoMaxBits: number;
+            generateMs: number;
+            reverseMs: number;
+            aggregateOpsPerSec: number;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: string;
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        beyond: {
+            computes: boolean;
+            timings: {
+                catalogMs: number;
+                familyMs: number;
+                shorMapMs: number;
+                taxonomyMs: number;
+                migrateMs: number;
+                trinityMs: number;
+                rsaSuiteMs: number;
+                rsaGenerateMs: number;
+                rsaReverseMs: number;
+            };
+            thresholdMs: number;
+            anySlow: boolean;
+            fipsCount: number;
+            mlKemParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            mlDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            slhDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            eccShorBreaks: boolean;
+            eccFamily: string;
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            family: {
+                computes: boolean;
+                prefer: "hash" | "auto" | "code" | "lattice";
+                selected: {
+                    id: string;
+                    name: string;
+                    family: string;
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    standards: string[];
+                };
+                families: {
+                    receipt: string;
+                    id: string;
+                    family: string;
+                    name: string;
+                    standards: string[];
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    role: string;
+                    note: string;
+                }[];
+                pkMonotone: boolean;
+                everyParamSourced: boolean;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            shorMap: {
+                computes: boolean;
+                families: {
+                    receipt: string;
+                    family: string;
+                    shor: string;
+                    grover: string;
+                    pqcReplace: string;
+                    iso: string;
+                }[];
+                brokenCount: number;
+                safeCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            taxonomy: {
+                computes: boolean;
+                rows: {
+                    receipt: string;
+                    layer: string;
+                    iso: string;
+                    nist: string;
+                    repo: string;
+                    shor: string;
+                    role: string;
+                }[];
+                merkleRoot: string;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            migrate: {
+                computes: boolean;
+                steps: {
+                    receipt: string;
+                    id: string;
+                    title: string;
+                    done: boolean;
+                    note: string;
+                }[];
+                openCount: number;
+                doneCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            rsa: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                workers: number;
+                moduli: number[];
+                thresholdMs: number;
+                slowGenerate: boolean;
+                slowReverse: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                reverse: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                timedReceipt: string;
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        oneTbit: {
+            computes: boolean;
+            claimedBitsPerSec: number;
+            /** Primary wire-model answer to “can this encrypt at 1 Tbit/s on the wire?” */
+            provedAtCallTime: boolean;
+            /** Separate honest model that may prove under memo/extent math. */
+            provedAmortizedReuseMemoAtCallTime: boolean;
+            model: OneTbitEncryptModel;
+            measuredBitsPerSec: number;
+            wire: OneTbitModelReceipt;
+            demo: OneTbitModelReceipt;
+            amortized: OneTbitModelReceipt;
+            refused: OneTbitModelReceipt;
+            models: readonly [OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt];
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
     localMagnitudes: {
         computes: boolean;
         perDirection: LocalVsIsoDirectionRow[];
@@ -2888,7 +3763,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         proofOfFalsehood: string;
         structuralMayProve: boolean;
         amortMayProve: boolean;
-        honestyBoundaries: readonly ["NEVER claim ISO certification / FIPS validation — certified=false · isoOfficialStandard=false · fipsValidated=false", "NEVER claim local demo beats ML-KEM for confidentiality — wire-crypto-security-bits magnitudesStronger=false", "local-structural-gates = repo control coverage (refuse policy), NOT wire cryptographic strength", "amortized-reuse-memo = holographic extent vs classical *label* bits — NOT AES-GCM / NOT PQC break resistance", "production reverse refused · Bitcoin/mainnet refused · breaksNistPqc=false · claySolvedByThisFold=0", string];
+        honestyBoundaries: readonly ["NEVER claim ISO certification / FIPS validation — certified=false · isoOfficialStandard=false · fipsValidated=false", "NEVER claim local demo beats ML-KEM for confidentiality — wire-crypto-security-bits magnitudesStronger=false", "local-structural-gates = repo control coverage (refuse policy), NOT wire cryptographic strength", "amortized-reuse-memo = holographic extent vs classical *label* bits — NOT AES-GCM / NOT PQC break resistance", "production reverse refused · Bitcoin/mainnet refused · breaksNistPqc=false", string];
         certified: false;
         isoOfficialStandard: false;
         fipsValidated: false;
@@ -3012,7 +3887,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3110,7 +3985,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             computes: boolean;
             localSecurityProved: boolean;
             means: string;
-            unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+            unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
             inventory: {
                 computes: boolean;
                 components: readonly LocalNovelEncryptionComponent[];
@@ -3157,13 +4032,19 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             reverse: {
                 verified: boolean;
+                recomputeMatch: boolean;
+                /** @deprecated alias of recomputeMatch */
                 crack: boolean;
+                definitionalNotCryptanalysis: boolean;
                 trinitiesOrdered: boolean;
                 toolsReady: boolean;
                 demoReverse: boolean;
                 glyphBonus: number;
                 workerCap: number;
                 demoFactors: string[];
+                boundaryNamesDemo: boolean;
+                boundaryNamesHw: boolean;
+                hardware: MaxBitsHardwareCapabilities;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -3173,6 +4054,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     receipt: string;
                 })[];
                 root: string;
+                claySolvedByThisFold: 0;
+                certified: false;
+                qpuRequired: false;
                 statement: string;
                 boundary: string;
             };
@@ -3285,7 +4169,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: number;
+                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -3414,7 +4298,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3639,7 +4523,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -3779,7 +4663,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3958,7 +4842,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: number;
+                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -4056,7 +4940,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 localSecurityProved: boolean;
                 means: string;
-                unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+                unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
                 inventory: {
                     computes: boolean;
                     components: readonly LocalNovelEncryptionComponent[];
@@ -4103,13 +4987,19 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 reverse: {
                     verified: boolean;
+                    recomputeMatch: boolean;
+                    /** @deprecated alias of recomputeMatch */
                     crack: boolean;
+                    definitionalNotCryptanalysis: boolean;
                     trinitiesOrdered: boolean;
                     toolsReady: boolean;
                     demoReverse: boolean;
                     glyphBonus: number;
                     workerCap: number;
                     demoFactors: string[];
+                    boundaryNamesDemo: boolean;
+                    boundaryNamesHw: boolean;
+                    hardware: MaxBitsHardwareCapabilities;
                     count: number;
                     facets: ({
                         receipt: string;
@@ -4119,6 +5009,9 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         receipt: string;
                     })[];
                     root: string;
+                    claySolvedByThisFold: 0;
+                    certified: false;
+                    qpuRequired: false;
                     statement: string;
                     boundary: string;
                 };
@@ -4231,7 +5124,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: number;
+                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -4360,7 +5253,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: number;
+                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -4614,6 +5507,1597 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         statement: string;
         boundary: string;
     };
+    polesCross: {
+        computes: boolean;
+        polesFormCrossSignatures: boolean;
+        crossIsPartOfMerkabaRosetta: boolean;
+        angle90ReachableThrough60: boolean;
+        allDirectionsCross: boolean;
+        crossSignature: {
+            root: string;
+            forward: string;
+            reverse: string;
+            bidirectional: boolean;
+            nsArm: string;
+            ewArm: string;
+            merkabaBind: string;
+        };
+        directionalCrosses: {
+            index: number;
+            bearing: number;
+            opposite: number;
+            arm: string;
+            bidirectional: boolean;
+            receipt: string;
+        }[];
+        tipSignatures: {
+            pole: "north" | "east" | "south" | "west";
+            bearing: number;
+            x: number;
+            y: number;
+            spinSign: 1 | -1;
+            tipKey: string;
+            signature: string;
+            dual: string;
+            bidirectional: boolean;
+            receipt: string;
+        }[];
+        certificateStructures: {
+            receipt: string;
+            id: string;
+            kind: "sealed-certificate-structure";
+            role: string;
+            mapsToPqc: string;
+            envelope: string;
+            industryPki: boolean;
+        }[];
+        poles: {
+            name: "north" | "east" | "south" | "west";
+            bearing: number;
+            x: number;
+            y: number;
+            torus1ApexZ: number;
+            torus2ApexZ: number;
+            spinSign: 1 | -1;
+            receipt: string;
+        }[];
+        fourWayCounterRotating: boolean;
+        certified: false;
+        fipsValidated: false;
+        isoCertified: false;
+        industryPkiCertificates: false;
+        wireClaimProved: false;
+        claySolvedByThisFold: 0;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        earth: {
+            computes: boolean;
+            realised: boolean;
+            claySolvedByThisFold: 0;
+            physicalFtlClaim: 0;
+            qpuRequired: false;
+            poles: {
+                name: "north" | "east" | "south" | "west";
+                bearing: number;
+                x: number;
+                y: number;
+                torus1ApexZ: number;
+                torus2ApexZ: number;
+                spinSign: 1 | -1;
+                receipt: string;
+            }[];
+            fourWayCounterRotating: boolean;
+            polesAsPyramid: boolean;
+            fourBaseTipsNESW: boolean;
+            eulerSquarePyramid: boolean;
+            genus2DoubleTorus: boolean;
+            chiNeg2: boolean;
+            homologyZ4: boolean;
+            zenithNadirDualApex: boolean;
+            merkabaCounterRotate: boolean;
+            bothEarthsShells: boolean;
+            phaseLockCardinals: boolean;
+            alternatingOmega: boolean;
+            wgs84PhysicalHonest: boolean;
+            navigationForecastResidualNamed: boolean;
+            navigationImplemented: false;
+            forecastImplemented: false;
+            honestOpenNamed: string[];
+            pyramid: {
+                proven: boolean;
+                realised: boolean;
+                cardinals: ({
+                    name: "north";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                } | {
+                    name: "east";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                } | {
+                    name: "south";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                } | {
+                    name: "west";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                })[];
+                apex: {
+                    name: string;
+                    z: number;
+                };
+                solid: {
+                    V: number;
+                    E: number;
+                    F: number;
+                    euler: number;
+                };
+                slantToTip: number;
+                proofs: {
+                    task: string;
+                    expr: string;
+                    computed: number;
+                    expected: number;
+                    on: boolean;
+                    receipt: string;
+                }[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                count: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            earth: {
+                proven: boolean;
+                realised: boolean;
+                torus1: {
+                    torus: 1;
+                    name: "north" | "east" | "south" | "west";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                    apexZ: number;
+                    polarity: number;
+                    receipt: string;
+                }[];
+                torus2: {
+                    torus: 2;
+                    name: "north" | "east" | "south" | "west";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                    apexZ: number;
+                    polarity: number;
+                    receipt: string;
+                }[];
+                surface: {
+                    rendered: boolean;
+                    tori: number;
+                    genus: number;
+                    euler: number;
+                    areas: number;
+                    perLobe: number;
+                    majorRadius: number;
+                    minorRadius: number;
+                    lobeOffset: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                homology: {
+                    closed: boolean;
+                    cells: {
+                        c0: number;
+                        c1: number;
+                        c2: number;
+                    };
+                    boundary1: number[][];
+                    boundary2: number[][];
+                    chainComplex: boolean;
+                    betti: number[];
+                    euler: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                fold: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                };
+                proofs: {
+                    task: string;
+                    expr: string;
+                    computed: number;
+                    expected: number;
+                    on: boolean;
+                    receipt: string;
+                }[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                count: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            two: {
+                proven: boolean;
+                device: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                code: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                earth: {
+                    proven: boolean;
+                    realised: boolean;
+                    torus1: {
+                        torus: 1;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    torus2: {
+                        torus: 2;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    surface: {
+                        rendered: boolean;
+                        tori: number;
+                        genus: number;
+                        euler: number;
+                        areas: number;
+                        perLobe: number;
+                        majorRadius: number;
+                        minorRadius: number;
+                        lobeOffset: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    homology: {
+                        closed: boolean;
+                        cells: {
+                            c0: number;
+                            c1: number;
+                            c2: number;
+                        };
+                        boundary1: number[][];
+                        boundary2: number[][];
+                        chainComplex: boolean;
+                        betti: number[];
+                        euler: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    fold: {
+                        forward: string;
+                        reverse: string;
+                        merged: string;
+                    };
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    count: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                fold: {
+                    forward: string;
+                    reverse: string;
+                    bidirectional: boolean;
+                    merged: string;
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            merkaba: {
+                counterRotating: boolean;
+                scales: number;
+                root: string;
+            };
+            bothEarths: {
+                counterRotating: boolean;
+                root: string;
+            };
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: "earth/pyramid";
+            dualPair: "pyramid/earth";
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        merkaba: {
+            counterRotating: boolean;
+            scales: number;
+            root: string;
+        };
+        bothEarths: {
+            counterRotating: boolean;
+            root: string;
+        };
+        sixty: {
+            proven: boolean;
+            sixfoldDeg: number;
+            cardinalViaHex: boolean;
+            root: string;
+        };
+        flowerFruit: {
+            flower: number;
+            fruit: number;
+            holds: boolean;
+        };
+        navCross: {
+            computed: boolean;
+            dims: number;
+            root: string;
+        };
+        pqc: {
+            computes: boolean;
+            researchDate: string;
+            standards: IsoNistStandardRow[];
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        migrate: {
+            computes: boolean;
+            steps: {
+                receipt: string;
+                id: string;
+                title: string;
+                done: boolean;
+                note: string;
+            }[];
+            openCount: number;
+            doneCount: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        beyond: {
+            computes: boolean;
+            timings: {
+                catalogMs: number;
+                familyMs: number;
+                shorMapMs: number;
+                taxonomyMs: number;
+                migrateMs: number;
+                trinityMs: number;
+                rsaSuiteMs: number;
+                rsaGenerateMs: number;
+                rsaReverseMs: number;
+            };
+            thresholdMs: number;
+            anySlow: boolean;
+            fipsCount: number;
+            mlKemParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            mlDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            slhDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            eccShorBreaks: boolean;
+            eccFamily: string;
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            family: {
+                computes: boolean;
+                prefer: "hash" | "auto" | "code" | "lattice";
+                selected: {
+                    id: string;
+                    name: string;
+                    family: string;
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    standards: string[];
+                };
+                families: {
+                    receipt: string;
+                    id: string;
+                    family: string;
+                    name: string;
+                    standards: string[];
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    role: string;
+                    note: string;
+                }[];
+                pkMonotone: boolean;
+                everyParamSourced: boolean;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            shorMap: {
+                computes: boolean;
+                families: {
+                    receipt: string;
+                    family: string;
+                    shor: string;
+                    grover: string;
+                    pqcReplace: string;
+                    iso: string;
+                }[];
+                brokenCount: number;
+                safeCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            taxonomy: {
+                computes: boolean;
+                rows: {
+                    receipt: string;
+                    layer: string;
+                    iso: string;
+                    nist: string;
+                    repo: string;
+                    shor: string;
+                    role: string;
+                }[];
+                merkleRoot: string;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            migrate: {
+                computes: boolean;
+                steps: {
+                    receipt: string;
+                    id: string;
+                    title: string;
+                    done: boolean;
+                    note: string;
+                }[];
+                openCount: number;
+                doneCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            rsa: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                workers: number;
+                moduli: number[];
+                thresholdMs: number;
+                slowGenerate: boolean;
+                slowReverse: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                reverse: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                timedReceipt: string;
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        maxBits: {
+            computes: boolean;
+            encryptMaxBits: number;
+            decryptMaxBits: number;
+            inverseMaxBits: number;
+            reverseMaxBits: number;
+            hardwareReverseCapacityBits: number;
+            demoSampleCeilingBits: number;
+            teachingRsaMaxBits: number;
+            structuralUuidBits: number;
+            demoMaxBits: number;
+            refuseBeyond: boolean;
+            toolSurface: "production-browser";
+            moduliClass: "sealed-catalog";
+            sealedCatalogModuliOnly: true;
+            productionBrowserReverseToolsOn: boolean;
+            productionReverseRefused: true;
+            workerCap: number;
+            hardware: MaxBitsHardwareCapabilities;
+            certified: false;
+            claySolvedByThisFold: 0;
+            qpuRequired: false;
+            wireOneTbitProvedAtCallTime: boolean;
+            provenBy: {
+                readonly encryptMaxBits: "AES256_CLASSICAL_BITS theorem · fusionCipher AES-256-GCM named";
+                readonly decryptMaxBits: "AES256_CLASSICAL_BITS theorem · teaching RSA Euler ≤ SEALED_CATALOG_RSA_BIT_CEILING sample";
+                readonly inverseMaxBits: "DIGIT_INVERSE_DOMAIN_BITS theorem · directionalTrinity mod-9 units";
+                readonly reverseMaxBits: "min(SEALED_CATALOG_RSA_BIT_CEILING sealed-catalog, hardwareReverseCapacityBits) · refuseNonDemoRsaModulus";
+                readonly hardwareReverseCapacityBits: "min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS) at call time";
+                readonly refuseBeyond: "productionCeilingRefuseHolds · farOverCeilingRefuseHolds · refuseBitcoinMainnetMaterial";
+                readonly workerCap: "encryptionReverseWorkerCap(probeLocalCpuCount()) ≤ VORTEX_SEQUENCE.length";
+                readonly wireHonesty: "proveOneTbitRealtimeEncryptionClaim.wire.provedAtCallTime=false";
+                readonly toolSurface: "PRODUCTION_BROWSER_REVERSE_TOOLS · toolSurface=production-browser ≠ production RSA break";
+            };
+            tools: {
+                ready: boolean;
+                roundTrip: boolean;
+                rsaRoundTrip: boolean;
+                cipher: string;
+                teaching: {
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                };
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            reverseVerify: {
+                verified: boolean;
+                recomputeMatch: boolean;
+                /** @deprecated alias of recomputeMatch */
+                crack: boolean;
+                definitionalNotCryptanalysis: boolean;
+                trinitiesOrdered: boolean;
+                toolsReady: boolean;
+                demoReverse: boolean;
+                glyphBonus: number;
+                workerCap: number;
+                demoFactors: string[];
+                boundaryNamesDemo: boolean;
+                boundaryNamesHw: boolean;
+                hardware: MaxBitsHardwareCapabilities;
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                claySolvedByThisFold: 0;
+                certified: false;
+                qpuRequired: false;
+                statement: string;
+                boundary: string;
+            };
+            localTimed: {
+                computes: boolean;
+                timed: {
+                    computes: boolean;
+                    generateMs: number;
+                    reverseMs: number;
+                    aggregateOpsPerSec: number;
+                    rows: LocalEncryptionReverseRow[];
+                    moduli: number[];
+                    productionRefused: boolean;
+                    bitcoinRefused: boolean;
+                    generate: {
+                        ok: boolean;
+                        n: number;
+                        e: number;
+                        d: number;
+                        message: number;
+                        cipher: number;
+                        plain: number;
+                        refused: true;
+                        reason: string;
+                    } | {
+                        ok: boolean;
+                        n: number;
+                        e: number;
+                        d: number;
+                        message: number;
+                        cipher: number;
+                        plain: number;
+                        refused: false;
+                        reason: string;
+                    };
+                    sync: {
+                        computes: boolean;
+                        results: {
+                            N: number;
+                            factored: boolean;
+                            p: number;
+                            q: number;
+                            base: number;
+                            order: number;
+                            refused: boolean;
+                            reason: string;
+                        }[];
+                        workerCap: number;
+                        productionRefused: boolean;
+                        count: number;
+                        facets: ({
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        } & {
+                            receipt: string;
+                        })[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    count: number;
+                    facets: ({
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    pair: string;
+                    cli: string;
+                    route: string;
+                    statement: string;
+                    boundary: string;
+                };
+                comparisons: LocalReverseVsStandardRow[];
+                table: LocalReverseVsStandardRow[];
+                audit: {
+                    computes: boolean;
+                    audits: QuantumAuditRow[];
+                    gaps: QuantumAuditRow[];
+                    partials: QuantumAuditRow[];
+                    passes: QuantumAuditRow[];
+                    gapCount: number;
+                    partialCount: number;
+                    passCount: number;
+                    coveredCount: number;
+                    count: number;
+                    dimensions: {
+                        computes: boolean;
+                        rows: DimensionAuditRow[];
+                        coveredCount: number;
+                        passCount: number;
+                        partialCount: number;
+                        gapCount: number;
+                        dimensionGates: number;
+                        facets: ({
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        } & {
+                            receipt: string;
+                        })[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    reverseCount: number;
+                    inverseCount: number;
+                    forwardCount: number;
+                    certified: boolean;
+                    fipsValidated: boolean;
+                    claySolvedByThisFold: 0;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    route: string;
+                    pair: string;
+                    cli: string;
+                    statement: string;
+                    boundary: string;
+                };
+                catalog: {
+                    computes: boolean;
+                    researchDate: string;
+                    standards: IsoNistStandardRow[];
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                trinity: {
+                    computes: boolean;
+                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    table: {
+                        digit: number;
+                        forward: number;
+                        inverse: number;
+                        reverse: number;
+                        note: string;
+                    }[];
+                    foldPair: {
+                        forward: string;
+                        reverse: string;
+                        merged: string;
+                        bidirectional: boolean;
+                    };
+                    ratInvSample: {
+                        forward: import("../../3/7").Rational;
+                        inverse: import("../../3/7").Rational;
+                    };
+                    fInverse: {
+                        computes: boolean;
+                        root: string;
+                    };
+                    claySolvedByThisFold: 0;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    cli: string;
+                    pair: string;
+                    route: string;
+                    statement: string;
+                    boundary: string;
+                };
+                certified: false;
+                fipsValidated: false;
+                claySolvedByThisFold: 0;
+                breaksNistPqc: false;
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                demoMaxBits: number;
+                generateMs: number;
+                reverseMs: number;
+                aggregateOpsPerSec: number;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                pair: string;
+                cli: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            beyond: {
+                computes: boolean;
+                timings: {
+                    catalogMs: number;
+                    familyMs: number;
+                    shorMapMs: number;
+                    taxonomyMs: number;
+                    migrateMs: number;
+                    trinityMs: number;
+                    rsaSuiteMs: number;
+                    rsaGenerateMs: number;
+                    rsaReverseMs: number;
+                };
+                thresholdMs: number;
+                anySlow: boolean;
+                fipsCount: number;
+                mlKemParams: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
+                mlDsaParams: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
+                slhDsaParams: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
+                eccShorBreaks: boolean;
+                eccFamily: string;
+                catalog: {
+                    computes: boolean;
+                    researchDate: string;
+                    standards: IsoNistStandardRow[];
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                family: {
+                    computes: boolean;
+                    prefer: "hash" | "auto" | "code" | "lattice";
+                    selected: {
+                        id: string;
+                        name: string;
+                        family: string;
+                        params: {
+                            paramSet: string;
+                            nistCategory: number;
+                            publicKeyBytes: number;
+                            outputBytes: number;
+                            outputKind: "ciphertext" | "signature";
+                            source: string;
+                        }[];
+                        standards: string[];
+                    };
+                    families: {
+                        receipt: string;
+                        id: string;
+                        family: string;
+                        name: string;
+                        standards: string[];
+                        params: {
+                            paramSet: string;
+                            nistCategory: number;
+                            publicKeyBytes: number;
+                            outputBytes: number;
+                            outputKind: "ciphertext" | "signature";
+                            source: string;
+                        }[];
+                        role: string;
+                        note: string;
+                    }[];
+                    pkMonotone: boolean;
+                    everyParamSourced: boolean;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                shorMap: {
+                    computes: boolean;
+                    families: {
+                        receipt: string;
+                        family: string;
+                        shor: string;
+                        grover: string;
+                        pqcReplace: string;
+                        iso: string;
+                    }[];
+                    brokenCount: number;
+                    safeCount: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                taxonomy: {
+                    computes: boolean;
+                    rows: {
+                        receipt: string;
+                        layer: string;
+                        iso: string;
+                        nist: string;
+                        repo: string;
+                        shor: string;
+                        role: string;
+                    }[];
+                    merkleRoot: string;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                migrate: {
+                    computes: boolean;
+                    steps: {
+                        receipt: string;
+                        id: string;
+                        title: string;
+                        done: boolean;
+                        note: string;
+                    }[];
+                    openCount: number;
+                    doneCount: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                trinity: {
+                    computes: boolean;
+                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    table: {
+                        digit: number;
+                        forward: number;
+                        inverse: number;
+                        reverse: number;
+                        note: string;
+                    }[];
+                    foldPair: {
+                        forward: string;
+                        reverse: string;
+                        merged: string;
+                        bidirectional: boolean;
+                    };
+                    ratInvSample: {
+                        forward: import("../../3/7").Rational;
+                        inverse: import("../../3/7").Rational;
+                    };
+                    fInverse: {
+                        computes: boolean;
+                        root: string;
+                    };
+                    claySolvedByThisFold: 0;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    cli: string;
+                    pair: string;
+                    route: string;
+                    statement: string;
+                    boundary: string;
+                };
+                rsa: {
+                    computes: boolean;
+                    generateMs: number;
+                    reverseMs: number;
+                    workers: number;
+                    moduli: number[];
+                    thresholdMs: number;
+                    slowGenerate: boolean;
+                    slowReverse: boolean;
+                    generate: {
+                        ok: boolean;
+                        n: number;
+                        e: number;
+                        d: number;
+                        message: number;
+                        cipher: number;
+                        plain: number;
+                        refused: true;
+                        reason: string;
+                    } | {
+                        ok: boolean;
+                        n: number;
+                        e: number;
+                        d: number;
+                        message: number;
+                        cipher: number;
+                        plain: number;
+                        refused: false;
+                        reason: string;
+                    };
+                    reverse: {
+                        computes: boolean;
+                        results: {
+                            N: number;
+                            factored: boolean;
+                            p: number;
+                            q: number;
+                            base: number;
+                            order: number;
+                            refused: boolean;
+                            reason: string;
+                        }[];
+                        workerCap: number;
+                        productionRefused: boolean;
+                        count: number;
+                        facets: ({
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        } & {
+                            receipt: string;
+                        })[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    timedReceipt: string;
+                    productionRefused: boolean;
+                    bitcoinRefused: boolean;
+                    count: number;
+                    facets: ({
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                certified: false;
+                fipsValidated: false;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                route: string;
+                pair: string;
+                cli: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            oneTbit: {
+                computes: boolean;
+                claimedBitsPerSec: number;
+                /** Primary wire-model answer to “can this encrypt at 1 Tbit/s on the wire?” */
+                provedAtCallTime: boolean;
+                /** Separate honest model that may prove under memo/extent math. */
+                provedAmortizedReuseMemoAtCallTime: boolean;
+                model: OneTbitEncryptModel;
+                measuredBitsPerSec: number;
+                wire: OneTbitModelReceipt;
+                demo: OneTbitModelReceipt;
+                amortized: OneTbitModelReceipt;
+                refused: OneTbitModelReceipt;
+                models: readonly [OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt];
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                route: string;
+                pair: string;
+                cli: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: string;
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: "poles/cross-pqc";
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    secp256k1Prime: {
+        computes: boolean;
+        name: "secp256k1Prime";
+        alias: "fieldPrimeP256k1";
+        pHex: string;
+        pDecimal: string;
+        bitLength: number;
+        limbs64: string[];
+        construction: {
+            exp: number;
+            sign: 1 | -1;
+            hex: string;
+        }[];
+        constructionInverted: boolean;
+        decode: {
+            positiveExp: number;
+            negativeExps: number[];
+            finalMinusOne: true;
+            compactResidue: number;
+            formula: string;
+        };
+        modPInverses: {
+            a: string;
+            inv: string;
+            holds: boolean;
+        }[];
+        modulusNotAUnit: boolean;
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        beyondEccShorBreaks: boolean;
+        bitcoinRefused: boolean;
+        bitcoinOwnershipClaimed: false;
+        certified: false;
+        claySolvedByThisFold: 0;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: "secp256k1/invert-decode";
+        cli: string;
+        route: string;
+        proofRoute: string;
+        statement: string;
+        boundary: string;
+    };
     zero: {
         homed: boolean;
         station: string;
@@ -4719,7 +7203,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: number;
+        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -4734,70 +7218,93 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         statement: string;
         boundary: string;
     };
-    sections: readonly [{
-        readonly id: "demo-rsa-measure";
-        readonly title: "Demo RSA generate+reverse measured";
-        readonly route: "/en/quantum-encryption#demo-rsa-measure";
-        readonly pair: "measure/demo-rsa";
-        readonly cli: "npm run quantum:demo-rsa-measure";
-        readonly on: boolean;
-    }, {
-        readonly id: "local-reverse-timed-vs-standards";
-        readonly title: "Local reverse timed vs ISO/NIST standards";
-        readonly route: "/en/quantum-encryption#local-reverse-timed-vs-standards";
-        readonly pair: "reverse/timed-vs-standards";
-        readonly cli: "npm run quantum:local-reverse-timed-vs-standards";
-        readonly on: boolean;
-    }, {
-        readonly id: "prove-local-novel-encrypt";
-        readonly title: "Local novel-encryption security proof (no production reverse)";
-        readonly route: "/en/quantum-encryption#prove-local-novel-encrypt";
-        readonly pair: "prove/local-novel-encrypt";
-        readonly cli: "npm run quantum:prove-local-novel-encrypt";
-        readonly on: boolean;
-    }, {
-        readonly id: "local-audit-quantum";
-        readonly title: "Local audit quantum speed & efficiency";
-        readonly route: "/en/quantum-encryption#local-audit-quantum";
-        readonly pair: "audit/local-quantum";
-        readonly cli: "npm run quantum:local-audit-quantum";
-        readonly on: boolean;
-    }, {
-        readonly id: "crypto-beyond-rsa";
-        readonly title: "PQC families · Shor/ECC · hash taxonomy · directional trinity";
-        readonly route: "/en/quantum-encryption#crypto-beyond-rsa";
-        readonly pair: "measure/crypto-beyond";
-        readonly cli: "npm run quantum:crypto-beyond-measure";
-        readonly on: boolean;
-    }, {
-        readonly id: "prove-1tbit";
-        readonly title: "1 Tbit/s realtime encryption claim (honest receipt)";
-        readonly route: "/en/quantum-encryption#prove-1tbit";
-        readonly pair: "prove/1tbit-encrypt";
-        readonly cli: "npm run quantum:prove-1tbit-encrypt";
-        readonly on: boolean;
-    }, {
-        readonly id: "prove-local-magnitudes-iso";
-        readonly title: "Local vs ISO magnitudes (honest multi-model)";
-        readonly route: "/en/quantum-encryption#prove-local-magnitudes-iso";
-        readonly pair: "prove/local-magnitudes-iso";
-        readonly cli: "npm run quantum:prove-local-magnitudes-iso";
-        readonly on: boolean;
-    }, {
-        readonly id: "iso-pqc-catalog";
-        readonly title: "ISO/NIST PQC standards catalog";
-        readonly route: "/en/quantum-encryption#iso-pqc-catalog";
-        readonly pair: "iso/pqc-catalog";
-        readonly cli: "npm run quantum:iso-pqc-catalog";
-        readonly on: boolean;
-    }, {
-        readonly id: "quantum-standards-audit";
-        readonly title: "Standards audit (forward·inverse·reverse·10D)";
-        readonly route: "/en/quantum-encryption#quantum-standards-audit";
-        readonly pair: "audit/standards";
-        readonly cli: "npm run quantum:standards-audit";
-        readonly on: boolean;
-    }];
+    mesh: {
+        computes: boolean;
+        nodes: readonly CryptoComparisonMeshNode[];
+        edges: readonly CryptoComparisonMeshEdge[];
+        nodeCount: number;
+        edgeCount: number;
+        panelCount: number;
+        proofCount: number;
+        comparisonCount: number;
+        claySolvedByThisFold: 0;
+        certified: false;
+        refuseBeyond: true;
+        root: string;
+        pair: "crypto/comparison-mesh";
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    meshDry: {
+        computes: boolean;
+        cryptoComparisonMeshIsDry: boolean;
+        mesh: {
+            computes: boolean;
+            nodes: readonly CryptoComparisonMeshNode[];
+            edges: readonly CryptoComparisonMeshEdge[];
+            nodeCount: number;
+            edgeCount: number;
+            panelCount: number;
+            proofCount: number;
+            comparisonCount: number;
+            claySolvedByThisFold: 0;
+            certified: false;
+            refuseBeyond: true;
+            root: string;
+            pair: "crypto/comparison-mesh";
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        panelSections: readonly {
+            id: string;
+            nodeId: string;
+            title: string;
+            route: string;
+            pair: string;
+            cli: string;
+            on: boolean;
+        }[];
+        toolSeeds: readonly {
+            readonly id: string;
+            readonly title: string;
+            readonly fold: string;
+            readonly cli: string;
+            readonly pair: string;
+            readonly route: string;
+            readonly barrel: string;
+            readonly boundary: string;
+            readonly browserRunnable: boolean;
+            readonly browserGap: string;
+        }[];
+        claySolvedByThisFold: 0;
+        certified: false;
+        refuseBeyond: true;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: "crypto/comparison-mesh";
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    sections: readonly {
+        id: string;
+        nodeId: string;
+        title: string;
+        route: string;
+        pair: string;
+        cli: string;
+        on: boolean;
+    }[];
     timings: {
         catalogMs: number;
         familyMs: number;
@@ -4809,28 +7316,57 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         rsaGenerateMs: number;
         rsaReverseMs: number;
     };
-    mlKemParams: string[];
-    mlDsaParams: string[];
-    slhDsaParams: string[];
+    mlKemParams: {
+        paramSet: string;
+        nistCategory: number;
+        publicKeyBytes: number;
+        outputBytes: number;
+        outputKind: "ciphertext" | "signature";
+        source: string;
+    }[];
+    mlDsaParams: {
+        paramSet: string;
+        nistCategory: number;
+        publicKeyBytes: number;
+        outputBytes: number;
+        outputKind: "ciphertext" | "signature";
+        source: string;
+    }[];
+    slhDsaParams: {
+        paramSet: string;
+        nistCategory: number;
+        publicKeyBytes: number;
+        outputBytes: number;
+        outputKind: "ciphertext" | "signature";
+        source: string;
+    }[];
     eccShorBreaks: boolean;
+    sealedCatalogModuli: number[];
+    /** @deprecated Prefer sealedCatalogModuli — do not label tools “demo” in UI */
     demoModuli: number[];
     cli: string;
     pqcCli: string;
+    polesCrossCli: string;
+    secp256k1PrimeCli: string;
     auditCli: string;
     beyondCli: string;
     localTimedCli: string;
     localNovelCli: string;
     localAuditCli: string;
     oneTbitCli: string;
+    maxBitsCli: string;
     localMagnitudesCli: string;
     pair: string;
     pqcPair: string;
+    polesCrossPair: string;
+    secp256k1PrimePair: string;
     auditPair: string;
     beyondPair: string;
     localTimedPair: string;
     localNovelPair: string;
     localAuditPair: string;
     oneTbitPair: string;
+    maxBitsPair: string;
     localMagnitudesPair: string;
     route: string;
     teaching: {
@@ -4865,6 +7401,8 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
     refuseReason: string;
     bits: number;
     modulus: number;
+    sealedCatalogModuli: number[];
+    /** @deprecated Prefer sealedCatalogModuli */
     demoModuli: number[];
     factor: {
         N: number;
@@ -5067,7 +7605,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -5165,7 +7703,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
         computes: boolean;
         localSecurityProved: boolean;
         means: string;
-        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
         inventory: {
             computes: boolean;
             components: readonly LocalNovelEncryptionComponent[];
@@ -5212,13 +7750,19 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
         };
         reverse: {
             verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
             crack: boolean;
+            definitionalNotCryptanalysis: boolean;
             trinitiesOrdered: boolean;
             toolsReady: boolean;
             demoReverse: boolean;
             glyphBonus: number;
             workerCap: number;
             demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
             count: number;
             facets: ({
                 receipt: string;
@@ -5228,6 +7772,9 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 receipt: string;
             })[];
             root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
             statement: string;
             boundary: string;
         };
@@ -5340,7 +7887,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -5469,7 +8016,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -5715,8 +8262,9 @@ export declare function demoRsaGenerateAndReverseMeasured(matrix?: MindMatrix): 
     statement: string;
     boundary: string;
 };
-/** npm run quantum:demo-rsa-measure */
+/** npm run quantum:sealed-catalog-rsa-measure · deprecated alias quantum:demo-rsa-measure */
 export declare function runDemoRsaGenerateAndReverseMeasuredExit(_root: string, _argv?: readonly string[]): number;
+export declare const runSealedCatalogRsaGenerateAndReverseMeasuredExit: typeof runDemoRsaGenerateAndReverseMeasuredExit;
 export type LocalEncryptionReverseRow = {
     readonly N: number;
     readonly bits: number;
@@ -5799,6 +8347,80 @@ export declare function localEncryptionReverseTimed(matrix?: MindMatrix): {
     pair: string;
     cli: string;
     route: string;
+    statement: string;
+    boundary: string;
+};
+export declare const DEMONSTRATED_QUANTUM_FACTORING_MAX_BITS = 50;
+export declare const RSA2048_CLASSICAL_SECURITY_BITS = 112;
+export declare const BITCOIN_NETWORK_HASHRATE_HPS = 500000000000000000000;
+/**
+ * Can classical mining rigs factor RSA-2048 in realtime? DO THE MATH (user: "do the math and then make statements").
+ * GNFS gives RSA-2048 ~112-bit classical security (NIST) → ~2^112 sieve-equivalent operations. Even treating the ENTIRE
+ * Bitcoin network's throughput (~5×10²⁰ h/s) as factoring operations — impossibly generous, since SHA-256 ASICs cannot
+ * run GNFS at all — the COMPUTED time is ~hundreds of thousands of years, not realtime. The number makes the statement.
+ */
+export declare function classicalFactoringRsa2048MiningRigFeasibilityComputed(matrix?: MindMatrix): {
+    computes: boolean;
+    gnfsOps: number;
+    yearsAllMiningRigs: number;
+    isRealtime: boolean;
+    demoMaxBits: number;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * Shor factoring resource estimate — COMPUTED from the algorithm, not assumed (user: "do not assume as this may be
+ * misleading for the public. compute real times"). The LOGICAL qubit width is the deterministic Beauregard circuit
+ * formula 2n+3 (→ 4099 for RSA-2048). The gate count scales as ~n³ modular-exponentiation Toffolis. PHYSICAL qubits
+ * and runtime are computed as FUNCTIONS of NAMED surface-code hardware assumptions (physical-per-logical, cycle time)
+ * — a range, never one number — because those depend on the error-correction code and a machine that does not exist.
+ */
+export declare function shorFactoringResourceEstimate(nBits: number, hw?: {
+    physicalPerLogical?: number;
+    cycleTimeUs?: number;
+}): {
+    nBits: number;
+    logicalQubits: number;
+    toffoliGates: number;
+    physicalQubits: number;
+    runtimeDays: number;
+    physicalPerLogical: number;
+};
+/**
+ * What the encryption system IS and IS NOT — the full truth, both directions (user: "it is more, not just a demo,
+ * and all need to know" · "fix all prose misleading that this is demo only"). It IS more than a throwaway toy — a
+ * real deterministic content-addressed framework + a complete PQC standards audit + local proofs; it IS NOT a break
+ * of deployed RSA — the demonstrated reversal is ≤12-bit toy semiprimes, and RSA-2048 is astronomically out of reach.
+ * Both sides compute; neither misleads. Pair: rsa/honest · CLI npm run quantum:encryption-is-and-isnot
+ */
+export declare function whatTheEncryptionSystemIsAndIsNot(matrix?: MindMatrix): {
+    computes: boolean;
+    isMoreCount: number;
+    isNotCount: number;
+    demoMaxBits: number;
+    demoLogicalQubits: number;
+    rsa2048LogicalQubits: number;
+    rsa2048PhysicalQubitsRange: readonly [number, number];
+    rsa2048RuntimeDaysRange: readonly [number, number];
+    breaksNistPqc: false;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
     statement: string;
     boundary: string;
 };
@@ -5929,7 +8551,7 @@ export declare function localEncryptionReverseTimedVsStandards(matrix?: MindMatr
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: number;
+        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -6057,22 +8679,22 @@ export declare function inventoryLocalNovelEncryptionScheme(matrix?: MindMatrix)
     boundary: string;
 };
 /**
- * Prove local security of this repo’s brand-new encryption without production-crack tools.
+ * Local novel-encryption STRUCTURAL receipt (pair keep name prove/local-novel-encrypt).
  *
- * localSecurityProved = structural proofs + refuse + round-trip + allowlisted reverse + timed reverse
+ * localSecurityProved = sealed facets hold: refuse + round-trip + allowlisted reverse + timed reverse
  * + ISO/NIST map as reference bounds + wire-vs-ISO proof-of-falsehood (overallWireClaimProved=false).
- * HARD: strongerThanNistPqc=false. Does NOT call proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections
- * (sibling #24 owns directions×models; calling it would recurse).
+ * HARD: strongerThanNistPqc=false. NOT FIPS/ISO/wire security proved. NOT production crack.
+ * Does NOT call proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections (sibling #24; no recursion).
  *
  * Pair: prove/local-novel-encrypt · CLI npm run quantum:prove-local-novel-encrypt
  * Stacked on PR #24. This repo is NOT the ISO/NIST standard.
- * memoByRoot — full local-security receipt reused; production reverse still refused.
+ * memoByRoot — structural receipt reused; production reverse still refused.
  */
 export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): {
     computes: boolean;
     localSecurityProved: boolean;
     means: string;
-    unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+    unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
     inventory: {
         computes: boolean;
         components: readonly LocalNovelEncryptionComponent[];
@@ -6119,13 +8741,19 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
     };
     reverse: {
         verified: boolean;
+        recomputeMatch: boolean;
+        /** @deprecated alias of recomputeMatch */
         crack: boolean;
+        definitionalNotCryptanalysis: boolean;
         trinitiesOrdered: boolean;
         toolsReady: boolean;
         demoReverse: boolean;
         glyphBonus: number;
         workerCap: number;
         demoFactors: string[];
+        boundaryNamesDemo: boolean;
+        boundaryNamesHw: boolean;
+        hardware: MaxBitsHardwareCapabilities;
         count: number;
         facets: ({
             receipt: string;
@@ -6135,6 +8763,9 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
             receipt: string;
         })[];
         root: string;
+        claySolvedByThisFold: 0;
+        certified: false;
+        qpuRequired: false;
         statement: string;
         boundary: string;
     };
@@ -6247,7 +8878,7 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -6376,7 +9007,7 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: number;
+        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -6513,247 +9144,44 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
 };
 /** npm run quantum:prove-local-novel-encrypt */
 export declare function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv?: readonly string[]): number;
-export type LocalAuditFacetTiming = {
-    readonly id: string;
-    readonly fold: string;
-    readonly coldMs: number;
-    readonly warmMs: number;
-    readonly memoHit: boolean;
-    readonly root: string;
-    readonly computes: boolean;
-};
-/**
- * Run the local security/audit suite with memoByRoot reuse receipts.
- * Pair: audit/local-quantum · CLI npm run quantum:local-audit-quantum
- * Route: /en/quantum-encryption#local-audit-quantum
- *
- * Composes proveLocalNovelEncryptionSecurity + localEncryptionReverseTimedVsStandards +
- * quantumStandardsAuditSuite through memoized roots; reports cold vs warm ms, memo hits,
- * answers÷tokens efficiency vote honesty (compareCeccecEfficiencyByVote). Closes the
- * "slow local audit" quantum gap via amortized O(1) warm reuse — NOT physical qubits.
- */
-export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at?: number): {
+/** moment/prove — facet on: receipts at call time. Pair: moment/prove · CLI npm run quantum:moment-prove */
+export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMatrix, at?: number): {
     computes: boolean;
-    suiteColdMs: number;
-    suiteWarmMs: number;
-    suiteSpeedup: number;
-    suiteMemoHit: boolean;
-    coldMs: number;
-    warmMs: number;
-    speedup: number;
-    memoHits: boolean;
-    facetTimings: LocalAuditFacetTiming[];
-    facetMemoHitCount: number;
-    allFacetMemoHits: boolean;
-    slowLocalAuditGapClosed: boolean;
-    localTimed: {
-        computes: boolean;
-        timed: {
-            computes: boolean;
-            generateMs: number;
-            reverseMs: number;
-            aggregateOpsPerSec: number;
-            rows: LocalEncryptionReverseRow[];
-            moduli: number[];
-            productionRefused: boolean;
-            bitcoinRefused: boolean;
-            generate: {
-                ok: boolean;
-                n: number;
-                e: number;
-                d: number;
-                message: number;
-                cipher: number;
-                plain: number;
-                refused: true;
-                reason: string;
-            } | {
-                ok: boolean;
-                n: number;
-                e: number;
-                d: number;
-                message: number;
-                cipher: number;
-                plain: number;
-                refused: false;
-                reason: string;
-            };
-            sync: {
-                computes: boolean;
-                results: {
-                    N: number;
-                    factored: boolean;
-                    p: number;
-                    q: number;
-                    base: number;
-                    order: number;
-                    refused: boolean;
-                    reason: string;
-                }[];
-                workerCap: number;
-                productionRefused: boolean;
-                count: number;
-                facets: ({
-                    receipt: string;
-                    facet: string;
-                    on: boolean;
-                } & {
-                    receipt: string;
-                })[];
-                root: string;
-                statement: string;
-                boundary: string;
-            };
-            count: number;
-            facets: ({
-                facet: string;
-                on: boolean;
-            } & {
-                receipt: string;
-            })[];
-            root: string;
-            pair: string;
-            cli: string;
-            route: string;
-            statement: string;
-            boundary: string;
-        };
-        comparisons: LocalReverseVsStandardRow[];
-        table: LocalReverseVsStandardRow[];
-        audit: {
-            computes: boolean;
-            audits: QuantumAuditRow[];
-            gaps: QuantumAuditRow[];
-            partials: QuantumAuditRow[];
-            passes: QuantumAuditRow[];
-            gapCount: number;
-            partialCount: number;
-            passCount: number;
-            coveredCount: number;
-            count: number;
-            dimensions: {
-                computes: boolean;
-                rows: DimensionAuditRow[];
-                coveredCount: number;
-                passCount: number;
-                partialCount: number;
-                gapCount: number;
-                dimensionGates: number;
-                facets: ({
-                    receipt: string;
-                    facet: string;
-                    on: boolean;
-                } & {
-                    receipt: string;
-                })[];
-                root: string;
-                statement: string;
-                boundary: string;
-            };
-            reverseCount: number;
-            inverseCount: number;
-            forwardCount: number;
-            certified: boolean;
-            fipsValidated: boolean;
-            claySolvedByThisFold: number;
-            facets: ({
-                receipt: string;
-                facet: string;
-                on: boolean;
-            } & {
-                receipt: string;
-            })[];
-            root: string;
-            route: string;
-            pair: string;
-            cli: string;
-            statement: string;
-            boundary: string;
-        };
-        catalog: {
-            computes: boolean;
-            researchDate: string;
-            standards: IsoNistStandardRow[];
-            count: number;
-            facets: ({
-                receipt: string;
-                facet: string;
-                on: boolean;
-            } & {
-                receipt: string;
-            })[];
-            root: string;
-            statement: string;
-            boundary: string;
-        };
-        trinity: {
-            computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
-            table: {
-                digit: number;
-                forward: number;
-                inverse: number;
-                reverse: number;
-                note: string;
-            }[];
-            foldPair: {
-                forward: string;
-                reverse: string;
-                merged: string;
-                bidirectional: boolean;
-            };
-            ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
-            };
-            fInverse: {
-                computes: boolean;
-                root: string;
-            };
-            claySolvedByThisFold: 0;
-            facets: ({
-                receipt: string;
-                facet: string;
-                on: boolean;
-            } & {
-                receipt: string;
-            })[];
-            root: string;
-            cli: string;
-            pair: string;
-            route: string;
-            statement: string;
-            boundary: string;
-        };
-        certified: false;
-        fipsValidated: false;
-        claySolvedByThisFold: 0;
-        breaksNistPqc: false;
-        productionRefused: boolean;
-        bitcoinRefused: boolean;
-        demoMaxBits: number;
-        generateMs: number;
-        reverseMs: number;
-        aggregateOpsPerSec: number;
+    reverse: {
+        verified: boolean;
+        recomputeMatch: boolean;
+        /** @deprecated alias of recomputeMatch */
+        crack: boolean;
+        definitionalNotCryptanalysis: boolean;
+        trinitiesOrdered: boolean;
+        toolsReady: boolean;
+        demoReverse: boolean;
+        glyphBonus: number;
+        workerCap: number;
+        demoFactors: string[];
+        boundaryNamesDemo: boolean;
+        boundaryNamesHw: boolean;
+        hardware: MaxBitsHardwareCapabilities;
         count: number;
         facets: ({
+            receipt: string;
             facet: string;
             on: boolean;
         } & {
             receipt: string;
         })[];
         root: string;
-        pair: string;
-        cli: string;
-        route: string;
+        claySolvedByThisFold: 0;
+        certified: false;
+        qpuRequired: false;
         statement: string;
         boundary: string;
     };
-    localNovel: {
+    novel: {
         computes: boolean;
         localSecurityProved: boolean;
         means: string;
-        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
         inventory: {
             computes: boolean;
             components: readonly LocalNovelEncryptionComponent[];
@@ -6800,13 +9228,19 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         };
         reverse: {
             verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
             crack: boolean;
+            definitionalNotCryptanalysis: boolean;
             trinitiesOrdered: boolean;
             toolsReady: boolean;
             demoReverse: boolean;
             glyphBonus: number;
             workerCap: number;
             demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
             count: number;
             facets: ({
                 receipt: string;
@@ -6816,6 +9250,9 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 receipt: string;
             })[];
             root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
             statement: string;
             boundary: string;
         };
@@ -6928,7 +9365,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -7057,7 +9494,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -7192,56 +9629,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         statement: string;
         boundary: string;
     };
-    audit: {
-        computes: boolean;
-        audits: QuantumAuditRow[];
-        gaps: QuantumAuditRow[];
-        partials: QuantumAuditRow[];
-        passes: QuantumAuditRow[];
-        gapCount: number;
-        partialCount: number;
-        passCount: number;
-        coveredCount: number;
-        count: number;
-        dimensions: {
-            computes: boolean;
-            rows: DimensionAuditRow[];
-            coveredCount: number;
-            passCount: number;
-            partialCount: number;
-            gapCount: number;
-            dimensionGates: number;
-            facets: ({
-                receipt: string;
-                facet: string;
-                on: boolean;
-            } & {
-                receipt: string;
-            })[];
-            root: string;
-            statement: string;
-            boundary: string;
-        };
-        reverseCount: number;
-        inverseCount: number;
-        forwardCount: number;
-        certified: boolean;
-        fipsValidated: boolean;
-        claySolvedByThisFold: number;
-        facets: ({
-            receipt: string;
-            facet: string;
-            on: boolean;
-        } & {
-            receipt: string;
-        })[];
-        root: string;
-        route: string;
-        pair: string;
-        cli: string;
-        statement: string;
-        boundary: string;
-    };
     vote: {
         decided: boolean;
         winner: "ceccec" | "undecided";
@@ -7296,7 +9683,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 tracksClassical: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             physicalFtlClaim: 0;
             facets: ({
@@ -7474,7 +9860,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     tracksClassical: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 physicalFtlClaim: 0;
                 facets: ({
@@ -7637,7 +10022,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         tracksClassical: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     physicalFtlClaim: 0;
                     facets: ({
@@ -7753,7 +10137,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                    parallel: readonly [];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -7765,7 +10149,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 raysUsed: number;
                 kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                 resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
-                shelve: typeof import("../../quantum/apps").rosettaShelve;
+                shelve: typeof import("../../learning").rosettaShelve;
                 byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
                 resolveRoute: (route: string) => {
                     surface: import("../../quantum/apps").RosettaCoreSurface;
@@ -7832,7 +10216,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../wind/types").ConceptCommandName[];
+                        siblings: import("../../types").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
@@ -7932,6 +10316,1589 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     on: boolean;
                 }[];
                 root: string;
+                pair: "rosetta/core";
+                cli: string;
+                statement: string;
+                boundary: string;
+            };
+            learned: ({
+                surface: import("../../quantum/apps").RosettaCoreSurface;
+                receipt: string;
+                source: "GPT/Claude/Gemini tool-use";
+                fold: "rosettaCoreApi · quantumCliToolsCatalog";
+                kind: "tools";
+            } | {
+                surface: import("../../quantum/apps").RosettaCoreSurface;
+                receipt: string;
+                source: "agent protocols (AGENTS/llms/MCP)";
+                fold: "agentSubmissionProtocol · gatesHealSpottedCompromise";
+                kind: "protocol";
+            } | {
+                surface: import("../../quantum/apps").RosettaCoreSurface;
+                receipt: string;
+                source: "content-addressed corpus";
+                fold: "memoByRoot · completeCorpus · sealFacets";
+                kind: "corpus";
+            } | {
+                surface: import("../../quantum/apps").RosettaCoreSurface;
+                receipt: string;
+                source: "adversarial efficiency voters";
+                fold: "noKnownModelMoreEfficientProven · compareCeccecEfficiencyByVote";
+                kind: "voters";
+            } | {
+                surface: import("../../quantum/apps").RosettaCoreSurface;
+                receipt: string;
+                source: "honest QC simulator (no FLOPS claim)";
+                fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
+                kind: "honesty";
+            })[];
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        proven: {
+            proven: boolean;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        honest: {
+            faithfulSimulator: boolean;
+            noSpeedup: boolean;
+            verdict: string;
+            claim: string;
+            bloch: {
+                faithful: boolean;
+                checks: {
+                    gate: "I" | "X" | "Y" | "Z" | "H" | "S" | "T";
+                    init: string;
+                    agree: boolean;
+                    receipt: string;
+                }[];
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            cost: {
+                proven: boolean;
+                rows: import("../../quantum/science").DimensionCostRow[];
+                crossover: number;
+                asymptoticallyInsufficient: boolean;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            bench: {
+                separated: boolean;
+                tracksClassical: boolean;
+                faithful: boolean;
+                physicalQpuWouldSeparate: boolean;
+                verdict: string;
+                rows: import("../../quantum/science").BenchmarkRow[];
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            root: string;
+            boundary: string;
+        };
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    certified: false;
+    qpuRequired: false;
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "moment/prove";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:moment-prove */
+export declare function runAgentAssumeNothingMathProvesInTheMomentExit(_root: string, _argv?: readonly string[]): number;
+export type LocalAuditFacetTiming = {
+    readonly id: string;
+    readonly fold: string;
+    readonly coldMs: number;
+    readonly warmMs: number;
+    readonly memoHit: boolean;
+    readonly root: string;
+    readonly computes: boolean;
+};
+/**
+ * Run the local security/audit suite with memoByRoot reuse receipts.
+ * Pair: audit/local-quantum · CLI npm run quantum:local-audit-quantum
+ * Route: /en/encryption#local-audit-quantum
+ *
+ * Composes proveLocalNovelEncryptionSecurity + localEncryptionReverseTimedVsStandards +
+ * quantumStandardsAuditSuite through memoized roots; reports cold vs warm ms, memo hits,
+ * answers÷tokens efficiency vote honesty (compareCeccecEfficiencyByVote). Closes the
+ * "slow local audit" quantum gap via amortized O(1) warm reuse — NOT physical qubits.
+ */
+export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    suiteColdMs: number;
+    suiteWarmMs: number;
+    suiteSpeedup: number;
+    suiteMemoHit: boolean;
+    coldMs: number;
+    warmMs: number;
+    speedup: number;
+    memoHits: boolean;
+    facetTimings: LocalAuditFacetTiming[];
+    facetMemoHitCount: number;
+    allFacetMemoHits: boolean;
+    slowLocalAuditGapClosed: boolean;
+    localTimed: {
+        computes: boolean;
+        timed: {
+            computes: boolean;
+            generateMs: number;
+            reverseMs: number;
+            aggregateOpsPerSec: number;
+            rows: LocalEncryptionReverseRow[];
+            moduli: number[];
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            generate: {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: true;
+                reason: string;
+            } | {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: false;
+                reason: string;
+            };
+            sync: {
+                computes: boolean;
+                results: {
+                    N: number;
+                    factored: boolean;
+                    p: number;
+                    q: number;
+                    base: number;
+                    order: number;
+                    refused: boolean;
+                    reason: string;
+                }[];
+                workerCap: number;
+                productionRefused: boolean;
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: string;
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        comparisons: LocalReverseVsStandardRow[];
+        table: LocalReverseVsStandardRow[];
+        audit: {
+            computes: boolean;
+            audits: QuantumAuditRow[];
+            gaps: QuantumAuditRow[];
+            partials: QuantumAuditRow[];
+            passes: QuantumAuditRow[];
+            gapCount: number;
+            partialCount: number;
+            passCount: number;
+            coveredCount: number;
+            count: number;
+            dimensions: {
+                computes: boolean;
+                rows: DimensionAuditRow[];
+                coveredCount: number;
+                passCount: number;
+                partialCount: number;
+                gapCount: number;
+                dimensionGates: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            reverseCount: number;
+            inverseCount: number;
+            forwardCount: number;
+            certified: boolean;
+            fipsValidated: boolean;
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        catalog: {
+            computes: boolean;
+            researchDate: string;
+            standards: IsoNistStandardRow[];
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        certified: false;
+        fipsValidated: false;
+        claySolvedByThisFold: 0;
+        breaksNistPqc: false;
+        productionRefused: boolean;
+        bitcoinRefused: boolean;
+        demoMaxBits: number;
+        generateMs: number;
+        reverseMs: number;
+        aggregateOpsPerSec: number;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    localNovel: {
+        computes: boolean;
+        localSecurityProved: boolean;
+        means: string;
+        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
+        inventory: {
+            computes: boolean;
+            components: readonly LocalNovelEncryptionComponent[];
+            novelCount: number;
+            textbookCount: number;
+            externalCount: number;
+            externalDeploymentCount: 0;
+            fieldHistory: "none";
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        tools: {
+            ready: boolean;
+            roundTrip: boolean;
+            rsaRoundTrip: boolean;
+            cipher: string;
+            teaching: {
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+            };
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        reverse: {
+            verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
+            crack: boolean;
+            definitionalNotCryptanalysis: boolean;
+            trinitiesOrdered: boolean;
+            toolsReady: boolean;
+            demoReverse: boolean;
+            glyphBonus: number;
+            workerCap: number;
+            demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
+            statement: string;
+            boundary: string;
+        };
+        localTimed: {
+            computes: boolean;
+            timed: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                aggregateOpsPerSec: number;
+                rows: LocalEncryptionReverseRow[];
+                moduli: number[];
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                sync: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                pair: string;
+                cli: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            comparisons: LocalReverseVsStandardRow[];
+            table: LocalReverseVsStandardRow[];
+            audit: {
+                computes: boolean;
+                audits: QuantumAuditRow[];
+                gaps: QuantumAuditRow[];
+                partials: QuantumAuditRow[];
+                passes: QuantumAuditRow[];
+                gapCount: number;
+                partialCount: number;
+                passCount: number;
+                coveredCount: number;
+                count: number;
+                dimensions: {
+                    computes: boolean;
+                    rows: DimensionAuditRow[];
+                    coveredCount: number;
+                    passCount: number;
+                    partialCount: number;
+                    gapCount: number;
+                    dimensionGates: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                reverseCount: number;
+                inverseCount: number;
+                forwardCount: number;
+                certified: boolean;
+                fipsValidated: boolean;
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                route: string;
+                pair: string;
+                cli: string;
+                statement: string;
+                boundary: string;
+            };
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            claySolvedByThisFold: 0;
+            breaksNistPqc: false;
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            demoMaxBits: number;
+            generateMs: number;
+            reverseMs: number;
+            aggregateOpsPerSec: number;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: string;
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        audit: {
+            computes: boolean;
+            audits: QuantumAuditRow[];
+            gaps: QuantumAuditRow[];
+            partials: QuantumAuditRow[];
+            passes: QuantumAuditRow[];
+            gapCount: number;
+            partialCount: number;
+            passCount: number;
+            coveredCount: number;
+            count: number;
+            dimensions: {
+                computes: boolean;
+                rows: DimensionAuditRow[];
+                coveredCount: number;
+                passCount: number;
+                partialCount: number;
+                gapCount: number;
+                dimensionGates: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            reverseCount: number;
+            inverseCount: number;
+            forwardCount: number;
+            certified: boolean;
+            fipsValidated: boolean;
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        catalog: {
+            computes: boolean;
+            researchDate: string;
+            standards: IsoNistStandardRow[];
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        oneTbit: {
+            computes: boolean;
+            claimedBitsPerSec: number;
+            /** Primary wire-model answer to “can this encrypt at 1 Tbit/s on the wire?” */
+            provedAtCallTime: boolean;
+            /** Separate honest model that may prove under memo/extent math. */
+            provedAmortizedReuseMemoAtCallTime: boolean;
+            model: OneTbitEncryptModel;
+            measuredBitsPerSec: number;
+            wire: OneTbitModelReceipt;
+            demo: OneTbitModelReceipt;
+            amortized: OneTbitModelReceipt;
+            refused: OneTbitModelReceipt;
+            models: readonly [OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt];
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        comparisons: LocalReverseVsStandardRow[];
+        allowlistOk: boolean;
+        productionReverseRefused: true;
+        certified: false;
+        fipsValidated: false;
+        claySolvedByThisFold: 0;
+        breaksNistPqc: false;
+        strongerThanNistPqc: false;
+        overallWireClaimProved: false;
+        wireProofStatus: "proof-of-falsehood";
+        wireRatio: number;
+        aes128ClassicalBits: number;
+        thisRepoIsNotTheIsoStandard: true;
+        isoOfficialStandard: false;
+        externalDeploymentCount: 0;
+        fieldHistory: "none";
+        securityModel: "structural+adversarial+measured-local";
+        reverseMs: number;
+        aggregateOpsPerSec: number;
+        demoMaxBits: number;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        siblingMagnitudesPair: string;
+        statement: string;
+        boundary: string;
+    };
+    audit: {
+        computes: boolean;
+        audits: QuantumAuditRow[];
+        gaps: QuantumAuditRow[];
+        partials: QuantumAuditRow[];
+        passes: QuantumAuditRow[];
+        gapCount: number;
+        partialCount: number;
+        passCount: number;
+        coveredCount: number;
+        count: number;
+        dimensions: {
+            computes: boolean;
+            rows: DimensionAuditRow[];
+            coveredCount: number;
+            passCount: number;
+            partialCount: number;
+            gapCount: number;
+            dimensionGates: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        reverseCount: number;
+        inverseCount: number;
+        forwardCount: number;
+        certified: boolean;
+        fipsValidated: boolean;
+        claySolvedByThisFold: 0;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        route: string;
+        pair: string;
+        cli: string;
+        statement: string;
+        boundary: string;
+    };
+    vote: {
+        decided: boolean;
+        winner: "ceccec" | "undecided";
+        runtimeTokens: number;
+        voters: {
+            receipt: string;
+            id: string;
+            on: boolean;
+        }[];
+        proven: {
+            proven: boolean;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        capstone: {
+            holds: boolean;
+            computes: boolean;
+            proven: boolean;
+            efficient: {
+                proven: boolean;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            optimizations: {
+                optimized: boolean;
+                optimizations: {
+                    receipt: string;
+                    technique: string;
+                    how: string;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            bench: {
+                verdict: string;
+                separated: boolean;
+                tracksClassical: boolean;
+                root: string;
+            };
+            qpuRequired: false;
+            physicalFtlClaim: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        optimizations: {
+            optimized: boolean;
+            optimizations: {
+                receipt: string;
+                technique: string;
+                how: string;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        fusion: {
+            verified: boolean;
+            fused: boolean;
+            partCount: number;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        honest: {
+            faithfulSimulator: boolean;
+            noSpeedup: boolean;
+            verdict: string;
+            claim: string;
+            bloch: {
+                faithful: boolean;
+                checks: {
+                    gate: "I" | "X" | "Y" | "Z" | "H" | "S" | "T";
+                    init: string;
+                    agree: boolean;
+                    receipt: string;
+                }[];
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            cost: {
+                proven: boolean;
+                rows: import("../../quantum/science").DimensionCostRow[];
+                crossover: number;
+                asymptoticallyInsufficient: boolean;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            bench: {
+                separated: boolean;
+                tracksClassical: boolean;
+                faithful: boolean;
+                physicalQpuWouldSeparate: boolean;
+                verdict: string;
+                rows: import("../../quantum/science").BenchmarkRow[];
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            root: string;
+            boundary: string;
+        };
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    noQpu: {
+        computes: boolean;
+        speedDecided: boolean;
+        noQuantumHardwareProved: boolean;
+        winner: "ceccec" | "undecided";
+        decided: boolean;
+        comparison: import("../stack").SpeedVsRestComparisonRow[];
+        table: import("../stack").SpeedVsRestComparisonRow[];
+        quantumHardwareRequired: false;
+        qpuRequired: false;
+        runsOnClassical64Bit: true;
+        architectureRequirement: "classical-64bit";
+        environment: import("../stack").Classical64BitEnvironment;
+        forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
+        tracksClassicalNoSpeedup: boolean;
+        benchVerdict: string;
+        physicalQmSpeedupClaimed: false;
+        isoCertified: false;
+        claySolvedByThisFold: 0;
+        vote: {
+            decided: boolean;
+            winner: "ceccec" | "undecided";
+            runtimeTokens: number;
+            voters: {
+                receipt: string;
+                id: string;
+                on: boolean;
+            }[];
+            proven: {
+                proven: boolean;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            capstone: {
+                holds: boolean;
+                computes: boolean;
+                proven: boolean;
+                efficient: {
+                    proven: boolean;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                optimizations: {
+                    optimized: boolean;
+                    optimizations: {
+                        receipt: string;
+                        technique: string;
+                        how: string;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                bench: {
+                    verdict: string;
+                    separated: boolean;
+                    tracksClassical: boolean;
+                    root: string;
+                };
+                qpuRequired: false;
+                physicalFtlClaim: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            optimizations: {
+                optimized: boolean;
+                optimizations: {
+                    receipt: string;
+                    technique: string;
+                    how: string;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            fusion: {
+                verified: boolean;
+                fused: boolean;
+                partCount: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            honest: {
+                faithfulSimulator: boolean;
+                noSpeedup: boolean;
+                verdict: string;
+                claim: string;
+                bloch: {
+                    faithful: boolean;
+                    checks: {
+                        gate: "I" | "X" | "Y" | "Z" | "H" | "S" | "T";
+                        init: string;
+                        agree: boolean;
+                        receipt: string;
+                    }[];
+                    facets: ({
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                cost: {
+                    proven: boolean;
+                    rows: import("../../quantum/science").DimensionCostRow[];
+                    crossover: number;
+                    asymptoticallyInsufficient: boolean;
+                    facets: ({
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                bench: {
+                    separated: boolean;
+                    tracksClassical: boolean;
+                    faithful: boolean;
+                    physicalQpuWouldSeparate: boolean;
+                    verdict: string;
+                    rows: import("../../quantum/science").BenchmarkRow[];
+                    facets: ({
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                root: string;
+                boundary: string;
+            };
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        one: {
+            computes: boolean;
+            decided: boolean;
+            winner: "ceccec" | "undecided";
+            vote: {
+                decided: boolean;
+                winner: "ceccec" | "undecided";
+                runtimeTokens: number;
+                voters: {
+                    receipt: string;
+                    id: string;
+                    on: boolean;
+                }[];
+                proven: {
+                    proven: boolean;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                capstone: {
+                    holds: boolean;
+                    computes: boolean;
+                    proven: boolean;
+                    efficient: {
+                        proven: boolean;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    optimizations: {
+                        optimized: boolean;
+                        optimizations: {
+                            receipt: string;
+                            technique: string;
+                            how: string;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    bench: {
+                        verdict: string;
+                        separated: boolean;
+                        tracksClassical: boolean;
+                        root: string;
+                    };
+                    qpuRequired: false;
+                    physicalFtlClaim: 0;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    cli: string;
+                    pair: string;
+                    route: string;
+                    statement: string;
+                    boundary: string;
+                };
+                optimizations: {
+                    optimized: boolean;
+                    optimizations: {
+                        receipt: string;
+                        technique: string;
+                        how: string;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                fusion: {
+                    verified: boolean;
+                    fused: boolean;
+                    partCount: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                honest: {
+                    faithfulSimulator: boolean;
+                    noSpeedup: boolean;
+                    verdict: string;
+                    claim: string;
+                    bloch: {
+                        faithful: boolean;
+                        checks: {
+                            gate: "I" | "X" | "Y" | "Z" | "H" | "S" | "T";
+                            init: string;
+                            agree: boolean;
+                            receipt: string;
+                        }[];
+                        facets: ({
+                            facet: string;
+                            on: boolean;
+                        } & {
+                            receipt: string;
+                        })[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    cost: {
+                        proven: boolean;
+                        rows: import("../../quantum/science").DimensionCostRow[];
+                        crossover: number;
+                        asymptoticallyInsufficient: boolean;
+                        facets: ({
+                            facet: string;
+                            on: boolean;
+                        } & {
+                            receipt: string;
+                        })[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    bench: {
+                        separated: boolean;
+                        tracksClassical: boolean;
+                        faithful: boolean;
+                        physicalQpuWouldSeparate: boolean;
+                        verdict: string;
+                        rows: import("../../quantum/science").BenchmarkRow[];
+                        facets: ({
+                            facet: string;
+                            on: boolean;
+                        } & {
+                            receipt: string;
+                        })[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    root: string;
+                    boundary: string;
+                };
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            core: {
+                computes: boolean;
+                at: number;
+                surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                inventory: {
+                    core: {
+                        label: string;
+                        kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                        ray: number;
+                        address: string;
+                    }[];
+                    parallel: readonly [];
+                    hubs: {
+                        slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
+                        ray: number;
+                        route: string;
+                        hue: number;
+                    }[];
+                };
+                hubs: readonly import("../digit").RosettaRayHub[];
+                raysUsed: number;
+                kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
+                resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
+                shelve: typeof import("../../learning").rosettaShelve;
+                byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                resolveRoute: (route: string) => {
+                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    address: string;
+                    computed: boolean;
+                    route: string;
+                    slug: string;
+                    ray: number;
+                    rayMeta: {
+                        readonly ray: 0;
+                        readonly glyph: "Ⰰ";
+                        readonly nameEn: "Origin";
+                        readonly nameBg: "Произход";
+                        readonly domain: "origin";
+                        readonly hue: 0;
+                    } | {
+                        readonly ray: 1;
+                        readonly glyph: "Ⰲ";
+                        readonly nameEn: "Proof";
+                        readonly nameBg: "Доказателства";
+                        readonly domain: "expression";
+                        readonly hue: 51;
+                    } | {
+                        readonly ray: 2;
+                        readonly glyph: "Ⰴ";
+                        readonly nameEn: "Explore";
+                        readonly nameBg: "Изследване";
+                        readonly domain: "knowledge";
+                        readonly hue: 102;
+                    } | {
+                        readonly ray: 3;
+                        readonly glyph: "Ⰶ";
+                        readonly nameEn: "Learn";
+                        readonly nameBg: "Обучение";
+                        readonly domain: "nature";
+                        readonly hue: 154;
+                    } | {
+                        readonly ray: 4;
+                        readonly glyph: "Ⰹ";
+                        readonly nameEn: "Apps";
+                        readonly nameBg: "Приложения";
+                        readonly domain: "computation";
+                        readonly hue: 205;
+                    } | {
+                        readonly ray: 5;
+                        readonly glyph: "Ⰿ";
+                        readonly nameEn: "Frontier";
+                        readonly nameBg: "Граници";
+                        readonly domain: "geometry";
+                        readonly hue: 257;
+                    } | {
+                        readonly ray: 6;
+                        readonly glyph: "Ⱄ";
+                        readonly nameEn: "Reference";
+                        readonly nameBg: "Справочник";
+                        readonly domain: "language";
+                        readonly hue: 308;
+                    };
+                    station: number;
+                    crossPair: string;
+                    glaAddress: string;
+                    navigation: {
+                        rayLabel: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+                        rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
+                        rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
+                        rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
+                        siblings: import("../../types").ConceptCommandName[];
+                        siblingCount: number;
+                    };
+                    content: {
+                        pageKind: import("../digit").RosettaComputationType;
+                        heroPhase: number;
+                        bodySeed: string;
+                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    };
+                    motion: {
+                        at: number;
+                        rays: {
+                            ray: number;
+                            baseAngle: number;
+                            currentAngle: number;
+                            angularVelocity: number;
+                            vortexRate: number;
+                            radius: number;
+                            letters: {
+                                letterIndex: number;
+                                letterAngle: number;
+                                letterRadius: number;
+                                digitalRootPosition: number;
+                            }[];
+                        }[];
+                        breathRadius: number;
+                        breathPulse: number;
+                        proof: {
+                            coprime7_6: boolean;
+                            coprime7_9: boolean;
+                            coprime7_10: boolean;
+                            holds: boolean;
+                        };
+                        constants: {
+                            RAYS: number;
+                            LETTERS_PER_RAY: number;
+                            PHI: number;
+                            GOLDEN_ANGLE: number;
+                            DOUBLING_PERIOD: number;
+                            DR_MODULUS: number;
+                            STATION_COUNT: number;
+                        };
+                        root: string;
+                    };
+                    stationDetail: {
+                        digit: number;
+                        folder: string;
+                        path: string;
+                    };
+                    sharedRoot: string;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                resolveProjection: (label: string) => {
+                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    phase: number;
+                    hue: number;
+                    motion: {
+                        at: number;
+                        rays: {
+                            ray: number;
+                            baseAngle: number;
+                            currentAngle: number;
+                            angularVelocity: number;
+                            vortexRate: number;
+                            radius: number;
+                            letters: {
+                                letterIndex: number;
+                                letterAngle: number;
+                                letterRadius: number;
+                                digitalRootPosition: number;
+                            }[];
+                        }[];
+                        breathRadius: number;
+                        breathPulse: number;
+                        proof: {
+                            coprime7_6: boolean;
+                            coprime7_9: boolean;
+                            coprime7_10: boolean;
+                            holds: boolean;
+                        };
+                        constants: {
+                            RAYS: number;
+                            LETTERS_PER_RAY: number;
+                            PHI: number;
+                            GOLDEN_ANGLE: number;
+                            DOUBLING_PERIOD: number;
+                            DR_MODULUS: number;
+                            STATION_COUNT: number;
+                        };
+                        root: string;
+                    };
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                pair: "rosetta/core";
+                cli: string;
                 statement: string;
                 boundary: string;
             };
@@ -8177,7 +12144,14 @@ export declare function pqcAlgorithmFamilySelector(matrix?: MindMatrix, prefer?:
         id: string;
         name: string;
         family: string;
-        demoParams: string[];
+        params: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
         standards: string[];
     };
     families: {
@@ -8186,10 +12160,19 @@ export declare function pqcAlgorithmFamilySelector(matrix?: MindMatrix, prefer?:
         family: string;
         name: string;
         standards: string[];
-        demoParams: string[];
+        params: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
         role: string;
         note: string;
     }[];
+    pkMonotone: boolean;
+    everyParamSourced: boolean;
     facets: ({
         receipt: string;
         facet: string;
@@ -8228,7 +12211,7 @@ export declare function isoAlignedHashSignatureTaxonomy(matrix?: MindMatrix): {
 /** Theorem: Shor breaks PKC ⇒ PQC necessary. MODELED — not Clay/certification. */
 export declare function pqcNecessityFromShorCompose(matrix?: MindMatrix): {
     computes: boolean;
-    claySolvedByThisFold: number;
+    claySolvedByThisFold: 0;
     certified: false;
     fipsValidated: false;
     facets: ({
@@ -8245,7 +12228,7 @@ export declare function pqcNecessityFromShorCompose(matrix?: MindMatrix): {
 /**
  * Crypto toolkit measured BEYOND demo RSA — PQC catalogs, Shor/ECC map, hash taxonomy, directional trinity.
  * Structural/demo ops with timed receipts; NOT production KEM/DSA impl; NOT FIPS/ISO certified.
- * Pair: measure/crypto-beyond · CLI npm run quantum:crypto-beyond-measure · route /en/quantum-encryption#crypto-beyond-rsa
+ * Pair: measure/crypto-beyond · CLI npm run quantum:crypto-beyond-measure · route /en/encryption#crypto-beyond-rsa
  */
 export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
     computes: boolean;
@@ -8263,9 +12246,30 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
     thresholdMs: number;
     anySlow: boolean;
     fipsCount: number;
-    mlKemParams: string[];
-    mlDsaParams: string[];
-    slhDsaParams: string[];
+    mlKemParams: {
+        paramSet: string;
+        nistCategory: number;
+        publicKeyBytes: number;
+        outputBytes: number;
+        outputKind: "ciphertext" | "signature";
+        source: string;
+    }[];
+    mlDsaParams: {
+        paramSet: string;
+        nistCategory: number;
+        publicKeyBytes: number;
+        outputBytes: number;
+        outputKind: "ciphertext" | "signature";
+        source: string;
+    }[];
+    slhDsaParams: {
+        paramSet: string;
+        nistCategory: number;
+        publicKeyBytes: number;
+        outputBytes: number;
+        outputKind: "ciphertext" | "signature";
+        source: string;
+    }[];
     eccShorBreaks: boolean;
     eccFamily: string;
     catalog: {
@@ -8291,7 +12295,14 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
             id: string;
             name: string;
             family: string;
-            demoParams: string[];
+            params: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
             standards: string[];
         };
         families: {
@@ -8300,10 +12311,19 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
             family: string;
             name: string;
             standards: string[];
-            demoParams: string[];
+            params: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
             role: string;
             note: string;
         }[];
+        pkMonotone: boolean;
+        everyParamSourced: boolean;
         facets: ({
             receipt: string;
             facet: string;
@@ -8545,7 +12565,14 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
             id: string;
             name: string;
             family: string;
-            demoParams: string[];
+            params: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
             standards: string[];
         };
         families: {
@@ -8554,10 +12581,19 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
             family: string;
             name: string;
             standards: string[];
-            demoParams: string[];
+            params: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
             role: string;
             note: string;
         }[];
+        pkMonotone: boolean;
+        everyParamSourced: boolean;
         facets: ({
             receipt: string;
             facet: string;
@@ -8594,7 +12630,7 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
     };
     necessity: {
         computes: boolean;
-        claySolvedByThisFold: number;
+        claySolvedByThisFold: 0;
         certified: false;
         fipsValidated: false;
         facets: ({
@@ -8624,9 +12660,30 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
         thresholdMs: number;
         anySlow: boolean;
         fipsCount: number;
-        mlKemParams: string[];
-        mlDsaParams: string[];
-        slhDsaParams: string[];
+        mlKemParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        mlDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        slhDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
         eccShorBreaks: boolean;
         eccFamily: string;
         catalog: {
@@ -8652,7 +12709,14 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
                 id: string;
                 name: string;
                 family: string;
-                demoParams: string[];
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
                 standards: string[];
             };
             families: {
@@ -8661,10 +12725,19 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
                 family: string;
                 name: string;
                 standards: string[];
-                demoParams: string[];
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
                 role: string;
                 note: string;
             }[];
+            pkMonotone: boolean;
+            everyParamSourced: boolean;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -8959,7 +13032,95 @@ export declare function quantumStandardsAuditSuite(matrix?: MindMatrix, at?: num
     forwardCount: number;
     certified: boolean;
     fipsValidated: boolean;
-    claySolvedByThisFold: number;
+    claySolvedByThisFold: 0;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    route: string;
+    pair: string;
+    cli: string;
+    statement: string;
+    boundary: string;
+};
+/** euCyberStandardsAuditEveryAspect — cybersecurity tools that audit the LATEST EU cyber standards, aspect by aspect,
+ * driven by the latest discoveries (user, 2026-07-25: "improve cybersecurity tools to audit latest eu standards using
+ * latest discoveries" · "save all the tools to test every aspect of every standard"). Each row is one ARTICLE/aspect of
+ * NIS2 (2022/2555), the Cyber Resilience Act (2024/2847), GDPR (2016/679), DORA (2022/2554), eIDAS2 (2024/1183), and the
+ * Cybersecurity Act / EUCC (2019/881), mapped to a COMPUTED test backed by a recent discovery (content-address
+ * integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC). Alignment / self-assessment ONLY — not legal
+ * compliance, not a conformity assessment; notified-body certification and legal/process duties are named GAPS.
+ * [[tampering-cost-crypto-honesty]] [[quantum-decoded]] */
+export declare function euCyberStandardsAuditEveryAspect(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    rows: ({
+        standard: string;
+        ref: string;
+        aspect: string;
+        evidence: string;
+        coverage: "covered" | "partial" | "gap";
+        on: boolean;
+    } & {
+        id: string;
+        route: string;
+        browserRunnable: boolean;
+        receipt: string;
+    })[];
+    standards: string[];
+    coveredCount: number;
+    partialCount: number;
+    gapCount: number;
+    count: number;
+    certified: boolean;
+    claySolvedByThisFold: 0;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    route: string;
+    pair: string;
+    cli: string;
+    statement: string;
+    boundary: string;
+};
+/** globalCyberStandardsAuditEveryAspect — extends the aspect-by-aspect audit BEYOND the EU (user, 2026-07-25: "extend
+ * beyond eu"). It composes euCyberStandardsAuditEveryAspect and adds the leading international / US / UK frameworks —
+ * ISO/IEC 27001:2022 & 27002, NIST CSF 2.0, SOC 2 (AICPA Trust Services Criteria), UK Cyber Essentials, ISO/IEC 27701
+ * (privacy) — every control mapped to the SAME computed evidence (content-address integrity, no-egress, 4-key
+ * encryption, quantum-breaks-linear → PQC). Alignment / self-assessment across jurisdictions ONLY — not compliance,
+ * not certification in any of them; accredited-auditor / notified-body certifications are named GAPS. */
+export declare function globalCyberStandardsAuditEveryAspect(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    rows: ({
+        standard: string;
+        ref: string;
+        aspect: string;
+        evidence: string;
+        coverage: "covered" | "partial" | "gap";
+        on: boolean;
+    } & {
+        id: string;
+        route: string;
+        browserRunnable: boolean;
+        receipt: string;
+    })[];
+    standards: string[];
+    euStandards: string[];
+    beyondStandards: string[];
+    coveredCount: number;
+    partialCount: number;
+    gapCount: number;
+    count: number;
+    certified: boolean;
+    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -9025,7 +13186,7 @@ export declare function runQuantumStandardsAuditInBrowser(matrix?: MindMatrix, a
     };
     certified: boolean;
     fipsValidated: boolean;
-    claySolvedByThisFold: number;
+    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -9060,7 +13221,7 @@ export type OneTbitModelReceipt = {
 };
 /**
  * Prove (or refute) “1 Tbit realtime encryption” at call time under named models.
- * Pair: prove/1tbit-encrypt · CLI npm run quantum:prove-1tbit-encrypt · route /en/quantum-encryption#prove-1tbit
+ * Pair: prove/1tbit-encrypt · CLI npm run quantum:prove-1tbit-encrypt · route /en/encryption#prove-1tbit
  *
  * Models:
  * - wire-crypto — AES-256-GCM wire throughput. No sealed bench → measured=0, proved=false (refused as SLA).
@@ -9120,7 +13281,7 @@ export type LocalVsIsoDirectionRow = {
 /**
  * Prove (or refute) "local encryption is magnitudes stronger than ISO in all directions".
  * Pair: prove/local-magnitudes-iso · CLI npm run quantum:prove-local-magnitudes-iso
- * Route: /en/quantum-encryption#prove-local-magnitudes-iso
+ * Route: /en/encryption#prove-local-magnitudes-iso
  *
  * Composes PR #22 localEncryptionReverseTimedVsStandards timing/standards metrics + directional trinity
  * + local novel structural gates + amortized holographic extent (same family as proveOneTbit).
@@ -9141,7 +13302,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
     proofOfFalsehood: string;
     structuralMayProve: boolean;
     amortMayProve: boolean;
-    honestyBoundaries: readonly ["NEVER claim ISO certification / FIPS validation — certified=false · isoOfficialStandard=false · fipsValidated=false", "NEVER claim local demo beats ML-KEM for confidentiality — wire-crypto-security-bits magnitudesStronger=false", "local-structural-gates = repo control coverage (refuse policy), NOT wire cryptographic strength", "amortized-reuse-memo = holographic extent vs classical *label* bits — NOT AES-GCM / NOT PQC break resistance", "production reverse refused · Bitcoin/mainnet refused · breaksNistPqc=false · claySolvedByThisFold=0", string];
+    honestyBoundaries: readonly ["NEVER claim ISO certification / FIPS validation — certified=false · isoOfficialStandard=false · fipsValidated=false", "NEVER claim local demo beats ML-KEM for confidentiality — wire-crypto-security-bits magnitudesStronger=false", "local-structural-gates = repo control coverage (refuse policy), NOT wire cryptographic strength", "amortized-reuse-memo = holographic extent vs classical *label* bits — NOT AES-GCM / NOT PQC break resistance", "production reverse refused · Bitcoin/mainnet refused · breaksNistPqc=false", string];
     certified: false;
     isoOfficialStandard: false;
     fipsValidated: false;
@@ -9265,7 +13426,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -9363,7 +13524,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         computes: boolean;
         localSecurityProved: boolean;
         means: string;
-        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
         inventory: {
             computes: boolean;
             components: readonly LocalNovelEncryptionComponent[];
@@ -9410,13 +13571,19 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         };
         reverse: {
             verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
             crack: boolean;
+            definitionalNotCryptanalysis: boolean;
             trinitiesOrdered: boolean;
             toolsReady: boolean;
             demoReverse: boolean;
             glyphBonus: number;
             workerCap: number;
             demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
             count: number;
             facets: ({
                 receipt: string;
@@ -9426,6 +13593,9 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 receipt: string;
             })[];
             root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
             statement: string;
             boundary: string;
         };
@@ -9538,7 +13708,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -9667,7 +13837,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -9892,7 +14062,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: number;
+        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -10032,7 +14202,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -10211,7 +14381,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -10309,7 +14479,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             computes: boolean;
             localSecurityProved: boolean;
             means: string;
-            unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+            unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
             inventory: {
                 computes: boolean;
                 components: readonly LocalNovelEncryptionComponent[];
@@ -10356,13 +14526,19 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             };
             reverse: {
                 verified: boolean;
+                recomputeMatch: boolean;
+                /** @deprecated alias of recomputeMatch */
                 crack: boolean;
+                definitionalNotCryptanalysis: boolean;
                 trinitiesOrdered: boolean;
                 toolsReady: boolean;
                 demoReverse: boolean;
                 glyphBonus: number;
                 workerCap: number;
                 demoFactors: string[];
+                boundaryNamesDemo: boolean;
+                boundaryNamesHw: boolean;
+                hardware: MaxBitsHardwareCapabilities;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -10372,6 +14548,9 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     receipt: string;
                 })[];
                 root: string;
+                claySolvedByThisFold: 0;
+                certified: false;
+                qpuRequired: false;
                 statement: string;
                 boundary: string;
             };
@@ -10484,7 +14663,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: number;
+                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -10613,7 +14792,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -11057,7 +15236,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: number;
+        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -11236,7 +15415,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -11334,7 +15513,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         computes: boolean;
         localSecurityProved: boolean;
         means: string;
-        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress"];
+        unproved: readonly ["FIPS validation", "ISO certification", "this repo being an ISO/NIST standard (it is not)", "wire-crypto magnitudes over NIST/ISO PQC (overallWireClaimProved=false)", "field battle-testing (externalDeploymentCount=0)", "wire AES-GCM reverse / production RSA reverse", "Clay millennium progress", "production moduli reverse"];
         inventory: {
             computes: boolean;
             components: readonly LocalNovelEncryptionComponent[];
@@ -11381,13 +15560,19 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         };
         reverse: {
             verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
             crack: boolean;
+            definitionalNotCryptanalysis: boolean;
             trinitiesOrdered: boolean;
             toolsReady: boolean;
             demoReverse: boolean;
             glyphBonus: number;
             workerCap: number;
             demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
             count: number;
             facets: ({
                 receipt: string;
@@ -11397,6 +15582,9 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 receipt: string;
             })[];
             root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
             statement: string;
             boundary: string;
         };
@@ -11509,7 +15697,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: number;
+                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -11638,7 +15826,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: number;
+            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -11890,3 +16078,3417 @@ export declare function runIsoPqcRequirementsGapFillInBrowser(matrix?: MindMatri
 };
 /** npm run quantum:iso-pqc-gap-fill */
 export declare function runIsoPqcRequirementsGapFillExit(_root: string, _argv?: readonly string[]): number;
+/**
+ * Maximum honest bit widths for encrypt · decrypt · inverse · reverse — quantum-wave receipt.
+ * Pair: max-bits/crypto · CLI npm run quantum:max-bits-crypto · route /en/encryption#max-bits-crypto
+ *
+ * Composes encryptDecryptQuantumTools · encryptionReverseVerify · localEncryptionReverseTimedVsStandards ·
+ * directionalTrinityForwardInverseReverse · proveOneTbitRealtimeEncryptionClaim · refuse / worker caps.
+ *
+ * HONEST: AES-256 named external strength ≠ wire 1 Tbit/s; demo RSA reverse ≤ SEALED_CATALOG_RSA_BIT_CEILING;
+ * digit inverse domain 0..9 (4 bits); production reverse refused; certified=false.
+ */
+export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMatrix): {
+    computes: boolean;
+    encryptMaxBits: number;
+    decryptMaxBits: number;
+    inverseMaxBits: number;
+    reverseMaxBits: number;
+    hardwareReverseCapacityBits: number;
+    demoSampleCeilingBits: number;
+    teachingRsaMaxBits: number;
+    structuralUuidBits: number;
+    demoMaxBits: number;
+    refuseBeyond: boolean;
+    toolSurface: "production-browser";
+    moduliClass: "sealed-catalog";
+    sealedCatalogModuliOnly: true;
+    productionBrowserReverseToolsOn: boolean;
+    productionReverseRefused: true;
+    workerCap: number;
+    hardware: MaxBitsHardwareCapabilities;
+    certified: false;
+    claySolvedByThisFold: 0;
+    qpuRequired: false;
+    wireOneTbitProvedAtCallTime: boolean;
+    provenBy: {
+        readonly encryptMaxBits: "AES256_CLASSICAL_BITS theorem · fusionCipher AES-256-GCM named";
+        readonly decryptMaxBits: "AES256_CLASSICAL_BITS theorem · teaching RSA Euler ≤ SEALED_CATALOG_RSA_BIT_CEILING sample";
+        readonly inverseMaxBits: "DIGIT_INVERSE_DOMAIN_BITS theorem · directionalTrinity mod-9 units";
+        readonly reverseMaxBits: "min(SEALED_CATALOG_RSA_BIT_CEILING sealed-catalog, hardwareReverseCapacityBits) · refuseNonDemoRsaModulus";
+        readonly hardwareReverseCapacityBits: "min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS) at call time";
+        readonly refuseBeyond: "productionCeilingRefuseHolds · farOverCeilingRefuseHolds · refuseBitcoinMainnetMaterial";
+        readonly workerCap: "encryptionReverseWorkerCap(probeLocalCpuCount()) ≤ VORTEX_SEQUENCE.length";
+        readonly wireHonesty: "proveOneTbitRealtimeEncryptionClaim.wire.provedAtCallTime=false";
+        readonly toolSurface: "PRODUCTION_BROWSER_REVERSE_TOOLS · toolSurface=production-browser ≠ production RSA break";
+    };
+    tools: {
+        ready: boolean;
+        roundTrip: boolean;
+        rsaRoundTrip: boolean;
+        cipher: string;
+        teaching: {
+            n: number;
+            e: number;
+            d: number;
+            message: number;
+            cipher: number;
+            plain: number;
+        };
+        count: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    reverseVerify: {
+        verified: boolean;
+        recomputeMatch: boolean;
+        /** @deprecated alias of recomputeMatch */
+        crack: boolean;
+        definitionalNotCryptanalysis: boolean;
+        trinitiesOrdered: boolean;
+        toolsReady: boolean;
+        demoReverse: boolean;
+        glyphBonus: number;
+        workerCap: number;
+        demoFactors: string[];
+        boundaryNamesDemo: boolean;
+        boundaryNamesHw: boolean;
+        hardware: MaxBitsHardwareCapabilities;
+        count: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        claySolvedByThisFold: 0;
+        certified: false;
+        qpuRequired: false;
+        statement: string;
+        boundary: string;
+    };
+    localTimed: {
+        computes: boolean;
+        timed: {
+            computes: boolean;
+            generateMs: number;
+            reverseMs: number;
+            aggregateOpsPerSec: number;
+            rows: LocalEncryptionReverseRow[];
+            moduli: number[];
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            generate: {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: true;
+                reason: string;
+            } | {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: false;
+                reason: string;
+            };
+            sync: {
+                computes: boolean;
+                results: {
+                    N: number;
+                    factored: boolean;
+                    p: number;
+                    q: number;
+                    base: number;
+                    order: number;
+                    refused: boolean;
+                    reason: string;
+                }[];
+                workerCap: number;
+                productionRefused: boolean;
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: string;
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        comparisons: LocalReverseVsStandardRow[];
+        table: LocalReverseVsStandardRow[];
+        audit: {
+            computes: boolean;
+            audits: QuantumAuditRow[];
+            gaps: QuantumAuditRow[];
+            partials: QuantumAuditRow[];
+            passes: QuantumAuditRow[];
+            gapCount: number;
+            partialCount: number;
+            passCount: number;
+            coveredCount: number;
+            count: number;
+            dimensions: {
+                computes: boolean;
+                rows: DimensionAuditRow[];
+                coveredCount: number;
+                passCount: number;
+                partialCount: number;
+                gapCount: number;
+                dimensionGates: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            reverseCount: number;
+            inverseCount: number;
+            forwardCount: number;
+            certified: boolean;
+            fipsValidated: boolean;
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        catalog: {
+            computes: boolean;
+            researchDate: string;
+            standards: IsoNistStandardRow[];
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        certified: false;
+        fipsValidated: false;
+        claySolvedByThisFold: 0;
+        breaksNistPqc: false;
+        productionRefused: boolean;
+        bitcoinRefused: boolean;
+        demoMaxBits: number;
+        generateMs: number;
+        reverseMs: number;
+        aggregateOpsPerSec: number;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    beyond: {
+        computes: boolean;
+        timings: {
+            catalogMs: number;
+            familyMs: number;
+            shorMapMs: number;
+            taxonomyMs: number;
+            migrateMs: number;
+            trinityMs: number;
+            rsaSuiteMs: number;
+            rsaGenerateMs: number;
+            rsaReverseMs: number;
+        };
+        thresholdMs: number;
+        anySlow: boolean;
+        fipsCount: number;
+        mlKemParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        mlDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        slhDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        eccShorBreaks: boolean;
+        eccFamily: string;
+        catalog: {
+            computes: boolean;
+            researchDate: string;
+            standards: IsoNistStandardRow[];
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        family: {
+            computes: boolean;
+            prefer: "hash" | "auto" | "code" | "lattice";
+            selected: {
+                id: string;
+                name: string;
+                family: string;
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
+                standards: string[];
+            };
+            families: {
+                receipt: string;
+                id: string;
+                family: string;
+                name: string;
+                standards: string[];
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
+                role: string;
+                note: string;
+            }[];
+            pkMonotone: boolean;
+            everyParamSourced: boolean;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        shorMap: {
+            computes: boolean;
+            families: {
+                receipt: string;
+                family: string;
+                shor: string;
+                grover: string;
+                pqcReplace: string;
+                iso: string;
+            }[];
+            brokenCount: number;
+            safeCount: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        taxonomy: {
+            computes: boolean;
+            rows: {
+                receipt: string;
+                layer: string;
+                iso: string;
+                nist: string;
+                repo: string;
+                shor: string;
+                role: string;
+            }[];
+            merkleRoot: string;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        migrate: {
+            computes: boolean;
+            steps: {
+                receipt: string;
+                id: string;
+                title: string;
+                done: boolean;
+                note: string;
+            }[];
+            openCount: number;
+            doneCount: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        rsa: {
+            computes: boolean;
+            generateMs: number;
+            reverseMs: number;
+            workers: number;
+            moduli: number[];
+            thresholdMs: number;
+            slowGenerate: boolean;
+            slowReverse: boolean;
+            generate: {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: true;
+                reason: string;
+            } | {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: false;
+                reason: string;
+            };
+            reverse: {
+                computes: boolean;
+                results: {
+                    N: number;
+                    factored: boolean;
+                    p: number;
+                    q: number;
+                    base: number;
+                    order: number;
+                    refused: boolean;
+                    reason: string;
+                }[];
+                workerCap: number;
+                productionRefused: boolean;
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            timedReceipt: string;
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        certified: false;
+        fipsValidated: false;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        route: string;
+        pair: string;
+        cli: string;
+        statement: string;
+        boundary: string;
+    };
+    trinity: {
+        computes: boolean;
+        digits: import("../stack").DirectionalTrinityDigitRow[];
+        table: {
+            digit: number;
+            forward: number;
+            inverse: number;
+            reverse: number;
+            note: string;
+        }[];
+        foldPair: {
+            forward: string;
+            reverse: string;
+            merged: string;
+            bidirectional: boolean;
+        };
+        ratInvSample: {
+            forward: import("../../3/7").Rational;
+            inverse: import("../../3/7").Rational;
+        };
+        fInverse: {
+            computes: boolean;
+            root: string;
+        };
+        claySolvedByThisFold: 0;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        cli: string;
+        pair: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    oneTbit: {
+        computes: boolean;
+        claimedBitsPerSec: number;
+        /** Primary wire-model answer to “can this encrypt at 1 Tbit/s on the wire?” */
+        provedAtCallTime: boolean;
+        /** Separate honest model that may prove under memo/extent math. */
+        provedAmortizedReuseMemoAtCallTime: boolean;
+        model: OneTbitEncryptModel;
+        measuredBitsPerSec: number;
+        wire: OneTbitModelReceipt;
+        demo: OneTbitModelReceipt;
+        amortized: OneTbitModelReceipt;
+        refused: OneTbitModelReceipt;
+        models: readonly [OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt];
+        productionRefused: boolean;
+        bitcoinRefused: boolean;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        route: string;
+        pair: string;
+        cli: string;
+        statement: string;
+        boundary: string;
+    };
+    count: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: string;
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:max-bits-crypto — print encrypt/decrypt/inverse/reverse bit ceilings at call time. */
+export declare function runMaximumBitsEncryptDecryptInverseReverseExit(_root: string, _argv?: readonly string[]): number;
+/**
+ * HARD: claimed max-bits ≡ hardware-computed boundary; demo sample must not pretend to be hw ceiling.
+ * Pair: bits/hardware · CLI npm run quantum:bits-hardware
+ * Composed into gaps/invisible → mission:gate · compose refuseBeyond · theorem/const · max-bits.
+ */
+export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
+    computes: boolean;
+    maxBitsHardwareBoundaryAgree: boolean;
+    remaining: number;
+    fixed: number;
+    cracks: readonly [{
+        readonly id: "claimed-ne-hardware-boundary";
+        readonly open: boolean;
+    }, {
+        readonly id: "demo-pretends-hardware-ceiling";
+        readonly open: boolean;
+    }, {
+        readonly id: "reverse-verify-boundary-stale";
+        readonly open: boolean;
+    }, {
+        readonly id: "refuseBeyond-diverge";
+        readonly open: boolean;
+    }, {
+        readonly id: "qpu-or-clay-claim";
+        readonly open: boolean;
+    }];
+    hardware: MaxBitsHardwareCapabilities;
+    maxBits: {
+        computes: boolean;
+        encryptMaxBits: number;
+        decryptMaxBits: number;
+        inverseMaxBits: number;
+        reverseMaxBits: number;
+        hardwareReverseCapacityBits: number;
+        demoSampleCeilingBits: number;
+        teachingRsaMaxBits: number;
+        structuralUuidBits: number;
+        demoMaxBits: number;
+        refuseBeyond: boolean;
+        toolSurface: "production-browser";
+        moduliClass: "sealed-catalog";
+        sealedCatalogModuliOnly: true;
+        productionBrowserReverseToolsOn: boolean;
+        productionReverseRefused: true;
+        workerCap: number;
+        hardware: MaxBitsHardwareCapabilities;
+        certified: false;
+        claySolvedByThisFold: 0;
+        qpuRequired: false;
+        wireOneTbitProvedAtCallTime: boolean;
+        provenBy: {
+            readonly encryptMaxBits: "AES256_CLASSICAL_BITS theorem · fusionCipher AES-256-GCM named";
+            readonly decryptMaxBits: "AES256_CLASSICAL_BITS theorem · teaching RSA Euler ≤ SEALED_CATALOG_RSA_BIT_CEILING sample";
+            readonly inverseMaxBits: "DIGIT_INVERSE_DOMAIN_BITS theorem · directionalTrinity mod-9 units";
+            readonly reverseMaxBits: "min(SEALED_CATALOG_RSA_BIT_CEILING sealed-catalog, hardwareReverseCapacityBits) · refuseNonDemoRsaModulus";
+            readonly hardwareReverseCapacityBits: "min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS) at call time";
+            readonly refuseBeyond: "productionCeilingRefuseHolds · farOverCeilingRefuseHolds · refuseBitcoinMainnetMaterial";
+            readonly workerCap: "encryptionReverseWorkerCap(probeLocalCpuCount()) ≤ VORTEX_SEQUENCE.length";
+            readonly wireHonesty: "proveOneTbitRealtimeEncryptionClaim.wire.provedAtCallTime=false";
+            readonly toolSurface: "PRODUCTION_BROWSER_REVERSE_TOOLS · toolSurface=production-browser ≠ production RSA break";
+        };
+        tools: {
+            ready: boolean;
+            roundTrip: boolean;
+            rsaRoundTrip: boolean;
+            cipher: string;
+            teaching: {
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+            };
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        reverseVerify: {
+            verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
+            crack: boolean;
+            definitionalNotCryptanalysis: boolean;
+            trinitiesOrdered: boolean;
+            toolsReady: boolean;
+            demoReverse: boolean;
+            glyphBonus: number;
+            workerCap: number;
+            demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
+            statement: string;
+            boundary: string;
+        };
+        localTimed: {
+            computes: boolean;
+            timed: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                aggregateOpsPerSec: number;
+                rows: LocalEncryptionReverseRow[];
+                moduli: number[];
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                sync: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                pair: string;
+                cli: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            comparisons: LocalReverseVsStandardRow[];
+            table: LocalReverseVsStandardRow[];
+            audit: {
+                computes: boolean;
+                audits: QuantumAuditRow[];
+                gaps: QuantumAuditRow[];
+                partials: QuantumAuditRow[];
+                passes: QuantumAuditRow[];
+                gapCount: number;
+                partialCount: number;
+                passCount: number;
+                coveredCount: number;
+                count: number;
+                dimensions: {
+                    computes: boolean;
+                    rows: DimensionAuditRow[];
+                    coveredCount: number;
+                    passCount: number;
+                    partialCount: number;
+                    gapCount: number;
+                    dimensionGates: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                reverseCount: number;
+                inverseCount: number;
+                forwardCount: number;
+                certified: boolean;
+                fipsValidated: boolean;
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                route: string;
+                pair: string;
+                cli: string;
+                statement: string;
+                boundary: string;
+            };
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            claySolvedByThisFold: 0;
+            breaksNistPqc: false;
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            demoMaxBits: number;
+            generateMs: number;
+            reverseMs: number;
+            aggregateOpsPerSec: number;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: string;
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        beyond: {
+            computes: boolean;
+            timings: {
+                catalogMs: number;
+                familyMs: number;
+                shorMapMs: number;
+                taxonomyMs: number;
+                migrateMs: number;
+                trinityMs: number;
+                rsaSuiteMs: number;
+                rsaGenerateMs: number;
+                rsaReverseMs: number;
+            };
+            thresholdMs: number;
+            anySlow: boolean;
+            fipsCount: number;
+            mlKemParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            mlDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            slhDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            eccShorBreaks: boolean;
+            eccFamily: string;
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            family: {
+                computes: boolean;
+                prefer: "hash" | "auto" | "code" | "lattice";
+                selected: {
+                    id: string;
+                    name: string;
+                    family: string;
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    standards: string[];
+                };
+                families: {
+                    receipt: string;
+                    id: string;
+                    family: string;
+                    name: string;
+                    standards: string[];
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    role: string;
+                    note: string;
+                }[];
+                pkMonotone: boolean;
+                everyParamSourced: boolean;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            shorMap: {
+                computes: boolean;
+                families: {
+                    receipt: string;
+                    family: string;
+                    shor: string;
+                    grover: string;
+                    pqcReplace: string;
+                    iso: string;
+                }[];
+                brokenCount: number;
+                safeCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            taxonomy: {
+                computes: boolean;
+                rows: {
+                    receipt: string;
+                    layer: string;
+                    iso: string;
+                    nist: string;
+                    repo: string;
+                    shor: string;
+                    role: string;
+                }[];
+                merkleRoot: string;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            migrate: {
+                computes: boolean;
+                steps: {
+                    receipt: string;
+                    id: string;
+                    title: string;
+                    done: boolean;
+                    note: string;
+                }[];
+                openCount: number;
+                doneCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            rsa: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                workers: number;
+                moduli: number[];
+                thresholdMs: number;
+                slowGenerate: boolean;
+                slowReverse: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                reverse: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                timedReceipt: string;
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        oneTbit: {
+            computes: boolean;
+            claimedBitsPerSec: number;
+            /** Primary wire-model answer to “can this encrypt at 1 Tbit/s on the wire?” */
+            provedAtCallTime: boolean;
+            /** Separate honest model that may prove under memo/extent math. */
+            provedAmortizedReuseMemoAtCallTime: boolean;
+            model: OneTbitEncryptModel;
+            measuredBitsPerSec: number;
+            wire: OneTbitModelReceipt;
+            demo: OneTbitModelReceipt;
+            amortized: OneTbitModelReceipt;
+            refused: OneTbitModelReceipt;
+            models: readonly [OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt];
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    refuse: {
+        computes: boolean;
+        incompleteOpen: number;
+        pathCount: number;
+        wiredCount: number;
+        paths: readonly ProductionRsaRefusePathRow[];
+        productionBreakEnabled: false;
+        refuseBeyond: boolean;
+        demoBitCeiling: number;
+        claySolvedByThisFold: 0;
+        certified: false;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: "refuse/rosetta";
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    claySolvedByThisFold: 0;
+    qpuRequired: false;
+    physicalFtlClaim: 0;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "bits/hardware";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:bits-hardware — HARD exit 1 when max-bits ≠ hardware boundary. */
+export declare function runMaxBitsHardwareBoundaryAgreeExit(_root?: string, _argv?: readonly string[]): number;
+/**
+ * Poles form the cross signatures for post-quantum encryption including certificates.
+ *
+ * INTRINSIC: the cross is part of merkaba/rosetta — not a separate ornament.
+ * Geometric cross = N↔S × E↔W from Earth poles-as-pyramid; tip signatures + sealed
+ * certificate *structures* for PQC tooling — NOT CA/PKI, NOT FIPS/ISO certification.
+ *
+ * Pair: poles/cross-pqc · CLI npm run quantum:poles-cross-pqc · route /en/encryption#poles-cross-pqc
+ * Composes merkaba · bothEarths · FoL→Fruit · sixtyDegree(60→90) · universalNavigationalCross ·
+ * earthRealisedByComputingPolesAsPyramid · isoNistPqcStandardsCatalog · directionalTrinity.
+ *
+ * HONEST: certified=false · claySolved=0 · wire claims false · not wet crypto theater.
+ */
+export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix?: MindMatrix): {
+    computes: boolean;
+    polesFormCrossSignatures: boolean;
+    crossIsPartOfMerkabaRosetta: boolean;
+    angle90ReachableThrough60: boolean;
+    allDirectionsCross: boolean;
+    crossSignature: {
+        root: string;
+        forward: string;
+        reverse: string;
+        bidirectional: boolean;
+        nsArm: string;
+        ewArm: string;
+        merkabaBind: string;
+    };
+    directionalCrosses: {
+        index: number;
+        bearing: number;
+        opposite: number;
+        arm: string;
+        bidirectional: boolean;
+        receipt: string;
+    }[];
+    tipSignatures: {
+        pole: "north" | "east" | "south" | "west";
+        bearing: number;
+        x: number;
+        y: number;
+        spinSign: 1 | -1;
+        tipKey: string;
+        signature: string;
+        dual: string;
+        bidirectional: boolean;
+        receipt: string;
+    }[];
+    certificateStructures: {
+        receipt: string;
+        id: string;
+        kind: "sealed-certificate-structure";
+        role: string;
+        mapsToPqc: string;
+        envelope: string;
+        industryPki: boolean;
+    }[];
+    poles: {
+        name: "north" | "east" | "south" | "west";
+        bearing: number;
+        x: number;
+        y: number;
+        torus1ApexZ: number;
+        torus2ApexZ: number;
+        spinSign: 1 | -1;
+        receipt: string;
+    }[];
+    fourWayCounterRotating: boolean;
+    certified: false;
+    fipsValidated: false;
+    isoCertified: false;
+    industryPkiCertificates: false;
+    wireClaimProved: false;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    earth: {
+        computes: boolean;
+        realised: boolean;
+        claySolvedByThisFold: 0;
+        physicalFtlClaim: 0;
+        qpuRequired: false;
+        poles: {
+            name: "north" | "east" | "south" | "west";
+            bearing: number;
+            x: number;
+            y: number;
+            torus1ApexZ: number;
+            torus2ApexZ: number;
+            spinSign: 1 | -1;
+            receipt: string;
+        }[];
+        fourWayCounterRotating: boolean;
+        polesAsPyramid: boolean;
+        fourBaseTipsNESW: boolean;
+        eulerSquarePyramid: boolean;
+        genus2DoubleTorus: boolean;
+        chiNeg2: boolean;
+        homologyZ4: boolean;
+        zenithNadirDualApex: boolean;
+        merkabaCounterRotate: boolean;
+        bothEarthsShells: boolean;
+        phaseLockCardinals: boolean;
+        alternatingOmega: boolean;
+        wgs84PhysicalHonest: boolean;
+        navigationForecastResidualNamed: boolean;
+        navigationImplemented: false;
+        forecastImplemented: false;
+        honestOpenNamed: string[];
+        pyramid: {
+            proven: boolean;
+            realised: boolean;
+            cardinals: ({
+                name: "north";
+                bearing: number;
+                x: number;
+                y: number;
+            } | {
+                name: "east";
+                bearing: number;
+                x: number;
+                y: number;
+            } | {
+                name: "south";
+                bearing: number;
+                x: number;
+                y: number;
+            } | {
+                name: "west";
+                bearing: number;
+                x: number;
+                y: number;
+            })[];
+            apex: {
+                name: string;
+                z: number;
+            };
+            solid: {
+                V: number;
+                E: number;
+                F: number;
+                euler: number;
+            };
+            slantToTip: number;
+            proofs: {
+                task: string;
+                expr: string;
+                computed: number;
+                expected: number;
+                on: boolean;
+                receipt: string;
+            }[];
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            count: number;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        earth: {
+            proven: boolean;
+            realised: boolean;
+            torus1: {
+                torus: 1;
+                name: "north" | "east" | "south" | "west";
+                bearing: number;
+                x: number;
+                y: number;
+                apexZ: number;
+                polarity: number;
+                receipt: string;
+            }[];
+            torus2: {
+                torus: 2;
+                name: "north" | "east" | "south" | "west";
+                bearing: number;
+                x: number;
+                y: number;
+                apexZ: number;
+                polarity: number;
+                receipt: string;
+            }[];
+            surface: {
+                rendered: boolean;
+                tori: number;
+                genus: number;
+                euler: number;
+                areas: number;
+                perLobe: number;
+                majorRadius: number;
+                minorRadius: number;
+                lobeOffset: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            homology: {
+                closed: boolean;
+                cells: {
+                    c0: number;
+                    c1: number;
+                    c2: number;
+                };
+                boundary1: number[][];
+                boundary2: number[][];
+                chainComplex: boolean;
+                betti: number[];
+                euler: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            fold: {
+                forward: string;
+                reverse: string;
+                merged: string;
+            };
+            proofs: {
+                task: string;
+                expr: string;
+                computed: number;
+                expected: number;
+                on: boolean;
+                receipt: string;
+            }[];
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            count: number;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        two: {
+            proven: boolean;
+            device: {
+                proven: boolean;
+                side: "device" | "code";
+                trinityRays: readonly [string, string, string];
+                apex: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                poles: {
+                    name: "north" | "east" | "south" | "west";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                    z: number;
+                    slantFromApex: number;
+                    receipt: string;
+                }[];
+                faces: __ns_mountain_geometry.TrinityPyramidFace[];
+                baseArea: number;
+                volume: number;
+                proofs: {
+                    task: string;
+                    expr: string;
+                    computed: number;
+                    expected: number;
+                    on: boolean;
+                    receipt: string;
+                }[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            code: {
+                proven: boolean;
+                side: "device" | "code";
+                trinityRays: readonly [string, string, string];
+                apex: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                poles: {
+                    name: "north" | "east" | "south" | "west";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                    z: number;
+                    slantFromApex: number;
+                    receipt: string;
+                }[];
+                faces: __ns_mountain_geometry.TrinityPyramidFace[];
+                baseArea: number;
+                volume: number;
+                proofs: {
+                    task: string;
+                    expr: string;
+                    computed: number;
+                    expected: number;
+                    on: boolean;
+                    receipt: string;
+                }[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            earth: {
+                proven: boolean;
+                realised: boolean;
+                torus1: {
+                    torus: 1;
+                    name: "north" | "east" | "south" | "west";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                    apexZ: number;
+                    polarity: number;
+                    receipt: string;
+                }[];
+                torus2: {
+                    torus: 2;
+                    name: "north" | "east" | "south" | "west";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                    apexZ: number;
+                    polarity: number;
+                    receipt: string;
+                }[];
+                surface: {
+                    rendered: boolean;
+                    tori: number;
+                    genus: number;
+                    euler: number;
+                    areas: number;
+                    perLobe: number;
+                    majorRadius: number;
+                    minorRadius: number;
+                    lobeOffset: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                homology: {
+                    closed: boolean;
+                    cells: {
+                        c0: number;
+                        c1: number;
+                        c2: number;
+                    };
+                    boundary1: number[][];
+                    boundary2: number[][];
+                    chainComplex: boolean;
+                    betti: number[];
+                    euler: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                fold: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                };
+                proofs: {
+                    task: string;
+                    expr: string;
+                    computed: number;
+                    expected: number;
+                    on: boolean;
+                    receipt: string;
+                }[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                count: number;
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            fold: {
+                forward: string;
+                reverse: string;
+                bidirectional: boolean;
+                merged: string;
+            };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        merkaba: {
+            counterRotating: boolean;
+            scales: number;
+            root: string;
+        };
+        bothEarths: {
+            counterRotating: boolean;
+            root: string;
+        };
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: "earth/pyramid";
+        dualPair: "pyramid/earth";
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    merkaba: {
+        counterRotating: boolean;
+        scales: number;
+        root: string;
+    };
+    bothEarths: {
+        counterRotating: boolean;
+        root: string;
+    };
+    sixty: {
+        proven: boolean;
+        sixfoldDeg: number;
+        cardinalViaHex: boolean;
+        root: string;
+    };
+    flowerFruit: {
+        flower: number;
+        fruit: number;
+        holds: boolean;
+    };
+    navCross: {
+        computed: boolean;
+        dims: number;
+        root: string;
+    };
+    pqc: {
+        computes: boolean;
+        researchDate: string;
+        standards: IsoNistStandardRow[];
+        count: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    migrate: {
+        computes: boolean;
+        steps: {
+            receipt: string;
+            id: string;
+            title: string;
+            done: boolean;
+            note: string;
+        }[];
+        openCount: number;
+        doneCount: number;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    beyond: {
+        computes: boolean;
+        timings: {
+            catalogMs: number;
+            familyMs: number;
+            shorMapMs: number;
+            taxonomyMs: number;
+            migrateMs: number;
+            trinityMs: number;
+            rsaSuiteMs: number;
+            rsaGenerateMs: number;
+            rsaReverseMs: number;
+        };
+        thresholdMs: number;
+        anySlow: boolean;
+        fipsCount: number;
+        mlKemParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        mlDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        slhDsaParams: {
+            paramSet: string;
+            nistCategory: number;
+            publicKeyBytes: number;
+            outputBytes: number;
+            outputKind: "ciphertext" | "signature";
+            source: string;
+        }[];
+        eccShorBreaks: boolean;
+        eccFamily: string;
+        catalog: {
+            computes: boolean;
+            researchDate: string;
+            standards: IsoNistStandardRow[];
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        family: {
+            computes: boolean;
+            prefer: "hash" | "auto" | "code" | "lattice";
+            selected: {
+                id: string;
+                name: string;
+                family: string;
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
+                standards: string[];
+            };
+            families: {
+                receipt: string;
+                id: string;
+                family: string;
+                name: string;
+                standards: string[];
+                params: {
+                    paramSet: string;
+                    nistCategory: number;
+                    publicKeyBytes: number;
+                    outputBytes: number;
+                    outputKind: "ciphertext" | "signature";
+                    source: string;
+                }[];
+                role: string;
+                note: string;
+            }[];
+            pkMonotone: boolean;
+            everyParamSourced: boolean;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        shorMap: {
+            computes: boolean;
+            families: {
+                receipt: string;
+                family: string;
+                shor: string;
+                grover: string;
+                pqcReplace: string;
+                iso: string;
+            }[];
+            brokenCount: number;
+            safeCount: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        taxonomy: {
+            computes: boolean;
+            rows: {
+                receipt: string;
+                layer: string;
+                iso: string;
+                nist: string;
+                repo: string;
+                shor: string;
+                role: string;
+            }[];
+            merkleRoot: string;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        migrate: {
+            computes: boolean;
+            steps: {
+                receipt: string;
+                id: string;
+                title: string;
+                done: boolean;
+                note: string;
+            }[];
+            openCount: number;
+            doneCount: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        rsa: {
+            computes: boolean;
+            generateMs: number;
+            reverseMs: number;
+            workers: number;
+            moduli: number[];
+            thresholdMs: number;
+            slowGenerate: boolean;
+            slowReverse: boolean;
+            generate: {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: true;
+                reason: string;
+            } | {
+                ok: boolean;
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+                refused: false;
+                reason: string;
+            };
+            reverse: {
+                computes: boolean;
+                results: {
+                    N: number;
+                    factored: boolean;
+                    p: number;
+                    q: number;
+                    base: number;
+                    order: number;
+                    refused: boolean;
+                    reason: string;
+                }[];
+                workerCap: number;
+                productionRefused: boolean;
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            timedReceipt: string;
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        certified: false;
+        fipsValidated: false;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        route: string;
+        pair: string;
+        cli: string;
+        statement: string;
+        boundary: string;
+    };
+    trinity: {
+        computes: boolean;
+        digits: import("../stack").DirectionalTrinityDigitRow[];
+        table: {
+            digit: number;
+            forward: number;
+            inverse: number;
+            reverse: number;
+            note: string;
+        }[];
+        foldPair: {
+            forward: string;
+            reverse: string;
+            merged: string;
+            bidirectional: boolean;
+        };
+        ratInvSample: {
+            forward: import("../../3/7").Rational;
+            inverse: import("../../3/7").Rational;
+        };
+        fInverse: {
+            computes: boolean;
+            root: string;
+        };
+        claySolvedByThisFold: 0;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        cli: string;
+        pair: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    maxBits: {
+        computes: boolean;
+        encryptMaxBits: number;
+        decryptMaxBits: number;
+        inverseMaxBits: number;
+        reverseMaxBits: number;
+        hardwareReverseCapacityBits: number;
+        demoSampleCeilingBits: number;
+        teachingRsaMaxBits: number;
+        structuralUuidBits: number;
+        demoMaxBits: number;
+        refuseBeyond: boolean;
+        toolSurface: "production-browser";
+        moduliClass: "sealed-catalog";
+        sealedCatalogModuliOnly: true;
+        productionBrowserReverseToolsOn: boolean;
+        productionReverseRefused: true;
+        workerCap: number;
+        hardware: MaxBitsHardwareCapabilities;
+        certified: false;
+        claySolvedByThisFold: 0;
+        qpuRequired: false;
+        wireOneTbitProvedAtCallTime: boolean;
+        provenBy: {
+            readonly encryptMaxBits: "AES256_CLASSICAL_BITS theorem · fusionCipher AES-256-GCM named";
+            readonly decryptMaxBits: "AES256_CLASSICAL_BITS theorem · teaching RSA Euler ≤ SEALED_CATALOG_RSA_BIT_CEILING sample";
+            readonly inverseMaxBits: "DIGIT_INVERSE_DOMAIN_BITS theorem · directionalTrinity mod-9 units";
+            readonly reverseMaxBits: "min(SEALED_CATALOG_RSA_BIT_CEILING sealed-catalog, hardwareReverseCapacityBits) · refuseNonDemoRsaModulus";
+            readonly hardwareReverseCapacityBits: "min(JS_SAFE_INTEGER_BITS, CLASSICAL_64BIT_WORD_BITS) at call time";
+            readonly refuseBeyond: "productionCeilingRefuseHolds · farOverCeilingRefuseHolds · refuseBitcoinMainnetMaterial";
+            readonly workerCap: "encryptionReverseWorkerCap(probeLocalCpuCount()) ≤ VORTEX_SEQUENCE.length";
+            readonly wireHonesty: "proveOneTbitRealtimeEncryptionClaim.wire.provedAtCallTime=false";
+            readonly toolSurface: "PRODUCTION_BROWSER_REVERSE_TOOLS · toolSurface=production-browser ≠ production RSA break";
+        };
+        tools: {
+            ready: boolean;
+            roundTrip: boolean;
+            rsaRoundTrip: boolean;
+            cipher: string;
+            teaching: {
+                n: number;
+                e: number;
+                d: number;
+                message: number;
+                cipher: number;
+                plain: number;
+            };
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        reverseVerify: {
+            verified: boolean;
+            recomputeMatch: boolean;
+            /** @deprecated alias of recomputeMatch */
+            crack: boolean;
+            definitionalNotCryptanalysis: boolean;
+            trinitiesOrdered: boolean;
+            toolsReady: boolean;
+            demoReverse: boolean;
+            glyphBonus: number;
+            workerCap: number;
+            demoFactors: string[];
+            boundaryNamesDemo: boolean;
+            boundaryNamesHw: boolean;
+            hardware: MaxBitsHardwareCapabilities;
+            count: number;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            claySolvedByThisFold: 0;
+            certified: false;
+            qpuRequired: false;
+            statement: string;
+            boundary: string;
+        };
+        localTimed: {
+            computes: boolean;
+            timed: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                aggregateOpsPerSec: number;
+                rows: LocalEncryptionReverseRow[];
+                moduli: number[];
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                sync: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                pair: string;
+                cli: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            comparisons: LocalReverseVsStandardRow[];
+            table: LocalReverseVsStandardRow[];
+            audit: {
+                computes: boolean;
+                audits: QuantumAuditRow[];
+                gaps: QuantumAuditRow[];
+                partials: QuantumAuditRow[];
+                passes: QuantumAuditRow[];
+                gapCount: number;
+                partialCount: number;
+                passCount: number;
+                coveredCount: number;
+                count: number;
+                dimensions: {
+                    computes: boolean;
+                    rows: DimensionAuditRow[];
+                    coveredCount: number;
+                    passCount: number;
+                    partialCount: number;
+                    gapCount: number;
+                    dimensionGates: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                reverseCount: number;
+                inverseCount: number;
+                forwardCount: number;
+                certified: boolean;
+                fipsValidated: boolean;
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                route: string;
+                pair: string;
+                cli: string;
+                statement: string;
+                boundary: string;
+            };
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            claySolvedByThisFold: 0;
+            breaksNistPqc: false;
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            demoMaxBits: number;
+            generateMs: number;
+            reverseMs: number;
+            aggregateOpsPerSec: number;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            pair: string;
+            cli: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        beyond: {
+            computes: boolean;
+            timings: {
+                catalogMs: number;
+                familyMs: number;
+                shorMapMs: number;
+                taxonomyMs: number;
+                migrateMs: number;
+                trinityMs: number;
+                rsaSuiteMs: number;
+                rsaGenerateMs: number;
+                rsaReverseMs: number;
+            };
+            thresholdMs: number;
+            anySlow: boolean;
+            fipsCount: number;
+            mlKemParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            mlDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            slhDsaParams: {
+                paramSet: string;
+                nistCategory: number;
+                publicKeyBytes: number;
+                outputBytes: number;
+                outputKind: "ciphertext" | "signature";
+                source: string;
+            }[];
+            eccShorBreaks: boolean;
+            eccFamily: string;
+            catalog: {
+                computes: boolean;
+                researchDate: string;
+                standards: IsoNistStandardRow[];
+                count: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            family: {
+                computes: boolean;
+                prefer: "hash" | "auto" | "code" | "lattice";
+                selected: {
+                    id: string;
+                    name: string;
+                    family: string;
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    standards: string[];
+                };
+                families: {
+                    receipt: string;
+                    id: string;
+                    family: string;
+                    name: string;
+                    standards: string[];
+                    params: {
+                        paramSet: string;
+                        nistCategory: number;
+                        publicKeyBytes: number;
+                        outputBytes: number;
+                        outputKind: "ciphertext" | "signature";
+                        source: string;
+                    }[];
+                    role: string;
+                    note: string;
+                }[];
+                pkMonotone: boolean;
+                everyParamSourced: boolean;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            shorMap: {
+                computes: boolean;
+                families: {
+                    receipt: string;
+                    family: string;
+                    shor: string;
+                    grover: string;
+                    pqcReplace: string;
+                    iso: string;
+                }[];
+                brokenCount: number;
+                safeCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            taxonomy: {
+                computes: boolean;
+                rows: {
+                    receipt: string;
+                    layer: string;
+                    iso: string;
+                    nist: string;
+                    repo: string;
+                    shor: string;
+                    role: string;
+                }[];
+                merkleRoot: string;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            migrate: {
+                computes: boolean;
+                steps: {
+                    receipt: string;
+                    id: string;
+                    title: string;
+                    done: boolean;
+                    note: string;
+                }[];
+                openCount: number;
+                doneCount: number;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            trinity: {
+                computes: boolean;
+                digits: import("../stack").DirectionalTrinityDigitRow[];
+                table: {
+                    digit: number;
+                    forward: number;
+                    inverse: number;
+                    reverse: number;
+                    note: string;
+                }[];
+                foldPair: {
+                    forward: string;
+                    reverse: string;
+                    merged: string;
+                    bidirectional: boolean;
+                };
+                ratInvSample: {
+                    forward: import("../../3/7").Rational;
+                    inverse: import("../../3/7").Rational;
+                };
+                fInverse: {
+                    computes: boolean;
+                    root: string;
+                };
+                claySolvedByThisFold: 0;
+                facets: ({
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                cli: string;
+                pair: string;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            rsa: {
+                computes: boolean;
+                generateMs: number;
+                reverseMs: number;
+                workers: number;
+                moduli: number[];
+                thresholdMs: number;
+                slowGenerate: boolean;
+                slowReverse: boolean;
+                generate: {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: true;
+                    reason: string;
+                } | {
+                    ok: boolean;
+                    n: number;
+                    e: number;
+                    d: number;
+                    message: number;
+                    cipher: number;
+                    plain: number;
+                    refused: false;
+                    reason: string;
+                };
+                reverse: {
+                    computes: boolean;
+                    results: {
+                        N: number;
+                        factored: boolean;
+                        p: number;
+                        q: number;
+                        base: number;
+                        order: number;
+                        refused: boolean;
+                        reason: string;
+                    }[];
+                    workerCap: number;
+                    productionRefused: boolean;
+                    count: number;
+                    facets: ({
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    } & {
+                        receipt: string;
+                    })[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                timedReceipt: string;
+                productionRefused: boolean;
+                bitcoinRefused: boolean;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            certified: false;
+            fipsValidated: false;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        trinity: {
+            computes: boolean;
+            digits: import("../stack").DirectionalTrinityDigitRow[];
+            table: {
+                digit: number;
+                forward: number;
+                inverse: number;
+                reverse: number;
+                note: string;
+            }[];
+            foldPair: {
+                forward: string;
+                reverse: string;
+                merged: string;
+                bidirectional: boolean;
+            };
+            ratInvSample: {
+                forward: import("../../3/7").Rational;
+                inverse: import("../../3/7").Rational;
+            };
+            fInverse: {
+                computes: boolean;
+                root: string;
+            };
+            claySolvedByThisFold: 0;
+            facets: ({
+                receipt: string;
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            cli: string;
+            pair: string;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        oneTbit: {
+            computes: boolean;
+            claimedBitsPerSec: number;
+            /** Primary wire-model answer to “can this encrypt at 1 Tbit/s on the wire?” */
+            provedAtCallTime: boolean;
+            /** Separate honest model that may prove under memo/extent math. */
+            provedAmortizedReuseMemoAtCallTime: boolean;
+            model: OneTbitEncryptModel;
+            measuredBitsPerSec: number;
+            wire: OneTbitModelReceipt;
+            demo: OneTbitModelReceipt;
+            amortized: OneTbitModelReceipt;
+            refused: OneTbitModelReceipt;
+            models: readonly [OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt, OneTbitModelReceipt];
+            productionRefused: boolean;
+            bitcoinRefused: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+            route: string;
+            pair: string;
+            cli: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        pair: string;
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    count: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "poles/cross-pqc";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:poles-cross-pqc — poles → merkaba/rosetta cross → PQC certificate structures. */
+export declare function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificatesExit(_root: string, _argv?: readonly string[]): number;
+/** Positive power in the secp256k1 field-prime construction (2^256). */
+export declare const SECP256K1_FIELD_PRIME_POSITIVE_EXPONENT: number;
+/** Subtracted powers (excluding the final −1) in the SECG construction — 2^5=32 derived. */
+export declare const SECP256K1_FIELD_PRIME_NEGATIVE_EXPONENTS: readonly [number, 9, 8, 7, 6, 4];
+/** Canonical hex of secp256k1 field prime (SECG) — sealed check string. */
+export declare const SECP256K1_FIELD_PRIME_HEX: "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f";
+/** Compact residue: 2^9+2^8+2^7+2^6+2^4+1 so p = 2^256 − 2^32 − residue (SECG). */
+export declare const SECP256K1_FIELD_PRIME_LOW_RESIDUE: number;
+/** Extended Euclid modular inverse — a·inv ≡ 1 (mod m); m must be prime for units. */
+export declare function bigintModInverse(a: bigint, m: bigint): bigint;
+/**
+ * secp256k1 field prime p from powers of two (BigInt limbs).
+ * Alias name: fieldPrimeP256k1 — same integer.
+ */
+export declare function secp256k1Prime(): bigint;
+/** Honest alias — field prime of the 256-bit Koblitz curve secp256k1. */
+export declare const fieldPrimeP256k1: typeof secp256k1Prime;
+/** Signed power-of-two construction terms for invert/decode (incl. final −2^0). */
+export declare function secp256k1PrimeConstructionTerms(): readonly {
+    readonly exp: number;
+    readonly sign: 1 | -1;
+    readonly value: bigint;
+}[];
+/**
+ * Seal · invert · decode secp256k1 field prime p via directional trinity math.
+ *
+ * Pair: secp256k1/invert-decode · CLI npm run quantum:secp256k1-prime-invert-decode
+ * Route: /en/encryption#secp256k1-prime · /proofs/secp256k1-field-prime
+ *
+ * Invert = (1) construction as signed Σ±2^e  (2) mod-p inverse of sample units
+ * Decode = binary/power-of-two subtraction chain + hex/decimal + ECC facet map
+ *
+ * HONEST: known SECG prime structure · certified=false · NOT Bitcoin ownership.
+ */
+export declare function secp256k1FieldPrimeInvertAndDecode(matrix?: MindMatrix): {
+    computes: boolean;
+    name: "secp256k1Prime";
+    alias: "fieldPrimeP256k1";
+    pHex: string;
+    pDecimal: string;
+    bitLength: number;
+    limbs64: string[];
+    construction: {
+        exp: number;
+        sign: 1 | -1;
+        hex: string;
+    }[];
+    constructionInverted: boolean;
+    decode: {
+        positiveExp: number;
+        negativeExps: number[];
+        finalMinusOne: true;
+        compactResidue: number;
+        formula: string;
+    };
+    modPInverses: {
+        a: string;
+        inv: string;
+        holds: boolean;
+    }[];
+    modulusNotAUnit: boolean;
+    trinity: {
+        computes: boolean;
+        digits: import("../stack").DirectionalTrinityDigitRow[];
+        table: {
+            digit: number;
+            forward: number;
+            inverse: number;
+            reverse: number;
+            note: string;
+        }[];
+        foldPair: {
+            forward: string;
+            reverse: string;
+            merged: string;
+            bidirectional: boolean;
+        };
+        ratInvSample: {
+            forward: import("../../3/7").Rational;
+            inverse: import("../../3/7").Rational;
+        };
+        fInverse: {
+            computes: boolean;
+            root: string;
+        };
+        claySolvedByThisFold: 0;
+        facets: ({
+            receipt: string;
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        cli: string;
+        pair: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    beyondEccShorBreaks: boolean;
+    bitcoinRefused: boolean;
+    bitcoinOwnershipClaimed: false;
+    certified: false;
+    claySolvedByThisFold: 0;
+    count: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "secp256k1/invert-decode";
+    cli: string;
+    route: string;
+    proofRoute: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:secp256k1-prime-invert-decode — seal · invert · decode secp256k1 field prime. */
+export declare function runSecp256k1FieldPrimeInvertAndDecodeExit(_root: string, _argv?: readonly string[]): number;
+/**
+ * Production RSA refuse completes the quantum via sealed refuse receipts (rosetta-ray addressed).
+ * Every over-ceiling / production-shaped path must recompute a refuse receipt — no silent gap, no wet bypass.
+ * HONEST: refuseBeyond stays; does NOT enable production RSA break · certified=false.
+ * Pair: refuse/rosetta · CLI npm run quantum:production-rsa-refuse-rosetta
+ */
+export type ProductionRsaRefusePathRow = {
+    readonly id: string;
+    readonly surface: string;
+    readonly refused: boolean;
+    readonly reason: string;
+    readonly receipt: string;
+    readonly ray: number;
+    readonly wired: boolean;
+    readonly incomplete: boolean;
+};
+export declare function productionRsaRefuseCompletesQuantumViaRosetta(matrix?: MindMatrix): {
+    computes: boolean;
+    incompleteOpen: number;
+    pathCount: number;
+    wiredCount: number;
+    paths: readonly ProductionRsaRefusePathRow[];
+    productionBreakEnabled: false;
+    refuseBeyond: boolean;
+    demoBitCeiling: number;
+    claySolvedByThisFold: 0;
+    certified: false;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "refuse/rosetta";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:production-rsa-refuse-rosetta */
+export declare function runProductionRsaRefuseCompletesQuantumViaRosettaExit(_root: string, _argv?: readonly string[]): number;
+export type CryptoComparisonMeshKind = 'comparison' | 'catalog' | 'ceiling' | 'refuse' | 'audit' | 'proof' | 'toolkit' | 'novel' | 'measure';
+export type CryptoComparisonMeshRelation = 'compares-against' | 'composes' | 'handoff' | 'proves-as' | 'refuses-beyond' | 'catalogues' | 'audits';
+export type CryptoComparisonMeshNode = {
+    readonly id: string;
+    readonly title: string;
+    readonly fold: string;
+    readonly pair: string;
+    readonly cli: string;
+    readonly route: string;
+    readonly proofRoute: string;
+    readonly kind: CryptoComparisonMeshKind;
+    readonly boundary: string;
+    readonly inPanel: boolean;
+    readonly toolId: string;
+};
+export type CryptoComparisonMeshEdge = {
+    readonly id: string;
+    readonly from: string;
+    readonly to: string;
+    readonly relation: CryptoComparisonMeshRelation;
+};
+/** Single sealed catalog — comparison edges/nodes. Do not wet-copy into UI/MCP/proofs. */
+export declare const CRYPTO_COMPARISON_MESH_NODES: readonly CryptoComparisonMeshNode[];
+/** Comparison edges — one sealed relation per edge id. */
+export declare const CRYPTO_COMPARISON_MESH_EDGES: readonly CryptoComparisonMeshEdge[];
+export declare function cryptoComparisonMeshNode(id: string): CryptoComparisonMeshNode | undefined;
+/** Toolbox / CLI seed rows derived from mesh (excludes proof-only aliases). */
+export declare function cryptoComparisonMeshToolSeeds(): readonly {
+    readonly id: string;
+    readonly title: string;
+    readonly fold: string;
+    readonly cli: string;
+    readonly pair: string;
+    readonly route: string;
+    readonly barrel: string;
+    readonly boundary: string;
+    readonly browserRunnable: boolean;
+    readonly browserGap: string;
+}[];
+/** VitePress hash from a mesh route — UI section id / deep-link target. */
+export declare function cryptoComparisonMeshPanelId(route: string, fallbackId: string): string;
+/** Panel section rows — single source for encryptionPanelComputes.sections metadata. */
+export declare function cryptoComparisonMeshPanelSections(onByNodeId: Readonly<Record<string, boolean>>): readonly {
+    id: string;
+    nodeId: string;
+    title: string;
+    route: string;
+    pair: string;
+    cli: string;
+    on: boolean;
+}[];
+/**
+ * Compute the crypto comparison mesh from the sealed catalog.
+ * Pair: crypto/comparison-mesh
+ */
+export declare function cryptoComparisonMesh(matrix?: MindMatrix): {
+    computes: boolean;
+    nodes: readonly CryptoComparisonMeshNode[];
+    edges: readonly CryptoComparisonMeshEdge[];
+    nodeCount: number;
+    edgeCount: number;
+    panelCount: number;
+    proofCount: number;
+    comparisonCount: number;
+    claySolvedByThisFold: 0;
+    certified: false;
+    refuseBeyond: true;
+    root: string;
+    pair: "crypto/comparison-mesh";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * Receipt: crypto comparison mesh is DRY — one sealed source, no wet duplicate catalogs inside the mesh.
+ * Facet: cryptoComparisonMeshIsDry
+ */
+export declare function cryptoComparisonMeshIsDry(matrix?: MindMatrix): {
+    computes: boolean;
+    cryptoComparisonMeshIsDry: boolean;
+    mesh: {
+        computes: boolean;
+        nodes: readonly CryptoComparisonMeshNode[];
+        edges: readonly CryptoComparisonMeshEdge[];
+        nodeCount: number;
+        edgeCount: number;
+        panelCount: number;
+        proofCount: number;
+        comparisonCount: number;
+        claySolvedByThisFold: 0;
+        certified: false;
+        refuseBeyond: true;
+        root: string;
+        pair: "crypto/comparison-mesh";
+        cli: string;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    panelSections: readonly {
+        id: string;
+        nodeId: string;
+        title: string;
+        route: string;
+        pair: string;
+        cli: string;
+        on: boolean;
+    }[];
+    toolSeeds: readonly {
+        readonly id: string;
+        readonly title: string;
+        readonly fold: string;
+        readonly cli: string;
+        readonly pair: string;
+        readonly route: string;
+        readonly barrel: string;
+        readonly boundary: string;
+        readonly browserRunnable: boolean;
+        readonly browserGap: string;
+    }[];
+    claySolvedByThisFold: 0;
+    certified: false;
+    refuseBeyond: true;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "crypto/comparison-mesh";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:crypto-comparison-mesh-dry — mesh dry + related-surfaces handoff note */
+export declare function runCryptoComparisonMeshIsDryExit(_root: string, _argv?: readonly string[]): number;
+/**
+ * Production browser encrypt/reverse tools are not demos — labeling them “demo”/“toy” misleads the public.
+ * refuseBeyond stays only for over-ceiling / third-party production RSA break claims.
+ * Pair: tool/honest · demo/lie · CLI npm run quantum:tool-honest
+ */
+export declare function productionBrowserToolsAreNotDemos(matrix?: MindMatrix): {
+    computes: boolean;
+    misleadingDemoLabelRemoved: boolean;
+    productionBrowserTools: boolean;
+    refuseBeyondStaysForKeyBreakClaims: boolean;
+    toolSurface: "production-browser";
+    moduliClass: "sealed-catalog";
+    claySolvedByThisFold: 0;
+    certified: false;
+    physicalFtl: 0;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "tool/honest";
+    dual: "demo/lie";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+export declare const toolHonest: typeof productionBrowserToolsAreNotDemos;
+export declare const demoLie: typeof productionBrowserToolsAreNotDemos;
+/** npm run quantum:tool-honest · aliases quantum:demo-lie */
+export declare function runProductionBrowserToolsAreNotDemosExit(_root: string, _argv?: readonly string[]): number;
+export declare const runToolHonestExit: typeof runProductionBrowserToolsAreNotDemosExit;
+export declare const runDemoLieExit: typeof runProductionBrowserToolsAreNotDemosExit;
+/** Chat intent phrases → /en/ssltest · pair ssl/test (functionality class: stack→receipt; quantumise ≠ mirror). */
+export declare const SSL_TEST_CHAT_PHRASES: readonly ["ssl test", "ssltest", "tls test", "https test", "ssl/test", "test/ssl", "certificate test", "open ssltest", "quantumise ssl"];
+export type SslTestCoverage = 'covered' | 'partial' | 'gap';
+export type SslTestChecklistRow = {
+    readonly id: string;
+    readonly title: string;
+    readonly coverage: SslTestCoverage;
+    readonly direction: 'forward' | 'inverse' | 'reverse' | 'both' | 'neither';
+    readonly on: boolean;
+    readonly route: string;
+    readonly receipt: string;
+    readonly note: string;
+};
+/** Quantum grade from sealed facets — NOT Qualys letter grades. */
+export type SslTestQuantumGrade = {
+    readonly coverage: SslTestCoverage;
+    readonly digit: number;
+    readonly forward: boolean;
+    readonly inverse: boolean;
+    readonly reverse: boolean;
+    readonly merkabaCross: boolean;
+    readonly root: string;
+};
+/** Optional stack/host label seeds receipt only — never fetches; rejects exploit-looking input. */
+export declare function normalizeSslTestHostLabel(raw: string): {
+    readonly host: string;
+    readonly ok: boolean;
+    readonly refused: boolean;
+    readonly reason: string;
+};
+/**
+ * SSL test UI complete — quantumise stack→receipt (functionality class), not Qualys/ssllabs mirror.
+ * Sealed recompute · rosetta/merkaba poles-cross · forward·inverse·reverse trinity · tool/honest.
+ * Warm-reuse at computational FTL (memoByRoot cold/warm) · facet quantumiseAtFtlSpeed.
+ * Pairs: ssl/test · test/ssl · soft quantumise/ftl · CLI npm run quantum:ssl-test · route /en/ssltest
+ */
+export declare function sslTestUiComplete(matrix?: MindMatrix, hostLabel?: string): {
+    computes: boolean;
+    sslTestUi: boolean;
+    functionalitiesPartialCompleted: boolean;
+    discoversOther: boolean;
+    quantumiseAtFtlSpeed: boolean;
+    quantumGrade: SslTestQuantumGrade;
+    host: string;
+    hostOk: boolean;
+    hostRefused: boolean;
+    hostReason: string;
+    checklist: SslTestChecklistRow[];
+    covered: number;
+    partial: number;
+    gap: number;
+    probes: {
+        id: string;
+        coldMs: number;
+        warmMs: number;
+        speedup: number;
+        memoHit: boolean;
+        root: string;
+        computes: boolean;
+    }[];
+    coldMs: number;
+    warmMs: number;
+    speedup: number;
+    memoHits: number;
+    liveRemoteScanResidual: string;
+    phrases: ("ssl test" | "ssltest" | "tls test" | "https test" | "ssl/test" | "test/ssl" | "certificate test" | "open ssltest" | "quantumise ssl")[];
+    claySolvedByThisFold: 0;
+    certified: false;
+    physicalFtl: 0;
+    qpuRequired: false;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "ssl/test";
+    dual: "test/ssl";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+export declare const sslTest: typeof sslTestUiComplete;
+export declare const testSsl: typeof sslTestUiComplete;
+/** Optional stack label seeds receipt only — never probes remote TLS. Prints cold/warm FTL table. */
+export declare function runSslTestExit(_root: string, argv?: readonly string[]): number;
+export declare const runSslTestUiCompleteExit: typeof runSslTestExit;
+export declare const runTestSslExit: typeof runSslTestExit;
+export declare const encryption: {
+    readonly core: {
+        readonly uuidFolds: typeof uuidFoldsSelfBlackWhite;
+        readonly uuidDiamond: typeof uuidPureDiamondSignedByArchitecture;
+        readonly trinities: typeof encryptionTrinitiesCompleteInOrder;
+        readonly livesInZero: typeof encryptionLivesInZero;
+        readonly terabyte: typeof terabyteEncryptionInMegabyteCodebase;
+    };
+    readonly rsa: {
+        readonly moduli: readonly [number, number, number, number];
+        readonly bitCeiling: number;
+        readonly refuse: typeof refuseNonDemoRsaModulus;
+        readonly modeledShor: typeof modeledShorFactorToyModulus;
+        readonly reverse: typeof demoRsaReverseSync;
+    };
+    readonly quantum: {
+        readonly tools: typeof encryptDecryptQuantumTools;
+        readonly chat: typeof chatEncryptedWithAllFourKeysUnboundedKeyspace;
+    };
+    readonly security: {
+        readonly hardwareCap: typeof maxBitsFromHardwareCapabilities;
+        readonly cpuCount: typeof probeLocalCpuCount;
+        readonly refuseBitcoin: typeof refuseBitcoinMainnetMaterial;
+        readonly productionCeiling: typeof productionCeilingRefuseHolds;
+        readonly farOverCeiling: typeof farOverCeilingRefuseHolds;
+    };
+    readonly ssl: {
+        readonly test: typeof sslTestUiComplete;
+    };
+};

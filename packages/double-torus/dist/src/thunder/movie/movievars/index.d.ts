@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 /** Perceptual OKLCH band — dark field lifts paint; light field lifts chrome washes (near-white back)
  * and deepens accent glow for contrast. Light back matches computedMovieThemeColors (24/25). */
 export declare function chromeLightnessBand(mode: 'light' | 'dark'): {
@@ -22,7 +22,7 @@ export declare function backgroundMovieColorVars(matrix?: MindMatrix, cssWidth?:
 path?: string, endless?: boolean, mode?: 'light' | 'dark'): Record<string, string>;
 export declare function cardMovieSeed(parts: readonly (string | undefined)[]): string;
 export declare function cardMoviePath(route: string, seed: string): string;
-export declare function cardMovieColorVars(route: string, seed: string, cssWidth?: number, matrix?: MindMatrix): Record<string, string>;
+export declare function cardMovieColorVars(route: string, seed: string, cssWidth?: number, matrix?: MindMatrix, mode?: 'light' | 'dark'): Record<string, string>;
 export type PolarityMathProof = {
     task: string;
     expr: string;

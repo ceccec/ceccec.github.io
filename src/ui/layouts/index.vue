@@ -214,7 +214,7 @@ const statusItems = ref([
 }
 
 .sidebar-nav {
-  background: rgba(10, 14, 39, 0.8);
+  background: var(--bg-tint-dark-heavy);
   border-right: 1px solid var(--primary);
   overflow-y: auto;
   padding: var(--spacing-lg);
@@ -252,7 +252,7 @@ const statusItems = ref([
 
 .nav-section a:hover {
   color: var(--primary);
-  background: rgba(0, 212, 255, 0.1);
+  background: var(--bg-tint-cyan-light);
   border-left-color: var(--primary);
   transform: translateX(5px);
 }
@@ -263,7 +263,7 @@ const statusItems = ref([
 }
 
 .sidebar-info {
-  background: rgba(10, 14, 39, 0.8);
+  background: var(--bg-tint-dark-heavy);
   border-left: 1px solid var(--primary);
   overflow-y: auto;
   padding: var(--spacing-lg);
@@ -293,7 +293,7 @@ const statusItems = ref([
   gap: 8px;
   font-size: var(--font-size-sm);
   padding: 8px;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-tint-black-medium);
   border-radius: var(--radius-sm);
 }
 
@@ -301,7 +301,7 @@ const statusItems = ref([
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255, 0, 110, 0.5);
+  background: var(--bg-tint-magenta);
   display: inline-block;
 }
 
@@ -317,7 +317,7 @@ const statusItems = ref([
 }
 
 .stat-card {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--bg-tint-black-heavy);
   padding: 12px;
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--primary);
@@ -337,7 +337,7 @@ const statusItems = ref([
 }
 
 .footer {
-  background: rgba(10, 14, 39, 0.6);
+  background: var(--bg-tint-dark-medium);
   border-top: 1px solid var(--primary);
   padding: var(--spacing-lg);
   text-align: center;
@@ -355,7 +355,7 @@ const statusItems = ref([
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--bg-tint-black-light);
 }
 
 ::-webkit-scrollbar-thumb {

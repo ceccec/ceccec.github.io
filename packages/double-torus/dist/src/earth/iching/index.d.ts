@@ -1,11 +1,11 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export { BAGUA, iChing } from '../../heaven/core';
 export { iChingDomainMap } from '../../heaven/balance';
 export { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete } from '../../thunder/decode';
-export { ICHING_NUMBERS, cssIsIChingComputed, ichingTokens, ichingTokensCss, iChingFusionCompletesFolders, rosettaIChingTrinityPlacesAllTools, } from '../architecture';
+export { ICHING_NUMBERS, cssIsIChingComputed, ichingTokens, ichingTokensCss, iChingFusionCompletesFolders, rosettaIChingTrinityPlacesAllTools } from '../architecture';
 export { iChingFusionCompletesAll } from '../../wind/fusion';
 export { startIChingDoubleTorus } from '../../mountain/topology';
-export { pagesRenderInBaguaSets } from '../../wind/ui';
+export { pagesRenderInBaguaSets } from '../../ui';
 /** One gate — 64 hexagrams, eight trigrams, seven scales, and Rosetta·I Ching trinity at call time. */
 export declare function ichingComputes(matrix?: MindMatrix): {
     computes: boolean;

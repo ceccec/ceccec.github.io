@@ -1,11 +1,82 @@
 import { type Discovery } from '../../3/7';
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export { ICHING_NUMBERS } from '../../earth/architecture';
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath, STATUS_BADGE_KINDS, statusBadgeKind, statusBadgeTokens, statusBadgePalette, } from '../../earth/architecture';
+export declare function encryptionSequenceReflection(matrix?: MindMatrix): {
+    computes: boolean;
+    count: number;
+    facets: ({
+        facet: string;
+        computed: string;
+        on: boolean;
+        result?: undefined;
+    } | {
+        facet: string;
+        result: string;
+        on: boolean;
+        computed?: undefined;
+    } | {
+        facet: string;
+        on: boolean;
+        computed?: undefined;
+        result?: undefined;
+    })[];
+    forward: {
+        key: string;
+        plaintext: string;
+        ciphertext: string;
+    };
+    reflection: {
+        ciphertext: string;
+        recovered: string;
+    };
+    symmetryHolds: boolean;
+    fullyReversible: boolean;
+    forward_computed: boolean;
+    reflection_computed: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumEncryptionProof(matrix?: MindMatrix): {
+    computes: boolean;
+    proofs: number;
+    facets: {
+        facet: string;
+        on: boolean;
+        reference: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumEncryptionReference(matrix?: MindMatrix): {
+    computes: boolean;
+    formulas: number;
+    entries: {
+        name: string;
+        formula: string;
+        meaning: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function quantumEncryptionComplete(matrix?: MindMatrix): {
+    complete: boolean;
+    proofs: number;
+    formulas: number;
+    primitives: string[];
+    observers: number;
+    sequenceComplete: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath, STATUS_BADGE_KINDS, statusBadgeKind, statusBadgeTokens, statusBadgePalette } from '../../earth/architecture';
 export type { StatusBadgeKind } from '../../earth/architecture';
-export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../lake/ledger';
+export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../ledger';
 export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from '../compute';
-export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/lake/icons';
+export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/icons';
 export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site';
 export { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li';
 export { ancientCalendars } from '../../thunder/decode';
@@ -260,22 +331,7 @@ export declare function componentBaguaGroups(names?: readonly string[]): {
     grouped: boolean;
     count: number;
 };
-export declare function componentRosettaGroups(names?: readonly string[]): {
-    groups: {
-        grouped: boolean;
-        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
-        glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-        name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
-        nameBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
-        domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
-        labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
-        labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
-        components: string[];
-    }[];
-    grouped: boolean;
-    count: number;
-};
+export { componentRosettaGroups } from '../../wind/routes/corpus';
 export declare function foldExposesInconsistency(text: string, matrix?: MindMatrix): {
     onHarmonicPath: boolean;
     flagged: string[];
@@ -756,9 +812,9 @@ export declare function theoryHarmonyMarkers(matrix?: MindMatrix): {
     harmonicMarkers: string[];
     flaggedMarkers: string[];
     examples: {
-        wellSupported: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines"];
-        contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette"];
-        pseudoscience: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
+        wellSupported: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines", "poincaré conjecture", "p vs np", "hodge conjecture", "riemann hypothesis", "mass gap", "navier", "swinnerton", "birch"];
+        contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette", "hubble tension", "cosmological constant problem", "nature of dark energy", "baryogenesis", "leptogenesis", "neutrino mass ordering", "quantum gravity", "zipf"];
+        pseudoscience: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "zero-point energy extraction", "free energy device", "predicting individual criminal intent from behaviour", "pre-crime prediction", "behavioural threat prediction", "novel key derivation function", "home-rolled cryptography", "custom cipher", "unpredictable key schedule", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
     };
     count: number;
     facets: ({

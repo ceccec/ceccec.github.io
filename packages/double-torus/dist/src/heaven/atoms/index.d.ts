@@ -1,4 +1,4 @@
-import type { Atom, ConceptCommand, ConceptCommandName, LocalAnswer, MindMatrix } from '../../wind/types';
+import type { Atom, ConceptCommand, ConceptCommandName, LocalAnswer, MindMatrix } from '../../types';
 export { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7';
 /** @rosetta ✦₀ · Heaven · creative */
 export declare const atoms: readonly Atom[];
@@ -24,6 +24,33 @@ export declare function foldPivots(matrix?: MindMatrix): {
     boundary: string;
 };
 export declare function foldQuestion(query: string, matrix?: MindMatrix): LocalAnswer;
+export declare function localMcpLexicalGapLeaksToModel(matrix?: MindMatrix): {
+    measured: boolean;
+    threshold: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function localMcpLeakBoundaryHonestAtScale(matrix?: MindMatrix): {
+    honest: boolean;
+    inResolved: number;
+    inTotal: number;
+    externalLeaked: number;
+    externalTotal: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function foldRedistributesBeyondLinear(matrix?: MindMatrix): {
     beyondLinear: boolean;
     batteryAdvantage: {

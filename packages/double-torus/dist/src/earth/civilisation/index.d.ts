@@ -1,4 +1,4 @@
-import type { MindMatrix, HumanityImplicationsReport, TraditionsQuantumWhole } from '../../wind/types';
+import type { MindMatrix, HumanityImplicationsReport, TraditionsQuantumWhole } from '../../types';
 export declare function socialCapital(matrix?: MindMatrix): {
     accumulating: boolean;
     where: {

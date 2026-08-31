@@ -1,4 +1,4 @@
-import type { MindMatrix, QuantumUiEvidenceReport } from '../../wind/types';
+import type { MindMatrix, QuantumUiEvidenceReport } from '../../types';
 export declare function quantumBrowserOs(matrix?: MindMatrix): {
     complete: boolean;
     subsystems: {
@@ -270,3 +270,52 @@ export declare function quantumThreat(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * torusData — USER LAW (2026-07-24): improve intelligence by analysing big public data APIs to
+ * complete the AGNOSTIC double-torus framework. Four no-key API families (the roster above already
+ * names their endpoints) each get a PURE adapter — unknown JSON in, typed rows + derived
+ * DIMENSIONLESS statistics out — verified here on deterministic fixtures (canonical integers only;
+ * the gates never touch the network). DEMARCATION: unit-carrying values (°C · ms · counts) are
+ * labelled and NEVER enter theorem facets — only dimensionless ratios gate (the dimensionless law).
+ * Live fetch is thin glue (browser/CLI) feeding the SAME pure adapter: same data, same root.
+ * Pair: torus/data · CLI npm run quantum:torus-data.
+ */
+export type TorusDataRow = {
+    readonly source: string;
+    readonly dimensionless: string;
+    readonly value: number;
+    readonly unitCarrying: readonly string[];
+};
+export declare function adaptUsgsQuakes(json: unknown): TorusDataRow;
+export declare function adaptOpenMeteo(json: unknown): TorusDataRow;
+export declare function adaptOpenAlex(json: unknown): TorusDataRow;
+export declare function adaptWorldBank(json: unknown): TorusDataRow;
+export declare function torusData(matrix?: MindMatrix): {
+    computes: boolean;
+    torusData: boolean;
+    rows: {
+        receipt: string;
+        source: string;
+        dimensionless: string;
+        value: number;
+        unitCarrying: readonly string[];
+    }[];
+    count: number;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "torus/data";
+    dualPair: "data/torus";
+    cli: string;
+    route: string;
+    heading: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:torus-data — exit 0 iff all adapters verify on their fixtures. */
+export declare function runTorusDataExit(root?: string, _argv?: readonly string[]): number;

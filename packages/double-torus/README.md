@@ -171,4 +171,18 @@ The build fails unless all **49** completely-quantum contract exports are presen
 
 ## License
 
-MIT © ceccec
+**CC BY-NC-ND 4.0** © ceccec — see [LICENSE](./LICENSE).
+
+> **License change in 1.4.1.** Version 1.4.0 was published under the **MIT**
+> license. Starting with 1.4.1 this package is licensed under
+> **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International**,
+> which does not permit commercial use or the distribution of modified versions.
+>
+> Because 1.4.1 is a patch release, a `^1.4.0` or `~1.4.0` range will resolve to
+> it automatically. If you rely on the MIT terms, pin `1.4.0` exactly:
+>
+> ```json
+> { "dependencies": { "@ceccec/double-torus": "1.4.0" } }
+> ```
+>
+> Version 1.4.0 remains available under MIT; this change is not retroactive.

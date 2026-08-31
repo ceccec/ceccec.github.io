@@ -1,0 +1,91 @@
+/* ═══════════════════════════════════════════════════════════════
+   UI Tokens — Centralized Palette System
+
+   This file serves as the single source of truth for all colors.
+   All hardcoded colors throughout the codebase map to variables here.
+
+   Structure:
+   - Semantic status colors (light/dark)
+   - Utility neutrals
+   - Shadow palette (A432 cyan base)
+   - Layout background tints
+   - Print media colors
+   - Theme metadata
+
+   The palette can be extended with I Ching hexagram colors
+   by linking to A432_HUE and using harmonically-derived hues.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── SEMANTIC STATUS COLORS (Light Mode) ── */
+  --color-semantic-success: oklch(72% 0.18 150);
+  --color-semantic-warning: oklch(70% 0.20 85);
+  --color-semantic-danger: oklch(58% 0.21 20);
+  --color-semantic-neutral: oklch(85% 0.05 0);
+
+  /* ── SEMANTIC STATUS COLORS (Dark Mode) ── */
+  --color-semantic-success-dark: oklch(28% 0.18 330);
+  --color-semantic-warning-dark: oklch(30% 0.20 265);
+  --color-semantic-danger-dark: oklch(42% 0.21 200);
+  --color-semantic-neutral-dark: oklch(15% 0.05 0);
+
+  /* ── UTILITY NEUTRALS ── */
+  --color-neutral-darker: oklch(5% 0.02 0);
+  --color-neutral-inverted: oklch(15% 0.05 0);
+
+  /* ── SHADOW PALETTE (Derived from A432 Cyan #00D4FF) ──
+     All shadows use the A432 cyan anchor (RGB 0, 212, 255).
+     This ties the shadow system to the harmonic frequency foundation.
+  */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 212, 255, 0.05);
+  --shadow-md: 0 4px 6px 0 rgba(0, 212, 255, 0.1);
+  --shadow-lg: 0 10px 15px 0 rgba(0, 212, 255, 0.15);
+  --shadow-xl: 0 20px 25px 0 rgba(0, 212, 255, 0.2);
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.5);
+
+  /* ── LAYOUT BACKGROUND TINTS ──
+     Semantic overlays for layered backgrounds and depth cuing.
+  */
+  --bg-tint-dark-heavy: rgba(10, 14, 39, 0.8);
+  --bg-tint-dark-medium: rgba(10, 14, 39, 0.6);
+  --bg-tint-cyan-light: rgba(0, 212, 255, 0.1);
+  --bg-tint-black-light: rgba(0, 0, 0, 0.1);
+  --bg-tint-black-medium: rgba(0, 0, 0, 0.2);
+  --bg-tint-black-heavy: rgba(0, 0, 0, 0.3);
+  --bg-tint-magenta: rgba(255, 0, 110, 0.5);
+
+  /* ── PRINT MEDIA (A4 Paper) ──
+     Black on white for maximum contrast when printed.
+  */
+  --color-print-text: black;
+  --color-print-bg: white;
+
+  /* ── THEME METADATA ──
+     Browser theme-color tag; used by browser UI (address bar, tab, etc).
+  */
+  --color-theme-anchor: oklch(65% 0.2 250);
+}
+
+/* ── DARK MODE: Override Neutral Inverted ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-neutral-inverted: oklch(85% 0.05 0);
+  }
+}
+
+/* ── FUTURE I CHING EXTENSION ──
+
+   The palette can extend to include 64 hexagram colors via:
+
+   :root {
+     --iching-hue-base: 5; // A432_HUE in degrees
+     --iching-hue-offset: 5.625; // 360 / 64
+
+     // Then dynamically generate:
+     --iching-color-00: oklch(60% 0.2 calc(var(--iching-hue-base) + 0 * var(--iching-hue-offset)));
+     --iching-color-01: oklch(60% 0.2 calc(var(--iching-hue-base) + 1 * var(--iching-hue-offset)));
+     // ... etc for all 64
+   }
+
+   This links the UI color system directly to the harmonic foundation.
+*/

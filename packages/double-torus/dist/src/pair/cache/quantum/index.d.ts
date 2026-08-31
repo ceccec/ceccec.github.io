@@ -1,4 +1,7 @@
-export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/lake/dist';
+import { type Uuid } from '../../../0';
+export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/dist';
+export type { Uuid };
+export { CLI_ENTRY_REL } from '../../enforcement';
 /** Find a dist artifact by pathname (leading slash optional). */
 export declare function artifactForPath(pathname: string, siteUrl: string): import(".").DistFile;
 export declare const TIMEOUT_EXIT_CODE = 124;
@@ -40,8 +43,6 @@ export declare function timeoutDryRefactorToQuantum(opts: {
     boundary: string;
 };
 export declare const dual = "src/quantum/water/cache";
-export type Uuid = string;
-export declare const CLI_ENTRY_REL = "src/pair/enforcement/script/cli/bootstrap/index.ts";
 export declare const SCRIPT_SHELL_LINE_BUDGET: number;
 export declare const SCRIPT_SHELL_ALLOWLIST: Readonly<Record<string, number>>;
 export type ScriptShellScan = {

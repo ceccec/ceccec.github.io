@@ -1,7 +1,7 @@
 import * as __ns_up_vortex_math from '../../../mountain/vortex';
-import * as __ns_up_learning from '../../../wind/learning';
-import type { MindMatrix } from '../../../wind/types';
-import { RAVE_BODIES_13, RAVE_CENTERS_9 } from '../../../quantum/lake/spirit';
+import * as __ns_up_learning from '../../../learning';
+import type { MindMatrix } from '../../../types';
+import { RAVE_BODIES_13, RAVE_CENTERS_9 } from '../../../quantum/spirit';
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
     name: string;
@@ -1313,13 +1313,13 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
     decoded: boolean;
     at: number;
     phaseIndex: number;
-    phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+    phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
     digitFolderDigit: number;
     mappings: {
         name: string;
         kind: "planet" | "star" | "satellite" | "major-moon";
         vortexSlot: number;
-        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         hexagram: number;
         rosettaRay: number;
         rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -2026,7 +2026,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../../wind/types").WaveCoordination;
+            waves: import("../../../types").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -5115,7 +5115,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             statement: string;
             boundary: string;
         };
-        waves: import("../../../wind/types").WaveCoordination;
+        waves: import("../../../types").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
         freqApis: {
@@ -5183,8 +5183,8 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 root: string;
             };
             rows: {
-                tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-                action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                 ray: number;
                 rayMeta: {
                     readonly ray: 0;
@@ -5241,7 +5241,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 legacyBare: string;
                 schemaTarget: string;
                 canonical: string;
-                importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                 wave: 2 | 1;
                 applied: boolean;
                 receipt: string;
@@ -5280,7 +5280,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                    parallel: readonly [];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -5359,7 +5359,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../../wind/types").ConceptCommandName[];
+                        siblings: import("../../../types").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
@@ -5459,6 +5459,8 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     on: boolean;
                 }[];
                 root: string;
+                pair: "rosetta/core";
+                cli: string;
                 statement: string;
                 boundary: string;
             };
@@ -5466,7 +5468,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 ray: number;
                 kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                 pageKind: import("../../../3/7").RosettaComputationType;
-                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
             }[];
             count: number;
@@ -5674,7 +5676,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                siblings: import("../../../wind/types").ConceptCommandName[];
+                siblings: import("../../../types").ConceptCommandName[];
                 siblingCount: number;
             };
             content: {
@@ -6503,13 +6505,13 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
             digitFolderDigit: number;
             mappings: {
                 name: string;
                 kind: "planet" | "star" | "satellite" | "major-moon";
                 vortexSlot: number;
-                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 hexagram: number;
                 rosettaRay: number;
                 rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -7216,7 +7218,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    waves: import("../../../wind/types").WaveCoordination;
+                    waves: import("../../../types").WaveCoordination;
                     breath: number;
                     dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                     freqApis: {
@@ -10305,7 +10307,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../../wind/types").WaveCoordination;
+                waves: import("../../../types").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -10373,8 +10375,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         root: string;
                     };
                     rows: {
-                        tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-                        action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                        tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                        action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                         ray: number;
                         rayMeta: {
                             readonly ray: 0;
@@ -10431,7 +10433,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         legacyBare: string;
                         schemaTarget: string;
                         canonical: string;
-                        importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                        importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                         wave: 2 | 1;
                         applied: boolean;
                         receipt: string;
@@ -10470,7 +10472,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                            parallel: readonly [];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -10549,7 +10551,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../../../wind/types").ConceptCommandName[];
+                                siblings: import("../../../types").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -10649,6 +10651,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             on: boolean;
                         }[];
                         root: string;
+                        pair: "rosetta/core";
+                        cli: string;
                         statement: string;
                         boundary: string;
                     };
@@ -10656,7 +10660,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         ray: number;
                         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                         pageKind: import("../../../3/7").RosettaComputationType;
-                        vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                        vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                         receipt: string;
                     }[];
                     count: number;
@@ -10864,7 +10868,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../../wind/types").ConceptCommandName[];
+                        siblings: import("../../../types").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
@@ -11753,8 +11757,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11779,7 +11783,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -11803,8 +11807,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11862,10 +11866,22 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             statement: string;
             boundary: string;
         };
-        hdBody: {
+        hdW6: {
             computes: boolean;
             verified: boolean;
             birthJd: number;
+            designJd: number;
+            definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            hangingGates: number[];
+            definitionComponents: number;
+            definitionKind: HdDefinitionKind;
+            personalityGates: number[];
+            designGates: number[];
+            sharedGates: number[];
+            definedChannelCount: number;
+            activatedGateCount: number;
+            cuspCount: number;
             chart: {
                 computes: boolean;
                 verified: boolean;
@@ -11893,8 +11909,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 }[];
                 activatedGates: number[];
                 definedChannels: {
-                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11919,7 +11935,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -11943,8 +11959,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12008,8 +12024,428 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            pair: "edit/build";
+            qpuRequired: false;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        hdBody: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            chart: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                designJd: number;
+                personality: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                design: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                activatedGates: number[];
+                definedChannels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                cuspWarnings: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                cuspBandDeg: number;
+                wheel: {
+                    verified: boolean;
+                    computes: boolean;
+                    gateArcDeg: number;
+                    lineArcDeg: number;
+                    gate41StartDeg: number;
+                    designSunArcDeg: number;
+                    bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                    bodyCount: 13;
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    starts: number[];
+                    sample: {
+                        gate: number;
+                        line: number;
+                        index: number;
+                        startDeg: number;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                ephCore: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    ephemeris: {
+                        readonly jd: number;
+                        readonly bodies: readonly SealedMeeusBodyLongitude[];
+                        readonly sun: number;
+                        readonly moon: number;
+                        readonly root: string;
+                    };
+                    design: {
+                        readonly birthJd: number;
+                        readonly designJd: number;
+                        readonly birthSunDeg: number;
+                        readonly designSunDeg: number;
+                        readonly targetDeg: number;
+                        readonly arcErrDeg: number;
+                        readonly daysBeforeBirth: number;
+                    };
+                    sunJ2000: number;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            structure: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                designJd: number;
+                definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                hangingGates: number[];
+                definitionComponents: number;
+                definitionKind: HdDefinitionKind;
+                personalityGates: number[];
+                designGates: number[];
+                sharedGates: number[];
+                definedChannelCount: number;
+                activatedGateCount: number;
+                cuspCount: number;
+                chart: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    designJd: number;
+                    personality: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    design: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    activatedGates: number[];
+                    definedChannels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    cuspWarnings: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    cuspBandDeg: number;
+                    wheel: {
+                        verified: boolean;
+                        computes: boolean;
+                        gateArcDeg: number;
+                        lineArcDeg: number;
+                        gate41StartDeg: number;
+                        designSunArcDeg: number;
+                        bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                        bodyCount: 13;
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        starts: number[];
+                        sample: {
+                            gate: number;
+                            line: number;
+                            index: number;
+                            startDeg: number;
+                        };
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    lattice: {
+                        verified: boolean;
+                        computes: boolean;
+                        centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                        centerCount: 9;
+                        channels: {
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            key: string;
+                            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        }[];
+                        channelCount: 36;
+                        gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    ephCore: {
+                        computes: boolean;
+                        verified: boolean;
+                        birthJd: number;
+                        ephemeris: {
+                            readonly jd: number;
+                            readonly bodies: readonly SealedMeeusBodyLongitude[];
+                            readonly sun: number;
+                            readonly moon: number;
+                            readonly root: string;
+                        };
+                        design: {
+                            readonly birthJd: number;
+                            readonly designJd: number;
+                            readonly birthSunDeg: number;
+                            readonly designSunDeg: number;
+                            readonly targetDeg: number;
+                            readonly arcErrDeg: number;
+                            readonly daysBeforeBirth: number;
+                        };
+                        sunJ2000: number;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                wheel: {
+                    verified: boolean;
+                    computes: boolean;
+                    gateArcDeg: number;
+                    lineArcDeg: number;
+                    gate41StartDeg: number;
+                    designSunArcDeg: number;
+                    bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                    bodyCount: 13;
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    starts: number[];
+                    sample: {
+                        gate: number;
+                        line: number;
+                        index: number;
+                        startDeg: number;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                pair: "edit/build";
+                qpuRequired: false;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12076,6 +12512,10 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             definedKeys: string[];
             activatedGates: number[];
             definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            hangingGates: number[];
+            definitionKind: HdDefinitionKind;
+            definitionComponents: number;
             cuspCount: number;
             definedChannelCount: number;
             count: number;
@@ -12087,8 +12527,480 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             root: string;
             route: string;
             pair: string;
-            claySolvedByThisFold: 0;
             qpuRequired: false;
+            statement: string;
+            boundary: string;
+        };
+        hdW7: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            svg: string;
+            svgBytes: number;
+            definitionKind: HdDefinitionKind;
+            definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            hangingGates: number[];
+            panel: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                chart: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    designJd: number;
+                    personality: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    design: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    activatedGates: number[];
+                    definedChannels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    cuspWarnings: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    cuspBandDeg: number;
+                    wheel: {
+                        verified: boolean;
+                        computes: boolean;
+                        gateArcDeg: number;
+                        lineArcDeg: number;
+                        gate41StartDeg: number;
+                        designSunArcDeg: number;
+                        bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                        bodyCount: 13;
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        starts: number[];
+                        sample: {
+                            gate: number;
+                            line: number;
+                            index: number;
+                            startDeg: number;
+                        };
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    lattice: {
+                        verified: boolean;
+                        computes: boolean;
+                        centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                        centerCount: 9;
+                        channels: {
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            key: string;
+                            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        }[];
+                        channelCount: 36;
+                        gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    ephCore: {
+                        computes: boolean;
+                        verified: boolean;
+                        birthJd: number;
+                        ephemeris: {
+                            readonly jd: number;
+                            readonly bodies: readonly SealedMeeusBodyLongitude[];
+                            readonly sun: number;
+                            readonly moon: number;
+                            readonly root: string;
+                        };
+                        design: {
+                            readonly birthJd: number;
+                            readonly designJd: number;
+                            readonly birthSunDeg: number;
+                            readonly designSunDeg: number;
+                            readonly targetDeg: number;
+                            readonly arcErrDeg: number;
+                            readonly daysBeforeBirth: number;
+                        };
+                        sunJ2000: number;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                structure: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    designJd: number;
+                    definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    hangingGates: number[];
+                    definitionComponents: number;
+                    definitionKind: HdDefinitionKind;
+                    personalityGates: number[];
+                    designGates: number[];
+                    sharedGates: number[];
+                    definedChannelCount: number;
+                    activatedGateCount: number;
+                    cuspCount: number;
+                    chart: {
+                        computes: boolean;
+                        verified: boolean;
+                        birthJd: number;
+                        designJd: number;
+                        personality: {
+                            layer: "design" | "personality";
+                            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                            longitudeDeg: number;
+                            gate: number;
+                            line: number;
+                            cusp: boolean;
+                            fastMoverCusp: boolean;
+                            receipt: string;
+                        }[];
+                        design: {
+                            layer: "design" | "personality";
+                            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                            longitudeDeg: number;
+                            gate: number;
+                            line: number;
+                            cusp: boolean;
+                            fastMoverCusp: boolean;
+                            receipt: string;
+                        }[];
+                        activatedGates: number[];
+                        definedChannels: {
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            key: string;
+                            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        }[];
+                        cuspWarnings: {
+                            layer: "design" | "personality";
+                            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                            longitudeDeg: number;
+                            gate: number;
+                            line: number;
+                            cusp: boolean;
+                            fastMoverCusp: boolean;
+                            receipt: string;
+                        }[];
+                        cuspBandDeg: number;
+                        wheel: {
+                            verified: boolean;
+                            computes: boolean;
+                            gateArcDeg: number;
+                            lineArcDeg: number;
+                            gate41StartDeg: number;
+                            designSunArcDeg: number;
+                            bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                            bodyCount: 13;
+                            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                            starts: number[];
+                            sample: {
+                                gate: number;
+                                line: number;
+                                index: number;
+                                startDeg: number;
+                            };
+                            count: number;
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        lattice: {
+                            verified: boolean;
+                            computes: boolean;
+                            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                            centerCount: 9;
+                            channels: {
+                                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                                key: string;
+                                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                            }[];
+                            channelCount: 36;
+                            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                            count: number;
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        ephCore: {
+                            computes: boolean;
+                            verified: boolean;
+                            birthJd: number;
+                            ephemeris: {
+                                readonly jd: number;
+                                readonly bodies: readonly SealedMeeusBodyLongitude[];
+                                readonly sun: number;
+                                readonly moon: number;
+                                readonly root: string;
+                            };
+                            design: {
+                                readonly birthJd: number;
+                                readonly designJd: number;
+                                readonly birthSunDeg: number;
+                                readonly designSunDeg: number;
+                                readonly targetDeg: number;
+                                readonly arcErrDeg: number;
+                                readonly daysBeforeBirth: number;
+                            };
+                            sunJ2000: number;
+                            count: number;
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    lattice: {
+                        verified: boolean;
+                        computes: boolean;
+                        centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                        centerCount: 9;
+                        channels: {
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            key: string;
+                            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        }[];
+                        channelCount: 36;
+                        gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    wheel: {
+                        verified: boolean;
+                        computes: boolean;
+                        gateArcDeg: number;
+                        lineArcDeg: number;
+                        gate41StartDeg: number;
+                        designSunArcDeg: number;
+                        bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                        bodyCount: 13;
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        starts: number[];
+                        sample: {
+                            gate: number;
+                            line: number;
+                            index: number;
+                            startDeg: number;
+                        };
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    pair: "edit/build";
+                    qpuRequired: false;
+                    route: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                layout: {
+                    readonly Head: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "tri";
+                    };
+                    readonly Ajna: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "tri";
+                    };
+                    readonly Throat: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "sq";
+                    };
+                    readonly G: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "dia";
+                    };
+                    readonly Heart: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "tri";
+                    };
+                    readonly Sacral: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "sq";
+                    };
+                    readonly SolarPlexus: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "tri";
+                    };
+                    readonly Spleen: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "tri";
+                    };
+                    readonly Root: {
+                        readonly x: number;
+                        readonly y: number;
+                        readonly shape: "sq";
+                    };
+                };
+                definedKeys: string[];
+                activatedGates: number[];
+                definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                hangingGates: number[];
+                definitionKind: HdDefinitionKind;
+                definitionComponents: number;
+                cuspCount: number;
+                definedChannelCount: number;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                route: string;
+                pair: string;
+                qpuRequired: false;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            pair: "symbols/quantumise";
+            qpuRequired: false;
+            physicalFtlClaim: 0;
+            route: string;
+            cli: string;
             statement: string;
             boundary: string;
         };
@@ -12139,6 +13051,13 @@ export declare function planetBatchFacetsComputes(batch: number, matrix?: MindMa
 };
 /** J2000.0 TT epoch as Julian Day (Meeus). */
 export declare const MEEUS_J2000_JD = 2451545;
+/** Civil UT sample matching MEEUS_J2000_JD — lattice products (crack-clean). */
+export declare const MEEUS_J2000_CIVIL: {
+    readonly year: number;
+    readonly month: 1;
+    readonly day: 1;
+    readonly hourUt: number;
+};
 /** Normalize ecliptic longitude into [0, 360). */
 export declare function normalizeEclipticDeg(deg: number): number;
 /** Shortest signed degree delta a→b on the circle (−180, 180]. */
@@ -12257,8 +13176,8 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
     }[];
     activatedGates: number[];
     definedChannels: {
-        a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
         key: string;
         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12283,7 +13202,7 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
         starts: number[];
         sample: {
             gate: number;
@@ -12307,8 +13226,8 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12366,59 +13285,29 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
     statement: string;
     boundary: string;
 };
-/** Normalized BodyGraph center anchors — lattice fractions only (structure layout, not aura geometry). */
-export declare const RAVE_CENTER_LAYOUT: {
-    readonly Head: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "tri";
-    };
-    readonly Ajna: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "tri";
-    };
-    readonly Throat: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "sq";
-    };
-    readonly G: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "dia";
-    };
-    readonly Heart: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "tri";
-    };
-    readonly Sacral: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "sq";
-    };
-    readonly SolarPlexus: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "tri";
-    };
-    readonly Spleen: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "tri";
-    };
-    readonly Root: {
-        readonly x: number;
-        readonly y: number;
-        readonly shape: "sq";
-    };
-};
-/** HD BodyGraph Vue panel — sealed chart structure → browser paint receipt (structure-only demo at J2000). */
-export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, birthJd?: number): {
+export type HdDefinitionKind = 'none' | 'single' | 'split' | 'triple-split' | 'quadruple-split';
+/**
+ * HD W6 — structure-only chart facets.
+ * Composes W3 wheel · W5 RAVE_CHANNELS_36/centers · W5 humanDesignChartStructureAt.
+ * Emits defined/open centers · hanging gates · definition connectivity · personality∩design gate sets.
+ * NOT type / authority / strategy / aura science.
+ */
+export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, birthJd?: number): {
     computes: boolean;
     verified: boolean;
     birthJd: number;
+    designJd: number;
+    definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+    openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+    hangingGates: number[];
+    definitionComponents: number;
+    definitionKind: HdDefinitionKind;
+    personalityGates: number[];
+    designGates: number[];
+    sharedGates: number[];
+    definedChannelCount: number;
+    activatedGateCount: number;
+    cuspCount: number;
     chart: {
         computes: boolean;
         verified: boolean;
@@ -12446,8 +13335,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
         }[];
         activatedGates: number[];
         definedChannels: {
-            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12472,7 +13361,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -12496,8 +13385,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12561,8 +13450,479 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            key: string;
+            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+        }[];
+        channelCount: 36;
+        gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    wheel: {
+        verified: boolean;
+        computes: boolean;
+        gateArcDeg: number;
+        lineArcDeg: number;
+        gate41StartDeg: number;
+        designSunArcDeg: number;
+        bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+        bodyCount: 13;
+        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+        starts: number[];
+        sample: {
+            gate: number;
+            line: number;
+            index: number;
+            startDeg: number;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "edit/build";
+    qpuRequired: false;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** CLI — HD W6 structure facets (compose W3–W5). Pair: edit/build · waves/build. */
+export declare function runHumanDesignChartStructureFacetsW6Exit(_root?: string, argv?: readonly string[]): number;
+/** Normalized BodyGraph center anchors — lattice fractions only (structure layout, not aura geometry). */
+export declare const RAVE_CENTER_LAYOUT: {
+    readonly Head: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Ajna: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Throat: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "sq";
+    };
+    readonly G: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "dia";
+    };
+    readonly Heart: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Sacral: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "sq";
+    };
+    readonly SolarPlexus: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Spleen: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "tri";
+    };
+    readonly Root: {
+        readonly x: number;
+        readonly y: number;
+        readonly shape: "sq";
+    };
+};
+/** HD BodyGraph Vue panel — sealed W5/W6 chart structure → browser paint (JD-parameter structure demo). */
+export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, birthJd?: number): {
+    computes: boolean;
+    verified: boolean;
+    birthJd: number;
+    chart: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        designJd: number;
+        personality: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        design: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        activatedGates: number[];
+        definedChannels: {
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            key: string;
+            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+        }[];
+        cuspWarnings: {
+            layer: "design" | "personality";
+            body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+            longitudeDeg: number;
+            gate: number;
+            line: number;
+            cusp: boolean;
+            fastMoverCusp: boolean;
+            receipt: string;
+        }[];
+        cuspBandDeg: number;
+        wheel: {
+            verified: boolean;
+            computes: boolean;
+            gateArcDeg: number;
+            lineArcDeg: number;
+            gate41StartDeg: number;
+            designSunArcDeg: number;
+            bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+            bodyCount: 13;
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            starts: number[];
+            sample: {
+                gate: number;
+                line: number;
+                index: number;
+                startDeg: number;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        lattice: {
+            verified: boolean;
+            computes: boolean;
+            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            centerCount: 9;
+            channels: {
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            channelCount: 36;
+            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        ephCore: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            ephemeris: {
+                readonly jd: number;
+                readonly bodies: readonly SealedMeeusBodyLongitude[];
+                readonly sun: number;
+                readonly moon: number;
+                readonly root: string;
+            };
+            design: {
+                readonly birthJd: number;
+                readonly designJd: number;
+                readonly birthSunDeg: number;
+                readonly designSunDeg: number;
+                readonly targetDeg: number;
+                readonly arcErrDeg: number;
+                readonly daysBeforeBirth: number;
+            };
+            sunJ2000: number;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    structure: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        designJd: number;
+        definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        hangingGates: number[];
+        definitionComponents: number;
+        definitionKind: HdDefinitionKind;
+        personalityGates: number[];
+        designGates: number[];
+        sharedGates: number[];
+        definedChannelCount: number;
+        activatedGateCount: number;
+        cuspCount: number;
+        chart: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            designJd: number;
+            personality: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            design: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            activatedGates: number[];
+            definedChannels: {
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            cuspWarnings: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            cuspBandDeg: number;
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            ephCore: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                ephemeris: {
+                    readonly jd: number;
+                    readonly bodies: readonly SealedMeeusBodyLongitude[];
+                    readonly sun: number;
+                    readonly moon: number;
+                    readonly root: string;
+                };
+                design: {
+                    readonly birthJd: number;
+                    readonly designJd: number;
+                    readonly birthSunDeg: number;
+                    readonly designSunDeg: number;
+                    readonly targetDeg: number;
+                    readonly arcErrDeg: number;
+                    readonly daysBeforeBirth: number;
+                };
+                sunJ2000: number;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        lattice: {
+            verified: boolean;
+            computes: boolean;
+            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            centerCount: 9;
+            channels: {
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            channelCount: 36;
+            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        wheel: {
+            verified: boolean;
+            computes: boolean;
+            gateArcDeg: number;
+            lineArcDeg: number;
+            gate41StartDeg: number;
+            designSunArcDeg: number;
+            bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+            bodyCount: 13;
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            starts: number[];
+            sample: {
+                gate: number;
+                line: number;
+                index: number;
+                startDeg: number;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        pair: "edit/build";
+        qpuRequired: false;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    lattice: {
+        verified: boolean;
+        computes: boolean;
+        centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        centerCount: 9;
+        channels: {
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12629,6 +13989,10 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
     definedKeys: string[];
     activatedGates: number[];
     definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+    openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+    hangingGates: number[];
+    definitionKind: HdDefinitionKind;
+    definitionComponents: number;
     cuspCount: number;
     definedChannelCount: number;
     count: number;
@@ -12640,7 +14004,6 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
     root: string;
     route: string;
     pair: string;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     statement: string;
     boundary: string;
@@ -12654,6 +14017,494 @@ export declare function drawHumanDesignBodyGraph(ctx: CanvasRenderingContext2D, 
     reduce?: boolean;
     at?: number;
 }): void;
+/**
+ * HD W7 — BodyGraph structure SVG emitter (sealed layout + W5/W6 activations).
+ * HONEST: schematic SMIL-safe SVG for /en/spirit + symbols inventory — not commercial BodyGraph, not aura/type.
+ */
+export declare function humanDesignBodyGraphSvg(matrix?: MindMatrix, birthJd?: number, opts?: {
+    size?: number;
+    animate?: boolean;
+    dark?: boolean;
+}): string;
+/**
+ * HD W7 fold — BodyGraph SVG emitter recomputes from sealed W5/W6 panel + layout.
+ * Pair: symbols/quantumise · CLI npm run quantum:hd-w7-bodygraph-svg · route /en/spirit#human-design-bodygraph
+ */
+export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?: number): {
+    computes: boolean;
+    verified: boolean;
+    birthJd: number;
+    svg: string;
+    svgBytes: number;
+    definitionKind: HdDefinitionKind;
+    definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+    hangingGates: number[];
+    panel: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        chart: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            designJd: number;
+            personality: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            design: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            activatedGates: number[];
+            definedChannels: {
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            cuspWarnings: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            cuspBandDeg: number;
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            ephCore: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                ephemeris: {
+                    readonly jd: number;
+                    readonly bodies: readonly SealedMeeusBodyLongitude[];
+                    readonly sun: number;
+                    readonly moon: number;
+                    readonly root: string;
+                };
+                design: {
+                    readonly birthJd: number;
+                    readonly designJd: number;
+                    readonly birthSunDeg: number;
+                    readonly designSunDeg: number;
+                    readonly targetDeg: number;
+                    readonly arcErrDeg: number;
+                    readonly daysBeforeBirth: number;
+                };
+                sunJ2000: number;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        structure: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            designJd: number;
+            definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            hangingGates: number[];
+            definitionComponents: number;
+            definitionKind: HdDefinitionKind;
+            personalityGates: number[];
+            designGates: number[];
+            sharedGates: number[];
+            definedChannelCount: number;
+            activatedGateCount: number;
+            cuspCount: number;
+            chart: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                designJd: number;
+                personality: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                design: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                activatedGates: number[];
+                definedChannels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                cuspWarnings: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                cuspBandDeg: number;
+                wheel: {
+                    verified: boolean;
+                    computes: boolean;
+                    gateArcDeg: number;
+                    lineArcDeg: number;
+                    gate41StartDeg: number;
+                    designSunArcDeg: number;
+                    bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                    bodyCount: 13;
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    starts: number[];
+                    sample: {
+                        gate: number;
+                        line: number;
+                        index: number;
+                        startDeg: number;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                ephCore: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    ephemeris: {
+                        readonly jd: number;
+                        readonly bodies: readonly SealedMeeusBodyLongitude[];
+                        readonly sun: number;
+                        readonly moon: number;
+                        readonly root: string;
+                    };
+                    design: {
+                        readonly birthJd: number;
+                        readonly designJd: number;
+                        readonly birthSunDeg: number;
+                        readonly designSunDeg: number;
+                        readonly targetDeg: number;
+                        readonly arcErrDeg: number;
+                        readonly daysBeforeBirth: number;
+                    };
+                    sunJ2000: number;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            pair: "edit/build";
+            qpuRequired: false;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        lattice: {
+            verified: boolean;
+            computes: boolean;
+            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            centerCount: 9;
+            channels: {
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            channelCount: 36;
+            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        layout: {
+            readonly Head: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Ajna: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Throat: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "sq";
+            };
+            readonly G: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "dia";
+            };
+            readonly Heart: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Sacral: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "sq";
+            };
+            readonly SolarPlexus: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Spleen: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "tri";
+            };
+            readonly Root: {
+                readonly x: number;
+                readonly y: number;
+                readonly shape: "sq";
+            };
+        };
+        definedKeys: string[];
+        activatedGates: number[];
+        definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        hangingGates: number[];
+        definitionKind: HdDefinitionKind;
+        definitionComponents: number;
+        cuspCount: number;
+        definedChannelCount: number;
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        route: string;
+        pair: string;
+        qpuRequired: false;
+        statement: string;
+        boundary: string;
+    };
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "symbols/quantumise";
+    qpuRequired: false;
+    physicalFtlClaim: 0;
+    route: string;
+    cli: string;
+    statement: string;
+    boundary: string;
+};
+/** CLI — HD W7 BodyGraph SVG emitter. Pair: symbols/quantumise · waves/build. */
+export declare function runHumanDesignBodyGraphSvgW7Exit(_root?: string, argv?: readonly string[]): number;
 export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     celestial: {
@@ -13291,13 +15142,13 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         decoded: boolean;
         at: number;
         phaseIndex: number;
-        phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         digitFolderDigit: number;
         mappings: {
             name: string;
             kind: "planet" | "star" | "satellite" | "major-moon";
             vortexSlot: number;
-            vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
             hexagram: number;
             rosettaRay: number;
             rosettaGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
@@ -14004,7 +15855,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../../wind/types").WaveCoordination;
+                waves: import("../../../types").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -17093,7 +18944,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../../wind/types").WaveCoordination;
+            waves: import("../../../types").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -17161,8 +19012,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-                    action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
@@ -17219,7 +19070,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                     wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
@@ -17258,7 +19109,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                        parallel: readonly [];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -17337,7 +19188,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../../wind/types").ConceptCommandName[];
+                            siblings: import("../../../types").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -17437,6 +19288,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         on: boolean;
                     }[];
                     root: string;
+                    pair: "rosetta/core";
+                    cli: string;
                     statement: string;
                     boundary: string;
                 };
@@ -17444,7 +19297,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                     pageKind: import("../../../3/7").RosettaComputationType;
-                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                    vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
                 count: number;
@@ -17652,7 +19505,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../../../wind/types").ConceptCommandName[];
+                    siblings: import("../../../types").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
@@ -18541,8 +20394,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         }[];
         activatedGates: number[];
         definedChannels: {
-            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18567,7 +20420,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -18591,8 +20444,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18650,10 +20503,22 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         statement: string;
         boundary: string;
     };
-    hdBody: {
+    hdW6: {
         computes: boolean;
         verified: boolean;
         birthJd: number;
+        designJd: number;
+        definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        hangingGates: number[];
+        definitionComponents: number;
+        definitionKind: HdDefinitionKind;
+        personalityGates: number[];
+        designGates: number[];
+        sharedGates: number[];
+        definedChannelCount: number;
+        activatedGateCount: number;
+        cuspCount: number;
         chart: {
             computes: boolean;
             verified: boolean;
@@ -18681,8 +20546,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18707,7 +20572,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 16 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 51 | 15 | 19 | 22 | 32 | 42 | 63 | 41 | 13 | 49 | 30 | 37 | 36 | 25 | 17 | 24 | 23 | 35 | 45 | 12 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 18 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43 | 14)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -18731,8 +20596,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18796,8 +20661,428 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            channelCount: 36;
+            gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        wheel: {
+            verified: boolean;
+            computes: boolean;
+            gateArcDeg: number;
+            lineArcDeg: number;
+            gate41StartDeg: number;
+            designSunArcDeg: number;
+            bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+            bodyCount: 13;
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            starts: number[];
+            sample: {
+                gate: number;
+                line: number;
+                index: number;
+                startDeg: number;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        pair: "edit/build";
+        qpuRequired: false;
+        route: string;
+        statement: string;
+        boundary: string;
+    };
+    hdBody: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        chart: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            designJd: number;
+            personality: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            design: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            activatedGates: number[];
+            definedChannels: {
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                key: string;
+                from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+            }[];
+            cuspWarnings: {
+                layer: "design" | "personality";
+                body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                longitudeDeg: number;
+                gate: number;
+                line: number;
+                cusp: boolean;
+                fastMoverCusp: boolean;
+                receipt: string;
+            }[];
+            cuspBandDeg: number;
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            ephCore: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                ephemeris: {
+                    readonly jd: number;
+                    readonly bodies: readonly SealedMeeusBodyLongitude[];
+                    readonly sun: number;
+                    readonly moon: number;
+                    readonly root: string;
+                };
+                design: {
+                    readonly birthJd: number;
+                    readonly designJd: number;
+                    readonly birthSunDeg: number;
+                    readonly designSunDeg: number;
+                    readonly targetDeg: number;
+                    readonly arcErrDeg: number;
+                    readonly daysBeforeBirth: number;
+                };
+                sunJ2000: number;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        structure: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            designJd: number;
+            definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            hangingGates: number[];
+            definitionComponents: number;
+            definitionKind: HdDefinitionKind;
+            personalityGates: number[];
+            designGates: number[];
+            sharedGates: number[];
+            definedChannelCount: number;
+            activatedGateCount: number;
+            cuspCount: number;
+            chart: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                designJd: number;
+                personality: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                design: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                activatedGates: number[];
+                definedChannels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                cuspWarnings: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                cuspBandDeg: number;
+                wheel: {
+                    verified: boolean;
+                    computes: boolean;
+                    gateArcDeg: number;
+                    lineArcDeg: number;
+                    gate41StartDeg: number;
+                    designSunArcDeg: number;
+                    bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                    bodyCount: 13;
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    starts: number[];
+                    sample: {
+                        gate: number;
+                        line: number;
+                        index: number;
+                        startDeg: number;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                ephCore: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    ephemeris: {
+                        readonly jd: number;
+                        readonly bodies: readonly SealedMeeusBodyLongitude[];
+                        readonly sun: number;
+                        readonly moon: number;
+                        readonly root: string;
+                    };
+                    design: {
+                        readonly birthJd: number;
+                        readonly designJd: number;
+                        readonly birthSunDeg: number;
+                        readonly designSunDeg: number;
+                        readonly targetDeg: number;
+                        readonly arcErrDeg: number;
+                        readonly daysBeforeBirth: number;
+                    };
+                    sunJ2000: number;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            wheel: {
+                verified: boolean;
+                computes: boolean;
+                gateArcDeg: number;
+                lineArcDeg: number;
+                gate41StartDeg: number;
+                designSunArcDeg: number;
+                bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                bodyCount: 13;
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                starts: number[];
+                sample: {
+                    gate: number;
+                    line: number;
+                    index: number;
+                    startDeg: number;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            pair: "edit/build";
+            qpuRequired: false;
+            route: string;
+            statement: string;
+            boundary: string;
+        };
+        lattice: {
+            verified: boolean;
+            computes: boolean;
+            centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            centerCount: 9;
+            channels: {
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -18864,6 +21149,10 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         definedKeys: string[];
         activatedGates: number[];
         definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        hangingGates: number[];
+        definitionKind: HdDefinitionKind;
+        definitionComponents: number;
         cuspCount: number;
         definedChannelCount: number;
         count: number;
@@ -18875,8 +21164,480 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         root: string;
         route: string;
         pair: string;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
+        statement: string;
+        boundary: string;
+    };
+    hdW7: {
+        computes: boolean;
+        verified: boolean;
+        birthJd: number;
+        svg: string;
+        svgBytes: number;
+        definitionKind: HdDefinitionKind;
+        definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+        hangingGates: number[];
+        panel: {
+            computes: boolean;
+            verified: boolean;
+            birthJd: number;
+            chart: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                designJd: number;
+                personality: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                design: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                activatedGates: number[];
+                definedChannels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                cuspWarnings: {
+                    layer: "design" | "personality";
+                    body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                    longitudeDeg: number;
+                    gate: number;
+                    line: number;
+                    cusp: boolean;
+                    fastMoverCusp: boolean;
+                    receipt: string;
+                }[];
+                cuspBandDeg: number;
+                wheel: {
+                    verified: boolean;
+                    computes: boolean;
+                    gateArcDeg: number;
+                    lineArcDeg: number;
+                    gate41StartDeg: number;
+                    designSunArcDeg: number;
+                    bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                    bodyCount: 13;
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    starts: number[];
+                    sample: {
+                        gate: number;
+                        line: number;
+                        index: number;
+                        startDeg: number;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                ephCore: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    ephemeris: {
+                        readonly jd: number;
+                        readonly bodies: readonly SealedMeeusBodyLongitude[];
+                        readonly sun: number;
+                        readonly moon: number;
+                        readonly root: string;
+                    };
+                    design: {
+                        readonly birthJd: number;
+                        readonly designJd: number;
+                        readonly birthSunDeg: number;
+                        readonly designSunDeg: number;
+                        readonly targetDeg: number;
+                        readonly arcErrDeg: number;
+                        readonly daysBeforeBirth: number;
+                    };
+                    sunJ2000: number;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            structure: {
+                computes: boolean;
+                verified: boolean;
+                birthJd: number;
+                designJd: number;
+                definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                hangingGates: number[];
+                definitionComponents: number;
+                definitionKind: HdDefinitionKind;
+                personalityGates: number[];
+                designGates: number[];
+                sharedGates: number[];
+                definedChannelCount: number;
+                activatedGateCount: number;
+                cuspCount: number;
+                chart: {
+                    computes: boolean;
+                    verified: boolean;
+                    birthJd: number;
+                    designJd: number;
+                    personality: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    design: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    activatedGates: number[];
+                    definedChannels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    cuspWarnings: {
+                        layer: "design" | "personality";
+                        body: "Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto";
+                        longitudeDeg: number;
+                        gate: number;
+                        line: number;
+                        cusp: boolean;
+                        fastMoverCusp: boolean;
+                        receipt: string;
+                    }[];
+                    cuspBandDeg: number;
+                    wheel: {
+                        verified: boolean;
+                        computes: boolean;
+                        gateArcDeg: number;
+                        lineArcDeg: number;
+                        gate41StartDeg: number;
+                        designSunArcDeg: number;
+                        bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                        bodyCount: 13;
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        starts: number[];
+                        sample: {
+                            gate: number;
+                            line: number;
+                            index: number;
+                            startDeg: number;
+                        };
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    lattice: {
+                        verified: boolean;
+                        computes: boolean;
+                        centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                        centerCount: 9;
+                        channels: {
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            key: string;
+                            from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                            to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        }[];
+                        channelCount: 36;
+                        gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    ephCore: {
+                        computes: boolean;
+                        verified: boolean;
+                        birthJd: number;
+                        ephemeris: {
+                            readonly jd: number;
+                            readonly bodies: readonly SealedMeeusBodyLongitude[];
+                            readonly sun: number;
+                            readonly moon: number;
+                            readonly root: string;
+                        };
+                        design: {
+                            readonly birthJd: number;
+                            readonly designJd: number;
+                            readonly birthSunDeg: number;
+                            readonly designSunDeg: number;
+                            readonly targetDeg: number;
+                            readonly arcErrDeg: number;
+                            readonly daysBeforeBirth: number;
+                        };
+                        sunJ2000: number;
+                        count: number;
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                lattice: {
+                    verified: boolean;
+                    computes: boolean;
+                    centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                    centerCount: 9;
+                    channels: {
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        key: string;
+                        from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                        to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    }[];
+                    channelCount: 36;
+                    gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                wheel: {
+                    verified: boolean;
+                    computes: boolean;
+                    gateArcDeg: number;
+                    lineArcDeg: number;
+                    gate41StartDeg: number;
+                    designSunArcDeg: number;
+                    bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
+                    bodyCount: 13;
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    starts: number[];
+                    sample: {
+                        gate: number;
+                        line: number;
+                        index: number;
+                        startDeg: number;
+                    };
+                    count: number;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                pair: "edit/build";
+                qpuRequired: false;
+                route: string;
+                statement: string;
+                boundary: string;
+            };
+            lattice: {
+                verified: boolean;
+                computes: boolean;
+                centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+                centerCount: 9;
+                channels: {
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    key: string;
+                    from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                    to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
+                }[];
+                channelCount: 36;
+                gateCenter: Record<number, (typeof RAVE_CENTERS_9)[number]>;
+                count: number;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            layout: {
+                readonly Head: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Ajna: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Throat: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "sq";
+                };
+                readonly G: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "dia";
+                };
+                readonly Heart: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Sacral: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "sq";
+                };
+                readonly SolarPlexus: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Spleen: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "tri";
+                };
+                readonly Root: {
+                    readonly x: number;
+                    readonly y: number;
+                    readonly shape: "sq";
+                };
+            };
+            definedKeys: string[];
+            activatedGates: number[];
+            definedCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            openCenters: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
+            hangingGates: number[];
+            definitionKind: HdDefinitionKind;
+            definitionComponents: number;
+            cuspCount: number;
+            definedChannelCount: number;
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            route: string;
+            pair: string;
+            qpuRequired: false;
+            statement: string;
+            boundary: string;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        pair: "symbols/quantumise";
+        qpuRequired: false;
+        physicalFtlClaim: 0;
+        route: string;
+        cli: string;
         statement: string;
         boundary: string;
     };

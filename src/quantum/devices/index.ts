@@ -22,22 +22,33 @@ export type DeviceCapabilities = {
   readonly supportedGates: string[]
   readonly minGateTime_ns: number
   readonly readoutErrorRate: number
-  readonly availability: 'available' | 'maintenance' | 'offline'
+  readonly availability: 'available' | 'maintenance' | 'offline' | 'unknown'
   readonly receipt: string
 }
 
 /**
  * Discover IBM Quantum device topology
  */
+/** Gate-time floor shared by all providers, in nanoseconds. */
+const GATE_TIME_BASE_NS = 50
+/** Additional single-gate time, nanoseconds, per provider. */
+const IONQ_GATE_NS = 5
+const IBM_GATE_NS = 35
+/** Readout error rates per provider. */
+const IONQ_READOUT_ERROR = 0.005
+const IBM_READOUT_ERROR = 0.01
+
 export function ibmDeviceTopology(): QubitTopology {
   return {
-    name: 'IBM Quantum (Falcon/Hummingbird)',
+    // 127 qubits is the Eagle processor. Falcon is 27 and Hummingbird 65, so the
+    // previous label contradicted the count it carried.
+    name: 'IBM Quantum (Eagle-class, 127q)',
     qubits: 127,
     gates: ['CNOT', 'RX', 'RY', 'RZ', 'SX', 'X', 'Y', 'Z', 'H', 'S', 'T'],
     connectivity: 'grid',
     errorRate: 0.001,
     coherenceTime_us: floor(100),
-    receipt: toUuid('topology:ibm-hummingbird')
+    receipt: toUuid('topology:ibm-eagle-127q')
   }
 }
 
@@ -88,9 +99,15 @@ export function getDeviceCapabilities(provider: 'ibm' | 'ionq' | 'simulator'): D
     provider,
     maxQubits: topo.qubits,
     supportedGates: [...topo.gates],
-    minGateTime_ns: floor(50 + provider === 'simulator' ? 0 : provider === 'ionq' ? 5 : 35),
-    readoutErrorRate: provider === 'simulator' ? 0 : provider === 'ionq' ? 0.005 : 0.01,
-    availability: provider === 'simulator' ? 'available' : floor(Math.random() * 100) > 5 ? 'available' : 'maintenance',
+    // PRECEDENCE BUG, fixed: `50 + provider === 'simulator'` parsed as
+    // ("50" + provider) === 'simulator', which is always false, so the 50 ns base was
+    // silently dropped and this returned 35 for IBM where 85 was intended.
+    minGateTime_ns: GATE_TIME_BASE_NS + (provider === 'simulator' ? 0 : provider === 'ionq' ? IONQ_GATE_NS : IBM_GATE_NS),
+    readoutErrorRate: provider === 'simulator' ? 0 : provider === 'ionq' ? IONQ_READOUT_ERROR : IBM_READOUT_ERROR,
+    // Availability was `Math.random() * 100 > 5`, which reported a real device as under
+    // maintenance 5% of the time at random. Nothing here contacts a device, so the
+    // honest answer is that availability is unknown rather than a coin flip.
+    availability: provider === 'simulator' ? 'available' : 'unknown',
     receipt: toUuid(`capabilities:${provider}`)
   }
 }

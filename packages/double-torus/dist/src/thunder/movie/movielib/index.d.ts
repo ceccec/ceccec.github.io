@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 export declare function movieReflectsSelf(matrix?: MindMatrix): {
     reflects: boolean;
     count: number;

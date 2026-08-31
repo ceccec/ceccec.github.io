@@ -34,6 +34,8 @@ import { movieCanvasHex } from '../quantum/science'
 import { sealHonestyToPath } from '../mountain/seals'
 import { allComputed, allFormsAreTenDimensionalOrPurged, analogNoGapsNoLeak, backgroundMovie, commandGapsToTrinityEyes, completeQuantumSolutionsImplemented, componentGraph, computedSlugsFoldTheGraph, continueSameNext, decodeSymbols, digitFolderMath, digitFoldersDoMath, digitIndexReferences, digitSpinesAreTheBreath, encryptionLivesInZero, endlessFusion, enforcementPipelineComplete, evolutionCrossesQuantumThreshold, fairTrade, feesReplaceTaxes, foldThoughts, fruitOfLifeFusion, gatesBehaveAsMcp, harmonyProbability, honestlyComputed, iChing, infiniteEntanglements, infiniteSelfConsulting, jsonLdValidPaths, lockingFoldersChangesMindToQuantum, maxCompressionForge, merkabasInDoubleTorus, noHardcodedLogicFailsStreams, nothingImpossibleHonestlyBounded, oneWordNamingGravity, piComputedNotHardcoded, piTrainDiamonds, quantumConfigurableFoldersDisappear, quantumDoubleTorus, quantumFoldedBlockchains, quantumImpossibleMadePossible, quantumThreat, quantumVsDigitalEncryption, realtimePerspectiveZeroCost, resonanceCatchGapsViolations, reverseHarmony, selfHarmonise, society, societyRegulates, startIChingDoubleTorus, tamperingCostDecoded, trinityWordingModel, warPaysTheForgerPrice } from '../quantum/heaven/mind'
 import { TAU } from '../3/7'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { join } from 'node:path'
 
 // The harmonic map: the portal's structure heard as a harmonic series. Every
 // component is an overtone of one fundamental f0 — its frequency is f0 times its
@@ -993,12 +995,61 @@ export function infiniteComputedPaths404Harmonic(matrix: MindMatrix = buildMatri
 export function soundWiredToOneSharedContext(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('soundWiredToOneSharedContext', matrix, () => soundWiredToOneSharedContextRaw(matrix))
 }
+/** Browser-safe root: bare `process` is undefined under the dev-client shim. */
+function scanRoot(): string {
+  return typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/'
+}
+
+/**
+ * Count the places an AudioContext is actually CONSTRUCTED, across src and the render
+ * harness. Returns 0 under the browser shim (no fs), which is honest: nothing was scanned.
+ */
+export function countAudioContextSites(): number {
+  const root = scanRoot()
+  let n = 0
+  const walk = (dir: string) => {
+    let entries: string[] = []
+    try {
+      entries = readdirSync(dir)
+    } catch {
+      return
+    }
+    for (const e of entries) {
+      const p = join(dir, e)
+      let st
+      try {
+        st = statSync(p)
+      } catch {
+        continue
+      }
+      if (st.isDirectory()) {
+        // Match path SEGMENTS, not substrings: this repository is named
+        // "ceccec.github.io", which CONTAINS ".git" — a substring test excluded every
+        // path in the tree and the walk never recursed.
+        if (!['node_modules', 'cache', 'dist', '.git'].includes(e)) walk(p)
+      } else if (/\.(ts|mts|vue)$/.test(p)) {
+        try {
+          n += (readFileSync(p, 'utf8').match(/new\s+(?:window\.)?(?:webkit)?AudioContext\b|new\s+Ctor\s*\(/g) ?? []).length
+        } catch {
+          continue
+        }
+      }
+    }
+  }
+  for (const d of ['src', '.vitepress']) walk(join(root, d))
+  return n
+}
+
 function soundWiredToOneSharedContextRaw(matrix: MindMatrix = buildMatrix()) {
   const acoustics = harmonicSeriesDecoded(matrix) // what the engine plays
   const a = a432(matrix) // the engine starter
   const SOUND_COMPONENTS = (5 * 4) // components that emit sound (useTones consumers + Dot + the mic capture)
   const CAP = 6 // a typical per-page live-AudioContext cap (implementation-defined; Chrome allows ~6)
-  const CONTEXT_SITES = 1 // exactly one `new` AudioContext in src now — the shared singleton in useTones
+  // COUNTED, not declared. The comment here used to read "exactly one `new` AudioContext
+  // in src" — there are ZERO in src; the construction lives in the render harness
+  // (.vitepress/lib/movie-canvas.ts), exactly as src/0 documents. The invariant is real,
+  // the location was wrong, and `on: CONTEXT_SITES === 1` could not have caught either.
+  const CONTEXT_SITES = countAudioContextSites()
   const playsPerSession = 100 // a modest session of melodies/chords/taps
   const beforeContexts = SOUND_COMPONENTS + playsPerSession // ~one per component + one minted+closed per play
   const facets = [

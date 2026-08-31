@@ -1,4 +1,4 @@
-import type { MindMatrix, TorusBreath } from '../../wind/types';
+import type { MindMatrix, TorusBreath } from '../../types';
 export { doubleTorusSurface, TORUS_LOBE_OFFSET } from '../../0';
 export declare function merkabaTrace(matrix?: MindMatrix, timeMs?: number, trail?: number): {
     manifest: boolean;
@@ -109,20 +109,20 @@ export declare function completeDoubleTorus(matrix?: MindMatrix): {
 export declare function invertingMathPhysicsEarthCompletesTheDoubleTorus(matrix?: MindMatrix): {
     computes: boolean;
     inverted: ({
-        yangStep: import("../../wind/types").TrinityStep;
-        yinStep: import("../../wind/types").TrinityStep;
+        yangStep: import("../../types").TrinityStep;
+        yinStep: import("../../types").TrinityStep;
         closed: boolean;
         name: string;
         axis: "collapse";
     } | {
-        yangStep: import("../../wind/types").TrinityStep;
-        yinStep: import("../../wind/types").TrinityStep;
+        yangStep: import("../../types").TrinityStep;
+        yinStep: import("../../types").TrinityStep;
         closed: boolean;
         name: string;
         axis: "check";
     } | {
-        yangStep: import("../../wind/types").TrinityStep;
-        yinStep: import("../../wind/types").TrinityStep;
+        yangStep: import("../../types").TrinityStep;
+        yinStep: import("../../types").TrinityStep;
         closed: boolean;
         name: string;
         axis: "return";

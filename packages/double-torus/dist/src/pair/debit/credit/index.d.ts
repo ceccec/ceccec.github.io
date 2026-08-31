@@ -1,20 +1,21 @@
+/** Ledger row — named away from src/0 `Entry` (URL catalog) to kill type-name synonym sprawl. */
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export type Entry = {
+export type LedgerEntry = {
     readonly account: string;
     readonly debit: number;
     readonly credit: number;
 };
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export declare function transact(from: string, to: string, amount: number): Entry[];
+export declare function transact(from: string, to: string, amount: number): LedgerEntry[];
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export declare function balance(entries: readonly Entry[]): number;
+export declare function balance(entries: readonly LedgerEntry[]): number;
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
-export declare function balanced(entries: readonly Entry[]): boolean;
+export declare function balanced(entries: readonly LedgerEntry[]): boolean;
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export declare function cryptoReview(): {
-    today: Entry[];
-    overclaim: Entry[];
-    afterCutover: Entry[];
+    today: LedgerEntry[];
+    overclaim: LedgerEntry[];
+    afterCutover: LedgerEntry[];
     honest: boolean;
     overclaimCaught: boolean;
     fundedAfterCutover: boolean;
@@ -25,11 +26,11 @@ export declare function cryptoReview(): {
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */
 export declare const dual = "src/pair/credit/debit";
 /** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
-export declare function fuse(entries: readonly Entry[]): Map<string, number>;
+export declare function fuse(entries: readonly LedgerEntry[]): Map<string, number>;
 /** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
-export declare function fused(entries: readonly Entry[]): boolean;
+export declare function fused(entries: readonly LedgerEntry[]): boolean;
 /** @rosetta ✦₀ · Heaven · creative (credit=export, projects the crypto-review outward) */
-export declare function cryptoReviewNet(ledger: readonly Entry[]): {
+export declare function cryptoReviewNet(ledger: readonly LedgerEntry[]): {
     net: Record<string, number>;
     balanced: boolean;
 };

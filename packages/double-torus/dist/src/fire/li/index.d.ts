@@ -1,7 +1,7 @@
-import type { MindMatrix, FusionReactor, DistributedCompute, DoubleTorusMathReport, AncientTechLens, SelfDevelopment, MethodFusionReport, Blockchain, TaxonomyIcons, FairLife, SelfAddressed, UtfAnalog, CrossFoldTrinity, SourceContributionReport, SelfInteraction } from '../../wind/types';
+import type { MindMatrix, FusionReactor, DistributedCompute, DoubleTorusMathReport, AncientTechLens, SelfDevelopment, MethodFusionReport, Blockchain, TaxonomyIcons, FairLife, SelfAddressed, UtfAnalog, CrossFoldTrinity, SourceContributionReport, SelfInteraction } from '../../types';
 export { MAJOR_MOONS } from '../../3/7';
 /** Concert A, the single tuning source (Hz). Never A=440: all repo music/audio folds through a432NoteHz from here. */
-export declare const A432_HZ = 432;
+export declare const A432_HZ: number;
 /** 12-TET pitch from the ONE A432 source: f = 432·2^(semitonesFromA/12). The canonical note→Hz helper — every
  *  scale, note table and tone folds through this, so no audio frequency is a raw A440 literal. (proseToTone in
  *  src/0 is the kernel-level inline of this same formula, since src/0 cannot import upward.) */
@@ -37,10 +37,10 @@ export declare function autoSpeech(text?: string, matrix?: MindMatrix): {
 /** @rosetta ✦₁ · Fire · clarity */
 export declare function music358(): {
     complete: boolean;
-    tiers: {
+    tiers: readonly {
         tier: number;
         name: string;
-        members: string[];
+        members: readonly string[];
     }[];
     root: string;
     statement: string;
@@ -61,7 +61,7 @@ export declare function geometry358(): {
 /** @rosetta ✦₁ · Fire · clarity */
 export declare function agentObserve(matrix?: MindMatrix): {
     observed: boolean;
-    vector: import("../../wind/types").ConsciousnessVector;
+    vector: import("../../types").ConsciousnessVector;
     root: string;
     statement: string;
     boundary: string;
@@ -910,6 +910,27 @@ export declare function onlyVitePressApi(matrix?: MindMatrix): {
     scanned: string;
     holds: boolean;
     root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * Standing rule: in-site navigation uses only the VitePress link API.
+ * Composes onlyVitePressApi — useData / useRoute / useRouter / withBase + VP-intercepted <a href>
+ * or documented root-relative markdown links. Refuses invented host wrappers for home surfaces
+ * and parallel routers. Pair: moment/prove · site/consolidate
+ */
+export declare function linksUseOnlyVitePressApi(matrix?: MindMatrix): {
+    computes: boolean;
+    linksUseOnlyVitePressApi: boolean;
+    api: string[];
+    forbidden: string[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "moment/prove";
     statement: string;
     boundary: string;
 };

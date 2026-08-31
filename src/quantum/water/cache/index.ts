@@ -292,7 +292,7 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
   const law = matrixIsTenBitMByteSixtyFour(matrix)
   const treeNodes = 8, treeEdges = 7
   const signBits = log2(2)
-  const decodesAllMeaning = false
+  // DERIVED from the flagged list: anything flagged is meaning the form does NOT decode.
   const flagged = [
     'one structure "decodes everything the books say" (the totalizing overclaim)',
     'perennialism asserted as fact — all scriptures are one hidden message',
@@ -300,6 +300,7 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
     'a shared symbol (the tree) proves a shared origin or one meaning',
     'recursive-taxonomy / ancient-encoded-science as decoded fact',
   ]
+  const decodesAllMeaning = flagged.length === 0
   const facets = [
     { facet: 'a TREE is a real structure — acyclic and connected, V − E = 1; the index itself is a tree', on: treeNodes - treeEdges === 1 },
     { facet: 'the WORLD TREE / axis mundi RECURS across cultures — documented recurrence; a single shared MEANING is NOT proven', on: true },

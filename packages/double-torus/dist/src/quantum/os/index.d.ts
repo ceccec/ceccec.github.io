@@ -1,8 +1,8 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 import type { CircuitOp, CircuitResult } from '../../0';
 import { type QuantumAppEntry } from '../apps';
-/** [55, 34, 21] — consecutive-Fibonacci census rhythm, descending; sum = 110. */
-export declare const CENSUS_FIBONACCI: readonly [number, number, number];
+/** [55, 34, 21, 13] — consecutive-Fibonacci census rhythm, descending; sum = 123 (the QPU-inclusive 4th band). */
+export declare const CENSUS_FIBONACCI: readonly [number, number, number, number];
 export type QuantumUiDesignTokens = {
     /** a432 harmonic + VORTEX_SEQUENCE slot → hue wheel (deg 0–360). */
     readonly hue: number;
@@ -46,8 +46,6 @@ export type QuantumUiDesign = QuantumUiDesignTokens & {
  *   variantIntensity ← quantum dynamics amplitude bars × gold fusion aggregate score
  */
 export declare function quantumMathDesignsTheUi(at?: number, matrix?: MindMatrix): QuantumUiDesign;
-/** @deprecated alias — superseded by quantumMathDesignsTheUi. */
-export declare const quantumMindDesignsTheUi: typeof quantumMathDesignsTheUi;
 export type QuantumOsDriverRow = {
     readonly id: string;
     readonly label: string;

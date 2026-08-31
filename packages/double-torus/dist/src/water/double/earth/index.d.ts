@@ -1,9 +1,9 @@
 import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading';
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 import { doubleTorusEarthWeatherFlowsInMovie, doubleTorusSolutionsProvenByMath, weatherForecastFromDoubleTorusEarthPerspective } from '../../../quantum/fire/forecasts';
 import { doubleTorusEarthLikeTheApple } from '../../../earth/nature';
 import { doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, twoTrinitiesCardinalPyramidPolesProvenByMath, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../../../mountain/geometry';
-export { doubleTorusEarthWeatherFlowsInMovie, doubleTorusSolutionsProvenByMath, weatherForecastFromDoubleTorusEarthPerspective, doubleTorusEarthLikeTheApple, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, twoTrinitiesCardinalPyramidPolesProvenByMath, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, };
+export { doubleTorusEarthWeatherFlowsInMovie, doubleTorusSolutionsProvenByMath, weatherForecastFromDoubleTorusEarthPerspective, doubleTorusEarthLikeTheApple, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, twoTrinitiesCardinalPyramidPolesProvenByMath, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation };
 export type EarthTimespaceAt = {
     lat: number;
     lon: number;
@@ -10824,6 +10824,37 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
     statement: string;
     boundary: string;
 };
+/** pyramidTheoriesFusedRealGapsAreMechanicalNotMystical — deep-research the pyramids and the theories around them,
+ * fused, to locate the REAL gaps in current science (user, 2026-07-25: "deep research and fuse pyramids and the
+ * theories around them to discover gaps in current sciences explained by quantum means and mechanical solutions").
+ * It composes earthPyramidLocationsAndGeometryComputes (real seked geometry + WGS84 geodesy + the debunked global
+ * grid), then COMPUTES the Newtonian construction work and shows a documented labour budget beats it by ~100× — so
+ * the genuine open question is ENGINEERING (the exact lifting method; the 2017 ScanPyramids muon "Big Void" purpose),
+ * decidable by measurement, NOT new physics. "Quantum means" = deterministic content-addressed modelling
+ * (reproducibility); "mechanical solutions" = real statics/simple machines. The mystical theories (pyramid power,
+ * free energy, alien build, precise-Orion/speed-of-light-latitude numerology) are refuted. [[egyptian-calendar-cycles]] [[haramein-double-torus-decoded]] */
+export declare function pyramidTheoriesFusedRealGapsAreMechanicalNotMystical(matrix?: MindMatrix): {
+    fused: boolean;
+    liftWorkJ: number;
+    availableJ: number;
+    feasibilityMargin: number;
+    efficiencyNeeded: number;
+    worstCaseMargin: number;
+    seked: {
+        measured: number;
+        seked: number;
+        pi: number;
+        phi: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** Four tipped pyramids × five tips → moving merkabas at hero clock — proven at call time. */
 export declare function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(at?: number, matrix?: MindMatrix): {
     proven: boolean;
@@ -20124,7 +20155,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
         phaseSlot: string | null;
         receipt: string;
     }[];
-    activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+    activeVortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
     phaseIndex: number;
     vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
     homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -21737,7 +21768,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        activeVortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -23345,7 +23376,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        activeVortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -24944,7 +24975,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                 phaseSlot: string | null;
                 receipt: string;
             }[];
-            activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            activeVortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
             phaseIndex: number;
             vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
             homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];
@@ -27055,7 +27086,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
             phaseSlot: string | null;
             receipt: string;
         }[];
-        activeVortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        activeVortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         phaseIndex: number;
         vortexQuadrants: Record<"north" | "east" | "south" | "west", readonly number[]>;
         homologyLoops: ("spread" | "depthFade" | "hueShift" | "twist" | "shrink" | "breath" | "loopA1" | "loopB1" | "loopA2" | "loopB2")[];

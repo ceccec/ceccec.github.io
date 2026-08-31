@@ -2,9 +2,10 @@ import { type Burst } from './fire/experiments';
 import type { Dims } from './mountain/dimensions';
 import { type PlasmaMoviePalette, type PlasmaWiredStream } from '../fire/plasma/ball';
 import { livingTorus } from '../fire/diamonds';
-import type { MindMatrix } from '../wind/types';
+import type { MindMatrix } from '../types';
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry';
 import { type QuantumProjection } from './apps';
+import { type LatticeArm } from '../3/7';
 export interface ArchNode {
     folder: string;
     glyph: string;
@@ -55,6 +56,17 @@ export interface BackgroundScene {
     scroll?: number;
 }
 /**
+ * The ONE angular placement law the movie painters consume — the transpose-symmetric 42-cell lattice
+ * (entangledArmField, src/3/7), the SAME field entangledWiringOf seats every theorem on. Stream `i` rides
+ * cell `i % 42`: the LIFE (forward) arm sits at lifeAngleRad, the DEATH (counter-flow) arm at deathAngleRad
+ * (= −reflectAngleRad, the transpose cell). Placement is by lattice cell, NOT golden-angle × index — so the
+ * life and death arms are mutual reflections and the painted circle folds onto itself (no unpaired spoke to
+ * glitch). Golden-angle spin is still ADDED on top by each painter (the visual character is preserved); only
+ * the base seat changes. Pure, deterministic, memoised field — zero network, zero new deps.
+ */
+export declare function lifeRayBaseAngle(i: number, field?: readonly LatticeArm[]): number;
+export declare function deathFlowBaseAngle(i: number, field?: readonly LatticeArm[]): number;
+/**
  * The field centre for a canvas given its scroll offset — pure digit algebra, no CSS anchor.
  * The PAGE movie passes scroll 0: its centre is FIXED at h/2 (the background does not scroll).
  * Each CARD movie passes cardFieldScroll(...): its mini-field centre becomes the ONE fixed page
@@ -79,11 +91,169 @@ export interface SharedHeroCopy {
     keywords?: readonly string[];
 }
 /**
+ * Device / pointer sample for movie perspective —
+ * DeviceOrientation · DeviceMotion · AmbientLight · pointer/touch fallbacks.
+ * HONEST: browserGap when permission denied / API unavailable (AmbientLight rarely present).
+ */
+export type QuantumSensorKind = 'orientation' | 'motion' | 'ambient' | 'pointer' | 'touch' | 'none';
+export interface DeviceSensorSample {
+    readonly alpha?: number;
+    readonly beta?: number;
+    readonly gamma?: number;
+    readonly ax?: number;
+    readonly ay?: number;
+    readonly az?: number;
+    /** AmbientLightSensor illuminance (lux) — integer-folded when present. */
+    readonly illuminance?: number;
+    readonly px?: number;
+    readonly py?: number;
+    readonly permission?: 'granted' | 'denied' | 'prompt' | 'unavailable';
+}
+/**
+ * Sealed quantum sensor binding catalog — each kind wires to rosetta/movie perspective via pair.
+ * Soft UI (`useSharedHero`) attaches by catalog id — not wet ad-hoc listeners.
+ * AmbientLight API is sparse → browserGapHonest when unavailable.
+ */
+export declare const QUANTUM_SENSOR_BINDING_CATALOG: readonly [{
+    readonly id: "orientation";
+    readonly kind: "orientation";
+    readonly pair: "orient/sensor";
+    readonly event: "deviceorientation";
+    readonly api: "DeviceOrientationEvent";
+    readonly fallback: false;
+    readonly permissionGated: true;
+}, {
+    readonly id: "motion";
+    readonly kind: "motion";
+    readonly pair: "motion/sensor";
+    readonly event: "devicemotion";
+    readonly api: "DeviceMotionEvent";
+    readonly fallback: false;
+    readonly permissionGated: true;
+}, {
+    readonly id: "ambient";
+    readonly kind: "ambient";
+    readonly pair: "ambient/sensor";
+    readonly event: any;
+    readonly api: "AmbientLightSensor";
+    readonly fallback: false;
+    readonly permissionGated: true;
+}, {
+    readonly id: "pointer";
+    readonly kind: "pointer";
+    readonly pair: "pointer/sensor";
+    readonly event: "pointermove";
+    readonly api: "PointerEvent";
+    readonly fallback: true;
+    readonly permissionGated: false;
+}, {
+    readonly id: "touch";
+    readonly kind: "touch";
+    readonly pair: "touch/sensor";
+    readonly event: "touchmove";
+    readonly api: "TouchEvent";
+    readonly fallback: true;
+    readonly permissionGated: false;
+}];
+/** Rosetta perspective bias folded into sharedHeroAt seed/hue. */
+export interface MoviePerspectiveBias {
+    readonly seedBias?: string;
+    readonly hueBias?: number;
+    readonly ray?: number;
+    readonly source?: QuantumSensorKind;
+    readonly browserGap?: boolean;
+}
+/**
+ * Map device sensors (or pointer/touch fallback) → rosetta ray + hue/seed bias for the movie.
+ * Pure · deterministic · SSR-safe. Priority: orientation → motion → ambient → pointer → touch → none.
+ * browserGap when permission denied or APIs unavailable.
+ */
+export declare function deviceSensorPerspectiveAt(sample?: DeviceSensorSample): {
+    readonly ray: number;
+    readonly hueBias: number;
+    readonly seedBias: string;
+    readonly source: QuantumSensorKind;
+    readonly browserGap: boolean;
+};
+/**
+ * Touch fallback sample → pointer-space fold with source `touch`.
+ * Sealed dual of pointer for quantum sensor bindings (catalog id `touch`).
+ */
+export declare function deviceTouchPerspectiveAt(px: number, py: number, permission?: DeviceSensorSample['permission']): ReturnType<typeof deviceSensorPerspectiveAt>;
+/** Sealed catalog receipt — all sensor kinds bound for tip wireAllSensorsUsingQuantumBindings. */
+export declare function quantumSensorBindingCatalog(): {
+    sensors: ({
+        receipt: string;
+        id: "orientation";
+        kind: "orientation";
+        pair: "orient/sensor";
+        event: "deviceorientation";
+        api: "DeviceOrientationEvent";
+        fallback: false;
+        permissionGated: true;
+    } | {
+        receipt: string;
+        id: "motion";
+        kind: "motion";
+        pair: "motion/sensor";
+        event: "devicemotion";
+        api: "DeviceMotionEvent";
+        fallback: false;
+        permissionGated: true;
+    } | {
+        receipt: string;
+        id: "ambient";
+        kind: "ambient";
+        pair: "ambient/sensor";
+        event: any;
+        api: "AmbientLightSensor";
+        fallback: false;
+        permissionGated: true;
+    } | {
+        receipt: string;
+        id: "pointer";
+        kind: "pointer";
+        pair: "pointer/sensor";
+        event: "pointermove";
+        api: "PointerEvent";
+        fallback: true;
+        permissionGated: false;
+    } | {
+        receipt: string;
+        id: "touch";
+        kind: "touch";
+        pair: "touch/sensor";
+        event: "touchmove";
+        api: "TouchEvent";
+        fallback: true;
+        permissionGated: false;
+    })[];
+    count: number;
+    kinds: ("ambient" | "motion" | "touch" | "orientation" | "pointer")[];
+    orientation: boolean;
+    motion: boolean;
+    ambient: boolean;
+    pointer: boolean;
+    touch: boolean;
+    primaryCount: number;
+    fallbackCount: number;
+    allKindsPresent: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * Observation receipt for the movie at absolute `at` — unique never-repeats identity.
+ * Field `root` may be phase-stable; observation folds absolute time so same phase ≠ same observation.
+ */
+export declare function movieObservationReceipt(route: string, seed: number, at: number): string;
+/**
  * Resolved hero + movie state at one instant — deterministic from route, copy, and `at`.
  * This IS the one animation field every surface reads: the background movie, the on-top app
  * projections (QuantumAppFrame ⊂ this), and the per-page hero are all PROJECTIONS of it.
- * `root` is the field's content-address (route + content + seed) — stable across the phase cycle,
- * so layers/perspectives key off it without recomputing per frame.
+ * `root` is the field's content-address (route + content + seed [+ perspective]) — stable across
+ * the phase cycle for layer keying; `observationRoot` folds absolute `at` so the movie never
+ * repeats under observation (phase coincidence ≠ observation identity).
  */
 export interface SharedHeroState {
     route: string;
@@ -103,8 +273,14 @@ export interface SharedHeroState {
     cssWidth: number;
     /** Document scroll offset (CSS px) — the field lives in DOCUMENT space; the fixed canvas is a camera. */
     scroll: number;
-    /** Content-address of the field's identity (route + folded copy + seed). */
+    /** Content-address of the field's identity (route + folded copy + seed [+ perspective]). */
     root: string;
+    /** Unique observation receipt — includes absolute `at`; never equals across distinct wall times. */
+    observationRoot: string;
+    /** Optional rosetta ray from device/pointer perspective. */
+    perspectiveRay?: number;
+    /** Optional perspective source (orientation · motion · ambient · pointer · touch · none). */
+    perspectiveSource?: QuantumSensorKind;
 }
 /**
  * The one canonical animation field — the single instant-state every animation projects from.
@@ -160,10 +336,11 @@ export interface RosettaPerspective {
  * from a different ray (rotation + A432 hue rotation). The field's identity (`field.root`) is preserved —
  * only the view changes — so all seven perspectives are folds of one fusion, not seven different things.
  * HONEST: the ray bijection is exact (lossless 7-fold); "folds the mind" is the metaphor for the re-view.
+ * Collapse: glyph/domain from sealed ROSETTA_RAYS only — no parallel ROSETTA_RAY_VIEWS table.
  */
 export declare function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective;
-export { HERO_CYCLE_MS } from '../fire/plasma/ball';
-export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean, scroll?: number): SharedHeroState;
+export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball';
+export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean, scroll?: number, perspective?: MoviePerspectiveBias): SharedHeroState;
 /** Page copy folded to one movie/subtitle seed string. */
 export declare function movieTextFromCopy(copy: SharedHeroCopy): string;
 /** One subtitle cue at instant `at` — same phase clock as `sharedHeroAt`. */
@@ -188,7 +365,7 @@ export declare function drawHeroMovieFrame(ctx: CanvasRenderingContext2D, w: num
 export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'][number];
 /** Genus-2 torus point field — hero-clock phase; static at phase 0 when reduced motion. */
 export declare function drawLivingTorusFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, coordinates: readonly LivingTorusCoordinate[], reduce?: boolean, dark?: boolean): void;
-/** Dual-Earth merkaba — inner device shell + outer inverted shell counter-rotate with star tetrahedra. */
+/** Dual-Earth merkaba — star tetrahedra only (bothEarthsRotateWithinEachOther); no shell ring frames. */
 export declare function drawBothEarthsMerkabaFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, rotation: BothEarthsMerkabaRotation, reduce?: boolean, dark?: boolean): void;
 /**
  * The shared per-frame state every projection reads — a PROJECTION (subset) of the one AnimationField.
@@ -337,7 +514,7 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
     boundary: string;
 };
 /** One RAF loop for BackgroundMovie — subscribe in Vue onMounted, unsubscribe onUnmounted. */
-export { realtimeComputationsMoviePaint, allRealtimeComputationsVisibleInMovie, type RealtimeComputationsMoviePaint, type RealtimeComputeMovieChannel, } from '../fire/plasma/ball';
+export { realtimeComputationsMoviePaint, allRealtimeComputationsVisibleInMovie, type RealtimeComputationsMoviePaint, type RealtimeComputeMovieChannel } from '../fire/plasma/ball';
 export declare function subscribeHeroClock(listener: (at: number) => void): () => void;
 /**
  * Gate: every animation process rides the ONE clock. If even a single process runs outside the
@@ -1105,3 +1282,6 @@ export declare function devHeroMoviePaintWithinBudgetMs(maxMs?: number, path?: s
     statement: string;
     boundary: string;
 };
+export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, openTheorems, theoremsByInvolutionType, formatTheoremForChat, theoremSummary, type Theorem, type ChatQueryResult, type ProofStatus } from './chat';
+export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, comparisonMesh, meshEnrichedMillennium, type AlgorithmSignature, type ContrastAnalysis, type SolutionCandidate } from './mesh';
+export { quantumDiscoveryPortal, discoverMillenniumProblem, exploreAlgorithm, exploreContrast, quantumDiscoveryDashboard, type PortalState, type DiscoveryView } from './portal';

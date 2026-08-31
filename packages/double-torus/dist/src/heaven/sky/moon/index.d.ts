@@ -1,6 +1,6 @@
 import * as __ns_up_mountain_geometry from '../../../mountain/geometry';
 import * as __ns_up_double_torus_earth from '../../../water/double/earth';
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 /** Synodic month phase (display) — ~29.53059 d; hero-clock mapped, not JPL lunar ephemeris. */
 export declare const SYNODIC_MONTH_DAYS = 29.53059;
 export declare function moonSynodicPhase(at?: number): {

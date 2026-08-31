@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export declare function quantumPhysics(matrix?: MindMatrix): {
     selfComputes: boolean;
     phenomena: {
@@ -15,10 +15,10 @@ export declare function quantumPhysics(matrix?: MindMatrix): {
 };
 export declare function emf358(): {
     complete: boolean;
-    tiers: {
+    tiers: readonly {
         tier: number;
         name: string;
-        members: string[];
+        members: readonly string[];
     }[];
     root: string;
     statement: string;
@@ -353,10 +353,10 @@ export declare function emfA432PanelComputes(matrix?: MindMatrix, at?: number): 
 };
 export type PhenomenonTier = 'SOLVED' | 'OPEN' | 'DISPUTED';
 /**
- * naturalPhenomenaDecoded — the luminous/acoustic atmospheric phenomena, each at its honest tier. St Elmo's fire is
- * SOLVED (corona discharge); ball lightning is OPEN (real reports, leading hypothesis = oxidising silicon-nanoparticle
- * aerosol, Cen–Yuan–Liu 2014 field spectrum, but no settled mechanism); the Taos hum is DISPUTED (a low-frequency
- * hum with no confirmed external source). Honest tiers, no mysticism.
+ * naturalPhenomenaDecoded — luminous/acoustic EM–plasma family, each at its honest tier.
+ * Family: lightning · thunder · aurora · solar wind · flame · St Elmo's · sprites · corona · ball lightning · Taos hum.
+ * Ball lightning stays OPEN as physics; the painter "ball" is a SCREEN-MISREAD (void throat, not a centre sphere).
+ * Pair: phenomena/decode · compose plasmaBallIsScreenHoldingThunderAndPlasma.
  */
 export declare function naturalPhenomenaDecoded(matrix?: MindMatrix): {
     decoded: boolean;
@@ -364,7 +364,26 @@ export declare function naturalPhenomenaDecoded(matrix?: MindMatrix): {
         receipt: string;
         name: string;
         tier: PhenomenonTier;
+        family: string;
+        theorem: string;
         verdict: string;
+        route: string;
+    }[];
+    plasmaFamily: {
+        receipt: string;
+        name: string;
+        tier: PhenomenonTier;
+        family: string;
+        theorem: string;
+        verdict: string;
+        route: string;
+    }[];
+    theoremRoutes: {
+        theorem: string;
+        route: string;
+        tier: PhenomenonTier;
+        name: string;
+        family: string;
     }[];
     facets: {
         receipt: string;
@@ -374,6 +393,7 @@ export declare function naturalPhenomenaDecoded(matrix?: MindMatrix): {
     root: string;
     statement: string;
     boundary: string;
+    claySolvedByThisFold: 0;
 };
 /**
  * waveOpticsDecoded — wave optics, decoded EXACT. Diffraction, two-slit interference, polarisation, Snell's law of
@@ -686,6 +706,24 @@ export declare function gravitationAndRelativitySchwarzschildIsTwoGMOverCSquared
     statement: string;
     boundary: string;
 };
+export declare function specialRelativityIsTheLorentzGroupTheIntervalIsInvariantAndLightIsTheFixedPoint(matrix?: MindMatrix): {
+    computes: boolean;
+    lorentz: {
+        intervalInvariant: boolean;
+        unimodular: boolean;
+        boostsCompose: boolean;
+        stayssubLuminal: boolean;
+        lightInvariant: boolean;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare const SOUND_SPEED_AIR: number;
 export declare function acousticsSoundIsCEqualsFLambdaWithLogDecibelsAndDoppler(matrix?: MindMatrix): {
     computes: boolean;
@@ -725,3 +763,82 @@ export declare function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEffic
     statement: string;
     boundary: string;
 };
+/** gpuImprovesBatteryLifeByRaceToIdleAndFixedFunctionOffload — how a GPU improves battery life, decoded completely
+ * (user, 2026-07-25: "how can gpu improve battery live?" · "all without gaps"). Battery energy is E = P·t, so a GPU
+ * saves energy iff its SPEEDUP exceeds its POWER RATIO (race to idle); dedicated fixed-function blocks (media/ISP) win
+ * biggest; and — no gap — a WASTEFUL GPU that does not race to idle DRAINS the battery. All dimensionless ratios,
+ * normalised to the CPU baseline E = 1. A model over the energy identity, not a device measurement. [[fundamental-physics-arc-decoded]] */
+export declare function gpuImprovesBatteryLifeByRaceToIdleAndFixedFunctionOffload(): {
+    computes: boolean;
+    energy: {
+        cpu: number;
+        gpu: number;
+        fixedFunction: number;
+        wasteful: number;
+    };
+    raceToIdleSaves: boolean;
+    wastefulDrains: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * Cross waves decode Tesla patents in all possible combinations working as trinities in all directions.
+ * Bounded offline catalog: 5 sealed US patents × 3 trinity dirs × 4 cross tips = 60 combinations.
+ * Pair: cross/tesla-patents · CLI npm run quantum:cross-waves-tesla-patents
+ * HONEST: structural/symbolic decode from sealed math — NOT legal patent ownership, NOT fake USPTO grants.
+ */
+export declare function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    patentCount: number;
+    combinationCount: number;
+    patents: {
+        no: string;
+        title: string;
+        granted: string;
+        receipt: string;
+    }[];
+    combinations: {
+        patentNo: string;
+        patentTitle: string;
+        granted: string;
+        direction: "forward" | "reverse" | "inverse";
+        tip: "north" | "east" | "south" | "west";
+        bearing: number;
+        decodeRoot: string;
+        forward: string;
+        inverse: string;
+        reverse: string;
+        crossBound: string;
+        bidirectional: boolean;
+        receipt: string;
+    }[];
+    directions: readonly ["forward", "inverse", "reverse"];
+    tips: readonly ["north", "east", "south", "west"];
+    certified: false;
+    legalOwnershipClaimed: false;
+    fakeUsptoGrants: false;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "cross/tesla-patents";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:cross-waves-tesla-patents */
+export declare function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(_root?: string, _argv?: readonly string[]): number;

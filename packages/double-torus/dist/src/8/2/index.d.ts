@@ -50,6 +50,14 @@ export declare function hopfieldRecall(W: readonly (readonly number[])[], probe:
     energy: number;
     iters: number;
 };
+/** Is `s` a fixed point of the async sign dynamics? s[i] === sign(Σⱼ Wᵢⱼ sⱼ) at every site — a stored attractor. @rosetta neural station primitive (beside hopfieldRecall) */
+export declare function hopfieldIsFixedPoint(W: readonly (readonly number[])[], s: readonly number[]): boolean;
+/** Async recall trace: the energy AFTER every single-neuron flip (the Lyapunov descent), the settled state, and whether it is a fixed point. @rosetta neural station primitive (beside hopfieldRecall) */
+export declare function hopfieldDescent(W: readonly (readonly number[])[], probe: readonly number[], steps?: number): {
+    energies: number[];
+    state: number[];
+    fixed: boolean;
+};
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
 export declare function bumpStep(theta: number, v: number): number;
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
@@ -78,6 +86,70 @@ export declare function neuroscienceInTrueFormIsThreeMathematicalPillars(): {
         facet: string;
         on: boolean;
     }[];
+    statement: string;
+    boundary: string;
+};
+export declare function hopfieldEnergyIsALyapunovFunctionSoRecallConvergesAndCapacityIsBoundedByAmitGutfreundSompolinsky(): {
+    computes: boolean;
+    lyapunov: {
+        everyStepDescends: boolean;
+        everyRunConverges: boolean;
+        trials: number;
+        longestTrace: number;
+    };
+    capacity: {
+        alphaC: number;
+        belowCapacity: number;
+        aboveCapacity: number;
+        capacityWall: boolean;
+        dimsFromCapacity: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theHopfieldEnergyIsTheIsingHamiltonianTheQuantumComputerSimulatesAndStringTheoryStaysContested(): {
+    computes: boolean;
+    identityHolds: boolean;
+    substrateDocumented: boolean;
+    cognitionContested: boolean;
+    stringContested: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theSevenSciencesFormOneAlgebraicEntanglementNetworkWhoseNeuroConnectionsRecallTheWhole(): {
+    computes: boolean;
+    network: {
+        edges: {
+            a: number;
+            b: number;
+            holds: boolean;
+        }[];
+        connected: boolean;
+        componentCount: number;
+        hubDegree: number;
+        cyclomatic: number;
+        redundant: boolean;
+        recallsWhole: boolean;
+        documentedAndComputed: boolean;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
     statement: string;
     boundary: string;
 };

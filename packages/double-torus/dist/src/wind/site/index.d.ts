@@ -1,5 +1,5 @@
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7';
-import type { ConceptSiteSection, MindMatrix, StaticPage } from '../types';
+import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types';
 import { type LocaleName } from '../../1/9';
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
 export declare const SITE_DOMAIN_SEED: readonly [{
@@ -24,12 +24,12 @@ export declare const SITE_DOMAIN_SEED: readonly [{
     readonly labelBg: "Криптиране";
     readonly ray: 5;
     readonly hub: "frontier";
-    readonly canonical: "quantum-encryption";
-    readonly aliases: readonly [];
+    readonly canonical: "encryption";
+    readonly aliases: readonly ["quantum-encryption"];
 }, {
     readonly id: "theorems";
-    readonly labelEn: "Theorems";
-    readonly labelBg: "Теореми";
+    readonly labelEn: "Theorem registry";
+    readonly labelBg: "Теоремен регистър";
     readonly ray: 5;
     readonly hub: "frontier";
     readonly canonical: "frontiers";
@@ -62,6 +62,229 @@ export declare const SITE_DOMAIN_SEED: readonly [{
 export type SiteDomainId = (typeof SITE_DOMAIN_SEED)[number]['id'];
 /** Catch-all thin mounts only — nav-hidden tool leaves stay as seed pages (genus-2 fold ∈ DOCUMENTED_HARMONICS) but omit from dropdowns. */
 export declare const ROUTE_ALIASES: Record<string, string>;
+export declare function googleSuggestUrl(q: string): string;
+export declare function wikipediaOpenSearchUrl(q: string): string;
+export declare function wikimediaPageviewsUrl(article: string): string;
+export declare function duckDuckGoInstantUrl(q: string): string;
+export type SearchInterestRequest = {
+    source: string;
+    url: string;
+    auth: 'none';
+    gives: string;
+};
+/** The opt-in request set for one term — pure URLs, no fetch here (the caller does the fetch at the edge). */
+export declare function searchInterestRequests(term: string): SearchInterestRequest[];
+/** OPT-IN edge fetch — returns live suggestions ONLY when a fetch impl is passed; [] otherwise (no build-time network). */
+export declare function fetchSearchSuggestions(term: string, fetchImpl?: typeof fetch): Promise<string[]>;
+/** renameToMostSearchedTermsWiredToPublicSearchApis — rename each covered area to its most-searched term, wired to
+ * public search APIs (user, 2026-07-25: "rename all needed to match most searched in the areas covered" · "wire to
+ * public search apis and use to improve"). The searched term is either the live top suggestion from the opt-in
+ * public-API adapter (Google Suggest / Wikipedia / Wikimedia / DuckDuckGo — no key, no build-time fetch) or the named
+ * lexicon fallback; the deterministic core computes the rename map and keeps every old slug as an alias→new canonical
+ * (ROUTE_ALIASES mechanism), so no link dies. Mass public-route execution stays deliberate. */
+export declare function renameToMostSearchedTermsWiredToPublicSearchApis(liveSuggestions?: Record<string, string[]>): {
+    computes: boolean;
+    rows: {
+        area: string;
+        current: string;
+        searched: string;
+        source: string;
+        needsRename: boolean;
+        alias: {
+            [x: string]: string;
+        };
+        receipt: string;
+    }[];
+    needed: {
+        area: string;
+        current: string;
+        searched: string;
+        source: string;
+        needsRename: boolean;
+        alias: {
+            [x: string]: string;
+        };
+        receipt: string;
+    }[];
+    neededCount: number;
+    requests: SearchInterestRequest[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** egressSecurityForQuantumEncryptionOverHttps — egress security for quantum encryption over any HTTP(S) (user,
+ * 2026-07-25: "egress security is important for quantum encryption over any http(s)"). The strongest protection is NO
+ * egress (the private core sends nothing); when the user opts into an external call it is HTTPS-only (TLS in transit).
+ * HONEST: a public search API must READ the query, so HTTPS protects it in transit but the third-party endpoint sees
+ * it — quantum (4-key) encryption cannot hide a query the endpoint must process. The 4-key encryption protects the
+ * app's OWN payloads (ciphertext over https, keys derived client-side and never sent). [[tampering-cost-crypto-honesty]] */
+export declare function egressSecurityForQuantumEncryptionOverHttps(): {
+    computes: boolean;
+    httpsOnly: boolean;
+    keysNeverSent: boolean;
+    requestCount: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** decodeStandardsIntoUiImprovementWaves — decode the standards into UI improvement waves (user, 2026-07-25: "decode
+ * the standards in ui improvement waves"). Each standard's UI-relevant requirement decodes to a concrete UI change
+ * (accessibility, privacy-by-design, social cards, structured data, security indicators, performance), delivered as an
+ * ordered wave, and measured (the DRY metric + the animation gate) — not subjective. Privacy-by-design is already met
+ * by construction (no egress). [[ui-presentation-harmonic-dissolution]] [[iching-leads-ui]] */
+export declare function decodeStandardsIntoUiImprovementWaves(matrix?: MindMatrix): {
+    computes: boolean;
+    uiWaves: {
+        address: string;
+        standard: string;
+        uiImprovement: string;
+        wave: number;
+        met: boolean;
+    }[];
+    waveCount: number;
+    metCount: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** dryCleanVitepressComputedByMetrics — the VitePress DRY state is a MEASURED metric, not asserted (user, 2026-07-25:
+ * "dry clean vitepress computed by metrics"). The DRY ratio is single-source means / total; at 100% no VitePress
+ * mechanism has a duplicated source, so a change in src regenerates every surface once. Computed and deterministic:
+ * a regression (a duplicated source) drops the metric and is caught, and the surface also passes the animation gate. */
+export declare function dryCleanVitepressComputedByMetrics(matrix?: MindMatrix): {
+    computes: boolean;
+    dryRatio: number;
+    singleSource: number;
+    total: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** wireDryInVitepressWithAllMeansPossible — wire DRY into VitePress using every mechanism it offers (user, 2026-07-25:
+ * "wire dry in vitepress with all means possible"). Each VitePress means — themeConfig nav/sidebar, dynamic-route
+ * paths, the computed home body, transformPageData (frontmatter · hero · SEO · JSON-LD), local search, heading anchors,
+ * and shared layout/components — consumes ONE src source through the OFFICIAL VitePress API, so a change in src
+ * regenerates every surface once with no duplicated config and no DOM scrape. [[feedback-do-not-bypass-vitepress-api]] [[content-in-site-srcdir]] */
+export declare function wireDryInVitepressWithAllMeansPossible(matrix?: MindMatrix): {
+    computes: boolean;
+    means: {
+        mechanism: string;
+        source: string;
+        native: boolean;
+        computes: boolean;
+    }[];
+    meansCount: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised — predict the user experience, measure it,
+ * statistically analyse, account, and optimise (user, 2026-07-25: "quantum predicted user experience measured and
+ * statistically analysed accounted and optimised"). The deterministic model PREDICTS what the user will see (the
+ * BM25-ranked results), the metrics are MEASURED client-side (no egress), STATISTICS are computed (mean μ and spread σ
+ * of the top scores, grounded ratio), the metrics ACCOUNT to one content-addressed ledger receipt, and the
+ * OPTIMISATION is measured (relevance feedback lifts a chosen result). All client-side and deterministic — not
+ * real-user telemetry. [[realtime-live-data-testing]] [[searchImprovesByExperiencePrivateRelevanceFeedback]] */
+export declare function quantumPredictedUserExperienceMeasuredAnalysedAccountedOptimised(query?: string, matrix?: MindMatrix): {
+    computes: boolean;
+    predictedResults: number;
+    statistics: {
+        mean: number;
+        std: number;
+        groundedRatio: number;
+    };
+    ledger: string;
+    optimised: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** navigationFromSearchResultsAndReferrer — navigation IS the search results plus the referrer (user, 2026-07-25:
+ * "navigation is based on the search results themselves and the referrer"). The outgoing edges of a node are the
+ * BM25-ranked search results for its query (you navigate by relevance, not a hand-built menu), and the incoming edge
+ * is the referrer; the (referrer, query) pair content-addresses the nav state. One index drives both search and
+ * navigation — no second topology. Deterministic and private. [[routes-nav-from-folder-tree]] */
+export declare function navigationFromSearchResultsAndReferrer(referrer?: string, query?: string): {
+    computes: boolean;
+    referrer: string;
+    query: string;
+    edges: {
+        slug: string;
+        title: string;
+        provedBy: string;
+        identity: string;
+        score: number;
+    }[];
+    superposition: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** quantumSearchFusesAllAsPrivateSearchEngine — the UI fuses everything into ONE quantum search: a PRIVATE search
+ * engine and a lot more (user, 2026-07-25: "fuse all in quantum search" · "the ui can serve as private search engine
+ * and a lot more if you imagine all chat capabilities"). One query fuses the private internal retrieval (content-
+ * addressed corpus, deterministic, no egress), the navigation (related discoveries), all chat capabilities (answer ·
+ * recall · navigate · self-develop · developed-answer), the canonical most-searched term, and the OPT-IN public search
+ * APIs — internal + external + navigation + SEO in one surface. Private by construction; the external edge is opt-in. */
+export declare function quantumSearchFusesAllAsPrivateSearchEngine(query?: string, matrix?: MindMatrix): {
+    fuses: boolean;
+    query: string;
+    answer: string;
+    results: {
+        slug: string;
+        title: string;
+        provedBy: string;
+        identity: string;
+        score: number;
+    }[];
+    resultCount: number;
+    related: number;
+    capabilities: number;
+    externalRequests: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** Domain registry for VitePress nav — canonical pages only; nav aliases filtered; route aliases thin-mount. */
 export declare function siteDomainRegistry(matrix?: MindMatrix): {
     computes: boolean;
@@ -105,8 +328,8 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         labelBg: "Криптиране";
         ray: 5;
         hub: "frontier";
-        canonical: "quantum-encryption";
-        aliases: readonly [];
+        canonical: "encryption";
+        aliases: readonly ["quantum-encryption"];
     } | {
         route: string;
         hubRoute: string;
@@ -115,8 +338,8 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hue: 0 | 102 | 154 | 205 | 257;
         receipt: string;
         id: "theorems";
-        labelEn: "Theorems";
-        labelBg: "Теореми";
+        labelEn: "Theorem registry";
+        labelBg: "Теоремен регистър";
         ray: 5;
         hub: "frontier";
         canonical: "frontiers";
@@ -168,7 +391,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         [k: string]: string;
     };
     aliasCount: number;
-    navSlugs: Set<"learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "quantum-encryption" | "society-merkaba">;
+    navSlugs: Set<"learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "encryption" | "society-merkaba">;
     isNavAlias: (slug: string) => boolean;
     canonicalOf: (slug: string) => string;
     facets: {
@@ -185,9 +408,9 @@ export declare function domainSidebarFromRegistry(locale?: 0 | 1, matrix?: MindM
     computes: boolean;
     sections: {
         domainId: "learn" | "research" | "society" | "theorems" | "tools" | "trading" | "encryption";
-        canonical: "learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "quantum-encryption" | "society-merkaba";
+        canonical: "learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "encryption" | "society-merkaba";
         route: string;
-        text: "Learn" | "Обучение" | "Society" | "Theorems" | "Quantum tools" | "Квантови инструменти" | "Trading" | "Търговия" | "Encryption" | "Криптиране" | "Теореми" | "Research" | "Изследвания" | "Общество";
+        text: "Learn" | "Обучение" | "Society" | "Theorem registry" | "Quantum tools" | "Квантови инструменти" | "Trading" | "Търговия" | "Encryption" | "Криптиране" | "Теоремен регистър" | "Research" | "Изследвания" | "Общество";
         items: {
             text: string;
             link: string;
@@ -197,9 +420,9 @@ export declare function domainSidebarFromRegistry(locale?: 0 | 1, matrix?: MindM
     byCanonical: {
         [k: string]: {
             domainId: "learn" | "research" | "society" | "theorems" | "tools" | "trading" | "encryption";
-            canonical: "learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "quantum-encryption" | "society-merkaba";
+            canonical: "learn" | "research" | "frontiers" | "quantum-tools" | "quantum-trading-hub" | "encryption" | "society-merkaba";
             route: string;
-            text: "Learn" | "Обучение" | "Society" | "Theorems" | "Quantum tools" | "Квантови инструменти" | "Trading" | "Търговия" | "Encryption" | "Криптиране" | "Теореми" | "Research" | "Изследвания" | "Общество";
+            text: "Learn" | "Обучение" | "Society" | "Theorem registry" | "Quantum tools" | "Квантови инструменти" | "Trading" | "Търговия" | "Encryption" | "Криптиране" | "Теоремен регистър" | "Research" | "Изследвания" | "Общество";
             items: {
                 text: string;
                 link: string;
@@ -273,6 +496,240 @@ export declare function dryCleanVitepressNavSidebarsFromDomainRegistry(matrix?: 
     statement: string;
     boundary: string;
 };
+/**
+ * Content/site folders waved for migration + dedup — gapless census.
+ * Locales · corpus mounts · seven domain canonicals · seven rosetta hubs.
+ * Pair: folder/migrate · compose dry/clean · siteDomainRegistry · #61 hierarchy.
+ */
+export declare const CONTENT_FOLDER_WAVE_SEED: readonly [{
+    readonly id: "pages-root";
+    readonly path: ".vitepress/pages";
+    readonly role: "en-root locale mounts";
+    readonly kind: "locale";
+    readonly emitter: "staticPages+computed-pages";
+    readonly domainId: any;
+}, {
+    readonly id: "pages-bg";
+    readonly path: ".vitepress/pages/bg";
+    readonly role: "bg locale";
+    readonly kind: "locale";
+    readonly emitter: "localePath+bulgarianFromEnglish";
+    readonly domainId: any;
+}, {
+    readonly id: "pages-gla";
+    readonly path: ".vitepress/pages/gla";
+    readonly role: "gla locale";
+    readonly kind: "locale";
+    readonly emitter: "toGlagolitic";
+    readonly domainId: any;
+}, {
+    readonly id: "proofs";
+    readonly path: ".vitepress/pages/proofs";
+    readonly role: "Clay domain proofs";
+    readonly kind: "corpus";
+    readonly emitter: "domainProofCatalog";
+    readonly domainId: SiteDomainId | null;
+}, {
+    readonly id: "theorems";
+    readonly path: ".vitepress/pages/theorems";
+    readonly role: "machine tag index";
+    readonly kind: "corpus";
+    readonly emitter: "theoremRosettaSidebar";
+    readonly domainId: SiteDomainId | null;
+}, {
+    readonly id: "papers";
+    readonly path: ".vitepress/pages/papers";
+    readonly role: "machine papers REST";
+    readonly kind: "corpus";
+    readonly emitter: "papers()";
+    readonly domainId: any;
+}, {
+    readonly id: "references";
+    readonly path: ".vitepress/pages/references";
+    readonly role: "machine references REST";
+    readonly kind: "corpus";
+    readonly emitter: "references";
+    readonly domainId: any;
+}, {
+    readonly id: "diamonds";
+    readonly path: ".vitepress/pages/diamonds";
+    readonly role: "machine diamonds REST";
+    readonly kind: "corpus";
+    readonly emitter: "diamondLattice";
+    readonly domainId: any;
+}, {
+    readonly id: "model";
+    readonly path: ".vitepress/pages/model";
+    readonly role: "model cards";
+    readonly kind: "corpus";
+    readonly emitter: "ModelCardPages";
+    readonly domainId: any;
+}, {
+    readonly id: "domain-tools";
+    readonly path: "/quantum-tools";
+    readonly role: "tools canonical";
+    readonly kind: "domain";
+    readonly emitter: "siteDomainRegistry";
+    readonly domainId: SiteDomainId;
+}, {
+    readonly id: "domain-trading";
+    readonly path: "/quantum-trading-hub";
+    readonly role: "trading canonical";
+    readonly kind: "domain";
+    readonly emitter: "siteDomainRegistry";
+    readonly domainId: SiteDomainId;
+}, {
+    readonly id: "domain-encryption";
+    readonly path: "/encryption";
+    readonly role: "encryption canonical";
+    readonly kind: "domain";
+    readonly emitter: "siteDomainRegistry";
+    readonly domainId: SiteDomainId;
+}, {
+    readonly id: "domain-theorems";
+    readonly path: "/frontiers";
+    readonly role: "theorem registry canonical";
+    readonly kind: "domain";
+    readonly emitter: "siteDomainRegistry";
+    readonly domainId: SiteDomainId;
+}, {
+    readonly id: "domain-research";
+    readonly path: "/research";
+    readonly role: "research canonical";
+    readonly kind: "domain";
+    readonly emitter: "siteDomainRegistry";
+    readonly domainId: SiteDomainId;
+}, {
+    readonly id: "domain-learn";
+    readonly path: "/learn";
+    readonly role: "learn canonical";
+    readonly kind: "domain";
+    readonly emitter: "siteDomainRegistry";
+    readonly domainId: SiteDomainId;
+}, {
+    readonly id: "domain-society";
+    readonly path: "/society-merkaba";
+    readonly role: "society canonical";
+    readonly kind: "domain";
+    readonly emitter: "siteDomainRegistry";
+    readonly domainId: SiteDomainId;
+}, {
+    readonly id: "hub-origin";
+    readonly path: "/origin";
+    readonly role: "rosetta ray hub";
+    readonly kind: "hub";
+    readonly emitter: "sciencePortalParts";
+    readonly domainId: any;
+}, {
+    readonly id: "hub-proof";
+    readonly path: "/proof";
+    readonly role: "rosetta ray hub";
+    readonly kind: "hub";
+    readonly emitter: "sciencePortalParts";
+    readonly domainId: any;
+}, {
+    readonly id: "hub-explore";
+    readonly path: "/explore";
+    readonly role: "rosetta ray hub";
+    readonly kind: "hub";
+    readonly emitter: "sciencePortalParts";
+    readonly domainId: any;
+}, {
+    readonly id: "hub-learn";
+    readonly path: "/learn";
+    readonly role: "rosetta ray hub (learn ray)";
+    readonly kind: "hub";
+    readonly emitter: "sciencePortalParts";
+    readonly domainId: SiteDomainId | null;
+}, {
+    readonly id: "hub-apps";
+    readonly path: "/apps";
+    readonly role: "rosetta ray hub";
+    readonly kind: "hub";
+    readonly emitter: "sciencePortalParts";
+    readonly domainId: any;
+}, {
+    readonly id: "hub-frontier";
+    readonly path: "/frontier";
+    readonly role: "rosetta ray hub";
+    readonly kind: "hub";
+    readonly emitter: "sciencePortalParts";
+    readonly domainId: any;
+}, {
+    readonly id: "hub-reference";
+    readonly path: "/reference";
+    readonly role: "rosetta ray hub";
+    readonly kind: "hub";
+    readonly emitter: "sciencePortalParts";
+    readonly domainId: any;
+}];
+export type ContentFolderWaveId = (typeof CONTENT_FOLDER_WAVE_SEED)[number]['id'];
+export type ContentFolderWaveStatus = 'migrated' | 'partial' | 'residual';
+/**
+ * Coordinated folder waves — migration to single-source catalog + dedup + #61 route hierarchy.
+ * Per-folder status facets; gapless census of folders touched. Pair: folder/migrate.
+ * Phase B nav/sidebar coherence is consumed via dryClean + domain registry (vitepressSidebar composes).
+ */
+export declare function folderMigrationDedupWaves(matrix?: MindMatrix): {
+    computes: boolean;
+    folderCount: 23;
+    migratedCount: number;
+    partialCount: number;
+    residualCount: number;
+    gaplessCensus: boolean;
+    folders: {
+        id: "papers" | "references" | "diamonds" | "model" | "theorems" | "proofs" | "pages-root" | "pages-bg" | "pages-gla" | "domain-tools" | "domain-trading" | "domain-encryption" | "domain-theorems" | "domain-research" | "domain-learn" | "domain-society" | "hub-origin" | "hub-proof" | "hub-explore" | "hub-learn" | "hub-apps" | "hub-frontier" | "hub-reference";
+        path: "/frontiers" | "/learn" | "/explore" | ".vitepress/pages" | ".vitepress/pages/bg" | ".vitepress/pages/gla" | ".vitepress/pages/proofs" | ".vitepress/pages/theorems" | ".vitepress/pages/papers" | ".vitepress/pages/references" | ".vitepress/pages/diamonds" | ".vitepress/pages/model" | "/quantum-tools" | "/quantum-trading-hub" | "/encryption" | "/research" | "/society-merkaba" | "/origin" | "/proof" | "/apps" | "/frontier" | "/reference";
+        role: "en-root locale mounts" | "bg locale" | "gla locale" | "Clay domain proofs" | "machine tag index" | "machine papers REST" | "machine references REST" | "machine diamonds REST" | "model cards" | "tools canonical" | "trading canonical" | "encryption canonical" | "theorem registry canonical" | "research canonical" | "learn canonical" | "society canonical" | "rosetta ray hub" | "rosetta ray hub (learn ray)";
+        kind: "hub" | "domain" | "locale" | "corpus";
+        emitter: "references" | "toGlagolitic" | "sciencePortalParts" | "siteDomainRegistry" | "staticPages+computed-pages" | "localePath+bulgarianFromEnglish" | "domainProofCatalog" | "theoremRosettaSidebar" | "papers()" | "diamondLattice" | "ModelCardPages";
+        domainId: any;
+        status: "partial" | "migrated";
+        note: string;
+        receipt: string;
+        facet: {
+            facet: string;
+            on: boolean;
+        };
+    }[];
+    kindCounts: {
+        locale: number;
+        corpus: number;
+        domain: number;
+        hub: number;
+    };
+    navBefore: {
+        topNav: string;
+        sidebar: string;
+        content: string;
+    };
+    navAfter: {
+        topNav: string;
+        sidebar: string;
+        content: string;
+    };
+    residuals: ("composed-after #68 uiProseDuplicationRemoved — residual Clay Statement=title catalog pattern in staticPages descriptions" | "composed-after #70 mcp-commands-scripts-gaps-audit (MCP/script synonym census landed; residual conceptTools + trading:* outside PRIMARY)" | "thin-mount alias leaves still served (efficiency-vote… · learn-developer) — intentional census fold" | "compose import/distance — importPathShowsDistanceInMigrationMatrix measures compact+even code in the src matrix (npm run quantum:import-path-distance)")[];
+    claySolvedByThisFold: 0;
+    qpuRequired: false;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "folder/migrate";
+    cli: string;
+    route: string;
+    anchor: string;
+    heading: string;
+    honestyLine: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:folder-migration-waves — print per-folder migration/dedup receipt (exit 0 iff computes). */
+export declare function runFolderMigrationDedupWavesExit(_root?: string, _argv?: readonly string[]): number;
 export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9';
 export { pickLocale, localizeMonolingual, localizeMonolingual as displayText } from '../../quantum/heaven/library';
 export type VitePressLocaleKey = 'root' | 'bg' | 'gla';
@@ -282,6 +739,8 @@ export declare function localePaths(route: string): {
     en: string;
     bg: string;
 };
+/** Authored staticPages title pairs — extend sealed offline en→bg corpus (zero network). */
+export declare function offlineSiteTitlePhrases(): readonly (readonly [string, string])[];
 /** Bulgarian home — computed from the English home body homeMarkdown() (mirror of glagoliticHomeFromEnglish). */
 export declare function bulgarianHomeFromEnglish(enMarkdown: string): string;
 export declare function localeNavLinks(node: unknown, locale: LocaleName, labelMapper?: (text: string) => string): unknown;
@@ -359,6 +818,184 @@ export declare function siteConfig(matrix?: MindMatrix): {
     root: string;
     computed: boolean;
 };
+/**
+ * VitePress-native theme/app config emitter — values config.mts must consume (thin mount).
+ * Sourced from official VitePress 2.x docs (vitepress.dev guide/reference) for package vitepress@2.0.0-alpha.17.
+ * Pair: docs/improve · prefers VP API over custom reinvent.
+ */
+export declare function vitepressNativeDocsConfig(matrix?: MindMatrix): {
+    lastUpdated: true;
+    markdown: {
+        image: {
+            lazyLoading: true;
+        };
+    };
+    theme: {
+        logo: string;
+        externalLinkIcon: true;
+        editLink: {
+            pattern: string;
+            text: string;
+        };
+        lastUpdated: {
+            text: string;
+            formatOptions: {
+                dateStyle: "medium";
+                timeStyle: "short";
+            };
+        };
+    };
+    localeLabels: {
+        en: {
+            editLinkText: string;
+            lastUpdatedText: string;
+            skipToContentLabel: string;
+        };
+        bg: {
+            editLinkText: string;
+            lastUpdatedText: string;
+            skipToContentLabel: string;
+        };
+        gla: {
+            editLinkText: string;
+            lastUpdatedText: string;
+            skipToContentLabel: string;
+        };
+    };
+    localeLinks: {
+        root: "/";
+        bg: "/bg/";
+        gla: "/gla/";
+    };
+    root: string;
+    computed: true;
+    vitepressVersionTarget: string;
+};
+/**
+ * Deep-research receipt — VitePress docs researched → gaps audited → high-value native improvements applied.
+ * Pair: docs/improve · census untouched.
+ */
+export declare function vitepressDocsResearchImprovements(matrix?: MindMatrix): {
+    computes: boolean;
+    researched: ("https://vitepress.dev/guide/what-is-vitepress" | "https://vitepress.dev/reference/site-config" | "https://vitepress.dev/reference/default-theme-config" | "https://vitepress.dev/reference/default-theme-search" | "https://vitepress.dev/reference/default-theme-edit-link" | "https://vitepress.dev/reference/runtime-api" | "https://vitepress.dev/guide/markdown" | "https://vitepress.dev/guide/custom-theme" | "https://vitepress.dev/guide/extending-default-theme" | "https://vitepress.dev/guide/i18n")[];
+    gaps: ({
+        id: "markdown-image-lazy";
+        status: "applied";
+        detail: "markdown.image.lazyLoading=true (VP default false)";
+    } | {
+        id: "lastUpdated";
+        status: "applied";
+        detail: "site lastUpdated + themeConfig.lastUpdated labels";
+    } | {
+        id: "editLink";
+        status: "applied";
+        detail: "themeConfig.editLink → GitHub .vitepress/pages/:path";
+    } | {
+        id: "externalLinkIcon";
+        status: "applied";
+        detail: "themeConfig.externalLinkIcon=true";
+    } | {
+        id: "logo";
+        status: "applied";
+        detail: "themeConfig.logo=/icon.svg (existing asset)";
+    } | {
+        id: "bg-locale-link";
+        status: "applied";
+        detail: "fix locales.bg.link = SITE_LOCALES[1].path (was wrongly [2]/gla)";
+    } | {
+        id: "skipToContentLabel";
+        status: "applied";
+        detail: "localized skipToContentLabel en/bg";
+    } | {
+        id: "cleanUrls-search-aside";
+        status: "already";
+        detail: "cleanUrls + local MiniSearch + aside/outline deep already wired";
+    } | {
+        id: "carbon-ads";
+        status: "skipped";
+        detail: "intentionally omitted — no ads";
+    } | {
+        id: "algolia";
+        status: "skipped";
+        detail: "local search preferred (offline, zero-network)";
+    } | {
+        id: "mathjax";
+        status: "residual";
+        detail: "markdown.math opt-in needs markdown-it-mathjax3 dep — not this wave";
+    } | {
+        id: "team-pages";
+        status: "residual";
+        detail: "VP TeamPage components unused — no team roster surface";
+    } | {
+        id: "view-transitions";
+        status: "residual";
+        detail: "appearance view-transition demo skipped (fine-touch vs defaults)";
+    })[];
+    appliedCount: number;
+    residualCount: number;
+    native: {
+        lastUpdated: true;
+        markdown: {
+            image: {
+                lazyLoading: true;
+            };
+        };
+        theme: {
+            logo: string;
+            externalLinkIcon: true;
+            editLink: {
+                pattern: string;
+                text: string;
+            };
+            lastUpdated: {
+                text: string;
+                formatOptions: {
+                    dateStyle: "medium";
+                    timeStyle: "short";
+                };
+            };
+        };
+        localeLabels: {
+            en: {
+                editLinkText: string;
+                lastUpdatedText: string;
+                skipToContentLabel: string;
+            };
+            bg: {
+                editLinkText: string;
+                lastUpdatedText: string;
+                skipToContentLabel: string;
+            };
+            gla: {
+                editLinkText: string;
+                lastUpdatedText: string;
+                skipToContentLabel: string;
+            };
+        };
+        localeLinks: {
+            root: "/";
+            bg: "/bg/";
+            gla: "/gla/";
+        };
+        root: string;
+        computed: true;
+        vitepressVersionTarget: string;
+    };
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    pair: "docs/improve";
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:vitepress-docs-research — research receipt + native config emitter. */
+export declare function runVitepressDocsResearchImprovementsExit(_root?: string, _argv?: readonly string[]): number;
 /** PWA manifest — theme/background fuse from the movie palette, not static hex files. */
 export declare function computedWebManifest(matrix?: MindMatrix): string;
 export interface HomeHeroAction {
@@ -427,7 +1064,7 @@ export declare function theoremScienceLens(matrix?: MindMatrix): {
     pages: StaticPage[];
     hidden: string[];
     rays: {
-        ray: 0 | 5 | 2 | 4 | 1 | 3 | 6;
+        ray: 0 | 2 | 5 | 4 | 1 | 3 | 6;
         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
         labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
@@ -437,6 +1074,8 @@ export declare function theoremScienceLens(matrix?: MindMatrix): {
             titleBg: string;
         }[];
     }[];
+    discoveryRoutes: readonly ["/frontiers", "/proofs"];
+    machineRoutes: readonly ["/theorems", "/papers/", "/references", "/diamonds"];
     corpusRoutes: readonly ["/theorems", "/papers/", "/references", "/diamonds"];
     theoremCount: number;
     visibleCount: number;

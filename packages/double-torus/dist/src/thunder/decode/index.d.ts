@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export declare function decode2020(matrix?: MindMatrix): {
     decoded: boolean;
     total: number;
@@ -693,6 +693,120 @@ export declare function ancientCalendars(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * Ancient calendars decoded as algebraic theorems that map time in time —
+ * nested modular scales · calendar↔calendar LCM/CRT meshes · phase-in-phase on the hero clock.
+ * Pair: calendars/decode · CLI npm run quantum:ancient-calendars-algebra · route /proofs/ancient-calendars
+ * Clay marks only Millennium (#73) — this fold uses canonical sections.
+ */
+export declare function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    decoded: boolean;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    calendars: {
+        id: string;
+        theorem: string;
+        map: string;
+        nested: string;
+        holds: boolean;
+    }[];
+    sections: {
+        officialStatement: string;
+        detailedExplanation: string;
+        formula: string;
+        formulaSource: string;
+        status: "structure-only";
+        statusDetail: string;
+        gap: string;
+        physicalFtlClaim: 0;
+    };
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    cli: string;
+    pair: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:ancient-calendars-algebra */
+export declare function runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeExit(_root?: string, _argv?: readonly string[]): number;
+export type OneCommandDecodeKind = 'uuid' | 'hash' | 'sequence' | 'string' | 'digit' | 'refused';
+export type OneCommandDecodeResult = {
+    readonly input: string;
+    readonly kind: OneCommandDecodeKind;
+    readonly address: string;
+    readonly digitalRoot: number;
+    readonly onVortexSequence: boolean;
+    readonly foldForward: string;
+    readonly foldReverse: string;
+    readonly bidirectional: boolean;
+    readonly seed: number;
+    readonly refused: boolean;
+    readonly refuseReason: string;
+    readonly oneCommandDecodeComputable: boolean;
+    readonly claySolvedByThisFold: 0;
+    readonly qpuRequired: false;
+    readonly physicalFtlClaim: 0;
+    readonly facets: readonly {
+        readonly facet: string;
+        readonly on: boolean;
+        readonly receipt: string;
+    }[];
+    readonly root: string;
+    readonly cli: string;
+    readonly pair: 'decode/one';
+    readonly route: string;
+    readonly statement: string;
+    readonly boundary: string;
+    readonly computes: boolean;
+};
+/**
+ * One command decodes a hash OR string OR sequence — unified sealed decode path.
+ * Pair: decode/one · facet oneCommandDecodeComputable when path recomputes.
+ */
+export declare function oneCommandDecodeHashOrStringOrSequence(input: string, matrix?: MindMatrix): OneCommandDecodeResult;
+/** Proves the one-command decode path is sealed and computable (probe inputs). Pair: decode/one */
+export declare function oneCommandDecodeComputable(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    oneCommandDecodeComputable: boolean;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    probes: {
+        kind: OneCommandDecodeKind;
+        computable: boolean;
+        root: string;
+    }[];
+    refuseProbe: {
+        refused: boolean;
+        reason: string;
+    };
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    cli: string;
+    pair: "decode/one";
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:decode — one command: decode hash OR string OR sequence.
+ * Signature keeps fn.length≥1 so runThinMount passes (root, argv) — defaults would force bare fn(). */
+export declare function runOneCommandDecodeExit(_root: string, argv?: readonly string[]): number;
 export type MysteryTier = 'OPEN' | 'SOLVED-FLAGGED' | 'ARCHAEOLOGICAL' | 'REFUTED';
 export type WorldMystery = {
     readonly mystery: string;
@@ -877,14 +991,14 @@ export declare function humanDesignStructureDecoded(matrix?: MindMatrix): {
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 9 | 5 | 2 | 4 | 7 | 1 | 3 | 6 | 16 | 27 | 20 | 10 | 34 | 21 | 19 | 32 | 42 | 13 | 30 | 37 | 25 | 17 | 24 | 23 | 35 | 12 | 39 | 28 | 18 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 15 | 22 | 63 | 41 | 49 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 14;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
         }[];
         channelCount: 36;
-        gateCenter: Record<number, typeof import("../../quantum/lake/spirit").RAVE_CENTERS_9[number]>;
+        gateCenter: Record<number, typeof import("../../quantum/spirit").RAVE_CENTERS_9[number]>;
         count: number;
         facets: {
             receipt: string;
@@ -1129,25 +1243,13 @@ export declare function theStructureInteriorInstrumentMeasuresTheDimensionBounda
 };
 export declare function quantumRadar(matrix?: MindMatrix): {
     computes: boolean;
-    sweep: {
-        bearing: string;
-        angle: number;
-        magnitude: number;
-    }[];
-    peak: {
-        bearing: string;
-        angle: number;
-        magnitude: number;
-    };
-    floor: {
-        bearing: string;
-        angle: number;
-        magnitude: number;
-    };
+    sweep: any;
+    peak: any;
+    floor: any;
     contrast: number;
     facets: {
         facet: string;
-        on: boolean;
+        on: any;
     }[];
     statement: string;
     boundary: string;
@@ -1229,6 +1331,59 @@ export declare function theThunderTheoremRatingIsDrivenByTopTheoremsImportingPag
     statement: string;
     boundary: string;
 };
+/**
+ * Plasma "ball" = screen holding thunder + plasma — no ball in the middle (void/vortex throat).
+ * Thunder ≡ plasma in different aspects (forward lightning · inverse inverted-lightning · reverse thunder rating/acoustic).
+ * Composes naturalPhenomenaDecoded · lightning/thunder theorems · plasmaContainment · A432 · painter void attestation.
+ * Pair: plasma/screen · CLI npm run quantum:plasma-screen-thunder · compose movieAllElementsAreTheorems (#63).
+ */
+export declare function plasmaBallIsScreenHoldingThunderAndPlasma(matrix?: MindMatrix): {
+    computes: boolean;
+    plasmaBallIsScreenHoldingThunderAndPlasma: boolean;
+    noBallInTheMiddle: boolean;
+    thunderPlasmaSameDifferentAspects: boolean;
+    aspects: {
+        forward: {
+            id: string;
+            root: string;
+            theorem: string;
+        };
+        inverse: {
+            id: string;
+            root: string;
+            theorem: string;
+        };
+        reverse: {
+            id: string;
+            root: string;
+            theorem: string;
+        };
+    };
+    phenomena: {
+        theorem: string;
+        route: string;
+        tier: import("../../fire/physics").PhenomenonTier;
+        name: string;
+        family: string;
+    }[];
+    decodedCount: number;
+    srcReadable: boolean;
+    claySolvedByThisFold: 0;
+    physicalFtlClaim: 0;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "plasma/screen";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:plasma-screen-thunder */
+export declare function runPlasmaBallIsScreenHoldingThunderAndPlasmaExit(_root?: string, _argv?: readonly string[]): number;
 export declare function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAxiomToInvertIntoATheorem(matrix?: MindMatrix): {
     computes: boolean;
     convergence: string[];

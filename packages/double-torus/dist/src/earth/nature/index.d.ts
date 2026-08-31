@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export declare function recycling(matrix?: MindMatrix): {
     solved: boolean;
     count: number;
@@ -689,4 +689,4 @@ export declare function attestation(): {
     statement: string;
     boundary: string;
 };
-export { computeAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched, planetsGalaxyComputeItself, astronomyDecodedWithTheSequence, astronomySequenceDecodeResearch, decodeAstronomyThroughVortexSequence, astronomyComputes, } from '../../heaven/sky/astronomy';
+export { computeAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched, planetsGalaxyComputeItself, astronomyDecodedWithTheSequence, astronomySequenceDecodeResearch, decodeAstronomyThroughVortexSequence, astronomyComputes } from '../../heaven/sky/astronomy';

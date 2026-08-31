@@ -1954,7 +1954,9 @@ export function humanDesignStructureDecoded(matrix: MindMatrix = buildMatrix()) 
     const gates = BAGUA.length ** 2 // 64 — the same binary lattice as the I Ching
     const centers = lattice.centerCount
     const channels = lattice.channelCount
-    const types = 5 // Manifestor · Generator · Manifesting Generator · Projector · Reflector
+    // COUNTED from the enumeration rather than declared beside it.
+    const TYPE_NAMES = ['Manifestor', 'Generator', 'Manifesting Generator', 'Projector', 'Reflector'] as const
+    const types = TYPE_NAMES.length
     const lines = 6 // hexagram lines reused as "profile" digits
     const profiles = 2 * 6 // 12 documented line-pair profiles of the 6×6 grid
     const facets = [

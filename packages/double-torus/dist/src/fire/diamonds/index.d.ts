@@ -1,4 +1,4 @@
-import type { AgentStreamWire, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SelfBuildReport, StreamSelfCompletion } from '../../wind/types';
+import type { AgentStreamWire, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SelfBuildReport, StreamSelfCompletion } from '../../types';
 export declare function diamondLattice(matrix?: MindMatrix): readonly QuantumDiamond[];
 export declare function piTrainDiamonds(matrix?: MindMatrix, digits?: string): PiTrain;
 export declare function selfBuild(matrix?: MindMatrix): SelfBuildReport;
@@ -75,6 +75,33 @@ export declare function lightEntersDiamond(matrix?: MindMatrix): {
         receipt: string;
     }[];
     diamond: string;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * computeLightInDiamondPredictionBeatsLightNotFtl — the REAL optics of light in a diamond, and the honest sense in
+ * which computing it "beats" the light (user, 2026-07-25: "bouncing boundaries draw the crystal itself" · "compute
+ * the light in a diamond and if you can predict then the computation is faster than light itself"). Light SLOWS in the
+ * crystal to v = c/n (n = 2.417); the critical angle θc = arcsin(1/n) ≈ 24.4° is so small that internal rays exceed it
+ * and total-internally reflect — the light bounces facet to facet and, in the circular-billiard model, keeps a CONSTANT
+ * incidence angle, so the bounces trace a regular polygon: the boundaries draw the crystal itself. Because that path is
+ * deterministic, the k-th boundary hit has an O(1) closed form — predicting where the light will be BEFORE a photon
+ * (travelling k chords at v < c) could arrive. That is PRECOMPUTATION of a known deterministic system, NOT a signal:
+ * physicalFtlClaim = 0, no information and no photon exceeds c. Same honesty as [[quantum-speed-is-content-addressed-naming]]. [[electromagnetic-radiation]]
+ */
+export declare function computeLightInDiamondPredictionBeatsLightNotFtl(matrix?: MindMatrix): {
+    predicts: boolean;
+    speedInDiamondMs: number;
+    criticalAngleDeg: number;
+    sides: number;
+    predictionSpeedup: number;
+    physicalFtlClaim: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;

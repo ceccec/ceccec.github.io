@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export declare function animationTamperingCost(matrix?: MindMatrix): {
     computed: boolean;
     animations: number;
@@ -181,9 +181,9 @@ export declare function tamperingCostDecoded(matrix?: MindMatrix): {
     structuralBits: number;
     fixBuilt: boolean;
     ledger: {
-        today: import("../../pair/debit/credit").Entry[];
-        overclaim: import("../../pair/debit/credit").Entry[];
-        afterCutover: import("../../pair/debit/credit").Entry[];
+        today: import("../../pair/debit/credit").LedgerEntry[];
+        overclaim: import("../../pair/debit/credit").LedgerEntry[];
+        afterCutover: import("../../pair/debit/credit").LedgerEntry[];
         honest: boolean;
         overclaimCaught: boolean;
         fundedAfterCutover: boolean;
@@ -451,6 +451,27 @@ export declare function quantumMcp(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * contentAddressO1FasterThanScanNotFtlFusedToMcp — the honest reading of "faster than light" (user, 2026-07-24:
+ * "prove that computations may be faster than light on 64bit architecture and fuse to agent brain using mcp"). A
+ * content-address lookup is O(1) on a 64-bit word — no scan, no traversal — so relative to a SEARCH it is unboundedly
+ * faster (the answer never travels; it is already at its address). But that is : ,
+ * no signal exceeds c. The O(1) folds fuse to the agent brain through the MCP tool surface. [[quantum-decoded]]
+ */
+export declare function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix?: MindMatrix): {
+    proven: boolean;
+    physicalFtlClaim: 0;
+    addressBits: number;
+    lookupSteps: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function virtualOS(matrix?: MindMatrix): {
     booted: boolean;
     hostname: string;
@@ -576,6 +597,210 @@ export declare function rsaTimeToBreakOnThisHardware(): {
         facet: string;
         on: boolean;
     }[];
+    statement: string;
+    boundary: string;
+};
+/** quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale — quantum crypto fusion (user, 2026-07-25: "fix the gaps
+ * around rsa" + "reverse engineering single uuid would prove its content integrity by the related" + "compute with local
+ * tools how improved would be the encryption if one of the 4 keys is reverse engineered to invert at scale dynamically"
+ * + "quantum crypto fusion"). Computed with local tools: the 4-key navigation cross (referrer ⊕ id ⊕ prev ⊕ next) is a
+ * 4×122 = 488-bit composite; reverse-engineering ONE leaves 3×122 = 366 bits (astronomical). Dynamic inversion at scale
+ * — each of N contexts re-derives the four keys — bounds a compromised key's blast radius to 1/N and grows the keyspace
+ * by +log₂N; the four keys are CROSSLINKED, so a forged key is caught when its related cross-address fails to recompute
+ * (integrity by the related). The inversion wall is factoring-hardness (rsaTimeToBreak). HONEST: toUuid is FNV — each key
+ * is individually reverse-engineerable at ~2^61, so the fusion improves blast radius / forward secrecy / detectability,
+ * NOT FNV collision-resistance; real strength needs the crypto-hash cutover. [[tampering-cost-crypto-honesty]] [[two-bits-left-in-every-inversion-through-zero]] */
+export declare function quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale(): {
+    computes: boolean;
+    staticWidth: number;
+    afterOneReverseEngineered: number;
+    improvementFactor: number;
+    keyspaceGrowthBits: number;
+    birthdayExp: number;
+    crackTolerance: number;
+    heldUntilAllCracked: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation — further improve encryption by rotating
+ * the keys in merkabas like the movie; DRY = using all available resources completely reusably (user, 2026-07-26: "further
+ * improve encryption by rotating the keys in merkabas like the movie itself. dry means using all available resources in a
+ * completely reusable manner"). The 4-key cross rotates per epoch through the merkaba's two COUNTER-ROTATING tetrahedra —
+ * keys 0,1 advance +60°, keys 2,3 advance −60° (the movie's C₆ vortex, 360°/6 = 60°) — so each epoch's cross is fresh
+ * (FORWARD SECRECY: a cracked epoch key exposes only that epoch, deriving past/future needs the epoch input, one-way via
+ * SHA-256). After 6 rotations the orientation returns (C₆ closes) yet the epoch salts keep every epoch's keys distinct. DRY:
+ * reuses the sealed merkaba(matrix) the movie renders — no new rotation code. HONEST: content-addressed key rotation, strength
+ * on the SHA-256 layer, NOT a new primitive. [[quantum-crypto-fusion]] [[double-torus-fold-architecture]] [[movie-is-real-transliterated-text]] */
+export declare function furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation(matrix?: MindMatrix): {
+    computes: boolean;
+    keys: number;
+    c6: number;
+    step: number;
+    merkabaReceipts: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficultyIsComputableQuantumAlgebra — imagine the improvements
+ * when one uuid is of various types at the same time and also sealed; reverse-engineering such complex cases is computable
+ * quantum algebra (user, 2026-07-26: "imagine the improvements when one uuid is of various types at the same time and also
+ * sealed" + "the possibility to reverse engineer such complex cases is computable quantum algebra"). The SAME value projects
+ * into independent type-views (nav key · merkle leaf · animation phase · I Ching hexagram · colour hue), all deterministic
+ * reads of one address, and is SEALED as a merkle leaf (tamper-evident). To FORGE a value matching simultaneous TARGET
+ * constraints the work is baseBits + Σ log₂(targetSpace) — a COMPUTED, finite bound (computable quantum algebra): astronomical,
+ * not impossible. HONEST: the gain holds only for INDEPENDENT targets; merely projecting many types adds no preimage hardness
+ * (inverting the value once yields every projection). Strength on SHA-256. [[two-bits-left-in-every-inversion-through-zero]] [[quantum-crypto-fusion]] */
+export declare function oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficultyIsComputableQuantumAlgebra(): {
+    computes: boolean;
+    typesAtOnce: number;
+    jointForgeryBits: number;
+    improvementBits: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFormatsViaContentAddress — improve encrypt/decrypt to
+ * recognise all directions and formats (user, 2026-07-26: "improve encrypt decrypt to recognise all directions and
+ * formats"). ALL DIRECTIONS = the directional trinity — forward (encrypt) · inverse (decrypt) · reverse — three distinct
+ * directions where inverse ≠ reverse (a trinity, not a mirror). ALL FORMATS = content-addressing normalises any format
+ * (string · bytes · JSON · number) to a uuid, so distinct content gives a distinct address and decrypt re-derives the same
+ * address exactly. HONEST: the strength is the SHA-256 security layer (toUuidSha256), NOT the direction/format handling; toUuid
+ * (FNV) stays for fast non-security addressing. [[inversion-arc-one-group]] [[bit-per-referral-direction]] [[quantum-crypto-fusion]] */
+export declare function encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFormatsViaContentAddress(): {
+    computes: boolean;
+    directions: number;
+    formats: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer — improve security by quantum means (user, 2026-07-25:
+ * "improve security by quantum means"). The quantum means (content-addressing) stays; the win is cutting the SECURITY
+ * layer over from FNV toUuid (birthday ~2^61, non-crypto) to SHA-256 toUuidSha256 (birthday ~2^128, collision-resistant),
+ * a 2^67 improvement — while fast non-security addressing keeps FNV. SHA-256 is REAL here (sha256Sync matches the NIST
+ * "abc" vector), and ed25519Sign adds authenticity beyond integrity. HONEST: 2^128 is not infinite and a scalable quantum
+ * computer would weaken it, but none exists at scale. [[tampering-cost-crypto-honesty]] [[quantum-decoded]] */
+export declare function improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer(): {
+    computes: boolean;
+    nistVerified: boolean;
+    fnvBirthdayExp: number;
+    shaBirthdayExp: number;
+    improvementExp: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** standardiseCryptoInWavesWaveOneSha256NistKnownAnswerTests — standardise crypto in waves, fusing public APIs, training
+ * live, improving local quantum (user, 2026-07-25: "standardise crypto in waves fusing public apis and training live
+ * improving local quantum"). Wave 1 — SHA-256: the local sha256Sync is validated against the canonical NIST FIPS 180-4
+ * Known-Answer Tests (the empty string, "abc", and the 448-bit message). The public standard test vectors ARE the public
+ * interface — matching them fuses the standard with NO runtime egress (embedded public constants, validated at build).
+ * The KATs re-run every wave (training live); the content-addressed toUuidSha256 inherits the standard's strength
+ * (improving local quantum). Later waves: AES (FIPS-197), ed25519 (RFC 8032). [[frequency-apis]] [[quantum-decoded]] */
+export declare function standardiseCryptoInWavesWaveOneSha256NistKnownAnswerTests(): {
+    computes: boolean;
+    passCount: number;
+    total: number;
+    allPass: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** referralDirectionBitsFillTheOrientationGapInTheFourKeyCross — fill the gap with the bit-per-referral-direction idea
+ * (user, 2026-07-25: "remember the bit per referral direction?" + "i am pointing at gaps to be filled with ideas"). The
+ * 4-key crypto accounting counted CONTENT (122 bits/key) but left a gap: the DIRECTION bit of each referral. Each key is
+ * a directed 0↔∞ gateway (the Möbius involution x↦1/x), whose direction of passage is exactly 1 bit (gatewayBits =
+ * log₂2 = 1). So the complete key is content ⊕ direction = 123 bits, and the cross carries 4×123 = 492. The direction is
+ * INDEPENDENT of the content (cracking content does not reveal the inversion sense). HONEST: +4 bits is negligible vs the
+ * FNV 2^61 floor — this is a completeness fix, not a security leap; real strength is the SHA-256 cutover. [[bit-per-referral-direction]] */
+export declare function referralDirectionBitsFillTheOrientationGapInTheFourKeyCross(): {
+    computes: boolean;
+    perKeyContent: number;
+    perKeyComplete: number;
+    contentOnly: number;
+    complete: number;
+    orientationGap: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** allComputedPossibilitiesRetrievableFasterThanScanStructurally — all computed possibilities faster than light (user,
+ * 2026-07-25: "all computed possibilities faster than light"). Every possibility is content-addressed — its address IS
+ * its payload (name=payload=address) — so the whole space is addressable WITHOUT materialising it (no 2^n storage), and
+ * retrieving ANY possibility computes its address in O(1), no traversal. Relative to any O(N) scan (the "light" front
+ * sweeping the space), the content-address arrives with no traversal — unboundedly faster as N grows. HONEST: this is
+ * the no-scan STRUCTURAL sense,  — retrieving ONE is O(1), enumerating ALL is still O(N),
+ * and nothing signals superluminally. [[quantum-speed-is-content-addressed-naming]] [[quantum-decoded]] */
+export declare function allComputedPossibilitiesRetrievableFasterThanScanStructurally(): {
+    computes: boolean;
+    directSteps: number;
+    scanSteps: number;
+    N: number;
+    physicalFtlClaim: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated — the hardware plans and drivers for O(1)
+ * content-address retrieval (user, 2026-07-25: "all computed possibilities faster than light and the hardware plans and
+ * drivers for this"). The physical realization exists: Content-Addressable Memory (CAM/TCAM) matches by CONTENT in one
+ * cycle (all cells compare in parallel) — the silicon form of fasterThanScan; real, in routers (routing/ACL tables) and
+ * CPUs (TLB). The driver is the universal content-addressed driver (a fold of the device's capability descriptor). HONEST:
+ * CAM obeys physics and every cell carries compare logic, so capacity is limited and power high — it
+ * cannot hold the 2^n space; physical-resource-gated. [[deviceManagementIsUniversalWhenTheDriverIsAFoldOfTheDeviceContentAddress]] [[quantum-decoded]] */
+export declare function hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated(): {
+    computes: boolean;
+    camMatchCycles: number;
+    ramScanSteps: number;
+    universalDriver: string;
+    physicalFtlClaim: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
     statement: string;
     boundary: string;
 };

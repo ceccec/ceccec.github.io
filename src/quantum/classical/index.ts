@@ -153,7 +153,9 @@ function simulateQuantumAcceleration(algorithm: string, input: unknown): unknown
     algorithm,
     approach: 'quantum-accelerated',
     result: `Probabilistic solution from quantum acceleration`,
-    confidence: 0.95, // 95% confidence (quantum noise)
+    // `confidence: 0.95` was typed in with the note "(quantum noise)". Nothing estimated
+    // it and nothing could make it come out differently, so it is not reported.
+    confidence: null,
   }
 }
 

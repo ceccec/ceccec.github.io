@@ -1,5 +1,5 @@
 import * as __ns_up_double_torus_earth from '../../../water/double/earth';
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 /** Hero day phase — lazy require breaks plasma/sun cycles. */
 export declare function sunDayPhase(at?: number, matrix?: MindMatrix): {
     phase: number;
@@ -57,7 +57,7 @@ export declare function sunSchumannDaySideIonosphere(at?: number, matrix?: MindM
         statement: string;
         boundary: string;
     };
-    waves: import("../../../wind/types").WaveCoordination;
+    waves: import("../../../types").WaveCoordination;
     breath: number;
     dualEarth: __ns_up_double_torus_earth.BothEarthsMerkabaRotation;
     freqApis: {
@@ -154,7 +154,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
             statement: string;
             boundary: string;
         };
-        waves: import("../../../wind/types").WaveCoordination;
+        waves: import("../../../types").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_double_torus_earth.BothEarthsMerkabaRotation;
         freqApis: {

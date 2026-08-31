@@ -1,4 +1,4 @@
-import type { MindMatrix, DiamondCompletenessReport, DimensionalGapClosure } from '../../wind/types';
+import type { MindMatrix, DiamondCompletenessReport, DimensionalGapClosure } from '../../types';
 import type { DeveloperLearning } from '../../quantum/heaven/mind';
 export declare function theWhole(matrix?: MindMatrix): {
     whole: boolean;
@@ -319,7 +319,7 @@ export declare function showInAction(matrix?: MindMatrix): {
     ran: number;
     ok: number;
     runs: {
-        command: import("../../wind/types").ConceptCommandName;
+        command: import("../../types").ConceptCommandName;
         ok: boolean;
         uuid: string;
     }[];

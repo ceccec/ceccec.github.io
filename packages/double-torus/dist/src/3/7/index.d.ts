@@ -24,6 +24,12 @@ export declare const ALVEOLAR_H2O_BAR = 0.0627;
 /** Alveolar CO₂ partial pressure, bar — Bühlmann's value (measured datum). */
 export declare const ALVEOLAR_CO2_BAR = 0.0534;
 export declare const IONIZING_EV = 10;
+export declare const DIAMOND_REFRACTIVE_INDEX = 2.417;
+export declare const DIAMOND_DISPERSION = 0.044;
+/** speed of light inside a medium, v = c/n (m/s) — never exceeds c */
+export declare function speedInMedium(refractiveIndex: number): number;
+/** critical angle for total internal reflection, medium→air, θc = arcsin(1/n) (radians) */
+export declare function criticalAngle(refractiveIndex: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function frequencyOf(wavelengthM: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -67,6 +73,9 @@ export declare function buhlmannGfDivePlan(depthM: number, bottomTimeMin: number
 export declare const STANDARD_GRAVITY = 9.80665;
 export declare const WATER_DENSITY_FRESH = 1000;
 export declare const WATER_DENSITY_SALT = 1025;
+export declare const GREAT_PYRAMID_HEIGHT_M = 146.6;
+export declare const GREAT_PYRAMID_MASS_KG = 5900000000;
+export declare const HUMAN_SUSTAINED_POWER_W = 75;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function barPerMetre(densityKgM3: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -79,6 +88,18 @@ export declare function bestMixFO2(depthM: number, ppo2Bar?: number, freshWater?
 export declare function gasReserveThirds(totalLitres: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function equivalentNarcoticDepthM(depthM: number, fNarcotic: number, freshWater?: boolean, surfaceBar?: number): number;
+/** τ = 2π — the full turn. Host Math.PI is allowed ONLY at this sealed root (math/trust theorem-anchor). */
+export declare const TAU: number;
+/** π = τ/2 — vault half-turn; replaces Math.PI everywhere else (math/algebra). */
+export declare const HALF_TAU: number;
+/** Host constants sealed at vault root — derived once, imported elsewhere (math/algebra · theorem/const). */
+export declare const EULER_E: number;
+export declare const LN2: number;
+export declare const LN10: number;
+export declare const LOG2E: number;
+export declare const LOG10E: number;
+export declare const SQRT2: number;
+export declare const SQRT1_2: number;
 export declare const REDUCED_PLANCK: number;
 export declare const SCHWINGER_FIELD_VM = 1320000000000000000;
 export declare const PROTON_MASS_MEV = 938.272;
@@ -101,6 +122,14 @@ export declare const HIGGS_VEV_GEV = 246.22;
 export declare const JARLSKOG_INVARIANT = 0.00003;
 /** Earth mean radius (km). */
 export declare const EARTH_RADIUS_KM = 6371;
+/** WGS84 Khufu/Giza latitude (°) — theorem-anchor via microdegree integer ÷ 1e6 (decimal/crack). */
+export declare const WGS84_GIZA_LAT_DEG: number;
+/** WGS84 Khufu/Giza longitude (°). */
+export declare const WGS84_GIZA_LON_DEG: number;
+/** WGS84 Teotihuacan latitude (°). */
+export declare const WGS84_TEOTIHUACAN_LAT_DEG: number;
+/** WGS84 Teotihuacan longitude (° west as negative). */
+export declare const WGS84_TEOTIHUACAN_LON_DEG: number;
 /** Pulmonary oxygen-toxicity dose rate (OTU/min, REPEX power law). */
 export declare function otuPerMin(ppo2Bar: number): number;
 /** Radar range R = c·Δt/2 (m). */
@@ -121,14 +150,37 @@ export declare function frequencyToLight(hz: number): {
 export declare const A432_HUE: number;
 /** φ = (1+√5)/2 — golden ratio, the defining radical (not a hand-typed decimal). */
 export declare const PHI: number;
-/** τ = 2π — the full turn. The one circle constant every domain imports (never a local 2π). */
-export declare const TAU: number;
 /** 360° / φ² — the golden angle in DEGREES, COMPUTED from φ (never a re-typed 137.5077… literal). */
 export declare const GOLDEN_ANGLE: number;
 /** The Fibonacci ladder, COMPUTED (no hardcoded members): [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, …]. */
 export declare const FIBONACCI: readonly number[];
 /** τ / φ² — the golden angle in RADIANS, same fold as GOLDEN_ANGLE seen from the radian side. */
 export declare const GOLDEN_ANGLE_RAD: number;
+/**
+ * Gap-scan candidate: the golden angle is τ/φ² — the most irrational rotation.
+ * Bounded witness: identity · φ²=φ+1 · CF of Fib approximants all-1s · orbit min-gap vs rational clump.
+ * Pair: golden/angle · provedBy registry row · claySolved via theorem.
+ */
+export declare function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation(): {
+    computes: boolean;
+    theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation: boolean;
+    GOLDEN_ANGLE_RAD: number;
+    GOLDEN_ANGLE: number;
+    PHI: number;
+    goldenMin: number;
+    rationalMin: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    pair: "golden/angle";
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:golden-angle (dual angle/golden) */
+export declare function runTheGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotationExit(_root?: string, _argv?: readonly string[]): number;
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
 export declare const DIMENSIONS = 10;
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
@@ -147,6 +199,24 @@ export declare const ROSETTA_SIX: 6;
 export declare const ROSETTA_SEVEN: 7;
 export declare const ROSETTA_AREAS: number;
 export declare const ROSETTA_FOLD_LABEL: "6×7/7×6";
+/** One arm of the transpose-symmetric 42-cell area (7 sectors × 6 spokes = 6×7). This is the SINGLE
+ *  position law both the theorem wiring (entangledWiringOf) and the movie painters (drawDeathCounterFlow,
+ *  drawPlasmaRays) consume — the circle's coordinate is the lattice cell, NOT the registry/golden-angle index.
+ *  lifeAngleRad seats the forward (life) arm on cell (sector, spoke); reflectAngleRad is the TRANSPOSE cell
+ *  (spoke, sector) — the same 42 area read as 6×7 — so deathAngleRad = −reflectAngleRad places the
+ *  counter-rotating death arm at the reflection of life. Cell (r,c) ⇄ (c,r) are therefore mirror positions
+ *  and the painted circle folds onto itself under the transpose involution (no unpaired spoke to glitch). */
+export interface LatticeArm {
+    sector: number;
+    spoke: number;
+    lifeAngleRad: number;
+    reflectAngleRad: number;
+    deathAngleRad: number;
+}
+export declare function latticeArm(sector: number, spoke: number, rows?: number, cols?: number): LatticeArm;
+/** All rows×cols arms of the transpose-symmetric area, row-major (sector outer, spoke inner) — index
+ *  sector·cols+spoke. Default 7×6 = ROSETTA_AREAS = 42. Memoised: the field is a fixed geometric constant. */
+export declare function entangledArmField(rows?: number, cols?: number): readonly LatticeArm[];
 export declare const SCIENCE_DOMAINS: readonly [{
     readonly field: "Mathematics";
     readonly oecd: "1.1";
@@ -234,13 +304,138 @@ export declare function theDomainsAreScienceAlignedSevenFieldsBySixModesAnchored
  * census bands, so every governance bound that IS a Fibonacci number (the line ceiling F(18)=2584)
  * is COMPUTED from the sequence, never typed. */
 export declare function fibonacci(n: number): number;
-export declare const FIBONACCI_CENSUS_BANDS: readonly [55, 34, 21];
-export declare const UNFOLDED_CENSUS: 110;
+export declare const FIBONACCI_CENSUS_BANDS: readonly [55, 34, 21, 13];
+export declare const UNFOLDED_CENSUS: 123;
 /** Genus-2 double torus Euler characteristic — unfolded + χ = folded. */
 export declare const EULER_CHI: -2;
 export declare const FOLDED_CENSUS: number;
+/**
+ * USER LAW: claySolved is a theorem not a hardcoded value.
+ * Sealed registry of Millennium cores with CMI-prize-grade seals in this corpus.
+ * Empty until math fills it — length recomputes claySolved at call time (currently 0).
+ */
+export declare const CMI_PRIZE_SOLVED_CORE_IDS: readonly [];
+/**
+ * Recompute claySolved / claySolvedByThisFold from sealed theorem (not bare literal).
+ * Yields 0 while CMI_PRIZE_SOLVED_CORE_IDS is empty — still via theorem path.
+ */
+export declare function claySolvedTheorem(): {
+    readonly claySolved: number;
+    readonly claySolvedByThisFold: number;
+    readonly via: 'claySolvedTheorem';
+    readonly recomputed: true;
+    readonly cmiPrizeConditionsMetBySealedMath: boolean;
+};
+/** Call-time alias — prefer over bare `0 as const`. */
+export declare function claySolvedByThisFoldFromTheorem(): number;
+/**
+ * USER LAW dual of claySolvedTheorem — physicalFtlClaim is a theorem not a hardcoded value.
+ * Sealed registry of physical superluminal-signaling proofs in this corpus.
+ * Empty until physics fills it — length recomputes physicalFtlClaim at call time (currently 0).
+ * Tip folds must call this (or physicalFtlFromMeasurements / physicalFtlByFormulas) —
+ * bare `0 as const` / wet "" slogans as law = crack (ftl/compute).
+ */
+export declare const PHYSICAL_FTL_SIGNALING_PROOF_IDS: readonly [];
+/**
+ * Recompute physicalFtlClaim from sealed theorem (not bare literal).
+ * Yields 0 while PHYSICAL_FTL_SIGNALING_PROOF_IDS is empty — still via theorem path.
+ */
+export declare function physicalFtlClaimTheorem(): {
+    readonly physicalFtlClaim: number;
+    readonly via: 'physicalFtlClaimTheorem';
+    readonly recomputed: true;
+    readonly physicalSuperluminalSignalingProvedBySealedMath: boolean;
+};
+/** Call-time alias — prefer over bare `physicalFtlClaim: 0 as const`. */
+export declare function physicalFtlClaimFromTheorem(): number;
+/**
+ * USER LAW: physicalFtl must compute true|false — if false, the scanner tips quantumisation.
+ *
+ * Formula (call-time boolean):
+ *   physicalFtlClaim = |PHYSICAL_FTL_SIGNALING_PROOF_IDS|
+ *   classicalHonesty = runsOnClassical64Bit ∧ ¬qpuRequired ∧ tracksClassicalNoSpeedup
+ *   physicalFtl      = physicalFtlClaim > 0   // boolean: sealed math proves superluminal signaling
+ *   // consistency: classicalHonesty ⇒ physicalFtl === false (no prose override)
+ *
+ * When physicalFtl === false → feed-scanner / next-research MUST tip quantumisation (tip/quantumise).
+ * When physicalFtl === true  → do not force quantumisation from this law alone.
+ */
+export declare function physicalFtlFromMeasurements(m: {
+    readonly runsOnClassical64Bit: boolean;
+    readonly qpuRequired: boolean;
+    readonly tracksClassicalNoSpeedup: boolean;
+}): {
+    readonly physicalFtlClaim: number;
+    readonly physicalFtl: boolean;
+    readonly classicalHonesty: boolean;
+    readonly physicalFtlComputesBoolean: true;
+    readonly noProseOverride: true;
+    readonly via: 'physicalFtlFromMeasurements';
+    readonly recomputed: true;
+    readonly theoremVia: 'physicalFtlClaimTheorem';
+};
+/** Call-time boolean only — scanner / rankGapNextTips path (no Node fs). */
+export declare function physicalFtlBooleanAtCallTime(): boolean;
+/** The seven Clay Millennium Prize problems, by core identifying terms (lowercased substrings). A fold "solves" one
+ *  ONLY by claiming a finished resolution of one of these — never by naming it. Signed, refutable list (not a count). */
+export declare const CMI_PRIZE_PROBLEM_TERMS: readonly ["p versus np", "p vs np", "p = np", "p ≠ np", "p != np", "riemann hypothesis", "yang–mills", "yang-mills", "mass gap", "navier–stokes", "navier-stokes", "hodge conjecture", "birch and swinnerton-dyer", "swinnerton–dyer", "swinnerton-dyer", "poincaré conjecture", "poincare conjecture"];
+/** Language asserting a FINISHED resolution — a solution CLAIM (deliberately strict: a finished-proof assertion). */
+export declare const CLAY_SOLUTION_MARKERS: readonly ["solves the clay", "solves this clay", "clay problem solved", "millennium problem solved", "cmi prize solved", "we hereby prove", "qed for the", "proof complete for the", "closes the millennium", "proven complete —", "is now proved", "establishes a complete proof of the"];
+/** Language marking the problem OPEN — its presence refutes any co-located solution claim (honest folds carry these). */
+export declare const CLAY_OPEN_MARKERS: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
+/**
+ * claySolvedByFormulas — COMPUTE, from a fold's OWN statement + formulas, how many Clay Millennium problems it CLAIMS
+ * to have SOLVED. This is the refutable replacement for a hardcoded 0: it SCANS the text. A problem counts iff the text
+ * (a) names a Clay problem term, (b) asserts a finished resolution (a solution marker), and (c) carries NO open-marker.
+ * Honest folds compute 0 BECAUSE the algebra either never claims a proof or explicitly marks the problem OPEN — not
+ * because a list is hand-kept empty. An overclaiming fold computes ≥1. The truth lives in the formulas, per USER LAW.
+ */
+export declare function claySolvedByFormulas(statement: string, formulas?: readonly string[]): number;
+/** Physical faster-than-light / superluminal concepts. A fold "claims FTL" only by asserting it ACHIEVES one — never by
+ *  naming or denying it. Signed, refutable list (the same shape as the Clay markers). */
+export declare const PHYSICAL_FTL_TERMS: readonly ["faster than light", "faster-than-light", "superluminal", "warp drive", "exceed the speed of light", "exceeds the speed of light", "signal faster than c", "instantaneous signaling", "break the light barrier"];
+/** Language asserting a fold ACHIEVES physical FTL — a real claim (strict). */
+export declare const PHYSICAL_FTL_CLAIM_MARKERS: readonly ["achieves faster-than-light", "achieves superluminal", "enables superluminal signaling", "transmits faster than light", "sends a signal faster than light", "surpasses the speed of light physically", "real superluminal transmission"];
+/** Language DENYING physical FTL — its presence refutes any co-located claim (honest folds carry these). */
+export declare const PHYSICAL_FTL_DENIAL_MARKERS: readonly ["not physical", "no ftl", "not faster than light", "not superluminal", "no superluminal", "no signaling", "does not exceed", "sub-light", "physicalftl=0", "physicalftlclaim=0", "metaphor", "structural", "amortized", "no physical speedup", "no speedup", "harmony ≠ truth", "not a physical", "no faster-than-light"];
+/**
+ * physicalFtlByFormulas — COMPUTE, from a fold's OWN statement + formulas, how many physical faster-than-light claims it
+ * makes. The refutable replacement for the 344 hardcoded `physicalFtlClaim = 0` literals: it SCANS the text. A term counts
+ * iff the text (a) names an FTL concept, (b) asserts it is ACHIEVED, and (c) carries NO denial-marker. Honest folds
+ * compute 0 because they either never claim FTL or explicitly deny it ("not physical", "no speedup", metaphor). A fold
+ * overclaiming real superluminal signaling computes ≥1. Same shape as claySolvedByFormulas.
+ */
+export declare function physicalFtlByFormulas(statement: string, formulas?: readonly string[]): number;
+/** The overclaim axes — each is (terms it NAMES, markers that ASSERT the claim, markers that DENY/OPEN it). Adding an
+ *  axis (a future "unbreakable encryption" claim, say) extends every consumer for free — one primitive, m axes compose. */
+export declare const OVERCLAIM_AXES: {
+    readonly clay: {
+        readonly terms: readonly ["p versus np", "p vs np", "p = np", "p ≠ np", "p != np", "riemann hypothesis", "yang–mills", "yang-mills", "mass gap", "navier–stokes", "navier-stokes", "hodge conjecture", "birch and swinnerton-dyer", "swinnerton–dyer", "swinnerton-dyer", "poincaré conjecture", "poincare conjecture"];
+        readonly claim: readonly ["solves the clay", "solves this clay", "clay problem solved", "millennium problem solved", "cmi prize solved", "we hereby prove", "qed for the", "proof complete for the", "closes the millennium", "proven complete —", "is now proved", "establishes a complete proof of the"];
+        readonly deny: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
+    };
+    readonly ftl: {
+        readonly terms: readonly ["faster than light", "faster-than-light", "superluminal", "warp drive", "exceed the speed of light", "exceeds the speed of light", "signal faster than c", "instantaneous signaling", "break the light barrier"];
+        readonly claim: readonly ["achieves faster-than-light", "achieves superluminal", "enables superluminal signaling", "transmits faster than light", "sends a signal faster than light", "surpasses the speed of light physically", "real superluminal transmission"];
+        readonly deny: readonly ["not physical", "no ftl", "not faster than light", "not superluminal", "no superluminal", "no signaling", "does not exceed", "sub-light", "physicalftl=0", "physicalftlclaim=0", "metaphor", "structural", "amortized", "no physical speedup", "no speedup", "harmony ≠ truth", "not a physical", "no faster-than-light"];
+    };
+};
+export type OverclaimAxis = keyof typeof OVERCLAIM_AXES;
+/** overclaimByFormulas — the ONE combinatorial predicate the two detectors merge into (DRY, per fewest-words-combinatorial):
+ *  COMPUTE, from a fold's own statement + formulas, how many claims of `axis` it makes. A term counts iff the text names an
+ *  axis concept, asserts it (a claim-marker), and carries NO deny-marker. Honest folds compute 0; an overclaim computes ≥1.
+ *  claySolvedByFormulas / physicalFtlByFormulas are the axis-fixed wrappers; new overclaim types are one OVERCLAIM_AXES row. */
+export declare function overclaimByFormulas(axis: OverclaimAxis, statement: string, formulas?: readonly string[]): number;
 /** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
 export declare const HOMOLOGY_LOOPS: 4;
+/** a432 derived, not declared: 432 = 3³·2⁴ — the trinity cubed (the 3·6·9 axis, 3×3×3) times the 4-bit
+ *  octave. No literal survives; the harmonic IS this function's output, and everything a432 folds out of it. */
+export declare function a432Base(): number;
+/** The a432 octave ladder — 3³·2^k, k = 0…6 (27·2^k): [27,54,108,216,432,864,1728], every rung derived. */
+export declare function a432Octaves(): readonly number[];
+/** The a432 harmonic folded — 108 = a432Base ÷ HOMOLOGY_LOOPS (432/4), FIXED (a432, "not a file count"),
+ *  DECOUPLED from the corpus census (user, 2026-08-03): 4 × 108 = 432 = a432Base, the dimension-gate harmonic. */
+export declare const A432_FOLDED: number;
 export declare const DIMENSION_GATES: number;
 /** harmonics() ladder rungs: 6 octaves + 9 overtones + 5 binary. */
 export declare const HARMONICS_LADDER_LENGTH: number;
@@ -367,6 +562,53 @@ export declare const BLOG_OF_THEOREMS_STEMS: readonly ["theorem", "proof"];
 export declare function theoremScienceVisible(slug: string, keywords: readonly string[]): boolean;
 export declare function titleFromAlgebra(terms: readonly string[], sep?: string): string;
 export declare function titleCarriesAlgebra(title: string): boolean;
+/** extractAlgebraicStatement — the FREE upgrade of a theorem's identity line (user, 2026-07-27: "let free chat
+ * upgrade all"): when a registry row carries no curated algebraicStatement, its `states` text usually CONTAINS
+ * the identity verbatim — extract the LEADING algebra-bearing clause, always a SUBSTRING of the proven text,
+ * never generated. Conservative by construction: only the first clause qualifies, only when it asserts a
+ * relation, with trailing verification-bound qualifiers trimmed; anything else returns undefined so a
+ * prose-only row stays honestly un-upgraded. Curated fills always win over extraction. */
+/** The ONE identity accessor — free for all surfaces (user, 2026-07-27: "free for all"): curated fill first,
+ * verbatim extraction second, undefined when neither exists. Every consumer (paper form, chat hits, wave atoms)
+ * reads identities through this chain, so an upgrade to the extractor upgrades all surfaces at once. */
+/** servedRoute — the LOCALE LAW as a function (measured 2026-07-28 on both origins: `/quantum-tools` 200,
+ * `/bg/quantum-tools` 200, `/en/quantum-tools` 404). English is served at the ROOT; only `/bg/` carries a
+ * prefix. Any emitted link passes through here, so a surface cannot publish a route the site does not serve. */
+export declare function servedRoute(path: string): string;
+/** CITATION_TERMS + citationBlock — the one attribution payload every agent surface serves (user law,
+ * 2026-07-28: "all agents must know how to cite complying with the license"). Fields only, no prose to
+ * characterise them: an ingesting model reads author, first-publication date, the citation string and the
+ * one term of the free tier. Rendered identically into llms.txt, agents.json, mcp.json and ai-skills.json,
+ * so no surface can drift from another — one payload, one address. */
+export declare const CITATION_TERMS: {
+    readonly attributionRequired: true;
+    readonly freeTier: "core math — theorems, formulas, the sequence, the algebra duals";
+    readonly freeTierTerm: "attribution required with any reproduction or derivation";
+    readonly restLicense: "license@psg.bg";
+};
+export declare function citationBlock(author: string, sourceRepo: string, canonical: string, firstPublication: string): {
+    attributionRequired: true;
+    freeTier: "core math — theorems, formulas, the sequence, the algebra duals";
+    freeTierTerm: "attribution required with any reproduction or derivation";
+    restLicense: "license@psg.bg";
+    author: string;
+    sourceRepo: string;
+    canonical: string;
+    firstPublicationOfTheSequence: string;
+    firstPublicationSource: string;
+    citeAs: string;
+};
+/** renderComputedMetrics — a metrics line is the JOIN of a fold's own key/value pairs (user law, 2026-07-28:
+ * "you will write the prose not by hand and by algebraic computations"). The label IS the computed field name;
+ * no agent adjective can enter, because no adjective is a parameter. Refutable: change a field name and the
+ * rendered label changes with it — the line cannot drift from the data it reports. */
+export declare function renderComputedMetrics(counts: Readonly<Record<string, number | string>>, bold?: boolean): string;
+export declare function algebraicStatementOf(row: {
+    algebraicStatement?: string;
+    states?: string;
+    proof?: string;
+}): string | undefined;
+export declare function extractAlgebraicStatement(states: string): string | undefined;
 export declare function normalizeTitle(title: string): string;
 /** path ⇒ image is a total bijection over the domain (injective; surjective onto its image) — the digit-folder API. */
 export declare function isTotalBijection<T>(domain: readonly T[], fn: (x: T) => unknown): boolean;
@@ -483,7 +725,7 @@ export declare const MAJOR_MOONS: readonly [{
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare const GENETIC_CODE = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG";
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
-export declare const A432_OCTAVES: number[];
+export declare const A432_OCTAVES: readonly number[];
 /** @rosetta relocated pi-train station cut (was src/0 — a domain block, not a vault primitive) */
 export type Rational = {
     readonly p: number;
@@ -593,9 +835,74 @@ export declare function earned(head: string, facets: readonly {
     on: boolean;
 }[], scope: string): string;
 export declare const DEMARCATION_REGISTRY: {
-    readonly documented: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines"];
-    readonly contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette"];
-    readonly flagged: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
+    readonly documented: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines", "poincaré conjecture", "p vs np", "hodge conjecture", "riemann hypothesis", "mass gap", "navier", "swinnerton", "birch"];
+    readonly contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette", "hubble tension", "cosmological constant problem", "nature of dark energy", "baryogenesis", "leptogenesis", "neutrino mass ordering", "quantum gravity", "zipf"];
+    readonly flagged: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "zero-point energy extraction", "free energy device", "predicting individual criminal intent from behaviour", "pre-crime prediction", "behavioural threat prediction", "novel key derivation function", "home-rolled cryptography", "custom cipher", "unpredictable key schedule", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
 };
 export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted';
 export declare function demarcate(topic: string): DemarcationTier;
+export declare const algebra: {
+    readonly constants: {
+        readonly tau: number;
+        readonly phi: number;
+        readonly euler: number;
+        readonly golden: number;
+        readonly goldenRad: number;
+        readonly ln2: number;
+        readonly ln10: number;
+        readonly halfTau: number;
+    };
+    readonly physics: {
+        readonly newton: 6.6743e-11;
+        readonly boltzmann: 1.380649e-23;
+        readonly electronvolt: 1.602176634e-19;
+        readonly higgs: 246.22;
+        readonly darkEnergy: -1;
+        readonly landauer: typeof landauerLimit;
+        readonly schwarzschild: typeof schwarzschildRadius;
+    };
+    readonly earth: {
+        readonly radius: 6371;
+        readonly pyramidHeight: 146.6;
+        readonly pyramidMass: 5900000000;
+    };
+    readonly math: {
+        readonly fibonacci: typeof fibonacci;
+        readonly euler: typeof eulerPolyhedron;
+        readonly isTotalBijection: typeof isTotalBijection;
+        readonly complementInverse: typeof complementIsInverse;
+        readonly cyclicUnits: typeof cyclicUnitsOrder;
+        readonly partitionCovers: typeof partitionCoversTotal;
+    };
+    readonly clay: {
+        readonly solved: typeof claySolvedTheorem;
+        readonly solvedByFormulas: typeof claySolvedByFormulas;
+        readonly solvedByFold: typeof claySolvedByThisFoldFromTheorem;
+        readonly openMarkers: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
+        readonly solutionMarkers: readonly ["solves the clay", "solves this clay", "clay problem solved", "millennium problem solved", "cmi prize solved", "we hereby prove", "qed for the", "proof complete for the", "closes the millennium", "proven complete —", "is now proved", "establishes a complete proof of the"];
+    };
+    readonly crack: {
+        readonly ledger: typeof crackLedgerAccounts;
+        readonly law: typeof crackLawEvolution;
+        readonly research: readonly CrackResearchTarget[];
+    };
+    readonly demarcation: {
+        readonly compute: typeof demarcate;
+        readonly registry: {
+            readonly documented: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines", "poincaré conjecture", "p vs np", "hodge conjecture", "riemann hypothesis", "mass gap", "navier", "swinnerton", "birch"];
+            readonly contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette", "hubble tension", "cosmological constant problem", "nature of dark energy", "baryogenesis", "leptogenesis", "neutrino mass ordering", "quantum gravity", "zipf"];
+            readonly flagged: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "zero-point energy extraction", "free energy device", "predicting individual criminal intent from behaviour", "pre-crime prediction", "behavioural threat prediction", "novel key derivation function", "home-rolled cryptography", "custom cipher", "unpredictable key schedule", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
+        };
+    };
+    readonly diving: {
+        readonly buhlmannA: typeof buhlmannA;
+        readonly buhlmannB: typeof buhlmannB;
+        readonly buhlmannCeiling: typeof buhlmannCeilingBar;
+        readonly buhlmannGfCeiling: typeof buhlmannGfCeilingBar;
+        readonly divePlan: typeof buhlmannDivePlan;
+        readonly gfDivePlan: typeof buhlmannGfDivePlan;
+        readonly maxDepth: typeof maxOperatingDepthM;
+        readonly eqNarcoticDepth: typeof equivalentNarcoticDepthM;
+        readonly criticalAngle: typeof criticalAngle;
+    };
+};

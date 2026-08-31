@@ -10,7 +10,7 @@ import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContri
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
 import { agentEducation } from '../../learning'
 import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind'
-import { DIAMOND_DISPERSION, DIAMOND_REFRACTIVE_INDEX, SPEED_OF_LIGHT, TAU, criticalAngle, earned, speedInMedium } from '../../3/7'
+import { DIAMOND_DISPERSION, DIAMOND_REFRACTIVE_INDEX, SPEED_OF_LIGHT, TAU, criticalAngle, earned, speedInMedium, physicalFtlClaimTheorem} from '../../3/7'
 
 export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
   return memoByRoot('diamondLattice', matrix, () => computeDiamondLattice(matrix))
@@ -253,7 +253,9 @@ export function computeLightInDiamondPredictionBeatsLightNotFtl(matrix: MindMatr
   const computeSteps = 1 // O(1) closed form — one evaluation
   const photonSegments = bounces // the photon must traverse `bounces` chords in sequence at v < c
   const predictionSpeedup = photonSegments / computeSteps // dimensionless: how far ahead of the photon the compute is
-  const physicalFtlClaim = 0
+  // DERIVED from the sealed guard rather than declared, so the refusal tracks the
+  // theorem instead of restating it.
+  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     { facet: `LIGHT IN THE DIAMOND IS SLOWER, NOT FASTER — v = c/n = ${round(v)} m/s, exactly 1/n = ${(1 / n).toFixed(4)} of c; the crystal SLOWS light, it never speeds it past c`, on: slower },
     { facet: `BOUNCING BOUNDARIES DRAW THE CRYSTAL — the critical angle θc = arcsin(1/n) = ${(thetaC * (360 / TAU)).toFixed(2)}° is so small that the internal ray (α = 60° > θc) total-internally reflects at every facet; in the circular-billiard model the incidence angle stays constant and the bounces trace a regular ${sides}-gon that closes on itself (${closes}) — the boundaries draw the crystal`, on: allTIR && closes },

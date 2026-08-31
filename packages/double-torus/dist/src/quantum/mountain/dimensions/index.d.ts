@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../wind/types';
+import type { MindMatrix } from '../../../types';
 export { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7';
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
 export interface Dims {

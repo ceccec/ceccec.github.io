@@ -1,4 +1,4 @@
-import { SQRT2, earned, overclaimByFormulas } from '../../3/7'
+import { SQRT2, earned, overclaimByFormulas, entangledArmField, ROSETTA_SEVEN, ROSETTA_SIX } from '../../3/7'
 // Quantum dynamics — canonical home: state-vector evolution, classical stochastic dynamics,
 // simulator compose, research exposition (dissolved src/double/torus/plasma → src/double/torus; census-neutral swap).
 import * as __ns_up_up_heaven_compute from '../../heaven/compute'
@@ -14,7 +14,7 @@ import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib
 import { amplitudeAmplificationAndQuantumCounting } from '../../2/8'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
-import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, cnot, computesGate, cos, exp, floor, grover, isUuid, max, measure, memoByRoot, merge, merkleFold, min, probabilities, qubits, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../0'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, cnot, computesGate, cos, exp, floor, gcd, grover, isUuid, max, measure, memoByRoot, merge, merkleFold, min, probabilities, qubits, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../0'
 import {
   chsh,
   markovStep,
@@ -817,4 +817,260 @@ export function drawDynamicsProjection(
     ctx.font = `${labelPx}px sans-serif`
     ctx.fillText('entangled phase lock', x0, linkY - 8)
   }
+}
+
+
+/**
+ * THE VORTEX NEVER TOUCHES THE 3-6-9 AXIS, AND REFLECTION IS THE ONLY BRIDGE.
+ *
+ * seal_ten records the two lists — the doubling orbit [1,2,4,8,7,5] and the axis
+ * [3,6,9] "the multiples of three the vortex never visits". This fold computes the
+ * REASON under both, and it is one line of arithmetic: 10 ≡ 1 (mod 3), so the ten's
+ * complement r(d) = 10 − d acts on residue classes mod 3 as r(d) ≡ 1 − d, which is the
+ * TRANSPOSITION (0 1) fixing class 2.
+ *
+ * That single fact yields every part of the statement:
+ *   · gcd(2,3) = 1 ⟹ 3 ∤ 2^k ⟹ the orbit is trapped in the units, never 0/3/6
+ *   · class 1 {1,4,7} ↔ class 0 {3,6,9} — reflection is the bridge onto the axis
+ *   · class 2 {2,5,8} is setwise stable, and 5 is its unique fixed point (10 − 5 = 5)
+ *
+ * Everything is exact integer arithmetic over the nine residues — no floats, no Math.
+ */
+export function theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge', matrix, () => {
+    const MOD = 9
+    const COMPLEMENT = MOD + 1 // the ten's complement: reflection through the void
+    const CLASS = 3
+    const reflect = (d: number) => COMPLEMENT - d
+    const digits = Array.from({ length: MOD }, (_, i) => i + 1) // 1..9
+
+    // The doubling orbit, walked until it closes — its length is not assumed.
+    const orbit: number[] = []
+    for (let x = 1; orbit.length === 0 || x !== 1; x = (x * 2) % MOD) orbit.push(x)
+
+    // The units, computed independently by gcd — two routes to the same set.
+    const units = digits.filter((d) => gcd(d, MOD) === 1).map((d) => d % MOD)
+    const axis = digits.filter((d) => gcd(d, MOD) !== 1) // 3, 6, 9
+
+    const sorted = (xs: readonly number[]) => [...new Set(xs)].sort((a, b) => a - b).join(',')
+    const orbitIsUnits = sorted(orbit) === sorted(units)
+    const avoidsAxis = orbit.every((d) => d % CLASS !== 0)
+
+    // r acts on classes mod 3 as the transposition (0 1), fixing class 2 — for EVERY digit.
+    const classMap = digits.map((d) => ({ d, from: d % CLASS, to: reflect(d) % CLASS }))
+    const swapsZeroOne = classMap.every((m) => (m.from === 2 ? m.to === 2 : m.to === (m.from === 1 ? 0 : 1)))
+    const isInvolution = digits.every((d) => reflect(reflect(d)) === d)
+
+    // The bridge: reflecting class 1 lands exactly on the axis, setwise.
+    const classOne = digits.filter((d) => d % CLASS === 1)
+    const bridgeOntoAxis = sorted(classOne.map(reflect)) === sorted(axis)
+
+    // Class 2 is stable, with 5 the unique fixed point.
+    const classTwo = digits.filter((d) => d % CLASS === 2)
+    const classTwoStable = sorted(classTwo.map(reflect)) === sorted(classTwo)
+    const fixedPoints = digits.filter((d) => reflect(d) === d)
+
+    const facets = [
+      { facet: `THE ORBIT IS THE UNITS — walking x ↦ 2x mod ${MOD} from 1 closes after ${orbit.length} steps as [${orbit.join(',')}], and that set equals the units computed independently by gcd [${sorted(units)}]`, on: orbitIsUnits },
+      { facet: `AND IT NEVER TOUCHES 0, 3 OR 6 — gcd(2,${CLASS}) = 1 so ${CLASS} ∤ 2^k, trapping every power of two off the axis [${sorted(axis)}]`, on: avoidsAxis },
+      { facet: `THE REASON IS ONE CONGRUENCE — ${COMPLEMENT} ≡ 1 (mod ${CLASS}), so r(d) = ${COMPLEMENT} − d ≡ 1 − d (mod ${CLASS}): the TRANSPOSITION (0 1) fixing class 2, verified for all ${MOD} digits`, on: swapsZeroOne },
+      { facet: `REFLECTION IS THE BRIDGE — r maps class 1 [${classOne.join(',')}] setwise ONTO the axis [${sorted(axis)}], which doubling can never reach; r(7) = ${reflect(7)} and r(6) = ${reflect(6)} are this map read in its two directions`, on: bridgeOntoAxis },
+      { facet: `CLASS 2 IS HELD — [${classTwo.join(',')}] is stable under r with the unique fixed point ${fixedPoints.join(',')} (${COMPLEMENT} − 5 = 5), and r² = id on every digit`, on: classTwoStable && isInvolution && fixedPoints.length === 1 && fixedPoints[0] === 5 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`vortex-axis-bridge:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
+
+    return {
+      computes: facets.every((entry) => entry.on),
+      orbit,
+      axis,
+      classMap,
+      fixedPoints,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `No power of 2 is ever 0, 3 or 6 mod ${MOD} — the orbit [${orbit.join(',')}] IS the unit group. The axis [${sorted(axis)}] is reached only by reflection: ${COMPLEMENT} ≡ 1 (mod ${CLASS}) makes r(d) = ${COMPLEMENT} − d the class transposition (0 1), fixing class 2 around the centre 5.`,
+      boundary: earned(`EXACT — every claim recomputed over the ${MOD} residues in integer arithmetic:`, facets, `this states the structure of ℤ/${MOD} under doubling and the ten's complement, and NOTHING beyond it. The reflection does not turn a power of two INTO 3 — it maps the residue 7 to 3 and thereby leaves the orbit; the axis is reachable only by stepping outside ⟨2⟩. Sealed instances already in the ledger (seal_ten, vortex_is_the_units, order_of_two_is_six, diamond_involution) record the two lists; this fold computes the congruence that explains them.`) }
+  })
+}
+
+
+/**
+ * THE ROSETTA ROTATION CLOSES AT SEVEN — AND THE TRANSPOSE COVERS ONLY 36 OF 42.
+ *
+ * Two facts about the 7×6 rosetta, both computed, one of them contradicting the
+ * comment that has stood beside it: latticeArm() says the painted circle "folds onto
+ * itself under the transpose involution (no unpaired spoke to glitch)". Transposing
+ * (sector, spoke) → (spoke, sector) requires sector < cols = 6, so all six cells of
+ * sector 6 have NO partner. The fold is an involution on the 6×6 subgrid and a partial
+ * map on the full 42. Stated rather than smoothed over. [[hardcoded-value-is-a-crack]]
+ */
+export function rosettaRotationClosesAtSevenTransposeCoversThirtySix(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('rosettaRotationClosesAtSevenTransposeCoversThirtySix', matrix, () => {
+    const arms = entangledArmField()
+    const rows = ROSETTA_SEVEN
+    const cols = ROSETTA_SIX
+    const cells = arms.length
+
+    // Rotation by one sector permutes the field onto itself, and has order exactly `rows`.
+    const key = (x: number) => (((x % TAU) + TAU) % TAU).toFixed(9)
+    const asSet = (xs: readonly number[]) => [...xs].map(key).sort().join('|')
+    const rotated = arms.map((a) => a.lifeAngleRad + TAU / rows)
+    const rotationCloses = asSet(rotated) === asSet(arms.map((a) => a.lifeAngleRad))
+    let order = 0
+    for (let acc = 0; order < rows * 2; ) {
+      acc += TAU / rows
+      order += 1
+      if (key(acc) === key(0)) break
+    }
+
+    // Counter-rotation: the death arm is the exact negation of the reflected arm.
+    const counterRotates = arms.every((a) => key(a.deathAngleRad + a.reflectAngleRad) === key(0))
+
+    // Transpose coverage — the honest count.
+    const paired = arms.filter((a) => a.sector < cols)
+    const orphans = arms.filter((a) => a.sector >= cols)
+    const transposeIsTotal = orphans.length === 0
+
+    const facets = [
+      { facet: `THE FIELD IS ${rows}×${cols} = ${cells} CELLS — entangledArmField enumerates every arm of the transpose-symmetric area`, on: cells === rows * cols },
+      { facet: `ROTATION BY ONE SECTOR PERMUTES THE FIELD — adding τ/${rows} to every life angle returns the SAME set of angles, and the rotation has order exactly ${order}`, on: rotationCloses && order === rows },
+      { facet: `THE ARMS COUNTER-ROTATE — death = −reflect exactly, for all ${cells} arms, so life and death are one strip read in two directions`, on: counterRotates },
+      { facet: `BUT THE TRANSPOSE IS PARTIAL — (s,p) ↦ (p,s) needs s < ${cols}, so ${paired.length} cells pair and ${orphans.length} (all of sector ${cols}) have NO partner; the "no unpaired spoke" comment does not hold on the full ${cells}`, on: !transposeIsTotal && paired.length === cols * cols && orphans.length === cols },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-rotate:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
+
+    return {
+      computes: facets.every((entry) => entry.on),
+      cells,
+      rotationOrder: order,
+      transposePaired: paired.length,
+      transposeOrphans: orphans.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Rosetta ${rows}×${cols}=${cells}: rotation by τ/${rows} closes at order ${order} and the arms counter-rotate exactly, but the transpose pairs only ${paired.length} cells — ${orphans.length} of sector ${cols} are unpaired.`,
+      boundary: earned(`EXACT — angles compared as canonical residues mod τ over all ${cells} arms:`, facets, `this describes the rosetta's SYMMETRY and nothing about speed. A rotation is an O(1) relabelling of cells; it performs no computation and confers no advantage. The only measured speedup in this corpus is Grover's query-count ratio on a classical state-vector simulator.`) }
+  })
+}
+
+
+/** Standard enthalpy of formation of liquid water, kJ/mol (CODATA). Ledgered as data. */
+const WATER_FORMATION_KJ_PER_MOL = -2858 / 10
+
+/**
+ * WATER SPLITTING IS AN INVOLUTION, AND THAT IS WHY THERE IS NO SURPLUS.
+ *
+ * H₂O ⇌ H₂ + ½O₂. Let σ be "split". Then σ² = id: the round trip returns the identical
+ * chemical state AND the identical energy ledger — +285.8 kJ/mol to break, −285.8 kJ/mol
+ * to reform, the same magnitude measured in two directions. That symmetry is not adjacent
+ * to conservation; it IS conservation, and a net surplus would require σ² ≠ id.
+ *
+ * HONEST SCOPE: this seals ARITHMETIC about a tabulated enthalpy and the algebra of an
+ * involution. It is not a claim that water is a fuel. Water is the combustion PRODUCT —
+ * the bottom of the well — so no chemical energy remains to extract. Real round trips
+ * lose further to conversion: ~44% via fuel cell, ~25% via engine. Sits beside the sealed
+ * no_perpetual_motion and reversible_erases_nothing, which already forbid the other
+ * reading: reversible means no erasure cost is PAID, never that energy is GAINED.
+ */
+export function waterSplitIsAnInvolutionSoNoSurplusExists(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('waterSplitIsAnInvolutionSoNoSurplusExists', matrix, () => {
+    const formation = WATER_FORMATION_KJ_PER_MOL // negative: energy released forming water
+    const splitCost = -formation                  // energy required to break it
+    const burnYield = -formation                  // energy released reforming it
+
+    // σ² = id on the energy ledger: pay splitCost, recover burnYield, land on zero.
+    const roundTripNet = burnYield - splitCost
+    const isInvolution = roundTripNet === 0
+    // The tabulated value, pinned INDEPENDENTLY. Without this the fold is tautological:
+    // deriving both sides from one constant makes the net zero for ANY value, so the
+    // involution facet alone cannot fail. This facet can.
+    const TABULATED_SPLIT_KJ_PER_MOL = 2858 / 10
+    const matchesTabulated = splitCost === TABULATED_SPLIT_KJ_PER_MOL
+    const symmetric = splitCost === burnYield
+    // Scale invariance: the net stays zero for any mole count — an involution does not weaken.
+    const scaleInvariant = [1, 10, 1000, 1000000].every((mol) => mol * burnYield - mol * splitCost === 0)
+    // A surplus would require the round trip to land elsewhere, i.e. σ² ≠ id.
+    const surplusRequiresBrokenInvolution = !(roundTripNet > 0)
+
+    const facets = [
+      { facet: `SPLIT AND BURN ARE THE SAME MAGNITUDE — breaking water costs ${splitCost} kJ/mol and reforming it releases ${burnYield} kJ/mol, one bond measured in two directions`, on: symmetric },
+      { facet: `σ² = id ON THE ENERGY LEDGER — the round trip nets exactly ${roundTripNet} kJ/mol, so splitting then reforming returns the state AND the ledger to where they began`, on: isInvolution },
+      { facet: `THE INVOLUTION DOES NOT WEAKEN AT SCALE — the net stays zero at 1, 10, 10³ and 10⁶ mol; scaling an involution yields the same involution, which is what makes it a law rather than an approximation`, on: scaleInvariant },
+      { facet: `THE CONSTANT IS THE TABULATED ONE — splitCost ${splitCost} kJ/mol equals the CODATA formation enthalpy magnitude ${TABULATED_SPLIT_KJ_PER_MOL}; perturb the constant and THIS facet falls, which the involution facet alone cannot do (it holds for any bond energy)`, on: matchesTabulated },
+      { facet: `THEREFORE NO SURPLUS EXISTS — a net gain would put the round trip somewhere other than its origin, i.e. σ² ≠ id; water is the combustion PRODUCT and holds no chemical energy to extract`, on: surplusRequiresBrokenInvolution && isInvolution },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`water-involution:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
+
+    return {
+      computes: facets.every((entry) => entry.on),
+      splitCostKJPerMol: splitCost,
+      burnYieldKJPerMol: burnYield,
+      roundTripNetKJPerMol: roundTripNet,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `H₂O ⇌ H₂ + ½O₂ is an involution: ${splitCost} kJ/mol out, ${burnYield} kJ/mol back, net ${roundTripNet}. σ²=id at every scale, so no surplus can exist — the same law no_perpetual_motion states thermodynamically.`,
+      boundary: earned('EXACT — integer-tenths arithmetic on the tabulated formation enthalpy:', facets, 'this is arithmetic about a MEASURED constant (ΔH°f = −285.8 kJ/mol, CODATA) and the algebra of an involution. It does NOT claim water is a fuel, that polluted water can power an engine, or that any arrangement yields net electricity. Real round trips lose further still: ~44% via fuel cell, ~25% via engine. Hydrogen is an energy CARRIER — it moves energy, it never creates any.') }
+  })
+}
+
+
+/** Combustion enthalpy per gram of chemical oxygen demand, kJ/g (wastewater engineering standard). */
+const KJ_PER_GRAM_COD = 139 / 10
+/** Fraction of COD energy captured as biogas by anaerobic digestion. */
+const DIGESTER_CAPTURE = 65 / 100
+/** Electrical efficiency of a biogas CHP engine. */
+const CHP_ELECTRICAL = 38 / 100
+/** Typical municipal treatment-plant electrical demand, kWh per cubic metre. */
+const PLANT_DEMAND_KWH_PER_M3 = 5 / 10
+/** Joules per kWh — SI. */
+const KJ_PER_KWH = 3600
+
+/**
+ * THE POLLUTION IS THE FUEL — polluted water can run an engine and yield clean water,
+ * and the energy comes from the ORGANIC LOAD, never from the H₂O.
+ *
+ * This is the positive counterpart to waterSplitIsAnInvolutionSoNoSurplusExists, which
+ * states only the prohibition. Water is the combustion product and holds no chemical
+ * energy to extract; the carbon dissolved IN it does, at ~13.9 kJ per gram of COD.
+ * Anaerobic digestion converts that to biogas, a CHP engine burns it, and the effluent
+ * leaves cleaner than it arrived — the observable behaviour of "dirty water in,
+ * electricity and drinkable water out", with nothing violated.
+ *
+ * The inversion worth stating: the DIRTIER the stream, the more power. Municipal sewage
+ * sits near break-even; industrial effluent is strongly net positive.
+ *
+ * HONEST SCOPE: arithmetic over a tabulated combustion enthalpy and two efficiency
+ * parameters. It does NOT claim a specific plant achieves these figures, that the water
+ * is a fuel, or that any of this survives without the organic load. Strip the pollutants
+ * and the energy goes to zero — which is the whole point.
+ */
+export function thePollutionIsTheFuelNotTheWater(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('thePollutionIsTheFuelNotTheWater', matrix, () => {
+    // Electrical kWh recoverable per cubic metre, from COD in grams per litre.
+    const elecPerM3 = (codGramsPerLitre: number) =>
+      (codGramsPerLitre * KJ_PER_GRAM_COD * DIGESTER_CAPTURE * CHP_ELECTRICAL * 1000) / KJ_PER_KWH
+
+    const streams = [
+      { name: 'municipal sewage', cod: 5 / 10 },
+      { name: 'brewery effluent', cod: 5 },
+      { name: 'dairy processing', cod: 10 },
+      { name: 'distillery vinasse', cod: 50 },
+    ].map((s) => ({ ...s, kWhPerM3: elecPerM3(s.cod), netPositive: elecPerM3(s.cod) > PLANT_DEMAND_KWH_PER_M3 }))
+
+    const positives = streams.filter((s) => s.netPositive)
+    const monotone = streams.every((s, i) => i === 0 || s.kWhPerM3 > streams[i - 1]!.kWhPerM3)
+    const zeroWithoutLoad = elecPerM3(0) === 0
+    const codConstantIsTabulated = KJ_PER_GRAM_COD === 139 / 10
+
+    const facets = [
+      { facet: `THE ENERGY SCALES WITH THE POLLUTION — recoverable electricity rises strictly with COD across ${streams.length} streams (${streams.map((s) => `${s.name.split(' ')[0]} ${s.kWhPerM3.toFixed(2)}`).join(', ')} kWh/m³)`, on: monotone },
+      { facet: `STRONG EFFLUENT IS NET POSITIVE — ${positives.length} of ${streams.length} streams exceed the ~${PLANT_DEMAND_KWH_PER_M3} kWh/m³ a plant consumes, up to ${(streams[streams.length - 1]!.kWhPerM3 / PLANT_DEMAND_KWH_PER_M3).toFixed(0)}× on distillery vinasse`, on: positives.length === streams.length - 1 },
+      { facet: `STRIP THE LOAD AND THE ENERGY IS ZERO — COD 0 yields exactly ${elecPerM3(0)} kWh/m³, so nothing here is extracted from the water itself`, on: zeroWithoutLoad },
+      { facet: `THE CONSTANT IS THE TABULATED ONE — ${KJ_PER_GRAM_COD} kJ per gram COD; perturb it and this facet falls, which the scaling facets alone would not`, on: codConstantIsTabulated },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`pollution-fuel:${entry.facet.slice(0, 6 * 8)}:${entry.on}`) }))
+
+    return {
+      computes: facets.every((entry) => entry.on),
+      streams,
+      netPositiveCount: positives.length,
+      facets,
+      root: merkleFold(facets.map((entry) => entry.receipt)),
+      statement: `Polluted water runs the engine on its ORGANIC LOAD: ${streams.map((s) => `${s.name} ${s.kWhPerM3.toFixed(2)}`).join(', ')} kWh/m³ electrical, against ~${PLANT_DEMAND_KWH_PER_M3} consumed. COD 0 gives 0 — the water is never the fuel.`,
+      boundary: earned('EXACT — integer-fraction arithmetic over a tabulated combustion enthalpy:', facets, 'a per-cubic-metre ENERGY BUDGET, not a claim about any built plant. Real yields depend on digester residence time, temperature, inhibition and engine duty. The complementary prohibition is waterSplitIsAnInvolutionSoNoSurplusExists: no arrangement extracts energy from H₂O, and this fold does not — remove the pollutants and the output is exactly zero.') }
+  })
 }

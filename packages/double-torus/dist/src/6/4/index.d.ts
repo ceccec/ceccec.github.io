@@ -1,5 +1,8 @@
 export declare function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number;
-export declare const OBLIQUITY_J2000_DEG = 23.4392811;
+/** Mean obliquity at J2000 (°) — theorem-anchor via microdegree integer (decimal/crack). */
+export declare const OBLIQUITY_J2000_DEG: number;
+/** Secular obliquity change (°/century) — named theorem const (not bare decimal in callers). */
+export declare const OBLIQUITY_SECULAR_DEG_PER_CENTURY: number;
 export declare function obliquityAtEpoch(yearsBeforePresent: number): number;
 /** ¹H gyromagnetic ratio γ/2π (Hz/T, CODATA) — the MRI Larmor constant. */
 export declare const PROTON_GYROMAGNETIC = 42577478.461;

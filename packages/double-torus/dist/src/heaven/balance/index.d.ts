@@ -1,9 +1,9 @@
-import type { MindMatrix, ConceptCommandName, ConceptCommandResult, DiamondKind, DimensionalGapKind, DiamondCompletenessReport, StaticPage } from '../../wind/types';
-export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath, ICHING_NUMBERS, STATUS_BADGE_KINDS, statusBadgeKind, statusBadgeTokens, statusBadgePalette, } from '../../earth/architecture';
+import type { MindMatrix, ConceptCommandName, ConceptCommandResult, DiamondKind, DimensionalGapKind, DiamondCompletenessReport, StaticPage } from '../../types';
+export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, cssMathProvenByMath, ICHING_NUMBERS, STATUS_BADGE_KINDS, statusBadgeKind, statusBadgeTokens, statusBadgePalette } from '../../earth/architecture';
 export type { StatusBadgeKind } from '../../earth/architecture';
-export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../lake/ledger';
+export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../ledger';
 export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherenceAnomaly, coverage, consciousness, isPerfectlySelfModeling, proofReport, repositoryApi, doubleTorusWire, circulateDoubleTorus } from '../compute';
-export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/lake/icons';
+export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/icons';
 export { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper } from '../../wind/site';
 export { a432, a432Default, agentObserve, ancientTech, animationEngineLivesInZero, artistPalette, autoSpeech, buildEnforcementPipeline, bulgarianRosettaContentAddressUnlocksAll, calligraphyStroke, chess358, colorFromSound, commitsAuthoredByUserOnly, complete358NextTrinity, contentAddressingHasRealPrecedent, crossFoldTrinity, cryptographyComparison, ddosActivatesHealingFusion, design358, distributedCompute, doubleTorusCompost, doubleTorusMath, electricalGrid, energyConserve, energyFuse, energyMeasure, enforcementTrinity, fairLife, findQuestions, fold358853, fuseDevices, fuseUxSensors, fusionReactor, gatesShiftToNewHarmonic, geometry358, glagolitic, glagoliticAlphabetDecoded, glagoliticGlyph, glagoliticHomeFromEnglish, goldenRatio, hammingThreeParityAddressesError, healingInner, healingOuter, humanise, inHouse, intelligenceComparison, inverseShiftConsciousness, jsonLdPathRules, kidsDefineEducation, kidsExplore, measureProse, metatronsCube, methodFusion, moviesNativeFormat, music358, oneOpenGraphAll, onlyVitePressApi, pairTrinityOpenGraph, patentAudit, patentReview, planetDescribesItself, planetIsComputable, plasmaContainment, quantumGreenPlanet, quantumSimulation, qubitTrinityPauliBloch, religionScienceSociety, repositoryLedger, securityScan, selfAddressed, selfDevelopment, selfInteraction, siteRoutes, soldiersRestInPeace, sourceContribution, sustainableLiving, taxonomyIcons, teslaPatents, thriveEducation, tightenGatesTrinityWaves, tightenProse, torusUuid, transliterateMarkdownBody, trinityPyramidFusesDimensions, universalLanguage, utfAnalog, vortexStateSequence, whoUsedGlagolitic, zeroTokenPolicy } from '../../fire/li';
 export { ancientCalendars } from '../../thunder/decode';
@@ -180,6 +180,21 @@ export declare function modelSeal(matrix?: MindMatrix, opts?: {
     commandTotal: number;
     dimensions: number;
     open: string[];
+    structuralGates?: undefined;
+    inclusionGates?: undefined;
+} | {
+    passed: boolean;
+    failures: {
+        label: string;
+        index: number;
+    }[];
+    gateCount: number;
+    structuralGates: number;
+    inclusionGates: number;
+    okCount: number;
+    commandTotal: number;
+    dimensions: number;
+    open: string[];
 };
 export declare function enforcementPipelineComplete(matrix?: MindMatrix): {
     complete: boolean;
@@ -234,22 +249,6 @@ export declare function essentialKernel(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export interface WiredPath {
-    slug: string;
-    titleEn: string;
-    titleBg: string;
-    hue: number;
-    score: number;
-    shared: string[];
-}
-export interface WiredGateway {
-    slug: string;
-    titleEn: string;
-    titleBg: string;
-    realm: string;
-    glyph: string;
-    hue: number;
-}
 export declare function routeIndependentWorkComputesOnce(matrix?: MindMatrix): {
     computes: boolean;
     components: number;

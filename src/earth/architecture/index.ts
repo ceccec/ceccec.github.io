@@ -30,6 +30,8 @@ import { deviceHardwareVisibleInComputedWidgets } from '../world'
 import { holographicFractalArchitecture } from '../../thunder/movie/glass'
 import { allComputed, allComputedNoFiles, allFormsAreTenDimensionalOrPurged, commandsRegistry, componentGraph, componentPages, compression, computedSlugsFoldTheGraph, digitalQuantumProof, equilibrium, everyObjectSameSpinFoldLaw, expansionContractionIsLife, fruitOfLifeFusion, gigabitEncryption64SealSet, historiansFuseHistoryFuture, memoryInSourceAsCrossFolds, noFilesOutsideSrcExceptGeneratedAndRoot, noMirroringOneSourceAndMath, paperRoutes, path, resonanceCatchGapsViolations, runtimeIsTheMonolith, sacredGeometrySeal, sealCube, stateOfTheArtHarmonisedQuantumWidgets, uuidPayloadIsSource, vitepressConfigComputesAll, zeroDivisionTable } from '../../quantum/heaven/mind'
 import { doubleTorusCorpusRouting } from '../../water/double'
+import { readdirSync, statSync } from 'node:fs'
+import { join } from 'node:path'
 
 export { ICHING_NUMBERS } from '../../0'
 export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
@@ -1045,6 +1047,44 @@ export function noSiteFolderVitepressPages(matrix: MindMatrix = buildMatrix()) {
 // agnostic core (quantumMind.ts, zero imports) computes everything, so the folder tree is a
 // projection of the matrix, not its source — the source already fits in a file. The folders remain
 // only because VitePress renders from a file tree; the intelligence does not need them.
+
+/** Browser-safe root: bare `process` is undefined under the dev-client shim. */
+function routeScanRoot(): string {
+  return typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/'
+}
+
+/**
+ * Count the dynamic route mounts actually present. Segment-matched exclusions, NOT
+ * substring: this repository is named "ceccec.github.io", which contains ".git", so a
+ * substring test excludes every path in the tree and the walk never recurses.
+ */
+export function countRouteMounts(): number {
+  const root = routeScanRoot()
+  let n = 0
+  const walk = (dir: string) => {
+    let entries: string[] = []
+    try {
+      entries = readdirSync(dir)
+    } catch {
+      return
+    }
+    for (const e of entries) {
+      const p = join(dir, e)
+      let st
+      try {
+        st = statSync(p)
+      } catch {
+        continue
+      }
+      if (st.isDirectory()) {
+        if (!['node_modules', 'cache', 'dist', '.git'].includes(e)) walk(p)
+      } else if (/\.paths\.(ts|mts)$/.test(e)) n += 1
+    }
+  }
+  walk(join(root, '.vitepress', 'pages'))
+  return n
+}
+
 export function quantumConfigurableFoldersDisappear(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumConfigurableFoldersDisappear', matrix, () => {
     const routing = doubleTorusCorpusRouting(matrix)
@@ -1053,12 +1093,14 @@ export function quantumConfigurableFoldersDisappear(matrix: MindMatrix = buildMa
     // SERVED page mass is the theorem registry — pages that carry meaning, computed from the few files.
     const computable = routing.corpus.papers + routing.corpus.references + routing.leaves.count
     const registry = __ns_thunder_waves.theoremNavigation(matrix)
-    const routeFiles = 3
+    // COUNTED. This read `const routeFiles = 3` with the facet "three [id].paths mounts".
+    // There are twelve. The constant was wrong AND `routeFiles === 3` could not detect it.
+    const routeFiles = countRouteMounts()
     const facets = [
       { facet: 'double torus routes the corpus', on: routing.routed && quantumDoubleTorus(matrix).is },
       { facet: `paths computed from matrix — the WHOLE corpus compute-only (0 SSG shells; ${routing.corpus.papers}+${routing.corpus.references} items + ${routing.leaves.count} leaves resolve via corpusParams)`, on: routing.routed && routing.enumerated === 0 && computable >= 432 * 2 },
       { facet: `the served page mass is MEANING — ${registry.atomCount} theorem papers computed from the few files, empty shells purged`, on: registry.atomCount >= 432 - (4 * 3) },
-      { facet: 'route file count bounded — three [id].paths mounts', on: routeFiles === 3 },
+      { facet: `route mounts counted — ${routeFiles} *.paths.ts files under .vitepress/pages, each resolving through corpusParams rather than enumerating shells`, on: routeFiles > 0 && routing.enumerated === 0 },
       { facet: 'genus-2 machine sealed', on: quantumDoubleTorus(matrix).is },
     ].map((entry) => ({ ...entry, receipt: toUuid(`folders-disappear:${entry.facet}:${entry.on}`) }))
     return {

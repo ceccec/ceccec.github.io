@@ -157,7 +157,7 @@ const paperLine = (line: string): { label: string; body: string } => {
 .theorem-paper__ack-grid { display: grid; grid-template-columns: max-content 1fr; gap: calc(1px * 2) var(--ich-sp3); margin: var(--ich-sp2) 0 0; }
 .theorem-paper__ack-grid dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
 .theorem-paper__ack-grid dd { margin: 0; text-align: justify; }
-@media print { .theorem-paper__tag { border-color: black; } }
+@media print { .theorem-paper__tag { border-color: var(--color-print-text, black); } }
 /* The theorem environment — Theorem. / Proof. …∎ set as a printed paper: a ruled block, the Theorem line
    emphasised, the Proof and its closing argument justified beneath. */
 .theorem-paper__theorem-env {
@@ -197,8 +197,8 @@ const paperLine = (line: string): { label: string; body: string } => {
   @page { size: A4; margin: calc(1cm * 2) calc(1cm * 2); }
   .VPNav, .VPLocalNav, .VPSidebar, .VPFooter, .VPDocFooter, .VPDocAside, .vp-doc .edit-link, aside { display: none !important; }
   .VPDoc, .VPDoc .container, .VPDoc .content { padding: 0 !important; margin: 0 !important; max-width: none !important; }
-  body { background: white !important; }
-  .theorem-paper { color: black; max-width: none; break-inside: avoid-page; }
+  body { background: var(--color-print-bg, white) !important; }
+  .theorem-paper { color: var(--color-print-text, black); max-width: none; break-inside: avoid-page; }
   .theorem-paper__figure, .theorem-paper section { break-inside: avoid; }
   .theorem-paper__masthead { opacity: 1; }
   .theorem-paper + .theorem-paper { break-before: page; }

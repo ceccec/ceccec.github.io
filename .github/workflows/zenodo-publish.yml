@@ -1,0 +1,330 @@
+name: Zenodo Publication Workflow
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (e.g., v1.1.0)"
+        required: true
+        type: string
+      deposit_type:
+        description: "Deposit type"
+        required: true
+        type: choice
+        options:
+          - "production"
+          - "peer-review"
+        default: "peer-review"
+
+permissions:
+  contents: write
+
+env:
+  NODE_VERSION: "20.x"
+  PNPM_VERSION: "11.8.0"
+
+jobs:
+  prepare:
+    name: Prepare & Verify Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      deposit_type: ${{ steps.deposit_type.outputs.type }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VERSION="${GITHUB_REF#refs/tags/}"
+          else
+            VERSION="${{ inputs.version }}"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing version: $VERSION"
+
+      - name: Determine deposit type
+        id: deposit_type
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TYPE="${{ inputs.deposit_type }}"
+          else
+            TYPE="production"
+          fi
+          echo "type=$TYPE" >> "$GITHUB_OUTPUT"
+          echo "Deposit type: $TYPE"
+
+      - name: Verify tag matches package.json version
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${{ steps.version.outputs.version }}"
+          TAG_VERSION="${TAG_VERSION#v}"
+          echo "package.json: $PKG_VERSION / tag: $TAG_VERSION"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Tag $TAG_VERSION does not match package.json version $PKG_VERSION"
+            exit 1
+          fi
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Each step gates the release on its own exit code. `set -e` is the default
+      # for `run:` blocks, so a non-zero exit fails the job — no manual $? check.
+      - name: Type check
+        run: npm run check:types
+
+      - name: Structure verification
+        run: npm run verify:structure
+
+      - name: Gate enforcement
+        run: npm run mission:gate
+
+      - name: Theorem verification
+        run: npm run theorems:verify
+
+      # Autonomous: every sealed fold must still compute, and the executed test suite
+      # must still pass. A facet going off exits non-zero and blocks the release —
+      # no human review required for the claim surface to be checked.
+      - name: Sealed folds still compute
+        run: npm run verify:folds
+
+      # A folder rename once left a .vue importing a path that no longer existed. The dev
+      # server 500'd on every page while check:types and every other gate stayed green,
+      # because none of them resolve Vue imports. This one does.
+      - name: Every relative import resolves
+        run: npm run verify:imports
+
+      - name: No new tautological facets
+        run: npm run verify:tautology
+
+      - name: Run the verification suite against the real implementations
+        run: npm run verify:run
+
+      # The manifest is generated from the folds. If the committed file disagrees with
+      # what computes, the release is blocked — a figure cannot drift into the deposit.
+      - name: Manifest matches what computes
+        run: npm run manifest:check
+
+      - name: Build distribution
+        run: npm run docs:build
+
+      - name: Build kernel package
+        run: npm run build:package
+
+      - name: Generate checksums
+        run: |
+          find dist packages/kernel -type f -exec sha256sum {} \; | sort > CHECKSUMS.sha256
+          echo "Checksums generated: $(wc -l < CHECKSUMS.sha256) files"
+          head -10 CHECKSUMS.sha256
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts-${{ steps.version.outputs.version }}
+          path: |
+            dist/
+            packages/kernel/
+            CHECKSUMS.sha256
+            CITATION.cff
+            MANIFEST.md
+            RELEASE-AUDIT-uuidna.md
+            HONESTY.md
+          retention-days: 30
+
+  github-release:
+    name: Create GitHub Release
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      release_url: ${{ steps.create_release.outputs.url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts-${{ needs.prepare.outputs.version }}
+
+      - name: Create release notes
+        run: |
+          cat > release_notes.md << 'EOF'
+          # Double Torus ${{ needs.prepare.outputs.version }}
+
+          A dependency-free, zero-egress kernel for deterministic quantum circuit
+          simulation and content-addressed verification.
+
+          Every number below was produced by running the code. Claims that could
+          not be reproduced were removed rather than softened — see
+          `RELEASE-AUDIT-uuidna.md` for commands, outputs and receipts.
+
+          ## Measured results
+
+          | Result | Measurement |
+          |---|---|
+          | Grover, success probability | 94.5% / 94.5% / 96.1% / 99.9% (n = 8, 8, 16, 32) |
+          | Grover, speedup vs classical | 4.00x / 5.33x / 8.00x |
+          | Shor, correctness | 4/4 — 15=5x3, 21=3x7, 33=3x11, 77=11x7 |
+          | Shor, speed | **0.15x-0.34x — slower than classical.** Correctness result only |
+          | Kernel | 2,131 lines, 0 imports, 0 network calls |
+          | Geometry | genus-2 double torus, chi = 2 - 2g = -2 |
+          | Sealed ledger | 1,329 entries, 36 machine-checked involution theorems |
+          | Lattice KEM | 5/5 deterministic roundtrips, sigma^2 = identity |
+
+          ## Not claimed
+
+          - **No Clay Millennium Prize Problem is proven, solved, or resolved here.**
+            Earlier drafts asserted this; the claims were withdrawn after audit.
+            See `HONESTY.md`.
+          - The Lean sources do not currently compile against Mathlib. This release
+            does not offer formal verification.
+          - The lattice KEM is a custom involution scheme. It is **not** ML-KEM and
+            **not** FIPS 203. Do not use it as post-quantum standard cryptography.
+          - No production-readiness score, certification grade, or test-coverage
+            percentage is claimed — no tooling in this repository produces them.
+          - VQE, QAOA and HHL are present but have no verified end-to-end tests.
+
+          ## Reproduce
+
+          ```bash
+          git clone https://github.com/ceccec/ceccec.github.io.git
+          cd ceccec.github.io
+          pnpm install --frozen-lockfile
+          node src/quantum/test-grover-standalone.mjs
+          node src/quantum/test-shor-standalone.mjs
+          npm run verify
+          ```
+
+          ## Artifacts
+
+          `MANIFEST.md` (computed) · `CHECKSUMS.sha256` · `CITATION.cff` · `RELEASE-AUDIT-uuidna.md` · `HONESTY.md`
+          EOF
+          echo "Release notes written"
+
+      - name: Create GitHub Release
+        id: create_release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PRERELEASE=""
+          if [ "${{ needs.prepare.outputs.deposit_type }}" = "peer-review" ]; then
+            PRERELEASE="--prerelease"
+          fi
+          gh release create "${{ needs.prepare.outputs.version }}" \
+            --title "Double Torus ${{ needs.prepare.outputs.version }}" \
+            --notes-file release_notes.md \
+            $PRERELEASE \
+            CHECKSUMS.sha256 CITATION.cff MANIFEST.md RELEASE-AUDIT-uuidna.md HONESTY.md
+          URL=$(gh release view "${{ needs.prepare.outputs.version }}" --json url -q .url)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Release: $URL"
+
+  zenodo-deposit:
+    name: Deposit to Zenodo
+    needs: [prepare, github-release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts-${{ needs.prepare.outputs.version }}
+
+      - name: Select Zenodo host and token
+        id: target
+        run: |
+          if [ "${{ needs.prepare.outputs.deposit_type }}" = "production" ]; then
+            echo "host=https://zenodo.org" >> "$GITHUB_OUTPUT"
+          else
+            echo "host=https://sandbox.zenodo.org" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deposit to Zenodo
+        env:
+          ZENODO_TOKEN: ${{ needs.prepare.outputs.deposit_type == 'production' && secrets.ZENODO_API_TOKEN || secrets.ZENODO_SANDBOX_TOKEN }}
+          HOST: ${{ steps.target.outputs.host }}
+          VERSION: ${{ needs.prepare.outputs.version }}
+          RELEASE_URL: ${{ needs.github-release.outputs.release_url }}
+        run: |
+          if [ -z "$ZENODO_TOKEN" ]; then
+            echo "::warning::No Zenodo token configured for ${{ needs.prepare.outputs.deposit_type }}. Skipping deposit."
+            echo "Add ZENODO_API_TOKEN (production) or ZENODO_SANDBOX_TOKEN (peer-review) to repository secrets."
+            exit 0
+          fi
+
+          # Metadata is generated from docs/.zenodo.json so there is exactly one
+          # source of truth for the claim surface.
+          jq --arg v "${VERSION#v}" \
+             --arg rel "$RELEASE_URL" \
+             '{metadata: (. + {version: $v} | del(.custom_fields, .creators_custom_metadata))}' \
+             docs/.zenodo.json > zenodo_metadata.json
+
+          echo "Deposit metadata:"
+          jq -r '.metadata | {title, version, license, upload_type}' zenodo_metadata.json
+
+          DEPOSITION=$(curl -sf -X POST "$HOST/api/deposit/depositions" \
+            -H "Authorization: Bearer $ZENODO_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d @zenodo_metadata.json)
+
+          DEPOSIT_ID=$(echo "$DEPOSITION" | jq -r '.id')
+          BUCKET_URL=$(echo "$DEPOSITION" | jq -r '.links.bucket')
+
+          if [ "$DEPOSIT_ID" = "null" ] || [ -z "$DEPOSIT_ID" ]; then
+            echo "::error::Failed to create deposition"
+            echo "$DEPOSITION" | jq .
+            exit 1
+          fi
+          echo "Deposit ID: $DEPOSIT_ID"
+
+          # Recurse into dist/ and packages/kernel/ — the previous glob silently
+          # skipped every directory, so most of the build never reached Zenodo.
+          find dist packages/kernel -type f 2>/dev/null > files.txt || true
+          for f in CHECKSUMS.sha256 CITATION.cff MANIFEST.md RELEASE-AUDIT-uuidna.md HONESTY.md; do
+            [ -f "$f" ] && echo "$f" >> files.txt
+          done
+
+          echo "Uploading $(wc -l < files.txt) files..."
+          while IFS= read -r file; do
+            NAME=$(echo "$file" | tr '/' '_')
+            curl -sf -X PUT "$BUCKET_URL/$NAME" \
+              -H "Authorization: Bearer $ZENODO_TOKEN" \
+              --data-binary @"$file" > /dev/null \
+              || echo "::warning::Upload failed: $file"
+          done < files.txt
+
+          echo "Publishing deposit..."
+          PUBLISHED=$(curl -sf -X POST "$HOST/api/deposit/depositions/$DEPOSIT_ID/actions/publish" \
+            -H "Authorization: Bearer $ZENODO_TOKEN")
+
+          DOI=$(echo "$PUBLISHED" | jq -r '.doi // "none"')
+          echo "Published. DOI: $DOI"
+          echo "Record: $HOST/record/$DEPOSIT_ID"
+          {
+            echo "## Zenodo deposit"
+            echo ""
+            echo "- Host: $HOST"
+            echo "- Record: $HOST/record/$DEPOSIT_ID"
+            echo "- DOI: $DOI"
+          } >> "$GITHUB_STEP_SUMMARY"

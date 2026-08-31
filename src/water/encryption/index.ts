@@ -2520,7 +2520,10 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
     const dirTrinity = directionalTrinityForwardInverseReverse(matrix)
     const fInv = fThetaPhiXyzDigitNIsTheInversePair(matrix)
     const invNeRev = inverseIsNotReverse(matrix)
-    const millClaySolvedByThisFold = 0
+    // DERIVED — this was the lone site in this file still declaring the literal, while
+  // lines 814/1421/1608 already read it from the sealed theorem. A facet comparing it to
+  // 0 could not have caught the two drifting apart.
+  const millClaySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold
     const millRoot = toUuid('audit-millennium:claySolvedByThisFold:0')
     const r = rat(2, 5)
     const rInv = ratInv(r)

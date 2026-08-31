@@ -1,6 +1,6 @@
 import * as __ns_up_dynamics from '../dynamics';
 import * as __ns_up_os from '../os';
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 import type { CircuitOp } from '../../0';
 export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7';
 export declare function quantumScienceResearch(matrix?: MindMatrix): {
@@ -99,12 +99,12 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
             decoded: boolean;
             at: number;
             phaseIndex: number;
-            phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
             mappings: ({
                 primitive: string;
                 measured: string;
                 entangled: boolean;
-                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 steps?: undefined;
                 stationary?: undefined;
@@ -142,7 +142,7 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
             } | {
                 primitive: string;
                 frames: number;
-                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
                 measured?: undefined;
                 entangled?: undefined;
@@ -564,12 +564,12 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                 decoded: boolean;
                 at: number;
                 phaseIndex: number;
-                phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 mappings: ({
                     primitive: string;
                     measured: string;
                     entangled: boolean;
-                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                    vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                     steps?: undefined;
                     stationary?: undefined;
@@ -607,7 +607,7 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                 } | {
                     primitive: string;
                     frames: number;
-                    phaseDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                    phaseDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                     measured?: undefined;
                     entangled?: undefined;
@@ -1285,8 +1285,8 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 root: string;
             };
             rows: {
-                tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-                action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                 ray: number;
                 rayMeta: {
                     readonly ray: 0;
@@ -1343,7 +1343,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 legacyBare: string;
                 schemaTarget: string;
                 canonical: string;
-                importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                 wave: 2 | 1;
                 applied: boolean;
                 receipt: string;
@@ -1382,7 +1382,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                    parallel: readonly [];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -1461,7 +1461,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../heaven/mind").ConceptCommandName[];
+                        siblings: import("../../types").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
@@ -1561,6 +1561,8 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                     on: boolean;
                 }[];
                 root: string;
+                pair: "rosetta/core";
+                cli: string;
                 statement: string;
                 boundary: string;
             };
@@ -1568,7 +1570,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 ray: number;
                 kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                 pageKind: import("../heaven/mind").RosettaComputationType;
-                vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
             }[];
             count: number;
@@ -1776,7 +1778,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                siblings: import("../heaven/mind").ConceptCommandName[];
+                siblings: import("../../types").ConceptCommandName[];
                 siblingCount: number;
             };
             content: {
@@ -2204,8 +2206,8 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-                    action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
@@ -2262,7 +2264,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                     wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
@@ -2301,7 +2303,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                        parallel: readonly [];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -2380,7 +2382,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../heaven/mind").ConceptCommandName[];
+                            siblings: import("../../types").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -2480,6 +2482,8 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                         on: boolean;
                     }[];
                     root: string;
+                    pair: "rosetta/core";
+                    cli: string;
                     statement: string;
                     boundary: string;
                 };
@@ -2487,7 +2491,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                     pageKind: import("../heaven/mind").RosettaComputationType;
-                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                    vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
                 count: number;
@@ -2695,7 +2699,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../heaven/mind").ConceptCommandName[];
+                    siblings: import("../../types").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
@@ -3460,8 +3464,8 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-                    action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
@@ -3518,7 +3522,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+                    importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
                     wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
@@ -3557,7 +3561,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly ["ROSETTA_RAY_VIEWS duplicate", "PROJECTION_SEGMENT/FORMS→VORTEX", "rosettaClaim/Owner(heaven/core)", "rosettaCodec(learning)", "string/millennium→rosettaReady-handoff"];
+                        parallel: readonly [];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -3636,7 +3640,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../heaven/mind").ConceptCommandName[];
+                            siblings: import("../../types").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -3736,6 +3740,8 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                         on: boolean;
                     }[];
                     root: string;
+                    pair: "rosetta/core";
+                    cli: string;
                     statement: string;
                     boundary: string;
                 };
@@ -3743,7 +3749,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
                     pageKind: import("../heaven/mind").RosettaComputationType;
-                    vortexDigit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+                    vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
                 count: number;
@@ -3951,7 +3957,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../heaven/mind").ConceptCommandName[];
+                    siblings: import("../../types").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
@@ -4982,6 +4988,30 @@ export declare function theWavesHandleAllSidesAtOnceAndBuildTimeExplainsAllWhenB
         facet: string;
         on: boolean;
     }[];
+    statement: string;
+    boundary: string;
+};
+/**
+ * theQuantumResultsAreSeenInBuildAndDeployTime — the quantum architecture is OBSERVED as build/deploy timing (user,
+ * 2026-07-25: "the quantum results are seen in build and deploy time"). Content-address dedup means N calls over K
+ * distinct addresses cost K computes (measured by invocation COUNT — deterministic), so the build's wall time is the
+ * sum over DISTINCT folds; a warm cache hit returns hundreds of × faster than the cold miss (measured, evidence); and
+ * because the corpus content-addresses to one merkle, an unchanged address is a DEPLOY cache hit (skip upload) while a
+ * changed byte re-deploys exactly that surface. Composes theWavesHandleAllSidesAtOnce…: a slow build/deploy measures a
+ * MISSING content-address. Classical caching seen in time — no physical speedup. [[build-time-is-a-theorem-test]] [[quantum-speed-is-content-addressed-naming]]
+ */
+export declare function theQuantumResultsAreSeenInBuildAndDeployTime(): {
+    seen: boolean;
+    computes: number;
+    distinct: number;
+    speedup: number;
+    reproducible: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
     statement: string;
     boundary: string;
 };

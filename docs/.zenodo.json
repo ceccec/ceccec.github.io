@@ -1,54 +1,82 @@
 {
-  "title": "Quantum Proofs of the Clay Millennium Problems",
-  "description": "A deterministic quantum computing system that proves all six Clay Millennium Problems using quantum coherence stability framework. Complete formal verification in Lean4, exact algebraic proofs with zero deviation, and ready for peer review.",
+  "title": "Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification v1.1.0",
+  "description": "A dependency-free, zero-egress computational kernel for deterministic quantum circuit simulation and content-addressed verification.\n\nMEASURED RESULTS (reproduced 2026-08-20, see RELEASE-AUDIT-uuidna.md):\n\n- Grover's algorithm: 4/4 tests pass. Success probability 94.5%, 94.5%, 96.1%, 99.9% on databases of size 8, 8, 16, 32. Measured speedup 4.00x, 5.33x, 8.00x over classical linear search, consistent with O(sqrt N).\n- Shor's algorithm: 4/4 correct factorizations (15 = 5x3, 21 = 3x7, 33 = 3x11, 77 = 11x7) via genuine order-finding, not lookup. IMPORTANT: this implementation is SLOWER than classical trial division, measured at 0.15x-0.34x. It is presented as a correctness result only; no quantum speedup is claimed.\n- Kernel: 2,131 lines, zero imports, zero network calls (no fetch, XMLHttpRequest, node:http, node:net, or WebSocket). Runs unmodified in browsers and Node.\n- Geometry: genus-2 double torus, Euler characteristic chi = 2 - 2g = -2.\n- Sealed theorem ledger: 1,329 entries, of which 36 are machine-checked involution theorems (diamond_involution, dz_involution, pauli_x_involution, cnot_involution, toffoli_involution, cz_involution, and others). Claims are adjudicated by citation against this ledger.\n- Lattice KEM: DOES NOT WORK. It exposes no key generation - encodeQuantumLattice returns no private key, so decodeQuantumLattice can never recover the shared secret. An earlier draft of this metadata claimed 5/5 deterministic roundtrips; that came from a test whose pass criterion compared the two secrets' LENGTHS rather than their values, so it could not fail. Corrected on 2026-08-20. It is NOT ML-KEM, NOT FIPS 203, and must not be used as cryptography of any kind.\n\nEXPLICITLY NOT CLAIMED: this work does not prove, solve, or resolve any Clay Millennium Prize Problem. Earlier drafts of this metadata asserted such proofs; those claims were withdrawn after audit and are documented in HONESTY.md. The Lean sources in this repository do not currently compile against Mathlib and are not offered as formal verification. No production-readiness score, certification grade, or test-coverage percentage is claimed, as no tooling in this repository produces such figures.",
   "creators": [
     {
       "name": "Rouschev, Tsvetan",
-      "affiliation": "Independent Research",
-      "orcid": ""
+      "affiliation": "Independent Research, Sofia, Bulgaria"
     }
   ],
-  "contributors": [
+  "contributors": [],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ceccec/ceccec.github.io",
+      "relation": "isSourceOf",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://ceccec.psg.bg",
+      "relation": "isDocumentedBy",
+      "resource_type": "website"
+    }
   ],
   "keywords": [
-    "Clay Millennium Problems",
-    "Quantum coherence",
-    "Mathematical proof",
-    "Riemann Hypothesis",
-    "P vs NP",
-    "Navier-Stokes",
-    "Yang-Mills",
-    "Hodge Conjecture",
-    "Birch-Swinnerton-Dyer",
-    "Formal verification",
-    "Lean4",
-    "σ-involution",
-    "Topological barriers"
+    "quantum simulation",
+    "Grover's algorithm",
+    "Shor's algorithm",
+    "quantum circuit simulator",
+    "content addressing",
+    "Merkle tree",
+    "deterministic computation",
+    "reproducible research",
+    "involution",
+    "double-torus geometry",
+    "modular arithmetic",
+    "zero-dependency",
+    "key encapsulation"
   ],
   "subjects": [
     {
-      "term": "Quantum mechanics",
+      "term": "Quantum computing",
       "scheme": "url",
-      "identifier": "https://en.wikipedia.org/wiki/Quantum_mechanics"
+      "identifier": "https://en.wikipedia.org/wiki/Quantum_computing"
     },
     {
-      "term": "Mathematical proof",
+      "term": "Computational mathematics",
       "scheme": "url",
-      "identifier": "https://en.wikipedia.org/wiki/Mathematical_proof"
+      "identifier": "https://en.wikipedia.org/wiki/Computational_mathematics"
     },
     {
-      "term": "Formal verification",
+      "term": "Topology",
       "scheme": "url",
-      "identifier": "https://en.wikipedia.org/wiki/Formal_verification"
+      "identifier": "https://en.wikipedia.org/wiki/Topology"
     }
   ],
+  "notes": "Every quantitative claim in this deposit was reproduced by execution on 2026-08-20 and is recorded with its command and output in RELEASE-AUDIT-uuidna.md. Claims that could not be reproduced were removed rather than softened. Known limitations: Shor's implementation is slower than classical; VQE, QAOA and HHL are present but have no verified end-to-end tests; the lattice KEM is not a standardised post-quantum scheme; the Lean sources do not compile.",
   "access_right": "open",
-  "license": "CC-BY-4.0",
-  "version": "1.0",
+  "license": "CC-BY-NC-ND-4.0",
+  "version": "1.1.0",
   "upload_type": "software",
-  "publication_date": "2026-08-04",
-  "communities": [
-    {"identifier": "zenodo"}
+  "publication_date": "2026-08-20",
+  "language": "eng",
+  "references": [
+    "Grover, L. K. (1996). A fast quantum mechanical algorithm for database search. STOC '96, 212-219.",
+    "Shor, P. W. (1997). Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer. SIAM J. Comput., 26(5), 1484-1509.",
+    "Merkle, R. C. (1988). A Digital Signature Based on a Conventional Encryption Function. CRYPTO '87, 369-378.",
+    "Nielsen, M. A., Chuang, I. L. (2010). Quantum Computation and Quantum Information. Cambridge University Press."
   ],
-  "grants": []
+  "custom_fields": {
+    "grover_success_probability": "94.5%-99.9% (n=8,16,32)",
+    "grover_measured_speedup": "4.00x-8.00x",
+    "shor_correctness": "4/4 factorizations correct",
+    "shor_measured_speedup": "0.15x-0.34x (slower than classical)",
+    "kernel_lines": 2131,
+    "kernel_imports": 0,
+    "kernel_network_calls": 0,
+    "sealed_ledger_entries": 1329,
+    "sealed_involution_theorems": 36,
+    "clay_millennium_problems_solved": 0,
+    "lean_proofs_compiling": false,
+    "reproducibility": "fully-deterministic-zero-egress"
+  }
 }

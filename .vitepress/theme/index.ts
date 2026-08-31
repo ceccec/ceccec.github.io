@@ -4,6 +4,7 @@ import DefaultTheme from 'vitepress/theme'
 import Layout from './Layout.vue'
 import DigitMotion from '../../src/water/digit/index.vue'
 import { registerVitePressComponents } from '../lib/register-components'
+import '../../src/ui/tokens.css'
 import '../../src/render/ui/tokens.css'
 import '../../src/render/ui/style.css'
 import { registerShadcnUi } from '../lib/shadcn-ui.ts'
@@ -20,6 +21,7 @@ import {
   TheoremIndex,
   SourceAtlas,
 } from './components/index.ts'
+import UniversalSolverInterface from '../../src/quantum/solver/browser/index.vue'
 
 export default {
   extends: DefaultTheme,
@@ -40,6 +42,7 @@ export default {
     if (!ctx.app.component('SourceAtlas')) ctx.app.component('SourceAtlas', SourceAtlas)
     if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
     if (!ctx.app.component('SevenStarRosetta')) ctx.app.component('SevenStarRosetta', DigitMotion)
+    if (!ctx.app.component('UniversalSolverInterface')) ctx.app.component('UniversalSolverInterface', UniversalSolverInterface)
 
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       window.addEventListener('load', () => {

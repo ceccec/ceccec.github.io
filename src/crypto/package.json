@@ -1,0 +1,42 @@
+{
+  "name": "@cross/crypto",
+  "version": "2026.8.4",
+  "description": "Cross-UUID Cryptographic Solution — Universal key recovery (RSA, ECDSA, Lattice, EdDSA) and cryptographic operations",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": {
+      "import": "./index.ts",
+      "types": "./index.ts"
+    },
+    "./encode": {
+      "import": "./encode/index.ts",
+      "types": "./encode/index.ts"
+    },
+    "./decode": {
+      "import": "./decode/index.ts",
+      "types": "./decode/index.ts"
+    },
+    "./reverse": {
+      "import": "./reverse/index.ts",
+      "types": "./reverse/index.ts"
+    },
+    "./inverse": {
+      "import": "./inverse/index.ts",
+      "types": "./inverse/index.ts"
+    }
+  },
+  "keywords": [
+    "cryptography",
+    "rsa",
+    "ecdsa",
+    "lattice-kem",
+    "eddsa",
+    "key-recovery",
+    "quantum",
+    "involution",
+    "cross-uuid"
+  ],
+  "author": "Tsvetan Rouschev",
+  "license": "MIT"
+}

@@ -1,5 +1,5 @@
 export { GENETIC_CODE } from '../../3/7';
-import type { ArtistSurfaceReport, HarmonyProbability, MindMatrix } from '../../wind/types';
+import type { ArtistSurfaceReport, HarmonyProbability, MindMatrix } from '../../types';
 export declare function immuneSystem(matrix?: MindMatrix): {
     healthy: boolean;
     maxHealth: boolean;
@@ -254,7 +254,7 @@ export declare function movieIsNeuroscienceComputation(matrix?: MindMatrix, at?:
             a432Hz: number;
             octaveDiv: number;
         }[];
-        spine: number[];
+        spine: readonly number[];
         schumannHz: number;
         count: number;
         facets: {
@@ -301,7 +301,7 @@ export declare function movieIsNeuroscienceComputation(matrix?: MindMatrix, at?:
                 a432Hz: number;
                 octaveDiv: number;
             }[];
-            spine: number[];
+            spine: readonly number[];
             schumannHz: number;
             count: number;
             facets: {
@@ -313,8 +313,8 @@ export declare function movieIsNeuroscienceComputation(matrix?: MindMatrix, at?:
             statement: string;
             boundary: string;
         };
-        observer: import("../../lake/music").ObserverContext;
-        field: import("../../lake/music").HarmonizeableField;
+        observer: import("../../music").ObserverContext;
+        field: import("../../music").HarmonizeableField;
         coherence: number;
         cadence: number;
         facets: {
@@ -474,7 +474,7 @@ export declare function humanResonancePanelComputes(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    human: import("../../wind/types").HumanityImplicationsReport;
+    human: import("../../types").HumanityImplicationsReport;
     capstone: {
         computes: boolean;
         senses: {
@@ -1401,7 +1401,7 @@ export declare function humanResonancePanelComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        human: import("../../wind/types").HumanityImplicationsReport;
+        human: import("../../types").HumanityImplicationsReport;
         facets: ({
             facet: string;
             on: boolean;

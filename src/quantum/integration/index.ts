@@ -30,10 +30,12 @@ export type ExecutionResult = {
   readonly jobId: string
   readonly provider: QuantumHardwareProvider
   readonly qubits: number
-  readonly gateCount: number
-  readonly executionTime_ms: number
-  readonly successRate: number
+  /** False when no circuit ran — every field below is then null or empty, never a plausible stand-in. */
+  readonly executed: boolean
+  readonly gateCount: number | null
+  readonly successRate: number | null
   readonly measurement: Record<string, number>
+  readonly reason?: string
   readonly receipt: string
 }
 
@@ -62,7 +64,9 @@ export function ibmQuantumAdapter(): ProviderAdapter {
       }
     },
     status: async () => {
-      return { online: true, queueDepth: 42, avgWaitTime_s: 120 }
+      // Nothing is contacted. The previous body returned online:true with an invented
+      // queue depth, so a health check always reported healthy for an unreachable provider.
+      return { online: null, queueDepth: null, avgWaitTime_s: null, reason: 'no provider API is wired' }
     },
     receipt: toUuid('adapter:ibm-quantum')
   }
@@ -92,7 +96,9 @@ export function ionqAdapter(): ProviderAdapter {
       }
     },
     status: async () => {
-      return { online: true, queueDepth: 8, avgWaitTime_s: 300 }
+      // Nothing is contacted. The previous body returned online:true with an invented
+      // queue depth, so a health check always reported healthy for an unreachable provider.
+      return { online: null, queueDepth: null, avgWaitTime_s: null, reason: 'no provider API is wired' }
     },
     receipt: toUuid('adapter:ionq')
   }
@@ -122,7 +128,9 @@ export function localSimulator(): ProviderAdapter {
       }
     },
     status: async () => {
-      return { online: true, queueDepth: 0, avgWaitTime_s: 0 }
+      // Nothing is contacted. The previous body returned online:true with an invented
+      // queue depth, so a health check always reported healthy for an unreachable provider.
+      return { online: null, queueDepth: null, avgWaitTime_s: null, reason: 'no provider API is wired' }
     },
     receipt: toUuid('adapter:local-simulator')
   }
@@ -144,15 +152,19 @@ export async function quantumHardwareIntegration(
   const adapter = adapters[provider]
   const result = (await adapter.execute(circuit)) as { jobId?: string }
 
+  // gateCount, executionTime_ms, successRate and the 1000-shot histogram
+  // { '0': 512, '1': 488 } were all typed in — a complete fake execution record for a
+  // job that was never submitted. Nothing ran, so nothing is reported.
   return {
     jobId: result.jobId || toUuid(`job:${provider}`),
     provider,
     qubits: adapter.capabilities.maxQubits,
-    gateCount: 10, // Estimate
-    executionTime_ms: 5,
-    successRate: 0.95,
-    measurement: { '0': 512, '1': 488 }, // 1000 shots
-    receipt: toUuid(`execution:${provider}`)
+    executed: false,
+    gateCount: null,
+    successRate: null,
+    measurement: {},
+    reason: 'no provider API is wired in this module; no circuit was executed',
+    receipt: toUuid(`execution:not-executed:${provider}`)
   }
 }
 

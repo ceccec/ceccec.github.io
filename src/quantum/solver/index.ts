@@ -7,6 +7,8 @@
  * No hardcoding. No demos. Real cryptographic recovery.
  */
 
+import { gcd } from '../../0'
+
 export type PublicKey = {
   type: 'rsa' | 'lattice-kem' | 'discrete-log' | 'unknown'
   data: Record<string, unknown>
@@ -21,7 +23,6 @@ export type DetectedInvolution = {
   recoveryMethod: string
   publicKeyProperty: string
   privateKeyProperty: string
-  certainty: number // 0-1: confidence in detection
 }
 
 export type PrivateKeyRecovery = {
@@ -50,8 +51,7 @@ export function detectInvolutionFromPublic(publicKey: PublicKey): DetectedInvolu
       fixedPointDescription: 'Order r where a^r ≡ 1 (mod n) forces factors: gcd(a^(r/2)±1, n) ∈ {p, q}',
       recoveryMethod: 'Shor\'s algorithm: find order via involution, extract factors, compute private exponent',
       publicKeyProperty: `n = ${n}`,
-      privateKeyProperty: 'p, q (prime factors); d (private exponent)',
-      certainty: 0.99
+      privateKeyProperty: 'p, q (prime factors); d (private exponent)'
     }
   }
 
@@ -65,8 +65,7 @@ export function detectInvolutionFromPublic(publicKey: PublicKey): DetectedInvolu
       fixedPointDescription: 'Shortest lattice vector is the unique fixed point of the SVP involution',
       recoveryMethod: 'Quantum amplitude amplification toward fixed point: applies σ^k iterations until convergence',
       publicKeyProperty: 'Lattice basis B (public)',
-      privateKeyProperty: 'Shortest vector s (private key)',
-      certainty: 0.95
+      privateKeyProperty: 'Shortest vector s (private key)'
     }
   }
 
@@ -80,8 +79,7 @@ export function detectInvolutionFromPublic(publicKey: PublicKey): DetectedInvolu
       fixedPointDescription: 'Exponent x where σ(x) = x, forcing h = g^x',
       recoveryMethod: 'Involution forces exponent to be unique fixed point: solve σ(x) = x',
       publicKeyProperty: `h = g^x mod p, given g, h, p`,
-      privateKeyProperty: 'x (discrete logarithm)',
-      certainty: 0.92
+      privateKeyProperty: 'x (discrete logarithm)'
     }
   }
 
@@ -173,13 +171,6 @@ export function recoverPrivateFromPublic(publicKey: PublicKey): PrivateKeyRecove
 
 // Utility functions
 
-function gcd(a: number, b: number): number {
-  while (b !== 0) {
-    [a, b] = [b, a % b]
-  }
-  return a
-}
-
 function findOrder(a: number, n: number, maxOrder = n): number | null {
   for (let r = 1; r < maxOrder; r++) {
     let mod = 1
@@ -219,13 +210,19 @@ function factorViaOrderFinding(n: number): [number, number] | null {
 }
 
 function modularInverse(e: number, phi: number): number {
-  let [old_r, r] = [e, phi]
-  let [old_s, s] = [1, 0]
+  let old_r = e
+  let r = phi
+  let old_s = 1
+  let s = 0
 
   while (r !== 0) {
     const quotient = Math.floor(old_r / r)
-    [old_r, r] = [r, old_r - quotient * r]
-    [old_s, s] = [s, old_s - quotient * s]
+    const temp_r = r
+    const temp_s = s
+    r = old_r - quotient * r
+    s = old_s - quotient * s
+    old_r = temp_r
+    old_s = temp_s
   }
 
   return old_s > 0 ? old_s : old_s + phi

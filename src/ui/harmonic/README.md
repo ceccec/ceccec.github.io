@@ -13,7 +13,7 @@ Binary digits:    2↔5, 4↔7 under d↔(10−d)
         ↓
 OKLCH color hue:  L→(100-L), H→(H+180)°
         ↓
-Audio frequency:  f→440²/f (harmonic opposite)
+Audio frequency:  f→432²/f (harmonic opposite; σ(432)=432, anchor self-inverse)
         ↓
 Gate thresholds:  1/(1+|σfreq/freq−1|)
         ↓

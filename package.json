@@ -1,8 +1,8 @@
 {
   "name": "@ceccec/double-torus",
-  "version": "2026.8.4",
-  "description": "The Double Torus quantum corpus — dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency. Clay Millennium: all 7 problems sealed via σ-involution.",
-  "license": "CC BY-NC-ND 4.0",
+  "version": "1.1.0",
+  "description": "The Double Torus quantum corpus — dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency.",
+  "license": "CC-BY-NC-ND-4.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ceccec/ceccec.github.io.git"
@@ -36,6 +36,13 @@
     "docs:dev": "NODE_OPTIONS=--max-old-space-size=8192 vitepress dev",
     "check:types": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts check:types",
     "verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify",
+    "verify:imports": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/imports.ts assertImportsResolve",
+    "verify:tautology": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/tautology.ts assertNoNewTautologies",
+    "manifest": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/manifest.ts writeManifest",
+    "manifest:check": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/manifest.ts manifestDrift",
+    "verify:run": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/index.ts runVerification",
+    "verify:folds": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/folds.ts assertFolds",
+    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports",
     "verify:structure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify:structure",
     "limits:verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:verify",
     "limits:seal": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:seal",
@@ -1034,7 +1041,12 @@
     "quantum:trans-quality": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/mountain/source/index.ts runChatMassiveWorldLanguageTranslationQualityExit",
     "quantum:tool-matrix": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runToolsFitTheMatrixOrRefuseExit",
     "quantum:pair-chat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runPairsSentToChatEntangleByAlgebraExit",
-    "quantum:match-wave": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runMatchingPairsImmediatelyRealiseEntanglementExit"
+    "quantum:match-wave": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runMatchingPairsImmediatelyRealiseEntanglementExit",
+    "crypto:reverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:reverse",
+    "crypto:encode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:encode",
+    "crypto:decode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:decode",
+    "crypto:inverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:inverse",
+    "test:crypto": "node --experimental-strip-types src/crypto/test.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

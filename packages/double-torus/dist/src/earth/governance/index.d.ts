@@ -1,4 +1,4 @@
-import type { GovernanceVote, MindMatrix, SacredSociety, ScientificSociety, SocietyRelations } from '../../wind/types';
+import type { GovernanceVote, MindMatrix, SacredSociety, ScientificSociety, SocietyRelations } from '../../types';
 export declare function society(matrix?: MindMatrix): {
     folded: boolean;
     pairs: {
@@ -232,7 +232,7 @@ export declare function societyMerkabaGraphComputes(matrix?: MindMatrix): {
     actors: number;
     edges: number;
     nodes: {
-        actor: "science" | "commons" | "governance" | "observer" | "replicator" | "falsifier" | "steward" | "traditions" | "fair-life";
+        actor: "science" | "commons" | "governance" | "traditions" | "observer" | "replicator" | "falsifier" | "steward" | "fair-life";
         state: number[];
         receipt: string;
     }[];

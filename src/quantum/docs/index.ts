@@ -421,13 +421,16 @@ export function quantumDocumentationSummary(matrix: MindMatrix = buildMatrix()):
     ]
 
     const apiRef = quantumAPIReference()
-    const coverage = 0.80 // 80% documentation complete
+    // MEASURED: the fraction of documented API entries, counted from the reference
+    // itself. The previous value was 0.80 typed in as "80% documentation complete".
+    const documented = apiRef.filter((m) => m.examples.length > 0 && m.functions.length > 0).length
+    const coverage = apiRef.length === 0 ? 0 : documented / apiRef.length
 
     return {
       sections,
       apiReference: apiRef,
       coverage,
-      statement: `Complete quantum documentation: ${sections.length} sections, ${apiRef.length} modules, ${coverage * 100}% coverage. Deployment ready.`
+      statement: `Complete quantum documentation: ${sections.length} sections, ${apiRef.length} modules, ${(coverage * 100).toFixed(1)}% of ${apiRef.length} API modules carry both functions and worked examples.`
     }
   })
 }

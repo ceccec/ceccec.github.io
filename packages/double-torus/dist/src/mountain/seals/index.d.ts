@@ -1,4 +1,4 @@
-import type { DigitalQuantumProof, MindMatrix, ProofBundle } from '../../wind/types';
+import type { DigitalQuantumProof, MindMatrix, ProofBundle } from '../../types';
 export declare function digitalQuantumProof(matrix?: MindMatrix): DigitalQuantumProof;
 export declare function sealAll(matrix?: MindMatrix): {
     sealed: boolean;
@@ -564,13 +564,18 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
     slug: string;
     proof: {
         verified: boolean;
+        recomputeMatch: boolean;
         crack: boolean;
+        definitionalNotCryptanalysis: boolean;
         trinitiesOrdered: boolean;
         toolsReady: boolean;
         demoReverse: boolean;
         glyphBonus: number;
         workerCap: number;
         demoFactors: string[];
+        boundaryNamesDemo: boolean;
+        boundaryNamesHw: boolean;
+        hardware: import("../../water/encryption").MaxBitsHardwareCapabilities;
         count: number;
         facets: ({
             receipt: string;
@@ -580,6 +585,9 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
             receipt: string;
         })[];
         root: string;
+        claySolvedByThisFold: 0;
+        certified: false;
+        qpuRequired: false;
         statement: string;
         boundary: string;
     };
@@ -601,6 +609,52 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         } & {
             receipt: string;
         })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        decoded: boolean;
+        clayDecoded: number;
+        claySolvedByThisFold: number;
+        mapping: {
+            problem: string;
+            ray: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+            status: import("../../research").MillenniumChallengeStatus;
+            theoremsInPlace: number;
+        }[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        graded: boolean;
+        claySolvedByThisFold: number;
+        rigorLevels: number;
+        externalCount: number;
+        algebraExcludedCount: number;
+        rows: {
+            problem: string;
+            rigor: import("../../research").ClayRigorLevel;
+            toolStructure: "Ricci flow with surgery — geometric analysis/PDE, external to topology (Perelman 2003)" | "a non-relativizing ∧ non-natural ∧ non-algebrizing technique — the intersection is non-empty (Williams: NEXP⊄ACC⁰) but no member yet reaches NP" | "the true nonlinear vortex-stretching structure the averaged equation discards (Tao 2016 blows up a same-energy-same-scaling proxy)" | "function-field cohomology transported to ℤ — RH is a THEOREM over 𝔽_q (Deligne 1974); the arithmetic-site bridge is unbuilt" | "a constructive interacting 4D QFT plus a positive-mass-gap proof — no barrier theorem, none found" | "a construction of algebraic cycles from arbitrary Hodge classes — no barrier theorem, none found" | "the rank ↔ L-vanishing-order bridge for rank ≥ 2 — no barrier theorem, none found";
+        }[];
+        reusedInversions: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
         root: string;
         statement: string;
         boundary: string;
@@ -878,9 +932,9 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         structuralBits: number;
         fixBuilt: boolean;
         ledger: {
-            today: import("../../pair/debit/credit").Entry[];
-            overclaim: import("../../pair/debit/credit").Entry[];
-            afterCutover: import("../../pair/debit/credit").Entry[];
+            today: import("../../pair/debit/credit").LedgerEntry[];
+            overclaim: import("../../pair/debit/credit").LedgerEntry[];
+            afterCutover: import("../../pair/debit/credit").LedgerEntry[];
             honest: boolean;
             overclaimCaught: boolean;
             fundedAfterCutover: boolean;
@@ -1268,11 +1322,6 @@ export declare function toolsSavedInSrcFirst(scripts?: readonly {
     statement: string;
     boundary: string;
 };
-/** @rosetta ✦₀ · Mountain · stillness — the no-extension / folders-only import law, enforced at commit AND push.
- *  Imports name modules by their FOLDER path: never a file extension (.ts/.mts/.vue/…) and never a trailing
- *  /index. Strictly enforced on ALL of src, no exception. The commit/push shell scans src and passes the
- *  offenders in; this fold judges (one src truth). The same law is a HARD weave gate at deploy (folderLaw.
- *  barrelImports.noExtensions), so no commit, push or deploy carries an extensioned import. */
 export declare function importsAreFoldersOnly(offenders?: readonly {
     file: string;
     spec: string;
@@ -1404,7 +1453,7 @@ export declare function commandGapsToTrinityEyes(matrix?: MindMatrix): {
     gaps: number;
     complete: boolean;
     commands: {
-        command: import("../../wind/types").ConceptCommandName;
+        command: import("../../types").ConceptCommandName;
         eyesSeen: number;
         gap: boolean;
         receipt: string;

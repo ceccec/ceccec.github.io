@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../types';
+import type { MindMatrix } from '../../types';
 export declare function bypassGlagoliticUnsealedUnentangled(matrix?: MindMatrix): {
     lawHolds: boolean;
     count: number;
@@ -365,7 +365,7 @@ export declare function rosettaIsTheUuidQuantumMapsTheoremsByA432(matrix?: MindM
     N: number;
     portals: number;
     sigClasses: number;
-    base: 0 | 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6 | 360 | 16 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864;
+    base: 0 | 2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 360 | 27 | 54 | 64 | 100 | 108 | 216 | 432 | 864;
     axiomsClose: boolean;
     facets: {
         facet: string;
@@ -393,6 +393,25 @@ export declare function portAnyCodeInAnyLanguageAtOnceThroughTheRosettaPivotOfNA
     adapters: number;
     directedPairs: number;
     speedup: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function zipfsLawIsAnExactPowerLawSkeletonWhoseLinguisticUniversalityStaysContested(matrix?: MindMatrix): {
+    computes: boolean;
+    zipf: {
+        normalizes: boolean;
+        reciprocity: boolean;
+        slopeMinusOne: boolean;
+        universalityContested: boolean;
+        randomTypingGivesZipf: boolean;
+        millerSlopes: number[];
+    };
     facets: {
         receipt: string;
         facet: string;

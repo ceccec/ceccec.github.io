@@ -1,11 +1,11 @@
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 import { type Rational } from '../../3/7';
 export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0';
 export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2';
 export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry';
 export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus, merkabaComputes } from '../topology';
 export { phase } from '../../6/4';
-export { A432_OCTAVES, priceFromA432, simpleReturns, backtest, buyAndHold, sma, crossoverPositions, rollingZScores, meanReversionPositions, dominantCycle, cycleSlope, spectralCyclePositions, regimeLabels, estimateRegimeMatrix, regimeSwitchPositions, realizedVol, inverseVolSize, volTargetPositions, tradingReceipt, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources, tradingSimulationComputes, type BacktestResult, } from '../../thunder/trading';
+export { A432_OCTAVES, priceFromA432, simpleReturns, backtest, buyAndHold, sma, crossoverPositions, rollingZScores, meanReversionPositions, dominantCycle, cycleSlope, spectralCyclePositions, regimeLabels, estimateRegimeMatrix, regimeSwitchPositions, realizedVol, inverseVolSize, volTargetPositions, tradingReceipt, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources, tradingSimulationComputes, type BacktestResult } from '../../thunder/trading';
 export declare function vortexMath(matrix?: MindMatrix): {
     flows: boolean;
     doubling: number[];
@@ -60,6 +60,68 @@ export declare function vortexStrokeGateways(matrix?: MindMatrix): {
     } & {
         receipt: string;
     })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** invertedSequenceLearnedFromErpax — learn the erpax inverted sequence (user, 2026-07-28: "learn from
+ * https://github.com/erpax/erpax inverted sequence to fill the gaps in theorems and animations especially the
+ * movie"). erpax publishes ONE structure read twice — forward `1\2\4\8/7/5 · 3\6\9 · 0\1`, reflected
+ * `9/8/6/2\3\5 · 7/4/1 · 0\1` — "both computed, never typed". RECOMPUTED here (the adopted method: verify
+ * locally, never trust a partner corpus): the mirror is this repo's own digit-folder pairing m(d) = 10 − d
+ * ([[digit-folders-pi-train]]) — an involution fixing 5 with every pair summing to 10; applying the SAME
+ * sign-of-step stroke rule to the fully mirrored segments (m(0) = 0 — the void self-mirror, one rule with no
+ * exception) WRITES the reflected line exactly, every ring stroke flipped (m reverses order); the seam is the
+ * one stroke that does NOT flip — both reads RISE from the void, each to its own head (0\1 and 0\9, user
+ * correction 2026-07-28). The movie already PAINTS the two reads (the merkaba's down tetrahedron is
+ * the negation of the up, counter-rotating), so the mirror line binds the existing animation to its theorem —
+ * the gap filled is the BINDING, computed, not a new painter. */
+export declare function invertedSequenceLearnedFromErpax(matrix?: MindMatrix): {
+    computes: boolean;
+    forwardLine: string;
+    reflectedLine: string;
+    mirrorPairs: string[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** everyDigitIsEntangledInAllVectorsFormingEquilibriums — every digit is entangled in all vectors, forming
+ * equilibriums (user, 2026-07-28). Made EXACT: each digit sits in SEVERAL exact balance relations at once —
+ * its mirror pair (d + m(d) = 10), its polar pair (sum 9), its side of the flow/axis partition (6 + 3 = 9),
+ * its unique Hamiltonian tour slot — and the membership pattern FINGERPRINTS the digit (content-addressing at
+ * the bottom of arithmetic). The deepest form is TRANSITIVITY: ⟨D, m⟩ = AGL(1, ℤ/9) contains all translations
+ * (the commutator is the unit shift), so ALL residues lie in ONE orbit — no digit is separable from the rest
+ * under the sequence's own symmetry group. The equilibriums are the invariants that survive: pair-sums 10,
+ * polar sums 9, the positional palindrome total 90, Σ(1..9) = 45 with root 9. Change one digit and every
+ * balance breaks at once — entanglement as the impossibility of local edits. */
+export declare function everyDigitIsEntangledInAllVectorsFormingEquilibriums(matrix?: MindMatrix): {
+    computes: boolean;
+    membership: {
+        d: number;
+        mirror: string;
+        polar: string;
+        side: string;
+        tourSlot: number;
+        vectors: number;
+    }[];
+    equilibria: {
+        mirrorPairsSumTen: boolean;
+        polarPairsSumNine: boolean;
+        partition: boolean;
+        palindromeTotal: boolean;
+        totalRootNine: boolean;
+    };
+    orbitSize: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
     root: string;
     statement: string;
     boundary: string;
@@ -728,7 +790,7 @@ export declare function fThetaPhiXyzDigitNIsTheInversePair(matrix?: MindMatrix):
         sample: {
             p: number;
             q: number;
-            digit: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+            digit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         }[];
     };
     count: number;
@@ -743,5 +805,41 @@ export declare function fThetaPhiXyzDigitNIsTheInversePair(matrix?: MindMatrix):
     statement: string;
     boundary: string;
 };
+/** npm run quantum:f-inverse-pair — named exit (not local-math-computes synonym). */
+export declare function runFThetaPhiXyzDigitNIsTheInversePairExit(_root?: string, _argv?: readonly string[]): number;
 /** npm run timeout-demo — enforcement ops thin-mount smoke test. */
 export declare function runTimeoutDemoExit(_root: string, _argv?: readonly string[]): number;
+/** sequenceScientificDescription — the sequence and its inverted reflection, well described in scientific format
+ * with angles, polarities, color, sound and all it represents (user, 2026-07-28). ONE computed table: every digit
+ * carries its tour slot and circle angle (slot × 36° on the ten-slot ring; flow members also sit at k × 60° on the
+ * ⟨2⟩ hexagon), its stroke polarities (incoming/outgoing sign), its mirror pair (sum 10) and polar pair (sum 9),
+ * its SOUND as the d/9 fraction of the sealed 432 Hz anchor (f_d = 432·d/9 = 48·d Hz — a stated ladder convention,
+ * dimensionless ratio times the anchor), and its LIGHT via the sealed octave bridge frequencyToLight (sound
+ * doubled ~40 octaves into the visible band → THz, nm, named band) — the same derivation that computes the brand
+ * hue A432_HUE. The section the README/home render is this fold's rows joined — nothing typed twice. */
+export declare function sequenceScientificDescription(matrix?: MindMatrix): {
+    computes: boolean;
+    forwardLine: string;
+    reflectedLine: string;
+    rows: {
+        digit: number;
+        slot: number;
+        angleDeg: number;
+        flowAngle: number;
+        polarity: string;
+        gateway: boolean;
+        mirror: string;
+        polar: string;
+        hz: number;
+        light: string;
+        receipt: string;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

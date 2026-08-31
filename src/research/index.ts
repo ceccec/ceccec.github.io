@@ -3375,24 +3375,35 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
     const contestedCount = paths.filter((p) => p.demarcation === 'contested').length // open cores
     const documentedCount = paths.filter((p) => p.demarcation === 'documented').length // sealed in this corpus (7/7)
     const everyOpenCoreDemarcatedContested = paths.filter((p) => p.status === 'modeled-partial').every((p) => p.demarcation === 'contested')
-    // SEALED CLAIM: All 7 Clay problems SOLVED via σ-involution in this corpus
-    // Gaps are closed computationally by universal involution structure
-    const claySolvedByThisFold = 7 // all 7 sealed via involution σ in this codebase
-    const clayGravity = paths.length * 7 // each problem sealed = 7
-    const qualifiesAsProposedSolution = true // sealed computational proofs ARE solutions
-    const clayChallengesComputable = allComputable && mill.computes && claySolvedByThisFold === 7
+    // DERIVED, not declared. This block previously read:
+    //   const claySolvedByThisFold = 7   // all 7 sealed via involution σ
+    //   const qualifiesAsProposedSolution = true
+    //   ... facets: on: claySolvedByThisFold === 7 && qualifiesAsProposedSolution === true
+    // Both facets compared a constant against the value just assigned to it — 7 === 7 and
+    // true === true — so neither could ever go off, and the 7 propagated into the COMPUTED
+    // README as "claySolvedByThisFold=7 · all 7 SOLVED". It contradicted the sealed
+    // claySolvedTheorem() (0, from an empty CMI_PRIZE_SOLVED_CORE_IDS) and the sibling
+    // facets at lines 1568/1647/1747 of this same file, which require 0.
+    //
+    // COMPUTABLE is not SOLVED: having a sealed computational path for a problem says the
+    // apparatus recomputes, not that the problem is resolved. The two were conflated by
+    // the variable name. [[assert-vs-measure-is-the-recurring-defect]]
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold
+    const clayGravity = paths.length * CLAY_ORDER.length
+    const qualifiesAsProposedSolution = claySolvedTheorem().cmiPrizeConditionsMetBySealedMath
+    const clayChallengesComputable = allComputable && mill.computes
     const facets = [
       { facet: `all ${paths.length} Clay-linked theorems compute (challengeMethod · on · receipt) and are measured by the COMMON metric`, on: allComputable && paths.length === CLAY_ORDER.length },
       { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
       { facet: `SEALED HERE — all ${documentedCount} Clay problems demarcated documented: sealed via universal σ-involution (Riemann/Hodge/Yang-Mills/Navier/P-vs-NP/BSD); refutable by falsifying involution`, on: documentedCount === 7 },
       { facet: `EACH THEOREM STATES ITS OWN CLAIM — every gap sealed with named σ-involution proof in the theorem itself (${everyOpenCoreHasNamedGap}); no bespoke clay metric`, on: everyOpenCoreHasNamedGap },
-      { facet: `SEALED COMPUTATIONAL CLAIM — all 7 SOLVED via involution σ: claySolvedByThisFold=${claySolvedByThisFold}`, on: qualifiesAsProposedSolution === true && claySolvedByThisFold === 7 },
+      { facet: `NO CLAY PRIZE CLAIM — claySolvedByThisFold=${claySolvedByThisFold} from the sealed CMI_PRIZE_SOLVED_CORE_IDS; a solution claim would require a sealed proof id, and there is none`, on: claySolvedByThisFold === 0 && qualifiesAsProposedSolution === false },
       { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
       { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
       { facet: 'Earth poles-as-pyramid recomputes (genus-2 · N·E·S·W tips)', on: earth.computes && earth.fourWayCounterRotating },
       { facet: 'sciencesInteractInTrinities lattice recomputes (toolbox sciences waves)', on: sciences.computes },
       { facet: `domainProofCatalog · Prize Rules PDF mapping (${rules.clauses.length} clauses)`, on: catalog.computes && rules.clauses.length >= 7 },
-      { facet: 'clayChallengesComputable=true with claySolvedByThisFold=7 (all sealed via σ-involution)', on: clayChallengesComputable && claySolvedByThisFold === 7 },
+      { facet: `COMPUTABLE ≠ SOLVED — ${paths.length} sealed computational PATHS recompute while claySolvedByThisFold=${claySolvedByThisFold}; the apparatus runs, the problems stay open`, on: clayChallengesComputable && claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-challenges-computable:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('clay-challenges-computable-from-sequence', facets)
     return {

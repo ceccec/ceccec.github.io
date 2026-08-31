@@ -1,5 +1,5 @@
 import { type RosettaComputationType } from '../../3/7';
-import type { MindMatrix } from '../../wind/types';
+import type { MindMatrix } from '../../types';
 export { ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_CONTENT_LENSES, ROSETTA_RAY_HUBS, ROSETTA_RAY_HUB_SLUGS, rosettaRayHub, rosettaRayOfContent, type RosettaComputationType, type RosettaCoreKind, type RosettaRay, type RosettaRayHub, type RosettaRayHubSlug } from '../../3/7';
 export declare function zeroDivisionTable(matrix?: MindMatrix): {
     holds: boolean;
@@ -246,7 +246,7 @@ export declare function dissolveAtPiTrainStations(matrix?: MindMatrix): {
     }[];
     stationOf: (piece: string) => number;
     routed: {
-        piece: import("../../wind/types").ConceptCommandName;
+        piece: import("../../types").ConceptCommandName;
         station: number;
         order: number;
     }[];
@@ -254,7 +254,7 @@ export declare function dissolveAtPiTrainStations(matrix?: MindMatrix): {
         digit: number;
         path: string;
         folder: string;
-        pieces: import("../../wind/types").ConceptCommandName[];
+        pieces: import("../../types").ConceptCommandName[];
     }[];
     orphans: number;
     stationsUsed: number;
@@ -417,14 +417,14 @@ export declare function piTrainFusionWaveThree(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -443,14 +443,14 @@ export declare function piTrainExportImportFusion(matrix?: MindMatrix): {
     law: string;
     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
     facets: {
         receipt: string;
         facet: string;
@@ -465,7 +465,7 @@ export declare function piTrainPhysicalCutWaveEight(matrix?: MindMatrix): {
     wave: number;
     station: string;
     path: string;
-    tierA: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+    tierA: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
     facets: {
         receipt: string;
         facet: string;
@@ -551,14 +551,14 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
                                 law: string;
                                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                 facets: {
                                     receipt: string;
                                     facet: string;
@@ -592,14 +592,14 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
                             law: string;
                             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -618,7 +618,7 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
                         wave: number;
                         station: string;
                         path: string;
-                        tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                        tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -633,14 +633,14 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
                         law: string;
                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -659,7 +659,7 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
                     wave: number;
                     station: string;
                     path: string;
-                    tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -674,14 +674,14 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
                     law: string;
                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -715,14 +715,14 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -741,7 +741,7 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
             wave: number;
             station: string;
             path: string;
-            tierA: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            tierA: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -756,14 +756,14 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -797,14 +797,14 @@ export declare function piTrainFusionWaveNine(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -898,14 +898,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                                     law: string;
                                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                     facets: {
                                         receipt: string;
                                         facet: string;
@@ -939,14 +939,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                                 law: string;
                                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                 facets: {
                                     receipt: string;
                                     facet: string;
@@ -965,7 +965,7 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                             wave: number;
                             station: string;
                             path: string;
-                            tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                            tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -980,14 +980,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                             law: string;
                             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -1006,7 +1006,7 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                         wave: number;
                         station: string;
                         path: string;
-                        tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                        tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -1021,14 +1021,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                         law: string;
                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -1062,14 +1062,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                     law: string;
                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -1088,7 +1088,7 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                 wave: number;
                 station: string;
                 path: string;
-                tierA: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                tierA: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -1103,14 +1103,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -1144,14 +1144,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -1185,14 +1185,14 @@ export declare function piTrainFusionWaveTen(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -1230,8 +1230,8 @@ export declare function piTrainPhysicalCutWaveTwelve(matrix?: MindMatrix): {
     stations: string[];
     path: string;
     vaultRemainder: number;
-    passthroughRemoved: ("asTorus" | "applyGate" | "bellPair" | "findContentAddressCollision" | "logInclusion" | "renderUiPathFromScienceModelAction" | "sealFacets" | "sha256MerkleProof" | "splitMethodWords" | "srcLogicPathFromScienceModelAction")[];
-    tierA: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+    passthroughRemoved: ("sha256MerkleProof" | "logInclusion" | "asTorus" | "applyGate" | "bellPair" | "findContentAddressCollision" | "renderUiPathFromScienceModelAction" | "sealFacets" | "splitMethodWords" | "srcLogicPathFromScienceModelAction")[];
+    tierA: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
     facets: {
         receipt: string;
         facet: string;
@@ -1311,14 +1311,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                                             law: string;
                                             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                             facets: {
                                                 receipt: string;
                                                 facet: string;
@@ -1352,14 +1352,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                                         law: string;
                                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                         facets: {
                                             receipt: string;
                                             facet: string;
@@ -1378,7 +1378,7 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                                     wave: number;
                                     station: string;
                                     path: string;
-                                    tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                    tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
                                     facets: {
                                         receipt: string;
                                         facet: string;
@@ -1393,14 +1393,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                                     law: string;
                                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                     facets: {
                                         receipt: string;
                                         facet: string;
@@ -1419,7 +1419,7 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                                 wave: number;
                                 station: string;
                                 path: string;
-                                tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                 facets: {
                                     receipt: string;
                                     facet: string;
@@ -1434,14 +1434,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                                 law: string;
                                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                 facets: {
                                     receipt: string;
                                     facet: string;
@@ -1475,14 +1475,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                             law: string;
                             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -1501,7 +1501,7 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                         wave: number;
                         station: string;
                         path: string;
-                        tierA: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                        tierA: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -1516,14 +1516,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                         law: string;
                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -1557,14 +1557,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                     law: string;
                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -1598,14 +1598,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -1639,14 +1639,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -1667,8 +1667,8 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
         stations: string[];
         path: string;
         vaultRemainder: number;
-        passthroughRemoved: ("asTorus" | "applyGate" | "bellPair" | "findContentAddressCollision" | "logInclusion" | "renderUiPathFromScienceModelAction" | "sealFacets" | "sha256MerkleProof" | "splitMethodWords" | "srcLogicPathFromScienceModelAction")[];
-        tierA: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        passthroughRemoved: ("sha256MerkleProof" | "logInclusion" | "asTorus" | "applyGate" | "bellPair" | "findContentAddressCollision" | "renderUiPathFromScienceModelAction" | "sealFacets" | "splitMethodWords" | "srcLogicPathFromScienceModelAction")[];
+        tierA: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -1683,14 +1683,14 @@ export declare function piTrainFusionWaveTwelve(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -1771,14 +1771,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                                         law: string;
                                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                         facets: {
                                             receipt: string;
                                             facet: string;
@@ -1812,14 +1812,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                                     law: string;
                                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                     facets: {
                                         receipt: string;
                                         facet: string;
@@ -1838,7 +1838,7 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                                 wave: number;
                                 station: string;
                                 path: string;
-                                tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
                                 facets: {
                                     receipt: string;
                                     facet: string;
@@ -1853,14 +1853,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                                 law: string;
                                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                                 facets: {
                                     receipt: string;
                                     facet: string;
@@ -1879,7 +1879,7 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                             wave: number;
                             station: string;
                             path: string;
-                            tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                            tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -1894,14 +1894,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                             law: string;
                             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -1935,14 +1935,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                         law: string;
                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -1961,7 +1961,7 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                     wave: number;
                     station: string;
                     path: string;
-                    tierA: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    tierA: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -1976,14 +1976,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                     law: string;
                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -2017,14 +2017,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -2058,14 +2058,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -2099,14 +2099,14 @@ export declare function piTrainFusionWaveEleven(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -2178,14 +2178,14 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
                             law: string;
                             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -2219,14 +2219,14 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
                         law: string;
                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -2245,7 +2245,7 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
                     wave: number;
                     station: string;
                     path: string;
-                    tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -2260,14 +2260,14 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
                     law: string;
                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -2286,7 +2286,7 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
                 wave: number;
                 station: string;
                 path: string;
-                tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -2301,14 +2301,14 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -2342,14 +2342,14 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -2368,7 +2368,7 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
         wave: number;
         station: string;
         path: string;
-        tierA: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        tierA: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         facets: {
             receipt: string;
             facet: string;
@@ -2383,14 +2383,14 @@ export declare function piTrainFusionWaveEight(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -2465,14 +2465,14 @@ export declare function piTrainFusionWaveFour(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -2506,14 +2506,14 @@ export declare function piTrainFusionWaveFour(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -2532,7 +2532,7 @@ export declare function piTrainPhysicalCutWaveFive(matrix?: MindMatrix): {
     wave: number;
     station: string;
     path: string;
-    tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+    tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
     facets: {
         receipt: string;
         facet: string;
@@ -2591,14 +2591,14 @@ export declare function piTrainFusionWaveFive(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -2632,14 +2632,14 @@ export declare function piTrainFusionWaveFive(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -2658,7 +2658,7 @@ export declare function piTrainFusionWaveFive(matrix?: MindMatrix): {
         wave: number;
         station: string;
         path: string;
-        tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
         facets: {
             receipt: string;
             facet: string;
@@ -2673,14 +2673,14 @@ export declare function piTrainFusionWaveFive(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -2699,7 +2699,7 @@ export declare function piTrainPhysicalCutWaveSix(matrix?: MindMatrix): {
     wave: number;
     station: string;
     path: string;
-    tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+    tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
     facets: {
         receipt: string;
         facet: string;
@@ -2779,14 +2779,14 @@ export declare function piTrainFusionWaveSeven(matrix?: MindMatrix): {
                         law: string;
                         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -2820,14 +2820,14 @@ export declare function piTrainFusionWaveSeven(matrix?: MindMatrix): {
                     law: string;
                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -2846,7 +2846,7 @@ export declare function piTrainFusionWaveSeven(matrix?: MindMatrix): {
                 wave: number;
                 station: string;
                 path: string;
-                tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -2861,14 +2861,14 @@ export declare function piTrainFusionWaveSeven(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -2887,7 +2887,7 @@ export declare function piTrainFusionWaveSeven(matrix?: MindMatrix): {
             wave: number;
             station: string;
             path: string;
-            tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -2902,14 +2902,14 @@ export declare function piTrainFusionWaveSeven(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -2943,14 +2943,14 @@ export declare function piTrainFusionWaveSeven(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -3016,14 +3016,14 @@ export declare function piTrainFusionWaveSix(matrix?: MindMatrix): {
                     law: string;
                     wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                     wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                    wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                    wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                    wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                    wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                     wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                    wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                    wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                     wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                     wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                     wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                    wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                    wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -3057,14 +3057,14 @@ export declare function piTrainFusionWaveSix(matrix?: MindMatrix): {
                 law: string;
                 wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
                 wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-                wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-                wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+                wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+                wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
                 wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-                wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+                wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
                 wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
                 wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
                 wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-                wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+                wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -3083,7 +3083,7 @@ export declare function piTrainFusionWaveSix(matrix?: MindMatrix): {
             wave: number;
             station: string;
             path: string;
-            tierA: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            tierA: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -3098,14 +3098,14 @@ export declare function piTrainFusionWaveSix(matrix?: MindMatrix): {
             law: string;
             wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
             wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-            wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-            wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+            wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+            wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
             wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-            wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+            wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
             wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
             wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
             wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-            wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+            wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -3124,7 +3124,7 @@ export declare function piTrainFusionWaveSix(matrix?: MindMatrix): {
         wave: number;
         station: string;
         path: string;
-        tierA: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        tierA: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         facets: {
             receipt: string;
             facet: string;
@@ -3139,14 +3139,14 @@ export declare function piTrainFusionWaveSix(matrix?: MindMatrix): {
         law: string;
         wave3Exports: ("composeHazard" | "ELECTRON_G_FACTOR_ANOMALY" | "casimirPressure" | "larmorFrequency" | "powerSpectrum" | "rebreatherInertBar" | "rnot" | "rotatingField" | "rtoffoli" | "wavelengthOf" | "zeroPointEnergy")[];
         wave4Exports: ("aksakRatioWalk" | "NEUTRINO_DM2_ATM_EV2" | "equivalentAirDepthM" | "gasReserveHalfOnTop" | "hubbleTensionSigma")[];
-        wave5Exports: ("BARYON_TO_PHOTON_RATIO" | "MAX_TAMPERING_COST_PRINCIPLE" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
-        wave6Exports: ("EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "hexDigitSum" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
+        wave5Exports: ("MAX_TAMPERING_COST_PRINCIPLE" | "BARYON_TO_PHOTON_RATIO" | "cycleAdvance" | "groupOrbit" | "hawkingTemperature" | "helmholtzFreeEnergy" | "rcnot" | "soundPressureLevelDb")[];
+        wave6Exports: ("hexDigitSum" | "EIGHT_FOLD_SCIENCES" | "MOON_ORBIT_INCLINATION_DEG" | "PCI_CONSCIOUSNESS_THRESHOLD" | "RENDER_UI_SCIENCE_MASK" | "isobaricCounterdiffusion" | "speedOfSoundAir" | "splitCamelSegment")[];
         wave7Exports: ("HUBBLE_CONSTANT_CMB" | "NEUTRINO_DM2_SOLAR_EV2" | "OMEGA_DARK_ENERGY" | "SCALAR_SPECTRAL_INDEX_NS" | "hardyWeinbergGenotypes" | "lunarStandstillDeclinationDeg" | "qieaRotate" | "resonancePeakGain")[];
-        wave8Exports: ("derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "tamperEvident" | "unruhTemperature" | "uuidDuality")[];
+        wave8Exports: ("tamperEvident" | "derivePublicKey" | "OMEGA_DARK_MATTER" | "carnotEfficiency" | "greatCircleKm" | "setAzimuthDeg" | "unruhTemperature" | "uuidDuality")[];
         wave9Exports: ("DARK_ENERGY_EOS_W" | "EARTH_RADIUS_KM" | "HIGGS_VEV_GEV" | "JARLSKOG_INVARIANT" | "otuPerMin" | "radarRange" | "resonanceBandwidth" | "riseAzimuthDeg")[];
         wave10Exports: ("humanEase" | "HUBBLE_CONSTANT_LOCAL" | "PROTON_GYROMAGNETIC" | "ZHL16_HE_HALFTIMES" | "addressEntropyBits" | "blackHoleEntropyBits" | "cantorDiagonal" | "casimirEnergyPerArea" | "congruence" | "frequencyOf" | "oscillatorBank" | "quantumZeno" | "resonantAmplitude")[];
         wave11Exports: ("superdense" | "digitalRoot" | "CRITICAL_MAGNETIC_FIELD_T" | "LUNAR_NODAL_PERIOD_YEARS" | "MOND_ACCELERATION_A0" | "OMEGA_BARYON" | "bumpProfile" | "isIonizing" | "leafFromPathTail" | "methodNameFromFolderTail" | "qcdMassFractionOfProton" | "ratIsInteger" | "ratStr" | "syncSpeedRpm")[];
-        wave12Exports: ("phase" | "inductionEvolve" | "inductionStep" | "slip")[];
+        wave12Exports: ("inductionEvolve" | "inductionStep" | "phase" | "slip")[];
         facets: {
             receipt: string;
             facet: string;
@@ -3379,7 +3379,7 @@ export declare function rosettaComputesAll(route: string, at?: number, matrix?: 
         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        siblings: import("../../wind/types").ConceptCommandName[];
+        siblings: import("../../types").ConceptCommandName[];
         siblingCount: number;
     };
     content: {
@@ -3558,8 +3558,8 @@ export declare function rosettaComputesItself(at?: number, matrix?: MindMatrix):
         root: string;
     };
     rows: {
-        tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-        action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+        tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+        action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
         ray: number;
         rayMeta: {
             readonly ray: 0;
@@ -3616,7 +3616,7 @@ export declare function rosettaComputesItself(at?: number, matrix?: MindMatrix):
         legacyBare: string;
         schemaTarget: string;
         canonical: string;
-        importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+        importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
         wave: 2 | 1;
         applied: boolean;
         receipt: string;
@@ -3748,8 +3748,8 @@ export declare function rosettaReuse(at?: number, matrix?: MindMatrix): {
             root: string;
         };
         rows: {
-            tail: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
-            action: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+            tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+            action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
             ray: number;
             rayMeta: {
                 readonly ray: 0;
@@ -3806,7 +3806,7 @@ export declare function rosettaReuse(at?: number, matrix?: MindMatrix): {
             legacyBare: string;
             schemaTarget: string;
             canonical: string;
-            importBarrel: "language" | "ui" | "types" | "fusion" | "rosetta" | "routes" | "learning" | "site" | "iching";
+            importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
             wave: 2 | 1;
             applied: boolean;
             receipt: string;
@@ -3927,7 +3927,7 @@ export declare function rosettaComputesResponseForPath(path: string, at?: number
         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        siblings: import("../../wind/types").ConceptCommandName[];
+        siblings: import("../../types").ConceptCommandName[];
         siblingCount: number;
     };
     content: {

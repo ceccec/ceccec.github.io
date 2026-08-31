@@ -1,5 +1,5 @@
 export { SOLAR_MASS_KG } from '../../3/7';
-import type { BabelFold, MindMatrix } from '../../wind/types';
+import type { BabelFold, MindMatrix } from '../../types';
 export declare function textToMovie(text?: string, frames?: number): {
     generated: boolean;
     deterministic: boolean;
@@ -750,7 +750,7 @@ export declare function bulgarianHeritageEightfold(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export { GOLD_MINE_MAP_HINGE, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphPaintSamples, thunderGoldGraphComputes, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes, } from '../../wind/fusion/gold';
+export { GOLD_MINE_MAP_HINGE, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphPaintSamples, thunderGoldGraphComputes, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes } from '../../wind/fusion';
 export declare function magneticDeclinationAtSite(latDeg: number, lonDeg: number): {
     declinationDeg: number;
     poleLatDeg: number;

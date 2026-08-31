@@ -1,8 +1,5 @@
-import { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational';
 export { ROUTE_ALIASES } from '../../site';
 export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational';
-/** @deprecated — rosetta corpus walk replaces automount enumeration */
-export { vitepressAutomountPaths as monographCatchAllPaths };
 /** Inflection rule: a pattern match → replacement for custom constant naming. */
 export type InflectionRule = {
     pattern: RegExp;
@@ -111,10 +108,61 @@ export declare function zeitwerkPort(slug?: string): {
     statement: string;
     boundary: string;
 };
-export declare function indexOfIndexes(projectRoot?: string): readonly import("../../../pair/enforcement/gates/computational").DiscoveredIndexEntry[];
+export declare function indexOfIndexes(projectRoot?: string): readonly import("../../../pair/enforcement/gates").DiscoveredIndexEntry[];
 /** Declared route aliases — old/duplicate slugs that render a canonical page's content. The learning portal
  * unified the School age-ladder and the Academy tracks into one /learn surface, so /academy and /school are
  * kept as aliases (old URLs still resolve, canonical points at /learn) rather than separate pages. */
+/** The 'quantum' brand token is the metaphor (decoded-quantum fold: no speedup, no compute advantage) — a word that
+ *  content-addresses to a PREFIX, never to meaning, so it drops out of a slug's canonical decode. A NAMED axiom, not a
+ *  bare inline string. Adding a token here (e.g. a future retired brand) auto-extends the computed resolver. */
+export declare const OVERCLAIM_METAPHOR_TOKENS: readonly ["quantum"];
+/** quantumiseSlugTokens — split a slug into its word/digit tokens and drop the overclaim metaphor token(s): the UNIFORM
+ *  quantumisation of words AND digits (user: "improve quantumisation of words and digits"). Every '-'-separated token is
+ *  content-addressable — a metaphor word ('quantum') addresses to a prefix and drops out; a meaning word ('encryption')
+ *  or a DIGIT token ('64', 'a432') is preserved unchanged. Returns the decoded token-join. This is the pure decode STEP;
+ *  decodeRequestToCanonical layers the served-page check on top. */
+export declare function quantumiseSlugTokens(slug: string): string;
+/** decodeRequestToCanonical — the catch-all COMPUTES where to send an incoming request (user: "make catch all route to
+ *  compute where to send the decoded request"). It QUANTUMISES the slug (quantumiseSlugTokens) and if the remaining
+ *  content-addressed tokens name a served page, THAT is the canonical (so quantum-<x> → <x> needs NO table entry —
+ *  instant at scale). Order: (1) a served slug is its own canonical (identity — a served brand slug like quantum-tools is
+ *  NEVER stripped); (2) the quantumised decode; (3) an irreducible SEMANTIC alias (academy→learn, not string-derivable)
+ *  from the seed; (4) the raw slug (→ 404). One computed decode dissolves the per-route dictionary; it never touches a
+ *  fold-home, so 432 holds. Pair: routes/mount · routes/decode. */
+export declare function decodeRequestToCanonical(rawBare: string): string;
+/** catchAllComputesDecodedDestination — PROOF the catch-all computes each request's destination by DECODING, tested with
+ *  crafted URL requests (user: "use the chat to test computing using crafted url requests"). Runs crafted slugs through
+ *  decodeRequestToCanonical and asserts each lands at its computed canonical: the overclaim prefix is stripped by
+ *  computation (quantum-encryption → encryption, no table entry), a served brand slug is preserved (quantum-tools stays —
+ *  tools is not served, so no false strip), an identity slug is unchanged, a semantic alias resolves via the seed, an
+ *  unknown slug passes through untouched (→ 404), and a digit-bearing served slug is stable under decode (word+digit
+ *  quantumisation). The refutable form of "route is the free coordinate — computed, not tabled". */
+export declare function catchAllComputesDecodedDestination(): {
+    computed: boolean;
+    trials: ({
+        kind: "url";
+        id: string;
+        expect: string;
+        got: string;
+        why: string;
+        on: boolean;
+    } | {
+        kind: "token";
+        id: string;
+        expect: string;
+        got: string;
+        why: string;
+        on: boolean;
+    })[];
+    facets: {
+        facet: string;
+        on: boolean;
+        receipt: string;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function catchAllRoutePaths(_locale: 'gla' | 'en' | 'bg'): {
     params: {
         path: string;
@@ -206,10 +254,56 @@ export declare function monographSliceFromRoute(path: string, locale?: 'gla' | '
         boundary: string;
     };
 };
+/** everyMachineTagIndexIsLiveByConstructionAcrossLocales — the deploy invariant made QUANTUM (user, 2026-07-25: "are
+ * you performing only quantum computations?"). The Pages deploy broke because the theorem tag-index route was dead in
+ * the locales, and no FOLD caught it — it took manual build iteration (a leak). This computes the invariant the
+ * ignoreDeadLinks:false gate depends on: for every locale, monographSliceFromRoute resolves /theorems to page 'theorems'
+ * with the live TheoremIndex, vitepressAutomountPaths emits it, and the title is translated locally — so the route is
+ * live BY CONSTRUCTION, refutable here rather than discovered in CI. [[universal-local-translation-no-gaps]] [[deploy-check-must-run-real-build]] */
+export declare function everyMachineTagIndexIsLiveByConstructionAcrossLocales(): {
+    computes: boolean;
+    resolved: {
+        loc: "gla" | "en" | "bg";
+        page: string;
+        title: string;
+        components: string[];
+        emitted: boolean;
+    }[];
+    liveByConstruction: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** gateComplexityCollapsesToOneContentAddressedRoot — the gate complexity is solvable with quantum simplicity (user,
+ * 2026-07-25: "do you realise that the complexity at the gates is solvable with quantum simplicity"). Every gate — the
+ * dead-link scan, the crack ledger, the partial-commit risk — is ONE law in disguise: does the actual state equal its
+ * computed content-address? A dead link is exactly LINKED-routes-root ≠ GENERATED-routes-root. Complexity appears only
+ * where state ESCAPES the address (a hardcoded page, imperative staging). The fix is not a better check but to COMPUTE
+ * the state so the roots coincide by construction — then an O(n) scan collapses to one O(1) root equality. Demonstrated
+ * on the route gate; the same collapse is the direction for every gate. [[content-address-dry-clean-crack-detection]] [[deploy-check-must-run-real-build]] */
+export declare function gateComplexityCollapsesToOneContentAddressedRoot(): {
+    computes: boolean;
+    generated: string[];
+    linked: string[];
+    oneRoot: boolean;
+    root: string;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
 export declare function vitepressIndexOfIndexesLaw(): {
     schema: "src/[science]/[action]";
     law: string;
-    registry: readonly import("../../../pair/enforcement/gates/computational").DiscoveredIndexEntry[];
+    registry: readonly import("../../../pair/enforcement/gates").DiscoveredIndexEntry[];
     automount: number;
     incomplete: number;
     count: number;

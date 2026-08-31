@@ -1,4 +1,4 @@
-import type { MindMatrix, StaticPage } from '../../../wind/types';
+import type { MindMatrix, StaticPage } from '../../../types';
 export declare function allPagesForPlasmaWiring(matrix?: MindMatrix): StaticPage[];
 export type WiredGateway = {
     slug: string;
@@ -410,6 +410,21 @@ export declare function plasmaClientWorkBoundedByPureMath(path?: string, matrix?
         receipt: string;
     })[];
     root: string;
+};
+/** quantumNavigationNavigatesThePlasma — the plasma hero is driven by the (referrer, path) superposition (user,
+ * 2026-07-24: "use the quantum navigation to navigate the plasma"). The plasma hue is a content-address of
+ * pageNavContext(referrer, path).superposition, so navigating the referrer OR the path repaints the plasma; the
+ * path-only heroMoviePhaseHue is the referrer-agnostic base the superposition lifts. Deterministic, zero-token. */
+export declare function quantumNavigationNavigatesThePlasma(matrix?: MindMatrix): {
+    navigates: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
 };
 export declare const MOVIE_SIMULATION_CHANNEL_IDS: readonly ["astronomy", "resonance", "dynamics", "gold-fusion", "weather", "gateway"];
 export type RealtimeComputeMovieChannel = {

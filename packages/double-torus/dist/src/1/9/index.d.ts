@@ -27,6 +27,27 @@ export declare function digitFold(): {
 export declare function rnot(bits: number, target: number): number;
 /** Reversible Toffoli — universal for classical reversible computation. */
 export declare function rtoffoli(bits: number, control1: number, control2: number, target: number): number;
+/** reversibleComputationDecoded — classical reversible computation, proven on the portal's OWN gates (the topic
+ *  the double torus is built on: every projection invertible). A gate is REVERSIBLE iff it is a BIJECTION of its
+ *  state space — no input is lost, so the computation can be run backwards. `rnot` and `rtoffoli` are INVOLUTIONS
+ *  (g∘g = id), hence self-inverse bijections, hence reversible; Toffoli is universal for reversible classical logic
+ *  (Toffoli 1980). The COST link (Landauer 1961 · Bennett 1973): irreversible AND is MANY-TO-ONE — it discards a
+ *  bit — so it must dissipate ≥ kT·ln2 per erased bit; a reversible gate erases nothing and evades that floor.
+ *  HONEST: Landauer's kT·ln2 is the IDEAL LOWER bound — real devices dissipate MORE, the 2nd law is not violated,
+ *  and reversibility buys NO free energy: it only makes the erasure cost avoidable in principle. Cited results
+ *  (Toffoli/Landauer/Bennett), not re-proved. [[negentropy-ledger-arc]] holds the 2nd-law/Landauer line. */
+export declare function reversibleComputationDecoded(): {
+    computes: boolean;
+    landauerJ: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** CODATA experimental electron anomalous moment a_e = (g−2)/2. */
 export declare const ELECTRON_G_FACTOR_ANOMALY = 0.00115965218073;
 /** Survival hazard composition — multiplicative levers clamped to (0.001, 0.999). */
@@ -60,8 +81,66 @@ export declare const LOCALE_LINK: Record<LocaleName, string>;
 export declare function stripLocalePrefix(route: string): string;
 export declare function localePath(route: string, locale?: LocaleName): string;
 export declare function localeFromRoute(path: string): LocaleName;
+/** Extract exact slot tokens (no md-link labels) for drift checks. */
+export declare function translationParityTokens(text: string): readonly string[];
+/**
+ * Structural en↔bg parity: same slot tokens + same link *targets* after locale strip.
+ * Link *labels* may differ (honest translation); href paths must stay en-parity.
+ */
+export declare function translationPlaceholderParity(en: string, bg: string): boolean;
+/** Phrase-table integrity — empty/stub pairs, structural parity, en≡bg stubs, offline round-trip. */
+export declare function offlineBulgarianPhraseTableAudit(): {
+    readonly ok: boolean;
+    readonly phraseCount: number;
+    readonly emptyOrStub: number;
+    readonly placeholderMismatch: number;
+    readonly enEqualsBg: number;
+    readonly roundTripMiss: number;
+    readonly root: string;
+};
+/**
+ * Deterministic phonetic Latin→Bulgarian-Cyrillic transliteration — the completeness fallback so bg
+ * never leaks raw Latin (gla covers by toGlagolitic; bg now covers unknown vocabulary by Cyrillic script).
+ * Pure, zero-network. HONEST: this is SCRIPT coverage (how a word SOUNDS in Bulgarian letters), NOT
+ * meaning translation — only the phrase table carries meaning. Non-Latin (Cyrillic, punctuation, digits,
+ * placeholder markers) passes through untouched; digraphs resolve before single letters. AGNOSTIC: routes
+ * through the shared transliterateByMap engine (src/0) — the same word-scan method toGlagolitic/toScript
+ * use over their own maps, not a hand-written parallel implementation.
+ */
+export declare function latinToBulgarianCyrillic(text: string): string;
+/**
+ * Offline en→bg translating service — sealed phrase table (meaning) + Cyrillic transliteration fallback
+ * (script), zero network.
+ * Protects exact slots ({n}/%s/code/HTML) before longest-key substitution; md links ride inside phrases.
+ * After substitution, untranslated Latin visible-text runs are transliterated to Bulgarian Cyrillic so
+ * NO raw Latin leaks — but phrase-table outputs (already meaning-translated, may keep intentional Latin
+ * proper nouns like "Tesla"), md-link hrefs, URLs and code slots are PROTECTED from transliteration.
+ * HONEST: phrase-table = meaning; transliteration fallback = phonetic script coverage, not semantic MT.
+ */
+export declare function offlineTranslateEnToBg(text: string, extraPhrases?: readonly (readonly [string, string])[]): {
+    readonly text: string;
+    readonly mapped: number;
+    readonly total: number;
+    readonly method: 'identity' | 'passthrough-cyrillic' | 'phrase-table' | 'phrase-table+translit' | 'translit' | 'locale-links-only';
+    readonly placeholderParity: boolean;
+    readonly root: string;
+};
 /** English → Bulgarian when locale is bg and text has no Cyrillic yet (longest keys first). */
-export declare function bulgarianFromEnglish(text: string): string;
+export declare function bulgarianFromEnglish(text: string, extraPhrases?: readonly (readonly [string, string])[]): string;
+/**
+ * COMPLETENESS proof — "understands all" = no raw Latin leaks. For each open-vocabulary English sample,
+ * offlineTranslateEnToBg(s) must leave ZERO Latin letters in the VISIBLE text (after removing the
+ * legitimately-Latin protected regions: md-link hrefs, code, HTML slots, {n}/%s tokens, bare URLs).
+ * Refutable: disable latinToBulgarianCyrillic and this goes red (leaks > 0). This is SCRIPT completeness
+ * (unknown words rendered in Bulgarian letters), NOT semantic understanding — meaning lives in the table.
+ */
+export declare function offlineBulgarianNoLatinLeakAudit(samples?: readonly string[]): {
+    readonly ok: boolean;
+    readonly total: number;
+    readonly leaks: number;
+    readonly leakedSamples: readonly string[];
+    readonly root: string;
+};
 /** Seed station: Waite's tarot deck decoded from the 1911 Pictorial Key epub (public domain) —
  * 22 trumps + 4×14 lesser = the 78-cell lattice, extracted by superposition parse (all head formats
  * at once) and collapsed by the lattice constraint, which located the book's own 'Divanatory' typo
@@ -1037,4 +1116,16 @@ export declare function invertingTheRotatingFieldSurfacesTheGeneratorAndTheHidde
     }[];
     statement: string;
     boundary: string;
+};
+export declare const binary: {
+    readonly logic: {
+        readonly linearVsQuantum: typeof theBinaryBitIsLinearTheVortexCircuitIsQuantum;
+    };
+    readonly tesla: {
+        readonly patents: typeof teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotion;
+    };
+    readonly energy: {
+        readonly zeroPoint: typeof zeroPointEnergy;
+        readonly casimir: typeof casimirPressure;
+    };
 };

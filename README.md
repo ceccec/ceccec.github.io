@@ -105,7 +105,7 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 ### Statement
 
-Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=7 — computable ≠ CMI Prize solved.
+Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 — computable ≠ CMI Prize solved.
 
 Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — ). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
 
@@ -204,7 +204,7 @@ Each problem below shows its **statement (algebraic)** — the precise mathemati
 computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 
 - Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
-- Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=7.
+- Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
 
 
 ## Findings — sealed discoveries

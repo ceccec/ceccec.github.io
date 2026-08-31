@@ -1405,7 +1405,10 @@ export function trinityKey(shareA: string, shareB: string): string {
 // One-way public-key derivation. Each public root folds with the private key; their merkle is the public key.
 // The private key is not recoverable from the public — the fold is one-way (the same irreversibility as the seal).
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// derivePublicKey → pi-train wave 8 tier-A at src/5/5.
+export function derivePublicKey(privateKey: string, publicRoots: readonly string[]): string {
+  const folds = publicRoots.map((root) => merge(privateKey, root))
+  return merkleFold(folds)
+}
 
 // ── Simulators (classical, deterministic) ──────────────────────────────────────────────────────────────
 // What a deterministic classical machine CAN build: SIMULATORS of other computers — never the machines. They

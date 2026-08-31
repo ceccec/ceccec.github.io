@@ -1,9 +1,67 @@
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function toUuid(seed: string): string;
+/** referralAddress — the ONE deterministic path every referrer-consumer routes through, so referrals are PREDICTABLE
+ * and zero-stored. VARIADIC in the keys: a 2-key hop `(referrer, node)` addresses to `${kind}:${referrer}|${node}` (a
+ * linear seam — binds only the endpoints), while a full 4-key tamper-evident surface `(referrer, id, prev, next)`
+ * folds all four, so changing prev OR next changes the address and no navigation step can be spliced in or out
+ * undetected. Same (kind, ...keys) → same address, always; no key is ever stored, it is recomputed. Existing 2-key
+ * addresses are unchanged (join('|') of two keys is the old `${referrer}|${node}`), so this is pure DRY, no drift. */
+export declare function referralAddress(kind: string, ...keys: string[]): string;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function merge(a: string, b: string): string;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function roundTo(value: number, digits: number): number;
+/** Host-boundary math — Math.* allowed ONLY here (void kernel) and src/3/7 (τ vault root). math/algebra · math/trust. */
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function abs(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function floor(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function ceil(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function round(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function trunc(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function sign(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function min(...xs: number[]): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function max(...xs: number[]): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function sin(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function cos(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function tan(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function asin(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function acos(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function atan(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function atan2(y: number, x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function sqrt(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function cbrt(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function hypot(...xs: number[]): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function pow(x: number, y: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function exp(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function log(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function log2(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function log10(x: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function imul(a: number, b: number): number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function sinh(x: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function seedFromText(text: string, length?: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -68,6 +126,11 @@ export declare function topologicalOrder(nodeCount: number, edges: readonly (rea
     sources: number[];
 };
 export declare function antichainLevels(nodeCount: number, edges: readonly (readonly number[])[]): number[][];
+/** reportMemo is a bounded FIFO flow: on set, drop the oldest keys while size exceeds MEMO_CAP (2^16). */
+export declare const MEMO_CAP: number;
+export declare function boundedFlowSet<K, V>(flow: Map<K, V>, key: K, value: V, cap?: number): void;
+/** The live memo cardinality — measurable, so a fold can compute what the flow does instead of assuming it. */
+export declare function memoSize(): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function memoByRoot<T>(name: string, matrix: {
     root: string;
@@ -177,8 +240,580 @@ export declare function decodeVortexDashAngles(encoded?: string): {
     statement: string;
     boundary: string;
 };
+/** Reflection through 0 at fold angle θ=180°/k: pairing sum S=11−k, image (S−d) mod S. θ=180⇒10−d (σ), 90⇒9−d (ν), 60⇒8−d. */
+export declare function reflectFold(d: number, foldAngleDeg?: number): number;
+/** Reflection through 0 on the ten-clock (the default 180° fold): negation mod 10, d↦10−d. 1↦9, 5↦5, 0↦0. The `\` op. */
+export declare function reflectThroughZero(d: number): number;
+export declare function reflectDoubleTorus(d: number): {
+    lobe0: number;
+    lobe1: number;
+    translate: number;
+    throat: string;
+};
+/** A single fold angle is harmonic iff it tiles the full turn evenly: 360/θ ∈ ℤ (θ divides 360). */
+export declare function isHarmonic360(angleDeg: number): boolean;
+/** The accepted single-fold angles — the 24 divisors of 360 (harmonics that split the turn into equal sectors). */
+export declare function divisorsOf360(): number[];
+/** ANY combination is accepted iff its angles create a harmonic of 360 — Σθ ≡ 0 (mod 360), closing the circle
+ *  after a whole number of turns. The general acceptance gate for fold combinations (rational, closing, finite). */
+export declare function combinationAccepted(angles: readonly number[]): {
+    sum: number;
+    turns: number;
+    closes: boolean;
+    accepted: boolean;
+};
+export declare function foldModulus(angleDeg: number): {
+    k: number;
+    modulus: number;
+    defined: boolean;
+};
+export declare function foldFixedPoints(angleDeg: number): number[];
+/** The full reflection-fold family — k=1..10, θ=180°/k, modulus M=11−k, each an accepted 360-harmonic, with the
+ *  image of digit d, and the fold's FIXED POINTS (its critical line — the proof-carrying centre, Clay-style). */
+export declare function reflectFoldFamily(d?: number): {
+    d: number;
+    rows: {
+        k: number;
+        angleDeg: number;
+        modulus: number;
+        harmonic: boolean;
+        image: number;
+        fixedPoints: number[];
+    }[];
+    root: string;
+};
+export type VortexOp = 'fold' | 'reflect';
+/** The dash IS the operation: `/` folder-compatible ⇒ fold (generative merge); `\` ⇒ reflection through 0 (involution). */
+export declare function dashOperation(dash: '/' | '\\'): VortexOp;
+export type VortexOpStep = {
+    readonly step: number;
+    readonly digit: number;
+    readonly dash: '/' | '\\';
+    readonly op: VortexOp;
+    readonly next: number;
+    readonly edge: string;
+    readonly reflectImage: number;
+    readonly involutive: boolean;
+    readonly receipt: string;
+};
+/** Decode the path into its per-edge operations: `/` folds the digit's address into the next (generative,
+ *  folder-compatible), `\` reflects the digit through 0 (involution, stays in the ring). Reuses parseVortexDashEncoded. */
+export declare function decodeVortexOperations(encoded?: string): {
+    encoded: string;
+    steps: VortexOpStep[];
+    foldCount: number;
+    reflectCount: number;
+    allReflectionsInvolutive: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Infinity within the finite ring — COMPUTED & falsifiable. The fold (`/`) self-extends an address into an
+ *  ENDLESS spine of distinct dualities (nextDuality), while digitalRoot collapses EVERY one back to a single
+ *  ring digit {1..9}. Infinitely many addresses, nine digits: the fold generates, the reflection through 0 bounds. */
+export declare function unfoldWithinRing(seed: string, depth: number): {
+    addresses: string[];
+    digits: number[];
+    allDistinct: boolean;
+    allInRing: boolean;
+    digit: number;
+    root: string;
+};
+export declare function sequenceCoverage(seed: string, depth: number, n?: number): {
+    seen: number;
+    total: number;
+    complete: boolean;
+    distribution: number[];
+    flat: boolean;
+    allDistinct: boolean;
+    root: string;
+};
+export declare function sequenceBitBudget(): {
+    steps: number;
+    bitsPerDigit: number;
+    raw: number;
+    gatewayCost: number;
+    budget: number;
+    is42: boolean;
+    root: string;
+};
+export declare function equilibrium360(): {
+    forward: {
+        lobe: readonly number[];
+        deg: number;
+        bits: number;
+        erases: number;
+    };
+    reverse: {
+        lobe: readonly number[];
+        deg: number;
+        bits: number;
+        returns: number;
+    };
+    deg: number;
+    closed: boolean;
+    turns: number;
+    raw: number;
+    netErasure: number;
+    conserved: boolean;
+    root: string;
+};
+export declare function dimensionalBit(): {
+    digest: number;
+    harmonic: number;
+    nextDimension: number;
+    rays: number;
+    uuid: number;
+    is128: boolean;
+    rosettaAreas: number;
+    is42: boolean;
+    root: string;
+};
+export declare function clayReflection(): {
+    thisDimension: number;
+    beyond: number;
+    clay: number;
+    solved: number;
+    open: number;
+    is7: boolean;
+    reflectsDimensionalBit: boolean;
+    root: string;
+};
+export type DigitTheorem = {
+    readonly problem: string;
+    readonly title: string;
+    readonly sealed: boolean;
+};
+export declare function digitStation(d: number, theorems?: readonly DigitTheorem[]): {
+    digit: {
+        theorems: readonly DigitTheorem[];
+        root: () => string;
+        statement: () => string;
+        mappings: {
+            digit: number;
+            reflect: number;
+            reflections: {
+                at180: number;
+                at90: number;
+                at60: number;
+            };
+            equilibrium: {
+                lobe0: number;
+                lobe1: number;
+                translate: number;
+                throat: string;
+            };
+            op: VortexOp;
+            dash: "/" | "\\";
+            next: number;
+            successor: number;
+            predecessor: number;
+            isSelfReflect: boolean;
+            bitCost: number;
+            isTheorem: boolean;
+        };
+        unfold: (depth: number) => {
+            addresses: string[];
+            digits: number[];
+            allDistinct: boolean;
+            allInRing: boolean;
+            digit: number;
+            root: string;
+        };
+        coverage: (depth?: number, n?: number) => {
+            seen: number;
+            total: number;
+            complete: boolean;
+            distribution: number[];
+            flat: boolean;
+            allDistinct: boolean;
+            root: string;
+        };
+        prove: () => {
+            ok: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+        };
+    };
+    theorems: readonly DigitTheorem[];
+    root: () => string;
+    statement: () => string;
+    mappings: {
+        digit: number;
+        reflect: number;
+        reflections: {
+            at180: number;
+            at90: number;
+            at60: number;
+        };
+        equilibrium: {
+            lobe0: number;
+            lobe1: number;
+            translate: number;
+            throat: string;
+        };
+        op: VortexOp;
+        dash: "/" | "\\";
+        next: number;
+        successor: number;
+        predecessor: number;
+        isSelfReflect: boolean;
+        bitCost: number;
+        isTheorem: boolean;
+    };
+    unfold: (depth: number) => {
+        addresses: string[];
+        digits: number[];
+        allDistinct: boolean;
+        allInRing: boolean;
+        digit: number;
+        root: string;
+    };
+    coverage: (depth?: number, n?: number) => {
+        seen: number;
+        total: number;
+        complete: boolean;
+        distribution: number[];
+        flat: boolean;
+        allDistinct: boolean;
+        root: string;
+    };
+    prove: () => {
+        ok: boolean;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+    };
+    reflect: number;
+    reflections: {
+        at180: number;
+        at90: number;
+        at60: number;
+    };
+    equilibrium: {
+        lobe0: number;
+        lobe1: number;
+        translate: number;
+        throat: string;
+    };
+    op: VortexOp;
+    next: number;
+    successor: number;
+    predecessor: number;
+};
+export declare function ringEquilibrium(): {
+    steps: {
+        d: number;
+        lobe0: number;
+        lobe1: number;
+        translate: number;
+        isPlusOne: boolean;
+        receipt: string;
+    }[];
+    orbitSize: number;
+    transitive: boolean;
+    plusOneHolds: boolean;
+    balanced: boolean;
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function qpu(): {
+    register: {
+        digit: {
+            theorems: readonly DigitTheorem[];
+            root: () => string;
+            statement: () => string;
+            mappings: {
+                digit: number;
+                reflect: number;
+                reflections: {
+                    at180: number;
+                    at90: number;
+                    at60: number;
+                };
+                equilibrium: {
+                    lobe0: number;
+                    lobe1: number;
+                    translate: number;
+                    throat: string;
+                };
+                op: VortexOp;
+                dash: "/" | "\\";
+                next: number;
+                successor: number;
+                predecessor: number;
+                isSelfReflect: boolean;
+                bitCost: number;
+                isTheorem: boolean;
+            };
+            unfold: (depth: number) => {
+                addresses: string[];
+                digits: number[];
+                allDistinct: boolean;
+                allInRing: boolean;
+                digit: number;
+                root: string;
+            };
+            coverage: (depth?: number, n?: number) => {
+                seen: number;
+                total: number;
+                complete: boolean;
+                distribution: number[];
+                flat: boolean;
+                allDistinct: boolean;
+                root: string;
+            };
+            prove: () => {
+                ok: boolean;
+                count: number;
+                facets: ({
+                    facet: string;
+                    on: boolean;
+                } & {
+                    receipt: string;
+                })[];
+                root: string;
+            };
+        };
+        theorems: readonly DigitTheorem[];
+        root: () => string;
+        statement: () => string;
+        mappings: {
+            digit: number;
+            reflect: number;
+            reflections: {
+                at180: number;
+                at90: number;
+                at60: number;
+            };
+            equilibrium: {
+                lobe0: number;
+                lobe1: number;
+                translate: number;
+                throat: string;
+            };
+            op: VortexOp;
+            dash: "/" | "\\";
+            next: number;
+            successor: number;
+            predecessor: number;
+            isSelfReflect: boolean;
+            bitCost: number;
+            isTheorem: boolean;
+        };
+        unfold: (depth: number) => {
+            addresses: string[];
+            digits: number[];
+            allDistinct: boolean;
+            allInRing: boolean;
+            digit: number;
+            root: string;
+        };
+        coverage: (depth?: number, n?: number) => {
+            seen: number;
+            total: number;
+            complete: boolean;
+            distribution: number[];
+            flat: boolean;
+            allDistinct: boolean;
+            root: string;
+        };
+        prove: () => {
+            ok: boolean;
+            count: number;
+            facets: ({
+                facet: string;
+                on: boolean;
+            } & {
+                receipt: string;
+            })[];
+            root: string;
+        };
+        reflect: number;
+        reflections: {
+            at180: number;
+            at90: number;
+            at60: number;
+        };
+        equilibrium: {
+            lobe0: number;
+            lobe1: number;
+            translate: number;
+            throat: string;
+        };
+        op: VortexOp;
+        next: number;
+        successor: number;
+        predecessor: number;
+    }[];
+    circuit: {
+        encoded: string;
+        steps: VortexOpStep[];
+        foldCount: number;
+        reflectCount: number;
+        allReflectionsInvolutive: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    equilibrium: {
+        steps: {
+            d: number;
+            lobe0: number;
+            lobe1: number;
+            translate: number;
+            isPlusOne: boolean;
+            receipt: string;
+        }[];
+        orbitSize: number;
+        transitive: boolean;
+        plusOneHolds: boolean;
+        balanced: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    gates: {
+        fold: string;
+        reflect: string;
+        harmonics: {
+            angleDeg: number;
+            modulus: number;
+            fixedPoints: number[];
+        }[];
+    };
+    measurement: {
+        addresses: string[];
+        digits: number[];
+        allDistinct: boolean;
+        allInRing: boolean;
+        digit: number;
+        root: string;
+    };
+    doubleTorus: {
+        forward: string;
+        reverse: string;
+        bidirectional: boolean;
+        merged: string;
+    };
+    ftl: {
+        throat: string;
+        lobes: readonly [string, string];
+        instantByAddressing: boolean;
+    };
+    proofs: {
+        ok: boolean;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+    }[];
+    proven: boolean;
+    coherent: boolean;
+    root: string;
+    statement: string;
+};
+export declare const digit0: {
+    digit: number;
+    theorems: readonly DigitTheorem[];
+    spectrum: {
+        k: number;
+        angleDeg: number;
+        modulus: number;
+        harmonic: boolean;
+        image: number;
+        fixedPoints: number[];
+    }[];
+    polarities: {
+        tensPair: number;
+        ninePair: number;
+        sixtyPair: number;
+        fold: number;
+        lobes: readonly [number, number];
+        forward: number;
+        reverse: number;
+    };
+    equilibrium: {
+        lobe0: number;
+        lobe1: number;
+        translate: number;
+        throat: string;
+    };
+    unfold: (depth: number) => {
+        addresses: string[];
+        digits: number[];
+        allDistinct: boolean;
+        allInRing: boolean;
+        digit: number;
+        root: string;
+    };
+    prove: () => {
+        ok: boolean;
+        count: number;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+    };
+    coverage: (depth?: number, n?: number) => {
+        seen: number;
+        total: number;
+        complete: boolean;
+        distribution: number[];
+        flat: boolean;
+        allDistinct: boolean;
+        root: string;
+    };
+    root: () => string;
+    statement: () => string;
+    mappings: {
+        digit: number;
+        reflect: number;
+        reflections: {
+            at180: number;
+            at90: number;
+            at60: number;
+        };
+        equilibrium: {
+            lobe0: number;
+            lobe1: number;
+            translate: number;
+            throat: string;
+        };
+        op: VortexOp;
+        dash: "/" | "\\";
+        next: number;
+        successor: number;
+        predecessor: number;
+        isSelfReflect: boolean;
+        bitCost: number;
+        isTheorem: boolean;
+    };
+};
 /** Canonical I Ching integers for CSS · geometry · token derivation. */
 export declare const ICHING_NUMBERS: readonly [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 54, 64, 100, 108, 216, 360, 432, 864];
+/** Status badge kinds — cycle-free leaf (theme + architecture re-export; avoids STATUS_BADGE_KINDS TDZ). */
+export declare const STATUS_BADGE_KINDS: readonly ["ready", "ok", "gap", "warn", "partial", "error", "refused", "ci"];
+export type StatusBadgeKind = (typeof STATUS_BADGE_KINDS)[number];
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function vortexNext(d: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -188,8 +823,8 @@ export declare function foldVortex(): {
     valid: boolean;
     pairs: {
         position: number;
-        forward: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
-        reverse: 9 | 5 | 2 | 4 | 7 | 1 | 8 | 3 | 6;
+        forward: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
+        reverse: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
         sum: number;
         root: number;
     }[];
@@ -270,6 +905,7 @@ export declare function uuidHero(uuid: string): {
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function trinityKey(shareA: string, shareB: string): string;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function derivePublicKey(privateKey: string, publicRoots: readonly string[]): string;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function prng(seed: string): () => number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -448,6 +1084,8 @@ export declare function addressEntropyBits(): {
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function gcd(a: number, b: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function gcdBigInt(a: bigint, b: bigint): bigint;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function lcm(a: number, b: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function modUnits(n: number): number[];
@@ -501,4 +1139,17 @@ export declare function pmixStep(values: readonly number[], edges: readonly Edge
 export declare function pmixEvolve(values: readonly number[], edges: readonly Edge[], q: number, steps: number): number[];
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function congruence(a: readonly number[], b: readonly number[]): number;
+/** A sound→glyph transliteration map: single letters, optional digraphs (checked first), optional case-carry. */
+export interface TransliterationMap {
+    readonly single: Readonly<Record<string, string>>;
+    readonly digraphs?: Readonly<Record<string, string>>;
+    readonly bicameral?: boolean;
+}
+/** Carry the source run's case onto the transliterated output (ALL-CAPS → upper, Titlecase → capitalize). */
+export declare function applyTransliterationCase(src: string, out: string): string;
+/** transliterateByMap — the ONE agnostic sound→glyph engine (toGlagolitic's method, generalised over any
+ *  map): word-run scan, digraphs matched before single letters, optional case-carry. Every script-conversion
+ *  fold (Bulgarian Cyrillic, Greek, Runic, Hebrew, …) is this SAME algorithm over a different map, not a
+ *  hand-written parallel implementation — the map is data, the engine is shared. Pure, zero-dependency. */
+export declare function transliterateByMap(text: string, map: TransliterationMap): string;
 export {};
