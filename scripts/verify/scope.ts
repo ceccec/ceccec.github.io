@@ -30,8 +30,8 @@ const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
 
 /** Highest count of NARRATED scopes tolerated. Lower it as folds convert; never raise it. */
 const BASELINE = 620
-/** The same ratchet for `boundary:` paragraphs that narrate their limits. Lower it; never raise it. */
-const BOUNDARY_BASELINE = 51
+/** The same ratchet for `boundary:` values that are prose rather than computed limits. Never raise it. */
+const BOUNDARY_BASELINE = 2803
 
 export type NarratedScope = { file: string; line: number; head: string }
 
@@ -50,7 +50,14 @@ export type NarratedScope = { file: string; line: number; head: string }
  */
 export type NarratedBoundary = { file: string; line: number; says: string }
 
-const HONEST = /HONEST SCOPE/
+// NOT KEYED ON THE PHRASE. The first version of this finder required the string "HONEST SCOPE" to appear,
+// which handed the ratchet the very loophole it exists to close: delete the label corpus-wide and the count
+// goes to zero having converted nothing, leaving every unfalsifiable limit exactly where it was. The marker
+// is not the defect. The defect is a boundary whose limits are PROSE, and that is decidable without reading
+// a word of it — `earned(head, facets, limits)` builds one from computed facets, a string literal does not.
+// So the rule is the same one the scope ratchet already applies, one argument over: an array computes, a
+// string narrates. Counting that way raised the baseline by an order of magnitude, which is what an honest
+// instrument does when you stop letting it grade the easy half.
 
 export function findNarratedBoundaries(root: string = process.cwd()): NarratedBoundary[] {
   const ts = require('typescript') as typeof import('typescript')
@@ -73,14 +80,12 @@ export function findNarratedBoundaries(root: string = process.cwd()): NarratedBo
           (ts.isStringLiteralLike(node.initializer) || ts.isTemplateExpression(node.initializer) || ts.isNoSubstitutionTemplateLiteral(node.initializer))
         ) {
           const text = node.initializer.getText(sf)
-          if (HONEST.test(text)) {
-            const at = text.search(HONEST)
-            found.push({
-              file: relative(root, p),
-              line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
-              says: text.slice(at, at + 76).replace(/\s+/g, ' '),
-            })
-          }
+          const at = text.search(/HONEST SCOPE/)
+          found.push({
+            file: relative(root, p),
+            line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
+            says: (at >= 0 ? text.slice(at, at + 76) : text.slice(1, 77)).replace(/\s+/g, ' '),
+          })
         }
         ts.forEachChild(node, visit)
       }
@@ -155,8 +160,10 @@ export function assertScopesCompute(): void {
   if (narrated.length < BASELINE) console.log(`  ${BASELINE - narrated.length} converted — lower BASELINE to ${narrated.length}`)
 
   const boundaries = findNarratedBoundaries()
+  const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
   console.log(`\nboundaries that narrate their scope rather than compute it: ${boundaries.length}  (baseline ${BOUNDARY_BASELINE}, ratchet)`)
-  for (const b of boundaries.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
+  console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — a sub-count for navigation only, NOT the thing being ratcheted; deleting the label converts nothing`)
+  for (const b of labelled.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
   if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)
   if (boundaries.length > BOUNDARY_BASELINE) {
     throw new Error(`${boundaries.length} narrated boundar(ies) — above the baseline of ${BOUNDARY_BASELINE}. A limit that cannot fail is not a limit.`)
