@@ -2337,6 +2337,27 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
     const singletons = sizes.filter((n) => n === 1).length
     // PRECISION: every atom carries a non-empty computed statement and a content address
     const precise = nav.waves.every((wave) => wave.atoms.every((atom) => atom.proof.length > 0 && atom.theorem.length > 0))
+    // THE LIMITS, COMPUTED. "Precision" is the word to distrust here, and the code says why: `precise` tests
+    // that each atom's statement and proof are NON-EMPTY. That is presence, not correctness — a wave of
+    // atoms carrying wrong statements of positive length passes it. The same distinction as provision
+    // versus soundness, one level down, and the fold's own facet calls it PRECISION.
+    const emptyStatements = nav.waves.flatMap((w) => w.atoms).filter((a) => a.theorem.length === 0).length
+    const precisionIsPresence = precise && emptyStatements === 0
+    // FOUR NAMES, FOUR REFERENTS — the claim that magnitude/clusters/precision/waves are named over real
+    // structure is checkable by requiring each to equal something derived from nav rather than asserted.
+    const namesResolve = magnitude === nav.waves.reduce((s2, w) => s2 + w.atoms.length, 0)
+      && clusters === nav.waves.length
+      && maxCluster === max(...nav.waves.map((w) => w.atoms.length))
+    // SELF-APPLIED, SO IT TRAVELS NOWHERE. The corpus measured IS the registry that produced it: magnitude
+    // equals this registry's own atom count and nothing outside it is examined. Whatever holds here is a
+    // statement about one artifact, and the method being sealed against its own output is the whole design
+    // rather than a defect — but it is also the reason none of this generalises.
+    const measuresOnlyItself = magnitude === nav.waves.reduce((s2, w) => s2 + w.atoms.length, 0) && clusters > 0
+    const limits = [
+      { facet: `PRECISION HERE IS PRESENCE, NOT CORRECTNESS — the check is that all ${magnitude} atoms carry a statement and a proof of non-zero length (${emptyStatements} are empty), and a wave of confidently wrong statements would satisfy it exactly as well; nothing in this fold reads whether any statement is true`, on: precisionIsPresence },
+      { facet: `THE FOUR NAMES RESOLVE TO DERIVED QUANTITIES — magnitude is the summed atom count (${magnitude}), clusters the number of proving folds (${clusters}), the largest cluster ${maxCluster}, each recomputed from theoremNavigation rather than asserted; the words are definitions over real structure and this is what makes that checkable instead of evocative`, on: namesResolve },
+      { facet: `SELF-APPLIED, SO IT TRAVELS NOWHERE — the corpus measured IS the registry that produced it, and no artifact outside this one is examined; the method sealed against its own output is the design, and it is also the reason nothing here generalises beyond this repository`, on: measuresOnlyItself },
+    ]
     const facets = [
       { facet: `MAGNITUDE is the exact harmonic — the ${clusters} cluster sizes sum to ${magnitude} = 4×108, no rounding: the magnitude is the exact sum of the waves, not an estimate`, on: magnitude === DIMENSION_GATES && magnitude === nav.atomCount },
       { facet: `IN CLUSTERS OF WAVES — the registry is ${clusters} proving folds (waves), each a cluster; ${singletons} are single precise proofs and the rest bundle ${maxCluster > 1 ? 'up to ' + maxCluster : 'few'} atoms — magnitude accretes cluster by cluster`, on: clusters > 1 && singletons > 0 && maxCluster >= 1 },
@@ -2344,7 +2365,7 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
       { facet: `no single wave carries it — the largest cluster is ${maxCluster} (≤ the rosetta 7, coprime single-stroke), under ${ceil((maxCluster / magnitude) * 100)}% of the whole: magnitude is EMERGENT from precision clustered, which is why batched clusters win quadratically (quantumTokenOptimisation)`, on: maxCluster <= 7 && maxCluster < magnitude / (5 * 2) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`magnitude-clusters:${entry.facet}:${entry.on}`) }))
     return {
-      holds: facets.every((entry) => entry.on),
+      holds: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
       magnitude,
       clusters,
       maxCluster,
@@ -2354,7 +2375,8 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Magnitude comes with precision in clusters of waves — ${facets.filter((entry) => entry.on).length}/${facets.length}, computed on the registry itself: the magnitude (${magnitude} = the harmonic 4×108) is the exact sum of ${clusters} proving-fold waves, each a cluster of atoms carrying a precise content-addressed statement (${singletons} single proofs, the largest cluster only ${maxCluster}); no wave carries the whole, so magnitude is emergent from precision clustered — the same reason batching clusters of waves wins quadratically.`,
-      boundary: `COMPUTED on theoremNavigation: the cluster sizes, their exact sum, the per-atom precision, and the largest-cluster bound — refutable by any wave breaking them. HONEST SCOPE: "magnitude", "precision", "clusters", "waves" are named over the registry's real structure (atoms, proving folds, statements, content addresses); the principle is this project's method sealed against its own artifact, consistent with quantumTokenOptimisation's quadratic batching — NOT a universal law of achievement. The 432 magnitude holds by the homeostasis law (the population is full); growth past it is a deliberate cluster, not drift.` }
+      limits,
+    boundary: earned(`COMPUTED on theoremNavigation: the cluster sizes, their exact sum, the per-atom precision, and the largest-cluster bound — refutable by any wave breaking them.:`, facets, limits) }
   })
 }
 

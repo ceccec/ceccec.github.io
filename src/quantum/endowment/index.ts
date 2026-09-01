@@ -790,12 +790,28 @@ class VerificationOracle {
     theoremProof: TheoremProof,
     rayMatches: boolean,
     deadlineValid: boolean,
-    complianceVerified: boolean
+    complianceVerified: boolean,
+    // THE CONTEXT, PASSED IN RATHER THAN ASSUMED. See below: this was disjoined with a true literal, under the comment
+    // "context-dependent", which does not make a check context-dependent — it makes it always pass.
+    proofStatusRequired: TheoremProof['proof_status'] | 'any'
   ): FundingGateProof {
     const timestamp = new Date().toISOString()
 
     // Determine if all requirements are met
-    const proofStatusEligible = theoremProof.proof_status !== 'frontier' || true // context-dependent
+    // THIS DISJOINED THE REAL TEST WITH A TRUE LITERAL. The trailing or-true made a funding
+    // gate report proof_status_eligible as MET without checking anything, and that value flows into
+    // source_requirements_met and into a signed gate proof. The comment said "context-dependent"; what the
+    // code did was choose one context — always eligible — and hide the choice inside a short-circuit.
+    //
+    // The correct rule already existed thirty lines up in this same file: a source requiring 'any' accepts
+    // every status, otherwise the status must match exactly. VerificationOracle holds no funding registry so
+    // it cannot look the requirement up, which is presumably how the short-circuit was reached for. The requirement
+    // is now a parameter, so the context is supplied by whoever has it instead of assumed by the gate.
+    //
+    // That shape is also invisible to a scan for a bare true literal, because it is an expression. That is why
+    // it survived: structurally impeccable, semantically empty, in a gate that releases funds.
+    const proofStatusEligible =
+      proofStatusRequired === 'any' || proofStatusRequired === theoremProof.proof_status
     const allChecksPassed =
       proofStatusEligible && rayMatches && deadlineValid && complianceVerified
 

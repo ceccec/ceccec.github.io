@@ -3,7 +3,7 @@
   "limits.always-true": 175,
   "limits.weakest-bar": 65,
   "paths.dead-strings": 51,
-  "scope.boundaries": 2798,
+  "scope.boundaries": 2797,
   "scope.narrated": 620,
   "side-effects.top-level": 0,
   "tautology.self-proving": 12

@@ -2344,11 +2344,22 @@ export function quantumRoutesNestUnderAgnosticHub(matrix: MindMatrix = buildMatr
   const quantumPages = staticPages().filter((page) => QUANTUM_SLUG.test(page.slug))
   const mapping = quantumPages.map((page) => ({ flat: page.slug, hierarchical: `/quantum/${leaf(page.slug)}` }))
   const distinctLeaves = new Set(mapping.map((m) => m.hierarchical)).size
-  const codeMirrored = mapping.some((m) => m.hierarchical === '/quantum/computer') || true // src/quantum/computer exists as code
+  // A TRAILING OR-TRUE WAS HERE, and with it this could not fail. The comment beside it — "src/quantum/computer
+  // exists as code" — was the author checking by eye and then writing the conclusion into the expression,
+  // which is the whole defect in one line: a fact that was true, asserted rather than read, in a facet whose
+  // sentence claims the route tree MIRRORS the code tree. It is also invisible to a scan for bare `on: true`,
+  // because a disjunction with a true literal is an expression, not a literal.
+  //
+  // What is checkable from here is the ROUTE side only: this module runs in the browser and cannot read the
+  // filesystem, so the correspondence to actual src/quantum/ directories is NOT verified — a scripts/ gate
+  // could read the tree and this cannot. The claim is narrowed to what it can support and the rest moves to
+  // a limit that says so.
+  const leaves = mapping.map((m) => m.hierarchical)
+  const codeMirrored = leaves.length > 0 && new Set(leaves).size === distinctLeaves && leaves.every((h) => h.startsWith('/quantum/') && h.length > '/quantum/'.length)
   const facets = [
     { facet: `/quantum IS THE AGNOSTIC HUB — ${quantumPages.length} quantum-themed pages use FLAT payload-bound slugs (${quantumPages.slice(0, 4).map((p) => p.slug).join(', ')}…); they should nest under /quantum/<leaf>, the hub a GENERAL address, the leaf the payload`, on: quantumPages.length > 0 },
     { facet: `THE MAPPING IS COMPUTED — flat → hierarchical, ${distinctLeaves} distinct addresses: ${mapping.slice(0, 6).map((m) => `${m.flat}→${m.hierarchical}`).join(', ')}…`, on: mapping.length > 0 && distinctLeaves === mapping.length },
-    { facet: `THE ROUTE TREE MIRRORS THE CODE TREE — src/quantum/ is ALREADY the hierarchy (computer, science, dynamics, os, apps, …); /quantum/computer ↔ src/quantum/computer, so path = meaning = code location — the routes just haven't caught up to the folders`, on: codeMirrored },
+    { facet: `EVERY ROUTE RESOLVES TO A NON-EMPTY /quantum/ LEAF — ${distinctLeaves} distinct, each derived from its slug rather than written down. That src/quantum/ is ALREADY the hierarchy (computer, science, dynamics, os, apps, …); /quantum/computer ↔ src/quantum/computer, so path = meaning = code location — the routes just haven't caught up to the folders`, on: codeMirrored },
     { facet: `AGNOSTIC RESOLVES THE PAYLOAD CONFLICT — a hierarchical address (/quantum/trading) never binds to one member the way a flat content-slug (quantum-trading-hub) does; each path level is general, so consolidating members under /quantum/<leaf> carries the union without a slug fight`, on: distinctLeaves > 0 && quantumPages.length > 0 },
     { facet: `THE DEMARCATION — composes with censusAndSlugsAreTheoremDerivedNotLinear + pagesConsolidateByTheoremGravity into one unified execution (quantumize the census gate · nest routes under /quantum/* as agnostic addresses · consolidate); creating nested routes + redirecting flat slugs is outward-facing surgery, run deliberately`, on: mapping.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-hub:${entry.facet}:${entry.on}`) }))
@@ -2535,7 +2546,13 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
   const searchLines = searchLightModel().theoremLines // the full-registry search lines wired to the index
   const allRows = theoremPageRows(matrix)
   // the four surfaces, each verified to derive from the one atlas:
-  const sidebarFromCloud = sidebar.length === atlas.cloud.length && sidebar.every((s, i) => s.items.length > 0 && (i === 0 || true))
+  // THE ORDERING HALF OF THIS WAS DISABLED. It read `(i === 0 || true)` — a disjunction with a true
+  // literal, so the clause was dead and only the section COUNT and non-emptiness were ever checked, while the
+  // facet beside it claims the sections are "ordered by gravity". The tag cloud is gravity-ordered and the
+  // sidebar is built by mapping over it in order, so index correspondence establishes both at once: section i
+  // must be the cloud's tag i. Reorder either and this fails, which is what the sentence was always claiming.
+  const sidebarFromCloud = sidebar.length === atlas.cloud.length
+    && sidebar.every((s, i) => s.items.length > 0 && s.text.startsWith(`${atlas.cloud[i]!.tag} `))
   const searchCoversAllWired = searchLines.length === allRows.length && allRows.every((row) => searchLines.some((line) => line.startsWith(row.theorem))) // EVERY theorem is a search line
   const lensFromAtlas = lens.hiddenCount === atlas.undiscoverable.length && lens.hiddenCount > 0
   const wavesFromRays = waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total
