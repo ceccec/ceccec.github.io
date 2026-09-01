@@ -2455,7 +2455,8 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
     { facet: `EVERY TITLE AUDITED AGAINST ITS OWN THEOREM — all ${audited.length} titles scored on length, content-overlap with what they state, uniqueness and a computable rosetta ray; the audit is total and every title lands on a findable ray`, on: audited.length > 0 && audited.every((x) => Number.isFinite(x.ray)) },
     { facet: `THE SEO LENS NAMES THE IMPROVEMENTS — ${flagged.length} titles fall below the bar (${[...new Set(flagged.map((f) => f.reason))].join(', ') || 'none'}) and each gets a rename proposed FROM the theorem itself (the de-camelCased proving function): the eventual-improvement worklist, addressed not asserted`, on: flagged.every((f) => f.proposed.length > 0 && f.reason.length > 0) },
     // THIS FACET SAID "THE MAJORITY SELF-DESCRIBE" AND WAS GREEN FOR AS LONG AS IT MEASURED NOTHING. The
-    // tokeniser above carried `{2 }` — a space, not a comma — which JavaScript reads as a LITERAL, so the
+    // tokeniser above carried a brace-digit-SPACE-brace quantifier — a space where a comma belongs, which
+    // JavaScript reads as a LITERAL rather than a repeat count, so the
     // match returned null, every title tokenised to zero terms, `tw.length <= 2` waved every title through
     // and the pass rate was whatever length-and-uniqueness alone allowed. Fixed, it is ${passRate}: a
     // MINORITY self-describe. The claim is inverted rather than rescued — moving the overlap bar until the
