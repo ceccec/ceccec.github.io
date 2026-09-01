@@ -25,11 +25,9 @@
  */
 
 import { createRequire } from 'node:module'
-import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join, relative } from 'node:path'
+import { corpusFiles } from './corpus.ts'
 
 const require = createRequire(`${process.cwd()}/`)
-const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
 
 /** Highest count tolerated. Zero: there is no legitimate reason for a src module index to
  *  execute a statement when imported. Table-building belongs in an expression. */
@@ -38,42 +36,20 @@ const BASELINE = 0
 export type SideEffect = { file: string; line: number; text: string }
 
 export function findTopLevelSideEffects(root: string = process.cwd()): SideEffect[] {
+  // Reads the shared corpus index rather than walking and parsing src a second time.
   const ts = require('typescript') as typeof import('typescript')
   const found: SideEffect[] = []
-
-  const walk = (dir: string): void => {
-    let entries: string[] = []
-    try {
-      entries = readdirSync(dir)
-    } catch {
-      return
-    }
-    for (const entry of entries) {
-      const p = join(dir, entry)
-      let st
-      try {
-        st = statSync(p)
-      } catch {
-        continue
-      }
-      if (st.isDirectory()) {
-        if (!SKIP.has(entry)) walk(p)
-        continue
-      }
-      if (!entry.endsWith('.ts')) continue
-      const text = readFileSync(p, 'utf8')
-      const sf = ts.createSourceFile(p, text, ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS)
-      for (const stmt of sf.statements) {
-        if (!ts.isExpressionStatement(stmt)) continue
-        found.push({
-          file: relative(root, p),
-          line: sf.getLineAndCharacterOfPosition(stmt.getStart(sf)).line + 1,
-          text: stmt.getText(sf).slice(0, 100).replace(/\s+/g, ' '),
-        })
-      }
+  for (const file of corpusFiles(root)) {
+    const sf = file.ast()
+    for (const stmt of sf.statements) {
+      if (!ts.isExpressionStatement(stmt)) continue
+      found.push({
+        file: file.rel,
+        line: sf.getLineAndCharacterOfPosition(stmt.getStart(sf)).line + 1,
+        text: stmt.getText(sf).slice(0, 100).replace(/\s+/g, ' '),
+      })
     }
   }
-  walk(join(root, 'src'))
   return found
 }
 

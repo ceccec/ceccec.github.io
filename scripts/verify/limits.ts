@@ -23,12 +23,9 @@
  */
 
 import { createRequire } from 'node:module'
-import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join, relative } from 'node:path'
+import { eachFacet } from './corpus.ts'
 
 const require = createRequire(`${process.cwd()}/`)
-const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
-
 /** Highest count tolerated. Lower it as facets gain real computations; never raise it. */
 const BASELINE = 211
 
@@ -66,56 +63,15 @@ function alwaysTrue(node: import('typescript').Node, sf: import('typescript').So
 }
 
 export function findVacuousFacets(root: string = process.cwd()): VacuousFacet[] {
+  // Reads the shared corpus index. This walked src and parsed every .ts itself; so did
+  // side-effects, theorems, scope and paths, each for one cheap question. The parse is
+  // produced once now and addressed — see corpus.ts, and uuidna's produceOverVerify = 118.
   const ts = require('typescript') as typeof import('typescript')
   const found: VacuousFacet[] = []
-  const walk = (dir: string): void => {
-    let entries: string[] = []
-    try {
-      entries = readdirSync(dir)
-    } catch {
-      return
-    }
-    for (const entry of entries) {
-      const p = join(dir, entry)
-      let st
-      try {
-        st = statSync(p)
-      } catch {
-        continue
-      }
-      if (st.isDirectory()) {
-        if (!SKIP.has(entry)) walk(p)
-        continue
-      }
-      if (!entry.endsWith('.ts')) continue
-      const sf = ts.createSourceFile(p, readFileSync(p, 'utf8'), ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS)
-      const visit = (node: import('typescript').Node): void => {
-        if (ts.isObjectLiteralExpression(node)) {
-          let facetText: string | null = null
-          let onNode: import('typescript').Expression | null = null
-          for (const prop of node.properties) {
-            if (!ts.isPropertyAssignment(prop) || !ts.isIdentifier(prop.name)) continue
-            if (prop.name.text === 'facet') facetText = prop.initializer.getText(sf)
-            if (prop.name.text === 'on') onNode = prop.initializer
-          }
-          if (facetText && onNode) {
-            const why = alwaysTrue(onNode, sf, ts)
-            if (why) {
-              found.push({
-                file: relative(root, p),
-                line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
-                why,
-                facet: facetText.replace(/\s+/g, ' ').slice(1, 84),
-              })
-            }
-          }
-        }
-        ts.forEachChild(node, visit)
-      }
-      visit(sf)
-    }
-  }
-  walk(join(root, 'src'))
+  eachFacet(root, ({ file, facet, on, line }) => {
+    const why = alwaysTrue(on, file.ast(), ts)
+    if (why) found.push({ file: file.rel, line, why, facet: facet.replace(/\s+/g, ' ').slice(1, 84) })
+  })
   return found
 }
 

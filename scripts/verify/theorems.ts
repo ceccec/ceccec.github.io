@@ -17,45 +17,15 @@
  */
 
 import { createRequire } from 'node:module'
-import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 
 const require = createRequire(`${process.cwd()}/`)
-import { join, relative } from 'node:path'
+import { join } from 'node:path'
+import { exportedSymbols } from './corpus.ts'
 
-const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
 const SEED_HOME = 'src/4/6/index.ts'
 
 export type SeedRow = { provedBy: string; home: string; pending: boolean }
-
-function exportedSymbols(root: string): Map<string, string> {
-  const found = new Map<string, string>()
-  const walk = (dir: string) => {
-    let entries: string[] = []
-    try {
-      entries = readdirSync(dir)
-    } catch {
-      return
-    }
-    for (const entry of entries) {
-      const p = join(dir, entry)
-      let st
-      try {
-        st = statSync(p)
-      } catch {
-        continue
-      }
-      if (st.isDirectory()) {
-        if (!SKIP.has(entry)) walk(p)
-      } else if (entry.endsWith('.ts')) {
-        const text = readFileSync(p, 'utf8')
-        for (const m of text.matchAll(/^export\s+(?:async\s+)?function\s+([A-Za-z0-9_$]+)/gm)) found.set(m[1]!, relative(root, p))
-        for (const m of text.matchAll(/^export\s+const\s+([A-Za-z0-9_$]+)/gm)) found.set(m[1]!, relative(root, p))
-      }
-    }
-  }
-  walk(join(root, 'src'))
-  return found
-}
 
 export function readSeed(root: string = process.cwd()): SeedRow[] {
   // PARSED, NOT REGEXED. The first version split rows on `[^}]*\}`, which breaks on any row
