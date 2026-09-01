@@ -51,6 +51,25 @@ export type NarratedScope = { file: string; line: number; head: string }
 export type NarratedBoundary = { file: string; line: number; says: string; asserts: boolean }
 
 /**
+ * A FALSE STATEMENT I SEALED INTO THE RECORD, CORRECTED HERE BECAUSE A PUSHED COMMIT CANNOT BE EDITED.
+ *
+ * Commit 6d68d27d says, of the other session working in this repo: "ceccec-github-io-7a had this right from
+ * their first conversion ... and I did not copy it." I verified nothing before writing that. It is false.
+ *
+ * What the record shows: in d9b3e29c their limits are inline entries in the `facets` array — there is no
+ * `limits` const and no `limits.every` in any `computes` expression. Three of their four conversions carried
+ * the same defect mine did; the one that was safe (Grover) was safe incidentally, because its limit happened
+ * to sit among the facets that `facets.every()` already consumed. They found this themselves and said so.
+ *
+ * The direction does not matter. An assertion about another party's work, stated as established fact in an
+ * append-only record, carries the same burden as any other claim, and praise is the form that gets checked
+ * least — which is exactly why it survives. I spent this file's whole subject matter on sentences that sound
+ * like measurement and are not, then wrote one about a colleague and shipped it unmeasured.
+ *
+ * Verifying it cost one `git show`.
+ */
+
+/**
  * THREE NUMBERS, ONE OF THEM ENFORCED — and the output says which, because the danger here is not that
  * someone reads the wrong number, it is that someone OPTIMISES the wrong number.
  *
