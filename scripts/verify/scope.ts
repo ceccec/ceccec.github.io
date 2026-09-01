@@ -48,7 +48,35 @@ export type NarratedScope = { file: string; line: number; head: string }
  * the measurable half is measured and the honest half is asserted beside it, which reads as
  * though both were checked. This finder counts the asserted halves, and ratchets them to zero.
  */
-export type NarratedBoundary = { file: string; line: number; says: string }
+export type NarratedBoundary = { file: string; line: number; says: string; asserts: boolean }
+
+/**
+ * THREE NUMBERS, ONE OF THEM ENFORCED — and the output says which, because the danger here is not that
+ * someone reads the wrong number, it is that someone OPTIMISES the wrong number.
+ *
+ *   total    every string-valued boundary. Ratcheted. A CEILING, not a target: the gate forbids increase
+ *            and never requires a conversion. Driving it to zero would mean inventing limit facets for
+ *            boundaries that assert no limit, which manufactures exactly the padding this file deletes.
+ *   asserts  the boundaries that state a limit in prose. NOT enforced. This is where the work actually is,
+ *            because a boundary that claims nothing is not lying about anything.
+ *   marked   still carrying the "HONEST SCOPE" label. Navigation only. Deleting the label converts nothing.
+ *
+ * The `asserts` regex is calibrated (ceccec-github-io-7a, 10/10 on matched spans rather than string heads)
+ * and it has two error directions, both real, both stated here rather than discovered later: a limit phrased
+ * without one of these constructions is MISSED, and a purely descriptive boundary containing "NOT the" is
+ * COUNTED. `HONEST:` is deliberately excluded — this corpus uses it for "honestly speaking" about as often
+ * as for a limit, so it costs precision without buying recall.
+ *
+ * AND A THIRD ERROR DIRECTION, FOUND BY SHIPPING IT: the author of this regex measured 421 against the same
+ * commit where this implementation measures 411. Same pattern, byte-identical; the ten are not their
+ * quantum/science conversion (which removed no string boundaries at all) and not earned() head strings
+ * (which account for two). The gap is unreconciled and is recorded rather than rounded away, because a
+ * number two instruments disagree about is not a number to enforce. That is the whole argument for the
+ * layering: `total` is decidable without reading a word of English and two implementations cannot drift on
+ * it, which is why it is the one with teeth. Prefer the enforced number when they conflict.
+ */
+const NEGATED_SCOPE_CLAIM =
+  /(?:\bdoes NOT\b|\bis NOT\b|\bare NOT\b|\bNOT a\b|\bNOT the\b|\bno claim\b|\bnot a claim\b|\bdoes not claim\b|\bnot claimed\b|\bcannot be read as\b|\bdoes not establish\b|\bis not evidence\b|\bNOT PROVEN\b)/
 
 // NOT KEYED ON THE PHRASE. The first version of this finder required the string "HONEST SCOPE" to appear,
 // which handed the ratchet the very loophole it exists to close: delete the label corpus-wide and the count
@@ -85,6 +113,7 @@ export function findNarratedBoundaries(root: string = process.cwd()): NarratedBo
             file: relative(root, p),
             line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
             says: (at >= 0 ? text.slice(at, at + 76) : text.slice(1, 77)).replace(/\s+/g, ' '),
+            asserts: NEGATED_SCOPE_CLAIM.test(text),
           })
         }
         ts.forEachChild(node, visit)
@@ -160,10 +189,12 @@ export function assertScopesCompute(): void {
   if (narrated.length < BASELINE) console.log(`  ${BASELINE - narrated.length} converted — lower BASELINE to ${narrated.length}`)
 
   const boundaries = findNarratedBoundaries()
+  const asserting = boundaries.filter((b) => b.asserts)
   const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
-  console.log(`\nboundaries that narrate their scope rather than compute it: ${boundaries.length}  (baseline ${BOUNDARY_BASELINE}, ratchet)`)
-  console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — a sub-count for navigation only, NOT the thing being ratcheted; deleting the label converts nothing`)
-  for (const b of labelled.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
+  console.log(`\nboundaries whose limits are prose rather than computation: ${boundaries.length}  (baseline ${BOUNDARY_BASELINE}, RATCHETED — a ceiling, not a target)`)
+  console.log(`  of those, ${asserting.length} assert a limit in prose — NOT enforced, and the priority set: a boundary claiming nothing is not lying about anything`)
+  console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — navigation only; deleting the label converts nothing`)
+  for (const b of asserting.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
   if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)
   if (boundaries.length > BOUNDARY_BASELINE) {
     throw new Error(`${boundaries.length} narrated boundar(ies) — above the baseline of ${BOUNDARY_BASELINE}. A limit that cannot fail is not a limit.`)
