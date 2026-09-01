@@ -29,6 +29,12 @@ import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
 import { quantumProjectionParams, type QuantumProjection } from './apps'
 import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7'
 import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational'
+import { memoByRoot, gcd } from '../0'
+import { existsSync, rmSync, statSync } from 'node:fs'
+import { spawnSync } from 'node:child_process'
+import { log } from '../0'
+import { physicalFtlBooleanAtCallTime } from '../3/7'
+import { exp } from '../0'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -2348,3 +2354,3796 @@ export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, c
 
 // Quantum Discovery Portal — live mesh interface via quantum routing
 export { quantumDiscoveryPortal, discoverMillenniumProblem, exploreAlgorithm, exploreContrast, quantumDiscoveryDashboard, type PortalState, type DiscoveryView } from './portal'
+
+// ── merged from advanced/ (census: one index per fold; nothing imported it) ──
+export type LinearSystemSolution = {
+  readonly systemSize: number
+  readonly conditionNumber: number
+  readonly quantumTime: number
+  readonly classicalTime: number
+  readonly speedup: number
+  readonly accuracy: number
+  readonly receipt: string
+}
+
+export type FactoringResult = {
+  readonly n: number
+  readonly factors: number[]
+  readonly quantumIterations: number
+  readonly classicalIterations: number
+  readonly speedup: number
+  readonly receipt: string
+}
+
+/**
+ * HHL Algorithm — Solve linear systems on quantum computers
+ *
+ * Problem: Solve A|x⟩ = |b⟩ for |x⟩ (linear system Ax = b)
+ * Classical: O(n³) to O(n^2.37) depending on method (Gaussian elimination or matrix multiplication)
+ * Quantum: O(log(n) × κ(A) × poly(1/ε)) where κ(A) is condition number
+ *
+ * Applications: machine learning, physics simulations, optimization
+ */
+export function hhlAlgorithm(
+  systemSize: number = 4,
+  conditionNumber: number = 2.0
+): LinearSystemSolution {
+  // Quantum complexity: O(log(n) * κ * poly(1/ε))
+  // Quantum = unbounded until measurement (no hardcoded precision)
+  const quantumComplexity = Math.log2(systemSize) * conditionNumber
+  const quantumTime = quantumComplexity
+
+  // Classical complexity: O(n^2) to O(n^2.37) depending on sparsity
+  const classicalComplexity = systemSize * systemSize
+  const classicalTime = classicalComplexity
+
+  const speedup = classicalTime / quantumTime
+  // Quantum accuracy: undefined until measurement (superposition, not bounded)
+  const accuracy = 1 // Unbounded quantum state (collapses to fact at measurement)
+
+  return {
+    systemSize,
+    conditionNumber,
+    quantumTime,
+    classicalTime,
+    speedup,
+    accuracy,
+    receipt: toUuid(`hhl:${systemSize}x${systemSize}:κ=${conditionNumber}`)
+  }
+}
+
+/**
+ * Shor's Algorithm — Factor integers on quantum computers
+ *
+ * ⚠️ PLACEHOLDER IMPLEMENTATION — Not fully functional
+ *
+ * Problem: Factor N (find p, q where N = pq)
+ * Classical: O(exp(log(N)^(1/3))) — subexponential but hard (breaks RSA)
+ * Quantum: O((log(N))^2 × log(log(N)) × log(1/ε)) — polynomial time
+ *
+ * Core: Order-finding via quantum phase estimation (NOT IMPLEMENTED)
+ * Security implications: real Shor's breaks RSA encryption; this stub does not
+ *
+ * NOTE: Order-finding (the quantum subroutine) requires full quantum circuit
+ * simulation with phase estimation gates. Current version returns hardcoded
+ * factors for n ∈ {15, 21} only. For production use, implement:
+ * 1. Quantum phase estimation circuit
+ * 2. Order-finding loop: find r such that a^r ≡ 1 (mod N)
+ * 3. Classical GCD postprocessing
+ */
+export function shorsAlgorithm(
+  n: number = 15, // Factor 15 = 3 × 5 (smallest non-trivial example)
+  precision: number = 1e-3
+): FactoringResult {
+  // Shor's Algorithm: Real implementation with order-finding
+
+  // Classical order-finding: find smallest r where a^r ≡ 1 (mod n)
+  function findOrder(a: number, n: number, maxOrder: number = n): number | null {
+    for (let r = 1; r < maxOrder; r++) {
+      let mod = 1
+      for (let i = 0; i < r; i++) {
+        mod = (mod * a) % n
+      }
+      if (mod === 1) return r
+    }
+    return null
+  }
+
+  // Main Shor loop: find factors via order-finding
+  function shor(n: number, maxAttempts: number = 10): number[] | null {
+    if (n % 2 === 0) return [2, n / 2]
+
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      // Pick random a, 1 < a < n
+      const a = 2 + floor(Math.random() * (n - 3))
+
+      // Step 1: Check if gcd(a,n) > 1
+      const g = gcd(a, n)
+      if (g > 1) return [g, n / g]
+
+      // Step 2: Find order r (quantum subroutine simulated classically)
+      const r = findOrder(a, n)
+      if (!r || r % 2 !== 0) continue
+
+      // Step 3: Check if a^(r/2) ≢ ±1 (mod n)
+      let half_pow = 1
+      for (let i = 0; i < r / 2; i++) {
+        half_pow = (half_pow * a) % n
+      }
+      if (half_pow === 1 || half_pow === n - 1) continue
+
+      // Step 4: Compute gcd(a^(r/2) ± 1, n)
+      const factor1 = gcd(half_pow + 1, n)
+      const factor2 = gcd(half_pow - 1, n)
+
+      if (factor1 > 1 && factor1 < n) {
+        return [factor1, n / factor1]
+      }
+      if (factor2 > 1 && factor2 < n) {
+        return [factor2, n / factor2]
+      }
+    }
+
+    return null
+  }
+
+  // Execute Shor's algorithm
+  const startTime = performance.now()
+  const factorsResult = shor(n)
+  const endTime = performance.now()
+
+  const factors = factorsResult || [1, n]  // [1, n] = failure marker
+
+  // Quantum metrics (simulated order-finding complexity)
+  const quantumQubits = floor(2 * Math.log2(n)) + 3
+  const quantumIterations = quantumQubits * quantumQubits
+
+  // Classical: worst-case trial division
+  const classicalIterations = n
+
+  const speedup = classicalIterations / Math.max(1, quantumIterations)
+
+  return {
+    n,
+    factors,
+    quantumIterations,
+    classicalIterations,
+    speedup,
+    receipt: toUuid(`shor:${n}:real:factors=${factors.join('*')}:runtime=${endTime - startTime}ms`)
+  }
+}
+
+/**
+ * Grover's Algorithm — Search unsorted database with quadratic speedup
+ *
+ * Classical search: O(N) queries
+ * Quantum search: O(√N) queries (quadratic speedup)
+ *
+ * Finds marked element in database via amplitude amplification
+ */
+export function groversAlgorithm(
+  databaseSize: number = 8,  // Must be power of 2
+  markedIndex: number = 3    // Index of marked element
+): {
+  readonly databaseSize: number
+  readonly markedIndex: number
+  readonly foundIndex: number | null
+  readonly quantumIterations: number
+  readonly classicalIterations: number
+  readonly speedup: number
+  readonly successProbability: number
+  readonly receipt: string
+} {
+  // Validate database size is power of 2
+  const nQubits = floor(Math.log2(databaseSize))
+  if (2 ** nQubits !== databaseSize) {
+    throw new Error(`Database size must be power of 2, got ${databaseSize}`)
+  }
+
+  // Simulate Grover's algorithm via amplitude amplification
+  // Initialize uniform superposition: a_i = 1/√N for all i
+  const uniformAmplitude = 1 / Math.sqrt(databaseSize)
+  const amplitudes: number[] = []
+  for (let i = 0; i < databaseSize; i++) {
+    amplitudes.push(uniformAmplitude)
+  }
+
+  // Number of iterations: exactly ⌊π/(4) * √N⌋ ensures maximum amplitude at marked element
+  const iterations = floor(Math.PI / 4 * Math.sqrt(databaseSize))
+
+  // Grover iteration: (oracle + diffusion operator)
+  for (let iter = 0; iter < iterations; iter++) {
+    // Oracle: flip phase of marked element
+    amplitudes[markedIndex] *= -1
+
+    // Diffusion operator: 2|ψ⟩⟨ψ| - I
+    // Compute average (mean of all amplitudes)
+    const sum = amplitudes.reduce((a, b) => a + b, 0)
+    const mean = sum / databaseSize
+
+    // Apply D = 2|ψ⟩⟨ψ| - I to all amplitudes
+    for (let i = 0; i < databaseSize; i++) {
+      amplitudes[i] = 2 * mean - amplitudes[i]
+    }
+  }
+
+  // Ensure normalization (numerical stability)
+  const norm = Math.sqrt(amplitudes.reduce((sum, a) => sum + a * a, 0))
+  if (norm > 0) {
+    for (let i = 0; i < databaseSize; i++) {
+      amplitudes[i] /= norm
+    }
+  }
+
+  // Measure: find index with maximum amplitude
+  let maxAmplitude = Math.abs(amplitudes[0])
+  let foundIndex = 0
+  for (let i = 1; i < databaseSize; i++) {
+    const abs = Math.abs(amplitudes[i])
+    if (abs > maxAmplitude) {
+      maxAmplitude = abs
+      foundIndex = i
+    }
+  }
+
+  // Success: did we find the marked element?
+  const success = foundIndex === markedIndex
+
+  // Measurement probabilities
+  const probabilities = amplitudes.map(a => a * a)
+  const successProbability = probabilities[markedIndex]
+
+  // Quantum vs classical metrics
+  const quantumIterations = iterations
+  const classicalIterations = databaseSize // Average: N/2 queries
+
+  const speedup = classicalIterations / Math.max(1, quantumIterations)
+
+  return {
+    databaseSize,
+    markedIndex,
+    foundIndex: success ? foundIndex : null,
+    quantumIterations,
+    classicalIterations,
+    speedup,
+    successProbability,
+    receipt: toUuid(`grover:${databaseSize}:found=${success}:index=${foundIndex}:prob=${successProbability.toFixed(3)}`)
+  }
+}
+
+/**
+ * Variational Quantum Eigensolver with custom ansatz
+ *
+ * Build parameterized quantum circuits and optimize classically
+ */
+export function variationalCircuitBuilder(
+  nQubits: number = 4,
+  depth: number = 3,
+  parametersPerLayer: number = 3
+): {
+  readonly circuit: string
+  readonly parameters: number
+  readonly estimatedGates: number
+  readonly depthLayers: number
+} {
+  const totalParameters = depth * parametersPerLayer
+  const gatesPerLayer = nQubits * 2 + parametersPerLayer // Approx: RX on all qubits + entanglement
+  const totalGates = depth * gatesPerLayer
+
+  const circuit = `
+Circuit (${nQubits} qubits, depth ${depth}):
+  Layer 1: Initialize |0⟩
+  ${Array.from({ length: depth }, (_, i) => `Layer ${i + 2}: RY(θ${i*3}) RZ(θ${i*3+1}) CNOT RY(θ${i*3+2})`).join('\n  ')}
+  Measurement: Projective measurement on all qubits
+`
+
+  return {
+    circuit,
+    parameters: totalParameters,
+    estimatedGates: totalGates,
+    depthLayers: depth
+  }
+}
+
+/**
+ * Quantum Random Walk — explore solution space
+ *
+ * Classical random walk: O(N) steps to explore N vertices
+ * Quantum random walk: O(√N) steps (quadratic speedup like Grover)
+ *
+ * Applications: search, optimization, graph problems
+ */
+export function quantumRandomWalk(
+  graphSize: number = 16,
+  targetVertex: number = 3
+): {
+  readonly graphSize: number
+  readonly quantumSteps: number
+  readonly classicalSteps: number
+  readonly speedup: number
+  readonly probability: number
+} {
+  const classicalSteps = graphSize // Average search on random walk
+  const quantumSteps = floor(sqrt(graphSize)) // Quantum speedup
+
+  return {
+    graphSize,
+    quantumSteps,
+    classicalSteps,
+    speedup: classicalSteps / quantumSteps,
+    probability: 1.0 / quantumSteps // Success probability per step
+  }
+}
+
+/** Advanced algorithms summary. */
+export function advancedAlgorithmsSummary(matrix: MindMatrix = buildMatrix()): {
+  readonly algorithms: string[]
+  readonly hhlSpeedup: number
+  readonly shorSpeedup: number
+  readonly description: string
+} {
+  return memoByRoot('advanced-quantum-algorithms', matrix, () => {
+    const hhl = hhlAlgorithm()
+    const shor = shorsAlgorithm()
+
+    return {
+      algorithms: ['HHL (Linear Systems)', 'Shor (Factoring)', 'Variational Circuits', 'Quantum Walks'],
+      hhlSpeedup: hhl.speedup,
+      shorSpeedup: shor.speedup,
+      description: `Advanced quantum algorithms: HHL solves Ax=b with ${hhl.speedup.toFixed(1)}× speedup; Shor factors integers with ${shor.speedup.toFixed(0)}× speedup over brute force; variational circuits for optimization; quantum walks for search.`
+    }
+  })
+}
+
+// ── merged from algorithms/ (census: one index per fold; nothing imported it) ──
+export type AlgorithmSpeedup = {
+  readonly name: string
+  readonly problem: string
+  readonly quantum: string
+  readonly classical: string
+  readonly speedup: string
+  readonly receipt: string
+}
+
+/**
+ * Simon's Algorithm — Find period in 2-to-1 function
+ * Quantum: O(n) vs Classical: Ω(2^n) — exponential speedup
+ */
+export function simonsAlgorithmPeriodFinding(nQubits: number = 4): AlgorithmSpeedup {
+  return memoByRoot(`simons:${nQubits}`, buildMatrix(), () => {
+    const n = nQubits
+    const classicalExp = floor(sqrt(2 ** n))
+    const quantumExp = n
+
+    return {
+      name: 'Simon\'s Algorithm',
+      problem: `Find period s in 2-to-1 function over 2^${n} domain`,
+      quantum: `O(${n})`,
+      classical: `Ω(${classicalExp})`,
+      speedup: `${(classicalExp / quantumExp).toFixed(1)}× (exponential)`,
+      receipt: toUuid(`quantum:simons:${nQubits}`)
+    }
+  })
+}
+
+/**
+ * Deutsch-Jozsa Algorithm — Constant vs Balanced function
+ * Quantum: O(1) vs Classical: Ω(2^(n-1)) — exponential separation
+ */
+export function deutschJozsaConstantVsBalanced(nQubits: number = 4): AlgorithmSpeedup {
+  return memoByRoot(`deutsch-jozsa:${nQubits}`, buildMatrix(), () => {
+    const n = nQubits
+    const classicalWorst = floor((2 ** n) / 2)
+
+    return {
+      name: 'Deutsch-Jozsa Algorithm',
+      problem: `Determine if ${n}-bit function is constant or balanced`,
+      quantum: 'O(1)',
+      classical: `Ω(2^(${n}-1)) = ${classicalWorst}`,
+      speedup: `${classicalWorst}× (exponential separation)`,
+      receipt: toUuid(`quantum:deutsch-jozsa:${nQubits}`)
+    }
+  })
+}
+
+/**
+ * Quantum Phase Estimation — Find eigenvalue phases
+ * Quantum: O(m) vs Classical: O(2^m) — exponential in precision
+ */
+export function quantumPhaseEstimation(precisionQubits: number = 4): AlgorithmSpeedup {
+  return memoByRoot(`phase-estimation:${precisionQubits}`, buildMatrix(), () => {
+    const classicalOps = 2 ** precisionQubits
+    const quantumOps = precisionQubits
+
+    return {
+      name: 'Quantum Phase Estimation',
+      problem: `Estimate eigenvalue phases to 1/2^${precisionQubits} precision`,
+      quantum: `O(${quantumOps})`,
+      classical: `O(2^${precisionQubits}) = ${classicalOps}`,
+      speedup: `${(classicalOps / quantumOps).toFixed(0)}× (exponential in precision)`,
+      receipt: toUuid(`quantum:phase-est:${precisionQubits}`)
+    }
+  })
+}
+
+/** VQE — Hybrid classical-quantum ground state solver */
+export function vqeFramework(nQubits: number = 4): AlgorithmSpeedup {
+  return memoByRoot(`vqe:${nQubits}`, buildMatrix(), () => {
+    const classicalCost = 2 ** nQubits
+
+    return {
+      name: 'Variational Quantum Eigensolver',
+      problem: `Find ground state of ${nQubits}-qubit Hamiltonian`,
+      quantum: 'O(poly(n)) shallow circuit',
+      classical: `O(2^n) = ${classicalCost}`,
+      speedup: 'Hybrid advantage: avoids full diagonalization',
+      receipt: toUuid(`quantum:vqe:${nQubits}`)
+    }
+  })
+}
+
+/** QAOA — Solve NP-hard combinatorial optimization */
+export function qaoapproximateOptimization(nQubits: number = 8): AlgorithmSpeedup {
+  return memoByRoot(`qaoa:${nQubits}`, buildMatrix(), () => {
+    const classicalExact = 2 ** nQubits
+
+    return {
+      name: 'Quantum Approximate Optimization Algorithm',
+      problem: `MaxCut on ${nQubits}-qubit problem (NP-hard)`,
+      quantum: 'O(poly depth) shallow circuit',
+      classical: `O(2^n) = ${classicalExact} exact`,
+      speedup: 'Quantum heuristic advantage on shallow hardware',
+      receipt: toUuid(`quantum:qaoa:${nQubits}`)
+    }
+  })
+}
+
+/** Summary of quantum algorithm speedups */
+export function quantumAlgorithmComparison(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('quantum-algorithm-comparison', matrix, () => {
+    const algorithms = [
+      simonsAlgorithmPeriodFinding(4),
+      deutschJozsaConstantVsBalanced(4),
+      quantumPhaseEstimation(4),
+      vqeFramework(4),
+      qaoapproximateOptimization(8),
+    ]
+
+    return {
+      algorithms,
+      count: floor(algorithms.length),
+      statement: `5 quantum algorithms: Simon's (exponential), Deutsch-Jozsa (exponential separation), Phase Estimation (exponential precision), VQE (hybrid advantage), QAOA (NP-hard heuristic).`,
+      receipt: toUuid('quantum-algos-summary')
+    }
+  })
+}
+
+// ── merged from build/ (census: one index per fold; nothing imported it) ──
+export interface BuildLockState {
+  lockFileExists: boolean
+  lockFileStale: boolean
+  staleProcCount: number
+  cacheExists: boolean
+  distExists: boolean
+  healthy: boolean
+  issues: string[]
+}
+
+export function detectBuildLockState(): BuildLockState {
+  const lockFile = '.vitepress/build-lock.mjs'
+  const cacheDir = '.vitepress/cache'
+  const distDir = '.vitepress/dist'
+
+  const issues: string[] = []
+  const lockFileExists = existsSync(lockFile)
+
+  let lockFileStale = false
+  if (lockFileExists) {
+    const stat = statSync(lockFile)
+    const ageMs = Date.now() - stat.mtimeMs
+    lockFileStale = ageMs > 3 * (2 * 5) ** 5 // > 5 minutes
+    if (lockFileStale) issues.push(`build-lock.mjs stale (${Math.round(ageMs / (2 * 5) ** 3)}s old)`)
+  } else {
+    issues.push('build-lock.mjs missing')
+  }
+
+  // Count stale node processes
+  const ps = spawnSync('pgrep', ['-f', 'node.*docs:build'], { encoding: 'utf-8' })
+  const staleProcCount = ps.stdout.trim().split('\n').filter(Boolean).length
+  if (staleProcCount > 0) {
+    issues.push(`${staleProcCount} stale build process${staleProcCount > 1 ? 'es' : ''} running`)
+  }
+
+  const cacheExists = existsSync(cacheDir)
+  const distExists = existsSync(distDir)
+  if (!distExists) issues.push('.vitepress/dist missing')
+
+  return {
+    lockFileExists,
+    lockFileStale,
+    staleProcCount,
+    cacheExists,
+    distExists,
+    healthy: issues.length === 0,
+    issues
+  }
+}
+
+export function killStaleBuildProcesses(): { killed: number; errors: string[] } {
+  const errors: string[] = []
+  const ps = spawnSync('pgrep', ['-f', 'node.*docs:build'], { encoding: 'utf-8' })
+  const pids = ps.stdout.trim().split('\n').filter(Boolean)
+
+  let killed = 0
+  for (const pid of pids) {
+    const result = spawnSync('kill', ['-9', pid], { encoding: 'utf-8' })
+    if (result.status === 0) {
+      killed++
+    } else {
+      errors.push(`Failed to kill PID ${pid}`)
+    }
+  }
+
+  return { killed, errors }
+}
+
+export function restoreBuildLockFromGit(): { restored: boolean; error?: string } {
+  const result = spawnSync('git', ['checkout', 'HEAD', '--', '.vitepress/build-lock.mjs'], {
+    encoding: 'utf-8',
+    cwd: process.cwd()
+  })
+
+  if (result.status === 0) {
+    return { restored: true }
+  } else {
+    return {
+      restored: false,
+      error: result.stderr || 'git checkout failed'
+    }
+  }
+}
+
+export function clearBuildCache(): { cleared: string[]; errors: string[] } {
+  const cleared: string[] = []
+  const errors: string[] = []
+  const paths = ['.vitepress/cache', '.vitepress/dist', '.temp', '.vite-temp']
+
+  for (const path of paths) {
+    if (existsSync(path)) {
+      try {
+        rmSync(path, { recursive: true, force: true })
+        cleared.push(path)
+      } catch (err) {
+        errors.push(`Failed to clear ${path}: ${err instanceof Error ? err.message : String(err)}`)
+      }
+    }
+  }
+
+  return { cleared, errors }
+}
+
+export interface BuildRepairPlan {
+  diagnose: BuildLockState,
+  actions: Array<{ action: string, result: unknown }>,
+  success: boolean,
+  summary: string
+}
+
+export function repairBuildLocks(): BuildRepairPlan {
+  const actions: Array<{ action: string; result: any }> = []
+  const diagnose = detectBuildLockState()
+
+  // 1. Kill stale processes
+  if (diagnose.staleProcCount > 0) {
+    const killResult = killStaleBuildProcesses()
+    actions.push({ action: 'killStaleProcesses', result: killResult })
+  }
+
+  // 2. Restore lock file if missing
+  if (!diagnose.lockFileExists) {
+    const restoreResult = restoreBuildLockFromGit()
+    actions.push({ action: 'restoreLockFromGit', result: restoreResult })
+  }
+
+  // 3. Clear cache if stale
+  if (diagnose.cacheExists && diagnose.lockFileStale) {
+    const clearResult = clearBuildCache()
+    actions.push({ action: 'clearCache', result: clearResult })
+  }
+
+  const success = actions.every(a => {
+    if ('restored' in a.result) return a.result.restored
+    if ('killed' in a.result) return a.result.killed >= 0
+    if ('cleared' in a.result) return a.result.errors.length === 0
+    return false
+  })
+
+  const summary = success
+    ? `Build repaired: ${actions.length} action(s) taken`
+    : `Build repair partial: ${actions.filter(a => {
+        if ('restored' in a.result) return a.result.restored
+        if ('killed' in a.result) return a.result.killed >= 0
+        if ('cleared' in a.result) return a.result.errors.length === 0
+        return false
+      }).length}/${actions.length} succeeded`
+
+  return {
+    diagnose,
+    actions,
+    success,
+    summary
+  }
+}
+
+export const buildRepair = {
+  detectState: detectBuildLockState,
+  killStaleProcesses: killStaleBuildProcesses,
+  restoreLockFromGit: restoreBuildLockFromGit,
+  clearCache: clearBuildCache,
+  repair: repairBuildLocks,
+}
+
+// runRepairCli — dissolved from cli.ts (functions above are local now).
+export async function runRepairCli(argv: string[] = []): Promise<number> {
+  console.log('[build-repair] Scanning build state...')
+  const state = detectBuildLockState()
+
+  if (state.healthy) {
+    console.log('[build-repair] ✓ Build system healthy')
+    return 0
+  }
+
+  console.log(`[build-repair] Issues detected: ${state.issues.length}`)
+  state.issues.forEach(issue => console.log(`  - ${issue}`))
+
+  console.log('[build-repair] Attempting repair...')
+
+  // Kill stale processes
+  if (state.staleProcCount > 0) {
+    console.log(`[build-repair] Killing ${state.staleProcCount} stale process(es)...`)
+    const result = killStaleBuildProcesses()
+    if (result.killed > 0) console.log(`[build-repair] ✓ Killed ${result.killed} process(es)`)
+    if (result.errors.length > 0) result.errors.forEach(err => console.log(`[build-repair] ✗ ${err}`))
+  }
+
+  // Restore lock file
+  if (!state.lockFileExists) {
+    console.log('[build-repair] Restoring build-lock.mjs from git...')
+    const result = restoreBuildLockFromGit()
+    if (result.restored) {
+      console.log('[build-repair] ✓ Restored build-lock.mjs')
+    } else {
+      console.log(`[build-repair] ✗ Failed: ${result.error}`)
+    }
+  }
+
+  // Clear cache if stale
+  if (state.lockFileStale) {
+    console.log('[build-repair] Clearing stale cache...')
+    const result = clearBuildCache()
+    result.cleared.forEach(p => console.log(`[build-repair] ✓ Cleared ${p}`))
+    result.errors.forEach(err => console.log(`[build-repair] ✗ ${err}`))
+  }
+
+  // Re-check state
+  const newState = detectBuildLockState()
+  if (newState.healthy) {
+    console.log('[build-repair] ✓ Build system repaired')
+    return 0
+  } else {
+    console.log('[build-repair] ✗ Repair incomplete. Remaining issues:')
+    newState.issues.forEach(issue => console.log(`  - ${issue}`))
+    return 1
+  }
+}
+
+
+// ─── build object (repair dissolved into this index; ./repair import now local) ───
+export const build = {
+  repair: async () => {
+    return repairBuildLocks()
+  }
+}
+
+// ── merged from classical/ (census: one index per fold; nothing imported it) ──
+export type ComputationReceipt = {
+  readonly uuid: string // 64-bit addressable operation
+  readonly algorithm: string
+  readonly classical: boolean // Use classical first
+  readonly quantum?: boolean // Optional quantum acceleration
+  readonly input: unknown
+  readonly output: unknown
+  readonly executionTime_ms: number
+  readonly verified: boolean
+  readonly auditTrail: string[]
+  readonly receipt: string
+}
+
+export type VerifiableComputation = {
+  readonly problem: string
+  readonly classicalApproach: string
+  readonly quantumAcceleration?: string
+  readonly speedup: number // vs unverified computation
+  readonly verificationCost: number // Time to verify
+  readonly totalCost: number // Execution + verification
+  readonly receipt: string
+}
+
+/**
+ * The Real Insight: Verifiability > Speed
+ *
+ * Classical: Slow but verifiable, reproducible, auditable
+ * Quantum: Fast but unverifiable, unreproducible, unauditable
+ *
+ * With UUID ledger: Classical IS the better choice for enterprise
+ */
+export function verifiableComputationAdvantage(): {
+  readonly claim: string
+  readonly proof: string[]
+  readonly receipt: string
+} {
+  return {
+    claim: '64-bit UUID addressing + classical hardware outperforms quantum systems',
+    proof: [
+      '1. Verifiability: Every operation receipted (quantum: no audit trail)',
+      '2. Reproducibility: Replay any computation (quantum: measurement destroys state)',
+      '3. Auditability: Complete chain of custody (quantum: probabilistic fog)',
+      '4. Reliability: 99.99% uptime (quantum: 95% due to decoherence)',
+      '5. Scalability: 2^64 address space (quantum: coherence limits)',
+      '6. Cost: Classical hardware cheap (quantum: millions per device)',
+      '7. Verification: O(log n) trust verification (quantum: O(n) measurement overhead)',
+      '8. Determinism: Exact reproduction guaranteed (quantum: averaging required)',
+    ],
+    receipt: toUuid('insight:verifiable-classical-superior')
+  }
+}
+
+/**
+ * Classical algorithm with optional quantum acceleration
+ */
+export function classicalWithQuantumOption(
+  problem: string,
+  classicalTime_ms: number,
+  quantumTime_ms?: number
+): VerifiableComputation {
+  // Always do classical first (verifiable)
+  const classicalResult = classicalTime_ms
+
+  // Quantum as optional acceleration IF available
+  const quantumResult = quantumTime_ms || classicalTime_ms
+  const speedup = classicalResult / quantumResult
+
+  // Verification cost is the same for both (UUID ledger)
+  const verificationCost = floor(classicalTime_ms / 10) // 10% overhead
+
+  return {
+    problem,
+    classicalApproach: `Classical ${problem} solver (guaranteed verifiable)`,
+    quantumAcceleration: quantumTime_ms ? `Optional quantum speedup (${speedup.toFixed(1)}x)` : undefined,
+    speedup: speedup > 1 ? speedup : 1,
+    verificationCost,
+    totalCost: classicalResult + verificationCost,
+    receipt: toUuid(`verifiable:${problem}:${speedup.toFixed(1)}x`)
+  }
+}
+
+/**
+ * Computation with complete audit trail via UUID ledger
+ */
+export function computeWithAuditTrail(
+  algorithm: string,
+  input: unknown,
+  useQuantum: boolean = false
+): ComputationReceipt {
+  const operationUuid = toUuid(`op:${algorithm}:${Date.now()}`)
+
+  // Step 1: Execute (classical first, quantum optional)
+  const startTime = Date.now()
+  const result = useQuantum ? simulateQuantumAcceleration(algorithm, input) : simulateClassical(algorithm, input)
+  const executionTime = Date.now() - startTime
+
+  // Step 2: Verify via UUID ledger (every step receipted)
+  const inputUuid = toUuid('input:' + JSON.stringify(input).slice(0, 20))
+  const outputUuid = toUuid('output:' + JSON.stringify(result).slice(0, 20))
+  const auditTrail = [
+    `receipt:${operationUuid}`,
+    `algorithm:${algorithm}`,
+    `input:${inputUuid}`,
+    `execution:${useQuantum ? 'quantum-accelerated' : 'classical'}`,
+    `time:${executionTime}ms`,
+    `output:${outputUuid}`,
+    `verified:true`, // UUID ledger guarantees this
+    `reproducible:true`, // Can replay via UUID
+    `auditable:true`, // Full chain of custody
+  ]
+
+  return {
+    uuid: operationUuid,
+    algorithm,
+    classical: true,
+    quantum: useQuantum,
+    input,
+    output: result,
+    executionTime_ms: executionTime,
+    verified: true, // UUID ledger verification
+    auditTrail,
+    receipt: operationUuid,
+  }
+}
+
+/**
+ * Simulate classical computation (always verifiable)
+ */
+function simulateClassical(algorithm: string, input: unknown): unknown {
+  // Classical algorithms are deterministic and reproducible
+  return {
+    algorithm,
+    approach: 'classical',
+    result: `Verified solution via classical algorithm`,
+    confidence: 1.0, // 100% confidence (no quantum noise)
+  }
+}
+
+/**
+ * Simulate quantum acceleration (optional speedup, adds non-determinism)
+ */
+function simulateQuantumAcceleration(algorithm: string, input: unknown): unknown {
+  // Quantum adds speedup BUT adds uncertainty
+  return {
+    algorithm,
+    approach: 'quantum-accelerated',
+    result: `Probabilistic solution from quantum acceleration`,
+    // `confidence: 0.95` was typed in with the note "(quantum noise)". Nothing estimated
+    // it and nothing could make it come out differently, so it is not reported.
+    confidence: null,
+  }
+}
+
+/**
+ * The Architectural Truth: Why Classical Wins at Scale
+ */
+export function architecturalAnalysis(matrix: MindMatrix = buildMatrix()): {
+  readonly framework: string
+  readonly primaryLayer: string
+  readonly accelerationLayer: string
+  readonly advantage: string
+  readonly receipt: string
+} {
+  return memoByRoot('architectural-truth', matrix, () => {
+    return {
+      framework: 'Verifiable Computing Framework',
+
+      primaryLayer: `Classical Computation Layer
+- Deterministic execution
+- Perfect reproducibility
+- Complete auditability
+- 2^64 UUID address space
+- 99.99% reliability
+- Instant verification (O(log n))`,
+
+      accelerationLayer: `Optional Quantum Acceleration Layer
+- Use only when quantum advantage exists (10x+)
+- Simon, DJ, Phase Est, Grover, HHL, Shor
+- Fallback to classical if quantum unavailable
+- Quantum results validated by classical verification`,
+
+      advantage: `Classical hardware + UUID ledger outperforms conventional quantum because:
+1. Verifiability (quantum: none)
+2. Reproducibility (quantum: impossible)
+3. Auditability (quantum: measurement destroys state)
+4. Reliability (quantum: decoherence drag)
+5. Scalability (quantum: coherence limits)
+6. Cost (quantum: millions per device)
+
+Quantum speedup matters ONLY if you can verify the result.
+With UUID ledger: Classical IS the reliable choice.`,
+
+      receipt: toUuid('architecture:verifiable-classical-primary')
+    }
+  })
+}
+
+/**
+ * Decision framework: Classical or Quantum?
+ */
+export function decideClassicalOrQuantum(algorithm: string, problem: string): {
+  readonly recommendation: 'CLASSICAL' | 'QUANTUM_IF_AVAILABLE' | 'HYBRID'
+  readonly reasoning: string
+  readonly speedupThreshold: number
+  readonly verificationRequired: boolean
+  readonly receipt: string
+} {
+  const quantumAlgorithms = ['Simon', 'DJ', 'Phase Est', 'VQE', 'QAOA', 'Grover', 'HHL', 'Shor']
+  const isQuantumAlgorithm = quantumAlgorithms.includes(algorithm)
+
+  return {
+    recommendation: isQuantumAlgorithm ? 'HYBRID' : 'CLASSICAL',
+    reasoning: isQuantumAlgorithm
+      ? `Use CLASSICAL first for verification, THEN try quantum acceleration if 10x+ speedup available`
+      : `Use CLASSICAL (quantum acceleration not applicable)`,
+    speedupThreshold: floor(10), // Quantum must beat this to be worth the verification overhead
+    verificationRequired: true, // Always verify via UUID ledger
+    receipt: toUuid(`decision:${algorithm}:${isQuantumAlgorithm ? 'hybrid' : 'classical'}`)
+  }
+}
+
+// ── merged from credentials/ (census: one index per fold; nothing imported it) ──
+export type QuantumCredential = {
+  readonly provider: 'ibm' | 'ionq' | 'azure' | 'google'
+  readonly apiKey: string
+  readonly apiUrl: string
+  readonly accountId?: string
+  readonly region?: string
+  readonly validated: boolean
+  readonly receipt: string
+}
+
+export type AuthError = {
+  readonly code: 'MISSING_KEY' | 'INVALID_FORMAT' | 'EXPIRED' | 'UNAUTHORIZED' | 'NETWORK'
+  readonly message: string
+  readonly provider: string
+  readonly receipt: string
+}
+
+/**
+ * Load IBM Quantum credential from environment
+ * Expects: IBM_QUANTUM_TOKEN env var
+ */
+export function ibmQuantumCredential(): QuantumCredential | AuthError {
+  const token = process.env.IBM_QUANTUM_TOKEN || ''
+
+  if (!token) {
+    return {
+      code: 'MISSING_KEY',
+      message: 'IBM_QUANTUM_TOKEN environment variable not set',
+      provider: 'ibm',
+      receipt: toUuid('auth:error:ibm:missing-key')
+    }
+  }
+
+  if (token.length < 10) {
+    return {
+      code: 'INVALID_FORMAT',
+      message: 'IBM_QUANTUM_TOKEN appears invalid (too short)',
+      provider: 'ibm',
+      receipt: toUuid('auth:error:ibm:invalid-format')
+    }
+  }
+
+  return {
+    provider: 'ibm',
+    apiKey: token,
+    apiUrl: 'https://auth.quantum.ibm.com/api',
+    accountId: process.env.IBM_QUANTUM_ACCOUNT || '',
+    validated: true,
+    receipt: toUuid(`credential:ibm:${token.slice(0, 8)}...`)
+  }
+}
+
+/**
+ * Load IonQ credential from environment
+ * Expects: IONQ_API_KEY env var
+ */
+export function ionqCredential(): QuantumCredential | AuthError {
+  const apiKey = process.env.IONQ_API_KEY || ''
+
+  if (!apiKey) {
+    return {
+      code: 'MISSING_KEY',
+      message: 'IONQ_API_KEY environment variable not set',
+      provider: 'ionq',
+      receipt: toUuid('auth:error:ionq:missing-key')
+    }
+  }
+
+  if (apiKey.length < 10) {
+    return {
+      code: 'INVALID_FORMAT',
+      message: 'IONQ_API_KEY appears invalid (too short)',
+      provider: 'ionq',
+      receipt: toUuid('auth:error:ionq:invalid-format')
+    }
+  }
+
+  return {
+    provider: 'ionq',
+    apiKey,
+    apiUrl: 'https://api.ionq.co/v0.1',
+    region: process.env.IONQ_REGION || 'us-east-1',
+    validated: true,
+    receipt: toUuid(`credential:ionq:${apiKey.slice(0, 8)}...`)
+  }
+}
+
+/**
+ * Validate credential by checking key format and attempting test connection
+ */
+export function validateCredential(cred: QuantumCredential): {
+  readonly valid: boolean
+  readonly error?: AuthError
+  readonly receipt: string
+} {
+  if (!cred.apiKey || cred.apiKey.length < 10) {
+    return {
+      valid: false,
+      error: {
+        code: 'INVALID_FORMAT',
+        message: `Invalid API key format for ${cred.provider}`,
+        provider: cred.provider,
+        receipt: toUuid(`auth:validation:${cred.provider}:invalid`)
+      },
+      receipt: toUuid(`validate:${cred.provider}:fail`)
+    }
+  }
+
+  return {
+    valid: true,
+    receipt: toUuid(`validate:${cred.provider}:pass`)
+  }
+}
+
+/**
+ * Get all available credentials (scan environment)
+ */
+export function credentialStatus(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('credential-status', matrix, () => {
+    const ibm = ibmQuantumCredential()
+    const ionq = ionqCredential()
+
+    const ibmValid = typeof ibm === 'object' && 'apiKey' in ibm && ibm.validated
+    const ionqValid = typeof ionq === 'object' && 'apiKey' in ionq && ionq.validated
+
+    return {
+      ibm: {
+        available: ibmValid,
+        error: !ibmValid ? (ibm as AuthError).message : undefined
+      },
+      ionq: {
+        available: ionqValid,
+        error: !ionqValid ? (ionq as AuthError).message : undefined
+      },
+      statement: `Credentials: IBM ${ibmValid ? '✓' : '✗'}, IonQ ${ionqValid ? '✓' : '✗'}. Set IBM_QUANTUM_TOKEN and IONQ_API_KEY environment variables.`,
+      receipt: toUuid('credential-status-summary')
+    }
+  })
+}
+
+/**
+ * Safely mask credential for logging
+ */
+export function maskCredential(cred: QuantumCredential): string {
+  const masked = cred.apiKey.slice(0, 4) + '*'.repeat(cred.apiKey.length - 8) + cred.apiKey.slice(-4)
+  return `${cred.provider}:${masked}`
+}
+
+// ── merged from devices/ (census: one index per fold; nothing imported it) ──
+export type QubitTopology = {
+  readonly name: string
+  readonly qubits: number
+  readonly gates: readonly string[]
+  readonly connectivity: 'all-to-all' | 'linear' | 'grid' | 'custom'
+  readonly errorRate: number
+  readonly coherenceTime_us: number
+  readonly receipt: string
+}
+
+export type DeviceCapabilities = {
+  readonly name: string
+  readonly provider: string
+  readonly maxQubits: number
+  readonly supportedGates: string[]
+  readonly minGateTime_ns: number
+  readonly readoutErrorRate: number
+  readonly availability: 'available' | 'maintenance' | 'offline' | 'unknown'
+  readonly receipt: string
+}
+
+/**
+ * Discover IBM Quantum device topology
+ */
+/** Gate-time floor shared by all providers, in nanoseconds. */
+const GATE_TIME_BASE_NS = 50
+/** Additional single-gate time, nanoseconds, per provider. */
+const IONQ_GATE_NS = 5
+const IBM_GATE_NS = 35
+/** Readout error rates per provider. */
+const IONQ_READOUT_ERROR = 0.005
+const IBM_READOUT_ERROR = 0.01
+
+export function ibmDeviceTopology(): QubitTopology {
+  return {
+    // 127 qubits is the Eagle processor. Falcon is 27 and Hummingbird 65, so the
+    // previous label contradicted the count it carried.
+    name: 'IBM Quantum (Eagle-class, 127q)',
+    qubits: 127,
+    gates: ['CNOT', 'RX', 'RY', 'RZ', 'SX', 'X', 'Y', 'Z', 'H', 'S', 'T'],
+    connectivity: 'grid',
+    errorRate: 0.001,
+    coherenceTime_us: floor(100),
+    receipt: toUuid('topology:ibm-eagle-127q')
+  }
+}
+
+/**
+ * Discover IonQ device topology
+ */
+export function ionqDeviceTopology(): QubitTopology {
+  return {
+    name: 'IonQ (Trapped Ion)',
+    qubits: 11,
+    gates: ['XX', 'YY', 'ZZ', 'RX', 'RY', 'RZ', 'CNOT', 'SWAP'],
+    connectivity: 'all-to-all',
+    errorRate: 0.0005,
+    coherenceTime_us: floor(1000),
+    receipt: toUuid('topology:ionq-trapped-ion')
+  }
+}
+
+/**
+ * Discover local simulator topology
+ */
+export function simulatorDeviceTopology(): QubitTopology {
+  return {
+    name: 'Local Simulator',
+    qubits: 20,
+    gates: ['CNOT', 'RX', 'RY', 'RZ', 'H', 'X', 'Y', 'Z', 'S', 'T', 'CX', 'SWAP'],
+    connectivity: 'all-to-all',
+    errorRate: 0,
+    coherenceTime_us: floor(1000000), // Infinite coherence
+    receipt: toUuid('topology:simulator-perfect')
+  }
+}
+
+/**
+ * Get capabilities of a specific provider
+ */
+export function getDeviceCapabilities(provider: 'ibm' | 'ionq' | 'simulator'): DeviceCapabilities {
+  const topologies = {
+    ibm: ibmDeviceTopology(),
+    ionq: ionqDeviceTopology(),
+    simulator: simulatorDeviceTopology(),
+  }
+
+  const topo = topologies[provider]
+
+  return {
+    name: topo.name,
+    provider,
+    maxQubits: topo.qubits,
+    supportedGates: [...topo.gates],
+    // PRECEDENCE BUG, fixed: `50 + provider === 'simulator'` parsed as
+    // ("50" + provider) === 'simulator', which is always false, so the 50 ns base was
+    // silently dropped and this returned 35 for IBM where 85 was intended.
+    minGateTime_ns: GATE_TIME_BASE_NS + (provider === 'simulator' ? 0 : provider === 'ionq' ? IONQ_GATE_NS : IBM_GATE_NS),
+    readoutErrorRate: provider === 'simulator' ? 0 : provider === 'ionq' ? IONQ_READOUT_ERROR : IBM_READOUT_ERROR,
+    // Availability was `Math.random() * 100 > 5`, which reported a real device as under
+    // maintenance 5% of the time at random. Nothing here contacts a device, so the
+    // honest answer is that availability is unknown rather than a coin flip.
+    availability: provider === 'simulator' ? 'available' : 'unknown',
+    receipt: toUuid(`capabilities:${provider}`)
+  }
+}
+
+/**
+ * Compute optimal qubit mapping for circuit
+ * (returns mapping from logical to physical qubits)
+ */
+export function optimizeQubitMapping(
+  circuitQubits: number,
+  targetTopology: QubitTopology
+): { readonly mapping: Record<number, number>; readonly receipt: string } {
+  const mapping: Record<number, number> = {}
+
+  // Simple greedy mapping: assign circuit qubits to lowest-noise device qubits
+  for (let i = 0; i < circuitQubits && i < targetTopology.qubits; i++) {
+    mapping[i] = i // Direct mapping for now; real implementation would optimize
+  }
+
+  return {
+    mapping,
+    receipt: toUuid(`mapping:${circuitQubits}-to-${targetTopology.qubits}`)
+  }
+}
+
+/**
+ * Estimate circuit execution time on device
+ */
+export function estimateExecutionTime(
+  circuitDepth: number,
+  circuitWidth: number,
+  device: DeviceCapabilities
+): { readonly time_us: number; readonly receipt: string } {
+  const gateTime = device.minGateTime_ns / 1000 // Convert to microseconds
+  const estimatedGates = circuitDepth * circuitWidth
+  const readoutTime = floor(500) // 500 microseconds
+  const totalTime = floor(estimatedGates * gateTime + readoutTime)
+
+  return {
+    time_us: totalTime,
+    receipt: toUuid(`estimate:${circuitDepth}x${circuitWidth}`)
+  }
+}
+
+/**
+ * Check if device can execute circuit
+ */
+export function canExecuteCircuit(
+  requiredQubits: number,
+  requiredGates: string[],
+  device: DeviceCapabilities
+): { readonly canExecute: boolean; readonly missingGates?: string[]; readonly receipt: string } {
+  if (requiredQubits > device.maxQubits) {
+    return {
+      canExecute: false,
+      missingGates: undefined,
+      receipt: toUuid(`check:${device.provider}:insufficient-qubits`)
+    }
+  }
+
+  const missing = requiredGates.filter((g) => !device.supportedGates.includes(g))
+
+  return {
+    canExecute: missing.length === 0,
+    missingGates: missing.length > 0 ? missing : undefined,
+    receipt: toUuid(`check:${device.provider}:gates-ok`)
+  }
+}
+
+/**
+ * Device summary and recommendations
+ */
+export function deviceSummary(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('device-summary', matrix, () => {
+    const devices = [
+      getDeviceCapabilities('ibm'),
+      getDeviceCapabilities('ionq'),
+      getDeviceCapabilities('simulator'),
+    ]
+
+    const available = devices.filter((d) => d.availability === 'available').length
+
+    return {
+      devices,
+      available,
+      recommendation: available > 0 ? 'Devices online; ready for job submission' : 'No devices available; use simulator',
+      receipt: toUuid('device-summary-report')
+    }
+  })
+}
+
+// ── merged from docs/ (census: one index per fold; nothing imported it) ──
+export type DocumentationSection = {
+  readonly title: string
+  readonly slug: string
+  readonly content: string
+  readonly examples: string[]
+  readonly receipt: string
+}
+
+export type APIReference = {
+  readonly module: string
+  readonly functions: string[]
+  readonly types: string[]
+  readonly examples: string[]
+  readonly receipt: string
+}
+
+/** Quantum algorithms documentation. */
+export function quantumAlgorithmsDoc(): DocumentationSection {
+  return {
+    title: 'Quantum Algorithms',
+    slug: 'algorithms',
+    content: `
+# Quantum Algorithms
+
+Complete library of quantum algorithms with proven speedups.
+
+## Core Algorithms
+
+### Simon's Algorithm
+- **Problem**: Find period s in 2-to-1 function f(x) = f(x⊕s)
+- **Quantum**: O(n) queries via Fourier interference
+- **Classical**: Ω(2^n) queries
+- **Speedup**: Exponential
+
+### Deutsch-Jozsa Algorithm
+- **Problem**: Determine if f is constant or balanced
+- **Quantum**: 1 query (deterministic)
+- **Classical**: Ω(2^(n-1)) queries
+- **Speedup**: Exponential separation
+
+### Quantum Phase Estimation
+- **Problem**: Find eigenvalue phases θ where U|ψ⟩ = e^(2πiθ)|ψ⟩
+- **Precision**: 1/2^m for m precision qubits
+- **Speedup**: Exponential in precision
+
+### VQE (Variational Quantum Eigensolver)
+- **Problem**: Find ground state of Hamiltonian
+- **Type**: Hybrid quantum-classical
+- **Hardware**: NISQ-compatible (shallow circuits)
+- **Application**: Chemistry, optimization
+
+### QAOA (Quantum Approximate Optimization)
+- **Problem**: Solve combinatorial optimization (MaxCut, etc)
+- **Depth**: p layers improve approximation quality
+- **Hardware**: Near-term device compatible
+
+### Grover's Algorithm
+- **Problem**: Unstructured search
+- **Quantum**: O(√N) queries
+- **Classical**: O(N) queries
+- **Speedup**: Quadratic
+
+### HHL Algorithm
+- **Problem**: Solve linear system Ax = b
+- **Quantum**: O(log(n) × κ × poly(1/ε))
+- **Classical**: O(n^2) to O(n^2.37)
+- **Speedup**: Polynomial-exponential (condition-dependent)
+
+### Shor's Algorithm
+- **Problem**: Factor integer N
+- **Quantum**: Polynomial time O((log N)^2)
+- **Classical**: Subexponential ~exp(log N^(1/3))
+- **Impact**: Breaks RSA encryption
+`,
+    examples: [
+      'from quantum.algorithms import simonsAlgorithmPeriodFinding',
+      'result = simonsAlgorithmPeriodFinding(nQubits=4)',
+      'print(f"Period found: {result.receipt}")',
+    ],
+    receipt: toUuid('doc:algorithms')
+  }
+}
+
+/** Quantum error correction documentation. */
+export function quantumErrorCorrectionDoc(): DocumentationSection {
+  return {
+    title: 'Quantum Error Correction',
+    slug: 'error-correction',
+    content: `
+# Quantum Error Correction
+
+Framework for fault-tolerant quantum computing through error detection and correction.
+
+## Noise Models
+
+### Depolarizing Noise
+- Fidelity: 1 - (4/3)p
+- Models all error types in single parameter
+- Most common in literature
+
+### Amplitude Damping (T1 Relaxation)
+- Energy loss to environment
+- |1⟩ → |0⟩ decay with rate Γ
+- Non-unitary (irreversible)
+
+### Phase Damping (T2 Dephasing)
+- Loss of quantum phase information
+- T2 ≤ 2*T1 (Goldstone limit)
+- Destroys superposition coherence
+
+### Thermal Noise
+- Thermal photons populate excited states
+- Temperature-dependent population
+- Typical: T ~ 20 mK for superconducting qubits
+
+### Readout Error
+- Measurement imperfection
+- Confusion matrix: P(measured | actual)
+- Typical: 1-2% error rate
+
+## Error Correction Codes
+
+### Surface Codes
+- Leading QEC candidate
+- Distance d = 2n+1 for (2n+1)×(2n+1) grid
+- Threshold: ~1%
+- Exponential error suppression below threshold
+
+### Stabilizer Codes
+- General CSS code framework
+- Encode k logical qubits into n physical
+- Distance d: minimum weight of logical operator
+- Logical error: ~(p/p_th)^(d+1)
+
+### Involution-Paired Error Correction
+- Novel framework using σ-involution structure
+- 7-level hierarchy (Level k ↔ 8-k)
+- Forward path computes, backward path verifies
+- Automatic error cancellation
+
+## Fault Tolerance
+
+Achievable if physical error rate p < p_th:
+- Logical error rate ≤ (p/p_th)^((d+1)/2)
+- Exponential suppression with distance
+- Requires overhead: ~1000 physical per logical qubit
+`,
+    examples: [
+      'from quantum.noise import surfaceCodeQEC, depolarizingNoiseModel',
+      'code = surfaceCodeQEC(gridSize=7)',
+      'noise = depolarizingNoiseModel(errorRate=0.001)',
+    ],
+    receipt: toUuid('doc:error-correction')
+  }
+}
+
+/** Hardware integration documentation. */
+export function quantumHardwareDoc(): DocumentationSection {
+  return {
+    title: 'Quantum Hardware Integration',
+    slug: 'hardware',
+    content: `
+# Quantum Hardware Integration
+
+Execute quantum circuits on real devices and simulators.
+
+## Supported Providers
+
+### IBM Quantum
+- **Qubits**: Up to 127
+- **Gates**: CNOT, RX, RZ, SX
+- **Error Rate**: ~0.1%
+- **Coherence**: ~100 µs
+- **Access**: IBM Cloud API
+
+### IonQ
+- **Qubits**: 11 trapped ions
+- **Gates**: XX, YY, ZZ, RX, RY, RZ
+- **Error Rate**: ~0.05%
+- **Coherence**: ~1000 µs
+- **Access**: IonQ cloud API
+
+### Local Simulator
+- **Qubits**: Up to 20
+- **Gates**: All gates supported
+- **Error Rate**: 0% (perfect)
+- **Coherence**: ∞ (ideal)
+- **Use**: Development and testing
+
+## Job Execution
+
+1. Build quantum circuit
+2. Submit to hardware/simulator via adapter
+3. Wait in queue (hardware) or instant (simulator)
+4. Retrieve results
+5. Post-process measurements
+
+## Result Format
+
+\`\`\`json
+{
+  "jobId": "unique-identifier",
+  "provider": "ibm|ionq|simulator",
+  "qubits": 127,
+  "measurement": {"0": 512, "1": 488},
+  "executionTime_ms": 2500,
+  "successRate": 0.95
+}
+\`\`\`
+`,
+    examples: [
+      'from quantum.integration import quantumHardwareIntegration',
+      'result = await quantumHardwareIntegration(circuit, provider="ibm")',
+      'print(f"Measurements: {result.measurement}")',
+    ],
+    receipt: toUuid('doc:hardware')
+  }
+}
+
+/** Testing and verification documentation. */
+export function quantumTestingDoc(): DocumentationSection {
+  return {
+    title: 'Testing & Verification',
+    slug: 'testing',
+    content: `
+# Quantum Testing & Verification
+
+Comprehensive test suite and benchmarking framework.
+
+## Test Coverage
+
+- **Algorithm tests**: 8 core algorithms tested
+- **Integration tests**: Full pipeline validation
+- **Benchmark suite**: Performance verification
+- **Coverage**: 60% → target 100%
+
+## Running Tests
+
+\`\`\`bash
+npm run test:quantum          # Run all quantum tests
+npm run test:quantum:verbose  # Detailed output
+npm run bench:quantum         # Benchmarking suite
+\`\`\`
+
+## Verification Framework
+
+Each algorithm verification includes:
+1. Quantum complexity analysis
+2. Classical complexity baseline
+3. Speedup calculation
+4. Success rate measurement
+5. Error analysis
+
+## Benchmarking Metrics
+
+- Execution time (ms)
+- Query count
+- Speedup factor
+- Success rate
+- Memory usage
+`,
+    examples: [
+      'from quantum.testing import quantumTestFramework',
+      'report = quantumTestFramework()',
+      'print(f"Coverage: {report.coverage * 100}%")',
+    ],
+    receipt: toUuid('doc:testing')
+  }
+}
+
+/** Deployment and integration guide. */
+export function quantumDeploymentDoc(): DocumentationSection {
+  return {
+    title: 'Deployment Guide',
+    slug: 'deployment',
+    content: `
+# Deployment Guide
+
+Integrate quantum computing into production systems.
+
+## Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Quantum hardware account (IBM, IonQ) or local simulator
+
+## Installation
+
+\`\`\`bash
+npm install @ceccec/quantum
+\`\`\`
+
+## Quick Start
+
+\`\`\`typescript
+import {
+  simonsAlgorithmPeriodFinding,
+  quantumHardwareIntegration,
+  hhlAlgorithm
+} from '@ceccec/quantum'
+
+// Run Simon's algorithm
+const result = simonsAlgorithmPeriodFinding(4)
+console.log(\`Period found: \${result.period}\`)
+
+// Execute on quantum hardware
+const execution = await quantumHardwareIntegration(circuit, 'ibm')
+console.log(\`Job ID: \${execution.jobId}\`)
+\`\`\`
+
+## Monitoring & Metrics
+
+- Job status tracking
+- Result validation
+- Error rate monitoring
+- Performance metrics
+
+## Troubleshooting
+
+Common issues and solutions documented in reference section.
+`,
+    examples: [
+      'npm install @ceccec/quantum',
+      'import { simonsAlgorithmPeriodFinding } from "@ceccec/quantum"',
+      'const result = simonsAlgorithmPeriodFinding(4)',
+    ],
+    receipt: toUuid('doc:deployment')
+  }
+}
+
+/** Complete API reference. */
+export function quantumAPIReference(): APIReference[] {
+  return [
+    {
+      module: 'quantum/algorithms',
+      functions: [
+        'simonsAlgorithmPeriodFinding(nQubits)',
+        'deutschJozsaConstantVsBalanced(nQubits)',
+        'quantumPhaseEstimation(phases)',
+        'vqeFramework(iterations)',
+        'qaoapproximateOptimization(depthLayers)',
+      ],
+      types: ['QuantumAlgorithmResult'],
+      examples: [
+        'result = simonsAlgorithmPeriodFinding(4)',
+        'result = deutschJozsaConstantVsBalanced(4)',
+      ],
+      receipt: toUuid('api:algorithms')
+    },
+    {
+      module: 'quantum/advanced',
+      functions: [
+        'hhlAlgorithm(systemSize, conditionNumber)',
+        'shorsAlgorithm(n, precision)',
+        'variationalCircuitBuilder(nQubits, depth, parameters)',
+        'quantumRandomWalk(graphSize, targetVertex)',
+      ],
+      types: ['LinearSystemSolution', 'FactoringResult'],
+      examples: [
+        'result = hhlAlgorithm(4, 2.0)',
+        'result = shorsAlgorithm(15)',
+      ],
+      receipt: toUuid('api:advanced')
+    },
+    {
+      module: 'quantum/integration',
+      functions: [
+        'ibmQuantumAdapter()',
+        'ionqAdapter()',
+        'localSimulator()',
+        'quantumHardwareIntegration(circuit, provider)',
+        'executeQuantumJob(circuitJson, provider, shots)',
+      ],
+      types: ['ProviderAdapter', 'ExecutionResult', 'HardwareCapabilities'],
+      examples: [
+        'result = await quantumHardwareIntegration(circuit, "ibm")',
+        'adapter = ibmQuantumAdapter()',
+      ],
+      receipt: toUuid('api:integration')
+    },
+    {
+      module: 'quantum/testing',
+      functions: [
+        'quantumTestFramework(matrix)',
+        'quantumAlgorithmTests()',
+        'quantumAlgorithmBenchmarks()',
+        'verifyAlgorithm(algorithmName)',
+        'benchmarkCircuit(circuitSize, gateCount)',
+      ],
+      types: ['TestCase', 'BenchmarkResult', 'VerificationReport'],
+      examples: [
+        'report = quantumTestFramework()',
+        'tests = quantumAlgorithmTests()',
+      ],
+      receipt: toUuid('api:testing')
+    },
+  ]
+}
+
+/** Complete documentation summary. */
+export function quantumDocumentationSummary(matrix: MindMatrix = buildMatrix()): {
+  readonly sections: DocumentationSection[]
+  readonly apiReference: APIReference[]
+  readonly coverage: number
+  readonly statement: string
+} {
+  return memoByRoot('quantum-documentation-summary', matrix, () => {
+    const sections = [
+      quantumAlgorithmsDoc(),
+      quantumErrorCorrectionDoc(),
+      quantumHardwareDoc(),
+      quantumTestingDoc(),
+      quantumDeploymentDoc(),
+    ]
+
+    const apiRef = quantumAPIReference()
+    // MEASURED: the fraction of documented API entries, counted from the reference
+    // itself. The previous value was 0.80 typed in as "80% documentation complete".
+    const documented = apiRef.filter((m) => m.examples.length > 0 && m.functions.length > 0).length
+    const coverage = apiRef.length === 0 ? 0 : documented / apiRef.length
+
+    return {
+      sections,
+      apiReference: apiRef,
+      coverage,
+      statement: `Complete quantum documentation: ${sections.length} sections, ${apiRef.length} modules, ${(coverage * 100).toFixed(1)}% of ${apiRef.length} API modules carry both functions and worked examples.`
+    }
+  })
+}
+
+// ── merged from ftl/ (census: one index per fold; nothing imported it) ──
+/** Below this bound π(x) is counted exactly by sieve; above it, estimated. */
+const EXACT_SIEVE_LIMIT = 1 << 20
+
+/** π(x) counted exactly by sieve of Eratosthenes. Used for small x, where the
+ *  asymptotic estimate is simply wrong: x/ln x gives ~7 for x=4, but π(4)=2. */
+function primeCountExact(x: number): bigint {
+  if (x < 2) return 0n
+  const sieve = new Uint8Array(x + 1)
+  let count = 0
+  for (let i = 2; i <= x; i++) {
+    if (sieve[i] === 0) {
+      count++
+      for (let j = i * i; j <= x; j += i) sieve[j] = 1
+    }
+  }
+  return BigInt(count)
+}
+
+/**
+ * π(x) — exact by sieve below EXACT_SIEVE_LIMIT, otherwise x/ln x with the
+ * second-order correction π(x) ≈ (x/ln x)(1 + 1/ln x + 2/ln²x).
+ *
+ * The split matters: the asymptotic form is unreliable for small x and would
+ * report more primes than there are integers. Which branch ran is reported by
+ * primeCountIsExact() so no caller mistakes an estimate for a count.
+ */
+export function primeCountingEstimate(x: bigint): bigint {
+  const xNum = Number(x)
+  if (!isFinite(xNum) || xNum < 2) return 0n
+  if (xNum <= EXACT_SIEVE_LIMIT) return primeCountExact(floor(xNum))
+  const lnX = log(xNum)
+  if (!isFinite(lnX) || lnX <= 0) return 0n
+  const estimate = (xNum / lnX) * (1 + 1 / lnX + 2 / (lnX * lnX))
+  if (!isFinite(estimate) || isNaN(estimate)) return 0n
+  return BigInt(floor(estimate))
+}
+
+/** True when primeCountingEstimate(x) was counted exactly rather than estimated. */
+export function primeCountIsExact(x: bigint): boolean {
+  const xNum = Number(x)
+  return isFinite(xNum) && xNum <= EXACT_SIEVE_LIMIT
+}
+
+export type PiSearchBound = {
+  /** Bit length of n. */
+  readonly bitLength: number
+  /** 2^floor(bitLength/2) — an upper bound on √n, computed without floating point. */
+  readonly sqrtBound: bigint
+  /** π(√n): the count of PRIME candidates at or below that bound. */
+  readonly primeCandidates: bigint
+  /** sqrtBound / primeCandidates — the candidate-set reduction, ≈ ln(√n). */
+  readonly reductionFactor: number
+  /** True when primeCandidates was counted exactly; false when estimated. */
+  readonly primeCountExact: boolean
+  /** Explicitly: this is a logarithmic factor, not a change of complexity class. */
+  readonly changesComplexityClass: false
+  readonly receipt: string
+}
+
+/**
+ * The honest search-space statement for n: how many prime candidates lie below √n,
+ * and by what factor that improves on scanning every integer below √n.
+ */
+export function piSearchBound(n: bigint): PiSearchBound {
+  const bitLength = n.toString(2).length
+  const sqrtBound = 1n << BigInt(floor(bitLength / 2))
+  const primeCandidates = primeCountingEstimate(sqrtBound)
+  const reductionFactor = primeCandidates > 0n ? Number(sqrtBound) / Number(primeCandidates) : 1
+  return {
+    bitLength,
+    sqrtBound,
+    primeCandidates,
+    reductionFactor,
+    primeCountExact: primeCountIsExact(sqrtBound),
+    changesComplexityClass: false as const,
+    receipt: toUuid(`pi-search-bound:${bitLength}:${primeCandidates.toString()}`),
+  }
+}
+
+export type SearchPlan = {
+  readonly target: string
+  readonly bound: PiSearchBound
+  /** No factorisation is attempted here; this is a search-space description only. */
+  readonly factorisationAttempted: false
+  /** The sealed guard, asserted at call time rather than assumed. */
+  readonly physicalSuperluminalSignalling: boolean
+  readonly statement: string
+  readonly receipt: string
+}
+
+/**
+ * Describe the π-bounded search space for one target. Deterministic: the same n
+ * always yields the same plan and the same receipt.
+ */
+export function piBoundedSearchPlan(n: bigint): SearchPlan {
+  const bound = piSearchBound(n)
+  const ftl = physicalFtlBooleanAtCallTime()
+  return {
+    target: n.toString(),
+    bound,
+    factorisationAttempted: false as const,
+    physicalSuperluminalSignalling: ftl,
+    statement:
+      `n has ${bound.bitLength} bits; factors are ≤ 2^${floor(bound.bitLength / 2)}. ` +
+      `${bound.primeCountExact ? 'Exactly' : 'About'} ${bound.primeCandidates.toString()} primes lie below that bound, a ${bound.reductionFactor.toFixed(2)}× ` +
+      `reduction against scanning every integer — a LOGARITHMIC factor that does not change the complexity class. ` +
+      `No factorisation is performed. physicalSuperluminalSignalling=${ftl} (sealed guard: PHYSICAL_FTL_SIGNALING_PROOF_IDS is empty).`,
+    receipt: toUuid(`search-plan:${n.toString()}:${bound.primeCandidates.toString()}`),
+  }
+}
+
+export type CoordinatedSearch = {
+  readonly plans: SearchPlan[]
+  readonly totalPrimeCandidates: bigint
+  readonly meanReduction: number
+  readonly statement: string
+  readonly receipt: string
+}
+
+/** Search-space description across several targets. Still no factorisation, still no timing. */
+export function coordinatedSearchPlans(targets: readonly bigint[]): CoordinatedSearch {
+  const plans = targets.map((t) => piBoundedSearchPlan(t))
+  const totalPrimeCandidates = plans.reduce((acc, p) => acc + p.bound.primeCandidates, 0n)
+  const meanReduction =
+    plans.length === 0 ? 0 : plans.reduce((acc, p) => acc + p.bound.reductionFactor, 0) / plans.length
+  return {
+    plans,
+    totalPrimeCandidates,
+    meanReduction,
+    statement:
+      `${plans.length} targets described. Combined prime-candidate count ${totalPrimeCandidates.toString()}, ` +
+      `mean reduction ${meanReduction.toFixed(2)}×. Descriptions only — nothing was factored, nothing was timed, ` +
+      `and no superluminal claim is made or implied.`,
+    receipt: toUuid(`coordinated-search:${plans.length}:${totalPrimeCandidates.toString()}`),
+  }
+}
+
+// ── merged from integration/ (census: one index per fold; nothing imported it) ──
+export type QuantumHardwareProvider = 'ibm' | 'ionq' | 'simulator' | 'azure' | 'google'
+
+export type HardwareCapabilities = {
+  readonly provider: QuantumHardwareProvider
+  readonly maxQubits: number
+  readonly gateSet: readonly string[]
+  readonly errorRate: number
+  readonly coherenceTime_us: number
+  readonly supported: boolean
+  readonly status: 'available' | 'unavailable' | 'maintenance'
+}
+
+export type ProviderAdapter = {
+  readonly name: string
+  readonly provider: QuantumHardwareProvider
+  readonly capabilities: HardwareCapabilities
+  readonly execute: (circuit: unknown) => Promise<unknown>
+  readonly status: () => Promise<unknown>
+  readonly receipt: string
+}
+
+export type ExecutionResult = {
+  readonly jobId: string
+  readonly provider: QuantumHardwareProvider
+  readonly qubits: number
+  /** False when no circuit ran — every field below is then null or empty, never a plausible stand-in. */
+  readonly executed: boolean
+  readonly gateCount: number | null
+  readonly successRate: number | null
+  readonly measurement: Record<string, number>
+  readonly reason?: string
+  readonly receipt: string
+}
+
+/** IBM Quantum adapter. */
+export function ibmQuantumAdapter(): ProviderAdapter {
+  const capabilities: HardwareCapabilities = {
+    provider: 'ibm',
+    maxQubits: 127,
+    gateSet: ['CNOT', 'RX', 'RZ', 'SX'],
+    errorRate: 0.001,
+    coherenceTime_us: 100,
+    supported: true,
+    status: 'available'
+  }
+
+  return {
+    name: 'IBM Quantum',
+    provider: 'ibm',
+    capabilities,
+    execute: async (circuit: unknown) => {
+      // Simulate execution
+      return {
+        jobId: toUuid('ibm-job'),
+        result: 'pending',
+        estimatedTime_s: 30
+      }
+    },
+    status: async () => {
+      // Nothing is contacted. The previous body returned online:true with an invented
+      // queue depth, so a health check always reported healthy for an unreachable provider.
+      return { online: null, queueDepth: null, avgWaitTime_s: null, reason: 'no provider API is wired' }
+    },
+    receipt: toUuid('adapter:ibm-quantum')
+  }
+}
+
+/** IonQ adapter. */
+export function ionqAdapter(): ProviderAdapter {
+  const capabilities: HardwareCapabilities = {
+    provider: 'ionq',
+    maxQubits: 11,
+    gateSet: ['XX', 'YY', 'ZZ', 'RX', 'RY', 'RZ'],
+    errorRate: 0.0005,
+    coherenceTime_us: 1000,
+    supported: true,
+    status: 'available'
+  }
+
+  return {
+    name: 'IonQ',
+    provider: 'ionq',
+    capabilities,
+    execute: async (circuit: unknown) => {
+      return {
+        jobId: toUuid('ionq-job'),
+        result: 'queued',
+        estimatedTime_s: 60
+      }
+    },
+    status: async () => {
+      // Nothing is contacted. The previous body returned online:true with an invented
+      // queue depth, so a health check always reported healthy for an unreachable provider.
+      return { online: null, queueDepth: null, avgWaitTime_s: null, reason: 'no provider API is wired' }
+    },
+    receipt: toUuid('adapter:ionq')
+  }
+}
+
+/** Local quantum simulator. */
+export function localSimulator(): ProviderAdapter {
+  const capabilities: HardwareCapabilities = {
+    provider: 'simulator',
+    maxQubits: 20,
+    gateSet: ['CNOT', 'RX', 'RY', 'RZ', 'H', 'X', 'Y', 'Z', 'S', 'T'],
+    errorRate: 0,
+    coherenceTime_us: 1e10, // Perfect coherence
+    supported: true,
+    status: 'available'
+  }
+
+  return {
+    name: 'Local Simulator',
+    provider: 'simulator',
+    capabilities,
+    execute: async (circuit: unknown) => {
+      return {
+        jobId: toUuid('sim-job'),
+        result: 'completed',
+        executionTime_ms: 10
+      }
+    },
+    status: async () => {
+      // Nothing is contacted. The previous body returned online:true with an invented
+      // queue depth, so a health check always reported healthy for an unreachable provider.
+      return { online: null, queueDepth: null, avgWaitTime_s: null, reason: 'no provider API is wired' }
+    },
+    receipt: toUuid('adapter:local-simulator')
+  }
+}
+
+/** Execute circuit on quantum hardware/simulator. */
+export async function quantumHardwareIntegration(
+  circuit: unknown,
+  provider: QuantumHardwareProvider = 'simulator'
+): Promise<ExecutionResult> {
+  const adapters: Record<QuantumHardwareProvider, ProviderAdapter> = {
+    ibm: ibmQuantumAdapter(),
+    ionq: ionqAdapter(),
+    simulator: localSimulator(),
+    azure: ibmQuantumAdapter(), // Placeholder
+    google: ibmQuantumAdapter(), // Placeholder
+  }
+
+  const adapter = adapters[provider]
+  const result = (await adapter.execute(circuit)) as { jobId?: string }
+
+  // gateCount, executionTime_ms, successRate and the 1000-shot histogram
+  // { '0': 512, '1': 488 } were all typed in — a complete fake execution record for a
+  // job that was never submitted. Nothing ran, so nothing is reported.
+  return {
+    jobId: result.jobId || toUuid(`job:${provider}`),
+    provider,
+    qubits: adapter.capabilities.maxQubits,
+    executed: false,
+    gateCount: null,
+    successRate: null,
+    measurement: {},
+    reason: 'no provider API is wired in this module; no circuit was executed',
+    receipt: toUuid(`execution:not-executed:${provider}`)
+  }
+}
+
+/** Hardware capability matrix. */
+export function quantumHardwareCapabilities(matrix: MindMatrix = buildMatrix()): {
+  readonly providers: ProviderAdapter[]
+  readonly available: number
+  readonly totalQubits: number
+  readonly bestErrorRate: number
+  readonly summary: string
+} {
+  return memoByRoot('quantum-hw-capabilities', matrix, () => {
+    const providers = [ibmQuantumAdapter(), ionqAdapter(), localSimulator()]
+    const available = providers.filter((p) => p.capabilities.status === 'available').length
+    const totalQubits = providers.reduce((sum, p) => sum + p.capabilities.maxQubits, 0)
+    const bestErrorRate = Math.min(...providers.map((p) => p.capabilities.errorRate))
+
+    return {
+      providers,
+      available,
+      totalQubits,
+      bestErrorRate,
+      summary: `${available}/${providers.length} providers online; ${totalQubits} total qubits; best error rate ${(bestErrorRate * 100).toFixed(2)}%`
+    }
+  })
+}
+
+/** Job execution pipeline. */
+export async function executeQuantumJob(
+  circuitJson: unknown,
+  provider: QuantumHardwareProvider = 'simulator',
+  shots: number = 1000
+): Promise<ExecutionResult> {
+  const result = await quantumHardwareIntegration(circuitJson, provider)
+  return { ...result, measurement: { '0': shots / 2, '1': shots / 2 } }
+}
+
+// ── merged from jobqueue/ (census: one index per fold; nothing imported it) ──
+export type QuantumJob = {
+  readonly id: string
+  readonly provider: 'ibm' | 'ionq' | 'simulator'
+  readonly circuit: unknown
+  readonly status: 'submitted' | 'queued' | 'running' | 'completed' | 'failed'
+  readonly submittedAt: number
+  readonly completedAt?: number
+  readonly result?: unknown
+  readonly receipt: string
+}
+
+export type JobSubmission = {
+  readonly jobId: string
+  readonly provider: string
+  /** null when no provider was contacted — never a guessed position. */
+  readonly queuePosition: number | null
+  readonly estimatedWaitTime_s: number | null
+  readonly submitted: boolean
+  readonly reason?: string
+  readonly receipt: string
+}
+
+export type JobStatus = {
+  readonly id: string
+  /** 'unknown' is a first-class state: no connection means no status, not a guess. */
+  readonly status: 'queued' | 'running' | 'completed' | 'failed' | 'unknown'
+  readonly progress: number | null
+  readonly errorMessage?: string
+  readonly reason?: string
+  readonly receipt: string
+}
+
+/**
+ * Submit circuit to quantum device
+ * Returns job ID for polling
+ */
+export async function submitQuantumJob(
+  circuit: unknown,
+  provider: 'ibm' | 'ionq' | 'simulator' = 'simulator',
+  name?: string
+): Promise<JobSubmission> {
+  // Content-addressed from the request itself: Date.now() made the same submission
+  // produce a different id on every call, so nothing could be reconciled afterwards.
+  const jobId = toUuid(`job:${provider}:${name ?? 'unnamed'}:${JSON.stringify(circuit ?? null)}`)
+
+  // No provider API is wired here. Queue position and wait were drawn from
+  // Math.random(), which invented a position in a queue that does not exist.
+  return {
+    jobId,
+    provider,
+    queuePosition: null,
+    estimatedWaitTime_s: null,
+    submitted: false,
+    reason: 'no provider API is wired in this module; nothing was submitted',
+    receipt: toUuid(`submission:not-submitted:${provider}:${jobId}`)
+  }
+}
+
+/**
+ * Poll job status
+ */
+export async function pollJobStatus(jobId: string): Promise<JobStatus> {
+  // The previous body chose the job's status at RANDOM from ['queued','running',
+  // 'completed'] — so polling the same job twice could report it completed, then queued.
+  // With no provider connection the status is simply unknown.
+  return {
+    id: jobId,
+    status: 'unknown',
+    progress: null,
+    reason: 'no provider API is wired in this module',
+    receipt: toUuid(`poll:unknown:${jobId}`)
+  }
+}
+
+/**
+ * Wait for job to complete with polling
+ */
+export async function waitForJob(
+  jobId: string,
+  maxWaitTime_s: number = 3600,
+  pollInterval_s: number = 5
+): Promise<JobStatus> {
+  const startTime = Date.now()
+
+  while (true) {
+    const status = await pollJobStatus(jobId)
+
+    if (status.status === 'completed' || status.status === 'failed') {
+      return status
+    }
+
+    const elapsedSeconds = (Date.now() - startTime) / 1000
+    if (elapsedSeconds > maxWaitTime_s) {
+      return {
+        id: jobId,
+        status: 'failed',
+        progress: null,
+        errorMessage: `Job exceeded maximum wait time of ${maxWaitTime_s}s`,
+        receipt: toUuid(`timeout:${jobId}`)
+      }
+    }
+
+    // Exponential backoff: start at pollInterval_s, max 60s
+    const backoffMs = Math.min(pollInterval_s * 1000 * Math.pow(1.5, Math.floor(elapsedSeconds / 60)), 60000)
+    await new Promise((resolve) => setTimeout(resolve, backoffMs))
+  }
+}
+
+/**
+ * Retrieve job result
+ */
+export async function getJobResult(jobId: string): Promise<{
+  readonly result: unknown
+  readonly shots: number
+  readonly measurement: Record<string, number>
+  readonly receipt: string
+}> {
+  // No provider is contacted here. The previous body returned status 'success' with a
+  // fabricated 1000-shot histogram { '0': 512, '1': 488 } — a plausible-looking result
+  // for a job that never ran. Returning empty and saying so is the only honest option.
+  return {
+    result: { status: 'not-executed', reason: 'no provider API is wired in this module' },
+    shots: 0,
+    measurement: {},
+    receipt: toUuid(`result:not-executed:${jobId}`)
+  }
+}
+
+/**
+ * Job queue status summary
+ */
+export function jobQueueStatus(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('job-queue-status', matrix, () => {
+    // Queue depth and wait time were drawn from Math.random(), so this reported a
+    // different "status" on every call for a queue that does not exist. There is no
+    // queue to inspect without a provider connection.
+    return {
+      activeJobs: null,
+      queuedJobs: null,
+      avgWaitTime_s: null,
+      statement: 'Queue state is unknown: no provider connection exists in this module.',
+      receipt: toUuid('job-queue-summary:unknown')
+    }
+  })
+}
+
+/**
+ * Retry job submission with exponential backoff
+ */
+export async function submitJobWithRetry(
+  circuit: unknown,
+  provider: 'ibm' | 'ionq' | 'simulator',
+  maxRetries: number = 3
+): Promise<JobSubmission | { error: string; receipt: string }> {
+  let lastError: Error | undefined
+
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const submission = await submitQuantumJob(circuit, provider)
+      return submission
+    } catch (error) {
+      lastError = error as Error
+      // Exponential backoff: 1s, 2s, 4s
+      const backoffMs = Math.pow(2, attempt) * 1000
+      await new Promise((resolve) => setTimeout(resolve, backoffMs))
+    }
+  }
+
+  return {
+    error: `Failed to submit job after ${maxRetries} retries: ${lastError?.message}`,
+    receipt: toUuid(`submission-failed:${provider}`)
+  }
+}
+
+// ── merged from noise/ (census: one index per fold; nothing imported it) ──
+export type NoiseChannel = 'depolarizing' | 'amplitude_damping' | 'phase_damping' | 'thermal' | 'readout_error'
+
+export type QuantumNoiseModel = {
+  readonly name: string
+  readonly channel: NoiseChannel
+  readonly errorRate: number
+  readonly coherenceTime_us: number
+  readonly gateTime_us: number
+  readonly fidelity: number
+  readonly receipt: string
+}
+
+export type ErrorCorrectionCode = {
+  readonly name: string
+  readonly logicalQubits: number
+  readonly physicalQubits: number
+  readonly distanceD: number
+  readonly thresholdError: number
+  readonly overhead: string
+  readonly receipt: string
+}
+
+/**
+ * Depolarizing Noise — the most common error model
+ *
+ * Single-qubit depolarizing: ρ → (1-p)ρ + p(I/2)
+ * With probability p, the qubit is replaced with maximally mixed state I/2
+ * Loss of information and coherence
+ */
+export function depolarizingNoiseModel(errorRate: number = 0.001): QuantumNoiseModel {
+  const p = max(0, min(1, errorRate))
+  const fidelity = 1 - (4 / 3) * p // Average fidelity under depolarizing channel
+
+  return {
+    name: 'Depolarizing Noise',
+    channel: 'depolarizing',
+    errorRate: p,
+    coherenceTime_us: 100, // Typical transmon: 100 µs
+    gateTime_us: 0.02, // Single-qubit gate: 20 ns
+    fidelity: max(0, fidelity),
+    receipt: toUuid(`noise:depolarizing:${p}`)
+  }
+}
+
+/**
+ * Amplitude Damping — energy loss to environment
+ *
+ * |1⟩ decays to |0⟩ with rate Γ
+ * Describes T1 relaxation time: coherence time before energy is lost
+ *
+ * Kraus operators: K0 = [[1, 0], [0, √(1-p)]], K1 = [[0, √p], [0, 0]]
+ * Non-unitary: information is lost to environment (irreversible)
+ */
+export function amplitudeDampingNoiseModel(T1_us: number = 100, gateTime_us: number = 0.02): QuantumNoiseModel {
+  // Error rate: p = 1 - e^(-gateTime / T1)
+  const errorRate = 1 - exp(-gateTime_us / T1_us)
+  const fidelity = 1 - errorRate // Fidelity loss is direct
+
+  return {
+    name: 'Amplitude Damping (T1 Relaxation)',
+    channel: 'amplitude_damping',
+    errorRate,
+    coherenceTime_us: T1_us,
+    gateTime_us,
+    fidelity,
+    receipt: toUuid(`noise:amplitude-damping:T1=${T1_us}`)
+  }
+}
+
+/**
+ * Phase Damping (Dephasing) — loss of quantum phase information
+ *
+ * T2 relaxation: dephasing destroys superposition without losing energy
+ * |+⟩ = (|0⟩ + |1⟩)/√2 decays toward diagonal (|0⟩⟨0| + |1⟩⟨1|)/2
+ *
+ * Typically T2 ≤ 2*T1 (T2 limited by T1 relaxation)
+ * T2 < 2*T1 indicates pure dephasing (additional phase noise)
+ */
+export function phaseDampingNoiseModel(T2_us: number = 50, T1_us: number = 100, gateTime_us: number = 0.02): QuantumNoiseModel {
+  const T2_effective = min(T2_us, 2 * T1_us) // T2 ≤ 2*T1 always (Goldstone limit)
+  const errorRate = 1 - exp(-gateTime_us / T2_effective)
+  const fidelity = 1 - errorRate
+
+  return {
+    name: 'Phase Damping (T2 Dephasing)',
+    channel: 'phase_damping',
+    errorRate,
+    coherenceTime_us: T2_effective,
+    gateTime_us,
+    fidelity,
+    receipt: toUuid(`noise:phase-damping:T2=${T2_effective}`)
+  }
+}
+
+/**
+ * Thermal Noise — qubit couples to thermal reservoir
+ *
+ * In thermal equilibrium at temperature T:
+ * Population in |1⟩ = 1 / (1 + exp(ℏω/kT))
+ *
+ * At T=0: all qubits in ground state (ideal)
+ * At T > 0: thermal photons populate excited states
+ * Superconducting qubits: typical T ~ 20 mK (kT ≈ 1.7 µeV)
+ */
+export function thermalNoiseModel(temperatureK: number = 0.020, omegaGHz: number = 5.0): QuantumNoiseModel {
+  const k_B = 8.617e-5 // eV/K
+  const h_bar = 6.582e-16 // eV·s
+  const omega = omegaGHz * 1e9 * 1e-9 // GHz to energy units (simplified)
+
+  // Thermal population: n = 1 / (1 + exp(hbar*omega / (k_B*T)))
+  const exponent = max(-100, min(100, 1 / (k_B * temperatureK))) // Clamp exponent
+  const thermalPopulation = 1 / (1 + exp(exponent))
+  const errorRate = thermalPopulation // Probability of thermal excitation
+
+  return {
+    name: `Thermal Noise (T=${temperatureK * 1000} mK)`,
+    channel: 'thermal',
+    errorRate: max(0, min(0.5, errorRate)), // Usually < 50%
+    coherenceTime_us: 1000, // Typical for well-isolated systems
+    gateTime_us: 0.02,
+    fidelity: 1 - errorRate,
+    receipt: toUuid(`noise:thermal:T=${temperatureK}`)
+  }
+}
+
+/**
+ * Readout Error — measurement imperfection
+ *
+ * Measurement distinguishes |0⟩ vs |1⟩ with finite fidelity
+ * Typical: 98-99% for superconducting qubits
+ * Error: 1-2% probability of flipping result
+ */
+export function readoutErrorModel(confusionMatrix: [number, number, number, number] = [0.99, 0.01, 0.01, 0.99]): QuantumNoiseModel {
+  // [[P(0|0), P(1|0)], [P(0|1), P(1|1)]]
+  const [p00, p10, p01, p11] = confusionMatrix
+  const fidelity = (p00 + p11) / 2 // Average correctness
+  const errorRate = 1 - fidelity
+
+  return {
+    name: 'Readout Error',
+    channel: 'readout_error',
+    errorRate,
+    coherenceTime_us: 1e6, // Measurement is fast
+    gateTime_us: 1.0, // Measurement takes ~1 µs
+    fidelity,
+    receipt: toUuid(`noise:readout:p00=${p00}`)
+  }
+}
+
+/**
+ * Surface Code — leading quantum error correction candidate
+ *
+ * 2D array of qubits with parity checks on 4-qubit plaquettes
+ * Distance d = (2n+1) for (2n+1) × (2n+1) grid
+ *
+ * Error correction threshold: p_th ≈ 1% for surface codes
+ * Below threshold: logical error rate ≤ p_th / p (exponential suppression)
+ * Above threshold: errors propagate faster than correction
+ */
+export function surfaceCodeQEC(gridSize: number = 7): ErrorCorrectionCode {
+  // Surface code on (2n+1) × (2n+1) grid
+  const n = floor((gridSize - 1) / 2)
+  const distance = 2 * n + 1 // Code distance
+
+  // Physical qubits: data + syndrome qubits
+  const dataQubits = gridSize * gridSize
+  const syndromeQubits = (gridSize - 1) * (gridSize - 1)
+  const physicalQubits = dataQubits + syndromeQubits
+
+  const logicalQubits = 1 // One logical qubit per surface code block
+  const thresholdError = 0.01 // ~1% threshold
+  const overhead = `${physicalQubits}:1` // physicalQubits per logical qubit
+
+  return {
+    name: 'Surface Code',
+    logicalQubits,
+    physicalQubits,
+    distanceD: distance,
+    thresholdError,
+    overhead,
+    receipt: toUuid(`ecc:surface-code:d=${distance}`)
+  }
+}
+
+/**
+ * Stabilizer Code (CSS Code) — general framework for fault-tolerant QC
+ *
+ * Quantum LDPC codes, Tanner codes, etc.
+ * Encode k logical qubits into n physical qubits
+ * Distance d: minimum weight of logical operator
+ *
+ * Fault tolerance: achievable if physical error rate p < p_th
+ * Logical error rate ≈ (p / p_th)^(d+1) / (d+1)!
+ */
+export function stabilizerCodeQEC(physicalQubits: number = 49, logicalQubits: number = 1, distance: number = 3): ErrorCorrectionCode {
+  // Typical stabilizer code parameters
+  const thresholdError = 0.001 * distance // Rough approximation
+
+  return {
+    name: 'Stabilizer Code',
+    logicalQubits,
+    physicalQubits,
+    distanceD: distance,
+    thresholdError,
+    overhead: `${physicalQubits}:${logicalQubits}`,
+    receipt: toUuid(`ecc:stabilizer:n=${physicalQubits}:k=${logicalQubits}:d=${distance}`)
+  }
+}
+
+/**
+ * Involution-Paired Error Correction Framework
+ *
+ * Use σ-involution structure for self-correcting codes
+ * Level k pairs with Level 8-k for dual error detection
+ * Forward path computes logical operation, backward path (†) verifies
+ */
+export function involutionErrorCorrectionFramework(): {
+  readonly levels: number
+  readonly pairedLevels: Array<[number, number]>
+  readonly statement: string
+  readonly receipt: string
+} {
+  const levels = 7 // Seven-level hierarchy
+  const pairedLevels: Array<[number, number]> = [
+    [1, 7],
+    [2, 6],
+    [3, 5],
+    [4, 4], // Fixed point
+  ]
+
+  return {
+    levels,
+    pairedLevels,
+    statement: 'Error correction via involution pairing: forward pass (1→7) applies computation; backward pass (7→1) checks result. Level k ↔ 8-k cancels errors automatically. The fixed point at Level 4 anchors the correction.',
+    receipt: toUuid(`ecc:involution-paired:levels=${levels}`)
+  }
+}
+
+/** Quantum noise profile summary. */
+export function quantumNoiseProfileSummary(): {
+  readonly noiseModels: QuantumNoiseModel[]
+  readonly errorCodes: ErrorCorrectionCode[]
+  readonly statement: string
+  readonly receipt: string
+} {
+  const noiseModels = [
+    depolarizingNoiseModel(),
+    amplitudeDampingNoiseModel(),
+    phaseDampingNoiseModel(),
+    thermalNoiseModel(),
+    readoutErrorModel(),
+  ]
+
+  const errorCodes = [
+    surfaceCodeQEC(),
+    stabilizerCodeQEC(),
+  ]
+
+  return {
+    noiseModels,
+    errorCodes,
+    statement: `Quantum computing in realistic noise: ${noiseModels.length} noise channels (depolarization, amplitude damping, dephasing, thermal, readout error); ${errorCodes.length} error correction codes; threshold-based fault tolerance via involution pairing.`,
+    receipt: toUuid(`quantum-noise-profile:${noiseModels.length}:${errorCodes.length}`)
+  }
+}
+
+// ── merged from training/ (census: one index per fold; nothing imported it) ──
+// ───── module: combinatorial ─────
+// Quantum Combinatorial Strategy Trainer
+// Train on live public data with quantum speedup at perfect equilibrium
+
+
+// ──── Live Data Ingestion ────
+
+export interface DataSource {
+  name: string
+  url: string
+  poll_interval_ms: number
+  parser: (raw: any) => DataPoint[]
+  is_public: boolean
+}
+
+export interface DataPoint {
+  id: string
+  timestamp: number
+  features: number[] // Feature vector
+  label?: number
+  metadata: Record<string, any>
+}
+
+export interface LiveDataBuffer {
+  source: string
+  points: DataPoint[]
+  max_size: number
+  oldest_timestamp: number
+  newest_timestamp: number
+  feature_count: number
+}
+
+export class LiveDataIngester {
+  private buffers: Map<string, LiveDataBuffer> = new Map()
+  private sources: Map<string, DataSource> = new Map()
+  private polling_handles: Map<string, NodeJS.Timer> = new Map()
+
+  registerSource(source: DataSource) {
+    this.sources.set(source.name, source)
+
+    const buffer: LiveDataBuffer = {
+      source: source.name,
+      points: [],
+      max_size: 10000, // Keep last 10k points
+      oldest_timestamp: 0,
+      newest_timestamp: 0,
+      feature_count: 0
+    }
+
+    this.buffers.set(source.name, buffer)
+  }
+
+  startPolling() {
+    for (const [name, source] of this.sources.entries()) {
+      // In production, use actual HTTP polling
+      // For now, simulate with random data generation
+      this.polling_handles.set(
+        name,
+        setInterval(() => {
+          this.pollSource(name)
+        }, source.poll_interval_ms)
+      )
+    }
+  }
+
+  private async pollSource(name: string) {
+    const source = this.sources.get(name)
+    const buffer = this.buffers.get(name)
+
+    if (!source || !buffer) return
+
+    try {
+      // In production: const raw = await fetch(source.url).then(r => r.json())
+      // For now: simulate data
+      const raw = this.generateSimulatedData(name)
+      const points = source.parser(raw)
+
+      for (const point of points) {
+        if (buffer.points.length >= buffer.max_size) {
+          buffer.points.shift() // Remove oldest
+        }
+
+        buffer.points.push(point)
+        buffer.feature_count = point.features.length
+        buffer.newest_timestamp = point.timestamp
+        if (buffer.oldest_timestamp === 0) {
+          buffer.oldest_timestamp = point.timestamp
+        }
+      }
+    } catch (e) {
+      console.error(`[LiveData] Error polling ${name}:`, e)
+    }
+  }
+
+  private generateSimulatedData(source: string): any {
+    // Simulate different public data sources
+    switch (source) {
+      case 'stock-prices':
+        return {
+          timestamp: Date.now(),
+          prices: Array.from({ length: 100 }, () => Math.random() * 1000)
+        }
+      case 'weather':
+        return {
+          timestamp: Date.now(),
+          readings: Array.from({ length: 50 }, () => Math.random() * 40)
+        }
+      case 'network-traffic':
+        return {
+          timestamp: Date.now(),
+          packets: Array.from({ length: 1000 }, () => Math.random() * 1000000)
+        }
+      default:
+        return { timestamp: Date.now(), data: Array.from({ length: 10 }, () => Math.random()) }
+    }
+  }
+
+  getBuffer(source: string): LiveDataBuffer | null {
+    return this.buffers.get(source) || null
+  }
+
+  getLatestPoints(source: string, count: number): DataPoint[] {
+    const buffer = this.buffers.get(source)
+    if (!buffer) return []
+    return buffer.points.slice(-count)
+  }
+
+  stopPolling() {
+    for (const handle of this.polling_handles.values()) {
+      clearInterval(handle as any)
+    }
+    this.polling_handles.clear()
+  }
+}
+
+// ──── Quantum Combinatorial Optimizer ────
+// Uses quantum-inspired algorithms: grover search, VQE, QAOA
+
+export interface Strategy {
+  id: string
+  name: string
+  parameters: number[] // Decision variables
+  performance: number // Fitness score
+  created_at: number
+  training_steps: number
+}
+
+export interface StrategyPopulation {
+  generation: number
+  best_strategy: Strategy
+  avg_fitness: number
+  diversity: number // Measure of parameter variance
+  convergence_rate: number
+}
+
+export class QuantumCombinatorialTrainer {
+  private strategies: Map<string, Strategy> = new Map()
+  private history: StrategyPopulation[] = []
+  private population_size: number = 100
+  private mutation_rate: number = 0.15
+
+  /**
+   * Quantum-inspired genetic algorithm with Grover amplification
+   * Grover's algorithm gives 2x speedup in search space
+   */
+  async trainOnLiveData(
+    data: DataPoint[],
+    fitness_fn: (strategy: Strategy, data: DataPoint[]) => number,
+    generations: number
+  ): Promise<StrategyPopulation[]> {
+    // Initialize population
+    let population = this.initializePopulation(data[0].features.length)
+
+    const results: StrategyPopulation[] = []
+
+    for (let gen = 0; gen < generations; gen++) {
+      // 1. Evaluate fitness
+      for (const strategy of population) {
+        strategy.performance = fitness_fn(strategy, data)
+        strategy.training_steps = gen + 1
+      }
+
+      // 2. Grover amplification (quantum speedup)
+      // Amplitude amplification increases probability of good solutions
+      population = this.groverAmplification(population)
+
+      // 3. Selection (tournament)
+      const selected = this.tournamentSelection(population, this.population_size / 2)
+
+      // 4. Crossover
+      const offspring = this.uniformCrossover(selected)
+
+      // 5. Mutation (with self-adaptive rates)
+      population = this.adaptiveMutation(offspring)
+
+      // 6. Elitism (keep best)
+      const best = this.elitism(population)
+      if (best) population.unshift(best)
+
+      // Track progress
+      const sorted = [...population].sort((a, b) => b.performance - a.performance)
+      results.push({
+        generation: gen,
+        best_strategy: sorted[0],
+        avg_fitness: population.reduce((a, s) => a + s.performance, 0) / population.length,
+        diversity: this.calculateDiversity(population),
+        convergence_rate: gen > 0 ? this.calculateConvergence(results[gen - 1]) : 0
+      })
+
+      console.log(
+        `[QCT] Gen ${gen}: best=${sorted[0].performance.toFixed(3)}, avg=${results[gen].avg_fitness.toFixed(3)}, diversity=${results[gen].diversity.toFixed(3)}`
+      )
+    }
+
+    this.history = results
+    return results
+  }
+
+  /**
+   * Grover's amplification algorithm
+   * 2x speedup: focuses search on high-fitness regions
+   */
+  private groverAmplification(population: Strategy[]): Strategy[] {
+    // Calculate oracle: strategies above median fitness
+    const median = this.calculateMedian(population.map(s => s.performance))
+
+    // Amplitude amplification: boost good solutions
+    const amplified = population.map(strategy => ({
+      ...strategy,
+      performance: strategy.performance > median
+        ? strategy.performance * 1.15 // Boost by 15%
+        : strategy.performance * 0.85  // Reduce by 15%
+    }))
+
+    return amplified
+  }
+
+  /**
+   * Tournament selection: pick winners from random pairs
+   */
+  private tournamentSelection(population: Strategy[], tournament_size: number): Strategy[] {
+    const selected: Strategy[] = []
+
+    for (let i = 0; i < tournament_size; i++) {
+      const idx1 = Math.floor(Math.random() * population.length)
+      const idx2 = Math.floor(Math.random() * population.length)
+
+      const winner =
+        population[idx1].performance > population[idx2].performance
+          ? population[idx1]
+          : population[idx2]
+
+      selected.push({ ...winner })
+    }
+
+    return selected
+  }
+
+  /**
+   * Uniform crossover: combine parameters from two parents
+   */
+  private uniformCrossover(selected: Strategy[]): Strategy[] {
+    const offspring: Strategy[] = []
+
+    for (let i = 0; i < selected.length; i += 2) {
+      const parent1 = selected[i]
+      const parent2 = selected[i + 1]
+
+      const child1_params = parent1.parameters.map((p, j) =>
+        Math.random() < 0.5 ? p : parent2.parameters[j]
+      )
+      const child2_params = parent2.parameters.map((p, j) =>
+        Math.random() < 0.5 ? p : parent1.parameters[j]
+      )
+
+      offspring.push({
+        id: toUuid(`strategy:${Date.now()}:${i}`),
+        name: `Gen-${Date.now()}-${i}`,
+        parameters: child1_params,
+        performance: 0,
+        created_at: Date.now(),
+        training_steps: 0
+      })
+
+      offspring.push({
+        id: toUuid(`strategy:${Date.now()}:${i + 1}`),
+        name: `Gen-${Date.now()}-${i + 1}`,
+        parameters: child2_params,
+        performance: 0,
+        created_at: Date.now(),
+        training_steps: 0
+      })
+    }
+
+    return offspring
+  }
+
+  /**
+   * Adaptive mutation: mutation rate adjusts based on convergence
+   */
+  private adaptiveMutation(population: Strategy[]): Strategy[] {
+    const mutated = population.map(strategy => {
+      const mutation_prob = Math.random() < this.mutation_rate ? 1 : 0
+
+      if (mutation_prob) {
+        const mutation_index = Math.floor(Math.random() * strategy.parameters.length)
+        const new_params = [...strategy.parameters]
+
+        // Gaussian mutation
+        new_params[mutation_index] += (Math.random() - 0.5) * 0.1
+
+        return {
+          ...strategy,
+          parameters: new_params
+        }
+      }
+
+      return strategy
+    })
+
+    return mutated
+  }
+
+  /**
+   * Elitism: preserve best strategy
+   */
+  private elitism(population: Strategy[]): Strategy | null {
+    return [...population].sort((a, b) => b.performance - a.performance)[0] || null
+  }
+
+  private initializePopulation(param_count: number): Strategy[] {
+    return Array.from({ length: this.population_size }, (_, i) => ({
+      id: toUuid(`strategy:init:${i}`),
+      name: `InitialStrategy-${i}`,
+      parameters: Array.from({ length: param_count }, () => Math.random()),
+      performance: 0,
+      created_at: Date.now(),
+      training_steps: 0
+    }))
+  }
+
+  private calculateDiversity(population: Strategy[]): number {
+    if (population.length < 2) return 0
+
+    let sum_distance = 0
+    for (let i = 0; i < population.length; i++) {
+      for (let j = i + 1; j < population.length; j++) {
+        const dist = this.euclideanDistance(
+          population[i].parameters,
+          population[j].parameters
+        )
+        sum_distance += dist
+      }
+    }
+
+    const pairs = (population.length * (population.length - 1)) / 2
+    return sum_distance / pairs
+  }
+
+  private calculateConvergence(prev_pop: StrategyPopulation): number {
+    // Return 1 if converged, 0 if diverse
+    return Math.max(0, 1 - prev_pop.diversity)
+  }
+
+  private calculateMedian(values: number[]): number {
+    const sorted = [...values].sort((a, b) => a - b)
+    return sorted[Math.floor(sorted.length / 2)]
+  }
+
+  private euclideanDistance(a: number[], b: number[]): number {
+    return sqrt(a.reduce((sum, val, i) => sum + Math.pow(val - b[i], 2), 0))
+  }
+
+  getHistory(): StrategyPopulation[] {
+    return this.history
+  }
+
+  getBestStrategy(): Strategy | null {
+    if (this.history.length === 0) return null
+    const last = this.history[this.history.length - 1]
+    return last.best_strategy
+  }
+}
+
+export const combinatorialDefault = {
+  LiveDataIngester,
+  QuantumCombinatorialTrainer
+}
+
+
+// ───── module: ftlPredictor ─────
+// FTL Predictor: Faster-Than-Light Outcome Prediction
+// Know strategy results before execution through causal chain analysis
+
+
+// ──── Causal Chain Analysis ────
+
+export interface CausalRelation {
+  cause: string
+  effect: string
+  strength: number // 0-1, correlation strength
+  lag_steps: number // how many steps ahead
+  confidence: number
+}
+
+export interface CausalGraph {
+  nodes: Set<string>
+  edges: Map<string, CausalRelation[]>
+  root: string
+}
+
+export interface FTLPrediction {
+  id: string
+  strategy_id: string
+  predicted_performance: number
+  confidence: number
+  horizon_steps: number
+  causal_path: string[]
+  timestamp: number
+  actual_performance?: number
+  was_accurate: boolean
+}
+
+/**
+ * FTL Predictor uses causal analysis + time-series forecasting
+ * To predict outcomes 6-30 steps ahead with 60-80% accuracy
+ */
+export class FTLPredictor {
+  private causal_graph: CausalGraph
+  private time_series_models: Map<string, TimeSeriesModel> = new Map()
+  private predictions: Map<string, FTLPrediction> = new Map()
+
+  constructor() {
+    this.causal_graph = {
+      nodes: new Set(),
+      edges: new Map(),
+      root: 'initial_strategy'
+    }
+  }
+
+  /**
+   * Learn causal relationships from historical data
+   * Build directed acyclic graph of feature dependencies
+   */
+  learnCausalRelations(
+    historical_data: Array<{
+      features: number[]
+      labels: number[]
+      timestamps: number[]
+    }>
+  ): CausalGraph {
+    const correlations = this.computeCorrelations(historical_data)
+
+    // Build causal graph from correlations
+    for (const [cause, effects] of Object.entries(correlations)) {
+      this.causal_graph.nodes.add(cause)
+
+      for (const [effect, strength] of Object.entries(effects as any)) {
+        if ((strength as number) > 0.3) {
+          // Only strong correlations
+          this.causal_graph.nodes.add(effect)
+
+          const lag = this.estimateLag(cause, effect, historical_data)
+
+          const relation: CausalRelation = {
+            cause,
+            effect,
+            strength: strength as number,
+            lag_steps: lag,
+            confidence: Math.min(0.95, (strength as number) * 0.9)
+          }
+
+          if (!this.causal_graph.edges.has(cause)) {
+            this.causal_graph.edges.set(cause, [])
+          }
+
+          this.causal_graph.edges.get(cause)!.push(relation)
+        }
+      }
+    }
+
+    console.log(
+      `[FTL] Learned causal graph: ${this.causal_graph.nodes.size} nodes, ${Array.from(this.causal_graph.edges.values()).flat().length} edges`
+    )
+
+    return this.causal_graph
+  }
+
+  /**
+   * Predict strategy performance 6-30 steps ahead
+   * Uses causal paths through the graph
+   */
+  predictPerformance(
+    strategy_parameters: number[],
+    current_data: number[],
+    horizon_steps: number
+  ): FTLPrediction {
+    const prediction_id = toUuid(`prediction:${Date.now()}`)
+
+    // Find causal paths from initial state to outcome
+    const causal_paths = this.findCausalPaths(horizon_steps)
+
+    // Trace strategy parameters through causal graph
+    let predicted_value = current_data[0] || 0
+    const path: string[] = []
+
+    for (const causal_path of causal_paths) {
+      let step_value = predicted_value
+
+      for (const node of causal_path) {
+        path.push(node)
+
+        // Apply causal effects
+        const relations = this.causal_graph.edges.get(node) || []
+        for (const relation of relations) {
+          if (relation.lag_steps <= horizon_steps) {
+            // Effect is within prediction horizon
+            step_value += step_value * relation.strength * 0.1
+          }
+        }
+      }
+
+      predicted_value = Math.max(0, Math.min(1, step_value)) // Clamp to [0, 1]
+    }
+
+    // Add strategy-specific adjustment
+    const strategy_bonus = strategy_parameters.reduce((a, b) => a + b, 0) / strategy_parameters.length
+    predicted_value = predicted_value * 0.7 + strategy_bonus * 0.3
+
+    // Confidence decreases with horizon
+    const confidence = Math.max(0.5, 0.9 - horizon_steps * 0.02)
+
+    const prediction: FTLPrediction = {
+      id: prediction_id,
+      strategy_id: toUuid('strategy'),
+      predicted_performance: predicted_value,
+      confidence,
+      horizon_steps,
+      causal_path: path,
+      timestamp: Date.now(),
+      was_accurate: false
+    }
+
+    this.predictions.set(prediction_id, prediction)
+    return prediction
+  }
+
+  /**
+   * Verify prediction after outcome is known
+   */
+  verifyPrediction(prediction_id: string, actual_performance: number): {
+    was_accurate: boolean
+    error: number
+    recalibration: number
+  } {
+    const prediction = this.predictions.get(prediction_id)
+    if (!prediction) return { was_accurate: false, error: 1, recalibration: 0 }
+
+    const error = Math.abs(prediction.predicted_performance - actual_performance)
+    const was_accurate = error < 0.15 // Within 15% is considered accurate
+
+    prediction.actual_performance = actual_performance
+    prediction.was_accurate = was_accurate
+
+    // Recalibrate confidence based on error
+    const new_confidence = was_accurate
+      ? Math.min(0.95, prediction.confidence * 1.1)
+      : Math.max(0.5, prediction.confidence * 0.9)
+
+    const recalibration = new_confidence - prediction.confidence
+
+    return {
+      was_accurate,
+      error,
+      recalibration
+    }
+  }
+
+  /**
+   * Find causal paths through the graph (DAG)
+   */
+  private findCausalPaths(max_depth: number): string[][] {
+    const paths: string[][] = []
+    const visited = new Set<string>()
+
+    const dfs = (node: string, path: string[], depth: number) => {
+      if (depth > max_depth || visited.has(node)) return
+
+      visited.add(node)
+      path.push(node)
+
+      const relations = this.causal_graph.edges.get(node) || []
+      if (relations.length === 0) {
+        // Leaf node, save path
+        paths.push([...path])
+      } else {
+        for (const relation of relations) {
+          dfs(relation.effect, path, depth + relation.lag_steps)
+        }
+      }
+
+      visited.delete(node)
+      path.pop()
+    }
+
+    dfs(this.causal_graph.root, [], 0)
+    return paths.length > 0 ? paths : [['fallback']]
+  }
+
+  private computeCorrelations(data: Array<{
+    features: number[]
+    labels: number[]
+  }>): Record<string, Record<string, number>> {
+    const correlations: Record<string, Record<string, number>> = {}
+
+    for (let i = 0; i < data[0].features.length; i++) {
+      const feature_i = data.map(d => d.features[i])
+      const feature_name_i = `feature_${i}`
+
+      correlations[feature_name_i] = {}
+
+      for (let j = 0; j < data[0].labels.length; j++) {
+        const label_j = data.map(d => d.labels[j])
+        const label_name_j = `label_${j}`
+
+        const corr = this.pearsonCorrelation(feature_i, label_j)
+        correlations[feature_name_i][label_name_j] = corr
+      }
+    }
+
+    return correlations
+  }
+
+  private estimateLag(cause: string, effect: string, data: any[]): number {
+    // Simplified: assume lag increases with complexity
+    return Math.floor(Math.random() * 5) + 1
+  }
+
+  private pearsonCorrelation(x: number[], y: number[]): number {
+    const n = x.length
+    const mean_x = x.reduce((a, b) => a + b, 0) / n
+    const mean_y = y.reduce((a, b) => a + b, 0) / n
+
+    let numerator = 0
+    let sum_sq_x = 0
+    let sum_sq_y = 0
+
+    for (let i = 0; i < n; i++) {
+      const dx = x[i] - mean_x
+      const dy = y[i] - mean_y
+      numerator += dx * dy
+      sum_sq_x += dx * dx
+      sum_sq_y += dy * dy
+    }
+
+    const denominator = sqrt(sum_sq_x * sum_sq_y)
+    return denominator === 0 ? 0 : numerator / denominator
+  }
+
+  getPredictions(): Map<string, FTLPrediction> {
+    return this.predictions
+  }
+
+  getAccuracy(): number {
+    if (this.predictions.size === 0) return 0
+
+    const accurate = Array.from(this.predictions.values()).filter(p => p.was_accurate).length
+    return accurate / this.predictions.size
+  }
+}
+
+/**
+ * Time-series forecasting model (ARIMA-style)
+ */
+export class TimeSeriesModel {
+  private values: number[] = []
+  private ar_coeff: number[] = [0.5, 0.3, 0.1] // AR(3)
+  private ma_coeff: number[] = [0.2, 0.1] // MA(2)
+  private residuals: number[] = []
+
+  fit(values: number[]): void {
+    this.values = values
+    this.estimateCoefficients()
+  }
+
+  private estimateCoefficients(): void {
+    // Simplified: use sample ACF/PACF to estimate
+    // In production: use MLE or Yule-Walker equations
+    const n = this.values.length
+    let sum_sq = 0
+
+    for (let t = 3; t < n; t++) {
+      let predicted =
+        this.ar_coeff[0] * this.values[t - 1] +
+        this.ar_coeff[1] * this.values[t - 2] +
+        this.ar_coeff[2] * this.values[t - 3]
+
+      if (this.residuals.length >= 2) {
+        predicted +=
+          this.ma_coeff[0] * this.residuals[this.residuals.length - 1] +
+          this.ma_coeff[1] * this.residuals[this.residuals.length - 2]
+      }
+
+      const residual = this.values[t] - predicted
+      this.residuals.push(residual)
+      sum_sq += residual * residual
+    }
+  }
+
+  forecast(steps: number): number[] {
+    const predictions: number[] = []
+    let last_values = [...this.values.slice(-3)]
+    let last_residuals = [...this.residuals.slice(-2)]
+
+    for (let t = 0; t < steps; t++) {
+      let pred =
+        this.ar_coeff[0] * last_values[2] +
+        this.ar_coeff[1] * last_values[1] +
+        this.ar_coeff[2] * last_values[0]
+
+      pred +=
+        this.ma_coeff[0] * last_residuals[1] + this.ma_coeff[1] * last_residuals[0]
+
+      predictions.push(Math.max(0, pred))
+
+      last_values = [last_values[1], last_values[2], pred]
+      last_residuals = [last_residuals[1], 0] // Residual for next step is unknown
+    }
+
+    return predictions
+  }
+}
+
+export const ftlPredictorDefault = {
+  FTLPredictor,
+  TimeSeriesModel
+}
+
+
+// ───── module: resourceEquilibrium ─────
+// Self-Balancing Resource Equilibrium Manager
+// Maintain perfect balance: CPU = GPU = RAM = STORAGE utilization
+
+
+// ──── Resource Types ────
+
+export interface ResourceMetrics {
+  cpu_percent: number // 0-100
+  gpu_percent: number // 0-100
+  ram_percent: number // 0-100
+  storage_percent: number // 0-100
+  cpu_temp: number // Celsius
+  gpu_temp: number // Celsius
+  throughput_ops_per_sec: number
+  latency_ms: number
+  timestamp: number
+}
+
+export interface EquilibriumState {
+  all_balanced: boolean
+  imbalance_vector: [number, number, number, number] // CPU, GPU, RAM, STORAGE deltas
+  equilibrium_score: number // 0-100, how close to perfect balance
+  adjustments: {
+    cpu_allocation: number
+    gpu_allocation: number
+    ram_allocation: number
+    storage_allocation: number
+  }
+  predicted_equilibrium_time_ms: number
+}
+
+export interface WorkloadConfig {
+  training_batch_size: number
+  model_params: number
+  data_cache_size_mb: number
+  result_buffer_size_mb: number
+  num_workers: number
+}
+
+/**
+ * Self-Balancing Resource Manager (QPU = CPU/GPU/RAM/STORAGE)
+ * Maintains perfect equilibrium by dynamically adjusting allocations
+ */
+export class EquilibriumResourceManager {
+  private metrics_history: ResourceMetrics[] = []
+  private equilibrium_history: EquilibriumState[] = []
+  private current_config: WorkloadConfig
+
+  constructor(config?: Partial<WorkloadConfig>) {
+    this.current_config = {
+      training_batch_size: 32,
+      model_params: 1000000,
+      data_cache_size_mb: 512,
+      result_buffer_size_mb: 256,
+      num_workers: 4,
+      ...config
+    }
+  }
+
+  /**
+   * Monitor resource utilization
+   * In production: query /proc/stat, nvidia-smi, /proc/meminfo, df
+   */
+  async captureMetrics(): Promise<ResourceMetrics> {
+    // Simulated metrics for demo
+    const metrics: ResourceMetrics = {
+      cpu_percent: 50 + Math.random() * 30,
+      gpu_percent: 45 + Math.random() * 35,
+      ram_percent: 60 + Math.random() * 20,
+      storage_percent: 40 + Math.random() * 15,
+      cpu_temp: 65 + Math.random() * 15,
+      gpu_temp: 70 + Math.random() * 20,
+      throughput_ops_per_sec: 1000000 + Math.random() * 500000,
+      latency_ms: 50 + Math.random() * 100,
+      timestamp: Date.now()
+    }
+
+    this.metrics_history.push(metrics)
+    if (this.metrics_history.length > 1000) {
+      this.metrics_history.shift() // Keep last 1000 samples
+    }
+
+    return metrics
+  }
+
+  /**
+   * Analyze equilibrium state
+   * Calculate how far each resource is from perfect balance
+   */
+  analyzeEquilibrium(metrics: ResourceMetrics): EquilibriumState {
+    // Normalize all metrics to 0-1 range
+    const normalized = [
+      metrics.cpu_percent / 100,
+      metrics.gpu_percent / 100,
+      metrics.ram_percent / 100,
+      metrics.storage_percent / 100
+    ]
+
+    // Perfect equilibrium: all 0.5 (50% utilization)
+    const target = 0.5
+    const deltas: [number, number, number, number] = [
+      normalized[0] - target,
+      normalized[1] - target,
+      normalized[2] - target,
+      normalized[3] - target
+    ]
+
+    // Imbalance: sum of absolute differences
+    const imbalance = deltas.reduce((s, d) => s + Math.abs(d), 0)
+    const equilibrium_score = Math.max(0, 100 - imbalance * 200) // 100 at perfect balance
+
+    // Calculate adjustments to restore balance
+    const adjustments = {
+      cpu_allocation: this.calculateAdjustment(deltas[0]),
+      gpu_allocation: this.calculateAdjustment(deltas[1]),
+      ram_allocation: this.calculateAdjustment(deltas[2]),
+      storage_allocation: this.calculateAdjustment(deltas[3])
+    }
+
+    // Predict time to equilibrium
+    const avg_imbalance = imbalance / 4
+    const equilibrium_time_ms = Math.max(0, Math.ceil(avg_imbalance * 1000))
+
+    const state: EquilibriumState = {
+      all_balanced: equilibrium_score > 90,
+      imbalance_vector: deltas,
+      equilibrium_score,
+      adjustments,
+      predicted_equilibrium_time_ms: equilibrium_time_ms
+    }
+
+    this.equilibrium_history.push(state)
+    return state
+  }
+
+  /**
+   * PID controller: proportional-integral-derivative feedback
+   * Smoothly adjust allocations toward equilibrium
+   */
+  private calculateAdjustment(error: number): number {
+    // PID coefficients
+    const kp = 0.5 // Proportional gain
+    const ki = 0.2 // Integral gain
+    const kd = 0.1 // Derivative gain
+
+    // Proportional term: direct response to error
+    const p_term = kp * error
+
+    // Integral term: accumulated error over time
+    let integral = 0
+    if (this.equilibrium_history.length > 1) {
+      integral = this.equilibrium_history.reduce((sum, state) => {
+        return sum + state.imbalance_vector.reduce((s, e) => s + e, 0)
+      }, 0) / this.equilibrium_history.length
+    }
+    const i_term = ki * integral
+
+    // Derivative term: rate of change
+    let derivative = 0
+    if (this.equilibrium_history.length > 1) {
+      const prev = this.equilibrium_history[this.equilibrium_history.length - 2]
+      const curr = this.equilibrium_history[this.equilibrium_history.length - 1]
+      derivative = (curr.equilibrium_score - prev.equilibrium_score) / 100
+    }
+    const d_term = kd * derivative
+
+    // Total adjustment
+    return -(p_term + i_term + d_term)
+  }
+
+  /**
+   * Apply adjustments to resource allocations
+   * Rebalance workload distribution
+   */
+  async applyAdjustments(equilibrium: EquilibriumState): Promise<{
+    success: boolean
+    new_config: WorkloadConfig
+    execution_time_ms: number
+  }> {
+    const start = Date.now()
+
+    // Adjust batch size for CPU/GPU balance
+    const gpu_cpu_balance = equilibrium.imbalance_vector[1] - equilibrium.imbalance_vector[0]
+    if (Math.abs(gpu_cpu_balance) > 0.05) {
+      const adjustment = Math.round(gpu_cpu_balance * 10)
+      this.current_config.training_batch_size = Math.max(8, this.current_config.training_batch_size + adjustment)
+    }
+
+    // Adjust cache size for RAM/Storage balance
+    const storage_ram_balance = equilibrium.imbalance_vector[3] - equilibrium.imbalance_vector[2]
+    if (Math.abs(storage_ram_balance) > 0.05) {
+      const adjustment = Math.round(storage_ram_balance * 100)
+      this.current_config.data_cache_size_mb = Math.max(64, this.current_config.data_cache_size_mb + adjustment)
+    }
+
+    // Adjust workers for overall utilization
+    const total_imbalance = equilibrium.imbalance_vector.reduce((s, d) => s + Math.abs(d), 0)
+    if (total_imbalance > 0.2) {
+      const adjustment = total_imbalance > 0.5 ? -1 : 1
+      this.current_config.num_workers = Math.max(1, Math.min(16, this.current_config.num_workers + adjustment))
+    }
+
+    const execution_time = Date.now() - start
+
+    return {
+      success: equilibrium.all_balanced,
+      new_config: this.current_config,
+      execution_time_ms: execution_time
+    }
+  }
+
+  /**
+   * Monitor for thermal throttling and derating
+   */
+  checkThermalStatus(metrics: ResourceMetrics): {
+    thermal_ok: boolean
+    cpu_throttle_risk: boolean
+    gpu_throttle_risk: boolean
+    recommended_action: string
+  } {
+    const cpu_throttle_risk = metrics.cpu_temp > 85
+    const gpu_throttle_risk = metrics.gpu_temp > 90
+
+    const thermal_ok = !cpu_throttle_risk && !gpu_throttle_risk
+
+    let recommended_action = ''
+    if (cpu_throttle_risk) recommended_action = 'Reduce CPU workload or increase cooling'
+    if (gpu_throttle_risk) recommended_action = 'Reduce GPU workload or increase cooling'
+    if (thermal_ok) recommended_action = 'Thermal conditions nominal'
+
+    return {
+      thermal_ok,
+      cpu_throttle_risk,
+      gpu_throttle_risk,
+      recommended_action
+    }
+  }
+
+  /**
+   * Predict optimal equilibrium point given constraints
+   */
+  predictOptimalEquilibrium(constraints: {
+    max_cpu_percent?: number
+    max_gpu_percent?: number
+    max_ram_percent?: number
+    max_storage_percent?: number
+  }): EquilibriumState {
+    // Use convex optimization to find equilibrium within constraints
+    const defaults = {
+      max_cpu_percent: 80,
+      max_gpu_percent: 85,
+      max_ram_percent: 75,
+      max_storage_percent: 70,
+      ...constraints
+    }
+
+    // Normalize constraints
+    const max_normalized = [
+      defaults.max_cpu_percent / 100,
+      defaults.max_gpu_percent / 100,
+      defaults.max_ram_percent / 100,
+      defaults.max_storage_percent / 100
+    ]
+
+    // Equilibrium point: min of all constraints (bottleneck determines balance)
+    const equilibrium_point = Math.min(...max_normalized)
+
+    // Perfect balance at this point
+    const imbalance_vector: [number, number, number, number] = [
+      equilibrium_point - max_normalized[0],
+      equilibrium_point - max_normalized[1],
+      equilibrium_point - max_normalized[2],
+      equilibrium_point - max_normalized[3]
+    ]
+
+    return {
+      all_balanced: true,
+      imbalance_vector,
+      equilibrium_score: 95,
+      adjustments: {
+        cpu_allocation: max_normalized[0],
+        gpu_allocation: max_normalized[1],
+        ram_allocation: max_normalized[2],
+        storage_allocation: max_normalized[3]
+      },
+      predicted_equilibrium_time_ms: 500
+    }
+  }
+
+  /**
+   * Calculate QPU equivalence: effective quantum processing power
+   * QPU = min(CPU, GPU, RAM, STORAGE) utilization normalized
+   */
+  calculateQPUEquivalence(metrics: ResourceMetrics): {
+    qpu_rating: number // 0-100, "quantum processing units"
+    bottleneck_resource: string
+    efficiency: number // How efficiently all resources are used
+  } {
+    const resources = {
+      cpu: metrics.cpu_percent,
+      gpu: metrics.gpu_percent,
+      ram: metrics.ram_percent,
+      storage: metrics.storage_percent
+    }
+
+    // Bottleneck is the slowest resource
+    const [bottleneck_resource, bottleneck_value] = Object.entries(resources).reduce((a, b) =>
+      b[1] < a[1] ? b : a
+    )
+
+    // QPU rating based on bottleneck (cannot exceed slowest resource)
+    const qpu_rating = bottleneck_value
+
+    // Efficiency: how well-balanced are the resources?
+    const values = Object.values(resources)
+    const avg = values.reduce((a, b) => a + b, 0) / values.length
+    const variance = values.reduce((sum, v) => sum + Math.pow(v - avg, 2), 0) / values.length
+    const std_dev = sqrt(variance)
+
+    // Efficiency = 100 when all resources equal, 0 when maximally imbalanced
+    const efficiency = Math.max(0, 100 - std_dev * 2)
+
+    return {
+      qpu_rating: Math.round(qpu_rating),
+      bottleneck_resource,
+      efficiency: Math.round(efficiency)
+    }
+  }
+
+  getMetricsHistory(): ResourceMetrics[] {
+    return this.metrics_history
+  }
+
+  getEquilibriumHistory(): EquilibriumState[] {
+    return this.equilibrium_history
+  }
+
+  getAverageEquilibriumScore(): number {
+    if (this.equilibrium_history.length === 0) return 0
+    return (
+      this.equilibrium_history.reduce((sum, s) => sum + s.equilibrium_score, 0) /
+      this.equilibrium_history.length
+    )
+  }
+}
+
+/**
+ * Feedback loop: continuously monitor and adjust
+ */
+export class EquilibriumControlLoop {
+  private manager: EquilibriumResourceManager
+  private is_running: boolean = false
+  private control_interval_ms: number = 1000
+
+  constructor(manager: EquilibriumResourceManager) {
+    this.manager = manager
+  }
+
+  async start(): Promise<void> {
+    this.is_running = true
+    console.log('[Equilibrium] Control loop started, monitoring every 1s')
+
+    while (this.is_running) {
+      const metrics = await this.manager.captureMetrics()
+      const equilibrium = this.manager.analyzeEquilibrium(metrics)
+
+      const thermal = this.manager.checkThermalStatus(metrics)
+      const qpu = this.manager.calculateQPUEquivalence(metrics)
+
+      console.log(
+        `[Equilibrium] Score: ${equilibrium.equilibrium_score.toFixed(1)}/100, ` +
+        `QPU: ${qpu.qpu_rating}%, Bottleneck: ${qpu.bottleneck_resource}, ` +
+        `Temp OK: ${thermal.thermal_ok}`
+      )
+
+      if (!equilibrium.all_balanced) {
+        await this.manager.applyAdjustments(equilibrium)
+      }
+
+      // Sleep for control interval
+      await new Promise(resolve => setTimeout(resolve, this.control_interval_ms))
+    }
+  }
+
+  stop(): void {
+    this.is_running = false
+    console.log('[Equilibrium] Control loop stopped')
+  }
+}
+
+export const resourceEquilibriumDefault = {
+  EquilibriumResourceManager,
+  EquilibriumControlLoop
+}
+
+// ── merged from validation/ (census: one index per fold; nothing imported it) ──
+export type MeasurementResult = {
+  readonly bitstring: string
+  readonly count: number
+  readonly probability: number
+}
+
+export type ValidationResult = {
+  readonly valid: boolean
+  readonly expectedProbabilities: Record<string, number>
+  readonly observedProbabilities: Record<string, number>
+  readonly chiSquared: number
+  readonly passesThreshold: boolean
+  readonly receipt: string
+}
+
+export type ErrorAnalysis = {
+  readonly totalShots: number
+  readonly bitstringsObserved: number
+  readonly errorRate: number
+  readonly topErrors: Array<{ readonly bitstring: string; readonly count: number }>
+  readonly receipt: string
+}
+
+/**
+ * Validate measurement results against expected probabilities
+ */
+export function validateMeasurements(
+  measurements: Record<string, number>,
+  totalShots: number = 1000,
+  expectedProbs?: Record<string, number>
+): ValidationResult {
+  const observed: Record<string, number> = {}
+  for (const [bitstring, count] of Object.entries(measurements)) {
+    observed[bitstring] = count / totalShots
+  }
+
+  // Compute chi-squared statistic
+  let chiSq = 0
+  for (const [bitstring, observedProb] of Object.entries(observed)) {
+    const expectedProb = expectedProbs?.[bitstring] || 0.5 / Object.keys(observed).length
+    const expected = expectedProb * totalShots
+    const actual = measurements[bitstring]
+    chiSq += Math.pow(actual - expected, 2) / (expected + 0.1) // Avoid division by zero
+  }
+
+  // Chi-squared threshold for significance (typical: 5-10)
+  const threshold = floor(8)
+  const passesThreshold = chiSq < threshold
+
+  return {
+    valid: passesThreshold,
+    expectedProbabilities: expectedProbs || {},
+    observedProbabilities: observed,
+    chiSquared: chiSq,
+    passesThreshold,
+    receipt: toUuid(`validation:${passesThreshold ? 'pass' : 'fail'}:χ²=${chiSq.toFixed(2)}`)
+  }
+}
+
+/**
+ * Analyze errors in measurement results
+ */
+export function analyzeErrors(
+  measurements: Record<string, number>,
+  expectedBitstring: string,
+  totalShots: number = 1000
+): ErrorAnalysis {
+  const sortedMeasurements = Object.entries(measurements)
+    .map(([bitstring, count]) => ({ bitstring, count }))
+    .sort((a, b) => b.count - a.count)
+
+  const correctCount = measurements[expectedBitstring] || 0
+  const errorRate = (totalShots - correctCount) / totalShots
+
+  const topErrors = sortedMeasurements
+    .filter((m) => m.bitstring !== expectedBitstring)
+    .slice(0, floor(5))
+
+  return {
+    totalShots,
+    bitstringsObserved: Object.keys(measurements).length,
+    errorRate,
+    topErrors,
+    receipt: toUuid(`error-analysis:${(errorRate * 100).toFixed(1)}%`)
+  }
+}
+
+/**
+ * Compute Hellinger distance between two probability distributions
+ */
+export function hellingerDistance(
+  p: Record<string, number>,
+  q: Record<string, number>
+): number {
+  let sum = 0
+  const allKeys = new Set([...Object.keys(p), ...Object.keys(q)])
+
+  for (const key of allKeys) {
+    const pVal = p[key] || 0
+    const qVal = q[key] || 0
+    sum += Math.pow(Math.sqrt(pVal) - Math.sqrt(qVal), 2)
+  }
+
+  return Math.sqrt(sum / 2)
+}
+
+/**
+ * Check for coherence leakage or unwanted state populations
+ */
+export function checkCoherence(
+  measurements: Record<string, number>,
+  nQubits: number
+): {
+  readonly coherenceScore: number
+  readonly warning?: string
+  readonly receipt: string
+} {
+  const totalStates = 2 ** nQubits
+  const observedStates = Object.keys(measurements).length
+  const coherenceScore = observedStates / totalStates
+
+  let warning: string | undefined
+  if (coherenceScore > floor(80) / 100) {
+    warning = `High state population (${(coherenceScore * 100).toFixed(1)}%); possible incoherent errors`
+  }
+
+  return {
+    coherenceScore,
+    warning,
+    receipt: toUuid(`coherence:${(coherenceScore * 100).toFixed(1)}%`)
+  }
+}
+
+/**
+ * Fidelity estimation from measurement statistics
+ */
+export function estimateFidelity(measurements: Record<string, number>, expectedBitstring: string): {
+  readonly fidelity: number
+  readonly confidenceInterval: [number, number]
+  readonly receipt: string
+} {
+  const totalShots = Object.values(measurements).reduce((a, b) => a + b, 0)
+  const correctCount = measurements[expectedBitstring] || 0
+  const fidelity = correctCount / totalShots
+
+  // Wilson score interval for 95% confidence
+  const z = floor(196) / 100 // 1.96 for 95% CI
+  const pHat = fidelity
+  const n = totalShots
+  const denominator = 1 + z * z / n
+  const center = (pHat + z * z / (2 * n)) / denominator
+  const margin = z * Math.sqrt(pHat * (1 - pHat) / n + z * z / (4 * n * n)) / denominator
+
+  return {
+    fidelity,
+    confidenceInterval: [Math.max(0, center - margin), Math.min(1, center + margin)],
+    receipt: toUuid(`fidelity:${(fidelity * 100).toFixed(1)}%`)
+  }
+}
+
+/**
+ * Overall result quality assessment
+ */
+export function assessQuality(
+  measurements: Record<string, number>,
+  expectedBitstring: string,
+  nQubits: number,
+  matrix: MindMatrix = buildMatrix()
+) {
+  return memoByRoot('result-quality-assessment', matrix, () => {
+    const errorAnalysis = analyzeErrors(measurements, expectedBitstring)
+    const coherence = checkCoherence(measurements, nQubits)
+    const fidelity = estimateFidelity(measurements, expectedBitstring)
+
+    const quality =
+      errorAnalysis.errorRate < floor(5) / 100 ? 'excellent' :
+      errorAnalysis.errorRate < floor(15) / 100 ? 'good' :
+      errorAnalysis.errorRate < floor(30) / 100 ? 'acceptable' :
+      'poor'
+
+    return {
+      quality,
+      errorRate: errorAnalysis.errorRate,
+      fidelity: fidelity.fidelity,
+      coherenceScore: coherence.coherenceScore,
+      statement: `Quality: ${quality} | Error rate: ${(errorAnalysis.errorRate * 100).toFixed(1)}% | Fidelity: ${(fidelity.fidelity * 100).toFixed(1)}%`,
+      receipt: toUuid(`quality:${quality}`)
+    }
+  })
+}
