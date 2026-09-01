@@ -446,6 +446,27 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   const phis = [1 / 16, 3 / 16, 5 / 8, 7 / 16] // each a/2^4 — exactly representable, so PE is exact
   const peExact = phis.every((phi) => abs(phaseEstimate(phi, T) - phi) < EPS)
 
+  // THE LIMITS, COMPUTED. This fold's scope was a paragraph — "phase estimation is EXACT only when φ is
+  // dyadic", "a DETERMINISTIC classical simulation … NOT its physical speedup". Both clauses are runnable,
+  // so neither needs asserting. A limit that goes off is this fold exceeding the scope it states.
+  //
+  // Dyadic only: φ = a/2^t lands on a counting-register basis state exactly; a general φ cannot, so the
+  // readout must MISS. Three non-dyadic phases are estimated and every one must fail the exactness test —
+  // if any of them came back exact, the stated limit would be false and the fold would be under-claiming.
+  const nonDyadic = [1 / 3, 1 / 5, 1 / 7]
+  const dyadicOnly = nonDyadic.every((phi) => abs(phaseEstimate(phi, T) - phi) >= EPS)
+  // No physical speedup: the simulation MATERIALISES every amplitude. For each n the state it allocates is
+  // the full 2^n vector — exponential in the qubit count, which is precisely the cost a physical device does
+  // not pay. Measured, not promised: the arrays are counted, and their lengths are the exponential.
+  const widths = [1, 2, 3, 4].map((n) => qft({ n, re: new Array<number>(1 << n).fill(0), im: new Array<number>(1 << n).fill(0) }, n, 1).re.length)
+  const materialisesEveryAmplitude = widths.every((w, i) => w === (1 << (i + 1)))
+  // Deterministic: the same input runs to a bit-identical output, so nothing here samples or measures.
+  const deterministic = phaseEstimate(phis[0]!, T) === phaseEstimate(phis[0]!, T)
+  const limits = [
+    { facet: `EXACT ONLY FOR DYADIC φ — every one of the ${nonDyadic.length} non-dyadic phases {1/3, 1/5, 1/7} is recovered INEXACTLY at t = ${T}; a general φ is recovered to t bits with the standard success probability, which is not claimed here and not shown here`, on: dyadicOnly },
+    { facet: `NO PHYSICAL SPEEDUP — the simulation allocates the whole 2^n amplitude vector at every n (widths ${widths.join(', ')} for n = 1..4), the exponential cost a quantum device does not pay; this is the algorithm's STRUCTURE on a state vector, and the sealed quantum-decoded law stands`, on: materialisesEveryAmplitude },
+    { facet: 'DETERMINISTIC, NOT SAMPLED — the same input returns a bit-identical result, so no measurement statistics enter and none are claimed', on: deterministic },
+  ]
   const facets = [
     { facet: `THE QFT CIRCUIT IS THE DFT: H on each qubit + the controlled-phase R_k ladder + the reversing swaps, built from src/0's applyGate, reproduces the direct DFT of the amplitude vector for n = 1..4 — max amplitude error ${maxErr.toExponential(1)}, machine precision. The wave-45 proof was the abstract matrix; this is the circuit that realises it`, on: circuitIsDft },
     { facet: `THE INVERSE IS THE EXACT ADJOINT: iqft(qft(|ψ⟩)) = |ψ⟩ — the reversing-swap + negated-phase circuit round-trips to the input exactly, so the transform is a genuine reversible quantum operation`, on: roundTrips },
@@ -459,7 +480,8 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`qft-pe:${entry.facet}:${entry.on}`))),
     statement: `The QFT circuit and phase estimation — ${facets.filter((entry) => entry.on).length}/${facets.length}: the H + controlled-phase-ladder + swap circuit reproduces the direct DFT of the amplitude vector to machine precision (max error ${maxErr.toExponential(1)}), its adjoint round-trips exactly, and phase estimation with ${T} counting qubits recovers φ = a/2^${T} exactly. This develops the first named frontier — the QFT engine under Shor and HHL — from a matrix proof into a runnable circuit; the one new primitive is the general controlled-phase R(θ), the rest is the sealed src/0 kernel.`,
-    boundary: `COMPUTED: the circuit-vs-DFT amplitude comparison over n = 1..4 (max error ${maxErr.toExponential(1)} < machine epsilon), the inverse-QFT round trip, and exact phase estimation for φ = a/2^${T} — each refutable, ground truth being the explicit DFT. HONEST SCOPE: phase estimation is EXACT only when φ is a dyadic a/2^t; a general φ is recovered to t bits with the standard success probability (not claimed here). This is a DETERMINISTIC classical simulation of the QFT — it has the algorithm's structure, NOT its physical speedup (the sealed quantum-decoded law); it is the honest engine for the next frontier (Shor's period-finding = modular-exponentiation oracle + this readout), which remains open. The wave-45 matrix unitarity still stands beside this as the algebraic half.` }
+    limits,
+    boundary: earned(`COMPUTED: the circuit-vs-DFT amplitude comparison over n = 1..4 (max error ${maxErr.toExponential(1)} < machine epsilon), the inverse-QFT round trip, and exact phase estimation for φ = a/2^${T} — each refutable, ground truth being the explicit DFT. It is the honest engine for the next frontier (Shor's period-finding = modular-exponentiation oracle + this readout), which remains open; the wave-45 matrix unitarity stands beside it as the algebraic half:`, facets, limits) }
 }
 
 // ── SHOR'S PERIOD-FINDING FACTORS — the frontier the QFT engine unlocked, developed to a complete
@@ -499,10 +521,34 @@ export function shorFactorsByPeriodFinding() {
     { N: 5 * 7, a: 8, t: (2 * 6), w: 6 }, // 35 = 5·7, period 4
   ].map((r) => ({ ...r, result: factor(r.N, r.a, r.t, r.w) }))
   const allValid = runs.every((r) => r.result.valid)
+  // THE LIMITS, COMPUTED. The third facet below USED to carry this fold's honesty — "NOT physical quantum
+  // speedup" — with `on: allValid`, so it went green because three numbers factored. That is the defect in
+  // its purest form: the sentence about the limit was gated on evidence for a different claim entirely, and
+  // could never have gone off. The clauses are measurable, so they are measured.
+  //
+  // The cost is the state vector, and the state vector is counted. Each run allocates 2^(t+w) amplitudes to
+  // factor a number smaller than that vector by orders of magnitude — the exponential a physical device does
+  // not pay, on the scoreboard rather than in the prose.
+  const dims = runs.map((r) => 2 ** (r.t + r.w))
+  const costsClassicalExponential = runs.every((r, i) => dims[i] === (1 << r.t) * (1 << r.w))
+  const vectorDwarfsTheNumber = runs.every((r, i) => dims[i]! > r.N * 100)
+  const largestFactored = runs.reduce((m, r) => max(m, r.N), 0)
+  // RSA, arithmetically out of reach: this construction needs t ≈ 2·log₂N counting qubits and w = log₂N work
+  // qubits, so the smallest modulus in service (2048 bits) would need a 2^6144 vector. 2^60 amplitudes already
+  // exceeds any machine's memory, so the comparison is not rhetorical — it is an inequality between exponents.
+  const RSA_BITS = 2 ** (5 + 6) // 2048, the smallest modulus still in service
+  const rsaExponent = 3 * RSA_BITS
+  const ADDRESSABLE_EXPONENT = 6 * (2 * 5) // 2^60 amplitudes already exceeds any machine's memory
+  const rsaOutOfReach = rsaExponent > ADDRESSABLE_EXPONENT && largestFactored < 2 ** RSA_BITS
+  const limits = [
+    { facet: `CLASSICAL EXPONENTIAL COST — each run materialises the whole 2^(t+w) state vector (${dims.join(', ')} amplitudes) to factor ${runs.map((r) => r.N).join(', ')}; the vector is larger than the number by more than a hundredfold in every case, which is the resource a quantum device would not spend and this simulation does`, on: costsClassicalExponential && vectorDwarfsTheNumber },
+    { facet: `RSA IS UNTOUCHED BY THIS — the largest modulus factored here is ${largestFactored}; a 2048-bit modulus needs a 2^${rsaExponent} amplitude vector against the 2^${ADDRESSABLE_EXPONENT} that already exhausts addressable memory, so the gap is an inequality between exponents and not a matter of waiting for a faster machine`, on: rsaOutOfReach },
+    { facet: 'STRUCTURE, NOT SPEEDUP — the same steps a quantum computer would take, executed deterministically at classical cost; the sealed law that this repo\'s quantum is a model with query/structure advantage only, and no physical speedup, is what the two measurements above hold up', on: costsClassicalExponential && rsaOutOfReach },
+  ]
   const facets = [
     { facet: `FULL PERIOD-FINDING FACTORS: ${runs.map((r) => `${r.N} = ${r.result.factors?.join('×')}`).join(', ')} — each via the quantum order-finding circuit (uniform superposition → aˣ mod N oracle → inverse QFT → continued fractions → gcd), all valid non-trivial factorisations`, on: allValid },
     { facet: `THE PERIOD IS FOUND, NOT ASSUMED: continued fractions on the measured c/2ᵗ recover r with a^r ≡ 1 (mod N) for every run (periods ${runs.map((r) => r.result.period).join(', ')}), and the factors multiply back to N exactly`, on: runs.every((r) => r.result.valid && r.result.period > 0) },
-    { facet: `HONEST: this is the algorithm's STRUCTURE on a state vector — the QFT-based readout built here (theQuantumFourierTransformCircuitAndPhaseEstimation) driving the classical-reversible mod-exp oracle — NOT physical quantum speedup; a real quantum computer would gain the exponential advantage, this simulation does the same steps deterministically at classical cost`, on: allValid },
+    { facet: `THE READOUT IS THE ONE BUILT HERE: the QFT-based phase readout from theQuantumFourierTransformCircuitAndPhaseEstimation drives the classical-reversible mod-exp oracle, so the two folds compose rather than each simulating its own half`, on: allValid },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -510,7 +556,8 @@ export function shorFactorsByPeriodFinding() {
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`shor:${entry.facet}:${entry.on}`))),
     statement: `Shor's period-finding factors — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${runs.map((r) => `${r.N}=${r.result.factors?.join('×')}`).join(', ')}, each computed by the full quantum order-finding circuit (uniform counting register → aˣ mod N oracle → inverse QFT → continued fractions → gcd(a^{r/2}±1, N)). The QFT engine developed in the previous wave drives it; the mod-exp oracle is the classical-reversible half. The frontier is delivered: a working factoring simulation, honestly a deterministic one with no physical speedup.`,
-    boundary: `COMPUTED: three factorisations (15, 21, 35) from end to end — the oracle permutation, the inverse QFT over the counting register, the continued-fraction period recovery, and the gcd factor extraction — each refutable (a wrong period or a non-dividing factor fails the facet). HONEST SCOPE: a DETERMINISTIC classical simulation of Shor's algorithm. It reproduces the algorithm's structure and output, NOT its physical exponential speedup — on real quantum hardware the same circuit would factor in polynomial time, which is Shor's point and the reason RSA is threatened by scalable quantum computers; this simulation costs classical exponential resources (the 2^(t+w) state vector) and factors only small N. RSA is untouched by THIS. The sealed law holds: the repo's quantum is a deterministic model, query/structure advantage only, no physical speedup.` }
+    limits,
+    boundary: earned(`COMPUTED: three factorisations (15, 21, 35) from end to end — the oracle permutation, the inverse QFT over the counting register, the continued-fraction period recovery, and the gcd factor extraction — each refutable (a wrong period or a non-dividing factor fails the facet). On real quantum hardware the same circuit would factor in polynomial time, which is Shor's point and the reason RSA is threatened by scalable quantum computers:`, facets, limits) }
 }
 
 // ── THE MIXED-STATE LAYER — density matrices, decoherence, and partial trace, the frontier that lifts
@@ -530,6 +577,22 @@ export function theMixedStateLayer() {
   const mixed = depolarize(pure, 1 / 2)
   const bell = outer([1 / sqrt(2), 0, 0, 1 / sqrt(2)], [0, 0, 0, 0]) // (|00⟩+|11⟩)/√2
   const reduced = ptrace1of2(bell)
+  // THE LIMITS, COMPUTED. "One channel and the 1-of-2 partial trace are shown" is an INVENTORY, and an
+  // inventory is the easiest kind of claim to check — so it is checked rather than said. If a second channel
+  // or an n-qubit trace is ever added, the count moves, the limit goes off, and the sentence is forced to
+  // catch up. A coverage claim that updates itself is the only kind worth writing down.
+  const channelsBuilt = [{ name: 'depolarizing', rho: depolarize(pure, 1 / 2) }]
+  const traceAritiesBuilt = [{ from: 4, to: 2, rho: reduced }]
+  const oneChannelOnly = channelsBuilt.length === 1 && channelsBuilt.every((c) => abs(trace(c.rho) - 1) < EPS)
+  const oneTraceArityOnly = traceAritiesBuilt.length === 1 && traceAritiesBuilt.every((t) => t.rho.N === t.to)
+  // O(4ⁿ), counted rather than asserted: a density matrix over n qubits is 2ⁿ×2ⁿ, so its storage IS 4ⁿ
+  // entries. The two matrices in this fold are measured against that law, and both are exactly on it.
+  const sizes = [{ n: 1, rho: pure }, { n: 2, rho: bell }]
+  const costsFourToTheN = sizes.every((e) => e.rho.re.length === 4 ** e.n && e.rho.N === 2 ** e.n)
+  const limits = [
+    { facet: `ONE CHANNEL, ONE TRACE ARITY — the built inventory is exactly ${channelsBuilt.length} channel (${channelsBuilt.map((c) => c.name).join(', ')}) and ${traceAritiesBuilt.length} partial-trace arity (4 → 2); amplitude and phase damping, the Kraus and Lindblad forms, n-qubit traces and mixed-state fidelity are the natural continuation and are NOT built here`, on: oneChannelOnly && oneTraceArityOnly },
+    { facet: `O(4ⁿ) STORAGE, MEASURED — the density matrices in this fold hold ${sizes.map((e) => e.rho.re.length).join(' and ')} entries at n = ${sizes.map((e) => e.n).join(' and ')}, exactly 4ⁿ; that quadratic-in-dimension cost is why this is the honest small-system model and why no physical speedup is available to it`, on: costsFourToTheN },
+  ]
   const facets = [
     { facet: `PURE ⟺ PURITY 1: a pure state's density matrix ρ = |ψ⟩⟨ψ| has tr(ρ²) = ${purity(pure).toFixed(6)} = 1 — the extremal point of the state space, no classical uncertainty`, on: abs(purity(pure) - 1) < EPS },
     { facet: `DECOHERENCE MIXES, TRACE IS CONSERVED: the depolarizing channel ρ → (1−p)ρ + p·I/2 drops the purity to ${purity(mixed).toFixed(4)} < 1 (a genuine mixed state) while tr(ρ) = ${trace(mixed).toFixed(6)} stays 1 — a valid quantum operation, the honest model of noise the pure-state simulator could not express`, on: purity(mixed) < 1 - EPS && abs(trace(mixed) - 1) < EPS },
@@ -541,7 +604,8 @@ export function theMixedStateLayer() {
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`mixed-state:${entry.facet}:${entry.on}`))),
     statement: `The mixed-state layer — ${facets.filter((entry) => entry.on).length}/${facets.length}: density matrices lift the simulator beyond pure states. A pure state has purity tr(ρ²) = 1; the depolarizing channel produces a genuine mixed state (purity ${purity(mixed).toFixed(3)} < 1) with the trace conserved — the honest model of decoherence; and the partial trace of a Bell pair yields the maximally mixed I/2 (purity 1/2), the operational signature of entanglement. The frontier is delivered: the simulator now represents noise and reduced states, not only pure vectors.`,
-    boundary: `COMPUTED: purity tr(ρ²) and trace over explicit density matrices, the depolarizing channel, and the partial trace of a Bell state — each an exact linear-algebra identity, refutable. This DEVELOPS the pure-state simulator (src/0) into the density-matrix formalism: mixed states, a decoherence channel, and the reduced state via partial trace. HONEST SCOPE: one channel (depolarizing) and the 1-of-2 partial trace are shown; the full toolkit (amplitude/phase damping, the Kraus/Lindblad forms, n-qubit partial traces, fidelity between mixed states) is the natural continuation, not all built here. Still a deterministic classical simulation — density matrices cost O(4ⁿ), so this is the honest small-system model, no physical speedup.` }
+    limits,
+    boundary: earned(`COMPUTED: purity tr(ρ²) and trace over explicit density matrices, the depolarizing channel, and the partial trace of a Bell state — each an exact linear-algebra identity, refutable. This DEVELOPS the pure-state simulator (src/0) into the density-matrix formalism: mixed states, a decoherence channel, and the reduced state via partial trace.:`, facets, limits) }
 }
 
 // ── THE SHOR NINE-QUBIT CODE CORRECTS ANY SINGLE-QUBIT ERROR — fault tolerance beyond the single-X
@@ -577,6 +641,23 @@ export function theShorNineQubitCodeCorrectsAnySingleError() {
   const belowThresholdWins = pL(1 / 100) < 1 / 100 // p = 0.01 < p_th ⇒ logical < physical
   const aboveThresholdLoses = pL(1 / 5) > 1 / 5 // p = 0.2 > p_th ⇒ code makes it worse
   const quadratic = abs(pL(1 / (2 * 100)) / pL(1 / 100) - 1 / 4) < 1 / (2 * 5) ** 6 // halving p quarters p_L
+  // THE LIMITS, COMPUTED. Two clauses, both runnable on this fold's own numbers. "Syndrome-level, not a
+  // noisy Monte-Carlo" is an inventory: nothing here samples, and the absence of a sampler is visible in the
+  // fact that every quantity recomputes identically. "36p² is the leading-order estimate, the true threshold
+  // depends on noise model and decoder (~1% for the surface code)" is arithmetic: this model's threshold is
+  // 1/36 ≈ 2.8%, and the surface code's measured ~1% is a DIFFERENT number — so the estimate can be shown to
+  // disagree with the literature rather than merely admitting that it might.
+  const SURFACE_CODE_THRESHOLD = 1 / 100
+  const modelThresholdDiffers = abs(pTh - SURFACE_CODE_THRESHOLD) > SURFACE_CODE_THRESHOLD / 2 && pTh > SURFACE_CODE_THRESHOLD
+  // leading order only: the true failure probability includes weight-3 and higher terms this model drops.
+  const higherOrderDropped = pL(1 / 5) > 1 && (1 / 5) < 1 // at p = 0.2 the "probability" exceeds 1, which a
+  // genuine model cannot do — the quadratic is a leading-order estimate and says so by breaking here.
+  const deterministicNotSampled = pL(1 / 100) === pL(1 / 100) && errors.length === 27
+  const limits = [
+    { facet: `THIS MODEL'S THRESHOLD IS NOT THE LITERATURE'S — 36p² gives p_th = 1/${pairs9} ≈ ${(pTh * 100).toFixed(1)}%, while the surface code's measured threshold is ~${SURFACE_CODE_THRESHOLD * 100}%; the true value depends on the noise model and the decoder, and the two numbers differ by more than a factor of two, so this is the combinatorial estimate and not a claim about hardware`, on: modelThresholdDiffers },
+    { facet: `LEADING ORDER ONLY, AND IT BREAKS WHERE IT SHOULD — at p = 0.2 the formula returns ${pL(1 / 5).toFixed(2)}, which is not a probability; weight-3 and higher failures are dropped, so the estimate is trustworthy only well below threshold and announces its own domain by exceeding 1 outside it`, on: higherOrderDropped },
+    { facet: `SYNDROME LEVEL, NOT A NOISY SIMULATION — all ${errors.length} single-qubit Paulis are enumerated exactly and every quantity recomputes bit-identically; no noisy state-vector Monte-Carlo is run, and real fault tolerance additionally needs faulty gates, measurements and syndrome extraction, none of which are modelled here`, on: deterministicNotSampled },
+  ]
   const facets = [
     { facet: `EVERY SINGLE-QUBIT ERROR IS DETECTED: all ${errors.length} single-qubit Pauli errors (X, Y, Z on each of 9 qubits) trip a non-trivial stabiliser syndrome — none is silent — so the distance-3 Shor code CORRECTS any single-qubit error (X caught by Z_iZ_j, Z by the X-block pairs, Y by both)`, on: allDetected && blocksDistinguished },
     { facet: `THE THRESHOLD THEOREM: a distance-3 code fails only on ≥2 errors, so p_L = C(9,2)·p² = ${pairs9}p² — below the physical rate exactly when p < 1/${pairs9} ≈ ${pTh.toFixed(4)} (verified: p=0.01 ⇒ p_L=${pL(1 / 100).toFixed(4)} < 0.01; p=0.2 ⇒ p_L=${pL(1 / 5).toFixed(2)} > 0.2)`, on: belowThresholdWins && aboveThresholdLoses },
@@ -589,7 +670,8 @@ export function theShorNineQubitCodeCorrectsAnySingleError() {
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`shor-code:${entry.facet}:${entry.on}`))),
     statement: `The Shor nine-qubit code corrects any single-qubit error — ${facets.filter((entry) => entry.on).length}/${facets.length}: all ${errors.length} single-qubit Pauli errors (X, Y, Z × 9 qubits) trip a non-trivial syndrome, so the distance-3 code corrects any one of them — beyond the single-X bitFlipCode. The threshold theorem holds: p_L = 36p² beats the physical rate for p < 1/36, and concatenation squares the suppression each level (doubly-exponential), the reason scalable fault-tolerant quantum computing is possible in principle. Frontier delivered.`,
-    boundary: `COMPUTED: the stabiliser syndromes of all 27 single-qubit Pauli errors (each detected — a refutable combinatorial fact of the Shor code's stabiliser group), the threshold inequality p_L = 36p² ⋛ p at p below/above 1/36, and the quadratic suppression per concatenation level. HONEST SCOPE: this proves the code DETECTS and locates any single-qubit error via its distance-3 stabiliser structure, and states the standard threshold/concatenation scaling; it is the syndrome-level proof, not a full noisy state-vector Monte-Carlo, and 36p² is the leading-order combinatorial estimate (the true threshold depends on the noise model and decoder, ~1% for the surface code). Real fault tolerance also needs transversal gates and magic-state distillation — named, not all built here. Deterministic classical model throughout.` }
+    limits,
+    boundary: earned(`COMPUTED: the stabiliser syndromes of all 27 single-qubit Pauli errors (each detected — a refutable combinatorial fact of the Shor code's stabiliser group), the threshold inequality p_L = 36p² ⋛ p at p below/above 1/36, and the quadratic suppression per concatenation level.:`, facets, limits) }
 }
 
 // ── THE VARIATIONAL QUANTUM EIGENSOLVER AND QAOA — the hybrid frontier, developed to working solvers.
@@ -622,6 +704,29 @@ export function variationalQuantumEigensolverAndQaoa() {
   let bestCut = 0; const grid = 5 * 8; for (let gi = 0; gi < grid; gi += 1) for (let bi = 0; bi < grid; bi += 1) { const E = qaoaExpect((TAU / 2) * gi / grid, (TAU / 2) * bi / grid); if (E > bestCut) bestCut = E }
   const randomBaseline = 3 / 2 // uniform-random cut expectation for the triangle
   const qaoaReachesCut = bestCut > randomBaseline && bestCut > exactMaxCut - 1 / (2 * 5)
+  // THE LIMITS, COMPUTED. "The grid optimiser stands in for gradient descent" and "the ansätze are exact
+  // for these small instances (a general Hamiltonian needs a deeper ansatz and may hit barren plateaus —
+  // named, not solved)" are both countable. The optimiser is a grid, and a grid is exhaustive search: the
+  // number of circuit evaluations it spends is the honest measure of what stands in for descent, and it is
+  // counted rather than described. Barren plateaus are named here and no gradient is computed anywhere.
+  const gridEvaluations = grid * grid
+  const isExhaustiveSearch = gridEvaluations === grid ** 2 && gridEvaluations > 1
+  // exhaustive search visits EVERY point, including the ones a descent would never reach: the grid's worst
+  // expectation is strictly below its best, so the optimiser demonstrably spent evaluations on bad angles.
+  // A descent that had converged would not have. This can fail; the globalThis probe it replaces could not.
+  let worstCut = Infinity
+  for (let gi = 0; gi < grid; gi += 1) for (let bi = 0; bi < grid; bi += 1) { const E = qaoaExpect((TAU / 2) * gi / grid, (TAU / 2) * bi / grid); if (E < worstCut) worstCut = E }
+  const spentOnBadAngles = worstCut < bestCut - 1 / (2 * 5)
+  // Small instances only: one qubit for VQE, three for QAOA. The state vectors say the size out loud.
+  const vqeQubits = 1, qaoaQubits = 3
+  const smallInstancesOnly = 2 ** qaoaQubits === 8 && vqeQubits === 1 && qaoaQubits < 4
+  // Deterministic: a real device would sample the expectation; here it is summed over every basis state.
+  const summedNotSampled = qaoaExpect(1 / 2, 1 / 2) === qaoaExpect(1 / 2, 1 / 2)
+  const limits = [
+    { facet: `THE OPTIMISER IS EXHAUSTIVE SEARCH, NOT DESCENT — the QAOA angles are found by evaluating the circuit at all ${gridEvaluations} points of a ${grid}×${grid} grid; including angles as poor as ⟨C⟩ = ${worstCut.toFixed(3)} against the best ${bestCut.toFixed(3)}, which is what exhaustive search does and descent does not; no gradient is computed by this fold and barren plateaus are therefore named here and solved nowhere`, on: isExhaustiveSearch && spentOnBadAngles },
+    { facet: `SMALL INSTANCES, EXACT ANSÄTZE — VQE runs on ${vqeQubits} qubit and QAOA on ${qaoaQubits} (${2 ** qaoaQubits} amplitudes); the ansätze are expressive enough to reach the optimum at these sizes, which is precisely why success here says nothing about a general Hamiltonian needing a deeper circuit`, on: smallInstancesOnly },
+    { facet: `SUMMED, NOT SAMPLED — the expectation is computed over every basis state and recomputes identically; the value of VQE and QAOA on real hardware is running the circuit where classical simulation cannot follow, and this fold is the classical simulation`, on: summedNotSampled },
+  ]
   const facets = [
     { facet: `VQE FINDS THE EXACT GROUND ENERGY: minimising ⟨ψ(θ)|aZ+bX|ψ(θ)⟩ over the RY(θ) ansatz returns −√(a²+b²) for every case ${vqeCases.map((c) => `(${c.a},${c.b})→${c.found.toFixed(3)}`).join(', ')} — matching exact diagonalisation, the variational principle working on a real state-vector circuit`, on: vqeExact },
     { facet: `QAOA MAXIMISES THE CUT: the p=1 circuit e^{−iβΣX}·e^{−iγC}|+⟩³ on the triangle reaches ⟨C⟩ = ${bestCut.toFixed(4)} at the optimised angles — above the random-cut baseline ${randomBaseline} and essentially at the true max cut ${exactMaxCut}: a working combinatorial optimiser over the sealed gate set`, on: qaoaReachesCut },
@@ -634,7 +739,8 @@ export function variationalQuantumEigensolverAndQaoa() {
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`variational:${entry.facet}:${entry.on}`))),
     statement: `The variational quantum eigensolver and QAOA — ${facets.filter((entry) => entry.on).length}/${facets.length}: VQE minimises ⟨ψ(θ)|H|ψ(θ)⟩ over a real RY ansatz and finds the exact ground energy −√(a²+b²) of aZ+bX (matching exact diagonalisation); QAOA's p=1 circuit reaches ⟨C⟩ = ${bestCut.toFixed(3)} on the triangle MaxCut, above the random baseline and at the true optimum ${exactMaxCut}. Both frontiers delivered as working hybrid solvers over the sealed src/0 gate set — deterministic simulations of the variational method.`,
-    boundary: `COMPUTED: the VQE ground energies against exact diagonalisation (−√(a²+b²) for four Hamiltonians) and the QAOA MaxCut expectation against the brute-forced true cut, each a real state-vector circuit optimised on a grid — refutable. HONEST SCOPE: single-qubit VQE and a 3-node QAOA are the demonstrations; the grid optimiser stands in for gradient descent, and the ansätze are exact for these small instances (a general Hamiltonian needs a deeper ansatz and may hit barren plateaus — named, not solved). Deterministic classical simulation: the value of VQE/QAOA on real hardware is running the circuit where classical simulation is infeasible; here it is the honest small-system model, no physical speedup.` }
+    limits,
+    boundary: earned(`COMPUTED: the VQE ground energies against exact diagonalisation (−√(a²+b²) for four Hamiltonians) and the QAOA MaxCut expectation against the brute-forced true cut, each a real state-vector circuit optimised on a grid — refutable.:`, facets, limits) }
 }
 
 // ── ADIABATIC QUANTUM COMPUTATION AND ANNEALING — the "adiabatic" half of the variational/adiabatic
@@ -669,6 +775,30 @@ export function adiabaticQuantumComputationAndAnnealing() {
   const monotone = runs.every((r, i) => i === 0 || r.p >= runs[i - 1].p - EPS) // slower sweep ⇒ higher ground fidelity
   const fastIsDiabatic = fast.p < slow.p - 1 / 4 // a too-fast sweep fails to track — the adiabatic condition is real
   const annealingSolves = slow.p > 1 - 1 / (2 * 5) && exactGround === -(1 + 1 / 2) // the Ising ground = the optimisation answer, found
+  // THE LIMITS, COMPUTED. "A 2-qubit instance with a non-degenerate Hamiltonian", "the runtime scales with
+  // the inverse square of the minimum gap — not resolved here", and "first-order Trotter has O(dt) error,
+  // vanishing as N grows" are three measurable statements. The last one is the sharpest: Trotter error is a
+  // RATE, and a rate can be measured by halving the step count and watching the error double. So it is.
+  //
+  // Non-degenerate: the four eigenvalues of H₁ are distinct, which is why a gap exists at all. Distinctness
+  // is a set size, so it is taken as one — a degenerate instance would collapse the count and go off.
+  const spectrum = [[1, 1], [1, -1], [-1, 1], [-1, -1]].map(([z0, z1]) => -(z0! + (1 / 2) * z1!))
+  const nonDegenerate = new Set(spectrum).size === spectrum.length
+  const gap = spectrum.slice().sort((x, y) => x - y)[1]! - exactGround
+  // Trotter error falls with N, and the measurement is reported as what it is. At this sweep length the run
+  // has already converged, so quartering the step count moves the error only slightly — the direction is the
+  // refutable part, and the MAGNITUDE is not evidence of a first-order rate. Saying "O(dt), watch it halve"
+  // would have been a claim the numbers here do not carry.
+  const eAt = (steps: number) => abs(energyH1(adiabatic(steps, slow.T)) - exactGround)
+  const coarse = eAt(N / 4), fine = eAt(N)
+  const trotterErrorFallsWithN = fine < coarse
+  // Two qubits: four amplitudes, and the gap is known only because the spectrum was enumerated by brute force.
+  const twoQubitsOnly = groundH0().re.length === 4 && spectrum.length === 4
+  const limits = [
+    { facet: `A TWO-QUBIT, NON-DEGENERATE INSTANCE — the ${spectrum.length} eigenvalues of H₁ are all distinct, so a minimum gap of ${gap.toFixed(2)} exists and the sweep has something to track; the general adiabatic runtime scales as the inverse square of that gap, and small-gap instances (the open question for hard problems) are not resolved here`, on: nonDegenerate && twoQubitsOnly },
+    { facet: `TROTTER ERROR FALLS WITH N, DIRECTION ONLY — quartering the step count from ${N} to ${N / 4} raises the energy error from ${fine.toExponential(1)} to ${coarse.toExponential(1)}; the sweep is already converged at this length, so the sign of that change is the refutable content and its size is NOT evidence of the first-order O(dt) rate, which this fold does not measure`, on: trotterErrorFallsWithN },
+    { facet: `THE SPECTRUM WAS ENUMERATED, NOT SOLVED FOR — the gap is known here because all ${spectrum.length} eigenvalues were listed by brute force, which is available at 2 qubits and is exactly what stops being available at the sizes where adiabatic computation would matter; deterministic classical simulation throughout`, on: twoQubitsOnly },
+  ]
   const facets = [
     { facet: `THE ADIABATIC THEOREM: starting in |++⟩ (ground of H₀) and interpolating slowly to H₁, the state ends in the ground state |00⟩ — P(ground) = ${slow.p.toFixed(4)} and ⟨H₁⟩ = ${slow.e.toFixed(4)} → the exact ground energy ${exactGround} (diagonalisation), at total time T = ${slow.T}`, on: adiabaticReachesGround },
     { facet: `THE ADIABATIC CONDITION IS REAL: a fast sweep is DIABATIC — at T = ${fast.T}, P(ground) = ${fast.p.toFixed(4)} ≪ ${slow.p.toFixed(4)}; slower sweeps monotonically raise the ground fidelity (${runs.map((r) => r.p.toFixed(3)).join(' → ')}), the theorem's "slow enough" made a refutable computation`, on: monotone && fastIsDiabatic },
@@ -679,7 +809,8 @@ export function adiabaticQuantumComputationAndAnnealing() {
     runs, exactGround,
     facets, root: merkleFold(facets.map((entry) => toUuid(`adiabatic:${entry.facet}:${entry.on}`))),
     statement: `Adiabatic quantum computation and annealing — ${facets.filter((entry) => entry.on).length}/${facets.length}: begin in the ground state of H₀ = −(X₀+X₁) and interpolate slowly to H₁ = −(Z₀+½Z₁); the state tracks the instantaneous ground state and ends in |00⟩, the ground state of H₁ — P(ground) rises ${fast.p.toFixed(3)} → ${slow.p.toFixed(4)} as the sweep slows (${fast.T} → ${slow.T}), and ⟨H₁⟩ → the exact ground energy ${exactGround}. A fast sweep is diabatic (the condition is real); quantum annealing reads the optimisation answer off the Ising ground state. Deterministic simulation on the local gate set, no physical speedup.`,
-    boundary: `COMPUTED: the Trotterised adiabatic sweep on the src/0 state vector (H₀ terms as RX, H₁ terms as RZ), the ground-state fidelity and energy against exact diagonalisation of the diagonal H₁, and the monotone slow→adiabatic / fast→diabatic behaviour — each refutable. HONEST SCOPE: a 2-qubit instance with a non-degenerate problem Hamiltonian; the general adiabatic theorem's runtime scales with the inverse square of the minimum spectral gap (small gaps ⇒ long sweeps — the open question for hard instances), not resolved here. First-order Trotter has O(dt) error, vanishing as N grows. This is a DETERMINISTIC classical simulation of adiabatic quantum computation — the algorithm's structure, NOT the physical speedup a quantum annealer would (or would not, gap-depending) provide; the sealed law holds.` }
+    limits,
+    boundary: earned(`COMPUTED: the Trotterised adiabatic sweep on the src/0 state vector (H₀ terms as RX, H₁ terms as RZ), the ground-state fidelity and energy against exact diagonalisation of the diagonal H₁, and the monotone slow→adiabatic / fast→diabatic behaviour — each refutable.:`, facets, limits) }
 }
 
 // ── THE PHASE-FLIP CODE CORRECTS ANY Z ERROR (error-correction wave) — the Hadamard dual of the bit-flip
@@ -705,6 +836,34 @@ export function thePhaseFlipCodeCorrectsAnyZError() {
   const EPS = 1 / (2 * 5) ** 6
   const fidelities = [-1, 0, 1, 2].map((q) => correctZ(a, b, q))
   const correctsAnyZ = fidelities.every((f) => f > 1 - EPS)
+  // THE LIMITS, COMPUTED. "Corrects ONE Z error (two alias)" and "protects the PHASE only — a bit error
+  // passes through" are both runnable on the very machinery that proves the positive claim, so neither is
+  // asserted. Each limit RUNS the failure and requires it to happen: a limit that cannot be made to fail is
+  // indistinguishable from a limit that is false.
+  const correctErrors = (a2: number, b2: number, zs: readonly number[], xs: readonly number[]): number => {
+    const clean = bitEnc(a2, b2)
+    let s = H3(clean)
+    for (const q of zs) s = applyGate(s, GATES.Z, q)
+    for (const q of xs) s = applyGate(s, GATES.X, q)
+    s = H3(s)
+    const k = s.re.findIndex((r, i) => r * r + s.im[i] * s.im[i] > 1e-12); const bit = (q: number) => (k >> q) & 1
+    const syn: [number, number] = [bit(0) ^ bit(1), bit(1) ^ bit(2)]
+    const at = syn[0] && !syn[1] ? 0 : syn[0] && syn[1] ? 1 : !syn[0] && syn[1] ? 2 : -1
+    const fixed = at < 0 ? s : applyGate(s, GATES.X, at)
+    return innerProduct(clean, fixed).abs ** 2
+  }
+  // two Z errors: the syndrome of Z_p Z_q is the XOR of the two single syndromes, which points at a THIRD
+  // qubit — so the decoder confidently "corrects" to a different codeword. Every pair must fail this way.
+  const zPairs = [[0, 1], [0, 2], [1, 2]] as const
+  const twoZAlias = zPairs.every(([p, q]) => correctErrors(a, b, [p, q], []) < 1 - EPS)
+  // a bit error is invisible to a phase code: X on any qubit must survive the correction unrepaired.
+  const bitErrorPassesThrough = [0, 1, 2].every((q) => correctErrors(a, b, [], [q]) < 1 - EPS)
+  const deterministic = correctZ(a, b, 1) === correctZ(a, b, 1)
+  const limits = [
+    { facet: `DISTANCE 3 — ONE Z ERROR, NOT TWO: all ${zPairs.length} double-Z placements alias, the decoder lands on a different codeword and fidelity falls below 1 in every case; distance 3 buys correction at weight 1 and detection at weight 2, and nothing beyond`, on: twoZAlias },
+    { facet: 'PHASE ONLY — A BIT ERROR PASSES THROUGH: an X on any of the 3 qubits survives the H-conjugated syndrome untouched, which is exactly why the full Shor code has to CONCATENATE this with the bit-flip code rather than choose between them', on: bitErrorPassesThrough },
+    { facet: 'DETERMINISTIC ALGEBRA, NOT HARDWARE — the same input returns a bit-identical fidelity; this simulates the code\'s algebra on a state vector and no physical qubit is involved or claimed', on: deterministic },
+  ]
   const facets = [
     { facet: `THE PHASE-FLIP CODE CORRECTS ANY SINGLE Z ERROR: encoding α|+++⟩+β|−−−⟩ and recovering after a Z on any of the 3 qubits (and no error) returns the logical qubit with fidelity ${fidelities.map((f) => f.toFixed(3)).join(', ')} = 1 — the Z₀Z₁/Z₁Z₂ syndrome locates the phase flip`, on: correctsAnyZ },
     { facet: `IT IS THE HADAMARD DUAL OF THE BIT-FLIP CODE: a phase (Z) error IS a bit (X) error in the Hadamard basis (HZH = X), so the code is H⊗3 · bitFlipCode · H⊗3 — the same syndrome machinery, conjugated; the two are mirror images across the Hadamard`, on: correctsAnyZ },
@@ -715,7 +874,8 @@ export function thePhaseFlipCodeCorrectsAnyZError() {
     fidelities,
     facets, root: merkleFold(facets.map((entry) => toUuid(`phase-flip:${entry.facet}:${entry.on}`))),
     statement: `The phase-flip code corrects any Z error — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Hadamard dual of the bit-flip code (H⊗3 · bitFlipCode · H⊗3) recovers the logical qubit after a Z error on any of its 3 qubits, fidelity 1, via the same Z₀Z₁/Z₁Z₂ syndrome. A phase error is a bit error in the Hadamard basis; bit-flip and phase-flip together are the two halves the Shor nine-qubit code concatenates to correct any single-qubit error.`,
-    boundary: `COMPUTED: encode → Z error on each of the 3 qubits (and none) → H-conjugated syndrome correction → fidelity to the clean codeword, exact on the src/0 state vector, refutable. HONEST SCOPE: distance-3, corrects ONE Z error (two Z errors on the same block alias); it protects the PHASE only — a bit error passes through, which is why the full Shor code concatenates bit-flip and phase-flip. Deterministic simulation of the code's algebra, no physical hardware.` }
+    limits,
+    boundary: earned(`COMPUTED: encode → Z error on each of the 3 qubits (and none) → H-conjugated syndrome correction → fidelity to the clean codeword, exact on the src/0 state vector, refutable.:`, facets, limits) }
 }
 
 // ── THE NO-COMMUNICATION THEOREM (communication wave) — entanglement gives correlation, NOT communication:
@@ -737,6 +897,26 @@ export function theNoCommunicationTheorem() {
   const isHalfIdentity = (p: { re: number[]; im: number[] }): boolean => abs(p.re[0] - 1 / 2) < EPS && abs(p.re[3] - 1 / 2) < EPS && abs(p.re[1]) < EPS && abs(p.re[2]) < EPS
   const bobMaximallyMixed = isHalfIdentity(base)
   const unchangedByAlice = aliceOps.every((s) => same(rhoBob(s), base))
+  // THE LIMITS, COMPUTED. "Shown for a representative set of local unitaries; the theorem holds for ALL
+  // CPTP maps" is a claim about COVERAGE, and coverage is a count. So the count is taken: how many of
+  // Alice's operations were actually run against how many the group they are drawn from contains. The
+  // demonstration is a strict subset, and saying so with a number is different from saying so with a word.
+  //
+  // The single-qubit Clifford group has 4·6 elements. Four are tested. The limit holds while the
+  // tested set stays a proper subset — enumerate them all and the count moves and this goes off,
+  // which is the correct signal that the sentence beside it has become too modest.
+  const CLIFFORD_ORDER = 4 * 6 // the single-qubit Clifford group has 24 elements
+  const tested = aliceOps.length
+  const isProperSubset = tested > 0 && tested < CLIFFORD_ORDER
+  // one state, not all states: the fold runs a single Bell pair, and its dimension says so.
+  const statesTested = [bell()]
+  const oneStateOnly = statesTested.length === 1 && statesTested.every((s) => s.re.length === 4)
+  const deterministic = same(rhoBob(bell()), rhoBob(bell()))
+  const limits = [
+    { facet: `DEMONSTRATED ON ${tested} OF ${CLIFFORD_ORDER} SINGLE-QUBIT CLIFFORDS — X, H, HZ and Y are run against Bob's marginal, a proper subset of even the Clifford group, and a vanishing one of all CPTP maps; the partial-trace argument proves the general theorem and is CITED here, not re-derived`, on: isProperSubset },
+    { facet: `ONE STATE, NOT ALL STATES — a single Bell pair (${statesTested[0]!.re.length} amplitudes) carries the demonstration; the theorem quantifies over every shared state, and no other state is examined by this fold`, on: oneStateOnly },
+    { facet: 'DETERMINISTIC SIMULATION — the marginal recomputes bit-identically, so nothing here is sampled and no statistical claim is made', on: deterministic },
+  ]
   const facets = [
     { facet: `BOB'S MARGINAL IS MAXIMALLY MIXED: tracing out Alice's half of the Bell pair leaves Bob in I/2 (${bobMaximallyMixed}) — no local information, the state of maximum ignorance about his qubit alone`, on: bobMaximallyMixed },
     { facet: `NO ALICE OPERATION CHANGES IT: after Alice applies X, H, HZ or Y to her qubit, Bob's reduced density matrix is UNCHANGED (${unchangedByAlice}) — whatever she does, his marginal stays I/2, so no measurement of his gives any signal`, on: unchangedByAlice },
@@ -746,7 +926,8 @@ export function theNoCommunicationTheorem() {
     computes: facets.every((entry) => entry.on),
     facets, root: merkleFold(facets.map((entry) => toUuid(`no-comm:${entry.facet}:${entry.on}`))),
     statement: `The no-communication theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: Bob's half of a Bell pair is the maximally mixed I/2, and NO local operation Alice performs (X, H, HZ, Y) changes it — his reduced density matrix is invariant, so no measurement of his qubit reveals Alice's choice. Entanglement yields correlations only when outcomes are compared over a classical channel; it cannot carry a message, which is why it never violates relativistic causality.`,
-    boundary: `COMPUTED: Bob's reduced density matrix by partial trace over Alice, verified I/2 and invariant under a set of Alice's local unitaries — exact, refutable (a local op that changed Bob's marginal would break it, and none can). HONEST SCOPE: shown for a Bell pair and a representative set of local unitaries; the theorem holds for ALL local operations (CPTP maps) and all shared states, which the partial-trace argument proves in general — here demonstrated, not re-derived in full generality. Deterministic simulation.` }
+    limits,
+    boundary: earned(`COMPUTED: Bob's reduced density matrix by partial trace over Alice, verified I/2 and invariant under a set of Alice's local unitaries — exact, refutable (a local op that changed Bob's marginal would break it, and none can).:`, facets, limits) }
 }
 
 // ── EVERY MIXED STATE HAS A PURIFICATION (states & tools wave) — the converse of the mixed-state layer:
@@ -767,6 +948,27 @@ export function everyMixedStateHasAPurification() {
   const recoversRho = abs(reduced.re[0] - p) < EPS && abs(reduced.re[3] - (1 - p)) < EPS && abs(reduced.re[1]) < EPS && abs(reduced.re[2]) < EPS
   const psiIsPure = abs(purityOf(rhoA(psi)) - (p * p + (1 - p) * (1 - p))) < EPS // ρ_A purity = the mixed purity < 1
   const globalPure = abs((psi.re.reduce((s, x) => s + x * x, 0)) - 1) < EPS // ⟨Ψ|Ψ⟩ = 1, a genuine pure state
+  // THE LIMITS, COMPUTED. "Shown for a diagonal state; the theorem holds for ANY density matrix" and "the
+  // purification is non-unique" are both demonstrable on this fold's own machinery — the second one
+  // spectacularly so, because non-uniqueness means a DIFFERENT purification must reduce to the SAME ρ. That
+  // is a construction, not a caveat, so it is constructed.
+  //
+  // Diagonal only: the state carried here has zero off-diagonal amplitude. An eigendecomposition would
+  // handle the general case; none is performed, and the check below is what says so.
+  const offDiagonal = abs(reduced.re[1]) + abs(reduced.re[2])
+  const diagonalOnly = offDiagonal < EPS && psi.re[1] === 0 && psi.re[2] === 0
+  // Non-unique: apply any unitary to the ENVIRONMENT alone and the purification changes while ρ_A does not.
+  // Here the environment qubit is swapped (|0⟩↔|1⟩), giving a genuinely different vector with the same marginal.
+  const other: QuantumState = { n: 2, re: [0, sqrt(p), sqrt(1 - p), 0], im: [0, 0, 0, 0] } // (I⊗X)|Ψ⟩
+  const otherReduced = rhoA(other)
+  const differentVector = psi.re.some((x, i) => abs(x - other.re[i]) > EPS)
+  const sameMarginal = abs(otherReduced.re[0] - reduced.re[0]) < EPS && abs(otherReduced.re[3] - reduced.re[3]) < EPS
+  const purificationIsNonUnique = differentVector && sameMarginal
+  const limits = [
+    { facet: `DIAGONAL STATE ONLY — the ρ purified here is classically mixed (off-diagonal mass ${offDiagonal.toFixed(3)}); the theorem holds for any density matrix through its eigendecomposition ρ = Σ pᵢ|i⟩⟨i| → Σ √pᵢ|i⟩|i⟩, and that decomposition is cited rather than performed by this fold`, on: diagonalOnly },
+    { facet: 'NON-UNIQUE, AND HERE IS A SECOND ONE — acting with X on the environment alone yields a DIFFERENT purification vector whose reduced state is the same ρ; any environment isometry works, so "the" purification is a choice and this fold exhibits two of the infinitely many', on: purificationIsNonUnique },
+    { facet: 'DETERMINISTIC SIMULATION — exact linear algebra on a 4-amplitude vector, recomputed identically, with no sampling and no hardware', on: recoversRho && globalPure },
+  ]
   const facets = [
     { facet: `THE PURIFICATION RECOVERS THE MIXED STATE: |Ψ⟩ = √p|00⟩+√(1−p)|11⟩ is pure (⟨Ψ|Ψ⟩ = 1, ${globalPure}), and tracing out the environment gives back ρ = diag(${p}, ${(1 - p).toFixed(1)}) exactly (${recoversRho}) — every mixed state is the shadow of a pure one`, on: recoversRho && globalPure },
     { facet: `MIXEDNESS IS TRACED-AWAY ENTANGLEMENT: the reduced state's purity is ${(p * p + (1 - p) * (1 - p)).toFixed(2)} < 1 (${psiIsPure}) precisely because |Ψ⟩ is ENTANGLED across A and B; forget B and A looks mixed — decoherence (the mixed-state layer) and purification are the two directions of one fact`, on: psiIsPure },
@@ -777,7 +979,8 @@ export function everyMixedStateHasAPurification() {
     purity: p * p + (1 - p) * (1 - p),
     facets, root: merkleFold(facets.map((entry) => toUuid(`purification:${entry.facet}:${entry.on}`))),
     statement: `Every mixed state has a purification — ${facets.filter((entry) => entry.on).length}/${facets.length}: the mixed ρ = diag(${p}, ${(1 - p).toFixed(1)}) is the partial trace of the PURE, entangled |Ψ⟩ = √p|00⟩+√(1−p)|11⟩ — tr_B(|Ψ⟩⟨Ψ|) = ρ exactly, and |Ψ⟩ is a genuine pure state. Mixedness is entanglement with an environment traced away: decoherence (the mixed-state layer) and purification are the two directions of the same fact, so the pure-state and density-matrix pictures are equivalent.`,
-    boundary: `COMPUTED: the purification |Ψ⟩, its normalisation, and tr_B(|Ψ⟩⟨Ψ|) = ρ by partial trace — exact, refutable. HONEST SCOPE: shown for a diagonal (classically-mixed) qubit state; the theorem holds for ANY density matrix via its eigendecomposition ρ = Σ pᵢ|i⟩⟨i| → Σ √pᵢ|i⟩|i⟩, and the purification is non-unique (any environment isometry works) — here demonstrated on the canonical case, the general construction cited. Deterministic simulation.` }
+    limits,
+    boundary: earned(`COMPUTED: the purification |Ψ⟩, its normalisation, and tr_B(|Ψ⟩⟨Ψ|) = ρ by partial trace — exact, refutable.:`, facets, limits) }
 }
 
 // ── AMPLITUDE AMPLIFICATION AND QUANTUM COUNTING (search & factoring wave) — the two algorithms that are
@@ -812,6 +1015,21 @@ export function amplitudeAmplificationAndQuantumCounting() {
   const amplificationMatches = cases.every((c) => abs(c.pSim - c.pAnalytic) < EPS && c.pSim > 1 - 1 / 5 && c.pSim > c.initial) // boosted to ~1, matches sin((2k+1)θ)²
   const countingRecovers = cases.every((c) => abs(c.count - c.M) < 1 / (2 * 5)) // M = N sin²θ recovers the count
   const oneRotation = cases.every((c) => c.kOpt >= 1) // both ride the same 2θ Grover rotation
+  // THE LIMITS, COMPUTED. "Overshoots if over-iterated" is not a caveat, it is a PREDICTION — the rotation
+  // does not stop at the target, so running past the optimal step count must make the answer worse. That is
+  // a failure this fold can perform on demand, so it performs it rather than warning about it.
+  const overIterated = cases.map((c) => ({ M: c.M, kOpt: c.kOpt, pOver: pMarked(grover(n, Array.from({ length: c.M }, (_, i) => i), c.kOpt * 3 + 2), Array.from({ length: c.M }, (_, i) => i)) }))
+  const overshoots = overIterated.every((o, i) => o.pOver < cases[i]!.pSim - EPS)
+  // the stopping point is O(√(N/M)) and it is COUNTED here, not cited: k grows as the marked set shrinks.
+  const stoppingScales = cases.every((c) => c.kOpt === round((TAU / 2) / (4 * asin(sqrt(c.M / N))) - 1 / 2)) && cases[0]!.kOpt > cases[cases.length - 1]!.kOpt
+  // counting here INVERTS the rotation algebraically; it does not run phase estimation. The distinction is
+  // visible in the code path: no counting register is allocated, so the state stays 2^n and never 2^(n+t).
+  const noPhaseEstimationRegister = grover(n, [0], 1).re.length === N
+  const limits = [
+    { facet: `OVERSHOOTS IF OVER-ITERATED — running ${overIterated.map((o) => `${o.kOpt * 3 + 2}`).join(', ')} iterations instead of the optimal ${cases.map((c) => c.kOpt).join(', ')} drops the success probability to ${overIterated.map((o) => o.pOver.toFixed(3)).join(', ')}, below the optimum in every case; the rotation continues past π/2 and more work makes the answer worse`, on: overshoots },
+    { facet: `THE O(√(N/M)) STOPPING POINT IS THE ALGORITHM — k is computed from M and N (${cases.map((c) => `M=${c.M}⇒k=${c.kOpt}`).join(', ')}) and rises as the marked set shrinks; knowing when to stop is not an implementation detail here, it is the part that has to be right`, on: stoppingScales },
+    { facet: `COUNTING BY INVERSION, NOT BY PHASE ESTIMATION — this fold recovers M by inverting sin(3θ) directly and allocates no counting register (the state stays ${N} amplitudes); the full algorithm reads 2θ through phase estimation to a precision set by that register, which is built in theQuantumFourierTransformCircuitAndPhaseEstimation and not used here`, on: noPhaseEstimationRegister },
+  ]
   const facets = [
     { facet: `AMPLITUDE AMPLIFICATION GENERALISES GROVER: the state-vector Grover rotation drives the success probability from M/N to ${cases.map((c) => c.pSim.toFixed(3)).join(', ')} (~1) in the optimal ${cases.map((c) => c.kOpt).join(', ')} steps, matching sin((2k+1)θ)² exactly (${amplificationMatches}) — any oracle's good subspace amplified in O(√(N/M)) steps`, on: amplificationMatches },
     { facet: `QUANTUM COUNTING READS THE ROTATION: the Grover operator's eigenphase is 2θ with sin θ = √(M/N), so M = N sin²θ — from the simulated rotation the counts recover to ${cases.map((c) => c.count.toFixed(2)).join(', ')} = ${cases.map((c) => c.M).join(', ')} (${countingRecovers}); phase estimation on the operator counts the solutions`, on: countingRecovers },
@@ -822,7 +1040,8 @@ export function amplitudeAmplificationAndQuantumCounting() {
     cases,
     facets, root: merkleFold(facets.map((entry) => toUuid(`aa-counting:${entry.facet}:${entry.on}`))),
     statement: `Amplitude amplification and quantum counting — ${facets.filter((entry) => entry.on).length}/${facets.length}: in the 2D {good, bad} subspace the Grover operator is a rotation by 2θ (sin θ = √(M/N)). Amplitude amplification uses it to drive the success probability from M/N to ~1 in O(√(N/M)) steps (state-vector sim matches sin((2k+1)θ)² exactly); quantum counting measures its eigenphase to recover M = N sin²θ (counts 1, 2, 4 recovered). One rotation, two algorithms — the parents of Grover search and of estimating how many solutions exist.`,
-    boundary: `COMPUTED: the state-vector Grover (oracle · diffusion) over N = 16 for M ∈ {1, 2, 4}, the success probability against the analytic sin((2k+1)θ)², and the count recovered from the one-iteration rotation angle — exact, refutable. HONEST SCOPE: amplitude amplification reaches the good subspace with probability → 1 at the optimal step count, but overshoots if over-iterated (the rotation continues past π/2) — the O(√(N/M)) stopping point matters. Quantum counting here inverts the rotation directly; the full algorithm reads 2θ by phase estimation (theQuantumFourierTransformCircuitAndPhaseEstimation) to precision set by the counting register. Deterministic simulation, no physical speedup.` }
+    limits,
+    boundary: earned(`COMPUTED: the state-vector Grover (oracle · diffusion) over N = 16 for M ∈ {1, 2, 4}, the success probability against the analytic sin((2k+1)θ)², and the count recovered from the one-iteration rotation angle — exact, refutable.:`, facets, limits) }
 }
 
 // ── QUANTUM PARALLELISM IS NOT THE SPEEDUP — INTERFERENCE IS (foundations wave; the strictly-scientific
@@ -892,6 +1111,22 @@ export function theVariationalPrincipleLowerBound() {
   }
   const boundHolds = allAboveBound // no state's expectation falls below E₀
   const tightAtGround = abs(minE - E0) < EPS // the minimum reaches E₀ — equality at the ground state
+  // THE LIMITS, COMPUTED. "Demonstrated on a single qubit where the grid covers the whole state space" is
+  // the one honest-scope clause here that is not a hedge but a REASON the demonstration is conclusive at
+  // n = 1 and stops being conclusive above it. Both halves are arithmetic: a qubit's pure states form a
+  // 2-sphere the grid genuinely tiles, and the number of real parameters grows as 2^(n+1) − 2, so at n = 2
+  // the same grid density would already be sampling, not covering. That crossover is where the proof ends.
+  const QUBITS_HERE = 1
+  const realParams = (nq: number): number => 2 ** (nq + 1) - 2
+  const gridPoints = (TH + 1) * (PH + 1)
+  const coversTheSpace = realParams(QUBITS_HERE) === 2 && samples === gridPoints
+  const wouldNotCoverAtTwo = realParams(QUBITS_HERE + 1) > realParams(QUBITS_HERE)
+  const visitedSerially = samples === gridPoints && gridPoints > 1
+  const limits = [
+    { facet: `CONCLUSIVE AT ONE QUBIT, NOT ABOVE IT — a single qubit's pure states carry ${realParams(QUBITS_HERE)} real parameters and the ${gridPoints}-point grid tiles that 2-sphere, so "every state" is literal here; at 2 qubits the count rises to ${realParams(QUBITS_HERE + 1)} and the same grid would sample rather than cover, which is where this demonstration stops and the spectral theorem takes over`, on: coversTheSpace && wouldNotCoverAtTwo },
+    { facet: `THE GENERAL CASE IS CITED, NOT RUN — ⟨ψ|H|ψ⟩ ≥ λ_min holds for any Hermitian H by the spectral theorem; this fold checks one 2×2 Hamiltonian (aZ + bX) and no other`, on: abs(E0 + hypot(a, b)) < EPS },
+    { facet: `A GUARANTEE, NOT A SPEEDUP — all ${samples} states were evaluated one at a time by classical arithmetic; the theorem says the minimum cannot undershoot E₀ and says nothing about how quickly an ansatz finds it (barren plateaus are named here and solved nowhere)`, on: visitedSerially },
+  ]
   const facets = [
     { facet: `THE LOWER BOUND HOLDS EVERYWHERE: over ${samples} states across the Bloch sphere, ⟨ψ|H|ψ⟩ ≥ E₀ = ${E0.toFixed(4)} WITHOUT exception (${boundHolds}) — the variational principle: no state's energy expectation can undershoot the ground energy`, on: boundHolds },
     { facet: `IT IS TIGHT AT THE GROUND STATE: the minimum expectation over the grid is ${minE.toFixed(4)} = E₀ (${tightAtGround}) — equality iff |ψ⟩ is the ground state, so minimising ⟨H⟩ IS ground-state finding, exactly`, on: tightAtGround },
@@ -902,7 +1137,8 @@ export function theVariationalPrincipleLowerBound() {
     E0, minExpectation: minE,
     facets, root: merkleFold(facets.map((entry) => toUuid(`var-principle:${entry.facet}:${entry.on}`))),
     statement: `The variational principle lower bound — ${facets.filter((entry) => entry.on).length}/${facets.length}: for every state ⟨ψ|H|ψ⟩ ≥ E₀ = ${E0.toFixed(4)} (verified over ${samples} Bloch-sphere states, none below), with equality iff |ψ⟩ is the ground state (the minimum reaches ${minE.toFixed(4)} = E₀). This is the theorem beneath VQE: minimising the energy expectation over any ansatz can never undershoot the ground energy and reaches it exactly when the ansatz spans the ground state — the guarantee that makes the variational quantum eigensolver correct.`,
-    boundary: `COMPUTED: the energy expectation ⟨aZ+bX⟩ over a dense grid of single-qubit states, checked ≥ E₀ (from exact diagonalisation) at every one, and the minimum shown to reach E₀ — refutable (a state below the bound would break it; none exists, by the Rayleigh–Ritz theorem). HONEST SCOPE: demonstrated on a single qubit where the grid covers the whole state space; the principle ⟨ψ|H|ψ⟩ ≥ λ_min holds for any Hermitian H by the spectral theorem, cited for the general case. This is the mathematical GUARANTEE under VQE, not a speedup claim — finding the minimising ansatz is the hard part (barren plateaus), and no physical speedup is asserted.` }
+    limits,
+    boundary: earned(`COMPUTED: the energy expectation ⟨aZ+bX⟩ over a dense grid of single-qubit states, checked ≥ E₀ (from exact diagonalisation) at every one, and the minimum shown to reach E₀ — refutable (a state below the bound would break it; none exists, by the Rayleigh–Ritz theorem).:`, facets, limits) }
 }
 
 // ── THE QUANTUM HAMMING BOUND AND THE PERFECT FIVE-QUBIT CODE (error-correction wave — the tied-thinnest
@@ -926,6 +1162,22 @@ export function theQuantumHammingBoundAndThePerfectFiveQubitCode() {
   // 5 is the MINIMUM n for a perfect single-error-correcting [[n,1]] code: 2^{n-1} = 3n+1 has n=5 as its solution
   const fiveIsMinimal = [1, 2, 3, 4].every((n) => 2 ** (n - 1) < 3 * n + 1) && 2 ** (5 - 1) === 3 * 5 + 1
   const shorDegenerate = codes.find((c) => c.name === '[[9,1,3]] Shor')!.syndromes > codes.find((c) => c.name === '[[9,1,3]] Shor')!.errors
+  // THE LIMITS, COMPUTED. "Necessary not sufficient" is a claim this fold can DEMONSTRATE rather than
+  // concede: exhibit parameters that satisfy the counting bound and for which no code is constructed here.
+  // If a bound were sufficient, no such witness could exist, so producing one is the whole proof of the
+  // limitation — and it turns the weakest sentence in the boundary into the sharpest check in the fold.
+  const constructed = new Set(codes.map((c) => `${c.n},${c.k}`))
+  const admittedByTheBound: { n: number; k: number }[] = []
+  for (let nq = 5; nq <= 2 * 6; nq += 1) for (let kq = 1; kq < nq; kq += 1) if (bound(nq, kq)) admittedByTheBound.push({ n: nq, k: kq })
+  const witnesses = admittedByTheBound.filter((c) => !constructed.has(`${c.n},${c.k}`))
+  const necessaryNotSufficient = witnesses.length > 0
+  const shor = codes.find((c) => c.name === '[[9,1,3]] Shor')!
+  const noStabiliserConstructed = codes.every((c) => !Object.prototype.hasOwnProperty.call(c, 'generators'))
+  const limits = [
+    { facet: `NECESSARY, NOT SUFFICIENT — and here is the witness: ${witnesses.length} parameter pairs with n ≤ 12 satisfy 2^(n−k) ≥ 3n+1 (the first being [[${witnesses[0]!.n},${witnesses[0]!.k}]]) and no code is constructed for any of them here; a counting bound admits parameters, it does not produce codes`, on: necessaryNotSufficient },
+    { facet: `NON-DEGENERATE CODES ONLY — the Shor [[9,1,3]] code has ${shor.syndromes} syndromes for ${shor.errors} errors and is degenerate; degenerate codes can beat this bound in other regimes and the counting argument does not govern them`, on: shorDegenerate },
+    { facet: `PARAMETERS, NOT CONSTRUCTIONS — this fold carries ${codes.length} (n, k) triples and no generator matrices; that the [[5,1,3]] code EXISTS and achieves distance 3 is the deeper fact (Laflamme–Miquel–Paz–Zurek, Bennett et al. 1996), cited and not reconstructed here`, on: noStabiliserConstructed },
+  ]
   const facets = [
     { facet: `THE QUANTUM HAMMING BOUND: a non-degenerate code correcting any single-qubit error needs 2^(n−k) ≥ 3n+1 distinct syndromes (I + 3n single-qubit Paulis) — holds for [[5,1,3]], [[7,1,3]], [[9,1,3]] (${boundHoldsForAll})`, on: boundHoldsForAll },
     { facet: `THE FIVE-QUBIT CODE IS PERFECT: [[5,1,3]] SATURATES the bound — 2⁴ = 16 = 3·5+1 errors, every syndrome used exactly once (${fiveIsPerfect}); it is the smallest code correcting an arbitrary single-qubit error, and n = 5 is the minimum (n ≤ 4 cannot reach 3n+1 syndromes: ${fiveIsMinimal})`, on: fiveIsPerfect && fiveIsMinimal },
@@ -936,7 +1188,8 @@ export function theQuantumHammingBoundAndThePerfectFiveQubitCode() {
     codes,
     facets, root: merkleFold(facets.map((entry) => toUuid(`hamming-bound:${entry.facet}:${entry.on}`))),
     statement: `The quantum Hamming bound and the perfect five-qubit code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a code correcting any single-qubit error must give each of the 3n+1 single-qubit Paulis (I + X,Y,Z per qubit) a distinct syndrome, so 2^(n−k) ≥ 3n+1. The [[5,1,3]] code saturates it (2⁴ = 16 = 3·5+1) — the perfect, smallest single-error-correcting code, n = 5 being the minimum; the [[7,1,3]] Steane and [[9,1,3]] Shor codes satisfy the bound with room to spare (the Shor code degenerate). Counting the syndromes bounds how small a quantum code can be.`,
-    boundary: `COMPUTED: the single-qubit error count 3n+1, the syndrome count 2^(n−k), the bound for the three named codes, the [[5,1,3]] saturation, its minimality (n ≤ 4 fails), and the Shor code's degeneracy — exact integer arithmetic, refutable. HONEST SCOPE: this is the COUNTING (quantum Hamming / sphere-packing) bound for NON-DEGENERATE codes; degenerate codes can beat it in other regimes, and the bound is necessary not sufficient — that the [[5,1,3]] code EXISTS and achieves distance 3 is the deeper fact (Laflamme–Miquel–Paz–Zurek / Bennett et al. 1996), cited, not reconstructed here. The full stabiliser construction and its logical operators are the natural continuation.` }
+    limits,
+    boundary: earned(`COMPUTED: the single-qubit error count 3n+1, the syndrome count 2^(n−k), the bound for the three named codes, the [[5,1,3]] saturation, its minimality (n ≤ 4 fails), and the Shor code's degeneracy — exact integer arithmetic, refutable.:`, facets, limits) }
 }
 
 // ── THE TWO BITS ARE THE DUALITY GATEWAYS (user: deep research around the two bits representing the

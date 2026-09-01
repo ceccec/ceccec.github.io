@@ -30,8 +30,66 @@ const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
 
 /** Highest count of NARRATED scopes tolerated. Lower it as folds convert; never raise it. */
 const BASELINE = 620
+/** The same ratchet for `boundary:` paragraphs that narrate their limits. Lower it; never raise it. */
+const BOUNDARY_BASELINE = 51
 
 export type NarratedScope = { file: string; line: number; head: string }
+
+/**
+ * THE SECOND POPULATION, WHICH NO GATE HAD EVER LOOKED AT.
+ *
+ * The ratchet above parses `earned(...)` and sees its third argument. But most folds never call
+ * `earned` — they assign a `boundary:` template string directly, and eighty-odd of those carry a
+ * paragraph beginning "HONEST SCOPE:" naming what the fold does not claim. Not one of them can
+ * fail, nothing counted them, and nothing stopped a new one being written. They are the same
+ * unfalsifiable sentence the doctrine above rejects, in the one shape the gate could not see.
+ *
+ * A boundary that opens "COMPUTED:" and then narrates its limits in prose is the specific case:
+ * the measurable half is measured and the honest half is asserted beside it, which reads as
+ * though both were checked. This finder counts the asserted halves, and ratchets them to zero.
+ */
+export type NarratedBoundary = { file: string; line: number; says: string }
+
+const HONEST = /HONEST SCOPE/
+
+export function findNarratedBoundaries(root: string = process.cwd()): NarratedBoundary[] {
+  const ts = require('typescript') as typeof import('typescript')
+  const found: NarratedBoundary[] = []
+  const walk = (dir: string): void => {
+    let entries: string[] = []
+    try { entries = readdirSync(dir) } catch { return }
+    for (const entry of entries) {
+      const p = join(dir, entry)
+      let st
+      try { st = statSync(p) } catch { continue }
+      if (st.isDirectory()) { if (!SKIP.has(entry)) walk(p); continue }
+      if (!entry.endsWith('.ts')) continue
+      const sf = ts.createSourceFile(p, readFileSync(p, 'utf8'), ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS)
+      const visit = (node: import('typescript').Node): void => {
+        if (
+          ts.isPropertyAssignment(node) &&
+          (ts.isIdentifier(node.name) || ts.isStringLiteralLike(node.name)) &&
+          node.name.text === 'boundary' &&
+          (ts.isStringLiteralLike(node.initializer) || ts.isTemplateExpression(node.initializer) || ts.isNoSubstitutionTemplateLiteral(node.initializer))
+        ) {
+          const text = node.initializer.getText(sf)
+          if (HONEST.test(text)) {
+            const at = text.search(HONEST)
+            found.push({
+              file: relative(root, p),
+              line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
+              says: text.slice(at, at + 76).replace(/\s+/g, ' '),
+            })
+          }
+        }
+        ts.forEachChild(node, visit)
+      }
+      visit(sf)
+    }
+  }
+  walk(join(root, 'src'))
+  return found
+}
 
 export function findNarratedScopes(root: string = process.cwd()): NarratedScope[] {
   const ts = require('typescript') as typeof import('typescript')
@@ -95,4 +153,13 @@ export function assertScopesCompute(): void {
     throw new Error(`${narrated.length} narrated scope(s) — above the baseline of ${BASELINE}. A scope that cannot fail is not a limit.`)
   }
   if (narrated.length < BASELINE) console.log(`  ${BASELINE - narrated.length} converted — lower BASELINE to ${narrated.length}`)
+
+  const boundaries = findNarratedBoundaries()
+  console.log(`\nboundaries that narrate their scope rather than compute it: ${boundaries.length}  (baseline ${BOUNDARY_BASELINE}, ratchet)`)
+  for (const b of boundaries.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
+  if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)
+  if (boundaries.length > BOUNDARY_BASELINE) {
+    throw new Error(`${boundaries.length} narrated boundar(ies) — above the baseline of ${BOUNDARY_BASELINE}. A limit that cannot fail is not a limit.`)
+  }
+  if (boundaries.length < BOUNDARY_BASELINE) console.log(`  ${BOUNDARY_BASELINE - boundaries.length} converted — lower BOUNDARY_BASELINE to ${boundaries.length}`)
 }
