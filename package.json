@@ -41,6 +41,7 @@
     "docs:dev": "NODE_OPTIONS=--max-old-space-size=8192 vitepress dev",
     "check:types": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts check:types",
     "verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify",
+    "verify:every-fold": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/every-fold.ts main",
     "verify:limits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/limits.ts assertFacetsCanFail",
     "verify:scope": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/scope.ts assertScopesCompute",
     "verify:side-effects": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/side-effects.ts assertNoImportTimeSideEffects",
