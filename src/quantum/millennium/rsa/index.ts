@@ -147,6 +147,12 @@ function parseArgs(argv: string[]): { proofName: string; flags: string[]; verbos
   return { proofName, flags, verbose, format }
 }
 
+/**
+ * One implementation; the two names below are ALIASES. All three were byte-identical
+ * bodies distinguished only by their names — three CLI entry points that did the same
+ * thing. Each is referenced once elsewhere, so the names are kept and the duplication
+ * is not.
+ */
 export async function runSecurityAuditExit(root: string, argv: string[] = []): Promise<number> {
   const { proofName, verbose, format } = parseArgs(argv)
   const io: ProofIO = {
@@ -157,22 +163,8 @@ export async function runSecurityAuditExit(root: string, argv: string[] = []): P
   return result.success ? 0 : 1
 }
 
-export async function runCryptoAssessExit(root: string, argv: string[] = []): Promise<number> {
-  const { proofName, verbose, format } = parseArgs(argv)
-  const io: ProofIO = {
-    out: (msg) => console.log(msg),
-    err: (msg) => console.error(msg),
-  }
-  const result = await runProofExit(root, proofName, io, { verbose, format })
-  return result.success ? 0 : 1
-}
+/** Alias of runSecurityAuditExit — same proof runner, different CLI name. */
+export const runCryptoAssessExit = runSecurityAuditExit
 
-export async function runMigrationPlanExit(root: string, argv: string[] = []): Promise<number> {
-  const { proofName, verbose, format } = parseArgs(argv)
-  const io: ProofIO = {
-    out: (msg) => console.log(msg),
-    err: (msg) => console.error(msg),
-  }
-  const result = await runProofExit(root, proofName, io, { verbose, format })
-  return result.success ? 0 : 1
-}
+/** Alias of runSecurityAuditExit — same proof runner, different CLI name. */
+export const runMigrationPlanExit = runSecurityAuditExit

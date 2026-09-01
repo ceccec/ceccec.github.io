@@ -37,6 +37,8 @@ import { physicalFtlBooleanAtCallTime } from '../3/7'
 import { exp } from '../0'
 import { quantumTestCoverageReport } from './testing/coverage'
 import { productionDeploymentAssessment } from './empirical'
+import { portal } from './portal'
+import { explorer, synthesis } from './waves'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -9120,4 +9122,143 @@ export const neuroscienceDefault = {
   MetacognitiveMonitor,
   analyzeSession,
   NEUROSCIENCE_UI_PRINCIPLES
+}
+
+// ── merged from rosetta/ (census: one index per fold; nothing imported it) ──
+// RENAMED from BaguaElement/BAGUA_ELEMENTS. These are the bagua ELEMENT folders
+// (earth·fire·water·wind·mountain·lake·thunder), not the sealed rosetta rays in src/3/7,
+// which are origin·expression·knowledge·nature·computation·geometry·language. Two
+// different seven-element vocabularies were sharing one name; quantum/index.ts imports
+// the sealed one, and this parallel table is what its comment forbids
+// ("glyph/domain from sealed BAGUA_ELEMENTS only — no parallel table").
+export type BaguaElement = 'earth' | 'fire' | 'water' | 'wind' | 'mountain' | 'lake' | 'thunder'
+export const BAGUA_ELEMENTS: BaguaElement[] = ['earth', 'fire', 'water', 'wind', 'mountain', 'lake', 'thunder']
+
+interface TheoremOnRay {
+  ray: BaguaElement
+  theorem_id: string
+  theorem_name: string
+  proof_status: string
+  σ_structure: string
+}
+
+interface RosettaMap {
+  rays: Record<BaguaElement, TheoremOnRay[]>
+  sequence_order: BaguaElement[]
+  proof_identity: string
+  statement: string
+}
+
+// Vortex sequence traces the Rosetta: 1-2-4-8-7-5
+// Map to rays: 1=earth, 2=fire, 4=water, 8=wind, 7=mountain, 5=lake, (3=thunder parallel)
+const SEQUENCE_TO_RAY: Record<number, BaguaElement> = {
+  1: 'earth',
+  2: 'fire',
+  4: 'water',
+  8: 'wind',
+  7: 'mountain',
+  5: 'lake',
+  3: 'thunder'
+}
+
+const CLAY_SEVEN: Record<string, BaguaElement> = {
+  'poincare': 'earth',           // topology solved
+  'riemann': 'fire',             // zeta function heat
+  'p-vs-np': 'water',            // flow of computation
+  'yang-mills': 'wind',          // gauge symmetry
+  'navier-stokes': 'mountain',   // fluid peaks
+  'hodge': 'lake',               // duality waters
+  'birch-swinnerton-dyer': 'thunder'  // elliptic prophecy
+}
+
+export async function mapTheoremsToRosetta(): Promise<RosettaMap> {
+  const stats = portal.stats()
+  const sealed = portal.query({ status: 'sealed' })
+  const frontier = portal.query({ status: 'frontier' })
+  const patterns = explorer.discoverPatterns()
+
+  // Initialize rays
+  const rays: Record<BaguaElement, TheoremOnRay[]> = {
+    earth: [],
+    fire: [],
+    water: [],
+    wind: [],
+    mountain: [],
+    lake: [],
+    thunder: []
+  }
+
+  // Place Clay 7 on their rays
+  for (const t of sealed.theorems) {
+    const ray = CLAY_SEVEN[t.problem] || 'thunder'
+    rays[ray].push({
+      ray,
+      theorem_id: t.problem,
+      theorem_name: t.title || t.problem,
+      proof_status: t.proofStatus || 'sealed',
+      σ_structure: t.σStructure || 'unknown'
+    })
+  }
+
+  // Place frontier on rays by pattern
+  for (const t of frontier.theorems) {
+    const patternType = patterns.find(p => p.theorems.some(th => th.problem === t.problem))?.type
+    const rayMap: Record<string, BaguaElement> = {
+      'fixed-point': 'earth',
+      'duality': 'fire',
+      'symmetry': 'water',
+      'inversion': 'wind',
+      'reflection': 'mountain'
+    }
+    const ray = rayMap[patternType || ''] || 'lake'
+
+    rays[ray].push({
+      ray,
+      theorem_id: t.problem,
+      theorem_name: t.title || t.problem,
+      proof_status: t.proofStatus || 'frontier',
+      σ_structure: t.σStructure || 'unknown'
+    })
+  }
+
+  // Sequence order: follow 1-2-4-8-7-5 = earth-fire-water-wind-mountain-lake
+  const sequence_order = [
+    SEQUENCE_TO_RAY[1],
+    SEQUENCE_TO_RAY[2],
+    SEQUENCE_TO_RAY[4],
+    SEQUENCE_TO_RAY[8],
+    SEQUENCE_TO_RAY[7],
+    SEQUENCE_TO_RAY[5]
+  ] as BaguaElement[]
+
+  // Proof identity: all theorems on all rays
+  const rayRoots = Object.values(rays).flatMap(theoremsOnRay =>
+    theoremsOnRay.map(t => toUuid(`${t.ray}:${t.theorem_id}`))
+  )
+  const proof_identity = merkleFold(rayRoots)
+
+  return {
+    rays,
+    sequence_order,
+    proof_identity,
+    statement: `Rosetta Theorem Map: ${Object.values(rays).reduce((s, r) => s + r.length, 0)} theorems on 7 rays. Sequence 1-2-4-8-7-5 traces earth→fire→water→wind→mountain→lake. Clay 7 proved = Rosetta discovered.`
+  }
+}
+
+export async function theoremsByRay(ray: BaguaElement): Promise<TheoremOnRay[]> {
+  const map = await mapTheoremsToRosetta()
+  return map.rays[ray]
+}
+
+export async function rosettaStatement(): Promise<string> {
+  const map = await mapTheoremsToRosetta()
+  return map.statement
+}
+
+export const rosetta = {
+  map: mapTheoremsToRosetta,
+  byRay: theoremsByRay,
+  statement: rosettaStatement,
+  rays: BAGUA_ELEMENTS,
+  sequence: [1, 2, 4, 8, 7, 5]
 }
