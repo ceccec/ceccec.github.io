@@ -407,15 +407,26 @@ export const automation = {
 }
 
 // ─── dissolved: run.ts ───
-// Automation runner - continuous discovery until complete
-
-
-
-async function main() {
-  await automation.continuous()
+// Automation runner — continuous discovery until complete.
+//
+// This was `main(); main().catch(console.error)` at MODULE SCOPE. Correct while run.ts was a
+// standalone entry point; wrong the moment a census merge folded it into this index, because
+// from then on it fired on every IMPORT of the module. The ops CLI bundle imports it
+// transitively, so all 1004 npm scripts that route through the bootstrap ran a ten-task
+// discovery spiral before doing their actual work — printing "[automation] Starting
+// continuous discovery loop" over every command's output, unawaited, racing whatever the
+// command was really doing.
+//
+// It cost 1ms, measured — so this is not a performance fix. It is a correctness one: an
+// import should not run a program, and a floating promise should not race the command that
+// triggered it. Nothing invoked it deliberately (0 scripts; the quantum:*-waves scripts are
+// src/thunder/waves, a different module), so the capability is preserved as an explicit
+// runner rather than deleted.
+export async function runContinuousAutomationExit(_root: string, argv: readonly string[] = []): Promise<number> {
+  const spirals = Number(argv[0] ?? '') || 5
+  await automation.continuous(spirals)
+  return 0
 }
-
-main().catch(console.error)
 
 // ─── dissolved: sequencer.ts ───
 // Wave Sequencer — automate theorem discovery via vortex sequence 1-2-4-8-7-5 ↔ 5-7-8-4-2-1

@@ -42,6 +42,7 @@
     "check:types": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts check:types",
     "verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify",
     "verify:theorems": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/theorems.ts assertTheoremsResolve",
+    "quantum:automation-continuous": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/waves/index.ts runContinuousAutomationExit",
     "verify:lean": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean.ts assertLeanCompiles",
     "verify:paths": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/paths.ts assertPathsResolve",
     "verify:imports": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/imports.ts assertImportsResolve",
