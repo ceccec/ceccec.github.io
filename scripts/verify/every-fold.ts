@@ -18,15 +18,29 @@
  * src/2/8 alone; later modules run real Shor and Grover simulations. This is a sweep, not a
  * per-commit gate, and saying otherwise would make verify:all unusable within a week.
  *
- * THE FULL SWEEP, 149 modules, one process per module with a 45s cap:
+ * THE CENSUS — 148 of 149 modules, one process per module:
  *
- *     143 measured, 6 timed out · 4444 zero-arg exports called · 2292 returned facets
- *     126 FOLDS WITH AN OFF FACET OR A FALSE VERDICT — 102 of them verdict=false
- *     258 facets off · 27 threw
+ *     7647 zero-arg exports called · 4503 returned facets
+ *     450 FOLDS WITH AN OFF FACET OR A FALSE VERDICT — 395 of them verdict=false
+ *     1506 facets off
+ *     unmeasured: src/crypto — still exceeds 300s (an unbounded >512-bit factorisation)
  *
- * A LOWER BOUND, not a census. The six that timed out are among the largest files in the
- * corpus (crypto, heaven/compute, gates, quantum/apps, quantum/heaven/mind, thunder/waves),
- * so whatever they contain is not in the 126.
+ *   worst: quantum/apps 221 · quantum/heaven/mind 67 · research 27 · gates 27 ·
+ *          gates/strict/scan 15 · wind/site 8 · thunder/waves 8
+ *
+ * THE FIRST PUBLISHED FIGURE WAS 126 AND IT WAS WRONG BY 3.5×. It came from a 45s cap under
+ * which the six LARGEST modules timed out, so the census excluded exactly the files most
+ * likely to carry folds. Raising the cap to 300s recovered five of them and 324 more failing
+ * folds. A timeout is not a neutral omission when what times out correlates with what you are
+ * counting.
+ *
+ * AND IT IS NOT TAKEN AT ONE COMMIT. The first run spanned ~20 minutes during which a peer
+ * session pushed four commits, so early modules were measured against a different tree than
+ * late ones. A census without a single commit behind it is a claim about a moving object,
+ * which is the rule I had been applying to every other figure and not to this one.
+ *
+ * WHAT IT DOES NOT SAY: that 450 claims are wrong. A fold correctly reporting a real failure
+ * is a fold WORKING. Five were read by hand and were genuinely false. The rest are unread.
  *
  * ONE PROCESS PER MODULE, because one fold can block everything. The first design ran all 149
  * in a single process and stopped dead at module 21 inside a >512-bit quantum factorisation —
