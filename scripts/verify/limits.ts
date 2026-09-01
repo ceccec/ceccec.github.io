@@ -27,7 +27,7 @@ import { eachFacet } from './corpus.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 /** Highest count tolerated. Lower it as facets gain real computations; never raise it. */
-const BASELINE = 211
+const BASELINE = 207
 
 export type VacuousFacet = { file: string; line: number; why: string; facet: string }
 

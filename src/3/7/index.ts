@@ -2137,7 +2137,9 @@ export const DEMARCATION_REGISTRY = {
     'string theory', 'multiverse', 'QM interpretations', 'dark matter', 'MOND', 'panspermia', 'pliska rosette',
     'hubble tension', 'cosmological constant problem', 'nature of dark energy', 'baryogenesis', 'leptogenesis',
     'neutrino mass ordering', 'quantum gravity',
-    'zipf', // Zipf's law: the rank-frequency power law is real, but its UNIVERSALITY/cause is contested — random typing (Miller 1957) reproduces it, so it is not evidence of linguistic structure
+    'zipf', // Zipf's law: the rank-frequency power law is real, but its UNIVERSALITY/cause is contested — random typing (Miller 1957) reproduces it, so it is not evidence of linguistic structure,
+    // Named as UNCONFIRMED HYPOTHESES (scientific, unproven, testable in principle) by the same facets. Unproven is NOT pseudoscience and the two tiers keep that distinction computable.
+    'asymptotic safety', 'causal dynamical triangulations', 'quintessence', 'axions', 'WIMPs', 'supersymmetry', 'eternal inflation',
   ],
   flagged: [
     'creationism', 'intelligent design', 'young-earth creationism', 'social darwinism', 'eugenics', 'orthogenesis',
@@ -2147,6 +2149,8 @@ export const DEMARCATION_REGISTRY = {
     'predicting individual criminal intent from behaviour', 'pre-crime prediction', 'behavioural threat prediction',
     'novel key derivation function', 'home-rolled cryptography', 'custom cipher', 'unpredictable key schedule',
     'orion correlation theory', 'mars face', 'ley lines', 'megalithic yard', 'bosnian pyramid',
+    // Named as FLAGGED by demarcation facets in heaven/site and elsewhere. Registered here so those facets can READ the tier instead of asserting it with on: true — move a topic between tiers and every fold naming it breaks.
+    'entropy = disorder', 'syntropy', 'vacuum free-energy', 'over-unity', 'anti-gravity', 'electrogravitics', 'quantum healing', 'morphic resonance', 'water memory', 'vitalism',
   ] } as const
 export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted'
 // Longest-substring-match wins across ALL tiers, so 'extended evolutionary synthesis' (contested) beats the
