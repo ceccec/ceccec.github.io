@@ -1743,7 +1743,10 @@ export function nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic() {
     boundary: earned('EXACT — integer arithmetic over the standard level ordering:', facets, [
       { facet: `THE ORDERING IS CITED DATA — the 22 levels come from the established shell model (Goeppert Mayer / Jensen); this fold derives the CLOSURES from them and derives no level, so a wrong ordering would break the closures and be caught, but the ordering itself is not evidence produced here`, on: levels.length === 22 && closures.length === levels.length },
       { facet: `THE REFUTATION IS BOUNDED TO THIS SET — the doubling ladder is tested against the magic numbers ONLY, where it hits ${ladderHits.length} of ${OBSERVED.length}; nothing here evaluates a harmonic scheme anywhere else`, on: ladderHits.length < OBSERVED.length },
-      { facet: 'NO MECHANISM IS PROPOSED — spin-orbit coupling is used as the established reason the intruders descend; this fold computes that they must, not why the coupling exists', on: spinOrbitOnly.length > 0 },
+      // This one CAN go off: it holds only while the cited ordering carries information the
+      // arithmetic here does not derive. Were the plain oscillator to reproduce the whole magic
+      // set, nothing would have been taken on authority and the limit would be false.
+      { facet: `NO MECHANISM IS PROPOSED — ${spinOrbitOnly.length} of the magic numbers are absent from the oscillator closures this fold DOES derive, so they entered through the cited ordering; spin-orbit is an input here, never a result`, on: spinOrbitOnly.length > 0 && spinOrbitOnly.every((m) => !oscillator.includes(m)) },
     ]) }
 }
 
@@ -1783,9 +1786,22 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
     root: sealed.root,
     statement: `E = hf places a 432 Hz quantum ${ordersToGap} orders of magnitude below a nuclear shell gap and ${ordersToProton} below the proton's matter wave. 432 Hz is the acoustic note; it is not the nuclear one.`,
     boundary: earned('EXACT — SI-defined constants and division:', facets, [
-      { facet: `THE CLAIM REFUTED IS A SCALE CLAIM — what is computed is a RATIO between energies (10^${ordersToGap} and 10^${ordersToProton}); a ratio evaluates no musical or aesthetic choice, so 432 as a tuning is untouched by it`, on: ordersToGap > 0 && ordersToProton > 0 },
-      { facet: 'THE CONSTANTS ARE SI-EXACT, SO THE BOUND CANNOT BE ARGUED — h and the electronvolt are defined values, not measurements with error bars, and the arithmetic is division; there is no uncertainty for the conclusion to hide in', on: 6.62607015e-34 > 0 && 1.602176634e-19 > 0 },
-      { facet: 'NOTHING IS SHOWN ABOUT COUPLING — an 18-order gap says no mechanism is offered, not that none could exist; this fold refutes the assertion, not the possibility', on: gapRatio > 1e17 },
+      // Each limit below must be able to GO OFF. A limit whose `on` is wired to the fold's own
+      // positive result cannot — it reports that the fold succeeded, not that the limit holds,
+      // and it is worse than prose because prose does not pretend to have been checked. Three
+      // of these were written that way and are replaced; one compared two positive constants
+      // to zero, which is true for every possible input.
+      //
+      // THE TUNING IS UNTOUCHED, shown by invariance: run the same arithmetic at A440 and the
+      // order-of-magnitude verdict is identical, so the refutation is not about 432 at all.
+      // Pick a tuning where it differs and this goes off.
+      { facet: `THE CLAIM REFUTED IS A SCALE CLAIM, NOT A TUNING — the same computation at A440 gives the same ${ordersToGap}-order gap, so nothing here evaluates the choice of 432 as a tuning; a result that changed with the tuning would be a different claim`, on: Math.round(Math.log10(nuclearGapJ / (H * 440))) === ordersToGap },
+      // ROBUST TO THE CONSTANTS: perturb h by a part in 10⁶ and the verdict does not move.
+      // If the conclusion depended on the constants' precision, this goes off.
+      { facet: 'THE BOUND DOES NOT HIDE IN PRECISION — perturbing h by one part in 10⁶ leaves the order-of-magnitude verdict unchanged, so the conclusion rests on the scale separation and not on the constants being exact', on: Math.round(Math.log10(nuclearGapJ / (H * 1.000001 * 432))) === ordersToGap },
+      // NOT ABOUT ONE NOTE: it holds across the entire audible band, so no mechanism specific
+      // to any tone is being refuted — or proposed. A band where it failed would show one.
+      { facet: 'NOTHING IS SHOWN ABOUT COUPLING — the gap exceeds 15 orders for EVERY tone in the audible band (20 Hz to 20 kHz), so this refutes an assertion about scale and offers no mechanism, for or against, at any particular frequency', on: [20, 432, 1000, 20000].every((tone) => Math.log10(nuclearGapJ / (H * tone)) > 15) },
     ]) }
 }
 
