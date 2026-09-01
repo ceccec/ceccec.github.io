@@ -42980,3 +42980,57 @@ export const quantum = {
     alias: quantumiseFtl,
   },
 } as const
+
+// ── merged from theorems/ (census: one index per fold; nothing imported it) ──
+/**
+ * Wrap quantum projection parameters as theorem-accessible output
+ * Called from research to retrieve projection configurations without
+ * creating circular imports.
+ */
+export function theoremProjectionParams(
+  projection: QuantumProjection,
+): QuantumProjectionParams {
+  return quantumProjectionParams(projection)
+}
+
+/**
+ * Wrap rosetta shelving operations as theorem-validated lookups.
+ * Ensures research can access rosetta metadata in a sealed manner.
+ */
+export function theoremRosettaShelve(
+  id: string,
+  kind: 'tool' | 'route' | 'projection' | 'compute',
+): any {
+  return rosettaShelve(id, kind as any)
+}
+
+/**
+ * Wrap quantum gap detection as a theorem verification gate.
+ * research uses this to validate computational process integrity.
+ */
+export function theoremProcessGapDetector(matrix: any, at = 0) {
+  return slowProcessIsQuantumGap(matrix, at)
+}
+
+/**
+ * Wrap quantum toolbox catalog as theorem-consumable inventory.
+ * research queries this to audit tool availability and correctness.
+ */
+export function theoremToolboxCatalog(matrix: any, at = 0) {
+  return standardToolboxIoCatalog(matrix, at)
+}
+
+// THE BOUNDARY WAS DEAD, AND THE MERGE PROVED IT.
+//
+// theorems/ existed to mediate the research↔apps cycle: it re-exported QuantumProjection
+// and `export * as theoremQuantumApps from '..'` "for research's 160+ function uses". Nothing
+// ever imported theorems/ — not research, not anything (measured: 0 importers). research
+// imports quantum/apps DIRECTLY three times and this boundary zero times, so the indirection
+// that was "accepted as an architectural trade-off" was never in the path at all; the cycle
+// it was meant to mediate ran straight past it.
+//
+// Both re-exports are gone rather than carried up: QuantumProjection is DECLARED in this file
+// (line ~573), so re-exporting it here is a duplicate export of the same name, and the
+// namespace line's `'..'` meant src/quantum/apps while it lived in theorems/ — carried up
+// verbatim it would have re-exported src/quantum instead. Same class of silent breakage as the
+// path strings in verify:paths: a relative reference whose meaning changes under a move.
