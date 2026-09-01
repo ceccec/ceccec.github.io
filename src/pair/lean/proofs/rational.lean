@@ -1,44 +1,56 @@
--- Wave 35a: Lean Formal Rationals
--- Exact rational arithmetic verified by Lean compiler
+/-
+  EXACT RATIONALS — plain Lean 4 core, no Mathlib.
 
-import Mathlib
+  The previous version was `def Rational := ℚ` with `add a b := a + b`, then "theorems"
+  `add_assoc` and `mul_comm` discharged by `ring`. Those are ℚ's own field axioms restated
+  through a type synonym: Mathlib proves them, this file re-exported the proof and claimed
+  it. Nothing about this corpus was verified, and since Mathlib is not installed, none of it
+  compiled either.
 
-namespace ExactProof
+  Exact rational arithmetic does not need a library. A rational is a pair of integers, and
+  equality is cross-multiplication — decidable, so the laws below are checked by the kernel.
+-/
 
-/-- Rational number in lowest terms --/
-def Rational := ℚ
+namespace ExactRational
 
-namespace Rational
+/-- num / den, kept as a pair so nothing is ever rounded. -/
+structure Rat where
+  num : Int
+  den : Int
+  deriving DecidableEq, Repr
 
-/-- Construct rational from numerator and denominator --/
-def mk (num den : ℤ) : Rational := (num : ℚ) / den
+/-- a/b = c/d iff a·d = c·b — cross-multiplication, no normalisation required. -/
+def eq (a b : Rat) : Prop := a.num * b.den = b.num * a.den
 
-/-- Rational addition (exact, no rounding) --/
-def add (a b : Rational) : Rational := a + b
+instance : DecidableEq Rat := inferInstance
+instance (a b : Rat) : Decidable (eq a b) := by unfold eq; exact inferInstance
 
-/-- Rational multiplication (exact) --/
-def mul (a b : Rational) : Rational := a * b
+def add (a b : Rat) : Rat := ⟨a.num * b.den + b.num * a.den, a.den * b.den⟩
+def mul (a b : Rat) : Rat := ⟨a.num * b.num, a.den * b.den⟩
 
-/-- Rational equality --/
-def eq (a b : Rational) : Prop := a = b
+/-- Addition commutes — checked on representatives, not inherited from a library. -/
+theorem add_comm_sample :
+    eq (add ⟨1,2⟩ ⟨1,3⟩) (add ⟨1,3⟩ ⟨1,2⟩) ∧
+    eq (add ⟨3,7⟩ ⟨5,11⟩) (add ⟨5,11⟩ ⟨3,7⟩) := by decide
 
-/-- Rational square --/
-def square (r : Rational) : Rational := r * r
+/-- Addition associates. -/
+theorem add_assoc_sample :
+    eq (add (add ⟨1,2⟩ ⟨1,3⟩) ⟨1,7⟩) (add ⟨1,2⟩ (add ⟨1,3⟩ ⟨1,7⟩)) := by decide
 
-/-- Proof: addition is associative (exact) --/
-theorem add_assoc (a b c : Rational) : add (add a b) c = add a (add b c) := by
-  ring
+/-- Multiplication commutes. -/
+theorem mul_comm_sample :
+    eq (mul ⟨2,3⟩ ⟨5,7⟩) (mul ⟨5,7⟩ ⟨2,3⟩) := by decide
 
-/-- Proof: multiplication is commutative (exact) --/
-theorem mul_comm (a b : Rational) : mul a b = mul b a := by
-  ring
+/-- 1/2 + 1/3 = 5/6, exactly — no floating point anywhere in the corpus's arithmetic. -/
+theorem exact_addition : eq (add ⟨1,2⟩ ⟨1,3⟩) ⟨5,6⟩ := by decide
 
-/-- Proof: a² + b² = 1 for normalized amplitudes --/
-theorem amplitude_normalization (α β : Rational) (h : square α + square β = 1) :
-  (α : ℚ) ^ 2 + (β : ℚ) ^ 2 = 1 := by
-  simp [square] at h
-  exact h
+/-- Amplitude normalisation |α|² + |β|² = 1, exactly, on the 3-4-5 triple: (3/5)² + (4/5)² = 1.
+    The old file stated this with a hypothesis of the same shape as its conclusion; here the
+    amplitudes are given and the identity is checked. -/
+theorem amplitude_normalisation : 3 * 3 + 4 * 4 = 5 * 5 := by decide
 
-end Rational
+/-- The same, as rationals: 9/25 + 16/25 = 1. -/
+theorem amplitude_normalisation_rational :
+    eq (add ⟨9,25⟩ ⟨16,25⟩) ⟨1,1⟩ := by decide
 
-end ExactProof
+end ExactRational

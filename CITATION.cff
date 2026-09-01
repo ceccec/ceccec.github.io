@@ -17,15 +17,28 @@ abstract: >-
 
   This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem.
   Earlier drafts asserted such proofs; they were withdrawn after audit and the
-  reasoning is recorded in HONESTY.md. The Lean sources do not currently compile
-  against Mathlib and are not offered as formal verification. No production
-  readiness score, certification grade, or coverage percentage is claimed.
+  reasoning is recorded in HONESTY.md. No production readiness score,
+  certification grade, or coverage percentage is claimed.
+
+  The Lean sources DO compile, as of 2026-09-01: 11 files in plain Lean 4 core,
+  with no Mathlib and no `sorry`, checked by `npm run verify:lean`. They prove the
+  corpus's own arithmetic (the census 123 = SUM F(7..10) = F(12) - F(8), the digit
+  reflection r(d) = 10 - d, rank H1 = 2 - chi) and, for each Millennium problem,
+  the INVOLUTION the problem is stated across: s -> 1-s for Riemann, whose unique
+  fixed point is the critical line; conjugation (p,q) -> (q,p) for Hodge, fixed
+  exactly on the diagonal (k,k); the Hodge star on 2-forms in four dimensions,
+  splitting Lambda^2 into 3+3; complementation C -> co-C for P vs NP; time reversal
+  for Navier-Stokes, which viscosity alone breaks; and s -> 2-s for BSD, whose
+  fixed point is the central point s = 1. Each of those files ALSO machine-checks
+  that this corpus's registry of sealed Millennium cores is empty. An involution is
+  not a conjecture: proving the symmetry is not proving the statement.
 
   Full audit with commands, outputs and receipts: RELEASE-AUDIT-uuidna.md
 
 authors:
   - family-names: Rouschev
     given-names: Tsvetan
+    orcid: "https://orcid.org/0009-0000-7312-9778"
     affiliation: Independent Research
 
 type: software
@@ -54,6 +67,7 @@ keywords:
 contact:
   - family-names: Rouschev
     given-names: Tsvetan
+    orcid: "https://orcid.org/0009-0000-7312-9778"
     email: "ceci@psg.bg"
 
 references:

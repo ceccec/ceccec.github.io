@@ -1,4 +1,25 @@
 ================================================================================
+!! WITHDRAWN 2026-08-20 — THIS LETTER WAS NEVER SENT !!
+================================================================================
+
+This is a DRAFT that was superseded by an honesty audit before any submission.
+It asserts formal proofs of all six Millennium Prize Problems. Those claims are
+withdrawn and are NOT held by the author:
+
+  - No Clay Millennium Prize Problem is proved, solved or resolved by this work.
+  - The Lean sources do NOT compile against Mathlib and are not offered as
+    formal verification. "Machine-verified in Lean4" was false.
+  - claySolvedTheorem() computes 0 sealed problems from an empty registry
+    (CMI_PRIZE_SOLVED_CORE_IDS), and every Clay-adjacent surface reads that 0.
+  - CITATION.cff carries the withdrawal; HONESTY.md records the reasoning;
+    RELEASE-AUDIT-uuidna.md carries the audit with commands and outputs.
+
+The letter is retained UNSENT as the record of what was claimed and how it was
+withdrawn. Do not send it. Anything below this banner is quoted draft text.
+
+================================================================================
+
+================================================================================
 CLAY MATHEMATICS INSTITUTE
 FORMAL SUBMISSION LETTER
 ================================================================================

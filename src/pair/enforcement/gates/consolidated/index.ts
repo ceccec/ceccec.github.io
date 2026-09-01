@@ -1579,6 +1579,10 @@ export type HonestDemarcationStatus =
   | 'formally_scaffolded'
   | 'formally_proven'
   | 'conjectured'
+  /** Proven in the mathematical literature by someone else; this corpus cites it and
+   *  reproduces no part of it. Distinct from 'formally_proven', which inside a registry of
+   *  THIS corpus's claims reads as ours. */
+  | 'proven_elsewhere_cited_here'
   | 'open'
   | 'flagged'
   | 'undeclared'
@@ -1712,12 +1716,16 @@ export const CLAY_THEOREMS_HONEST: readonly HonestTheorem[] = [
     'src/pair/formal/proofs/bsd.lean',
     'no-attempt',
   ),
+  // Proven by PERELMAN (2002-03, Ricci flow with surgery, after Hamilton) — NOT by this
+  // corpus, which contributes nothing to it and does not reproduce it. Listed here as
+  // 'formally_proven' with zero gaps inside a registry of THIS corpus's claims, it read as
+  // ours. The status now names the prover and the gap list says what is missing here.
   createHonestTheorem(
-    'Poincaré Conjecture (Perelman, proven 2006)',
-    'formally_proven',
-    [],
+    'Poincaré Conjecture (proven by Perelman 2002-03; NOT proven by this corpus)',
+    'proven_elsewhere_cited_here',
+    ['This corpus reproduces no part of the Ricci-flow-with-surgery proof; the only honest content is the citation'],
     'src/pair/formal/proofs/poincare.lean',
-    'complete',
+    'scaffold-only',
   ),
 ]
 

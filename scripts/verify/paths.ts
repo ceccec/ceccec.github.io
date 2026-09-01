@@ -22,7 +22,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 
 /** Highest count tolerated. Lower as paths are fixed or retired; never raise. */
-const BASELINE = 58
+const BASELINE = 51
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
  *  contains ".git" — a substring test would exclude the whole tree. */

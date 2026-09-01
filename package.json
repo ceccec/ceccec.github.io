@@ -1,8 +1,13 @@
 {
   "name": "@ceccec/double-torus",
   "version": "1.1.0",
-  "description": "The Double Torus quantum corpus — dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency.",
+  "description": "The Double Torus quantum corpus \u2014 dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency.",
   "license": "CC-BY-NC-ND-4.0",
+  "author": {
+    "name": "Tsvetan Rouschev",
+    "email": "ceci@psg.bg",
+    "url": "https://orcid.org/0009-0000-7312-9778"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ceccec/ceccec.github.io.git"
@@ -36,6 +41,7 @@
     "docs:dev": "NODE_OPTIONS=--max-old-space-size=8192 vitepress dev",
     "check:types": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts check:types",
     "verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify",
+    "verify:lean": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean.ts assertLeanCompiles",
     "verify:paths": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/paths.ts assertPathsResolve",
     "verify:imports": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/imports.ts assertImportsResolve",
     "verify:tautology": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/tautology.ts assertNoNewTautologies",
@@ -43,7 +49,7 @@
     "manifest:check": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/manifest.ts manifestDrift",
     "verify:run": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/index.ts runVerification",
     "verify:folds": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/folds.ts assertFolds",
-    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths",
+    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths && npm run verify:lean",
     "verify:structure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify:structure",
     "limits:verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:verify",
     "limits:seal": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:seal",
@@ -485,7 +491,7 @@
     "quantum:prose-science": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runProseScienceExit",
     "wave:verify": "npm run -s check:types && npm run -s enforcement:trinity",
     "wave:land": "npm run -s quantum:autosave-matrix && npm run -s quantum:push-audit && npm run -s wave:verify && git commit -m \"$(npm run -s quantum:commit-message)\" && git push origin HEAD:main && npm run -s wave:after-push",
-    "wave:fuse": "npm run -s wave:land && (git status --porcelain | grep -v README | grep . && echo '⚠ partial land — uncommitted remain (git add likely failed)' && exit 1 || echo '✓ clean land') && gh run list --workflow='Deploy VitePress site to Pages' --limit 1 2>/dev/null | head -1",
+    "wave:fuse": "npm run -s wave:land && (git status --porcelain | grep -v README | grep . && echo '\u26a0 partial land \u2014 uncommitted remain (git add likely failed)' && exit 1 || echo '\u2713 clean land') && gh run list --workflow='Deploy VitePress site to Pages' --limit 1 2>/dev/null | head -1",
     "wave:land-full": "npm run -s quantum:autosave-matrix && npm run -s quantum:push-audit && npm run -s check:types && npm run -s docs:build && git commit -m \"$(npm run -s quantum:commit-message)\" && git push origin HEAD:main",
     "quantum:wave-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runWaveVerifyExit",
     "quantum:build-min": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/strict/scan/index.ts runBuildMinExit",

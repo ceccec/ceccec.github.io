@@ -1,333 +1,113 @@
--- Wave 48: Intelligence Harmonisation Framework Formal Verification
--- Lean4 Machine-Checked Proofs
--- Date: August 4, 2026
--- Status: All theorems compile without errors
+/-
+  INTELLIGENCE HARMONISATION — the σ-involution, machine-checked. Plain Lean 4 core.
 
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic
+  The previous version's header read "Status: All theorems compile without errors". It did
+  not compile: it began `import Mathlib`, which is not installed here. It could not have
+  compiled as written either —
 
-namespace IntelligenceFramework
+    `def ProtectionStrength : ℝ := 0.91` was then used as a FIELD TYPE
+       (`structure MemoryBarrier where stability : ProtectionStrength`), a term where a type
+       is required;
+    `≈` appears in eight "theorems" (`learning_rate_optimal ≈ 0.618`) and is never defined
+       in the file, and no default Setoid on ℝ gives it a meaning — so `norm_num` was asked
+       to prove a relation that does not exist;
+    `def e : ℝ := 2.71828` names Euler's number and is a truncated decimal literal.
 
--- ============================================================================
--- PART 1: σ-INVOLUTION STRUCTURE
--- ============================================================================
+  What survives is the part that is actually mathematics: the seven cognitive levels carry an
+  involution with three reflection pairs and one fixed point — the same shape as the digit
+  lattice's 1↔9, 2↔8, 3↔7, 4↔6, 5↔5. That needs no library, so it is proved here.
 
-/-- σ-involution: a self-inverse function σ : X → X where σ² = id -/
-class SigmaInvolution (X : Type*) where
-  σ : X → X
-  inv_proof : ∀ x : X, σ (σ x) = x
+  What does NOT survive is every confidence number. information_loss returned 0.29, 0.18,
+  0.15, 0.11, 0.08, 0.04, 0.02 by hand and system_confidence aggregated them to "> 0.97".
+  No estimator produced any of them and no measurement is cited. They are retained below as
+  DECLARED DATA in exact permille, never as results, and the aggregate claims are withdrawn.
+-/
 
-/-- Fixed-point set of involution -/
-def FixedPointSet {X : Type*} [SigmaInvolution X] : Set X :=
-  { x : X | SigmaInvolution.σ x = x }
+namespace Harmonisation
 
-/-- Codimension-1 manifold (separates space into two regions) -/
-class Codimension1Manifold (X : Type*) [SigmaInvolution X] where
-  manifold : Set X
-  -- Manifold is the fixed-point set
-  is_fixed_point : manifold = FixedPointSet
-  -- Any path from canonical to non-canonical must cross manifold
-  escape_impossible : ∀ (start : X) (path : ℝ → X),
-    (Continuous path) →
-    path 0 ∈ FixedPointSet →
-    (∀ t : ℝ, path t ∉ FixedPointSet → t > 0) →
-    True -- Path must cross manifold; trivial in formal setting
+/-! ## The seven levels and their involution -/
 
--- ============================================================================
--- PART 2: TOPOLOGICAL BARRIERS IN COGNITION
--- ============================================================================
+inductive Level where
+  | sensation | memory | pattern | expertise | synthesis | metacognition | universal
+  deriving DecidableEq, Repr
 
-/-- Protection strength: how well barrier prevents escape -/
-def ProtectionStrength : ℝ := 0.91
+open Level
 
-/-- Barrier 1: Memory Barrier (neural encoding) -/
-structure MemoryBarrier where
-  synaptic_encoding : ℝ
-  stability : ProtectionStrength
+def levels : List Level :=
+  [sensation, memory, pattern, expertise, synthesis, metacognition, universal]
 
-/-- Barrier 2: Pattern Recognition Barrier (attractor basins) -/
-structure PatternBarrier where
-  attractor_depth : ℝ
-  basin_width : ℝ
+/-- σ: the level reflection. Three pairs, one fixed point — expertise is its own mirror. -/
+def σ : Level → Level
+  | sensation     => universal
+  | universal     => sensation
+  | memory        => metacognition
+  | metacognition => memory
+  | pattern       => synthesis
+  | synthesis     => pattern
+  | expertise     => expertise
 
-/-- Barrier 3: Causal Understanding Barrier (temporal ordering) -/
-structure CausalBarrier where
-  temporal_order : ℝ
-  consistency : ProtectionStrength
+/-- σ² = id on every level. This one was real in the old file (`cases l <;> rfl`) and is the
+    reason the file was worth keeping at all. -/
+theorem sigma_is_an_involution : ∀ l : Level, σ (σ l) = l := by
+  intro l; cases l <;> rfl
 
-/-- Barrier 4: Hierarchical Integration Barrier (information compression) -/
-structure HierarchyBarrier where
-  compression_level : ℕ
-  stability : ProtectionStrength
+/-- Exactly one fixed point, and it is expertise — the 5↔5 of this lattice. -/
+theorem exactly_one_fixed_point :
+    (levels.filter (fun l => σ l == l)) = [expertise] := by decide
 
-/-- Barrier 5: Feedback Loop Barrier (error correction) -/
-structure FeedbackBarrier where
-  loop_closure : ℝ
-  correction_strength : ProtectionStrength
+/-- Three genuine pairs, so 3·2 + 1 = 7 levels: the same arithmetic as the digit lattice's
+    four pairs plus a fixed point plus the vault. -/
+theorem three_pairs_and_a_fixed_point :
+    levels.length = 7 ∧ 3 * 2 + 1 = 7 := by decide
 
--- ============================================================================
--- PART 3: DERIVED INTELLIGENCE VALUES
--- ============================================================================
+/-- σ is a bijection: applying it to every level returns every level. -/
+theorem sigma_permutes_the_levels :
+    (levels.map σ).length = levels.length ∧
+    (∀ l ∈ levels, σ l ∈ levels) := by decide
 
-/-- Golden ratio -/
-def φ : ℝ := (1 + Real.sqrt 5) / 2
+/-! ## The declared numbers, kept as data and labelled as such -/
 
-/-- e (Euler's number) -/
-def e : ℝ := 2.71828
+/-- Information loss in PERMILLE, exact integers so nothing is rounded. THESE ARE DECLARED:
+    no estimator produced them, no measurement is cited, and this file does not claim they
+    describe anything. They are here so the arithmetic below is checkable, not to assert. -/
+def lossPermille : Level → Nat
+  | sensation     => 290
+  | memory        => 180
+  | pattern       => 150
+  | expertise     => 110
+  | synthesis     => 80
+  | metacognition => 40
+  | universal     => 20
 
-/-- Value 1: Optimal learning rate = φ^(-1) -/
-def learning_rate_optimal : ℝ := 1 / φ
-theorem learning_rate_eq : learning_rate_optimal ≈ 0.618 := by
-  unfold learning_rate_optimal φ
-  norm_num
+def confidencePermille (l : Level) : Nat := 1000 - lossPermille l
 
-/-- Value 2: Pattern density ceiling = e^(-φ) -/
-def pattern_density_optimal : ℝ := Real.exp (-φ)
-theorem pattern_density_eq : pattern_density_optimal ≈ 0.208 := by
-  unfold pattern_density_optimal
-  norm_num
+/-- confidence = 1 − loss. TRUE BY CONSTRUCTION: confidencePermille is DEFINED as that
+    subtraction, so this checks the definition unfolds, and proves nothing about cognition.
+    The old file presented the same statement as a discovered theorem. -/
+theorem confidence_is_one_minus_loss_by_definition :
+    ∀ l ∈ levels, confidencePermille l + lossPermille l = 1000 := by decide
 
-/-- Value 3: Domain integration coefficient = √2/2 -/
-def integration_coefficient : ℝ := Real.sqrt 2 / 2
-theorem integration_eq : integration_coefficient ≈ 0.707 := by
-  unfold integration_coefficient
-  norm_num
+/-- The involution does NOT preserve the declared losses — σ maps sensation (290) to
+    universal (20). Worth stating: the old file's barrier story implied a symmetry here, and
+    the numbers it chose do not have it. -/
+theorem declared_losses_are_not_involution_symmetric :
+    lossPermille (σ sensation) ≠ lossPermille sensation := by decide
 
-/-- Value 4: Error correction efficiency = 1.0 (at fixed point) -/
-def error_correction_optimal : ℝ := 1.0
-theorem error_correction_perfect : error_correction_optimal = 1.0 := rfl
+/-! ## φ, exactly — replacing the eight `≈` statements -/
 
-/-- Value 5: Metacognitive depth scaling = log(φ) -/
-def metacognition_depth : ℝ := Real.log φ
-theorem metacognition_depth_eq : metacognition_depth ≈ 0.481 := by
-  unfold metacognition_depth φ
-  norm_num
+def fibAux : Nat → Nat → Nat → Nat
+  | 0,     a, _ => a
+  | n + 1, a, b => fibAux n b (a + b)
+def fib (n : Nat) : Nat := fibAux n 0 1
 
--- ============================================================================
--- PART 4: SEVEN-LEVEL HIERARCHY
--- ============================================================================
+/-- `learning_rate_optimal = 1/φ ≈ 0.618` restated as an exact two-sided bound on a
+    Fibonacci ratio, since F(n−1)/F(n) → 1/φ. An approximation is not an equality; this is
+    what the old `≈ 0.618` was reaching for, and it is checkable. -/
+theorem inverse_golden_ratio_bounds :
+    618 * fib 21 < 1000 * fib 20 ∧ 1000 * fib 20 < 619 * fib 21 := by decide
 
-/-- The seven levels of intelligence -/
-inductive Level : Type where
-  | sensation : Level
-  | memory : Level
-  | pattern : Level
-  | expertise : Level
-  | synthesis : Level
-  | metacognition : Level
-  | universal : Level
+/-- φ itself, same method. -/
+theorem golden_ratio_bounds :
+    1618 * fib 21 < 1000 * fib 22 ∧ 1000 * fib 22 < 1619 * fib 21 := by decide
 
-/-- Level involution: Level k ↔ Level (8-k) -/
-def level_involution : Level → Level
-  | Level.sensation       => Level.universal
-  | Level.universal       => Level.sensation
-  | Level.memory          => Level.metacognition
-  | Level.metacognition   => Level.memory
-  | Level.pattern         => Level.synthesis
-  | Level.synthesis       => Level.pattern
-  | Level.expertise       => Level.expertise  -- Fixed point
-
-theorem level_involution_self_inverse :
-  ∀ l : Level, level_involution (level_involution l) = l := by
-  intro l
-  cases l <;> rfl
-
-/-- Information loss at each level -/
-def information_loss : Level → ℝ
-  | Level.sensation       => 0.29  -- 29% sensory loss
-  | Level.memory          => 0.18  -- 18% consolidation loss
-  | Level.pattern         => 0.15  -- 15% classification error
-  | Level.expertise       => 0.11  -- 11% domain transfer loss
-  | Level.synthesis       => 0.08  -- 8% cross-domain error
-  | Level.metacognition   => 0.04  -- 4% metacognitive error
-  | Level.universal       => 0.02  -- 2% universal principle error
-
-/-- Confidence at each level -/
-def confidence : Level → ℝ
-  | Level.sensation       => 0.71
-  | Level.memory          => 0.82
-  | Level.pattern         => 0.85
-  | Level.expertise       => 0.89
-  | Level.synthesis       => 0.92
-  | Level.metacognition   => 0.96
-  | Level.universal       => 0.98
-
-theorem confidence_eq_one_minus_loss :
-  ∀ l : Level, confidence l = 1 - information_loss l := by
-  intro l
-  cases l <;> norm_num
-
--- ============================================================================
--- PART 5: INVOLUTION-PAIRED ERROR CORRECTION
--- ============================================================================
-
-/-- Error cascade through paired levels -/
-def paired_error_reduction : ℝ :=
-  (information_loss Level.sensation * information_loss Level.universal) +
-  (information_loss Level.memory * information_loss Level.metacognition) +
-  (information_loss Level.pattern * information_loss Level.synthesis) +
-  0  -- Level.expertise is self-correcting (fixed point)
-
-theorem paired_error_calculation : paired_error_reduction ≈ 0.025 := by
-  unfold paired_error_reduction information_loss
-  norm_num
-
-/-- System confidence through involution-coupled error correction -/
-def system_confidence : ℝ := 1 - paired_error_reduction
-
-theorem system_confidence_value : system_confidence ≈ 0.975 := by
-  unfold system_confidence paired_error_reduction
-  norm_num
-
-theorem system_confidence_high : system_confidence > 0.97 := by
-  unfold system_confidence paired_error_reduction
-  norm_num
-
--- ============================================================================
--- PART 6: DOMAIN HARMONISATION
--- ============================================================================
-
-/-- The seven domains -/
-inductive Domain : Type where
-  | mathematics : Domain
-  | physics : Domain
-  | biology : Domain
-  | computer_science : Domain
-  | psychology : Domain
-  | sociology : Domain
-  | cognition : Domain
-
-/-- Confidence in each domain -/
-def domain_confidence : Domain → ℝ
-  | Domain.mathematics      => 1.0   -- Proven (Waves 40-42)
-  | Domain.physics          => 0.96  -- Wave 46
-  | Domain.biology          => 0.93  -- Wave 46
-  | Domain.computer_science => 0.97  -- Wave 46
-  | Domain.psychology       => 0.90  -- Wave 46
-  | Domain.sociology        => 0.85  -- Wave 46
-  | Domain.cognition        => 0.92  -- Wave 43-45
-
-/-- Cross-domain unified confidence -/
-def unified_domain_confidence : ℝ :=
-  let confidences := [1.0, 0.96, 0.93, 0.97, 0.90, 0.85, 0.92]
-  let product := List.foldl (· * ·) 1.0 confidences
-  product ^ (1.0 / 7.0)
-
-theorem unified_confidence_high : unified_domain_confidence > 0.90 := by
-  unfold unified_domain_confidence
-  norm_num
-
--- ============================================================================
--- PART 7: AUTOMATION FRAMEWORK
--- ============================================================================
-
-/-- For any new domain showing same involution structure,
-    confidence automatically cascades -/
-theorem confidence_cascade (n : ℕ) :
-  let base_confidence := 0.91
-  let num_domains := n
-  let collision_probability := (0.01 : ℝ) ^ num_domains
-  1 - collision_probability > 0.99 := by
-  intro
-  norm_num
-  omega
-
-/-- Key theorem: If system exhibits σ-involution, barriers are topological necessities -/
-theorem involution_implies_protection :
-  ∀ (X : Type*) [SigmaInvolution X],
-  ∃ (barrier : Codimension1Manifold X),
-  FixedPointSet = barrier.manifold := by
-  intro X _
-  use ⟨FixedPointSet, rfl, fun _ _ _ _ _ => trivial⟩
-
--- ============================================================================
--- PART 8: CONSCIOUSNESS AS QUANTUM COHERENCE
--- ============================================================================
-
-/-- Quantum superposition in cognitive states -/
-structure QuantumCognitiveState where
-  -- |ψ⟩ = α|canonical⟩ + β|off-canonical⟩
-  α : ℝ  -- Amplitude for canonical state
-  β : ℝ  -- Amplitude for off-canonical state
-  normalized : α^2 + β^2 = 1  -- Normalization constraint
-
-/-- Measurement collapse probability -/
-def collapse_probability (state : QuantumCognitiveState) : ℝ :=
-  state.α ^ 2
-
-/-- Learning is quantum measurement collapse -/
-theorem learning_is_collapse :
-  ∀ (state : QuantumCognitiveState),
-  collapse_probability state = (state.α) ^ 2 := fun _ => rfl
-
-/-- At fixed point, only canonical state survives -/
-theorem fixed_point_collapse (state : QuantumCognitiveState) :
-  state.α = 1.0 →
-  state.β = 0.0 →
-  collapse_probability state = 1.0 := by
-  intro ha hb
-  unfold collapse_probability
-  rw [ha]
-  norm_num
-
--- ============================================================================
--- PART 9: GRAND UNIFICATION
--- ============================================================================
-
-/-- Master theorem: Intelligence structure unifies across all domains -/
-theorem intelligence_unification :
-  (system_confidence ≈ 0.975) ∧
-  (unified_domain_confidence > 0.90) ∧
-  (∀ n : ℕ, n ≥ 1 → n ≤ 100 → confidence_cascade n) := by
-  constructor
-  · unfold system_confidence paired_error_reduction
-    norm_num
-  constructor
-  · unfold unified_domain_confidence
-    norm_num
-  · intro n _ _
-    apply confidence_cascade
-
-/-- Final confidence declaration -/
-theorem final_confidence : system_confidence > 0.97 := by
-  unfold system_confidence paired_error_reduction
-  norm_num
-
--- ============================================================================
--- PART 10: WAVE 48 COMPLETION CERTIFICATE
--- ============================================================================
-
-/-- Formal verification complete -/
-theorem wave_48_verified :
-  (system_confidence ≈ 0.975) ∧
-  (learning_rate_optimal ≈ 0.618) ∧
-  (pattern_density_optimal ≈ 0.208) ∧
-  (integration_coefficient ≈ 0.707) ∧
-  (error_correction_optimal = 1.0) ∧
-  (metacognition_depth ≈ 0.481) ∧
-  (∀ l : Level, level_involution (level_involution l) = l) ∧
-  (unified_domain_confidence > 0.90) := by
-  constructor
-  · unfold system_confidence paired_error_reduction information_loss
-    norm_num
-  constructor
-  · norm_num [learning_rate_optimal, φ]
-  constructor
-  · norm_num [pattern_density_optimal]
-  constructor
-  · norm_num [integration_coefficient]
-  constructor
-  · rfl
-  constructor
-  · norm_num [metacognition_depth, φ]
-  constructor
-  · intro l
-    cases l <;> rfl
-  · unfold unified_domain_confidence
-    norm_num
-
-/-- Certificate: This file compiles without errors -/
--- If you see this comment, all theorems above have been verified by Lean4 compiler
--- Confidence in intelligence framework: α = 0.975 (machine-checked)
-
-end IntelligenceFramework
+end Harmonisation
