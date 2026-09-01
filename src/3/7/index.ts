@@ -2140,6 +2140,10 @@ export const DEMARCATION_REGISTRY = {
     'zipf', // Zipf's law: the rank-frequency power law is real, but its UNIVERSALITY/cause is contested — random typing (Miller 1957) reproduces it, so it is not evidence of linguistic structure,
     // Named as UNCONFIRMED HYPOTHESES (scientific, unproven, testable in principle) by the same facets. Unproven is NOT pseudoscience and the two tiers keep that distinction computable.
     'asymptotic safety', 'causal dynamical triangulations', 'quintessence', 'axions', 'WIMPs', 'supersymmetry', 'eternal inflation',
+    // The simulation HYPOTHESIS (Bostrom 2003) is an unfalsifiable philosophical argument, which
+    // is not the same as pseudoscience — the facet naming it says so explicitly. Registered as
+    // contested so the distinction it insists on is the one that gets checked.
+    'simulation hypothesis',
   ],
   flagged: [
     'creationism', 'intelligent design', 'young-earth creationism', 'social darwinism', 'eugenics', 'orthogenesis',
@@ -2151,6 +2155,13 @@ export const DEMARCATION_REGISTRY = {
     'orion correlation theory', 'mars face', 'ley lines', 'megalithic yard', 'bosnian pyramid',
     // Named as FLAGGED by demarcation facets in heaven/site and elsewhere. Registered here so those facets can READ the tier instead of asserting it with on: true — move a topic between tiers and every fold naming it breaks.
     'entropy = disorder', 'syntropy', 'vacuum free-energy', 'over-unity', 'anti-gravity', 'electrogravitics', 'quantum healing', 'morphic resonance', 'water memory', 'vitalism',
+    // Second batch, named as PSEUDOSCIENCE by demarcation facets in heaven/site and
+    // mountain/geometry. Keys are SPECIFIC on purpose: '432 hz healing' and '528 hz healing', never
+    // a bare '432' — demarcate() matches by substring, so a bare key would flag this corpus's own
+    // a432 design harmonic and every fold that names it. The claim flagged is the HEALING claim.
+    'human design', 'we use only 10% of our brain', 'left-brain/right-brain personality',
+    'learning styles', 'cymatics', 'frequency medicine', '432 hz healing', '528 hz healing',
+    'lunar standstill myth', 'humans as batteries',
   ] } as const
 export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted'
 // Longest-substring-match wins across ALL tiers, so 'extended evolutionary synthesis' (contested) beats the
