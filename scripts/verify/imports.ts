@@ -16,6 +16,7 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
+import { ratchet } from './status.ts'
 
 /** Directory names never walked. Matched as SEGMENTS, not substrings: this repository
  *  is named "ceccec.github.io", which CONTAINS ".git" — a substring test would exclude
@@ -111,15 +112,10 @@ export function findUnresolvedImports(root: string = process.cwd()): Unresolved[
 /** Highest count tolerated. Lower it as files are fixed; never raise it. The remainder
  *  are in .vue components nothing imports — real breakage in dead code, which is why the
  *  site still renders. */
-const BASELINE = 6
 
 export function assertImportsResolve(): void {
   const bad = findUnresolvedImports()
-  console.log(`unresolved relative imports: ${bad.length}  (baseline ${BASELINE}, ratchet)`)
+  console.log(ratchet('imports.unresolved', bad.length))
   for (const b of bad.slice(0, 20)) console.log(`  ${b.file}:${b.line}  ->  ${b.spec}`)
   if (bad.length > 20) console.log(`  ...and ${bad.length - 20} more`)
-  if (bad.length > BASELINE) {
-    throw new Error(`${bad.length} unresolved relative imports — above the baseline of ${BASELINE}. A rename half-landed.`)
-  }
-  if (bad.length < BASELINE) console.log(`  ${BASELINE - bad.length} fixed — lower BASELINE to ${bad.length}`)
 }

@@ -26,12 +26,12 @@
 
 import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
+import { ratchet } from './status.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 
 /** Highest count tolerated. Zero: there is no legitimate reason for a src module index to
  *  execute a statement when imported. Table-building belongs in an expression. */
-const BASELINE = 0
 
 export type SideEffect = { file: string; line: number; text: string }
 
@@ -55,9 +55,6 @@ export function findTopLevelSideEffects(root: string = process.cwd()): SideEffec
 
 export function assertNoImportTimeSideEffects(): void {
   const found = findTopLevelSideEffects()
-  console.log(`top-level side effects in src: ${found.length}  (baseline ${BASELINE})`)
+  console.log(ratchet('side-effects.top-level', found.length))
   for (const f of found.slice(0, 20)) console.log(`  ${f.file}:${f.line}  ${f.text}`)
-  if (found.length > BASELINE) {
-    throw new Error(`${found.length} module-scope statement(s) run on import — an import must not run a program`)
-  }
 }

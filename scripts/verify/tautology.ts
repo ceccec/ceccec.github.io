@@ -20,12 +20,12 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { ratchet } from './status.ts'
 
 /** Highest count tolerated. Lower it as sites are fixed; never raise it.
  * Was 92 before the detector was corrected: 70 of those were property accesses
  * (dt.genus === 2 matched against a local const genus) or conditions ANDed with
  * computed terms, which can still go off. Fix the instrument before the code. */
-const BASELINE = 12
 
 export type Tautology = { file: string; line: number; name: string; value: string; declaredAt: number }
 
@@ -79,15 +79,8 @@ export function assertNoNewTautologies(): void {
   const found = findTautologies()
   const byFile = new Map<string, number>()
   for (const t of found) byFile.set(t.file, (byFile.get(t.file) ?? 0) + 1)
-  console.log(`tautological facets: ${found.length}  (baseline ${BASELINE}, ratchet — may fall, never rise)`)
+  console.log(ratchet('tautology.self-proving', found.length))
   for (const [f, n] of [...byFile].sort((a, b) => b[1] - a[1]).slice(0, 8)) {
     console.log(`  ${String(n).padStart(3)}  ${f}`)
-  }
-  if (found.length > BASELINE) {
-    for (const t of found.slice(0, 5)) console.log(`  NEW: ${t.file}:${t.line}  ${t.name} === ${t.value} (declared line ${t.declaredAt})`)
-    throw new Error(`${found.length} tautological facets — above the baseline of ${BASELINE}. A facet that cannot fail is not a facet.`)
-  }
-  if (found.length < BASELINE) {
-    console.log(`  ${BASELINE - found.length} fixed since the baseline was set — lower BASELINE to ${found.length} in scripts/verify/tautology.ts`)
   }
 }

@@ -20,9 +20,8 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
+import { ratchet } from './status.ts'
 
-/** Highest count tolerated. Lower as paths are fixed or retired; never raise. */
-const BASELINE = 51
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
  *  contains ".git" — a substring test would exclude the whole tree. */
@@ -85,12 +84,8 @@ export function assertPathsResolve(): void {
     const ext = d.path.split('.').pop() ?? '?'
     byExt.set(ext, (byExt.get(ext) ?? 0) + 1)
   }
-  console.log(`path strings naming files that do not exist: ${dead.length}  (baseline ${BASELINE}, ratchet)`)
+  console.log(ratchet('paths.dead-strings', dead.length))
   console.log(`  by extension: ${[...byExt].map(([e, n]) => `${e}=${n}`).join(' ')}`)
   for (const d of dead.slice(0, 12)) console.log(`  ${d.path}  <- ${d.citedBy[0]}${d.citedBy.length > 1 ? ` (+${d.citedBy.length - 1})` : ''}`)
   if (dead.length > 12) console.log(`  ...and ${dead.length - 12} more`)
-  if (dead.length > BASELINE) {
-    throw new Error(`${dead.length} dead path strings — above the baseline of ${BASELINE}. A rename left a string behind.`)
-  }
-  if (dead.length < BASELINE) console.log(`  ${BASELINE - dead.length} fixed — lower BASELINE to ${dead.length}`)
 }

@@ -24,10 +24,9 @@
 
 import { createRequire } from 'node:module'
 import { eachFacet } from './corpus.ts'
+import { ratchet } from './status.ts'
 
 const require = createRequire(`${process.cwd()}/`)
-/** Highest count tolerated. Lower it as facets gain real computations; never raise it. */
-const BASELINE = 175
 
 export type VacuousFacet = { file: string; line: number; why: string; facet: string }
 
@@ -76,8 +75,6 @@ export function findVacuousFacets(root: string = process.cwd()): VacuousFacet[] 
 }
 
 
-/** Highest count of weakest-bar facets tolerated. Lower it; never raise it. */
-const WEAKEST_BASELINE = 65
 
 /**
  * THE WEAKEST BAR ON A COUNT — a true measurement standing in for a claim it does not support.
@@ -128,19 +125,11 @@ export function assertFacetsCanFail(): void {
     const key = v.why.split(' &&')[0]!
     byWhy.set(key, (byWhy.get(key) ?? 0) + 1)
   }
-  console.log(`facets whose \`on\` is true for every input: ${vacuous.length}  (baseline ${BASELINE}, ratchet)`)
+  console.log(ratchet('limits.always-true', vacuous.length))
   for (const [why, count] of [...byWhy].sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(4)}  ${why}`)
   for (const v of vacuous.slice(0, 6)) console.log(`    ${v.file}:${v.line}  ${v.facet}`)
-  if (vacuous.length > BASELINE) {
-    throw new Error(`${vacuous.length} facets cannot fail — above the baseline of ${BASELINE}. A verdict that was never reached is not a verdict.`)
-  }
-  if (vacuous.length < BASELINE) console.log(`  ${BASELINE - vacuous.length} given real computations — lower BASELINE to ${vacuous.length}`)
 
   const weak = findWeakestBarFacets()
-  console.log(`facets gated on the weakest bar (count > 0): ${weak.length}  (baseline ${WEAKEST_BASELINE}, ratchet)`)
+  console.log(ratchet('limits.weakest-bar', weak.length))
   for (const w of weak.slice(0, 4)) console.log(`    ${w.file}:${w.line}  [${w.why}]  ${w.facet.slice(0, 62)}`)
-  if (weak.length > WEAKEST_BASELINE) {
-    throw new Error(`${weak.length} facets gated on ∃ — above the baseline of ${WEAKEST_BASELINE}. A sentence claiming ∀ must not be checked by "at least one".`)
-  }
-  if (weak.length < WEAKEST_BASELINE) console.log(`  ${WEAKEST_BASELINE - weak.length} strengthened — lower WEAKEST_BASELINE to ${weak.length}`)
 }
