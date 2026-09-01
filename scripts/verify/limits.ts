@@ -41,6 +41,18 @@ function alwaysTrue(node: import('typescript').Node, sf: import('typescript').So
     const right = alwaysTrue(node.right, sf, ts)
     return left && right ? `${left} && ${right}` : null
   }
+  if (op === ts.SyntaxKind.BarBarToken) {
+    // A DISJUNCTION is vacuous when EITHER side is — the opposite rule, and the one this
+    // detector missed. A peer session found three live cases of `realCheck || true`, including
+    // a FUNDING GATE reporting proof_status_eligible as met without checking:
+    //     proofStatusEligible = theoremProof.proof_status !== 'frontier' || true
+    // The short-circuit is an expression, not the literal, so the bare-`on: true` scan walked
+    // straight past it while the sentence beside it kept claiming the check happened. A real
+    // check on the left makes it look MORE careful, not less.
+    const left = alwaysTrue(node.left, sf, ts)
+    const right = alwaysTrue(node.right, sf, ts)
+    return left ?? right ?? null
+  }
   const text = (n: import('typescript').Node) => n.getText(sf)
   const numericLiteral = (n: import('typescript').Node) =>
     ts.isNumericLiteral(n) || (ts.isPrefixUnaryExpression(n) && ts.isNumericLiteral(n.operand))
