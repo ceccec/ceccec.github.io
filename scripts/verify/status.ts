@@ -27,14 +27,42 @@ const STATUS = 'scripts/verify/status.json'
 
 type Status = Record<string, number>
 
+/**
+ * ABSENT AND UNPARSEABLE ARE DIFFERENT FACTS AND THIS ONCE CONFLATED THEM.
+ *
+ * The first version caught a parse failure and returned `{}`. That reads as "nothing recorded
+ * yet", so under VERIFY_SEED=1 the seeding path wrote `{}` plus its one new key — and a corrupt
+ * file did not lose ONE floor, it erased ALL of them. Reproduced by a peer session and again
+ * here: 8 recorded floors became 1.
+ *
+ * My safety argument was that no path writes a worse number. It held for the compare path and
+ * broke at the read, which is where I had not looked. `{}` is a fact about the WORLD — nothing
+ * recorded yet. A parse error is a fact about the FILE. A detector that cannot tell them apart
+ * is a detector emptied of what it detects.
+ */
 function read(root: string): Status {
   const p = join(root, STATUS)
   if (!existsSync(p)) return {}
+  const raw = readFileSync(p, 'utf8')
   try {
-    return JSON.parse(readFileSync(p, 'utf8')) as Status
-  } catch {
-    return {}
+    const parsed = JSON.parse(raw) as unknown
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      throw new Error('not an object')
+    }
+    return parsed as Status
+  } catch (e) {
+    throw new Error(`${STATUS} exists but does not parse (${(e as Error).message}). Refusing to treat a damaged record as an empty one — restore it from git rather than reseeding.`)
   }
+}
+
+/**
+ * Never write fewer floors than were read. Defence in depth for the same shape: any future
+ * change that loses keys between read and write fails here instead of shipping a shorter file.
+ */
+function write(root: string, next: Status, before: Status): void {
+  const lost = Object.keys(before).filter((k) => !(k in next))
+  if (lost.length) throw new Error(`refusing to drop recorded floor(s): ${lost.join(', ')}`)
+  writeFileSync(join(root, STATUS), `${JSON.stringify(next, Object.keys(next).sort(), 2)}\n`)
 }
 
 /**
@@ -54,16 +82,18 @@ export function ratchet(name: string, measured: number, root: string = process.c
     if (process.env.VERIFY_SEED !== '1') {
       throw new Error(`${name}: ${measured} measured with no recorded floor. Seed it deliberately from a clean tree: VERIFY_SEED=1 npm run <gate>`)
     }
+    const before = { ...status }
     status[name] = measured
-    writeFileSync(join(root, STATUS), `${JSON.stringify(status, Object.keys(status).sort(), 2)}\n`)
+    write(root, status, before)
     return `${name}: ${measured} — SEEDED (VERIFY_SEED=1), from this tree`
   }
   if (measured > recorded) {
     throw new Error(`${name}: ${measured}, above the recorded ${recorded}. The ratchet only falls.`)
   }
   if (measured < recorded) {
+    const before = { ...status }
     status[name] = measured
-    writeFileSync(join(root, STATUS), `${JSON.stringify(status, Object.keys(status).sort(), 2)}\n`)
+    write(root, status, before)
     return `${name}: ${measured} (was ${recorded}) — tightened, recorded`
   }
   return `${name}: ${measured} (at the recorded floor)`
