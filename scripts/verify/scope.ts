@@ -202,6 +202,72 @@ export function findNarratedScopes(root: string = process.cwd()): NarratedScope[
   return found
 }
 
+/**
+ * THE INVOLUTION: what does a criterion actually detect, as opposed to what it is named?
+ *
+ * REFUTABLE in src/thunder/waves is a twenty-one-alternative regular expression called the Popper criterion
+ * and reported as a "scientific fraction". Measured against the corpus it passes 96.6% of theorems, and 97.3%
+ * of those passes fire on the FIRST alternative — `\d`. It is a digit detector. The other twenty alternatives
+ * carry 2.7% between them and exist as decoration; the breadth is what makes it look like a taxonomy instead
+ * of a character class. It is also wrong in both directions: 26 of the 26 theorems it calls unscientific are
+ * carried by a proving fold, and a sentence that states nothing passes as soon as it contains a numeral.
+ *
+ * The general shape is a LEXICAL test named as a LOGICAL property. Falsifiability is a relation between a
+ * claim and the observations that would refute it; this measures whether a string contains an Arabic numeral.
+ * The name does the reasoning the code does not.
+ *
+ * CONCENTRATION is the diagnostic, and it needs no opinion about whether a name is apt: run each alternative
+ * separately and report what share of the passes the top one carries. A twenty-one-alternative pattern where
+ * one alternative carries 97% is a one-alternative pattern with twenty pieces of camouflage. High
+ * concentration is not automatically a defect — a pattern may legitimately be dominated by its main case —
+ * so this REPORTS and does not ratchet. What it removes is the ability to not know.
+ *
+ * Applied to my own NEGATED_SCOPE_CLAIM the answer is different in kind: 16 alternatives, 420 of 2798
+ * boundaries, and no single alternative above 5.7% of the visible sample. That is what a genuine
+ * multi-alternative detector looks like next to a disguised single one, which is the comparison worth having.
+ */
+export type Concentration = { name: string; file: string; line: number; alternatives: number; passes: number; corpus: number; top: string; topShare: number }
+
+/** Split a top-level alternation, respecting escapes, character classes and groups. */
+export function alternativesOf(source: string): string[] {
+  const out: string[] = []
+  let depth = 0, inClass = false, current = ''
+  for (let i = 0; i < source.length; i += 1) {
+    const c = source[i]!
+    if (c === '\\') { current += c + (source[i + 1] ?? ''); i += 1; continue }
+    if (inClass) { current += c; if (c === ']') inClass = false; continue }
+    if (c === '[') { inClass = true; current += c; continue }
+    if (c === '(') depth += 1
+    if (c === ')') depth -= 1
+    if (c === '|' && depth === 0) { out.push(current); current = ''; continue }
+    current += c
+  }
+  out.push(current)
+  // a pattern wrapped in a single non-capturing group is one alternation one level down
+  const parts = out.filter(Boolean)
+  if (parts.length === 1) {
+    const m = parts[0]!.match(/^\(\?:(.*)\)$/s)
+    if (m) return alternativesOf(m[1]!)
+  }
+  return parts
+}
+
+/** Run one pattern over a corpus and report which alternative does the work. */
+export function concentrationOf(name: string, file: string, line: number, re: RegExp, corpus: readonly string[]): Concentration {
+  const parts = alternativesOf(re.source)
+  const passes = corpus.filter((t) => re.test(t))
+  const firstHit = new Map<string, number>()
+  for (const t of passes) {
+    let hit = '(none)'
+    for (const p of parts) { try { if (new RegExp(p, re.flags.replace('g', '')).test(t)) { hit = p; break } } catch { /* unbalanced fragment */ } }
+    firstHit.set(hit, (firstHit.get(hit) ?? 0) + 1)
+  }
+  const ranked = [...firstHit].sort((a, b) => b[1] - a[1])
+  const top = ranked[0]
+  return { name, file, line, alternatives: parts.length, passes: passes.length, corpus: corpus.length,
+    top: top?.[0] ?? '(none)', topShare: top && passes.length ? top[1] / passes.length : 0 }
+}
+
 export function assertScopesCompute(): void {
   const narrated = findNarratedScopes()
   console.log(`fold scopes still narrated rather than computed: ${narrated.length}  (baseline ${BASELINE}, ratchet)`)
