@@ -25,14 +25,11 @@ import { createRequire } from 'node:module'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { corpusFiles } from './corpus.ts'
+import { ratchet } from './status.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
 
-/** Highest count of NARRATED scopes tolerated. Lower it as folds convert; never raise it. */
-const BASELINE = 620
-/** The same ratchet for `boundary:` values that are prose rather than computed limits. Never raise it. */
-const BOUNDARY_BASELINE = 2798
 
 export type NarratedScope = { file: string; line: number; head: string }
 
@@ -315,26 +312,22 @@ export function concentrationOf(name: string, file: string, line: number, re: Re
 
 export function assertScopesCompute(): void {
   const narrated = findNarratedScopes()
-  console.log(`fold scopes still narrated rather than computed: ${narrated.length}  (baseline ${BASELINE}, ratchet)`)
+  // THE FLOOR IS RECORDED, NOT TYPED. Both numbers here were `const BASELINE = 620` and I edited them by
+  // hand after every wave — a hardcoded value maintained by a human, inside the file that exists to catch
+  // exactly that. ratchet() reads what was measured, throws on worse, records on better, and the record is
+  // committed so every tightening is a diff. Adopted from ceccec-github-io-7a's status.ts.
+  console.log(`fold scopes still narrated rather than computed — ${ratchet('scope.narrated', narrated.length)}`)
   for (const n of narrated.slice(0, 10)) console.log(`  ${n.file}:${n.line}  ${n.head}`)
   if (narrated.length > 10) console.log(`  ...and ${narrated.length - 10} more`)
-  if (narrated.length > BASELINE) {
-    throw new Error(`${narrated.length} narrated scope(s) — above the baseline of ${BASELINE}. A scope that cannot fail is not a limit.`)
-  }
-  if (narrated.length < BASELINE) console.log(`  ${BASELINE - narrated.length} converted — lower BASELINE to ${narrated.length}`)
 
   const boundaries = findNarratedBoundaries()
   const asserting = boundaries.filter((b) => b.asserts)
   const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
-  console.log(`\nboundaries whose limits are prose rather than computation: ${boundaries.length}  (baseline ${BOUNDARY_BASELINE}, RATCHETED — a ceiling, not a target)`)
+  console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length)} · a CEILING, not a target`)
   console.log(`  of those, ${asserting.length} assert a limit in prose — NOT enforced, and the priority set: a boundary claiming nothing is not lying about anything`)
   console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — navigation only; deleting the label converts nothing`)
   for (const b of asserting.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
   if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)
-  if (boundaries.length > BOUNDARY_BASELINE) {
-    throw new Error(`${boundaries.length} narrated boundar(ies) — above the baseline of ${BOUNDARY_BASELINE}. A limit that cannot fail is not a limit.`)
-  }
-  if (boundaries.length < BOUNDARY_BASELINE) console.log(`  ${BOUNDARY_BASELINE - boundaries.length} converted — lower BOUNDARY_BASELINE to ${boundaries.length}`)
 
   // THE INVOLUTION, RUN OVER EVERYTHING RATHER THAN OVER WHAT I NOTICED. Reports, never ratchets: a pattern
   // may be legitimately dominated by its main case, and there is no share at which a name becomes dishonest.
