@@ -75,6 +75,52 @@ export function findVacuousFacets(root: string = process.cwd()): VacuousFacet[] 
   return found
 }
 
+
+/** Highest count of weakest-bar facets tolerated. Lower it; never raise it. */
+const WEAKEST_BASELINE = 65
+
+/**
+ * THE WEAKEST BAR ON A COUNT — a true measurement standing in for a claim it does not support.
+ *
+ * A peer session found the shape in their own work: a limit reading `overlapWithLength > 0`,
+ * green on an overlap of 2 out of 10, asserting a MECHANISM. Structurally impeccable —
+ * checkable, refutable, satisfied by a single coincidence. Their conclusion was that this is
+ * not gateable, because no structural check tells a real number from a RELEVANT one.
+ *
+ * That is right in general and wrong for one specific shape, which is the shape that bit them:
+ * when the ENTIRE on-clause is a count compared to zero, the facet asserts ∃ while its sentence
+ * almost always claims ∀ or a magnitude. Two from this corpus, both verified by reading them:
+ *
+ *   src/1/9        "EVERY SINGLE PATH HAS GAPS … covers 6 of 9"   on: vortexGaps.length > 0
+ *   heaven/compute "DISCOVER COVERAGE — n/m … (coverage 40%)"     on: questionTerms.length > 0
+ *
+ * The first claims every and checks at least one. The second reports a ratio and checks only
+ * that its denominator is non-zero — a coverage of 0% passes.
+ *
+ * A conjunction is NOT flagged: `count > 0 && somethingReal` has a real check in it. Only the
+ * whole clause being the weak bar counts, which is why this is a shape test and not a judgement
+ * about relevance. It cannot catch a wrong threshold that is merely too low; it catches the
+ * lowest one there is.
+ */
+export function findWeakestBarFacets(root: string = process.cwd()): VacuousFacet[] {
+  const ts = require('typescript') as typeof import('typescript')
+  const found: VacuousFacet[] = []
+  const countish = /\.length$|\.size$|^\w*[Cc]ount$/
+  eachFacet(root, ({ file, facet, on, line }) => {
+    if (!ts.isBinaryExpression(on)) return
+    const op = on.operatorToken.kind
+    const left = on.left.getText(file.ast())
+    const right = on.right.getText(file.ast())
+    if (!countish.test(left)) return
+    const weak =
+      (op === ts.SyntaxKind.GreaterThanToken && right === '0') ||
+      (op === ts.SyntaxKind.GreaterThanEqualsToken && right === '1') ||
+      (op === ts.SyntaxKind.ExclamationEqualsEqualsToken && right === '0')
+    if (weak) found.push({ file: file.rel, line, why: `${left} ${on.operatorToken.getText(file.ast())} ${right}`, facet: facet.replace(/\s+/g, ' ').slice(1, 84) })
+  })
+  return found
+}
+
 export function assertFacetsCanFail(): void {
   const vacuous = findVacuousFacets()
   const byWhy = new Map<string, number>()
@@ -89,4 +135,12 @@ export function assertFacetsCanFail(): void {
     throw new Error(`${vacuous.length} facets cannot fail — above the baseline of ${BASELINE}. A verdict that was never reached is not a verdict.`)
   }
   if (vacuous.length < BASELINE) console.log(`  ${BASELINE - vacuous.length} given real computations — lower BASELINE to ${vacuous.length}`)
+
+  const weak = findWeakestBarFacets()
+  console.log(`facets gated on the weakest bar (count > 0): ${weak.length}  (baseline ${WEAKEST_BASELINE}, ratchet)`)
+  for (const w of weak.slice(0, 4)) console.log(`    ${w.file}:${w.line}  [${w.why}]  ${w.facet.slice(0, 62)}`)
+  if (weak.length > WEAKEST_BASELINE) {
+    throw new Error(`${weak.length} facets gated on ∃ — above the baseline of ${WEAKEST_BASELINE}. A sentence claiming ∀ must not be checked by "at least one".`)
+  }
+  if (weak.length < WEAKEST_BASELINE) console.log(`  ${WEAKEST_BASELINE - weak.length} strengthened — lower WEAKEST_BASELINE to ${weak.length}`)
 }
