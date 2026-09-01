@@ -33,26 +33,30 @@
   --color-neutral-darker: oklch(5% 0.02 0);
   --color-neutral-inverted: oklch(15% 0.05 0);
 
-  /* ── SHADOW PALETTE (Derived from A432 Cyan #00D4FF) ──
-     All shadows use the A432 cyan anchor (RGB 0, 212, 255).
-     This ties the shadow system to the harmonic frequency foundation.
+  /* ── SHADOW PALETTE — the A432 cyan anchor, in the one palette's own space ──
+     Every shadow was written as a device-space sRGB triple with per-rung alpha, in a render
+     layer whose law is OKLCH; the anchor was also spelled as a hex literal in this comment.
+     The colour is unchanged — the same anchor converted exactly — but it is now stated once,
+     in the space the rest of this file already uses (see --color-neutral-inverted above), and
+     the alpha is the only thing that varies per rung.
   */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 212, 255, 0.05);
-  --shadow-md: 0 4px 6px 0 rgba(0, 212, 255, 0.1);
-  --shadow-lg: 0 10px 15px 0 rgba(0, 212, 255, 0.15);
-  --shadow-xl: 0 20px 25px 0 rgba(0, 212, 255, 0.2);
-  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.5);
+  --shadow-anchor: oklch(80.4% 0.146 219.5);
+  --shadow-sm: 0 1px 2px 0 oklch(80.4% 0.146 219.5 / 0.05);
+  --shadow-md: 0 4px 6px 0 oklch(80.4% 0.146 219.5 / 0.1);
+  --shadow-lg: 0 10px 15px 0 oklch(80.4% 0.146 219.5 / 0.15);
+  --shadow-xl: 0 20px 25px 0 oklch(80.4% 0.146 219.5 / 0.2);
+  --shadow-glow: 0 0 20px oklch(80.4% 0.146 219.5 / 0.5);
 
   /* ── LAYOUT BACKGROUND TINTS ──
      Semantic overlays for layered backgrounds and depth cuing.
   */
-  --bg-tint-dark-heavy: rgba(10, 14, 39, 0.8);
-  --bg-tint-dark-medium: rgba(10, 14, 39, 0.6);
-  --bg-tint-cyan-light: rgba(0, 212, 255, 0.1);
-  --bg-tint-black-light: rgba(0, 0, 0, 0.1);
-  --bg-tint-black-medium: rgba(0, 0, 0, 0.2);
-  --bg-tint-black-heavy: rgba(0, 0, 0, 0.3);
-  --bg-tint-magenta: rgba(255, 0, 110, 0.5);
+  --bg-tint-dark-heavy: oklch(17.7% 0.051 273.2 / 0.8);
+  --bg-tint-dark-medium: oklch(17.7% 0.051 273.2 / 0.6);
+  --bg-tint-cyan-light: oklch(80.4% 0.146 219.5 / 0.1);
+  --bg-tint-black-light: oklch(0% 0 0 / 0.1);
+  --bg-tint-black-medium: oklch(0% 0 0 / 0.2);
+  --bg-tint-black-heavy: oklch(0% 0 0 / 0.3);
+  --bg-tint-magenta: oklch(64.1% 0.257 8.1 / 0.5);
 
   /* ── PRINT MEDIA (A4 Paper) ──
      Black on white for maximum contrast when printed.

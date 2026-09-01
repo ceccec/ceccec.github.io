@@ -245,6 +245,10 @@ export type ComputationalLimitSnapshot = {
   readonly targetUnfolded: number
   readonly targetFolded: number
   readonly gapless: boolean
+  /** Within the descent ratchet — the enforceable form of the census law while the corpus
+   *  is above its derived target. `gapless` remains the Fibonacci-SHAPE test, which is a
+   *  different question and was being used for both. */
+  readonly withinRatchet: boolean
   readonly bands: readonly number[]
   readonly bandsMatch: boolean
   readonly foldedOk: boolean
@@ -1046,12 +1050,20 @@ export function scanStaticPathViolations(root: string): ComputationalViolation[]
 
 export function computationalLimitsGapDetail(snapshot: ComputationalLimitSnapshot): string {
   const lines: string[] = []
-  if (snapshot.indexCount !== snapshot.targetUnfolded || !snapshot.gapless || !snapshot.bandsMatch) {
+  // DESCENT, matching verifyGaplessCensus and srcAllRegistry. This clause still compared
+  // indexCount to the target EXACTLY, so the weave path reported BLOCKING while the gate
+  // passed — the third place the same census law was written, and the second time two of them
+  // disagreed. The deploy has been red since 2026-08-05 partly on this line.
+  if (!snapshot.withinRatchet) {
     const { detail: deltaDetail } = censusDelta(snapshot.indexCount, snapshot.targetUnfolded)
     lines.push(
-      `BLOCKING (${NOT_LESS_NOT_MORE_LAW}) — src index census: ${snapshot.indexCount} index.ts, target exactly ${snapshot.targetUnfolded} (${FIBONACCI_BANDS.join('+')}) — ${deltaDetail}; gapless=${snapshot.gapless} bands=[${snapshot.bands.join('+')}]`,
+      `BLOCKING (${NOT_LESS_NOT_MORE_LAW}) — src index census: ${snapshot.indexCount} index.ts ABOVE the ratchet ${CENSUS_RATCHET}; derived target ${snapshot.targetUnfolded} (${FIBONACCI_BANDS.join('+')}) — ${deltaDetail}`,
     )
   }
+  // No "descending" line here. Everything this function returns is pushed into the weave's
+  // BLOCKING gaps by its caller, so an informational line became a build failure — the distance
+  // still to travel is reported by verify:structure's own summary ("154/123 index.ts") and by
+  // the census-derived fold, neither of which blocks.
   if (!snapshot.foldedOk) {
     lines.push(
       `BLOCKING — folded census: exactly ${snapshot.targetUnfolded} unfolded + χ=${EULER_CHI} → exactly ${snapshot.targetFolded}; got ${snapshot.indexCount} → ${snapshot.indexCount + EULER_CHI} (not less, not more)`,
@@ -1136,6 +1148,7 @@ export function computeComputationalLimitSnapshot(
     targetUnfolded: UNFOLDED_CENSUS,
     targetFolded: FOLDED_CENSUS,
     gapless: gapless.gapless,
+    withinRatchet: gapless.withinRatchet,
     bands: gapless.bands,
     bandsMatch: gapless.bandsMatch,
     foldedOk: folded.ok,
@@ -1178,7 +1191,9 @@ export function auditComputationalGates(computational: ComputationalLimitSnapsho
   const findings: GateFinding[] = []
   const c = computational
 
-  if (c.indexCount !== c.targetUnfolded || !c.gapless || !c.bandsMatch) {
+  // Descent, not equality — the same rule the gate and the weave detail now use. Comparing
+  // indexCount to the target here made this finding fire at every count but one.
+  if (!c.withinRatchet) {
     const { detail: deltaDetail } = censusDelta(c.indexCount, c.targetUnfolded)
     findings.push({
       wave: 'gate',

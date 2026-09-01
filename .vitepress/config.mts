@@ -48,12 +48,25 @@ console.log(`[vitepress-config] ${new Date().toISOString()} ▶ imports done —
  * (no node:fs/node:path). Every census/harmonic quantity is recomputed from the same sealed math
  * (Fibonacci recurrence, genus-2 Euler χ, homology loops, Rosetta grid, harmonics ladder), so the
  * client values are byte-identical to the Node module's. fs-walking scanners are stubbed to [].
+ *
+ * A SECOND DEFINITION OF THE CENSUS LIVES HERE, and that is a standing hazard. This port
+ * derives the bands as "the last four Fibonacci numbers ≤ 55"; src/3/7 derives them from
+ * HOMOLOGY_LOOPS and DIGIT_LATTICE. Both yield [55,34,21,13] today, by different reasoning, so
+ * they can drift apart without either being wrong on its own terms — and adding an export to
+ * the real module does NOT add it here. That is exactly how the build broke: CENSUS_RATCHET
+ * was added to src/3/7 and re-exported through the computational barrel, tsc was happy, all
+ * eleven verify gates were green, and the vitepress build failed on a missing export because
+ * only the real bundler ever substitutes this stub.
+ *
+ * verify:stub-parity now checks that every name imported from a stubbed module anywhere in src
+ * exists here, so the next omission fails in seconds instead of at build time.
  */
 function computationalClientStubSource(): string {
   return `
 const FIB = (() => { const f = [1, 1]; while (f[f.length - 1] + f[f.length - 2] <= 55) f.push(f[f.length - 1] + f[f.length - 2]); return f; })();
 export const FIBONACCI_CENSUS_BANDS = [FIB[FIB.length - 1], FIB[FIB.length - 2], FIB[FIB.length - 3], FIB[FIB.length - 4]];
 export const UNFOLDED_CENSUS = FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0);
+export const CENSUS_RATCHET = 154;
 export const EULER_CHI = -2;
 export const FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI;
 export const HOMOLOGY_LOOPS = 4;

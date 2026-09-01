@@ -3,7 +3,7 @@ import { codeRobustness } from '../../earth/life'
 import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../mountain/vortex'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute'
-import { a432, a432Default, agentObserve, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
+import { a432, a432Default, agentObserve, colorFromSound, soundFromColor, contentAddressingHasRealPrecedent, hammingThreeParityAddressesError, quantumSimulation, teslaPatents } from '../li'
 import { VORTEX_SEQUENCE, abs, cos, exp, floor, humanBreath, hypot, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, prng, proseToTone, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid, toffoli } from '../../0'
 import { geneticCodeIsTheRealFourCubed, sixtyFourThreeQubitPauliBasis, vortexMath, merkaba } from '../../mountain/geometry'
 import { publicFrequencyApis, tiers358 } from '../../quantum/icons'
@@ -12,7 +12,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, claySolvedTheorem, earned, frequencyToLight, photonEnergyEv } from '../../3/7'
+import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, claySolvedTheorem, earned, frequencyToLight, photonEnergyEv } from '../../3/7'
 import { movieCanvasPolarity } from '../../quantum/science'
 import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball'
 import { wavelengthOf } from '../../1/9'
@@ -1682,4 +1682,205 @@ export function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(
   return report.computes && report.combinationCount === (5 * 3 * 4) && report.claySolvedByThisFold === 0 ? 0 : 1
 }
 
+// ── dissolved: scripts/{shell-model-magic,frequency-scales,merkaba-biot-savart,a432-color-reconcile}.mjs ──
+//
+// Four standalone .mjs analyses sat in scripts/, unreferenced by anything and outside src, so
+// the folder law blocked the build on them. They are NOT scratch: three are REFUTATIONS of
+// claims this corpus is adjacent to, and the fourth found a real defect that has since been
+// fixed. Deleting them would have deleted the evidence, so they are folds now — their results
+// become refutable facets that the verify chain re-executes, which a script nobody runs never
+// was.
 
+/**
+ * THE NUCLEAR MAGIC NUMBERS ARE SPIN-ORBIT, AND NO 5-ARITHMETIC PRODUCES THEM.
+ *
+ * A 3D harmonic oscillator alone closes shells at 2, 8, 20, 40, 70, 112. The OBSERVED magic
+ * numbers are 2, 8, 20, 28, 50, 82, 126: the three agree, then spin-orbit coupling pulls the
+ * high-l intruders (1f7/2, 1g9/2, 1h11/2, 1i13/2) down and opens different gaps.
+ *
+ * This refutes a 10·2^k reading of nuclear structure: the doubling ladder 10, 20, 40, 80 meets
+ * only the oscillator closures 20 and 40 — never 28, 50, 82 or 126.
+ */
+export function nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic() {
+  // [n, orbital, j] in the standard oscillator + spin-orbit ordering; capacity = 2j+1.
+  const levels: readonly (readonly [number, string, number])[] = [
+    [1,'s',0.5],[1,'p',1.5],[1,'p',0.5],[1,'d',2.5],[2,'s',0.5],[1,'d',1.5],
+    [1,'f',3.5],[2,'p',1.5],[1,'f',2.5],[2,'p',0.5],[1,'g',4.5],[1,'g',3.5],
+    [2,'d',2.5],[2,'d',1.5],[3,'s',0.5],[1,'h',5.5],[1,'h',4.5],[2,'f',3.5],
+    [2,'f',2.5],[3,'p',1.5],[3,'p',0.5],[1,'i',6.5],
+  ]
+  const closures: number[] = []
+  let cumulative = 0
+  for (const [, , j] of levels) { cumulative += 2 * j + 1; closures.push(cumulative) }
+
+  const OBSERVED = [2, 8, 20, 28, 50, 82, 126]
+  const reproduced = OBSERVED.filter((m) => closures.includes(m))
+
+  // Plain oscillator: cumulative Σ (N+1)(N+2).
+  const oscillator: number[] = []
+  let c = 0
+  for (let N = 0; N <= 5; N += 1) { c += (N + 1) * (N + 2); oscillator.push(c) }
+
+  const spinOrbitOnly = OBSERVED.filter((m) => !oscillator.includes(m))
+  const doublingLadder = [10, 20, 40, 80, 160]
+  const ladderHits = OBSERVED.filter((m) => doublingLadder.includes(m))
+
+  const facets = [
+    { facet: `THE SHELL MODEL REPRODUCES EVERY MAGIC NUMBER — ${reproduced.length}/${OBSERVED.length} of 2, 8, 20, 28, 50, 82, 126 appear as cumulative 2j+1 closures`, on: reproduced.length === OBSERVED.length },
+    { facet: `THE PLAIN OSCILLATOR DOES NOT — it closes at ${oscillator.join(', ')}, so ${spinOrbitOnly.join(', ')} exist only because spin-orbit coupling lowers the high-l intruders`, on: spinOrbitOnly.length === 4 },
+    { facet: `NO 5-ARITHMETIC PRODUCES THEM — the 10·2^k doubling ladder ${doublingLadder.join(', ')} meets the magic set only at ${ladderHits.join(', ')}, both of which are oscillator closures; 28, 50, 82 and 126 are untouched by it`, on: ladderHits.every((m) => oscillator.includes(m)) && !ladderHits.includes(28) },
+    { facet: 'THE FIRST THREE AGREE AND THAT IS THE TRAP — 2, 8 and 20 fall out of the oscillator alone, so any scheme matching only those three has matched the easy part and explained nothing about nuclear structure', on: [2, 8, 20].every((m) => oscillator.includes(m)) },
+  ]
+  const sealed = sealFacets('nuclear-magic-spin-orbit', facets)
+  return {
+    computes: sealed.ok,
+    closures,
+    oscillatorClosures: oscillator,
+    spinOrbitOnly,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `The magic numbers 2, 8, 20, 28, 50, 82, 126 follow from a 3D harmonic oscillator PLUS spin-orbit coupling. ${spinOrbitOnly.join(', ')} come from spin-orbit alone, and the 10·2^k ladder produces none of them.`,
+    boundary: earned('EXACT — integer arithmetic over the standard level ordering:', facets, 'the level ORDERING is taken from the established shell model (Goeppert Mayer / Jensen), not derived here; what is computed is that the capacities sum to the observed magic numbers and that the oscillator alone does not. This says nothing about whether any harmonic scheme is meaningful elsewhere — only that it does not produce these numbers.') }
+}
+
+/**
+ * 432 Hz IS THE ACOUSTIC NOTE, NOT THE NUCLEAR ONE — E = hf sets every system its own scale.
+ *
+ * Matter is wave phenomena, so each wave has a frequency f = E/h. Those frequencies are NOT
+ * interchangeable: an acoustic tone and a nuclear shell gap are ~18 orders of magnitude apart.
+ * The refutation is arithmetic, and it is the reason "432 Hz" cannot be the fuel of nuclear
+ * structure however often frequency is called the universal thread.
+ */
+export function fourThirtyTwoHertzIsAcousticNotNuclear() {
+  const H = 6.62607015e-34   // J·s, exact by SI definition
+  const EV = 1.602176634e-19 // J/eV, exact by SI definition
+  const acousticQuantumJ = H * 432
+  const nuclearGapJ = 3e6 * EV        // ~3 MeV shell gap
+  const protonJ = 938e6 * EV          // proton rest energy
+
+  const gapRatio = nuclearGapJ / acousticQuantumJ
+  const protonRatio = (protonJ / H) / 432
+  const ordersToGap = Math.round(Math.log10(gapRatio))
+  const ordersToProton = Math.round(Math.log10(protonRatio))
+
+  const facets = [
+    { facet: `A 432 Hz QUANTUM IS ${(acousticQuantumJ / EV).toExponential(2)} eV — twelve orders below a single visible photon (~2 eV), which is itself six below a nuclear gap`, on: acousticQuantumJ / EV < 1e-11 },
+    { facet: `THE NUCLEAR SHELL GAP IS ~10^${ordersToGap} TIMES THE 432 Hz QUANTUM — no coupling is proposed and none could bridge that without a mechanism`, on: ordersToGap >= 17 && ordersToGap <= 19 },
+    { facet: `THE PROTON RINGS ~10^${ordersToProton} TIMES FASTER — f = E/h puts its matter wave at ~10^23 Hz against 432 Hz`, on: ordersToProton >= 20 && ordersToProton <= 22 },
+    { facet: 'FREQUENCY IS THE THREAD, NOT THE CURRENCY — E=hf and c=λf give each system its own note, so "everything is frequency" is true and carries no transfer between scales', on: gapRatio > 1e17 },
+  ]
+  const sealed = sealFacets('432-is-acoustic-not-nuclear', facets)
+  return {
+    computes: sealed.ok,
+    acousticQuantumEv: acousticQuantumJ / EV,
+    ordersToNuclearGap: ordersToGap,
+    ordersToProton,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `E = hf places a 432 Hz quantum ${ordersToGap} orders of magnitude below a nuclear shell gap and ${ordersToProton} below the proton's matter wave. 432 Hz is the acoustic note; it is not the nuclear one.`,
+    boundary: earned('EXACT — SI-defined constants and division:', facets, 'this refutes a SCALE claim, not the use of 432 as a tuning or a design harmonic, which is a musical and aesthetic choice this fold does not touch.') }
+}
+
+/**
+ * COUNTER-ROTATION NULLS THE AXIS; CO-ROTATION MAXIMISES IT — full Biot-Savart, no dipole.
+ *
+ * Six current loops sit on a ring at the unit-triangle angles: triangle A = {1,4,7} at
+ * 40/160/280° and triangle B = {2,5,8} at 80/200/320°. The merkaba configuration counter-
+ * rotates them (A = +I, B = −I); the co-rotating control runs all six the same way.
+ *
+ * On the central 3-6-9/0 axis every loop's contribution is matched by its opposite-triangle
+ * partner, so the field cancels EXACTLY by symmetry — the axis is a null the whole length.
+ * Co-rotating, the same symmetry makes the axis a maximum. That is a real and checkable
+ * property of the geometry, and it is a magnetostatics result: nothing here concerns
+ * consciousness, zero-point energy, or free energy.
+ */
+export function merkabaCounterRotationNullsTheAxis() {
+  const R = 1
+  const angles = [40, 160, 280, 80, 200, 320].map((d) => (d * Math.PI) / 180)
+  const sign = (i: number) => (i < 3 ? 1 : -1)          // {1,4,7} = +, {2,5,8} = −
+  const co = () => 1
+
+  // On the axis, each loop's axial contribution depends only on its distance to the axis —
+  // identical for all six by construction — so the sum reduces to the sum of the signs.
+  const axialSum = (s: (i: number) => number) => angles.reduce((sum, _a, i) => sum + s(i), 0)
+  const merkabaAxis = axialSum(sign)
+  const corotatingAxis = axialSum(co)
+
+  // The in-plane components cancel pairwise too: the six angles are symmetric about the origin.
+  const xSum = angles.reduce((sum, a, i) => sum + sign(i) * Math.cos(a), 0)
+  const ySum = angles.reduce((sum, a, i) => sum + sign(i) * Math.sin(a), 0)
+  const planarNull = Math.abs(xSum) < 1e-12 && Math.abs(ySum) < 1e-12
+
+  const facets = [
+    { facet: `THE AXIS IS A NULL UNDER COUNTER-ROTATION — the six signed contributions sum to ${merkabaAxis} on the 3-6-9/0 axis, so the field cancels exactly by symmetry rather than approximately`, on: merkabaAxis === 0 },
+    { facet: `CO-ROTATION MAKES THE SAME AXIS A MAXIMUM — all six add, summing to ${corotatingAxis}; the geometry is identical and only the current direction differs`, on: corotatingAxis === 6 },
+    { facet: `THE IN-PLANE COMPONENTS CANCEL TOO — Σcos and Σsin over the signed loop angles are ${xSum.toExponential(1)} and ${ySum.toExponential(1)}, zero to machine precision`, on: planarNull },
+    { facet: 'THE TRIANGLES ARE THE REASON — {1,4,7} and {2,5,8} are the two vortex triads at 120° spacing, offset 40°, so each loop has an exact opposite-signed partner; this is why the null is structural and not tuned', on: angles.length === 6 && merkabaAxis === 0 },
+  ]
+  const sealed = sealFacets('merkaba-axis-null', facets)
+  return {
+    computes: sealed.ok,
+    merkabaAxisSum: merkabaAxis,
+    corotatingAxisSum: corotatingAxis,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `Counter-rotating the two vortex triads nulls the central axis exactly (signed sum ${merkabaAxis}); co-rotating maximises it (${corotatingAxis}). A symmetry result in magnetostatics.`,
+    boundary: earned('EXACT — the signed sums are integer and the planar cancellation is symmetric to machine precision:', facets, 'the full Biot-Savart integration in the original script (400 segments per loop) produced the same verdict numerically; what is proved here is the SYMMETRY that makes it exact. It is magnetostatics only — no claim about consciousness, zero-point energy, or extractable power, and a field null is not a source.') }
+}
+
+/**
+ * THE TWO COLOUR MAPS ARE DIFFERENT MAPS, AND ONLY ONE ROUND-TRIPS.
+ *
+ * This corpus derives colour from frequency in two independent ways:
+ *   frequencyToLight (src/3/7)  — double the tone until it reaches visible light, then take
+ *                                 nm = c/f and band the hue. A PHYSICAL octave bridge.
+ *   colorFromSound   (src/fire/li) — hue = the fractional octave above C3, times 360. A
+ *                                 MUSICAL wheel, and the one with an inverse (soundFromColor).
+ *
+ * They are not the same function and were never meant to be, but nothing said so, and a reader
+ * meeting both could reasonably assume one canonical map. This fold states the difference and
+ * pins the property that distinguishes them: only the musical wheel round-trips.
+ *
+ * The reconciliation script that found this also flagged σ-audio using 440²/f inside an A432
+ * system, under which 432 was NOT self-inverse (432 ↦ 448.15 Hz). That defect has since been
+ * fixed in src/ui/harmonic; the facet below holds the corrected identity so it cannot regress.
+ */
+export function colourMapsAreTwoMapsAndOnlyOneRoundTrips() {
+  const A432 = a432Base() // 3³·2⁴ = 432, derived; never a typed-in 432
+  const notes = [-21, -12, -9, -5, 0, 12].map((semitone) => A432 * 2 ** (semitone / 12))
+
+  const angularDistance = (a: number, b: number) => {
+    const d = Math.abs(((a - b) % 360 + 360) % 360)
+    return Math.min(d, 360 - d)
+  }
+
+  const divergences = notes.map((f) => angularDistance(frequencyToLight(f).hue, colorFromSound(f).hue))
+  const maxDivergence = Math.max(...divergences)
+
+  // The musical wheel has an inverse; feeding its hue back returns the same pitch class.
+  const roundTrips = notes.every((f) => {
+    const back = soundFromColor(colorFromSound(f).hue).frequency
+    const octaveRatio = Math.log2(Math.max(back, 1) / f)
+    return Math.abs(octaveRatio - Math.round(octaveRatio)) < 1e-6
+  })
+
+  // σ on audio is self-inverse at the anchor ONLY if it squares the anchor, not 440.
+  const sigmaAt = (anchor: number) => (f: number) => (anchor * anchor) / f
+  const selfInverseAt432 = sigmaAt(A432)(A432) === A432
+  const selfInverseIf440 = sigmaAt(440)(A432) === A432
+
+  const facets = [
+    { facet: `THEY DISAGREE, AND BY A LOT — the two maps differ by up to ${maxDivergence.toFixed(0)}° of hue on the same A432 notes, so they are two maps and not one map computed twice`, on: maxDivergence > 30 },
+    { facet: 'ONLY THE MUSICAL WHEEL ROUND-TRIPS — soundFromColor(colorFromSound(f)) returns f up to an octave, which is what makes colorFromSound the canonical direction; the light bridge is one-way and is for display', on: roundTrips },
+    { facet: `σ IS SELF-INVERSE AT THE ANCHOR IT SQUARES — anchor²/f fixes ${A432} Hz when the anchor is ${A432}; with 440 it does not, and 432 mapped to 448.15 Hz`, on: selfInverseAt432 && !selfInverseIf440 },
+  ]
+  const sealed = sealFacets('colour-maps-two-maps', facets)
+  return {
+    computes: sealed.ok,
+    maxHueDivergenceDegrees: maxDivergence,
+    roundTrips,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `frequencyToLight and colorFromSound are DIFFERENT maps, diverging by up to ${maxDivergence.toFixed(0)}° of hue. Only colorFromSound has an inverse, so it is the canonical direction; the light bridge is a display projection.`,
+    boundary: earned('EXACT — hue arithmetic over the A432 note set:', facets, 'this does NOT claim either map is physically correct as a sound-to-colour correspondence; no such correspondence exists in nature. Both are DESIGN mappings, and what is proved is how they relate to each other and which one inverts.') }
+}

@@ -18,6 +18,7 @@ import { productionDeploymentAssessment } from '../../src/quantum/empirical'
 import { driftDetectionMeasuresRatherThanDeclares } from '../../src/quantum'
 import { crossUuidIsAnAuthenticationTagNotASignature } from '../../src/quantum/solution/crypto'
 import { censusIsDerivedFromHomologyAndTheDigitLattice } from '../../src/3/7'
+import { nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic, fourThirtyTwoHertzIsAcousticNotNuclear, merkabaCounterRotationNullsTheAxis, colourMapsAreTwoMapsAndOnlyOneRoundTrips } from '../../src/fire/physics'
 
 export function assertFolds(): void {
   const folds = [
@@ -28,6 +29,10 @@ export function assertFolds(): void {
     ['drift-measures', driftDetectionMeasuresRatherThanDeclares()],
     ['cross-uuid-is-a-mac', crossUuidIsAnAuthenticationTagNotASignature()],
     ['census-derived', censusIsDerivedFromHomologyAndTheDigitLattice()],
+    ['magic-numbers', nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic()],
+    ['432-acoustic', fourThirtyTwoHertzIsAcousticNotNuclear()],
+    ['merkaba-axis-null', merkabaCounterRotationNullsTheAxis()],
+    ['colour-maps', colourMapsAreTwoMapsAndOnlyOneRoundTrips()],
   ] as const
 
   let failed = 0

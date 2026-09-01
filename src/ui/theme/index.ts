@@ -107,13 +107,15 @@ export const theme = {
     }
   },
 
-  // Shadows
+  // Shadows — the token is authoritative; the fallback is the SAME anchor in the same space,
+  // not a second sRGB spelling of it. These were device-space sRGB triples in a layer whose
+  // law is OKLCH, which is how a palette grows a second definition of one colour.
   shadows: {
-    sm: 'var(--shadow-sm, 0 1px 2px 0 rgba(0, 212, 255, 0.05))',
-    md: 'var(--shadow-md, 0 4px 6px 0 rgba(0, 212, 255, 0.1))',
-    lg: 'var(--shadow-lg, 0 10px 15px 0 rgba(0, 212, 255, 0.15))',
-    xl: 'var(--shadow-xl, 0 20px 25px 0 rgba(0, 212, 255, 0.2))',
-    glow: 'var(--shadow-glow, 0 0 20px rgba(0, 212, 255, 0.5))'
+    sm: 'var(--shadow-sm, 0 1px 2px 0 oklch(80.4% 0.146 219.5 / 0.05))',
+    md: 'var(--shadow-md, 0 4px 6px 0 oklch(80.4% 0.146 219.5 / 0.1))',
+    lg: 'var(--shadow-lg, 0 10px 15px 0 oklch(80.4% 0.146 219.5 / 0.15))',
+    xl: 'var(--shadow-xl, 0 20px 25px 0 oklch(80.4% 0.146 219.5 / 0.2))',
+    glow: 'var(--shadow-glow, 0 0 20px oklch(80.4% 0.146 219.5 / 0.5))'
   },
 
   // Animations
