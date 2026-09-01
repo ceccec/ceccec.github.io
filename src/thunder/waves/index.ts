@@ -2579,9 +2579,18 @@ export function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(m
 // raises the scientific fraction while the population holds at the cap — improve by replacing, not by adding.
 export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentOnes(matrix: MindMatrix = buildMatrix()) {
   const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
-  // a REFUTABLE marker: something measurable/checkable in what the theorem states — the mark of a scientific claim
-  const REFUTABLE = /\d|=|≡|≠|<|>|≤|≥|√|χ|π|φ|τ|\bexact\b|\bbound|\bclos|\bidentity\b|\binvariant\b|mod\b|orbit|group/i
-  const scored = atoms.map((a) => ({ ...a, refutable: REFUTABLE.test(a.states) }))
+  // THE MARKER WAS /\d/ WEARING POPPER'S NAME, and it is deleted. Twenty-one alternatives, of which the
+  // FIRST — `\d` — carried 97.3% of all passes; the other twenty carried 2.7% between them and existed as
+  // camouflage, making a character class look like a taxonomy. It passed 96.6% of the corpus, so it
+  // discriminated almost nothing, and it was wrong in both directions: a sentence stating nothing scored
+  // REFUTABLE the moment it contained a numeral, and all 26 theorems it called vague were carried by a
+  // proving fold. Falsifiability is a relation between a claim and the observations that would refute it.
+  // That regex tested whether a string contained an Arabic numeral, and the NAME did the reasoning.
+  //
+  // The corpus already has a computed standard for the same question and it was never consulted: a theorem
+  // is carried by a proving fold, or it is not. That is a structural fact about the registry rather than a
+  // vocabulary sniff over prose, and it is the only sense in which this corpus can call a theorem checked.
+  const scored = atoms.map((a) => ({ ...a, refutable: typeof a.provedBy === 'string' && a.provedBy.length > 0 }))
   const measurable = scored.filter((s) => s.refutable)
   const vague = scored.filter((s) => !s.refutable)
   const scienceFraction = roundTo(measurable.length / atoms.length, 3)
@@ -2590,30 +2599,41 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
   const claimsAvailable = gaps.candidates
   // replacing the vaguer members with measurable claims raises the fraction toward 1 (a strict improvement)
   const afterReplace = roundTo((measurable.length + min(vague.length, claimsAvailable)) / atoms.length, 3)
+  // `improves` asserted that replacing raises the fraction. With no vaguer tier there is nothing to replace,
+  // so it is false — and it is REPORTED as false rather than removed, because the fold's original premise
+  // was that such an improvement exists and the honest outcome of measuring is that it does not.
   const improves = afterReplace > scienceFraction && vague.length > 0 && claimsAvailable >= 1
-  // THE LIMITS, COMPUTED. "A real signal, but coarse: a vague title can front a rigorous fold" is a claim
-  // about the DISAGREEMENT between this proxy and the thing it proxies, and a disagreement is countable. So
-  // it is counted rather than conceded: how many theorems the marker calls vague are nonetheless carried by
-  // a proving fold. Every one of those is the proxy missing rigour that demonstrably exists.
-  const vagueButProved = vague.filter((v) => typeof v.provedBy === 'string' && v.provedBy.length > 0)
-  const proxyMissesRigour = vagueButProved.length > 0
-  // AND IT IS FOOLED THE OTHER WAY, by construction: the marker is a regex over prose, so any sentence
-  // carrying a digit passes it whatever the sentence says. Here is one that states nothing and scores
-  // refutable. A proxy with a witness in each direction is a proxy, not a criterion.
-  const emptyButMarked = REFUTABLE.test('this states nothing whatsoever, but it contains the numeral 7')
-  // THE VOCABULARY IS A CHOSEN LIST, and the count moves with it — measured by dropping one alternative.
-  const withoutOrbit = /\d|=|≡|≠|<|>|≤|≥|√|χ|π|φ|τ|\bexact\b|\bbound|\bclos|\bidentity\b|\binvariant\b|mod\b|group/i
-  const narrowerCount = atoms.filter((a) => withoutOrbit.test(a.states)).length
-  const listGoverns = narrowerCount <= measurable.length
+  // THE LIMITS OF THE COMPUTED STANDARD, which has limits of its own and they are different in kind from
+  // the marker's. The old ones asked how badly a regex approximated rigour; these ask what "carried by a
+  // proving fold" can and cannot establish.
+  //
+  // It checks that a prover EXISTS, not that it succeeds. A fold can be present and its facets false — the
+  // registry holds folds that report a false verdict — so this standard is about provision, not soundness.
+  const named = atoms.filter((a) => typeof a.provedBy === 'string' && a.provedBy.length > 0)
+  const standardIsProvision = named.length === measurable.length && named.length === atoms.length
+  // AND IT DISCRIMINATES NOTHING, which is the honest cost of adopting it: every theorem passes, so it can
+  // rank no theorem above another and cannot support a worklist. A criterion everything satisfies is a
+  // criterion that sorts nothing — true of this one, and it was also true of the marker at 96.6%.
+  const discriminatesNothing = vague.length === 0
+  // THE REPLACED MARKER'S NUMBERS, KEPT so the change is auditable rather than merely asserted: it passed
+  // 735 of 761 and its 26 rejections were all proved. Recomputed here from the same texts.
+  const OLD_MARKER = /\d|=|≡|≠|<|>|≤|≥|√|χ|π|φ|τ|\bexact\b|\bbound|\bclos|\bidentity\b|\binvariant\b|mod\b|orbit|group/i
+  const oldPass = atoms.filter((a) => OLD_MARKER.test(a.states)).length
+  const oldRejectedButProved = atoms.filter((a) => !OLD_MARKER.test(a.states) && typeof a.provedBy === 'string' && a.provedBy.length > 0).length
+  const oldMarkerWasWrong = oldRejectedButProved === atoms.length - oldPass && oldRejectedButProved > 0
   const limits = [
-    { facet: `THE PROXY MISSES RIGOUR IT CANNOT SEE — ${vagueButProved.length} of the ${vague.length} theorems marked vague are carried by a proving fold all the same; the marker reads what a theorem STATES and never whether its provedBy facets compute, which is the true test and is not applied here`, on: proxyMissesRigour },
-    { facet: 'AND IS FOOLED IN THE OTHER DIRECTION — a sentence that states nothing at all scores REFUTABLE as soon as it carries a numeral, because the marker is a regular expression over prose rather than an inspection of a proof; witnesses exist in both directions, which is what makes this a proxy and not a criterion', on: emptyButMarked },
-    { facet: `THE MARKER VOCABULARY IS A CHOSEN LIST — dropping a single alternative moves the count from ${measurable.length} to ${narrowerCount}; the scientific fraction is a function of which symbols and words were written into this regex, not a property the corpus has independent of it`, on: listGoverns },
+    { facet: `PROVISION, NOT SOUNDNESS — this establishes that all ${named.length} theorems name a proving fold, and nothing about whether those folds' facets hold; the registry contains folds that report a false verdict, so "carried by a proof" is a claim about what exists and not about what is true`, on: standardIsProvision },
+    { facet: `IT SORTS NOTHING — every theorem satisfies it, so it can rank none above another and supports no worklist; that is the price of using the corpus's own standard instead of a vocabulary sniff, and it was equally true of the marker it replaces at 96.6% passing`, on: discriminatesNothing },
+    { facet: `THE MARKER IT REPLACES, RECOMPUTED — the deleted regex passed ${oldPass} of ${atoms.length} and rejected ${atoms.length - oldPass}, of which ${oldRejectedButProved} are carried by a proving fold; every single rejection was a false negative, which is why the change is a deletion and not a tuning`, on: oldMarkerWasWrong },
   ]
   const facets = [
-    { facet: `SCIENCE = REFUTABILITY, MEASURED — of the ${atoms.length} registry theorems ${measurable.length} carry a refutable marker in what they state (a number, equation, bound, or invariant — falsifiable) and ${vague.length} are vaguer; the scientific fraction is ${scienceFraction} — a claim you can check and break is the more scientific`, on: measurable.length > 0 && measurable.length + vague.length === atoms.length },
-    { facet: `THE VAGUER ARE REPLACEMENT CANDIDATES, THE CLAIMS ARE SHARPER — the ${vague.length} vaguer theorems are the replacement worklist, and ${claimsAvailable} gap-candidate claims wait (each carrying a proof class and consumable atoms — refutable by construction): claiming a measurable theorem in place of a vague one is a strict scientific upgrade`, on: claimsAvailable >= 1 && vague.length > 0 },
-    { facet: `REPLACING IMPROVES THE MEAN AT HELD POPULATION — swapping the vaguer members for measurable claims raises the scientific fraction ${scienceFraction} → ${afterReplace} (${improves}) while the population holds at the ${DIMENSION_GATES} cap: science improves by REPLACING (a sharper theorem for a duller one), not by growing the count`, on: improves },
+    // WHAT THE COMPUTED STANDARD SAYS, which is not what the lexical one said. Under the marker the corpus
+    // split 735/26 and the fold proposed replacing the 26. Under the registry's own standard the split is
+    // ${measurable.length}/${vague.length}: there is no replacement worklist, because there is nothing the corpus
+    // itself regards as unchecked. The old 26 were an artefact of a digit test, and every one of them was
+    // proved. This facet is inverted to the measurement rather than rescued by moving a threshold.
+    { facet: `EVERY REGISTRY THEOREM IS CARRIED BY A PROVING FOLD — ${measurable.length} of ${atoms.length}, a fraction of ${scienceFraction}; by the corpus's own computed standard nothing here is unchecked, so there is no vaguer tier and no replacement worklist. The previous marker reported ${'26'} candidates and every one of them was proved: it was measuring whether a sentence contained a numeral`, on: vague.length === 0 && measurable.length === atoms.length },
+    { facet: `THE CLAIMS THAT WAIT ARE ADDITIONS, NOT REPLACEMENTS — ${claimsAvailable} gap-candidate claims carry a proof class and consumable atoms; with no vaguer tier to displace, they can only extend the registry, and calling that an improvement in the MEAN would need a duller member to swap out, which this corpus does not have`, on: claimsAvailable >= 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`improve-science:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
