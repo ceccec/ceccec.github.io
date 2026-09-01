@@ -67,16 +67,21 @@ export type NarratedBoundary = { file: string; line: number; says: string; asser
  * COUNTED. `HONEST:` is deliberately excluded — this corpus uses it for "honestly speaking" about as often
  * as for a limit, so it costs precision without buying recall.
  *
- * AND A THIRD ERROR DIRECTION, FOUND BY SHIPPING IT: the author of this regex measured 421 against the same
- * commit where this implementation measures 411. Same pattern, byte-identical; the ten are not their
- * quantum/science conversion (which removed no string boundaries at all) and not earned() head strings
- * (which account for two). The gap is unreconciled and is recorded rather than rounded away, because a
- * number two instruments disagree about is not a number to enforce. That is the whole argument for the
- * layering: `total` is decidable without reading a word of English and two implementations cannot drift on
- * it, which is why it is the one with teeth. Prefer the enforced number when they conflict.
+ * A DISAGREEMENT, AND THE WRONG LESSON I NEARLY DREW FROM IT. This implementation first measured 411 where
+ * the pattern's author measured 421. I recorded that as semantic drift between two implementations and cited
+ * it as the reason `total` is the enforced number. That reason was FALSE. We had not implemented one pattern
+ * twice — three alternatives (\bdo NOT\b, \bnever claims?\b, \bnot proof\b) were dropped in transcription, so
+ * two different patterns were run and each was correct for what it was given. The ten missing were real
+ * limits: "do NOT overread it as strong emergence", "never claims Clay", "not proof of a global system".
+ * The full sixteen are above and the count is 421.
+ *
+ * The layering conclusion stands; the evidence I had for it did not. `total` has the teeth because it is
+ * decidable without reading a word of English, not because this metric was observed to drift — it was not
+ * observed to do anything of the kind. Publishing a correct decision with a wrong reason is its own defect,
+ * and it is the one this file exists to catch: a sentence that sounds like measurement and is not.
  */
 const NEGATED_SCOPE_CLAIM =
-  /(?:\bdoes NOT\b|\bis NOT\b|\bare NOT\b|\bNOT a\b|\bNOT the\b|\bno claim\b|\bnot a claim\b|\bdoes not claim\b|\bnot claimed\b|\bcannot be read as\b|\bdoes not establish\b|\bis not evidence\b|\bNOT PROVEN\b)/
+  /(?:\bdoes NOT\b|\bdo NOT\b|\bis NOT\b|\bare NOT\b|\bNOT a\b|\bNOT the\b|\bno claim\b|\bnot a claim\b|\bnever claims?\b|\bdoes not claim\b|\bnot claimed\b|\bcannot be read as\b|\bdoes not establish\b|\bis not evidence\b|\bNOT PROVEN\b|\bnot proof\b)/
 
 // NOT KEYED ON THE PHRASE. The first version of this finder required the string "HONEST SCOPE" to appear,
 // which handed the ratchet the very loophole it exists to close: delete the label corpus-wide and the count
