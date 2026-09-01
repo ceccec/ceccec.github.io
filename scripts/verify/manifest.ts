@@ -23,6 +23,9 @@ import {
   waterSplitIsAnInvolutionSoNoSurplusExists,
   thePollutionIsTheFuelNotTheWater,
 } from '../../src/quantum/dynamics'
+import { driftDetectionMeasuresRatherThanDeclares } from '../../src/quantum'
+import { crossUuidIsAnAuthenticationTagNotASignature } from '../../src/quantum/solution/crypto'
+import { censusIsDerivedFromHomologyAndTheDigitLattice } from '../../src/3/7'
 
 const MANIFEST = 'MANIFEST.md'
 
@@ -39,6 +42,9 @@ export function manifestMarkdown(): string {
     ['rosetta-rotation', rosettaRotationClosesAtSevenTransposeCoversThirtySix()],
     ['water-involution', waterSplitIsAnInvolutionSoNoSurplusExists()],
     ['pollution-is-fuel', thePollutionIsTheFuelNotTheWater()],
+    ['drift-measures', driftDetectionMeasuresRatherThanDeclares()],
+    ['cross-uuid-is-a-mac', crossUuidIsAnAuthenticationTagNotASignature()],
+    ['census-derived', censusIsDerivedFromHomologyAndTheDigitLattice()],
   ] as const
 
   const L: string[] = []

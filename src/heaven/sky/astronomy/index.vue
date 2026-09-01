@@ -54,8 +54,8 @@ watch(at, (time) => {
     movie-intensity="soft"
     :seed-parts="seedParts"
     :title="title"
-    data-logic="src/astronomy/index.ts"
-    data-target="src/astronomy/index.ts#astronomySimulationAt"
+    data-logic="src/heaven/sky/astronomy/index.ts"
+    data-target="src/heaven/sky/astronomy/index.ts#astronomySimulationAt"
     data-topic="astronomy"
   >
     <div class="astronomy-simulation-panel__content">

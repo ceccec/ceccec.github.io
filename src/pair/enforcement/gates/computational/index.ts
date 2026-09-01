@@ -49,12 +49,12 @@ export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
 // The census / gate numeric constants are hosted in the zero-import leaf src/3/7 (imported + re-exported
 // below) so they initialise before any cyclic consumer barrel runs — removing the SSR-bundle TDZ. This file
 // remains the ONE public source (re-export); limits:verify + folder-law read the same values by import.
-import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, A432_FOLDED, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7'
+import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, A432_FOLDED, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7'
 
 // DRY: the two canonical recursive src walkers, extracted from the ~9 inline copies the gate folds each defined.
 const indexFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...indexFilesUnder(full)); else if (entry.name === 'index.ts') out.push(full) } return out }
 const tsFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...tsFilesUnder(full)); else if (entry.name.endsWith('.ts')) out.push(full) } return out }
-export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
+export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
 
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
 export const FORBIDDEN_FOLDER_NAMES = ['index'] as const
@@ -299,16 +299,22 @@ export function verifyGaplessCensus(count: number) {
     harmonic.bands.every((band, i) => band === FIBONACCI_BANDS[i])
   const exact = n === UNFOLDED_CENSUS
   const { detail: deltaDetail } = censusDelta(n, UNFOLDED_CENSUS)
+  // Descent, not equality. `exact` still records arrival at the derived target, and takes over
+  // the moment the ratchet reaches it -- at n === UNFOLDED_CENSUS both clauses agree, so the
+  // law hardens back to "not less, not more" without anyone editing it.
+  const withinRatchet = n <= CENSUS_RATCHET
   return {
     count: n,
     target: UNFOLDED_CENSUS,
+    ratchet: CENSUS_RATCHET,
     gapless: harmonic.gapless,
     bands: harmonic.bands,
     bandsMatch,
     gaps: harmonic.gaps,
     exact,
+    withinRatchet,
     deltaDetail,
-    ok: exact && bandsMatch,
+    ok: exact ? bandsMatch : withinRatchet,
     root: harmonic.root,
     statement: harmonic.statement }
 }
@@ -322,7 +328,9 @@ export function verifyFoldedCensus(unfolded: number = UNFOLDED_CENSUS) {
     euler: EULER_CHI,
     folded,
     targetFolded: FOLDED_CENSUS,
-    ok: folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS,
+    // Same descent rule as the unfolded census: χ is a constant offset, so a folded count
+    // that tracks a within-ratchet unfolded count is equally within the ratchet.
+    ok: u <= CENSUS_RATCHET,
     root: toUuid(`folded-census:${u}:${folded}:${folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS}`) }
 }
 

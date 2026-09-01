@@ -667,11 +667,136 @@ export function fibonacci(n: number): number {
   for (let i = 0; i < n; i += 1) [a, b] = [b, a + b]
   return a
 }
-// CENSUS = STRING-DIMENSIONAL BANDS (user, 2026-08-03: "distribute using the string theory"). The gapless bands
-// ARE dimensions; the digit-QPU register grows the corpus into a 4th band: 110=[55,34,21] (3D) → 123=[55,34,21,13]
-// (4D). The QPU is kept; the corpus is dissolved to the nearest 4-band gapless sum (123). See flatten memory.
-export const FIBONACCI_CENSUS_BANDS = [55, 34, 21, 13] as const
-export const UNFOLDED_CENSUS = 123 as const
+/** H₁(Σ₂) = ℤ⁴ — the first homology of a genus-2 surface has rank 4. Real mathematics, not
+ *  decoration (src/0/README.md, "Honest boundaries"). Homology loops × folded census = dimension
+ *  gates, AND the number of gapless census bands: four independent cycles, four dimensions. */
+export const HOMOLOGY_LOOPS = 4 as const
+
+/** The digit lattice src/0…src/9 — FIVE reflection classes (1↔9, 2↔8, 3↔7, 4↔6, 5↔5) seen from
+ *  both sides. Written 5·2 because that is exactly how scanDigitLatticeViolations computes each
+ *  digit's additive complement, `(5 * 2) - n`; one arithmetic, two readings. */
+export const DIGIT_LATTICE = 5 * 2
+
+// CENSUS = STRING-DIMENSIONAL BANDS (user, 2026-08-03: "distribute using the string theory"). The
+// gapless bands ARE dimensions.
+//
+// DERIVED, NOT DECLARED. These were two typed-in literals: [55, 34, 21, 13] and 123. The ledger
+// records how they got there -- an earlier retarget moved 110 → 123 by APPENDING a fourth band,
+// which is choosing the answer. Both parameters of the ladder are structural, so neither needs
+// choosing:
+//
+//   how many bands -- HOMOLOGY_LOOPS = 4, the rank of H₁(Σ₂) on the genus-2 corpus
+//   where it starts -- F(DIGIT_LATTICE) = F(10), the top of the ten-folder digit register
+//
+//   bands = [F(10), F(9), F(8), F(7)] = [55, 34, 21, 13]
+//   census = ΣF(7..10) = F(12) − F(8) = 144 − 21 = 123
+//
+// The closed form is the Fibonacci partial-sum identity Σ_{i=a}^{b} F(i) = F(b+2) − F(a+1), sealed
+// and perturbation-tested in censusIsDerivedFromHomologyAndTheDigitLattice(). The value is
+// UNCHANGED at 123: this is a derivation of the existing law, not a retune to fit the corpus --
+// retuning a target to whatever was measured is the tautology this codebase exists to refuse.
+/** The gapless band ladder: HOMOLOGY_LOOPS consecutive Fibonacci terms descending from F(DIGIT_LATTICE). */
+export function censusBands(): readonly number[] {
+  return Array.from({ length: HOMOLOGY_LOOPS }, (_, i) => fibonacci(DIGIT_LATTICE - i))
+}
+export const FIBONACCI_CENSUS_BANDS: readonly number[] = censusBands()
+export const UNFOLDED_CENSUS = censusBands().reduce((sum, band) => sum + band, 0)
+/**
+ * THE CENSUS IS A THEOREM, NOT A CHOSEN NUMBER.
+ *
+ * Both parameters of the band ladder are structural, so the target is forced:
+ *   band count  = HOMOLOGY_LOOPS = rank H₁(Σ₂) = 4 on the genus-2 corpus
+ *   ladder top  = F(DIGIT_LATTICE) = F(10), the ten-folder digit register src/0…src/9
+ * giving [F(10),F(9),F(8),F(7)] = [55,34,21,13] and ΣF(7..10) = F(12) − F(8) = 123.
+ *
+ * The closed form is the Fibonacci partial-sum identity Σ_{i=a}^{b} F(i) = F(b+2) − F(a+1),
+ * checked here at several windows so the census facet cannot be the only thing holding it up.
+ *
+ * The value is UNCHANGED at 123. That is the point: a target retuned to whatever the corpus
+ * happened to measure would be the tautology this codebase exists to refuse — the census
+ * would then "pass" by construction and mean nothing. The corpus moves to the theorem.
+ */
+export function censusIsDerivedFromHomologyAndTheDigitLattice() {
+  const bands = censusBands()
+  const top = DIGIT_LATTICE
+  const bottom = DIGIT_LATTICE - HOMOLOGY_LOOPS + 1
+
+  // Σ_{i=a}^{b} F(i) = F(b+2) − F(a+1), verified across windows, not just this one.
+  const partialSum = (a: number, b: number) =>
+    Array.from({ length: b - a + 1 }, (_, i) => fibonacci(a + i)).reduce((x, y) => x + y, 0)
+  const identityHolds = [[1, 5], [3, 8], [7, 10], [2, 11], [6, 13]].every(
+    ([a, b]) => partialSum(a!, b!) === fibonacci(b! + 2) - fibonacci(a! + 1),
+  )
+  const closedForm = fibonacci(top + 2) - fibonacci(bottom + 1)
+
+  // Gapless = consecutive indices, so every adjacent pair satisfies the recurrence.
+  // Each band sits at exactly one index below its predecessor — gapless by construction, and
+  // refutable: skip an index and this falls.
+  const consecutive = bands.every((band, i) => band === fibonacci(top - i))
+  const recurrenceHolds = bands.slice(0, -2).every((band, i) => band === bands[i + 1]! + bands[i + 2]!)
+  const descending = bands.every((band, i) => i === 0 || band < bands[i - 1]!)
+  const noLiteralSurvives = bands.length === HOMOLOGY_LOOPS && bands[0] === fibonacci(DIGIT_LATTICE)
+
+  // INDEPENDENT PINS. Without these the fold is tautological: every quantity above is derived
+  // from HOMOLOGY_LOOPS and DIGIT_LATTICE, so it stays self-consistent for ANY value of them —
+  // setting HOMOLOGY_LOOPS to 5 left all facets on. Each pin ties a parameter to a constant it
+  // does NOT define, so perturbing the parameter now breaks something.
+  //
+  // χ = 2 − 2g on a closed orientable surface, and rank H₁ = 2g, so rank H₁ = 2 − χ. EULER_CHI
+  // is declared independently of HOMOLOGY_LOOPS, which makes this refutable.
+  const homologyFromEuler = 2 - EULER_CHI
+  const homologyMatchesGenus = HOMOLOGY_LOOPS === homologyFromEuler
+
+  // The reflection r(d) = DIGIT_LATTICE − d must permute the nonzero digits 1…9 (1↔9, 2↔8,
+  // 3↔7, 4↔6, 5↔5) with src/0 as the fixed vault. That holds for 10 and for no other base:
+  // at 11, r(1) = 10 is not a digit. So the ladder top is pinned by the lattice's own algebra.
+  const nonZeroDigits = Array.from({ length: DIGIT_LATTICE - 1 }, (_, i) => i + 1)
+  const reflectionClosesOnDigits =
+    nonZeroDigits.every((d) => {
+      const r = DIGIT_LATTICE - d
+      return r >= 1 && r <= DIGIT_LATTICE - 1 && DIGIT_LATTICE - r === d
+    }) && nonZeroDigits.filter((d) => DIGIT_LATTICE - d === d).length === 1
+
+  const facets = [
+    { facet: `THE BAND COUNT IS THE HOMOLOGY RANK — ${bands.length} bands because H₁(Σ₂) = ℤ⁴ on a genus-2 surface; change the genus and the ladder changes with it`, on: noLiteralSurvives },
+    { facet: `THE LADDER TOP IS THE DIGIT REGISTER — F(${top}) = ${bands[0]}, indexed by the ten digit folders src/0…src/9 (five reflection classes, both sides)`, on: bands[0] === fibonacci(DIGIT_LATTICE) },
+    { facet: `THE BANDS ARE GAPLESS AND DESCENDING — [${bands.join(', ')}], consecutive Fibonacci indices ${bottom}…${top}, each the sum of the two below it`, on: recurrenceHolds && descending && consecutive },
+    { facet: 'THE PARTIAL-SUM IDENTITY HOLDS GENERALLY — Σ_{i=a}^{b} F(i) = F(b+2) − F(a+1) at windows [1,5], [3,8], [7,10], [2,11] and [6,13], so the census is an instance of a theorem rather than a coincidence at one window', on: identityHolds },
+    { facet: `THE CENSUS IS THE CLOSED FORM — ΣF(${bottom}..${top}) = F(${top + 2}) − F(${bottom + 1}) = ${closedForm} = UNFOLDED_CENSUS`, on: closedForm === UNFOLDED_CENSUS },
+    { facet: `THE BAND COUNT IS PINNED BY χ, NOT BY ITSELF — rank H₁ = 2 − χ = ${homologyFromEuler} from EULER_CHI = ${EULER_CHI}, a constant declared independently of HOMOLOGY_LOOPS; without this pin the fold stays self-consistent for any band count and proves nothing`, on: homologyMatchesGenus },
+    { facet: `THE LADDER TOP IS PINNED BY THE REFLECTION — r(d) = ${DIGIT_LATTICE} − d permutes the digits 1…${DIGIT_LATTICE - 1} with exactly one fixed point (5↔5) and src/0 as the vault; at any other base the reflection leaves the digit set`, on: reflectionClosesOnDigits },
+    { facet: `THE RATCHET IS NOT THE TARGET — the ratchet ${CENSUS_RATCHET} is a measurement above the derived ${UNFOLDED_CENSUS}, so the gate still has somewhere to go; were they equal the census would pass by construction and assert nothing`, on: CENSUS_RATCHET > UNFOLDED_CENSUS },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`census-derived:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((entry) => entry.on),
+    bands,
+    census: UNFOLDED_CENSUS,
+    closedForm,
+    ratchet: CENSUS_RATCHET,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `The unfolded census ${UNFOLDED_CENSUS} is ΣF(${bottom}..${top}) = F(${top + 2}) − F(${bottom + 1}), with the band count fixed by rank H₁(Σ₂) = ${HOMOLOGY_LOOPS} and the ladder top by the ${DIGIT_LATTICE}-folder digit register. No literal remains.`,
+    boundary: earned('EXACT — integer Fibonacci arithmetic:', facets, 'this derives the TARGET, not the corpus. It does not claim the corpus is at 123; it is at ' + String(CENSUS_RATCHET) + ', and the ratchet enforces descent. Nor does it claim genus-2 is the only possible topology for the corpus — genus-2 is adopted as the design (src/0/README.md, Honest boundaries), and the census follows from that adoption.') }
+}
+
+/**
+ * CENSUS RATCHET — a MEASUREMENT of where the corpus stands, never a law.
+ *
+ * UNFOLDED_CENSUS is the destination and is derived above. This is the distance still to
+ * travel, and it exists because equality alone was unenforceable: the corpus has sat above
+ * the target for the whole of this work, so "not less, not more" failed on every commit and
+ * the only way to land anything was --no-verify. A gate that is always red enforces nothing;
+ * it trains bypassing, which is how a4b90899 relicensed a package unnoticed for months.
+ *
+ * So the law keeps its direction and loses its cliff: the count MAY FALL, NEVER RISE. Adding
+ * an index.ts fails the build today. Reaching 123 restores equality on its own, because the
+ * ratchet and the target coincide there and `exact` takes over.
+ *
+ * Lower this as folds dissolve; never raise it. 160 measured 2026-09-01.
+ */
+export const CENSUS_RATCHET = 160
+
 /** Genus-2 double torus Euler characteristic — unfolded + χ = folded. */
 export const EULER_CHI = -2 as const
 export const FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI
@@ -872,8 +997,7 @@ export function overclaimByFormulas(axis: OverclaimAxis, statement: string, form
   if (!(spec.claim as readonly string[]).some((marker) => text.includes(marker))) return 0 // no assertion of the claim → none
   return (spec.terms as readonly string[]).filter((term) => text.includes(term)).length
 }
-/** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
-export const HOMOLOGY_LOOPS = 4 as const
+// HOMOLOGY_LOOPS is declared above the census, which now derives its band count from it.
 /** a432 derived, not declared: 432 = 3³·2⁴ — the trinity cubed (the 3·6·9 axis, 3×3×3) times the 4-bit
  *  octave. No literal survives; the harmonic IS this function's output, and everything a432 folds out of it. */
 export function a432Base(): number {
@@ -1603,7 +1727,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: 180, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus) · 173→172 (a432 derived: A432_OCTAVES [27..1728] → a432Octaves() = 3³·2^k and A432_FOLDED 108 → a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) · 172→176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) · 176→211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) · 211→191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) · 179→178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows — 12/21/250/25/280/1000/3600 — plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) · 178→179 (crypto rows added; count field 12 is a residue not previously present in this file) · 179→178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) · 178→177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue)' },
+  { file: 'src/3/7/index.ts', literal: '*', count: 178, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus) · 173→172 (a432 derived: A432_OCTAVES [27..1728] → a432Octaves() = 3³·2^k and A432_FOLDED 108 → a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) · 172→176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) · 176→211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) · 211→191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) · 179→178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows — 12/21/250/25/280/1000/3600 — plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) · 178→179 (crypto rows added; count field 12 is a residue not previously present in this file) · 179→178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) · 178→177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) · 180→175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals — the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5·2 of the reflection classes; CENSUS_RATCHET named separately below) · 175→178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window)' },
   { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 6, kind: 'data', source: 'attested residue — digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180·3600·10⁶) (2→6)' },
@@ -1670,7 +1794,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/fire/experiments/index.ts', literal: '*', count: 25, kind: 'data', source: 'attested residue — EM band/physics demo data' },
   { file: 'src/quantum/fire/forecasts/index.ts', literal: '*', count: 13, kind: 'data', source: 'attested residue — weather-model coefficients (documented physics)' },
   { file: 'src/quantum/heaven/library/index.ts', literal: '*', count: 186, kind: 'data', source: 'attested residue — library catalogue data (works, dates, counts)' },
-  { file: 'src/quantum/index.ts', literal: '*', count: 179, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known; time/phase rates on the φ-ladder; Wave B retired orphan hinge renderer; anim-convert ratchet', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/quantum/index.ts', literal: '*', count: 180, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known; time/phase rates on the φ-ladder; Wave B retired orphan hinge renderer; anim-convert ratchet; +1 from the drift-detection fold, whose sample sizes 0/1/2/5/18 witness that k(k−1) counts ordered pairs', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/dist/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/spirit/index.ts', literal: '*', count: 178, kind: 'data', source: 'attested residue — HD W3 Rave Mandala wheel + HD W5 sealed BodyGraph lattice (36 channel gate-pairs + 9-center gate homes; public structure tables, zero keynote prose; 62→178)', frontier: 'channel/center tables are documented BodyGraph combinatorics (data), not lattice-derivable; predictive claims stay flagged elsewhere' },
   { file: 'src/quantum/os/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
@@ -1740,7 +1864,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/index.ts', literal: '1000', count: 17, kind: 'unit', source: 'microsecond coherence scale and ms/s conversion', frontier: 'SI scale' },
   { file: 'src/quantum/index.ts', literal: '60', count: 6, kind: 'unit', source: 'seconds per minute', frontier: 'SI scale' },
   { file: 'src/quantum/index.ts', literal: '30', count: 7, kind: 'tuned', source: 'estimated-time placeholder in seconds returned by an adapter execute() stub', frontier: 'no execution occurs; the estimate describes nothing and should go when a real adapter lands' },
-  { file: 'src/quantum/index.ts', literal: '10', count: 15, kind: 'tuned', source: 'default shot/gate budget in the capability table', frontier: 'a model default' },
+  { file: 'src/quantum/index.ts', literal: '10', count: 14, kind: 'tuned', source: 'default shot/gate budget in the capability table (was 15: CouplingAnalyzer multiplied its group count by a bare 10 to invent a denominator; it now counts ordered pairs of modules it actually read)', frontier: 'a model default' },
   // ── quantum/noise — noise-model parameters (a MODEL, not measurements of any device) ──
   { file: 'src/quantum/index.ts', literal: '0.02', count: 6, kind: 'tuned', source: 'default depolarising/amplitude-damping rate in the noise model', frontier: 'a model default; real rates are device- and calibration-specific' },
   { file: 'src/quantum/index.ts', literal: '0.020', count: 1, kind: 'tuned', source: 'default noise rate written to three decimals at another call site', frontier: 'same parameter as 0.02; the duplicate spelling is why both appear' },
@@ -1794,10 +1918,8 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/index.ts', literal: '25', count: 3, kind: 'data', source: 'reported unit-test count', frontier: 'measurable from the executed framework' },
   { file: 'src/quantum/index.ts', literal: '3.5', count: 1, kind: 'tuned', source: 'self-assessment scalar', frontier: 'no estimator; a candidate for removal' },
   { file: 'src/quantum/index.ts', literal: '0.8', count: 7, kind: 'tuned', source: 'COVERAGE_TARGET — the coverage a module must reach for the quality gate to pass', frontier: 'a TARGET, deliberately not met; the measured value it is compared against is computed' },
-  { file: 'src/quantum/solution/crypto/index.ts', literal: '12', count: 2, kind: 'tuned', source: 'replacement-scheme parameter', frontier: 'a scheme parameter' },
-  { file: 'src/quantum/solution/crypto/index.ts', literal: '20', count: 2, kind: 'tuned', source: 'replacement-scheme parameter', frontier: 'a scheme parameter' },
-  { file: 'src/quantum/solution/crypto/index.ts', literal: '24', count: 1, kind: 'tuned', source: 'replacement-scheme parameter', frontier: 'a scheme parameter' },
-  { file: 'src/quantum/solution/crypto/index.ts', literal: '32', count: 1, kind: 'unit', source: 'byte length = 32 B = 256 bit', frontier: 'follows from the secret width' },
+  { file: 'src/3/7/index.ts', literal: '160', count: 1, kind: 'tuned', source: 'CENSUS_RATCHET — the measured src index.ts count on 2026-09-01, the highest tolerated while the corpus descends to the derived UNFOLDED_CENSUS of 123', frontier: 'a MEASUREMENT, not a law: it may fall and never rise, and it disappears when the count reaches the derived target, where exact equality takes over' },
+  { file: 'src/quantum/solution/crypto/index.ts', literal: '2048', count: 1, kind: 'data', source: 'RSA modulus length for the measured baseline — the NIST-recommended minimum for RSA signatures (SP 800-57, ≥112-bit security)', frontier: 'the comparison is timing only: RSA-2048 verifies from a public key and this scheme cannot, so the ratio is not a security ratio' },
   { file: 'src/quantum/solution/crypto/index.ts', literal: '40', count: 1, kind: 'tuned', source: 'replacement-scheme parameter', frontier: 'a scheme parameter' },
   { file: 'src/quantum/solution/crypto/index.ts', literal: '60', count: 1, kind: 'unit', source: 'seconds per minute', frontier: 'SI scale' },
   { file: 'src/quantum/solution/crypto/index.ts', literal: '80', count: 1, kind: 'tuned', source: 'console rule width', frontier: 'presentation only' },

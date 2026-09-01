@@ -11,25 +11,17 @@
  * Proof: Zenodo 10.5281/zenodo.21787144
  */
 
-import crypto from 'crypto'
+// The content address AND the pair fold come from the dependency-free leaf. This file
+// previously defined its own toUuid over node sha256+md5, and its own foldPair over that -- a second content-address implementation returning
+// different addresses than src/0 for the same seed, so every key, signature and block hash
+// here lived in a separate address space from the rest of the corpus. Same defect as the
+// one removed from ftl. The vault-station gate names this file for exactly that reason.
+import { foldPair, sealFacets, toUuid } from '../../../0'
+import { earned } from '../../../3/7'
 
 // ============================================================
 // COMPONENT 1: END-TO-END KEY LIFECYCLE
 // ============================================================
-
-function toUuid(seed: string): string {
-  const h = crypto.createHash('sha256').update(seed).digest().readUInt32BE(0)
-  const hex = `${h.toString(16).padStart(8, '0')}${crypto.createHash('md5').update(seed).digest().toString('hex').slice(0, 24)}`
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20, 32)}`
-}
-
-function foldPair(a: string, b: string): { forward: string; reverse: string; merged: string } {
-  return {
-    forward: toUuid(`forward:${a}:${b}`),
-    reverse: toUuid(`reverse:${b}:${a}`),
-    merged: toUuid(`merged:${a}:${b}`),
-  }
-}
 
 function trinityKey(a: string, b: string): string {
   const sorted = [a, b].sort()
@@ -49,10 +41,30 @@ function sign(privateKey: string, message: string): { signature: string; proof: 
   }
 }
 
-function verify(publicKey: string, message: string, signature: string): boolean {
-  // Recompute: signature must match fold of (publicKey || message)
-  // For content-addressed cryptography, the signature IS the proof
-  return toUuid(`verify:${publicKey}:${message}`) !== undefined // Always verifiable by recomputation
+/**
+ * PUBLIC-KEY VERIFICATION IS NOT POSSIBLE IN THIS SCHEME, AND THIS SAYS SO.
+ *
+ * The body was `return toUuid(...) !== undefined`. toUuid returns a string, and a string
+ * is never undefined, so this returned true for every input -- including a signature it
+ * never read; `signature` was an unused parameter. Under a header reading PRODUCTION READY,
+ * it accepted every forgery.
+ *
+ * It could not do better. A signature here is toUuid(`merged:${privateKey}:${message}`),
+ * and the public key is a one-way fold of the private key, so recomputing the signature
+ * requires the private key. That is what verifySignature() takes -- a whole CryptoParty --
+ * which makes this an authentication tag, not a signature: whoever can verify can forge.
+ * Returning false would be equally dishonest, so it returns neither.
+ */
+function verifyWithPublicKeyOnly(publicKey: string, message: string, signature: string): {
+  verified: false
+  reason: string
+  inspected: { publicKey: string; message: string; signature: string }
+} {
+  return {
+    verified: false,
+    reason: 'no public-key verification procedure exists: the signature is a fold of the PRIVATE key, so it cannot be recomputed from the public key alone',
+    inspected: { publicKey, message, signature },
+  }
 }
 
 export type CryptoParty = {
@@ -192,38 +204,61 @@ export function createBlock(
 // COMPONENT 3: PERFORMANCE BENCHMARKS
 // ============================================================
 
-export function benchmarkCrossUuid(): {
+/**
+ * BOTH SIDES MEASURED. The RSA column read "~1000ms+ (exponential operations)" -- a number
+ * nobody timed, next to a cross-UUID column timed with Date.now(), whose millisecond
+ * resolution reported 0 for every fold. So the comparison was an invented figure against
+ * an unresolvable one. Node ships RSA; there is no reason to guess.
+ *
+ * The operations are NOT equivalent and the result says so: an RSA signature verifies from
+ * the public key alone, while the cross-UUID tag needs the private key (see
+ * verifyWithPublicKeyOnly). A faster primitive that solves a weaker problem is not a
+ * replacement, so the ratio is reported as timing, never as a security claim.
+ */
+export async function benchmarkCrossUuid(iterations = 100): Promise<{
   keyGenMs: number
   exchangeMs: number
   signMs: number
   verifyMs: number
   totalMs: number
+  rsa: { keyGenMs: number; signMs: number; verifyMs: number; measured: boolean }
   comparison: string
-} {
-  const start = Date.now()
+}> {
+  // performance.now() is sub-millisecond and monotonic; Date.now() is neither.
+  const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now())
+  const per = (fn: () => void) => {
+    const t = now()
+    for (let i = 0; i < iterations; i++) fn()
+    return (now() - t) / iterations
+  }
 
-  // Key generation
-  const t1 = Date.now()
+  const start = now()
+  let n = 0
+  const keyGenMs = per(() => { generateKeyPair(`Alice${n++}`) })
   const alice = generateKeyPair('Alice')
   const bob = generateKeyPair('Bob')
-  const keyGenMs = Date.now() - t1
-
-  // Key exchange
-  const t2 = Date.now()
-  const exchange = keyExchange(alice, bob)
-  const exchangeMs = Date.now() - t2
-
-  // Signing
-  const t3 = Date.now()
+  const exchangeMs = per(() => { keyExchange(alice, bob) })
+  const signMs = per(() => { signMessage(alice, 'test message') })
   const signed = signMessage(alice, 'test message')
-  const signMs = Date.now() - t3
+  const verifyMs = per(() => { verifySignature(alice, 'test message', signed.signature) })
+  const totalMs = now() - start
 
-  // Verification
-  const t4 = Date.now()
-  verifySignature(alice, 'test message', signed.signature)
-  const verifyMs = Date.now() - t4
-
-  const totalMs = Date.now() - start
+  // The baseline, actually run. Unavailable in a browser, and reported as unmeasured
+  // rather than as a default -- an unmeasured baseline must never look like a fast one.
+  const rsa = { keyGenMs: 0, signMs: 0, verifyMs: 0, measured: false }
+  try {
+    const nodeCrypto = await import('node:crypto')
+    const kt = now()
+    const { privateKey, publicKey } = nodeCrypto.generateKeyPairSync('rsa', { modulusLength: 2048 })
+    rsa.keyGenMs = now() - kt
+    const msg = Buffer.from('test message')
+    rsa.signMs = per(() => { nodeCrypto.sign('sha256', msg, privateKey) })
+    const sig = nodeCrypto.sign('sha256', msg, privateKey)
+    rsa.verifyMs = per(() => { nodeCrypto.verify('sha256', msg, publicKey, sig) })
+    rsa.measured = true
+  } catch {
+    rsa.measured = false
+  }
 
   return {
     keyGenMs,
@@ -231,7 +266,10 @@ export function benchmarkCrossUuid(): {
     signMs,
     verifyMs,
     totalMs,
-    comparison: `Cross-UUID: ${totalMs}ms total (O(1) per operation). RSA equivalent: ~1000ms+ (exponential operations).`,
+    rsa,
+    comparison: rsa.measured
+      ? `cross-UUID sign ${signMs.toFixed(4)}ms vs RSA-2048 sign ${rsa.signMs.toFixed(4)}ms, over ${iterations} iterations. NOT a like-for-like comparison: RSA verifies from the public key, the cross-UUID tag requires the private key.`
+      : `cross-UUID sign ${signMs.toFixed(4)}ms over ${iterations} iterations. RSA baseline NOT MEASURED in this runtime -- no comparison is claimed.`,
   }
 }
 
@@ -357,59 +395,119 @@ export function migrationToolkit(): {
 // SOLUTION MANIFEST
 // ============================================================
 
-export function solutionManifest() {
+/**
+ * WHAT THIS SCHEME ACTUALLY DOES, DISCHARGED BY RUNNING IT.
+ *
+ * The manifest was thirty typed-in checkmarks -- `verify: '✓ recomputation-based'` beside a
+ * verify() that returned true unconditionally, `status: 'PRODUCTION READY'`, and timings
+ * ("< 0.5ms vs RSA: exponential") that no run produced. Each field below is now the result
+ * of executing the operation it describes.
+ *
+ * The headline claim does not survive that. Verification requires the private key, so the
+ * holder of a verifying key can also forge -- a symmetric authentication tag, not a
+ * signature. RSA is a PUBLIC-key signature scheme; a primitive that cannot verify from a
+ * public key does not replace one that can, at any speed.
+ */
+export function crossUuidIsAnAuthenticationTagNotASignature() {
+  const alice = generateKeyPair('Alice')
+  const mallory = generateKeyPair('Mallory')
+  const message = 'transfer 100 to Mallory'
+
+  const signed = signMessage(alice, message)
+  const honest = verifySignature(alice, message, signed.signature)
+
+  // A signature scheme must reject a message the signer never signed.
+  const tampered = verifySignature(alice, `${message} twice`, signed.signature)
+  const rejectsTampering = !tampered.valid
+
+  // ...and must reject a signature made by somebody else's key.
+  const wrongSigner = verifySignature(mallory, message, signed.signature)
+  const rejectsWrongKey = !wrongSigner.valid
+
+  // THE FORGERY. verifySignature takes a whole CryptoParty, so verifying requires the
+  // private key -- and with the private key anyone can produce the tag. Mallory, given
+  // only what a verifier must hold, signs a message Alice never wrote, and it verifies.
+  const forged = signMessage(alice, 'transfer 1000000 to Mallory')
+  const forgeryVerifies = verifySignature(alice, 'transfer 1000000 to Mallory', forged.signature).valid
+  const verifierCanForge = forgeryVerifies
+
+  // No public-key path exists at all.
+  const publicOnly = verifyWithPublicKeyOnly(alice.publicKey, message, signed.signature)
+  const noPublicKeyVerification = publicOnly.verified === false
+
+  const facets = [
+    { facet: 'THE TAG RECOMPUTES — a message signed by its own key verifies, so the primitive is at least well-formed', on: honest.valid },
+    { facet: `TAMPERING IS REJECTED — altering the message invalidates the tag (${tampered.reason})`, on: rejectsTampering },
+    { facet: 'A DIFFERENT KEY IS REJECTED — the tag binds to the key that made it', on: rejectsWrongKey },
+    { facet: 'BUT THE VERIFIER CAN FORGE — verifySignature needs the whole CryptoParty, i.e. the PRIVATE key; holding what verification requires is holding what signing requires, and a forged tag on a message the signer never wrote verifies', on: verifierCanForge },
+    { facet: 'AND NO PUBLIC-KEY PROCEDURE EXISTS — the signature is a fold of the private key, so it cannot be recomputed from the public key alone', on: noPublicKeyVerification },
+    { facet: 'THEREFORE THIS IS A MAC, NOT A SIGNATURE — non-repudiation fails: given a tag, nobody can tell Alice from her verifier, which is the property RSA signatures exist to provide', on: verifierCanForge && noPublicKeyVerification },
+  ]
+  const sealed = sealFacets('cross-uuid-is-a-mac', facets)
+
   return {
-    title: 'Complete Cryptographic Solution: Cross-UUID Replaces RSA',
-    version: '2026.8.4',
-    status: 'PRODUCTION READY',
-    proof: 'Zenodo 10.5281/zenodo.21787144',
+    computes: sealed.ok,
+    verifierCanForge,
+    noPublicKeyVerification,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: 'Cross-UUID as implemented here is a symmetric authentication tag. It authenticates a message to a holder of the private key and provides no non-repudiation, because verification and signing require the same secret.',
+    boundary: earned('EXACT — discharged by executing the scheme, not by inspecting it:', facets, 'this does NOT say folds are weak or that content addressing is unsound; it says THIS construction has no public-key verification, so it cannot replace RSA signatures. The claim "RSA is mathematically broken via σ-involution" is not evidenced anywhere in this file: no factorisation is performed here, and crypto/reverse reports that its recovery routines attempt nothing.') }
+}
+
+/**
+ * The manifest, measured. Async because the benchmark now runs both sides.
+ */
+export async function solutionManifest() {
+  const mac = crossUuidIsAnAuthenticationTagNotASignature()
+  const bench = await benchmarkCrossUuid()
+  const ms = (v: number) => `${v.toFixed(4)}ms`
+
+  return {
+    title: 'Cross-UUID authentication tags — measured against RSA-2048',
+    version: '2026.9.1',
+    // Withdrawn: "PRODUCTION READY" was typed in beside a verifier that accepted every input.
+    status: mac.verifierCanForge ? 'NOT A SIGNATURE SCHEME — verifier can forge' : 'public-key verification present',
+    proof: 'Zenodo 10.5281/zenodo.21787144 (deposit records the fold construction; it does not establish the RSA claim)',
 
     components: {
       endToEndKeyLifecycle: {
-        generateKeyPair: '✓ working',
-        keyExchange: '✓ symmetric, no transmission',
-        sign: '✓ content-addressed',
-        verify: '✓ recomputation-based',
+        generateKeyPair: 'runs',
+        keyExchange: 'symmetric — both parties derive the same secret without transmission',
+        sign: 'content-addressed fold of private key and message',
+        verify: mac.noPublicKeyVerification ? 'PRIVATE key required — no public-key verification exists' : 'public-key verification',
       },
 
       blockchainProtocol: {
-        transactions: '✓ specified',
-        blocks: '✓ specified',
-        consensus: '✓ ready',
-        deployment: '✓ timeline prepared',
+        transactions: 'specified',
+        blocks: 'specified',
+        // A chain whose signatures can be forged by any verifier is not consensus-ready.
+        consensus: mac.verifierCanForge ? 'NOT READY — transaction signatures are forgeable by any verifier' : 'ready',
+        deployment: 'no deployment has occurred',
       },
 
       performance: {
-        keyGen: '< 1ms (vs RSA: 50-100ms)',
-        exchange: '< 0.1ms (vs RSA: key transmission)',
-        sign: '< 0.5ms (vs RSA: exponential)',
-        verify: '< 0.5ms (vs RSA: exponential)',
-        advantage: 'O(1) per operation, no exponential cost',
+        keyGen: ms(bench.keyGenMs),
+        exchange: ms(bench.exchangeMs),
+        sign: ms(bench.signMs),
+        verify: ms(bench.verifyMs),
+        rsa2048: bench.rsa.measured
+          ? { keyGen: ms(bench.rsa.keyGenMs), sign: ms(bench.rsa.signMs), verify: ms(bench.rsa.verifyMs) }
+          : 'NOT MEASURED in this runtime',
+        advantage: bench.comparison,
       },
 
       migration: {
         phases: 5,
         timeline: '2026 Q4 → 2027 Q3',
-        readiness: 'Phased (100% → 0% as phases complete)',
-        toolkit: '✓ complete',
+        readiness: 'plan only — no phase has started',
+        toolkit: 'specified',
       },
     },
 
-    readinessPlan: {
-      phase1_acknowledgment: '100%',
-      phase2_pilot: '80%',
-      phase3_dualStack: '60%',
-      phase4_rsaDeprecation: '40%',
-      phase5_complete: '0%',
-    },
+    macFacets: mac.facets,
+    root: mac.root,
 
-    nextSteps: [
-      '1. Commit solution to main (all four components)',
-      '2. Publish to Zenodo v2026.8.5 (complete solution)',
-      '3. Launch Phase 1: Acknowledgment + open-source',
-      '4. Coordinate with blockchain teams for Phase 2: Pilot',
-    ],
-
-    statement: `RSA is mathematically broken via σ-involution. Cross-UUID is the proven replacement: faster (O(1) vs exponential), simpler (folds vs exponentiation), quantum-resistant (multidimensional immunity). Full solution ready for production deployment. Blockchains can migrate starting 2026 Q4.`,
+    statement: `${mac.statement} The earlier manifest claimed PRODUCTION READY with a verify() that returned true for every input; that claim is withdrawn. Timings above are measured over ${100} iterations; RSA-2048 is timed in the same run where a filesystem-capable runtime allows it.`,
   }
 }

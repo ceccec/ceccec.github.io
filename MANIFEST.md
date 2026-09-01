@@ -10,7 +10,7 @@
 | Executed tests passing | 14 / 14 |
 | Benchmarks executed | 6 |
 | Benchmarks with no implementation | 5 — VQE, QAOA, HHL, Phase Estimation, Shor |
-| Export-reference coverage | 2.2% (44 of 1959 symbols, 30 modules) |
+| Export-reference coverage | 2.2% (44 of 1960 symbols, 30 modules) |
 | Checkable requirements met | 6 / 8 |
 | Requirements not determinable from source | 19 |
 | Readiness status | BLOCKED |
@@ -34,6 +34,9 @@
 | `rosetta-rotation` | 4 / 4 | `fda1617c-1c0b-846d-acdd-28a17df43895` |
 | `water-involution` | 5 / 5 | `179f1240-b038-8e31-b46e-ab20a5f17e4f` |
 | `pollution-is-fuel` | 4 / 4 | `fe71e40d-cba5-82f0-8e6f-fd0f62815da1` |
+| `drift-measures` | 6 / 6 | `4a9ed8cc-244c-81d1-aed6-d4a9e094dba6` |
+| `cross-uuid-is-a-mac` | 6 / 6 | `ead6d5aa-01bf-807e-bb93-64596e6353e8` |
+| `census-derived` | 8 / 8 | `ae4e09db-13ef-8697-9543-6a6de3e2338f` |
 
 ## Not claimed
 

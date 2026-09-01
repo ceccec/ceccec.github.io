@@ -32,7 +32,7 @@ import * as __ns_up_up_lake_music from '../../music'
 import * as __ns_up_up_double_torus_earth from '../double/earth'
 import * as __ns_up_up_thunder_trading from '../../thunder/trading'
 import { phase } from '../../6/4'
-import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, UNFOLDED_CENSUS, indexRegistryFromLogicRel } from '../../pair/enforcement/gates/computational'
+import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, UNFOLDED_CENSUS, CENSUS_RATCHET, indexRegistryFromLogicRel } from '../../pair/enforcement/gates/computational'
 import { congruence, markovStep } from '../../mountain/vortex'
 import type { MindMatrix } from '../../types'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation, portalChat, portalChatRanked, landauerFloorComputed } from '../../heaven/compute'
@@ -105,7 +105,7 @@ export const SRC_TWO_LEVEL_INDEX_RE = /^src\/[^/]+\/[^/]+\/index\.ts$/
 /** Exactly three folder levels under src/ — src/[science]/[model]/[action]/index.ts. */
 export const SRC_THREE_LEVEL_INDEX_RE = /^src\/[^/]+\/[^/]+\/[^/]+\/index\.ts$/
 
-/** Every logic index under src/ at any depth — src/.../index.ts (the full 110 census tree). */
+/** Every logic index under src/ at any depth — src/.../index.ts (the full derived-census tree). */
 export const SRC_ALL_INDEX_RE = /^src\/(?:[^/]+\/)+index\.ts$/
 
 /** One-word pairs fusing human senses, mind, and body — each pair mounts at an existing sealed index (110 census; no new slots). */
@@ -157,7 +157,14 @@ function srcRegistryFromEntries(
     depth,
     count: entries.length,
     census: UNFOLDED_CENSUS,
-    gapless: entries.length === UNFOLDED_CENSUS,
+    ratchet: CENSUS_RATCHET,
+    /** Arrival at the derived target — the destination, not the gate. */
+    atTarget: entries.length === UNFOLDED_CENSUS,
+    // DESCENT, matching the enforcement gate. This read `=== UNFOLDED_CENSUS`, so it was false
+    // for every count except one and no commit could ever satisfy it while the corpus sat above
+    // the target. Two laws about the same census must not disagree: the gate ratchets, so this
+    // ratchets, and both harden back to equality at UNFOLDED_CENSUS.
+    gapless: entries.length <= CENSUS_RATCHET,
     entries,
     depthBands,
     incomplete: incomplete.map((entry) => ({ logic: entry.logic, reasons: entry.reasons })),
@@ -409,7 +416,7 @@ export function modalityHomesComputes(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
-/** One gate — full src tree registry + 110 census at call time. */
+/** One gate — full src tree registry + the derived census at call time. */
 export function srcAllComputes(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('srcAllComputes', matrix, () => {
     const registry = srcAllRegistry()
@@ -417,7 +424,7 @@ export function srcAllComputes(matrix: MindMatrix = buildMatrix()) {
     const threeCount = registry.entries.filter((entry) => SRC_THREE_LEVEL_INDEX_RE.test(entry.logic)).length
     const { computes, facets, root } = computesGate('src-all-computes', [
       { facet: 'full src tree indexes discovered', on: registry.count > 0 },
-      { facet: 'census gapless — 110 unfolded index.ts registered', on: registry.gapless },
+      { facet: `census descending — ${registry.count} unfolded index.ts registered, ratchet ${CENSUS_RATCHET}, derived target ${UNFOLDED_CENSUS}`, on: registry.gapless },
       { facet: 'display dual complete on every registered index', on: registry.registered },
       { facet: 'two- and three-level paths are subsets of the full tree', on: twoCount > 0 && threeCount > 0 },
     ])
@@ -1045,7 +1052,7 @@ export function stackComputes(matrix: MindMatrix = buildMatrix()) {
     const powerDriver = powerComputes(matrix)
     const { computes, facets, root } = computesGate('stack-computes', [
       { facet: 'stack overflow guard — config hot path completes', on: overflow.guarded },
-      { facet: 'full src tree — 110 census gapless and display-complete', on: all.computes },
+      { facet: `full src tree — census within ratchet (target ${UNFOLDED_CENSUS}) and display-complete`, on: all.computes },
       { facet: 'sense/mind/body one-word pairs registered', on: senses.computes },
       { facet: 'birth/life/death triad computes', on: triad.computes },
       { facet: 'modality homes — color sound audio video birth life death iching rosetta', on: modality.computes },

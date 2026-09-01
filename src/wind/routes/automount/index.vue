@@ -15,8 +15,8 @@ const computedOk = computed(
 <template>
   <output
     class="display-dual-gate"
-    data-logic="src/routes/automount/index.ts"
-    data-target="src/routes/automount/index.ts"
+    data-logic="src/wind/routes/automount/index.ts"
+    data-target="src/wind/routes/automount/index.ts"
     data-topic="automount"
     :data-root="root"
     :data-computed="computedOk"

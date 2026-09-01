@@ -185,7 +185,11 @@ export async function runVerifyStructureExit(root: string): Promise<number> {
     return 1
   }
   if (!computationalGatePassed(facts.computational)) {
-    process.stderr.write('✗ verify:structure — computational gates failed\n')
+    // auditComputationalGates already diagnoses every leaf check; printing only "failed"
+    // threw that away and made the gate teach nothing — three runs to learn which law broke.
+    const { findings } = auditComputationalGates(facts.computational)
+    const detail = findings.map((f) => `   ${f.kind}: ${f.detail}`).join('\n')
+    process.stderr.write(`✗ verify:structure — computational gates: ${findings.length} finding(s)\n${detail}\n`)
     return 1
   }
   const tools = toolsSavedInSrcFirst(facts.scriptShells.map((s) => ({ path: s.path, lines: s.lines, routesThroughSrc: s.routesThroughSrc })))

@@ -15,6 +15,9 @@ import {
 import { quantumTestFramework } from '../../src/quantum/testing'
 import { quantumTestCoverageReport } from '../../src/quantum/testing/coverage'
 import { productionDeploymentAssessment } from '../../src/quantum/empirical'
+import { driftDetectionMeasuresRatherThanDeclares } from '../../src/quantum'
+import { crossUuidIsAnAuthenticationTagNotASignature } from '../../src/quantum/solution/crypto'
+import { censusIsDerivedFromHomologyAndTheDigitLattice } from '../../src/3/7'
 
 export function assertFolds(): void {
   const folds = [
@@ -22,6 +25,9 @@ export function assertFolds(): void {
     ['rosetta-rotation', rosettaRotationClosesAtSevenTransposeCoversThirtySix()],
     ['water-involution', waterSplitIsAnInvolutionSoNoSurplusExists()],
     ['pollution-is-fuel', thePollutionIsTheFuelNotTheWater()],
+    ['drift-measures', driftDetectionMeasuresRatherThanDeclares()],
+    ['cross-uuid-is-a-mac', crossUuidIsAnAuthenticationTagNotASignature()],
+    ['census-derived', censusIsDerivedFromHomologyAndTheDigitLattice()],
   ] as const
 
   let failed = 0

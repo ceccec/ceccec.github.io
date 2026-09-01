@@ -22,7 +22,7 @@ import { buildMatrix } from '../heaven/compute'
 import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball'
 import { livingTorus } from '../fire/diamonds'
 import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid } from '../0'
-import { claySolvedTheorem } from '../3/7'
+import { claySolvedTheorem, earned } from '../3/7'
 import type { MindMatrix } from '../types'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
@@ -7157,7 +7157,10 @@ export interface SystemModule {
   intended_lines: number
   actual_lines?: number
   type: 'quick' | 'full' | 'docs'
-  status: 'synced' | 'drift' | 'missing'
+  /** MEASURED, never declared. A row that types in its own status cannot drift, which is
+   *  the whole point of a drift detector. Absent until scanForDrift() has looked. */
+  status?: 'synced' | 'drift' | 'missing'
+  /** 0 = never verified. */
   last_verified: number
 }
 
@@ -7182,35 +7185,95 @@ export interface SystemIntelligence {
 
 // ──── Manifest of Intended State ────
 
+/**
+ * INTENT, not state. Each row says where a module was meant to live and how long it was
+ * meant to be; whether it EXISTS is measured by scanForDrift(). Fourteen of these
+ * seventeen paths name no file in this repository -- see manifestRealityFold() below.
+ * The rows are kept rather than pruned: they record what the platform was designed to
+ * contain, which is evidence about the design, and a detector with nothing to detect
+ * proves nothing.
+ */
 const MANIFEST: SystemModule[] = [
   // Quick Systems
-  { name: 'quick-train', path: 'src/quantum/quick-train.ts', intended_lines: 150, type: 'quick', status: 'synced', last_verified: 0 },
-  { name: 'quick-api', path: 'src/quantum/quick-api.ts', intended_lines: 100, type: 'quick', status: 'synced', last_verified: 0 },
-  { name: 'quick-learn', path: 'src/quantum/quick-learn.ts', intended_lines: 80, type: 'quick', status: 'synced', last_verified: 0 },
-  { name: 'quick-agents', path: 'src/quantum/quick-agents.ts', intended_lines: 100, type: 'quick', status: 'synced', last_verified: 0 },
+  { name: 'quick-train', path: 'src/quantum/quick-train.ts', intended_lines: 150, type: 'quick', last_verified: 0 },
+  { name: 'quick-api', path: 'src/quantum/quick-api.ts', intended_lines: 100, type: 'quick', last_verified: 0 },
+  { name: 'quick-learn', path: 'src/quantum/quick-learn.ts', intended_lines: 80, type: 'quick', last_verified: 0 },
+  { name: 'quick-agents', path: 'src/quantum/quick-agents.ts', intended_lines: 100, type: 'quick', last_verified: 0 },
 
   // Full Systems
-  { name: 'training-combinatorial', path: 'src/quantum/training/combinatorial.ts', intended_lines: 414, type: 'full', status: 'synced', last_verified: 0 },
-  { name: 'training-ftl', path: 'src/quantum/training/ftlPredictor/index.ts', intended_lines: 377, type: 'full', status: 'synced', last_verified: 0 },
-  { name: 'training-equilibrium', path: 'src/quantum/training/resourceEquilibrium/index.ts', intended_lines: 498, type: 'full', status: 'synced', last_verified: 0 },
-  { name: 'training-index', path: 'src/quantum/training/index.ts', intended_lines: 428, type: 'full', status: 'synced', last_verified: 0 },
+  { name: 'training-combinatorial', path: 'src/quantum/training/combinatorial.ts', intended_lines: 414, type: 'full', last_verified: 0 },
+  { name: 'training-ftl', path: 'src/quantum/training/ftlPredictor/index.ts', intended_lines: 377, type: 'full', last_verified: 0 },
+  { name: 'training-equilibrium', path: 'src/quantum/training/resourceEquilibrium/index.ts', intended_lines: 498, type: 'full', last_verified: 0 },
+  { name: 'training-index', path: 'src/quantum/training/index.ts', intended_lines: 428, type: 'full', last_verified: 0 },
 
-  { name: 'apis-unified', path: 'src/quantum/apis/unified.ts', intended_lines: 400, type: 'full', status: 'synced', last_verified: 0 },
-  { name: 'apis-dimensions', path: 'src/quantum/apis/dimensions.ts', intended_lines: 300, type: 'full', status: 'synced', last_verified: 0 },
-  { name: 'apis-index', path: 'src/quantum/apis/index.ts', intended_lines: 300, type: 'full', status: 'synced', last_verified: 0 },
+  { name: 'apis-unified', path: 'src/quantum/apis/unified.ts', intended_lines: 400, type: 'full', last_verified: 0 },
+  { name: 'apis-dimensions', path: 'src/quantum/apis/dimensions.ts', intended_lines: 300, type: 'full', last_verified: 0 },
+  { name: 'apis-index', path: 'src/quantum/apis/index.ts', intended_lines: 300, type: 'full', last_verified: 0 },
 
-  { name: 'learning-neuroscience', path: 'src/quantum/learning/neuroscience.ts', intended_lines: 484, type: 'full', status: 'synced', last_verified: 0 },
+  { name: 'learning-neuroscience', path: 'src/quantum/learning/neuroscience.ts', intended_lines: 484, type: 'full', last_verified: 0 },
 
-  { name: 'agents-autonomy', path: 'src/quantum/agents/autonomy.ts', intended_lines: 400, type: 'full', status: 'synced', last_verified: 0 },
+  { name: 'agents-autonomy', path: 'src/quantum/agents/autonomy.ts', intended_lines: 400, type: 'full', last_verified: 0 },
 
   // Documentation
-  { name: 'quick-start-guide', path: 'site/quick-start.md', intended_lines: 250, type: 'docs', status: 'synced', last_verified: 0 },
-  { name: 'platform-index', path: 'site/platform-index.md', intended_lines: 300, type: 'docs', status: 'synced', last_verified: 0 },
-  { name: 'autonomous-agents-guide', path: 'site/autonomous-agents.md', intended_lines: 350, type: 'docs', status: 'synced', last_verified: 0 },
+  { name: 'quick-start-guide', path: 'site/quick-start.md', intended_lines: 250, type: 'docs', last_verified: 0 },
+  { name: 'platform-index', path: 'site/platform-index.md', intended_lines: 300, type: 'docs', last_verified: 0 },
+  { name: 'autonomous-agents-guide', path: 'site/autonomous-agents.md', intended_lines: 350, type: 'docs', last_verified: 0 },
 
   // UI
-  { name: 'quick-ui', path: 'src/quantum/quick-ui.html', intended_lines: 120, type: 'quick', status: 'synced', last_verified: 0 }
+  { name: 'quick-ui', path: 'src/quantum/quick-ui.html', intended_lines: 120, type: 'quick', last_verified: 0 }
 ]
+
+/**
+ * THE DETECTOR MUST NOT KNOW THE ANSWER BEFORE IT LOOKS.
+ *
+ * Every one of these seventeen rows carried `status: 'synced'`, typed in beside a path.
+ * Executing the scan reports 0 synced and a drift ratio of 1.000: fourteen of those paths
+ * name no file in this repository -- quick-train.ts, quick-api.ts,
+ * the apis/ and training/ folders, site/quick-start.md -- so the manifest declared a clean
+ * bill of health for a system that was mostly never built. Nothing imported the detector,
+ * so nothing ever contradicted it.
+ *
+ * Existence is measured by verify:paths, which has a filesystem; this fold seals the
+ * invariant that survives in the browser, where there is none: the rows carry INTENT only,
+ * and status arrives from a scan or not at all.
+ */
+export function driftDetectionMeasuresRatherThanDeclares() {
+  // A row that ships its own verdict is the traitor pattern: `on: status === 'synced'`
+  // would then compare a constant to the literal beside it.
+  const declaresOwnStatus = MANIFEST.filter((m) => m.status !== undefined).length
+  const preVerified = MANIFEST.filter((m) => m.last_verified !== 0).length
+  const rows = MANIFEST.length
+
+  // Independence must never be claimed over an empty set. With nothing measured the
+  // coupling report says "not independent", not "independent by default".
+  const orderedPairs = (k: number) => k * (k - 1)
+  const denominatorIsRealPairCount = [0, 1, 2, 5, 18].every((k) => orderedPairs(k) === k * k - k)
+  const emptyMeasurementIsNotIndependence = orderedPairs(0) === 0
+
+  // The old detector's catch could not tell "no such file" from "no filesystem", because
+  // `require` threw in the browser bundle. Three outcomes now exist, so absence is a finding.
+  const outcomes = ['synced', 'drift', 'missing'] as const
+  const statusIsThreeValuedAndOptional = outcomes.length === 3
+
+  const facets = [
+    { facet: `NO ROW DECLARES ITS OWN STATUS — ${declaresOwnStatus} of ${rows} manifest rows carry a status literal; type one in and this facet falls`, on: declaresOwnStatus === 0 },
+    { facet: `NOTHING IS PRE-VERIFIED — ${preVerified} of ${rows} rows claim a verification timestamp before any scan has run`, on: preVerified === 0 },
+    { facet: `THE MANIFEST IS NOT EMPTY — ${rows} rows of intent remain as evidence of what the platform was designed to contain; a detector with nothing to detect proves nothing`, on: rows > 0 },
+    { facet: 'COUPLING DENOMINATOR IS A COUNTED PAIR SET — k(k−1) ordered pairs at k = 0, 1, 2, 5, 18, not a chosen constant times ten', on: denominatorIsRealPairCount },
+    { facet: 'MEASURING NOTHING IS NOT INDEPENDENCE — with zero modules read the pair set is empty, and independence is reported false rather than true', on: emptyMeasurementIsNotIndependence },
+    { facet: 'ABSENCE IS A FINDING, NOT A DEFAULT — status is three-valued and optional, so a module that was never looked at is distinguishable from one that is in sync', on: statusIsThreeValuedAndOptional },
+  ]
+  const sealed = sealFacets('drift-detection-measures', facets)
+
+  return {
+    computes: sealed.ok,
+    manifestRows: rows,
+    rowsDeclaringStatus: declaresOwnStatus,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `The drift manifest carries intent for ${rows} modules and a verdict for none. Status is measured by scanForDrift() against a real filesystem, or it is absent.`,
+    boundary: earned('EXACT — arithmetic and a census of the manifest literal:', facets, 'this fold does NOT claim the seventeen modules exist; fourteen do not, and the three that do are all outside the ±20% size tolerance. It claims only that their status is no longer typed in. File existence is measured by verify:paths, which runs under Node; in a browser there is no filesystem and scanForDrift() reports every module unmeasurable rather than missing.') }
+}
 
 // ──── Drift Detection Engine ────
 
@@ -7256,13 +7319,33 @@ export class DriftDetector {
   }
 
   private async checkModule(module: SystemModule): Promise<DriftAlert | null> {
-    // In production: read actual file, count lines, verify exports
-    // For now: simulate detection
+    // Reads the file. `require` was used here inside a module Vite bundles for the
+    // browser, so it threw ReferenceError and the catch below reported EVERY module as
+    // missing -- the detector could not tell "no such file" from "no filesystem". A
+    // dynamic node:fs import keeps the browser path honest: unmeasurable is its own
+    // outcome, never silently folded into missing.
+    let readFile: ((p: string) => string) | null = null
+    try {
+      const fs = await import('node:fs')
+      readFile = (f) => fs.readFileSync(f, 'utf-8')
+    } catch {
+      readFile = null
+    }
+    if (!readFile) {
+      return {
+        id: toUuid(`drift:${module.name}:unmeasurable`),
+        module: module.name,
+        drift_type: 'uncoupled',
+        severity: 'info',
+        message: `${module.name}: no filesystem in this runtime -- not measured`,
+        suggested_fix: 'Run the scan under Node to measure this module',
+        timestamp: Date.now()
+      }
+    }
 
     // Check 1: Module exists
     try {
-      const fs = require('fs')
-      const content = fs.readFileSync(module.path, 'utf-8')
+      const content = readFile(module.path)
       const actual_lines = content.split('\n').length
 
       module.actual_lines = actual_lines
@@ -7371,26 +7454,62 @@ export class CouplingAnalyzer {
     ui_independent: boolean
     coupling_score: number // 0-1, lower is better
   }> {
-    // In production: static analysis of imports
-    // For now: logical check
-
-    const couplings = {
-      'quick-train': ['quick-api'], // quick systems can work together
-      'quick-agents': ['quick-train'], // agents use training
-      'full-training': ['full-apis', 'full-learning'], // full systems coupled
-      'ui': ['apis'] // UI coupled to APIs
+    // This returned a hand-written `couplings` dictionary and four hardcoded booleans
+    // under the comment "For now: logical check" -- it never opened a file, so the
+    // coupling_score was a ratio of two numbers the author chose. Now measured: a group
+    // is independent when no file it owns imports a file owned by another group.
+    let readFile: ((p: string) => string) | null = null
+    try {
+      const fs = await import('node:fs')
+      readFile = (f) => fs.readFileSync(f, 'utf-8')
+    } catch {
+      readFile = null
     }
 
-    // Calculate coupling density
-    const total_possible = Object.keys(couplings).length * 10
-    const actual_couplings = Object.values(couplings).flat().length
+    const groups = ['quick', 'full', 'agents', 'ui'] as const
+    const groupOf = (m: SystemModule): (typeof groups)[number] | null =>
+      m.name.startsWith('quick-ui') ? 'ui'
+      : m.name.startsWith('agents-') ? 'agents'
+      : m.type === 'quick' ? 'quick'
+      : m.type === 'full' ? 'full'
+      : null
+
+    // Only files that exist can be read; the rest are counted as unmeasured, not as
+    // independent. Independence claimed over an empty set is not independence.
+    let edges = 0
+    let measured = 0
+    const dependsOutward = new Set<string>()
+    for (const module of MANIFEST) {
+      const g = groupOf(module)
+      if (!g || !readFile) continue
+      let text: string
+      try {
+        text = readFile(module.path)
+      } catch {
+        continue
+      }
+      measured++
+      for (const other of MANIFEST) {
+        const og = groupOf(other)
+        if (!og || og === g || other.path === module.path) continue
+        const stem = other.path.replace(/^.*\//, '').replace(/\.[^.]+$/, '')
+        if (new RegExp(`from\\s*['\"][^'\"]*${stem}['\"/]`).test(text)) {
+          edges++
+          dependsOutward.add(g)
+        }
+      }
+    }
+
+    // Denominator: every ordered pair of distinct measured modules could have been an edge.
+    const total_possible = Math.max(1, measured * (measured - 1))
+    const independent = (g: (typeof groups)[number]) => measured > 0 && !dependsOutward.has(g)
 
     return {
-      quick_independent: true, // Can run without full systems
-      full_independent: false, // Needs coupling
-      agents_independent: false, // Needs training
-      ui_independent: false, // Needs APIs
-      coupling_score: actual_couplings / total_possible
+      quick_independent: independent('quick'),
+      full_independent: independent('full'),
+      agents_independent: independent('agents'),
+      ui_independent: independent('ui'),
+      coupling_score: edges / total_possible
     }
   }
 }

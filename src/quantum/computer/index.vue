@@ -205,7 +205,7 @@ const honestRev = shallowRef(honestRevolutionComputerPanelComputes())
         </div>
       </section>
 
-      <section class="qc-lab__fab" data-logic="src/heaven/compute/computer/index.ts" data-topic="silicon-fabrication">
+      <section class="qc-lab__fab" data-logic="src/quantum/computer/index.ts" data-topic="silicon-fabrication">
         <h3>The chip fabricating itself · {{ fabStage.stage }} ({{ fabStage.index + 1 }}/{{ fabStage.total }})</h3>
         <ol class="qc-lab__fab-stages">
           <li v-for="(s, i) in fabPlan.stages" :key="s.stage" :class="{ 'is-done': i <= fabStage.index }">{{ s.stage }}</li>

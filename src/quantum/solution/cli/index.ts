@@ -83,7 +83,7 @@ export async function runSolutionDemoExit(root: string, argv: string[] = []): Pr
   console.log('\nCOMPONENT 3: Performance Benchmarks\n')
   console.log('──────────────────────────────────\n')
 
-  const bench = benchmarkCrossUuid()
+  const bench = await benchmarkCrossUuid()
   console.log(`Key generation:   ${bench.keyGenMs}ms`)
   console.log(`Key exchange:     ${bench.exchangeMs}ms`)
   console.log(`Signing:          ${bench.signMs}ms`)
@@ -109,22 +109,25 @@ export async function runSolutionDemoExit(root: string, argv: string[] = []): Pr
   console.log('║                      SOLUTION MANIFEST                         ║')
   console.log('╚════════════════════════════════════════════════════════════════╝\n')
 
-  const manifest = solutionManifest()
+  const manifest = await solutionManifest()
   console.log(`Title: ${manifest.title}`)
   console.log(`Version: ${manifest.version}`)
   console.log(`Status: ${manifest.status}`)
   console.log(`Proof: ${manifest.proof}\n`)
 
+  // The tick marks were printed unconditionally, so a component reporting NOT READY still
+  // rendered as "✓ ... NOT READY". Nothing is ticked here that was not discharged.
   console.log('Components:')
-  console.log(`  ✓ End-to-End Key Lifecycle: ${Object.values(manifest.components.endToEndKeyLifecycle).join(', ')}`)
-  console.log(
-    `  ✓ Blockchain Protocol: ${Object.values(manifest.components.blockchainProtocol).join(', ')}`
-  )
-  console.log(`  ✓ Performance: ${manifest.components.performance.advantage}`)
-  console.log(`  ✓ Migration: ${manifest.components.migration.phases} phases (2026 Q4 → 2027 Q3)\n`)
+  console.log(`  key lifecycle: ${Object.values(manifest.components.endToEndKeyLifecycle).join(', ')}`)
+  console.log(`  blockchain:    ${Object.values(manifest.components.blockchainProtocol).join(', ')}`)
+  console.log(`  performance:   ${manifest.components.performance.advantage}`)
+  console.log(`  migration:     ${manifest.components.migration.phases} phases — ${manifest.components.migration.readiness}\n`)
 
-  console.log('Next Steps:')
-  manifest.nextSteps.forEach((step) => console.log(`  ${step}`))
+  // The old manifest ended in a to-do list. What follows is what the scheme was measured
+  // to do, each line falsifiable by running it.
+  console.log('Measured properties:')
+  for (const f of manifest.macFacets) console.log(`  ${f.on ? 'ON ' : 'OFF'} ${f.facet}`)
+  console.log(`  root: ${manifest.root}`)
 
   console.log(`\n${manifest.statement}\n`)
 
@@ -132,13 +135,16 @@ export async function runSolutionDemoExit(root: string, argv: string[] = []): Pr
 }
 
 export async function runSolutionBenchmarkExit(root: string, argv: string[] = []): Promise<number> {
-  const bench = benchmarkCrossUuid()
+  const bench = await benchmarkCrossUuid()
   console.log('Cross-UUID Performance Benchmark\n')
   console.log(`Key generation:   ${bench.keyGenMs}ms`)
   console.log(`Key exchange:     ${bench.exchangeMs}ms`)
   console.log(`Signing:          ${bench.signMs}ms`)
   console.log(`Verification:     ${bench.verifyMs}ms`)
   console.log(`Total:            ${bench.totalMs}ms\n`)
+  console.log(bench.rsa.measured
+    ? `RSA-2048 baseline: keygen ${bench.rsa.keyGenMs.toFixed(2)}ms  sign ${bench.rsa.signMs.toFixed(4)}ms  verify ${bench.rsa.verifyMs.toFixed(4)}ms`
+    : 'RSA-2048 baseline: NOT MEASURED in this runtime')
   console.log(bench.comparison)
   return 0
 }
@@ -157,7 +163,7 @@ export async function runSolutionMigrationExit(root: string, argv: string[] = []
 }
 
 export async function runSolutionManifestExit(root: string, argv: string[] = []): Promise<number> {
-  const manifest = solutionManifest()
+  const manifest = await solutionManifest()
   console.log(JSON.stringify(manifest, null, 2))
   return 0
 }
