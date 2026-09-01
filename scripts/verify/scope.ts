@@ -24,6 +24,7 @@
 import { createRequire } from 'node:module'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
+import { corpusFiles } from './corpus.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
@@ -226,6 +227,50 @@ export function findNarratedScopes(root: string = process.cwd()): NarratedScope[
  * boundaries, and no single alternative above 5.7% of the visible sample. That is what a genuine
  * multi-alternative detector looks like next to a disguised single one, which is the comparison worth having.
  */
+/**
+ * DISCOVERED, NOT HAND-PICKED. The involution above was run on three criteria I chose myself, which makes it
+ * an anecdote with arithmetic in it. Choosing which criteria to examine is the manual judgement, and manual
+ * judgement is what keeps missing things: the same defect put zero of seventeen converted folds into a
+ * hand-written gate list, and it would put whichever regex I happened to notice into a hand-written audit.
+ *
+ * So the criteria are found rather than listed: every `const NAME = /…/` in the corpus, from the AST, reusing
+ * the corpus parse (parsed once, memoised) rather than walking the tree again. Pure — a function of the
+ * source text and the corpus it is measured against, with no state and no ordering dependence.
+ */
+export type Criterion = { name: string; file: string; line: number; source: string; flags: string }
+
+/** Every regular expression bound to a const, corpus-wide, discovered from the syntax tree.
+ *
+ *  QUANTUM SPEED HERE MEANS PRODUCE ONCE. The first version walked and parsed the tree itself — 2050ms of
+ *  the 2100 this costs — duplicating a parse corpus.ts had already done and memoised. Reusing it drops the
+ *  discovery to the cost of the visit, and the parse is paid by whichever gate needs it first. That is the
+ *  repo's own produce-over-verify ratio applied to its own instruments rather than to its subject matter.
+ */
+export function discoverCriteria(root: string = process.cwd()): Criterion[] {
+  const ts = require('typescript') as typeof import('typescript')
+  const found: Criterion[] = []
+  for (const file of corpusFiles(root)) {
+    const sf = file.ast()
+    const visit = (node: import('typescript').Node): void => {
+      if (
+        ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) &&
+        node.initializer && ts.isRegularExpressionLiteral(node.initializer)
+      ) {
+        const raw = node.initializer.getText(sf)
+        const m = raw.match(/^\/(.*)\/([gimsuy]*)$/s)
+        if (m) found.push({
+          name: node.name.text, file: file.rel,
+          line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
+          source: m[1]!, flags: m[2]!,
+        })
+      }
+      ts.forEachChild(node, visit)
+    }
+    visit(sf)
+  }
+  return found
+}
+
 export type Concentration = { name: string; file: string; line: number; alternatives: number; passes: number; corpus: number; top: string; topShare: number }
 
 /** Split a top-level alternation, respecting escapes, character classes and groups. */
@@ -290,4 +335,25 @@ export function assertScopesCompute(): void {
     throw new Error(`${boundaries.length} narrated boundar(ies) — above the baseline of ${BOUNDARY_BASELINE}. A limit that cannot fail is not a limit.`)
   }
   if (boundaries.length < BOUNDARY_BASELINE) console.log(`  ${BOUNDARY_BASELINE - boundaries.length} converted — lower BOUNDARY_BASELINE to ${boundaries.length}`)
+
+  // THE INVOLUTION, RUN OVER EVERYTHING RATHER THAN OVER WHAT I NOTICED. Reports, never ratchets: a pattern
+  // may be legitimately dominated by its main case, and there is no share at which a name becomes dishonest.
+  const criteria = discoverCriteria()
+  const alternating = criteria.filter((c) => alternativesOf(c.source).length >= 4)
+  console.log(`\ncriteria involuted: ${criteria.length} regex constants discovered, ${alternating.length} with 4+ alternatives`)
+  // THE CORPUS IS NAMED, because a concentration figure means nothing without one. This gate owns boundary
+  // prose and nothing else, so that is what it measures against — NOT each criterion's own subject matter.
+  // REFUTABLE's authoritative numbers (96.6% pass, 97.3% on \d) are over theorem statements and are recorded
+  // in the header above; the ranking here is a different corpus and will differ. Reporting the wrong corpus
+  // silently would be the exact defect this file exists for.
+  const corpus = boundaries.map((b) => b.says)
+  const ranked = alternating
+    .map((c) => { try { return concentrationOf(c.name, c.file, c.line, new RegExp(c.source, c.flags.replace('g', '')), corpus) } catch { return undefined } })
+    .filter((r): r is Concentration => !!r && r.passes >= 2 * 5)
+    .sort((a, b) => b.topShare - a.topShare)
+  console.log(`  measured against ${corpus.length} boundary excerpts (this gate's own corpus, NOT each criterion's subject) · ${ranked.length} rank`)
+  console.log('  a high share means the other alternatives are decoration — REPORTED, not enforced:')
+  for (const r of ranked.slice(0, 2 * 3)) {
+    console.log(`    ${(r.topShare * 100).toFixed(1).padStart(5)}% of passes on one alternative · ${String(r.alternatives).padStart(2)} alts · ${r.name} (${r.file}:${r.line}) → ${r.top.slice(0, 24)}`)
+  }
 }
