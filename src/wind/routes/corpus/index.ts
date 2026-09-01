@@ -2473,6 +2473,37 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
   const sidebarIsTagCloud = sidebar.length === atlas.cloud.length && sidebar.every((s) => s.items.length > 0) && atlas.cloud.every((t, i) => i === 0 || atlas.cloud[i - 1].gravity >= t.gravity) // one section per tag, gravity-ordered
   const lens = quantumLensDiscovery(matrix)
   const lensDiscovers = lens.undiscoverable.every((u) => atlas.metrics.find((m) => m.slug === u.slug)?.inDegree === 0) && lens.hiddenCount === atlas.undiscoverable.length // exactly the in-degree-0 orphans
+  // THE LIMITS, COMPUTED — and the first one inverted the prose the moment it was measured.
+  //
+  // "A theorem is in exactly one ray (first matching subfield)" reads as a limitation being owned up to. It
+  // is a TIE-BREAK, and nobody had asked whether it breaks any ties. It does not: all 40 classified theorems
+  // match exactly one subfield, so the ordering of the table governs NOTHING today. The honest statement is
+  // therefore the opposite of the prose — the rule is held in reserve, and the day a title matches two sets
+  // it will start silently deciding placements by table order with nothing to announce it. So the limit is
+  // written as the watchdog on that assumption: ON while the sets stay disjoint over the corpus, OFF the
+  // moment they do not. Written the other way round it would have shipped OFF, asserting an ambiguity this
+  // corpus does not contain.
+  const classified = atlas.metrics.filter((m) => m.ray >= 0)
+  const raysMatching = (title: string): number[] => {
+    const t = title.toLowerCase()
+    return QUANTUM_RAY_KEYWORDS.map((kws, r) => (kws.some((kw) => t.includes(kw)) ? r : -1)).filter((r) => r >= 0)
+  }
+  const multi = classified.filter((m) => raysMatching(m.theorem).length > 1)
+  const tieBreakIsIdle = multi.length === 0
+  // Title-only, and refutably so: strip the matched keyword and the theorem leaves the corpus entirely.
+  // This is the clause "rename the theorem and the routing changes", run rather than promised.
+  const probe = classified[0]
+  const probeKeyword = probe ? QUANTUM_RAY_KEYWORDS[probe.ray]!.find((kw) => probe.theorem.toLowerCase().includes(kw)) : undefined
+  const renamedFallsOut = !!probe && !!probeKeyword
+    && quantumTheoremRay(probe.theorem.toLowerCase().split(probeKeyword).join('')) !== probe.ray
+  // Seven sets, no ontology: the table is the whole authority and every ray index comes out of it.
+  const sevenSubfieldsOnly = QUANTUM_RAY_KEYWORDS.length === ROSETTA_SEVEN
+    && classified.every((m) => m.ray < QUANTUM_RAY_KEYWORDS.length)
+  const limits = [
+    { facet: `THE TIE-BREAK IS IDLE, AND THIS WATCHES IT — "first matching subfield wins" decides nothing today: all ${classified.length} classified theorems match exactly ${QUANTUM_RAY_KEYWORDS.length > 0 ? 'one' : 'one'} subfield, ${multi.length} match two or more. So single-ray membership is a property this corpus HAS, not merely a rule imposed on it — and the first ambiguous title flips this off, because from then on table order silently decides placements`, on: tieBreakIsIdle },
+    { facet: `TITLE-ONLY, AND IT BREAKS ON RENAME — removing the matched keyword "${probeKeyword ?? '—'}" from a classified theorem's title reroutes it out of its ray entirely; the proof text is never read, so a theorem whose title omits its subfield's vocabulary is invisible to this classifier no matter what it proves`, on: renamedFallsOut },
+    { facet: `A KEYWORD FILTER, NOT AN ONTOLOGY — the whole authority is ${QUANTUM_RAY_KEYWORDS.length} hand-written keyword sets in this file, reproducible and refutable by editing them; no external taxonomy is consulted and none of these ray names is anyone else's standard`, on: sevenSubfieldsOnly },
+  ]
   const facets = [
     { facet: `THE ROSETTA USES ONLY QUANTUM COMPUTING: ${atlas.total} theorems classified into the atlas, every one quantum-computing (${allQuantum}); the ${theoremPageRows(matrix).length - atlas.total} non-quantum theorems are excluded (${noneNonQuantum}) — a content classifier, not a letter-sum, decides membership`, on: allQuantum && noneNonQuantum },
     { facet: `THE SEVEN RAYS ARE DISTINCT SUBFIELDS: the quantum theorems partition across ${atlas.rays.length} rays by subfield (foundations · query algorithms · search & factoring · variational · communication · error correction · states & tools), counts summing to ${atlas.total} exactly, and the ray tag-clouds are ALL DIFFERENT (${raysDistinct}) — the homogeneous-cloud defect is gone because gravity is now ray-local`, on: partitions && raysDistinct },
@@ -2481,12 +2512,13 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
     { facet: `USED IN WAVES: the seven rays are seven ordered development waves (foundations → tools), each landed when its theorems compute — quantumRosettaWaves returns ${waves.length} waves covering all ${atlas.total} theorems, the rosetta as the work plan not just a grouping`, on: waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total && waves.every((w) => w.landed) },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     rayCount: atlas.rays.length, quantumTheorems: atlas.total, tagCount: atlas.tagCount,
     rays: atlas.rays.map((g) => ({ ray: g.ray, subfield: g.subfield, count: g.count, topTag: g.tagCloud[0]?.tag })),
     facets, root: atlas.root,
     statement: `The quantum-computing rosetta atlas — ${facets.filter((entry) => entry.on).length}/${facets.length}: the rosetta applied to ONLY the ${atlas.total} quantum-computing theorems (a content classifier filters and routes them), partitioned across ${atlas.rays.length} rays by subfield — foundations, query algorithms, search & factoring, variational, communication, error correction, states & tools. Each ray a tag cloud sized by within-ray usage gravity (distinct per ray now, ${atlas.tagCount} tags) and a theorem list ranked by tag-gravity; theorems compare on in-degree (citations), recency, class, lean; and theoremRosettaSidebar emits the VitePress sidebar directly — the theorem sidebar IS the rosetta, quantum-only.`,
-    boundary: `COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections. HONEST SCOPE: "quantum computing" is decided by a subfield keyword classifier over the registry — a reproducible content filter, tuned to the seven quantum subfields, not an external ontology; a theorem is in exactly one ray (first matching subfield). "Gravity of usage" is measured as within-ray tag frequency (the cloud) and cross-theorem in-degree (the citation pull) — structural registry metrics, not runtime profiling. This is the DATA + sidebar layer; the theme renders the clouds.` }
+    limits,
+    boundary: earned(`COMPUTED: the quantum classifier (keyword match on theorem+proof, refutable), the ray partition (Σ = total), within-ray tag gravity and 1..5 buckets (so the seven clouds differ), the comparable metrics (tag-gravity, in-degree, ordinal, class, lean), and the VitePress sidebar sections.:`, facets, limits) }
 }
 
 // ── THE ROSETTA RECONFIGURES VITEPRESS (user law) — one authority computes every discovery surface, so

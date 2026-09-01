@@ -474,7 +474,7 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
     { facet: `ONE NEW PRIMITIVE, THE REST SHARED: the QFT needs only a general controlled-phase R(θ) beyond the sealed H/cnot/cz — everything else is the src/0 state-vector kernel; deterministic simulation, NO physical speedup claimed (sealed law)`, on: circuitIsDft && peExact },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     maxError: maxErr,
     phaseEstimates: phis.map((phi) => ({ phi, estimate: phaseEstimate(phi, T) })),
     facets,
@@ -551,7 +551,7 @@ export function shorFactorsByPeriodFinding() {
     { facet: `THE READOUT IS THE ONE BUILT HERE: the QFT-based phase readout from theQuantumFourierTransformCircuitAndPhaseEstimation drives the classical-reversible mod-exp oracle, so the two folds compose rather than each simulating its own half`, on: allValid },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     runs: runs.map((r) => ({ N: r.N, a: r.a, period: r.result.period, factors: r.result.factors })),
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`shor:${entry.facet}:${entry.on}`))),
@@ -599,7 +599,7 @@ export function theMixedStateLayer() {
     { facet: `ENTANGLEMENT = PURE WHOLE, MIXED PART: the Bell pair is pure (tr(ρ²) = ${purity(bell).toFixed(4)}), yet tracing out one qubit leaves the other MAXIMALLY MIXED — tr(ρ_A²) = ${purity(reduced).toFixed(4)} = 1/2, ρ_A = I/2 — the operational signature of entanglement, computed by partial trace`, on: abs(purity(bell) - 1) < EPS && abs(purity(reduced) - 1 / 2) < EPS && abs(trace(reduced) - 1) < EPS },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     purities: { pure: purity(pure), mixed: purity(mixed), bell: purity(bell), reduced: purity(reduced) },
     facets,
     root: merkleFold(facets.map((entry) => toUuid(`mixed-state:${entry.facet}:${entry.on}`))),
@@ -664,7 +664,7 @@ export function theShorNineQubitCodeCorrectsAnySingleError() {
     { facet: `CONCATENATION IS DOUBLY-EXPONENTIAL: each level squares the suppression (halving p quarters p_L — quadratic, verified), so L levels give p_L = p_th·(p/p_th)^{2^L} → 0 for p < p_th; arbitrarily reliable logical qubits from imperfect physical ones, the essence of fault tolerance`, on: quadratic },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     errorsDetected: errors.filter((e) => e.syn !== zero).length,
     threshold: pTh,
     facets,
@@ -733,7 +733,7 @@ export function variationalQuantumEigensolverAndQaoa() {
     { facet: `HYBRID BY DESIGN, DETERMINISTIC HERE: both are quantum-circuit expectations minimised/maximised by a classical outer loop (the real VQE/QAOA structure); run as deterministic simulations — the algorithm's shape, NOT physical speedup (sealed law), the honest small-system model`, on: vqeExact && qaoaReachesCut },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     vqe: vqeCases,
     qaoa: { found: bestCut, maxCut: exactMaxCut, baseline: randomBaseline },
     facets,
@@ -805,7 +805,7 @@ export function adiabaticQuantumComputationAndAnnealing() {
     { facet: `QUANTUM ANNEALING SOLVES THE ISING GROUND STATE: H₁'s ground state encodes the optimisation answer (min of −(Z₀+½Z₁) = ${exactGround} at |00⟩), and the adiabatic sweep FINDS it (P = ${slow.p.toFixed(4)}) — the annealing model (D-Wave's principle), here a DETERMINISTIC simulation with no physical speedup (sealed law)`, on: annealingSolves },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     runs, exactGround,
     facets, root: merkleFold(facets.map((entry) => toUuid(`adiabatic:${entry.facet}:${entry.on}`))),
     statement: `Adiabatic quantum computation and annealing — ${facets.filter((entry) => entry.on).length}/${facets.length}: begin in the ground state of H₀ = −(X₀+X₁) and interpolate slowly to H₁ = −(Z₀+½Z₁); the state tracks the instantaneous ground state and ends in |00⟩, the ground state of H₁ — P(ground) rises ${fast.p.toFixed(3)} → ${slow.p.toFixed(4)} as the sweep slows (${fast.T} → ${slow.T}), and ⟨H₁⟩ → the exact ground energy ${exactGround}. A fast sweep is diabatic (the condition is real); quantum annealing reads the optimisation answer off the Ising ground state. Deterministic simulation on the local gate set, no physical speedup.`,
@@ -870,7 +870,7 @@ export function thePhaseFlipCodeCorrectsAnyZError() {
     { facet: `TOGETHER THEY GIVE UNIVERSAL CORRECTION: bit-flip (X) and phase-flip (Z) are the two halves the Shor nine-qubit code concatenates to correct ANY single-qubit error (Y = XZ = both) — this seals the missing dual beside bitFlipCode`, on: correctsAnyZ },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     fidelities,
     facets, root: merkleFold(facets.map((entry) => toUuid(`phase-flip:${entry.facet}:${entry.on}`))),
     statement: `The phase-flip code corrects any Z error — ${facets.filter((entry) => entry.on).length}/${facets.length}: the Hadamard dual of the bit-flip code (H⊗3 · bitFlipCode · H⊗3) recovers the logical qubit after a Z error on any of its 3 qubits, fidelity 1, via the same Z₀Z₁/Z₁Z₂ syndrome. A phase error is a bit error in the Hadamard basis; bit-flip and phase-flip together are the two halves the Shor nine-qubit code concatenates to correct any single-qubit error.`,
@@ -923,7 +923,7 @@ export function theNoCommunicationTheorem() {
     { facet: `ENTANGLEMENT CORRELATES BUT CANNOT SIGNAL: the perfect correlations appear only when the outcomes are COMPARED over a classical channel; alone, Bob learns nothing from Alice's choice — this is why entanglement respects no-faster-than-light, the no-communication theorem`, on: bobMaximallyMixed && unchangedByAlice },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     facets, root: merkleFold(facets.map((entry) => toUuid(`no-comm:${entry.facet}:${entry.on}`))),
     statement: `The no-communication theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: Bob's half of a Bell pair is the maximally mixed I/2, and NO local operation Alice performs (X, H, HZ, Y) changes it — his reduced density matrix is invariant, so no measurement of his qubit reveals Alice's choice. Entanglement yields correlations only when outcomes are compared over a classical channel; it cannot carry a message, which is why it never violates relativistic causality.`,
     limits,
@@ -975,7 +975,7 @@ export function everyMixedStateHasAPurification() {
     { facet: `THE CONVERSE OF DECOHERENCE: theMixedStateLayer showed a channel makes a pure state mixed; this shows every mixed state ARISES that way — as the partial trace of a pure global state — so the pure-state and density-matrix pictures are equivalent, one enlarged by the environment`, on: recoversRho && psiIsPure },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     purity: p * p + (1 - p) * (1 - p),
     facets, root: merkleFold(facets.map((entry) => toUuid(`purification:${entry.facet}:${entry.on}`))),
     statement: `Every mixed state has a purification — ${facets.filter((entry) => entry.on).length}/${facets.length}: the mixed ρ = diag(${p}, ${(1 - p).toFixed(1)}) is the partial trace of the PURE, entangled |Ψ⟩ = √p|00⟩+√(1−p)|11⟩ — tr_B(|Ψ⟩⟨Ψ|) = ρ exactly, and |Ψ⟩ is a genuine pure state. Mixedness is entanglement with an environment traced away: decoherence (the mixed-state layer) and purification are the two directions of the same fact, so the pure-state and density-matrix pictures are equivalent.`,
@@ -1036,7 +1036,7 @@ export function amplitudeAmplificationAndQuantumCounting() {
     { facet: `ONE ROTATION, TWO ALGORITHMS: amplitude amplification and quantum counting are the SAME 2D {good, bad} rotation by 2θ — one USES it to concentrate probability, the other MEASURES its angle to count; deterministic simulation of the algorithm's structure, no physical speedup (sealed law)`, on: oneRotation && amplificationMatches && countingRecovers },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     cases,
     facets, root: merkleFold(facets.map((entry) => toUuid(`aa-counting:${entry.facet}:${entry.on}`))),
     statement: `Amplitude amplification and quantum counting — ${facets.filter((entry) => entry.on).length}/${facets.length}: in the 2D {good, bad} subspace the Grover operator is a rotation by 2θ (sin θ = √(M/N)). Amplitude amplification uses it to drive the success probability from M/N to ~1 in O(√(N/M)) steps (state-vector sim matches sin((2k+1)θ)² exactly); quantum counting measures its eigenphase to recover M = N sin²θ (counts 1, 2, 4 recovered). One rotation, two algorithms — the parents of Grover search and of estimating how many solutions exist.`,
@@ -1133,7 +1133,7 @@ export function theVariationalPrincipleLowerBound() {
     { facet: `WHY VQE WORKS, PROVEN: variationalQuantumEigensolverAndQaoa minimises ⟨ψ(θ)|H|ψ(θ)⟩; this theorem guarantees that minimum cannot fall below E₀ and reaches it when the ansatz spans the ground state — the algorithm's correctness rests on this bound, not on luck`, on: boundHolds && tightAtGround },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     E0, minExpectation: minE,
     facets, root: merkleFold(facets.map((entry) => toUuid(`var-principle:${entry.facet}:${entry.on}`))),
     statement: `The variational principle lower bound — ${facets.filter((entry) => entry.on).length}/${facets.length}: for every state ⟨ψ|H|ψ⟩ ≥ E₀ = ${E0.toFixed(4)} (verified over ${samples} Bloch-sphere states, none below), with equality iff |ψ⟩ is the ground state (the minimum reaches ${minE.toFixed(4)} = E₀). This is the theorem beneath VQE: minimising the energy expectation over any ansatz can never undershoot the ground energy and reaches it exactly when the ansatz spans the ground state — the guarantee that makes the variational quantum eigensolver correct.`,
@@ -1184,7 +1184,7 @@ export function theQuantumHammingBoundAndThePerfectFiveQubitCode() {
     { facet: `DEGENERACY IS ALLOWED BEYOND PERFECT: the Shor [[9,1,3]] code has ${codes[2].syndromes} syndromes for only ${codes[2].errors} errors (${shorDegenerate}) — degenerate, distinct errors sharing syndromes, which the bound permits; the perfect code is the tight extreme, the Shor code the redundant one`, on: shorDegenerate },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     codes,
     facets, root: merkleFold(facets.map((entry) => toUuid(`hamming-bound:${entry.facet}:${entry.on}`))),
     statement: `The quantum Hamming bound and the perfect five-qubit code — ${facets.filter((entry) => entry.on).length}/${facets.length}: a code correcting any single-qubit error must give each of the 3n+1 single-qubit Paulis (I + X,Y,Z per qubit) a distinct syndrome, so 2^(n−k) ≥ 3n+1. The [[5,1,3]] code saturates it (2⁴ = 16 = 3·5+1) — the perfect, smallest single-error-correcting code, n = 5 being the minimum; the [[7,1,3]] Steane and [[9,1,3]] Shor codes satisfy the bound with room to spare (the Shor code degenerate). Counting the syndromes bounds how small a quantum code can be.`,
