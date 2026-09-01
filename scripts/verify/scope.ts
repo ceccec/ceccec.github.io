@@ -31,7 +31,7 @@ const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
 /** Highest count of NARRATED scopes tolerated. Lower it as folds convert; never raise it. */
 const BASELINE = 620
 /** The same ratchet for `boundary:` values that are prose rather than computed limits. Never raise it. */
-const BOUNDARY_BASELINE = 2799
+const BOUNDARY_BASELINE = 2798
 
 export type NarratedScope = { file: string; line: number; head: string }
 

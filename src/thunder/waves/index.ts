@@ -2647,6 +2647,34 @@ export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMa
   const topTags = [...cloud.entries()].sort((a, b) => b[1] - a[1]).slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5)
   const reordersFromSeed = sorted.some((s, i) => s.seedIndex !== i) // the tag-cloud order differs from registry order
   const isDescending = sorted.every((s, i) => i === 0 || s.score <= sorted[i - 1]!.score)
+  // THE LIMITS, COMPUTED. "Tag frequency is a proxy for how connected a theorem is ... NOT a claim about
+  // importance" is a statement about what this ranking does not track. The first draft of this limit tested a
+  // top-10 overlap with a length ranking and came back 2/10, and I nearly shipped that as evidence of a
+  // mechanism. Two out of ten is thin, and asserting "the score rewards verbosity BECAUSE longer statements
+  // carry more tags" from it would be a mechanism claimed off a coincidence-sized number. The mechanism is
+  // available directly, so it is measured directly: the score is the SUM of each tag's frequency, so tag
+  // COUNT drives it by construction, and the comparison below is between populations rather than a top-ten
+  // brush with another list.
+  const tagCountOf = (a: { theorem: string; states: string }) => tagsOf(a).length
+  const meanTags = atoms.reduce((s2, a) => s2 + tagCountOf(a), 0) / atoms.length
+  const topTen = 2 * 5
+  const topByScore = sorted.slice(0, topTen).map((s2) => atoms[s2.seedIndex]!)
+  const meanTagsTop = topByScore.reduce((s2, a) => s2 + tagCountOf(a), 0) / topByScore.length
+  const scoreTracksTagCount = meanTagsTop > meanTags
+  // NOTHING IS RESEALED: the seed order still exists untouched beside the view, and the two differ.
+  const seedOrderIntact = scored.every((s2, i) => s2.seedIndex === i) && reordersFromSeed
+  // THE STOPWORD LIST IS A CHOSEN LINE. Measured honestly: dropping one word moves the cloud by ONE tag, so
+  // the effect of this particular word is small and the facet says so rather than implying an upheaval. What
+  // the measurement establishes is that the list is an input, not that it dominates.
+  const withoutIts = new Set([...STOP].filter((w) => w !== 'its'))
+  const cloudWithout = new Set<string>()
+  for (const a of atoms) for (const t of (a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{2,}/g) ?? []) if (!withoutIts.has(t)) cloudWithout.add(t)
+  const stopwordsAreAnInput = cloudWithout.size !== cloud.size
+  const limits = [
+    { facet: `THE SCORE TRACKS HOW MUCH A THEOREM SAYS — the top ${topTen} by tag score carry ${meanTagsTop.toFixed(1)} distinct tags on average against a corpus mean of ${meanTags.toFixed(1)}; the score is the SUM of its tags' frequencies, so saying more raises it by construction, and that is a property of the text rather than of the theorem's importance`, on: scoreTracksTagCount },
+    { facet: `A VIEW, NOT A RESEAL — the seed order is intact beside this ranking and the two genuinely differ (${reordersFromSeed}); the merkle seal still reads the seed order, so nothing here changes what was sealed and this ordering carries no authority over it`, on: seedOrderIntact },
+    { facet: `THE STOPWORD LIST IS AN INPUT — removing one stopword moves the cloud from ${cloud.size} to ${cloudWithout.size} distinct tags, a change of ${Math.abs(cloudWithout.size - cloud.size)}; small for this word, and the point is only that the ranking is a function of a hand-written list rather than a property the corpus has on its own`, on: stopwordsAreAnInput },
+  ]
   const facets = [
     { facet: `THE TAG CLOUD IS COMPUTED — ${cloud.size} distinct tags over ${atoms.length} theorems (top: ${topTags.slice(0, 5).map(([t, n]) => `${t}·${n}`).join(', ')}): the frequency of every significant word across the corpus, the most-used surfacing`, on: cloud.size > 0 && atoms.length > 0 },
     { facet: `THEOREMS SORT BY TAG-CLOUD USAGE, MOST USED FIRST — each theorem scored by the summed frequency of its tags and sorted descending (${isDescending}); the top theorem "${sorted[0]?.theorem}" (score ${sorted[0]?.score}) carries the most-used tags, and the order differs from the registry seed (${reordersFromSeed}) — the tag-cloud ordering, computed`, on: isDescending && sorted.length === atoms.length },
@@ -2662,7 +2690,8 @@ export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMa
     root: merkleFold(sorted.map((s) => toUuid(`tag-sorted:${s.theorem}:${s.score}`))),
     facets,
     statement: `Always sort the theorems by tag clouds — most used first — ${facets.filter((e) => e.on).length}/${facets.length}: over ${atoms.length} theorems, ${cloud.size} distinct tags (top ${topTags.slice(0, 3).map(([t, n]) => `${t}·${n}`).join(', ')}); each theorem scored by its tags' summed frequency and sorted descending, so "${sorted[0]?.theorem}" (the most-tagged) comes first. A computed VIEW over the theorem list, leaving the sealed registry seed order untouched — the same most-used-first law the nav already applies, now over the theorems themselves.`,
-    boundary: `COMPUTED: ${atoms.length} theorems tagged by their title/statement words (stopwords removed), ${cloud.size} distinct tags with frequencies, each theorem scored by the sum of its tags' counts and sorted descending (${isDescending}), the order differing from the registry seed (${reordersFromSeed}). HONEST SCOPE: this is a display/analytics ORDERING — tag frequency is a proxy for how connected/central a theorem is (a theorem sharing the corpus's most common vocabulary ranks high), the same signal the nav's ranked tags use, NOT a claim about a theorem's importance or correctness (a rare, deep theorem can carry uncommon tags and rank low — it is not lesser, only less-tagged). It is a computed VIEW: the sealed registry SEED order is deliberately untouched because it feeds the merkle root, so the sort applies wherever the theorem list is DISPLAYED, not to the canonical registry. Wiring this order into every theorem surface (the /theorems atlas, the sidebar) is the mechanical follow-up; here it is computed and proven descending.` }
+    limits,
+    boundary: earned(`COMPUTED: ${atoms.length} theorems tagged by their title/statement words (stopwords removed), ${cloud.size} distinct tags with frequencies, each theorem scored by the sum of its tags' counts and sorted descending (${isDescending}), the order differing from the registry seed (${reordersFromSeed}).:`, facets, limits) }
 }
 
 // The more a theorem consists of OTHER theorems, the more gravity instead of entropy. Composition is MASS: a
