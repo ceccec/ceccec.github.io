@@ -723,7 +723,12 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
         `- **The Clay problems are the reflection.** Mirroring 6+1 through 0 inverts the polarity: **1 this-dimension (Poincaré, solved) + 6 beyond (open) = ${clay.clay}** Millennium problems — \`clayReflection().reflectsDimensionalBit = ${clay.reflectsDimensionalBit}\`. Exactly one Clay problem is solved; the count matches the record.`,
         `- **Every value is a single-digit interaction** on three grounds — a432 (2⁴·3³ = ${a432}), superstring 10 (2·5), M-theory 11 (the sequence's ${mTheory} steps) — primes computed via the π↔prime correlation \`primeCountUpTo(nthPrimeAt(n)) = n\` (${piPrimeId}), and \`x/x = 1\` invariant at every dimension while \`1/ε → ∞\` opens the infinite. No literal, no assumption that breaks under a change of dimension.`,
         '',
-        `A science portal: **${lens.theoremCount}** computationally proven theorems, **${lens.visibleCount}** science pages, **${lens.rays.length}** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (\`src/\`); nothing needs a token to run.`,
+        // "computationally proven" was applied to lens.theoremCount, which is the LENGTH OF THE
+        // REGISTRY ARRAY. Six of those rows name a provedBy function that does not exist — five
+        // of them theorems about this very generator. The count is now split: registered vs
+        // carrying an executable proof, both read from the seed, and verify:theorems recomputes
+        // the pending set from source so this sentence cannot drift from the truth.
+        `A science portal: **${lens.theoremCount}** registered theorems, **${lens.theoremCount - THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length}** of them carrying an executable proof at a sealed home (${THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length} still pending, named in the registry and checked by \`verify:theorems\`), **${lens.visibleCount}** science pages, **${lens.rays.length}** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (\`src/\`); nothing needs a token to run.`,
       ]
     })(),
     '',
@@ -948,7 +953,7 @@ export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
     // ABSTRACT COMPUTED, NOT CHARACTERISED (user, 2026-07-28: the abstract kept judgement and expectations) —
     // the sentence is the JOIN of the config description with counted fields and the template's own section
     // names; every clause after the description is a number or a name, so no adjective can survive an edit.
-    `> **Abstract.** ${config.description} ${renderComputedMetrics({ theorems: lens.theoremCount, sciencePages: lens.visibleCount, rays: lens.rays.length, templateSections: template.sections.length, projections: 2 }, false)}. Template: ${template.sections.join(', ')}. Source: src (one generator, two projections — this README and the VitePress home).`,
+    `> **Abstract.** ${config.description} ${renderComputedMetrics({ theorems: lens.theoremCount, proven: lens.theoremCount - THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length, sciencePages: lens.visibleCount, rays: lens.rays.length, templateSections: template.sections.length, projections: 2 }, false)}. Template: ${template.sections.join(', ')}. Source: src (one generator, two projections — this README and the VitePress home).`,
     '',
     `**Keywords.** ${config.keywords.join(', ')}.`,
     '',
