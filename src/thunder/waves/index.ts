@@ -132,17 +132,39 @@ export function theToolsAreSavedAndTheWavesSent(matrix: MindMatrix = buildMatrix
   const expected = candidates.length * steps.length
   const allBound = waves.length === expected && waves.every((entry) => entry.bound) // every wave bidirectionally bound
   const finiteComplete = candidates.filter((candidate) => candidate.class === 'finite-complete').length // the mechanisable ones
+  // THE LIMITS, COMPUTED. "It does NOT itself prove the candidates" is the load-bearing clause and it has a
+  // CONSTRUCTION rather than an argument, because the property this fold reports about every wave —
+  // bidirectional binding — is a fact about content addressing and not about the theorem being addressed.
+  // Bind a sentence that is deliberate nonsense and it binds exactly as well.
+  const nonsense = foldPair(matrix.root, toUuid('candidate:colourless green ideas sleep furiously'))
+  const nonsenseWave = foldPair(nonsense.merged, toUuid('send:colourless green ideas sleep furiously:verify'))
+  const bindingIsAddressing = nonsenseWave.bidirectional && allBound
+  // AND NOTHING'S STATUS CHANGES. The fold emits receipts and merged addresses; no wave entry carries a
+  // proof, a verdict or a seal, and the field list is read rather than assumed.
+  const waveKeys = waves.length > 0 ? Object.keys(waves[0]!) : []
+  const carriesNoProof = !waveKeys.some((k) => /proof|proved|verdict|sealed|holds|computes/i.test(k))
+  const stillUnproven = candidates.length > 0 && carriesNoProof
+  // THE FIVE STEPS ARE A VOCABULARY, NOT A METHOD — the same fixed list applied identically to every
+  // candidate, producing the same five addresses per theorem whatever the theorem says.
+  const perCandidate = waves.length / candidates.length
+  const stepsAreUniform = perCandidate === steps.length && Number.isInteger(perCandidate)
+  const limits = [
+    { facet: `BINDING IS ADDRESSING, NOT EVIDENCE — the bidirectional property reported for all ${waves.length} waves holds equally for a deliberately meaningless sentence, constructed here and bound the same way; it is a fact about the content-address fold and says nothing about the candidate it is applied to`, on: bindingIsAddressing },
+    { facet: `NOTHING'S STATUS CHANGES — the ${candidates.length} candidates are unproven before this runs and unproven after; each wave entry carries ${waveKeys.length} fields (${waveKeys.join(', ')}) and not one is a proof, a verdict or a seal. This records the PATH a candidate takes toward proof and takes none of it`, on: stillUnproven },
+    { facet: `THE STEPS ARE A VOCABULARY — the same fixed list (${steps.join(' · ')}) is applied identically to every candidate, ${perCandidate} per theorem regardless of what it states; the ledger's shape is a property of this list, not of the mathematics laid under it`, on: stepsAreUniform },
+  ]
   const facets = [
     { facet: `THE TOOLS ARE SAVED: ${tools.length} tools forged this session (${tools.map((tool) => tool.name).join(', ')}), each recorded with its exact steps (${everyToolRecorded}) — the operational toolkit persisted in src, not re-improvised, per unexpectedSituationsRefactorTools`, on: everyToolRecorded },
     { facet: `THE WAVES ARE SENT: development waves (${steps.join('·')}) over all ${candidates.length} unproven candidate theorems = ${waves.length} waves, every one bound to its candidate's seed and folded forward (${allBound}); ${finiteComplete} are finite-complete (mechanisable), the honest path by which the self-evolving waves prove more`, on: allBound },
     { facet: `BOTH FOLD TO ONE ROOT: the saved tools and the sent waves bind into one content-addressed ledger (${tools.length} tools + ${waves.length} waves) — the session's tools and its next proofs stay addressed to where they came from`, on: everyToolRecorded && allBound },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     tools, waveCount: waves.length, candidateCount: candidates.length, finiteComplete,
     facets, root: merkleFold([...tools.map((tool) => toUuid(`tool:${tool.name}`)), ...waves.map((entry) => entry.receipt)]),
     statement: `The tools are saved and the waves sent — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${tools.length} tools forged this session (concurrent-isolation-check, pathspec-commit, transient-verify-retry) are recorded with their steps, and development waves (sketch·place·connect·animate·verify) are sent over all ${candidates.length} unproven candidate theorems (${waves.length} waves, ${finiteComplete} finite-complete), each bound to its candidate and folded forward — the content-addressed path by which the self-evolving waves prove more.`,
-    boundary: `COMPUTED: the session's tools recorded with steps, and the development-wave ledger over CANDIDATE_THEOREMS (each candidate × five steps, every wave bidirectionally bound and folded). HONEST SCOPE — identical to developmentWaves: this SENDS the waves as a content-addressed development model (it records the path each candidate takes toward proof and binds it to the candidate's seed); it does NOT itself prove the candidates — each proof is a separate finite-complete or bounded-witness computation (the class field says which), earned one fold at a time. "Send the waves" seeds and binds the R&D; the tools are documented procedures an agent runs via Bash, not executable folds.` }
+    limits,
+    boundary: earned(`COMPUTED: the session's tools recorded with steps, and the development-wave ledger over CANDIDATE_THEOREMS (each candidate × five steps, every wave bidirectionally bound and folded).:`, facets, limits) }
 }
 
 // Send waves to update the skills. The portal's memory of what it can do is not frozen:
