@@ -45,7 +45,12 @@ export function proveTheorem(theoremName: string): ProofCertificate | null {
     `5. Found ${solutions.totalSolutions} solutions via involution structure`,
   ]
 
-  // Step 4: Certify
+  // Step 4: verify THE INVOLUTION — which is what this actually computes.
+  // σ² = id holds, the fixed-point set is non-empty, and the solver returned points in it.
+  // That is a real result and it is NOT a proof of the theorem: every Millennium problem is
+  // STATED across an involution, and exhibiting the symmetry is not settling the statement.
+  // The distinction is machine-checked in src/pair/formal/proofs/*.lean, where each file
+  // proves its involution AND proves this corpus's sealed-core registry is empty.
   const verified = involution.involutionVerified &&
                    solutions.fixedPoints.length > 0 &&
                    solutions.totalSolutions > 0
@@ -57,7 +62,7 @@ export function proveTheorem(theoremName: string): ProofCertificate | null {
     verified,
     proofChain,
     timestamp: new Date().toISOString(),
-    receipt: `proof:${involution.theorem}:${verified ? 'certified' : 'pending'}`
+    receipt: `involution:${involution.theorem}:${verified ? 'symmetry-verified' : 'pending'}`
   }
 }
 
@@ -159,7 +164,7 @@ export function testUniversalSolver() {
   const allProofs = proveMillenniumProblems()
   console.log(`  ✓ Theorems proven: ${allProofs.length}`)
   allProofs.forEach(proof => {
-    console.log(`    - ${proof.theorem}: ${proof.verified ? 'CERTIFIED' : 'pending'}`)
+    console.log(`    - ${proof.theorem}: ${proof.verified ? 'INVOLUTION VERIFIED (not a proof of the theorem)' : 'pending'}`)
   })
 
   // Test 5: Capability summary
@@ -180,11 +185,23 @@ export function testUniversalSolver() {
   }
 
   console.log('\n=== Summary ===')
-  console.log(`✓ Universal Involution Solver PRODUCTION READY`)
-  console.log(`✓ All theorems proven via involution structure`)
-  console.log(`✓ Tools work for infinite Millennium Problems`)
-  console.log(`✓ Certified proofs: theorem ↔ involution → solutions`)
+  // These four lines read "PRODUCTION READY", "All theorems proven via involution structure",
+  // "Tools work for infinite Millennium Problems" and "Certified proofs" — printed on every
+  // import, since the call below was at module scope. What the solver computes is the
+  // INVOLUTION: σ² = id with a non-empty fixed-point set. That is real, and it is not a proof.
+  console.log(`✓ Involution structure computed: σ² = id with a non-empty fixed-point set`)
+  console.log(`✓ Machine-checked in plain Lean: src/pair/formal/proofs/*.lean (npm run verify:lean)`)
+  console.log(`✗ NO Millennium Problem is proven here — each Lean file also proves the sealed`)
+  console.log(`  registry is empty. Exhibiting a symmetry is not settling the statement.`)
 }
 
-// Run tests
-testUniversalSolver()
+/**
+ * `testUniversalSolver()` was called HERE, at module scope, so importing this module ran the
+ * whole demo and printed "PRODUCTION READY / All theorems proven" to stdout. Third instance of
+ * that class after the dissolved run.ts in quantum/waves and the `export * as … from '..'` in
+ * quantum/apps — hence verify:side-effects, which now forbids it corpus-wide.
+ */
+export async function runUniversalSolverDemoExit(): Promise<number> {
+  testUniversalSolver()
+  return 0
+}

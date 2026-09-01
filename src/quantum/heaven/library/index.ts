@@ -213,13 +213,17 @@ export function glagoliticValue(position: number): number {
   if (position < 1) return 0
   return (((position - 1) % 9) + 1) * 10 ** floor((position - 1) / 9)
 }
-const GLAGOLITIC_VALUE_BY_GLYPH: Record<string, number> = {}
-GLAGOLITIC_LETTERS.forEach((letter, i) => {
-  const value = glagoliticValue(i + 1)
-  GLAGOLITIC_VALUE_BY_GLYPH[letter.glyph] = value
-  const cp = letter.glyph.codePointAt(0) // Glagolitic lowercase = uppercase + 0x30 (U+2C00 → U+2C30)
-  if (cp !== undefined) GLAGOLITIC_VALUE_BY_GLYPH[String.fromCodePoint(cp + 0x30)] = value
-})
+// Built as an EXPRESSION, not by mutating an empty object at module scope. Identical table;
+// the difference is that importing this file no longer executes a statement to get it.
+const GLAGOLITIC_VALUE_BY_GLYPH: Record<string, number> = Object.fromEntries(
+  GLAGOLITIC_LETTERS.flatMap((letter, i) => {
+    const value = glagoliticValue(i + 1)
+    const cp = letter.glyph.codePointAt(0) // Glagolitic lowercase = uppercase + 0x30 (U+2C00 → U+2C30)
+    return cp === undefined
+      ? [[letter.glyph, value] as const]
+      : [[letter.glyph, value] as const, [String.fromCodePoint(cp + 0x30), value] as const]
+  }),
+)
 // Sum a Glagolitic word to its number — the Glagolitic gematria, the same fold as gematria(), each letter
 // valued by the ladder from its position. Unknown glyphs contribute 0. Pure, deterministic, zero tokens.
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
@@ -261,12 +265,14 @@ export function glagoliticAcrostic(): { names: readonly string[]; line: string; 
 // either). The bridge is information theory — a sign is a distinction is one bit — made runnable: the
 // position→bits map is reversible, and the gates are src/0's real state-vector simulator, so a word actually
 // COMPILES and RUNS. Reuses the (n >> i) & 1 bit-extraction of ifaRows. Pure, deterministic, zero tokens.
-const GLAGOLITIC_POSITION_BY_GLYPH: Record<string, number> = {}
-GLAGOLITIC_LETTERS.forEach((letter, i) => {
-  GLAGOLITIC_POSITION_BY_GLYPH[letter.glyph] = i + 1
-  const cp = letter.glyph.codePointAt(0) // lowercase = uppercase + 0x30 (U+2C00 → U+2C30), as for the value map
-  if (cp !== undefined) GLAGOLITIC_POSITION_BY_GLYPH[String.fromCodePoint(cp + 0x30)] = i + 1
-})
+const GLAGOLITIC_POSITION_BY_GLYPH: Record<string, number> = Object.fromEntries(
+  GLAGOLITIC_LETTERS.flatMap((letter, i) => {
+    const cp = letter.glyph.codePointAt(0) // lowercase = uppercase + 0x30 (U+2C00 → U+2C30), as for the value map
+    return cp === undefined
+      ? [[letter.glyph, i + 1] as const]
+      : [[letter.glyph, i + 1] as const, [String.fromCodePoint(cp + 0x30), i + 1] as const]
+  }),
+)
 // A letter → its bits, MSB first: the script→bit bridge. Keyed by the letter's POSITION (1..28), which in
 // width≥5 bits is REVERSIBLE (28 < 2⁵) — the bit is exactly where script, code and qubit meet. Unknown glyph
 // → all zeros. The inverse, glagoliticFromBits, reads the bits back to the glyph.

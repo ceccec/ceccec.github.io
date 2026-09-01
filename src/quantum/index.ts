@@ -8142,36 +8142,40 @@ export class API {
   }
 }
 
-// ──── EXAMPLE: Research Domain APIs ────
+// ──── Research Domain APIs — REGISTERED ON DEMAND, AND THEY REFUSE ────
+//
+// Four endpoints were registered HERE, at module scope, so importing this module wired them
+// onto the exported `api` object whether or not anything asked. What they returned was worse
+// than the registration: `impact: Math.random() * 0.9 + 0.1`, `eta_minutes: Math.floor(
+// Math.random() * 60)`, and a climate/forecast endpoint whose `temp_change` was
+// `-0.02 + Math.random() * 0.01` — a randomly generated temperature change — beside a typed-in
+// `confidence: 0.72`. Same fabrication class as the job queue that chose job status at random
+// and the adapters that returned a 1000-shot histogram for jobs never submitted.
+//
+// There is no physics optimiser, no training run, no climate model behind any of them. So they
+// no longer invent a number: each reports that nothing was computed, which is the same
+// treatment recoverEdDSA and batchRecoverRSA now get. Registration is explicit, so an import
+// no longer mutates a shared object.
 export const api = new API()
 
-// Physics optimization
-api.add('physics/optimize', async (p) => ({
-  funding: p.funding || 100,
-  efficiency: (p.funding / 100) * 1.2,
-  impact: Math.random() * 0.9 + 0.1
-}))
+/** What an endpoint returns when it has no implementation behind it. */
+function refuses(domain: string, wanted: string) {
+  return async (params: Record<string, unknown>) => ({
+    domain,
+    computed: false,
+    reason: `no ${wanted} exists in this corpus — this endpoint previously returned Math.random() values presented as results`,
+    echoedParams: params,
+  })
+}
 
-// AI training status
-api.add('ai/status', async (p) => ({
-  models_training: 5,
-  accuracy: 0.87,
-  eta_minutes: Math.floor(Math.random() * 60)
-}))
-
-// Quantum simulator
-api.add('quantum/simulate', async (p) => ({
-  qubits: p.qubits || 10,
-  gates: p.gates || 100,
-  fidelity: Math.min(0.99, 0.8 + (p.qubits / 100))
-}))
-
-// Climate model
-api.add('climate/forecast', async (p) => ({
-  region: p.region || 'global',
-  temp_change: -0.02 + Math.random() * 0.01,
-  confidence: 0.72
-}))
+/** Call to wire the demo endpoints. Nothing is registered by importing this module. */
+export function registerResearchDomainApis(target: API = api): API {
+  target.add('physics/optimize', refuses('physics/optimize', 'optimiser'))
+  target.add('ai/status', refuses('ai/status', 'training run'))
+  target.add('quantum/simulate', refuses('quantum/simulate', 'device-backed simulation (src/0 has a real state-vector simulator; this endpoint was never wired to it)'))
+  target.add('climate/forecast', refuses('climate/forecast', 'climate model'))
+  return target
+}
 
 // ──── USAGE ────
 /*
