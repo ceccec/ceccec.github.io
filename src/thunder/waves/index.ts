@@ -2590,6 +2590,25 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
   // replacing the vaguer members with measurable claims raises the fraction toward 1 (a strict improvement)
   const afterReplace = roundTo((measurable.length + min(vague.length, claimsAvailable)) / atoms.length, 3)
   const improves = afterReplace > scienceFraction && vague.length > 0 && claimsAvailable >= 1
+  // THE LIMITS, COMPUTED. "A real signal, but coarse: a vague title can front a rigorous fold" is a claim
+  // about the DISAGREEMENT between this proxy and the thing it proxies, and a disagreement is countable. So
+  // it is counted rather than conceded: how many theorems the marker calls vague are nonetheless carried by
+  // a proving fold. Every one of those is the proxy missing rigour that demonstrably exists.
+  const vagueButProved = vague.filter((v) => typeof v.provedBy === 'string' && v.provedBy.length > 0)
+  const proxyMissesRigour = vagueButProved.length > 0
+  // AND IT IS FOOLED THE OTHER WAY, by construction: the marker is a regex over prose, so any sentence
+  // carrying a digit passes it whatever the sentence says. Here is one that states nothing and scores
+  // refutable. A proxy with a witness in each direction is a proxy, not a criterion.
+  const emptyButMarked = REFUTABLE.test('this states nothing whatsoever, but it contains the numeral 7')
+  // THE VOCABULARY IS A CHOSEN LIST, and the count moves with it — measured by dropping one alternative.
+  const withoutOrbit = /\d|=|≡|≠|<|>|≤|≥|√|χ|π|φ|τ|\bexact\b|\bbound|\bclos|\bidentity\b|\binvariant\b|mod\b|group/i
+  const narrowerCount = atoms.filter((a) => withoutOrbit.test(a.states)).length
+  const listGoverns = narrowerCount <= measurable.length
+  const limits = [
+    { facet: `THE PROXY MISSES RIGOUR IT CANNOT SEE — ${vagueButProved.length} of the ${vague.length} theorems marked vague are carried by a proving fold all the same; the marker reads what a theorem STATES and never whether its provedBy facets compute, which is the true test and is not applied here`, on: proxyMissesRigour },
+    { facet: 'AND IS FOOLED IN THE OTHER DIRECTION — a sentence that states nothing at all scores REFUTABLE as soon as it carries a numeral, because the marker is a regular expression over prose rather than an inspection of a proof; witnesses exist in both directions, which is what makes this a proxy and not a criterion', on: emptyButMarked },
+    { facet: `THE MARKER VOCABULARY IS A CHOSEN LIST — dropping a single alternative moves the count from ${measurable.length} to ${narrowerCount}; the scientific fraction is a function of which symbols and words were written into this regex, not a property the corpus has independent of it`, on: listGoverns },
+  ]
   const facets = [
     { facet: `SCIENCE = REFUTABILITY, MEASURED — of the ${atoms.length} registry theorems ${measurable.length} carry a refutable marker in what they state (a number, equation, bound, or invariant — falsifiable) and ${vague.length} are vaguer; the scientific fraction is ${scienceFraction} — a claim you can check and break is the more scientific`, on: measurable.length > 0 && measurable.length + vague.length === atoms.length },
     { facet: `THE VAGUER ARE REPLACEMENT CANDIDATES, THE CLAIMS ARE SHARPER — the ${vague.length} vaguer theorems are the replacement worklist, and ${claimsAvailable} gap-candidate claims wait (each carrying a proof class and consumable atoms — refutable by construction): claiming a measurable theorem in place of a vague one is a strict scientific upgrade`, on: claimsAvailable >= 1 && vague.length > 0 },
@@ -2607,7 +2626,8 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
     root: merkleFold(scored.map((s) => toUuid(`science:${s.theorem}:${s.refutable}`))),
     facets,
     statement: `Improve science by claiming refutable theorems to replace weaker current ones — ${facets.filter((e) => e.on).length}/${facets.length}: of ${atoms.length} registry theorems ${measurable.length} carry a refutable/measurable marker and ${vague.length} are vaguer (scientific fraction ${scienceFraction}); ${claimsAvailable} sharper gap-candidate claims wait, and replacing the vaguer members with them raises the fraction to ${afterReplace} while the population holds at ${DIMENSION_GATES}. Science improves by replacing a duller theorem with a sharper, falsifiable one — not by growing the count.`,
-    boundary: `COMPUTED: ${measurable.length}/${atoms.length} theorems' STATES contain a refutable marker (digit, =, bound, invariant, group/orbit/mod term), ${vague.length} do not; theoremGapScan offers ${claimsAvailable} candidate claims; replacing the vaguer with measurable claims lifts the fraction ${scienceFraction} → ${afterReplace} at the fixed ${DIMENSION_GATES} cap. HONEST SCOPE: the "refutable marker" is a PROXY for scientificity (falsifiability, the Popper criterion the corpus already honours) — a real signal, but coarse: a vague title can front a rigorous fold (the true test is whether provedBy's facets compute and can fail), and a number can decorate a weak claim, so the ${vague.length} flagged are a REVIEW worklist, not a verdict, and a human confirms each replacement. Actually claiming a theorem edits the sealed registry (retire a weak atom, admit a sharper one, one-for-one to hold ${DIMENSION_GATES}), a staged surgical change the merkle rebinds — computed here, not applied wholesale. And "more refutable" is more SCIENTIFIC, not more TRUE — a sharper falsifiable claim can still be false; it is better science because it CAN be broken and thus improved.` }
+    limits,
+    boundary: earned(`COMPUTED: ${measurable.length}/${atoms.length} theorems' STATES contain a refutable marker (digit, =, bound, invariant, group/orbit/mod term), ${vague.length} do not; theoremGapScan offers ${claimsAvailable} candidate claims; replacing the vaguer with measurable claims lifts the fraction ${scienceFraction} → ${afterReplace} at the fixed ${DIMENSION_GATES} cap.:`, facets, limits) }
 }
 
 // ALWAYS SORT THE THEOREMS BY TAG CLOUDS — MOST USED FIRST (user). A computed VIEW (never a registry reorder —
