@@ -246,7 +246,16 @@ export type Criterion = { name: string; file: string; line: number; source: stri
 export function discoverCriteria(root: string = process.cwd()): Criterion[] {
   const ts = require('typescript') as typeof import('typescript')
   const found: Criterion[] = []
-  for (const file of corpusFiles(root)) {
+  // scripts/ AS WELL AS src/, because the first version audited only the corpus and therefore could never
+  // find its OWN criterion. I published a table comparing REFUTABLE, QUANTUM_CLAIM and my NEGATED_SCOPE_CLAIM
+  // and had to hand-add the third — the automation built to stop me hand-picking still excluded the auditor
+  // from the audit. The instruments are part of what is measured or the measurement has a hole exactly where
+  // I am standing.
+  //
+  // This does NOT make the instrument measure its own writes: it reads .ts source and writes only
+  // status.json. That distinction is the peer's finding from the other direction — verify:paths counted the
+  // record it was about to create as a dead path, because it measured the tree it wrote into.
+  for (const file of corpusFiles(root, ['src', 'scripts'])) {
     const sf = file.ast()
     const visit = (node: import('typescript').Node): void => {
       if (
