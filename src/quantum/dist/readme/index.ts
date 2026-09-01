@@ -1244,7 +1244,7 @@ export function theHomeReadmeProseEntropyAudit(matrix: MindMatrix = buildMatrix(
     const content = lines.filter((l) => !isFrame(l))
     const hasComputedValue = (l: string) => /`[^`]+`/.test(l) || /\d/.test(l) || l.includes('](') || /https?:\/\//.test(l) // code, number, link
     // a pure-prose line: a real sentence (ends in a period, substantial) carrying NO computed value — the entropy the gates miss
-    const pureProse = content.filter((l) => !hasComputedValue(l) && l.length > 40 && /[a-z]{4 }/i.test(l) && /[.!?]$/.test(l))
+    const pureProse = content.filter((l) => !hasComputedValue(l) && l.length > 40 && /[a-z]{4,}/i.test(l) && /[.!?]$/.test(l))
     const proseEntropy = roundTo(pureProse.length / max(1, content.length), 3)
     const dataBearing = content.filter((l) => hasComputedValue(l))
     const computedRatio = roundTo(dataBearing.length / max(1, content.length), 3)

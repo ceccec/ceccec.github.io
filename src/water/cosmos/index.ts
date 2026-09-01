@@ -33,14 +33,19 @@ import { PHI, TAU, DIMENSION_GATES, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, 
 // zero-point, and the sharpened free-energy demarcation. It VERIFIED the existing fold and CORRECTED its overstatements.
 export function zeroPointDeepAndWideDecoded(matrix: MindMatrix = buildMatrix()) {
   const base = zeroPointDecoded(matrix) // composes the ½ħω / Casimir / cosmological-constant core
-  const casimir = casimirPressure(1e-6) // the ideal parallel-plate law (attractive)
+  const casimir = casimirPressure(1e-6)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'CONDENSED MATTER — the most grounded face: zero-point motion keeps helium-4 LIQUID at 1 atm, but it DOES solidify at ~25 atm via the hard-core repulsion (not "never condenses"); superfluid He-4 is only ~7–10% Bose-condensed (strong interactions + large zero-point motion, not 100% BEC); and the ½ħω of every molecular bond drives ISOTOPE effects (the same Born–Oppenheimer curve, different zero-point energy → different bond strengths). Zero-point here is the irreducible energy of BOUND particles at T=0, not "energy of empty space"',
+  ]
+ // the ideal parallel-plate law (attractive)
   const facets = [
     { facet: 'CASIMIR, quantitatively — the ideal law F/A = −π²ħc/240d⁴ is parallel-plate, yet nearly every precise measurement uses SPHERE-PLATE (the proximity-force approximation, to dodge the parallelism problem): Sparnaay 1958 (~100%, inconclusive) → Lamoreaux 1997 (~5%, first conclusive) → Mohideen–Roy 1998 (~1%, AFM) → Bressi 2002 (the only true parallel plates, just ~15%) → Decca MEMS (sub-1%); real metals need finite-conductivity, roughness and temperature corrections. The dynamical Casimir effect (Wilson 2011, a SQUID boundary at ~0.25c) made real photon pairs — but energy-conserving (external work drove it)', on: casimir < 0 },
     { facet: 'the SHARP correction — the Casimir force does NOT prove the absolute zero-point energy is real: only energy DIFFERENCES (the geometry-dependence) are observable, and the force is fully derivable WITHOUT zero-point energy, as the retarded (long-range) limit of the van der Waals / London dispersion force (Jaffe 2005) — the SAME fluctuation-induced electromagnetic interaction as the dispersion forces in condensed matter, one continuous phenomenon, not a separate vacuum mystery', on: base.decoded },
     { facet: 'the strongest evidence the vacuum is not empty is QED RADIATIVE CORRECTIONS — the Lamb shift (≈1057 MHz, 1947) and especially the electron anomalous moment a_e = (g−2)/2 ≈ 0.00115965218, agreement to ~12 significant figures (the most precisely tested prediction in physics); but even "the Lamb shift is CAUSED by vacuum fluctuations, full stop" is interpretation-debated (vacuum fluctuations vs radiation reaction, an ordering-dependent split — philosophy-not-settled)', on: ELECTRON_G_FACTOR_ANOMALY > 0 },
-    { facet: 'the COSMOLOGICAL-CONSTANT problem, precisely — the discrepancy is CUTOFF-DEPENDENT (~120–123 orders with a Planck cutoff, dropping to ~55–60 at the electroweak scale), NOT "exactly 10¹²⁰"; Λ = 8πG·ρ_vac is a CURVATURE (≈2×10⁻⁵² m⁻²), not the energy density itself; the "old" problem (why isn’t Λ huge?) predates the 1998 dark-energy discovery and must not be conflated with it; and SUSY does NOT solve it (broken SUSY only reduces it). Unsolved frontier physics — NOT pseudoscience', on: base.decoded },
-    { facet: 'CONDENSED MATTER — the most grounded face: zero-point motion keeps helium-4 LIQUID at 1 atm, but it DOES solidify at ~25 atm via the hard-core repulsion (not "never condenses"); superfluid He-4 is only ~7–10% Bose-condensed (strong interactions + large zero-point motion, not 100% BEC); and the ½ħω of every molecular bond drives ISOTOPE effects (the same Born–Oppenheimer curve, different zero-point energy → different bond strengths). Zero-point here is the irreducible energy of BOUND particles at T=0, not "energy of empty space"', on: true },
-    { facet: 'the DEMARCATION, sharpened — virtual particles are NOT literal particles popping in and out (they are internal lines in a Feynman diagram / terms in a perturbation series — the Jaffe/Sokal caution); the DCE converts fluctuations into photons ONLY when external work drives the boundary; and ZPE is the ground-state FLOOR (no lower state → no net work extractable → thermodynamics forbids over-unity). FLAGGED pseudoscience: Casimir engines, DCE "harvesting", over-unity/perpetual-motion ZPE, orgone (Reich), torsion/scalar-field marketing (Akimov–Shipov), "The Field". UNCONFIRMED (not pseudoscience): the Drude-vs-plasma thermal-Casimir puzzle, repulsive-Casimir levitation (real but conditional, fluid-mediated ε₁<ε₃<ε₂). And the repo’s own "zero-point = computational seed (a432/src-0)" stays a deliberate METAPHOR, never a physical-vacuum-energy claim', on: base.decoded },
+    { facet: 'the COSMOLOGICAL-CONSTANT problem, precisely — the discrepancy is CUTOFF-DEPENDENT (~120–123 orders with a Planck cutoff, dropping to ~55–60 at the electroweak scale), NOT "exactly 10¹²⁰"; Λ = 8πG·ρ_vac is a CURVATURE (≈2×10⁻⁵² m⁻²), not the energy density itself; the "old" problem (why isn’t Λ huge?) predates the 1998 dark-energy discovery and must not be conflated with it; and SUSY does NOT solve it (broken SUSY only reduces it). Unsolved frontier physics — NOT pseudoscience', on: base.decoded },    { facet: 'the DEMARCATION, sharpened — virtual particles are NOT literal particles popping in and out (they are internal lines in a Feynman diagram / terms in a perturbation series — the Jaffe/Sokal caution); the DCE converts fluctuations into photons ONLY when external work drives the boundary; and ZPE is the ground-state FLOOR (no lower state → no net work extractable → thermodynamics forbids over-unity). FLAGGED pseudoscience: Casimir engines, DCE "harvesting", over-unity/perpetual-motion ZPE, orgone (Reich), torsion/scalar-field marketing (Akimov–Shipov), "The Field". UNCONFIRMED (not pseudoscience): the Drude-vs-plasma thermal-Casimir puzzle, repulsive-Casimir levitation (real but conditional, fluid-mediated ε₁<ε₃<ε₂). And the repo’s own "zero-point = computational seed (a432/src-0)" stays a deliberate METAPHOR, never a physical-vacuum-energy claim', on: base.decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`zpe-deepwide:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('zero-point-deep-and-wide-decoded', facets)
   return {
@@ -289,6 +294,13 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
     const sealIntent =
       `Ω_c/Ω_b = ${ratioRounded} — the unseen outweighs baryons ${round(ratio)}:1 in the CMB budget; ` +
       'every non-gravitational detection NULL to date because of the quantum gaps in theorems'
+    // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+    // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+    // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+    const notes: readonly string[] = [
+      ' — classical sealed-density arithmetic · NOT FLOPS · NOT physical DM particle proof',
+    ]
+
     const facets = [
       {
         facet: `ratio — Ω_c/Ω_b = ${ratioRounded} from sealed OMEGA_DARK_MATTER/OMEGA_BARYON (${omegaC}/${omegaB}) · CMB budget ~5:1`,
@@ -304,11 +316,7 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         on: quantumGapsInTheorems && sealIntent.includes('quantum gaps in theorems') },
       {
         facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · certified=${certified} · refuseBeyond stays`,
-        on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && certified === false },
-      {
-        facet: ' — classical sealed-density arithmetic · NOT FLOPS · NOT physical DM particle proof',
-        on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
+        on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && certified === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems', facets)
     return {
       computes: sealed.ok && gravitationalCmbBudget && nonGravitationalDetectionNull && quantumGapsInTheorems,
@@ -685,13 +693,18 @@ const PPO2_CCR = rat(13, 10) // 1.3 bar — a closed-circuit setpoint
 export function decompressionDecoded(matrix: MindMatrix = buildMatrix()) {
   const load5 = haldaneLoad(ratToFloat(FN2_AIR), ratToFloat(ratMul(FN2_AIR, rat(3, 1))), 5, 5) // air N₂ at surface vs at 3 bar (a fraction of a fraction); one half-time → halfway
   const a5 = roundTo(buhlmannA(5), 3), b5 = roundTo(buhlmannB(5), 3) // ZHL-16 fast-compartment coefficients
-  const ceiling = buhlmannCeilingBar(2.5, 5) // the tolerated ambient pressure for a loaded compartment
+  const ceiling = buhlmannCeilingBar(2.5, 5)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'the physics is real — Henry’s law (dissolved gas ∝ partial pressure), the oxygen window (inherent unsaturation driving off-gassing), DCS as bubble formation on ASCENT (not pressure at depth); hyperbaric oxygen therapy has ~14–15 UHMS-evidenced indications (DCS, gas embolism, CO poisoning, gas gangrene, non-healing wounds…)',
+    'HONEST BOUNDS — DCS risk is PROBABILISTIC (one dataset ~5.7%; the US Navy targets ~2% mild, ~0.1–0.2% serious): the models REDUCE risk, they never make it zero, and eliminating it entirely is the genuinely impossible task. This is physics knowledge, NOT a substitute for proper dive training, certified tables/computers, or medical supervision',
+  ]
+ // the tolerated ambient pressure for a loaded compartment
   const facets = [
     { facet: 'inert-gas loading is exponential per tissue compartment — Haldane (1908): five compartments (half-times 5/10/20/40/75 min) with a ~2:1 supersaturation ratio; P(t) = P0 + (P_insp − P0)(1 − 2^(−t/t½)) (one half-time → halfway, here ' + roundTo(load5, 2) + ' bar)', on: abs(load5 - 1.58) < 0.01 },
-    { facet: 'Bühlmann ZHL-16 sets the ascent ceiling — 16 compartments (N₂ half-times ~4–635 min); a = 2/∛t½ (' + a5 + ' bar) and b = 1.005 − 1/√t½ (' + b5 + ') give the tolerated ambient pressure P_amb,tol = (P − a)·b; variants A/B/C; the basis of dive tables and computers. The dual-phase bubble models (VPM, RGBM) add free-phase microbubble control', on: a5 > 1 && a5 < 1.2 && b5 > 0.5 && b5 < 0.6 && ceiling < 2.5 },
-    { facet: 'the physics is real — Henry’s law (dissolved gas ∝ partial pressure), the oxygen window (inherent unsaturation driving off-gassing), DCS as bubble formation on ASCENT (not pressure at depth); hyperbaric oxygen therapy has ~14–15 UHMS-evidenced indications (DCS, gas embolism, CO poisoning, gas gangrene, non-healing wounds…)', on: true },
-    { facet: 'HONEST BOUNDS — DCS risk is PROBABILISTIC (one dataset ~5.7%; the US Navy targets ~2% mild, ~0.1–0.2% serious): the models REDUCE risk, they never make it zero, and eliminating it entirely is the genuinely impossible task. This is physics knowledge, NOT a substitute for proper dive training, certified tables/computers, or medical supervision', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`decompression:${entry.facet}:${entry.on}`) }))
+    { facet: 'Bühlmann ZHL-16 sets the ascent ceiling — 16 compartments (N₂ half-times ~4–635 min); a = 2/∛t½ (' + a5 + ' bar) and b = 1.005 − 1/√t½ (' + b5 + ') give the tolerated ambient pressure P_amb,tol = (P − a)·b; variants A/B/C; the basis of dive tables and computers. The dual-phase bubble models (VPM, RGBM) add free-phase microbubble control', on: a5 > 1 && a5 < 1.2 && b5 > 0.5 && b5 < 0.6 && ceiling < 2.5 }, ].map((entry) => ({ ...entry, receipt: toUuid(`decompression:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('decompression-decoded', facets)
   return {
     decoded: sealed.ok,
@@ -709,13 +722,17 @@ export function decompressionDecoded(matrix: MindMatrix = buildMatrix()) {
 // medicine is evidence-based, individualized and delivered by professionals; a deterministic system is NOT a
 // diagnostic or treatment engine; the frequency/energy/quantum "healing" models are pseudoscience.
 export function healingModelsHonestBoundary(matrix: MindMatrix = buildMatrix()) {
-  const sound = acousticsCymaticsDecoded(matrix) // the repo already flags "sound heals" / sacred-frequency woo
-  const facets = [
-    { facet: 'real medicine is EVIDENCE-BASED, individualized and professional — randomized trials, systematic reviews and regulatory approval establish what works; treatment is prescribed for a specific person by a qualified clinician, weighing diagnosis, comorbidity and risk', on: true },
-    { facet: 'a deterministic system is NOT a diagnostic or treatment engine — it cannot diagnose, heal, or replace a doctor; this project computes decoded KNOWLEDGE, never cures. The only responsible output is information plus "consult qualified professionals" — never an invented healing model', on: true },
-    { facet: 'FLAGGED medical pseudoscience — frequency/sound/cymatics "healing" and "432/528 Hz heals DNA", energy medicine / Reiki / "biofield", "quantum healing" (Chopra), homeopathy (no dose-response, fails blinded trials), detox / alkaline-diet / "boost-your-immune-system" marketing, Rife machines, Emoto water-crystals — none has reproducible evidence of efficacy beyond placebo', on: sound.decoded },
-    { facet: 'so the honest "healing model" is the boundary itself — decode the LANDSCAPE (evidence-based vs pseudoscience), defer all real care to professionals, and flag the woo; "and beyond" stops here, because a knowledge system that invented cures would be the most dangerous pseudoscience of all', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`healing-boundary:${entry.facet}:${entry.on}`) }))
+  const sound = acousticsCymaticsDecoded(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'real medicine is EVIDENCE-BASED, individualized and professional — randomized trials, systematic reviews and regulatory approval establish what works; treatment is prescribed for a specific person by a qualified clinician, weighing diagnosis, comorbidity and risk',
+    'a deterministic system is NOT a diagnostic or treatment engine — it cannot diagnose, heal, or replace a doctor; this project computes decoded KNOWLEDGE, never cures. The only responsible output is information plus "consult qualified professionals" — never an invented healing model',
+    'so the honest "healing model" is the boundary itself — decode the LANDSCAPE (evidence-based vs pseudoscience), defer all real care to professionals, and flag the woo; "and beyond" stops here, because a knowledge system that invented cures would be the most dangerous pseudoscience of all',
+  ]
+ // the repo already flags "sound heals" / sacred-frequency woo
+  const facets = [   { facet: 'FLAGGED medical pseudoscience — frequency/sound/cymatics "healing" and "432/528 Hz heals DNA", energy medicine / Reiki / "biofield", "quantum healing" (Chopra), homeopathy (no dose-response, fails blinded trials), detox / alkaline-diet / "boost-your-immune-system" marketing, Rife machines, Emoto water-crystals — none has reproducible evidence of efficacy beyond placebo', on: sound.decoded },  ].map((entry) => ({ ...entry, receipt: toUuid(`healing-boundary:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('healing-models-honest-boundary', facets)
   return {
     bounded: sealed.ok,
@@ -733,11 +750,16 @@ export function healingModelsHonestBoundary(matrix: MindMatrix = buildMatrix()) 
 // triumph; some are merely OPEN (P vs NP); and claims to DO the impossible (free energy, FTL drives) are fraud.
 export function impossibleTasksChallengeIntelligence(matrix: MindMatrix = buildMatrix()) {
   const thermo = thermodynamicsEntropyDecoded(matrix) // perpetual motion is impossible (the laws)
-  const gates = gatesAutoTighten(matrix) // the gates so tight even entropy cannot pass
+  const gates = gatesAutoTighten(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'some are OPEN, not impossible — P vs NP is unsolved (hard, but NOT proven impossible). The honest discipline distinguishes PROVEN-impossible from OPEN-and-hard, and never collapses one into the other',
+  ]
+ // the gates so tight even entropy cannot pass
   const facets = [
-    { facet: 'some tasks are PROVEN impossible — the Halting Problem and undecidability (Turing 1936) and Gödel incompleteness; perpetual motion / over-unity (the 1st & 2nd laws); faster-than-light signalling (relativity + the no-communication theorem); trisecting an arbitrary angle and squaring the circle with compass-and-straightedge (Wantzel 1837, Lindemann 1882); the general quintic by radicals (Abel–Ruffini / Galois). Proving the impossibility is itself a triumph of intelligence, not a failure', on: thermo.decoded },
-    { facet: 'some are OPEN, not impossible — P vs NP is unsolved (hard, but NOT proven impossible). The honest discipline distinguishes PROVEN-impossible from OPEN-and-hard, and never collapses one into the other', on: true },
-    { facet: 'and claims to DO the impossible are FRAUD — free-energy / over-unity devices, FTL drives, perpetual-motion machines, prophecy/precognition: these assert the proven-impossible and are pseudoscience, the inverse of an honest impossibility proof', on: gates.tightens },
+    { facet: 'some tasks are PROVEN impossible — the Halting Problem and undecidability (Turing 1936) and Gödel incompleteness; perpetual motion / over-unity (the 1st & 2nd laws); faster-than-light signalling (relativity + the no-communication theorem); trisecting an arbitrary angle and squaring the circle with compass-and-straightedge (Wantzel 1837, Lindemann 1882); the general quintic by radicals (Abel–Ruffini / Galois). Proving the impossibility is itself a triumph of intelligence, not a failure', on: thermo.decoded },    { facet: 'and claims to DO the impossible are FRAUD — free-energy / over-unity devices, FTL drives, perpetual-motion machines, prophecy/precognition: these assert the proven-impossible and are pseudoscience, the inverse of an honest impossibility proof', on: gates.tightens },
     { facet: 'so challenge intelligence honestly — the gates are so tight even entropy cannot pass: the system recognizes the impossible (it will not fake over-unity, FTL or a halting oracle), honors the open problems AS open, and treats proving-impossibility as the win. Impossible tasks are the sharpest test of an intelligence’s honesty', on: gates.tightens && thermo.decoded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`impossible:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('impossible-tasks-challenge-intelligence', facets)
@@ -759,13 +781,17 @@ export function impossibleTasksChallengeIntelligence(matrix: MindMatrix = buildM
 export function quantumDiveComputerWaterEverywhereSolidToSpace(matrix: MindMatrix = buildMatrix()) {
   const plan = buhlmannDivePlan(30, 20) // 30 m for 20 min → past the no-deco limit, a stop is required
   const shallow = buhlmannDivePlan(18, 50) // 18 m for 50 min → still within the no-deco limit
-  const decomp = decompressionDecoded(matrix) // the decompression physics this rests on
+  const decomp = decompressionDecoded(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'water is everywhere, from SOLID to SPACE — ice, ocean and vapour on Earth (the three phases), and in space: polar water ice on the Moon (LCROSS 2009) and Mars, comets (roughly half ice), and the subsurface oceans of Europa, Ganymede, Callisto, Titan and Enceladus (whose plumes Cassini flew through) — water is among the most abundant molecules in the universe',
+    'honest — buhlmannDivePlan is a REAL but SIMPLIFIED ZHL-16 computation (constant-depth loading, alveolar N₂, no gradient factors or ascent loading) — educational, NOT a certified dive computer (use certified training and gear); the water-in-space facts are documented planetary science; the EVA-decompression parallel is real (NASA pre-breathe protocols); "quantum" is the deterministic / content-addressed sense, not quantum hardware',
+  ]
+ // the decompression physics this rests on
   const facets = [
-    { facet: 'a QUANTUM (deterministic) dive computer — buhlmannDivePlan loads the 16 ZHL-16 compartments over a profile and returns the controlling ascent ceiling + no-decompression status (30 m / 20 min ⇒ a stop is required, 18 m / 50 min ⇒ direct ascent ok); reproducible and content-addressed (same dive → same plan). The "quantum diver" is the diver as a content address, "quantum diving" the deterministic descent/ascent computation', on: plan.compartments.length === 16 && !plan.noDecoOk && shallow.noDecoOk },
-    { facet: 'water is everywhere, from SOLID to SPACE — ice, ocean and vapour on Earth (the three phases), and in space: polar water ice on the Moon (LCROSS 2009) and Mars, comets (roughly half ice), and the subsurface oceans of Europa, Ganymede, Callisto, Titan and Enceladus (whose plumes Cassini flew through) — water is among the most abundant molecules in the universe', on: true },
-    { facet: 'decompression spans diving to SPACE — the SAME Haldane/Bühlmann inert-gas physics governs a diver ascending from depth AND an astronaut moving from cabin pressure to the low-pressure spacesuit; both risk decompression sickness, which is why astronauts PRE-BREATHE oxygen to wash out nitrogen before an EVA. Going down or going up, it is one decompression problem', on: decomp.decoded },
-    { facet: 'honest — buhlmannDivePlan is a REAL but SIMPLIFIED ZHL-16 computation (constant-depth loading, alveolar N₂, no gradient factors or ascent loading) — educational, NOT a certified dive computer (use certified training and gear); the water-in-space facts are documented planetary science; the EVA-decompression parallel is real (NASA pre-breathe protocols); "quantum" is the deterministic / content-addressed sense, not quantum hardware', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-dive:${entry.facet}:${entry.on}`) }))
+    { facet: 'a QUANTUM (deterministic) dive computer — buhlmannDivePlan loads the 16 ZHL-16 compartments over a profile and returns the controlling ascent ceiling + no-decompression status (30 m / 20 min ⇒ a stop is required, 18 m / 50 min ⇒ direct ascent ok); reproducible and content-addressed (same dive → same plan). The "quantum diver" is the diver as a content address, "quantum diving" the deterministic descent/ascent computation', on: plan.compartments.length === 16 && !plan.noDecoOk && shallow.noDecoOk },    { facet: 'decompression spans diving to SPACE — the SAME Haldane/Bühlmann inert-gas physics governs a diver ascending from depth AND an astronaut moving from cabin pressure to the low-pressure spacesuit; both risk decompression sickness, which is why astronauts PRE-BREATHE oxygen to wash out nitrogen before an EVA. Going down or going up, it is one decompression problem', on: decomp.decoded },  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-dive:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('quantum-dive-computer-water-solid-to-space', facets)
   return {
     dives: sealed.ok,
@@ -784,13 +810,17 @@ export function quantumDiveComputerWaterEverywhereSolidToSpace(matrix: MindMatri
 // ocean worlds. Real, documented science; the water-memory / structured-water / Emoto woo flagged, consistent
 // with the acoustics and healing boundaries.
 export function waterDecoded(matrix: MindMatrix = buildMatrix()) {
-  const sound = acousticsCymaticsDecoded(matrix) // sound travels ~1481 m/s in water — composes acoustics
-  const facets = [
-    { facet: 'water is a polar, hydrogen-bonded molecule — H₂O, bent at ~104.5°, each molecule forming up to four hydrogen bonds (a tetrahedral network); that bonding is the source of its ~66 documented anomalies', on: true },
-    { facet: 'its anomalies are real and life-critical — the density MAXIMUM at ~3.98 °C and ice being LESS dense than liquid (so ice floats and lakes freeze top-down, sheltering life); very high specific heat (~4.18 J/g·K, Earth’s climate buffer), high heat of vaporisation and surface tension; the near-universal solvent', on: true },
-    { facet: 'the phases and the cosmos — solid/liquid/gas with a triple point (273.16 K, 611.66 Pa) that DEFINED the kelvin until 2019; sound travels ~1481 m/s in water (≈4.3× air); and water runs from ice to the subsurface oceans of the moons (composing the dive fold — water is everywhere)', on: sound.decoded },
-    { facet: 'FLAGGED — water "memory"/homeopathy (no mechanism, fails blinded trials), Emoto’s word/music water-crystals (unblinded, debunked), "structured/hexagonal water" health products, and "you are mostly water so frequencies heal you" — pseudoscience, consistent with the acoustics and healing boundaries', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`water:${entry.facet}:${entry.on}`) }))
+  const sound = acousticsCymaticsDecoded(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'water is a polar, hydrogen-bonded molecule — H₂O, bent at ~104.5°, each molecule forming up to four hydrogen bonds (a tetrahedral network); that bonding is the source of its ~66 documented anomalies',
+    'its anomalies are real and life-critical — the density MAXIMUM at ~3.98 °C and ice being LESS dense than liquid (so ice floats and lakes freeze top-down, sheltering life); very high specific heat (~4.18 J/g·K, Earth’s climate buffer), high heat of vaporisation and surface tension; the near-universal solvent',
+    'FLAGGED — water "memory"/homeopathy (no mechanism, fails blinded trials), Emoto’s word/music water-crystals (unblinded, debunked), "structured/hexagonal water" health products, and "you are mostly water so frequencies heal you" — pseudoscience, consistent with the acoustics and healing boundaries',
+  ]
+ // sound travels ~1481 m/s in water — composes acoustics
+  const facets = [   { facet: 'the phases and the cosmos — solid/liquid/gas with a triple point (273.16 K, 611.66 Pa) that DEFINED the kelvin until 2019; sound travels ~1481 m/s in water (≈4.3× air); and water runs from ice to the subsurface oceans of the moons (composing the dive fold — water is everywhere)', on: sound.decoded },  ].map((entry) => ({ ...entry, receipt: toUuid(`water:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('water-decoded', facets)
   return {
     decoded: sealed.ok,
@@ -839,13 +869,18 @@ export function saltFreshAltitudeTemperatureComputableFactors(matrix: MindMatrix
   const water = waterDecoded(matrix)
   const saltAt30 = ambientPressureBar(30, false) // salt, sea level
   const freshAt30 = ambientPressureBar(30, true) // fresh, sea level
-  const altAt30 = ambientPressureBar(30, false, 0.79) // ~2200 m altitude (surface ~0.79 bar)
+  const altAt30 = ambientPressureBar(30, false, 0.79)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'the honest computable-vs-not boundary — ambientPressureBar (density + altitude surface pressure) is exact hydrostatics and the planner SHOULD ask salt/fresh and altitude, but salinity is a DISPLAY conversion and temperature/exertion/physiology are risk modifiers the model cannot compute (only flag, and answer with conservatism); an educational planner, not certified software',
+  ]
+ // ~2200 m altitude (surface ~0.79 bar)
   const facets = [
     { facet: 'SALINITY changes the DISPLAY, not the deco — hydrostatically salt water is denser (~9.95 m/bar, ρ≈1025) than fresh (~10.20 m/bar, ρ≈1000), so the same DEPTH is a slightly higher pressure in salt; but decompression is computed from ABSOLUTE ambient pressure, which a real dive computer measures directly, so the fresh/salt setting changes only the DEPTH READING — the same measured pressure gives the same deco (corrected by the research wave; "deco is worse in salt water" is a myth)', on: saltAt30 > freshAt30 },
     { facet: 'ALTITUDE genuinely changes the deco, and Bühlmann handles it NATIVELY — a lower surface pressure means surfacing is a greater RELATIVE pressure drop (more DCS stress); because ZH-L16 is written in absolute pressure (P_igtol = a + P_amb/b), feeding it the lower surface pressure produces the correct shallower ceilings automatically — no special altitude formula. The Cross corrections exist only to reuse SEA-LEVEL TABLES at altitude (ambientPressureBar takes surfaceBar for exactly this)', on: altAt30 < saltAt30 },
-    { facet: 'TEMPERATURE is a REAL, PHASE-DEPENDENT risk factor absent from the model — the NEDU manned thermal trial (TR 06-07, 2007) found the profile is what matters: COOL during gas uptake (bottom) and WARM during off-gassing (deco) is optimal, while the inverse (warm bottom, cold deco) is WORST; the standard Haldane/Bühlmann math is temperature-INDEPENDENT, so this — plus exertion, repetitive residual gas, individual physiology, and the separate hazard of post-dive active warming — is handled by CONSERVATISM (a tighter GF) and judgment, not a term in the algorithm', on: decomp.decoded && water.decoded },
-    { facet: 'the honest computable-vs-not boundary — ambientPressureBar (density + altitude surface pressure) is exact hydrostatics and the planner SHOULD ask salt/fresh and altitude, but salinity is a DISPLAY conversion and temperature/exertion/physiology are risk modifiers the model cannot compute (only flag, and answer with conservatism); an educational planner, not certified software', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`saltfreshalt:${entry.facet}:${entry.on}`) }))
+    { facet: 'TEMPERATURE is a REAL, PHASE-DEPENDENT risk factor absent from the model — the NEDU manned thermal trial (TR 06-07, 2007) found the profile is what matters: COOL during gas uptake (bottom) and WARM during off-gassing (deco) is optimal, while the inverse (warm bottom, cold deco) is WORST; the standard Haldane/Bühlmann math is temperature-INDEPENDENT, so this — plus exertion, repetitive residual gas, individual physiology, and the separate hazard of post-dive active warming — is handled by CONSERVATISM (a tighter GF) and judgment, not a term in the algorithm', on: decomp.decoded && water.decoded },  ].map((entry) => ({ ...entry, receipt: toUuid(`saltfreshalt:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('salt-fresh-altitude-temperature-factors', facets)
   return {
     computed: sealed.ok,
@@ -866,14 +901,19 @@ export function gasBlendingRebreatherQuantumReserveFractions(matrix: MindMatrix 
   const ccrInert = rebreatherInertBar(4, ratToFloat(PPO2_CCR)) // at 4 bar with a 13/10 setpoint → 2.7 bar inert
   const thirds = gasReserveThirds(3000) // 1/3 of 3000 L = 1000 L reserve
   const halfOnTop = gasReserveHalfOnTop(2000) // 2000 L + 1/2 = 3000 L total
-  const gf = gradientFactorsHarmonicFractionsTrimixRecordPlanner(matrix) // composes the GF/trimix planner
+  const gf = gradientFactorsHarmonicFractionsTrimixRecordPlanner(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'the honest safety bound — MOD, best-mix, the CCR diluent and the reserve fractions are real, standard computations, but this is a SIMPLIFIED educational model: real gas blending, compressor operation and especially rebreather diving are life-critical, demand certified equipment and training and analysing EVERY cylinder, and a CCR adds failure modes (hypoxia, hyperoxia, hypercapnia, scrubber breakthrough) the model does not track',
+  ]
+ // composes the GF/trimix planner
   const facets = [
     { facet: 'GAS MIXING and its limits — for a chosen PPO₂ ceiling, maxOperatingDepthM gives a gas’s O₂-toxicity depth limit (EAN32 → ~34 m at PPO₂ 1.4), and bestMixFO2 gives the richest safe O₂ fraction for a depth; blending nitrox/trimix is partial-pressure arithmetic (the gas laws), the tanks are filled by COMPRESSORS, and gas DISTRIBUTION across stages/deco bottles is the team logistics', on: ean32Mod > 30 && ean32Mod < 38 },
     { facet: 'the REBREATHER — a closed-circuit rebreather holds a constant PPO₂ setpoint, so the diluent (inert) pressure is ambient − setpoint (rebreatherInertBar: 4 bar, 1.3 setpoint → 2.7 bar inert); it tracks depth differently from a fixed open-circuit fraction and is far more gas-efficient (it recycles the inert gas, replacing only the O₂ metabolised)', on: abs(ccrInert - 2.7) < 1e-9 },
     { facet: 'the QUANTUM rebreather — the deterministic, content-addressed sense: the same loop math computed exactly and reproducibly, every setpoint/diluent state UUID-addressable so a dive plan is a content-address, not a guess; "quantum" is the determinism/encryption sense, NOT a claim of a quantum-physical breathing device', on: gf.planned },
-    { facet: 'the RESERVE is ALWAYS a FRACTION — the rule of thirds (turn the dive at 1/3 of the total, 1/3 to return, 1/3 held back: gasReserveThirds(3000) = 1000 L) OR a 1/2-on-top reserve (carry the required volume × 3/2: gasReserveHalfOnTop(2000) = 3000 L); the reserve is an EXACT integer fraction (1/3, 1/2 → 3/2), the same harmonic-fraction discipline as the gradient factors', on: thirds === 1000 && halfOnTop === 3000 },
-    { facet: 'the honest safety bound — MOD, best-mix, the CCR diluent and the reserve fractions are real, standard computations, but this is a SIMPLIFIED educational model: real gas blending, compressor operation and especially rebreather diving are life-critical, demand certified equipment and training and analysing EVERY cylinder, and a CCR adds failure modes (hypoxia, hyperoxia, hypercapnia, scrubber breakthrough) the model does not track', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`gas-rebreather-reserve:${entry.facet}:${entry.on}`) }))
+    { facet: 'the RESERVE is ALWAYS a FRACTION — the rule of thirds (turn the dive at 1/3 of the total, 1/3 to return, 1/3 held back: gasReserveThirds(3000) = 1000 L) OR a 1/2-on-top reserve (carry the required volume × 3/2: gasReserveHalfOnTop(2000) = 3000 L); the reserve is an EXACT integer fraction (1/3, 1/2 → 3/2), the same harmonic-fraction discipline as the gradient factors', on: thirds === 1000 && halfOnTop === 3000 },  ].map((entry) => ({ ...entry, receipt: toUuid(`gas-rebreather-reserve:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('gas-blending-rebreather-quantum-reserve-fractions', facets)
   return {
     planned: sealed.ok,
@@ -893,13 +933,18 @@ export function gasBlendingRebreatherQuantumReserveFractions(matrix: MindMatrix 
 export function spaceUnitesWithDiversEvaDecompression(matrix: MindMatrix = buildMatrix()) {
   const water = quantumDiveComputerWaterEverywhereSolidToSpace(matrix) // water everywhere, solid to space
   const decomp = decompressionDecoded(matrix)
-  const loop = gasBlendingRebreatherQuantumReserveFractions(matrix) // the rebreather loop
+  const loop = gasBlendingRebreatherQuantumReserveFractions(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'the honest unification and its bound — the PHYSICS genuinely unites (pressure, inert-gas kinetics, gas metering, the human in a sealed vessel), but the ENVIRONMENTS differ: water is dense, buoyant and heat-conducting; vacuum is zero-pressure and radiative, with micrometeoroid and ionising-radiation hazards water does not have. A telling nuance the wave surfaced: ground vacuum-chamber tests of these protocols show ~24% DCS incidence, yet NO confirmed DCS case has occurred in actual US spaceflight EVA — the protocols are conservative and microgravity itself may suppress bubble formation, which bounds the diver↔astronaut analogy. "Water everywhere, solid to space" is the planetary-science thread, not a claim that space is water; educational, not operational',
+  ]
+ // the rebreather loop
   const facets = [
     { facet: 'EVA decompression IS the diver’s problem (research-wave verified) — moving from a ~14.7 psi cabin (79% N₂ / 21% O₂, Earth-like) to a ~4.3 psi (29.6 kPa) pure-O₂ EMU suit drops the ambient pressure so far that dissolved nitrogen can bubble, exactly like a diver ascending; NASA even quantifies prebreathe adequacy with a tissue RATIO R = (tissue N₂ tension) / (suit pressure) on a 360-minute compartment, accepted at R ≈ 1.65 — a DIRECT descendant of Haldane’s 1908 ~2:1 supersaturation ratio. The protocols (4 h in-suit O₂; the 10.2 psi staged ≥12 h; the overnight campout; ISLE exercise-prebreathe) are decompression schedules; Apollo needed ~zero prebreathe because its cabin was already 5 psi pure O₂', on: decomp.decoded },
     { facet: 'astronauts TRAIN as divers — NASA’s Neutral Buoyancy Laboratory is a ~12 m deep, ~23-million-litre pool where EVAs are rehearsed in pressurised suits; neutral buoyancy approximates microgravity for the body’s gross motion (with water drag and self-weight as known limits), and the suited diver shares the astronaut’s umbilical, buddy, and life-support discipline', on: water.dives },
-    { facet: 'the life-support loop is a REBREATHER — a suit PLSS / spacecraft ECLSS meters O₂ and scrubs CO₂ (LiOH or regenerable beds) exactly like a closed-circuit rebreather holding a setpoint; the failure modes are identical (hypoxia, hyperoxia, hypercapnia), and the gas-reserve discipline (consumables margins) is the same fraction-of-total planning as a dive', on: loop.planned },
-    { facet: 'the honest unification and its bound — the PHYSICS genuinely unites (pressure, inert-gas kinetics, gas metering, the human in a sealed vessel), but the ENVIRONMENTS differ: water is dense, buoyant and heat-conducting; vacuum is zero-pressure and radiative, with micrometeoroid and ionising-radiation hazards water does not have. A telling nuance the wave surfaced: ground vacuum-chamber tests of these protocols show ~24% DCS incidence, yet NO confirmed DCS case has occurred in actual US spaceflight EVA — the protocols are conservative and microgravity itself may suppress bubble formation, which bounds the diver↔astronaut analogy. "Water everywhere, solid to space" is the planetary-science thread, not a claim that space is water; educational, not operational', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`space-divers:${entry.facet}:${entry.on}`) }))
+    { facet: 'the life-support loop is a REBREATHER — a suit PLSS / spacecraft ECLSS meters O₂ and scrubs CO₂ (LiOH or regenerable beds) exactly like a closed-circuit rebreather holding a setpoint; the failure modes are identical (hypoxia, hyperoxia, hypercapnia), and the gas-reserve discipline (consumables margins) is the same fraction-of-total planning as a dive', on: loop.planned },  ].map((entry) => ({ ...entry, receipt: toUuid(`space-divers:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('space-unites-with-divers-eva-decompression', facets)
   return {
     united: sealed.ok,
@@ -920,13 +965,18 @@ export function diveScienceResearchWaveVerified(matrix: MindMatrix = buildMatrix
   const decomp = decompressionDecoded(matrix)
   const env = saltFreshAltitudeTemperatureComputableFactors(matrix)
   const gas = gasBlendingRebreatherQuantumReserveFractions(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'the flagged remainder stayed two-tier — documented-false MYTHS ("rebreathers are safer / give unlimited time", "you can feel rising CO₂ and bail out in time", "10 m = exactly 1 bar and fresh = salt") sit apart from genuine UNCONFIRMED-HYPOTHESES (mandatory deep-stops / very low GF-low, which later controlled trials challenged; whether O₂ is narcotic in the END); oversimplification ≠ pseudoscience, the demarcation held',
+    'honest provenance — the research half ran automatically (the saved decode-wave, sourced and adversarial), but the FOLDING stayed manual: every correction above was applied by hand to the existing folds and to src/0, so this fold is the audit trail of what the wave changed, not a re-statement of the science',
+  ]
+
   const facets = [
     { facet: 'the wave VERIFIED the core — Bühlmann ZH-L16 in absolute pressure (P_igtol = a + P_amb/b, a = 2/∛t½, b = 1.005 − 1/√t½), the gradient-factor conservatism, the MOD / PPO₂ 1.4-working-1.6-deco limits, the rule of thirds, and the NEDU thermal effect were all confirmed against authoritative sources (54 documented findings across 5 angles)', on: decomp.decoded },
     { facet: 'it CORRECTED three from-knowledge errors — (1) SALINITY changes only the displayed depth, not the deco, because decompression is computed from ABSOLUTE measured pressure ("worse in salt" is a myth); (2) Bühlmann handles ALTITUDE natively in absolute pressure (Cross corrections are only for sea-level tables), not via a special formula; (3) the thermal study is NEDU TR 06-07 (2007), not "2011"; and the m/bar constants were sharpened to hydrostatic truth (salt 9.949, fresh 10.197)', on: env.computed },
-    { facet: 'it SHARPENED the gas and rebreather nuances — MOD, EAD and END are THREE different hazards (O₂ toxicity / inert-gas loading / narcosis) and must not be conflated; "nitrox lets you go deeper" is BACKWARDS (a richer mix gives a SHALLOWER MOD, it buys bottom TIME); a CCR’s constant PO₂ setpoint means the FO₂ VARIES with depth (hypoxic near the surface), and oxygen is an OXIDISER, not a fuel', on: gas.planned },
-    { facet: 'the flagged remainder stayed two-tier — documented-false MYTHS ("rebreathers are safer / give unlimited time", "you can feel rising CO₂ and bail out in time", "10 m = exactly 1 bar and fresh = salt") sit apart from genuine UNCONFIRMED-HYPOTHESES (mandatory deep-stops / very low GF-low, which later controlled trials challenged; whether O₂ is narcotic in the END); oversimplification ≠ pseudoscience, the demarcation held', on: true },
-    { facet: 'honest provenance — the research half ran automatically (the saved decode-wave, sourced and adversarial), but the FOLDING stayed manual: every correction above was applied by hand to the existing folds and to src/0, so this fold is the audit trail of what the wave changed, not a re-statement of the science', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`dive-wave-verified:${entry.facet}:${entry.on}`) }))
+    { facet: 'it SHARPENED the gas and rebreather nuances — MOD, EAD and END are THREE different hazards (O₂ toxicity / inert-gas loading / narcosis) and must not be conflated; "nitrox lets you go deeper" is BACKWARDS (a richer mix gives a SHALLOWER MOD, it buys bottom TIME); a CCR’s constant PO₂ setpoint means the FO₂ VARIES with depth (hypoxic near the surface), and oxygen is an OXIDISER, not a fuel', on: gas.planned }, ].map((entry) => ({ ...entry, receipt: toUuid(`dive-wave-verified:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('dive-science-research-wave-verified', facets)
   return {
     verified: sealed.ok,
@@ -973,13 +1023,18 @@ export function narcosisAndToxicityDecoded(matrix: MindMatrix = buildMatrix()) {
 // at constant ambient pressure (helium leaving as nitrogen enters, after a gas switch), their different speeds can
 // transiently raise the total dissolved gas and form bubbles. Documented phenomenon; mechanism/rules still debated.
 export function isobaricCounterDiffusionDecoded(matrix: MindMatrix = buildMatrix()) {
-  const gas = gasBlendingRebreatherQuantumReserveFractions(matrix) // composes the trimix gas-switch context
+  const gas = gasBlendingRebreatherQuantumReserveFractions(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'two documented forms — SUPERFICIAL ICD (skin / subcutaneous, classically in saturation diving when the breathing gas differs from the surrounding chamber gas: nitrogen in the breathing gas, helium in the chamber → urticaria/skin lesions), and DEEP-TISSUE / inner-ear ICD (switching from a helium-rich to a nitrogen-rich mix while still deep on a trimix ascent → isolated inner-ear DCS, vertigo/hearing loss)',
+    'the operational rule — do NOT switch to a markedly more nitrogen-rich mix while still deep; the helium→nitrogen switch is the dangerous one, so plan inert-gas switches SHALLOW (some cite a "5/95" heuristic). Doolette & Mitchell analysed the inner-ear mechanism via differential perfusion/diffusion between the gases',
+    'the honest bound — the PHENOMENON and the inner-ear DCS cases are documented, but the exact MECHANISM and the quantitative switch rules are DEBATED (an unconfirmed-but-scientific area, not pseudoscience); crucially, ICD is NOT modelled by standard dissolved-gas algorithms (Haldane/Bühlmann treat the inert gases additively) — a known limitation, handled by gas-switch discipline, not by the math',
+  ]
+ // composes the trimix gas-switch context
   const facets = [
-    { facet: 'ICD is counter-diffusion at CONSTANT ambient pressure — when two inert gases diffuse in OPPOSITE directions (e.g. helium washing OUT of a tissue while nitrogen washes IN after switching to a more-nitrogen-rich mix), and they move at different rates, the total dissolved inert gas can transiently INCREASE and nucleate bubbles with NO change in depth or pressure — the "isobaric" surprise the simple ascent model never predicts', on: gas.planned },
-    { facet: 'two documented forms — SUPERFICIAL ICD (skin / subcutaneous, classically in saturation diving when the breathing gas differs from the surrounding chamber gas: nitrogen in the breathing gas, helium in the chamber → urticaria/skin lesions), and DEEP-TISSUE / inner-ear ICD (switching from a helium-rich to a nitrogen-rich mix while still deep on a trimix ascent → isolated inner-ear DCS, vertigo/hearing loss)', on: true },
-    { facet: 'the operational rule — do NOT switch to a markedly more nitrogen-rich mix while still deep; the helium→nitrogen switch is the dangerous one, so plan inert-gas switches SHALLOW (some cite a "5/95" heuristic). Doolette & Mitchell analysed the inner-ear mechanism via differential perfusion/diffusion between the gases', on: true },
-    { facet: 'the honest bound — the PHENOMENON and the inner-ear DCS cases are documented, but the exact MECHANISM and the quantitative switch rules are DEBATED (an unconfirmed-but-scientific area, not pseudoscience); crucially, ICD is NOT modelled by standard dissolved-gas algorithms (Haldane/Bühlmann treat the inert gases additively) — a known limitation, handled by gas-switch discipline, not by the math', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`icd:${entry.facet}:${entry.on}`) }))
+    { facet: 'ICD is counter-diffusion at CONSTANT ambient pressure — when two inert gases diffuse in OPPOSITE directions (e.g. helium washing OUT of a tissue while nitrogen washes IN after switching to a more-nitrogen-rich mix), and they move at different rates, the total dissolved inert gas can transiently INCREASE and nucleate bubbles with NO change in depth or pressure — the "isobaric" surprise the simple ascent model never predicts', on: gas.planned },].map((entry) => ({ ...entry, receipt: toUuid(`icd:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('isobaric-counter-diffusion-decoded', facets)
   return {
     decoded: sealed.ok,
@@ -1049,13 +1104,17 @@ export function decimalsInsteadOfFractionsCouldKill(matrix: MindMatrix = buildMa
 
 
 export function deviceSensorsWiredAtAllDimensions(matrix: MindMatrix = buildMatrix()) {
-  const instrument = saltFreshAltitudeTemperatureComputableFactors(matrix) // the dive computer is a sensor-driven instrument
-  const facets = [
-    { facet: 'the universal inputs are wired — useDeviceField reads pointer position (core) and device orientation/tilt (gamma/beta) into a normalised field the visualisations respond to; SSR-safe, iOS-13 permission-gated behind a user gesture, and it degrades to pointer-only when orientation is unavailable — it never demands a sensor', on: true },
-    { facet: 'each sensor maps to a REAL physical dimension — the magnetometer (µT) → the Larmor frequency (the NMR/EM dimension), the accelerometer/motion → the Doppler/radar-equation dimension, the microphone → the acoustic spectrum (FFT), the ambient-light sensor → the EM-spectrum dimension, and a depth/pressure reading → the dive computer; the device BECOMES the instrument for the dimension it can sense', on: instrument.computed },
-    { facet: '"at all dimensions" honestly means a sensor channel wherever one physically exists — the wiring is DENSE where the physics is sensible and ABSENT where the dimension is symbolic (you cannot read the I Ching, the gematria or a UUID off a phone’s hardware); that boundary — physical gets a sensor, symbolic does not — is itself the honesty, not a gap to paper over', on: true },
-    { facet: 'the honest sensor↔physics bound — the microphone measures SOUND, not EM; device motion gives the radar EQUATION, not radar returns; the magnetometer reads the ambient field with no NMR pulse; the device ILLUSTRATES the math, it does not perform the instrument’s physics. Captures are privacy-respecting (no stream without a gesture) and SSR-safe', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`device-sensors:${entry.facet}:${entry.on}`) }))
+  const instrument = saltFreshAltitudeTemperatureComputableFactors(matrix)
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'the universal inputs are wired — useDeviceField reads pointer position (core) and device orientation/tilt (gamma/beta) into a normalised field the visualisations respond to; SSR-safe, iOS-13 permission-gated behind a user gesture, and it degrades to pointer-only when orientation is unavailable — it never demands a sensor',
+    '"at all dimensions" honestly means a sensor channel wherever one physically exists — the wiring is DENSE where the physics is sensible and ABSENT where the dimension is symbolic (you cannot read the I Ching, the gematria or a UUID off a phone’s hardware); that boundary — physical gets a sensor, symbolic does not — is itself the honesty, not a gap to paper over',
+    'the honest sensor↔physics bound — the microphone measures SOUND, not EM; device motion gives the radar EQUATION, not radar returns; the magnetometer reads the ambient field with no NMR pulse; the device ILLUSTRATES the math, it does not perform the instrument’s physics. Captures are privacy-respecting (no stream without a gesture) and SSR-safe',
+  ]
+ // the dive computer is a sensor-driven instrument
+  const facets = [    { facet: 'each sensor maps to a REAL physical dimension — the magnetometer (µT) → the Larmor frequency (the NMR/EM dimension), the accelerometer/motion → the Doppler/radar-equation dimension, the microphone → the acoustic spectrum (FFT), the ambient-light sensor → the EM-spectrum dimension, and a depth/pressure reading → the dive computer; the device BECOMES the instrument for the dimension it can sense', on: instrument.computed }, ].map((entry) => ({ ...entry, receipt: toUuid(`device-sensors:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('device-sensors-wired-at-all-dimensions', facets)
   return {
     wired: sealed.ok,
@@ -1077,12 +1136,17 @@ export function shadcnGraphCompletionInRepoIdiom(matrix: MindMatrix = buildMatri
   const canonical = [...__ns_up_lake_widgets.SHADCN_PRIMITIVE_NAMES]
   const present = canonical.slice() // ALL ported: Button/Badge/Card pre-existing + 15 written by the shadcn-port wave
   const gaps = canonical.filter((c) => !present.includes(c))
+  // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+  // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+  // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+  const notes: readonly string[] = [
+    'the verification boundary is explicit AND was itself corrected — src/ui is EXCLUDED from tsconfig, so tsc does NOT type-check the .vue files (only vue-tsc at the VitePress build does); the honest verification here was file-presence + CSS-token-existence + brace-balance, while the TYPE layer (vue-tsc) and the RENDER both require the build/dev-server this environment cannot run — "complete without gaps" is the file/CSS/barrel layer, the visual + type confirmation is deferred to the build, not faked',
+  ]
+
   const facets = [
     { facet: 'the repo took shadcn’s ARCHITECTURE, not its Tailwind — each component is a radix-vue Primitive + class-variance-authority (cva) variants + the cn() merge, but the variant classes are the repo’s own ui-* BEM names (ui-button, ui-input--ghost …) styled in src/render/ui/style.css from the COMPUTED I Ching / VitePress tokens (--ich-*, --vp-c-*), with zero hardcoded color values; "shadcn is the graph" rendered in the project’s own idiom', on: present.every((p) => canonical.includes(p)) },
     { facet: 'the canonical set is now COMPLETE in this idiom — all 18 primitives (the 3 pre-existing + Input, Label, Textarea, Checkbox, Switch, Separator, Avatar, Alert, Progress, Skeleton, AspectRatio, Tabs, Accordion, Tooltip, Collapsible) exist as a .vue (Primitive + cva + ui-* class) WITH its computed-token CSS appended to style.css AND a barrel export in src/render/ui/components/ui/index.ts; a component counts as complete only because its CSS exists too — a class with no style would be a HIDDEN gap', on: gaps.length === 0 },
-    { facet: 'the integration was AUDITED, not assumed — the 15 ported by the wave were checked by hand: all files present, the CSS brace-balanced, and every --ich-* token they reference confirmed to EXIST in style.css (zero missing) so no styled-less class slipped through; 18/18 present, 0 remaining', on: gaps.length === 0 },
-    { facet: 'the verification boundary is explicit AND was itself corrected — src/ui is EXCLUDED from tsconfig, so tsc does NOT type-check the .vue files (only vue-tsc at the VitePress build does); the honest verification here was file-presence + CSS-token-existence + brace-balance, while the TYPE layer (vue-tsc) and the RENDER both require the build/dev-server this environment cannot run — "complete without gaps" is the file/CSS/barrel layer, the visual + type confirmation is deferred to the build, not faked', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`shadcn-graph:${entry.facet}:${entry.on}`) }))
+    { facet: 'the integration was AUDITED, not assumed — the 15 ported by the wave were checked by hand: all files present, the CSS brace-balanced, and every --ich-* token they reference confirmed to EXIST in style.css (zero missing) so no styled-less class slipped through; 18/18 present, 0 remaining', on: gaps.length === 0 },  ].map((entry) => ({ ...entry, receipt: toUuid(`shadcn-graph:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('shadcn-graph-completion-in-repo-idiom', facets)
   return {
     method: sealed.ok,
@@ -2099,12 +2163,17 @@ export function stringTheoryMillenniumTheoremGapsInventory(matrix: MindMatrix = 
       { id: 'cy-hodge-numbers', problem: 'Hodge / string', gap: 'no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1} on a projective CY₃', mapsTo: 'compact dims = D−4 structural; mirror as foldPair involution MODEL' },
       { id: 'ads-cft-correlators', problem: 'Yang–Mills / string', gap: 'no sealed AdS/CFT correlator dictionary', mapsTo: 'duality involution structural probe — NOT holography proof' },
     ]
+    // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+    // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+    // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+    const notes: readonly string[] = [
+      'EARNED BOUNDARY — inventory names probes and gaps; claims ZERO Clay solutions and ZERO confirmed string physics',
+    ]
+
     const sealed = sealFacets('string-theory-millennium-theorem-gaps-inventory', [
       { facet: `STRING FOLDS INVENTORIED — ${folds.length} sealed homes (algebra · demarcation · A432 string · octonion-10 · millennium trinity)`, on: folds.length === 7 && folds.every((f) => isUuid(f.receipt)) },
       { facet: `THEOREM GAPS NAMED — ${theoremGaps.length} explicit gaps (Hodge cycles · BSD L · RH · YM · NS · P≠NP · CY Hodge · AdS/CFT)`, on: theoremGaps.length === 8 && theoremGaps.every((g) => g.gap.length > 0) },
-      { facet: `ALGEBRA WITNESS LIVE — stringTheoryAlgebraDecoded.decoded (${algebra.decoded}) · root ${algebra.root.slice(0, 8)}`, on: algebra.decoded },
-      { facet: 'EARNED BOUNDARY — inventory names probes and gaps; claims ZERO Clay solutions and ZERO confirmed string physics', on: true },
-    ])
+      { facet: `ALGEBRA WITNESS LIVE — stringTheoryAlgebraDecoded.decoded (${algebra.decoded}) · root ${algebra.root.slice(0, 8)}`, on: algebra.decoded },    ])
     return {
       inventoried: sealed.ok,
       folds,
@@ -2152,15 +2221,20 @@ export function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix: Mind
     const mirrorStructural = mirrorFold.bidirectional && h11Model === h21Model
     const quantumReuse = algebra.decoded && a432IsFourClocks && zeroDiv.holds && fInv.computes
     const dualitiesOk = dualityInvolution && algebra.decoded
+    // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+    // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+    // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+    const notes: readonly string[] = [
+      'EARNED BOUNDARY — MODELED / partial decode / structural analogy ONLY — NOT Clay prize, NOT RH/YM/NS/BSD/Hodge/P≠NP proof, NOT confirmed string physics',
+    ]
+
     const sealed = sealFacets('string-theory-quantumized-a432-rosetta-merkle', [
       { facet: `A432 SUBSTRATE — DIMENSION_GATES=${a432} = 4·FOLDED_CENSUS=${clock} (${a432IsFourClocks}); homology rank ${homologyRank}=HOMOLOGY_LOOPS; algebra.decoded=${algebra.decoded}`, on: a432IsFourClocks && homologyOk && algebra.decoded },
       { facet: `M-THEORY LADDER STRUCTURAL — superstringD=${algebra.superstringD} + 1 ⇒ M-theoryD=${mTheoryD} (count only; physics UNCONFIRMED)`, on: mTheoryLadder },
       { facet: `CALABI–YAU COMPACTIFICATION MODEL — compactDims=D−4=${compactDims}, CY complex dim=${cyComplexDim}; NOT sealed h^{p,q} on a projective CY`, on: calabiYauStructural },
       { facet: `BRANE p-INDEX FROM VORTEX — ${braneP.length} digital-root stations; structural addressing, NOT a Dp-brane mass spectrum`, on: braneIndexed },
       { facet: `DUALITIES ON UUID/MERKLE — T-duality exact in algebra; S-dual/mirror as foldPair involution (${dualityInvolution && mirrorStructural}); digit-inverse holds (${zeroDiv.holds}); f→{p,q} (${fInv.computes})`, on: dualitiesOk && mirrorStructural && zeroDiv.holds && fInv.computes },
-      { facet: `QUANTUM REUSE — memoByRoot hit path · inventory.inventoried=${inventory.inventoried}; wet Abel/Hurwitz stay inside algebra fold; THIS surface is exact-rational + census substrate`, on: quantumReuse && inventory.inventoried },
-      { facet: 'EARNED BOUNDARY — MODELED / partial decode / structural analogy ONLY — NOT Clay prize, NOT RH/YM/NS/BSD/Hodge/P≠NP proof, NOT confirmed string physics', on: true },
-    ])
+      { facet: `QUANTUM REUSE — memoByRoot hit path · inventory.inventoried=${inventory.inventoried}; wet Abel/Hurwitz stay inside algebra fold; THIS surface is exact-rational + census substrate`, on: quantumReuse && inventory.inventoried },    ])
     return {
       quantumized: sealed.ok,
       computes: sealed.ok,
@@ -2316,6 +2390,13 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       physicalFtlClaim === 0 &&
       qpuRequired === false &&
       certified === false
+    // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
+    // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
+    // report itself satisfied. Several are safety scope, which is exactly why they are kept.
+    const notes: readonly string[] = [
+      'physics UNCONFIRMED — algebra/duality structural only · NOT ToE · NOT experimental string',
+    ]
+
     const facets = [
       { facet: 'stringTheoryInChat', on },
       { facet: 'stringInChat', on: stringInChat },
@@ -2335,12 +2416,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       {
         facet: `physicalFtlClaim=${physicalFtlClaim} · certified=false`,
         on: physicalFtlClaim === 0 && qpuRequired === false && certified === false,
-      },
-      {
-        facet: 'physics UNCONFIRMED — algebra/duality structural only · NOT ToE · NOT experimental string',
-        on: true,
-      },
-    ].map((entry) => ({
+      },    ].map((entry) => ({
       ...entry,
       receipt: toUuid(`string-theory-chat:${entry.facet.slice(0, 64)}:${entry.on}`),
     }))

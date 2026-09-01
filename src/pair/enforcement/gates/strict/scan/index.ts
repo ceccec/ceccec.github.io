@@ -2443,7 +2443,7 @@ export function seoProse(text: string): string {
 }
 
 export function seoKeywords(text: string, top = 5): SeoKeyword[] {
-  const words = seoProse(text).toLowerCase().match(/[a-zа-я]{6 }/g) ?? []
+  const words = seoProse(text).toLowerCase().match(/[a-zа-я]{6,}/g) ?? []
   const freq = new Map<string, number>()
   for (const w of words) freq.set(w, (freq.get(w) ?? 0) + 1)
   return [...freq.entries()].map(([term, count]) => ({ term, count })).sort((a, b) => b.count - a.count || a.term.localeCompare(b.term)).slice(0, top)
@@ -2459,7 +2459,7 @@ export function seoFolderNames(root: string = enforcementScanRoot()): { folder: 
     const walk = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) { const p = join(d, e.name); if (e.isDirectory()) walk(p); else if (e.name === 'index.ts') text += readFileSync(p, 'utf8') + '\n' } }
     walk(join(srcDir, top))
     const freq = new Map<string, number>()
-    for (const w of seoProse(text).toLowerCase().match(/[a-zа-я]{6 }/g) ?? []) freq.set(w, (freq.get(w) ?? 0) + 1)
+    for (const w of seoProse(text).toLowerCase().match(/[a-zа-я]{6,}/g) ?? []) freq.set(w, (freq.get(w) ?? 0) + 1)
     tf.set(top, freq)
     for (const term of freq.keys()) df.set(term, (df.get(term) ?? 0) + 1)
   }
@@ -4003,7 +4003,7 @@ export function computeProseTenDimensions(text: string): number[] {
     round((unique.size / max(1, words.length)) * 100), // 6 — harmony: lexical diversity %
     (text.match(/\b(not|never|no|cannot|nor)\b/gi) ?? []).length, // 7 — the octonion: refutation / earned-boundary markers
     round(words.length / max(1, sentences.length)), // 8 — the octad: avg words per sentence
-    (text.match(/\b[A-Z]{2 }\b/g) ?? []).length, // 9 — completion: emphasised concept markers (EXACT, HONEST, NOT)
+    (text.match(/\b[A-Z]{2,}\b/g) ?? []).length, // 9 — completion: emphasised concept markers (EXACT, HONEST, NOT)
   ]
 }
 export function theProseIsConfirmedWhenTheTenDimensionalToolComputesItsMeaningFromAllAspects() {

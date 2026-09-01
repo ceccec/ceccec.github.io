@@ -1761,7 +1761,7 @@ export function typesAreQuantumTagsAndEveryWordInANameIsAComputedTokenNotArbitra
     let text = ''
     try { text = readFileSync(file, 'utf8') } catch { continue }
     typeImports += [...text.matchAll(/import\s+type\s*\{/g)].length + [...text.matchAll(/export\s+type\s+\w/g)].length
-    for (const m of text.matchAll(/export function ([a-z][a-zA-Z0-9]{40 })\s*\(/g)) {
+    for (const m of text.matchAll(/export function ([a-z][a-zA-Z0-9]{40,})\s*\(/g)) {
       const name = m[1]!
       const bodyStart = (m.index ?? 0) + m[0].length // AFTER the signature — so the name cannot match itself
       const body = text.slice(bodyStart, bodyStart + 4 ** 6).toLowerCase() // the fold's implementation window

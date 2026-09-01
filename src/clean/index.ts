@@ -349,7 +349,7 @@ export function auditLocales(matrix: MindMatrix = buildMatrix()) {
       const te = p.title.en, tb = p.title.bg
       if (!te || !tb) return false
       if (/^(TODO|FIXME|TBD|xxx|\.\.\.|…)$/i.test(te) || /^(TODO|FIXME|TBD|xxx|\.\.\.|…)$/i.test(tb)) return false
-      if (te === tb && /[A-Za-z]{4 }/.test(te) && !['MCP', 'UTF', 'Schema.org', 'UI'].includes(te)) return false
+      if (te === tb && /[A-Za-z]{4,}/.test(te) && !['MCP', 'UTF', 'Schema.org', 'UI'].includes(te)) return false
       return true
     }) },
     { facet: 'math transliteration live — Glagolitic titles differ from English and contain Glagolitic glyphs', on: gla.length > 0 && gla[0].params.title !== en[0]?.params.title && /[Ⰰ-ⱟ]/.test(gla[0].params.title) },

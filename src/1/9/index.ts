@@ -326,7 +326,7 @@ export function offlineBulgarianPhraseTableAudit(): {
   for (const [en, bg] of BULGARIAN_PHRASES) {
     if (!en.trim() || !bg.trim() || stubRx.test(en) || stubRx.test(bg)) emptyOrStub++
     if (!translationPlaceholderParity(en, bg)) placeholderMismatch++
-    if (en === bg && /[A-Za-z]{4 }/.test(en)) enEqualsBg++
+    if (en === bg && /[A-Za-z]{4,}/.test(en)) enEqualsBg++
     const applied = offlineTranslateEnToBg(en).text
     if (applied !== bg) roundTripMiss++
   }

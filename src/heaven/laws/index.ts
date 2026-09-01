@@ -447,7 +447,7 @@ export function noMirroringOneSourceAndMath(matrix: MindMatrix = buildMatrix()) 
 // EPO EPC Art. 52(2)(a) & (3), "mathematical methods … as such"). Applied to a concrete technical effect, math
 // CAN be eligible (Alice step two; EPO T 1227/05, G 1/19) — so the audit VERDICTS, it does not just condemn.
 // Patent / claim language — shared by every subject-matter audit so they draw the "is this a patent?" line once.
-const PATENT_CLAIM_LANGUAGE = /\b(patent(?:ed|able|ability)?|claim\s+\d|i\s+claim|wherein|comprising|characteri[sz]ed by|US\s?\d{6 }|EP\s?\d{6 }|utility model|inventor|priority date|prior art)\b/i
+const PATENT_CLAIM_LANGUAGE = /\b(patent(?:ed|able|ability)?|claim\s+\d|i\s+claim|wherein|comprising|characteri[sz]ed by|US\s?\d{6,}|EP\s?\d{6,}|utility model|inventor|priority date|prior art)\b/i
 
 const SACRED_MATH_CORES: readonly { family: string; cue: RegExp; priorArt: string }[] = [
   { family: 'golden ratio / Fibonacci', cue: /\b(golden ratio|golden mean|divine proportion|phi\b|fibonacci|1\.618)\b/i, priorArt: 'ancient (Euclid, Pingala) — public domain' },
@@ -1028,7 +1028,7 @@ export function theReusableAgnosticToolSchemaHandlesAllScenariosLikeSchemaOrg(ma
 export function theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuality(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuality', matrix, () => {
     const gates = [
-      { name: 'security', why: 'no hardcoded secrets, no eval / dynamic code', pattern: /\b(api[_-]?key|secret|token|passwd)\s*[:=]\s*['"][^'"]{6 }['"]|\beval\s*\(|new Function\s*\(/i },
+      { name: 'security', why: 'no hardcoded secrets, no eval / dynamic code', pattern: /\b(api[_-]?key|secret|token|passwd)\s*[:=]\s*['"][^'"]{6,}['"]|\beval\s*\(|new Function\s*\(/i },
       { name: 'privacy', why: 'no data exfiltration or tracking', pattern: /fetch\([^)]*\b(user|email|password|token)\b|\btrack\s*\(|analytics\.|sendBeacon\s*\(/i },
       { name: 'capability', why: 'no undisclosed dangerous capability', pattern: /child_process|rm\s+-rf|fs\.(unlink|rmSync)|process\.env\[/i },
       { name: 'quality', why: 'no leftover debug or unfinished TODO', pattern: /\b(TODO|FIXME|XXX)\b|console\.(log|debug)\s*\(|\bdebugger\b/ },

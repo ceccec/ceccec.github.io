@@ -77,7 +77,7 @@ export function movieFoldsEveryScaleToBitInTrinities(text = 'double torus') {
     { scale: 'letter', count: letters.length },
     { scale: 'word', count: clean.split(/\s+/).filter(Boolean).length },
     { scale: 'sentence', count: max(1, clean.split(/[.!?…]+/).map((s) => s.trim()).filter(Boolean).length) },
-    { scale: 'paragraph', count: max(1, text.split(/\n{2 }/).map((p) => p.trim()).filter(Boolean).length) },
+    { scale: 'paragraph', count: max(1, text.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean).length) },
   ]
   // the six scales group three-at-a-time into two TRINITIES; within each, adjacent scales DOUBLE-FOLD (both ways)
   const trinities = [ladder.slice(0, 3), ladder.slice(3, 6)]

@@ -80,7 +80,7 @@ export function autotranslations(matrix: MindMatrix = buildMatrix()) {
         bg.length > 0 &&
         en === bg &&
         !AREA_LABEL_ALLOW_SAME.has(en) &&
-        /[A-Za-z]{3 }/.test(en)) ||
+        /[A-Za-z]{3,}/.test(en)) ||
       (en.length > 0 &&
         bg.length > 0 &&
         en !== bg &&
@@ -184,7 +184,7 @@ function translationGapsGateRaw(matrix: MindMatrix = buildMatrix()) {
         receipt: toUuid(`tg-page-stub:${p.slug}`) })
     } else if (
       p.title.en === p.title.bg &&
-      /[A-Za-z]{4 }/.test(p.title.en) &&
+      /[A-Za-z]{4,}/.test(p.title.en) &&
       !AREA_LABEL_ALLOW_SAME.has(p.title.en)
     ) {
       gaps.push({
@@ -274,7 +274,7 @@ function translationGapsGateRaw(matrix: MindMatrix = buildMatrix()) {
     const phraseHit = BULGARIAN_PHRASES.some(([en]) => en === title || title.includes(en))
     const authoredBg = p.title.bg.length > 0 && p.title.bg !== title
     const tr = offlineTranslateEnToBg(title)
-    if (!phraseHit && !authoredBg && tr.mapped === 0 && /[A-Za-z]{3 }/.test(title)) uncoveredChrome++
+    if (!phraseHit && !authoredBg && tr.mapped === 0 && /[A-Za-z]{3,}/.test(title)) uncoveredChrome++
   }
   if (uncoveredChrome > 0) {
     gaps.push({
