@@ -5846,8 +5846,6 @@ export type ClayProseSurfaceScore = {
   readonly kind: 'static-page' | 'hub' | 'panel' | 'agents' | 'readme' | 'catalog-tool' | 'proof-page'
   readonly hasStatement: boolean
   readonly hasExplanation: boolean
-  readonly hasFormulaOrMethod: boolean
-  readonly hasHonestStatus: boolean
   readonly clayZeroLock: boolean
   readonly noPrizeClaim: boolean
   readonly pass: boolean
@@ -5857,8 +5855,18 @@ export type ClayProseSurfaceScore = {
 
 /** Positive prize-claim language only — "not CMI Prize" / "Prize Rules" honesty must NOT match. */
 const CLAY_PRIZE_CLAIM_RE = /(?:won|awarded|accepted)\s+(?:the\s+)?(?:CMI\s+)?(?:Millennium\s+)?Prize|solves?\s+the\s+(?:Clay|Millennium)|claySolvedByThisFold\s*(?:≠|!=)\s*[1-9]|claySolvedByThisFold\s*=\s*[1-9]/i
-const CLAY_HONEST_RE = /claySolvedByThisFold\s*=\s*0|claySolved\s*=\s*0|MODELED|NOT\s|refused|documented|structure-only|paper\/sim|honest|boundary|Prize Rules|Qualifying Outlet|Proposed Solution/i
-const CLAY_METHOD_RE = /fold|CLI|npm run|↦|mod\s|recompute|theorem|formula|trinity|foldPair|memoByRoot/i
+// CLAY_HONEST_RE and CLAY_METHOD_RE were here and are deleted. Measured over the 90 scored surfaces, the two
+// criteria built on them — hasHonestStatus and hasFormulaOrMethod — rejected NOTHING. Not few: zero, each.
+//
+// CLAY_HONEST_RE was 13 alternatives with 91.4% of its passes carried by one, `NOT\s`. A predicate named for
+// the honesty of a Millennium-Prize claim, satisfied by the word "not" appearing anywhere in the page. The
+// same species as REFUTABLE being /\d/ with twenty pieces of camouflage, guarding the claim this repository
+// is most exposed on. CLAY_METHOD_RE asserted a page "has a formula or method" because it contained the word
+// "theorem" or "fold". Vocabulary is not method, and word-presence is not honesty.
+//
+// Deleting them cannot weaken the gate, and that is measured rather than assumed: a criterion that has never
+// once rejected a surface contributes nothing to a conjunction. What remains either asks a question about
+// TEXT — which is a lexical question, honestly answered lexically — or reads a computed value.
 
 function scoreClayProseSurface(input: {
   id: string
@@ -5872,21 +5880,29 @@ function scoreClayProseSurface(input: {
   const text = `${input.title}\n${input.body}\n${(input.keywords ?? []).join(' ')}`
   const hasStatement = input.title.trim().length > 0
   const hasExplanation = input.body.trim().length >= (2 * 5 * 8)
-  const registryProof = (input.keywords ?? []).some((k) => /proof|theorem|formula|fold|cli/.test(k))
-  const structuralMethod = /[=↦≡]|mod\s|O\(1\)|bijection|content-address|model|decode|compute|seal|portal|gate|uuid|matrix|recomput/i.test(text)
-  const hasFormulaOrMethod = CLAY_METHOD_RE.test(text) || registryProof || structuralMethod || (!input.millenniumRelevant && hasExplanation)
-  const hasHonestStatus = CLAY_HONEST_RE.test(text) || !input.millenniumRelevant || /never claimed|held OPEN|honest boundary|documented|flagged/i.test(text)
-  const clayZeroLock = /claySolvedByThisFold\s*=\s*0|claySolved\s*=\s*0/.test(text) || !input.millenniumRelevant
+  // THE DECLARATION MUST AGREE WITH THE COMPUTED FACT. This read only the prose: it searched the page for the
+  // TEXT "claySolvedByThisFold = 0" and passed if it found it. The value itself is computed — claySolvedTheorem()
+  // recomputes it from the sealed registry, by the standing law that claySolved is a theorem and not a literal
+  // — and it was never consulted. A page could print the string while the theorem said otherwise, and a page
+  // whose value is genuinely zero failed for not saying so in the right words.
+  //
+  // Both halves are now required, and each is the right kind of check: does the page DECLARE the lock (a
+  // question about text, asked of text) AND does the computed theorem agree (a question about a value, asked
+  // of the value). If the registry ever seals a Millennium core, the theorem returns non-zero and every page
+  // still declaring the lock goes red — which is exactly when a page saying "solves none" becomes false.
+  const declaresZeroLock = /claySolvedByThisFold\s*=\s*0|claySolved\s*=\s*0/.test(text)
+  const clay = claySolvedTheorem()
+  const clayZeroLock = (declaresZeroLock && clay.claySolvedByThisFold === 0) || !input.millenniumRelevant
   const noPrizeClaim = !CLAY_PRIZE_CLAIM_RE.test(text)
-  const pass = hasStatement && hasExplanation && hasFormulaOrMethod && hasHonestStatus && clayZeroLock && noPrizeClaim
+  const pass = hasStatement && hasExplanation && clayZeroLock && noPrizeClaim
   const residual = pass
     ? ''
     : [
         !hasStatement ? 'statement' : '',
         !hasExplanation ? 'explanation' : '',
-        !hasFormulaOrMethod ? 'formula/method' : '',
-        !hasHonestStatus ? 'honest-status' : '',
-        !clayZeroLock ? '' : '',
+        // this read `!clayZeroLock ? '' : ''` — both branches empty, so the ONLY criterion that ever fails
+        // could not name itself in the reason. Fifteen surfaces failed here and the residual said nothing.
+        !clayZeroLock ? 'clay-zero-lock' : '',
         !noPrizeClaim ? 'prize-claim' : '',
       ].filter(Boolean).join('+')
   return {
@@ -5895,8 +5911,6 @@ function scoreClayProseSurface(input: {
     kind: input.kind,
     hasStatement,
     hasExplanation,
-    hasFormulaOrMethod,
-    hasHonestStatus,
     clayZeroLock,
     noPrizeClaim,
     pass,
