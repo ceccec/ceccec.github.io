@@ -2073,13 +2073,37 @@ export function staticProseBecomesPublishedResearchOnlyWhereItComputes(matrix: M
 // is the definition converted to code: the directive, proven by its own computing facets.
 export function savingAThoughtIsProseConvertedToProofOrPurged(matrix: MindMatrix = buildMatrix()) {
   const pipeline = staticProseBecomesPublishedResearchOnlyWhereItComputes(matrix)
+  // THE LIMITS, COMPUTED — and this fold states the law the rest of the corpus is judged by, so its limits
+  // are the ones most worth having exact. The law says prose must be backed by a REFUTABLE computation:
+  // facets that can go false. What the check underneath actually reads is `row.provedBy.length > 0` — a
+  // STRING LENGTH. The named fold is never called, its facets are never evaluated, and nothing anywhere in
+  // this path establishes that any facet could go false. "Backed by a computing fold" is, at this layer,
+  // "the provedBy field is not empty".
+  const purgeRows = theoremPageRows(matrix)
+  const namedOnly = purgeRows.every((row) => typeof row.provedBy === 'string' && row.provedBy.length > 0)
+  const backingIsAName = namedOnly && pipeline.allBackedByAFold
+  // NOTHING IS PURGED. The law names a consequence — mine, then purge — and this fold carries none of it
+  // out: it returns no purge list, removes nothing, and every row it examined is still here afterwards.
+  const purged = 0
+  const nothingIsPurged = purged === 0 && purgeRows.length === pipeline.published
+  // SELF-DEMONSTRATION IS NOT SELF-PROOF. The boundary calls this fold "the definition converted to code,
+  // proven by its own computing facets". Its facets take their truth from the pipeline's counts, so what
+  // computing shows is that the PIPELINE computes — a fold cannot establish that its own definition is the
+  // right one by holding, and this is the closest thing in the corpus to a claim that it can.
+  const truthComesFromThePipeline = pipeline.published > 0 && purgeRows.length === pipeline.published
+  const limits = [
+    { facet: `BACKED BY A FOLD MEANS NAMED, NOT RUN — all ${purgeRows.length} published papers carry a non-empty provedBy field and that string length IS the check; the named fold is never called and no facet of it is ever evaluated here, so "proven" at this layer distinguishes a paper that names a proof from one that does not, and nothing further`, on: backingIsAName },
+    { facet: `NOTHING IS PURGED — the law says inert prose is mined then purged, and this fold produces no purge list and removes nothing; all ${purgeRows.length} rows survive it. The consequence is stated, not carried out, and naming a law is not enforcing one`, on: nothingIsPurged },
+    { facet: `SELF-DEMONSTRATION IS NOT SELF-PROOF — these facets take their truth from the pipeline's counts, so their holding shows the pipeline computes and not that the definition above them is correct; a fold that holds has not thereby established its own definition`, on: truthComesFromThePipeline },
+  ]
   const facets = [
     { facet: `SAVING A THOUGHT = PROSE CONVERTED TO CODE: a saved thought is a fold whose prose (statement · boundary · facet text) rides facets that COMPUTE — the prose is backed by proof (facets.every(on)); all ${pipeline.published} published papers are backed by a computing fold, so every surviving thought carries its proof`, on: pipeline.allBackedByAFold && pipeline.computes },
     { facet: `PROSE NEEDS PROOF OR IS PURGED: inert prose — a string or comment that computes nothing — is a purge candidate (the no-prose-in-methods law: statement/boundary/facets are concatenations of COMPUTED outputs). It is MINED first (the rosetta of analysts, nothing valuable lost), then removed; only prose backed by a refutable computation survives`, on: pipeline.allBackedByAFold && pipeline.allAcknowledged },
     { facet: `THE PURGE FEEDS NEW RESEARCH — EARNED BOUNDARY: removing unproven prose frees space AND its mined ideas become new folds; "needs proof" means a REFUTABLE computation, not that English is banned — the statement/boundary prose survives BECAUSE it concatenates computed outputs and names the honest scope. This fold is itself a thought (the directive) converted to code and proven by its own computing facets`, on: pipeline.computes && pipeline.allTagged },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
+    limits,
     definition: 'a saved thought = prose whose facets compute (proof); prose without a refutable computation is mined then purged, feeding new research',
     published: pipeline.published,
     allProven: pipeline.allBackedByAFold,
