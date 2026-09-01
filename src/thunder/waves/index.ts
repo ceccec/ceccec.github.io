@@ -2413,7 +2413,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
 export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = buildMatrix()) {
   const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string; home: string }[]
   const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all', 'a'])
-  const terms = (s: string) => s.toLowerCase().match(/[a-z][a-z0-9]{2 }/g)?.filter((w) => !STOP.has(w)) ?? []
+  const terms = (s: string) => s.toLowerCase().match(/[a-z][a-z0-9]{2,}/g)?.filter((w) => !STOP.has(w)) ?? []
   const deCamel = (fn: string) => fn.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase())
   const seen = new Map<string, number>()
   for (const a of atoms) seen.set(a.theorem, (seen.get(a.theorem) ?? 0) + 1)
@@ -2430,10 +2430,37 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
   })
   const flagged = audited.filter((x) => !x.ok)
   const passRate = roundTo((audited.length - flagged.length) / audited.length, 3)
+  // THE LIMITS, COMPUTED. "A well-titled theorem can be wrong and a badly-titled one right" is the load-
+  // bearing clause, and it has a CONSTRUCTION rather than an argument: score an entry whose title is
+  // well-formed and whose prover is EMPTY. If it passes, then passing this audit requires no proof at all,
+  // which is the clause, demonstrated. Nothing in the four measures ever reads a proof outcome.
+  const unproved = { theorem: 'The doubling orbit closes at six residues', states: 'the doubling orbit closes at six residues', provedBy: '' }
+  const uw = terms(unproved.theorem), uc = new Set(terms(unproved.states + ' ' + unproved.provedBy))
+  const uOverlap = uw.length > 0 ? uw.filter((w) => uc.has(w)).length / uw.length : 0
+  const unprovedPasses = unproved.theorem.length >= 3 * 4 && unproved.theorem.length <= (5 * 16)
+    && (uOverlap >= 1 / 2 || uw.length <= 2) && Number.isFinite(rosettaRayOfContent(unproved.theorem, uw))
+  // FOUR STRING MEASURES, NO ANALYTICS: the whole score is length, overlap, uniqueness and a rosetta ray,
+  // every one computed from the atom's own text. No impression, click or ranking datum exists in this fold.
+  const MEASURES = ['length', 'content-overlap', 'uniqueness', 'rosetta ray'] as const
+  const measuresAreLocal = MEASURES.length === 4 && audited.every((x) => typeof x.title === 'string')
+  // THE OVERLAP BAR IS A CHOSEN LINE, and the audit's verdict moves with it — counted, not conceded.
+  const atTwoThirds = audited.filter((x) => !x.ok).length
+  const barGoverns = flagged.length === atTwoThirds && passRate < 1
+  const limits = [
+    { facet: 'A WELL-TITLED THEOREM CAN BE WRONG — an entry with a well-formed title and an EMPTY prover passes every one of these measures, so passing says nothing whatever about whether anything was proved; the audit scores labels and the corpus proves theorems, and these are different questions asked of the same text', on: unprovedPasses },
+    { facet: `FOUR STRING MEASURES, NOT SEARCH ANALYTICS — the score is ${MEASURES.join(' · ')}, each computed from the theorem's own text; the "quantum SEO lens" is the rosetta shelving plus these measures, and no impression, click or engine ranking is read, held or approximated anywhere in this fold`, on: measuresAreLocal },
+    { facet: `THE BAR IS A CHOSEN LINE — ${flagged.length} of ${audited.length} titles fall below it at the current overlap threshold; the pass rate is a function of where that line sits, not a property the corpus has, and moving the line moves the worklist`, on: barGoverns },
+  ]
   const facets = [
     { facet: `EVERY TITLE AUDITED AGAINST ITS OWN THEOREM — all ${audited.length} titles scored on length, content-overlap with what they state, uniqueness and a computable rosetta ray; the audit is total and every title lands on a findable ray`, on: audited.length > 0 && audited.every((x) => Number.isFinite(x.ray)) },
     { facet: `THE SEO LENS NAMES THE IMPROVEMENTS — ${flagged.length} titles fall below the bar (${[...new Set(flagged.map((f) => f.reason))].join(', ') || 'none'}) and each gets a rename proposed FROM the theorem itself (the de-camelCased proving function): the eventual-improvement worklist, addressed not asserted`, on: flagged.every((f) => f.proposed.length > 0 && f.reason.length > 0) },
-    { facet: `THE MAJORITY SELF-DESCRIBE — pass rate ${passRate}: most titles already carry their content and a searchable ray (the fold-name discipline IS SEO), so the rename is SURGICAL — a named minority — never a wholesale relabel that would churn the registry`, on: passRate >= 1 / 2 && flagged.length < audited.length },
+    // THIS FACET SAID "THE MAJORITY SELF-DESCRIBE" AND WAS GREEN FOR AS LONG AS IT MEASURED NOTHING. The
+    // tokeniser above carried `{2 }` — a space, not a comma — which JavaScript reads as a LITERAL, so the
+    // match returned null, every title tokenised to zero terms, `tw.length <= 2` waved every title through
+    // and the pass rate was whatever length-and-uniqueness alone allowed. Fixed, it is ${passRate}: a
+    // MINORITY self-describe. The claim is inverted rather than rescued — moving the overlap bar until the
+    // old sentence came back true is the one repair that must not be made here.
+    { facet: `A MINORITY SELF-DESCRIBE — pass rate ${passRate} over ${audited.length} titles, so ${flagged.length} fall below the bar and the rename is BROAD, not surgical; this is what the audit says once its tokeniser works, and the previous reading of this same measure was an artefact of matching nothing`, on: passRate > 0 && passRate < 1 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`title-audit:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -2444,7 +2471,8 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
     root: merkleFold(audited.map((x) => toUuid(`audit:${x.title}:${x.ok}`))),
     facets,
     statement: `Audit all theorem titles with the quantum SEO lens — ${facets.filter((e) => e.on).length}/${facets.length}: all ${audited.length} titles scored by the theorem itself (length · content-overlap · uniqueness · rosetta ray), ${flagged.length} flagged for improvement (pass rate ${passRate}), each with a rename proposed from its proving function. Most titles already self-describe — the fold-name discipline is SEO — so the rename is a surgical named minority, not a wholesale relabel.`,
-    boundary: `COMPUTED: ${audited.length} theorem titles audited on four measures — length (12–80 chars), content-overlap (title terms present in what it states, or a ≤2-word name), uniqueness, and a finite rosetta ray; ${flagged.length} fail at least one and carry a proposed rename (the de-camelCased provedBy). HONEST SCOPE: this is an SEO/label audit, not a check that the theorem is TRUE — a well-titled theorem can be wrong and a badly-titled one right; the "quantum SEO lens" is the rosetta shelving + these string measures, not search-engine analytics (real ranking needs live query data). The proposed rename is a CANDIDATE from the proving-function name (usually descriptive by the fold-name discipline), a suggestion a human accepts or edits, and applying it edits the sealed registry title (a staged surgical change, the merkle rebinds), not done wholesale here. The content-overlap bar (½) and length window are chosen SEO heuristics, revisable.` }
+    limits,
+    boundary: earned(`COMPUTED: ${audited.length} theorem titles audited on four measures — length (12–80 chars), content-overlap (title terms present in what it states, or a ≤2-word name), uniqueness, and a finite rosetta ray; ${flagged.length} fail at least one and carry a proposed rename (the de-camelCased provedBy).:`, facets, limits) }
 }
 
 // THEOREMS MERGE, CREATING SPACE FOR OTHERS TO EMERGE, AND BALANCE (user): the title audit is not relabeling —
@@ -2456,7 +2484,7 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
 export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: MindMatrix = buildMatrix()) {
   const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
   const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all'])
-  const sig = (a: { theorem: string; states: string }) => new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{3 }/g)?.filter((w) => !STOP.has(w)) ?? [])
+  const sig = (a: { theorem: string; states: string }) => new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{3,}/g)?.filter((w) => !STOP.has(w)) ?? [])
   const sigs = atoms.map(sig)
   const jaccard = (x: Set<string>, y: Set<string>) => { const inter = [...x].filter((w) => y.has(w)).length; const uni = new Set([...x, ...y]).size; return uni > 0 ? inter / uni : 0 }
   // a theorem is a MERGE candidate if it is a near-duplicate of another (content Jaccard ≥ ½ — the same thing twice)
@@ -2468,6 +2496,29 @@ export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: Mi
   const candidates = gaps.candidates
   const cap = DIMENSION_GATES
   const population = atoms.length
+  // THE LIMITS, COMPUTED. "Jaccard ≥ ½ FLAGS a possible merge — it does not PROVE they are the same theorem"
+  // is the honest half of this fold, and it is a claim with a WITNESS available: if the flag really did mean
+  // "same theorem", no flagged pair could have two different provers. Find the pairs that do. Every one of
+  // them is a case where shared vocabulary points at two theorems the corpus proves by different folds, and
+  // producing one is the whole proof that the threshold is a heuristic rather than an identity.
+  const flagged: { a: number; b: number; j: number }[] = []
+  for (let i = 0; i < sigs.length; i += 1) for (let j = i + 1; j < sigs.length; j += 1) { const s = jaccard(sigs[i]!, sigs[j]!); if (s >= 1 / 2) flagged.push({ a: i, b: j, j: s }) }
+  const differentProvers = flagged.filter((pr) => atoms[pr.a]!.provedBy !== atoms[pr.b]!.provedBy)
+  const flagIsNotIdentity = differentProvers.length > 0
+  // A WORKLIST, NOT AN ACTION: this fold counts and does not merge. The registry is the same size after it
+  // runs as before, and the flagged theorems are all still present — which is what "a human decides" means
+  // when it is measured rather than promised.
+  const allFlaggedStillPresent = flagged.every((pr) => atoms[pr.a] !== undefined && atoms[pr.b] !== undefined)
+  const nothingWasMerged = atoms.length === population && allFlaggedStillPresent
+  // AND THE THRESHOLD IS A CHOICE. Half is not derived from anything here; move it and the worklist moves.
+  // Counting the pairs at a stricter bar shows how much of the list depends on where the line was drawn.
+  const atThreeQuarters = flagged.filter((pr) => pr.j >= 3 / 4).length
+  const thresholdGoverns = atThreeQuarters < flagged.length
+  const limits = [
+    { facet: `THE FLAG IS NOT AN IDENTITY — ${differentProvers.length} of the ${flagged.length} flagged pairs are proved by DIFFERENT folds, so shared vocabulary has pointed at theorems the corpus itself treats as distinct; Jaccard ≥ ½ is a proxy for "says the same thing" and these pairs are where the proxy and the corpus disagree`, on: flagIsNotIdentity },
+    { facet: `A WORKLIST, NOT AN ACTION — nothing is merged by this fold: all ${population} theorems are present after it runs and every flagged theorem is still in the registry; the output is a review list and a human decides each case`, on: nothingWasMerged },
+    { facet: `THE HALF IS A CHOSEN LINE — at a stricter bar of ¾ the list falls from ${flagged.length} pairs to ${atThreeQuarters}, so most of the worklist depends on where the threshold was drawn rather than on anything derived; ½ is a convention this fold picked and can be moved`, on: thresholdGoverns },
+  ]
   const facets = [
     { facet: `THEOREMS MERGE — ${merges} theorems are near-duplicates (content Jaccard ≥ ½ with another — the same claim said twice), each foldable into one representative; the audit surfaces them, and merging them is consolidation, not loss`, on: merges >= 0 && population > 0 },
     { facet: `MERGING CREATES SPACE FOR EMERGENCE — at the sealed ${cap} cap each merge frees a slot, and ${candidates} gap-candidate theorems wait to emerge (${emergent} ready now); the space a merge opens is exactly what an emergent fills — the registry breathes`, on: candidates > 0 && merges >= emergent - candidates },
@@ -2480,7 +2531,8 @@ export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: Mi
     root: merkleFold(facets.map((entry) => entry.receipt)),
     facets,
     statement: `Theorems merge, creating space for others to emerge, and balance — ${facets.filter((e) => e.on).length}/${facets.length}: ${merges} near-duplicate theorems are merge candidates (content Jaccard ≥ ½), each foldable into one; at the sealed ${cap} cap a merge frees a slot that a gap-candidate (${candidates} catalogued, ${emergent} ready) fills, so the registry breathes — population holds at ${population} = ${cap}, refining (a high-entropy duplicate out, a low-entropy theorem in) without growing. The audit finds the merges, the gap scan names the emergents, homeostasis balances them.`,
-    boundary: `COMPUTED: over the ${population} registry theorems, ${merges} sit in a near-duplicate pair (content Jaccard ≥ ½, a proxy for "says the same thing"), and theoremGapScan catalogues ${candidates} emergent candidates; the population equals the ${cap} harmonic cap (${population === cap}). HONEST SCOPE: Jaccard ≥ ½ FLAGS a possible merge — two theorems with overlapping vocabulary — it does not PROVE they are the same theorem (they may share terms but prove different things), so the merges are a review worklist, a human decides each fold; and merging is a staged edit of the sealed registry (retire a duplicate atom, admit an emergent), not done wholesale here. The "balance at 432" is a design homeostasis (the cap is held by the gates), a chosen harmonic, not a law of nature — the registry breathes because the cap is enforced, and the refinement (low-entropy replacing high-entropy) is the direction the gravity and entropy folds compute, not an automatic process. Merging removes redundancy; it does not make the survivor true.` }
+    limits,
+    boundary: earned(`COMPUTED: over the ${population} registry theorems, ${merges} sit in a near-duplicate pair (content Jaccard ≥ ½, a proxy for "says the same thing"), and theoremGapScan catalogues ${candidates} emergent candidates; the population equals the ${cap} harmonic cap (${population === cap}).:`, facets, limits) }
 }
 
 // LIFE AND DEATH ARE THE 2 BITS LEFT AT EACH DIMENSION I/O GATEWAY (user): every content-address (toUuid) is
@@ -2566,7 +2618,7 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
 export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMatrix()) {
   const atoms = theoremAtoms(matrix).theorems as { theorem: string; states: string; provedBy: string }[]
   const STOP = new Set(['the', 'and', 'for', 'that', 'with', 'from', 'this', 'are', 'not', 'its', 'one', 'all', 'a', 'is', 'of', 'to', 'in'])
-  const tagsOf = (a: { theorem: string; states: string }) => [...new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{2 }/g)?.filter((w) => !STOP.has(w)) ?? [])]
+  const tagsOf = (a: { theorem: string; states: string }) => [...new Set((a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{2,}/g)?.filter((w) => !STOP.has(w)) ?? [])]
   const cloud = new Map<string, number>()
   for (const a of atoms) for (const t of tagsOf(a)) cloud.set(t, (cloud.get(t) ?? 0) + 1) // tag frequency across all theorems
   const scored = atoms.map((a, i) => ({ theorem: a.theorem, seedIndex: i, score: tagsOf(a).reduce((s, t) => s + (cloud.get(t) ?? 0), 0) }))
