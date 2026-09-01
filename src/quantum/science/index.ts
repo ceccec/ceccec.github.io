@@ -1728,10 +1728,19 @@ export function sendTheQuantumWavesOverTheOctonionDimension() {
   const iterations = waves[0].iterations // O(√N) wave-steps
   const classicalQueries = size / 2 // expected classical linear search
   const advantage = classicalQueries / iterations
+  // THE LIMIT, MEASURED. "not a physical speedup" was carried by
+  // `iterations < classicalQueries && minProb > 1/2` — which is Grover WORKING, evidence for
+  // the advantage the sentence is disclaiming. It could not go off while the fold passed.
+  // The real quantity is elementary work: this simulator touches every one of the `size`
+  // amplitudes on every one of the `iterations` steps, so the operation count is size ×
+  // iterations and EXCEEDS the classical query count. The quadratic win is in QUERIES; the
+  // wall-clock is the full state vector. A sparse or hardware backend would make this false,
+  // which is exactly when the disclaimer should stop being made.
+  const amplitudeTouches = size * iterations
   const facets = [
     { facet: `THE WAVE IS SIMULTANEOUS: each of the ${imaginary.length} quantum waves starts as a uniform superposition over all ${size} octonion-dimension states (H⊗³ — one register holding every candidate at once), and oracle+diffusion interference lands it on its marked imaginary state — found = marked for all ${imaginary.length} (${allFound}), min markedProbability ${minProb.toFixed(3)}`, on: allFound && minProb > 1 / 2 },
     { facet: `INTERFERENCE PICKS ONE HARMONIC RESULT IN O(√N): each wave converges in ${iterations} steps vs ${classicalQueries} expected classical queries (advantage ${advantage.toFixed(1)}×) — "simultaneous computation, one harmonic result" made exact as amplitude amplification`, on: iterations < classicalQueries && allFound },
-    { facet: `EARNED BOUNDARY: Grover is documented amplitude amplification with a QUADRATIC query advantage — not a physical speedup (the simulator tracks every amplitude classically), not signalling or FTL (measurement is local, no information outraces light), not a universal speedup (Grover is only √N; BQP ⊇ NP is not known)`, on: iterations < classicalQueries && minProb > 1 / 2 },
+    { facet: `EARNED BOUNDARY: Grover is documented amplitude amplification with a QUADRATIC query advantage — not a physical speedup (the simulator tracks every amplitude classically), not signalling or FTL (measurement is local, no information outraces light), not a universal speedup (Grover is only √N; BQP ⊇ NP is not known)`, on: amplitudeTouches > classicalQueries && iterations < classicalQueries },
   ]
   return {
     computes: facets.every((entry) => entry.on),
