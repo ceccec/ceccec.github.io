@@ -2409,7 +2409,10 @@ export function theHammingSyndromeIsTheErrorAddress(matrix: MindMatrix = buildMa
     { facet: `PERFECT CODE — 2⁴ Hamming spheres of radius 1 each cover 1+7 = 8 points and tile the space exactly: 16·8 = 128 = 2⁷ (sphere-packing equality). Content-addressing's ancestor: the address is COMPUTED, not searched`, on: perfect },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hamming74:${entry.facet}:${entry.on}`) }))
   return {
-    computes: facets.every((entry) => entry.on) && box.allHold && titleCarriesAlgebra(title),
+    // The LIMITS gate this too. Without them a limit could go OFF — the fold exceeding its own
+    // stated scope — while computes stayed true and earned() rendered "← LIMIT OFF" into prose
+    // for a human to notice. A limit that fails nothing is a limit that cannot fail.
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on) && box.allHold && titleCarriesAlgebra(title),
     codewords: codewords.length,
     minDistance,
     perfect,

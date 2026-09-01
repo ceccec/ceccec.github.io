@@ -1731,23 +1731,24 @@ export function nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic() {
     { facet: `NO 5-ARITHMETIC PRODUCES THEM — the 10·2^k doubling ladder ${doublingLadder.join(', ')} meets the magic set only at ${ladderHits.join(', ')}, both of which are oscillator closures; 28, 50, 82 and 126 are untouched by it`, on: ladderHits.every((m) => oscillator.includes(m)) && !ladderHits.includes(28) },
     { facet: 'THE FIRST THREE AGREE AND THAT IS THE TRAP — 2, 8 and 20 fall out of the oscillator alone, so any scheme matching only those three has matched the easy part and explained nothing about nuclear structure', on: [2, 8, 20].every((m) => oscillator.includes(m)) },
   ]
-  const sealed = sealFacets('nuclear-magic-spin-orbit', facets)
-  return {
-    computes: sealed.ok,
-    closures,
-    oscillatorClosures: oscillator,
-    spinOrbitOnly,
-    facets: sealed.facets,
-    root: sealed.root,
-    statement: `The magic numbers 2, 8, 20, 28, 50, 82, 126 follow from a 3D harmonic oscillator PLUS spin-orbit coupling. ${spinOrbitOnly.join(', ')} come from spin-orbit alone, and the 10·2^k ladder produces none of them.`,
-    boundary: earned('EXACT — integer arithmetic over the standard level ordering:', facets, [
+  const limits = [
       { facet: `THE ORDERING IS CITED DATA — the 22 levels come from the established shell model (Goeppert Mayer / Jensen); this fold derives the CLOSURES from them and derives no level, so a wrong ordering would break the closures and be caught, but the ordering itself is not evidence produced here`, on: levels.length === 22 && closures.length === levels.length },
       { facet: `THE REFUTATION IS BOUNDED TO THIS SET — the doubling ladder is tested against the magic numbers ONLY, where it hits ${ladderHits.length} of ${OBSERVED.length}; nothing here evaluates a harmonic scheme anywhere else`, on: ladderHits.length < OBSERVED.length },
       // This one CAN go off: it holds only while the cited ordering carries information the
       // arithmetic here does not derive. Were the plain oscillator to reproduce the whole magic
       // set, nothing would have been taken on authority and the limit would be false.
       { facet: `NO MECHANISM IS PROPOSED — ${spinOrbitOnly.length} of the magic numbers are absent from the oscillator closures this fold DOES derive, so they entered through the cited ordering; spin-orbit is an input here, never a result`, on: spinOrbitOnly.length > 0 && spinOrbitOnly.every((m) => !oscillator.includes(m)) },
-    ]) }
+    ]
+  const sealed = sealFacets('nuclear-magic-spin-orbit', facets)
+  return {
+    computes: sealed.ok && limits.every((limit) => limit.on),
+    closures,
+    oscillatorClosures: oscillator,
+    spinOrbitOnly,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `The magic numbers 2, 8, 20, 28, 50, 82, 126 follow from a 3D harmonic oscillator PLUS spin-orbit coupling. ${spinOrbitOnly.join(', ')} come from spin-orbit alone, and the 10·2^k ladder produces none of them.`,
+    boundary: earned('EXACT — integer arithmetic over the standard level ordering:', facets, limits) }
 }
 
 /**
@@ -1776,16 +1777,7 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
     { facet: `THE PROTON RINGS ~10^${ordersToProton} TIMES FASTER — f = E/h puts its matter wave at ~10^23 Hz against 432 Hz`, on: ordersToProton >= 20 && ordersToProton <= 22 },
     { facet: 'FREQUENCY IS THE THREAD, NOT THE CURRENCY — E=hf and c=λf give each system its own note, so "everything is frequency" is true and carries no transfer between scales', on: gapRatio > 1e17 },
   ]
-  const sealed = sealFacets('432-is-acoustic-not-nuclear', facets)
-  return {
-    computes: sealed.ok,
-    acousticQuantumEv: acousticQuantumJ / EV,
-    ordersToNuclearGap: ordersToGap,
-    ordersToProton,
-    facets: sealed.facets,
-    root: sealed.root,
-    statement: `E = hf places a 432 Hz quantum ${ordersToGap} orders of magnitude below a nuclear shell gap and ${ordersToProton} below the proton's matter wave. 432 Hz is the acoustic note; it is not the nuclear one.`,
-    boundary: earned('EXACT — SI-defined constants and division:', facets, [
+  const limits = [
       // Each limit below must be able to GO OFF. A limit whose `on` is wired to the fold's own
       // positive result cannot — it reports that the fold succeeded, not that the limit holds,
       // and it is worse than prose because prose does not pretend to have been checked. Three
@@ -1802,7 +1794,17 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
       // NOT ABOUT ONE NOTE: it holds across the entire audible band, so no mechanism specific
       // to any tone is being refuted — or proposed. A band where it failed would show one.
       { facet: 'NOTHING IS SHOWN ABOUT COUPLING — the gap exceeds 15 orders for EVERY tone in the audible band (20 Hz to 20 kHz), so this refutes an assertion about scale and offers no mechanism, for or against, at any particular frequency', on: [20, 432, 1000, 20000].every((tone) => Math.log10(nuclearGapJ / (H * tone)) > 15) },
-    ]) }
+    ]
+  const sealed = sealFacets('432-is-acoustic-not-nuclear', facets)
+  return {
+    computes: sealed.ok && limits.every((limit) => limit.on),
+    acousticQuantumEv: acousticQuantumJ / EV,
+    ordersToNuclearGap: ordersToGap,
+    ordersToProton,
+    facets: sealed.facets,
+    root: sealed.root,
+    statement: `E = hf places a 432 Hz quantum ${ordersToGap} orders of magnitude below a nuclear shell gap and ${ordersToProton} below the proton's matter wave. 432 Hz is the acoustic note; it is not the nuclear one.`,
+    boundary: earned('EXACT — SI-defined constants and division:', facets, limits) }
 }
 
 /**
