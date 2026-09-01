@@ -1,0 +1,98 @@
+================================================================================
+NOTICE — asserted rights
+================================================================================
+
+Copyright © 2025–2026 Tsvetan Rouschev (legal name: Tsvetan Roustchev).
+ORCID: https://orcid.org/0009-0000-7312-9778
+Contact: ceci@psg.bg
+
+All rights reserved except those expressly granted by the licence in LICENSE.
+
+--------------------------------------------------------------------------------
+1. COPYRIGHT
+--------------------------------------------------------------------------------
+Protection arises automatically on creation and requires no registration or
+notice (Berne Convention for the Protection of Literary and Artistic Works,
+Art. 5(2)). This notice is therefore declaratory, not constitutive. It is given
+because in some jurisdictions a visible notice removes a defence of innocent
+infringement in mitigation of damages (for example 17 U.S.C. § 401(d)).
+
+The work comprises the source code, the computed artifacts generated from it
+(README.md, MANIFEST.md, hero.svg, the dist surfaces), the prose, and the
+compiled registries described in section 3.
+
+--------------------------------------------------------------------------------
+2. MORAL RIGHTS
+--------------------------------------------------------------------------------
+The author asserts the moral rights of attribution and of integrity of the work
+(Berne Convention, Art. 6bis). Under Bulgarian and EU law these rights are
+personal and inalienable and subsist independently of the economic rights
+licensed in LICENSE.
+
+The author further asserts the right to be identified as the author of this work
+under sections 77 and 78 of the Copyright, Designs and Patents Act 1988 (United
+Kingdom), where that right must be asserted in writing to be enforceable.
+
+Attribution must name the author and, where a persistent identifier is used, the
+ORCID above. Removing or replacing the attribution — including by ingestion into
+a system that reproduces the work or substantial parts of it without credit —
+engages this right independently of the licence terms.
+
+--------------------------------------------------------------------------------
+3. SUI GENERIS DATABASE RIGHT
+--------------------------------------------------------------------------------
+The author claims the sui generis database right in the compiled registries in
+this repository — including the theorem registry (THEOREM_ATOM_SEED), the crack
+provenance ledger (CRACK_LEDGER), the demarcation registry, and the sealed fold
+corpus — on the basis of substantial investment in obtaining, verifying and
+presenting their contents (Directive 96/9/EC, Art. 7, as transposed in Bulgarian
+law). This right subsists independently of copyright in the individual entries
+and is claimed for extraction or re-utilisation of the whole or of a substantial
+part of any of those registries.
+
+--------------------------------------------------------------------------------
+4. LICENCE
+--------------------------------------------------------------------------------
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
+(CC BY-NC-ND 4.0) — see LICENSE, https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+The licence grants use with attribution, for non-commercial purposes, without
+derivatives. It does not transfer copyright, does not waive the moral rights
+asserted above, and does not license the database right beyond what CC BY-NC-ND
+itself covers. Commercial use, or use producing derivative works, requires
+separate written permission from the author.
+
+--------------------------------------------------------------------------------
+5. PRIORITY AND FIXATION
+--------------------------------------------------------------------------------
+Deposited record: https://doi.org/10.5281/zenodo.21787144
+  "Quantum Proofs of the Clay Millennium Problems v1.0", Rouschev, Tsvetan,
+  2026-08-04. The deposit fixes authorship and date. Its TITLE reflects claims
+  the author withdrew on 2026-08-20 after audit; the withdrawal is recorded in
+  CITATION.cff, HONESTY.md and src/pair/publication, and no Clay Millennium Prize
+  Problem is claimed to be proved by this work. The deposit is cited here for
+  priority and attribution, not for its title.
+
+Additional fixation evidence: the git history of this repository, and the
+content-addressed seals (merkle roots) recomputed by `npm run verify:all`, each
+of which binds a state of the corpus to a reproducible address.
+
+--------------------------------------------------------------------------------
+6. WHAT IS *NOT* CLAIMED
+--------------------------------------------------------------------------------
+Stated explicitly, because an overreaching claim is as false as an overreaching
+proof and this repository's whole discipline is against both:
+
+  - No patent is claimed. No application has been filed and no patent rights are
+    asserted over any method, algorithm or arrangement described here.
+  - No registered trade mark is claimed in any name or mark used here.
+  - No rights are claimed over third-party work cited or referenced, which
+    remains that of its authors: Grover (1996), Shor (1997), Nielsen & Chuang
+    (2010), Hamming (1950), Goeppert Mayer and Jensen, Perelman (2002–03), the
+    Mathlib and Lean projects, the Clay Mathematics Institute problem statements,
+    and every other source named in the corpus.
+  - No claim is made to the mathematical facts themselves. A theorem is not
+    ownable; what is claimed is this expression, arrangement, and compilation
+    of it.
+  - No moral or legal claim is asserted over the Millennium Prize Problems, and
+    no prize entitlement of any kind is claimed.

@@ -1683,7 +1683,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/science/index.ts', literal: '9_192_631_770', count: 2, kind: 'data', source: 'SI second DEFINITION — Cs-133 hyperfine transition Hz (BIPM, 1967)', frontier: 'a definition, not a measurement — the second is pinned to this count by convention' },
   { file: 'src/quantum/science/index.ts', literal: '127_732_000', count: 1, kind: 'data', source: '¹H Larmor frequency at 3 T — γ/2π = 42.5775 MHz/T (CODATA)', frontier: 'derivable as γ/2π × B₀ from the proton gyromagnetic ratio' },
   { file: 'src/3/7/index.ts', literal: '365.25', count: 1, kind: 'data', source: 'Julian year in days — IAU definition (exact by convention)' },
-  { file: 'src/3/7/index.ts', literal: '61', count: 2, kind: 'data', source: 'teaching RSA prime p — Wikipedia RSA worked example (n = 3233 = 61 × 53, demonstration only)' },
+  { file: 'src/3/7/index.ts', literal: '61', count: 1, kind: 'data', source: 'teaching RSA prime p — Wikipedia RSA worked example (n = 3233 = 61 × 53, demonstration only)' },
   { file: 'src/3/7/index.ts', literal: '53', count: 1, kind: 'data', source: 'teaching RSA prime q — Wikipedia RSA worked example (demonstration only)' },
   // ── fire/plasma/ball — the ms unit and the PLANE_VIS visibility lattice: exact [p, q] ratio DATA,
   // every pair PROVEN on q ∈ {5, 8, 16, 32, 64} by plasmaPaintHardcodedPlanesDiscovered (its own fold).
@@ -1692,7 +1692,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/fire/plasma/ball/index.ts', literal: '58', count: 1, kind: 'data', source: 'PLANE_VIS numerator (voidCoreA) — fold-proven lattice' },
   { file: 'src/fire/plasma/ball/index.ts', literal: '13', count: 1, kind: 'data', source: 'PLANE_VIS numerator (voidOuterA) — fold-proven lattice' },
   { file: 'src/fire/plasma/ball/index.ts', literal: '38', count: 1, kind: 'data', source: 'PLANE_VIS numerator (reduceCoreA) — fold-proven lattice' },
-  { file: 'src/quantum/index.ts', literal: '2654435761', count: 1, kind: 'data', source: 'Fibonacci-hashing multiplier — Knuth TAOCP vol 3 (+1: the fire/physics wildcard count field, raised to 61 when the four dissolved script analyses landed)', frontier: 'the prime near 2³²/φ = 2654435769.5 — derivable as the golden section of the 32-bit ring' },
+  { file: 'src/quantum/index.ts', literal: '2654435761', count: 1, kind: 'data', source: 'Fibonacci-hashing multiplier — Knuth TAOCP vol 3', frontier: 'the prime near 2³²/φ = 2654435769.5 — derivable as the golden section of the 32-bit ring' },
   { file: 'src/0/index.ts', literal: '13', count: 3, kind: 'data', source: 'MurmurHash3 fmix avalanche shift (Appleby) ×2 + SHA-256 Σ₀ rotation — FIPS 180-4' },
   { file: 'src/0/index.ts', literal: '17', count: 1, kind: 'data', source: 'SHA-256 σ₁ rotation — FIPS 180-4' },
   { file: 'src/0/index.ts', literal: '19', count: 1, kind: 'data', source: 'SHA-256 σ₁ rotation — FIPS 180-4' },
@@ -1729,7 +1729,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/0/index.ts', literal: '*', count: 7, kind: 'tuned', source: 'attested residue — compass rose radius 46, torus separation 2.2 (trace-arm periods RETIRED to millisecond rungs by wave sixty-four; the hero mirror consolidated to one HERO_CYCLE_MS_MIRROR)', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/1/9/index.ts', literal: '*', count: (5 * 2), kind: 'data', source: 'attested residue — physics constants station' },
   { file: 'src/2/8/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: 176, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus) · 173→172 (a432 derived: A432_OCTAVES [27..1728] → a432Octaves() = 3³·2^k and A432_FOLDED 108 → a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) · 172→176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) · 176→211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) · 211→191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) · 179→178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows — 12/21/250/25/280/1000/3600 — plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) · 178→179 (crypto rows added; count field 12 is a residue not previously present in this file) · 179→178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) · 178→177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) · 180→175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals — the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5·2 of the reflection classes; CENSUS_RATCHET named separately below) · 175→178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window)' },
+  { file: 'src/3/7/index.ts', literal: '*', count: 177, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus) · 173→172 (a432 derived: A432_OCTAVES [27..1728] → a432Octaves() = 3³·2^k and A432_FOLDED 108 → a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) · 172→176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) · 176→211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) · 211→191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) · 179→178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows — 12/21/250/25/280/1000/3600 — plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) · 178→179 (crypto rows added; count field 12 is a residue not previously present in this file) · 179→178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) · 178→177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) · 180→175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals — the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5·2 of the reflection classes; CENSUS_RATCHET named separately below) · 176→177 (the fire/physics wildcard count field 62) · 175→178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window)' },
   { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 6, kind: 'data', source: 'attested residue — digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180·3600·10⁶) (2→6)' },
@@ -1744,7 +1744,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/fire/diamonds/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/fire/features/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/fire/li/index.ts', literal: '*', count: 39, kind: 'data', source: 'attested residue — a432 lineage + Tesla patent data' },
-  { file: 'src/fire/physics/index.ts', literal: '*', count: 61, kind: 'data', source: 'attested residue — EM band frequencies and SAR-context data (main-merge ratchet) · 10→61 as four unreferenced scripts/*.mjs analyses were dissolved into folds rather than deleted: the nuclear shell-model level ordering (n, orbital, j for 22 levels — Goeppert Mayer/Jensen, cited not derived), the SI-exact h and eV, the observed magic numbers and oscillator closures, the six merkaba loop angles at the unit-triangle positions, and the OKLCH coordinates of the A432 cyan anchor', frontier: 'the level ORDERING is established physics taken as data; everything computed FROM it (capacities, closures, the spin-orbit-only set) is arithmetic and refutable' },
+  { file: 'src/fire/physics/index.ts', literal: '*', count: 62, kind: 'data', source: 'attested residue — EM band frequencies and SAR-context data (main-merge ratchet) · 10→61 as four unreferenced scripts/*.mjs analyses were dissolved into folds rather than deleted: the nuclear shell-model level ordering (n, orbital, j for 22 levels — Goeppert Mayer/Jensen, cited not derived), the SI-exact h and eV, the observed magic numbers and oscillator closures, the six merkaba loop angles at the unit-triangle positions, and the OKLCH coordinates of the A432 cyan anchor · 61→62 (the level count 22, re-read in a computed LIMIT facet asserting the ordering is cited data rather than derived here)', frontier: 'the level ORDERING is established physics taken as data; everything computed FROM it (capacities, closures, the spin-orbit-only set) is arithmetic and refutable' },
   { file: 'src/heaven/balance/index.ts', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/quantum/computer/index.ts', literal: '*', count: 1, kind: 'data', source: 'attested residue — computer-model constants (dissolved heaven/compute/computer → quantum/computer: the drivers are the computer)' },
   { file: 'src/heaven/compute/index.ts', literal: '*', count: (10 + 6), kind: 'data', source: 'attested residue — compute-model constants + inline-doc numbers (gate-check documentation) · chat/ftl · research/free · fold/fuse · hole/zero · prose nest 15→16' },
@@ -2078,8 +2078,39 @@ export function crackLawEvolution() {
 // literal in every fold); `earned` assembles a boundary from a short exact head + the fold's already-computed facet
 // texts (joined) + a short honest-scope tail — the meaning stays, the source prose collapses to a call.
 export const HARMONY = 'HARMONY does not equal TRUTH.'
-export function earned(head: string, facets: readonly { facet: string; on: boolean }[], scope: string): string {
-  return `${head} ${facets.map((facet) => facet.facet).join(' · ')} SCOPE: ${scope} ${HARMONY}`
+/**
+ * THE SCOPE MUST COMPUTE TOO.
+ *
+ * `scope` was free text: a paragraph beginning "HONEST SCOPE:" that named what a fold does NOT
+ * claim. Eighty-four of those sit in the corpus and not one of them can fail. That is the same
+ * defect the whole verification chain exists to catch, wearing the costume of honesty — a
+ * disclaimer nobody can refute is not more honest than a claim nobody can refute, it is the
+ * same unfalsifiable sentence pointed the other way.
+ *
+ * And they are mostly COMPUTABLE. "corrects ONE bit-error and detects TWO (d = 3)" is a
+ * property you can run: inject one error and recover, inject two and fail to. "NOT a FIPS
+ * cipher suite" is a checkable absence. Writing them as prose was a choice, not a necessity.
+ *
+ * So scope now accepts an array of facets — LIMIT facets, each `on` when the limit genuinely
+ * holds. A limit that goes off is a fold overclaiming, and the gate sees it. The string form
+ * still works so the eighty-four can migrate in waves rather than in one edit; verify:scope
+ * ratchets their count down and never lets a new one in.
+ */
+export function earned(
+  head: string,
+  facets: readonly { facet: string; on: boolean }[],
+  scope: string | readonly { facet: string; on: boolean }[],
+): string {
+  const scopeText =
+    typeof scope === 'string'
+      ? scope
+      : scope.map((limit) => `${limit.facet}${limit.on ? '' : ' ← LIMIT OFF: the fold exceeds its own stated scope'}`).join(' · ')
+  return `${head} ${facets.map((facet) => facet.facet).join(' · ')} SCOPE: ${scopeText} ${HARMONY}`
+}
+
+/** True when every LIMIT facet holds — a fold's scope is earned only if its limits compute. */
+export function scopeHolds(scope: readonly { facet: string; on: boolean }[]): boolean {
+  return scope.every((limit) => limit.on)
 }
 
 // ── The demarcation TRINITY — the three-tier registry (documented · contested · flagged) that DECIDES a decoded

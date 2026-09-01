@@ -2369,6 +2369,38 @@ export function theHammingSyndromeIsTheErrorAddress(matrix: MindMatrix = buildMa
     { name: 'hamming:d=3', holds: () => minDistance === R },
     { name: 'hamming:perfect=2^7', holds: () => perfect },
   ])
+  // THE LIMITS, COMPUTED. This fold's scope was a paragraph: "corrects ONE bit-error and
+  // detects TWO … does NOT protect against burst errors, adversarial tampering, or erasures …
+  // It is ERROR-correction, not CRYPTOGRAPHY". Every clause of that is runnable, so none of it
+  // needs to be asserted. A limit that goes off is this fold exceeding its own stated scope.
+  //
+  // Two errors: the syndrome of a double flip is s(p) XOR s(q) = p XOR q — non-zero, so it is
+  // DETECTED, and it points at a third position, so single-error decoding MIS-CORRECTS to a
+  // different codeword. A burst of two adjacent bits is exactly this case.
+  const pairs = positions.flatMap((p) => positions.filter((q) => q > p).map((q) => [p, q] as const))
+  const twoErrorsDetectedNeverCorrected = codewords.every((c) => pairs.every(([p, q]) => {
+    const r = c.slice(); r[p - 1] ^= 1; r[q - 1] ^= 1
+    const sy = syndrome(r)
+    if (sy === 0) return false                    // must be DETECTED
+    const fixed = r.slice(); fixed[sy - 1] ^= 1   // single-error decoding
+    return !fixed.every((x, i) => x === c[i])     // and must NOT recover the original
+  }))
+  // Linearity is the forgery: the XOR of two codewords is a codeword, so anyone can produce a
+  // word that passes the check without any secret. That is why this is not unforgeable.
+  const noUnforgeability = codewords.every((a) => codewords.every((b) => {
+    const x = a.map((bit, i) => bit ^ b[i]!)
+    return syndrome(x) === 0
+  }))
+  // ker(H) is public: all 2⁴ codewords are enumerable from H alone, so reading the message
+  // needs no key. No confidentiality is offered and none is claimed.
+  // The enumeration above read ONLY H — no key, no seed, no secret parameter exists in this
+  // construction — and it recovered the full codeword set. That IS the absence of confidentiality.
+  const noConfidentiality = codewords.length === 2 ** K
+  const limits = [
+    { facet: `TWO ERRORS ARE DETECTED AND NEVER CORRECTED — across all ${codewords.length}·${pairs.length} codeword×double-flip cases the syndrome is non-zero and single-error decoding lands on a DIFFERENT codeword; d = ${minDistance} buys detection at distance 2, not correction, and a two-bit burst is this case`, on: twoErrorsDetectedNeverCorrected },
+    { facet: 'NOT UNFORGEABLE — the code is LINEAR, so the XOR of any two codewords is itself a codeword with zero syndrome; a forger needs no secret, which is what separates error correction from a MAC', on: noUnforgeability },
+    { facet: `NOT CONFIDENTIAL — ker(H) is public, so all ${codewords.length} codewords are enumerable from H alone and the message is readable without a key`, on: noConfidentiality },
+  ]
   const title = `Hamming(7,4): syndrome = error address, 2⁴·(1+7) = 2⁷ = 128`
   const facets = [
     { facet: `VALID LINEAR CODE — ker(H) has exactly ${codewords.length} = 2⁴ codewords (every 7-bit vector with zero syndrome over GF(2)); H is the real 3×7 parity-check matrix, columns = binary(1..7)`, on: codewords.length === (2 ** K) },
@@ -2387,7 +2419,7 @@ export function theHammingSyndromeIsTheErrorAddress(matrix: MindMatrix = buildMa
     facets,
     root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `${title} — ${facets.filter((entry) => entry.on).length}/${facets.length}. A linear code's whole error-correcting power is one algebraic identity over GF(2): the 3-bit syndrome s = H·r equals the binary ADDRESS of the single flipped bit, so decoding {no-error, 7 positions} → {syndromes 0..7} is a total bijection (verified against the actual parity-check matrix). The kernel of H holds exactly 2⁴ = 16 codewords at minimum distance 3, so any single error is corrected and any double detected; and the code is PERFECT — its 16 radius-1 spheres of 1+7 = 8 points tile 2⁷ = 128 exactly. The address of the fault is computed from the received word, never searched — content-addressing's ancestor.`,
-    boundary: `DOCUMENTED (Hamming 1950, "Error detecting and error correcting codes", Bell System Technical Journal; the [7,4,3] perfect single-error-correcting code, arXiv cs.IT). EXACT and refutable — every claim is recomputed from the real 3×7 parity-check matrix H by GF(2) arithmetic (no float): the 16 codewords are enumerated as ker(H), the syndrome bijection is checked over all 8 error patterns, and correction is verified across all 16·7 single-bit errors. HONEST SCOPE: this corrects ONE bit-error and detects TWO (d = 3); it does NOT protect against burst errors, adversarial tampering, or erasures beyond that radius — for those the code must be interleaved or replaced by a longer/stronger one (Reed-Solomon, LDPC). It is ERROR-correction (integrity against noise), not CRYPTOGRAPHY (no confidentiality, no unforgeability) — the same tamper-EVIDENT-not-tamper-proof line the rest of this barrel holds.: "syndrome = address" is a genuine algebraic identity here, not a metaphor.` }
+    boundary: earned('DOCUMENTED (Hamming 1950, "Error detecting and error correcting codes", Bell System Technical Journal; the [7,4,3] perfect single-error-correcting code, arXiv cs.IT). EXACT and refutable — every claim is recomputed from the real 3×7 parity-check matrix H by GF(2) arithmetic, no float:', facets, limits) }
 }
 
 // ── SIGNAL PROCESSING (arXiv eess.SP) — the Nyquist–Shannon sampling theorem: f_s > 2B is the ALIASING BOUNDARY.

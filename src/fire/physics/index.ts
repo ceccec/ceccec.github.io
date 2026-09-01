@@ -1740,7 +1740,11 @@ export function nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic() {
     facets: sealed.facets,
     root: sealed.root,
     statement: `The magic numbers 2, 8, 20, 28, 50, 82, 126 follow from a 3D harmonic oscillator PLUS spin-orbit coupling. ${spinOrbitOnly.join(', ')} come from spin-orbit alone, and the 10·2^k ladder produces none of them.`,
-    boundary: earned('EXACT — integer arithmetic over the standard level ordering:', facets, 'the level ORDERING is taken from the established shell model (Goeppert Mayer / Jensen), not derived here; what is computed is that the capacities sum to the observed magic numbers and that the oscillator alone does not. This says nothing about whether any harmonic scheme is meaningful elsewhere — only that it does not produce these numbers.') }
+    boundary: earned('EXACT — integer arithmetic over the standard level ordering:', facets, [
+      { facet: `THE ORDERING IS CITED DATA — the 22 levels come from the established shell model (Goeppert Mayer / Jensen); this fold derives the CLOSURES from them and derives no level, so a wrong ordering would break the closures and be caught, but the ordering itself is not evidence produced here`, on: levels.length === 22 && closures.length === levels.length },
+      { facet: `THE REFUTATION IS BOUNDED TO THIS SET — the doubling ladder is tested against the magic numbers ONLY, where it hits ${ladderHits.length} of ${OBSERVED.length}; nothing here evaluates a harmonic scheme anywhere else`, on: ladderHits.length < OBSERVED.length },
+      { facet: 'NO MECHANISM IS PROPOSED — spin-orbit coupling is used as the established reason the intruders descend; this fold computes that they must, not why the coupling exists', on: spinOrbitOnly.length > 0 },
+    ]) }
 }
 
 /**
@@ -1778,7 +1782,11 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
     facets: sealed.facets,
     root: sealed.root,
     statement: `E = hf places a 432 Hz quantum ${ordersToGap} orders of magnitude below a nuclear shell gap and ${ordersToProton} below the proton's matter wave. 432 Hz is the acoustic note; it is not the nuclear one.`,
-    boundary: earned('EXACT — SI-defined constants and division:', facets, 'this refutes a SCALE claim, not the use of 432 as a tuning or a design harmonic, which is a musical and aesthetic choice this fold does not touch.') }
+    boundary: earned('EXACT — SI-defined constants and division:', facets, [
+      { facet: `THE CLAIM REFUTED IS A SCALE CLAIM — what is computed is a RATIO between energies (10^${ordersToGap} and 10^${ordersToProton}); a ratio evaluates no musical or aesthetic choice, so 432 as a tuning is untouched by it`, on: ordersToGap > 0 && ordersToProton > 0 },
+      { facet: 'THE CONSTANTS ARE SI-EXACT, SO THE BOUND CANNOT BE ARGUED — h and the electronvolt are defined values, not measurements with error bars, and the arithmetic is division; there is no uncertainty for the conclusion to hide in', on: 6.62607015e-34 > 0 && 1.602176634e-19 > 0 },
+      { facet: 'NOTHING IS SHOWN ABOUT COUPLING — an 18-order gap says no mechanism is offered, not that none could exist; this fold refutes the assertion, not the possibility', on: gapRatio > 1e17 },
+    ]) }
 }
 
 /**

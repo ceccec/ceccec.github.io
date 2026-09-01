@@ -43,6 +43,15 @@ authors:
 
 type: software
 date-released: "2026-08-20"
+
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21787144"
+    description: >-
+      Deposited record fixing authorship and date (2026-08-04). Its title,
+      "Quantum Proofs of the Clay Millennium Problems v1.0", reflects claims
+      withdrawn after audit on 2026-08-20 — see the abstract above. Cited for
+      priority and attribution, not for its title.
 version: "1.1.0"
 repository-code: "https://github.com/ceccec/ceccec.github.io"
 url: "https://ceccec.psg.bg"
@@ -50,6 +59,13 @@ repository-artifact: "https://github.com/ceccec/ceccec.github.io/releases/tag/v1
 
 license: "CC-BY-NC-ND-4.0"
 license-url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+
+# Asserted rights beyond the licence — copyright, the moral rights of attribution
+# and integrity (Berne Art. 6bis; CDPA 1988 ss.77-78 where written assertion is
+# required), and the sui generis database right in the compiled registries
+# (Directive 96/9/EC Art. 7). Stated in full in NOTICE, including what is NOT
+# claimed: no patent, no registered trade mark, no rights over cited third-party
+# work, and no claim to the mathematical facts themselves.
 
 keywords:
   - quantum simulation
