@@ -3485,38 +3485,40 @@ export function estimateBarrierStrength(patentText: string, claimsCount: number)
   alpha: number
   reasoning: string
 } {
+  // ALPHA COMES FROM A COUNT, NOT FROM VOCABULARY. Every bonus below except the claim count was awarded for
+  // the PRESENCE OF A PHRASE: +0.12 because the text contained "based on", reported as "Math foundation:
+  // Yes"; +0.10 for "self-inverse"; +0.08 for "attractor". A legal barrier strength assembled from word
+  // searches and printed to three decimals, and barrier.alpha feeds PatentScore.barrierStrength, which feeds
+  // estimatedValue and marketTier. A patent VALUATION stood downstream of whether prose said "derived from".
+  //
+  // The claim count is a real measurement of a real structural property, so it still moves the number. The
+  // phrase detections are kept — they are genuine facts about the text and worth disclosing — but they are
+  // reported as TEXTUAL FEATURES and contribute nothing, because whether a document contains "grounded in"
+  // is not evidence about how hard the patent is to invent around.
   let alpha = 0.5 // Baseline
 
-  // More claims → stronger barrier (harder to invent around)
+  // More claims → stronger barrier. A count of the claims themselves, which is a structural fact.
   if (claimsCount >= 20) alpha += 0.15
   else if (claimsCount >= 10) alpha += 0.10
   else if (claimsCount >= 5) alpha += 0.05
 
-  // Dependent claims (claim N depends on claim M) → stronger barrier
+  // Dependent claims are a structural relation between claims, and the pattern reads the claim numbering
+  // rather than the prose around it, so this one is a fact about the document's structure. It stays.
   const dependentClaimsPattern = /claim\s+\d+[\s,]*depending/i
   if (dependentClaimsPattern.test(patentText)) alpha += 0.10
 
-  // Mathematical foundation disclosed → stronger barrier
-  const mathFoundationPattern = /based on|derived from|grounded in|founded on.*(?:theorem|involution|topology|symmetry)/i
-  if (mathFoundationPattern.test(patentText)) alpha += 0.12
-
-  // Quantified protection (specific α values, barriers) → stronger barrier
-  const quantifiedPattern = /(?:barrier|protection|strength)\s+(?:of|=|:)?\s*(?:α|0\.[0-9]{2,3}|greater than|>|approximately|≈)/i
-  if (quantifiedPattern.test(patentText)) alpha += 0.08
-
-  // Self-inverse property (σ² = id) → very strong barrier
-  if (/self.?inverse|σ.*=.*id|σ\^2/.test(patentText)) alpha += 0.10
-
-  // Fixed-point characterization → strong barrier
-  if (/fixed.?point|equilibrium|stable.?state|attractor/.test(patentText)) alpha += 0.08
+  // DISCLOSED, NOT SCORED — textual features, each true or false about the text and nothing more.
+  const features = [
+    { feature: 'math-foundation language', present: /based on|derived from|grounded in|founded on.*(?:theorem|involution|topology|symmetry)/i.test(patentText) },
+    { feature: 'quantified-protection language', present: /(?:barrier|protection|strength)\s+(?:of|=|:)?\s*(?:α|0\.[0-9]{2,3}|greater than|>|approximately|≈)/i.test(patentText) },
+    { feature: 'self-inverse language', present: /self.?inverse|σ.*=.*id|σ\^2/.test(patentText) },
+    { feature: 'fixed-point language', present: /fixed.?point|equilibrium|stable.?state|attractor/.test(patentText) },
+  ]
 
   const reasoning = `
-    Claims: ${claimsCount} (+${claimsCount >= 20 ? 0.15 : claimsCount >= 10 ? 0.10 : 0.05})
+    Claims: ${claimsCount} (+${claimsCount >= 20 ? 0.15 : claimsCount >= 10 ? 0.10 : claimsCount >= 5 ? 0.05 : 0})
     Dependent claims: ${dependentClaimsPattern.test(patentText) ? 'Yes (+0.10)' : 'No'}
-    Math foundation: ${mathFoundationPattern.test(patentText) ? 'Yes (+0.12)' : 'No'}
-    Quantified protection: ${quantifiedPattern.test(patentText) ? 'Yes (+0.08)' : 'No'}
-    Self-inverse property: ${/self.?inverse|σ.*=.*id|σ\^2/.test(patentText) ? 'Yes (+0.10)' : 'No'}
-    Fixed-point stable: ${/fixed.?point|equilibrium|stable.?state|attractor/.test(patentText) ? 'Yes (+0.08)' : 'No'}
+    Textual features present (DISCLOSED, contributing 0 — phrase presence is not evidence of barrier strength): ${features.filter((f) => f.present).map((f) => f.feature).join(', ') || 'none'}
     Estimated barrier strength α = ${Math.min(1, alpha).toFixed(3)}
   `
 
