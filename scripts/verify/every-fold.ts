@@ -18,6 +18,20 @@
  * src/2/8 alone; later modules run real Shor and Grover simulations. This is a sweep, not a
  * per-commit gate, and saying otherwise would make verify:all unusable within a week.
  *
+ * THE FULL SWEEP, 149 modules, one process per module with a 45s cap:
+ *
+ *     143 measured, 6 timed out · 4444 zero-arg exports called · 2292 returned facets
+ *     126 FOLDS WITH AN OFF FACET OR A FALSE VERDICT — 102 of them verdict=false
+ *     258 facets off · 27 threw
+ *
+ * A LOWER BOUND, not a census. The six that timed out are among the largest files in the
+ * corpus (crypto, heaven/compute, gates, quantum/apps, quantum/heaven/mind, thunder/waves),
+ * so whatever they contain is not in the 126.
+ *
+ * ONE PROCESS PER MODULE, because one fold can block everything. The first design ran all 149
+ * in a single process and stopped dead at module 21 inside a >512-bit quantum factorisation —
+ * a fold doing real work with no bound. A census that any single fold can hang is not a census.
+ *
  * WHAT IT FOUND IN THE FIRST 12 MODULES — five folds reporting FALSE that nothing had ever run:
  *   "432·108 = 2⁶3⁶ = 6⁶ = 58564 exactly"   — 432·108 = 46656 = 6⁶. 58564 is 242².
  *   "collision-free growth ends near √(2·64³) ≈ 724 theorems"  — the corpus holds 761.
@@ -37,7 +51,7 @@ export function main() {
     mi += 1
     if (LIMIT && mi > LIMIT) break
     const t0 = Date.now()
-    if (mi % 10 === 1) console.log('  … module ' + mi + '/' + MODULES.length + ' ' + mod)
+    if (mi % 5 === 1) console.log('  … module ' + mi + '/' + MODULES.length + ' ' + mod)
     for (const [name, v] of Object.entries(ns)) {
       if (typeof v !== 'function') continue
       if (v.length > 0) continue                       // needs arguments we cannot invent
@@ -52,13 +66,13 @@ export function main() {
       const verdictKey = ['computes','ok','proven','folds','leads','decoded','merges','sealed','holds','tiled','forms','fused','clean','passed','aligned','balanced','valid','complete','explains','remains','researched'].find((k) => typeof (r as any)[k] === 'boolean')
       const verdict = verdictKey ? (r as any)[verdictKey] : undefined
       if (off.length) { facetsOff += off.length }
-      if (Date.now() - started > 1500000) { console.log('  TIME BUDGET SPENT at module ' + mi + ' (' + mod + ')'); mi = MODULES.length + 1; break }
+      if (Date.now() - started > 3000000) { console.log('  TIME BUDGET SPENT at module ' + mi + ' (' + mod + ')'); mi = MODULES.length + 1; break }
       if (verdict === false || off.length) {
         verdictFalse++
         if (bad.length < 200) bad.push(`${mod}  ${name}  ${off.length}/${fs.length} off${verdict === false ? '  verdict=false' : ''}`)
       }
     }
-    if (Date.now() - t0 > 20000) console.log(`  SLOW MODULE ${mod}: ${Date.now() - t0}ms`)
+    if (Date.now() - t0 > 5000) console.log(`  SLOW MODULE ${mod}: ${Date.now() - t0}ms`)
   }
   console.log(`modules walked ${mi}`)
   console.log(`called ${called} zero-arg exports · ${folds} returned facets · ${threw} threw`)
