@@ -22,8 +22,6 @@
  */
 
 import { createRequire } from 'node:module'
-import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join, relative } from 'node:path'
 import { corpusFiles } from './corpus.ts'
 import { ratchet } from './status.ts'
 
@@ -151,37 +149,27 @@ export type NarratedBoundary = { file: string; line: number; says: string }
 export function findNarratedBoundaries(root: string = process.cwd()): NarratedBoundary[] {
   const ts = require('typescript') as typeof import('typescript')
   const found: NarratedBoundary[] = []
-  const walk = (dir: string): void => {
-    let entries: string[] = []
-    try { entries = readdirSync(dir) } catch { return }
-    for (const entry of entries) {
-      const p = join(dir, entry)
-      let st
-      try { st = statSync(p) } catch { continue }
-      if (st.isDirectory()) { if (!SKIP.has(entry)) walk(p); continue }
-      if (!entry.endsWith('.ts')) continue
-      const sf = ts.createSourceFile(p, readFileSync(p, 'utf8'), ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS)
-      const visit = (node: import('typescript').Node): void => {
-        if (
-          ts.isPropertyAssignment(node) &&
-          (ts.isIdentifier(node.name) || ts.isStringLiteralLike(node.name)) &&
-          node.name.text === 'boundary' &&
-          (ts.isStringLiteralLike(node.initializer) || ts.isTemplateExpression(node.initializer) || ts.isNoSubstitutionTemplateLiteral(node.initializer))
-        ) {
-          const text = node.initializer.getText(sf)
-          const at = text.search(/HONEST SCOPE/)
-          found.push({
-            file: relative(root, p),
-            line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
-            says: (at >= 0 ? text.slice(at, at + 76) : text.slice(1, 77)).replace(/\s+/g, ' '),
-          })
-        }
-        ts.forEachChild(node, visit)
+  for (const file of corpusFiles(root)) {
+    const sf = file.ast()
+    const visit = (node: import('typescript').Node): void => {
+      if (
+        ts.isPropertyAssignment(node) &&
+        (ts.isIdentifier(node.name) || ts.isStringLiteralLike(node.name)) &&
+        node.name.text === 'boundary' &&
+        (ts.isStringLiteralLike(node.initializer) || ts.isTemplateExpression(node.initializer) || ts.isNoSubstitutionTemplateLiteral(node.initializer))
+      ) {
+        const text = node.initializer.getText(sf)
+        const at = text.search(/HONEST SCOPE/)
+        found.push({
+          file: file.rel,
+          line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
+          says: (at >= 0 ? text.slice(at, at + 76) : text.slice(1, 77)).replace(/\s+/g, ' '),
+        })
       }
-      visit(sf)
+      ts.forEachChild(node, visit)
     }
+    visit(sf)
   }
-  walk(join(root, 'src'))
   return found
 }
 
@@ -189,52 +177,31 @@ export function findNarratedScopes(root: string = process.cwd()): NarratedScope[
   const ts = require('typescript') as typeof import('typescript')
   const found: NarratedScope[] = []
 
-  const walk = (dir: string): void => {
-    let entries: string[] = []
-    try {
-      entries = readdirSync(dir)
-    } catch {
-      return
-    }
-    for (const entry of entries) {
-      const p = join(dir, entry)
-      let st
-      try {
-        st = statSync(p)
-      } catch {
-        continue
-      }
-      if (st.isDirectory()) {
-        if (!SKIP.has(entry)) walk(p)
-        continue
-      }
-      if (!entry.endsWith('.ts')) continue
-      const sf = ts.createSourceFile(p, readFileSync(p, 'utf8'), ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS)
-      const visit = (node: import('typescript').Node): void => {
-        if (
-          ts.isCallExpression(node) &&
-          ts.isIdentifier(node.expression) &&
-          node.expression.text === 'earned' &&
-          node.arguments.length >= 3
-        ) {
-          const scope = node.arguments[2]!
-          // An array argument is the computed form; a string (or template) is narration.
-          const narrated = ts.isStringLiteralLike(scope) || ts.isTemplateExpression(scope)
-          if (narrated) {
-            const head = node.arguments[0]!
-            found.push({
-              file: relative(root, p),
-              line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
-              head: (ts.isStringLiteralLike(head) ? head.text : head.getText(sf)).slice(0, 56).replace(/\s+/g, ' '),
-            })
-          }
+  for (const file of corpusFiles(root)) {
+    const sf = file.ast()
+    const visit = (node: import('typescript').Node): void => {
+      if (
+        ts.isCallExpression(node) &&
+        ts.isIdentifier(node.expression) &&
+        node.expression.text === 'earned' &&
+        node.arguments.length >= 3
+      ) {
+        const scope = node.arguments[2]!
+        // An array argument is the computed form; a string (or template) is narration.
+        const narrated = ts.isStringLiteralLike(scope) || ts.isTemplateExpression(scope)
+        if (narrated) {
+          const head = node.arguments[0]!
+          found.push({
+            file: file.rel,
+            line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
+            head: (ts.isStringLiteralLike(head) ? head.text : head.getText(sf)).slice(0, 56).replace(/\s+/g, ' '),
+          })
         }
-        ts.forEachChild(node, visit)
       }
-      visit(sf)
+      ts.forEachChild(node, visit)
     }
+    visit(sf)
   }
-  walk(join(root, 'src'))
   return found
 }
 
