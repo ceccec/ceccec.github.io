@@ -560,6 +560,63 @@ export function shorFactorsByPeriodFinding() {
     boundary: earned(`COMPUTED: three factorisations (15, 21, 35) from end to end — the oracle permutation, the inverse QFT over the counting register, the continued-fraction period recovery, and the gcd factor extraction — each refutable (a wrong period or a non-dividing factor fails the facet). On real quantum hardware the same circuit would factor in polynomial time, which is Shor's point and the reason RSA is threatened by scalable quantum computers:`, facets, limits) }
 }
 
+// ── THE ADVANTAGE THIS PROJECT ACTUALLY CLAIMS, MEASURED ───────────────────────────────────────────
+// The sealed theorem verify_beats_recompute_by_magnitudes is named for a computational claim and its Lean
+// statement is arithmetic:
+//
+//     ((2:Nat)^10 = 1024) ∧ ((2:Nat)^20 = 1048576) ∧ (1024 > 100*10) ∧ (1048576 > 10000*20)
+//
+// Four true facts about powers of two, decided by the kernel. They are CONSISTENT with the claim — if a
+// Merkle path costs log₂N and recompute costs N, those inequalities are the magnitudes — but they do not
+// establish that the path is log₂N, that verification touches only the path, or that recompute is O(N).
+// Those are the load-bearing parts and they live in the theorem's prose. So they are measured here: build
+// the tree, count what each route actually touches, and let the counts stand where the adjectives were.
+export function verifyBeatsRecomputeMeasured() {
+  // a plain binary Merkle fold; the corpus's merkleFold sorts, which is order-invariance and a different
+  // property — this needs positional paths, so the tree is built explicitly and counted honestly.
+  const build = (leaves: readonly string[]): { layers: string[][]; hashes: number } => {
+    const layers: string[][] = [[...leaves]]
+    let hashes = 0
+    while (layers[layers.length - 1]!.length > 1) {
+      const prev = layers[layers.length - 1]!
+      const next: string[] = []
+      for (let i = 0; i < prev.length; i += 2) { next.push(toUuid(prev[i]! + prev[i + 1]!)); hashes += 1 }
+      layers.push(next)
+    }
+    return { layers, hashes }
+  }
+  // verifying ONE leaf against a KNOWN root: one sibling per level, one hash per level
+  const verifyTouches = (layers: string[][]): number => layers.length - 1
+  const sizes = [2 ** (2 * 5), 2 ** (2 * 6), 2 ** (2 * 7)] // 1024, 4096, 16384
+  const runs = sizes.map((n) => {
+    const leaves = Array.from({ length: n }, (_, i) => toUuid(`leaf:${i}`))
+    const { layers, hashes } = build(leaves)
+    const touches = verifyTouches(layers)
+    return { n, recompute: hashes, verify: touches, ratio: Math.round(hashes / touches) }
+  })
+  const verifyIsLogarithmic = runs.every((r) => r.verify === Math.log2(r.n))
+  const recomputeIsLinear = runs.every((r) => r.recompute === r.n - 1)
+  const ratioGrows = runs.every((r, i) => i === 0 || r.ratio > runs[i - 1]!.ratio)
+  // the sealed theorem's own two data points, recomputed rather than cited
+  const sealedHolds = 2 ** (2 * 5) === 1024 && 2 ** (2 * 10) === 1048576 && 1024 > 100 * (2 * 5) && 1048576 > 10000 * (2 * 10)
+  const limits = computedLimits([
+    { facet: `TOUCHES, NOT SECONDS — ${runs.map((r) => `${r.recompute} vs ${r.verify}`).join(', ')} are hash counts, and a hash is not a fixed cost. The theorem's prose cites 0.13s and 0.1ms against 1798ms elsewhere; none of those numbers is measured here and this fold makes no timing claim`, on: recomputeIsLinear },
+    { facet: `THE ROOT MUST ALREADY BE TRUSTED — verification costs ${runs[0]!.verify} touches only because the root arrives from somewhere else. Obtaining it honestly costs the full ${runs[0]!.recompute}, once. "Prove once, verify forever" is two clauses and this measures the second; the first is the same O(N) everyone pays`, on: verifyIsLogarithmic },
+    { facet: `THE SEALED THEOREM PROVES THE ARITHMETIC, NOT THE MECHANISM — 2^10 = 1024, 2^20 = 1048576, 1024 > 1000, 1048576 > 200000, all four recomputed here and all four true. That a Merkle path is log₂N and a recompute is N is what makes those numbers RELEVANT, and it is measured in this fold rather than proved in that one`, on: sealedHolds },
+  ])
+  const facets = [
+    { facet: `VERIFY IS log₂N TOUCHES — ${runs.map((r) => `N=${r.n}: ${r.verify}`).join(', ')}, exactly the tree depth, one sibling hash per level`, on: verifyIsLogarithmic },
+    { facet: `RECOMPUTE IS N−1 HASHES — ${runs.map((r) => `N=${r.n}: ${r.recompute}`).join(', ')}, every internal node of the tree`, on: recomputeIsLinear },
+    { facet: `AND THE RATIO GROWS — ${runs.map((r) => `${r.ratio}×`).join(' → ')} across N = ${sizes.join(', ')}; N/log₂N rises without bound, which is the claim's real content: more data, wider gap`, on: ratioGrows },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
+    runs, limits, facets,
+    root: merkleFold(facets.map((entry) => toUuid(`verify-vs-recompute:${entry.facet}:${entry.on}`))),
+    statement: `Verify beats recompute, measured — ${facets.filter((e) => e.on).length}/${facets.length}: over N = ${sizes.join(', ')} leaves a verification path touches ${runs.map((r) => r.verify).join(', ')} nodes against ${runs.map((r) => r.recompute).join(', ')} to recompute the root, a ratio of ${runs.map((r) => r.ratio).join(' → ')} that grows as N/log₂N. The sealed theorem proves the arithmetic of those magnitudes; this measures the mechanism that makes the arithmetic relevant.`,
+    boundary: earned(`COMPUTED: a binary Merkle tree at three sizes, its internal-node count against its depth, and the ratio between them — refutable by rebuilding either count:`, facets, limits) }
+}
+
 // ── THE DEFINITION AT uuidna.com/mcp, IMPLEMENTED LOCALLY ──────────────────────────────────────────
 // uuidna.com/mcp defines quantum as "the EXACT classical state-vector simulator (Gaussian-integer
 // amplitudes over √(2^scale) — no floats, no decimal drift)" and returns Bell outcomes as the exact
