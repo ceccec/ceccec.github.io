@@ -55,6 +55,7 @@
  */
 
 import { MODULES } from './module-index.ts'
+import { ratchet } from './status.ts'
 export function main() {
   const LIMIT = Number(process.env.FOLD_LIMIT ?? '0')
   const started = Date.now()
@@ -92,4 +93,22 @@ export function main() {
   console.log(`called ${called} zero-arg exports · ${folds} returned facets · ${threw} threw`)
   console.log(`FOLDS WITH A FALSE VERDICT OR AN OFF FACET: ${verdictFalse}  (facets off: ${facetsOff})`)
   for (const b of bad) console.log('   ' + b)
+
+  // A CENSUS THAT CANNOT FAIL IS NOT A CHECK. This file ran for four minutes, found 460 folds
+  // reporting a false verdict, 1438 facets off and 34 folds throwing — and exited 0, every time,
+  // because it only ever printed. Scheduling it in that state would have made CI green ON the 460.
+  //
+  // ONLY ONE OF THE THREE COUNTS IS RATCHETED, AND THE REASON IS THE SECOND FINDING. Two runs of
+  // this file at the same commit, over the same 7655 exports and the same 4504 folds, reported
+  // 455/1425 and then 460/1438. Five folds return a DIFFERENT VERDICT ON IDENTICAL INPUT. In a
+  // corpus whose central claim is that the same input recomputes to the same answer, that is a
+  // defect in the folds, not a tolerance to design around — and a ratchet over a number that
+  // moves by itself would throw on nobody's change and block every commit until someone widened
+  // it, which is how a gate teaches people to ignore it.
+  //
+  // So `threw` is a ratchet — 34 in every run measured, deterministic, and a fold that starts
+  // throwing is unambiguous. The other two are REPORTED until the five are found and made
+  // deterministic; then they can be ratcheted honestly.
+  console.log(ratchet('folds.threw', threw))
+  console.log(`folds.false-verdict: ${verdictFalse} · folds.facets-off: ${facetsOff} — NOT RATCHETED: these varied 455→460 and 1425→1438 across runs at one commit; find the five non-deterministic folds first`)
 }
