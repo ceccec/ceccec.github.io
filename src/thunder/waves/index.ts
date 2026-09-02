@@ -3004,7 +3004,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
     const mass = shouldSpawnSubagent('explore everything search entire repo')
     const buildFn = typeof selfBuild === 'function'
     const phases = MANUAL_AGENT_WAVE_PHASES
-    const facets = [
+    const claims = [
       { facet: 'one wave per turn — eight phases origin→decode→design→learn→tune→edit→rebuild→verify', on: phases.length === 2 * 4 },
       { facet: 'waves/build + edit/build + learn/build pairs bidirectional before npm', on: wavesBuild.bidirectional && editBuild.bidirectional && learnBuild.bidirectional && wavesBuild.forward !== wavesBuild.reverse },
       { facet: 'plan/trinity — next wave from matrix (cross·fold·weave) not prose checklist', on: planTrinityPair.bidirectional && planTrinityPair.forward !== planTrinityPair.reverse },
@@ -3014,8 +3014,10 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
       { facet: 'mission/gate between waves when types or structure drift', on: missionGate.bidirectional && missionGate.forward !== missionGate.reverse },
       { facet: 'vote/build — one sequential seal · wet-linear grind refused', on: !mass.spawn },
       { facet: 'verify wave closes via selfBuild()', on: buildFn },
-      { facet: 'manualAgentsBehaveLikeWaves — protocol recomputes at call time', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`manual-agents-waves:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `manualAgentsBehaveLikeWaves — protocol recomputes at call time — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`manual-agents-waves:${entry.facet}:${entry.on}`) }))
     const allOn = facets.every((entry) => entry.on)
     return {
       computes: allOn,

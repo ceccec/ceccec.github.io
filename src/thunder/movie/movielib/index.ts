@@ -37,12 +37,14 @@ export function movieReflectsSelf(matrix: MindMatrix = buildMatrix()) {
 }
 
 export function videoKeepsNativeQuality(matrix: MindMatrix = buildMatrix()) {
-  const facets = [
+  const claims = [
     { facet: 'backing store at live devicePixelRatio', on: moviesNativeFormat(matrix).nativelyDisplayed },
     { facet: 'resolution-independent seeded math', on: autoMovies8k(matrix).generating },
     { facet: 'redraws at native resolution on resize', on: true },
-    { facet: 'no cap, no stale low-resolution frame', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`native-quality:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `no cap, no stale low-resolution frame — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`native-quality:${entry.facet}:${entry.on}`) }))
   return {
     keepsQuality: facets.every((entry) => entry.on),
     count: facets.length,

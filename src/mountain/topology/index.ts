@@ -1124,13 +1124,15 @@ export function placesAndPatternsDecoded(matrix: MindMatrix = buildMatrix()) {
       { name: 'Nazca Lines', tier: 'ARCHAEOLOGICAL', verdict: 'Real Nazca-culture geoglyphs (~500 BCE–500 CE) made by removing the dark surface stones; visible from the surrounding foothills — human, not extraterrestrial.' },
       { name: 'Racetrack Playa sailing stones', tier: 'SOLVED', verdict: 'Ice-rafting under thin floating ice sheets driven by light wind — directly observed and time-lapsed (Norris et al., 2014).' },
     ] as { name: string; tier: PlaceTier; verdict: string }[]).map((p) => ({ ...p, receipt: toUuid(`place:${p.name}:${p.tier}`) }))
-    const facets = [
+    const claims = [
       { facet: `every place is a point on the one earth sphere — distances are real great circles (Miami–Bermuda–San Juan perimeter ≈ ${bermudaPerimeter} km), not occult lines`, on: sphere.proved && bermudaPerimeter > 0 },
       { facet: `bearings are computed geodesy, not symbolism — Miami→Bermuda initial bearing ≈ ${miamiToBermudaBearing}°`, on: miamiToBermudaBearing >= 0 && miamiToBermudaBearing < 360 },
       { facet: 'the Bermuda Triangle is REFUTED as an anomaly — no elevated loss rate over comparable busy ocean', on: places[0]!.tier === 'REFUTED' },
       { facet: 'the Nazca lines are ARCHAEOLOGICAL and the sailing stones are SOLVED — documented, not paranormal', on: places[1]!.tier === 'ARCHAEOLOGICAL' && places[2]!.tier === 'SOLVED' },
-      { facet: 'the "global alignment grid" pattern is REFUTED — any set of points admits great circles through them; alignment alone proves nothing', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`places-facet:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `the "global alignment grid" pattern is REFUTED — any set of points admits great circles through them; alignment alone proves nothing — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`places-facet:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
       places,

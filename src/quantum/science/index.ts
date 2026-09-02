@@ -179,11 +179,13 @@ export function rifeFrequenciesDecoded() {
     { claim: 'Rife devices treat cancer or infection', why: 'the American Cancer Society finds no evidence of benefit; the FDA and FTC have acted against Rife-device marketers for health fraud and sellers have been criminally convicted (e.g. James Folsom, 2009)' },
     { claim: 'using a Rife machine in place of medical treatment', why: 'DANGEROUS — there are documented cases of people dying after forgoing evidence-based cancer treatment for a Rife device' },
   ]
-  const facets = [
+  const claims = [
     { facet: 'the HISTORY is documented — Rife the man (1888–1971), the microscope, the Beam Ray, the MOR term, the modern device', on: documented.length === 4 },
     { facet: 'the THERAPY is flagged — falsified, no mechanism, no evidence, documented fraud; every claim carries its why', on: flagged.length === 4 && flagged.every((entry) => entry.why.length > 0) },
-    { facet: 'the boundary holds — a frequency\'s number/name/colour confers no medical effect (the same line as Schumann / a432 / Solfeggio)', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`rife-facet:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `the boundary holds — a frequency's number/name/colour confers no medical effect (the same line as Schumann / a432 / Solfeggio) — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`rife-facet:${entry.facet}:${entry.on}`) }))
   return {
     decoded: facets.every((entry) => entry.on),
     documented,

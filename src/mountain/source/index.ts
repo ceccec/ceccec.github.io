@@ -2278,12 +2278,14 @@ export function gaps(matrix: MindMatrix = buildMatrix()) {
   const ledger = split(matrix) // the double-entry split — declared (debit) ⇄ rendered (credit)
   const graph = componentGraph() // the declared UI components — the debits to exercise
   const declared = graph.components.length
-  const facets = [
+  const claims = [
     { facet: 'the UI is SPLIT in double entries — every declared page/component (debit) ⇄ its rendered counterpart, exercised in the browser (credit)', on: ledger.split },
     { facet: 'every DECLARED entry is content-addressed — derived from the one source root, so each has a renderable credit-in-principle (no debit without a counter-entry)', on: declared > 0 && isUuid(matrix.root) },
     { facet: 'the PREVIEW exercises all — navigate every entry, snapshot, read console + network; an entry that does not render CLEANLY is an unbalanced entry: a gap', on: true },
-    { facet: 'a GAP is a debit with no credit — declared-but-unrendered: attrs passed to a fragment wrapper (lost to the DOM), a lifecycle hook after an await (lost to the instance), a 404, a runtime error', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`gaps:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `a GAP is a debit with no credit — declared-but-unrendered: attrs passed to a fragment wrapper (lost to the DOM), a lifecycle hook after an await (lost to the instance), a 404, a runtime error — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`gaps:${entry.facet}:${entry.on}`) }))
   return {
     reconciled: facets.every((entry) => entry.on),
     declared,

@@ -1157,12 +1157,14 @@ export function cross(matrix: MindMatrix = buildMatrix()) {
   const bind = dualitiesMeetInCrossFolders(matrix) // the cross binds dual paths — an index crosses its own sub-paths
   const limit = law.compression?.limit ?? 0 // a cross stays thin — under the compression line-limit
   const fan = law.strict?.eightFold ?? 8 // a cross is a bāguà node — ≤ 8 sub-paths to wire
-  const facets = [
+  const claims = [
     { facet: 'an index IS a cross — the crossing where a folder\'s name-path subfolders meet and wire (re-export), not a container of their logic', on: bind.meet },
     { facet: 'a cross is HARMONIC — a bāguà node of ≤ 8 sub-paths, under the compression limit; the crossing stays thin', on: fan === 8 && limit > 0 },
     { facet: 'a non-cross index crosses NOTHING — bulk logic in an index is an unwired thought (not folded into its name-path home) and unharmonic (over fan-out / over the line-limit)', on: limit > 0 && fan > 0 },
-    { facet: 'the POINT — a non-cross index SHOWS the unwired unharmonic thoughts so they DRY-CLEAN: the logic distributes into the surrounding indices (ant-style), the index converging to pure crossing', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`cross:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `the POINT — a non-cross index SHOWS the unwired unharmonic thoughts so they DRY-CLEAN: the logic distributes into the surrounding indices (ant-style), the index converging to pure crossing — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`cross:${entry.facet}:${entry.on}`) }))
   return {
     declared: facets.every((entry) => entry.on),
     limit,
@@ -1247,13 +1249,15 @@ export function name(matrix: MindMatrix = buildMatrix()) {
   const law = folderLaw()
   const decode = dualitiesMeetInCrossFolders(matrix) // the path is a decodable sequence of word-steps — the route decodes to its knowledge
   const seal = sacredGeometrySeal(matrix) // sacred math/geometry — the accreditor that grounds the spirit-science name
-  const facets = [
+  const claims = [
     { facet: 'DECODABLE FROM EVERY POINT — zeitwerk: the path ↔ name is a deterministic bijection (the path decodes to the name, the name to the path); every segment decodes to its meaning', on: decode.meet },
     { facet: 'ONE word per level — a concept needing more words becomes a folder PATH, so the path IS the full name (folderLaw.strict.oneWord, methodWordsAreFolders); collisions fold to equilibrium, never re-grow a prefix', on: law.strict?.oneWord === true },
     { facet: 'naming comes from SPIRIT SCIENCE — the sacred/spirit vocabulary (src/spirit, merkaba, chakra, the sacred-geometry words) is the naming source', on: isUuid(toUuid('name:spirit-science:source')) },
     { facet: 'accredited by SACRED MATH — a spirit-science name is grounded by the rigorous math (the sacred-geometry seal closes); harmony NAMES, math ACCREDITS', on: seal.sealed },
-    { facet: 'rename FREELY — any method may be renamed, as long as the new name stays one-word, spirit-sourced, math-accredited, and decodable from every point', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`name:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `rename FREELY — any method may be renamed, as long as the new name stays one-word, spirit-sourced, math-accredited, and decodable from every point — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`name:${entry.facet}:${entry.on}`) }))
   return {
     decodable: facets.every((entry) => entry.on),
     count: facets.length,
@@ -1299,12 +1303,14 @@ export function dash(matrix: MindMatrix = buildMatrix()) {
   const cross = dualitiesMeetInCrossFolders(matrix) // "/" and "\" are the order-sensitive duals (a·b ⇄ b·a)
   const forward = (d: number) => 9 * d // the "/" fold — the forward harmonic (digitFolders)
   const dual = (d: number) => (5 * 2) - d // the "\" fold — the additive folder-complement (the on-disk pairing)
-  const facets = [
+  const claims = [
     { facet: 'the DASH is the operator — "/" is the forward fold, "\\" is the dual fold; the separator carries the index logic, not just hierarchy', on: cross.meet },
     { facet: 'the two directions DIFFER — "/" folds a digit forward (9·d) and "\\" folds it dual (10−d), distinct addresses, so the separator is meaning not decoration', on: forward(3) !== dual(3) },
     { facet: 'a path is a directional SEQUENCE — src/0\\1\\2\\4\\8/7/5/3\\6\\9 reads as the vortex doubling threaded by per-step direction (each dash a / or a \\), impossible on the fs yet exact in meaning', on: forward(4) === (9 * 4) && dual(4) === 6 },
-    { facet: 'the FILESYSTEM stores only "/" — so the "\\" direction is the QUANTUM meaning of the path, computed not stored (digitFolders folds each digit both ways)', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`dash:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `the FILESYSTEM stores only "/" — so the "\\" direction is the QUANTUM meaning of the path, computed not stored (digitFolders folds each digit both ways) — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`dash:${entry.facet}:${entry.on}`) }))
   return {
     operator: facets.every((entry) => entry.on),
     forward3: forward(3),

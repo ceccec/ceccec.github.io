@@ -3872,7 +3872,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       physicalFtlClaim === 0 &&
       isoOfficialStandard === false
 
-    const facets = [
+    const claims = [
       { facet: `MEANING CLAIMS — ${proves.length} prove/refuse rows recompute`, on: proves.length >= (8 + 8) && allProvesOn },
       { facet: 'composes documentSessionCryptoExperimentsUpdateTheorems', on: experiments.computes },
       { facet: 'composes sessionManualWorkAsQuantumBits (#30) · realise-sciences bit landed', on: sessionBits.computes && sessionBits.bits.some((b) => b.id === 'realise-sciences-standards' && b.status === 'sealed-pr') },
@@ -3898,8 +3898,10 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       { facet: 'gate/slow-build catalogued + slow-gap witness closed (Node CLI owns HARD/WARN timings)', on: slowBuildToolOk && Boolean(slowBuildGapRow?.closed) && slowGaps.computes },
       { facet: 'wire/paste-link (#33) quantumReady paste-bootstrap · convincingRequired=false', on: autoWire.computes && autoWire.quantumReady && autoWire.convincingRequired === false && autoWire.qpuRequired === false },
       { facet: 'meta tool realise-session-meaning published + shelved', on: Boolean(meta) && meta!.fold === 'realiseSessionQuantumMeaning' && isUuid(shelved.address) },
-      { facet: 'quantum computing only = sealed folds / memoByRoot / directional trinity — no wet re-inference', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`realise-session-meaning:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `quantum computing only = sealed folds / memoByRoot / directional trinity — no wet re-inference — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`realise-session-meaning:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('realise-session-quantum-meaning', facets)
 
     return {
@@ -4781,13 +4783,15 @@ export function ftlExperimentTechniquesHandoffFromRosettaComplete(
       'no-signaling', 'plasma-phase-group', 'cherenkov', 'hartman-model',
       'opera-artifact', 'astrophysical-jets', 'teleport-classical-channel', 'tracks-classical-no-speedup',
     ] as const
-    const facets = [
+    const claims = [
       { facet: 'consumes rosetta completeness handoff', on: isUuid(handoff.root) },
       { facet: `rosettaReady=${handoff.rosettaReady} enables FTL technique addressing (not luminal signaling)`, on: handoff.rosettaReady === handoff.rosettaComplete },
       { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && handoff.physicalFtlClaim === 0 },
       { facet: `apparent-FTL class catalog sealed — ${apparentClasses.length} rows`, on: apparentClasses.length === 8 },
-      { facet: 'KEEP-ftl full apparatus may deepen waves without dropping this receipt', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-rosetta-handoff:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `KEEP-ftl full apparatus may deepen waves without dropping this receipt — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`ftl-rosetta-handoff:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ftl-experiment-techniques-handoff-from-rosetta-complete', facets)
     return {
       computes: sealed.ok && physicalFtlClaim === 0,
@@ -41378,10 +41382,12 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
     // Break balance → universe/counter-rotating → rosettaComplete → emergentDimensions reentry.
     // memoByRoot stub makes physicalFtlClaim/clay receipts falsey; defer honestly while dims compute.
     if (memoComputing('emergentDimensions', matrix)) {
-      const facets = [
+      const claims = [
         { facet: 'deferred under emergentDimensions reentry — full dual-spin recomputes on standalone CLI', on: true },
-        { facet: ' held across the cycle guard', on: true },
-      ].map((entry) => ({ ...entry, receipt: toUuid(`counter-rotating-reentry:${entry.facet}:${entry.on}`) }))
+      ]
+      // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+      // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+      const facets = [...claims, { facet: ` held across the cycle guard — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`counter-rotating-reentry:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('counter-rotating-rosetta-reentry', facets)
       return {
         computes: sealed.ok,
@@ -41491,10 +41497,12 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
   return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     // Same emergentDimensions reentry guard as counterRotatingRosettaQuantumWaves.
     if (memoComputing('emergentDimensions', matrix)) {
-      const facets = [
+      const claims = [
         { facet: 'deferred under emergentDimensions reentry — discovery engine recomputes on standalone CLI', on: true },
-        { facet: 'open Clay/FTL receipts remain 0 across the cycle guard', on: true },
-      ].map((entry) => ({ ...entry, receipt: toUuid(`universe-almost-reentry:${entry.facet}:${entry.on}`) }))
+      ]
+      // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+      // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+      const facets = [...claims, { facet: `open Clay/FTL receipts remain 0 across the cycle guard — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`universe-almost-reentry:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('universe-almost-described-reentry', facets)
       return {
         computes: sealed.ok,

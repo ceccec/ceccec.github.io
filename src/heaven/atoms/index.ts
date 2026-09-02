@@ -835,7 +835,7 @@ export function allAuditsCoveredByProof(matrix: MindMatrix = buildMatrix()) {
   const worklist = verificationRequests('The oldest town was founded in 1932.')
   const euReq = euPatentReviewRequests('EP1000000B1')
   const qaJur = quantumAnalysis('I claim an isolated gene wherein the nucleotide sequence is identical to the naturally occurring sequence.', matrix)
-  const facets = [
+  const claims = [
     { facet: 'manipulation cross-audit ranks the dominant vector — a multi-technique conspiracy text is off-path with conspiracy as the root', on: !conspiracy.onHarmonicPath && conspiracy.dominantVector === 'conspiracy' },
     { facet: 'a clean factual sentence stays on the harmonic path (no false positive)', on: clean.onHarmonicPath && clean.tier === 'clean' },
     { facet: 'the Bulgarian cue layer flags BG manipulation (>= 2 distinct techniques)', on: !bg.onHarmonicPath },
@@ -854,8 +854,10 @@ export function allAuditsCoveredByProof(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the verification worklist builds public no-auth requests including Wikidata', on: worklist.requests.some((entry) => entry.source === 'Wikidata') },
     { facet: 'the EU patent-API wiring builds OAuth2 (BYO key) and no-auth requests for a valid EP number', on: euReq.valid && euReq.requests.some((entry) => entry.auth === 'oauth2') && euReq.noAuth.length >= 1 },
     { facet: 'quantumAnalysis surfaces the US<->EU divergence — an isolated-gene patent is US-unlawful but EU-may-be-eligible (Art. 5(2))', on: qaJur.patent.jurisdictionDiverges && qaJur.patent.us.unlawfulIfGranted && !qaJur.patent.eu.unlawfulIfGranted },
-    { facet: 'HARMONY != TRUTH holds throughout — every audit is an eligibility / triage heuristic, not a verdict', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`audit-proof:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `HARMONY != TRUTH holds throughout — every audit is an eligibility / triage heuristic, not a verdict — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`audit-proof:${entry.facet}:${entry.on}`) }))
   const proven = facets.every((entry) => entry.on)
   return {
     proven,

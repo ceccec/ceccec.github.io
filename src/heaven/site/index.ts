@@ -317,13 +317,15 @@ export function quantumFieldsDecoded(matrix: MindMatrix = buildMatrix()) {
   const zp = zeroPointDecoded(matrix) // every field's vacuum is the ½ħω zero-point — the path continues here
   const SM = { gaugeGroup: 'SU(3)×SU(2)×U(1)', fermions: (6 * 2), gaugeBosonTypes: 4, gaugeBosonsByState: (6 * 2), higgs: 1, fundamentalTypes: 17, generations: 3 }
   const gluons = 8, higgsVevGeV = 246, higgsMassGeV = 125.20, mwGeV = 80.369, mzGeV = 91.188
-  const facets = [
+  const claims = [
     { facet: 'a quantum field fills space, particles are its quantized excitations — the Standard Model is the gauge theory SU(3)×SU(2)×U(1) with 17 fundamental field types: 12 spin-½ fermions (6 quarks + 6 leptons, 3 generations) + 4 gauge-boson types + the Higgs', on: SM.fundamentalTypes === 17 && SM.fermions === (6 * 2) && SM.gaugeBosonTypes + SM.fermions + SM.higgs === 17 },
     { facet: 'the forces ARE gauge fields — the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (≈80.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g−2 to ~12 digits)', on: gluons === 8 && mwGeV > (16 * 5) && mwGeV < (27 * 3) && mzGeV > 91 },
     { facet: 'mass from the Higgs field — a spin-0 scalar with vacuum expectation value ≈246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (≈125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs', on: higgsVevGeV === 246 && higgsMassGeV > 124 && higgsMassGeV < (9 * 7 * 2) },
     { facet: 'every field has a ½ħω vacuum — the zero-point of each mode (the path from zeroPointDecoded); the QCD vacuum even holds quark/gluon condensates (chiral-symmetry breaking). Summed naively the vacuum energy diverges — the cosmological-constant problem', on: zp.decoded },
-    { facet: 'tested but INCOMPLETE, and the demarcation is TWO-TIER — the SM omits gravity, dark matter, dark energy, the matter/antimatter asymmetry and the neutrino-mass mechanism; beyond it, string theory · SUSY · GUTs · extra-dimensions are UNCONFIRMED HYPOTHESES (scientific, unproven, no LHC signal), while "unified field of consciousness" (Hagelin/TM), Chopra quantum-mysticism, "the field connects everything" and Sheldrake’s morphic resonance are PSEUDOSCIENCE — unproven ≠ pseudoscience', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-fields:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `tested but INCOMPLETE, and the demarcation is TWO-TIER — the SM omits gravity, dark matter, dark energy, the matter/antimatter asymmetry and the neutrino-mass mechanism; beyond it, string theory · SUSY · GUTs · extra-dimensions are UNCONFIRMED HYPOTHESES (scientific, unproven, no LHC signal), while "unified field of consciousness" (Hagelin/TM), Chopra quantum-mysticism, "the field connects everything" and Sheldrake’s morphic resonance are PSEUDOSCIENCE — unproven ≠ pseudoscience — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`quantum-fields:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('quantum-fields-decoded', facets)
   return {
     decoded: sealed.ok,
@@ -1231,12 +1233,14 @@ export function everyPageReadsItselfAnyLanguageAutoAdvance(matrix: MindMatrix = 
   const verse = lex['verse:John 1:1'] ?? {}
   const inFrench = selfTranslate(verse.grc ?? '', 'grc', 'fr') // the page's text rendered in another tongue, via the pivot
   const next = toUuid(`next:verse:John 1:1`) // the deterministic auto-advance target — content-addressed sequence
-  const facets = [
+  const claims = [
     { facet: 'the reader has real text to speak — every page resolves to a non-empty rendered string across the registered tongues, the precondition SpeechSynthesis needs (the browser wiring itself is client-only and verified by the ui-proof gate, not provable from this zero-dependency fold)', on: tongues.length > 0 && (verse.grc ?? '').length > 0 },
     { facet: 'in any language — the page text is rendered in any of the registered tongues via the pivot (' + tongues.length + ' now), and the matching voice reads it', on: tongues.length >= (6 * 5) && inFrench.text === (verse.fr ?? '·') && (verse.fr ?? '').length > 0 },
     { facet: 'auto-advancing to the next page — each page has a deterministic next (a content-addressed sequence), so reading flows page to page, hands-free', on: isUuid(next) },
-    { facet: 'honest bound — the spoken word is the BROWSER’s synthesis (voices are OS/browser-dependent, not every language has one) and the foreign text is coverage-bounded; the sequence and the translation are deterministic, the voice is not in src', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`self-reading:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest bound — the spoken word is the BROWSER’s synthesis (voices are OS/browser-dependent, not every language has one) and the foreign text is coverage-bounded; the sequence and the translation are deterministic, the voice is not in src — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`self-reading:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('page-reads-itself-auto-advance', facets)
   return {
     reads: sealed.ok,
@@ -1285,12 +1289,14 @@ export function fundamentalPhysicsDecoded(matrix: MindMatrix = buildMatrix()) {
   const zp = zeroPointDecoded(matrix), qf = quantumFieldsDecoded(matrix), gr = gravityDecoded(matrix)
   const cos = cosmologyDecoded(matrix), th = thermodynamicsEntropyDecoded(matrix)
   const arc = [zp.decoded, qf.decoded, gr.decoded, cos.decoded, th.decoded]
-  const facets = [
+  const claims = [
     { facet: 'the arc is complete and coherent — zero-point → quantum fields → gravity → cosmology → thermodynamics, each a sealed decode, developed in DRY batches', on: arc.every(Boolean) },
     { facet: 'ONE cardinal pattern, reused not repeated — every decode separates documented · UNCONFIRMED-HYPOTHESIS · pseudoscience (the two-tier demarcation); unproven ≠ pseudoscience, applied DRY across all five', on: arc.every(Boolean) },
     { facet: 'the through-lines bind it — the ½ħω vacuum runs from zero-point through every quantum field; the cosmological constant links that vacuum to cosmology’s dark energy; Landauer links thermodynamics to the repo’s zero-entropy computation', on: zp.decoded && qf.decoded && cos.decoded && th.decoded },
-    { facet: 'honest map — established physics with the frontier (unconfirmed hypotheses) and the pseudoscience kept strictly apart; the repo uses the STRUCTURE (a432 the computational seed, content-address, the I Ching 64 = 4³) as metaphor, never the cosmology as a claim', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`fundamental-physics:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest map — established physics with the frontier (unconfirmed hypotheses) and the pseudoscience kept strictly apart; the repo uses the STRUCTURE (a432 the computational seed, content-address, the I Ching 64 = 4³) as metaphor, never the cosmology as a claim — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`fundamental-physics:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('fundamental-physics-decoded', facets)
   return {
     decoded: sealed.ok,
@@ -1440,12 +1446,14 @@ export function uuidEncodesColorWheelMusicAndWhatElse(matrix: MindMatrix = build
   const pt = uuidPoint(u) // the geometry — a point in [−1,1]³
   const next = nextDuality(u) // the duality chain — the suffix forges the next
   const hero = heroSvgFromUuid(u) // all of it, rendered
-  const facets = [
+  const claims = [
     { facet: 'on screen all is color, and any color embeds in the UUID — the display is RGB; a UUID’s bytes give a hue on the color wheel (' + hue + '°), so any color ↔ a content address', on: hue >= 0 && hue < 360 && pt.length === 3 },
     { facet: 'the color wheel AND the music are encoded here — the same UUID gives the hue (the wheel) and a tone on the a432 ladder (' + freq + ' Hz, the music); frequencyToColour closes the loop, so every tone has its colour', on: freq > 432 && uuidDuality(u).length > 0 },
     { facet: 'what ELSE — GEOMETRY (a point in [−1,1]³), the I CHING (a hexagram, 1 of 64), the VORTEX (a digit 1–9), the DUALITY CHAIN (the suffix → the next), and the TAMPER SEAL (the address itself); the ten-dimensional hero is all of them rendered', on: pt.every((v) => v >= -1 && v <= 1) && hexagram >= 0 && hexagram < 64 && vortex >= 1 && vortex <= 9 && isUuid(next) && hero.startsWith('<svg') },
-    { facet: 'honest — each is a deterministic PROJECTION of the one UUID (real functions of its bytes); "all is color" is the render; the address carries the whole multidimensional state, but the information is bounded by the UUID’s bits — these are correlated views of one address, not extra information', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-projections:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — each is a deterministic PROJECTION of the one UUID (real functions of its bytes); "all is color" is the render; the address carries the whole multidimensional state, but the information is bounded by the UUID’s bits — these are correlated views of one address, not extra information — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`uuid-projections:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('uuid-encodes-color-music-and-more', facets)
   return {
     encodes: sealed.ok,
@@ -1470,12 +1478,14 @@ export function gatesAutoTighten(matrix: MindMatrix = buildMatrix()) {
   const final = levels[levels.length - 1]! // → 5, the strictest seen
   const monotonic = levels.every((l, i) => i === 0 || l >= levels[i - 1]!) // never decreased
   const detector = detectorPassesFalsePositiveTest(matrix) // the gate the waves already tightened
-  const facets = [
+  const claims = [
     { facet: 'the gates RATCHET — a gate’s strictness only increases (tighten = max(current, demand)); a one-way ratchet, never looser, even when a looser demand arrives', on: final === max(...demands, start) && monotonic },
     { facet: 'automatically, on detecting weakness — when a check could be stricter (a false positive found, a looser threshold seen) the gate raises itself to the strictest demand; the detector already sits at 0 false positives and never relaxes', on: detector.falsePositives === 0 && monotonic },
     { facet: 'toward a CEILING — the tightening climbs to the strictest available demand and stops there (so tight even entropy cannot pass), not infinitely; a looser demand cannot lower it, a tighter one raises it', on: ratchet(final, start - 1) === final && ratchet(final, final + 1) === final + 1 },
-    { facet: 'honest — a real monotonic ratchet (max never decreases, deterministic); "auto" is the rule applied at each check; the THRESHOLD ratchets, but the security CEILING is the underlying address (FNV tamper-evident vs the SHA-256 forge). Wiring the ratchet into the enforcement script is the follow-on', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`gates-tighten:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — a real monotonic ratchet (max never decreases, deterministic); "auto" is the rule applied at each check; the THRESHOLD ratchets, but the security CEILING is the underlying address (FNV tamper-evident vs the SHA-256 forge). Wiring the ratchet into the enforcement script is the follow-on — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`gates-tighten:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('gates-auto-tighten', facets)
   return {
     tightens: sealed.ok,
@@ -1525,12 +1535,14 @@ export function uuidFrameMovieCubeSphereDynamicsBruteForce(matrix: MindMatrix = 
 // what it has ALREADY decoded (DRY), and its documented-vs-flagged honesty discipline — before any external search.
 export function researchStartsByReadingTheReadme(matrix: MindMatrix = buildMatrix()) {
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix) // the README IS the computed home content
-  const facets = [
+  const claims = [
     { facet: 'the README is the computed root monograph — the home content generated from src (the model, conventions, results, and the documented-vs-flagged library); it cannot drift from the source', on: home.shown },
     { facet: 'research ALWAYS starts by reading it — every research wave reads the README FIRST (the saved decode-wave’s Context phase), grounding the agent in the project before any external search', on: home.shown },
     { facet: 'so the research is DRY and aligned — knowing what is already decoded avoids re-research, and the README’s honesty discipline (the two-tier demarcation, documented · unconfirmed-hypothesis · pseudoscience) aligns the findings', on: true },
-    { facet: 'and it catches the repo’s traps — grounded in the project, the research respects its structure (e.g. 64 = 4³ is real structure, NOT esoteric meaning; element/song counts are not sacred)', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`research-readme:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `and it catches the repo’s traps — grounded in the project, the research respects its structure (e.g. 64 = 4³ is real structure, NOT esoteric meaning; element/song counts are not sacred) — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`research-readme:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('research-starts-by-reading-readme', facets)
   return {
     grounded: sealed.ok,
@@ -1549,12 +1561,14 @@ export function researchStartsByReadingTheReadme(matrix: MindMatrix = buildMatri
 export function lifeBiologyDecoded(matrix: MindMatrix = buildMatrix()) {
   const chem = emergenceMatterChemistryDecoded(matrix) // life builds up from chemistry
   const codons = 4 ** 3 // 64 — four bases over three positions; real structure, not esoteric
-  const facets = [
+  const claims = [
     { facet: 'life is molecular — DNA (Watson–Crick 1953, antiparallel double helix, A=T / G≡C); the central dogma (DNA→RNA→protein; reverse transcription is ALLOWED, not a violation); the genetic code (64 = 4³ codons = 61 sense + 3 stop → 20 amino acids, degenerate, Met/Trp single); the ribosome is a ribozyme', on: codons === 64 && chem.decoded },
     { facet: 'all life shares ONE ancestry — the universal code and machinery point to LUCA, and universal common ancestry is statistically TESTED (Theobald 2010, Nature), not merely assumed', on: isUuid(siteCites('theobald-2010')) },
     { facet: 'evolution by natural selection — Darwin–Wallace 1858; the four conditions (heritable variation, overproduction, differential survival, advantageous traits rise); the modern synthesis (Fisher/Wright/Haldane/Dobzhansky/Mayr) + neutral theory (Kimura 1968). OBSERVED, not only inferred: Tiktaalik (a predicted transitional fossil), speciation in progress (Rhagoletis, Podarcis sicula), the MEGA-plate, Lenski’s LTEE (Cit+ at ~31,500 generations)', on: isUuid(siteCites('darwin-wallace-1858')) },
-    { facet: 'the frontier and the flags (two-tier) — UNCONFIRMED: the ORIGIN of life (RNA-world / hydrothermal-vent / metabolism-first — competing, unconfirmed). PSEUDOSCIENCE: intelligent design & young-earth creationism (Earth is old, common descent is evidenced), irreducible complexity (refuted; Kitzmiller v. Dover 2005), vitalism (abandoned), "DNA as a quantum/consciousness antenna" / "528 Hz repairs DNA". BOUNDED: epigenetics is real but is NOT general Lamarckism', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`life:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `the frontier and the flags (two-tier) — UNCONFIRMED: the ORIGIN of life (RNA-world / hydrothermal-vent / metabolism-first — competing, unconfirmed). PSEUDOSCIENCE: intelligent design & young-earth creationism (Earth is old, common descent is evidenced), irreducible complexity (refuted; Kitzmiller v. Dover 2005), vitalism (abandoned), "DNA as a quantum/consciousness antenna" / "528 Hz repairs DNA". BOUNDED: epigenetics is real but is NOT general Lamarckism — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`life:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('life-biology-decoded', facets)
   return {
     decoded: sealed.ok,
@@ -1576,12 +1590,14 @@ export function readmeLinkBasedRevealsGeneratorGaps(matrix: MindMatrix = buildMa
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix) // the README is the computed home content
   const tax = taxonomyIcons() // the I-Ching typology graph — gaps, excess, clean, compliant
   const typed = missingGlagoliticIsNotYetWiredOrObsolete(matrix) // gaps are typed: not-yet-wired or obsolete
-  const facets = [
+  const claims = [
     { facet: 'the README is LINK-BASED, not prose-only — it links to src the same way the home page links to the site; the links follow the I-Ching typology (the taxonomy graph), built by the same I-Ching architectural computations (64 = 4³, the areas as clean I-Ching units)', on: home.shown && tax.compliant },
     { facet: 'a link graph REVEALS generator-purity gaps — the I-Ching typology IS the gap-scan: taxonomyIcons exposes gaps (an area that is not a whole I-Ching unit) and excess; a link to src with no clean computed target is an impurity the graph surfaces (composes gapScan)', on: Array.isArray(tax.gaps) && Array.isArray(tax.excess) },
     { facet: 'the gaps are TYPED and FILLED BY WAVES — each revealed gap is not-yet-wired (fill it) or obsolete (retire it); the R&D waves fill the not-yet-wired with intelligent, sourced solutions (the saved README-first decode-wave)', on: typed.typed },
-    { facet: 'honest — the README is computed from src (readmeMarkdown), so its links ARE the computed graph, not static prose; "generator purity" is the computed-not-static / fully-wired invariant, revealed by real taxonomy + gap integrity (taxonomyIcons, gapScan); the waves filling gaps is the decode→fold pipeline', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-links-gaps:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — the README is computed from src (readmeMarkdown), so its links ARE the computed graph, not static prose; "generator purity" is the computed-not-static / fully-wired invariant, revealed by real taxonomy + gap integrity (taxonomyIcons, gapScan); the waves filling gaps is the decode→fold pipeline — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`readme-links-gaps:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('readme-link-based-reveals-gaps', facets)
   return {
     linked: sealed.ok,
@@ -1631,12 +1647,14 @@ export function commitsRequireGreenBuildIChingComplete(matrix: MindMatrix = buil
   const seal = modelSeal(matrix).passed
   const compliant = taxonomyIcons().compliant
   const green = dims.count === 432 && open === 0 && seal && compliant
-  const facets = [
+  const claims = [
     { facet: 'commits require a green build — the repo-local pre-commit gate (.git/hooks/pre-commit → scripts/precommit-iching.mjs, chained by the existing global hook dispatcher) blocks any commit that is not green', on: green },
     { facet: 'green is ONLY possible if the I Ching is complete in all quantum dimensions — green ⟺ 432 dimensions (all present), 0 open (none unfinished), the model seal passed, and the taxonomy compliant (every command area a whole I Ching unit across the 42)', on: dims.count === 432 && open === 0 },
     { facet: 'the seal and the taxonomy close it — the deterministic seal and the I Ching unit-count compliance are part of green, so a commit cannot land with a broken seal or a non-I-Ching taxonomy', on: seal && compliant },
-    { facet: 'honest — a REAL repo-local pre-commit hook chained by the existing global dispatcher (no global config change), running the deterministic oracle; "green build" here is the fast I-Ching-completeness invariant the directive defines, not the multi-minute full VitePress build (that runs in CI via enforcement-trinity)', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`green-commit:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — a REAL repo-local pre-commit hook chained by the existing global dispatcher (no global config change), running the deterministic oracle; "green build" here is the fast I-Ching-completeness invariant the directive defines, not the multi-minute full VitePress build (that runs in CI via enforcement-trinity) — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`green-commit:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('commits-require-green-iching-complete', facets)
   return {
     gated: sealed.ok,
@@ -1656,12 +1674,14 @@ export function commitsRequireGreenBuildIChingComplete(matrix: MindMatrix = buil
 // the GPU/CPU duality (parallel + sequential compute) accelerates the page-verification.
 export function fuseTestDevelopmentGpuCpuBalanced(matrix: MindMatrix = buildMatrix()) {
   const gate = commitsRequireGreenBuildIChingComplete(matrix) // the gate = the test = the dev loop
-  const facets = [
+  const claims = [
     { facet: 'thousands of pages will fail at scale — applied to the full corpus (thousands of generated routes), the green-build requirement SURFACES every failure rather than hiding it; the gate reveals, it does not paper over', on: gate.green },
     { facet: 'fuse TEST and DEVELOPMENT — the gate (the test) IS the development loop: a non-green state cannot commit, so development is test-driven, and the oracle pinpoints the EXACT open dimension (surgical precision) instead of a vague "the build broke"', on: gate.green && gate.open === 0 },
     { facet: 'quantum speed — the deterministic oracle checks all 432 dimensions in a single pass (one bundle + one evaluation), so the test↔develop cycle is fast; parallelising the per-page checks scales that speed to the whole corpus', on: gate.dimensions === 432 },
-    { facet: 'GPU/CPU duality balanced — the device’s parallel (GPU) and sequential (CPU) compute, balanced (the device read as four merkabas: CPU · GPU · memory · storage), accelerates the page-verification at scale — the right work on the right processor', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`test-dev-fuse:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `GPU/CPU duality balanced — the device’s parallel (GPU) and sequential (CPU) compute, balanced (the device read as four merkabas: CPU · GPU · memory · storage), accelerates the page-verification at scale — the right work on the right processor — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`test-dev-fuse:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('fuse-test-dev-gpu-cpu', facets)
   return {
     fused: sealed.ok,
@@ -1739,12 +1759,14 @@ export function inverseAndNewGapsEmerge(matrix: MindMatrix = buildMatrix()) {
   // whether the whole-site gate currently reads 0-open (that verdict is the BOUND, per the boundary).
   const gaps = readmeLinkBasedRevealsGeneratorGaps(matrix) // the gap-revealing mechanism (acyclic)
   const typed = missingGlagoliticIsNotYetWiredOrObsolete(matrix) // the typed gap — a dual pair
-  const facets = [
+  const claims = [
     { facet: 'filling a gap reveals its INVERSE — every gap is a dual pair (not-yet-wired ↔ obsolete); closing one side exposes the other, just as every fold has its dual (the genus-2 −2 and the +2 sphere)', on: typed.typed },
     { facet: 'and NEW gaps emerge — each decode opens adjacent ones (the frontier moves as you fill: life opened mind, mind opens society); the gap-revealing mechanism surfaces them, so the loop never converges to zero', on: gaps.linked },
     { facet: 'so the development is PRODUCTIVE, not terminal — the gaps regenerate (inverse + new), and that regeneration IS the engine; the not-yet-wired keeps the to-do alive, so the system deepens, it never "finishes"', on: gaps.linked && typed.typed },
-    { facet: 'honest — "inverse" is a real complement/dual (the typed-gap pair, the Euler ±2 sphere/torus duality), and "new gaps emerge" is the real frontier-moves phenomenon (every decode raises new questions); the loop is productive-divergent, bounded by the honesty step and the green gate, not by running out of gaps', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`inverse-gaps:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — "inverse" is a real complement/dual (the typed-gap pair, the Euler ±2 sphere/torus duality), and "new gaps emerge" is the real frontier-moves phenomenon (every decode raises new questions); the loop is productive-divergent, bounded by the honesty step and the green gate, not by running out of gaps — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`inverse-gaps:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('inverse-and-new-gaps-emerge', facets)
   return {
     regenerates: sealed.ok,
@@ -1791,12 +1813,14 @@ export function noCommitIfReadmeSignatureBroken(matrix: MindMatrix = buildMatrix
   const gate = commitsRequireGreenBuildIChingComplete(matrix) // the same pre-commit gate, now with the README check
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix) // the README is the computed home content
   const links = readmeLinkBasedRevealsGeneratorGaps(matrix) // the README link-graph / purity
-  const facets = [
+  const claims = [
     { facet: 'no commit if the README signature is broken — the pre-commit gate (scripts/precommit-iching.mjs) requires the committed README.md to equal the computed readmeMarkdown(); a drift breaks the signature and blocks the commit, alongside the I-Ching-complete check', on: gate.green },
     { facet: 'the signature is the content-address of the computed README — README.md is computed from src ("do not edit by hand"); its signature is sha256(readmeMarkdown()), valid only when the committed file matches it byte-for-byte', on: home.shown },
     { facet: 'it enforces generator purity for the README — the README can never drift from src: a stale or hand-edited README cannot be committed, keeping the link-based README a true projection of the source', on: links.linked },
-    { facet: 'honest — a real, working check: the gate bundles dist, computes readmeMarkdown(), and compares its sha256 to the committed README.md (currently in sync); if src changes the README, README.md MUST be regenerated (the generator emits it) before the commit can land — mandatory, not optional', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`readme-signature:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — a real, working check: the gate bundles dist, computes readmeMarkdown(), and compares its sha256 to the committed README.md (currently in sync); if src changes the README, README.md MUST be regenerated (the generator emits it) before the commit can land — mandatory, not optional — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`readme-signature:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('no-commit-if-readme-signature-broken', facets)
   return {
     enforced: sealed.ok,
@@ -1848,12 +1872,14 @@ export function completeUiWiringAllDimensionsEveryPath(matrix: MindMatrix = buil
   const reading = everyPageReadsItselfAnyLanguageAutoAdvance(matrix) // the self-reading pages
   const self = systemDevelopsItselfIndependently(matrix) // the R&D loop
   const dims = emergentDimensions(matrix)
-  const facets = [
+  const claims = [
     { facet: 'the UI wiring SPEC is complete in all dimensions — every surface is computed from the one source and sealed: the path-dependent nav/sidebar/related, the harmony·truth·understanding categories, the OpenGraph mini-heroes, the animated icons, the self-reading pages', on: chrome.follows && relations.graphed && nav.nav && icons.animated && reading.reads },
     { facet: 'at EVERY path — the chrome is computed FROM the path (the path is the prompt), so every path deterministically gets its own nav, sidebar, related set and hero across all 432 dimensions', on: chrome.follows && dims.count === 432 },
     { facet: 'covering all aspects of R&D — the decode arc (zero-point → … → mind, acoustics) is wired as dimensions, each a sealed fold, and the README-first wave + the green gate close the observe→develop→implement loop', on: self.independent },
-    { facet: 'honest — the COMPUTED wiring is complete and ORACLE-verified here (every path/dimension has its spec, the 432 sealed); the RENDERED layer (the Vue components that consume those specs) is the deliberate, BUILD-verified follow-on — wired component-by-component, NOT preview-verifiable in this environment (the preview proxy is dead), and therefore not claimed done until built', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`ui-wiring:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — the COMPUTED wiring is complete and ORACLE-verified here (every path/dimension has its spec, the 432 sealed); the RENDERED layer (the Vue components that consume those specs) is the deliberate, BUILD-verified follow-on — wired component-by-component, NOT preview-verifiable in this environment (the preview proxy is dead), and therefore not claimed done until built — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`ui-wiring:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('complete-ui-wiring-all-dimensions-every-path', facets)
   return {
     wired: sealed.ok,

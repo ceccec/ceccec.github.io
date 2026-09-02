@@ -659,12 +659,14 @@ export function validateQuantumTraderTrain(matrix: MindMatrix = buildMatrix()) {
           maxDrawdown: run.result.maxDrawdown,
           hitRate: run.result.hitRate }) }
     })
-    const facets = [
+    const claims = [
       { facet: 'a432 train path length > 432 (harmonic bars + seed)', on: prices.length > 432 },
       { facet: 'five strategies backtested with content-addressed receipts', on: runs.length === 5 && runs.every((r) => r.n > 0 && isUuid(r.receipt)) },
       { facet: 'every strategy.ray === rosettaRayOf(strategy:id)', on: runs.every((r) => r.ray === rosettaRayOf(`strategy:${r.strategy}`)) },
-      { facet: 'offline synthetic — zero network in train fold', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`validate-trader-train:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `offline synthetic — zero network in train fold — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`validate-trader-train:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('validate-quantum-trader-train', facets)
     return {
       computes: sealed.ok,

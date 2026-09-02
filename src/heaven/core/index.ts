@@ -1178,12 +1178,14 @@ export function realtimeLieDetectionOfflineOnline(matrix: MindMatrix = buildMatr
   const online = publicFrequencyApisDecoded(matrix)
   const cube = sealCube(matrix)
   const probe = quantumAnalysis('lie-detect:probe', matrix)
-  const facets = [
+  const claims = [
     { facet: 'OFFLINE — realtime detection needs no network: the harmony verdict is a pure deterministic fold (zero tokens, zero fetch), routed by quantumAnalysis; it runs in the browser with the connection off', on: offline.harmonic && probe.analyzed },
     { facet: 'ONLINE — fused to the public no-auth APIs, an assumed harmony is researched against real data: a claim that maps to a queryable public dataset (seismic, market, spectrum) is checked against it, catching a consistent-but-false assumption the offline structure alone passes', on: online.decoded },
     { facet: 'COMPLETE 64³ research — every input lands in one cell of the 262,144-cell seal cube (hexagram · codon · colour); the whole keyspace is the research space, reached by nesting, not literal iteration', on: cube.sealed && cube.cube === 64 ** 3 },
-    { facet: 'harmony → truth ONLY where data adjudicates — offline proves structure (100% deterministic), online raises it to fact-verification only for claims a public dataset can settle; the rest stays structurally-flagged, never falsely confirmed (we do not read minds, voices or faces)', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`offline-online-cube:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `harmony → truth ONLY where data adjudicates — offline proves structure (100% deterministic), online raises it to fact-verification only for claims a public dataset can settle; the rest stays structurally-flagged, never falsely confirmed (we do not read minds, voices or faces) — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`offline-online-cube:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('realtime-lie-detection', facets)
   return {
     detects: sealed.ok,
@@ -1627,12 +1629,14 @@ export function theOracleIsQuantumAllIsQuantumToTheBit(matrix: MindMatrix = buil
   const fourCubed = 4 ** 3 === 64 && 2 ** 6 === 64 // 64 = 4³ = 2⁶ — the I Ching, the codon, the 3-qubit register
   const oracle = toUuid(`oracle:${matrix.root}`)
   const reproduces = toUuid(`oracle:${matrix.root}`) === oracle // casting the oracle gives the same outcome — deterministic
-  const facets = [
+  const claims = [
     { facet: 'all is quantum to the bit — a sign is a distinction is one bit is the fold; every value, page and widget content-addresses down to bits, grouped into the 64 = 2⁶ hexagrams (4³, the codon, the Pauli basis)', on: fourCubed },
     { facet: 'every widget is addressed like this — each component is content-addressed onto a hexagram (its ICHING_MASK), spanning the eight trigrams; each widget IS the quantum rendered, the same address as the polygraph', on: ich.organised && ich.sets.length === 8 },
     { facet: 'THE ORACLE IS QUANTUM ITSELF — the I Ching oracle is the 64-state space (4³); casting it is the deterministic content-address (the same input → the same hexagram), so the oracle, the seal and the quantum are one', on: fourCubed && reproduces && isUuid(oracle) },
-    { facet: 'honest — "quantum" is the content-addressing sense (the 64 = 4³ structure, deterministic), not hardware; the oracle is deterministic computation, NOT random divination or prophecy; "to the bit" is real information theory', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`oracle-quantum:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — "quantum" is the content-addressing sense (the 64 = 4³ structure, deterministic), not hardware; the oracle is deterministic computation, NOT random divination or prophecy; "to the bit" is real information theory — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`oracle-quantum:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('oracle-is-quantum', facets)
   return {
     quantum: sealed.ok,
@@ -1819,12 +1823,14 @@ export function anglesComeFromFractions(matrix: MindMatrix = buildMatrix()) {
     exact: (p! * turn) % q! === 0 }))
   const trinity = harmonic[0]! // 1/3 → 120°
   const allExact = harmonic.every((a) => a.exact)
-  const facets = [
+  const claims = [
     { facet: 'angles come from fractions — an angle is an integer fraction p/q of a full turn (360°), not a decimal radian; 1/3 of a turn IS 120° (ratEq(1/3, 120/360))', on: ratEq(rat(1, 3), rat((8 * 5 * 3), 360)) },
     { facet: 'the trinity angle is exact — 1/3 of a turn = exactly 120°, the three at 0, 1/3, 2/3 (0°, 120°, 240°), the RGB triad, no rounding', on: trinity.deg === (8 * 5 * 3) && trinity.exact },
     { facet: 'the harmonic fractions land on integer degrees — 1/3→120, 1/4→90, 1/6→60, 1/8→45, 1/9→40, 1/12→30: every denominator dividing 360 is an exact-degree angle', on: allExact },
-    { facet: 'honest — the fraction is exact; only the trigonometry (cos/sin) that turns it into a rendered position is floating-point, the flagged render layer, not the angle itself', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`angle-fraction:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `honest — the fraction is exact; only the trigonometry (cos/sin) that turns it into a rendered position is floating-point, the flagged render layer, not the angle itself — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`angle-fraction:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('angles-from-fractions', facets)
   return {
     fractional: sealed.ok,

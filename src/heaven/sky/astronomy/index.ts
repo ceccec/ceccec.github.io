@@ -1120,15 +1120,17 @@ export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatr
     const layoutKeys = Object.keys(RAVE_CENTER_LAYOUT)
     const definedKeys = new Set(chart.definedChannels.map((c) => c.key))
     const activated = new Set(chart.activatedGates)
-    const facets = [
+    const claims = [
       { facet: 'chart structure W5 computes', on: chart.computes },
       { facet: 'structure facets W6 compute', on: structure.computes },
       { facet: 'channels/centers lattice verifies', on: lattice.verified },
       { facet: 'layout anchors 9 centers (lattice fractions)', on: layoutKeys.length === 9 && layoutKeys.every((k) => lattice.centers.includes(k as (typeof lattice.centers)[number])) },
       { facet: 'defined channels ⊆ sealed 36', on: [...definedKeys].every((k) => lattice.channels.some((row) => row.key === k)) },
       { facet: 'birth JD finite — symbolic structure computer (NOT a person profile)', on: Number.isFinite(birthJd) },
-      { facet: 'profiling signal still refuted (structure UX only)', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`hd-bodygraph-ux:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `profiling signal still refuted (structure UX only) — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`hd-bodygraph-ux:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((f) => f.on)
     return {
       computes,

@@ -564,14 +564,16 @@ export function dryCleanVitepressNavSidebarsFromDomainRegistry(matrix: MindMatri
     const registry = siteDomainRegistry(matrix)
     const domainSidebars = domainSidebarFromRegistry(0, matrix)
     const aliasSlugs = Object.keys(registry.aliasToCanonical)
-    const facets = [
+    const claims = [
       { facet: 'siteDomainRegistry computes (seven concerns)', on: registry.computes && registry.domains.length === ROSETTA_SEVEN },
       { facet: 'domainSidebarFromRegistry computes', on: domainSidebars.computes },
       { facet: `alias census sealed (${aliasSlugs.length} → canonical)`, on: aliasSlugs.length >= 4 && registry.aliasCount === aliasSlugs.length },
       { facet: 'tools aliases include efficiency-vote · offender-spec · hero-spawn · name-entropy', on: ['efficiency-vote', 'offender-spec', 'hero-spawn-verify', 'name-entropy-verify'].every((alias) => registry.isNavAlias(alias)) },
       { facet: 'learn + research + fusion aliases thin-mount', on: registry.canonicalOf('academy') === 'learn' && registry.canonicalOf('millennium-challenge') === 'research' && registry.canonicalOf('fusion-verify') === 'quantum-tools' },
-      { facet: 'A432 tokens untouched — domain registry is IA only (no theme token rewrite)', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`dry-clean-nav:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `A432 tokens untouched — domain registry is IA only (no theme token rewrite) — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`dry-clean-nav:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
       before: {

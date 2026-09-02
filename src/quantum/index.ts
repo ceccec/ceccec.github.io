@@ -2175,11 +2175,13 @@ export function oneClockProcessLaw(matrix: MindMatrix = buildMatrix()) {
       else g.cancelAnimationFrame = savedCan
     }
   }
-  const facets = [
+  const claims = [
     { facet: 'three subscribers start exactly ONE loop — the clock coalesces every animation into one tick', on: startedForThree === 1 },
     { facet: 'the last unsubscribe cancels the loop — zero orphan processes outside the sequence', on: cancelledAfterLast === 1 },
-    { facet: 'field state (scroll · theme · scrub) is read inside the tick, never from a parallel loop or listener', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`one-clock-law:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `field state (scroll · theme · scrub) is read inside the tick, never from a parallel loop or listener — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`one-clock-law:${entry.facet}:${entry.on}`) }))
   return {
     holds: facets.every((entry) => entry.on),
     startedForThree,

@@ -12333,12 +12333,14 @@ export function getAnalystTrinityCurriculum(matrix: MindMatrix = buildMatrix()) 
         address: shelved.address,
         receipt: toUuid(`analyst-curriculum:${mod.id}:${shelved.ray}`) }
     })
-    const facets = [
+    const claims = [
       { facet: `curriculum lists ${rows.length} analyst trinity modules`, on: rows.length === (2 + 1) },
       { facet: 'each module shelved via rosettaShelve(tool)', on: rows.every((r) => isUuid(r.address)) },
       { facet: 'analyse · realise · collide cover dual faces + team wave', on: rows.map((r) => r.id).join(',') === 'analyse,realise,collide' },
-      { facet: 'offline curriculum — zero network', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`analyst-curriculum:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `offline curriculum — zero network — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`analyst-curriculum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('get-analyst-trinity-curriculum', facets)
     return {
       computes: sealed.ok && rows.length === (2 + 1),
@@ -12391,7 +12393,7 @@ export function validateQuantumAnalystTrain(matrix: MindMatrix = buildMatrix(), 
       proofClass: 'finite-complete' })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
-    const facets = [
+    const claims = [
       { facet: 'analyse/realise dual faces bidirectional', on: analyseRealise.bidirectional && analyseRealise.forward !== analyseRealise.reverse },
       { facet: 'realiseSessionQuantumMeaning composed (sealed root)', on: realiseComposed },
       { facet: 'composes sciencesInteractInTrinities', on: sciences.computes },
@@ -12399,8 +12401,10 @@ export function validateQuantumAnalystTrain(matrix: MindMatrix = buildMatrix(), 
       { facet: 'three modules validated with content-addressed receipts', on: runs.length === (2 + 1) && runs.every((r) => r.ok && isUuid(r.receipt)) },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
-      { facet: 'offline synthetic — zero network in train fold', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`validate-analyst-train:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `offline synthetic — zero network in train fold — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`validate-analyst-train:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('validate-quantum-analyst-train', facets)
     return {
       computes: sealed.ok && runs.every((r) => r.ok) && sciences.computes && formulaDual,
@@ -17486,12 +17490,14 @@ export function getGeodesyCurriculum(matrix: MindMatrix = buildMatrix()) {
         address: shelved.address,
         receipt: toUuid(`geodesy-curriculum:${mod.id}:${shelved.ray}`) }
     })
-    const facets = [
+    const claims = [
       { facet: `curriculum lists ${rows.length} sealed geodesy modules`, on: rows.length === GEODESY_TRAIN_MODULES.length },
       { facet: 'each module shelved via rosettaShelve(tool)', on: rows.every((r) => isUuid(r.address)) },
       { facet: 'torus-invert module pair = geo/torus', on: rows.some((r) => r.id === 'torus-invert' && r.pair === 'geo/torus') },
-      { facet: 'offline curriculum — zero network', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`geodesy-curriculum:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `offline curriculum — zero network — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`geodesy-curriculum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('get-geodesy-curriculum', facets)
     return {
       computes: sealed.ok,
@@ -17531,15 +17537,17 @@ export function validateQuantumGeodesyTrain(matrix: MindMatrix = buildMatrix(), 
         ok,
         receipt: toUuid(`validate-geodesy-train:${mod.id}:${ok}:${ray}`) }
     })
-    const facets = [
+    const claims = [
       { facet: 'Giza→Teotihuacan great-circle in documented band', on: km > kmLo && km < kmHi },
       { facet: 'initial bearing finite on [0,360)', on: bearing >= 0 && bearing < fullTurn },
       { facet: `EARTH_RADIUS_KM=${EARTH_RADIUS_KM} mean ellipsoid`, on: Number.isFinite(EARTH_RADIUS_KM) && EARTH_RADIUS_KM > (64 * 64) && EARTH_RADIUS_KM < (64 * 64 * 2) },
       { facet: 'obliquityAtEpoch(0) near J2000 band', on: eps > (5 * 4) && eps < (5 * 5) },
       { facet: 'USER LAW geodesyDecodedIsDoubleTorusInverted', on: decode.geodesyDecodedIsDoubleTorusInverted },
       { facet: 'five modules validated with content-addressed receipts', on: runs.length === 5 && runs.every((r) => r.ok && isUuid(r.receipt)) },
-      { facet: 'offline synthetic — zero network in train fold', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`validate-geodesy-train:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `offline synthetic — zero network in train fold — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`validate-geodesy-train:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('validate-quantum-geodesy-train', facets)
     return {
       computes: sealed.ok && decode.computes && runs.every((r) => r.ok),

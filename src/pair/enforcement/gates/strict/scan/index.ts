@@ -7343,10 +7343,12 @@ export function scanAuthoredMetricLabels(root: string = enforcementScanRoot()): 
 /** metricLinesComputeNotAuthored — the gate: every metrics line in the generators renders from field names. */
 export function metricLinesComputeNotAuthored(root: string = enforcementScanRoot()) {
   const offenders = scanAuthoredMetricLabels(root)
-  const facets = [
+  const claims = [
     { facet: `NO AUTHORED METRIC LABELS — ${offenders.length} generator lines hand-type a characterisation beside a computed count${offenders.length ? `: ${offenders.map((o) => `${o.file}:${o.line}`).join(' · ')}` : ' (the labels ARE the fold field names)'}`, on: offenders.length === 0 },
-    { facet: 'THE PRIMITIVE IS THE ONLY DOOR — renderComputedMetrics(counts) joins key = value from the data structure, so an adjective cannot be passed: there is no parameter for one', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`metric-labels:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `THE PRIMITIVE IS THE ONLY DOOR — renderComputedMetrics(counts) joins key = value from the data structure, so an adjective cannot be passed: there is no parameter for one — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`metric-labels:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
     offenders,
@@ -7388,11 +7390,13 @@ export function emittedProseCarriesNoJudgmentOrExpectation(artifacts: readonly {
   const scanned = artifacts.map((entry) => ({ surface: entry.surface, ...scanJudgmentAndExpectation(entry.text) }))
   const judgmentTotal = scanned.reduce((sum, entry) => sum + entry.judgment.length, 0)
   const expectationTotal = scanned.reduce((sum, entry) => sum + entry.expectation.length, 0)
-  const facets = [
+  const claims = [
     { facet: `NO JUDGMENT IN EMITTED PROSE — ${judgmentTotal} appraisal words across ${scanned.length} artifacts${judgmentTotal ? `: ${scanned.filter((entry) => entry.judgment.length).map((entry) => `${entry.surface}[${entry.judgment.join(',')}]`).join(' · ')}` : ''}; an appraisal cannot be checked by a reader, so it does not belong beside computed content`, on: judgmentTotal === 0 },
     { facet: `NO EXPECTATION IN EMITTED PROSE — ${expectationTotal} future-promise phrases${expectationTotal ? `: ${scanned.filter((entry) => entry.expectation.length).map((entry) => `${entry.surface}[${entry.expectation.join(',')}]`).join(' · ')}` : ''}; a promise about the future is unfalsifiable today`, on: expectationTotal === 0 },
-    { facet: 'MATHEMATICAL TERMS ARE EXEMPT — simply-connected, simple group, simply transitive are names, not appraisals; the scan removes them before matching so the lexicon cannot false-flag mathematics', on: true },
-  ].map((entry) => ({ ...entry, receipt: toUuid(`judgment-prose:${entry.facet}:${entry.on}`) }))
+  ]
+  // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+  // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+  const facets = [...claims, { facet: `MATHEMATICAL TERMS ARE EXEMPT — simply-connected, simple group, simply transitive are names, not appraisals; the scan removes them before matching so the lexicon cannot false-flag mathematics — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`judgment-prose:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
     judgmentTotal,

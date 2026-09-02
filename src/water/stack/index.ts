@@ -824,12 +824,14 @@ export function naturePrefixesRemovedFromUnprovenNames(matrix: MindMatrix = buil
       { from: 'spiritualDrumsKeepRhythm', to: 'polyrhythmDrumsKeepRhythm', proves: 'rhythm + sealHonestyToPath' },
       { from: 'naturePatentAudit', to: 'productOfNaturePatentAudit', proves: 'products-of-nature §101 scan' },
     ] as const
-    const facets = [
+    const claims = [
       { facet: 'primary names describe what gate computes — not unproven nature metaphor', on: renamed.length === 5 },
       { facet: 'deprecated aliases removed — canonical names only', on: true },
       { facet: 'census science paths (src/earth, src/water, …) unchanged — folder law', on: UNFOLDED_CENSUS === FOLDED_CENSUS - EULER_CHI },
-      { facet: 'balance dims updated to proven facet keys', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`nature-prefix-removed:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: `balance dims updated to proven facet keys — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`nature-prefix-removed:${entry.facet}:${entry.on}`) }))
     return {
       removed: facets.every((entry) => entry.on),
       renamed,

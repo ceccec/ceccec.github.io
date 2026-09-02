@@ -1461,7 +1461,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
 
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
-    const facets = [
+    const claims = [
       { facet: 'inventory — Maya · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian · Julian/Gregorian structural · 819-count · hero/A432 · Vedic mod-9 (sealed only)', on: calendars.length === 9 },
       { facet: 'every algebraic map holds (modular · product · epoch)', on: allHold },
       { facet: 'composes coupledCalendarTori + ancientCalendars rings', on: coupled.decoded && rings.decoded && calendarToCalendar },
@@ -1469,8 +1469,10 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       { facet: 'time-in-time — nested phase-in-phase on hero clock + Calendar Round residue', on: nestedTimeInTime && heroMap.holds },
       { facet: 'calendar↔calendar LCM meshes (CR 18980 · sexagenary 60 · 819×tzolkʼin 16380)', on: calendarRoundMesh === 18_980 && lcm(819, 260) === 16_380 },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} — canonical sections only, not Clay Millennium`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
-      { facet: ' — classical modular arithmetic', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`ancient-calendars-algebra:${entry.facet}:${entry.on}`) }))
+    ]
+    // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
+    // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
+    const facets = [...claims, { facet: ` — classical modular arithmetic — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`ancient-calendars-algebra:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ancient-calendars-decoded-as-algebraic-theorems-mapping-time-in-time', facets)
     const sections = {
       officialStatement:
