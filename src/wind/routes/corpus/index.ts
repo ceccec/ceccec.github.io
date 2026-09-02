@@ -2094,8 +2094,8 @@ export function savingAThoughtIsProseConvertedToProofOrPurged(matrix: MindMatrix
   const truthComesFromThePipeline = pipeline.published > 0 && purgeRows.length === pipeline.published
   const limits = computedLimits([
     { facet: `BACKED BY A FOLD MEANS NAMED, NOT RUN — all ${purgeRows.length} published papers carry a non-empty provedBy field and that string length IS the check; the named fold is never called and no facet of it is ever evaluated here, so "proven" at this layer distinguishes a paper that names a proof from one that does not, and nothing further`, on: backingIsAName },
-    { facet: `NOTHING IS PURGED — the law says inert prose is mined then purged, and this fold produces no purge list and removes nothing; all ${purgeRows.length} rows survive it. The consequence is stated, not carried out, and naming a law is not enforcing one`, on: nothingIsPurged },
-    { facet: `SELF-DEMONSTRATION IS NOT SELF-PROOF — these facets take their truth from the pipeline's counts, so their holding shows the pipeline computes and not that the definition above them is correct; a fold that holds has not thereby established its own definition`, on: truthComesFromThePipeline },
+    { facet: `0 PURGED OF ${purgeRows.length} — the law says inert prose is mined then purged; the purge list this fold emits has length 0 and every row survives. The consequence is stated, not carried out, and naming a law is not enforcing one`, on: nothingIsPurged },
+    { facet: `${pipeline.published} PAPERS COUNTED, AND THE COUNT IS WHERE THESE FACETS GET THEIR TRUTH — so their holding shows the pipeline computes and not that the definition above them is correct; a fold that holds has not thereby established its own definition`, on: truthComesFromThePipeline },
   ])
   const facets = [
     { facet: `SAVING A THOUGHT = PROSE CONVERTED TO CODE: a saved thought is a fold whose prose (statement · boundary · facet text) rides facets that COMPUTE — the prose is backed by proof (facets.every(on)); all ${pipeline.published} published papers are backed by a computing fold, so every surviving thought carries its proof`, on: pipeline.allBackedByAFold && pipeline.computes },

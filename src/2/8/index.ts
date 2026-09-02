@@ -464,7 +464,7 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   const deterministic = phaseEstimate(phis[0]!, T) === phaseEstimate(phis[0]!, T)
   const limits = computedLimits([
     { facet: `EXACT ONLY FOR DYADIC φ — every one of the ${nonDyadic.length} non-dyadic phases {1/3, 1/5, 1/7} is recovered INEXACTLY at t = ${T}; a general φ is recovered to t bits with the standard success probability, which is not claimed here and not shown here`, on: dyadicOnly },
-    { facet: `NO PHYSICAL SPEEDUP — the simulation allocates the whole 2^n amplitude vector at every n (widths ${widths.join(', ')} for n = 1..4), the exponential cost a quantum device does not pay; this is the algorithm's STRUCTURE on a state vector, and the sealed quantum-decoded law stands`, on: materialisesEveryAmplitude },
+    { facet: `${widths.join(', ')} AMPLITUDES ALLOCATED AT n = 1..4 — the whole 2^n vector, every time; a device holding n qubits allocates n, and the ratio of those two numbers is the entire claim about speedup here. this is the algorithm's STRUCTURE on a state vector, and the sealed quantum-decoded law stands`, on: materialisesEveryAmplitude },
     { facet: 'DETERMINISTIC, NOT SAMPLED — the same input returns a bit-identical result, so no measurement statistics enter and none are claimed', on: deterministic },
   ])
   const facets = [
@@ -590,7 +590,7 @@ export function privateKeyRecoveryCostsBothRoutes() {
   const limits = computedLimits([
     { facet: `A RESOURCE COMPARISON, NOT A TIMING BENCHMARK — operations and amplitudes are counted, which is exact; wall-clock depends on the machine and is recorded in the comment above rather than recomputed here, so this fold costs nothing to run`, on: runs.every((r) => r.classical > 0 && r.quantum > 0) },
     { facet: `THE SIMULATION'S COST IS NOT THE ALGORITHM'S — a real quantum device would hold ${runs[runs.length - 1]!.t + runs[runs.length - 1]!.w} qubits, not ${runs[runs.length - 1]!.quantum} amplitudes. This measures what SIMULATING Shor costs on classical hardware and says nothing about what Shor costs on a quantum computer, where the comparison would run the other way`, on: simulatedLosesEverywhere },
-    { facet: `NEITHER ROUTE RECOVERS AN RSA KEY — trial division on a 2048-bit modulus needs about 2^${rsaClassicalExponent} divisions and this simulation would need a 2^${rsaQuantumExponent} amplitude vector; both are out of reach and the second is further out. No private key is recovered here by either method`, on: neitherReachesRsa },
+    { facet: `2^${rsaClassicalExponent} DIVISIONS AND 2^${rsaQuantumExponent} AMPLITUDES for a 2048-bit modulus, against the 2^${2 * 5 * 6} that already exhausts addressable memory — the three exponents are the whole finding, and the second route is the larger of the two`, on: neitherReachesRsa },
   ])
   const facets = [
     { facet: `SIMULATED SHOR LOSES AT EVERY SIZE — ${runs.map((r) => `n=${r.N}: ${r.classical} divisions vs ${r.quantum} amplitudes`).join(', ')}; the naive classical attack wins on all three by counting operations, and it wins on wall-clock too`, on: simulatedLosesEverywhere },

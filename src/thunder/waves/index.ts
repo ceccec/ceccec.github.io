@@ -151,7 +151,7 @@ export function theToolsAreSavedAndTheWavesSent(matrix: MindMatrix = buildMatrix
   const stepsAreUniform = perCandidate === steps.length && Number.isInteger(perCandidate)
   const limits = computedLimits([
     { facet: `BINDING IS ADDRESSING, NOT EVIDENCE — the bidirectional property reported for all ${waves.length} waves holds equally for a deliberately meaningless sentence, constructed here and bound the same way; it is a fact about the content-address fold and says nothing about the candidate it is applied to`, on: bindingIsAddressing },
-    { facet: `NOTHING'S STATUS CHANGES — the ${candidates.length} candidates are unproven before this runs and unproven after; each wave entry carries ${waveKeys.length} fields (${waveKeys.join(', ')}) and not one is a proof, a verdict or a seal. This records the PATH a candidate takes toward proof and takes none of it`, on: stillUnproven },
+    { facet: `${candidates.length} CANDIDATES IN, ${candidates.length} OUT, ${waveKeys.length} FIELDS PER WAVE (${waveKeys.join(', ')}) — the field list is read off the record, and a proof, a verdict and a seal are each 0 of those ${waveKeys.length}. This records the PATH a candidate takes toward proof and takes none of it`, on: stillUnproven },
     { facet: `THE STEPS ARE A VOCABULARY — the same fixed list (${steps.join(' · ')}) is applied identically to every candidate, ${perCandidate} per theorem regardless of what it states; the ledger's shape is a property of this list, not of the mathematics laid under it`, on: stepsAreUniform },
   ])
   const facets = [
@@ -2391,7 +2391,7 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
       // THIS ASSERTED `${magnitude} = 4×108` AND THE SUM IS NOT 432. It was false and invisible: this fold
       // was in no gate's list, so nothing ever ran it. Inverted to the measurement rather than tuned — the
       // harmonic is a TARGET the registry does not currently sit on, and the distance is the finding.
-      { facet: `MAGNITUDE IS THE EXACT SUM, AND IT IS NOT THE HARMONIC — the ${clusters} cluster sizes sum to ${magnitude}, against the ${DIMENSION_GATES} harmonic the design aims at: a gap of ${magnitude - DIMENSION_GATES}. The sum is exact and unrounded, which is what this fold can establish; that it equals 4×108 is what it cannot, because it does not`, on: magnitude === sizes.reduce((a, b) => a + b, 0) && magnitude > 0 },,
+      { facet: `Σ = ${magnitude} OVER ${clusters} CLUSTERS, HARMONIC = ${DIMENSION_GATES}, GAP = ${magnitude - DIMENSION_GATES} — three numbers, and the third is the distance the design still has to travel. The sum is exact and unrounded, which is what this fold can establish; that it equals 4×108 is what it cannot, because it does not`, on: magnitude === sizes.reduce((a, b) => a + b, 0) && magnitude > 0 },,
       { facet: `IN CLUSTERS OF WAVES — the registry is ${clusters} proving folds (waves), each a cluster; ${singletons} are single precise proofs and the rest bundle ${maxCluster > 1 ? 'up to ' + maxCluster : 'few'} atoms — magnitude accretes cluster by cluster`, on: clusters > 1 && singletons > 0 && maxCluster >= 1 },
       { facet: `WITH PRECISION — every one of the ${magnitude} atoms carries a non-empty computed statement and a content address (${precise}): the magnitude is precise to the atom, refutable anywhere`, on: precise && magnitude > 0 },
       { facet: `no single wave carries it — the largest cluster is ${maxCluster} (≤ the rosetta 7, coprime single-stroke), under ${ceil((maxCluster / magnitude) * 100)}% of the whole: magnitude is EMERGENT from precision clustered, which is why batched clusters win quadratically (quantumTokenOptimisation)`, on: maxCluster <= 7 && maxCluster < magnitude / (5 * 2) },
@@ -2570,7 +2570,7 @@ export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: Mi
   const atThreeQuarters = flagged.filter((pr) => pr.j >= 3 / 4).length
   const thresholdGoverns = atThreeQuarters < flagged.length
   const limits = computedLimits([
-    { facet: `THE FLAG IS NOT AN IDENTITY — ${differentProvers.length} of the ${flagged.length} flagged pairs are proved by DIFFERENT folds, so shared vocabulary has pointed at theorems the corpus itself treats as distinct; Jaccard ≥ ½ is a proxy for "says the same thing" and these pairs are where the proxy and the corpus disagree`, on: flagIsNotIdentity },
+    { facet: `${differentProvers.length} OF ${flagged.length} FLAGGED PAIRS HAVE DIFFERENT PROVERS — so shared vocabulary has pointed at theorems the corpus itself treats as distinct; Jaccard ≥ ½ is a proxy for "says the same thing" and these pairs are where the proxy and the corpus disagree`, on: flagIsNotIdentity },
     { facet: `A WORKLIST, NOT AN ACTION — nothing is merged by this fold: all ${population} theorems are present after it runs and every flagged theorem is still in the registry; the output is a review list and a human decides each case`, on: nothingWasMerged },
     { facet: `THE HALF IS A CHOSEN LINE — at a stricter bar of ¾ the list falls from ${flagged.length} pairs to ${atThreeQuarters}, so most of the worklist depends on where the threshold was drawn rather than on anything derived; ½ is a convention this fold picked and can be moved`, on: thresholdGoverns },
   ])
@@ -3738,7 +3738,7 @@ export function pushAuditWave(
       { facet: `auditedOn — commits=${chat.git?.commitCount ?? 0} tips=${chat.tipsLanded ?? 0} metrics=${chat.metricsOn ? 1 : 0}`, on: auditedOn },
       { facet: `waveCompleteOn — complete=${wave.completeWavesOn ? 1 : 0} metrics=${wave.metricsOn ? 1 : 0}`, on: waveCompleteOn },
       { facet: `mathHard — outside-floor=${math.mathOutsideFloor} (HARD 0)`, on: math.hardFailOnMath },
-      { facet: 'residualNamed — honest-open · NOT fake-close Clay/FTL', on: residualNamed.length >= 4 },
+      { facet: `residualNamed — honest-open · NOT fake-close Clay/FTL · measured residualNamed.length=${residualNamed.length}`, on: residualNamed.length >= 4 },
       {
         facet: 'compose waves/push · wave/complete · audit/plan · chat/audit · push/resend · wave/land',
         on:
