@@ -440,8 +440,8 @@ export function crossUuidIsAnAuthenticationTagNotASignature() {
     { facet: `TAMPERING IS REJECTED — altering the message invalidates the tag (${tampered.reason})`, on: rejectsTampering },
     { facet: 'A DIFFERENT KEY IS REJECTED — the tag binds to the key that made it', on: rejectsWrongKey },
     { facet: 'BUT THE VERIFIER CAN FORGE — verifySignature needs the whole CryptoParty, i.e. the PRIVATE key; holding what verification requires is holding what signing requires, and a forged tag on a message the signer never wrote verifies', on: verifierCanForge },
-    { facet: 'AND NO PUBLIC-KEY PROCEDURE EXISTS — the signature is a fold of the private key, so it cannot be recomputed from the public key alone', on: noPublicKeyVerification },
-    { facet: 'THEREFORE THIS IS A MAC, NOT A SIGNATURE — non-repudiation fails: given a tag, nobody can tell Alice from her verifier, which is the property RSA signatures exist to provide', on: verifierCanForge && noPublicKeyVerification },
+    { facet: `AND NO PUBLIC-KEY PROCEDURE EXISTS — the signature is a fold of the private key, so it cannot be recomputed from the public key alone · measured noPublicKeyVerification=${noPublicKeyVerification}`, on: noPublicKeyVerification },
+    { facet: `THEREFORE THIS IS A MAC, NOT A SIGNATURE — non-repudiation fails: given a tag, nobody can tell Alice from her verifier, which is the property RSA signatures exist to provide · measured verifierCanForge=${verifierCanForge} · noPublicKeyVerification=${noPublicKeyVerification}`, on: verifierCanForge && noPublicKeyVerification },
   ]
   const sealed = sealFacets('cross-uuid-is-a-mac', facets)
 

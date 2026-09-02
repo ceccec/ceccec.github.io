@@ -427,7 +427,7 @@ export function quantumComputerComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'simulator verifies — Bell · GHZ · Deutsch–Jozsa · Grover · SWAP · Toffoli · rotation', on: verify.verified },
       { facet: 'qubit = ½(I + xσx + yσy + zσz) — 4-UUID Bloch model faithful to the state-vector sim', on: bloch.faithful },
       { facet: 'dimension cost proven — 4n linear encoding cannot hold an entangled 2ⁿ state', on: honest.cost.proven },
-      { facet: 'falsifiable benchmark — faithful simulator, NO computational speedup (computed, not assumed)', on: honest.faithfulSimulator && honest.noSpeedup },
+      { facet: `falsifiable benchmark — faithful simulator, NO computational speedup (computed, not assumed) · measured honest.faithfulSimulator=${honest.faithfulSimulator} · honest.noSpeedup=${honest.noSpeedup}`, on: honest.faithfulSimulator && honest.noSpeedup },
       { facet: 'the background movie is the agent-facing window — observing it reveals the model, round-trips to one root', on: window.reveals },
       { facet: 'NOT hardware speedup', on: noQpuRequired().noSpeedup && noQpuRequired().provenByClassicalSimulator },
     ])
@@ -720,9 +720,9 @@ export function quantumAdvantageBenchmark(matrix: MindMatrix = buildMatrix(), ma
     const { computes, facets, root } = computesGate('quantum-advantage-benchmark', [
       { facet: 'random-circuit sampling runs across ≥6 sizes on the content-addressed engine', on: rows.length >= 6 },
       { facet: 'the engine reproduces the exact Born distribution (fidelity > 7/10) — a faithful simulator', on: faithful },
-      { facet: 'measured engine cost == best classical cost (Schrödinger 2ⁿ) — NO separation', on: tracksClassical && !separated },
+      { facet: `measured engine cost == best classical cost (Schrödinger 2ⁿ) — NO separation · measured tracksClassical=${tracksClassical} · separated=${separated}`, on: tracksClassical && !separated },
       { facet: 'cost scales exponentially (≈×2 per added qubit) — not a poly-time advantage', on: exponentialScaling },
-      { facet: 'a PHYSICAL QPU would separate (poly ops); this modeled engine does NOT — the gap is explicit and honest', on: physicalQpuWouldSeparate },
+      { facet: `a PHYSICAL QPU would separate (poly ops); this modeled engine does NOT — the gap is explicit and honest · measured physicalQpuWouldSeparate=${physicalQpuWouldSeparate}`, on: physicalQpuWouldSeparate },
     ])
     return {
       separated,
@@ -835,7 +835,7 @@ export function observingMovieRevealsQuantumModel(route = '/', at = 0, matrix: M
       { facet: 'the movie state IS the model state — a 6-line register content-addressed by one root', on: snapshot.register.length === 6 && snapshot.root.length > 0 },
       { facet: 'the snapshot round-trips — recompute from (route, at) yields the same root (deterministic)', on: roundTrips },
       { facet: `quantum thinking defined honestly — content-addressed deterministic recompute, NOT a cognitive/physical change · measured QUANTUM_THINKING_SHIFTS.length=${QUANTUM_THINKING_SHIFTS.length}`, on: QUANTUM_THINKING_SHIFTS.length === 4 },
-      { facet: 'the revealed computer is faithful with NO speedup (benchmark-proven)', on: honest.faithfulSimulator && honest.noSpeedup },
+      { facet: `the revealed computer is faithful with NO speedup (benchmark-proven) · measured honest.faithfulSimulator=${honest.faithfulSimulator} · honest.noSpeedup=${honest.noSpeedup}`, on: honest.faithfulSimulator && honest.noSpeedup },
     ])
     return {
       reveals: computes,

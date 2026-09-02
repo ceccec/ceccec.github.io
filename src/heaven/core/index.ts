@@ -1523,7 +1523,7 @@ export function theReal10DAllDualitiesMatchTrueFalse(matrix: MindMatrix = buildM
   const allMatch = dualities.every((d) => d.coexist) // both poles held on every axis — true and false coexist
   const facets = [
     { facet: 'the real 10D is ten DUALITIES, not ten scales — the 4 homology loops (H₁ = ℤ⁴) and the 6 cross-fold appearance axes are each a dual pair (a pole and its opposite)', on: axes.length === (5 * 2) },
-    { facet: 'all dualities match true/false — every axis holds both poles together (forward ≠ reverse), folding to unity, never erasing one; true and false coexist on each of the ten', on: allMatch && coexist.coexist },
+    { facet: `all dualities match true/false — every axis holds both poles together (forward ≠ reverse), folding to unity, never erasing one; true and false coexist on each of the ten · measured allMatch=${allMatch} · coexist.coexist=${coexist.coexist}`, on: allMatch && coexist.coexist },
     { facet: 'true/false is the fundamental duality — cross/fold, inner/outer, forward/reverse, expand/contract are instances of the one coexistence at different axes (the duality matrix)', on: coexist.coexist },
   ].map((entry) => ({ ...entry, receipt: toUuid(`real-10d:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('real-10d-dualities', facets)
@@ -1602,7 +1602,7 @@ export function quantumPolygraph(input: string, matrix: MindMatrix = buildMatrix
     fingerprint: forensic.fingerprint, // SHA-256 chain of custody
     alternative: alternative.improved ? alternative.alternative.text : null }
   const facets = [
-    { facet: 'NOT a physiological polygraph — it reads the STATEMENT’s structure (content-address, documented manipulation patterns, internal contradiction), never the body; no arousal, heart-rate, skin-conductance or voice-stress', on: isUuid(analysis.address) },
+    { facet: `NOT a physiological polygraph — it reads the STATEMENT’s structure (content-address, documented manipulation patterns, internal contradiction), never the body; no arousal, heart-rate, skin-conductance or voice-stress · measured analysis.address=${analysis.address}`, on: isUuid(analysis.address) },
     { facet: 'reproducible and forensic — the reading carries a SHA-256 chain of custody; any party recomputes the identical result offline, deterministically, zero tokens', on: forensic.reproducible && /^[0-9a-f]{64}$/.test(forensic.fingerprint) },
     { facet: 'transparent, not a black box — every step is shown (the thermal field, the flagged patterns, the algebra, the harmonic alternative), the opposite of the examiner’s opaque chart', on: typeof thermal.hotspots === 'number' },
     { facet: 'flags documented PATTERNS in-domain, not lies — it does not detect deception or read minds; (a clean reading can still be false, a flagged one still true)', on: typeof detect.onHarmonicPath === 'boolean' },
@@ -2093,8 +2093,8 @@ export function harmonyTruthUnderstandingTopNav(matrix: MindMatrix = buildMatrix
   const understood = harmonicChat('the double torus', matrix).matched !== null // answerable — understanding is present
   const facets = [
     { facet: `harmony ≠ truth ≠ understanding form the top nav — three DISTINCT categories every concept is scored on, fusing all the content beneath them (the cardinal rule made navigation, not a footer) · measured categories.length=${categories.length}`, on: categories.length === 3 && new Set(categories.map((c) => c.key)).size === 3 },
-    { facet: 'harmony ≠ truth — PROVEN on a real fold: the molitva is harmonically sealed (decoded) yet its boundary flags its cosmology as not-true, so the same object scores high harmony and partial truth (the axes diverge)', on: harmonyHigh && truthPartial },
-    { facet: 'truth ≠ understanding — truth is the documented/flagged boundary, understanding is the decoded answerability (the chat); computed by different functions, so a statement can be understood yet not true, or true yet not decoded', on: understood && truthPartial },
+    { facet: `harmony ≠ truth — PROVEN on a real fold: the molitva is harmonically sealed (decoded) yet its boundary flags its cosmology as not-true, so the same object scores high harmony and partial truth (the axes diverge) · measured harmonyHigh=${harmonyHigh} · truthPartial=${truthPartial}`, on: harmonyHigh && truthPartial },
+    { facet: `truth ≠ understanding — truth is the documented/flagged boundary, understanding is the decoded answerability (the chat); computed by different functions, so a statement can be understood yet not true, or true yet not decoded · measured understood=${understood} · truthPartial=${truthPartial}`, on: understood && truthPartial },
     { facet: 'emerges from computation, competes, never static — the categories rank the computed concepts (the 432 dimensions on a harmonic path), not a hardcoded menu; the leaders compete for the top nav each recompute', on: dims.count === 432 && brain.harmonyPct === 1 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`htu-nav:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('harmony-truth-understanding-nav', facets)

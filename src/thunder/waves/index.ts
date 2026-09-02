@@ -438,7 +438,7 @@ function quantumImpossibleWaveTwoRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'interaction-free measurement — the dark port fires with the object (P=' + roundTo(ifm.dark, 2) + ') and NEVER without it (P=' + ifm.darkWithoutObject + '): detect a thing by the light that did not touch it', on: ifm.dark > (1 / 5) && ifm.darkWithoutObject === 0 },
     { facet: 'the quantum Zeno effect — frequent measurement freezes the evolution; survival (cos²(π/2N))^N rises to ' + roundTo(zeno[zeno.length - 1]!.survival, 2) + ' (→ 1), the watched pot never boils', on: zenoFreezes },
     { facet: 'Bernstein–Vazirani — a hidden 4-bit string learned in ONE oracle query, where classical needs 4', on: bvOneQuery },
-    { facet: 'entanglement swapping — two qubits that NEVER interacted made maximally entangled (concurrence 1) by a Bell measurement on their partners', on: swapEntangles },
+    { facet: `entanglement swapping — two qubits that NEVER interacted made maximally entangled (concurrence 1) by a Bell measurement on their partners · measured swapEntangles=${swapEntangles}`, on: swapEntangles },
     { facet: 'all obey the laws — counterintuitive, not forbidden — and the wave fuses the prior impossible-made-possible fold', on: quantumImpossibleMadePossible(matrix).proven && completeQuantumSolutionsImplemented(matrix).implemented },
   ].map((entry) => ({ ...entry, receipt: toUuid(`q-wave2:${entry.facet}:${entry.on}`) }))
   return {
@@ -3098,7 +3098,7 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes', on: cmb.computes && cmb.claySolvedByThisFold === 0 && cmb.ratioRounded === 5.41 },
       { facet: 'open Millennium cores remain findable —  on millennium surface', on: mill.claySolvedByThisFold === 0 },
       { facet: 'anti-crack — false conclusion "no waves/trinities" from drained/closed PR is refused', on: !falseConclusionNoTrinities },
-      { facet: 'pairs wave/trinity · trinity/found bidirectional · forward≠reverse', on: waveTrinityPair.bidirectional && trinityFoundPair.bidirectional && waveTrinityPair.forward !== waveTrinityPair.reverse },
+      { facet: `pairs wave/trinity · trinity/found bidirectional · forward≠reverse · measured waveTrinityPair.bidirectional=${waveTrinityPair.bidirectional} · trinityFoundPair.bidirectional=${trinityFoundPair.bidirectional}`, on: waveTrinityPair.bidirectional && trinityFoundPair.bidirectional && waveTrinityPair.forward !== waveTrinityPair.reverse },
       { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-trinity-found:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-working-in-trinities-trinities-are-found', facets)
@@ -3468,7 +3468,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pushAuditedOn — push/audit · audit/push · wave:land chains quantum:push-audit before push', on: pushAuditedOn },
       { facet: 'noForceMain — refuse force-push main · no --force', on: noForceMain },
       { facet: 'compose vote/build/commit/push · commit/push bidirectional', on: pairVoteChain && pairCommitPush && commitPush.bidirectional && voteBuildCommitPush.bidirectional },
-      { facet: 'pairs waves/push · push/waves registered · forward≠reverse', on: pairWavesPush && pairPushWaves && wavesPush.forward !== wavesPush.reverse },
+      { facet: `pairs waves/push · push/waves registered · forward≠reverse · measured pairWavesPush=${pairWavesPush} · pairPushWaves=${pairPushWaves}`, on: pairWavesPush && pairPushWaves && wavesPush.forward !== wavesPush.reverse },
       { facet: `afterPushResendWaves — recipe=${WAVES_AFTER_PUSH_RECIPE_STEPS.length} steps`, on: afterPushResendWaves },
       { facet: 'pushTriggersFeed — waves/feed · chat/challenge · pair/chat · match/wave after push', on: pushTriggersFeed && afterPushResendWaves },
       { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },

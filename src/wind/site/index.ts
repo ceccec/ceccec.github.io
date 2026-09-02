@@ -1118,7 +1118,7 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
     const facets = [
       { facet: `researched ${researched.length} official VitePress doc URLs for v${native.vitepressVersionTarget}`, on: researched.length >= 8 },
       { facet: `native emitter computes lazyLoading · lastUpdated · editLink · logo · externalLinkIcon`, on: native.computed && native.markdown.image.lazyLoading && native.lastUpdated && Boolean(native.theme.editLink.pattern) },
-      { facet: 'locale link map: en=/ · bg=/bg/ · gla=/gla/ (bg≠gla)', on: localeLinksOk },
+      { facet: `locale link map: en=/ · bg=/bg/ · gla=/gla/ (bg≠gla) · measured localeLinksOk=${localeLinksOk}`, on: localeLinksOk },
       { facet: `applied ${applied.length} high-value VP-native gaps; residuals named (${residuals.length})`, on: applied.length >= 6 && residuals.length >= 3 },
       { facet: 'carbon ads skipped · Algolia skipped', on: gaps.some((g) => g.id === 'carbon-ads' && g.status === 'skipped') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`vp-docs-research:${entry.facet}:${entry.on}`) }))

@@ -1310,7 +1310,7 @@ export function heartProtonAtomDecoded(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: '2 is the primitive root of (ℤ/9ℤ)*: ord(2)=6, gcd(2,9)=1 — proton generates the orbit', on: orbit.length === 6 && gcd(2, 9) === 1 },
     { facet: 'heart = 5 = proton inverse: 5×2≡1 (mod 9) — cardiac systole(5)×diastole(2)=1 beat', on: heartIsInverse },
-    { facet: 'nucleus {3,6,9} = zero-divisors: gcd(3,9)=3≠1 — confined, the Tesla cross (strong force)', on: crossIsConfined && orbit.every((u) => cross.indexOf(u) === -1) },
+    { facet: `nucleus {3,6,9} = zero-divisors: gcd(3,9)=3≠1 — confined, the Tesla cross (strong force) · measured crossIsConfined=${crossIsConfined}`, on: crossIsConfined && orbit.every((u) => cross.indexOf(u) === -1) },
     { facet: 'proton quark charge = uud = 2/3+2/3-1/3 = 1 (exact Rational — no floats)', on: ratEq(protonCharge, rat(1, 1)) },
     { facet: 'neutron quark charge = udd = 2/3-1/3-1/3 = 0 (exact Rational — no floats)', on: ratEq(neutronCharge, rat(0, 1)) },
     { facet: '4 Tesla resonance pairs: (1,1)·(2,5)·(4,7)·(8,8) — heart-proton (2,5) is the cardiac coil', on: resonancePairs.length === 4 && heartProtonPairPresent },
@@ -1977,7 +1977,7 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
     { facet: 'torus 2 inverts torus 1 polarity — tips negate (180°), apex zenith↔nadir, dark=1/light=0', on: invertedTips && apexFlip && polarityXor === 1 },
     { facet: 'counter-rotation — merkaba up/down tetrahedra and alternating scales on the same genus-2 signature', on: merk.counterRotating },
     { facet: 'four homology loops are the four cardinal pyramid tips on the double-torus surface', on: homology.betti[1] === 4 && pyramid.proven },
-    { facet: 'the two tori fold bidirectionally — foldPair(forward ≠ reverse), the genus-2 law of Earth', on: folded.bidirectional },
+    { facet: `the two tori fold bidirectionally — foldPair(forward ≠ reverse), the genus-2 law of Earth · measured folded.bidirectional=${folded.bidirectional}`, on: folded.bidirectional },
   ].map((entry) => ({ ...entry, receipt: toUuid(`earth-double-torus-facet:${entry.facet}:${entry.on}`) }))
   return {
     proven: pyramid.proven && proofs.every((entry) => entry.on) && facets.every((entry) => entry.on),
@@ -2077,7 +2077,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       { facet: `phaseLockCardinals — 0°·90°·180°·270° phase-locked`, on: phaseLockCardinals },
       { facet: `alternatingOmega — ±ω alternates on N·E·S·W`, on: alternatingOmega },
       { facet: 'wgs84PhysicalHonest — oblate spheroid documented · this fold is matrix structural isomorphism', on: wgs84PhysicalHonest },
-      { facet: 'navigationForecastResidualNamed — navigation·forecasts NOT fake-closed', on: navigationForecastResidualNamed },
+      { facet: `navigationForecastResidualNamed — navigation·forecasts NOT fake-closed · measured navigationForecastResidualNamed=${navigationForecastResidualNamed}`, on: navigationForecastResidualNamed },
       { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} · pyramid/seal=${softPyramidSeal ? 1 : 0} · merkaba · bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells },
       { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-realised-poles-pyramid:${entry.facet.slice(0, 72)}:${entry.on}`) }))

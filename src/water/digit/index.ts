@@ -386,7 +386,7 @@ export function digitSpinesAreTheBreath(matrix: MindMatrix = buildMatrix()) {
     { facet: 'reverses around 0: 0-first emanation ⇄ 0-last return (the same ring, breathed out and walked home)', on: JSON.stringify([...emanation.slice(1), 0]) === JSON.stringify(returnWind) },
     { facet: 'they meet at the 9–0 throat: 9 the doubling-invariant axis, 0 the void identified with 9', on: emanation[emanation.length - 1] === 9 && returnWind[returnWind.length - 1] === 0 && vortex.cross.includes(9) && vortex.cross.includes(0) && vortex.divByZeroHarmonic === 9 },
     { facet: 'the breath: emanation expands from the void, return contracts to the void/seal (0/0 → the fusion)', on: emanation[0] === 0 && returnWind[returnWind.length - 1] === 0 && isUuid(digitFolderMath(matrix).voidFolder.fusion) },
-    { facet: 'the two windings fold to one bidirectional double-torus address (genus 2: forward ≠ reverse)', on: fold.bidirectional && isUuid(fold.merged) },
+    { facet: `the two windings fold to one bidirectional double-torus address (genus 2: forward ≠ reverse) · measured fold.bidirectional=${fold.bidirectional} · fold.merged=${fold.merged}`, on: fold.bidirectional && isUuid(fold.merged) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`digit-spines-breath:${entry.facet}:${entry.on}`) }))
   return {
     decoded: facets.every((entry) => entry.on),

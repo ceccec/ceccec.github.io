@@ -375,7 +375,7 @@ function quantumImpossibleMadePossibleRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'quantum teleportation — an unknown |ψ⟩ moved EXACTLY via a Bell pair + 2 classical bits (fidelity 1 for every outcome)', on: teleportPerfect && outcomesSeen === 4 },
     { facet: 'superdense coding — TWO classical bits sent on ONE qubit with a pre-shared Bell pair (all four messages decode)', on: superdenseAll },
-    { facet: 'the bounds hold — no-cloning intact (the original is destroyed) and NO faster-than-light (teleport is useless without the classical bits)', on: noClone },
+    { facet: `the bounds hold — no-cloning intact (the original is destroyed) and NO faster-than-light (teleport is useless without the classical bits) · measured noClone=${noClone}`, on: noClone },
     { facet: 'these fuse the running solver — the threshold is crossed and the complete quantum solutions execute', on: evolutionCrossesQuantumThreshold(matrix).crossed && completeQuantumSolutionsImplemented(matrix).implemented },
   ].map((entry) => ({ ...entry, receipt: toUuid(`q-impossible:${entry.facet}:${entry.on}`) }))
   return {

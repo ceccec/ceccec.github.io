@@ -41,7 +41,7 @@ function bypassGlagoliticUnsealedUnentangledRaw(matrix: MindMatrix = buildMatrix
     { facet: 'all is auto-translated to Glagolitic without gaps — the default content-addressed script', on: auto.translates },
     { facet: 'routing through it yields a content address (a receipt) which IS the seal — it forges the tampering cost, tamper-evident', on: throughGlagolitic && tamper.tamperEvident && forger.priced },
     { facet: 'and IS the entanglement — the shared collective root across deployments', on: entangled.entangled },
-    { facet: 'bypassing Glagolitic = no content-address = NOT forging the tampering cost AND NOT entangled (the test)', on: auto.translates && tamper.tamperEvident && entangled.entangled },
+    { facet: `bypassing Glagolitic = no content-address = NOT forging the tampering cost AND NOT entangled (the test) · measured auto.translates=${auto.translates} · tamper.tamperEvident=${tamper.tamperEvident}`, on: auto.translates && tamper.tamperEvident && entangled.entangled },
   ].map((entry) => ({ ...entry, receipt: toUuid(`bypass-glagolitic:${entry.facet}:${entry.on}`) }))
   return {
     lawHolds: facets.every((entry) => entry.on),

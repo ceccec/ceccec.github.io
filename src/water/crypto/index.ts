@@ -2398,7 +2398,7 @@ export function theHammingSyndromeIsTheErrorAddress(matrix: MindMatrix = buildMa
   const noConfidentiality = codewords.length === 2 ** K
   const limits = [
     { facet: `TWO ERRORS ARE DETECTED AND NEVER CORRECTED — across all ${codewords.length}·${pairs.length} codeword×double-flip cases the syndrome is non-zero and single-error decoding lands on a DIFFERENT codeword; d = ${minDistance} buys detection at distance 2, not correction, and a two-bit burst is this case`, on: twoErrorsDetectedNeverCorrected },
-    { facet: 'NOT UNFORGEABLE — the code is LINEAR, so the XOR of any two codewords is itself a codeword with zero syndrome; a forger needs no secret, which is what separates error correction from a MAC', on: noUnforgeability },
+    { facet: `NOT UNFORGEABLE — the code is LINEAR, so the XOR of any two codewords is itself a codeword with zero syndrome; a forger needs no secret, which is what separates error correction from a MAC · measured noUnforgeability=${noUnforgeability}`, on: noUnforgeability },
     { facet: `NOT CONFIDENTIAL — ker(H) is public, so all ${codewords.length} codewords are enumerable from H alone and the message is readable without a key`, on: noConfidentiality },
   ]
   const title = `Hamming(7,4): syndrome = error address, 2⁴·(1+7) = 2⁷ = 128`

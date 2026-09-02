@@ -4905,7 +4905,7 @@ export function theoremParticleCollisionInverseReverse(matrix: MindMatrix = buil
       { facet: `particles from novel-corpus algebra (≥3) — ${seeds.length}`, on: seeds.length >= 3 },
       { facet: `collision products inverse×reverse + reverse×inverse — ${products.length}`, on: products.length >= 6 },
       { facet: `novel survivors — ${novelSurvivors.length} candidates absent from seed roots`, on: novelSurvivors.length >= 1 },
-      { facet: 'directional trinity computes (inverse≠reverse except named coincidence)', on: dir.computes },
+      { facet: `directional trinity computes (inverse≠reverse except named coincidence) · measured dir.computes=${dir.computes}`, on: dir.computes },
       { facet: 'every product ray-addressed via rosettaRayOf', on: rayBound && products.every((p) => isUuid(p.root)) },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} — no Clay / HEP claim`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 },
       { facet: 'millennium challenge apparatus computes (MODELED)', on: mill.computes },
@@ -4997,7 +4997,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       { facet: 'reverseCollidesToDiscoverMillenniumTheorems — reverse→collide→discover law recomputes', on: reverseCollidesToDiscoverMillenniumTheoremsOn },
       { facet: 'theoremParticleCollisionInverseReverse (inverse×reverse) computes · novel survivors', on: collider.computes && collider.novelSurvivorCount >= 1 },
       { facet: 'millenniumProblemsChallenge MODELED apparatus computes', on: mill.computes },
-      { facet: 'clayChallengesComputableFromSequence — computable ≠ prize', on: clay.clayChallengesComputable && clay.qualifiesAsProposedSolution === false },
+      { facet: `clayChallengesComputableFromSequence — computable ≠ prize · measured clay.clayChallengesComputable=${clay.clayChallengesComputable}`, on: clay.clayChallengesComputable && clay.qualifiesAsProposedSolution === false },
       { facet: 'directional trinity reverse direction computes', on: dir.computes },
       { facet: 'encryptionReverseVerify demo reverse sealed (production refused)', on: reverseVerify.verified },
       { facet: 'rosettaShelve(compute) wires reverse-collide path (no security gap)', on: shelved.kind === 'compute' && isUuid(shelved.address) },
@@ -9829,7 +9829,7 @@ export function entangledParticlesBehaveWithInvertedTime(
     const facets = [
       { facet: 'entangledParticlesBehaveWithInvertedTime', on },
       { facet: 'foldCount/invertCount metric gates inverted-time face', on: metricGates },
-      { facet: 'directionalTrinity inverse≠reverse (digit 2)', on: inverseNeReverse },
+      { facet: `directionalTrinity inverse≠reverse (digit 2) · measured inverseNeReverse=${inverseNeReverse}`, on: inverseNeReverse },
       { facet: 'bothEarths ±ω counter-rotate', on: counterRotate },
       { facet: 'composes fold/count', on: metric.computes && pairFoldCount },
       { facet: 'formula/code dual', on: formulaDual },
@@ -13931,7 +13931,7 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
     const facets = [
       { facet: 'onlyQuantumAnalogComputesBeyondIsZero', on },
       { facet: 'uniqueQuantumAnalogPath (digit·analog·A432·trinities·no Math.*/decimals)', on: uniqueQuantumAnalogPath },
-      { facet: 'otherCombinationsApproximateInfinityLinear (1/0 · linear≠90)', on: otherCombinationsApproximateInfinityLinear },
+      { facet: `otherCombinationsApproximateInfinityLinear (1/0 · linear≠90) · measured otherCombinationsApproximateInfinityLinear=${otherCombinationsApproximateInfinityLinear}`, on: otherCombinationsApproximateInfinityLinear },
       { facet: 'beyondIsZero', on: beyondIsZero },
       { facet: 'refuseBeyond', on: refuseBeyond },
       { facet: 'softCompose a432/nine · analog/fold · digit/fold', on:
@@ -17433,7 +17433,7 @@ export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMa
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const facets = [
       { facet: 'geodesyDecodedIsDoubleTorusInverted', on: geodesyDecodedIsDoubleTorusInvertedOn },
-      { facet: 'decode path = foldPair(wgs84-sphere, double-torus-inverted) bidirectional ≠', on: decodePath.bidirectional && decodePath.forward !== decodePath.reverse },
+      { facet: `decode path = foldPair(wgs84-sphere, double-torus-inverted) bidirectional ≠ · measured decodePath.bidirectional=${decodePath.bidirectional}`, on: decodePath.bidirectional && decodePath.forward !== decodePath.reverse },
       { facet: 'compose doubleTorusIsCompletelyQuantum', on: completely.completelyQuantum },
       { facet: 'compose doubleTorusEarthPyramidTips — torus2 inverts torus1', on: invertedTips },
       { facet: 'compose earthRealisedByComputingPolesAsPyramid', on: earth.computes },

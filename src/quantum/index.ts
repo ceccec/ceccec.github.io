@@ -7262,8 +7262,8 @@ export function driftDetectionMeasuresRatherThanDeclares() {
     { facet: `NOTHING IS PRE-VERIFIED — ${preVerified} of ${rows} rows claim a verification timestamp before any scan has run`, on: preVerified === 0 },
     { facet: `THE MANIFEST IS NOT EMPTY — ${rows} rows of intent remain as evidence of what the platform was designed to contain; a detector with nothing to detect proves nothing`, on: rows > 0 },
     { facet: 'COUPLING DENOMINATOR IS A COUNTED PAIR SET — k(k−1) ordered pairs at k = 0, 1, 2, 5, 18, not a chosen constant times ten', on: denominatorIsRealPairCount },
-    { facet: 'MEASURING NOTHING IS NOT INDEPENDENCE — with zero modules read the pair set is empty, and independence is reported false rather than true', on: emptyMeasurementIsNotIndependence },
-    { facet: 'ABSENCE IS A FINDING, NOT A DEFAULT — status is three-valued and optional, so a module that was never looked at is distinguishable from one that is in sync', on: statusIsThreeValuedAndOptional },
+    { facet: `MEASURING NOTHING IS NOT INDEPENDENCE — with zero modules read the pair set is empty, and independence is reported false rather than true · measured emptyMeasurementIsNotIndependence=${emptyMeasurementIsNotIndependence}`, on: emptyMeasurementIsNotIndependence },
+    { facet: `ABSENCE IS A FINDING, NOT A DEFAULT — status is three-valued and optional, so a module that was never looked at is distinguishable from one that is in sync · measured statusIsThreeValuedAndOptional=${statusIsThreeValuedAndOptional}`, on: statusIsThreeValuedAndOptional },
   ]
   const sealed = sealFacets('drift-detection-measures', facets)
 

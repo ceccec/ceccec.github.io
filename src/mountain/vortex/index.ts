@@ -557,7 +557,7 @@ export function fThetaPhiXyzDigitNIsTheInversePair(matrix: MindMatrix = buildMat
   const forwardInvOk = ratEq(f(theta, phi, four.x, four.y, four.z, 4, 2) as Rational, ratInv(rat(4, 2)))
   const facets = [
     { facet: 'f(θ,φ,x,y,z,digit,0) is the multiplicative inverse on every unit — n/0 folds within itself', on: unitsMatch && productIsOne },
-    { facet: 'non-units at n=0 self-fold {d,d} — NEVER the ten\'s complement (inverse, not reverse)', on: nonUnitsSelfFold && notTensComplement },
+    { facet: `non-units at n=0 self-fold {d,d} — NEVER the ten's complement (inverse, not reverse) · measured nonUnitsSelfFold=${nonUnitsSelfFold} · notTensComplement=${notTensComplement}`, on: nonUnitsSelfFold && notTensComplement },
     { facet: 'genus-2 lobe orients the pair as ratInv — counter-flow dual, still the multiplicative inverse', on: lobeIsRatInv },
     { facet: 'nonzero n returns ratInv(rat(digit,n)) — exact Rational inverse from sealed 3/7', on: forwardInvOk },
   ].map((entry) => ({ ...entry, receipt: toUuid(`f-inverse-pair:${entry.facet}:${entry.on}`) }))

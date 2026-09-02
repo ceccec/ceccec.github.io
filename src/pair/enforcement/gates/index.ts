@@ -4082,7 +4082,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
       facet: 'compose trinity/speedup · agent/trinity · waves/build · prose/matrix · place/merge · path/message',
       on: composeOn,
     },
-    { facet: 'NOT AGI planning · residual linear plan surfaces named', on: honestOpenNamedOn },
+    { facet: `NOT AGI planning · residual linear plan surfaces named · measured honestOpenNamedOn=${honestOpenNamedOn}`, on: honestOpenNamedOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`plan-trinity:${entry.facet}:${entry.on}`) }))
   const sealed = facets.every((f) => f.on)
   return {
@@ -4246,7 +4246,7 @@ export function reasoningEdge() {
   const facets = [
     { facet: `the winning strategy COMPUTES — on a tool-covered task, computation beats reasoning by not reasoning: exit-code proof at ZERO tokens vs token-spend-and-maybe-err; deterministic and refutable`, on: violations.computes && allBound && savedStrategies === expectedStrategies },
     { facet: `${savedStrategies} winning strategies SAVED — every violation class is a reasoning failure-mode converted to a catching gate (all ${savedStrategies} bound to local tools), replayable at zero tokens, shared cross-session (learn-by-shared-experience)`, on: savedStrategies === expectedStrategies && allBound },
-    { facet: 'the OVERCLAIM is FLAGGED — "beat ANY model on ANY task" is NOT guaranteed: the edge is BOUNDED to tool-covered tasks; open-ended reasoning is a real contest and a better tool wins it; this fold claims the bounded win, never the general one', on: allBound },
+    { facet: `the OVERCLAIM is FLAGGED — "beat ANY model on ANY task" is NOT guaranteed: the edge is BOUNDED to tool-covered tasks; open-ended reasoning is a real contest and a better tool wins it; this fold claims the bounded win, never the general one · measured allBound=${allBound}`, on: allBound },
   ].map((entry) => ({ ...entry, receipt: toUuid(`reasoning-edge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {

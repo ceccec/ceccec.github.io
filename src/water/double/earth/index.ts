@@ -313,7 +313,7 @@ export function compassAroundEarthGatewaysImpossibleProvenByMath(
     const facets = [
       { facet: 'cardinals are 4-fold — N·E·S·W at 90° on the pyramid base horizon', on: CARDINAL_COUNT === 4 && CARDINAL_DEG === (9 * 5 * 2) && pyramid.proven },
       { facet: 'trinity gateways are 3-fold — proven · animated · presented (cross · fold · weave)', on: GATEWAY_COUNT === 3 && formed.gateways.length === 6 },
-      { facet: 'gateway spacing 120° ≠ compass quadrant 90° — incompatible angular frames', on: spacingMismatch && GATEWAY_DEG === (8 * 5 * 3) && CARDINAL_DEG === (9 * 5 * 2) },
+      { facet: `gateway spacing 120° ≠ compass quadrant 90° — incompatible angular frames · measured spacingMismatch=${spacingMismatch}`, on: spacingMismatch && GATEWAY_DEG === (8 * 5 * 3) && CARDINAL_DEG === (9 * 5 * 2) },
       { facet: 'three cardinal 90° steps = 270° — cannot close a 360° compass loop around three gateways', on: cardinalCircuit3 === (54 * 5) && !closesCompassLoop },
       { facet: 'gateways have hue + slug receipts — no compass bearing field on the gateway record', on: !gatewayHasBearing && formed.gateways.every((gateway) => isUuid(gateway.receipt)) },
       { facet: 'hue steps between gateways are not 90° quadrants — compass walk around gateways fails', on: !hueIsQuadrantWalk },
@@ -2302,7 +2302,7 @@ export function quantumGlobeAt(at = 0, matrix: MindMatrix = buildMatrix()) {
       { facet: 'north pole = the azimuthal-equidistant centre dot (ρ=0, z=+tubeR) — the chart singularity', on: north.proved && north.isCenterDot },
       { facet: 'south pole = the boundary circle one-point-compactified (ρ=1, z=−tubeR; ∂D² ≡ one point)', on: south.proved && south.compactifiedToOnePoint },
       { facet: 'the equator sits mid-tube (ρ=0.5) on the genus-2 surface', on: equator.onDisk && abs(equator.diskRadius - (1 / 2)) < 1e-6 },
-      { facet: 'the Schumann ELF cavity supplies the ambient resonance phase (structural ELF model, NOT a magnetometer)', on: isUuid(resonance.root) },
+      { facet: `the Schumann ELF cavity supplies the ambient resonance phase (structural ELF model, NOT a magnetometer) · measured resonance.root=${resonance.root}`, on: isUuid(resonance.root) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-globe:${entry.facet}:${entry.on}`) }))
     return {
       animates: facets.every((entry) => entry.on),

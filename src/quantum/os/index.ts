@@ -275,7 +275,7 @@ export function quantumComputerDriverComputes(matrix: MindMatrix = buildMatrix()
       { facet: 'gate scheduling — gate palette + ordered ops run through runQuantumCircuit', on: QC_GATE_PALETTE.length >= (5 * 2) && run.n === 3 },
       { facet: 'measurement — seeded multi-shot readout returns a histogram', on: Object.keys(run.samples).length > 0 },
       { facet: 'content-addressed state — the circuit root is deterministic at call time', on: run.root.length > 0 },
-      { facet: 'exposes the honest modeled QC — faithful simulator, NO computational speedup (benchmark-proven)', on: honest.faithfulSimulator && honest.noSpeedup },
+      { facet: `exposes the honest modeled QC — faithful simulator, NO computational speedup (benchmark-proven) · measured honest.faithfulSimulator=${honest.faithfulSimulator} · honest.noSpeedup=${honest.noSpeedup}`, on: honest.faithfulSimulator && honest.noSpeedup },
     ])
     return {
       exposes: computes,

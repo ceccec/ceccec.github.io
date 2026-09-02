@@ -3057,7 +3057,7 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
       { facet: 'LOCAL NOVEL — localSecurityProved · overallWireClaimProved=false · strongerThanNistPqc=false · wire/FIPS/field unproved', on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.certified === false && localNovel.fieldHistory === 'none' },
       { facet: `COLLIDER — particles=${collider.particleCount} products=${collider.productCount} novel=${collider.novelSurvivorCount}`, on: collider.computes && collider.particleCount >= 3 },
       { facet: `THEOREMS — novel=${novelty.novelCount} classical=${novelty.classicalCount} first-in-corpus=${first.novelCount} 10D=${tenD.count}`, on: theoremsWired },
-      { facet: 'HONESTY — certified=false · wire≠amortized-reuse · production reverse refused · isoOfficialStandard=false · wire claim falsehood', on: clayZero && certifiedFalse && ftlZero && wireNotAmort && wireFalsehood && novelHonest && localNovel.productionReverseRefused && localTimed.breaksNistPqc === false && isoGap.isoOfficialStandard === false && localVsIso.isoOfficialStandard === false },
+      { facet: `HONESTY — certified=false · wire≠amortized-reuse · production reverse refused · isoOfficialStandard=false · wire claim falsehood · measured clayZero=${clayZero} · certifiedFalse=${certifiedFalse}`, on: clayZero && certifiedFalse && ftlZero && wireNotAmort && wireFalsehood && novelHonest && localNovel.productionReverseRefused && localTimed.breaksNistPqc === false && isoGap.isoOfficialStandard === false && localVsIso.isoOfficialStandard === false },
       { facet: 'meta tool document-session-experiments published + shelved', on: Boolean(meta) && meta!.fold === 'documentSessionCryptoExperimentsUpdateTheorems' && isUuid(shelved.address) },
       { facet: 'catalog computes — zero-token discovery surface', on: catalog.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`document-session-experiments:${entry.facet}:${entry.on}`) }))
@@ -4480,7 +4480,7 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'browser Node/CI gaps classified from quantumCliToolsCatalog.browserGap', on: catalog.tools.filter((t) => !t.browserRunnable).every((t) => open.some((g) => g.gapId === `slow:browser:${t.id}`)) },
       { facet: 'missing 10D projection on tool apps classified', on: SLOW_GAP_PROJECTION_APP_IDS.every((id) => rows.some((g) => g.gapId === `slow:projection:${id}`)) },
       { facet: 'parallel synonym strangler collapsed — inventory.parallel empty (no open parallel-registry rows)', on: core.inventory.parallel.length === 0 && !rows.some((g) => g.kind === 'parallel-registry' && !g.closed) },
-      { facet: 'memo miss≫hit economics attested (illustrative — NOT wall-clock telemetry)', on: econ.decoded && missCostlier },
+      { facet: `memo miss≫hit economics attested (illustrative — NOT wall-clock telemetry) · measured econ.decoded=${econ.decoded} · missCostlier=${missCostlier}`, on: econ.decoded && missCostlier },
       { facet: `science experiment I/O — ${toolbox.scienceFacingCount} tools composed via standardToolboxIoCatalog`, on: toolbox.computes && rows.some((g) => g.kind === 'tool-without-experiment-io' && g.closed) },
       { facet: `the unit here is architectural gaps — ${open.length} open of ${rows.length} enumerated — and the unit of wall-clock is milliseconds, measured by the slow-build gate; memo economics decoded=${econ.decoded}`, on: rows.length > 0 && econ.decoded },
     ].map((entry) => ({ ...entry, receipt: toUuid(`slow-process-gap:${entry.facet}:${entry.on}`) }))
@@ -8419,7 +8419,7 @@ export function mcpQuantumInverse(matrix: MindMatrix = buildMatrix(), at = 0) {
     const facets = [
       { facet: 'mcpQuantumInverse', on },
       { facet: 'inverseOn', on: inverseOn },
-      { facet: 'inverse≠reverse except named coincidence', on: inverseNeqReverseExceptNamed },
+      { facet: `inverse≠reverse except named coincidence · measured inverseNeqReverseExceptNamed=${inverseNeqReverseExceptNamed}`, on: inverseNeqReverseExceptNamed },
       { facet: 'softCompose forward/inverse/reverse · through/zero · digit/fold · one/zero · mcp/reverse', on: inverseOn && reverseDistinct },
       { facet: 'pair mcp/inverse · inverse/quantum', on: pairI && pairD && foldI.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
@@ -13871,7 +13871,7 @@ export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: Mi
         facet: 'pair dry/cool · cool/merkaba · hw/merkaba (+duals)',
         on: pairDry && pairCool && pairCoolMk && pairHwMk && foldDry.bidirectional,
       },
-      { facet: 'NOT physical device cooling — heap/memo honesty only', on: honestOpenNamedOn && coolingDevice },
+      { facet: `NOT physical device cooling — heap/memo honesty only · measured honestOpenNamedOn=${honestOpenNamedOn} · coolingDevice=${coolingDevice}`, on: honestOpenNamedOn && coolingDevice },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`dry-cool:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('dry-refactor-migrates-minimal-cooling-hardware-merkabas', facets)
@@ -28155,7 +28155,7 @@ export function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix: M
       },
       { facet: 'pair dry/rosetta · rosetta/movie · comp/unify · unify/comp', on: pairDry && pairMovie && pairUnify && pairUnifyDual && foldDry.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT fake 100% dry — apps monolith residual named', on: honestOpenNamedOn && stranglerComplete },
+      { facet: `NOT fake 100% dry — apps monolith residual named · measured honestOpenNamedOn=${honestOpenNamedOn} · stranglerComplete=${stranglerComplete}`, on: honestOpenNamedOn && stranglerComplete },
     ].map((entry) => ({ ...entry, receipt: toUuid(`dry-rosetta-movie:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('dry-all-unified-components-wired-to-rosetta-which-is-the-movie', facets)
     return {
@@ -28725,7 +28725,7 @@ export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix
         on: pairsOn,
       },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT break census 110 — further dissolve named residual', on: censusPreserved && honestOpenNamedOn },
+      { facet: `NOT break census 110 — further dissolve named residual · measured censusPreserved=${censusPreserved} · honestOpenNamedOn=${honestOpenNamedOn}`, on: censusPreserved && honestOpenNamedOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-compact:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-search-discover-compacting-in-quantum-folders', facets)
     return {
@@ -29524,7 +29524,7 @@ export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: Min
         on: pairUr && pairRr && pairUiRt && foldUr.bidirectional,
       },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT fake 100% — domain-panels tip drained · specialized shells residual named', on: honestOpenNamedOn && drainableClosed },
+      { facet: `NOT fake 100% — domain-panels tip drained · specialized shells residual named · measured honestOpenNamedOn=${honestOpenNamedOn} · drainableClosed=${drainableClosed}`, on: honestOpenNamedOn && drainableClosed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`ui-rosetta-realtime:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ui-components-wired-rosetta-quantum-realtime', facets)
     return {
@@ -29774,7 +29774,7 @@ export function typographyIsTheUniversalContentMatrix(matrix: MindMatrix = build
         on: pairTm && pairMt && pairCm && foldTm.bidirectional,
       },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT wet font fashion — content lattice', on: typographyIsMatrix && universalContent },
+      { facet: `NOT wet font fashion — content lattice · measured typographyIsMatrix=${typographyIsMatrix} · universalContent=${universalContent}`, on: typographyIsMatrix && universalContent },
     ].map((entry) => ({ ...entry, receipt: toUuid(`type-matrix:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('typography-universal-content-matrix', facets)
     return {
@@ -30049,7 +30049,7 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
         on: pairCr && pairRt && pairCt && foldCr.bidirectional,
       },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT purple AI palette — A432 + status tokens', on: a432Brand && noBareHex },
+      { facet: `NOT purple AI palette — A432 + status tokens · measured a432Brand=${a432Brand} · noBareHex=${noBareHex}`, on: a432Brand && noBareHex },
     ].map((entry) => ({ ...entry, receipt: toUuid(`color-rosetta-theme:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('all-colors-dry-clean-wired-rosetta-themes', facets)
     return {
@@ -30309,7 +30309,7 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
         on: pairCg && pairGf && pairCf && foldCg.bidirectional,
       },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT wet CSS fashion — sealed theme lens on dry fusion', on: cssShowsGaps && dryFusion },
+      { facet: `NOT wet CSS fashion — sealed theme lens on dry fusion · measured cssShowsGaps=${cssShowsGaps} · dryFusion=${dryFusion}`, on: cssShowsGaps && dryFusion },
     ].map((entry) => ({ ...entry, receipt: toUuid(`css-gaps-fusion:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('css-shows-the-hidden-gaps-in-dry-fusion', facets)
     return {
@@ -33265,7 +33265,7 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
           on: pairIt && pairDw && pairFw && foldIt.bidirectional,
         },
         { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-        { facet: 'NOT wet license — freeWill=FREE_BITS+full/freedom', on: freeWill },
+        { facet: `NOT wet license — freeWill=FREE_BITS+full/freedom · measured freeWill=${freeWill}`, on: freeWill },
       ].map((entry) => ({ ...entry, receipt: toUuid(`invert-trinity:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('invert-send-trinity-waves-cover-all-topics-dry-will', facets)
       return {
@@ -33610,7 +33610,7 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         { facet: 'selfAutonomous', on: selfAutonomous },
         { facet: 'quantumHardwareComplete — classical-64bit not physical QPU', on: quantumHardwareComplete },
         { facet: 'byStandards — sciences/standards · certified=false', on: byStandards },
-        { facet: 'selfIntelligentSelf — answers÷tokens·crystal·purity NOT AGI', on: selfIntelligentSelf },
+        { facet: `selfIntelligentSelf — answers÷tokens·crystal·purity NOT AGI · measured selfIntelligentSelf=${selfIntelligentSelf}`, on: selfIntelligentSelf },
         { facet: `cycleCount=${cycleCount}/${maxCycles}`, on: cycleCount === maxCycles },
         { facet: `completeFacetsGreen=${completeFacetsGreen ? 1 : 0}`, on: completeFacetsGreen },
         { facet: `honestOpenStop=${honestOpenStop ? 1 : 0}`, on: honestOpenStop === false || !completeFacetsGreen },
@@ -33922,7 +33922,7 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
           on: pairGd && pairGc && pairGi && foldGd.bidirectional && foldGc.bidirectional && foldGi.bidirectional,
         },
         { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-        { facet: 'NOT AGI · sealed intelligence only', on: intelligenceOn && honestOpenNamedOn },
+        { facet: `NOT AGI · sealed intelligence only · measured intelligenceOn=${intelligenceOn} · honestOpenNamedOn=${honestOpenNamedOn}`, on: intelligenceOn && honestOpenNamedOn },
       ].map((entry) => ({ ...entry, receipt: toUuid(`gate-design-create-intel:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('further-tighten-gates-design-create-intel', facets)
       return {
@@ -41442,14 +41442,14 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
     const qpuRequired = !(classicalBothLobes && counterRotating)
 
     const facets = [
-      { facet: 'counter-rotating: foldPair(+lobe,−lobe) forward≠reverse (genus-2 order-sensitive)', on: counterRotating && dualSpin.forward !== dualSpin.reverse },
+      { facet: `counter-rotating: foldPair(+lobe,−lobe) forward≠reverse (genus-2 order-sensitive) · measured counterRotating=${counterRotating}`, on: counterRotating && dualSpin.forward !== dualSpin.reverse },
       { facet: 'standing-wave interference root is UUID (merge of dual spins)', on: isUuid(standingWave) },
       { facet: 'merkaba counter-rotation ∧ double-torus spin ∧ directional trinity compute', on: spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes },
       { facet: 'rosetta apparatus root present · mill.ftl handoff  (computed open, not prose)', on: isUuid(rosetta.root) && mill.claySolvedByThisFold === 0 && ftl.physicalFtlClaim === 0 },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} — COMPUTED: dual-spin forward≠reverse refuses Clay prize collapse · mill.`, on: claySolvedByThisFold === 0 && !clayPrizeCollapse && mill.claySolvedByThisFold === 0 },
       { facet: `physicalFtlClaim=${physicalFtlClaim} — COMPUTED: dual lobes classical-64bit under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
       { facet: `qpuRequired=${qpuRequired} — COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
-      { facet: 'superposition: interference≠classical-shadow computes under the dual wave', on: shadow.computes },
+      { facet: `superposition: interference≠classical-shadow computes under the dual wave · measured shadow.computes=${shadow.computes}`, on: shadow.computes },
       { facet: 'double-torus universe geometry/dynamics align (radii·phase·A432·J2000)', on: torus.aligns },
       { facet: 'sciences/standards quantum-only census recomputes (lab gaps stay open)', on: sciences.computes && sciences.claySolvedByThisFold === 0 },
     ]
@@ -42933,7 +42933,7 @@ export function quantumiseIsAtFtlSpeed(matrix: MindMatrix = buildMatrix(), at = 
     const quantumiseAtFtlSpeed = pairsOn && quantumiseNotMirror && ssl.quantumiseAtFtlSpeed === true && ssl.speedup >= 1 && ssl.memoHits === ssl.probes.length
     const facets = [
       { facet: 'quantumiseAtFtlSpeed', on: quantumiseAtFtlSpeed },
-      { facet: 'quantumise ≠ mirror (ssltest quantum grades · no Qualys cargo)', on: quantumiseNotMirror },
+      { facet: `quantumise ≠ mirror (ssltest quantum grades · no Qualys cargo) · measured quantumiseNotMirror=${quantumiseNotMirror}`, on: quantumiseNotMirror },
       { facet: `ssltest warm path speedup=${roundTo(ssl.speedup, 3)}× memoHits=${ssl.memoHits}/${ssl.probes.length}`, on: ssl.quantumiseAtFtlSpeed },
       { facet: 'pairs quantumise/ftl · ftl/quantumise · soft ssl/test', on: pairsOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantumise-ftl:${entry.facet}:${entry.on}`) }))

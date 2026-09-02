@@ -4835,7 +4835,7 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
   const gitignored = existsSync(join(root, '.gitignore'))
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
-    { facet: 'JUDGED, NOT LANDED — wave:land chains autosave → wave:verify (check:types + trinity) → commit with && , so an unproven experiment ABORTS before it can reach main: violating standards from a sandbox is structurally impossible', on: gateChained && verifyGates },
+    { facet: `JUDGED, NOT LANDED — wave:land chains autosave → wave:verify (check:types + trinity) → commit with && , so an unproven experiment ABORTS before it can reach main: violating standards from a sandbox is structurally impossible · measured gateChained=${gateChained} · verifyGates=${verifyGates}`, on: gateChained && verifyGates },
     { facet: 'ISOLATION — experiments live in the session scratchpad, git-ignored and outside src; a probe that fails never appears in git status, never lands, leaves the standards untouched', on: gitignored },
     { facet: 'PROMOTION PATH — scratchpad probe → (computes?) Edit into src + quantum:register → stage → wave:land; (fails?) discard. Freedom to experiment is total; safety is the exit gate, not a cage', on: gateChained && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sandbox:${entry.facet.slice(0, 64)}:${entry.on}`) }))

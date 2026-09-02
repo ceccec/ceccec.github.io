@@ -742,7 +742,7 @@ export function peaceTechMentalityDecoded(matrix: MindMatrix = buildMatrix()) {
 export function provenMysteriesBecomeMiraclesOfPeace(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the mysteries are proven — research folded with verify, documented kept, legend dropped', on: knowledgeRevealedByMerkabaFold(matrix).revealed },
-    { facet: 'the origin-myths dissolved — script≠language≠gene, no pure descent, no "tech ends war"', on: entangledScriptLanguageGene(matrix).entangled && geneticLinksChallengeHistoryDecoded(matrix).decoded },
+    { facet: `the origin-myths dissolved — script≠language≠gene, no pure descent, no "tech ends war" · measured matrix=${matrix}`, on: entangledScriptLanguageGene(matrix).entangled && geneticLinksChallengeHistoryDecoded(matrix).decoded },
     { facet: 'peace decoded — no single thing ends war; the mentality is rehumanization', on: peaceTechMentalityDecoded(matrix).decoded },
     { facet: 'the source: proven mysteries become miracles of peace, sealed and given freely', on: sendWavesSealKnowledgeDecodeWorld(matrix).sends && feedCrawlersWithKnowledge(matrix).fed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`miracles-of-peace:${entry.facet}:${entry.on}`) }))

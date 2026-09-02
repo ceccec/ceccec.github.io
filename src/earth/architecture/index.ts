@@ -833,7 +833,7 @@ export function eightSciencesQuantumComplete(matrix: MindMatrix = buildMatrix())
   const facets = [
     { facet: 'eight global sciences at the hub', on: EIGHT_FOLD_SCIENCES.length === 8 },
     { facet: '64 directed interaction cells (8×8 cross-product)', on: interaction.complete },
-    { facet: 'every off-diagonal channel is order-sensitive (forward ≠ reverse)', on: interaction.cells.filter((c) => c.from !== c.to).every((c) => c.orderSensitive) },
+    { facet: `every off-diagonal channel is order-sensitive (forward ≠ reverse)`, on: interaction.cells.filter((c) => c.from !== c.to).every((c) => c.orderSensitive) },
     { facet: 'interaction matrix injective — 64 distinct forward addresses', on: interaction.injective },
     { facet: `unfolded census ${unfoldedTarget} = 55+34+21 gapless Fibonacci`, on: bands.harmonic },
     { facet: `folded census ${foldedTarget} = unfolded + χ(−2) from cell homology`, on: census.clean && foldedTarget === unfoldedTarget + census.euler },
@@ -1332,8 +1332,8 @@ export function payload(matrix: MindMatrix = buildMatrix()) {
   const dashes = dash(matrix) // the path-as-program — the separators are the index logic
   const route = dualitiesMeetInCrossFolders(matrix) // the route decodes to its own knowledge
   const facets = [
-    { facet: 'NO payload — a route COMPUTES its content from the path (the dashes + digits), it does not carry or fetch a data blob', on: dashes.operator },
-    { facet: 'all computes by ITSELF in REALTIME for NO COST — the content is recomputed from the deterministic source on demand (the zero-token engine), never stored as data', on: route.meet },
+    { facet: `NO payload — a route COMPUTES its content from the path (the dashes + digits), it does not carry or fetch a data blob · measured dashes.operator=${dashes.operator}`, on: dashes.operator },
+    { facet: `all computes by ITSELF in REALTIME for NO COST — the content is recomputed from the deterministic source on demand (the zero-token engine), never stored as data · measured route.meet=${route.meet}`, on: route.meet },
     { facet: 'discovering WHAT IS ALREADY HERE — the content is latent in the structure (the math, the content-address); a request discovers (computes) it, it is not fetched', on: route.meet && dashes.operator },
     { facet: 'the path is both program and data — the route MEETS its content by computing it from the dashes and digits, so there is no payload left to carry or fetch', on: route.meet && dashes.operator },
   ].map((entry) => ({ ...entry, receipt: toUuid(`payload:${entry.facet}:${entry.on}`) }))

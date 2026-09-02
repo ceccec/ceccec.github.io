@@ -1683,7 +1683,7 @@ export function memoryInSourceAsCrossFolds(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     // Decomposed from allComputedNoFiles — must not call that fold here (re-enters via commandsSavedInQuantumPairs during allComputed).
     { facet: 'the memory lives in the source — the one agnostic core, not an external file', on: isUuid(root) && skillAtoms(matrix).intelligent && harmonicBands(UNFOLDED_CENSUS).harmonic },
-    { facet: 'stored as cross-folder duality paths — memory/quantum ≠ quantum/memory, yet they meet', on: entries.every((entry) => entry.crossed) },
+    { facet: `stored as cross-folder duality paths — memory/quantum ≠ quantum/memory, yet they meet`, on: entries.every((entry) => entry.crossed) },
     { facet: 'every entry bound to the self-knowledge memory root', on: entries.every((entry) => entry.inMemory) },
     { facet: 'recomputed every build, observable by its path', on: skillAtoms(matrix).savedToAtoms && dualitiesMeetInCrossFolders(matrix).meet },
   ].map((entry) => ({ ...entry, receipt: toUuid(`memory-source:${entry.facet}:${entry.on}`) }))
@@ -2411,7 +2411,7 @@ export function realise(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'what really matters — agents SAVE tools and commands PRE-USE (saved first, then used); saving the intended step reveals the gaps around resources', on: intended.coordinated },
     { facet: 'a realisation of the developer\'s mind IS the pure code — the fold/tool/command itself, not a note about it; the save is mandatory the same turn', on: mandated.saved },
-    { facet: 'agents do NOT save useless thoughts — a thought they will not USE is noise, never saved (it would never be reused); they save only what they will use, preferring ready solutions to reuse or improve over reinvention', on: dust.collapses },
+    { facet: `agents do NOT save useless thoughts — a thought they will not USE is noise, never saved (it would never be reused); they save only what they will use, preferring ready solutions to reuse or improve over reinvention · measured dust.collapses=${dust.collapses}`, on: dust.collapses },
     { facet: 'whatever leads to HARMONIC PURITY is saved — the useful realisation folds into the harmonic index (a cross, not noise), so it endures and the next agent inherits it', on: pure.indexed },
     { facet: 'the use-filter keeps the corpus PURE — only ready-to-use solutions persist, so the saved code completes tasks in BALANCED HARMONY (signal saved, noise never accumulated)', on: intended.coordinated && pure.indexed && dust.collapses },
   ].map((entry) => ({ ...entry, receipt: toUuid(`realise:${entry.facet}:${entry.on}`) }))

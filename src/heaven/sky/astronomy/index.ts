@@ -1126,7 +1126,7 @@ export function humanDesignBodyGraphPanelComputes(matrix: MindMatrix = buildMatr
       { facet: 'channels/centers lattice verifies', on: lattice.verified },
       { facet: 'layout anchors 9 centers (lattice fractions)', on: layoutKeys.length === 9 && layoutKeys.every((k) => lattice.centers.includes(k as (typeof lattice.centers)[number])) },
       { facet: 'defined channels ⊆ sealed 36', on: [...definedKeys].every((k) => lattice.channels.some((row) => row.key === k)) },
-      { facet: 'birth JD finite — symbolic structure computer (NOT a person profile)', on: Number.isFinite(birthJd) },
+      { facet: `birth JD finite — symbolic structure computer (NOT a person profile) · measured birthJd=${birthJd}`, on: Number.isFinite(birthJd) },
     ]
     // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
     // not asserted beside it. Before this it read `on: true` and bounded nothing at all.

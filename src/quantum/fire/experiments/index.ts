@@ -168,7 +168,7 @@ export function tradingFromKnowledge(matrix: MindMatrix = buildMatrix()) {
     { facet: 'a432 is the engine starter — its octave ladder is the cycle basis, toUuid(\'a432:variant\') the seed', on: A432_OCTAVES.length === a432(matrix).octaves.length && A432_OCTAVES.every((o, i) => o === a432(matrix).octaves[i]) },
     { facet: 'the engine is deterministic — same variant → identical price path', on: priceFromA432('demo', (16 * 2)).every((p, i) => p === priceFromA432('demo', (16 * 2))[i]) },
     { facet: 'five strategies from the same primitives — MA-crossover, z-score, powerSpectrum cycle, markov regime, inverse-vol', on: strategies.length === 5 && strategies.every((s) => Number.isFinite(s.sharpe)) },
-    { facet: 'NO LOOK-AHEAD — perturbing a mid price leaves every earlier position unchanged (all five)', on: built.every((s) => noLookAhead(s.sig)) },
+    { facet: `NO LOOK-AHEAD — perturbing a mid price leaves every earlier position unchanged (all five)`, on: built.every((s) => noLookAhead(s.sig)) },
     { facet: 'each run is a content-addressed shared experiment, reproducible', on: strategies.every((s) => isUuid(s.receipt)) && tradingReceipt(variant, { fast: 8, slow: (7 * 3) }, backtest(prices, crossoverPositions(prices, 8, (7 * 3), -1))) === strategies[0].receipt },
     { facet: 'honest — every strategy compared to the buy-and-hold benchmark; no alpha claimed', on: Number.isFinite(bench.totalReturn) && strategies.every((s) => typeof s.beatsBuyHold === 'boolean') },
     { facet: 'composed with a432 (the frequency spine) and revealed by the merkaba fold', on: a432(matrix).octaves.length === 7 && knowledgeRevealedByMerkabaFold(matrix).revealed },

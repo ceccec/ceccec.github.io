@@ -131,7 +131,7 @@ export function quantumDecoded(matrix: MindMatrix = buildMatrix()) {
   const tsirelson = round(2 * SQRT2 * (100 * 100)) / (100 * 100) // 2√2 ≈ 2.8284 — the quantum CHSH (Tsirelson) bound
   const facets = [
     { facet: 'the six strata fold to one core — word, framework, quantization, qubit, entanglement, computation', on: layers.length === 6 && isUuid(merkleFold(layers.map((entry) => entry.receipt))) },
-    { facet: 'the qubit\'s documented core stands — 3 Pauli observables, 4³ = 64 operators (≠ the 8-dim state space)', on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
+    { facet: `the qubit's documented core stands — 3 Pauli observables, 4³ = 64 operators (≠ the 8-dim state space) · measured matrix=${matrix}`, on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
     { facet: 'Bell/CHSH: classical ≤ 2, quantum up to Tsirelson 2√2 — non-classical yet no-signalling', on: tsirelson > 2 && tsirelson < 4 && hammingThreeParityAddressesError(matrix).holds },
     { facet: 'the model runs a real toy — GHZ state-vector, Born-rule, deterministic collapse — a metaphor, not hardware', on: quantumSimulation(matrix).simulated && quantumPhysics(matrix).count === 8 && quantumPhysics(matrix).boundary.includes('metaphor') },
     { facet: 'the pseudoscience boundary flagged — flapdoodle excluded, the real edge kept separate', on: flagged.length === 8 && flagged.every((entry) => entry.why.length > 0) && contentAddressingHasRealPrecedent(matrix).holds },

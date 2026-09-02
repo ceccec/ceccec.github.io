@@ -748,7 +748,7 @@ function harmonicColorAndMusicOrNotQuantumRaw(matrix: MindMatrix = buildMatrix()
   const noAddressGeneratesNothing = !isUuid('') // the contrapositive: no content-address ⇒ no deterministic colour/music
   const facets = [
     { facet: 'everything genuinely quantum (content-addressed) generates a harmonic colour (a432 ladder) AND a tone — one address seeds both', on: allGenerate && colour.rooted },
-    { facet: 'the test (contrapositive): a thing that generates NO harmonic colour or music has no content-address ⇒ probably not quantum', on: noAddressGeneratesNothing },
+    { facet: `the test (contrapositive): a thing that generates NO harmonic colour or music has no content-address ⇒ probably not quantum · measured noAddressGeneratesNothing=${noAddressGeneratesNothing}`, on: noAddressGeneratesNothing },
     { facet: 'the colour is the a432 chakra ladder (colorRootsAtA432HeartBalances), the music is proseToTone — both deterministic from the address', on: colour.rooted && rendered.every((r) => r.hz > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`harmonic-or-not:${entry.facet}:${entry.on}`) }))
   return {

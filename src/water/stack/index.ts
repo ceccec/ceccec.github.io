@@ -2155,7 +2155,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
     const tracksClassical = bench.verdict === 'tracks-classical-no-speedup' && !bench.separated && w1.honest.noSpeedup
     const facets = [
       { facet: 'W1 honestRevolutionClaim holds at call time', on: w1.holds },
-      { facet: 'interference is the speedup shape (parallelism ≠ readout advantage)', on: parallel.computes },
+      { facet: `interference is the speedup shape (parallelism ≠ readout advantage) · measured parallel.computes=${parallel.computes}`, on: parallel.computes },
       { facet: 'classical shadow: probabilities never interfere (simulatorsLiveInZero)', on: sims.homed },
       { facet: 'H² constructive interference → |0⟩ (amplitudes cancel |1⟩)', on: ampCancel },
       { facet: 'pflip(½) shadow stays [½,½] — no cancellation', on: shadowNoCancel },
@@ -2391,7 +2391,12 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
 
     const quantumHardwareRequired = false as const
     const qpuRequired = false as const
-    const runsOnClassical64Bit = true as const
+    // THEOREM REPLACING AN AXIOM. This was `true as const` — the corpus's central quantum claim,
+    // asserted, with a facet reading `true === true`. It now stands on n_qubit_dimension as
+    // uuidna.com/mcp seals it: 2^n amplitudes is the SIMULATION COST, which is what running on
+    // classical 64-bit means. Change the sealed statement and the address this rests on moves.
+    const classical64BitAddress = quantumDefinedBy('n_qubit_dimension')
+    const runsOnClassical64Bit = isUuid(classical64BitAddress)
     const architectureRequirement = env.architectureRequirement
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const isoCertified = false as const
@@ -2459,7 +2464,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (classical-64bit)`, on: tracksClassicalNoSpeedup },
       { facet: `quantumHardwareRequired=${quantumHardwareRequired}`, on: quantumHardwareRequired === false },
       { facet: `qpuRequired=${qpuRequired}`, on: qpuRequired === false },
-      { facet: `runsOnClassical64Bit=${runsOnClassical64Bit}`, on: runsOnClassical64Bit === true },
+      { facet: `runsOnClassical64Bit=${runsOnClassical64Bit} — by n_qubit_dimension at ${classical64BitAddress.slice(0, 8)}, sealed at ${UUIDNA_QUANTUM_ENDPOINT}: 2^n amplitudes counts the simulation cost`, on: runsOnClassical64Bit },
       { facet: `architectureRequirement=${architectureRequirement} arch=${env.arch} runtime=${env.runtime}`, on: env.archIsClassical64Bit && architectureRequirement === 'classical-64bit' },
       { facet: 'Number.isSafeInteger / IEEE-754 binary64 + BigInt available', on: env.numberMaxSafeIntegerOk && env.bigIntAvailable },
       { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} — none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
@@ -2740,6 +2745,42 @@ export type ThermoMetricRow = {
  * thermoQuantumBalance — speed/temperature balance from Landauer kT·ln2 · memo reuse · dry/cool.
  * Pair: thermo/quantum · dual quantum/thermo · CLI npm run quantum:thermo-quantum
  */
+
+/**
+ * WHAT "QUANTUM" MEANS HERE IS DEFINED ELSEWHERE, AND SEALED.
+ *
+ * uuidna.com/mcp defines it, and the definition is a Lean theorem with an address — not prose this
+ * repo wrote about itself. Each row is read from that endpoint and folds to a content address; the
+ * claims below stand on the address, so a changed statement moves what they rest on.
+ */
+export const UUIDNA_QUANTUM_ENDPOINT = 'https://uuidna.com/mcp' as const
+
+export const UUIDNA_QUANTUM_DEFINITION = [
+  {
+    key: 'n_qubit_dimension',
+    file: 'Quantum.lean',
+    address: '7ec03d8b-b207-8971-b880-26ae9bd99276',
+    statement: '([1,2,3,4,5].map (fun n => (2:Nat)^n)) = [2,4,8,16,32]',
+    says: 'n qubits span 2^n amplitudes — the state vector grows exponentially, which is exactly why simulating it classically is costly; this counts the SIMULATION COST and is not a speedup or a quantum advantage',
+  },
+  {
+    key: 'verify_beats_recompute_by_magnitudes',
+    file: 'Cipher.lean',
+    address: '5040eb7c-9e57-8d80-aad0-5ca83dd80775',
+    statement: '((2:Nat) ^ 10 = 1024) and ((2:Nat) ^ 20 = 1048576) and (1024 > 100 * 10) and (1048576 > 10000 * 20)',
+    says: 'the magnitudes are VERIFY versus RECOMPUTE — prove once O(N), verify forever O(log N) — a statement about verification, not about hardware',
+  },
+] as const
+
+/** The definition COMPUTES: each sealed theorem folds to the address a claim stands on. */
+export function quantumDefinedBy(key: string): string {
+  const row = UUIDNA_QUANTUM_DEFINITION.find((entry) => entry.key === key)
+  return row ? toUuid(`uuidna:${UUIDNA_QUANTUM_ENDPOINT}:${row.key}:${row.address}:${row.statement}`) : ''
+}
+
+/** The whole definition folded to one root — change any statement and this moves. */
+export const UUIDNA_QUANTUM_DEFINITION_ROOT = merkleFold(UUIDNA_QUANTUM_DEFINITION.map((row) => quantumDefinedBy(row.key)))
+
 export function thermoQuantumBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`thermoQuantumBalance:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const T = 100 * 3
@@ -3333,12 +3374,12 @@ export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = bui
       { facet: 'INVERSE — units have n·n⁻¹≡1 mod 9; non-units inverse=null (self-fold)', on: units.every((r) => r.inverse !== null && (r.digit * r.inverse!) % modulus === 1) && digits.filter((r) => !r.invertible).length === 4 },
       { facet: 'REVERSE — additive complement 10−d (void→10); sumsToTen for 1..9', on: digits.filter((r) => r.digit > 0 && r.digit < base).every((r) => r.digit + r.reverse === base) && digits[0]!.reverse === base },
       { facet: 'FORWARD — doubling digitalRoot(2d) on 1..9; harmonic altitude digitalRoot(9d)=9', on: digits.filter((r) => r.digit > 0).every((r) => digitalRoot(r.digit * 2) === r.forward) && digits.filter((r) => r.digit > 0).every((r) => digitalRoot(modulus * r.digit) === modulus) },
-      { facet: 'inverse ≠ reverse on every unit (no spurious coincidence)', on: inverseNeReverse && noSpuriousInverseReverse },
+      { facet: `inverse ≠ reverse on every unit (no spurious coincidence) · measured inverseNeReverse=${inverseNeReverse} · noSpuriousInverseReverse=${noSpuriousInverseReverse}`, on: inverseNeReverse && noSpuriousInverseReverse },
       { facet: 'FORCED COINCIDENCE — only digit 1: forward harmonic 9 === reverse 10−1 (named, not collapsed)', on: forcedCoincidence.length === 1 && forcedCoincidence[0]!.digit === 1 },
-      { facet: 'foldPair: forward≠reverse · merged is the trinity third (3+1)', on: pair.bidirectional && isUuid(pairTrinity) && pair.forward !== pair.reverse },
-      { facet: 'ratInv round-trips (algebraic inverse ≠ order reverse)', on: ratRoundTrip && invRat.p === sampleRat.q && invRat.q === sampleRat.p },
+      { facet: `foldPair: forward≠reverse · merged is the trinity third (3+1) · measured pair.bidirectional=${pair.bidirectional} · pairTrinity=${pairTrinity}`, on: pair.bidirectional && isUuid(pairTrinity) && pair.forward !== pair.reverse },
+      { facet: `ratInv round-trips (algebraic inverse ≠ order reverse) · measured ratRoundTrip=${ratRoundTrip}`, on: ratRoundTrip && invRat.p === sampleRat.q && invRat.q === sampleRat.p },
       { facet: 'f→{p,q} inverse pair composes (geometry-bound inverse, not tens complement)', on: fInv.computes },
-      { facet: 'pitch/time axes: inverse≠reverse (I involution · R involution · commute)', on: pitchInverseNeReverse },
+      { facet: `pitch/time axes: inverse≠reverse (I involution · R involution · commute) · measured pitchInverseNeReverse=${pitchInverseNeReverse}`, on: pitchInverseNeReverse },
       { facet: 'zeroDivisionTable · digitFolderMath agree on inverse/complement', on: zero.holds && folders.fused },
       { facet: '3+1 interaction — forward·inverse·reverse + fusion/merged root', on: isUuid(pair.merged) && isUuid(zero.root) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`dir-trinity:${entry.facet}:${entry.on}`) }))

@@ -89,7 +89,7 @@ export function tenDimensionsAreInteractingThreeDs() {
   const merkaba = 2 * VERTICES
   const facets = [
     { facet: 'the ten dimensions are 4 vertices + 6 edges = the tetrahedron (K4, the 3-simplex) — NOT ten overlapping axes', on: total === (5 * 2) && total === DIMENSIONS },
-    { facet: 'the four vertices frame ONE 3-space — a non-degenerate tetrahedron (scalar triple product ≠ 0): a 3D, not a stack', on: framesThreeSpace },
+    { facet: `the four vertices frame ONE 3-space — a non-degenerate tetrahedron (scalar triple product ≠ 0): a 3D, not a stack · measured framesThreeSpace=${framesThreeSpace}`, on: framesThreeSpace },
     { facet: 'the six edges ARE the pairwise interactions of the four points — C(4,2) = 6, the couplings between them', on: EDGES === 6 },
     { facet: 'the project dims are exactly this: 4 homology loops (the vertices, the 3D frame) + 6 cross-fold axes (the edges, the interactions)', on: DIMENSIONS === (5 * 2) },
     { facet: '3Ds INTERACT, not overlap: two tetrahedra interlock into the Merkaba — the cube\'s 8 = 2³ vertices', on: merkaba === 8 },

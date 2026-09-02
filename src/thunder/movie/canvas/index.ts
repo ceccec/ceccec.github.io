@@ -505,7 +505,7 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
       { facet: 'forward aspect = lightning — screen.aspects.forward', on: screen.aspects.forward.id === 'lightning' },
       { facet: 'inverse aspect = inverted-lightning / plasma screen — noBallInTheMiddle', on: screen.aspects.inverse.id === 'inverted-lightning' && screen.noBallInTheMiddle },
       { facet: 'reverse aspect = thunder — screen.aspects.reverse', on: screen.aspects.reverse.id === 'thunder' },
-      { facet: 'foldPair(thunder,plasma) forward≠reverse — same family, order-sensitive aspects', on: aspects.forward !== aspects.reverse && isUuid(aspects.merged) },
+      { facet: `foldPair(thunder,plasma) forward≠reverse — same family, order-sensitive aspects · measured aspects.merged=${aspects.merged}`, on: aspects.forward !== aspects.reverse && isUuid(aspects.merged) },
       { facet: 'thunderAndPlasmaAreSameInDifferentAspects — composes plasmaBallIsScreenHoldingThunderAndPlasma', on: sameFamilyDifferentAspects },
       { facet: 'HONEST — lightning channel is plasma; thunder is acoustic shock', on: screen.claySolvedByThisFold === 0 && screen.physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thunder-plasma-aspects:${entry.facet}:${entry.on}`) }))

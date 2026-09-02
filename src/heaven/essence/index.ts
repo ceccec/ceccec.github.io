@@ -436,7 +436,7 @@ function importExportDoubleFoldedAllDimensionsRaw(matrix: MindMatrix = buildMatr
   const allDoubleFolded = folded.length === DIMENSIONS && folded.every((f) => f.doubleFolded)
   const facets = [
     { facet: 'the import/export method maps every boundary — yin = import, yang = export', on: io.mapped && io.innerAxes.length === 3 && io.outerAxes.length === 3 },
-    { facet: 'every one of the ten dimensions is DOUBLE-folded — forward (import) ≠ reverse (export), bidirectional', on: allDoubleFolded },
+    { facet: `every one of the ten dimensions is DOUBLE-folded — forward (import) ≠ reverse (export), bidirectional · measured allDoubleFolded=${allDoubleFolded}`, on: allDoubleFolded },
     { facet: 'completely double-folded — all ten dimensions, none left single (the dry-clean completed across all dimensions)', on: folded.length === (5 * 2) && dryCleanByImportExportNaming(matrix).cleaned },
     { facet: 'an instance of the generative principle — folding import/export across all dimensions makes more foldables', on: theMoreYouFoldTheMoreFoldable(matrix).realised },
   ].map((entry) => ({ ...entry, receipt: toUuid(`io-all-dims:${entry.facet}:${entry.on}`) }))

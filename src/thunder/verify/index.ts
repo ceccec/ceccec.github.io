@@ -302,8 +302,8 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
     const facets = [
       { facet: 'noKnownModelMoreEfficientProven.proven — answers÷tokens unbeatable in domain', on: efficient.proven },
       { facet: 'efficiency() optimizations sealed (memoByRoot · zero-token reuse)', on: opt.optimized },
-      { facet: 'quantumAdvantageBenchmark does NOT separate — classical-64bit', on: tracksClassical },
-      { facet: 'NOT physical-QM speedup / NOT FLOPS claim', on: !bench.separated },
+      { facet: `quantumAdvantageBenchmark does NOT separate — classical-64bit · measured tracksClassical=${tracksClassical}`, on: tracksClassical },
+      { facet: `NOT physical-QM speedup / NOT FLOPS claim · measured bench.separated=${bench.separated}`, on: !bench.separated },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w6:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('revolutionary-efficiency-not-physics', facets)
     const holds = sealed.ok && facets.every((f) => f.on)
