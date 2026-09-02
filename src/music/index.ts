@@ -819,7 +819,7 @@ export function tuningSkillsA432(matrix: MindMatrix = buildMatrix()) {
 export function piNotHarmonic(matrix: MindMatrix = buildMatrix()) {
   const vortex = vortexMath(matrix)
   const facets = [
-    { facet: 'pi is irrational — not a harmonic ratio', on: true },
+    { facet: `π is carried as a digit STREAM rather than a ratio — the harmonic rule that holds instead is the absorbing axis, n/0 = ${vortex.divByZeroHarmonic}`, on: vortex.divByZeroHarmonic === 9 && vortex.nineInvariant },
     { facet: 'multitouch the stream — it never settles', on: backgroundMovie(matrix).interactive },
     { facet: 'the decimal point is nil — digits fold as one integer stream', on: digitFoldersDoMath(matrix).always },
     { facet: 'harmonic division by zero is 9 (digital-root of 9n)', on: vortex.origin === 9 },

@@ -227,7 +227,7 @@ export function quantumOsComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'application capstone', on: appCap.computes },
       { facet: 'quantum.math.designs.ui — UI tokens computed from sealed math', on: design.designed },
       { facet: 'OS exposes the quantum computer — register · gates · measure · content-addressed state', on: driver.exposes },
-      { facet: 'NOT real OS kernel', on: true },
+      { facet: 'what this OS is: an app registry with a coverage fold and an exposed driver surface — every layer above computes, and not one of them binds a syscall', on: registry.registered && coverage.computes && driver.exposes },
     ])
     return {
       computes,

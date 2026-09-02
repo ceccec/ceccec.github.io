@@ -932,7 +932,7 @@ export function humanDesignChartStructureAt(matrix: MindMatrix = buildMatrix(), 
       { facet: '13 personality + 13 design activations', on: personality.length === 13 && design.length === 13 },
       { facet: 'defined channels ⊆ sealed 36-pair table', on: defined.every((ch) => lattice.channels.some((row) => row.key === ch.key)) },
       { facet: 'cusp band = one line arc (gate/6); Moon/Mercury tagged when cusp', on: cuspBandDeg * 6 === RAVE_GATE_ARC_DEG && cuspWarnings.every((w) => w.cusp) },
-      { facet: 'NOT personality science — structure receipt only', on: true },
+      { facet: `what this returns is a structure receipt — ${personality.length}+${design.length} activations over the sealed channel table, computed from the Meeus ephemeris; nothing here scores a person`, on: ephCore.computes && defined.every((ch) => lattice.channels.some((row) => row.key === ch.key)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hd-chart-w5:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((f) => f.on)
     return {
@@ -1039,7 +1039,7 @@ export function humanDesignChartStructureFacetsAt(matrix: MindMatrix = buildMatr
       { facet: 'definitionKind ↔ connected components of defined centers', on: kindMatches && components === raveDefinitionComponents(definedCenterSet, chart.definedChannels) },
       { facet: 'personality ∩ design gate sets ⊆ activatedGates', on: sharedGates.every((g) => chart.activatedGates.includes(g)) && personalityGates.every((g) => pSet.has(g)) },
       { facet: 'cusp warnings compose from W5 (UX band, not arcsecond claim)', on: chart.cuspWarnings.every((w) => w.cusp) },
-      { facet: 'NOT type/authority/aura — structure receipt only', on: true },
+      { facet: `what this returns is a partition — defined ∪ open covers every center, definitionKind read off the connected components; a graph property, and no type or authority is assigned`, on: partitionOk && hangingOk && kindMatches },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hd-structure-w6:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((f) => f.on)
     return {
@@ -1351,7 +1351,7 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       { facet: 'SMIL-safe — no script; animateTransform optional', on: noScript && still.includes('<svg') && !still.includes('animateTransform') },
       { facet: 'honesty — structureOnly · wetStatic=false · not aura/type', on: hasHonesty },
       { facet: 'definitionKind + hanging + JD attributes bound', on: svg.includes(`data-definition="${panel.definitionKind}"`) && svg.includes(`data-hanging="${panel.hangingGates.length}"`) },
-      { facet: 'NOT type/authority/aura — structure SVG only', on: true },
+      { facet: 'the SVG carries the structure and names it — data-symbol, the centers, the channels, definitionKind and JD bound as attributes, and no script', on: hasSymbol && centersMarked && channelsMarked && noScript && hasHonesty },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hd-svg-w7:${entry.facet}:${entry.on}`) }))
     const computes = facets.every((f) => f.on)
     return {

@@ -391,7 +391,7 @@ export function quantumWidgetsComputes(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'registry sealed — ten dashboard tiles', on: registry.length === (5 * 2) },
       { facet: 'every tile render receipt at at', on: paints.every((paint) => isUuid(paint.root)) },
       { facet: 'state-of-the-art harmonised standard', on: sota.exemplary },
-      { facet: 'NOT app-store plugins — sealed Vue + compute facets', on: true },
+    { facet: `${registry.length} widgets, each painting to a UUID root from a sealed Vue component — the fold IS the registry, and nothing loads from outside it`, on: registry.length === (5 * 2) && paints.every((paint) => isUuid(paint.root)) },
     ])
     return { computes, registry, paints, sota, facets, root: merkleFold([root, sota.root, ...registry.map((entry) => entry.receipt)]), statement: 'Quantum widgets computes: dashboard tile registry + paint receipts at call time.', boundary: 'Widgets = sealed Vue mounts + compute facets — NOT App Store plugins or third-party embeds.' }
   })

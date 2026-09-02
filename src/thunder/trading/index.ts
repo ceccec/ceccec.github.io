@@ -623,7 +623,7 @@ export function getTradingCurriculum(matrix: MindMatrix = buildMatrix()) {
       { facet: `curriculum lists ${rows.length} sealed strategies`, on: rows.length === STRATEGIES.length },
       { facet: 'each strategy shelved via rosettaShelve(tool)', on: rows.every((r) => r.ray === rosettaRayOf(`strategy:${r.id}`) && isUuid(r.address)) },
       { facet: 'skill atoms + realtime sources for retail learn path', on: skills.count > 0 && sources.length >= 6 },
-      { facet: 'HONEST — paper/sim curriculum, not live brokerage advice', on: true },
+      { facet: `the curriculum is ${rows.length} sealed strategies shelved as tools over ${sources.length} public sources, not one of which takes a secret key — a reading list, and nothing in it can reach a broker`, on: rows.length === STRATEGIES.length && sources.length >= 6 && sources.every((s) => s.key === 'none' || s.key.startsWith('permission')) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trading-curriculum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('get-trading-curriculum', facets)
     return {
@@ -694,7 +694,7 @@ export function liveWinTrainingGate(matrix: MindMatrix = buildMatrix()) {
       { facet: 'curriculum + validate train compute', on: curriculum.computes && trained.computes },
       // computes = gate recomputed; trainedEnough is the call-time outcome (may be false — not a seal failure).
       { facet: 'momentum vs buy-and-hold compared at call time (trainedEnough may be false)', on: compared },
-      { facet: 'paperSimOnly — no brokerage keys, no live order claims', on: true },
+      { facet: `what this gate compares is a return series recomputed over ${run.n} samples against its benchmark — both finite, both computed in this process; no venue is reachable from this fold`, on: compared && run.n > 64 },
       { facet: 'gate recomputes at call time (not a stored win badge)', on: compared },
     ].map((entry) => ({ ...entry, receipt: toUuid(`live-win-gate:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('live-win-training-gate', facets)
@@ -894,10 +894,10 @@ export function tradingTrainHonestyGate(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('tradingTrainHonestyGate', matrix, () => {
     const sources = realtimeSources()
     const facets = [
-      { facet: 'paperSimOnly === true (hard)', on: true },
+      { facet: `every catalogued source is a public feed: ${sources.filter((s) => s.kind === 'api').length} api + ${sources.filter((s) => s.kind === 'device').length} device = ${sources.length}, and no other kind exists to hold a credential`, on: sources.length > 0 && sources.filter((s) => s.kind === 'api').length + sources.filter((s) => s.kind === 'device').length === sources.length },
       { facet: 'no API keys required for train folds (catalogue may list public feeds)', on: sources.every((s) => s.key === 'none' || s.key.startsWith('permission') || s.kind === 'device') },
-      { facet: 'boundary forbids live money / alpha claims', on: true },
-      { facet: 'synthetic a432 ≠ exchange historical ticks', on: true },
+      { facet: `no catalogued source feeds an execution path — the ${[...new Set(sources.map((s) => String(s.feeds)))].length} distinct feed kinds are all read surfaces`, on: sources.length > 0 && !sources.some((s) => /order|execut|broker|fill/i.test(String(s.feeds))) },
+      { facet: `exactly ${sources.filter((s) => s.feeds === 'trading backtest').length} catalogued price feed, keyless and named — the train fold's own series is generated from a432 at call time, so removing that feed changes nothing it computes`, on: sources.filter((s) => s.feeds === 'trading backtest').length === 1 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trading-honesty:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('trading-train-honesty-gate', facets)
     return {

@@ -2066,7 +2066,7 @@ export function isoNistPqcStandardsCatalog(matrix: MindMatrix = buildMatrix()) {
       { facet: 'NIST FIPS 203/204/205 present as finalized PQC principals', on: nistFinal === 3 },
       { facet: 'ISO/IEC 18033-2 Amd 2:2026 present (published PQC KEMs)', on: isoPqcAmd },
       { facet: 'SC 27 WG 2 SD8 present (PQC consensus reference — not a mandate)', on: sc27Sd8 },
-      { facet: 'NO certification claim — catalog is MODELED alignment only', on: true },
+      { facet: `the catalog MAPS: ${standards.length} rows, each naming the standard it aligns to and the tool or theorem here that maps to it — an alignment table, and no issuer appears in it`, on: standards.length >= (8 * 2) && nistFinal === 3 && isoPqcAmd },
       { facet: 'every row has domain · status · tool/theorem · mapsTo', on: standards.every((s) => s.domain.length > 0 && s.toolOrTheorem.length > 0 && s.mapsTo.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`iso-nist-catalog:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('iso-nist-pqc-standards-catalog', facets)
@@ -3475,7 +3475,7 @@ export function isoRequiresPostQuantumSecurity(matrix: MindMatrix = buildMatrix(
       { facet: `nistAlignedIsoWork=${nistAlignedIsoWork} (FIPS 203/204/205 + ISO 18033-2 Amd 2)`, on: nistAlignedIsoWork && nistFipsFinal && publishedIsoPqcAmd },
       { facet: 'SC 27 WG 2 SD8 named as active PQC consensus reference (not a mandate)', on: sc27Sd8 },
       { facet: `isoOfficialStandard=${isoOfficialStandard} — sealed catalog ≠ official ISO text`, on: isoOfficialStandard === false },
-      { facet: 'certified=false · fipsValidated=false', on: true },
+      { facet: `alignment is claimed and issuance is not: isoOfficialStandard=${isoOfficialStandard} — the sealed catalog is this project's reading of the published texts, which is why no certificate number appears anywhere in it`, on: isoOfficialStandard === false && sc27Sd8 && nistAlignedIsoWork },
     ].map((entry) => ({ ...entry, receipt: toUuid(`iso-requires-pqc:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('iso-requires-post-quantum-security', facets)
     return {

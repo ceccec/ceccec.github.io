@@ -92,7 +92,7 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
       { facet: 'exactly four polarity reversals — the gateways, computed never named: [8, 3, 9, 0]', on: gateways.length === 4 && gateways.join(',') === '8,3,9,0' && alternating },
       { facet: 'six ascents = the ⟨2⟩ unit-orbit length · four descents = the gateway count', on: ascents === vm.doubling.length && descents === gateways.length },
       { facet: 'agrees with the sealed folds — doubling 124875 and the 9-invariant recompute in vortexMath', on: vm.doubling.join('') === '124875' && vm.nineInvariant && vm.divByZeroHarmonic === 9 },
-      { facet: 'NOT geography, NOT new arithmetic — compass names are an organizing lens over the four computed reversals; n/0 readings stay sealed in zeroDivisionTable and division by zero remains undefined', on: true },
+      { facet: 'compass names are an organizing LENS over the four computed reversals — the reversals are [8,3,9,0] read off the strokes, and renaming them changes nothing the folds compute', on: gateways.join(',') === '8,3,9,0' && vm.doubling.join('') === '124875' },
     ])
     return {
       computes,
@@ -300,7 +300,7 @@ export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
       { facet: 'the lift is a genuine 3-solid — nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate', on: abs(volume) > 1e-9 && vertices.length === 4 && faces === 4 },
       { facet: 'the inverted pyramid is the polarity flip — equal magnitude, opposite orientation, signed volumes cancel exactly', on: abs(volume + invertedVolume) < 1e-12 && abs(invertedVolume) > 1e-9 },
       { facet: 'the two interact as the sealed merkaba — counter-rotation in mountain/geometry, the pairs inside the double torus in mountain/topology', on: mk.counterRotating && mkTorus.counted },
-      { facet: 'NOT a geography correction — the 2D compass rose is a projection convention (geodesy keeps E/W/N/S as tangent directions on the sphere); the pyramid is the computed lift of the four reversal vertices, an organizing lens', on: true },
+      { facet: 'the 2D compass rose is a PROJECTION CONVENTION — what is computed here is a signed volume and its exact cancellation under the polarity flip, which no naming convention affects', on: abs(volume + invertedVolume) < 1e-12 && abs(volume) > 1e-9 },
     ])
     return {
       computes,

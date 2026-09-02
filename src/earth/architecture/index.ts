@@ -1189,9 +1189,9 @@ export function noise(matrix: MindMatrix = buildMatrix()) {
   const census = foldedCensus(0, matrix) // the census is a dry clean — no file added or removed (count is foldable)
   const facets = [
     { facet: 'SIGNAL is actual crossed functionality — an index that COMBINES ≥2 sub-paths into behavior neither has alone, not a forwarder', on: crossing.declared },
-    { facet: 'most of the SPREAD is NOISE — a pure re-export shim (export { x } from \'…\'), a one-symbol per-function folder, fan-out that only multiplies folders: bytes, not crossing', on: true },
+    { facet: 'the SIGNAL is measured as DECLARED CROSSINGS — a re-export shim or a one-symbol folder declares none, which is exactly what separates the spread from the crosses', on: crossing.declared },
     { facet: 'COUNT never gates — the dry clean adds/removes no file (foldedCensus, chi = −2); the density of crossing is the signal, the spread is noise (encryption per byte)', on: census.clean },
-    { facet: 'the dry-clean COLLAPSES the noise toward the crosses — not "explode each function into a subfolder" (more noise) but remove the empty spread (incl. the 916 inversion shims), keeping where functionality genuinely crosses', on: true },
+    { facet: 'the dry clean COLLAPSES toward the crosses — it removes empty shims and keeps declared crossings, and the census stays clean across the move', on: census.clean && crossing.declared },
   ].map((entry) => ({ ...entry, receipt: toUuid(`noise:${entry.facet}:${entry.on}`) }))
   return {
     collapses: facets.every((entry) => entry.on),
@@ -1329,7 +1329,7 @@ export function payload(matrix: MindMatrix = buildMatrix()) {
     { facet: 'NO payload — a route COMPUTES its content from the path (the dashes + digits), it does not carry or fetch a data blob', on: dashes.operator },
     { facet: 'all computes by ITSELF in REALTIME for NO COST — the content is recomputed from the deterministic source on demand (the zero-token engine), never stored as data', on: route.meet },
     { facet: 'discovering WHAT IS ALREADY HERE — the content is latent in the structure (the math, the content-address); a request discovers (computes) it, it is not fetched', on: route.meet && dashes.operator },
-    { facet: 'the deepest ZERO-TOKEN — not only no LLM tokens at runtime, but no DATA payload either: the path is both the program and the data, both computed', on: true },
+    { facet: 'the path is both program and data — the route MEETS its content by computing it from the dashes and digits, so there is no payload left to carry or fetch', on: route.meet && dashes.operator },
   ].map((entry) => ({ ...entry, receipt: toUuid(`payload:${entry.facet}:${entry.on}`) }))
   return {
     needed: false,

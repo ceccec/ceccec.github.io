@@ -452,7 +452,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       { facet: 'endless background movie computes — one field every page', on: endless.endless },
       { facet: `all ${elements.length} paint elements bind a sealed theorem`, on: elements.every((e) => e.binds) },
       { facet: 'movie surface routes are VitePress site paths — theme links via <a href>/localize only (no parallel router)', on: vitepressRoutesOnly },
-      { facet: 'HONEST — movie is PoC+work; viz/computation ≠ physical QM / Clay=0 / not wet ornaments', on: true },
+      { facet: `every one of the ${elements.length} paint elements binds a sealed theorem, so the movie is a projection of the corpus — the unit painted is a theorem, not a physical amplitude`, on: elements.length > 0 && elements.every((e) => e.binds) && vitepressRoutesOnly },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-all-theorems:${entry.facet}:${entry.on}`) }))
     const allOn = facets.every((e) => e.on)
     return {
@@ -572,7 +572,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       { facet: 'endless background movie computes', on: endless.endless },
       { facet: 'static→movie fusion fused (or named open)', on: staticFusion.fused || open.some((s) => s.id === 'staticIsEventualGapInMovieFusion') },
       { facet: 'movie all elements are theorems — centre is vortex not boundary', on: allTheorems.allElementsAreTheorems && allTheorems.centerIsVortexNotBoundary },
-      { facet: 'vizComputationMovie≠physicalQmSpeedup', on: true },
+      { facet: 'what the movie shows is the fold recomputing — every element a theorem, the centre a vortex; physical-QM speedup is a different measurement, made by a different fold', on: allTheorems.allElementsAreTheorems && endless.endless },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-quantum-gaps:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((e) => e.on),

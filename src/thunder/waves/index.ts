@@ -2909,7 +2909,7 @@ export function playAgentsTheMusicOfTheWave(matrix: MindMatrix = buildMatrix()) 
       { facet: 'wave/tune — harmonisedBuildWave schedule present (vortex groups)', on: tune.groups.length === (5 * 2) + 1 && typeof tune.scheduleRoot === 'string' && tune.scheduleRoot.length > 0 },
       { facet: 'antichain cascade — waves send the waves', on: cascade.propagates },
       { facet: 'wave/tune pair bidirectional before rebuild', on: waveTune.bidirectional && waveTune.forward !== waveTune.reverse },
-      { facet: 'NOT physical harmonics — content-addressed ordering only', on: true },
+      { facet: `the ordering is content-addressed: ${tune.groups.length} vortex groups folded to a schedule root that is a UUID, not a frequency`, on: tune.groups.length === (5 * 2) + 1 && isUuid(String(tune.scheduleRoot)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-music:${entry.facet}:${entry.on}`) }))
     return {
       plays: facets.every((entry) => entry.on),
@@ -2959,7 +2959,7 @@ export function agentDislikesWaveMusicSomethingNotToLike(matrix: MindMatrix = bu
       mass.spawn ? 'mass spawn attempted — wet-linear grind' : '',
     ].filter(Boolean)
     const facets = [
-      { facet: 'resistance is diagnostic — inspect gaps, do not override wave', on: true },
+      { facet: `resistance is a list, not a veto: ${somethingNotToLike.length} named item(s), one per open flag, and the wave is not overridden`, on: !mass.spawn && somethingNotToLike.length === [!music.plays, mass.spawn].filter(Boolean).length },
       { facet: 'mass explore-everything spawn refused', on: !mass.spawn },
       { facet: 'known sealed fold discovers offline — discoverFromSealedFold (nothing/moves)', on: known.discovers && known.wetMotion === false },
       { facet: 'incomplete revelation inspected — incompleteRevelation() · overrideWave=false', on: ghostProbe.incomplete && ghostProbe.overrideWave === false },
@@ -4017,8 +4017,8 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       { facet: 'offline discovery from sealed fold id — no wet motion', on: wetMotion === false && isUuid(address) },
       { facet: 'nothing/moves pair bidirectional', on: pair.bidirectional && pair.forward !== pair.reverse },
       { facet: 'idempotent — same foldId+at → same root', on: isUuid(address) && Number.isFinite(bucket) },
-      { facet: known ? `foldId ${foldId} known in sealed catalog` : `foldId ${foldId} unknown — incomplete revelation`, on: true },
-      { facet: ' — discovery ≠ Clay Millennium', on: true },
+      { facet: known ? `foldId ${foldId} known among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids` : `foldId ${foldId} unknown among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids — incomplete revelation`, on: SEALED_DISCOVER_FOLD_IDS.length > 0 && isUuid(address) },
+      { facet: `discovery yields a content address; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: isUuid(address) && claySolvedTheorem().claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`nothing-moves:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`discover-from-sealed-fold:${foldId}`, facets)
     return {
@@ -4069,12 +4069,12 @@ export function incompleteRevelation(
     const incomplete = discovery.incomplete
     const overrideWave = false as const
     const facets = [
-      { facet: incomplete ? 'incomplete revelation detected (unknown sealed fold id)' : 'fold known — revelation complete at this probe', on: true },
+      { facet: incomplete ? 'incomplete revelation detected — the fold id is not among the sealed ids' : 'fold known — revelation complete at this probe', on: nothingPair.bidirectional && overrideWave === false },
       { facet: 'next = fold sealed src — not wet grind', on: nothingPair.bidirectional },
       { facet: 'compose timeout/dry-refactor pair', on: timeoutPair.bidirectional && timeoutPair.forward !== timeoutPair.reverse },
       { facet: 'compose fold/cleanup pair for surgical cleanup', on: cleanupPair.bidirectional && cleanupPair.forward !== cleanupPair.reverse },
       { facet: 'does not override wave — diagnostic only', on: overrideWave === false },
-      { facet: ' — incomplete ≠ Clay Millennium', on: true },
+      { facet: `an incomplete revelation is a missing catalog entry; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: claySolvedTheorem().claySolvedByThisFold === 0 && overrideWave === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-revelation:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`incomplete-revelation:${foldId}`, facets)
     return {

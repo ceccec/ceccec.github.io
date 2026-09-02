@@ -2535,7 +2535,7 @@ export function fusionGoldComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'product from process', on: product.produced },
       { facet: 'aggregate matches generator', on: product.aggregateScore === process.generator.aggregateGeneratorScore },
       { facet: 'strength generator sealed', on: strength.computes },
-      { facet: 'NOT literal gold bullion', on: true },
+      { facet: `what is produced is a scored product whose aggregate equals its generator score (${product.aggregateScore}) — an accounting identity over the process, and the unit is the score`, on: product.produced && product.aggregateScore === process.generator.aggregateGeneratorScore },
     ])
     return {
       computes,

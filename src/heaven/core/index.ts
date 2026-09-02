@@ -1444,7 +1444,7 @@ export function forensicReceipt(input: string, matrix: MindMatrix = buildMatrix(
     { facet: 'forensic-grade integrity — the receipt is SHA-256 content-addressed (cryptographic, collision-resistant), not the FNV tamper-evident default; to alter the result is to break the hash', on: hex64.test(fingerprint) },
     { facet: 'reproducible — any party recomputes the identical fingerprint from the verbatim record, offline and deterministically (zero tokens); the analysis is not a black box', on: reproducible && isUuid(address) },
     { facet: 'chain of custody — input → verdict → bind-to-seal, each link a SHA-256 hash, folded to one chain root an independent verifier can recompute', on: hex64.test(chainRoot) && custody.every((h) => hex64.test(h)) },
-    { facet: 'evidence of the COMPUTATION, not of truth — the receipt proves what was computed for this input, unaltered; it does NOT prove the verdict is true or that anyone lied (harmony ≠ truth)', on: true },
+      { facet: 'the receipt is evidence of the COMPUTATION — a 64-hex fingerprint over a reproducible address with an unbroken custody chain; what it attests is what ran, and that is decidable', on: hex64.test(fingerprint) && reproducible && isUuid(address) && hex64.test(chainRoot) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`forensic:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('forensic-receipt', facets)
   return {

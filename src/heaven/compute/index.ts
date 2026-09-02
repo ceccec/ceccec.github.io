@@ -943,7 +943,7 @@ export function typesMakeTheRealGraph(matrix: MindMatrix = buildMatrix()) {
     { facet: 'rosettaDecodesUrlPath returns typed computationType (not any-string)', on: computationTypeTyped },
     { facet: 'content.pageKind === computationType — one typed field, not two diverging strings', on: noStringly },
     { facet: 'all 7 computation-type routes decode to typed, uuid-rooted graph nodes', on: allRootsTyped },
-    { facet: 'check:types pass = graph valid — TypeScript is the authority, not comments', on: true },
+      { facet: 'the authority is the type-checker — every computation type a union, every root typed, and no stringly-typed escape hatch surviving check:types', on: typesAreUnion && allTyped && computationTypeTyped && noStringly && allRootsTyped },
   ].map((entry) => ({ ...entry, receipt: toUuid(`types-real-graph:${entry.facet}:${entry.on}`) }))
 
   const decided = facets.every((entry) => entry.on)

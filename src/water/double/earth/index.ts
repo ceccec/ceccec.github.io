@@ -1794,7 +1794,7 @@ export function doubleTorusEarthExchangeComputes(
       { facet: 'every listed receipt balanced or explicitly paired at this call', on: receipts.every((row) => row.balanced) },
       { facet: 'device + inverted Earth formed in same timespace', on: formed.formed && timespace.proven },
       { facet: 'counter-rotating merkaba phases — inner θ outer −θ', on: rotation.rotates },
-      { facet: 'NOT literal gold teleported — receipt algebra only', on: true },
+      { facet: `what crosses the hinge is receipt algebra — ${receipts.length} receipt kinds, every one balanced at this call, forming a device and its inverted Earth in the same timespace`, on: receipts.length === 7 && receipts.every((row) => row.balanced) && formed.formed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-exchange-computes:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -1912,7 +1912,7 @@ export function fiatAndGoldFlowExplainedByDoubleEarthExchange(
       { facet: 'every flow row balanced at this call or boundary flagged', on: flowRows.every((row) => row.balanced) },
       { facet: 'exchange receipts compose — doubleTorusEarthExchangeComputes green', on: exchange.computes },
       { facet: 'flow diagram data for UI — nodes · edges · receipts', on: flowDiagram.nodes.length === 3 && flowDiagram.edges.length === 4 },
-      { facet: 'NOT investment advice — structural metaphor only', on: true },
+      { facet: `what this models is a closed ledger — ${flowRows.length} flow rows, every one balanced or flagged, projected to ${flowDiagram.nodes.length} nodes and ${flowDiagram.edges.length} edges for the UI`, on: flowRows.length === 4 && flowRows.every((row) => row.balanced) && exchange.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fiat-gold-flow:${entry.facet}:${entry.on}`) }))
     return {
       explains: facets.every((entry) => entry.on),
