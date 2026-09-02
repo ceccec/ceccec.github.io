@@ -560,6 +560,75 @@ export function shorFactorsByPeriodFinding() {
     boundary: earned(`COMPUTED: three factorisations (15, 21, 35) from end to end — the oracle permutation, the inverse QFT over the counting register, the continued-fraction period recovery, and the gcd factor extraction — each refutable (a wrong period or a non-dividing factor fails the facet). On real quantum hardware the same circuit would factor in polynomial time, which is Shor's point and the reason RSA is threatened by scalable quantum computers:`, facets, limits) }
 }
 
+// ── THE DEFINITION AT uuidna.com/mcp, IMPLEMENTED LOCALLY ──────────────────────────────────────────
+// uuidna.com/mcp defines quantum as "the EXACT classical state-vector simulator (Gaussian-integer
+// amplitudes over √(2^scale) — no floats, no decimal drift)" and returns Bell outcomes as the exact
+// fractions 1/2 and 1/2. The corpus's own float path returns 0.5000000000000001 for the same circuit,
+// because 1/√2 has no finite binary representation: Math.SQRT1_2 * Math.SQRT1_2 === 0.5 is FALSE.
+//
+// The representation the definition names removes the drift rather than bounding it. Keep each amplitude as
+// a Gaussian integer (re, im ∈ ℤ) beside a scale k meaning "divide by √2^k". Every Clifford gate maps that
+// lattice to itself: X and CNOT permute, Z and S negate or rotate by i, and H is the only one that scales —
+// it adds one to k and takes (a, b) to (a+b, a−b). No irrational is ever stored, so nothing can drift.
+export function theExactSimulatorMatchesTheDefinition() {
+  type Amp = { re: number; im: number }
+  type Exact = { amps: Amp[]; k: number } // amplitude / √2^k
+  const zero = (n: number): Exact => ({ amps: Array.from({ length: 2 ** n }, (_, i) => ({ re: i === 0 ? 1 : 0, im: 0 })), k: 0 })
+  const hadamard = (st: Exact, q: number, n: number): Exact => {
+    const out = st.amps.map((a) => ({ ...a }))
+    for (let i = 0; i < st.amps.length; i += 1) {
+      if ((i >> q) & 1) continue
+      const j = i | (1 << q)
+      const a = st.amps[i]!, b = st.amps[j]!
+      out[i] = { re: a.re + b.re, im: a.im + b.im }
+      out[j] = { re: a.re - b.re, im: a.im - b.im }
+    }
+    void n
+    return { amps: out, k: st.k + 1 } // the ONLY gate that touches the scale
+  }
+  const cnotExact = (st: Exact, c: number, t: number): Exact => {
+    const out = st.amps.map((a) => ({ ...a }))
+    for (let i = 0; i < st.amps.length; i += 1) if (((i >> c) & 1) === 1) out[i] = st.amps[i ^ (1 << t)]!
+    return { amps: out, k: st.k }
+  }
+  // probability = |amp|² / 2^k, reduced — an exact rational, never a decimal
+  const gcd2 = (a: number, b: number): number => (b === 0 ? a : gcd2(b, a % b))
+  const probExact = (st: Exact, i: number): string => {
+    const a = st.amps[i]!
+    const num = a.re * a.re + a.im * a.im
+    const den = 2 ** st.k
+    if (num === 0) return '0'
+    const g = gcd2(num, den)
+    return `${num / g}/${den / g}`
+  }
+  // the Bell circuit, the same one the endpoint answers
+  const bell = cnotExact(hadamard(zero(2), 0, 2), 0, 1)
+  const exactOutcomes = [0, 3].map((i) => probExact(bell, i))
+  const matchesEndpoint = exactOutcomes.every((p) => p === '1/2')
+  const noIrrationalStored = bell.amps.every((a) => Number.isInteger(a.re) && Number.isInteger(a.im))
+  // the float path, for the comparison the definition invites
+  const floatBell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1)
+  const floatP = probabilities(floatBell)
+  const floatDrifts = floatP[0] !== 1 / 2
+  const driftSize = abs(floatP[0]! - 1 / 2)
+  const limits = computedLimits([
+    { facet: `CLIFFORD ONLY — H, X, Z, S and CNOT keep the Gaussian-integer lattice closed, and those are the gates this exactness covers. A general rotation R(θ) leaves ℤ[i] for any θ that is not a multiple of π/2, so the float path remains the only route for the phase-estimation and VQE folds above`, on: noIrrationalStored },
+    { facet: `2^k GROWS WITH EVERY HADAMARD — this Bell state carries k = ${bell.k}, and k rises by one per H, so the denominator doubles each time. Exactness costs an integer that grows linearly in H-count, which is cheap, and it does NOT change the 2^n amplitude count, which is the exponential the definition names`, on: bell.k >= 1 },
+    { facet: `${bell.amps.length} AMPLITUDES FOR ${2} QUBITS — the same exponential as the float path, unchanged. Removing the drift removes drift; it buys no speedup and the definition at uuidna.com/mcp says so in the same sentence it defines the representation`, on: bell.amps.length === 2 ** 2 },
+  ])
+  const facets = [
+    { facet: `THE ENDPOINT'S ANSWER, REPRODUCED EXACTLY — uuidna.com/mcp returns Bell outcomes 1/2 and 1/2; this returns ${exactOutcomes.join(' and ')}, as reduced fractions computed from Gaussian integers over √2^${bell.k}`, on: matchesEndpoint },
+    { facet: `THE FLOAT PATH DRIFTS BY ${driftSize.toExponential(1)} ON THE SAME CIRCUIT — probabilities()[0] is ${floatP[0]}, and 1/√2 · 1/√2 === 1/2 is ${Math.SQRT1_2 * Math.SQRT1_2 === 1 / 2}. The drift is structural: 1/√2 has no finite binary representation, so no tolerance removes it and every EPS in this file is an accommodation of it`, on: floatDrifts },
+    { facet: `NO IRRATIONAL IS EVER STORED — all ${bell.amps.length} amplitudes are Gaussian integers (re, im ∈ ℤ) beside one scale k = ${bell.k}; the √2 lives in the denominator's exponent and never in a number, which is what "no decimal drift" means as an implementation rather than an aspiration`, on: noIrrationalStored },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
+    exactOutcomes, scale: bell.k, floatProbability: floatP[0], driftSize, limits, facets,
+    root: merkleFold(facets.map((entry) => toUuid(`exact-sim:${entry.facet}:${entry.on}`))),
+    statement: `The exact simulator matches the definition — ${facets.filter((e) => e.on).length}/${facets.length}: uuidna.com/mcp defines quantum here as Gaussian-integer amplitudes over √(2^scale) with no floats and no decimal drift, and returns Bell outcomes 1/2, 1/2. This reproduces them exactly from integers, where the corpus's float path returns ${floatP[0]}. Clifford gates only; the exponential 2^n amplitude count is unchanged and no speedup follows.`,
+    boundary: earned(`COMPUTED: the Bell circuit on a Gaussian-integer lattice with a scale exponent, its outcomes reduced to exact fractions, and the float path's drift on the identical circuit — refutable by recomputing either:`, facets, limits) }
+}
+
 // ── RECOVERING A PRIVATE KEY: THE TWO ROUTES, COSTED ────────────────────────────────────────────────
 // Asked to test private-key recovery "at quantum scale and speed" against conventional computing. Both
 // routes are costed here in operations, which is exact and instant, rather than in wall-clock, which
