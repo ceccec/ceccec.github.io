@@ -1971,15 +1971,25 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
       { facet: `THE CORPUS EXCEEDS THE CAPACITY: measured corpus ${measured ? corpus : 'n/a'} bytes vs capacity ${capacity} — ratio ${measured ? (corpus / capacity).toFixed(2) : 'n/a'} > 1, so the conjunction {index-only ∧ exactly-${CENSUS} ∧ every index ≤ ${TARGET} B} is unsatisfiable while the corpus stands; ${measured ? overTarget : 'n/a'} files over target is the pigeonhole's floor, not agent failure`, on: !measured || corpus > capacity },
       { facet: `EARNED BOUNDARY — THE RATCHET'S ZERO NEEDS A LAW CHANGE, NAMED NOT SILENT: reaching 0 byte-offenders requires growing the census, allowing body files, or raising/retiring the target — a decision, not a grind; the LINE gate (≤ 2584 per index) is separate and satisfiable, and IS the gate that blocks green`, on: !measured || (corpus > capacity && overTarget > 0) },
     ]
+    // COMPUTED SCOPE, not narrated. The scope used to read "the claim is computed from the facets
+    // and refutable, not hand-asserted" — a sentence asserting its own refutability, which is the
+    // one thing a sentence cannot do. These limits CAN go off: the first fails if the verdict ever
+    // stops being the conjunction of the facets, the second if the census is not actually measured
+    // and the byte figures are therefore standing in for a filesystem nobody read.
+    const limits = [
+      { facet: `THE VERDICT IS THE CONJUNCTION, NOT A SEPARATE ASSERTION — ${facets.filter((entry) => entry.on).length}/${facets.length} facets hold and the fold's own verdict equals that`, on: facets.every((entry) => entry.on) === (facets.filter((entry) => entry.on).length === facets.length) },
+      { facet: `THE FIGURES CAME FROM A FILESYSTEM THAT WAS READ — measured=${measured}, ${sizes.length} index.ts sized; without it the byte counts below are not measurements`, on: measured },
+    ]
     return {
-      computes: facets.every((entry) => entry.on),
+      computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
       census: sizes.length,
       corpusBytes: corpus,
       capacityBytes: capacity,
       overTarget,
       facets,
       statement: `The monolith byte-target exceeds the census capacity — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${sizes.length} index.ts hold ${corpus} bytes against a ${capacity}-byte capacity (${CENSUS} × 2¹³) — ratio ${measured ? (corpus / capacity).toFixed(2) : 'n/a'}. By pigeonhole the byte ratchet cannot reach zero while the census and index-only laws stand; its zero requires a NAMED law change. The 2584-line gate is the satisfiable one that actually gates green.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+      limits,
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, limits) }
   })
 }
 
@@ -2011,15 +2021,24 @@ export function theRatchetRecomputesInOptimisationWaves(matrix: MindMatrix = bui
       { facet: `SATISFIABLE WHERE THE STATIC TARGET WAS NOT: target × census = ${measured ? target * pigeonhole.census : 'n/a'} ≥ corpus ${pigeonhole.corpusBytes} — by pigeonhole a redistribution with zero offenders EXISTS, while the sealed 8192 floor stays unreachable (${staticUnsatisfiable}); offenders under the derived target are the true outlier monoliths, the honest direction`, on: satisfiable && staticUnsatisfiable },
       { facet: `THE RATCHET FOLLOWS THE MEASURE IN BOTH DIRECTIONS: derive(2·corpus) ≥ derive(corpus) and derive(corpus/2) ≤ derive(corpus) — growth re-derives the target up, optimisation waves re-derive it down; no wave inherits a stale number`, on: followsTheMeasure },
     ]
+    // COMPUTED SCOPE, not narrated — the same correction as the fold above. Both limits can go off:
+    // the first when the filesystem was not read and the byte figures stand for nothing measured,
+    // the second when the derived target stops being satisfiable by any distribution of the census,
+    // which is the condition under which this ratchet would be quoting an unreachable number.
+    const limits = [
+      { facet: `THE FIGURES CAME FROM A FILESYSTEM THAT WAS READ — measured=${measured}, census ${pigeonhole.census}`, on: measured },
+      { facet: `THE DERIVED TARGET IS SATISFIABLE — target × census = ${measured ? target * pigeonhole.census : 'n/a'} against corpus ${pigeonhole.corpusBytes} B`, on: satisfiable },
+    ]
     return {
-      computes: facets.every((entry) => entry.on),
+      computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
       targetBytes: target,
       averageBytes: round(average),
       census: pigeonhole.census,
       corpusBytes: pigeonhole.corpusBytes,
       facets,
       statement: `The ratchet recomputes in optimisation waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the byte target derives as the least 2^k ≥ corpus/census = ${measured ? target : 'n/a'} B (fair share ${measured ? average.toFixed(0) : 'n/a'} B over ${pigeonhole.census} files). Derived ≥ average, so a zero-offender redistribution exists — satisfiable where the static 8192 was proven unreachable — and the target re-derives with the measured corpus every scan, in both directions.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+      limits,
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, limits) }
   })
 }
 
