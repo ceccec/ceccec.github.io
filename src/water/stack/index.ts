@@ -2052,7 +2052,12 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
     const b = memoByRoot('eff-vote:inf-probe', stable, compute)
     const afterSecond = invocations
     const infinityReuse = afterFirst === 1 && afterSecond === 1 && a === b
-    const runtimeTokens = 0
+    // THEOREM REPLACING AN AXIOM. This was `const runtimeTokens = 0` — a number asserted, sitting one
+    // line beneath a probe that already measures the thing it was asserting. The quantity the vote needs
+    // is the MARGINAL recomputation an answer costs on reuse, and the memo probe above measures exactly
+    // that: invocations is 1 after the first call and 1 again after the second. Derived it is
+    // afterSecond − afterFirst; break the memo and it becomes 1, and the facet reds instead of lying.
+    const runtimeTokens = afterSecond - afterFirst
     const voters = [
       { id: 'zero-token-proven', on: proven.proven, receipt: proven.root },
       { id: 'efficiency-optimizations', on: opt.optimized, receipt: opt.root },
@@ -2069,7 +2074,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
       { facet: 'fusion verify wave replay matches', on: fusion.verified },
       { facet: 'physics no-speedup honesty preserved (quantumComputerHonestClaim)', on: honest.noSpeedup },
       { facet: 'W6 revolutionaryEfficiencyNotPhysics holds', on: capstone.holds },
-      { facet: 'runtime tokens = 0 in sealed domain', on: runtimeTokens === 0 },
+      { facet: `marginal recomputation on reuse = ${runtimeTokens} — the memo probe ran ${afterFirst} then ${afterSecond} invocations, so an answer costs nothing the second time`, on: runtimeTokens === 0 && infinityReuse },
       { facet: `the unit is answers÷tokens over the sealed domain, adjudicated by ${voters.length} adversarial voters — physical speedup is a SEPARATE measurement (faithfulSimulator=${honest.faithfulSimulator} noSpeedup=${honest.noSpeedup}), not a disclaimer`, on: voters.length > 0 && honest.faithfulSimulator && honest.noSpeedup },
     ].map((entry) => ({ ...entry, receipt: toUuid(`eff-vote:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('compare-ceccec-efficiency-by-vote', facets)

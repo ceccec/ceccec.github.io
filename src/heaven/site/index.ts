@@ -1131,15 +1131,15 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       && /data-symbol=/.test(knots)
       && /data-symbol=/.test(hdBody)
       && !/script/i.test(emitterBundle)
-    const facets = [
+    const claims = [
       { facet: 'I Ching + yin-yang already sealed — continue from livingIChing ∧ taiji folds', on: ich.rebuilt && yy.computes && ic.organised },
       { facet: `inventory ${inventory.length} symbol surfaces at call time (sealed|partial|missing)`, on: inventory.length >= (8 + 5 + 4) && inventory.every((r) => r.on) },
       { facet: `wave sealed ${sealedNow.length} — prior + om · futhark · alchemy · Glagolitic SMIL · torus-knots`, on: sealedNow.length === inventory.length && emittersOk && sealedNow.every((r) => r.on) && hdW7.computes },
       { facet: 'no wet Unicode sacred glyphs in geometry emitters — bagua/om/futhark/alchemy geometry-only; Glagolitic from sealed GLAGOLITIC_LETTERS; wetStatic=false', on: !bagua.includes('☷') && /wetStatic=false/.test(vesica) && /wetStatic=false/.test(metatron) && /wetStatic=false/.test(hdBody) && /unicodeOm=false/.test(om) && /unicodeRunes=false/.test(futhark) && /unicodeAlchemy=false/.test(alchemy) && /livingSmil=true/.test(glagolitic) && /wetStatic=false/.test(knots) },
       { facet: 'FoL/Fruit/merkaba compose via readme/svg-trinity (PR #57) — wetStaticFoL=false', on: home.flowerFruitPath === true && home.counterRotating === true && flowerFruit.decodes },
       { facet: `residual backlog drained — missing=${missing.length} · partial=${partial.length}`, on: missing.length === 0 && partial.length === 0 },
-      { facet: ' — geometry from sealed constants only', on: true },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`symbols-remaining:${entry.facet}:${entry.on}`) }))
+    ]
+    const facets = [...claims, { facet: 'the geometry comes from sealed constants only — a bound over the claims above, so it holds exactly while they do', on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`symbols-remaining:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('symbols-remaining-to-quantumise', facets)
     return {
       computes: sealed.ok && emittersOk,

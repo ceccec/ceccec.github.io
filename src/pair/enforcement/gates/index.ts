@@ -3044,7 +3044,7 @@ export function gateLight(root: string = enforcementScanRoot()) {
     { facet: 'deployLighter', on: deployLighter },
     { facet: `inverseRelationOn score=${roundTo(inverseScore, 4)}`, on: inverseRelationOn },
     { facet: 'metricsCallTime — inverseTable recomputed at this call', on: inverseTable.length >= (2 + 2 + 2) },
-    { facet: `residualNamed=${residualNamed.length}`, on: residualNamed.length >= 0 },
+    { facet: `residualNamed=${residualNamed.length}`, on: new Set(residualNamed.map((row) => String(row))).size === residualNamed.length },
     { facet: 'compose build/min · gate/analytics · trinity/speedup · wave/verify facts-once', on: factsOnceDrained },
     { facet: 'pair gate/light bidirectional', on: softCmdPair('gate', 'light') && softCmdPair('light', 'gate') },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },

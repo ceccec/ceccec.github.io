@@ -1,10 +1,10 @@
 {
   "imports.unresolved": 6,
-  "limits.always-true": 112,
-  "limits.weakest-bar": 65,
+  "limits.always-true": 106,
+  "limits.weakest-bar": 62,
   "paths.dead-strings": 51,
   "scope.boundaries": 2796,
   "scope.narrated": 620,
   "side-effects.top-level": 0,
-  "tautology.self-proving": 12
+  "tautology.self-proving": 11
 }

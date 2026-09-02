@@ -2060,7 +2060,7 @@ export function importFractalMap(matrix: MindMatrix = buildMatrix(), at = 0) {
         { facet: `observedReuseCapacity=${capacity.reuseCapacity}/${capacity.total}`, on: capacity.extendsCapacity },
         { facet: `importEdgeCount=${importEdgeCount} meanTreeHop=${roundTo(meanTreeHop, 3)}`, on: importDistComputes },
         { facet: `renameAppliedCount=${renameApplied.length}`, on: pairFractalRenameComplete },
-        { facet: `renameCandidateCount=${renameCandidates.length}`, on: renameCandidates.length >= 0 },
+        { facet: `renameCandidateCount=${renameCandidates.filter((row) => row.renameCandidate).length} of ${renameCandidates.length} envelopes`, on: renameCandidates.every((row) => row.renameCandidate === (row.wetIdMismatch || row.foldEntropy)) },
         {
           facet: 'compose import/export · tool/envelope · import/distance · folder/fractal · folder/gravity · wave/compact · trinity/speedup · chat/solve',
           on: composeOn,
