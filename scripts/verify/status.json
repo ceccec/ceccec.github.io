@@ -4,7 +4,7 @@
   "limits.weakest-bar": 62,
   "paths.dead-strings": 51,
   "scope.boundaries": 2796,
-  "scope.narrated": 615,
+  "scope.narrated": 542,
   "side-effects.top-level": 0,
   "tautology.self-proving": 11
 }

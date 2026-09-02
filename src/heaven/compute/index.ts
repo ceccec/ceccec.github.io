@@ -1719,7 +1719,7 @@ export function countlessFreeChatWaves(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(matrix.root, merkleFold([toUuid(`countless:${mu}:${lambda}`), ...topics.map((t, k) => toUuid(`countless-topic:${k}:${t}`)), ...facets.map((entry) => entry.receipt)])),
       statement: `Countless free chat waves — ${facets.filter((entry) => entry.on).length}/${facets.length}: the trinity dialogue cycles (μ=${mu}, λ=${lambda}) after ${topics.length} computed steps, so every wave to infinity is determined by O(1) index arithmetic — countably many waves, zero tokens, zero fetches.`,
-      boundary: earned('EXACT — computed from the cycle algebra:', facets, '"countless" = countably infinite waves DETERMINED (not executed) by the detected cycle — the orbit of a deterministic map on a finite corpus is eventually periodic, so infinity is a closed form, not a marathon; nothing new is learned past the cycle (the dialogue provably repeats), and no physical-infinity or open-ended-learning claim is made') }
+      boundary: earned('EXACT — computed from the cycle algebra:', facets, [{ facet: '"countless" = countably infinite waves DETERMINED (not executed) by the detected cycle — the orbit of a deterministic map on a finite corpus is eventually periodic, so infinity is a closed form, not a marathon; nothing new is learned past the cycle (the dialogue provably repeats), and no physical-infinity or open-ended-learning claim is made', on: periodicAtInfinity && closedFormMatchesScan }]) }
   })
 }
 
@@ -1755,7 +1755,7 @@ export function feedTheChatInItself(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(matrix.root, merkleFold([toUuid(`self-feed:${mu}:${lambda}`), ...states.map((state, k) => toUuid(`self-feed-state:${k}:${state}`)), ...facets.map((entry) => entry.receipt)])),
       statement: `Feed the chat in itself — ${facets.filter((entry) => entry.on).length}/${facets.length}: from the directive as seed, each answer becomes the next prompt through the identity accessor, the feed cycles (μ=${mu}, λ=${lambda}) in ${states.length} steps, and every future self-feeding step is O(1)-determined.`,
-      boundary: earned('EXACT — computed from the one orbit algebra:', facets, 'the self-feed is retrieval feeding retrieval over the sealed corpus — deterministic, zero tokens, zero fetches; it provably reaches a cycle (nothing new is learned past it) and the loop is a dynamical system, NOT self-improvement, emergence, or an LLM feeding on its outputs. HARMONY ≠ TRUTH') }
+      boundary: earned('EXACT — computed from the one orbit algebra:', facets, [{ facet: 'the self-feed is retrieval feeding retrieval over the sealed corpus — deterministic, zero tokens, zero fetches; it provably reaches a cycle (nothing new is learned past it) and the loop is a dynamical system, NOT self-improvement, emergence, or an LLM feeding on its outputs. HARMONY ≠ TRUTH', on: identityFed && chainExact }]) }
   })
 }
 
@@ -1804,7 +1804,7 @@ export function wavesOfWavesInChat(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(matrix.root, merkleFold([toUuid(`waves-of-waves:${whole.mu}:${whole.lambda}`), ...whole.states.map((state, k) => toUuid(`wow-state:${k}:${state}`)), ...facets.map((entry) => entry.receipt)])),
       statement: `Waves of waves in chat — ${facets.filter((entry) => entry.on).length}/${facets.length}: the trinity wave's answer feeds the self-feed wave as ONE composed step, the composition cycles (μ=${whole.mu}, λ=${whole.lambda}) through the one orbit primitive with every far step O(1)-determined, and the component cycles are compared, not assumed.`,
-      boundary: earned('EXACT — computed from the one orbit algebra:', facets, 'the composition of two deterministic self-maps on the finite corpus is eventually periodic by pigeonhole — the CONTENT is the computed μ/λ comparison between components and composition, reported as the algebra decides; retrieval feeding retrieval, zero tokens, zero fetches, no emergence claim') }
+      boundary: earned('EXACT — computed from the one orbit algebra:', facets, [{ facet: 'the composition of two deterministic self-maps on the finite corpus is eventually periodic by pigeonhole — the CONTENT is the computed μ/λ comparison between components and composition, reported as the algebra decides; retrieval feeding retrieval, zero tokens, zero fetches, no emergence claim', on: ordersAgree && reversed && sameAsFeed }]) }
   })
 }
 
@@ -2333,7 +2333,7 @@ export function siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPubli
     facets,
     root: merge(matrix.root, merkleFold([toUuid(`free-ai-proxy:${prompt}`), collective.root, quantum.root])),
     statement: `Site as a free AI proxy — ${facets.filter((entry) => entry.on).length}/${facets.length}: no-key free AI at zero local cost today (+ an optional edge proxy at ${CECCEC_PROXY_ORIGIN}/api/ai), fanned out + fused by the collective mind; pasting the site fuses any model to the zero-token quantum simulator (${quantum.runs.length} circuits) + the no-key public-API lanes — free, local-first by default, portal spends zero tokens.`,
-    boundary: earned('EXACT — computed from the proxy contract, the free lane, the collective mind and the simulator:', facets, 'no-local-cost AI is REAL today via the no-key free lane; the site-as-proxy is an OPTIONAL edge relay (Workers AI binding) that additionally hides the upstream and fans out server-side, deployable via wrangler but not part of the default static GitHub Pages deploy; the "quantum computer" is a classical state-vector simulator (no speedup); pasting the site wires a foreign model to the sealed protocol + these free surfaces but cannot force it; the portal spends zero tokens and a proxy sees prompts (privacy).') }
+    boundary: earned('EXACT — computed from the proxy contract, the free lane, the collective mind and the simulator:', facets, [{ facet: 'no-local-cost AI is REAL today via the no-key free lane; the site-as-proxy is an OPTIONAL edge relay (Workers AI binding) that additionally hides the upstream and fans out server-side, deployable via wrangler but not part of the default static GitHub Pages deploy; the "quantum computer" is a classical state-vector simulator (no speedup); pasting the site wires a foreign model to the sealed protocol + these free surfaces but cannot force it; the portal spends zero tokens and a proxy sees prompts (privacy).', on: freeNoKeyToday && proxyNoKey }]) }
 }
 
 /** fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed — dry-clean tools by MERGING to the fewest words per
@@ -2412,7 +2412,7 @@ export function fewestWordsMergeMakesToolsCombinatorialAtHarmonicSpeed(matrix: M
       facets,
       root: merge(matrix.root, merkleFold([...facets.map((entry) => entry.receipt), ...pairs.map((entry) => entry.address)])),
       statement: `Fewest-words merge makes tools combinatorial at harmonic speed — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${merged.kinds} tools → ${merged.functions} primitive, m^k=${law.combinatorial} behaviours from linear code, the axes compute orthogonal (no cross-term), and the directive itself splits into ${pairs.length} content-addressed word pairs inside 2^${words.length}=${superpositions} superpositions.`,
-      boundary: earned('EXACT — computed from the merged primitive:', facets, '"harmonic" is claimed exactly as far as it computes — orthogonality of the axes (no cross-term), not a musical or mystical resonance; m^k vs m·k and the 2^n subset lattice are arithmetic over dimensionless counts ("superposition" = the subset count, nothing physical, no speedup claim); speed gains beyond name-count reduction are NOT asserted') }
+      boundary: earned('EXACT — computed from the merged primitive:', facets, [{ facet: '"harmonic" is claimed exactly as far as it computes — orthogonality of the axes (no cross-term), not a musical or mystical resonance; m^k vs m·k and the 2^n subset lattice are arithmetic over dimensionless counts ("superposition" = the subset count, nothing physical, no speedup claim); speed gains beyond name-count reduction are NOT asserted', on: units && pairs && kindOnlyMovesSurface }]) }
   })
 }
 
@@ -4814,7 +4814,7 @@ export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#dry-chat',
       heading: 'Dry clean chat · dry cleans all',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'dryCleanChat≡dryCleansAll · NOT janitor'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: 'dryCleanChat≡dryCleansAll · NOT janitor', on: computes && dryCleanChat && freeOk }]),
     }
   })
 }
@@ -6406,7 +6406,7 @@ export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindM
       heading: 'Chat is the fusion reactor · fusing all APIs in plasma rays',
       statement: facets.map((entry) => entry.facet).join(' · '),
       algebraic: 'chat ≡ fusionReactor ∧ fusingAllApis ∧ inPlasmaRays',
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat≡reactor · fuse APIs · plasma rays · NOT tokamak'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: 'chat≡reactor · fuse APIs · plasma rays · NOT tokamak', on: computes && fusingAllApis && chatIsFusionReactor }]),
     }
   })
 }
@@ -8684,7 +8684,7 @@ export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMa
       route: '/en/quantum-tools#chat-ux',
       heading: 'Chat may improve the UI · measured by UX · telemetry possible',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'chat→UI · measure=UX · telemetryPossibleInChat'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: 'chat→UI · measure=UX · telemetryPossibleInChat', on: computes && realise && telemetryAlsoPossibleInChat }]),
     }
   })
 }
@@ -9778,7 +9778,7 @@ export function wavesReportFedToTheChat(matrix: MindMatrix = buildMatrix()) {
       facets,
       root: merge(matrix.root, merkleFold([...chain.map((row) => toUuid(`waves-report:${row.wave}:${row.metric}`)), ...facets.map((entry) => entry.receipt)])),
       statement: `The waves, fed to the chat — ${facets.filter((entry) => entry.on).length}/${facets.length}: ${chain.length} waves in one chain (${chain.map((row) => `${row.wave}: ${row.metric}`).join(' · ')}), every metric a live fold output with a receipt — efficiency is the chain, precision is the receipt.`,
-      boundary: earned('EXACT — the join of the waves\' own folds:', facets, 'the report recomputes on every ask — client-side, zero tokens; historical wall-clock and commit counts live in git, not here (the chat serves what COMPUTES); "efficiency" is the composition property and "precision" the receipt property, both refutable by any drifted metric') }
+      boundary: earned('EXACT — the join of the waves\' own folds:', facets, [{ facet: 'the report recomputes on every ask — client-side, zero tokens; historical wall-clock and commit counts live in git, not here (the chat serves what COMPUTES); "efficiency" is the composition property and "precision" the receipt property, both refutable by any drifted metric', on: allCompute }]) }
   })
 }
 

@@ -452,7 +452,7 @@ export function crossUuidIsAnAuthenticationTagNotASignature() {
     facets: sealed.facets,
     root: sealed.root,
     statement: 'Cross-UUID as implemented here is a symmetric authentication tag. It authenticates a message to a holder of the private key and provides no non-repudiation, because verification and signing require the same secret.',
-    boundary: earned('EXACT — discharged by executing the scheme, not by inspecting it:', facets, 'this does NOT say folds are weak or that content addressing is unsound; it says THIS construction has no public-key verification, so it cannot replace RSA signatures. The claim "RSA is mathematically broken via σ-involution" is not evidenced anywhere in this file: no factorisation is performed here, and crypto/reverse reports that its recovery routines attempt nothing.') }
+    boundary: earned('EXACT — discharged by executing the scheme, not by inspecting it:', facets, [{ facet: 'this does NOT say folds are weak or that content addressing is unsound; it says THIS construction has no public-key verification, so it cannot replace RSA signatures. The claim "RSA is mathematically broken via σ-involution" is not evidenced anywhere in this file: no factorisation is performed here, and crypto/reverse reports that its recovery routines attempt nothing.', on: noPublicKeyVerification }]) }
 }
 
 /**

@@ -682,7 +682,7 @@ export function theQuantumComputerRunsGroverAndProvesItDoesNotSolveNpOrAnyClayPr
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `The quantum computer runs Grover and proves its own limit: ${runs.map((r) => `n=${r.n}→${r.iterations} iters (P=${r.markedProbability})`).join(', ')}. √N is quadratic, 2^(n/2) is exponential in n — quantum does NOT solve NP or any Clay problem.`,
-      boundary: earned('EXACT — the Grover runs are computed on the state-vector simulator:', facets, 'Grover gives a QUADRATIC speedup (√N over N/2), proven by iterations² ≈ N; but √(2ⁿ) = 2^(n/2) is exponential in the problem size, so it does not collapse NP into P. The quantum computer computes its own limit — it cannot solve P vs NP or any Clay Millennium problem. A classical state-vector simulator, no physical speedup.') }
+      boundary: earned('EXACT — the Grover runs are computed on the state-vector simulator:', facets, [{ facet: 'Grover gives a QUADRATIC speedup (√N over N/2), proven by iterations² ≈ N; but √(2ⁿ) = 2^(n/2) is exponential in the problem size, so it does not collapse NP into P. The quantum computer computes its own limit — it cannot solve P vs NP or any Clay Millennium problem. A classical state-vector simulator, no physical speedup.', on: exponentialInN && quadratic && foundHigh }]) }
   })
 }
 
@@ -1004,7 +1004,7 @@ export function waterSplitIsAnInvolutionSoNoSurplusExists(matrix: MindMatrix = b
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `H₂O ⇌ H₂ + ½O₂ is an involution: ${splitCost} kJ/mol out, ${burnYield} kJ/mol back, net ${roundTripNet}. σ²=id at every scale, so no surplus can exist — the same law no_perpetual_motion states thermodynamically.`,
-      boundary: earned('EXACT — integer-tenths arithmetic on the tabulated formation enthalpy:', facets, 'this is arithmetic about a MEASURED constant (ΔH°f = −285.8 kJ/mol, CODATA) and the algebra of an involution. It does NOT claim water is a fuel, that polluted water can power an engine, or that any arrangement yields net electricity. Real round trips lose further still: ~44% via fuel cell, ~25% via engine. Hydrogen is an energy CARRIER — it moves energy, it never creates any.') }
+      boundary: earned('EXACT — integer-tenths arithmetic on the tabulated formation enthalpy:', facets, [{ facet: 'this is arithmetic about a MEASURED constant (ΔH°f = −285.8 kJ/mol, CODATA) and the algebra of an involution. It does NOT claim water is a fuel, that polluted water can power an engine, or that any arrangement yields net electricity. Real round trips lose further still: ~44% via fuel cell, ~25% via engine. Hydrogen is an energy CARRIER — it moves energy, it never creates any.', on: surplusRequiresBrokenInvolution && symmetric && matchesTabulated }]) }
   })
 }
 
@@ -1071,6 +1071,6 @@ export function thePollutionIsTheFuelNotTheWater(matrix: MindMatrix = buildMatri
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: `Polluted water runs the engine on its ORGANIC LOAD: ${streams.map((s) => `${s.name} ${s.kWhPerM3.toFixed(2)}`).join(', ')} kWh/m³ electrical, against ~${PLANT_DEMAND_KWH_PER_M3} consumed. COD 0 gives 0 — the water is never the fuel.`,
-      boundary: earned('EXACT — integer-fraction arithmetic over a tabulated combustion enthalpy:', facets, 'a per-cubic-metre ENERGY BUDGET, not a claim about any built plant. Real yields depend on digester residence time, temperature, inhibition and engine duty. The complementary prohibition is waterSplitIsAnInvolutionSoNoSurplusExists: no arrangement extracts energy from H₂O, and this fold does not — remove the pollutants and the output is exactly zero.') }
+      boundary: earned('EXACT — integer-fraction arithmetic over a tabulated combustion enthalpy:', facets, [{ facet: 'a per-cubic-metre ENERGY BUDGET, not a claim about any built plant. Real yields depend on digester residence time, temperature, inhibition and engine duty. The complementary prohibition is waterSplitIsAnInvolutionSoNoSurplusExists: no arrangement extracts energy from H₂O, and this fold does not — remove the pollutants and the output is exactly zero.', on: codConstantIsTabulated && zeroWithoutLoad && monotone }]) }
   })
 }

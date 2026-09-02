@@ -1184,7 +1184,7 @@ export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = 
       pair: 'algebra/priority' as const,
       dualPair: 'quantum/algebra' as const,
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', algebraic quantum computing is top priority — NOT a physical QPU claim'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: ', algebraic quantum computing is top priority — NOT a physical QPU claim', on: onlyAlgebraic && algebraicQuantumIdentity && topIsAlgebraic }]),
     }
   })
 }

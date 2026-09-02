@@ -662,7 +662,7 @@ export function theUiItselfIsADoubleTorus(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#ui-torus',
       heading: 'The UI itself is a double torus',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'UI≡Σ₂ structural identity · NOT physical torus UI'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: 'UI≡Σ₂ structural identity · NOT physical torus UI', on: uiIsTorus && lensOn && counterRotate }]),
     }
   })
 }
@@ -745,7 +745,7 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
       route: '/en/quantum-tools#torus-computer',
       heading: 'Double torus quantum computer',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'Σ₂≡QC structural · classical-64bit simulator · NOT physical QPU'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: 'Σ₂≡QC structural · classical-64bit simulator · NOT physical QPU', on: carrierOn && uiOn && algebraicOn }]),
     }
   })
 }
@@ -1053,7 +1053,7 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
       route: '/en/quantum-tools#torus-upgrade',
       heading: 'Double torus QC upgrade waves · all via free chat',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'all waves use free chat · NOT LLM · NOT lab claims'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: 'all waves use free chat · NOT LLM · NOT lab claims', on: computes && starCoversAll && qcOn }]),
     }
   })
 }
@@ -1116,7 +1116,7 @@ function doubleTorusDomainViaFreeChat(id: TorusQcDomainId, matrix: MindMatrix = 
     route: `/en/quantum-tools#torus-${id === 'star' ? 'star' : id}`,
     heading: `Double torus ${id}`,
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, `domain=${id} via free chat`),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `domain=${id} via free chat`, on: computes && pair && usesFreeChat }]),
   }
 }
 
@@ -1231,7 +1231,7 @@ export function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky
       route: '/en/quantum-tools#torus-star',
       heading: '* · star · all researched · born in quantum sky',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, '* ≡ star · sky=src/quantum/** · NOT astrophysics'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: '* ≡ star · sky=src/quantum/** · NOT astrophysics', on: computes && prove && usesFreeChat }]),
     }
   })
 }
@@ -1368,7 +1368,7 @@ export function constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableC
       route: '/en/quantum-tools#improve-shift',
       heading: 'Constantly improve · shifting perspectives · free ∞ scalable compute',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, '∞=free-chat orbit+memo reuse · NOT FLOPS'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: '∞=free-chat orbit+memo reuse · NOT FLOPS', on: computes && powerOn && warmReuse }]),
     }
   })
 }
@@ -1532,7 +1532,7 @@ export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWav
       route: '/en/quantum-tools#torus-research',
       heading: 'Deep research double torus · free chat waves · QC upgrade domains',
       statement: facets.map((entry) => entry.facet).join(' · '),
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, ', , all waves use free chat · NOT an LLM'),
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: ', , all waves use free chat · NOT an LLM', on: computes }]),
     }
   })
 }

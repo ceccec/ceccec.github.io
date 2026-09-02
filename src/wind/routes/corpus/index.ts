@@ -2267,7 +2267,7 @@ export function sublinearScienceCoverage(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold([toUuid(`sublinear:${union}:${linearSum}`), ...facets.map((entry) => entry.receipt)]),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned(`EXACT: union = |⋃ module atom-sets| and linearSum = Σ|module atom-set|, both from the live pageCombination graph; set-union is submodular so cumulative coverage is concave and union ≤ linearSum with equality iff the modules are disjoint.`, facets, `this refutes the LINEAR floor, not the whole estimate: measured/42 remains a valid UPPER bound (no module costs more than its full atom set), and the union is the LOWER bound on generator atoms — the true source floor still includes each atom's own irreducible bytes, which this fold counts as atoms, not bytes. The sharing is measured on the name/tag-word membership graph, so it moves as theorems are renamed.`),
+    boundary: earned(`EXACT: union = |⋃ module atom-sets| and linearSum = Σ|module atom-set|, both from the live pageCombination graph; set-union is submodular so cumulative coverage is concave and union ≤ linearSum with equality iff the modules are disjoint.`, facets, [{ facet: `this refutes the LINEAR floor, not the whole estimate: measured/42 remains a valid UPPER bound (no module costs more than its full atom set), and the union is the LOWER bound on generator atoms — the true source floor still includes each atom's own irreducible bytes, which this fold counts as atoms, not bytes. The sharing is measured on the name/tag-word membership graph, so it moves as theorems are renamed.`, on: overcount && sharing && nonNegative }]),
   }
 }
 
