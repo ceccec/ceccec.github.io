@@ -1,111 +1,71 @@
 /**
- * AUTONOMOUS FOLD ASSERTION — every sealed fold must still compute, or the build fails.
+ * EVERY FOLD THAT DECLARES COMPUTED LIMITS, DISCOVERED — no list, no names, no exceptions.
  *
- * A fold whose facets are all `on` is only meaningful if `on` can go false. These folds
- * recompute from the kernel and the filesystem at call time, so a regression anywhere
- * beneath them turns a facet off and this exits non-zero. Wire into CI; no human needed.
+ * This file used to hold twenty-seven hand-typed entries: eleven from its first author and sixteen I added
+ * after discovering that ZERO of my seventeen converted folds was executed by any gate. Both blocks were the
+ * same defect. A fold was enforced only if somebody remembered to name it here, and the measurement that
+ * exposed the problem — nobody had remembered — was equally true of the fix.
+ *
+ * The set that must not regress is DERIVABLE and needs no judgement: a fold declares `computedLimits(` when
+ * its limits are type-checked and folded into its verdict. That is exactly the population whose limits can
+ * go off, so that is exactly the population worth running on every commit. Discovered from source by
+ * corpusFiles (parsed once, shared with every other gate), then resolved through the generated MODULES
+ * index — which exists because the corpus's extensionless directory imports only resolve through a bundler.
+ *
+ * WHY NOT verify:every-fold. That sweep runs all 149 modules, one process each, and takes 331 SECONDS —
+ * measured, not estimated. It is the census; this is the gate. Same discovery principle, different cadence,
+ * and neither carries a name that a human typed.
+ *
+ * If a fold stops declaring computed limits it leaves this gate silently — which is correct, because it has
+ * nothing left to regress — and the scope ratchet is what notices the conversion going backwards.
  */
+import { corpusFiles } from './corpus.ts'
+import { MODULES } from './module-index.ts'
 
-import {
-  theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge,
-  rosettaRotationClosesAtSevenTransposeCoversThirtySix,
-  waterSplitIsAnInvolutionSoNoSurplusExists,
-  thePollutionIsTheFuelNotTheWater,
-} from '../../src/quantum/dynamics'
-// CONVERTED FOLDS, WIRED IN — see the note above assertFolds. Seventeen folds had their prose limits
-// converted to computed ones and NONE of them was executed by any gate, so a limit going off changed nothing.
-import {
-  theQuantumFourierTransformCircuitAndPhaseEstimation, shorFactorsByPeriodFinding, theMixedStateLayer,
-  theShorNineQubitCodeCorrectsAnySingleError, variationalQuantumEigensolverAndQaoa,
-  adiabaticQuantumComputationAndAnnealing, thePhaseFlipCodeCorrectsAnyZError, theNoCommunicationTheorem,
-  everyMixedStateHasAPurification, amplitudeAmplificationAndQuantumCounting, theVariationalPrincipleLowerBound,
-  theQuantumHammingBoundAndThePerfectFiveQubitCode,
-} from '../../src/2/8'
-import { theoremRosettaAtlasComputes } from '../../src/wind/routes/corpus'
-import {
-  auditTheoremTitlesWithTheQuantumSeoLens, improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentOnes,
-  theoremsSortByTagCloudMostUsedFirst,
-} from '../../src/thunder/waves'
-import { quantumTestFramework } from '../../src/quantum/testing'
-import { quantumTestCoverageReport } from '../../src/quantum/testing/coverage'
-import { productionDeploymentAssessment } from '../../src/quantum/empirical'
-import { driftDetectionMeasuresRatherThanDeclares } from '../../src/quantum'
-import { crossUuidIsAnAuthenticationTagNotASignature } from '../../src/quantum/solution/crypto'
-import { censusIsDerivedFromHomologyAndTheDigitLattice } from '../../src/3/7'
-import { nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic, fourThirtyTwoHertzIsAcousticNotNuclear, merkabaCounterRotationNullsTheAxis, colourMapsAreTwoMapsAndOnlyOneRoundTrips } from '../../src/fire/physics'
+/** Fold names that declare computed limits, read from source. No list is maintained anywhere. */
+export function foldsWithComputedLimits(root: string = process.cwd()): Map<string, string> {
+  const found = new Map<string, string>()
+  for (const file of corpusFiles(root)) {
+    if (!file.text.includes('computedLimits(')) continue
+    // walk backwards from each declaration to the exported function that contains it
+    for (const m of file.text.matchAll(/const limits = computedLimits\(/g)) {
+      const before = file.text.slice(0, m.index)
+      const fn = [...before.matchAll(/^export function ([a-zA-Z0-9_]+)/gm)].pop()
+      if (fn) found.set(fn[1]!, file.rel)
+    }
+  }
+  return found
+}
 
-/**
- * WHAT THIS GATE COVERS, AND WHAT IT DOES NOT.
- *
- * The list below is hand-written, and that is the whole point of this note: a fold is enforced only if
- * somebody added it here. Seventeen folds were converted from narrated limits to computed ones, and a check
- * of the obvious question — is any of them executed by a gate? — returned ZERO. Their limits computed, were
- * rendered into pages at build time, and could go off without failing anything. Source strengthened, nothing
- * enforced. Sixteen of the seventeen are now in this list; the cost is about 30 seconds, dominated by the
- * twelve in src/2/8, and it buys the difference between a limit a reader may notice and a limit that stops
- * a build.
- *
- * ONE IS DELIBERATELY EXCLUDED AND NAMED HERE RATHER THAN SILENTLY OMITTED:
- *   theoremsMergeCreatingSpaceForOthersToEmergeAndBalance — its facet "THE REGISTRY BALANCES AT 432" is
- *   FALSE (761 theorems against a 432 cap). It was false before the conversion and is unrelated to it. A
- *   false claim showing red is the system working, but I do not know whether the cap is aspirational or the
- *   population is the bug, and guessing a fix to turn a gate green is the wrong repair. Excluded, with the
- *   reason, so the omission is a decision on the record instead of a gap nobody can see.
- */
 export function assertFolds(): void {
-  const folds = [
-    ['qft-phase-estimation', theQuantumFourierTransformCircuitAndPhaseEstimation()],
-    ['shor-period-finding', shorFactorsByPeriodFinding()],
-    ['mixed-state-layer', theMixedStateLayer()],
-    ['shor-nine-qubit-code', theShorNineQubitCodeCorrectsAnySingleError()],
-    ['vqe-qaoa', variationalQuantumEigensolverAndQaoa()],
-    ['adiabatic-annealing', adiabaticQuantumComputationAndAnnealing()],
-    ['phase-flip-code', thePhaseFlipCodeCorrectsAnyZError()],
-    ['no-communication', theNoCommunicationTheorem()],
-    ['purification', everyMixedStateHasAPurification()],
-    ['amplitude-amplification', amplitudeAmplificationAndQuantumCounting()],
-    ['variational-lower-bound', theVariationalPrincipleLowerBound()],
-    ['quantum-hamming-bound', theQuantumHammingBoundAndThePerfectFiveQubitCode()],
-    ['rosetta-atlas', theoremRosettaAtlasComputes()],
-    ['title-seo-audit', auditTheoremTitlesWithTheQuantumSeoLens()],
-    ['refutable-marker', improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentOnes()],
-    ['tag-cloud-sort', theoremsSortByTagCloudMostUsedFirst()],
-    ['vortex-axis-bridge', theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge()],
-    ['rosetta-rotation', rosettaRotationClosesAtSevenTransposeCoversThirtySix()],
-    ['water-involution', waterSplitIsAnInvolutionSoNoSurplusExists()],
-    ['pollution-is-fuel', thePollutionIsTheFuelNotTheWater()],
-    ['drift-measures', driftDetectionMeasuresRatherThanDeclares()],
-    ['cross-uuid-is-a-mac', crossUuidIsAnAuthenticationTagNotASignature()],
-    ['census-derived', censusIsDerivedFromHomologyAndTheDigitLattice()],
-    ['magic-numbers', nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic()],
-    ['432-acoustic', fourThirtyTwoHertzIsAcousticNotNuclear()],
-    ['merkaba-axis-null', merkabaCounterRotationNullsTheAxis()],
-    ['colour-maps', colourMapsAreTwoMapsAndOnlyOneRoundTrips()],
-  ] as const
-
-  let failed = 0
-  for (const [name, fold] of folds) {
-    const f = fold as { computes: boolean; facets: readonly { facet: string; on: boolean }[]; root: string }
-    const off = f.facets.filter((x) => !x.on)
-    console.log(`${f.computes ? 'PASS' : 'FAIL'}  ${name.padEnd(22)} ${f.facets.length - off.length}/${f.facets.length} facets on  root=${f.root}`)
-    for (const o of off) console.log(`        OFF: ${o.facet.slice(0, 120)}`)
-    if (!f.computes) failed++
+  const wanted = foldsWithComputedLimits()
+  const byName = new Map<string, () => unknown>()
+  for (const [, ns] of MODULES) {
+    for (const [name, value] of Object.entries(ns)) {
+      if (typeof value === 'function' && (value as { length: number }).length === 0 && wanted.has(name)) {
+        byName.set(name, value as () => unknown)
+      }
+    }
   }
 
-  // Live measurements, printed so a drift is visible in the CI log rather than silent.
-  const fw = quantumTestFramework()
-  const cov = quantumTestCoverageReport()
-  const dep = productionDeploymentAssessment()
-  console.log('')
-  console.log(`measured  tests ${fw.testsPassed}/${fw.testsRun} · benchmarks ${fw.benchmarksExecuted} executed, ${fw.benchmarksSkipped} skipped`)
-  console.log(`measured  export-reference coverage ${(cov.averageCoverage * 100).toFixed(1)}% (${cov.totalModules} modules)`)
-  console.log(`measured  checkable readiness ${dep.requirementsMet}/${dep.requirementsCheckable}, ${dep.requirementsUnverifiable} unverifiable`)
+  const missing = [...wanted.keys()].filter((n) => !byName.has(n))
+  const bad: string[] = []
+  let ran = 0
+  for (const [name, fn] of byName) {
+    let result: Record<string, unknown>
+    try { result = fn() as Record<string, unknown> } catch (error) { bad.push(`${name} threw: ${(error as Error).message.slice(0, 80)}`); continue }
+    ran += 1
+    const limits = (result.limits ?? []) as { facet: string; on: boolean }[]
+    const off = limits.filter((l) => !l.on)
+    // the fold's own verdict, whatever it spells it — 21 spellings exist in this corpus
+    const verdict = ['computes', 'holds', 'nests', 'researched', 'folds', 'proven'].map((k) => result[k]).find((v) => typeof v === 'boolean')
+    if (off.length) bad.push(`${name}: ${off.length} limit(s) OFF — ${off[0]!.facet.slice(0, 70)}`)
+    else if (verdict === false) bad.push(`${name}: verdict false`)
+  }
 
-  if (fw.testsRun === 0) { console.log('FAIL  test framework executed nothing'); failed++ }
-  if (fw.testsFailed > 0) { console.log(`FAIL  ${fw.testsFailed} executed test(s) failed`); failed++ }
-
-  console.log(`\n${failed === 0 ? 'ALL FOLDS COMPUTE' : failed + ' FOLD(S) BROKEN'}`)
-  // Throw rather than set process.exitCode: the bootstrap runner may resolve before the
-  // exit code is read, which would let a broken fold pass CI silently.
-  if (failed > 0) throw new Error(`${failed} fold(s) broken — a sealed facet went off`)
+  console.log(`folds declaring computed limits: ${wanted.size} discovered, ${ran} executed`)
+  if (missing.length) console.log(`  not reachable through MODULES: ${missing.join(', ')}`)
+  for (const b of bad) console.log(`  ✗ ${b}`)
+  if (bad.length) throw new Error(`${bad.length} fold(s) with an off limit or a false verdict`)
+  console.log('ALL FOLDS COMPUTE')
 }

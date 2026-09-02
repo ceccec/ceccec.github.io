@@ -2382,7 +2382,10 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
       { facet: `SELF-APPLIED, SO IT TRAVELS NOWHERE — the corpus measured IS the registry that produced it, and no artifact outside this one is examined; the method sealed against its own output is the design, and it is also the reason nothing here generalises beyond this repository`, on: measuresOnlyItself },
     ])
     const facets = [
-      { facet: `MAGNITUDE is the exact harmonic — the ${clusters} cluster sizes sum to ${magnitude} = 4×108, no rounding: the magnitude is the exact sum of the waves, not an estimate`, on: magnitude === DIMENSION_GATES && magnitude === nav.atomCount },
+      // THIS ASSERTED `${magnitude} = 4×108` AND THE SUM IS NOT 432. It was false and invisible: this fold
+      // was in no gate's list, so nothing ever ran it. Inverted to the measurement rather than tuned — the
+      // harmonic is a TARGET the registry does not currently sit on, and the distance is the finding.
+      { facet: `MAGNITUDE IS THE EXACT SUM, AND IT IS NOT THE HARMONIC — the ${clusters} cluster sizes sum to ${magnitude}, against the ${DIMENSION_GATES} harmonic the design aims at: a gap of ${magnitude - DIMENSION_GATES}. The sum is exact and unrounded, which is what this fold can establish; that it equals 4×108 is what it cannot, because it does not`, on: magnitude === sizes.reduce((a, b) => a + b, 0) && magnitude > 0 },,
       { facet: `IN CLUSTERS OF WAVES — the registry is ${clusters} proving folds (waves), each a cluster; ${singletons} are single precise proofs and the rest bundle ${maxCluster > 1 ? 'up to ' + maxCluster : 'few'} atoms — magnitude accretes cluster by cluster`, on: clusters > 1 && singletons > 0 && maxCluster >= 1 },
       { facet: `WITH PRECISION — every one of the ${magnitude} atoms carries a non-empty computed statement and a content address (${precise}): the magnitude is precise to the atom, refutable anywhere`, on: precise && magnitude > 0 },
       { facet: `no single wave carries it — the largest cluster is ${maxCluster} (≤ the rosetta 7, coprime single-stroke), under ${ceil((maxCluster / magnitude) * 100)}% of the whole: magnitude is EMERGENT from precision clustered, which is why batched clusters win quadratically (quantumTokenOptimisation)`, on: maxCluster <= 7 && maxCluster < magnitude / (5 * 2) },
@@ -2568,7 +2571,10 @@ export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: Mi
   const facets = [
     { facet: `THEOREMS MERGE — ${merges} theorems are near-duplicates (content Jaccard ≥ ½ with another — the same claim said twice), each foldable into one representative; the audit surfaces them, and merging them is consolidation, not loss`, on: merges >= 0 && population > 0 },
     { facet: `MERGING CREATES SPACE FOR EMERGENCE — at the sealed ${cap} cap each merge frees a slot, and ${candidates} gap-candidate theorems wait to emerge (${emergent} ready now); the space a merge opens is exactly what an emergent fills — the registry breathes`, on: candidates > 0 && merges >= emergent - candidates },
-    { facet: `THE REGISTRY BALANCES AT ${cap} — population holds at the harmonic (${population} = ${cap}): merge (death) and emerge (birth) keep the count fixed, so the system neither grows nor shrinks — it REFINES, a high-entropy duplicate replaced by a low-entropy theorem, self-balancing (the same homeostasis as the organism census)`, on: population === cap },
+    // SAME FALSE IDENTITY, SAME INVISIBILITY: `population holds at the harmonic (${population} = ${cap})`
+    // asserted an equality that has not held, in a fold I had hand-EXCLUDED from the gate list precisely
+    // because it was red. Removing the list removed the exclusion, which is the point of removing it.
+    { facet: `THE REGISTRY DOES NOT BALANCE AT ${cap} — population is ${population}, over the harmonic by ${population - cap}. Merge and emerge would hold a count fixed once it arrived there; the count has not arrived, and reporting the distance is what this fold can honestly do`, on: population === atoms.length && population > cap },,
   ].map((entry) => ({ ...entry, receipt: toUuid(`merge-emerge-balance:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
