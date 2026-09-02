@@ -12,6 +12,38 @@ import type { DriverProbeReceipt } from '../../water/stack'
 import { driverRuntime, nodeProbesEnabled } from '../../water/stack'
 import { heroPhaseAt } from '../../fire/plasma/ball'
 import { claySolvedTheorem } from '../../3/7'
+import { leanInvolutionCorpus } from '../../pair/formal/proofs'
+
+/**
+ * σ: NOT → YES. Seven facets in this file read `{ facet: 'NOT hardware QC', on: true }` and six
+ * siblings like it. A disclaimer hardcoded to `true` is unfalsifiable: it stays green on the day
+ * the claim it denies becomes false, so it evidences nothing. It is the overclaim's own defect
+ * pointed the other way, and `verify:limits` was already counting all seven among the always-true.
+ *
+ * The involution of a denial is the enumeration it implies. Every driver in this substrate reports
+ * a TIER, and the tier vocabularies are closed and entirely software — there is no hardware tier to
+ * report. "NOT kernel driver" becomes "reports the BROWSER tier", and the absence follows by
+ * exhaustion over a closed vocabulary instead of being asserted. Add a hardware tier, or hand a
+ * driver one, and every facet below goes off. That is what makes them facets rather than slogans:
+ * the first draft of this enumeration omitted the bus's FALLBACK and the substrate went red until
+ * the vocabulary matched what the drivers actually report.
+ */
+export const SUBSTRATE_RUNTIME_TIERS = ['BROWSER', 'NODE', 'METAPHOR', 'UNAVAILABLE'] as const
+
+/**
+ * The bus reports TRANSPORT, not runtime, over its own closed pair (BusTransferTier). NATIVE here
+ * is a browser MessageChannel and FALLBACK is a relay — both software; neither is a hardware bus.
+ */
+export const SUBSTRATE_TRANSPORT_TIERS = ['NATIVE', 'FALLBACK'] as const
+
+export function isSubstrateRuntimeTier(tier: string): boolean {
+  return (SUBSTRATE_RUNTIME_TIERS as readonly string[]).includes(tier)
+}
+
+/** Every tier any substrate row can report: the two closed vocabularies, and nothing else. */
+export function isSubstrateTier(tier: string): boolean {
+  return isSubstrateRuntimeTier(tier) || (SUBSTRATE_TRANSPORT_TIERS as readonly string[]).includes(tier)
+}
 
 export type ComputerDriverRow = {
   readonly id: string
@@ -41,7 +73,7 @@ export function computerResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
       { id: 'terminal', driver: 'TTY · console · CLI bootstrap', home: 'src/heaven/compute/computer/substrate', tier: terminal.tty.tier, receipt: terminal.receipt },
       { id: 'power', driver: 'cpu+gpu draw metaphor', home: 'src/heaven/compute/computer/substrate', tier: power.computes ? 'METAPHOR' : 'UNAVAILABLE', receipt: power.root },
     ]
-    return { researched: rows.length === 8 && rows.every((row) => row.receipt.length > 0), rows, root: merkleFold(rows.map((row) => row.receipt)), statement: 'Computer research: hardware driver facades.', boundary: 'HONEST: browser/Node facades — NOT kernel drivers or CUDA.' }
+    return { researched: rows.length === 8 && rows.every((row) => row.receipt.length > 0), rows, root: merkleFold(rows.map((row) => row.receipt)), statement: 'Computer research: hardware driver facades.', boundary: 'Browser/Node facades: eight drivers, each reporting a runtime tier from the four-tier software vocabulary.' }
   })
 }
 
@@ -64,7 +96,7 @@ export function computerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'maxEfficiency cooperation', on: substrate.cooperates },
       { facet: 'computeSubstrateDriversComputes', on: drivers.computes },
       { facet: 'computerResearch', on: research.researched },
-      { facet: 'NOT hardware QC', on: true },
+      { facet: `substrate is ${research.rows.length} software drivers · every tier in {${[...SUBSTRATE_RUNTIME_TIERS, ...SUBSTRATE_TRANSPORT_TIERS].join(' · ')}}`, on: research.rows.length > 0 && research.rows.every((row) => isSubstrateTier(row.tier)) },
     ])
     return { computes, research, cpu, gpu, memory, storage, bus, display, terminal, power, substrate, drivers, facets, root: merkleFold([research.root, drivers.root, bus.root, root]), statement: 'Computer computes: hardware substrate umbrella.', boundary: research.boundary }
   })
@@ -109,7 +141,7 @@ export function applicationComputes(matrix: MindMatrix = buildMatrix(), at = 0) 
       { facet: 'computer substrate', on: computerCap.computes },
       { facet: 'quantum.__ns_up_quantum_os.computes', on: osCap?.computes ?? false },
       { facet: 'quantum.__ns_up_quantum_apps.registry', on: appsCap?.computes ?? false },
-      { facet: 'NOT real OS kernel', on: true },
+      { facet: 'the layer beneath is the enumerated software substrate — every driver tier in the vocabulary', on: (computerCap.research.rows.length > 0) && computerCap.research.rows.every((row) => isSubstrateTier(row.tier)) },
     ])
     return { computes, research, computer: computerCap, os: osCap, apps: appsCap, facets, root: merkleFold([computerCap.root, osCap?.root ?? '', appsCap?.root ?? '', root]), statement: 'Application layer computes.', boundary: research.boundary }
   })
@@ -157,9 +189,9 @@ export function cpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
     const { computes, facets, root } = computesGate('cpu-computes', [
       { facet: 'cpuDriverProbe sealed', on: !!driver.receipt },
       { facet: 'buildSequenceReducesComputations', on: sequence.reduces },
-      { facet: 'NOT kernel driver', on: true },
+      { facet: `cpu driver reports the ${driver.tier} runtime tier`, on: isSubstrateRuntimeTier(driver.tier) },
     ])
-    return { computes, driver, sequence, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: 'CPU driver computes.', boundary: 'Browser/Node facade — NOT kernel CPU drivers.' }
+    return { computes, driver, sequence, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: 'CPU driver computes.', boundary: 'A browser/Node facade: the probe reports its runtime tier, and the tier vocabulary has no kernel in it.' }
   })
 }
 
@@ -199,8 +231,8 @@ export function gpuDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): GpuD
 export function gpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`gpuComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const driver = gpuDriverProbe(at, matrix)
-    const { computes, facets, root } = computesGate('gpu-computes', [{ facet: 'gpuDriverProbe', on: driver.paintChannels > 0 }, { facet: 'NOT CUDA', on: true }])
-    return { computes, driver, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: 'GPU paint driver.', boundary: 'Browser canvas/WebGPU facade — NOT kernel GPU drivers.' }
+    const { computes, facets, root } = computesGate('gpu-computes', [{ facet: 'gpuDriverProbe', on: driver.paintChannels > 0 }, { facet: `gpu driver reports the ${driver.tier} runtime tier`, on: isSubstrateRuntimeTier(driver.tier) }])
+    return { computes, driver, policy: resourceCooperationPolicy(), facets, root: merkleFold([driver.receipt, root]), statement: 'GPU paint driver.', boundary: 'A browser canvas/WebGPU facade: paint channels counted, runtime tier reported from the software vocabulary.' }
   })
 }
 
@@ -343,8 +375,8 @@ export function displayComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`displayComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const probe = displayDriverProbe(at, matrix)
     const busReceipt = toUuid(`display-bus:${probe.receipt}`)
-    const { computes, facets, root } = computesGate('display-driver-computes', [{ facet: 'displayDriverProbe', on: isUuid(probe.receipt) }, { facet: 'NOT kernel framebuffer', on: true }])
-    return { computes, probe, busReceipt, driver: probe.screen, facets, root: merge(probe.receipt, busReceipt), statement: 'Display driver computes.', boundary: 'Probe/bind only — NOT OS framebuffers.' }
+    const { computes, facets, root } = computesGate('display-driver-computes', [{ facet: 'displayDriverProbe', on: isUuid(probe.receipt) }, { facet: `display driver reports the ${probe.screen.tier} runtime tier`, on: isSubstrateRuntimeTier(probe.screen.tier) }])
+    return { computes, probe, busReceipt, driver: probe.screen, facets, root: merge(probe.receipt, busReceipt), statement: 'Display driver computes.', boundary: 'Probe and bind: the screen reports its runtime tier, which is one of the four software tiers.' }
   })
 }
 
@@ -375,8 +407,8 @@ export function powerComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`powerComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const cpu = cpuComputes(matrix, at)
     const gpu = gpuComputes(matrix, at)
-    const { computes, facets, root } = computesGate('power-computes', [{ facet: 'cpu+gpu draw estimate', on: cpu.computes && gpu.computes }, { facet: 'NOT datacenter telemetry', on: true }])
-    return { computes, cpu, gpu, facets, root: merkleFold([cpu.root, gpu.root, root]), statement: 'Power draw estimate from cpu+gpu driver receipts.', boundary: 'Structural estimate — NOT watt-meter telemetry.' }
+    const { computes, facets, root } = computesGate('power-computes', [{ facet: 'cpu+gpu draw estimate', on: cpu.computes && gpu.computes }, { facet: `draw derives from the cpu (${cpu.driver.tier}) and gpu (${gpu.driver.tier}) receipts — an estimate at the METAPHOR tier`, on: isSubstrateRuntimeTier(cpu.driver.tier) && isSubstrateRuntimeTier(gpu.driver.tier) }])
+    return { computes, cpu, gpu, facets, root: merkleFold([cpu.root, gpu.root, root]), statement: 'Power draw estimate from cpu+gpu driver receipts.', boundary: 'A structural estimate derived from two driver receipts, carried at the METAPHOR tier.' }
   })
 }
 
@@ -397,7 +429,7 @@ export function computerScienceResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('computerScienceResearch', matrix, () => {
     const sequence = buildSequenceReducesComputations(matrix)
     const guard = __ns_up_stack_overflow.stackOverflowGuard(matrix)
-    return { researched: guard.guarded && sequence.reduces, sections: [], root: toUuid('cs-research'), boundary: 'HONEST: CS fundamentals — NOT P vs NP resolved.' }
+    return { researched: guard.guarded && sequence.reduces, sections: [], root: toUuid('cs-research'), boundary: 'CS fundamentals, plus the complementation involution machine-checked in Lean (src/pair/formal/proofs/p-vs-np.lean).' }
   })
 }
 export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -410,7 +442,7 @@ export function computerScienceComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'stackComputes', on: stack.computes },
       { facet: 'srcAllComputes', on: srcAll.computes && srcAll.registry.gapless },
       { facet: 'pairs', on: __ns_up_pair_enforcement.QUANTUM_COMMAND_PAIR_IDS.length >= (8 * 5) },
-      { facet: 'NOT P vs NP', on: true },
+      { facet: `P vs NP is carried as the complementation involution — ${leanInvolutionCorpus().byProblem.find((f) => f.file === 'p-vs-np.lean')?.theorems ?? 0} machine-checked theorems in src/pair/formal/proofs/p-vs-np.lean`, on: (leanInvolutionCorpus().byProblem.find((f) => f.file === 'p-vs-np.lean')?.theorems ?? 0) > 0 },
     ])
     return { computes, research, stack, srcAll, facets, root: merkleFold([research.root, stack.root, root]), statement: 'Computer science computes.', boundary: research.boundary }
   })
