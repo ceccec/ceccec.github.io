@@ -46,7 +46,48 @@ export type NarratedScope = { file: string; line: number; head: string }
  * the measurable half is measured and the honest half is asserted beside it, which reads as
  * though both were checked. This finder counts the asserted halves, and ratchets them to zero.
  */
-export type NarratedBoundary = { file: string; line: number; says: string; asserts: boolean }
+export type NarratedBoundary = { file: string; line: number; says: string }
+
+/**
+ * A FALSE STATEMENT I SEALED INTO THE RECORD, CORRECTED HERE BECAUSE A PUSHED COMMIT CANNOT BE EDITED.
+ *
+ * Commit 6d68d27d says, of the other session working in this repo: "ceccec-github-io-7a had this right from
+ * their first conversion ... and I did not copy it." I verified nothing before writing that. It is false.
+ *
+ * What the record shows: in d9b3e29c their limits are inline entries in the `facets` array — there is no
+ * `limits` const and no `limits.every` in any `computes` expression. Three of their four conversions carried
+ * the same defect mine did; the one that was safe (Grover) was safe incidentally, because its limit happened
+ * to sit among the facets that `facets.every()` already consumed. They found this themselves and said so.
+ *
+ * The direction does not matter. An assertion about another party's work, stated as established fact in an
+ * append-only record, carries the same burden as any other claim, and praise is the form that gets checked
+ * least — which is exactly why it survives. I spent this file's whole subject matter on sentences that sound
+ * like measurement and are not, then wrote one about a colleague and shipped it unmeasured.
+ *
+ * Verifying it cost one `git show`.
+ */
+
+/**
+ * TWO NUMBERS, ONE ENFORCED — and the third is PURGED.
+ *
+ *   total   every string-valued boundary. RATCHETED. A ceiling, not a target: the gate forbids increase and
+ *           never requires a conversion, because driving it to zero would mean inventing limit facets for
+ *           boundaries that assert no limit — manufacturing the padding this file exists to delete.
+ *   marked  still carrying the "HONEST SCOPE" label. Navigation only. Deleting the label converts nothing.
+ *
+ * WHAT WAS HERE AND IS GONE. A third number counted the boundaries that "assert a limit", decided by a
+ * sixteen-alternative regex over English. A hand-written vocabulary list, reporting a SEMANTIC property from
+ * a LEXICAL match, in the file whose entire subject is that distinction. Same species as CLAY_HONEST_RE (13
+ * alternatives, 91.4% of its passes on the word NOT) and REFUTABLE (21 alternatives, 97.3% on a digit), both
+ * deleted today. I kept it because it was calibrated and because I had labelled it "not enforced" — which
+ * makes it a claim nobody checks rather than a claim that cannot fail, and that is not an improvement. Its
+ * own author and this file disagreed about its value by ten, which should have been the end of it.
+ *
+ * `marked` survives because it asks a different kind of question. "Does this text contain the label HONEST
+ * SCOPE" is a fact about text, asked of text, and its name says exactly that. "Does this boundary assert a
+ * limit" is a fact about meaning, and no list of sixteen phrases decides it.
+ */
+export type NarratedBoundary = { file: string; line: number; says: string }
 
 /**
  * A FALSE STATEMENT I SEALED INTO THE RECORD, CORRECTED HERE BECAUSE A PUSHED COMMIT CANNOT BE EDITED.
@@ -97,8 +138,6 @@ export type NarratedBoundary = { file: string; line: number; says: string; asser
  * observed to do anything of the kind. Publishing a correct decision with a wrong reason is its own defect,
  * and it is the one this file exists to catch: a sentence that sounds like measurement and is not.
  */
-const NEGATED_SCOPE_CLAIM =
-  /(?:\bdoes NOT\b|\bdo NOT\b|\bis NOT\b|\bare NOT\b|\bNOT a\b|\bNOT the\b|\bno claim\b|\bnot a claim\b|\bnever claims?\b|\bdoes not claim\b|\bnot claimed\b|\bcannot be read as\b|\bdoes not establish\b|\bis not evidence\b|\bNOT PROVEN\b|\bnot proof\b)/
 
 // NOT KEYED ON THE PHRASE. The first version of this finder required the string "HONEST SCOPE" to appear,
 // which handed the ratchet the very loophole it exists to close: delete the label corpus-wide and the count
@@ -135,7 +174,6 @@ export function findNarratedBoundaries(root: string = process.cwd()): NarratedBo
             file: relative(root, p),
             line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
             says: (at >= 0 ? text.slice(at, at + 76) : text.slice(1, 77)).replace(/\s+/g, ' '),
-            asserts: NEGATED_SCOPE_CLAIM.test(text),
           })
         }
         ts.forEachChild(node, visit)
@@ -220,9 +258,10 @@ export function findNarratedScopes(root: string = process.cwd()): NarratedScope[
  * concentration is not automatically a defect — a pattern may legitimately be dominated by its main case —
  * so this REPORTS and does not ratchet. What it removes is the ability to not know.
  *
- * Applied to my own NEGATED_SCOPE_CLAIM the answer is different in kind: 16 alternatives, 420 of 2798
- * boundaries, and no single alternative above 5.7% of the visible sample. That is what a genuine
- * multi-alternative detector looks like next to a disguised single one, which is the comparison worth having.
+ * Applied to this file's OWN criterion, the answer was different in kind: 16 alternatives and no single one
+ * above 5.7% of the visible sample, against 97.3% for REFUTABLE — a genuine multi-alternative detector next
+ * to a disguised single one. That criterion has since been deleted anyway: measuring a semantic property
+ * with a hand-written vocabulary is the defect whether or not the vocabulary is well spread.
  */
 /**
  * DISCOVERED, NOT HAND-PICKED. The involution above was run on three criteria I chose myself, which makes it
@@ -247,7 +286,7 @@ export function discoverCriteria(root: string = process.cwd()): Criterion[] {
   const ts = require('typescript') as typeof import('typescript')
   const found: Criterion[] = []
   // scripts/ AS WELL AS src/, because the first version audited only the corpus and therefore could never
-  // find its OWN criterion. I published a table comparing REFUTABLE, QUANTUM_CLAIM and my NEGATED_SCOPE_CLAIM
+  // find its OWN criterion. I published a table comparing REFUTABLE, QUANTUM_CLAIM and this file's own
   // and had to hand-add the third — the automation built to stop me hand-picking still excluded the auditor
   // from the audit. The instruments are part of what is measured or the measurement has a hole exactly where
   // I am standing.
@@ -330,12 +369,10 @@ export function assertScopesCompute(): void {
   if (narrated.length > 10) console.log(`  ...and ${narrated.length - 10} more`)
 
   const boundaries = findNarratedBoundaries()
-  const asserting = boundaries.filter((b) => b.asserts)
   const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
   console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length)} · a CEILING, not a target`)
-  console.log(`  of those, ${asserting.length} assert a limit in prose — NOT enforced, and the priority set: a boundary claiming nothing is not lying about anything`)
   console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — navigation only; deleting the label converts nothing`)
-  for (const b of asserting.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
+  for (const b of labelled.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
   if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)
 
   // THE INVOLUTION, RUN OVER EVERYTHING RATHER THAN OVER WHAT I NOTICED. Reports, never ratchets: a pattern
