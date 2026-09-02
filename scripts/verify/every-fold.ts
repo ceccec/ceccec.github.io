@@ -94,21 +94,23 @@ export function main() {
   console.log(`FOLDS WITH A FALSE VERDICT OR AN OFF FACET: ${verdictFalse}  (facets off: ${facetsOff})`)
   for (const b of bad) console.log('   ' + b)
 
-  // A CENSUS THAT CANNOT FAIL IS NOT A CHECK. This file ran for four minutes, found 460 folds
-  // reporting a false verdict, 1438 facets off and 34 folds throwing — and exited 0, every time,
-  // because it only ever printed. Scheduling it in that state would have made CI green ON the 460.
+  // A CENSUS THAT CANNOT FAIL IS NOT A CHECK. This file ran for four and a half minutes, found 460
+  // folds reporting a false verdict, 1438 facets off and 34 folds throwing — and exited 0, every
+  // time, because it only ever printed. It is also in no chain. Scheduling it in that state would
+  // have been worse than leaving it: CI green ON the 460, with a receipt.
   //
-  // ONLY ONE OF THE THREE COUNTS IS RATCHETED, AND THE REASON IS THE SECOND FINDING. Two runs of
-  // this file at the same commit, over the same 7655 exports and the same 4504 folds, reported
-  // 455/1425 and then 460/1438. Five folds return a DIFFERENT VERDICT ON IDENTICAL INPUT. In a
-  // corpus whose central claim is that the same input recomputes to the same answer, that is a
-  // defect in the folds, not a tolerance to design around — and a ratchet over a number that
-  // moves by itself would throw on nobody's change and block every commit until someone widened
-  // it, which is how a gate teaches people to ignore it.
+  // A CORRECTION, RECORDED HERE BECAUSE IT WAS PUBLISHED WRONG. The first commit to ratchet this
+  // file claimed five folds returned a different verdict on identical input, on the strength of one
+  // run reporting 455/1425 and the next 460/1438 at the same commit. That does not reproduce. Six
+  // runs since — including a byte-exact reconstruction of the earlier tree, with and without the
+  // scratch file that sat in scripts/, with and without the seeded status.json — all report
+  // 460/1438. A separate probe called all 4538 folds twice and diffed every verdict and every off
+  // facet: zero differences. The 455 was the first census of that session and almost certainly read
+  // a stale esbuild bundle, i.e. it measured an older tree. The folds are deterministic; the
+  // measurement was not, because the thing measured was not what was on disk.
   //
-  // So `threw` is a ratchet — 34 in every run measured, deterministic, and a fold that starts
-  // throwing is unambiguous. The other two are REPORTED until the five are found and made
-  // deterministic; then they can be ratcheted honestly.
+  // So all three counts ratchet. They may fall, never rise, and a regression throws.
+  console.log(ratchet('folds.false-verdict', verdictFalse))
+  console.log(ratchet('folds.facets-off', facetsOff))
   console.log(ratchet('folds.threw', threw))
-  console.log(`folds.false-verdict: ${verdictFalse} · folds.facets-off: ${facetsOff} — NOT RATCHETED: these varied 455→460 and 1425→1438 across runs at one commit; find the five non-deterministic folds first`)
 }
