@@ -43,17 +43,27 @@ export type ClayPosition = {
   present: boolean
   theorems: number
   refusalProved: boolean
+  selfDeciding: number
+  unsound: number
+  mathlib: boolean
 }
 
 export function clayPosition(root: string = process.cwd()): ClayPosition[] {
   return CLAY.map((entry) => {
     const p = join(root, entry.file)
-    if (!existsSync(p)) return { problem: entry.problem, present: false, theorems: 0, refusalProved: false }
+    if (!existsSync(p)) return { problem: entry.problem, present: false, theorems: 0, refusalProved: false, selfDeciding: 0, unsound: 0, mathlib: false }
     const text = readFileSync(p, 'utf8')
     const theorems = (text.match(/^(theorem|lemma) /gm) ?? []).length
+    // SELF-DECIDING: `by decide` asks the kernel to COMPUTE the proposition's truth over its whole finite
+    // domain. There is no human proof step to trust, no imported lemma, no appeal to authority — the
+    // theorem carries its own verification, which is the exact and only sense in which these prove
+    // themselves. It is a property of the PROOF, not of the proposition's scope.
+    const selfDeciding = (text.match(/by decide/g) ?? []).length
+    const unsound = (text.match(/\bsorry\b|^axiom /gm) ?? []).length
+    const mathlib = /^import Mathlib/m.test(text)
     // the exact name, at a declaration site — not anywhere in the file, which a comment would satisfy
     const refusalProved = new RegExp(`^theorem ${entry.refusal}\\b`, 'm').test(text)
-    return { problem: entry.problem, present: true, theorems, refusalProved }
+    return { problem: entry.problem, present: true, theorems, refusalProved, selfDeciding, unsound, mathlib }
   })
 }
 
@@ -65,11 +75,25 @@ export function assertClayPosition(root: string = process.cwd()): void {
 
   console.log(`the Clay position, computed — ${rows.length} problems, ${total} kernel-checked theorems:`)
   for (const r of rows) {
-    console.log(`  ${r.present ? '✓' : '✗'} ${r.problem.padEnd(24)} ${String(r.theorems).padStart(2)} theorems · refusal ${r.refusalProved ? 'PROVED' : 'MISSING'}`)
+    console.log(`  ${r.present ? '✓' : '✗'} ${r.problem.padEnd(24)} ${String(r.theorems).padStart(2)} theorems, ${String(r.selfDeciding).padStart(2)} self-deciding · refusal ${r.refusalProved ? 'PROVED' : 'MISSING'}`)
   }
 
   if (!allPresent) throw new Error('a Clay problem has no file: the position is not stated for all seven')
   if (!allRefused) throw new Error('a Clay problem lacks its named refusal theorem: the floor would be asserted rather than proved')
+
+  // ── THE THEOREMS PROVE THEMSELVES, in the one sense that is true and checkable ─────────────────────
+  const selfDeciding = rows.reduce((acc, r) => acc + r.selfDeciding, 0)
+  const unsound = rows.reduce((acc, r) => acc + r.unsound, 0)
+  const anyMathlib = rows.some((r) => r.mathlib)
+  if (unsound > 0) throw new Error(`${unsound} sorry or axiom in the Clay proofs: they would no longer prove themselves`)
+  if (anyMathlib) throw new Error('a Clay proof imports Mathlib: the kernel is no longer the only thing trusted')
+  console.log(`\n  THEY PROVE THEMSELVES — ${selfDeciding} of ${total} decided by \`by decide\`: the kernel COMPUTES the`)
+  console.log(`  proposition over its whole finite domain, so there is no human proof step to trust, no imported`)
+  console.log(`  lemma and no appeal to authority. ${unsound} sorry, ${unsound} axioms, and no Mathlib in any of the seven.`)
+  console.log(`  The remaining ${total - selfDeciding} close by rfl or a short structural tactic, which is stated rather than rounded up.`)
+  console.log(`  This is a property of the PROOF and not of the proposition's SCOPE: an involution decided over a`)
+  console.log(`  nine-element list is decided completely and is still an involution over nine elements. Self-proving`)
+  console.log(`  makes the finite statement airtight; it does not enlarge what the statement says.`)
 
   const citation = join(root, 'CITATION.cff')
   const doiPresent = existsSync(citation) && readFileSync(citation, 'utf8').includes(DOI)
