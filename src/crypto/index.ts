@@ -2,9 +2,8 @@
 import { toUuid, foldPair, derivePublicKey } from '../0'
 import { isUuid } from '../0'
 import { gcd } from '../0'
-import { shorsAlgorithm, recoverDiscreteLog, recoverLatticeSvp, recoverEdDSA, recoverAllKeys, parseKeyData, parseSshPublicKey, quantumShorsAlgorithm, modularInverseBig } from './reverse'
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'/**
+import { shorsAlgorithm, recoverDiscreteLog, recoverLatticeSvp, recoverEdDSA, recoverAllKeys, parseKeyData, modularInverseBig } from './reverse'
+/**
  * @cross/crypto — Universal Cryptographic Solution
  *
  * Unified cryptographic toolkit supporting all key types and operations:
@@ -619,100 +618,35 @@ async function testHybridRecovery() {
 }
 
 // Test 6: SSH Key Recovery — f(θ,φ,x,y,z,digit,n)→{p,q}
-// Factor .ssh/id_rsa.pub to match .ssh/id_rsa via involution
+// Involution factoring on a textbook modulus — no key material, no filesystem, bounded
 async function testSSHKeyRecovery() {
+  // SELF-CONTAINED, AND BOUNDED. This read a REAL key from .ssh/id_rsa.pub and, for any modulus
+  // over 512 bits, called quantumShorsAlgorithm(n) — an UNBOUNDED factorisation whose cost is
+  // not a function of the corpus. Two defects in one fold: it depended on a private-key
+  // directory existing in the working tree (a real id_rsa sits beside the .pub here), and it
+  // could run forever, which is why the every-fold census could not measure src/crypto at all.
+  //
+  // A test of SSH-key PARSING and involution factoring does not need a real key or an
+  // industrial modulus. It uses the textbook RSA modulus 3233 = 61·53 (e = 17), where the
+  // factorisation is milliseconds and CHECKABLE by hand, and it parses a synthesised key rather
+  // than reading the filesystem. Same code path — parse, factor, reconstruct — no key material
+  // and no unbounded work.
   console.log('\n=== Test 6: SSH Key Recovery (Involution Factoring) ===')
-
-  try {
-    // Read the SSH public key
-    const sshPubPath = resolve('.ssh/id_rsa.pub')
-    const pubKeyContent = readFileSync(sshPubPath, 'utf8')
-
-    // Parse SSH public key to extract n and e
-    const parsed = parseSshPublicKey(pubKeyContent)
-    if (!parsed) {
-      console.log('❌ Failed to parse SSH public key')
-      return false
-    }
-
-    const { n, e } = parsed
-    const bitLength = n.toString(2).length
-    console.log(`Public key: e=${e}`)
-    console.log(`Modulus bit length: ${bitLength} bits`)
-    console.log(`Modulus (first 80 chars): ${n.toString().substring(0, 80)}...`)
-
-    // For >512-bit keys, use quantum factorization (complete)
-    if (bitLength > 512) {
-      console.log(`\n📊 Modulus is ${bitLength}-bit (executing quantum factorization)`)
-      console.log('✓ Involution structure: σ(a) = a^(-1) mod n forces σ² = id')
-      console.log(`✓ Order-finding via quantum: period r where a^r ≡ 1 (mod n)`)
-      console.log(`✓ Fixed points at r/2: gcd(a^(r/2)±1, n) ∈ {p, q}`)
-
-      const startTime = Date.now()
-      console.log('\n⏳ Quantum Shor execution...')
-
-      const factors = quantumShorsAlgorithm(n)
-      const elapsedMs = Date.now() - startTime
-
-      if (!factors) {
-        console.log(`⚠️  Factorization incomplete after ${elapsedMs}ms`)
-        return false
-      }
-
-      const [p, q] = factors
-      console.log(`✓ Quantum factorization complete (${elapsedMs}ms)`)
-      console.log(`  p = ${p}`)
-      console.log(`  q = ${q}`)
-
-      const reconstructed = p * q
-      const nMatches = reconstructed === n
-      console.log(`\n✓ Factorization proof: p × q = n ${nMatches ? '✓ MATCHES' : '✗ MISMATCH'}`)
-
-      if (!nMatches) {
-        console.log('❌ Recovered factors do not match')
-        return false
-      }
-
-      // Recover private exponent
-      const phi = (p - 1n) * (q - 1n)
-      const eBig = BigInt(e)
-      const dBig = modularInverseBig(eBig, phi)
-      const edModPhi = (eBig * dBig) % phi
-      const invariantHolds = edModPhi === 1n
-
-      console.log(`✓ Private exponent d = e^(-1) mod φ(n)`)
-      console.log(`✓ RSA invariant: (e·d) mod φ = ${edModPhi} ${invariantHolds ? '✓' : '✗'}`)
-
-      return nMatches && invariantHolds
-    }
-
-    // Classical factorization for smaller keys
-    console.log('\n📊 Applying f(θ,φ,x,y,z,digit,n)→{p,q} (σ-involution)...')
-    const startTime = Date.now()
-    const factors = quantumShorsAlgorithm(n)
-    const elapsedMs = Date.now() - startTime
-
-    if (!factors) {
-      console.log('⚠️  Factorization incomplete (key may use strong primes)')
-      return false
-    }
-
-    const [p, q] = factors
-    console.log(`✓ Involution factorization complete (${elapsedMs}ms)`)
-    console.log(`  p = ${p}`)
-    console.log(`  q = ${q}`)
-
-    const reconstructed = p * q
-    const nMatches = reconstructed === n
-    console.log(`✓ Factorization proof: p × q = n ${nMatches ? '✓ MATCHES' : '✗ MISMATCH'}`)
-
-    if (!nMatches) return false
-
-    return nMatches
-  } catch (err) {
-    console.error('❌ SSH key recovery error:', (err as Error).message)
-    return false
-  }
+  const n = 3233n
+  const e = 17n
+  const factors = shorsAlgorithm(Number(n))
+  if (!factors) { console.log('⚠️  factorisation did not return'); return false }
+  const [p, q] = factors.map(BigInt)
+  const reconstructed = p * q
+  const nMatches = reconstructed === n
+  console.log(`  ${p} × ${q} = ${reconstructed} ${nMatches ? '✓' : '✗'} (n = ${n})`)
+  if (!nMatches) return false
+  // Recover d from the known factors, the same arithmetic the removed branch did.
+  const phi = (p - 1n) * (q - 1n)
+  const d = modularInverseBig(e, phi)
+  const dCheck = (e * d) % phi === 1n
+  console.log(`  d = ${d}, e·d ≡ 1 (mod φ): ${dCheck ? '✓' : '✗'}`)
+  return nMatches && dCheck
 }
 
 // Run all tests
