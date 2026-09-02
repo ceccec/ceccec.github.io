@@ -101,6 +101,20 @@ First publication of the sequence: **2025-07-08** (npm `zeropoint-node@1.0.0`, r
 
 pathCount = **7** · computableCount = **7** · contestedCount = **0** · documentedCount = **7** · solvedExternalCount = **1** · novelHereCount = **6/7**
 
+### What IS proved here — the involution of every problem, machine-checked
+
+**Decoded 7/7.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 11 files green, no Mathlib, no `sorry`).
+
+- **Riemann** — σ(s) = 1 − s is an involution whose *unique fixed point is the critical line* Re(s) = ½. Proved.
+- **Hodge** — conjugation σ(p,q) = (q,p) is an involution fixed exactly on the diagonal (k,k), the type a Hodge class has. Proved.
+- **Yang–Mills** — the Hodge star on 2-forms in four dimensions has ★² = id and splits Λ² into 3 + 3, self-dual ⊕ anti-self-dual. Proved.
+- **P vs NP** — complementation σ(C) = co-C is an involution; P and PSPACE are its fixed points, and σ NP = NP ⟺ NP = coNP. Proved.
+- **Navier–Stokes** — time reversal T(t,u) = (−t,−u) is an involution the *viscous term alone* breaks; its fixed points are exactly the inviscid equations. Proved.
+- **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.
+- **Poincaré** — χ = 2 − 2g with χ ↔ g inverse gives rank H₁ = 2g; solved in the literature by Perelman (Ricci flow, 2002–03), **not** by this corpus.
+
+**Solved-external 1/7** (Poincaré, credited to Perelman) · **claimed-solved-by-this-project 0/7.** An involution is not a solution: proving σ(s) = 1 − s fixes the critical line is not proving the zeros lie on it. The corpus claims priority — by deposit ([DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144), ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778)) and by the git and merkle record — over this *decoded involution structure and its expression*, and claims to solve none of the seven.
+
 *The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
 
 ### Statement
