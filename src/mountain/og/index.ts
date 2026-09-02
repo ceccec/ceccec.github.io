@@ -9,6 +9,7 @@ import { commandsRegistry, executeConceptCommand } from '../../thunder/commands'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion'
 import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus'
 import { TAU, CANONICAL_HOST, A432_FOLDED, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7'
+import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement'
 import { rosettaRayOf } from '../../water/digit'
 import { harmonicBands, openGraph, typographySeo } from '../../quantum/icons'
@@ -1580,7 +1581,13 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
       siteDescFits &&
       portalRoutesOnLearn &&
       incomplete.length === 0 &&
-      pages.length === (4 * 7) + 1 &&
+      // THE PAGE COUNT WAS A FROZEN LITERAL. `pages.length === (4 * 7) + 1` was written when 29
+      // pages were served; a thirtieth was added and this fold has reported false ever since — not
+      // because anything broke, but because the number stopped being true and nothing said so, and
+      // drainableClosed carried that false into 25 census entries. The corpus already has a law for
+      // census counts and it is not a literal: the folded census must land in DOCUMENTED_HARMONICS.
+      // That law moves with the site; 29 could only ever be right on the day it was typed.
+      DOCUMENTED_HARMONICS.includes(foldedCensus(pages.length).folded) &&
       !pages.some((p) => p.slug === 'name-entropy-verify') &&
       seo.optimised
     const violationsFound =

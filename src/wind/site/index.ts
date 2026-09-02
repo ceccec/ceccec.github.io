@@ -1016,7 +1016,7 @@ export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZ
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
   const titleBg = 'Двоен торус'
-  const description = 'A computational white paper on the sequence 12487536901 — the double-torus vortex algebra (reflection through 0, the 42-bit budget, the 64→128 dimensional bit), with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0.'
+  const description = 'The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0.'
   const descriptionBg = 'Портал за квантово учене за езикови модели — MCP инструменти над двоен торус UUID поток от корени, разписки, вълни, диаманти и порти.'
   const { themeColor, backgroundColor } = computedMovieThemeColors(matrix)
   const robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'

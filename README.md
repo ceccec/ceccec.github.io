@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** A computational white paper on the sequence 12487536901 — the double-torus vortex algebra (reflection through 0, the 42-bit budget, the 64→128 dimensional bit), with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 761 · proven = 755 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 761 · proven = 755 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
