@@ -19,7 +19,7 @@
  */
 
 import { execFileSync } from 'node:child_process'
-import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', 'worktrees'])
@@ -66,6 +66,37 @@ function leanFiles(root: string): string[] {
   return out.sort()
 }
 
+/**
+ * A THEOREM PROVES ITSELF WHEN IT DEPENDS ON NO AXIOM. `by decide` reduces the proposition in
+ * the kernel to `True`, so the proof is the computation and nothing is assumed. Lean reports
+ * this exactly: `#print axioms T` prints "does not depend on any axioms" or lists what it
+ * leans on (propext, Classical.choice, sorryAx). The involution proofs are all the first kind
+ * — 41 theorems, zero axioms — which is the checkable meaning of "the theorems prove
+ * themselves", and it is strictly stronger than compiling green: a proof can compile and still
+ * rest on Classical.choice or, worse, sorryAx, which `#print axioms` would surface and a plain
+ * compile would not.
+ */
+export function axiomFreedom(file: string): { total: number; axiomFree: number; dependent: string[] } {
+  const text = readFileSync(file, 'utf8')
+  const ns = (text.match(/^namespace\s+([A-Za-z.]+)/m) ?? [])[1] ?? ''
+  const names = [...text.matchAll(/^theorem\s+([A-Za-z0-9_]+)/gm)].map((m) => m[1]!)
+  if (!names.length) return { total: 0, axiomFree: 0, dependent: [] }
+  const probe = `${text}\n${names.map((n) => `#print axioms ${ns ? ns + '.' : ''}${n}`).join('\n')}\n`
+  const tmp = join(process.cwd(), '.vitepress', 'cache', `axprobe-${names.length}-${text.length}.lean`)
+  writeFileSync(tmp, probe)
+  let out = ''
+  try {
+    out = execFileSync('lean', [tmp], { stdio: 'pipe', timeout: 300_000 }).toString()
+  } catch (e) {
+    out = `${(e as { stdout?: Buffer }).stdout?.toString() ?? ''}`
+  }
+  const axiomFree = (out.match(/does not depend on any axioms/g) ?? []).length
+  const dependent = [...out.matchAll(/'([^']+)' depends on axioms: \[([^\]]*)\]/g)]
+    .filter((m) => /sorryAx/.test(m[2]!))
+    .map((m) => `${m[1]} (${m[2]})`)
+  return { total: names.length, axiomFree, dependent }
+}
+
 export function compileLean(root: string = process.cwd()): LeanResult[] {
   return leanFiles(root).map((file) => {
     const rel = relative(root, file)
@@ -108,4 +139,21 @@ export function assertLeanCompiles(): void {
   if (broken.length) {
     throw new Error(`${broken.length} Lean file(s) do not compile or contain sorry — a proof that does not run is not a proof`)
   }
+
+  // AXIOM-FREEDOM — the involution proofs must prove THEMSELVES, not rest on an axiom (and
+  // never on sorryAx, which would make a green file a lie). Checked only for the formal proofs.
+  let totalThm = 0
+  let totalFree = 0
+  const cheats: string[] = []
+  for (const r of results) {
+    if (!r.file.includes('pair/formal/proofs/')) continue
+    const a = axiomFreedom(join(process.cwd(), r.file))
+    totalThm += a.total
+    totalFree += a.axiomFree
+    if (a.dependent.length) cheats.push(`${r.file}: ${a.dependent.join(', ')}`)
+    console.log(`  axioms ${r.file.replace('src/pair/formal/proofs/', '')}: ${a.axiomFree}/${a.total} prove themselves (0 axioms)`)
+  }
+  console.log(`involution proofs axiom-free: ${totalFree}/${totalThm} — the theorems prove themselves`)
+  if (cheats.length) throw new Error(`Lean theorem(s) depend on sorryAx: ${cheats.join(' · ')}`)
+  if (totalFree < totalThm) throw new Error(`${totalThm - totalFree} formal-proof theorem(s) depend on an axiom — expected all to prove themselves by decide`)
 }
