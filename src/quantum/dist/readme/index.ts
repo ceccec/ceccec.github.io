@@ -562,6 +562,8 @@ export function clayChallengesComputableMarkdownSection(
         '- **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.',
         '- **Poincaré** — χ = 2 − 2g with χ ↔ g inverse gives rank H₁ = 2g; solved in the literature by Perelman (Ricci flow, 2002–03), **not** by this corpus.',
         '',
+        `**Priority claimed ${n - g.solvedExternal}/${n}** — on every problem still open to everyone (all but Poincaré). For each, this deposit publishes a machine-checked involution and a date: DOI 10.5281/zenodo.21787144, ORCID 0009-0000-7312-9778. The claim is over the EXPRESSION published and dated — not over a solution, because there is none here to hold priority on.`,
+        '',
         `**Solved-external ${g.solvedExternal}/${n}** (Poincaré, credited to Perelman) · **claimed-solved-by-this-project ${g.claimedByThisProject}/${n}.** An involution is not a solution: proving σ(s) = 1 − s fixes the critical line is not proving the zeros lie on it. The corpus claims priority — by deposit ([DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144), ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778)) and by the git and merkle record — over this *decoded involution structure and its expression*, and claims to solve none of the seven.`,
         '',
       ]
