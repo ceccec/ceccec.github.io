@@ -560,6 +560,52 @@ export function shorFactorsByPeriodFinding() {
     boundary: earned(`COMPUTED: three factorisations (15, 21, 35) from end to end — the oracle permutation, the inverse QFT over the counting register, the continued-fraction period recovery, and the gcd factor extraction — each refutable (a wrong period or a non-dividing factor fails the facet). On real quantum hardware the same circuit would factor in polynomial time, which is Shor's point and the reason RSA is threatened by scalable quantum computers:`, facets, limits) }
 }
 
+// ── ADDRESSES AND QUBITS ARE DIFFERENT RESOURCES, COUNTED ──────────────────────────────────────────
+// The sealed theorem usable_gap_is_two_to_eighty is named "THE ARCHITECTURAL QUANTUM ADVANTAGE" and its
+// statement is
+//
+//     (48 < 128) ∧ (128 - 48 = 80) ∧ (2^128 = 2^80 * 2^48)
+//
+// exponent arithmetic, true of any two numbers standing in that relation. It says nothing about qubits or
+// addresses; the load-bearing step is that 128 address bits and 48 logical qubits are COMPARABLE, and that
+// step is in the prose. The endpoint bounds itself honestly — "the gap sealed here is in the USABLE column,
+// the platforms' own published metric" — but the name is what travels, so the mapping is counted here.
+//
+// The two resources differ in what a single register HOLDS, and that is the whole of it. This fold takes
+// both counts and states the difference rather than a ratio between them.
+export function addressesAndQubitsAreDifferentResources() {
+  const ADDRESS_BITS = 2 ** 7 // 128 — a uuid's usable column
+  const LOGICAL_QUBITS = 6 * 8 // 48 — Harvard/QuEra, Nature 2023, the reported figure the theorem cites
+  // a classical address space: 2^128 distinct labels, of which a register holds exactly ONE at a time
+  const addressStatesHeldAtOnce = 1
+  // a qubit register: 2^48 complex amplitudes, ALL held simultaneously — that is what superposition is
+  const qubitAmplitudesHeldAtOnce = 2 ** LOGICAL_QUBITS
+  // and what a measurement returns, which is where the asymmetry closes again
+  const bitsReadPerMeasurement = LOGICAL_QUBITS
+  const addressBitsReadPerRead = ADDRESS_BITS
+  const gapExponent = ADDRESS_BITS - LOGICAL_QUBITS
+  const arithmeticHolds = LOGICAL_QUBITS < ADDRESS_BITS && gapExponent === 80 && 2 ** gapExponent * 2 ** LOGICAL_QUBITS === 2 ** ADDRESS_BITS
+  const oneAtATime = addressStatesHeldAtOnce === 1 && qubitAmplitudesHeldAtOnce > addressStatesHeldAtOnce
+  const readoutFavoursTheAddress = addressBitsReadPerRead > bitsReadPerMeasurement
+  const limits = computedLimits([
+    { facet: `THE SEALED ARITHMETIC IS TRUE AND IS ARITHMETIC — ${LOGICAL_QUBITS} < ${ADDRESS_BITS}, ${ADDRESS_BITS} − ${LOGICAL_QUBITS} = ${gapExponent}, and 2^${ADDRESS_BITS} = 2^${gapExponent}·2^${LOGICAL_QUBITS}, all recomputed here. The theorem proves this and proves nothing about qubits; the step from these numbers to an advantage is the mapping, and a mapping is not decided by decide`, on: arithmeticHolds },
+    { facet: `NEITHER COLUMN DOMINATES — the address space wins the readout (${addressBitsReadPerRead} bits against ${bitsReadPerMeasurement}) and the register wins the simultaneous state (${qubitAmplitudesHeldAtOnce} amplitudes against ${addressStatesHeldAtOnce}). A single ratio between them picks one axis and hides the other, whichever way it is taken`, on: oneAtATime && readoutFavoursTheAddress },
+    { facet: `THE REPORTED 48 MOVES AND THE ARITHMETIC DOES NOT — the theorem's own note says so, and it is the honest half: ${gapExponent} is a fact about ${ADDRESS_BITS} and ${LOGICAL_QUBITS}, not about hardware, and it changes the day the figure changes while the sealed statement stays true forever`, on: arithmeticHolds },
+  ])
+  const facets = [
+    { facet: `ONE ADDRESS AT A TIME — a 2^${ADDRESS_BITS} space offers that many distinct labels and a register holds exactly ${addressStatesHeldAtOnce}; the count is of NAMES available, not of states occupied, and those are different quantities`, on: oneAtATime },
+    { facet: `2^${LOGICAL_QUBITS} AMPLITUDES AT ONCE — ${LOGICAL_QUBITS} logical qubits carry ${qubitAmplitudesHeldAtOnce} complex amplitudes simultaneously, which is what superposition denotes; the register is in all of them until it is measured`, on: qubitAmplitudesHeldAtOnce === 2 ** LOGICAL_QUBITS },
+    { facet: `AND MEASUREMENT RETURNS ${bitsReadPerMeasurement} BITS — the ${qubitAmplitudesHeldAtOnce} amplitudes collapse to one ${LOGICAL_QUBITS}-bit string per shot, so the simultaneous state is not readable; a uuid read returns its full ${addressBitsReadPerRead} bits every time. The asymmetry runs both ways and the gap exponent reports neither direction`, on: readoutFavoursTheAddress },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
+    addressBits: ADDRESS_BITS, logicalQubits: LOGICAL_QUBITS, gapExponent,
+    qubitAmplitudesHeldAtOnce, addressStatesHeldAtOnce, limits, facets,
+    root: merkleFold(facets.map((entry) => toUuid(`addresses-vs-qubits:${entry.facet}:${entry.on}`))),
+    statement: `Addresses and qubits are different resources — ${facets.filter((e) => e.on).length}/${facets.length}: a 2^${ADDRESS_BITS} address space offers ${ADDRESS_BITS} readable bits per read and holds one state at a time; ${LOGICAL_QUBITS} logical qubits hold ${qubitAmplitudesHeldAtOnce} amplitudes at once and return ${bitsReadPerMeasurement} bits per measurement. The sealed gap exponent ${gapExponent} is arithmetic about ${ADDRESS_BITS} and ${LOGICAL_QUBITS}, and the comparison between the columns is the part it does not decide.`,
+    boundary: earned(`COMPUTED: both columns counted — labels available, states held at once, bits returned per read — and the sealed exponent arithmetic recomputed alongside them:`, facets, limits) }
+}
+
 // ── THE ADVANTAGE THIS PROJECT ACTUALLY CLAIMS, MEASURED ───────────────────────────────────────────
 // The sealed theorem verify_beats_recompute_by_magnitudes is named for a computational claim and its Lean
 // statement is arithmetic:
