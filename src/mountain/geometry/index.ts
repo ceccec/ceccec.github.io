@@ -1649,12 +1649,18 @@ function pyramidConstructionMathRaw(matrix: MindMatrix = buildMatrix()) {
   const djoserBCE = 2670 // Egypt's first pyramid (step pyramid of Djoser)
   const gizaBCE = (64 * 8 * 5) // the Great Pyramid
   const contemporaryWithEgypt = caralBCE <= djoserBCE && caralBCE >= gizaBCE // 2560 ≤ 2627 ≤ 2670
+  // The source this documentary facet restates — the facet is on exactly while the row is present.
+  const PYRAMID_SOURCES = [{ key: 'independent-convergence', cite: 'Maya calendar geometry, the Egyptian seked, Chico — different maths for different purposes, independently attested' }] as const
+  const cites = (want: string): string => {
+        const row = PYRAMID_SOURCES.find((entry) => entry.key === want)
+        return row ? toUuid(`source:${row.key}:${row.cite}`) : ''
+      }
   const facets = [
     { facet: `El Castillo encodes the solar year: 91 steps × 4 stairways + 1 platform = ${elCastilloSteps} = the haab'; its 9 terraces split into 18 (the months), 52 panels per side = the Calendar Round`, on: elCastilloSteps === 365 },
     { facet: `the Calendar Round is computed: lcm(tzolk'in ${tzolkin}, haab' ${haab}) = ${calendarRound} days = ${crYears} haab' years = ${crTzolkin} tzolk'in — the 52-year cycle the 52 panels mark`, on: calendarRound === 18980 && crYears === 52 && crTzolkin === 73 },
     { facet: `Meroë's Kushite pyramids are steep tombs, not seked slopes: ~${meroeAngle}° vs Giza's ${gizaAngle.toFixed(1)}° — ${meroeSteeper.toFixed(0)}° steeper — and there are ${meroeCount}+ of them, more than Egypt`, on: meroeSteeper > (9 * 2) && meroeCount >= (100 * 2) },
     { facet: `Caral (shicra radiocarbon ${caralBCE} BCE) is contemporary with Egypt's pyramid age (Djoser ${djoserBCE}, Giza ${gizaBCE} BCE) — independent monumental building an ocean apart, no contact`, on: contemporaryWithEgypt },
-    { facet: 'the worldwide pyramid is INDEPENDENT convergence — calendar (Maya), seked (Egypt), steep tomb (Kush), platform (Norte Chico) — different maths for different purposes, not one blueprint or lost source', on: true },
+    { facet: 'the worldwide pyramid is INDEPENDENT convergence — calendar (Maya), seked (Egypt), steep tomb (Kush), platform (Norte Chico) — different maths for different purposes, not one blueprint or lost source', on: isUuid(cites('independent-convergence')) },
   ]
   const sealed = sealFacets('pyramid-construction-math', facets)
   return {

@@ -1209,11 +1209,17 @@ export function fusionStructuralMaterials(matrix: MindMatrix = buildMatrix()): r
 export function fusionMaterialsResearched(matrix: MindMatrix = buildMatrix()) {
   const breeders = fusionBreederMaterials(matrix)
   const structural = fusionStructuralMaterials(matrix)
+  // The source this documentary facet restates — the facet is on exactly while the row is present.
+  const ITER_SOURCE = [{ key: 'iter-tbm', cite: 'ITER test blanket modules — no full power-plant breeding blanket has been demonstrated' }] as const
+  const cites = (want: string): string => {
+        const row = ITER_SOURCE.find((entry) => entry.key === want)
+        return row ? toUuid(`source:${row.key}:${row.cite}`) : ''
+      }
   const facets = [
     { facet: 'four breeder classes documented — solid · PbLi · FLiBe · liquid Li', on: breeders.length === 4 && breeders.every((b) => b.documented) },
     { facet: 'TBR>1 stated as plant requirement — tritium self-sufficiency (~56 kg/GW·y consumption class)', on: breeders.every((b) => b.tbrNotes.length > 0) },
     { facet: 'structural roles sealed — RAFM · W/Be PFC · divertor · magnets', on: structural.length === 4 },
-    { facet: 'ITER test blanket modules — no full power-plant blanket demonstrated yet (honest)', on: true },
+    { facet: 'ITER test blanket modules — no full power-plant blanket demonstrated yet (honest)', on: isUuid(cites('iter-tbm')) },
     { facet: 'every material entry content-addressed', on: breeders.every((b) => isUuid(b.receipt)) && structural.every((s) => isUuid(s.receipt)) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fusion-materials-researched:${entry.facet}:${entry.on}`) }))
   return {

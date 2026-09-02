@@ -613,10 +613,13 @@ export function waveOpticsDecoded(matrix: MindMatrix = buildMatrix()) {
       { topic: 'polarisation', fact: "Malus's law I = I₀ cos²θ — light is a transverse wave" },
       { topic: 'thin-film interference', fact: 'path difference 2nt gives the soap-bubble / oil-slick colours' },
     ].map((t) => ({ ...t, receipt: toUuid(`wave-optics:${t.topic}:${t.fact}`) }))
+    // A documentary facet restates a topic row, so it stands on that row's RECEIPT — computed from the
+    // topic and its fact, not merely checked for presence. Edit the fact and the address moves with it.
+    const cites = (topic: string): string => topics.find((row) => row.topic === topic)?.receipt ?? ''
     const facets = [
       { facet: 'interference and diffraction follow exactly from light as a wave (d·sinθ = mλ)', on: topics.length === 5 },
-      { facet: "refraction is Snell's law; polarisation is Malus's law — exact wave results", on: true },
-      { facet: 'thin-film interference explains soap-bubble and oil-slick colour', on: true },
+      { facet: "refraction is Snell's law; polarisation is Malus's law — exact wave results", on: isUuid(cites("Snell's law")) && isUuid(cites('polarisation')) },
+      { facet: 'thin-film interference explains soap-bubble and oil-slick colour', on: isUuid(cites('thin-film interference')) },
       { facet: 'the visible band reuses the single A432 colour source (frequencyToLight), no second colour system', on: green.hue >= 0 && green.hue < 360 && green.band.length > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-optics-facet:${entry.facet}:${entry.on}`) }))
     return {

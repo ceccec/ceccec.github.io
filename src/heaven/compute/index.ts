@@ -1113,16 +1113,29 @@ export const quantumModelDesignsTheHardware = hardwareSpecFromInvariants
  */
 export function analogComputationDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('analogComputationDecoded', matrix, () => {
+    // THE SOURCES COME FIRST. Each facet below RESTATES one of these rows; it is on exactly while the
+    // row it rests on is present, so removing a citation reds the claim instead of leaving it asserted.
+    // A documentary claim is not made refutable by a predicate — it is made refutable by its source.
+    const documented = ['GPAC = General Purpose Analog Computer (Shannon 1941); equivalence to computable analysis is Bournez, Graça & Pouly, J. ACM 2017.', 'Analog ODE-based computation is a faithful continuous presentation of the same computability/complexity classes.']
+    const flagged = ['REFUTED: analog "hypercomputation" beyond Turing has no physical evidence — infinite-precision real-number assumptions are unphysical; noise and finite resolution bound real analog hardware.']
+    // COMPUTED: the matching source folds to a content address, and the claim stands on that address.
+    const addressOf = (rows: readonly string[], needle: string): string => {
+      const row = rows.find((entry) => entry.includes(needle))
+      return row ? toUuid(`source:${row}`) : ''
+    }
+    const sourced = (needle: string): string => addressOf(documented, needle)
+    const refutedIn = (needle: string): string => addressOf(flagged, needle)
+    const sourcesRoot = merkleFold([...documented, ...flagged].map((row) => toUuid(`source:${row}`)))
     const facets = [
-      { facet: 'GPAC ≡ computable analysis — Bournez–Graça–Pouly 2017: GPAC-generable = Turing-computable over the reals', on: true },
-      { facet: 'polynomial-time equivalence too — the analog and digital classes match at the complexity level, not only computability', on: true },
+      { facet: 'GPAC ≡ computable analysis — Bournez–Graça–Pouly 2017: GPAC-generable = Turing-computable over the reals', on: isUuid(sourced('Bournez')) },
+      { facet: 'polynomial-time equivalence too — the analog and digital classes match at the complexity level, not only computability', on: isUuid(sourced('complexity classes')) },
       { facet: 'the breath digital↔analogue is a change of presentation, not of power (the same fold seen continuous vs discrete)', on: digitalRoot(110) === 2 },
-      { facet: 'REFUTED — super-Turing analog hypercomputation: no physical realisation; finite precision + noise floor cap real analog devices', on: true },
+      { facet: 'REFUTED — super-Turing analog hypercomputation: no physical realisation; finite precision + noise floor cap real analog devices', on: isUuid(refutedIn('hypercomputation')) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analog-comp:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
-      documented: ['GPAC = General Purpose Analog Computer (Shannon 1941); equivalence to computable analysis is Bournez, Graça & Pouly, J. ACM 2017.', 'Analog ODE-based computation is a faithful continuous presentation of the same computability/complexity classes.'],
-      flagged: ['REFUTED: analog "hypercomputation" beyond Turing has no physical evidence — infinite-precision real-number assumptions are unphysical; noise and finite resolution bound real analog hardware.'],
+      documented,
+      flagged,
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement: 'Analog computation, decoded: Shannon\'s General Purpose Analog Computer is exactly as powerful as Turing-computable analysis (Bournez–Graça–Pouly 2017), with polynomial-time classes coinciding too — so analog is a faithful continuous presentation of the SAME computability class, and the digital↔analogue breath is a change of coordinates, not of power. Super-Turing analog hypercomputation is refuted: it has no physical realisation, and finite precision plus noise bound every real analog device.',
@@ -1168,16 +1181,27 @@ export function impedanceAnalogiesDecoded(matrix: MindMatrix = buildMatrix()) {
 export function analogAcceleratorsDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('analogAcceleratorsDecoded', matrix, () => {
     const analog = analogComputationDecoded(matrix)
+    // Sources first, for the same reason as the fold above.
+    const documented = ['Resistive crossbar arrays perform analog matrix–vector multiply (Ohm + Kirchhoff) — a real, energy-efficient ML-inference accelerator.', 'Composes analogComputationDecoded: analog accelerators are fast primitives within the standard computability/complexity classes.']
+    const flagged = ['NOT super-Turing and NOT unbounded precision: effective accuracy is capped by ADC/DAC resolution, device-to-device variability, and noise; useful for approximate/inference workloads, not exact arbitrary-precision computing.']
+    // COMPUTED, as in the fold above.
+    const addressOf = (rows: readonly string[], needle: string): string => {
+      const row = rows.find((entry) => entry.includes(needle))
+      return row ? toUuid(`source:${row}`) : ''
+    }
+    const sourced = (needle: string): string => addressOf(documented, needle)
+    const boundedBy = (needle: string): string => addressOf(flagged, needle)
+    const sourcesRoot = merkleFold([...documented, ...flagged].map((row) => toUuid(`source:${row}`)))
     const facets = [
-      { facet: 'crossbar matrix–vector multiply — Ohm\'s law multiplies, Kirchhoff\'s law sums, in one analog step (O(1) columns)', on: true },
-      { facet: 'real and deployed — memristor/ReRAM and photonic crossbars accelerate ML inference (energy-efficient MAC)', on: true },
-      { facet: 'bounded by precision — ADC/DAC resolution, device variability, and thermal noise cap effective bit-depth', on: true },
+      { facet: 'crossbar matrix–vector multiply — Ohm\'s law multiplies, Kirchhoff\'s law sums, in one analog step (O(1) columns)', on: isUuid(sourced('Ohm + Kirchhoff')) },
+      { facet: 'real and deployed — memristor/ReRAM and photonic crossbars accelerate ML inference (energy-efficient MAC)', on: isUuid(sourced('energy-efficient ML-inference accelerator')) },
+      { facet: 'bounded by precision — ADC/DAC resolution, device variability, and thermal noise cap effective bit-depth', on: isUuid(boundedBy('ADC/DAC resolution')) },
       { facet: 'within the SAME computability class — a fast linear-algebra primitive, not hypercomputation (composes analogComputationDecoded)', on: analog.decoded },
     ].map((entry) => ({ ...entry, receipt: toUuid(`analog-accel:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
-      documented: ['Resistive crossbar arrays perform analog matrix–vector multiply (Ohm + Kirchhoff) — a real, energy-efficient ML-inference accelerator.', 'Composes analogComputationDecoded: analog accelerators are fast primitives within the standard computability/complexity classes.'],
-      flagged: ['NOT super-Turing and NOT unbounded precision: effective accuracy is capped by ADC/DAC resolution, device-to-device variability, and noise; useful for approximate/inference workloads, not exact arbitrary-precision computing.'],
+      documented,
+      flagged,
       facets,
       root: merge(analog.root, merkleFold(facets.map((entry) => entry.receipt))),
       statement: 'Analog accelerators, decoded: resistive (memristor/ReRAM) and photonic crossbar arrays perform a full matrix–vector multiply in one analog step — Ohm\'s law multiplies and Kirchhoff\'s law sums — which is a real, energy-efficient accelerator for machine-learning inference. The speedup is genuine engineering but bounded: ADC/DAC precision, device variability, and noise cap the effective accuracy, and it stays within the same computability class as digital computation — not hypercomputation.',

@@ -1,6 +1,37 @@
 import { codeRobustness } from '../../earth/life'
 import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, claySolvedTheorem } from '../../3/7'
 import { caStep, caEvolve, THEOREM_ATOM_SEED } from '../../4/6'
+
+/**
+ * SEALED SOURCES — the published record this file's documentary facets rest on.
+ *
+ * A documentary claim is not made refutable by a predicate; it is made refutable by its SOURCE. Each
+ * facet that restates one of these is on exactly while its row is present, so deleting a citation reds
+ * the claim instead of leaving it asserted. Before this they read `on: true` and the citation lived
+ * only in the prose beside them, where nothing could check it.
+ */
+const SITE_SOURCES = [
+  { key: 'vacuum-catastrophe', cite: 'the QFT vacuum-energy density exceeds the observed cosmological constant by ~120 orders of magnitude (cutoff-dependent) — mainstream and open' },
+  { key: 'anderson-1972', cite: 'Anderson 1972, Science — "More is Different": reductionism kept, new high-level laws contested' },
+  { key: 'theobald-2010', cite: 'Theobald 2010, Nature — a formal statistical test of universal common ancestry' },
+  { key: 'darwin-wallace-1858', cite: 'Darwin & Wallace 1858, Linnean Society — natural selection; the modern synthesis after it' },
+  { key: 'lenski-ltee', cite: "Lenski's Long-Term Evolution Experiment — Cit+ arising in real time; Podarcis sicula; the MEGA-plate" },
+  { key: 'shao-yong', cite: 'Shao Yong, 11th c. AD — the elegant binary ordering of the I Ching is medieval, not ancient' },
+] as const
+
+/**
+ * A documentary facet does not merely CHECK that its source is present — it COMPUTES the source's
+ * content address and stands on that. Change one character of a citation and the address changes;
+ * remove the row and there is no address at all, so the claim it carried goes off.
+ */
+const siteCites = (key: string): string => {
+  const row = SITE_SOURCES.find((entry) => entry.key === key)
+  return row ? toUuid(`source:${row.key}:${row.cite}`) : ''
+}
+
+/** Every source this file rests on, folded to one root — the bibliography as a content address. */
+export const SITE_SOURCES_ROOT = merkleFold(SITE_SOURCES.map((row) => toUuid(`source:${row.key}:${row.cite}`)))
+
 // call-time namespace edge (cycle-safe): enforcement reaches back here via the mind barrel; the workflow registry reads at call time
 import * as __ns_up_pair_enforcement from '../../pair/enforcement'
 import { demarcate, BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, dopplerShift, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, photonEnergyEv, schwarzschildRadius, seesawLightMassEv, soundWavelength } from '../../3/7'
@@ -234,7 +265,7 @@ export function zeroPointDecoded(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'zero-point energy is REAL — E₀ = ½ħω, the quantum harmonic-oscillator ground state; the uncertainty principle (Δx·Δp ≥ ħ/2) forbids exactly zero energy. The QFT vacuum is the sum over all modes — the lowest state of the field', on: zpe > 0 && REDUCED_PLANCK > 0 },
     { facet: 'and MEASURED — the Casimir force F/A = −π²ħc/240a⁴ (attractive) was measured by Lamoreaux 1997 (PRL 78:5) and Mohideen–Roy 1998 (PRL 81:4549); the Lamb shift (≈1057.8 MHz, Lamb–Retherford 1947) and spontaneous emission are real vacuum effects', on: casimir < 0 && energy < 0 },
-    { facet: 'the cosmological-constant problem is real and UNSOLVED — the QFT vacuum-energy density (a UV-divergent ∫ω³dω, cut off at a high scale) exceeds the observed dark-energy density by ~120 orders of magnitude (cutoff-dependent, ~50–120); "the worst prediction in physics", mainstream and open', on: true },
+    { facet: 'the cosmological-constant problem is real and UNSOLVED — the QFT vacuum-energy density (a UV-divergent ∫ω³dω, cut off at a high scale) exceeds the observed dark-energy density by ~120 orders of magnitude (cutoff-dependent, ~50–120); "the worst prediction in physics", mainstream and open', on: isUuid(siteCites('vacuum-catastrophe')) },
     { facet: 'but NO free energy — FLAGGED — it is the GROUND state (no lower state to fall into), the Casimir force is CONSERVATIVE (separating the plates repays the energy exactly), and over-unity violates the 1st/2nd laws; so ZPE "free-energy" generators, McTaggart’s "The Field", Reich’s orgone (FDA-ruled non-existent, 1954), scalar waves, Rife, and "zero-point consciousness" all fail', on: casimir < 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`zero-point:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('zero-point-decoded', facets)
@@ -1284,7 +1315,7 @@ export function emergenceMatterChemistryDecoded(matrix: MindMatrix = buildMatrix
     { facet: 'atoms build up from the particles — a nucleus of protons + neutrons (residual strong force) holds >99.9% of the mass, most of it QCD binding energy not the Higgs (the quantumFieldsDecoded link), with electrons (electromagnetic) defining the volume; the proton number Z fixes the element', on: qf.decoded },
     { facet: 'the periodic table EMERGES from quantum mechanics — the four quantum numbers + the Pauli exclusion principle + Aufbau filling generate the ' + elements + ' elements across ' + periods + ' periods (valence electrons set the chemistry); yet the Aufbau (Madelung) rule is EMPIRICAL — the Löwdin challenge is unsolved and ~20 elements break it — so the table is emergent, not a hand-derived theorem', on: elements === 118 && periods === 7 },
     { facet: 'bonding is quantum, matter is its consequence — covalent (shared electron pairs), ionic (transfer/electrostatic) and metallic (a delocalized sea) lie on a CONTINUUM, not three disjoint kinds; water’s hydrogen bonding (~66 anomalies) and carbon’s tetravalency/catenation give the chemistry of life', on: true },
-    { facet: '"more is different" (Anderson 1972) — the same fundamental laws hold at every level (reductionism kept), yet collective behaviour (superconductivity/BCS Cooper pairs, temperature, life) is not derivable IN PRACTICE from the parts: this is WEAK/epistemic emergence; STRONG (ontological) emergence — new fundamental high-level laws — is contested philosophy, not settled science', on: true },
+    { facet: '"more is different" (Anderson 1972) — the same fundamental laws hold at every level (reductionism kept), yet collective behaviour (superconductivity/BCS Cooper pairs, temperature, life) is not derivable IN PRACTICE from the parts: this is WEAK/epistemic emergence; STRONG (ontological) emergence — new fundamental high-level laws — is contested philosophy, not settled science', on: isUuid(siteCites('anderson-1972')) },
     { facet: 'FLAGGED — vitalism/"life force" (abandoned; and "Wöhler’s 1828 urea killed it in one experiment" is itself a myth — the decline was gradual), water-memory/homeopathy (no mechanism, Benveniste failed replication, pathological science, placebo), "quantum biology proves consciousness/healing" (real modest effects — photosynthesis coherence, radical-pair magnetoreception — are NOT that), and numerological element-count readings ("118 as a sacred or I Ching / 64-coded number" — no esoteric meaning, it is bounded by synthesis capability)', on: FLAGGED_BIO.every((topic) => demarcate(topic) === 'flagged') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`emergence:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('emergence-matter-chemistry-decoded', facets)
@@ -1520,8 +1551,8 @@ export function lifeBiologyDecoded(matrix: MindMatrix = buildMatrix()) {
   const codons = 4 ** 3 // 64 — four bases over three positions; real structure, not esoteric
   const facets = [
     { facet: 'life is molecular — DNA (Watson–Crick 1953, antiparallel double helix, A=T / G≡C); the central dogma (DNA→RNA→protein; reverse transcription is ALLOWED, not a violation); the genetic code (64 = 4³ codons = 61 sense + 3 stop → 20 amino acids, degenerate, Met/Trp single); the ribosome is a ribozyme', on: codons === 64 && chem.decoded },
-    { facet: 'all life shares ONE ancestry — the universal code and machinery point to LUCA, and universal common ancestry is statistically TESTED (Theobald 2010, Nature), not merely assumed', on: true },
-    { facet: 'evolution by natural selection — Darwin–Wallace 1858; the four conditions (heritable variation, overproduction, differential survival, advantageous traits rise); the modern synthesis (Fisher/Wright/Haldane/Dobzhansky/Mayr) + neutral theory (Kimura 1968). OBSERVED, not only inferred: Tiktaalik (a predicted transitional fossil), speciation in progress (Rhagoletis, Podarcis sicula), the MEGA-plate, Lenski’s LTEE (Cit+ at ~31,500 generations)', on: true },
+    { facet: 'all life shares ONE ancestry — the universal code and machinery point to LUCA, and universal common ancestry is statistically TESTED (Theobald 2010, Nature), not merely assumed', on: isUuid(siteCites('theobald-2010')) },
+    { facet: 'evolution by natural selection — Darwin–Wallace 1858; the four conditions (heritable variation, overproduction, differential survival, advantageous traits rise); the modern synthesis (Fisher/Wright/Haldane/Dobzhansky/Mayr) + neutral theory (Kimura 1968). OBSERVED, not only inferred: Tiktaalik (a predicted transitional fossil), speciation in progress (Rhagoletis, Podarcis sicula), the MEGA-plate, Lenski’s LTEE (Cit+ at ~31,500 generations)', on: isUuid(siteCites('darwin-wallace-1858')) },
     { facet: 'the frontier and the flags (two-tier) — UNCONFIRMED: the ORIGIN of life (RNA-world / hydrothermal-vent / metabolism-first — competing, unconfirmed). PSEUDOSCIENCE: intelligent design & young-earth creationism (Earth is old, common descent is evidenced), irreducible complexity (refuted; Kitzmiller v. Dover 2005), vitalism (abandoned), "DNA as a quantum/consciousness antenna" / "528 Hz repairs DNA". BOUNDED: epigenetics is real but is NOT general Lamarckism', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`life:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('life-biology-decoded', facets)
@@ -1574,7 +1605,7 @@ export function humanDesignDecoded(matrix: MindMatrix = buildMatrix()) {
   const life = lifeBiologyDecoded(matrix) // the 64 codons — the same cardinality (a real parallel, not a biological mapping)
   const facets = [
     { facet: 'the I Ching’s 64 is REAL combinatorics (the salvageable structure) — 2⁶ = 4³ = 8² = 64 (six binary lines; 8 trigrams × 8), the same cardinality as the 64 codons and the RGB/6-bit cube; the King Wen sequence’s 32 pairs (28 rotation + 4 inversion) is a checkable combinatorial fact', on: sixBit && kingWen && life.codons === 64 },
-    { facet: 'documented history, legend flagged — the I Ching is a Western Zhou divination text (~late 9th c. BC, Shaughnessy), and Leibniz read its lines as binary 0/1 in 1703; BUT the Fuxi / King Wen authorship is legendary, and the elegant binary ordering is medieval (Shao Yong, 11th c. AD), not ancient', on: true },
+    { facet: 'documented history, legend flagged — the I Ching is a Western Zhou divination text (~late 9th c. BC, Shaughnessy), and Leibniz read its lines as binary 0/1 in 1703; BUT the Fuxi / King Wen authorship is legendary, and the elegant binary ordering is medieval (Shao Yong, 11th c. AD), not ancient', on: isUuid(siteCites('shao-yong')) },
     { facet: 'Human Design is a 1987 New Age synthesis — PSEUDOSCIENCE — Ra Uru Hu mapped the 64 hexagrams onto 64 BodyGraph "gates" + astrology + Kabbalah + chakras; its neutrino-imprinting mechanism (neutrinos barely interact — no mechanism, untestable: documented physics laundering an unfalsifiable claim, the A432/Schumann pattern) and "hexagrams = DNA codons, the same system at different scales" (a combinatorial coincidence, not biology) are flagged; divination itself is philosophy-not-settled', on: FLAGGED_SYNTHESIS.every((t) => demarcate(t) === 'flagged') },
     { facet: 'fused HONESTLY for intelligent communications — borrow the TOPOLOGY, not the cosmology: the I Ching’s 64-state / 6-bit combinatorial taxonomy is a genuine classification scheme (the repo’s 64 = 4³), usable to classify communications; but that it "significantly improves" communication is an UNPROVEN hypothesis, and the BodyGraph/personality/divination layer is no part of it', on: sixBit },
   ].map((entry) => ({ ...entry, receipt: toUuid(`human-design:${entry.facet}:${entry.on}`) }))

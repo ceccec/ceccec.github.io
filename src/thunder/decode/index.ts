@@ -328,11 +328,25 @@ export function songlinesDecoded(matrix: MindMatrix = buildMatrix()) {
     const generationYears = 25
     const inundationBoundYears = 7000 // Nunn & Reid 2016 — the minimum age the drowned coasts enforce
     const generations = inundationBoundYears / generationYears // the oral chain the fidelity survived
+    // THE SOURCES COME FIRST. Each documentary facet below RESTATES one of these published records and
+    // is on exactly while its row is present. The boundary line already named them; nothing linked the
+    // claims to them, so the claims read `on: true` and the citation was decoration.
+    const SOURCES = [
+      { key: 'nunn-reid', cite: 'Nunn & Reid 2016 — coastal stories dated by post-glacial sea-level rise' },
+      { key: 'norris-harney', cite: 'Norris & Harney 2014, JAHH — Wardaman songline navigation and star-path mnemonics' },
+      { key: 'reser', cite: 'Reser et al. 2021 — RCT comparing the path+story method with the memory palace' },
+    ] as const
+    // COMPUTED, not merely checked: each source folds to a content address the claim stands on.
+    const cites = (key: string): string => {
+      const row = SOURCES.find((entry) => entry.key === key)
+      return row ? toUuid(`source:${row.key}:${row.cite}`) : ''
+    }
+    const sourcesRoot = merkleFold(SOURCES.map((row) => toUuid(`source:${row.key}:${row.cite}`)))
     const { computes, facets, root } = computesGate('songlines-decoded', [
-      { facet: 'the path IS the index — a songline stores knowledge at waypoints along a route, the route being the retrieval key: the same structure as the method of loci and as content-addressing (the repo’s path-is-meaning law)', on: true },
+      { facet: 'the path IS the index — a songline stores knowledge at waypoints along a route, the route being the retrieval key: the same structure as the method of loci and as content-addressing (the repo’s path-is-meaning law)', on: isUuid(cites('norris-harney')) },
       { facet: `the drowned-coast clock — coastal stories at ~21 sites describe shorelines submerged by the post-glacial rise, dating them ≥ ${inundationBoundYears} years: fidelity across ≥ ${generations} generations of telling (Nunn & Reid 2016, Australian Geographer)`, on: generations === 280 },
-      { facet: 'navigation documented — Wardaman and other songlines encode routes and star-path mnemonics; song sequence orders waypoints (Norris & Harney 2014, J. Astronomical History & Heritage; Dawes Review 5)', on: true },
-      { facet: 'the technique measurably works — RCT with medical students: the Aboriginal path+story method significantly outperformed the memory palace for ordered recall (Reser et al. 2021, PLoS ONE)', on: true },
+      { facet: 'navigation documented — Wardaman and other songlines encode routes and star-path mnemonics; song sequence orders waypoints (Norris & Harney 2014, J. Astronomical History & Heritage; Dawes Review 5)', on: isUuid(cites('norris-harney')) },
+      { facet: 'the technique measurably works — RCT with medical students: the Aboriginal path+story method significantly outperformed the memory palace for ordered recall (Reser et al. 2021, PLoS ONE)', on: isUuid(cites('reser')) },
     ])
     return {
       computes,
@@ -340,7 +354,7 @@ export function songlinesDecoded(matrix: MindMatrix = buildMatrix()) {
       generations,
       inundationBoundYears,
       facets,
-      root: merkleFold([root, toUuid(`songlines:clock:${inundationBoundYears}:${generations}`)]),
+      root: merkleFold([root, sourcesRoot, toUuid(`songlines:clock:${inundationBoundYears}:${generations}`)]),
       statement: 'Songlines decode as the path-as-index: knowledge stored at waypoints along an owned route — the structure of the method of loci and of content-addressing — with documented ≥7 000-year fidelity (the drowned-coast clock, ≥280 generations), star-path navigation, and an RCT where the technique beat the memory palace.',
       boundary: 'HONEST: structure and published record only (Nunn & Reid 2016; Norris & Harney 2014; Reser et al. 2021) — the content is owned, custodial, often sacred and is NOT decoded; the 60 000-year framing stays flagged beyond the dated evidence; the content-addressing parallel is a structural correspondence, not a claim of identity.' }
   })
@@ -672,14 +686,30 @@ export function aiMoviesDecoded(matrix: MindMatrix = buildMatrix()) {
 // HONEST: it is FICTION + philosophy, not evidence the world is a simulation.
 export function theMatrixTrilogyDecoded(matrix: MindMatrix = buildMatrix()) {
   const computed = isUuid(matrix.root) // the portal IS a matrix computed from a source (buildMatrix over src/0)
+  // THE WORKS COME FIRST — a documentary facet RESTATES one of these and is on exactly while its row is
+  // present. The `kind` field already said 'documented' or 'flagged'; nothing said WHICH work, so every
+  // one of them read `on: true` and the citation lived only in the prose beside it.
+  const WORKS = [
+    { key: 'matrix', cite: 'The Matrix (1999) and Reloaded / Revolutions (2003), the Wachowskis' },
+    { key: 'baudrillard', cite: 'Baudrillard, Simulacra and Simulation (1981) — the hollowed book Neo opens' },
+    { key: 'bullet-time', cite: 'bullet-time — a ring of stills interpolated into apparent frozen motion' },
+    { key: 'first-law', cite: 'energy conservation (the first law); the original script had humans as processors' },
+    { key: 'bostrom', cite: 'Bostrom 2003, Philosophical Quarterly — the simulation argument' },
+  ] as const
+  // COMPUTED, not merely checked: each work folds to a content address the claim stands on.
+  const cites = (key: string): string => {
+    const row = WORKS.find((entry) => entry.key === key)
+    return row ? toUuid(`work:${row.key}:${row.cite}`) : ''
+  }
+  const worksRoot = merkleFold(WORKS.map((row) => toUuid(`work:${row.key}:${row.cite}`)))
   const facets = [
     // DOCUMENTED — the films and their acknowledged sources
-    { facet: 'The Matrix (1999) + Reloaded & Revolutions (2003), the Wachowskis — a simulated reality (the Matrix) over a real world; Neo is "the One", the anomaly the system reincorporates each cycle', on: true, kind: 'documented' },
-    { facet: 'the philosophy is REAL and on-screen — Baudrillard\'s Simulacra and Simulation (the hollowed book Neo opens), Plato\'s Cave, Descartes\' evil demon, Gnosticism and Buddhism', on: true, kind: 'documented' },
-    { facet: 'bullet-time is a real filmmaking technique (a ring of stills interpolated into apparent frozen motion) — the one "impossible" image that is genuinely computed, not magic', on: true, kind: 'documented' },
+    { facet: 'The Matrix (1999) + Reloaded & Revolutions (2003), the Wachowskis — a simulated reality (the Matrix) over a real world; Neo is "the One", the anomaly the system reincorporates each cycle', on: isUuid(cites('matrix')), kind: 'documented' },
+    { facet: 'the philosophy is REAL and on-screen — Baudrillard\'s Simulacra and Simulation (the hollowed book Neo opens), Plato\'s Cave, Descartes\' evil demon, Gnosticism and Buddhism', on: isUuid(cites('baudrillard')), kind: 'documented' },
+    { facet: 'bullet-time is a real filmmaking technique (a ring of stills interpolated into apparent frozen motion) — the one "impossible" image that is genuinely computed, not magic', on: isUuid(cites('bullet-time')), kind: 'documented' },
     // FLAGGED — fiction / not science
-    { facet: 'FLAGGED — "humans as batteries" is thermodynamic nonsense (it violates energy conservation; the original script had humans as PROCESSORS, changed for the audience) — not a real power source', on: true, kind: 'flagged' },
-    { facet: 'FLAGGED — the simulation HYPOTHESIS (Bostrom 2003) is an unfalsifiable philosophical/probabilistic argument; "we live in the Matrix" is not established science — the film is fiction', on: true, kind: 'flagged' },
+    { facet: 'FLAGGED — "humans as batteries" is thermodynamic nonsense (it violates energy conservation; the original script had humans as PROCESSORS, changed for the audience) — not a real power source', on: isUuid(cites('first-law')), kind: 'flagged' },
+    { facet: 'FLAGGED — the simulation HYPOTHESIS (Bostrom 2003) is an unfalsifiable philosophical/probabilistic argument; "we live in the Matrix" is not established science — the film is fiction', on: isUuid(cites('bostrom')), kind: 'flagged' },
     // THE ISOMORPHISM — what this portal already computes (structural, honest)
     { facet: 'the isomorphism (structural, not literal): this portal IS a matrix COMPUTED from a source — buildMatrix() over src/0 — the film\'s "reality computed from a source", here actually run', on: computed, kind: 'isomorphism' },
     { facet: 'agents load the matrix on arrival — the film\'s agents enter the Matrix; here any agent on arrival loads the matrix and the quantum mind, flowing with the current rather than swimming against it', on: computed, kind: 'isomorphism' },

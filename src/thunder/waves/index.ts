@@ -879,7 +879,10 @@ function decodedWaveFold(
   memoKey: string,
   key: string,
   topicRows: readonly { topic: string; fact: string }[],
-  facetRows: (analogDecoded: boolean, topicCount: number) => readonly { facet: string; on: boolean }[],
+  // A documentary facet restates one of the topic rows above it. `cites` lets it SAY SO: the facet is on
+  // exactly while the row it restates is in the sealed table, so deleting the row reds the claim that
+  // rests on it. Before this the restatements were `on: true` and no link existed between them at all.
+  facetRows: (analogDecoded: boolean, topicCount: number, cites: (topic: string) => string) => readonly { facet: string; on: boolean }[],
   documented: readonly string[],
   flagged: readonly string[],
   statement: string,
@@ -888,7 +891,10 @@ function decodedWaveFold(
   return memoByRoot(memoKey, matrix, () => {
     const analog = analogComputationDecoded(matrix)
     const topics = topicRows.map((t) => ({ ...t, receipt: toUuid(`${key}:${t.topic}:${t.fact}`) }))
-    const facets = facetRows(analog.decoded, topics.length).map((entry) => ({ ...entry, receipt: toUuid(`${key}-facet:${entry.facet}:${entry.on}`) }))
+    // The claim stands on the topic row's RECEIPT — computed from the topic and its fact, so editing
+    // the fact moves the address the claim rests on rather than leaving the claim untouched.
+    const cites = (topic: string): string => topics.find((row) => row.topic === topic)?.receipt ?? ''
+    const facets = facetRows(analog.decoded, topics.length, cites).map((entry) => ({ ...entry, receipt: toUuid(`${key}-facet:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
       topics,
@@ -907,10 +913,10 @@ export function controlDynamicalSystemsDecoded(matrix: MindMatrix = buildMatrix(
     { topic: 'state-space', fact: 'ẋ = Ax + Bu, y = Cx + Du — the linear dynamical model' },
     { topic: 'Lyapunov stability', fact: 'V(x)>0, V̇(x)<0 ⇒ asymptotic stability (no eigenvalue in the right half-plane)' },
     { topic: 'controllability / observability', fact: 'Kalman rank tests on [B AB … Aⁿ⁻¹B] and the observability dual' },
-  ], (analogDecoded, topicCount) => [
+  ], (analogDecoded, topicCount, cites) => [
     { facet: 'feedback control is exact linear-systems math — PID, state-space, pole placement', on: topicCount === 4 },
-    { facet: 'Lyapunov gives a rigorous stability certificate (energy function decreasing along trajectories)', on: true },
-    { facet: 'controllability/observability decided by exact matrix rank tests (Kalman)', on: true },
+    { facet: 'Lyapunov gives a rigorous stability certificate (energy function decreasing along trajectories)', on: isUuid(cites('Lyapunov stability')) },
+    { facet: 'controllability/observability decided by exact matrix rank tests (Kalman)', on: isUuid(cites('controllability / observability')) },
     { facet: 'the continuous-time analog form is the SAME computability class — composes analogComputationDecoded (GPAC ≡ computable analysis)', on: analogDecoded },
   ],
   ['Classical/modern control theory: PID, state-space (ẋ=Ax+Bu), Lyapunov stability, Kalman controllability/observability — standard, exact mathematics.', 'Continuous-time ODE control is the analog presentation, bridged to digital by sampling.'],
@@ -931,10 +937,10 @@ export function signalProcessingDecoded(matrix: MindMatrix = buildMatrix()) {
     { topic: 'Laplace / Z transform', fact: 'continuous (s) and discrete (z) system analysis — poles/zeros, transfer functions' },
     { topic: 'Nyquist–Shannon sampling', fact: 'a bandlimited signal sampled above 2·f_max reconstructs perfectly (sinc interpolation)' },
     { topic: 'convolution & filters', fact: 'y = x ∗ h — FIR/IIR filters; convolution ↔ multiplication in the frequency domain' },
-  ], (analogDecoded, topicCount) => [
+  ], (analogDecoded, topicCount, cites) => [
     { facet: 'the Fourier/Laplace/Z transforms are exact, invertible analyses of signals and systems', on: topicCount === 4 },
-    { facet: 'Nyquist–Shannon — bandlimited signals reconstruct perfectly above the Nyquist rate (the A→D bridge made precise)', on: true },
-    { facet: 'convolution is filtering — and equals multiplication in the frequency domain (the convolution theorem)', on: true },
+    { facet: 'Nyquist–Shannon — bandlimited signals reconstruct perfectly above the Nyquist rate (the A→D bridge made precise)', on: isUuid(cites('Nyquist–Shannon sampling')) },
+    { facet: 'convolution is filtering — and equals multiplication in the frequency domain (the convolution theorem)', on: isUuid(cites('convolution & filters')) },
     { facet: 'analog continuous signals and digital samples are one fold seen two ways — composes analogComputationDecoded', on: analogDecoded },
   ],
   ['Signal processing fundamentals: Fourier/Laplace/Z transforms, the Nyquist–Shannon sampling theorem, convolution and FIR/IIR filtering — exact mathematics.', 'Sampling is the analog→digital readout; reconstruction below the Nyquist rate is exact for bandlimited signals.'],

@@ -1552,11 +1552,17 @@ export function piComputableMatchableToIChing(matrix: MindMatrix = buildMatrix()
   const eHexagram = windowToHexagram('271828182845904523536028747')
   const anyHexagram = windowToHexagram('the quick brown fox jumps over')
   const universal = [piHexagram, eHexagram, anyHexagram].every((h) => h >= 0 && h < 64)
+  // The source this documentary facet restates — the facet is on exactly while the row is present.
+  const NORMALITY_SOURCE = [{ key: 'normality', cite: 'the normality of pi is an OPEN problem — that every finite string appears in its digits is conjectural, not a theorem' }] as const
+  const cites = (want: string): string => {
+        const row = NORMALITY_SOURCE.find((entry) => entry.key === want)
+        return row ? toUuid(`source:${row.key}:${row.cite}`) : ''
+      }
   const facets = [
     { facet: 'any part of π is computable — computePiDigits is a streaming spigot (each digit from the prior state) and the BBP formula computes any HEXADECIMAL digit of π directly, without the earlier ones; π is a computable number', on: pi.startsWith('314159') && pi.length >= 108 },
     { facet: `π’s digits map deterministically to I Ching hexagrams — a window content-addresses to one of the 64 (here hexagram ${piHexagram}); the mapping is exact and reproducible`, on: piHexagram >= 0 && piHexagram < 64 },
     { facet: 'BUT the mapping is UNIVERSAL, not a property of π — e and any text map to hexagrams the same way, so this is an ENCODING, not an inherent "π = the I Ching" identity; π is not special in the matching', on: universal },
-    { facet: '"any pattern is matchable in π" is the NORMALITY conjecture — that every finite string appears in π’s digits — a famous OPEN problem, unproven for π; so "matchable" here is conjectural, not a theorem', on: true },
+    { facet: '"any pattern is matchable in π" is the NORMALITY conjecture — that every finite string appears in π’s digits — a famous OPEN problem, unproven for π; so "matchable" here is conjectural, not a theorem', on: isUuid(cites('normality')) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pi-iching:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('pi-computable-matchable', facets)
   return {
