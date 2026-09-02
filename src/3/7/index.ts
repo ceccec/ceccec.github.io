@@ -936,7 +936,7 @@ export const CLAY_SOLUTION_MARKERS = [
 /** Language marking the problem OPEN — its presence refutes any co-located solution claim (honest folds carry these). */
 export const CLAY_OPEN_MARKERS = [
   'open', 'unsolved', 'unproven', 'conjecture', 'contested', 'bounded-witness', 'not cmi', 'not a cmi', 'no cmi',
-  'not proposed solution', 'claysolvedbythisfold=0', '', 'decoded', 'unconfirmed', 'empirical',
+  'not proposed solution', 'claysolvedbythisfold=0', 'decoded', 'unconfirmed', 'empirical',
   'harmony ≠ truth', 'stays open', 'remains open', 'not claimed solved', 'unclaimed',
 ] as const
 
@@ -994,6 +994,17 @@ export type OverclaimAxis = keyof typeof OVERCLAIM_AXES
  *  claySolvedByFormulas / physicalFtlByFormulas are the axis-fixed wrappers; new overclaim types are one OVERCLAIM_AXES row. */
 export function overclaimByFormulas(axis: OverclaimAxis, statement: string, formulas: readonly string[] = []): number {
   const spec = OVERCLAIM_AXES[axis]
+  // An EMPTY marker matches every string. `CLAY_OPEN_MARKERS` held one for who knows how long,
+  // and `text.includes('')` is always true, so the deny branch fired on ALL input and this
+  // detector — the one guarding every Millennium-prize claim in the corpus — returned 0 for
+  // everything, including "we hereby prove the Riemann hypothesis; QED". A detector emptied of
+  // what it detects, by a single zero-length string. Refuse it at the source rather than trust
+  // the lists to stay clean.
+  for (const list of [spec.terms, spec.claim, spec.deny] as readonly (readonly string[])[]) {
+    if ((list as readonly string[]).some((m) => m.length === 0)) {
+      throw new Error(`overclaim axis '${axis}' has an empty marker — it would match every text and disable the detector`)
+    }
+  }
   const text = `${statement} ${formulas.join(' ')}`.toLowerCase()
   if ((spec.deny as readonly string[]).some((marker) => text.includes(marker))) return 0 // the fold denies/opens the claim → none
   if (!(spec.claim as readonly string[]).some((marker) => text.includes(marker))) return 0 // no assertion of the claim → none
