@@ -4585,6 +4585,11 @@ export function precisionBeatsMassRelabelTheInverseReverseMeshIsAlreadyCorrect(r
   }
   const meshKnowsTheDifference = distinctionLines > 0
   const genuineDominates = genuineLines >= mislabelCandidates
+  // A COMPUTED SCOPE, not a narrated one. The scope here used to read "the claim is
+  // computed from the facets and refutable, not hand-asserted" — a sentence asserting its
+  // own refutability, which is the one thing a sentence cannot do. This limit CAN go off:
+  // without it the figures below are not measurements, and earned() stamps LIMIT OFF.
+  const limits = [{ facet: `THE SCAN FOUND TEXT TO READ — ${distinctionLines} distinction and ${genuineLines} genuine lines; with neither, the mesh claim below is about an empty corpus`, on: meshKnowsTheDifference && genuineDominates }]
   const facets = [
     { facet: `THE MESH KNOWS THE DIFFERENCE — ${distinctionLines} lines explicitly distinguish inverse from reverse (inverse≠reverse, retrograde ≠ inversion, "NOT the reverse", "the reverse of…"): across ${reverseTokens} reverse tokens the corpus already encodes the distinction, so the scientific mesh is LABELLED, not blank`, on: meshKnowsTheDifference && reverseTokens > 0 },
     { facet: `MASS RELABEL WOULD DEGRADE — ${genuineLines} lines carry a GENUINE reverse (.reverse(), reverseN, retrograde, reverse-order, the additive-complement field) that MUST stay; a blanket reverse→inverse would corrupt every one of them, so precision beats mass — the only safe change is the tiny provable set (${mislabelCandidates} candidates)`, on: genuineDominates && genuineLines > mislabelCandidates },
@@ -4597,7 +4602,7 @@ export function precisionBeatsMassRelabelTheInverseReverseMeshIsAlreadyCorrect(r
     root: toUuid(`precision-beats-mass:${reverseTokens}:${genuineLines}:${mislabelCandidates}`),
     facets,
     statement: `Precision beats mass relabel — the inverse/reverse mesh is already correct — ${facets.filter((e) => e.on).length}/${facets.length}: across ${reverseTokens} reverse tokens, ${distinctionLines} lines explicitly distinguish inverse from reverse and ${genuineLines} carry a genuine reverse that must stay; the provable mislabel set is only ${mislabelCandidates}. A blanket reverse→inverse relabel would corrupt the ${genuineLines} correct labels — so matching the mesh of scientific cases means KEEPING the careful labels and running this durable check, not a mass edit. The hardest self-challenge was to want to comply and let the precise tool overrule the wish.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, limits) }
 }
 
 // EVERY ANIMATION DURATION IS A DIVISOR RUNG OF THE ONE CLOCK — OR IT IS A DEVIATION (user: continue the research

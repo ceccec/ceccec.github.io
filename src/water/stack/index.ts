@@ -1977,7 +1977,9 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
     // stops being the conjunction of the facets, the second if the census is not actually measured
     // and the byte figures are therefore standing in for a filesystem nobody read.
     const limits = [
-      { facet: `THE VERDICT IS THE CONJUNCTION, NOT A SEPARATE ASSERTION — ${facets.filter((entry) => entry.on).length}/${facets.length} facets hold and the fold's own verdict equals that`, on: facets.every((entry) => entry.on) === (facets.filter((entry) => entry.on).length === facets.length) },
+      // One limit, and it can fail. An earlier draft opened with "the verdict is the conjunction of
+      // the facets" — which is `every(on) === (filter(on).length === length)`, true by definition of
+      // every. A limit that cannot fail is the defect this whole pass exists to remove, so it is gone.
       { facet: `THE FIGURES CAME FROM A FILESYSTEM THAT WAS READ — measured=${measured}, ${sizes.length} index.ts sized; without it the byte counts below are not measurements`, on: measured },
     ]
     return {

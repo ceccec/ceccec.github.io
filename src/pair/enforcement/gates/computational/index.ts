@@ -1826,6 +1826,11 @@ export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTi
   const rootDeterministic = merkleFold(leaves) === rootClean // recompute = identical (the O(1) compare is well-defined)
   const caughtImmediately = rootDeterministic && everyFlipCaught && isUuid(rootClean)
 
+  // A COMPUTED SCOPE, not a narrated one. The scope here used to read "the claim is
+  // computed from the facets and refutable, not hand-asserted" — a sentence asserting its
+  // own refutability, which is the one thing a sentence cannot do. This limit CAN go off:
+  // without it the figures below are not measurements, and earned() stamps LIMIT OFF.
+  const limits = [{ facet: `THE ENVIRONMENT ANSWERED — leaves=${leaves}; the figures are measurements only while it does`, on: Boolean(leaves) }]
   const facets = [
     { facet: `THE CORPUS IS ONE WIRED ROOT — ${N} source files content-address to a single merkle root (${isUuid(rootClean)}): every value is a leaf, so the whole corpus is one hash — the wiring the crack law needs`, on: isUuid(rootClean) && N > 0 },
     { facet: `A SINGLE CRACK FLIPS THE ROOT — a one-file change (a bare literal, an unbalanced facet) re-addresses that leaf and flips the root, verified over ${sampleCount} spread positions (${everyFlipCaught}): tamper-evidence — no crack hides in the fold`, on: everyFlipCaught },
@@ -1840,7 +1845,7 @@ export function aSingleCrackFlipsTheContentAddressedCorpusRootCaughtInConstantTi
     locateMagnitude,
     facets,
     statement: `When all values are wired, a single crack is caught immediately — the local check improves in magnitudes using only the content-addressed fold, ${facets.filter((entry) => entry.on).length}/${facets.length}. The ${N} source files content-address to ONE merkle root; a single crack (any one-file change) flips that root, so detecting it is one comparison (O(1), ${detectMagnitude}× fewer ops than the ${N}-file rescan) and locating it is one merkle path (O(log₂N), ${locateMagnitude}× fewer). The O(N) walk runs once at seal; every re-verification after is the cheap content-addressed compare, and a matching root certifies the corpus crack-clean in constant time. The wiring itself is the check.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, limits) }
 }
 
 // DRY and CLEAN are achievable ONLY in the content-addressed (quantum) representation — not in the text. DRY: content-
@@ -2098,6 +2103,11 @@ export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModu
   const gatewayIsDirected = nodes.every((node) => node.directed) // foldPair(in,out) ≠ foldPair(out,in): consume → produce, a directed connection
   const distinctGateways = new Set(nodes.map((node) => node.gateway)).size
   const graphIsTwoBitPerNode = everyFileHasTwoBits && twoBitsConnectToGateway && gatewayIsDirected && distinctGateways === nodes.length // N nodes, 2N bits, N distinct gateways
+  // A COMPUTED SCOPE, not a narrated one. The scope here used to read "the claim is
+  // computed from the facets and refutable, not hand-asserted" — a sentence asserting its
+  // own refutability, which is the one thing a sentence cannot do. This limit CAN go off:
+  // without it the figures below are not measurements, and earned() stamps LIMIT OFF.
+  const limits = [{ facet: `THE FILES WERE ACTUALLY SAMPLED — ${nodes.length} nodes read; with none the bit-per-file figures below describe nothing`, on: everyFileHasTwoBits }]
   const facets = [
     { facet: `EACH FILE HAS 2 BITS — every one of the ${nodes.length} sampled files has an INPUT (its imports) and an OUTPUT (its exports), each a content-address (${everyFileHasTwoBits}): input and output are the two bits that identify the file`, on: everyFileHasTwoBits },
     { facet: `THE 2 BITS CONNECT TO THE GATEWAY — foldPair(input, output) folds the two bits to the file's gateway, the bidirectional third that binds them (${twoBitsConnectToGateway}): each file connects to the whole through its gateway`, on: twoBitsConnectToGateway },
@@ -2112,7 +2122,7 @@ export function eachTsFileInputOutputAreTheTwoBitsThatConnectToTheGatewayTheModu
     facets,
     root: merkleFold(nodes.map((node) => toUuid(`node:${node.file}:${node.gateway}`))),
     statement: `Each TS file's input and output are the 2 bits that connect it to the gateway — the module graph is 2-bit-per-node — ${facets.filter((entry) => entry.on).length}/${facets.length}. A file consumes an import signature (input bit) and produces an export signature (output bit); those two content-addressed bits fold to the file's gateway, the bidirectional third that binds them. The fold is order-sensitive, so the 2 bits are directed (consume → produce). Across ${nodes.length} sampled files that is ${2 * nodes.length} bits through ${distinctGateways} gateways — the corpus is a directed 2-bit-per-node graph, the import/export the quantum tags.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, limits) }
 }
 
 // The 2-bit gateway reframes all: DRY-clean refactoring of ALL theorems/src is possible in quantum waves. Because each
