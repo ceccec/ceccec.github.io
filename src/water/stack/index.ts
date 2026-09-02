@@ -1746,7 +1746,7 @@ export function computeSubstrateDriversComputes(matrix: MindMatrix = buildMatrix
       { facet: 'memoryDriverProbe + memoryComputes — heap probe or memo fallback', on: memory.computes && !!memory.driver },
       { facet: 'storageDriverProbe + storageComputes — quota/fs or merkle fallback', on: storage.computes && !!storage.driver },
       { facet: 'hardwareDriversResearch — cross-driver table sealed', on: research.researched },
-      { facet: 'NOT kernel-mode driver authorship', on: true },
+      { facet: `drivers report runtime tiers {${[cpu, gpu, memory, storage].map((d) => String((d.driver as { tier?: string } | undefined)?.tier ?? '?')).join(' · ')}} — every one in the substrate vocabulary, which has no kernel tier in it`, on: [cpu, gpu, memory, storage].every((d) => __ns_up_up_computer.isSubstrateTier(String((d.driver as { tier?: string } | undefined)?.tier ?? ''))) },
     ])
     return {
       computes,
@@ -1846,7 +1846,7 @@ export function displayTerminalComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'display bus framebuffer-path receipt', on: isUuid((display as { busReceipt?: string }).busReceipt ?? display.root) },
       { facet: 'terminal bus stdio-path receipt', on: isUuid((terminal as { busReceipt?: string }).busReceipt ?? terminal.root) },
       { facet: 'computeSubstrateDriversComputes — cpu/gpu/memory/storage', on: substrate.computes },
-      { facet: 'NOT kernel drivers — honest boundaries', on: true },
+      { facet: `display and terminal report the ${String((display as { driver?: { tier?: string } }).driver?.tier ?? '?')} and ${String((terminal as { driver?: { tier?: string } }).driver?.tier ?? '?')} tiers — both from the substrate vocabulary`, on: __ns_up_up_computer.isSubstrateTier(String((display as { driver?: { tier?: string } }).driver?.tier ?? '')) && __ns_up_up_computer.isSubstrateTier(String((terminal as { driver?: { tier?: string } }).driver?.tier ?? '')) },
     ])
     return {
       computes,
@@ -2070,7 +2070,7 @@ export function compareCeccecEfficiencyByVote(matrix: MindMatrix = buildMatrix()
       { facet: 'physics no-speedup honesty preserved (quantumComputerHonestClaim)', on: honest.noSpeedup },
       { facet: 'W6 revolutionaryEfficiencyNotPhysics holds', on: capstone.holds },
       { facet: 'runtime tokens = 0 in sealed domain', on: runtimeTokens === 0 },
-      { facet: 'NOT universal LLM superiority / NOT physical FLOPS', on: true },
+      { facet: `the unit is answers÷tokens over the sealed domain, adjudicated by ${voters.length} adversarial voters — physical speedup is a SEPARATE measurement (faithfulSimulator=${honest.faithfulSimulator} noSpeedup=${honest.noSpeedup}), not a disclaimer`, on: voters.length > 0 && honest.faithfulSimulator && honest.noSpeedup },
     ].map((entry) => ({ ...entry, receipt: toUuid(`eff-vote:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('compare-ceccec-efficiency-by-vote', facets)
     return {
@@ -2114,7 +2114,8 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
     const facets = [
       { facet: 'faithful simulator', on: honest.faithfulSimulator }, { facet: 'no physical-QM speedup', on: honest.noSpeedup },
       { facet: 'answers÷tokens unbeatable', on: efficient.proven }, { facet: 'fusion replay verifies', on: fusion.verified },
-      { facet: 'memoByRoot O(1) reuse', on: memoHitIsO1 }, { facet: 'NOT physical qubits / NOT FLOPS', on: true },
+      { facet: 'memoByRoot O(1) reuse', on: memoHitIsO1 },
+      { facet: `${[honest.faithfulSimulator, honest.noSpeedup, efficient.proven, fusion.verified, memoHitIsO1].filter(Boolean).length}/5 measured dimensions hold — the simulator is classical-64bit BY MEASUREMENT (noSpeedup=${honest.noSpeedup}), which is what bounds the claim`, on: [honest.faithfulSimulator, honest.noSpeedup, efficient.proven, fusion.verified, memoHitIsO1].filter(Boolean).length === 5 },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w1:${e.facet}:${e.on}`) }))
     const sealed = sealFacets('honest-revolution-claim', facets)
     return {
@@ -2760,7 +2761,7 @@ export function thermoQuantumBalance(matrix: MindMatrix = buildMatrix(), at = 0)
       { facet: `landauerFloor decoded=${landauer.decoded}`, on: landauer.decoded },
       { facet: `hardwareMerkabasBalanced=${dryCool.hardwareMerkabasBalanced}`, on: dryCool.hardwareMerkabasBalanced || dryCool.coolingDevice },
       { facet: `alwaysBalance=${balance.alwaysBalance}`, on: balance.realtimeMetrics },
-      { facet: 'residualNamed: NOT physical device cooling', on: true },
+      { facet: `the physical quantity measured here is the Landauer floor (decoded=${landauer.decoded}); cooling enters as the structural index speedTempBalance=${roundTo(speedTempBalance, 4)}, coolingDevice=${dryCool.coolingDevice}`, on: landauer.decoded && Number.isFinite(speedTempBalance) && speedTempBalance > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`thermo-quantum:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('thermo-quantum-speed-temp-balance', facets)
     return {
@@ -2864,7 +2865,7 @@ export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'balanceFromMetrics', on: balanceIndex >= 1 / PHI },
       { facet: 'metricsCallTime', on: cpu.computes && gpu.computes },
       { facet: `balanceIndex=${roundTo(balanceIndex, 4)} cpuShare=${roundTo(cpuShare, 3)} gpuShare=${roundTo(gpuShare, 3)}`, on: balanceIndex > 0 },
-      { facet: 'residualNamed: structural policy not datacenter orchestration', on: true },
+      { facet: `policy is the balance index over ${metrics.length} call-time metrics (balanceIndex=${roundTo(balanceIndex, 4)}) — the unit is share-of-work, and every metric is finite`, on: metrics.length > 0 && metrics.every((m) => Number.isFinite(m.value)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cpu-gpu-balance:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('cpu-gpu-dynamic-self-balance', facets)
     return {

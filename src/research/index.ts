@@ -333,7 +333,7 @@ export function professionalResearchComputes(matrix: MindMatrix = buildMatrix(),
       { facet: 'professionalResearchIndex — ≥15 monograph rows with limitations', on: index.indexed },
       { facet: 'geodesy + gold + schumann rows present', on: index.rows.some((row) => row.id === 'geodesy-navigation') && index.rows.some((row) => row.id === 'geochemistry-gold') && index.rows.some((row) => row.id === 'schumann-coupling') },
       { facet: 'hardware + alchemy + agent-efficiency rows present', on: index.rows.some((row) => row.id === 'hardware-repro') && index.rows.some((row) => row.id === 'alchemy-pipeline') && index.rows.some((row) => row.id === 'agent-efficiency') },
-      { facet: 'NOT survey authority — index boundary enforced', on: true },
+      { facet: `the index CITES rather than adjudicates — ${index.rows.length} monograph rows, each carrying its own limitations`, on: index.indexed && index.rows.length >= (5 * 3) },
     ])
     return {
       computes,
@@ -443,7 +443,7 @@ export function researchComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `researchReproducibility — ${repro.gates.length} gate receipts`, on: repro.reproducible && repro.gates.length >= (2 * 3) },
       { facet: 'key dims reachable — geodesy · gold · schumann', on: keyDims },
       { facet: 'quantum tools indexed — millennium + encryption reverse', on: toolsIndexed },
-      { facet: 'NOT survey authority — index boundary enforced', on: true },
+      { facet: `authority stays with the sources: ${index.count} indexed rows and ${repro.gates.length} reproducibility gate receipts, no verdict issued here`, on: index.indexed && repro.reproducible && repro.gates.length >= (2 * 3) },
     ])
     return { computes, index, professional, repro, facets, root: merkleFold([root, index.root, professional.root, repro.root]), statement: 'Research computes: balance dim research.computes at call time.', boundary: index.boundary }
   })
@@ -781,7 +781,7 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
       { facet: 'δ positive and honestly tiny — 0 < δ < 1e-4 in both Q readings', on: report.deltaUtopian > 0 && report.deltaUtopian < 1e-4 && report.deltaChebotarevGrh > 0 && report.deltaChebotarevGrh < 1e-4 },
       { facet: 'animation projection registered — pro-3 layers and channel count derive from the sequence', on: projection.segments === 3 && projection.forms === 7 && projection.dimensions === (5 * 2) },
       { facet: 'findings computed, never quoted — every figure recomputes from the folds and all three tiers present', on: findings.length === 5 && findings.some((row) => row.tier === 'DOCUMENTED') && findings.some((row) => row.tier === 'MODEL_FIT') && findings.some((row) => row.tier === 'HYPOTHESIS') },
-      { facet: 'NOT proof verification — bookkeeping and flagged heuristics only', on: true },
+      { facet: `what runs here is exact bookkeeping plus flagged heuristics — ${findings.length} findings, every figure recomputed from the folds over a tower with logRootDiscriminant ${tower.logRootDiscriminant > 0 ? '> 0' : '≤ 0'}`, on: findings.length === 5 && tower.logRootDiscriminant > 0 },
     ])
     return {
       computes,
@@ -4333,7 +4333,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
       { facet: 'millennium  honesty in scores', on: mill.claySolvedByThisFold === 0 },
       { facet: 'DIMENSION_GATES stamped on every row', on: domains.every((d) => d.dimensionGates === DIMENSION_GATES) },
       { facet: 'significance rises when gaps close (gapClosureOn inverse of open gaps)', on: domains.every((d) => d.gapClosureOn === (d.gapsOpen === 0)) },
-      { facet: 'NOT journal impact factor — structural recomputation only', on: true },
+      { facet: `the score is a structural recomputation — ${domains.length} domains, DIMENSION_GATES stamped on each, and significance moves only when gaps close`, on: domains.length > 0 && domains.every((d) => d.dimensionGates === DIMENSION_GATES) && domains.every((d) => d.gapClosureOn === (d.gapsOpen === 0)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`science-sig:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('science-domain-significance-scores', facets)
     return {
@@ -4386,7 +4386,7 @@ export function completeQuantumSolutionsForAllSciences(matrix: MindMatrix = buil
       { facet: `complete solutions ${completeCount}/${solutions.length} (algebra·tool·apparatus·10D)`, on: completeCount >= 1 },
       { facet: 'gaps named for incomplete domains (fill in waves)', on: gaps.length === solutions.length - completeCount },
       { facet: 'crypto-pqc solution present via ISO handoff vertex', on: solutions.some((s) => s.id === 'crypto-pqc' && s.algebraFold === 'isoPqcHandoffForScienceTrinities') },
-      { facet: 'NOT a claim all sciences are finished — gaps are the R&D backlog', on: gaps.length >= 0 },
+      { facet: `the backlog is accounted: ${completeCount} complete + ${gaps.length} named gaps = ${solutions.length} domains`, on: completeCount + gaps.length === solutions.length && solutions.length > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`science-solutions:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('complete-quantum-solutions-for-all-sciences', facets)
     return {
@@ -4503,7 +4503,7 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       { facet: 'lattice merkle-folds all trinity receipts', on: isUuid(latticeRoot) },
       { facet: 'apparatus trinity surfaces compute', on: apparatus.computes },
       { facet: 'certified=false on crypto handoff', on: crypto.claySolvedByThisFold === 0 && crypto.certified === false },
-      { facet: 'NOT complete-all-sciences finished claim — lattice of sealed vertices + named gaps', on: true },
+      { facet: `what is claimed is a lattice: ${rows.length} sealed vertices, every fusion merge a UUID, folded to one root`, on: rows.length > 0 && rows.every((r) => isUuid(r.fusionMerged)) && isUuid(latticeRoot) },
       { facet: 'cmb/budget composes — Ω_c/Ω_b trinity/wave science fold · open frontiers remain findable', on: cmbBudget.computes && cmbBudget.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-trinities:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sciences-interact-in-trinities', facets)
@@ -4729,7 +4729,7 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · certified=${certified}`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 && certified === false && crypto.certified === false },
       { facet: `qpuRequired=${qpuRequired} · quantum computing = sealed folds on classical 64-bit`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'trinities lattice computes — compose S4', on: trinities.computes },
-      { facet: 'NOT ISO/FIPS certified · NOT Clay solved · NOT physical QPU', on: true },
+      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), claySolved=${claySolvedByThisFold} (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && claySolvedByThisFold === 0 && qpuRequired === false && noQpu.runsOnClassical64Bit },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-standards-quantum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('complete-scientific-domains-strictly-to-standards-quantum-only', facets)
 

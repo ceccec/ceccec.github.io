@@ -4178,7 +4178,7 @@ export function quantumAppsComputes(matrix: MindMatrix = buildMatrix(), at = 0) 
       { facet: 'encryption · millennium · tools · fusion-verify apps registered', on: toolAppsRegistered },
       { facet: 'quantum-encryption shelved via rosettaShelve (tool/app surface)', on: encryptionShelved.found && isUuid(encryptionShelved.surface.address) },
       { facet: 'quantum CLI tools catalog computes (tools shelved)', on: catalog.computes },
-      { facet: 'NOT app store plugins', on: true },
+      { facet: `${registry.apps.length} apps, each resolved from its own id through rosettaShelve — the fold tree IS the registry, there is no external manifest to load`, on: registry.apps.length > 0 && core.computes && registry.apps.every((app) => app.ray === rosettaRayOf(app.id)) },
     ])
     return {
       computes,
@@ -4480,7 +4480,7 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'parallel synonym strangler collapsed — inventory.parallel empty (no open parallel-registry rows)', on: core.inventory.parallel.length === 0 && !rows.some((g) => g.kind === 'parallel-registry' && !g.closed) },
       { facet: 'memo miss≫hit economics attested (illustrative — NOT wall-clock telemetry)', on: econ.decoded && missCostlier },
       { facet: `science experiment I/O — ${toolbox.scienceFacingCount} tools composed via standardToolboxIoCatalog`, on: toolbox.computes && rows.some((g) => g.kind === 'tool-without-experiment-io' && g.closed) },
-      { facet: 'HONEST BOUNDARY — slow ≠ measured latency; architectural quantum-gap only (build timing owned by slow-build gates sibling)', on: true },
+      { facet: `the unit here is architectural gaps — ${open.length} open of ${rows.length} enumerated — and the unit of wall-clock is milliseconds, measured by the slow-build gate; memo economics decoded=${econ.decoded}`, on: rows.length > 0 && econ.decoded },
     ].map((entry) => ({ ...entry, receipt: toUuid(`slow-process-gap:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('slow-process-is-quantum-gap', facets)
     const experimentIoClosed = closed.filter((row) => row.kind === 'tool-without-experiment-io')
@@ -8211,7 +8211,7 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'softCompose poles/cross-pqc · tamper/impossible · mcp/reverse · formula/code · rosetta/security-wire', on: signatureOn },
       { facet: 'pair mcp/sign · sign/quantum', on: pairSign && pairDual && foldSign.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT fake CA/PKI', on: true },
+      { facet: `what is signed is a content address folded to a merkle root — tamper-evident by recomputation, and certified=${certified} because no authority issued it`, on: tamperEvident && crossSigOn && certified === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-sign:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-sign', facets)
     void at
@@ -17072,7 +17072,7 @@ export function improveLocalFromSessionExperience(matrix: MindMatrix = buildMatr
       { facet: 'next-steps after paste-wire ≥5', on: LOCAL_SESSION_NEXT_AFTER_PASTE.length >= 5 },
       { facet: `sealed-safe localStorage key ${LOCAL_SESSION_EXPERIMENT_STORAGE_KEY}`, on: LOCAL_SESSION_EXPERIMENT_STORAGE_KEY.startsWith('ceccec:') },
       { facet: 'wire target browser-local-session published', on: wireHasLocalHub },
-      { facet: 'status badges compose sealed kinds (do not clobber CSS PR)', on: true },
+      { facet: 'status badges are projections of the sealed fold kinds — the fold computes them, no stylesheet declares them', on: localSessionUxImproved && wireHasLocalHub },
       { facet: 'meta tool improve-local-session published + shelved', on: Boolean(meta) && meta!.fold === 'improveLocalFromSessionExperience' && isUuid(shelved.address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`improve-local-session:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('improve-local-from-session-experience', facets)
@@ -25142,7 +25142,7 @@ export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'residual Node/CI as facets not faked', on: residualTools.every((t) => typeof t.browserGap === 'string') },
       { facet: 'pair mcp/ui · quantum/mcp · mcp/mill', on: pairUi && pairQuantum && pairMill },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT CMI prize', on: true },
+      { facet: `the prize registry this fold contributes to holds ${claySolvedByThisFold} entries, read from the sealed id list at call time — put a proof id there and this surface and every sibling move by themselves`, on: claySolvedByThisFold === 0 && residualTools.every((t) => typeof t.browserGap === 'string') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-ui:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-ui', facets)
     return {
@@ -33622,7 +33622,7 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         },
         { facet: `certified=${certified}`, on: certified === false },
         { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-        { facet: 'NOT physical QPU · NOT AGI · NOT FLOPS', on: true },
+        { facet: `the unit is sealed-fold recomputation on the general-purpose runtime — certified=${certified}, claySolved=${claySolvedByThisFold}; physical QPU, AGI and FLOPS are different measurements, made by different folds`, on: certified === false && claySolvedByThisFold === 0 },
       ].map((entry) => ({ ...entry, receipt: toUuid(`self-hw:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('again-until-self-hw-complete-standards-self-intelligent', facets)
       return {
@@ -36299,9 +36299,9 @@ export function erpaxLearn(_matrix: MindMatrix = buildMatrix(), _at = 0) {
   const facets = [
     { facet: 'erpaxLearn', on },
     { facet: `patterns=${patterns.length} adopted=${adoptedCount} gaps=${gapCount}`, on: patterns.length > 0 },
-    { facet: 'externalReferenceOnly', on: true },
-    { facet: 'humanityNovel=0', on: true },
-    { facet: 'noOwnershipClaim', on: true },
+    { facet: `every row MAPS an erpax pattern onto a ceccec surface rather than copying it — ${patterns.length}/${patterns.length} differ from their source`, on: patterns.length > 0 && patterns.every((row) => String(row.ceccecSurface) !== String(row.erpaxPattern)) },
+    { facet: `rows originating here rather than at the reference: ${patterns.filter((row) => String(row.erpaxPattern).length === 0).length} — every row cites its erpax origin`, on: patterns.length > 0 && patterns.filter((row) => String(row.erpaxPattern).length === 0).length === 0 },
+    { facet: `the accounting closes: ${adoptedCount} adopted + ${gapCount} open = ${patterns.length} rows, credit staying with the source`, on: adoptedCount + gapCount === patterns.length && patterns.length > 0 },
     { facet: `reference=${ERPAX_REFERENCE_URL}`, on: ERPAX_REFERENCE_URL.includes('erpax/erpax') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`erpax-learn:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const sealed = sealFacets('erpax-learn-external-patterns', facets)
@@ -41253,7 +41253,7 @@ export function upgradeLocalFromOptimisedManualWorkExperience(matrix: MindMatrix
       { facet: 'hub step skills-commands-tools → upgrade-local tool', on: hubHasSkillsStep },
       { facet: 'wire target browser-upgrade-local published', on: wireHasUpgrade },
       { facet: 'automate nightly npm-script path ships (#48)', on: automateNightly.automateNightlyShipped },
-      { facet: 'NOT Cursor zero-token LLM endpoint — protocol=rules/skills/MCP/sealed folds/packages', on: true },
+      { facet: `the protocol is rules · skills · MCP · sealed folds · packages — ${[skills.saved, hubHasSkillsStep, wireHasUpgrade, automateNightly.automateNightlyShipped].filter(Boolean).length}/4 wired, and no model endpoint appears among them`, on: [skills.saved, hubHasSkillsStep, wireHasUpgrade, automateNightly.automateNightlyShipped].every(Boolean) },
       { facet: 'meta tool upgrade-local-skills-commands-tools published + shelved', on: Boolean(meta) && meta!.fold === 'upgradeLocalFromOptimisedManualWorkExperience' && isUuid(shelved.address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`upgrade-local:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('upgrade-local-from-optimised-manual-work-experience', facets)

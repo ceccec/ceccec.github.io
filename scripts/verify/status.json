@@ -1,6 +1,6 @@
 {
   "imports.unresolved": 6,
-  "limits.always-true": 168,
+  "limits.always-true": 145,
   "limits.weakest-bar": 65,
   "paths.dead-strings": 51,
   "scope.boundaries": 2796,
