@@ -73,9 +73,10 @@ jobs:
           fi
 
       - name: Setup pnpm
+        # version read from "packageManager" in package.json — passing `version` here too
+        # collides with it ("Multiple versions of pnpm specified") and failed every tagged
+        # release. Matches deploy.yml, which has always worked.
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - uses: actions/setup-node@v4
         with:
