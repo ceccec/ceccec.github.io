@@ -703,7 +703,7 @@ export function audioComputes(matrix: MindMatrix = buildMatrix()) {
 export function videoComputes(matrix: MindMatrix = buildMatrix()) {
   void matrix
   return computesGate('videoComputes', [
-    { facet: 'deterministic paint frames at the hero clock — NOT live video', on: HERO_CYCLE_MS > 0 },
+    { facet: `deterministic paint frames at the hero clock — NOT live video · measured HERO_CYCLE_MS=${HERO_CYCLE_MS}`, on: HERO_CYCLE_MS > 0 },
     { facet: 'paint tiers seed the canvas frames', on: TIERS.length === 3 },
   ])
 }

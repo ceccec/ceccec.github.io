@@ -215,7 +215,7 @@ export function resonanceDecoded() {
   const facets = [
     { facet: 'resonance is REAL — at the natural frequency a driven damped oscillator amplifies by ≈ Q (the resonance gain)', on: abs(glassGain - glassQ) / glassQ < 1 / 100 && abs(resonancePeakGain(glassQ) - glassQ) / glassQ < 1 / 100 },
     { facet: 'HIGH-Q shatters — a wine glass in air (Q≈1000) amplifies ~1000× at its tone; the opera-singer demo is real physics', on: glassGain > 100 },
-    { facet: 'LOW-Q does NOT — a cell in living tissue is heavily damped (Q≈1), so it barely amplifies (~1×): no frequency selectively destroys it', on: tissueGain < 3 },
+    { facet: `LOW-Q does NOT — a cell in living tissue is heavily damped (Q≈1), so it barely amplifies (~1×): no frequency selectively destroys it · measured tissueGain=${tissueGain}`, on: tissueGain < 3 },
     { facet: 'selectivity needs a sharp peak — off-resonance the gain collapses; bandwidth = ω₀/Q, so low Q is broad and unselective', on: offResonance < glassGain / (2 * 5) && tissueBandHz > glassBandHz * 100 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`resonance-facet:${entry.facet}:${entry.on}`) }))
   return {
@@ -834,7 +834,7 @@ export function observingMovieRevealsQuantumModel(route = '/', at = 0, matrix: M
       { facet: 'the movie caption names the computed model — 4-UUID qubit register · hex→digit→double-torus · plasma · root', on: snapshot.caption.includes('4-UUID') && snapshot.caption.includes('hex→digit→double-torus') && snapshot.caption.includes('root') },
       { facet: 'the movie state IS the model state — a 6-line register content-addressed by one root', on: snapshot.register.length === 6 && snapshot.root.length > 0 },
       { facet: 'the snapshot round-trips — recompute from (route, at) yields the same root (deterministic)', on: roundTrips },
-      { facet: 'quantum thinking defined honestly — content-addressed deterministic recompute, NOT a cognitive/physical change', on: QUANTUM_THINKING_SHIFTS.length === 4 },
+      { facet: `quantum thinking defined honestly — content-addressed deterministic recompute, NOT a cognitive/physical change · measured QUANTUM_THINKING_SHIFTS.length=${QUANTUM_THINKING_SHIFTS.length}`, on: QUANTUM_THINKING_SHIFTS.length === 4 },
       { facet: 'the revealed computer is faithful with NO speedup (benchmark-proven)', on: honest.faithfulSimulator && honest.noSpeedup },
     ])
     return {

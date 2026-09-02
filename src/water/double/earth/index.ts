@@ -2374,7 +2374,7 @@ export function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at = 0, matrix:
       { facet: 'one shared genus-2 throat — the two Earths meet at a single hinge mouth', on: timespace.proven },
       { facet: 'out-flow = white hole, in-flow = black hole — the same throat, two senses', on: globe.poles.north.proved && globe.poles.south.proved },
       { facet: 'the pair is one whole — inverted Earths in the same timespace, not two objects', on: machine.computes },
-      { facet: 'Earth is NOT a black hole — Earth-mass Hawking temperature is astronomically cold (honesty anchor)', on: earthMassHawkingK > 0 && earthMassHawkingK < 1 },
+      { facet: `Earth is NOT a black hole — Earth-mass Hawking temperature is astronomically cold (honesty anchor) · measured earthMassHawkingK=${earthMassHawkingK}`, on: earthMassHawkingK > 0 && earthMassHawkingK < 1 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`white-black-throat:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),

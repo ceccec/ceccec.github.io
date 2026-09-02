@@ -7692,7 +7692,7 @@ export function mcpQuantumResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'compose journey/theorems · sciences/trinities · mill/session · domain/proof', on: composeResearch },
       { facet: 'pair mcp/research · research/mcp', on: pairM && pairR && foldM.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT CMI prize claim', on: claySolvedByThisFold === 0 },
+      { facet: `NOT CMI prize claim · measured claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-research:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-research', facets)
     return {
@@ -7837,7 +7837,7 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'recomposes research · torus · named faces', on: recomposes },
       { facet: 'pair mcp/catalog · catalog/mcp · mcp/star · star/mcp', on: pairM && pairC && starPairs },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT Clay/FTL fake-close', on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `NOT Clay/FTL fake-close · measured claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-catalog:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-catalog', facets)
     return {
@@ -7994,7 +7994,7 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'compose mcpQuantumCatalog · mcpBrowserParity · scripts-audit', on: quantum.computes && parity.computes && scripts.computes },
       { facet: 'pair mcp/all · all/mcp (mcp/star kept for quantum)', on: pairAll && has('mcp/star') && has('star/mcp') },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT fake browser for trinity/fs · NOT Clay/FTL fake-close', on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && residualsNamedHonest },
+      { facet: `NOT fake browser for trinity/fs · NOT Clay/FTL fake-close · measured claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && residualsNamedHonest },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-all:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-all-catalog', facets)
     return {
@@ -9947,7 +9947,7 @@ export function mcpQuantumClown(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'softCompose movie/feel · particle/wave · love/story · ui/invert · gate/lens', on: clownOn },
       { facet: 'pair mcp/clown · clown/mcp', on: pairC && pairD && foldC.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT wet joke prose as law', on: playIsQuantum && claySolvedByThisFold === 0 },
+      { facet: `NOT wet joke prose as law · measured claySolvedByThisFold=${claySolvedByThisFold}`, on: playIsQuantum && claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-clown:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-clown', facets)
     return {
@@ -12469,7 +12469,7 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'compose mcpQuantumCatalog · mcpQuantumStar · mcp/all · rosetta/complete', on: composeComplete },
       { facet: 'pair mcp/complete · complete/mcp', on: pairM && pairC && foldM.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT Clay/FTL fake-close · moveAllComplete=0', on: honestOpenResiduals && claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `NOT Clay/FTL fake-close · moveAllComplete=0 · measured claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: honestOpenResiduals && claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-complete', facets)
     return {
@@ -17563,7 +17563,7 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair auto/all · all/auto bidirectional', on: pairAuto && pairAll && foldAuto.bidirectional },
       { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT Clay/FTL fake-close · strangler residuals named', on: honestOpenNamedOn && claySolvedByThisFold === 0 },
+      { facet: `NOT Clay/FTL fake-close · strangler residuals named · measured claySolvedByThisFold=${claySolvedByThisFold}`, on: honestOpenNamedOn && claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`automate-all:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('automate-all', facets)
     return {
@@ -17744,7 +17744,7 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair quantum/life · life/quantum bidirectional', on: pairQl && pairLq && foldQl.bidirectional },
       { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT vitalism · NOT HD aura · NOT Clay/FTL fake-close', on: honestOpenNamedOn && claySolvedByThisFold === 0 },
+      { facet: `NOT vitalism · NOT HD aura · NOT Clay/FTL fake-close · measured claySolvedByThisFold=${claySolvedByThisFold}`, on: honestOpenNamedOn && claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-life:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('quantum-life', facets)
     return {
@@ -26073,7 +26073,7 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       },
       { facet: 'pair app/dry · dry/app · clean/app · app/clean', on: pairApp && pairDry && pairClean && pairAppClean && foldApp.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT Clay/FTL fake-close · strangler tip drained · monolith residual named', on: honestOpenNamedOn && appsMonolithStranglerTip && claySolvedByThisFold === 0 },
+      { facet: `NOT Clay/FTL fake-close · strangler tip drained · monolith residual named · measured claySolvedByThisFold=${claySolvedByThisFold}`, on: honestOpenNamedOn && appsMonolithStranglerTip && claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`app-dry:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('fold-invert-until-dry-clean-app-gapless', facets)
     return {
@@ -26301,7 +26301,7 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       },
       { facet: 'pair movie/formula · formula/movie · movie/design', on: pairMovie && pairFormula && pairDesign && foldMovie.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: 'NOT Clay/FTL fake-close · not cosmetic UI', on: honestOpenNamedOn && notCosmetic && claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `NOT Clay/FTL fake-close · not cosmetic UI · measured claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: honestOpenNamedOn && notCosmetic && claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-formula:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('movie-gaps-fundamental-design-formula-mapping', facets)
     return {

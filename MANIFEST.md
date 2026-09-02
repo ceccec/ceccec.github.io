@@ -38,7 +38,7 @@
 | `cross-uuid-is-a-mac` | 6 / 6 | `ead6d5aa-01bf-807e-bb93-64596e6353e8` |
 | `census-derived` | 8 / 8 | `4a3831b1-16d6-8259-8e00-87aed7ae7852` |
 | `magic-numbers` | 4 / 4 | `ddb89223-5efe-86c1-bc98-c9c63d90f96d` |
-| `432-acoustic` | 4 / 4 | `175f88bc-7c26-8420-b1fc-43532f85a4d0` |
+| `432-acoustic` | 4 / 4 | `ff224efa-e38c-86e4-b7bc-10984bf2ccc2` |
 | `merkaba-axis-null` | 4 / 4 | `9ee3ed69-3f56-8276-b172-3826dd2dea9f` |
 | `colour-maps` | 3 / 3 | `6389fa3c-852d-88bc-b9e9-cb7f4404d28b` |
 

@@ -4352,7 +4352,7 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `revolutionary ideas ADMITTED, not purged — ${revolutionaryClaims} flagged revolutionary claims (millennium · beat-any-model · all-quantum) kept in the matrix (solve-don't-purge), each held by its refuting theorem, none deleted`, on: revolutionaryClaims >= 3 },
     { facet: 'by a revolutionary APPROACH — each boundary COMPUTES (overclaimComputes: finite roster vs unbounded task-space, cardinality refutation), so a grand claim enters only as a compute-or-refute fold; the approach separates revolutionary-honest from revolutionary-crank', on: overclaim.computes },
-    { facet: 'DEMARCATION — the approach makes the ideas HONEST (bounded · refutable · gate-judged), NOT true: no millennium is solved, no model universally beaten stands and the revolution is the method', on: revolutionaryClaims >= 3 && overclaim.computes && claySolvedByThisFold === 0 },
+    { facet: `DEMARCATION — the approach makes the ideas HONEST (bounded · refutable · gate-judged), NOT true: no millennium is solved, no model universally beaten stands and the revolution is the method · measured revolutionaryClaims=${revolutionaryClaims} · claySolvedByThisFold=${claySolvedByThisFold}`, on: revolutionaryClaims >= 3 && overclaim.computes && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`revolutionary:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {

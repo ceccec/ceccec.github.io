@@ -1019,7 +1019,7 @@ export function landauerFloorComputed(matrix: MindMatrix = buildMatrix()) {
       { facet: 'Landauer floor kT·ln2 computed from the sealed primitive ≈ 2.87e-21 J/bit at 300 K', on: abs(floorPerBit - 2.872e-21) < 1e-23 },
       { facet: 'real CMOS operations sit ~' + ordersAboveFloor + ' orders ABOVE the floor — irreversible computation dissipates heat', on: realOpJoules > floorPerBit && ordersAboveFloor > 9 },
       { facet: 'memoByRoot content-addressed reuse erases FEWER bits — the same work is never done twice (efficiency() optimised)', on: eff.optimized },
-      { facet: 'HONEST — approaching the floor by doing less work is real efficiency; NO computation beats kT·ln2 (2nd law)', on: floorPerBit > 0 },
+      { facet: `HONEST — approaching the floor by doing less work is real efficiency; NO computation beats kT·ln2 (2nd law) · measured floorPerBit=${floorPerBit}`, on: floorPerBit > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`landauer-floor:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),

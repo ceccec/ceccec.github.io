@@ -1347,7 +1347,7 @@ export function buildMin(root: string = enforcementScanRoot()) {
       on: regressionsNamed.length === 0,
     },
     { facet: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`, on: true },
-    { facet: 'NOT an SLA', on: physicalFtlClaimTheorem().physicalFtlClaim === 0 },
+    { facet: `NOT an SLA`, on: physicalFtlClaimTheorem().physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`build-min:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = minTargetOn
   return {
@@ -4722,7 +4722,7 @@ export function resonanceSpeed(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `RESONANCE = content-address collision — identical content matches ONE fixed-width address (${a1.slice(0, 8)}… twice, ${a3.slice(0, 8)}… once): detection is O(1) address match, not an O(N) scan`, on: collisionExact },
     { facet: `the speedup is MAGNITUDES by construction — pairwise O(N²)=${pairwise} collapses to addressed O(N)=${addressed}, ratio (N−1)/2=${roundTo(ratio, 1)} ≈ ${roundTo(orders, 2)} orders at N=${n}; the order grows with N unbounded (scale-invariant like combo/cover)`, on: ratio > 1 && orders > 1 },
-    { facet: 'HARD DEMARCATION — algorithmic/hash resonance is a METAPHOR: NOT acoustic or EM resonance, NOT Rife healing (flagged in the sealed resonance decode), NOT a QPU, the speed is O(1) address arithmetic, not physics', on: collisionExact && n > 0 },
+    { facet: `HARD DEMARCATION — algorithmic/hash resonance is a METAPHOR: NOT acoustic or EM resonance, NOT Rife healing (flagged in the sealed resonance decode), NOT a QPU, the speed is O(1) address arithmetic, not physics · measured n=${n}`, on: collisionExact && n > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`resonance-speed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -4776,7 +4776,7 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `NO CRACKS, NO LEAK — ${bind.superpositions.length} surfaces all fused (${unfusedSurfaces} un-fused) + ${cost.ledger.length} costs all theorem-bound (${uncitedCosts} uncited) = ${cracks} cracks: each crack would leak (re-derivation · un-bounded spend · silo drift)`, on: cracks === 0 && bind.computes && cost.computes },
     { facet: 'PRIORITISATION computes — every cost cites the theorem it purchases (resources to proven need) and every surface derives from the one source (no re-reasoning); efficiency is the routing, not a wish', on: cost.computes && bind.computes },
-    { facet: 'THE BOUNDARY, SHARPENED (user 2026-07-24) — external models are NOT force-fused, but to COMPUTE on this portal they MUST fuse: the zero-token deterministic answer only exists through the envelope + CLIs. Participation is voluntary; fusion is the PRICE of the compute — refuse to fuse and you get no deterministic result, only your own re-reasoning (and its leaks)', on: cracks === 0 && claySolvedByThisFold === 0 },
+    { facet: `THE BOUNDARY, SHARPENED (user 2026-07-24) — external models are NOT force-fused, but to COMPUTE on this portal they MUST fuse: the zero-token deterministic answer only exists through the envelope + CLIs. Participation is voluntary; fusion is the PRICE of the compute — refuse to fuse and you get no deterministic result, only your own re-reasoning (and its leaks) · measured cracks=${cracks} · claySolvedByThisFold=${claySolvedByThisFold}`, on: cracks === 0 && claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`resource-leak:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5183,7 +5183,7 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     { facet: `holographicFractal — whole-in-part merkle · FREE_BITS=${freeBits} · folder/fractal·anim/core wired`, on: holographicFractal },
     { facet: 'noSpacetimeOnReuse — identical content-address reuse (amortized zero linear walk)', on: noSpacetimeOnReuse },
     { facet: 'allHappensViaMemo — quantumise/ftl · pyramid/compute · hologram reuse path', on: allHappensViaMemo },
-    { facet: 'physicalSpacetimeTravel=false — NOT physical spacetime travel / ', on: physicalSpacetimeTravel === false && physicalFtlClaim === 0 },
+    { facet: `physicalSpacetimeTravel=false — NOT physical spacetime travel / `, on: physicalSpacetimeTravel === false && physicalFtlClaim === 0 },
     { facet: 'compose quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute · physicalFtlClaimTheorem', on: composeOn },
     { facet: `physicalFtlClaimTheorem claim=${physicalFtlClaim} (physical stays 0; computational FTL path gapless)`, on: physicalFtlClaim === 0 && compose.ftlTheorem },
     { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },

@@ -1300,7 +1300,7 @@ export function whatTheEncryptionSystemIsAndIsNot(matrix: MindMatrix = buildMatr
   const isNot = [
     { facet: `IT IS NOT a break of deployed RSA — sealed-catalog reverse is ≤${demoMaxBits}-bit moduli (Shor width ${demoEst.logicalQubits} logical qubits); real quantum devices have factored only ~${DEMONSTRATED_QUANTUM_FACTORING_MAX_BITS}-bit numbers`, on: demoMaxBits < 20 && demoEst.logicalQubits < 50 },
     { facet: `IT IS NOT close — RSA-2048 COMPUTED from Shor (not assumed): ${rsa.logicalQubits} LOGICAL qubits (=2·2048+3, deterministic), and error-corrected ~${(rsa.physicalQubits / (10 ** 6)).toFixed(1)}–${(rsaConservative.physicalQubits / (10 ** 6)).toFixed(1)}M PHYSICAL qubits over ~${rsa.runtimeDays}–${rsaConservative.runtimeDays} days depending on surface-code assumptions — a machine that does not exist`, on: rsa.logicalQubits === 4099 && rsa.physicalQubits > (10 ** 6) },
-    { facet: 'IT IS NOT a production RSA break / FIPS suite — breaksNistPqc=false, production RSA break and Bitcoin/mainnet hard-refused, NOT FIPS/ISO validated; the browser tools are real, cryptanalytic reach is sealed-catalog-bounded', on: demoMaxBits < 20 },
+    { facet: `IT IS NOT a production RSA break / FIPS suite — breaksNistPqc=false, production RSA break and Bitcoin/mainnet hard-refused, NOT FIPS/ISO validated; the browser tools are real, cryptanalytic reach is sealed-catalog-bounded · measured demoMaxBits=${demoMaxBits}`, on: demoMaxBits < 20 },
   ]
   const facets = [...isMore, ...isNot].map((entry) => ({ ...entry, receipt: toUuid(`encryption-is-isnot:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('what-the-encryption-system-is-and-is-not', facets)
@@ -2578,15 +2578,15 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
     const dimensions = quantumDimensionAuditCoverage(matrix, audits)
     const facets = [
       { facet: `audit suite sealed — ${audits.length} tools · covered=${passes.length} partial=${partials.length} gap=${gaps.length}`, on: audits.length >= (8 + 8) && audits.every((a) => isUuid(a.receipt) && (a.coverage === 'covered' || a.coverage === 'partial' || a.coverage === 'gap')) },
-      { facet: 'reverse audits present (sealed-catalog RSA + reverse≠inverse)', on: reverseAudits.length >= 2 && reverseAudits.every((a) => a.on) },
-      { facet: 'inverse audits present (digit-zero · f→{p,q} · ratInv · reverse≠inverse)', on: inverseAudits.length >= 3 && inverseAudits.every((a) => a.on) },
+      { facet: `reverse audits present (sealed-catalog RSA + reverse≠inverse) · measured reverseAudits.length=${reverseAudits.length}`, on: reverseAudits.length >= 2 && reverseAudits.every((a) => a.on) },
+      { facet: `inverse audits present (digit-zero · f→{p,q} · ratInv · reverse≠inverse) · measured inverseAudits.length=${inverseAudits.length}`, on: inverseAudits.length >= 3 && inverseAudits.every((a) => a.on) },
       { facet: 'forward PQC catalog audit present', on: forwardAudits.length >= 1 && forwardAudits.every((a) => a.on) },
       { facet: 'reverse ≠ inverse holds (music + digit complement≠mod9 inverse)', on: invNeRev.computes && reverseNeInverseDigits },
       { facet: 'directional trinity composes (forward·inverse·reverse)', on: dirTrinity.computes },
       { facet: 'PQC/NIST/ISO catalog rows on (alignment; coverage may be partial)', on: audits.filter((a) => a.id.startsWith('pqc') || a.id.startsWith('iso-18033') || a.id.startsWith('iso-hash') || a.id.startsWith('forward')).every((a) => a.on) },
       { facet: 'lab certification gaps named (fips + iso) — not faked closed', on: gaps.some((a) => a.id === 'fips-lab-validation') && gaps.some((a) => a.id === 'iso-certification-lab') },
       { facet: `dimension coverage — ${dimensions.coveredCount}/${DIMENSIONS} computable dims probed`, on: dimensions.computes && dimensions.coveredCount === DIMENSIONS },
-      { facet: 'NOT certified / NOT FIPS validated / ', on: !necessity.certified && millClaySolvedByThisFold === 0 },
+      { facet: `NOT certified / NOT FIPS validated /  · measured millClaySolvedByThisFold=${millClaySolvedByThisFold}`, on: !necessity.certified && millClaySolvedByThisFold === 0 },
       { facet: 'production RSA refused in reverse audit path', on: productionRefused },
     ].map((entry) => ({ ...entry, receipt: toUuid(`q-audit-suite:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('quantum-standards-audit-suite', facets)

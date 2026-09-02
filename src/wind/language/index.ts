@@ -167,7 +167,7 @@ export function glagoliticMeaningOfAllDecoded(matrix: MindMatrix = buildMatrix()
   const facets = [
     { facet: 'every one of the 28 letters carries a decoded meaning', on: letters.length === (7 * 4) && letters.every((entry) => entry.gloss.length > 0) },
     { facet: 'the securely-cohering span is exactly the first nine (azъ–zemlja), each an ordinary OCS word', on: secureSpan === 9 && letters.slice(0, 9).every((entry) => entry.word && entry.secure) },
-    { facet: 'the five loan-phoneme names are honestly marked NOT words, not given invented glosses', on: opaque.length === 5 && ['ǵervь', 'frьtъ', 'xěrъ', 'ci', 'ša'].every((name) => opaque.includes(name)) && words === 23 },
+    { facet: `the five loan-phoneme names are honestly marked NOT words, not given invented glosses · measured opaque.length=${opaque.length} · words=${words}`, on: opaque.length === 5 && ['ǵervь', 'frьtъ', 'xěrъ', 'ci', 'ša'].every((name) => opaque.includes(name)) && words === 23 },
     { facet: 'the meaning binds to the number — azъ = "I" = 1, slovo = "word" = 200', on: (glagoliticMeaning('Ⰰ')?.gloss.includes('"I"') ?? false) && glagoliticMeaning('slovo')?.number === (100 * 2) },
     { facet: 'the meaning ANCHORS the letter→number→bits/opcode/gate maps in documented words', on: glagoliticMapsToCodeAndQuantumDecoded(matrix).decoded },
     { facet: 'composed with the alphabet decode and the alphabets genealogy', on: glagoliticAlphabetDecoded(matrix).decoded && alphabetsDecoded(matrix).decoded },

@@ -333,7 +333,7 @@ export function src0BlackHoleSimulationComputes(matrix: MindMatrix = buildMatrix
       { facet: 'Bekenstein–Hawking entropy from cited merger masses (GW250114 32+34 M☉ scale)', on: sim.entropyBits.remnant > sim.entropyBits.m1 * (1 / 2) },
       { facet: 'Schwarzschild radii — remnant r_s from final mass', on: sim.radii.remnantM > 90_000 && sim.radii.remnantM < 200_000 },
       { facet: 'Kerr area increase — classical Hawking area-law direction (Af > Ai)', on: sim.hawkingAreaLawClassical },
-      { facet: 'ringdown — damped oscillator (humanBreath/resonantAmplitude), NOT LIGO QNM templates', on: sim.ringdown.amplitude >= 0 && sim.ringdown.frequencyHz > (100 * 2) },
+      { facet: `ringdown — damped oscillator (humanBreath/resonantAmplitude), NOT LIGO QNM templates · measured sim.ringdown.amplitude=${sim.ringdown.amplitude}`, on: sim.ringdown.amplitude >= 0 && sim.ringdown.frequencyHz > (100 * 2) },
       { facet: 'synthetic strain — oscillatorBank window, NOT matched filtering', on: sim.strain.samples.length === (16 * 2) },
       { facet: 'GWTC catalog register — content-address sample from citation', on: catalog.addressed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`src0-bh-sim:${entry.facet}:${entry.on}`) }))

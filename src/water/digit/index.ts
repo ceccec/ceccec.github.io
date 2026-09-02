@@ -863,7 +863,7 @@ export function piTrainPhysicalCutWaveThree(matrix: MindMatrix = buildMatrix()) 
   const facets = [
     { facet: 'wave 1 station 1/9 open on disk', on: wave1.stations.some((entry) => entry.folder === '1/9') },
     { facet: 'tier-A cut symbols homed at src/1/9 (local definitions, not re-export-only)', on: cutAtStation && tierAInCatalog },
-    { facet: 'reversible NOT flips LSB target', on: typeof rnot === 'function' && rnot(0b10, 1) === 0b00 },
+    { facet: `reversible NOT flips LSB target · measured rnot=${rnot}`, on: typeof rnot === 'function' && rnot(0b10, 1) === 0b00 },
     { facet: 'reversible Toffoli writes AND into target when both controls set', on: typeof rtoffoli === 'function' && ((rtoffoli(0b011, 0, 1, 2) >> 2) & 1) === 1 },
     { facet: 'electron g-factor anomaly is positive CODATA constant', on: ELECTRON_G_FACTOR_ANOMALY > 0 && ELECTRON_G_FACTOR_ANOMALY < 0.01 },
     { facet: 'rcnot remains vault leaf until tier-B cluster moves', on: station19.exports.includes('rcnot') },

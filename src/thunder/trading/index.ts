@@ -833,7 +833,7 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
       { facet: 'coordinated waves feed calendar/sequence flip spine', on: waves.waves.length > 0 },
       { facet: 'every ray shelved compute address is UUID', on: rayRuns.every((r) => isUuid(r.address) && isUuid(r.receipt)) },
       { facet: 'offline a432 historical proxy — zero network', on: prices.length > 64 },
-      { facet: 'NOT ad-hoc — schedule length === ROSETTA_RAYS.length', on: rayRuns.length === 7 },
+      { facet: `NOT ad-hoc — schedule length === ROSETTA_RAYS.length · measured rayRuns.length=${rayRuns.length}`, on: rayRuns.length === 7 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hist-train-rosetta:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('historical-train-waves-via-rosetta', facets)
     return {

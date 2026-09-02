@@ -1778,7 +1778,7 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
     { facet: `A 432 Hz QUANTUM IS ${(acousticQuantumJ / EV).toExponential(2)} eV — twelve orders below a single visible photon (~2 eV), which is itself six below a nuclear gap`, on: acousticQuantumJ / EV < 1e-11 },
     { facet: `THE NUCLEAR SHELL GAP IS ~10^${ordersToGap} TIMES THE 432 Hz QUANTUM — no coupling is proposed and none could bridge that without a mechanism`, on: ordersToGap >= 17 && ordersToGap <= 19 },
     { facet: `THE PROTON RINGS ~10^${ordersToProton} TIMES FASTER — f = E/h puts its matter wave at ~10^23 Hz against 432 Hz`, on: ordersToProton >= 20 && ordersToProton <= 22 },
-    { facet: 'FREQUENCY IS THE THREAD, NOT THE CURRENCY — E=hf and c=λf give each system its own note, so "everything is frequency" is true and carries no transfer between scales', on: gapRatio > 1e17 },
+    { facet: `FREQUENCY IS THE THREAD, NOT THE CURRENCY — E=hf and c=λf give each system its own note, so "everything is frequency" is true and carries no transfer between scales · measured gapRatio=${gapRatio}`, on: gapRatio > 1e17 },
   ]
   const limits = [
       // Each limit below must be able to GO OFF. A limit whose `on` is wired to the fold's own

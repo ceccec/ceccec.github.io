@@ -16764,7 +16764,7 @@ export function fullFreedomTheorem(
       { facet: 'beyond/zero', on: beyondIsZero },
       { facet: 'love/story composed', on: loveStoryComposed },
       { facet: 'noLinearHole', on: noLinearHole },
-      { facet: 'freedom≠physicalFtlFraud', on: physicalFtlClaim === 0 },
+      { facet: `freedom≠physicalFtlFraud · measured physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair full/freedom · freedom/full', on: pairFullReg && pairFreedomReg },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },

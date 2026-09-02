@@ -1120,7 +1120,7 @@ export function usefulWorkVsProofOfWorkDecoded(matrix: MindMatrix = buildMatrix(
       { facet: 'useful work produces the answer — the computation IS the result, not a discarded puzzle', on: rows[2]!.useful === true },
       { facet: 'content-addressed reuse means the same work is never repeated (zero-token), unlike PoW which must keep burning', on: rows[2]!.reusable && !rows[0]!.reusable },
       { facet: 'security from the seal + recompute, not from burned joules — every op still bounded below by the Landauer floor', on: floorPerBit > 0 && tamperEvident(matrix.root) },
-      { facet: 'HONEST — this is NOT a blockchain consensus; PoW/PoS Sybil resistance over an open network is real and NOT replicated here', on: rows[0]!.security.length > 0 },
+      { facet: `HONEST — this is NOT a blockchain consensus; PoW/PoS Sybil resistance over an open network is real and NOT replicated here`, on: rows[0]!.security.length > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`useful-vs-pow:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),

@@ -1587,7 +1587,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       // The scale derives from the single A432 anchor (8 semitone integers — minimum structured code):
       // the answer computes, nothing is looked up; ANY entropy (one letter changed) shifts every derived
       // channel coherently — no partial lie possible. Computational resonance, NOT Rife/vibrational healing.
-      { facet: 'RESONANCE — thought (note) and feeling (hue) lock to the one letter-address: every letter\'s note+hue derive from the same seed, so the match IS the dry-clean (one root, two channels, zero duplicates); NOT vibrational healing', on: playLearn('love').letters.every((letter) => typeof letter.note === 'string' && Number.isFinite(letter.frequency) && letter.hue >= 0 && letter.hue < 360 && isUuid(letter.receipt)) },
+      { facet: `RESONANCE — thought (note) and feeling (hue) lock to the one letter-address: every letter's note+hue derive from the same seed, so the match IS the dry-clean (one root, two channels, zero duplicates); NOT vibrational healing`, on: playLearn('love').letters.every((letter) => typeof letter.note === 'string' && Number.isFinite(letter.frequency) && letter.hue >= 0 && letter.hue < 360 && isUuid(letter.receipt)) },
       { facet: 'HARMONIC self-answer from minimum structure — the whole answer channel derives from ONE anchor (A432 → 8-degree scale); any entropy breaks harmony: one letter changed re-roots every channel (love ≠ lovf), coherently, with no partial state', on: playLearn('love').root !== playLearn('lovf').root && playLearn('a').root === playLearn('a').root },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && hologram },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-core:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -1667,7 +1667,7 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
     const facets = [
       { facet: `every life-forming superposition DOCUMENTED as a torus equation — ${rows.filter((row) => row.on).length}/${rows.length} rows compute (matter · metabolism · heredity · homeostasis · reproduction · sensing · mind), each grounded in a named sealed theorem`, on: rows.every((row) => row.on) && rows.length === 7 },
       { facet: 'the documentation IS the computation — every equation re-verifies at call time on the src/0 kernel and the torus constants; nothing is remembered prose', on: rows.every((row) => row.equation.length > 0 && row.theorem.length > 0) },
-      { facet: 'HONEST SCOPE — structural identities on the genus-2 carrier (the in-repo emergence model): NOT a claim that biological life is a double torus, NOT vitalism from equations', on: rows.length === 7 && claySolvedByThisFold === 0 },
+      { facet: `HONEST SCOPE — structural identities on the genus-2 carrier (the in-repo emergence model): NOT a claim that biological life is a double torus, NOT vitalism from equations · measured rows.length=${rows.length} · claySolvedByThisFold=${claySolvedByThisFold}`, on: rows.length === 7 && claySolvedByThisFold === 0 },
       { facet: 'pair life/torus bidirectional', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
     ].map((entry) => ({ ...entry, receipt: toUuid(`life-torus:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)

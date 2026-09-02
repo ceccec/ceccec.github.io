@@ -297,7 +297,7 @@ export function a432DigitSpectrum(matrix: MindMatrix = buildMatrix()) {
       { facet: 'the trinity axis rings in BOTH voicings — {3,6,9} voiced by ÷9 AND ÷12', on: axisRows.length === 3 && axisRows.every((r) => r.ringHz > 0 && r.axisHz > 0) },
       { facet: 'the flow ring is the reflection — {1,2,4,8,7,5} sung by ÷9, resting under ÷12', on: flowRows.length === 6 && flowRows.every((r) => r.ringHz > 0 && r.axisHz === 0) },
       { facet: 'the void carries no tone — 0 silent and lightless in both voicings', on: voidRow.digit === 0 && voidRow.ringHz === 0 && voidRow.axisHz === 0 && voidRow.ringLight === null && voidRow.axisLight === null },
-      { facet: 'every voiced tone bridges to a named visible band — frequencyToLight thz>0, band≠∅', on: voiced.length === 9 && voiced.every((r) => r.ringLight !== null && r.ringLight.thz > 0 && r.ringLight.band !== '') },
+      { facet: `every voiced tone bridges to a named visible band — frequencyToLight thz>0, band≠∅ · measured voiced.length=${voiced.length}`, on: voiced.length === 9 && voiced.every((r) => r.ringLight !== null && r.ringLight.thz > 0 && r.ringLight.band !== '') },
       { facet: 'the ÷12 axis IS the a432 octave ladder — 36·3=108, 36·6=216 ∈ A432_OCTAVES', on: A432_OCTAVES.includes(AXIS_UNIT * 3) && A432_OCTAVES.includes(AXIS_UNIT * 6) },
       { facet: 'the two units coincide on the axis — hue°(36d) === axis Hz (one integer, both readings)', on: axisRows.every((r) => r.hue === r.axisHz) },
       { facet: 'σ mirror is the sealed involution summing to 10 — reflectThroughZero∘reflectThroughZero = id', on: rows.every((r) => reflectThroughZero(r.mirror) === r.digit) },

@@ -1404,7 +1404,7 @@ export function theoryHarmonyMarkers(matrix: MindMatrix = buildMatrix()) {
     { facet: 'demarcation is multi-criterial, not a single rule — broad agreement on cases despite unsettled general criteria (Laudan 1983); the markers are heuristics, not a clean line', on: harmonic.length === 5 && flagged.length === 5 },
     { facet: 'falsifiability alone is inadequate — most pseudosciences HAVE been falsified and refuse to accept it; "falsified yet unrevised" flags better than "unfalsifiable"', on: flagged.some((f) => f.includes('refuse')) },
     { facet: 'harmonic theories converge on the markers — risky predictions that succeed, consilience, mechanism, revision, replication and consensus', on: harmonic.some((h) => h.includes('consilience')) },
-    { facet: 'genuinely contested ≠ pseudoscience — open, in-principle testable frontiers are off neither path; honesty keeps them separate', on: examples.contested.length > 0 },
+    { facet: `genuinely contested ≠ pseudoscience — open, in-principle testable frontiers are off neither path; honesty keeps them separate · measured examples.contested.length=${examples.contested.length}`, on: examples.contested.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`theory-markers:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('theory-harmony-markers', facets)
   return {
@@ -1970,7 +1970,7 @@ export function selfTranslatingSystemBetweenDialects(matrix: MindMatrix = buildM
   const general = selfTranslate('the lord is my shepherd zzz', 'en', 'bg') // general text → coverage < 1 (the gap)
   const facets = [
     { facet: 'a self-translating system between tongues — every tongue is a lexicon keyed to one shared pivot (the meaning); the engine is tongue-agnostic and spans ' + tongues.length + ' tongues (' + tongues.join(', ') + '), open to any registered against the pivot', on: tongues.length >= 4 && tongues.includes('ocs') && tongues.includes('dialect') },
-    { facet: 'routes through the pivot, A → pivot → B — the OCS verse translates to English with NO ocs→en dictionary, derived through the ref pivot alone (the self-translating property)', on: verseTr.derived && verseTr.text === en0 && en0.length > 0 },
+    { facet: `routes through the pivot, A → pivot → B — the OCS verse translates to English with NO ocs→en dictionary, derived through the ref pivot alone (the self-translating property) · measured en0.length=${en0.length}`, on: verseTr.derived && verseTr.text === en0 && en0.length > 0 },
     { facet: 'works at the word level too — a dialect word routes through its meaning-pivot to standard Bulgarian (decodeDialect generalised)', on: wordTr.text === standardWord && standardWord.length > 0 },
     { facet: 'realtime and deterministic, zero tokens — a pure client-side function, the same input always the same output (no model, no network)', on: deterministic },
     { facet: 'coverage measured, the remainder honest — general text maps only what is registered (' + general.mapped + '/' + general.total + '), the rest passes through; the gap is the same one notAllTransliteratedMeansNotAllFused names', on: general.total > 0 && general.mapped <= general.total },
@@ -2092,7 +2092,7 @@ export function harmonyTruthUnderstandingTopNav(matrix: MindMatrix = buildMatrix
   const truthPartial = mol.boundary.includes('FLAGGED') // yet its cosmology is flagged — not fully true
   const understood = harmonicChat('the double torus', matrix).matched !== null // answerable — understanding is present
   const facets = [
-    { facet: 'harmony ≠ truth ≠ understanding form the top nav — three DISTINCT categories every concept is scored on, fusing all the content beneath them (the cardinal rule made navigation, not a footer)', on: categories.length === 3 && new Set(categories.map((c) => c.key)).size === 3 },
+    { facet: `harmony ≠ truth ≠ understanding form the top nav — three DISTINCT categories every concept is scored on, fusing all the content beneath them (the cardinal rule made navigation, not a footer) · measured categories.length=${categories.length}`, on: categories.length === 3 && new Set(categories.map((c) => c.key)).size === 3 },
     { facet: 'harmony ≠ truth — PROVEN on a real fold: the molitva is harmonically sealed (decoded) yet its boundary flags its cosmology as not-true, so the same object scores high harmony and partial truth (the axes diverge)', on: harmonyHigh && truthPartial },
     { facet: 'truth ≠ understanding — truth is the documented/flagged boundary, understanding is the decoded answerability (the chat); computed by different functions, so a statement can be understood yet not true, or true yet not decoded', on: understood && truthPartial },
     { facet: 'emerges from computation, competes, never static — the categories rank the computed concepts (the 432 dimensions on a harmonic path), not a hardcoded menu; the leaders compete for the top nav each recompute', on: dims.count === 432 && brain.harmonyPct === 1 },
@@ -2180,7 +2180,7 @@ export function allLanguagesSpeakThroughTheVersePivot(matrix: MindMatrix = build
   const zhToAr = selfTranslate(v.zh ?? '', 'zh', 'ar') // and onward Chinese → Arabic through the same pivot
   const facets = [
     { facet: 'translate all languages — the verse pivot now spans ' + tongues.length + ' tongues (ocs · bg · en + 28 authoritative public-domain editions across the major families: Hellenic, Italic, Semitic, Romance, Germanic, Slavic, Sinitic, Japonic, Koreanic, Indo-Aryan, Turkic, Bantu, Uralic)', on: tongues.length >= (6 * 5) && tongues.includes('grc') && tongues.includes('zh') && tongues.includes('ar') },
-    { facet: 'any pair routes through the pivot — Greek John 1:1 derives its Chinese with NO grc→zh dictionary (the self-translating property, now across 31 tongues)', on: grcToZh.derived && grcToZh.text === (v.zh ?? '·') && (v.zh ?? '').length > 0 },
+    { facet: `any pair routes through the pivot — Greek John 1:1 derives its Chinese with NO grc→zh dictionary (the self-translating property, now across 31 tongues) · measured length=${length}`, on: grcToZh.derived && grcToZh.text === (v.zh ?? '·') && (v.zh ?? '').length > 0 },
     { facet: 'and onward without limit — the Chinese derives its Arabic through the same ref pivot; the path A→pivot→B composes to any registered tongue', on: zhToAr.text === (v.ar ?? '·') && (v.ar ?? '').length > 0 },
     { facet: 'authoritative, not machine-translated — every surface is a named public-domain edition retrieved verbatim (Vulgate, Septuagint, WLC/Delitzsch, Luther, Segond, Synodal, CUV, Van Dyck, Károli …), the honest choice over MT', on: (v.la ?? '').length > 0 && (v.hbo ?? '').length > 0 && (v.ko ?? '').length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`all-tongues:${entry.facet}:${entry.on}`) }))

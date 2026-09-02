@@ -234,7 +234,7 @@ export function earthPolesAreADipoleDoubleTorusNotAGrid(matrix: MindMatrix = bui
     { facet: 'Earth main field ≈ a geocentric DIPOLE (~90%), field lines toroidal — the double-torus topology is documented geophysics (the geodynamo)', on: true },
     { facet: 'FOUR poles, not two — 2 geographic + 2 geomagnetic, offset ~11°; the same 4-vertex frame as the tetrahedron N/S/E/W', on: tetra.trinities === 4 && GEOGRAPHIC + MAGNETIC === POLES },
     { facet: 'the dipole REVERSES — N and S swap over geologic time (last full reversal ~780 ka, Brunhes–Matuyama)', on: LAST_REVERSAL_KA > 0 },
-    { facet: 'HONEST — the double-torus/tetrahedron is a TOPOLOGICAL ANALOGY to the dipole, NOT a cause; Earth-grid and ley vortexes are pseudoscience, flagged.', on: flagged.length >= 5 },
+    { facet: `HONEST — the double-torus/tetrahedron is a TOPOLOGICAL ANALOGY to the dipole, NOT a cause; Earth-grid and ley vortexes are pseudoscience, flagged. · measured flagged.length=${flagged.length}`, on: flagged.length >= 5 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`poles:${entry.facet}:${entry.on}`) }))
   return {
     decoded: facets.every((entry) => entry.on),
@@ -269,7 +269,7 @@ export function appleAdamEveSerpentDecoded(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the APPLE is not in the text — Genesis names the generic FRUIT (peri); the apple is a later LATIN PUN (mălum ↔ mālum) + Renaissance art', on: true },
     { facet: 'the NAMES are Hebrew wordplay — adam ↔ adamah (ground); Eve/chavvah ↔ chai (living)', on: true },
     { facet: 'the SERPENT (nachash) is crafty (arum) — a talking beast, NOT named Satan in Genesis (a later reading)', on: true },
-    { facet: 'the LENS — "knowledge of good and evil" is a merism: the first DISTINCTION = 1 bit; the pair Adam+Eve and the serpent the crossing third (2-of-3). A lens, NOT authorial intent', on: distinctionBits === 1 && PAIR === 2 && ACTORS === 3 },
+    { facet: `the LENS — "knowledge of good and evil" is a merism: the first DISTINCTION = 1 bit; the pair Adam+Eve and the serpent the crossing third (2-of-3). A lens, NOT authorial intent · measured distinctionBits=${distinctionBits} · PAIR=${PAIR}`, on: distinctionBits === 1 && PAIR === 2 && ACTORS === 3 },
     { facet: 'HONEST — the philology is documented; the structural reading is a LENS. Gematria, Bible-code and serpent-as-DNA claims are pseudoscience, flagged.', on: flagged.length >= 5 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`eden:${entry.facet}:${entry.on}`) }))
   return {
