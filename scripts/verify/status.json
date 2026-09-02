@@ -1,4 +1,5 @@
 {
+  "clay.refusals-proved": 0,
   "imports.unresolved": 6,
   "limits.always-true": 175,
   "limits.weakest-bar": 65,
