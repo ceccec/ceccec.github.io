@@ -20,6 +20,13 @@
  * no semantics. A facet bound to an unrelated positive result is not detectable this way and
  * needs a reader; that limitation is stated here rather than papered over, and it is why the
  * baseline is a ratchet and not a claim of completeness.
+ *
+ * COMPLEMENT, NOT DUPLICATE: a peer session is adding a compile-time form (computedLimits, a
+ * `const`-typed helper that rejects `on: true` and `on: X || true` at the call site). It is
+ * PROSPECTIVE — it binds only where a fold opts in by calling it, so the count below stays its
+ * own census of what already exists. Neither covers the other: the type check stops the number
+ * rising at new call sites and sees nothing built another way; this gate counts everything that
+ * runs and enforces nothing at authoring time. Cite each for what it does.
  */
 
 import { createRequire } from 'node:module'
