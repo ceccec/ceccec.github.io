@@ -2075,6 +2075,46 @@ export function crackLawEvolution() {
 // (the audit:prose target; [[no-prose-in-methods]]). `HARMONY` is the one shared attestation (was repeated as a
 // literal in every fold); `earned` assembles a boundary from a short exact head + the fold's already-computed facet
 // texts (joined) + a short honest-scope tail — the meaning stays, the source prose collapses to a call.
+/**
+ * THE ADVANTAGE IS STRUCTURAL: a limit that cannot fail is rejected by the COMPILER, not by a gate.
+ *
+ * Everything else here that catches unfalsifiable facets is runtime work someone must remember to run. A
+ * scan finds `on: true`; a second scan had to be added for a disjunction with a true literal, because that
+ * is an expression and walked past the first; a census over 149 modules timed out on the six largest files
+ * and reported a lower bound. Seventeen converted folds sat unexecuted by any gate for a day, so their
+ * limits could go off and nothing would notice.
+ *
+ * The compiler checks every call site, once, and cannot be forgotten, skipped, timed out, or left off a
+ * hand-written list. That is query/structure advantage in the only sense this repository claims one: no
+ * physical speedup, the same answer obtained by asking a cheaper question of a stronger structure.
+ *
+ * `Computed<T>` is `never` unless T is the WIDE boolean, so a narrow literal type is rejected:
+ *   { on: someRealCheck }          type boolean   → accepted
+ *   { on: someRealCheck && true }  type boolean   → accepted, and correctly: a conjunction is vacuous only
+ *                                                   when BOTH sides are, so one real operand redeems it
+ *   { on: true }                   type true      → not assignable to never
+ *   { on: someRealCheck || true }  type true      → same rejection; a disjunction is vacuous when EITHER is
+ *
+ * THE `const` TYPE PARAMETER IS LOAD-BEARING. Without it a literal WIDENS to boolean during inference, and
+ * in a mixed array one genuine entry launders every literal beside it — the laundering shape, inside the
+ * check for laundering. Two earlier versions had exactly that hole and passed two of three controls, which
+ * looked like success. Verified in both directions by two readers: with `const` the mixed array is rejected,
+ * without it the mixed array compiles.
+ *
+ * WHAT IT DOES NOT COVER, so it is not read as total. It is PROSPECTIVE and binds only where a caller opts
+ * in by passing through this function: facets already written elsewhere are invisible to it until touched,
+ * and a fold constructing its facets some other way is invisible exactly as it is to a hand-written list.
+ * It is universal over call sites that USE it, which is not the same as universal. scripts/verify/limits.ts
+ * remains the census of what already exists; this stops that number rising. Complements, not substitutes.
+ */
+export type Computed<T extends boolean> = boolean extends T ? T : never
+type LimitEntry = { readonly facet: string; readonly on: boolean }
+export function computedLimits<const T extends readonly LimitEntry[]>(
+  limits: T & { readonly [K in keyof T]: { readonly facet: string; readonly on: Computed<T[K]['on']> } },
+): readonly { facet: string; on: boolean }[] {
+  return limits as readonly { facet: string; on: boolean }[]
+}
+
 export const HARMONY = 'HARMONY does not equal TRUTH.'
 /**
  * THE SCOPE MUST COMPUTE TOO.

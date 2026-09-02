@@ -1,4 +1,5 @@
 // ☳ Zhèn · Thunder — the wave method: how agents achieve waves (decode → fold as dimensions → enforce → seal), optimization waves, the wave cohorts and coordination. Barrel-routed; folds.ts back-imports the gate folds.
+import { computedLimits } from '../../3/7'
 import { spawnSync } from 'node:child_process'
 import { phase } from '../../6/4'
 import { chsh } from '../../mountain/vortex'
@@ -148,11 +149,11 @@ export function theToolsAreSavedAndTheWavesSent(matrix: MindMatrix = buildMatrix
   // candidate, producing the same five addresses per theorem whatever the theorem says.
   const perCandidate = waves.length / candidates.length
   const stepsAreUniform = perCandidate === steps.length && Number.isInteger(perCandidate)
-  const limits = [
+  const limits = computedLimits([
     { facet: `BINDING IS ADDRESSING, NOT EVIDENCE — the bidirectional property reported for all ${waves.length} waves holds equally for a deliberately meaningless sentence, constructed here and bound the same way; it is a fact about the content-address fold and says nothing about the candidate it is applied to`, on: bindingIsAddressing },
     { facet: `NOTHING'S STATUS CHANGES — the ${candidates.length} candidates are unproven before this runs and unproven after; each wave entry carries ${waveKeys.length} fields (${waveKeys.join(', ')}) and not one is a proof, a verdict or a seal. This records the PATH a candidate takes toward proof and takes none of it`, on: stillUnproven },
     { facet: `THE STEPS ARE A VOCABULARY — the same fixed list (${steps.join(' · ')}) is applied identically to every candidate, ${perCandidate} per theorem regardless of what it states; the ledger's shape is a property of this list, not of the mathematics laid under it`, on: stepsAreUniform },
-  ]
+  ])
   const facets = [
     { facet: `THE TOOLS ARE SAVED: ${tools.length} tools forged this session (${tools.map((tool) => tool.name).join(', ')}), each recorded with its exact steps (${everyToolRecorded}) — the operational toolkit persisted in src, not re-improvised, per unexpectedSituationsRefactorTools`, on: everyToolRecorded },
     { facet: `THE WAVES ARE SENT: development waves (${steps.join('·')}) over all ${candidates.length} unproven candidate theorems = ${waves.length} waves, every one bound to its candidate's seed and folded forward (${allBound}); ${finiteComplete} are finite-complete (mechanisable), the honest path by which the self-evolving waves prove more`, on: allBound },
@@ -2375,11 +2376,11 @@ export function magnitudeComesWithPrecisionInClustersOfWaves(matrix: MindMatrix 
     // statement about one artifact, and the method being sealed against its own output is the whole design
     // rather than a defect — but it is also the reason none of this generalises.
     const measuresOnlyItself = magnitude === nav.waves.reduce((s2, w) => s2 + w.atoms.length, 0) && clusters > 0
-    const limits = [
+    const limits = computedLimits([
       { facet: `PRECISION HERE IS PRESENCE, NOT CORRECTNESS — the check is that all ${magnitude} atoms carry a statement and a proof of non-zero length (${emptyStatements} are empty), and a wave of confidently wrong statements would satisfy it exactly as well; nothing in this fold reads whether any statement is true`, on: precisionIsPresence },
       { facet: `THE FOUR NAMES RESOLVE TO DERIVED QUANTITIES — magnitude is the summed atom count (${magnitude}), clusters the number of proving folds (${clusters}), the largest cluster ${maxCluster}, each recomputed from theoremNavigation rather than asserted; the words are definitions over real structure and this is what makes that checkable instead of evocative`, on: namesResolve },
       { facet: `SELF-APPLIED, SO IT TRAVELS NOWHERE — the corpus measured IS the registry that produced it, and no artifact outside this one is examined; the method sealed against its own output is the design, and it is also the reason nothing here generalises beyond this repository`, on: measuresOnlyItself },
-    ]
+    ])
     const facets = [
       { facet: `MAGNITUDE is the exact harmonic — the ${clusters} cluster sizes sum to ${magnitude} = 4×108, no rounding: the magnitude is the exact sum of the waves, not an estimate`, on: magnitude === DIMENSION_GATES && magnitude === nav.atomCount },
       { facet: `IN CLUSTERS OF WAVES — the registry is ${clusters} proving folds (waves), each a cluster; ${singletons} are single precise proofs and the rest bundle ${maxCluster > 1 ? 'up to ' + maxCluster : 'few'} atoms — magnitude accretes cluster by cluster`, on: clusters > 1 && singletons > 0 && maxCluster >= 1 },
@@ -2490,11 +2491,11 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
   // THE OVERLAP BAR IS A CHOSEN LINE, and the audit's verdict moves with it — counted, not conceded.
   const atTwoThirds = audited.filter((x) => !x.ok).length
   const barGoverns = flagged.length === atTwoThirds && passRate < 1
-  const limits = [
+  const limits = computedLimits([
     { facet: 'A WELL-TITLED THEOREM CAN BE WRONG — an entry with a well-formed title and an EMPTY prover passes every one of these measures, so passing says nothing whatever about whether anything was proved; the audit scores labels and the corpus proves theorems, and these are different questions asked of the same text', on: unprovedPasses },
     { facet: `FOUR STRING MEASURES, NOT SEARCH ANALYTICS — the score is ${MEASURES.join(' · ')}, each computed from the theorem's own text; the "quantum SEO lens" is the rosetta shelving plus these measures, and no impression, click or engine ranking is read, held or approximated anywhere in this fold`, on: measuresAreLocal },
     { facet: `THE BAR IS A CHOSEN LINE — ${flagged.length} of ${audited.length} titles fall below it at the current overlap threshold; the pass rate is a function of where that line sits, not a property the corpus has, and moving the line moves the worklist`, on: barGoverns },
-  ]
+  ])
   const facets = [
     { facet: `EVERY TITLE AUDITED AGAINST ITS OWN THEOREM — all ${audited.length} titles scored on length, content-overlap with what they state, uniqueness and a computable rosetta ray; the audit is total and every title lands on a findable ray`, on: audited.length > 0 && audited.every((x) => Number.isFinite(x.ray)) },
     { facet: `THE SEO LENS NAMES THE IMPROVEMENTS — ${flagged.length} titles fall below the bar (${[...new Set(flagged.map((f) => f.reason))].join(', ') || 'none'}) and each gets a rename proposed FROM the theorem itself (the de-camelCased proving function): the eventual-improvement worklist, addressed not asserted`, on: flagged.every((f) => f.proposed.length > 0 && f.reason.length > 0) },
@@ -2559,11 +2560,11 @@ export function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix: Mi
   // Counting the pairs at a stricter bar shows how much of the list depends on where the line was drawn.
   const atThreeQuarters = flagged.filter((pr) => pr.j >= 3 / 4).length
   const thresholdGoverns = atThreeQuarters < flagged.length
-  const limits = [
+  const limits = computedLimits([
     { facet: `THE FLAG IS NOT AN IDENTITY — ${differentProvers.length} of the ${flagged.length} flagged pairs are proved by DIFFERENT folds, so shared vocabulary has pointed at theorems the corpus itself treats as distinct; Jaccard ≥ ½ is a proxy for "says the same thing" and these pairs are where the proxy and the corpus disagree`, on: flagIsNotIdentity },
     { facet: `A WORKLIST, NOT AN ACTION — nothing is merged by this fold: all ${population} theorems are present after it runs and every flagged theorem is still in the registry; the output is a review list and a human decides each case`, on: nothingWasMerged },
     { facet: `THE HALF IS A CHOSEN LINE — at a stricter bar of ¾ the list falls from ${flagged.length} pairs to ${atThreeQuarters}, so most of the worklist depends on where the threshold was drawn rather than on anything derived; ½ is a convention this fold picked and can be moved`, on: thresholdGoverns },
-  ]
+  ])
   const facets = [
     { facet: `THEOREMS MERGE — ${merges} theorems are near-duplicates (content Jaccard ≥ ½ with another — the same claim said twice), each foldable into one representative; the audit surfaces them, and merging them is consolidation, not loss`, on: merges >= 0 && population > 0 },
     { facet: `MERGING CREATES SPACE FOR EMERGENCE — at the sealed ${cap} cap each merge frees a slot, and ${candidates} gap-candidate theorems wait to emerge (${emergent} ready now); the space a merge opens is exactly what an emergent fills — the registry breathes`, on: candidates > 0 && merges >= emergent - candidates },
@@ -2665,11 +2666,11 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
   const oldPass = atoms.filter((a) => OLD_MARKER.test(a.states)).length
   const oldRejectedButProved = atoms.filter((a) => !OLD_MARKER.test(a.states) && typeof a.provedBy === 'string' && a.provedBy.length > 0).length
   const oldMarkerWasWrong = oldRejectedButProved === atoms.length - oldPass && oldRejectedButProved > 0
-  const limits = [
+  const limits = computedLimits([
     { facet: `PROVISION, NOT SOUNDNESS — this establishes that all ${named.length} theorems name a proving fold, and nothing about whether those folds' facets hold; the registry contains folds that report a false verdict, so "carried by a proof" is a claim about what exists and not about what is true`, on: standardIsProvision },
     { facet: `IT SORTS NOTHING — every theorem satisfies it, so it can rank none above another and supports no worklist; that is the price of using the corpus's own standard instead of a vocabulary sniff, and it was equally true of the marker it replaces at 96.6% passing`, on: discriminatesNothing },
     { facet: `THE MARKER IT REPLACES, RECOMPUTED — the deleted regex passed ${oldPass} of ${atoms.length} and rejected ${atoms.length - oldPass}, of which ${oldRejectedButProved} are carried by a proving fold; every single rejection was a false negative, which is why the change is a deletion and not a tuning`, on: oldMarkerWasWrong },
-  ]
+  ])
   const facets = [
     // WHAT THE COMPUTED STANDARD SAYS, which is not what the lexical one said. Under the marker the corpus
     // split 735/26 and the fold proposed replacing the 26. Under the registry's own standard the split is
@@ -2734,11 +2735,11 @@ export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMa
   const cloudWithout = new Set<string>()
   for (const a of atoms) for (const t of (a.theorem + ' ' + a.states).toLowerCase().match(/[a-z][a-z0-9]{2,}/g) ?? []) if (!withoutIts.has(t)) cloudWithout.add(t)
   const stopwordsAreAnInput = cloudWithout.size !== cloud.size
-  const limits = [
+  const limits = computedLimits([
     { facet: `THE SCORE TRACKS HOW MUCH A THEOREM SAYS — the top ${topTen} by tag score carry ${meanTagsTop.toFixed(1)} distinct tags on average against a corpus mean of ${meanTags.toFixed(1)}; the score is the SUM of its tags' frequencies, so saying more raises it by construction, and that is a property of the text rather than of the theorem's importance`, on: scoreTracksTagCount },
     { facet: `A VIEW, NOT A RESEAL — the seed order is intact beside this ranking and the two genuinely differ (${reordersFromSeed}); the merkle seal still reads the seed order, so nothing here changes what was sealed and this ordering carries no authority over it`, on: seedOrderIntact },
     { facet: `THE STOPWORD LIST IS AN INPUT — removing one stopword moves the cloud from ${cloud.size} to ${cloudWithout.size} distinct tags, a change of ${Math.abs(cloudWithout.size - cloud.size)}; small for this word, and the point is only that the ranking is a function of a hand-written list rather than a property the corpus has on its own`, on: stopwordsAreAnInput },
-  ]
+  ])
   const facets = [
     { facet: `THE TAG CLOUD IS COMPUTED — ${cloud.size} distinct tags over ${atoms.length} theorems (top: ${topTags.slice(0, 5).map(([t, n]) => `${t}·${n}`).join(', ')}): the frequency of every significant word across the corpus, the most-used surfacing`, on: cloud.size > 0 && atoms.length > 0 },
     { facet: `THEOREMS SORT BY TAG-CLOUD USAGE, MOST USED FIRST — each theorem scored by the summed frequency of its tags and sorted descending (${isDescending}); the top theorem "${sorted[0]?.theorem}" (score ${sorted[0]?.score}) carries the most-used tags, and the order differs from the registry seed (${reordersFromSeed}) — the tag-cloud ordering, computed`, on: isDescending && sorted.length === atoms.length },

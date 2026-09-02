@@ -1,5 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
+import { computedLimits } from '../../../3/7'
 import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7'
 import type { MindMatrix, StaticPage } from '../../../types'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
@@ -2091,11 +2092,11 @@ export function savingAThoughtIsProseConvertedToProofOrPurged(matrix: MindMatrix
   // computing shows is that the PIPELINE computes — a fold cannot establish that its own definition is the
   // right one by holding, and this is the closest thing in the corpus to a claim that it can.
   const truthComesFromThePipeline = pipeline.published > 0 && purgeRows.length === pipeline.published
-  const limits = [
+  const limits = computedLimits([
     { facet: `BACKED BY A FOLD MEANS NAMED, NOT RUN — all ${purgeRows.length} published papers carry a non-empty provedBy field and that string length IS the check; the named fold is never called and no facet of it is ever evaluated here, so "proven" at this layer distinguishes a paper that names a proof from one that does not, and nothing further`, on: backingIsAName },
     { facet: `NOTHING IS PURGED — the law says inert prose is mined then purged, and this fold produces no purge list and removes nothing; all ${purgeRows.length} rows survive it. The consequence is stated, not carried out, and naming a law is not enforcing one`, on: nothingIsPurged },
     { facet: `SELF-DEMONSTRATION IS NOT SELF-PROOF — these facets take their truth from the pipeline's counts, so their holding shows the pipeline computes and not that the definition above them is correct; a fold that holds has not thereby established its own definition`, on: truthComesFromThePipeline },
-  ]
+  ])
   const facets = [
     { facet: `SAVING A THOUGHT = PROSE CONVERTED TO CODE: a saved thought is a fold whose prose (statement · boundary · facet text) rides facets that COMPUTE — the prose is backed by proof (facets.every(on)); all ${pipeline.published} published papers are backed by a computing fold, so every surviving thought carries its proof`, on: pipeline.allBackedByAFold && pipeline.computes },
     { facet: `PROSE NEEDS PROOF OR IS PURGED: inert prose — a string or comment that computes nothing — is a purge candidate (the no-prose-in-methods law: statement/boundary/facets are concatenations of COMPUTED outputs). It is MINED first (the rosetta of analysts, nothing valuable lost), then removed; only prose backed by a refutable computation survives`, on: pipeline.allBackedByAFold && pipeline.allAcknowledged },
@@ -2534,11 +2535,11 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
   // Seven sets, no ontology: the table is the whole authority and every ray index comes out of it.
   const sevenSubfieldsOnly = QUANTUM_RAY_KEYWORDS.length === ROSETTA_SEVEN
     && classified.every((m) => m.ray < QUANTUM_RAY_KEYWORDS.length)
-  const limits = [
+  const limits = computedLimits([
     { facet: `THE TIE-BREAK IS IDLE, AND THIS WATCHES IT — "first matching subfield wins" decides nothing today: all ${classified.length} classified theorems match exactly ${QUANTUM_RAY_KEYWORDS.length > 0 ? 'one' : 'one'} subfield, ${multi.length} match two or more. So single-ray membership is a property this corpus HAS, not merely a rule imposed on it — and the first ambiguous title flips this off, because from then on table order silently decides placements`, on: tieBreakIsIdle },
     { facet: `TITLE-ONLY, AND IT BREAKS ON RENAME — removing the matched keyword "${probeKeyword ?? '—'}" from a classified theorem's title reroutes it out of its ray entirely; the proof text is never read, so a theorem whose title omits its subfield's vocabulary is invisible to this classifier no matter what it proves`, on: renamedFallsOut },
     { facet: `A KEYWORD FILTER, NOT AN ONTOLOGY — the whole authority is ${QUANTUM_RAY_KEYWORDS.length} hand-written keyword sets in this file, reproducible and refutable by editing them; no external taxonomy is consulted and none of these ray names is anyone else's standard`, on: sevenSubfieldsOnly },
-  ]
+  ])
   const facets = [
     { facet: `THE ROSETTA USES ONLY QUANTUM COMPUTING: ${atlas.total} theorems classified into the atlas, every one quantum-computing (${allQuantum}); the ${theoremPageRows(matrix).length - atlas.total} non-quantum theorems are excluded (${noneNonQuantum}) — a content classifier, not a letter-sum, decides membership`, on: allQuantum && noneNonQuantum },
     { facet: `THE SEVEN RAYS ARE DISTINCT SUBFIELDS: the quantum theorems partition across ${atlas.rays.length} rays by subfield (foundations · query algorithms · search & factoring · variational · communication · error correction · states & tools), counts summing to ${atlas.total} exactly, and the ray tag-clouds are ALL DIFFERENT (${raysDistinct}) — the homogeneous-cloud defect is gone because gravity is now ray-local`, on: partitions && raysDistinct },
