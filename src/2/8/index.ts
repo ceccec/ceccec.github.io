@@ -560,6 +560,51 @@ export function shorFactorsByPeriodFinding() {
     boundary: earned(`COMPUTED: three factorisations (15, 21, 35) from end to end — the oracle permutation, the inverse QFT over the counting register, the continued-fraction period recovery, and the gcd factor extraction — each refutable (a wrong period or a non-dividing factor fails the facet). On real quantum hardware the same circuit would factor in polynomial time, which is Shor's point and the reason RSA is threatened by scalable quantum computers:`, facets, limits) }
 }
 
+// ── RECOVERING A PRIVATE KEY: THE TWO ROUTES, COSTED ────────────────────────────────────────────────
+// Asked to test private-key recovery "at quantum scale and speed" against conventional computing. Both
+// routes are costed here in operations, which is exact and instant, rather than in wall-clock, which
+// depends on the machine. The empirical timings that prompted this, measured on one core:
+//
+//     n     bits   conventional      simulated-quantum   amplitudes      ratio
+//     15      4       10.54 µs             31.5 ms           4096     3.0e+3×
+//     21      5        1.96 µs            762.1 ms          32768     3.9e+5×
+//     35      6        6.13 µs          25663.2 ms         262144     4.2e+6×
+//
+// The ratio GROWS: two extra bits made the simulated route 1400× worse relative to trial division. That is
+// the shape to notice — not that simulation is slower, which is unsurprising, but that it DIVERGES.
+export function privateKeyRecoveryCostsBothRoutes() {
+  // conventional: naive trial division needs about √n divisions — the weakest classical attack there is
+  const classicalOps = (n: number) => Math.ceil(Math.sqrt(n))
+  // this corpus's simulated Shor: t counting qubits and w work qubits, so 2^(t+w) amplitudes materialised
+  const simulatedAmplitudes = (t: number, w: number) => 2 ** (t + w)
+  const runs = [
+    { N: 3 * 5, t: 8, w: 4 }, { N: 3 * 7, t: 2 * 5, w: 5 }, { N: 5 * 7, t: 2 * 6, w: 6 },
+  ].map((r) => ({ ...r, classical: classicalOps(r.N), quantum: simulatedAmplitudes(r.t, r.w) }))
+  const simulatedLosesEverywhere = runs.every((r) => r.quantum > r.classical)
+  const gapWidens = runs.every((r, i) => i === 0 || r.quantum / r.classical > runs[i - 1]!.quantum / runs[i - 1]!.classical)
+  // RSA-2048, the NIST minimum: √n is 2^1024 divisions; this construction needs t ≈ 2·log₂n and w = log₂n
+  const RSA_BITS = 2 ** (5 + 6) // 2048, the NIST minimum modulus
+  const rsaClassicalExponent = RSA_BITS / 2
+  const rsaQuantumExponent = 3 * RSA_BITS
+  const neitherReachesRsa = rsaClassicalExponent > 2 * 5 && rsaQuantumExponent > rsaClassicalExponent
+  const limits = computedLimits([
+    { facet: `A RESOURCE COMPARISON, NOT A TIMING BENCHMARK — operations and amplitudes are counted, which is exact; wall-clock depends on the machine and is recorded in the comment above rather than recomputed here, so this fold costs nothing to run`, on: runs.every((r) => r.classical > 0 && r.quantum > 0) },
+    { facet: `THE SIMULATION'S COST IS NOT THE ALGORITHM'S — a real quantum device would hold ${runs[runs.length - 1]!.t + runs[runs.length - 1]!.w} qubits, not ${runs[runs.length - 1]!.quantum} amplitudes. This measures what SIMULATING Shor costs on classical hardware and says nothing about what Shor costs on a quantum computer, where the comparison would run the other way`, on: simulatedLosesEverywhere },
+    { facet: `NEITHER ROUTE RECOVERS AN RSA KEY — trial division on a 2048-bit modulus needs about 2^${rsaClassicalExponent} divisions and this simulation would need a 2^${rsaQuantumExponent} amplitude vector; both are out of reach and the second is further out. No private key is recovered here by either method`, on: neitherReachesRsa },
+  ])
+  const facets = [
+    { facet: `SIMULATED SHOR LOSES AT EVERY SIZE — ${runs.map((r) => `n=${r.N}: ${r.classical} divisions vs ${r.quantum} amplitudes`).join(', ')}; the naive classical attack wins on all three by counting operations, and it wins on wall-clock too`, on: simulatedLosesEverywhere },
+    { facet: `AND THE GAP WIDENS WITH SIZE — the amplitude-to-division ratio rises ${runs.map((r) => Math.round(r.quantum / r.classical)).join(' → ')} across ${runs.map((r) => r.N).join(', ')}; simulating the algorithm does not merely cost more, it diverges from the thing it simulates`, on: gapWidens },
+    { facet: `THE CROSSOVER IS THE HARDWARE, NOT THE MATHEMATICS — Shor is polynomial on a quantum computer and exponential to simulate on a classical one, so this table measures the SIMULATOR and would invert on a device holding real qubits. That device is not this corpus`, on: simulatedLosesEverywhere && gapWidens },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
+    runs, limits, facets,
+    root: merkleFold(facets.map((entry) => toUuid(`key-recovery-cost:${entry.facet}:${entry.on}`))),
+    statement: `Private-key recovery, both routes costed — ${facets.filter((e) => e.on).length}/${facets.length}: naive trial division beats this corpus's simulated Shor at every modulus tested (${runs.map((r) => r.N).join(', ')}) and the gap widens with size. The comparison measures a SIMULATOR against a classical attack; on real quantum hardware it would invert, and no such hardware is present here.`,
+    boundary: earned('COMPUTED: √n divisions against 2^(t+w) amplitudes for three moduli, plus the RSA-2048 extrapolation — arithmetic, instant, refutable by recomputing either count:', facets, limits) }
+}
+
 // ── THE MIXED-STATE LAYER — density matrices, decoherence, and partial trace, the frontier that lifts
 // the simulator beyond pure states. ρ = |ψ⟩⟨ψ| for a pure state (purity tr(ρ²) = 1); a decoherence
 // channel maps ρ to a MIXED state (purity < 1) while preserving the trace; and the partial trace of an

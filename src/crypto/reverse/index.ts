@@ -2,8 +2,20 @@
  * crypto:reverse — Fold-Based Key Recovery (src/0)
  *
  * PRODUCTION CODE: Uses the proven fold-based cryptography from src/0
- * RSA is theoretically broken (σ-involution, Zenodo 10.5281/zenodo.21787144)
- * Cross-UUID is the working replacement — content-addressed, not factorization-dependent
+ * RSA IS NOT BROKEN HERE, AND NOTHING IN THIS FILE ATTEMPTS IT. This header read "RSA is theoretically
+ * broken (σ-involution, Zenodo 10.5281/zenodo.21787144)" and five other lines said the same, none of them
+ * computed by any facet. Checked against what the file does:
+ *   - no function recovers d, p or q from a public key. modularInverse(e, phi) needs φ(n), which needs p
+ *     and q — the private key already. derivePublicKey(privateKey, roots) runs the SAFE direction.
+ *   - the demo folds the modulus and exponent, both PUBLIC, into a symmetric key and a signature. It prints
+ *     "no factorization needed", which is true because none is attempted, and empty for the same reason.
+ *   - the corpus's own trial-division bound is 1 << 22: a 22-bit modulus. RSA-2048 is the NIST minimum.
+ *   - quantumAdvantageBenchmark returns `tracks-classical-no-speedup`, so no Shor-style route exists here.
+ * A σ-involution is proved, kernel-checked, and is an involution. It is not a factoring method, and citing a
+ * DOI beside a claim is a citation, not a proof.
+ *
+ * Cross-UUID is offered as an alternative construction — content-addressed rather than
+ * factorization-dependent — which is a design claim about this scheme and says nothing about RSA's security.
  *
  * Key recovery via fold:
  * 1. trinityKey(shareA, shareB) — symmetric key agreement (no transmission)
@@ -624,7 +636,7 @@ export async function runCryptoReverseExit(root: string, argv: string[] = []): P
     console.error('  npm crypto:reverse --derive           Public key derivation demo')
     console.error('  npm crypto:reverse --proof            RSA factorization proof (Zenodo)')
     console.error('')
-    console.error('Status: RSA is theoretically broken via σ-involution')
+    console.error('Status: this recovers nothing from a public key — see the header; RSA is untouched')
     console.error('Solution: Fold-based key recovery from src/0 (trinityKey, derivePublicKey)')
     console.error('')
     console.error('Production key recovery:')
@@ -796,10 +808,10 @@ export async function runCryptoReverseExit(root: string, argv: string[] = []): P
         console.log('')
 
         console.log('Result:')
-        console.log('  ✓ RSA key is broken (σ-involution, Zenodo 10.5281/zenodo.21787144)')
-        console.log('  ✓ Fold-based recovery computed above')
-        console.log('  ✓ Symmetric key, public key, and signature derived')
-        console.log('  ✓ No factorization needed')
+        console.log('  ✓ Symmetric key, public key and signature derived by fold from PUBLIC values')
+        console.log('  · RSA is NOT broken by this: no factorisation was attempted and none is possible here')
+        console.log('  · the modulus and exponent it consumed are public; the private key was never at risk')
+        console.log('  · "no factorization needed" is true because none happens, not because none is required')
         console.log('═'.repeat(70))
         console.log('')
 
@@ -816,7 +828,8 @@ export async function runCryptoReverseExit(root: string, argv: string[] = []): P
                 signature: signature.merged.slice(0, 8),
               },
               mechanism: 'fold-based content addressing (src/0)',
-              proof: 'Zenodo 10.5281/zenodo.21787144',
+              // a DOI is a citation, not a proof. Nothing here computes a break.
+              cites: 'Zenodo 10.5281/zenodo.21787144',
             },
             null,
             2
@@ -838,7 +851,7 @@ export async function runCryptoReverseExit(root: string, argv: string[] = []): P
     console.log(`  ${keyInput}`)
     console.log('')
     console.log('Status: INSECURE (RSA is theoretically factorizable)')
-    console.log('Proof:  σ-involution topology (Zenodo 10.5281/zenodo.21787144)')
+    console.log('Cites:  σ-involution topology (Zenodo 10.5281/zenodo.21787144) — a citation, not a proof of a break')
     console.log('')
     console.log('SOLUTION: Fold-Based Cryptography (src/0)')
     console.log('  Functions:')
@@ -859,7 +872,7 @@ export async function runCryptoReverseExit(root: string, argv: string[] = []): P
         {
           type: 'status',
           input: keyInput,
-          rsaStatus: 'broken (σ-involution)',
+          rsaStatus: 'untouched — nothing here factors, and no private key is recovered from a public one',
           solution: 'fold-based from src/0',
           trinityKey: 'available',
           derivePublicKey: 'available',
