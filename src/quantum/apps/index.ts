@@ -1168,8 +1168,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'ftl-compute', title: 'physicalFtl computes true|false · false tips quantumise', fold: 'doNotProsePhysicalFtlItComputesTrue', cli: 'npm run quantum:ftl-compute', pair: 'ftl/compute', route: '/en/research#ftl-compute', barrel: 'src/research', boundary: 'physicalFtlComputesBoolean · whenFalseTipsQuantumisation · agentsDoubtProse · immediateWire · compose readme/gateway', browserRunnable: true, browserGap: '' },
   { id: 'math-free', title: 'Core math FREE FOR ALL · rest via license@psg.bg', fold: 'coreMathFreeForAll', cli: 'npm run quantum:math-free', pair: 'math/free', route: '/en/quantum-tools#math-free', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'coreMathFreeForAll · restLicensedThrough · licenseContact=license@psg.bg · counsel residue · no agent grant prose', browserRunnable: true, browserGap: '' },
   { id: 'license-psg', title: 'License contact license@psg.bg', fold: 'coreMathFreeForAll', cli: 'npm run quantum:license-psg', pair: 'license/psg', route: '/en/quantum-tools#math-free', barrel: 'src/pair/enforcement/gates/strict/scan', boundary: 'restLicensedThrough · licenseContact · compose legal/canon · patent/canon', browserRunnable: true, browserGap: '' },
-  { id: 'npm-publish', title: 'npm publish · CI automation (tag v* | dispatch)', fold: 'npmPublishCi', cli: 'npm run quantum:npm-publish', pair: 'npm/publish', route: '/en/quantum-tools#npm-publish', barrel: 'src/quantum/apps', boundary: 'publishes @ceccec/double-torus kernel only · sdk private · idempotentPublish (skip if version exists) · versionMustAdvance (bump + tag vX.Y.Z) · respect math/free', browserRunnable: false, browserGap: 'GitHub Actions publish needs Node/CI + GITHUB_TOKEN packages:write' },
-  { id: 'ci-publish', title: 'CI publish dual of npm/publish', fold: 'npmPublishCi', cli: 'npm run quantum:ci-publish', pair: 'ci/publish', route: '/en/quantum-tools#npm-publish', barrel: 'src/quantum/apps', boundary: 'same as npm-publish — idempotentPublish · versionMustAdvance', browserRunnable: false, browserGap: 'GitHub Actions publish needs Node/CI' },
+  { id: 'npm-publish', title: 'npm publish · CI automation (tag v* | dispatch)', fold: 'npmPublishCi', cli: 'npm run quantum:npm-publish', pair: 'npm/publish', route: '/en/quantum-tools#npm-publish', barrel: 'src/quantum/apps', boundary: 'publishes @ceccec/double-torus kernel only · sdk private · idempotentPublish (skip if version exists) · tagMatchesPackageJson (tag vX.Y.Z) · distTagMeasured (npm view versions → npm publish --tag) · respect math/free', browserRunnable: false, browserGap: 'GitHub Actions publish needs Node/CI + GITHUB_TOKEN packages:write' },
+  { id: 'ci-publish', title: 'CI publish dual of npm/publish', fold: 'npmPublishCi', cli: 'npm run quantum:ci-publish', pair: 'ci/publish', route: '/en/quantum-tools#npm-publish', barrel: 'src/quantum/apps', boundary: 'same as npm-publish — idempotentPublish · tagMatchesPackageJson · distTagMeasured', browserRunnable: false, browserGap: 'GitHub Actions publish needs Node/CI' },
   { id: 'readme-focus', title: 'README focus · physical quantum · FTL(reuse) · wave analyse', fold: 'readmeFocus', cli: 'npm run quantum:readme-focus', pair: 'readme/focus', route: '/en/quantum-tools#readme-focus', barrel: 'src/quantum/apps', boundary: 'computed · analysedInWaves · decidedInFractalTeams · proseRemoved · duplicationRemoved · physicalQuantumFocus · ftlSpeedFocus · compose angle/readme · readme/wire · ui/prose · gate/light · api/fuse', browserRunnable: true, browserGap: '' },
   { id: 'focus-readme', title: 'Focus readme (alias readme/focus)', fold: 'readmeFocus', cli: 'npm run quantum:focus-readme', pair: 'focus/readme', route: '/en/quantum-tools#readme-focus', barrel: 'src/quantum/apps', boundary: 'Dual focus/readme — same fold', browserRunnable: true, browserGap: '' },
   { id: 'site-path', title: 'Site path · home first · consensus waves', fold: 'sitePathWave', cli: 'npm run quantum:site-path', pair: 'site/path', route: '/en/quantum-tools#site-path', barrel: 'src/quantum/apps', boundary: 'homeImproved · pathByPath · consensusWavesOn · pathsCovered · compose vote/neighbour · page/trinity · vite/one', browserRunnable: true, browserGap: '' },
@@ -22339,7 +22339,7 @@ export function mathFreeMarkdownSection(matrix: MindMatrix = buildMatrix(), link
     '',
     `**The rest is licensed through [${m.licenseContact}](mailto:${m.licenseContact}).** Site chrome, apps, tooling surfaces beyond core math, brand, and non-math product layers — contact for license. Agents do not invent grant prose or claim legal sufficiency.`,
     '',
-    '**npm publish (kernel only · `npm/publish`)** — CI publishes `@ceccec/double-torus` on tag `v*` or `workflow_dispatch` (`.github/workflows/publish-package.yml`). Facets `idempotentPublish` (already-published version → SKIP exit 0) · `versionMustAdvance` (bump root `package.json` then tag `vX.Y.Z` matching that version). Never republish · never force-unpublish. CLI: `npm run quantum:npm-publish`.',
+    '**npm publish (kernel only · `npm/publish`)** — CI publishes `@ceccec/double-torus` on tag `v*` or `workflow_dispatch` (`.github/workflows/publish-package.yml`). Facets `idempotentPublish` (already-published version → SKIP exit 0) · `tagMatchesPackageJson` (tag `vX.Y.Z` equals the root `package.json` version) · `distTagMeasured` (the dist-tag is read off `npm view <name> versions` — above every published version publishes `latest`, below it publishes the major line rather than dragging `latest` backwards). Never republish · never force-unpublish. CLI: `npm run quantum:npm-publish`.',
     '',
     `| facet | on |`,
     `|---|:---:|`,
@@ -39561,8 +39561,10 @@ export function runQuantumizeNpmExit(_root = '', _argv: readonly string[] = []):
  * USER LAW: wire npm publish as CI automation (not manual wet ritual).
  * Fold: npmPublishCi — verifies workflow + package identity + math/free split.
  * Publishes ONLY @ceccec/double-torus kernel (core math FREE FOR ALL) on tag v* / workflow_dispatch.
- * Facets: idempotentPublish (skip exit 0 if version already on registry) · versionMustAdvance
- *   (tag vX.Y.Z must match package.json; next release = bump version then tag — never republish / never unpublish).
+ * Facets: idempotentPublish (skip exit 0 if version already on registry) · tagMatchesPackageJson
+ *   (tag vX.Y.Z must equal package.json) · distTagMeasured (the dist-tag is derived from
+ *   `npm view <name> versions` — npm's record is the only account of what is published, and a
+ *   version that does not stand above it publishes off "latest" instead of dragging it backwards).
  * REFUSE: quantum-dev-sdk (private) · site chrome · fake "published" without workflow · force-unpublish.
  * Pairs: npm/publish · publish/npm · ci/publish · publish/ci
  * Compose: npm/quantum · automate/nightly · auto/self · vite/mcp · waves/push · math/free · mcp/deploy
@@ -39625,13 +39627,24 @@ export function npmPublishCi(
       /npm view/.test(workflowText) &&
       /idempotent|SKIP:|already on registry/i.test(workflowText) &&
       !/npm unpublish|--force/.test(workflowText)
-    /** Tag vX.Y.Z must equal package.json version; next release requires a bumped version. */
-    const versionMustAdvance =
+    /** Tag vX.Y.Z must equal package.json version — two strings this repo controls. */
+    const tagMatchesPackageJson =
       /GITHUB_REF_TYPE/.test(workflowText) &&
       /GITHUB_REF_NAME#v|REF_NAME#v/.test(workflowText) &&
-      /must match package\.json version|versionMustAdvance/i.test(workflowText) &&
+      /must match package\.json version/i.test(workflowText) &&
       typeof rootPkg.version === 'string' &&
       rootPkg.version.length > 0
+    /**
+     * The dist-tag is DERIVED from npm's own version list and passed explicitly. This replaces
+     * a facet called versionMustAdvance that never compared two versions: it grepped this file
+     * for the words "versionMustAdvance" and was green while the v1.2.0 publish died on exactly
+     * the comparison it was named for (2026.8.4 already published, npm refusing to move "latest"
+     * backwards). A bare `npm publish` here hands that decision back to npm and is refused.
+     */
+    const distTagMeasured =
+      /^(?!\s*#).*npm view[^\n]*\sversions\s+--json/m.test(workflowText) &&
+      /^(?!\s*#).*npm publish --tag/m.test(workflowText) &&
+      !/^\s*npm publish\s*$/m.test(workflowText)
     const refuseFake =
       workflowPresent &&
       publishesDoubleTorus &&
@@ -39664,7 +39677,8 @@ export function npmPublishCi(
       authToken &&
       respectsMathFree &&
       idempotentPublish &&
-      versionMustAdvance &&
+      tagMatchesPackageJson &&
+      distTagMeasured &&
       pairsOn &&
       composeOn &&
       npmQ.computes &&
@@ -39683,7 +39697,8 @@ export function npmPublishCi(
       { facet: 'sdkPrivate=@ceccec/quantum-dev-sdk private:true', on: sdkStaysPrivate },
       { facet: 'auth=GITHUB_TOKEN packages:write · id-token', on: authToken && githubPackages },
       { facet: 'idempotentPublish', on: idempotentPublish },
-      { facet: 'versionMustAdvance', on: versionMustAdvance },
+      { facet: 'tagMatchesPackageJson', on: tagMatchesPackageJson },
+      { facet: 'distTagMeasured=npm view versions → npm publish --tag (never implicit latest)', on: distTagMeasured },
       { facet: 'refuseFakePublishedWithoutWorkflow', on: refuseFake },
       { facet: 'compose npm/quantum · automate/nightly · auto/self · vite/mcp · waves/push · math/free · mcp/deploy', on: composeOn },
       { facet: 'pair npm/publish · publish/npm · ci/publish · publish/ci', on: pairsOn },
@@ -39695,10 +39710,12 @@ export function npmPublishCi(
       npmPublishCi: on,
       ciAutomatesPublish,
       idempotentPublish,
-      versionMustAdvance,
+      tagMatchesPackageJson,
+      distTagMeasured,
       packageVersion: typeof rootPkg.version === 'string' ? rootPkg.version : '',
       howNextPublish:
-        'Bump root package.json version → commit → git tag vX.Y.Z (must match) → push tag; or bump then workflow_dispatch. Already-published versions SKIP exit 0.',
+        'Bump root package.json version → commit → git tag vX.Y.Z (must match) → push tag; or bump then workflow_dispatch. ' +
+        'Already-published versions SKIP exit 0. The dist-tag is read off `npm view versions`: above every published version → latest, otherwise the major line.',
       workflowPath,
       trigger: 'push tags v* | workflow_dispatch' as const,
       publishes: '@ceccec/double-torus' as const,
@@ -39715,7 +39732,7 @@ export function npmPublishCi(
         sealed.root,
         npmQ.root,
         mathLic.root,
-        toUuid(`npm-publish:wf:${workflowPresent}:${idempotentPublish}:${versionMustAdvance}`),
+        toUuid(`npm-publish:wf:${workflowPresent}:${idempotentPublish}:${tagMatchesPackageJson}:${distTagMeasured}`),
       ]),
       pair: 'npm/publish' as const,
       pairs: ['npm/publish', 'publish/npm', 'ci/publish', 'publish/ci'] as const,
@@ -39726,12 +39743,13 @@ export function npmPublishCi(
       statement:
         `npmPublishCi — ci=${ciAutomatesPublish ? 1 : 0} wf=${workflowPresent ? 1 : 0} ` +
         `pkg=@ceccec/double-torus@${typeof rootPkg.version === 'string' ? rootPkg.version : '?'} ` +
-        `idempotent=${idempotentPublish ? 1 : 0} advance=${versionMustAdvance ? 1 : 0} ` +
+        `idempotent=${idempotentPublish ? 1 : 0} tagMatch=${tagMatchesPackageJson ? 1 : 0} distTag=${distTagMeasured ? 1 : 0} ` +
         `trigger=${triggerOnTag && triggerDispatch ? 'tag|dispatch' : 'gap'} ` +
         `sdkPrivate=${sdkStaysPrivate ? 1 : 0}.`,
       boundary:
         'CI publishes core-math kernel only on v* tag or manual dispatch — not every push. ' +
-        'idempotentPublish: existing version → SKIP exit 0. versionMustAdvance: bump package.json then tag vX.Y.Z. ' +
+        'idempotentPublish: existing version → SKIP exit 0. tagMatchesPackageJson: tag vX.Y.Z equals package.json. ' +
+        'distTagMeasured: the dist-tag comes from npm view versions, never from npm implicitly picking latest. ' +
         'Never republish / never force-unpublish. quantum-dev-sdk stays private. Rest via license@psg.bg.',
     }
   })
@@ -39752,7 +39770,7 @@ export function runNpmPublishCiExit(root = '', _argv: readonly string[] = []): n
   process.stdout.write(`  doesNotPublish=${report.doesNotPublish.join(' · ')}\n`)
   process.stdout.write(`  howNextPublish: ${report.howNextPublish}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.ciAutomatesPublish && report.refuseFake && report.idempotentPublish && report.versionMustAdvance
+  return report.computes && report.ciAutomatesPublish && report.refuseFake && report.idempotentPublish && report.tagMatchesPackageJson && report.distTagMeasured
     ? 0
     : 1
 }

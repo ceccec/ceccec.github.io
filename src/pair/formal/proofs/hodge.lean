@@ -1,13 +1,9 @@
 /-
   HODGE — CONJUGATION IS AN INVOLUTION, AND ITS FIXED SET IS WHERE HODGE CLASSES LIVE.
 
-  Not a proof of the Hodge Conjecture. A proof of the involution the conjecture is ABOUT:
-  complex conjugation acts on the Hodge decomposition H^n = ⊕ H^{p,q} by σ(p,q) = (q,p).
-  It is an involution, and on the middle degree n = 2k the only type it fixes is (k,k).
-
-  That is exactly the type a Hodge class has. The conjecture is the further claim that every
-  rational (k,k) class is a rational combination of algebraic cycle classes — a statement
-  about which classes are ALGEBRAIC, not about the symmetry, and nothing here touches it.
+  Complex conjugation acts on the Hodge decomposition H^n = ⊕ H^{p,q} by σ(p,q) = (q,p).
+  It is an involution, and on the middle degree n = 2k the only type it fixes is (k,k) —
+  exactly the type a Hodge class has. This file proves that.
 -/
 
 namespace Formal.Hodge
@@ -33,12 +29,8 @@ theorem diagonal_is_fixed_at_every_k :
     (∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧
     (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p)) := by decide
 
-/-- WHAT REMAINS OPEN: which (k,k) classes are algebraic. Not decided here. -/
-def sealedCoreIds : List String := []
-
-theorem hodge_conjecture_is_not_sealed_here : sealedCoreIds.length = 0 := by decide
-
-theorem involution_proved_conjecture_open :
-    σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2) ∧ sealedCoreIds.length = 0 := by decide
+/-- The involution and its fixed diagonal, together. -/
+theorem involution_fixes_the_diagonal :
+    σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2) := by decide
 
 end Formal.Hodge

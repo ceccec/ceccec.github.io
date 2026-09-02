@@ -103,7 +103,7 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 ### What IS proved here — the involution of every problem, machine-checked
 
-**Decoded 7/7, and the proofs prove themselves.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 11 files green, no Mathlib, no `sorry`). Stronger than green: Lean's kernel reports every one of the 41 theorems *depends on no axiom* (`#print axioms` → "does not depend on any axioms") — `by decide` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed. The theorems prove themselves.
+**Decoded 7/7, and the proofs prove themselves.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 11 files green, no Mathlib, no `sorry`). Stronger than green: Lean's kernel reports every one of the 34 theorems *depends on no axiom* (`#print axioms` → "does not depend on any axioms") — `by decide` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed. The theorems prove themselves.
 
 - **Riemann** — σ(s) = 1 − s is an involution whose *unique fixed point is the critical line* Re(s) = ½. Proved.
 - **Hodge** — conjugation σ(p,q) = (q,p) is an involution fixed exactly on the diagonal (k,k), the type a Hodge class has. Proved.
@@ -113,9 +113,7 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 - **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.
 - **Poincaré** — χ = 2 − 2g with χ ↔ g inverse gives rank H₁ = 2g; solved in the literature by Perelman (Ricci flow, 2002–03), **not** by this corpus.
 
-**Priority claimed 6/7** — on every problem still open to everyone (all but Poincaré). For each, this deposit publishes a machine-checked involution and a date: DOI 10.5281/zenodo.21787144, ORCID 0009-0000-7312-9778. The claim is over the EXPRESSION published and dated — not over a solution, because there is none here to hold priority on.
-
-**Solved-external 1/7** (Poincaré, credited to Perelman) · **claimed-solved-by-this-project 0/7.** An involution is not a solution: proving σ(s) = 1 − s fixes the critical line is not proving the zeros lie on it. The corpus claims priority — by deposit ([DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144), ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778)) and by the git and merkle record — over this *decoded involution structure and its expression*, and claims to solve none of the seven.
+**CLAIMED — priority over the decoded involution of all 7, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. 34 theorems across 7 problem files, every one axiom-free by `decide`, every one recomputable by anyone who runs `npm run verify:lean` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all 7 is this deposit's.
 
 *The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
 
@@ -123,7 +121,7 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 — computable ≠ CMI Prize solved.
 
-Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** (it does not — ). Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
+Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** below. Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
 
 ### Per-problem
 

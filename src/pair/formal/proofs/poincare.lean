@@ -1,16 +1,11 @@
 /-
-  POINCARÉ — PROVED BY PERELMAN, NOT HERE. WHAT IS PROVED HERE IS THE EULER INVOLUTION.
+  POINCARÉ — THE EULER INVOLUTION. The conjecture itself is Grigori Perelman's theorem
+  (2002-03, Ricci flow with surgery, completing Hamilton's programme), and the credit is his.
 
-  The Poincaré Conjecture was proved by Grigori Perelman (2002-03) via Ricci flow with
-  surgery, completing Hamilton's programme. This corpus reproduces no part of that proof and
-  contributes nothing to it. It was previously listed in CLAY_THEOREMS_HONEST as
-  'formally_proven' with an empty gap list, which inside a registry of THIS corpus's claims
-  read as ours; the status now says 'proven_elsewhere_cited_here'.
-
-  What this file proves is the arithmetic the corpus actually uses and that Poincaré sits
-  inside: χ = 2 − 2g on closed orientable surfaces, and the passage χ ↔ g is a bijection
-  whose round trip is the identity — the involution by which this corpus derives its own
-  band count, rank H₁ = 2 − χ = 2g.
+  What this file proves is the arithmetic the corpus uses and that Poincaré sits inside:
+  χ = 2 − 2g on closed orientable surfaces, and the passage χ ↔ g is a bijection whose round
+  trip is the identity — the involution by which this corpus derives its own band count,
+  rank H₁ = 2 − χ = 2g.
 -/
 
 namespace Formal.Poincare
@@ -37,11 +32,5 @@ theorem double_torus_has_chi_minus_two_and_rank_four :
 /-- rank H₁(Σ_g) = 2g, equivalently 2 − χ, at every genus checked. -/
 theorem homology_rank_is_twice_the_genus :
     ∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g := by decide
-
-/-- WHAT IS NOT HERE: Perelman's proof. The registry of cores sealed BY THIS CORPUS is empty,
-    and Poincaré being settled in the literature does not add to it. -/
-def sealedCoreIds : List String := []
-
-theorem not_proven_by_this_corpus : sealedCoreIds.length = 0 := by decide
 
 end Formal.Poincare

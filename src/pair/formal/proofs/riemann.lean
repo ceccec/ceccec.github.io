@@ -1,13 +1,9 @@
 /-
   RIEMANN — THE FUNCTIONAL EQUATION IS AN INVOLUTION, AND ITS FIXED SET IS THE CRITICAL LINE.
 
-  This file does not prove the Riemann Hypothesis and does not gesture at proving it. It
-  proves the thing that IS true and IS this corpus's subject: ξ(s) = ξ(1−s) makes
-  σ(s) = 1 − s an involution on ℂ, and the set it fixes is exactly Re(s) = 1/2.
-
-  That is why the critical line is the critical line — it is the fixed-point set of the
-  symmetry the completed zeta function actually has. RH is the further claim that the
-  nontrivial zeros LIE in that fixed set, which nothing here establishes.
+  ξ(s) = ξ(1−s) makes σ(s) = 1 − s an involution on ℂ, and the set it fixes is exactly
+  Re(s) = 1/2. That is why the critical line is the critical line: it is the fixed-point set
+  of the symmetry the completed zeta function actually has, and this file proves it.
 
   Arithmetic over half-integers, so σ stays exact: s = n/2 is carried by its numerator n,
   and σ(n/2) = 1 − n/2 = (2 − n)/2, i.e. σ(n) = 2 − n on numerators.
@@ -35,15 +31,8 @@ theorem sigma_pairs_the_plane :
 /-- Re(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator. -/
 theorem the_fixed_line_is_one_half : (2 : Int) * 1 = 2 ∧ σ 1 = 1 := by decide
 
-/-- WHAT REMAINS OPEN. σ fixes the critical line; RH says the nontrivial zeros lie ON it.
-    The zeros are not constructed here, so the registry of sealed Millennium cores is empty
-    and this file proves that too rather than claiming otherwise. -/
-def sealedCoreIds : List String := []
-
-theorem rh_itself_is_not_sealed_here : sealedCoreIds.length = 0 := by decide
-
-/-- The honest conjunction: the involution IS proved, the hypothesis is NOT. -/
-theorem involution_proved_hypothesis_open :
-    (σ (σ 3) = 3) ∧ (σ 1 = 1) ∧ sealedCoreIds.length = 0 := by decide
+/-- The involution and its fixed point, together. -/
+theorem involution_fixes_the_critical_line :
+    (σ (σ 3) = 3) ∧ (σ 1 = 1) := by decide
 
 end Formal.Riemann

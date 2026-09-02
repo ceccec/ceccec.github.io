@@ -1149,3 +1149,52 @@ export const zeroCrossingEmergenceDefault = {
   unified_domain_crossing_insight,
   consciousness_ladder,
 }
+
+/**
+ * THE LEAN CORPUS, COUNTED FROM THE LEAN CORPUS.
+ *
+ * The README carried "11 files green" and "41 theorems" as typed literals — the two numbers
+ * the whole involution claim rests on, hand-written next to the sentence saying nothing here
+ * is assumed. When seven `sealedCoreIds.length = 0` theorems were deleted the count fell to
+ * 34 and both literals became false while every gate stayed green, because a literal cannot
+ * disagree with anything.
+ *
+ * They are read off the sources instead. `npm run verify:lean` proves the other half — that
+ * the files compile, carry no `sorry`, and that every theorem depends on no axiom; this
+ * counts what it proved. Deleting a theorem moves the README by itself.
+ */
+export function leanInvolutionCorpus(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): {
+  readonly files: number
+  readonly involutionFiles: number
+  readonly involutionTheorems: number
+  readonly byProblem: readonly { readonly file: string; readonly theorems: number }[]
+} {
+  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] as const }
+  const fs = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+    : undefined
+  const path = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
+    : undefined
+  if (!fs || !path) return empty
+  try {
+    const src = path.join(root, 'src')
+    if (!fs.existsSync(src)) return empty
+    const lean = (fs.readdirSync(src, { recursive: true }) as string[]).filter((p) => String(p).endsWith('.lean'))
+    const proofsDir = path.join('pair', 'formal', 'proofs')
+    // A `theorem` at the head of a line — the declaration, never the word inside prose.
+    const declared = (text: string) => (text.match(/^[ \t]*theorem[ \t]/gm) ?? []).length
+    const byProblem = lean
+      .filter((p) => String(p).startsWith(proofsDir))
+      .map((p) => ({ file: path.basename(String(p)), theorems: declared(fs.readFileSync(path.join(src, String(p)), 'utf8')) }))
+      .sort((a, b) => (a.file < b.file ? -1 : a.file > b.file ? 1 : 0))
+    return {
+      files: lean.length,
+      involutionFiles: byProblem.length,
+      involutionTheorems: byProblem.reduce((n, f) => n + f.theorems, 0),
+      byProblem,
+    }
+  } catch {
+    return empty
+  }
+}

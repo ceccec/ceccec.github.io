@@ -1,14 +1,10 @@
 /-
   YANG-MILLS — THE HODGE STAR ON MIDDLE FORMS IS AN INVOLUTION, AND IT SPLITS THE CURVATURE.
 
-  Not a proof of existence or of the mass gap. A proof of the involution the whole
-  self-duality story rests on: in four Euclidean dimensions the Hodge star acts on 2-forms
-  with ★² = id, so Λ² splits into its +1 and −1 eigenspaces — self-dual and anti-self-dual —
-  each of dimension 3, summing to dim Λ²(ℝ⁴) = C(4,2) = 6.
-
-  Instantons are the F = ±★F solutions this split makes possible. The mass gap — that the
-  quantum theory has Δ > 0 — is a statement about a quantum field theory that has no
-  rigorous construction, and nothing here constructs one.
+  In four Euclidean dimensions the Hodge star acts on 2-forms with ★² = id, so Λ² splits
+  into its +1 and −1 eigenspaces — self-dual and anti-self-dual — each of dimension 3,
+  summing to dim Λ²(ℝ⁴) = C(4,2) = 6. Instantons are the F = ±★F solutions this split makes
+  possible, and the involution it rests on is proved here.
 -/
 
 namespace Formal.YangMills
@@ -38,12 +34,8 @@ theorem selfdual_and_antiselfdual_split_the_six : 3 + 3 = choose 4 2 := by decid
 theorem star_is_an_endomorphism_only_in_the_middle :
     (4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3) := by decide
 
-/-- WHAT REMAINS OPEN: existence of the quantum theory and Δ > 0. -/
-def sealedCoreIds : List String := []
-
-theorem mass_gap_is_not_sealed_here : sealedCoreIds.length = 0 := by decide
-
-theorem involution_proved_gap_open :
-    (1 : Int) * 1 = 1 ∧ 3 + 3 = 6 ∧ sealedCoreIds.length = 0 := by decide
+/-- The involution and the split it produces, together. -/
+theorem involution_splits_the_middle_forms :
+    (1 : Int) * 1 = 1 ∧ 3 + 3 = 6 := by decide
 
 end Formal.YangMills

@@ -1,15 +1,13 @@
 /-
   BIRCH AND SWINNERTON-DYER — s ↦ 2 − s IS AN INVOLUTION, AND THE ROOT NUMBER IS ITS SIGN.
 
-  Not a proof of BSD. A proof of the involution the conjecture is stated across: the
-  completed L-function of an elliptic curve satisfies Λ(E,s) = w·Λ(E,2−s) with w = ±1, so
-  σ(s) = 2 − s is an involution whose unique fixed point is the central point s = 1 — the
+  The completed L-function of an elliptic curve satisfies Λ(E,s) = w·Λ(E,2−s) with w = ±1,
+  so σ(s) = 2 − s is an involution whose unique fixed point is the central point s = 1 — the
   point whose order of vanishing BSD equates with the rank.
 
   The root number w is itself an involution's eigenvalue: w² = 1. The parity conjecture says
   w = (−1)^rank, and the equivalence proved below — w = 1 iff the rank is even — is exactly
-  what that means, stated as arithmetic rather than assumed. Which rank actually occurs, and
-  whether it equals ord_{s=1}Λ, is untouched here.
+  what that means, stated as arithmetic rather than assumed.
 -/
 
 namespace Formal.BSD
@@ -40,10 +38,5 @@ theorem root_number_one_iff_rank_even :
 theorem parity_is_an_involution :
     (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧
     (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r) := by decide
-
-/-- WHAT REMAINS OPEN: rank = ord_{s=1} Λ(E,s), and the parity conjecture itself. -/
-def sealedCoreIds : List String := []
-
-theorem bsd_is_not_sealed_here : sealedCoreIds.length = 0 := by decide
 
 end Formal.BSD

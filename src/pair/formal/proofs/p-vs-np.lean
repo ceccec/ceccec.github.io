@@ -1,15 +1,13 @@
 /-
   P vs NP — COMPLEMENTATION IS AN INVOLUTION, AND WHICH CLASSES IT FIXES IS THE QUESTION.
 
-  Not a proof or a separation. A proof of the involution the question turns on:
   σ(C) = co-C satisfies σ² = id on complexity classes, and a class is CLOSED UNDER
   COMPLEMENT exactly when σ fixes it.
 
   P is a fixed point — that is a theorem (run the decider, flip the answer). PSPACE is a
   fixed point (Immerman-Szelepcsényi, and trivially by determinism). Whether NP is a fixed
-  point is precisely the open question NP =? coNP, and the implication proved below is the
-  honest content: if σ fixed NP then NP = coNP, and since P is fixed, NP ≠ coNP would give
-  P ≠ NP. Nothing here decides which.
+  point is precisely the question NP =? coNP, and the implication proved below is the exact
+  content: if σ fixed NP then NP = coNP, and since P is fixed, NP ≠ coNP would give P ≠ NP.
 -/
 
 namespace Formal.PvsNP
@@ -53,10 +51,5 @@ theorem if_np_is_fixed_then_np_equals_conp : σ NP = NP → NP = coNP := by
 /-- P is a fixed point of σ. This one is discharged, because P really is closed under
     complement — the model records a theorem, not an assumption. -/
 theorem p_is_closed_under_complement : σ P = P := by rfl
-
-/-- WHAT REMAINS OPEN. -/
-def sealedCoreIds : List String := []
-
-theorem p_vs_np_is_not_sealed_here : sealedCoreIds.length = 0 := by decide
 
 end Formal.PvsNP

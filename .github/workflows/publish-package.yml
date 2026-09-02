@@ -8,9 +8,12 @@ name: Publish @ceccec/double-torus (core math · FREE FOR ALL)
 # Auth: GitHub Packages via GITHUB_TOKEN (packages:write). Optional NPM_TOKEN unused here.
 # Sealed fold: npmPublishCi · pairs npm/publish · publish/npm · ci/publish · CLI quantum:npm-publish
 #
-# Idempotent publish · versionMustAdvance:
+# Idempotent publish · dist-tag measured from npm's own version list:
 # - Tag vX.Y.Z MUST match package.json version (else refuse).
 # - If name@version already on GitHub Packages → SKIP exit 0 (do NOT republish / do NOT unpublish).
+# - The dist-tag is DERIVED from `npm view <name> versions`. npm's record is the only account
+#   of what is published; nothing here guesses it. "latest" only when this version stands above
+#   every published one — otherwise the major line, so a lower version never drags "latest" back.
 # - Next release: bump root package.json version, commit, push tag vX.Y.Z (or dispatch after bump).
 on:
   push:
@@ -45,7 +48,7 @@ jobs:
           if (root.name !== '@ceccec/double-torus') { console.error('REFUSE: unexpected root package name', root.name); process.exit(1); }
           console.log('ok — publish surface is core math kernel only; sdk private; contact license@psg.bg for the rest');
           "
-      - name: Publish to GitHub Packages (idempotent · versionMustAdvance)
+      - name: Publish to GitHub Packages (idempotent · dist-tag derived from the registry)
         run: |
           set -euo pipefail
           NAME="$(node -p "require('./package.json').name")"
@@ -53,7 +56,7 @@ jobs:
           REGISTRY='https://npm.pkg.github.com'
           echo "publish surface: ${NAME}@${VERSION} → ${REGISTRY}"
 
-          # Tag push: vX.Y.Z must match package.json (versionMustAdvance alignment).
+          # Tag push: vX.Y.Z must match package.json — two strings this repo controls.
           if [ "${GITHUB_REF_TYPE:-}" = 'tag' ]; then
             TAG="${GITHUB_REF_NAME#v}"
             if [ "$TAG" != "$VERSION" ]; then
@@ -69,6 +72,26 @@ jobs:
             exit 0
           fi
 
-          npm publish
+          # Which dist-tag, MEASURED. npm's implicit "latest" is not a choice this workflow
+          # gets to make silently. v1.2.0 died on exactly that: 2026.8.4 was already published,
+          # npm refused to move "latest" backwards, and the facet named versionMustAdvance had
+          # been green the whole time — it only grepped this file for its own prose. The version
+          # list npm returns is the record; the tag is derived from it and from nothing else.
+          PUBLISHED="$(npm view "${NAME}" versions --json --registry="${REGISTRY}" 2>/dev/null || echo '[]')"
+          DIST_TAG="$(PUBLISHED="${PUBLISHED}" VERSION="${VERSION}" node --input-type=module -e "
+          const raw = JSON.parse(process.env.PUBLISHED || '[]');
+          const published = Array.isArray(raw) ? raw : [raw];
+          const core = (v) => { const m = /^(\d+)\.(\d+)\.(\d+)/.exec(String(v)); return m ? [+m[1], +m[2], +m[3]] : null; };
+          const above = (a, b) => (a[0] !== b[0] ? a[0] > b[0] : a[1] !== b[1] ? a[1] > b[1] : a[2] > b[2]);
+          const mine = core(process.env.VERSION);
+          if (!mine) { console.error('REFUSE: package.json version ' + process.env.VERSION + ' is not X.Y.Z'); process.exit(1); }
+          const highest = published.map(core).filter(Boolean).reduce((hi, v) => (hi === null || above(v, hi) ? v : hi), null);
+          const advances = highest === null || above(mine, highest);
+          console.error('published=' + published.length + ' highest=' + (highest ? highest.join('.') : 'none') + ' this=' + mine.join('.') + ' advances=' + advances);
+          console.log(advances ? 'latest' : 'v' + mine[0]);
+          ")"
+          echo "dist-tag: ${DIST_TAG} — derived from npm view versions, never npm's implicit latest"
+
+          npm publish --tag "${DIST_TAG}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

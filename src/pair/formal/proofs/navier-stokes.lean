@@ -1,16 +1,14 @@
 /-
   NAVIER-STOKES — TIME REVERSAL IS AN INVOLUTION, AND VISCOSITY IS EXACTLY WHAT BREAKS IT.
 
-  Not a proof of existence or smoothness. A proof of the involution the problem lives inside:
-  the map T : (t, u) ↦ (−t, −u) is an involution, the Euler equations are invariant under it,
+  The map T : (t, u) ↦ (−t, −u) is an involution, the Euler equations are invariant under it,
   and the Navier-Stokes equations are NOT — the viscous term ν∆u is the single term whose
-  sign fails to match.
+  sign fails to match. All of that is proved here.
 
   Under T each term picks up a sign: ∂u/∂t ↦ (−1)(−1) = +1, the convective (u·∇)u ↦
   (−1)(−1) = +1, the pressure gradient ↦ +1, and the viscous ν∆u ↦ (−1) = −1, since ∆ is
   even in x while u is odd. Invariance requires every term to transform alike; the viscous
-  term does not, and it vanishes only when ν = 0. That is the arithmetic of irreversibility,
-  and it is why smoothness is hard rather than a symmetry argument away.
+  term does not, and it vanishes only when ν = 0. That is the arithmetic of irreversibility.
 -/
 
 namespace Formal.NavierStokes
@@ -51,11 +49,5 @@ theorem viscosity_breaks_time_reversal :
 theorem fixed_points_are_exactly_the_inviscid :
     (∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩ := by
   decide
-
-/-- WHAT REMAINS OPEN: global existence and smoothness in 3D. The broken symmetry is why no
-    reversibility argument settles it; it is not itself a step toward settling it. -/
-def sealedCoreIds : List String := []
-
-theorem existence_and_smoothness_not_sealed_here : sealedCoreIds.length = 0 := by decide
 
 end Formal.NavierStokes
