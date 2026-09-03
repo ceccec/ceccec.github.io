@@ -408,7 +408,7 @@ export function collectImportPathDistanceEdges(facts: EnforcementFacts): readonl
 /**
  * Import path shows distance to other files — measurable on every edge — and folds into
  * migration measurement for compact + evenly distributed code in the src matrix.
- * Pair: import/distance · composes folder law · dissolve/flat · census 110/108 · FREE_BITS · import offenders.
+ * Pair: import/distance · composes folder law · dissolve/flat · census UNFOLDED/FOLDED · FREE_BITS · import offenders.
  */
 export function importPathShowsDistanceInMigrationMatrix(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
@@ -469,7 +469,11 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
       facet: `evenDistribution — CV(treeHop)=${cvTreeHop.toFixed(4)}≤1/FREE_BITS(${1 / freeBits}) ∧ max≤FREE_BITS×mean`,
       on: evenDistribution },
     {
-      facet: `compose census 110/108 · FREE_BITS=${freeBits}=−χ · importOffenders=${importOffenders} · importGaps=${importGaps}`,
+      // Same frozen label as the gravity fold carried: the check reads UNFOLDED_CENSUS (123) and
+      // FOLDED_CENSUS (121); only the sentence still said 110/108. This facet is the reason
+      // importPathShowsDistanceInMigrationMatrix reports false, which is the reason the compact
+      // fold does, which is the reason 18 folds do — one census, wearing three different labels.
+      facet: `compose census ${UNFOLDED_CENSUS}/${FOLDED_CENSUS} — measured ${united.computational.indexCount} · FREE_BITS=${freeBits}=−χ · importOffenders=${importOffenders} · importGaps=${importGaps}`,
       on: censusOk && freeBitsOk && importOffenders === 0 && importGaps === 0 },
     {
       facet: 'compose dissolve/flat + import/distance pairs (folder-law migration measurement)',
@@ -840,7 +844,7 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
     { facet: 'compose folder/gravity toward src', on: gravity.folderGravityMeasuredByTheCode && gravityPullsToSrc },
     { facet: 'compose dry/clean diamond·crystal', on: dryCleanOn },
     { facet: 'compose clay/gravity · fold/cleanup · dissolve/flat', on: composeClayGravity && composeFoldCleanup && composeDissolve },
-    { facet: `census 110/108 exact (${united.computational.indexCount}/${FOLDED_CENSUS})`, on: censusExact },
+    { facet: `census ${UNFOLDED_CENSUS}/${FOLDED_CENSUS} exact — measured ${united.computational.indexCount}`, on: censusExact },
     { facet: 'pair gravity/dry · dry/clean', on: gravityDryPaired && dryCleanPaired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-dry:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((entry) => entry.on) && on
