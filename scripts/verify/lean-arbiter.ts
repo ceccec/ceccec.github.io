@@ -50,7 +50,18 @@ export function leanPinnedFacts(root: string = process.cwd()): Record<string, nu
   const tmp = join(root, '.vitepress', 'cache', `arbiter-${PROBES.length}-${text.length}.lean`)
   writeFileSync(tmp, probe)
   try {
-    const out = execFileSync('lean', [tmp], { stdio: 'pipe', timeout: 300_000 }).toString()
+    // A FALSE THEOREM MAKES `lean` EXIT NON-ZERO BEFORE IT REACHES ANY #eval, so execFileSync throws
+    // and the arbiter died with a raw Buffer dump on the one input it exists to explain — the gate
+    // crashing instead of returning a verdict. zeropoint-node-8a hit the identical shape today.
+    // Lean's own diagnostic is the verdict; it is read out and reported.
+    let out: string
+    try {
+      out = execFileSync('lean', [tmp], { stdio: 'pipe', timeout: 300_000 }).toString()
+    } catch (e) {
+      const err = e as { stdout?: Buffer; stderr?: Buffer }
+      const said = `${err.stdout?.toString() ?? ''}${err.stderr?.toString() ?? ''}`.trim()
+      throw new Error(`the arbiter itself does not compile — ${CORPUS} was rejected by the kernel, so nothing it pins can be read:\n  ${said.split('\n').slice(0, 6).join('\n  ') || '(no diagnostic)'}`)
+    }
     const lines = out.split('\n').map((l) => l.trim()).filter((l) => /^-?\d+$/.test(l))
     if (lines.length !== PROBES.length) {
       throw new Error(`lean printed ${lines.length} value(s) for ${PROBES.length} probe(s) — the arbiter cannot read a partial answer:\n${out}`)
@@ -155,7 +166,14 @@ export function leanRecordedHead(root: string = process.cwd()): number {
   const tmp = join(root, '.vitepress', 'cache', `descent-${text.length}.lean`)
   writeFileSync(tmp, probe)
   try {
-    const out = execFileSync('lean', [tmp], { stdio: 'pipe', timeout: 300_000 }).toString()
+    let out: string
+    try {
+      out = execFileSync('lean', [tmp], { stdio: 'pipe', timeout: 300_000 }).toString()
+    } catch (e) {
+      const err = e as { stdout?: Buffer; stderr?: Buffer }
+      const said = `${err.stdout?.toString() ?? ''}${err.stderr?.toString() ?? ''}`.trim()
+      throw new Error(`the descent record does not compile — ${DESCENT} was rejected by the kernel:\n  ${said.split('\n').slice(0, 6).join('\n  ') || '(no diagnostic)'}`)
+    }
     const value = out.split('\n').map((l) => l.trim()).filter((l) => /^\d+$/.test(l)).pop()
     if (!value) throw new Error(`the descent file printed no head:\n${out}`)
     return Number(value)
