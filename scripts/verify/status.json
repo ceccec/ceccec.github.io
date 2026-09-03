@@ -6,8 +6,8 @@
   "limits.always-true": 36,
   "limits.weakest-bar": 62,
   "paths.dead-strings": 51,
-  "scope.boundaries": 2796,
-  "scope.narrated": 524,
+  "scope.boundaries": 2795,
+  "scope.narrated": 523,
   "side-effects.top-level": 0,
   "tautology.self-proving": 11
 }

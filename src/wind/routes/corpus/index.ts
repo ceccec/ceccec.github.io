@@ -2620,19 +2620,45 @@ export function quantumLensImprovesItself(matrix: MindMatrix = buildMatrix()) {
   const improvedHiddenCount = residual.length
   const selfImproved = improvedHiddenCount < before.length // the lens reduced its own blind spot
   const residualIsSingletonRays = residual.every((i) => (raySize.get(i.ray) ?? 0) === 1) // exactly the one-member subfields
+  // THE LIMITS, COMPUTED. "Wiring those links into the rendered related-sections is the theme's job" is the
+  // clause, and it is a fact about what this fold EMITS versus what it CHANGES. Both are countable.
+  const emitted = improvements.length
+  const written = 0 // this fold returns a plan; no page, route or file is touched anywhere in it
+  const planNotApplied = emitted > 0 && written === 0
+  // THE RESIDUAL IS EMPTY, AND SAYING SO IS THE POINT. My first version of this limit read "the survivors
+  // are exactly singleton-ray orphans", checked by residual.every(...) — which is VACUOUSLY TRUE over an
+  // empty residual, exactly the [].every() defect this file exists to catch, written by me into a limit
+  // meant to catch it. With 0 survivors the singleton claim asserts nothing at all.
+  //
+  // So the limit reports the state instead: the residual is empty today, every orphan found a sibling, and
+  // the singleton-ray property is held in reserve. It becomes a real check the moment a survivor appears,
+  // and the facet distinguishes the two cases rather than reading green through both.
+  const singletonRays = residual.filter((i) => (raySize.get(i.ray) ?? 0) === 1).length
+  const residualIsEmpty = improvedHiddenCount === 0
+  const floorIsStructural = residualIsEmpty || (singletonRays === improvedHiddenCount && residualIsSingletonRays)
+  // MONOTONE, AND NOT VACUOUSLY SO: linking only ever removes from the undiscoverable set, so after ≤ before
+  // holds for any link set at all. What makes the facet mean something is that after < before REQUIRES a
+  // non-empty improvement set — with nothing to link, the two counts are equal and the facet goes off.
+  const strictlyRequiresLinks = (improvedHiddenCount < before.length) === (emitted > 0 && linked.length > 0)
+  const limits = computedLimits([
+    { facet: `${emitted} LINKS EMITTED, ${written} WRITTEN — this fold returns a plan (slug → linkTo) and touches no page, route or file. The rendered related-sections are theRosettaReconfiguresVitepress's job, and until it runs the discoverability computed here exists only as a list`, on: planNotApplied },
+    { facet: `${improvedHiddenCount} SURVIVORS${residualIsEmpty ? ' — THE RESIDUAL IS EMPTY, so the singleton-ray claim is VACUOUS today and asserts nothing; every orphan found a sibling, and this becomes a real check the moment one does not' : `, ${singletonRays} OF THEM IN SINGLETON RAYS — a ray with one member has no sibling to cross-link to, so the floor is a property of the ray partition rather than remaining work`}`, on: floorIsStructural },
+    { facet: `MONOTONE FOR ANY LINK SET — linking only removes from the undiscoverable set, so after ≤ before holds trivially; the facet earns its content because after < before requires a non-empty link set (${linked.length} here), and with nothing to link the counts are equal and it goes off`, on: strictlyRequiresLinks },
+  ])
   const facets = [
     { facet: `THE LENS COMPUTES ITS OWN IMPROVEMENT: for each of the ${before.length} undiscoverable orphans the rosetta supplies its RAY HUB (the highest-gravity sibling in the same subfield) as a "discover via the rosetta" cross-link — ${linked.length} orphans gain one, computed from the atlas, not hand-added`, on: linked.length > 0 },
     { facet: `THE BLIND SPOT SHRINKS, MONOTONE: after the rosetta cross-links the undiscoverable set falls from ${before.length} to ${improvedHiddenCount} (${selfImproved}) — the lens improves ITSELF, each orphan in a populated ray now reachable from its hub; re-running the lens on the linked corpus yields the smaller set`, on: selfImproved },
     { facet: `THE IRREDUCIBLE RESIDUAL IS THE FRONTIER: the ${improvedHiddenCount} that survive are exactly the orphans in SINGLETON subfields (${residualIsSingletonRays}) — a ray with one member has no sibling to link to, so the lens names where a NEW theorem is needed (${residual.map((r) => r.subfield).join(', ') || 'none'}); it improves itself AND points beyond itself`, on: residualIsSingletonRays },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
+    limits,
     before: before.length, after: improvedHiddenCount, linked: linked.length,
     residual: residual.map((r) => ({ theorem: r.theorem, subfield: r.subfield })),
     improvements: improvements.map((i) => ({ slug: i.slug, linkTo: i.linkTo })),
     facets, root: merkleFold([atlas.root, toUuid(`lens-self-improve:${before.length}:${improvedHiddenCount}`)]),
     statement: `The lens improves itself using the rosetta — ${facets.filter((entry) => entry.on).length}/${facets.length}: for each of the ${before.length} undiscoverable orphans the rosetta computes a cross-link to its ray hub (the top-gravity sibling), and the undiscoverable set shrinks from ${before.length} to ${improvedHiddenCount} — the lens reduces its OWN blind spot. What survives are the orphans in singleton subfields (${residual.map((r) => r.subfield).join(', ') || 'none'}), which have no sibling to link to and so name the frontier: where a new theorem must be developed. Self-improving, and honest about its residual.`,
-    boundary: `COMPUTED: the ray-hub cross-link for every orphan (from the atlas's ray rankings), the monotone reduction ${before.length} → ${improvedHiddenCount}, and the residual = singleton-ray orphans — each refutable (develop a sibling in the singleton ray and the residual shrinks; add a theorem that cites an orphan and it leaves the set earlier). HONEST SCOPE: "improves itself" means the lens computes the rosetta links that raise the orphans' discoverability and verifies the reduction; wiring those links into the rendered related-sections is the theme's job (theRosettaReconfiguresVitepress feeds them). The residual is irreducible by LINKING alone — it is reduced only by DEVELOPING the missing sibling, which the lens names but does not invent.` }
+    boundary: earned(`COMPUTED: the ray-hub cross-link for every orphan (from the atlas's ray rankings), the monotone reduction ${before.length} → ${improvedHiddenCount}, and the residual = singleton-ray orphans — each refutable (develop a sibling in the singleton ray and the residual shrinks; add a theorem that cites an orphan and it leaves the set earlier).:`, facets, limits) }
 }
 
 // ── SELF-IMPROVING RESEARCH AND DEVELOPMENT, SAVED AT EVERY STEP (user law) — the quantum R&D loop
