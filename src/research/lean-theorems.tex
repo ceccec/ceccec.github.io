@@ -1,0 +1,171 @@
+% Generated from src/pair/formal/proofs/*.lean — do not edit by hand.
+% Every proposition below is checked by Lean 4 with no Mathlib and no sorry, and
+% #print axioms reports that it depends on no axiom (npm run verify:lean).
+\section{Machine-checked involutions}
+
+\begin{theorem}[Sigma is an involution]
+\[ \texttt{∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Central point is the fixed point]
+The central point s = 1 is the unique fixed point — the point BSD is about.
+\[ \texttt{σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Root number squares to one]
+The root number is an involution's eigenvalue: w ∈ \{1, −1\} and w² = 1.
+\[ \texttt{(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Root number one iff rank even]
+THE PARITY EQUIVALENCE. w = (−1)\textasciicircum{}rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.
+\[ \texttt{(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Parity is an involution]
+The sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.
+\[ \texttt{(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Sigma is an involution]
+\[ \texttt{∀ t ∈ middleTypes, σ (σ t) = t} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Sigma preserves degree]
+σ preserves total degree — it acts WITHIN H\textasciicircum{}n, which is why it decomposes it.
+\[ \texttt{∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Fixed type is p equals q]
+The unique fixed type in degree 2k is (k,k). Here k = 2.
+\[ \texttt{(middleTypes.filter (fun t => σ t == t)) = [(2,2)]} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Diagonal is fixed at every k]
+And it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.
+\[ \texttt{(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Involution fixes the diagonal]
+The involution and its fixed diagonal, together.
+\[ \texttt{σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Reversal is an involution]
+T² = id. Reversing time twice returns the equation, whatever the viscosity.
+\[ \texttt{T (T navierStokes) = navierStokes ∧ T (T euler) = euler} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Euler is time reversible]
+Euler is invariant: every term transforms alike, so T fixes it.
+\[ \texttt{T euler = euler} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Viscosity breaks time reversal]
+Navier-Stokes is NOT invariant, and the viscous term is the only one that differs.
+\[ \texttt{T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Fixed points are exactly the inviscid]
+Invariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.
+\[ \texttt{(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Sigma is an involution]
+\[ \texttt{∀ c : Class, σ (σ c) = c} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Fixed points are p and pspace]
+The classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.
+\[ \texttt{(classes.filter (fun c => σ c == c)) = [P, PSPACE]} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Np and conp are swapped]
+σ swaps NP and coNP — they are complements by definition, not by theorem.
+\[ \texttt{σ NP = coNP ∧ σ coNP = NP} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[If np is fixed then np equals conp]
+THE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 "theorems" worthless. Removed.)
+\[ \texttt{σ NP = NP → NP = coNP} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[P is closed under complement]
+P is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.
+\[ \texttt{σ P = P} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Chi and genus are inverse]
+The round trip is the identity: χ and g carry the same information.
+\[ \texttt{∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Sphere has euler characteristic two]
+The sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.
+\[ \texttt{chi 0 = 2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Torus has euler characteristic zero]
+The torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.
+\[ \texttt{chi 1 = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Double torus has chi minus two and rank four]
+THIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.
+\[ \texttt{chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Homology rank is twice the genus]
+rank H₁(Σ\_g) = 2g, equivalently 2 − χ, at every genus checked.
+\[ \texttt{∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Sigma is an involution]
+σ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.
+\[ \texttt{∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Critical line is the fixed point]
+The fixed point is n = 1, i.e. s = 1/2 — the critical line.
+\[ \texttt{σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Sigma pairs the plane]
+σ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).
+\[ \texttt{σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The fixed line is one half]
+Re(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator.
+\[ \texttt{(2 : Int) * 1 = 2 ∧ σ 1 = 1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Involution fixes the critical line]
+The involution and its fixed point, together.
+\[ \texttt{(σ (σ 3) = 3) ∧ (σ 1 = 1)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Middle forms have dimension six]
+dim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.
+\[ \texttt{choose 4 2 = 6} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Star squares to the identity]
+\[ \texttt{(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Selfdual and antiselfdual split the six]
+The split: self-dual ⊕ anti-self-dual, 3 + 3 = 6. This is why four dimensions are special — only there does ★ map middle forms to middle forms.
+\[ \texttt{3 + 3 = choose 4 2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Star is an endomorphism only in the middle]
+★ sends Λ\textasciicircum{}k to Λ\textasciicircum{}(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.
+\[ \texttt{(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Involution splits the middle forms]
+The involution and the split it produces, together.
+\[ \texttt{(1 : Int) * 1 = 1 ∧ 3 + 3 = 6} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}

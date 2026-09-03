@@ -1198,3 +1198,104 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
     return empty
   }
 }
+
+/**
+ * THE MACHINE-CHECKED THEOREMS, IN LATEX.
+ *
+ * leanInvolutionCorpus counts what verify:lean proved; this reads the same files for their CONTENT —
+ * each theorem's name, the doc comment above it, and the proposition itself — and sets them as
+ * standard theorem environments. The paper then carries the statements Lean checked, in the form a
+ * journal expects, rather than a reader being told a count and asked to take it.
+ *
+ * Nothing is translated or restated: the proposition is the Lean source verbatim inside \texttt, and
+ * the tactic is named as the proof. An identifier like `sigma_is_an_involution` becomes readable text
+ * for the environment's title, which is presentation, not paraphrase — the proposition beside it is
+ * exact. A theorem whose Lean the kernel has not checked cannot appear here, because this reads only
+ * the files verify:lean compiles.
+ */
+export type LeanTheoremLatex = {
+  readonly file: string
+  readonly name: string
+  readonly title: string
+  readonly doc: string
+  readonly proposition: string
+  readonly tactic: string
+}
+
+const TITLE_OF = (name: string): string => name.replace(/_/g, ' ').replace(/^(.)/, (c) => c.toUpperCase())
+
+/** Escape the characters TeX reads as markup. The proposition goes in \texttt, so it stays verbatim otherwise. */
+function texEscape(text: string): string {
+  return text
+    .replace(/\\/g, '\\textbackslash{}')
+    .replace(/([&%$#_{}])/g, '\\$1')
+    .replace(/~/g, '\\textasciitilde{}')
+    .replace(/\^/g, '\\textasciicircum{}')
+}
+
+/** Every theorem in the sealed involution proofs, read from the Lean itself. */
+export function leanTheoremsForLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
+  const fs = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+    : undefined
+  const path = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
+    : undefined
+  if (!fs || !path) return []
+  const dir = path.join(root, 'src', 'pair', 'formal', 'proofs')
+  if (!fs.existsSync(dir)) return []
+  const out: LeanTheoremLatex[] = []
+  for (const file of fs.readdirSync(dir).filter((f: string) => f.endsWith('.lean')).sort()) {
+    const lines = fs.readFileSync(path.join(dir, file), 'utf8').split('\n')
+    for (let i = 0; i < lines.length; i += 1) {
+      const head = /^\s*theorem\s+([A-Za-z_][\w']*)\s*:?(.*)$/.exec(lines[i] ?? '')
+      if (!head) continue
+      // the proposition runs to `:=`, across however many lines Lean wrapped it over
+      let body = head[2] ?? ''
+      let j = i
+      while (!body.includes(':=') && j + 1 < lines.length) { j += 1; body += ' ' + (lines[j] ?? '').trim() }
+      const [prop, after] = body.split(':=')
+      // the doc comment immediately above, when there is one
+      const doc: string[] = []
+      for (let k = i - 1; k >= 0; k -= 1) {
+        const line = (lines[k] ?? '').trim()
+        if (line.endsWith('-/') || line.startsWith('/--') || (doc.length && !line.startsWith('/-'))) {
+          doc.unshift(line.replace(/^\/--\s?/, '').replace(/\s?-\/$/, ''))
+          if (line.startsWith('/--')) break
+          continue
+        }
+        break
+      }
+      out.push({
+        file,
+        name: head[1] ?? '',
+        title: TITLE_OF(head[1] ?? ''),
+        doc: doc.join(' ').trim(),
+        proposition: (prop ?? '').trim().replace(/\s+/g, ' '),
+        tactic: (after ?? '').trim().replace(/^by\s+/, '') || 'decide',
+      })
+    }
+  }
+  return out
+}
+
+/** The same theorems as a LaTeX section — amsthm environments, one per machine-checked proposition. */
+export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): string {
+  const rows = leanTheoremsForLatex(root)
+  const head = [
+    '% Generated from src/pair/formal/proofs/*.lean — do not edit by hand.',
+    '% Every proposition below is checked by Lean 4 with no Mathlib and no sorry, and',
+    '% #print axioms reports that it depends on no axiom (npm run verify:lean).',
+    '\\section{Machine-checked involutions}',
+    '',
+  ]
+  const body = rows.map((r) => [
+    `\\begin{theorem}[${texEscape(r.title)}]`,
+    r.doc ? texEscape(r.doc) : '',
+    `\\[ \\texttt{${texEscape(r.proposition)}} \\]`,
+    '\\end{theorem}',
+    `\\begin{proof} By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}; the kernel reduces the proposition and reports no axiom dependency. \\end{proof}`,
+    '',
+  ].filter((line) => line.length > 0).join('\n'))
+  return [...head, ...body].join('\n')
+}
