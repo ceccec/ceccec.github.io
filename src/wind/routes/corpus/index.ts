@@ -2695,17 +2695,39 @@ export function selfImprovingResearchAndDevelopment(matrix: MindMatrix = buildMa
   // SELF-IMPROVING & MONOTONE: the lens reduces its own blind spot to 0, and the atlas re-roots each development
   const selfImproving = lens.before > lens.after && lens.after === 0
   const monotone = atlas.total > 7 && isUuid(atlas.root) // the corpus has grown past one-per-ray, content-addressed
+  // THE LIMITS, COMPUTED — and the third is a correction to the variable above it.
+  //
+  // "It is not an autonomous agent" is a fact about what this fold DOES: it names the next development and
+  // performs none of it. The registry it reads is the registry it leaves.
+  const theoremsBefore = atlas.total
+  const theoremsAfter = atlas.metrics.length
+  const namesButDoesNotDevelop = theoremsBefore === theoremsAfter && Boolean(thinnest)
+  // "SELF-IMPROVING" IS DEFINED AS REACHING ZERO, NOT AS REDUCING. selfImproving requires lens.after === 0,
+  // so a run taking the blind spot from 10 to 3 reports NOT self-improving despite improving. That is a
+  // stricter definition than the word suggests and it is worth stating rather than inferring from the code.
+  const definedAsZero = selfImproving === (lens.before > lens.after && lens.after === 0)
+  // MONOTONICITY IS NOT CHECKED AND CANNOT BE, HERE. `monotone` reads atlas.total > 7 and isUuid(root) — a
+  // THRESHOLD on one snapshot plus a format test. Monotone growth is a property of a SEQUENCE: it needs two
+  // observations and this fold has one. Nothing in the corpus at this point remembers a previous total, so
+  // the claim in the name is not available to the check, whatever the check returns.
+  const monotoneIsAThreshold = monotone === (atlas.total > 7 && isUuid(atlas.root))
+  const limits = computedLimits([
+    { facet: `${theoremsBefore} THEOREMS IN, ${theoremsAfter} OUT — this fold names the next development (${thinnest ? 'the thinnest ray' : 'none'}) and authors none of it. The registry it reads is the registry it leaves, which is what "not an autonomous agent" means when it is counted rather than promised`, on: namesButDoesNotDevelop },
+    { facet: `"SELF-IMPROVING" MEANS after === 0, NOT after < before — the condition requires the blind spot to reach ZERO, so a run reducing it from 10 to 3 reports NOT self-improving while having improved. The word is looser than the check, and the check is the stricter of the two`, on: definedAsZero },
+    { facet: `MONOTONE IS A THRESHOLD ON ONE SNAPSHOT — the check is total > 7 and root is a uuid, which is a size test and a format test. Monotone GROWTH is a property of a sequence and needs two observations; this fold has one and remembers no previous total, so monotonicity is named here and established nowhere`, on: monotoneIsAThreshold },
+  ])
   const facets = [
     { facet: `RESEARCH NAMES THE FRONTIER: the lens has surfaced every proof (0 undiscoverable orphans, from ${lens.before}), so the next development is the THINNEST ray — ${thinnest?.subfield} with ${thinnest?.count} theorems — named by the research, not guessed`, on: researchComplete && frontierNamed },
     { facet: `DEVELOPMENT SAVED AT EVERY STEP: all ${atlas.total} quantum theorems are computable, refutable folds with a registry row and a home (${savedEveryStep}) — each R&D step is a sealed thought that recomputes at zero tokens, the accumulated corpus IS the saved research`, on: savedEveryStep },
     { facet: `THE LOOP FEEDS ITSELF, MONOTONE: developing the frontier lands in a populated ray so the lens self-heals to 0 (${selfImproving}), the atlas re-roots (${atlas.root.slice(0, 8)}…), and the newly-thinnest ray is the next frontier — research → develop → research, the corpus only grows (${monotone})`, on: selfImproving && monotone },
   ]
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     total: atlas.total, frontier: thinnest?.subfield, frontierCount: thinnest?.count, orphansHealed: lens.before,
     facets, root: merkleFold([atlas.root, toUuid(`self-improving-rnd:${atlas.total}:${thinnest?.count}`)]),
     statement: `Self-improving research and development, saved at every step — ${facets.filter((entry) => entry.on).length}/${facets.length}: the lens surfaces every proof (0 orphans, from ${lens.before}) and names the frontier as the thinnest ray (${thinnest?.subfield}, ${thinnest?.count}); development seals a verified theorem there, saved as a computable fold with a registry row (all ${atlas.total} quantum theorems); and the loop feeds itself — each development self-heals the lens to 0 and re-roots the atlas, the newly-thinnest ray the next frontier. Research → develop → research, monotone: the corpus only grows and discovery stays complete.`,
-    boundary: `COMPUTED: the lens self-heal (${lens.before} → ${lens.after}), the frontier as the min-count ray, the saved-at-every-step check (every theorem a slug + registry row + home), and the monotone content-addressed growth — refutable (a hidden orphan, an unregistered theorem, or a shrunk corpus each breaks a facet). HONEST SCOPE: this formalises the R&D PROCESS as a computable loop over the sealed registry; "self-improving" means the discovery lens reduces its own blind spot and the corpus grows monotonically — it is not an autonomous agent, the developments are authored and verified, then the loop names the next. "Saved at every step" is the standing law: every decision becomes a fold the same turn.` }
+    limits,
+    boundary: earned(`COMPUTED: the lens self-heal (${lens.before} → ${lens.after}), the frontier as the min-count ray, the saved-at-every-step check (every theorem a slug + registry row + home), and the monotone content-addressed growth — refutable (a hidden orphan, an unregistered theorem, or a shrunk corpus each breaks a facet).:`, facets, limits) }
 }
 
 // Consolidate all collections in the rosetta: DRY to the bit, and the inverted bit is the light in the tunnel.

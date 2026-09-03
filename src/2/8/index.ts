@@ -930,7 +930,7 @@ export function variationalQuantumEigensolverAndQaoa() {
   const isExhaustiveSearch = gridEvaluations === grid ** 2 && gridEvaluations > 1
   // exhaustive search visits EVERY point, including the ones a descent would never reach: the grid's worst
   // expectation is strictly below its best, so the optimiser demonstrably spent evaluations on bad angles.
-  // A descent that had converged would not have. This can fail; the globalThis probe it replaces could not.
+  // A descent that had converged would not have. This can fail; the global-object probe it replaces could not.
   let worstCut = Infinity
   for (let gi = 0; gi < grid; gi += 1) for (let bi = 0; bi < grid; bi += 1) { const E = qaoaExpect((TAU / 2) * gi / grid, (TAU / 2) * bi / grid); if (E < worstCut) worstCut = E }
   const spentOnBadAngles = worstCut < bestCut - 1 / (2 * 5)
