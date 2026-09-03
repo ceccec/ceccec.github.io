@@ -35,7 +35,6 @@ import * as m30 from '../../src/earth/nature'
 import * as m31 from '../../src/earth/world'
 import * as m32 from '../../src/fire/diamonds'
 import * as m33 from '../../src/fire/features'
-import * as m34 from '../../src/fire'
 import * as m35 from '../../src/fire/li'
 import * as m36 from '../../src/fire/physics'
 import * as m37 from '../../src/fire/plasma/ball'
@@ -44,19 +43,16 @@ import * as m39 from '../../src/heaven/balance'
 import * as m40 from '../../src/heaven/compute'
 import * as m41 from '../../src/heaven/core'
 import * as m42 from '../../src/heaven/essence'
-import * as m43 from '../../src/heaven'
 import * as m44 from '../../src/heaven/laws'
 import * as m45 from '../../src/heaven/site'
 import * as m46 from '../../src/heaven/sky/astronomy'
 import * as m47 from '../../src/heaven/sky/moon'
 import * as m48 from '../../src/heaven/sky/sun'
-import * as m49 from '../../src'
 import * as m50 from '../../src/learning'
 import * as m51 from '../../src/ledger'
 import * as m52 from '../../src/media'
 import * as m53 from '../../src/mountain/gates'
 import * as m54 from '../../src/mountain/geometry'
-import * as m55 from '../../src/mountain'
 import * as m56 from '../../src/mountain/og'
 import * as m57 from '../../src/mountain/seals'
 import * as m58 from '../../src/mountain/shadcn'
@@ -140,7 +136,6 @@ import * as m136 from '../../src/water/digit'
 import * as m137 from '../../src/water/double/earth'
 import * as m138 from '../../src/water/double'
 import * as m139 from '../../src/water/encryption'
-import * as m140 from '../../src/water'
 import * as m141 from '../../src/water/stack'
 import * as m142 from '../../src/widgets'
 import * as m143 from '../../src/wind/fusion'
@@ -185,7 +180,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/earth/world/index.ts', m31 as unknown as Record<string, unknown>],
   ['src/fire/diamonds/index.ts', m32 as unknown as Record<string, unknown>],
   ['src/fire/features/index.ts', m33 as unknown as Record<string, unknown>],
-  ['src/fire/index.ts', m34 as unknown as Record<string, unknown>],
   ['src/fire/li/index.ts', m35 as unknown as Record<string, unknown>],
   ['src/fire/physics/index.ts', m36 as unknown as Record<string, unknown>],
   ['src/fire/plasma/ball/index.ts', m37 as unknown as Record<string, unknown>],
@@ -194,19 +188,16 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/heaven/compute/index.ts', m40 as unknown as Record<string, unknown>],
   ['src/heaven/core/index.ts', m41 as unknown as Record<string, unknown>],
   ['src/heaven/essence/index.ts', m42 as unknown as Record<string, unknown>],
-  ['src/heaven/index.ts', m43 as unknown as Record<string, unknown>],
   ['src/heaven/laws/index.ts', m44 as unknown as Record<string, unknown>],
   ['src/heaven/site/index.ts', m45 as unknown as Record<string, unknown>],
   ['src/heaven/sky/astronomy/index.ts', m46 as unknown as Record<string, unknown>],
   ['src/heaven/sky/moon/index.ts', m47 as unknown as Record<string, unknown>],
   ['src/heaven/sky/sun/index.ts', m48 as unknown as Record<string, unknown>],
-  ['src/index.ts', m49 as unknown as Record<string, unknown>],
   ['src/learning/index.ts', m50 as unknown as Record<string, unknown>],
   ['src/ledger/index.ts', m51 as unknown as Record<string, unknown>],
   ['src/media/index.ts', m52 as unknown as Record<string, unknown>],
   ['src/mountain/gates/index.ts', m53 as unknown as Record<string, unknown>],
   ['src/mountain/geometry/index.ts', m54 as unknown as Record<string, unknown>],
-  ['src/mountain/index.ts', m55 as unknown as Record<string, unknown>],
   ['src/mountain/og/index.ts', m56 as unknown as Record<string, unknown>],
   ['src/mountain/seals/index.ts', m57 as unknown as Record<string, unknown>],
   ['src/mountain/shadcn/index.ts', m58 as unknown as Record<string, unknown>],
@@ -290,7 +281,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/water/double/earth/index.ts', m137 as unknown as Record<string, unknown>],
   ['src/water/double/index.ts', m138 as unknown as Record<string, unknown>],
   ['src/water/encryption/index.ts', m139 as unknown as Record<string, unknown>],
-  ['src/water/index.ts', m140 as unknown as Record<string, unknown>],
   ['src/water/stack/index.ts', m141 as unknown as Record<string, unknown>],
   ['src/widgets/index.ts', m142 as unknown as Record<string, unknown>],
   ['src/wind/fusion/index.ts', m143 as unknown as Record<string, unknown>],
