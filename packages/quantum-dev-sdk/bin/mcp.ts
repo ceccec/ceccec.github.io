@@ -30,18 +30,29 @@ type JsonRpc = {
   params?: Record<string, unknown>
 }
 
+/**
+ * MCP STDIO IS NEWLINE-DELIMITED JSON. IT IS NOT LSP.
+ *
+ * This wrote `Content-Length: N\r\n\r\n{...}` — the Language Server Protocol's framing, which
+ * the Model Context Protocol does not use over stdio. Every message this server sent was
+ * therefore unreadable to Claude Code, Claude Desktop and Cursor alike: the handshake failed at
+ * `initialize` and no client ever saw a tool. Piping the server by hand hid it, because a human
+ * reading the output can see past a header a parser cannot.
+ *
+ * One JSON value, one line, no embedded newlines — JSON.stringify never emits a raw newline, so
+ * appending one is the whole frame. Nothing else may be written to stdout: a stray log line is a
+ * parse error to the client, which is why every diagnostic in this file goes to stderr.
+ */
+function send(message: Record<string, unknown>): void {
+  process.stdout.write(`${JSON.stringify(message)}\n`)
+}
+
 function respond(id: string | number | null | undefined, result: unknown) {
-  const payload = JSON.stringify({ jsonrpc: '2.0', id: id ?? null, result })
-  process.stdout.write(`Content-Length: ${Buffer.byteLength(payload, 'utf8')}\r\n\r\n${payload}`)
+  send({ jsonrpc: '2.0', id: id ?? null, result })
 }
 
 function respondError(id: string | number | null | undefined, message: string) {
-  const payload = JSON.stringify({
-    jsonrpc: '2.0',
-    id: id ?? null,
-    error: { code: -32000, message },
-  })
-  process.stdout.write(`Content-Length: ${Buffer.byteLength(payload, 'utf8')}\r\n\r\n${payload}`)
+  send({ jsonrpc: '2.0', id: id ?? null, error: { code: -32000, message } })
 }
 
 const TOOL_DEFS = [
@@ -53,7 +64,7 @@ const TOOL_DEFS = [
   },
   {
     name: 'census-status',
-    description: 'Sealed census constants 110/108/432 (not a live limits:verify audit)',
+    description: 'Census constants recomputed from the Fibonacci band ladder, plus the a432 gate count (not a live limits:verify audit)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
@@ -208,35 +219,30 @@ process.stdin.on('data', (chunk: Buffer) => {
   buf = Buffer.concat([buf, chunk])
   for (;;) {
     const asText = buf.toString('utf8')
-    const headerEnd = asText.indexOf('\r\n\r\n')
-    if (headerEnd >= 0) {
-      const header = asText.slice(0, headerEnd)
-      const match = header.match(/Content-Length:\s*(\d+)/i)
-      if (!match) {
-        buf = buf.subarray(Buffer.byteLength(asText.slice(0, headerEnd + 4), 'utf8'))
-        continue
-      }
-      const len = Number(match[1])
+
+    // Read BOTH framings, and write only one. A client that still speaks LSP framing is
+    // understood; the header is only honoured when it stands at the START of the buffer, because
+    // the previous version searched the whole of it and would have taken a \r\n\r\n inside a
+    // JSON string for a frame boundary.
+    if (/^Content-Length:/i.test(asText)) {
+      const headerEnd = asText.indexOf('\r\n\r\n')
+      if (headerEnd < 0) return
+      const match = asText.slice(0, headerEnd).match(/Content-Length:\s*(\d+)/i)
       const bodyOffset = Buffer.byteLength(asText.slice(0, headerEnd + 4), 'utf8')
+      if (!match) { buf = buf.subarray(bodyOffset); continue }
+      const len = Number(match[1])
       if (buf.length < bodyOffset + len) return
       const body = buf.subarray(bodyOffset, bodyOffset + len).toString('utf8')
       buf = buf.subarray(bodyOffset + len)
-      try {
-        void handle(JSON.parse(body) as JsonRpc)
-      } catch {
-        /* ignore */
-      }
+      try { void handle(JSON.parse(body) as JsonRpc) } catch { /* not a message we can answer */ }
       continue
     }
+
     const nl = asText.indexOf('\n')
     if (nl < 0) return
     const line = asText.slice(0, nl).trim()
     buf = buf.subarray(Buffer.byteLength(asText.slice(0, nl + 1), 'utf8'))
-    if (!line || line.startsWith('Content-Length:')) continue
-    try {
-      void handle(JSON.parse(line) as JsonRpc)
-    } catch {
-      /* wait */
-    }
+    if (!line) continue
+    try { void handle(JSON.parse(line) as JsonRpc) } catch { /* wait for a complete line */ }
   }
 })

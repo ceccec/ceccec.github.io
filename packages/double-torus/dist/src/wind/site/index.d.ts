@@ -293,7 +293,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hubRoute: string;
         rayNameEn: "Origin" | "Explore" | "Learn" | "Apps" | "Frontier";
         rayNameBg: "Произход" | "Изследване" | "Обучение" | "Приложения" | "Граници";
-        hue: 0 | 102 | 154 | 205 | 257;
+        hue: 0 | 154 | 102 | 205 | 257;
         receipt: string;
         id: "tools";
         labelEn: "Quantum tools";
@@ -307,7 +307,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hubRoute: string;
         rayNameEn: "Origin" | "Explore" | "Learn" | "Apps" | "Frontier";
         rayNameBg: "Произход" | "Изследване" | "Обучение" | "Приложения" | "Граници";
-        hue: 0 | 102 | 154 | 205 | 257;
+        hue: 0 | 154 | 102 | 205 | 257;
         receipt: string;
         id: "trading";
         labelEn: "Trading";
@@ -321,7 +321,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hubRoute: string;
         rayNameEn: "Origin" | "Explore" | "Learn" | "Apps" | "Frontier";
         rayNameBg: "Произход" | "Изследване" | "Обучение" | "Приложения" | "Граници";
-        hue: 0 | 102 | 154 | 205 | 257;
+        hue: 0 | 154 | 102 | 205 | 257;
         receipt: string;
         id: "encryption";
         labelEn: "Encryption";
@@ -335,7 +335,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hubRoute: string;
         rayNameEn: "Origin" | "Explore" | "Learn" | "Apps" | "Frontier";
         rayNameBg: "Произход" | "Изследване" | "Обучение" | "Приложения" | "Граници";
-        hue: 0 | 102 | 154 | 205 | 257;
+        hue: 0 | 154 | 102 | 205 | 257;
         receipt: string;
         id: "theorems";
         labelEn: "Theorem registry";
@@ -349,7 +349,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hubRoute: string;
         rayNameEn: "Origin" | "Explore" | "Learn" | "Apps" | "Frontier";
         rayNameBg: "Произход" | "Изследване" | "Обучение" | "Приложения" | "Граници";
-        hue: 0 | 102 | 154 | 205 | 257;
+        hue: 0 | 154 | 102 | 205 | 257;
         receipt: string;
         id: "research";
         labelEn: "Research";
@@ -363,7 +363,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hubRoute: string;
         rayNameEn: "Origin" | "Explore" | "Learn" | "Apps" | "Frontier";
         rayNameBg: "Произход" | "Изследване" | "Обучение" | "Приложения" | "Граници";
-        hue: 0 | 102 | 154 | 205 | 257;
+        hue: 0 | 154 | 102 | 205 | 257;
         receipt: string;
         id: "learn";
         labelEn: "Learn";
@@ -377,7 +377,7 @@ export declare function siteDomainRegistry(matrix?: MindMatrix): {
         hubRoute: string;
         rayNameEn: "Origin" | "Explore" | "Learn" | "Apps" | "Frontier";
         rayNameBg: "Произход" | "Изследване" | "Обучение" | "Приложения" | "Граници";
-        hue: 0 | 102 | 154 | 205 | 257;
+        hue: 0 | 154 | 102 | 205 | 257;
         receipt: string;
         id: "society";
         labelEn: "Society";

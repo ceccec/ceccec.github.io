@@ -335,7 +335,7 @@ export declare function navigation358(matrix?: MindMatrix): {
                 pageKind: __ns_up_water_digit.RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
-                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
             };
             motion: {
                 at: number;
@@ -533,7 +533,7 @@ export declare function monographPaths(locale: 'gla' | 'en' | 'bg'): {
                 pageKind: __ns_up_water_digit.RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
-                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
             };
             facets: {
                 receipt: string;
@@ -1010,7 +1010,7 @@ export declare function sciencePortalParts(matrix?: MindMatrix): {
         labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-        hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+        hue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         count: number;
         pages: {
             slug: string;
@@ -1315,7 +1315,7 @@ export declare function rosettaComputesNavigationAndContent(path: string, matrix
             pageKind: __ns_up_water_digit.RosettaComputationType;
             heroPhase: number;
             bodySeed: string;
-            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         };
         facets: {
             receipt: string;
@@ -1659,7 +1659,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
                     pageKind: __ns_up_water_digit.RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 motion: {
                     at: number;
@@ -1893,7 +1893,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
                 pageKind: __ns_up_water_digit.RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
-                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
             };
             facets: {
                 receipt: string;
@@ -1976,7 +1976,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             pageKind: __ns_up_water_digit.RosettaComputationType;
             heroPhase: number;
             bodySeed: string;
-            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         };
         motion: {
             at: number;

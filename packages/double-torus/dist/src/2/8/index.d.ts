@@ -59,6 +59,10 @@ export declare function theQuantumFourierTransformCircuitAndPhaseEstimation(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function shorFactorsByPeriodFinding(): {
@@ -68,6 +72,88 @@ export declare function shorFactorsByPeriodFinding(): {
         a: number;
         period: number;
         factors: readonly number[];
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
+    boundary: string;
+};
+export declare function addressesAndQubitsAreDifferentResources(): {
+    computes: boolean;
+    addressBits: number;
+    logicalQubits: number;
+    gapExponent: number;
+    qubitAmplitudesHeldAtOnce: number;
+    addressStatesHeldAtOnce: number;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function verifyBeatsRecomputeMeasured(): {
+    computes: boolean;
+    runs: {
+        n: number;
+        recompute: number;
+        verify: number;
+        ratio: number;
+    }[];
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function theExactSimulatorMatchesTheDefinition(): {
+    computes: boolean;
+    exactOutcomes: string[];
+    scale: number;
+    floatProbability: number;
+    driftSize: number;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+export declare function privateKeyRecoveryCostsBothRoutes(): {
+    computes: boolean;
+    runs: {
+        classical: number;
+        quantum: number;
+        N: number;
+        t: number;
+        w: number;
+    }[];
+    limits: readonly {
+        facet: string;
+        on: boolean;
     }[];
     facets: {
         facet: string;
@@ -91,6 +177,10 @@ export declare function theMixedStateLayer(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theShorNineQubitCodeCorrectsAnySingleError(): {
@@ -103,6 +193,10 @@ export declare function theShorNineQubitCodeCorrectsAnySingleError(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function variationalQuantumEigensolverAndQaoa(): {
@@ -124,6 +218,10 @@ export declare function variationalQuantumEigensolverAndQaoa(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function adiabaticQuantumComputationAndAnnealing(): {
@@ -140,6 +238,10 @@ export declare function adiabaticQuantumComputationAndAnnealing(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function thePhaseFlipCodeCorrectsAnyZError(): {
@@ -151,6 +253,10 @@ export declare function thePhaseFlipCodeCorrectsAnyZError(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theNoCommunicationTheorem(): {
@@ -161,6 +267,10 @@ export declare function theNoCommunicationTheorem(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function everyMixedStateHasAPurification(): {
@@ -172,6 +282,10 @@ export declare function everyMixedStateHasAPurification(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function amplitudeAmplificationAndQuantumCounting(): {
@@ -190,6 +304,10 @@ export declare function amplitudeAmplificationAndQuantumCounting(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function quantumParallelismIsNotTheSpeedupInterferenceIs(): {
@@ -220,6 +338,10 @@ export declare function theVariationalPrincipleLowerBound(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theQuantumHammingBoundAndThePerfectFiveQubitCode(): {
@@ -239,6 +361,10 @@ export declare function theQuantumHammingBoundAndThePerfectFiveQubitCode(): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function twoBitsAreTheDualityGateways(): {

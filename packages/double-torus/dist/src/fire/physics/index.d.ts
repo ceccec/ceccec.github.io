@@ -842,3 +842,109 @@ export declare function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities
 };
 /** npm run quantum:cross-waves-tesla-patents */
 export declare function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(_root?: string, _argv?: readonly string[]): number;
+/**
+ * THE NUCLEAR MAGIC NUMBERS ARE SPIN-ORBIT, AND NO 5-ARITHMETIC PRODUCES THEM.
+ *
+ * A 3D harmonic oscillator alone closes shells at 2, 8, 20, 40, 70, 112. The OBSERVED magic
+ * numbers are 2, 8, 20, 28, 50, 82, 126: the three agree, then spin-orbit coupling pulls the
+ * high-l intruders (1f7/2, 1g9/2, 1h11/2, 1i13/2) down and opens different gaps.
+ *
+ * This refutes a 10·2^k reading of nuclear structure: the doubling ladder 10, 20, 40, 80 meets
+ * only the oscillator closures 20 and 40 — never 28, 50, 82 or 126.
+ */
+export declare function nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic(): {
+    computes: boolean;
+    closures: number[];
+    oscillatorClosures: number[];
+    spinOrbitOnly: number[];
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * 432 Hz IS THE ACOUSTIC NOTE, NOT THE NUCLEAR ONE — E = hf sets every system its own scale.
+ *
+ * Matter is wave phenomena, so each wave has a frequency f = E/h. Those frequencies are NOT
+ * interchangeable: an acoustic tone and a nuclear shell gap are ~18 orders of magnitude apart.
+ * The refutation is arithmetic, and it is the reason "432 Hz" cannot be the fuel of nuclear
+ * structure however often frequency is called the universal thread.
+ */
+export declare function fourThirtyTwoHertzIsAcousticNotNuclear(): {
+    computes: boolean;
+    acousticQuantumEv: number;
+    ordersToNuclearGap: number;
+    ordersToProton: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * COUNTER-ROTATION NULLS THE AXIS; CO-ROTATION MAXIMISES IT — full Biot-Savart, no dipole.
+ *
+ * Six current loops sit on a ring at the unit-triangle angles: triangle A = {1,4,7} at
+ * 40/160/280° and triangle B = {2,5,8} at 80/200/320°. The merkaba configuration counter-
+ * rotates them (A = +I, B = −I); the co-rotating control runs all six the same way.
+ *
+ * On the central 3-6-9/0 axis every loop's contribution is matched by its opposite-triangle
+ * partner, so the field cancels EXACTLY by symmetry — the axis is a null the whole length.
+ * Co-rotating, the same symmetry makes the axis a maximum. That is a real and checkable
+ * property of the geometry, and it is a magnetostatics result: nothing here concerns
+ * consciousness, zero-point energy, or free energy.
+ */
+export declare function merkabaCounterRotationNullsTheAxis(): {
+    computes: boolean;
+    merkabaAxisSum: number;
+    corotatingAxisSum: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE TWO COLOUR MAPS ARE DIFFERENT MAPS, AND ONLY ONE ROUND-TRIPS.
+ *
+ * This corpus derives colour from frequency in two independent ways:
+ *   frequencyToLight (src/3/7)  — double the tone until it reaches visible light, then take
+ *                                 nm = c/f and band the hue. A PHYSICAL octave bridge.
+ *   colorFromSound   (src/fire/li) — hue = the fractional octave above C3, times 360. A
+ *                                 MUSICAL wheel, and the one with an inverse (soundFromColor).
+ *
+ * They are not the same function and were never meant to be, but nothing said so, and a reader
+ * meeting both could reasonably assume one canonical map. This fold states the difference and
+ * pins the property that distinguishes them: only the musical wheel round-trips.
+ *
+ * The reconciliation script that found this also flagged σ-audio using 440²/f inside an A432
+ * system, under which 432 was NOT self-inverse (432 ↦ 448.15 Hz). That defect has since been
+ * fixed in src/ui/harmonic; the facet below holds the corrected identity so it cannot regress.
+ */
+export declare function colourMapsAreTwoMapsAndOnlyOneRoundTrips(): {
+    computes: boolean;
+    maxHueDivergenceDegrees: number;
+    roundTrips: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

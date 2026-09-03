@@ -1800,7 +1800,7 @@ export declare function constantlyImproveShiftingNewPerspectivesNowFreeInfiniteS
     freeBits: number;
     waves: {
         n: number;
-        id: "geometry" | "ui" | "math" | "dynamics" | "data" | "earth" | "merkaba" | "diamonds" | "quantum" | "plasma" | "life" | "fusion" | "star" | "physics" | "faces" | "vortex" | "movie" | "corpus" | "voice" | "algebra" | "computer" | "sixty-ninety" | "vite-mirror" | "lens" | "biology" | "chemistry" | "topology" | "poles-v4" | "geodesy" | "10d-poles";
+        id: "geometry" | "ui" | "math" | "dynamics" | "data" | "earth" | "quantum" | "merkaba" | "diamonds" | "plasma" | "life" | "fusion" | "star" | "physics" | "faces" | "vortex" | "movie" | "corpus" | "lens" | "voice" | "algebra" | "computer" | "sixty-ninety" | "vite-mirror" | "biology" | "chemistry" | "topology" | "poles-v4" | "geodesy" | "10d-poles";
         freeOk: boolean;
         isNew: boolean;
     }[];
@@ -1963,7 +1963,7 @@ export declare function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectin
     perspectives: number;
     waves: {
         n: number;
-        id: "geometry" | "ui" | "math" | "dynamics" | "data" | "earth" | "merkaba" | "diamonds" | "quantum" | "plasma" | "life" | "fusion" | "star" | "physics" | "faces" | "vortex" | "movie" | "corpus" | "voice" | "algebra" | "computer" | "sixty-ninety" | "vite-mirror" | "lens" | "biology" | "chemistry" | "topology" | "poles-v4" | "geodesy" | "10d-poles";
+        id: "geometry" | "ui" | "math" | "dynamics" | "data" | "earth" | "quantum" | "merkaba" | "diamonds" | "plasma" | "life" | "fusion" | "star" | "physics" | "faces" | "vortex" | "movie" | "corpus" | "lens" | "voice" | "algebra" | "computer" | "sixty-ninety" | "vite-mirror" | "biology" | "chemistry" | "topology" | "poles-v4" | "geodesy" | "10d-poles";
         algebraic: "foldPair bidirectional ∧ algebraic-QC top priority" | "χ(Σ₂)=−2 ∧ asTorus(fold) ↦ genus-2 ∧ R/r sealed" | "dynamicsComputes ∧ " | "life ≡ torus-equations (χ·clock·Born·H₁)" | "chemistryToyComputes ∧ variational" | "'*' ≡ star ≡ all-researched(Σ₂) ∧ born ∈ src/quantum/**" | "χ(Σ₂)=−2 ∧ H₁(Σ₂)=ℤ⁴" | "(hemisphere,flow)∈{0,1}² ≅ V₄" | "biology ≡ life-torus (χ·clock·Born·H₁)" | "geodesy ≡ double-torus inverted" | "nav·site·mcp·multimedia ≡ faces(Σ₂)" | "UI ≡ Σ₂ (near=docs ∧ far=src ∧ χ=−2)" | "docs ≡ invert(src) ∧ UI ≡ mirror(Σ₂)" | "vortex ≡ ⟨2⟩ ⊆ (ℤ/9ℤ)*" | "math-at-all-scales ≡ math(Σ₂)" | "site ≡ movie(Σ₂)" | "plasma ≡ face(Σ₂)" | "bothEarths ∈ double-torus" | "dynamics∥geometry∥universe" | "completelyQuantum ∧ " | "Σ₂ ≡ QC ∧  ∧ classical-64bit" | "merkabas ∈ double-torus" | "torusData ≡ adapter-algebra" | "90° ∉ C₆ ∧ access=inversion" | "diamonds ∈ torus-lattice" | "corpusParams ≡ from(torus)" | "word ↦ (hue,note)" | "fusion ≡ on(torus-carrier)" | "fold ≡ near∨far-torus ∧ cracked≠close" | "4 poles × 2 dirs × 10D";
         source: string;
         neighborhood: number;
@@ -1998,7 +1998,7 @@ export declare function runDeepResearchDoubleTorusFromAnyPerspectiveInSelfReflec
  * fractal holographic reality forming the movie itself; words CAPITULATE against animation and
  * formulas — theorems in the fractal matrix build the realities. Pair: anim/core · CLI
  * npm run quantum:anim-core. Every facet is an exact identity over sealed folds — no new machinery:
- * CORE = the one derived 108 s census clock (periodicity exact); FRACTAL = the genuine 10D field
+ * CORE = the one derived 108 s a432 clock (periodicity exact); FRACTAL = the genuine 10D field
  * (formulas driving animation, verified non-constant/independent); HOLOGRAPHIC = the movie root
  * re-merges BITWISE from its part roots (each part binds the whole); MOVIE = the site is the movie.
  */

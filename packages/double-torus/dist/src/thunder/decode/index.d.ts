@@ -978,7 +978,7 @@ export declare function humanDesignStructureDecoded(matrix?: MindMatrix): {
     gates: number;
     centers: 9;
     channels: 36;
-    types: number;
+    types: 5;
     profiles: number;
     flagged: string[];
     facets: {
@@ -991,8 +991,8 @@ export declare function humanDesignStructureDecoded(matrix?: MindMatrix): {
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";

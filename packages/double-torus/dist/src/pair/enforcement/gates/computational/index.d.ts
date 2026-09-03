@@ -15,7 +15,7 @@ export type ScienceModelAction = {
 export declare const SRC_SCIENCE_MODEL_ACTION_SCHEMA: "src/[science]/[action]";
 /** Canonical mask — co-located index.ts + index.vue; no render/ui prefix. */
 export declare const CANONICAL_SCIENCE_MASK: "src/<science>/<action>";
-export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7';
+export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7';
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
 export declare const FORBIDDEN_FOLDER_NAMES: readonly ["index"];
 export declare function isForbiddenFolderName(name: string): boolean;
@@ -67,7 +67,7 @@ export declare const DISPLAY_DUAL_LAW: string;
 /** Display subpath — science/model/action (co-located with logic). */
 export declare function displaySubpathFromLogicTail(tail: string, _allMindTails?: readonly string[]): string;
 /** Consecutive Fibonacci bands for the gapless census (alias). */
-export declare const FIBONACCI_BANDS: readonly [55, 34, 21, 13];
+export declare const FIBONACCI_BANDS: readonly number[];
 /** Exact-count law — census and gates hold at one number, never a range. */
 export declare const NOT_LESS_NOT_MORE_LAW = "not less, not more: exactly 110 unfolded index.ts (55+34+21 gapless), exactly 108 folded (\u03C7=\u22122), exactly 432 dimension gates (4\u00D7108) \u2014 HARD at gate/weave/verify/precommit/build";
 /** Dependency-free vault — agnostic concat (fold, UUID, merge) lives here only. */
@@ -87,6 +87,10 @@ export type ComputationalLimitSnapshot = {
     readonly targetUnfolded: number;
     readonly targetFolded: number;
     readonly gapless: boolean;
+    /** Within the descent ratchet — the enforceable form of the census law while the corpus
+     *  is above its derived target. `gapless` remains the Fibonacci-SHAPE test, which is a
+     *  different question and was being used for both. */
+    readonly withinRatchet: boolean;
     readonly bands: readonly number[];
     readonly bandsMatch: boolean;
     readonly foldedOk: boolean;
@@ -111,15 +115,17 @@ export type ComputationalLimitSnapshot = {
     readonly passed: boolean;
     readonly receipt: string;
 };
-/** Gapless census — consecutive Fibonacci bands sum exactly to 110 (reuse harmonicBands from lake/icons). */
+/** Gapless census — consecutive Fibonacci bands sum exactly to UNFOLDED_CENSUS (reuse harmonicBands from lake/icons). */
 export declare function verifyGaplessCensus(count: number): {
     count: number;
-    target: 123;
+    target: number;
+    ratchet: number;
     gapless: boolean;
     bands: number[];
     bandsMatch: boolean;
     gaps: number;
     exact: boolean;
+    withinRatchet: boolean;
     deltaDetail: string;
     ok: boolean;
     root: string;
@@ -200,7 +206,7 @@ export declare function scanRootDistributionViolations(root: string): Computatio
  * 1·2·4·8·7·5 + 3·6·9 trinity rays). The on-disk pairing N/(10−N) is the additive ten's-complement folder
  * lattice — NOT the n/0 inverse of a digit, which is the multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable);
  * the folder names are the additive structure. The gate enforces THAT structure is present and gapless — it adds
- * NO digit-root barrels (src/N/index.ts), so it never grows the 110 census. A recomputed fail-the-build invariant.
+ * NO digit-root barrels (src/N/index.ts), so it never grows the census. A recomputed fail-the-build invariant.
  */
 export declare function scanDigitLatticeViolations(root: string): ComputationalViolation[];
 /** Max folder levels — science/model/action (3 levels: e.g. heaven/balance). */

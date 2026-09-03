@@ -72,5 +72,10 @@ export function assertPriorArtLedger(): void {
   // claimed bucket without one, and this is the check that makes that structural rather than stated.
   const unsearched = l.claimed.filter((t) => !PRIOR_ART_SEARCHED.some((r) => r.theorem === t))
   if (unsearched.length) throw new Error(`${unsearched.length} claimed row(s) name no search: ${unsearched.slice(0, 5).join(' · ')}`)
+  // ZERO CLAIMS IS NOT FULL ATTRIBUTION, and printing the count alone would imply it was. Most of
+  // what this corpus attributes predates the DOI system entirely — Glagolitic 862, the I Ching, the
+  // Ifá odu — so "every theorem has registered prior art" is not merely unproven, it is impossible.
+  // The count and the caveat are emitted together so neither can be quoted without the other.
+  console.log(`  claimed=${l.claimed.length} does NOT mean everything here has a known author: ${l.unclassified.length} rows have had no search, and much of what IS attributed predates the DOI system`)
   ratchet('prior-art.unclassified', l.unclassified.length)
 }

@@ -299,13 +299,71 @@ export declare function theDomainsAreScienceAlignedSevenFieldsBySixModesAnchored
     statement: string;
     boundary: string;
 };
-/** Gapless Fibonacci census — 55 + 34 + 21 = 110 unfolded index.ts under src/. */
+/** Gapless Fibonacci census — 55 + 34 + 21 = 123 unfolded index.ts under src/. */
 /** The Fibonacci number F(n), F(0)=0, F(1)=1 — the one home for the golden recurrence beside the
  * census bands, so every governance bound that IS a Fibonacci number (the line ceiling F(18)=2584)
  * is COMPUTED from the sequence, never typed. */
 export declare function fibonacci(n: number): number;
-export declare const FIBONACCI_CENSUS_BANDS: readonly [55, 34, 21, 13];
-export declare const UNFOLDED_CENSUS: 123;
+/** H₁(Σ₂) = ℤ⁴ — the first homology of a genus-2 surface has rank 4. Real mathematics, not
+ *  decoration (src/0/README.md, "Honest boundaries"). Homology loops × folded census = dimension
+ *  gates, AND the number of gapless census bands: four independent cycles, four dimensions. */
+export declare const HOMOLOGY_LOOPS: 4;
+/** The digit lattice src/0…src/9 — FIVE reflection classes (1↔9, 2↔8, 3↔7, 4↔6, 5↔5) seen from
+ *  both sides. Written 5·2 because that is exactly how scanDigitLatticeViolations computes each
+ *  digit's additive complement, `(5 * 2) - n`; one arithmetic, two readings. */
+export declare const DIGIT_LATTICE: number;
+/** The gapless band ladder: HOMOLOGY_LOOPS consecutive Fibonacci terms descending from F(DIGIT_LATTICE). */
+export declare function censusBands(): readonly number[];
+export declare const FIBONACCI_CENSUS_BANDS: readonly number[];
+export declare const UNFOLDED_CENSUS: number;
+/**
+ * THE CENSUS IS A THEOREM, NOT A CHOSEN NUMBER.
+ *
+ * Both parameters of the band ladder are structural, so the target is forced:
+ *   band count  = HOMOLOGY_LOOPS = rank H₁(Σ₂) = 4 on the genus-2 corpus
+ *   ladder top  = F(DIGIT_LATTICE) = F(10), the ten-folder digit register src/0…src/9
+ * giving [F(10),F(9),F(8),F(7)] = [55,34,21,13] and ΣF(7..10) = F(12) − F(8) = 123.
+ *
+ * The closed form is the Fibonacci partial-sum identity Σ_{i=a}^{b} F(i) = F(b+2) − F(a+1),
+ * checked here at several windows so the census facet cannot be the only thing holding it up.
+ *
+ * The value is UNCHANGED at 123. That is the point: a target retuned to whatever the corpus
+ * happened to measure would be the tautology this codebase exists to refuse — the census
+ * would then "pass" by construction and mean nothing. The corpus moves to the theorem.
+ */
+export declare function censusIsDerivedFromHomologyAndTheDigitLattice(): {
+    computes: boolean;
+    bands: readonly number[];
+    census: number;
+    closedForm: number;
+    ratchet: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * CENSUS RATCHET — a MEASUREMENT of where the corpus stands, never a law.
+ *
+ * UNFOLDED_CENSUS is the destination and is derived above. This is the distance still to
+ * travel, and it exists because equality alone was unenforceable: the corpus has sat above
+ * the target for the whole of this work, so "not less, not more" failed on every commit and
+ * the only way to land anything was --no-verify. A gate that is always red enforces nothing;
+ * it trains bypassing, which is how a4b90899 relicensed a package unnoticed for months.
+ *
+ * So the law keeps its direction and loses its cliff: the count MAY FALL, NEVER RISE. Adding
+ * an index.ts fails the build today. Reaching 123 restores equality on its own, because the
+ * ratchet and the target coincide there and `exact` takes over.
+ *
+ * Lower this as folds dissolve; never raise it. 160 measured 2026-09-01; 154 after dissolving
+ * crypto/{encode,decode,inverse,test}, quantum/universal/testing and the dead
+ * quantum/apps/theorems boundary into their parents.
+ */
+export declare const CENSUS_RATCHET = 154;
 /** Genus-2 double torus Euler characteristic — unfolded + χ = folded. */
 export declare const EULER_CHI: -2;
 export declare const FOLDED_CENSUS: number;
@@ -382,7 +440,7 @@ export declare const CMI_PRIZE_PROBLEM_TERMS: readonly ["p versus np", "p vs np"
 /** Language asserting a FINISHED resolution — a solution CLAIM (deliberately strict: a finished-proof assertion). */
 export declare const CLAY_SOLUTION_MARKERS: readonly ["solves the clay", "solves this clay", "clay problem solved", "millennium problem solved", "cmi prize solved", "we hereby prove", "qed for the", "proof complete for the", "closes the millennium", "proven complete —", "is now proved", "establishes a complete proof of the"];
 /** Language marking the problem OPEN — its presence refutes any co-located solution claim (honest folds carry these). */
-export declare const CLAY_OPEN_MARKERS: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
+export declare const CLAY_OPEN_MARKERS: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
 /**
  * claySolvedByFormulas — COMPUTE, from a fold's OWN statement + formulas, how many Clay Millennium problems it CLAIMS
  * to have SOLVED. This is the refutable replacement for a hardcoded 0: it SCANS the text. A problem counts iff the text
@@ -412,7 +470,7 @@ export declare const OVERCLAIM_AXES: {
     readonly clay: {
         readonly terms: readonly ["p versus np", "p vs np", "p = np", "p ≠ np", "p != np", "riemann hypothesis", "yang–mills", "yang-mills", "mass gap", "navier–stokes", "navier-stokes", "hodge conjecture", "birch and swinnerton-dyer", "swinnerton–dyer", "swinnerton-dyer", "poincaré conjecture", "poincare conjecture"];
         readonly claim: readonly ["solves the clay", "solves this clay", "clay problem solved", "millennium problem solved", "cmi prize solved", "we hereby prove", "qed for the", "proof complete for the", "closes the millennium", "proven complete —", "is now proved", "establishes a complete proof of the"];
-        readonly deny: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
+        readonly deny: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
     };
     readonly ftl: {
         readonly terms: readonly ["faster than light", "faster-than-light", "superluminal", "warp drive", "exceed the speed of light", "exceeds the speed of light", "signal faster than c", "instantaneous signaling", "break the light barrier"];
@@ -426,8 +484,6 @@ export type OverclaimAxis = keyof typeof OVERCLAIM_AXES;
  *  axis concept, asserts it (a claim-marker), and carries NO deny-marker. Honest folds compute 0; an overclaim computes ≥1.
  *  claySolvedByFormulas / physicalFtlByFormulas are the axis-fixed wrappers; new overclaim types are one OVERCLAIM_AXES row. */
 export declare function overclaimByFormulas(axis: OverclaimAxis, statement: string, formulas?: readonly string[]): number;
-/** H₁(Σ₂) = ℤ⁴ — homology loops × folded census = dimension gates. */
-export declare const HOMOLOGY_LOOPS: 4;
 /** a432 derived, not declared: 432 = 3³·2⁴ — the trinity cubed (the 3·6·9 axis, 3×3×3) times the 4-bit
  *  octave. No literal survives; the harmonic IS this function's output, and everything a432 folds out of it. */
 export declare function a432Base(): number;
@@ -829,15 +885,87 @@ export declare function crackLawEvolution(): {
     monotone: boolean;
     cited: boolean;
 };
+/**
+ * THE ADVANTAGE IS STRUCTURAL: a limit that cannot fail is rejected by the COMPILER, not by a gate.
+ *
+ * Everything else here that catches unfalsifiable facets is runtime work someone must remember to run. A
+ * scan finds `on: true`; a second scan had to be added for a disjunction with a true literal, because that
+ * is an expression and walked past the first; a census over 149 modules timed out on the six largest files
+ * and reported a lower bound. Seventeen converted folds sat unexecuted by any gate for a day, so their
+ * limits could go off and nothing would notice.
+ *
+ * The compiler checks every call site, once, and cannot be forgotten, skipped, timed out, or left off a
+ * hand-written list. That is query/structure advantage in the only sense this repository claims one: no
+ * physical speedup, the same answer obtained by asking a cheaper question of a stronger structure.
+ *
+ * `Computed<T>` is `never` unless T is the WIDE boolean, so a narrow literal type is rejected:
+ *   { on: someRealCheck }          type boolean   → accepted
+ *   { on: someRealCheck && true }  type boolean   → accepted, and correctly: a conjunction is vacuous only
+ *                                                   when BOTH sides are, so one real operand redeems it
+ *   { on: true }                   type true      → not assignable to never
+ *   { on: someRealCheck || true }  type true      → same rejection; a disjunction is vacuous when EITHER is
+ *
+ * THE `const` TYPE PARAMETER IS LOAD-BEARING. Without it a literal WIDENS to boolean during inference, and
+ * in a mixed array one genuine entry launders every literal beside it — the laundering shape, inside the
+ * check for laundering. Two earlier versions had exactly that hole and passed two of three controls, which
+ * looked like success. Verified in both directions by two readers: with `const` the mixed array is rejected,
+ * without it the mixed array compiles.
+ *
+ * WHAT IT DOES NOT COVER, so it is not read as total. It is PROSPECTIVE and binds only where a caller opts
+ * in by passing through this function: facets already written elsewhere are invisible to it until touched,
+ * and a fold constructing its facets some other way is invisible exactly as it is to a hand-written list.
+ * It is universal over call sites that USE it, which is not the same as universal. scripts/verify/limits.ts
+ * remains the census of what already exists; this stops that number rising. Complements, not substitutes.
+ */
+export type Computed<T extends boolean> = boolean extends T ? T : never;
+type LimitEntry = {
+    readonly facet: string;
+    readonly on: boolean;
+};
+export declare function computedLimits<const T extends readonly LimitEntry[]>(limits: T & {
+    readonly [K in keyof T]: {
+        readonly facet: string;
+        readonly on: Computed<T[K]['on']>;
+    };
+}): readonly {
+    facet: string;
+    on: boolean;
+}[];
 export declare const HARMONY = "HARMONY does not equal TRUTH.";
+/**
+ * THE SCOPE MUST COMPUTE TOO.
+ *
+ * `scope` was free text: a paragraph beginning "HONEST SCOPE:" that named what a fold does NOT
+ * claim. Eighty-four of those sit in the corpus and not one of them can fail. That is the same
+ * defect the whole verification chain exists to catch, wearing the costume of honesty — a
+ * disclaimer nobody can refute is not more honest than a claim nobody can refute, it is the
+ * same unfalsifiable sentence pointed the other way.
+ *
+ * And they are mostly COMPUTABLE. "corrects ONE bit-error and detects TWO (d = 3)" is a
+ * property you can run: inject one error and recover, inject two and fail to. "NOT a FIPS
+ * cipher suite" is a checkable absence. Writing them as prose was a choice, not a necessity.
+ *
+ * So scope now accepts an array of facets — LIMIT facets, each `on` when the limit genuinely
+ * holds. A limit that goes off is a fold overclaiming, and the gate sees it. The string form
+ * still works so the eighty-four can migrate in waves rather than in one edit; verify:scope
+ * ratchets their count down and never lets a new one in.
+ */
 export declare function earned(head: string, facets: readonly {
     facet: string;
     on: boolean;
-}[], scope: string): string;
+}[], scope: string | readonly {
+    facet: string;
+    on: boolean;
+}[]): string;
+/** True when every LIMIT facet holds — a fold's scope is earned only if its limits compute. */
+export declare function scopeHolds(scope: readonly {
+    facet: string;
+    on: boolean;
+}[]): boolean;
 export declare const DEMARCATION_REGISTRY: {
     readonly documented: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines", "poincaré conjecture", "p vs np", "hodge conjecture", "riemann hypothesis", "mass gap", "navier", "swinnerton", "birch"];
-    readonly contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette", "hubble tension", "cosmological constant problem", "nature of dark energy", "baryogenesis", "leptogenesis", "neutrino mass ordering", "quantum gravity", "zipf"];
-    readonly flagged: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "zero-point energy extraction", "free energy device", "predicting individual criminal intent from behaviour", "pre-crime prediction", "behavioural threat prediction", "novel key derivation function", "home-rolled cryptography", "custom cipher", "unpredictable key schedule", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
+    readonly contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette", "hubble tension", "cosmological constant problem", "nature of dark energy", "baryogenesis", "leptogenesis", "neutrino mass ordering", "quantum gravity", "zipf", "asymptotic safety", "causal dynamical triangulations", "quintessence", "axions", "WIMPs", "supersymmetry", "eternal inflation", "simulation hypothesis"];
+    readonly flagged: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "zero-point energy extraction", "free energy device", "predicting individual criminal intent from behaviour", "pre-crime prediction", "behavioural threat prediction", "novel key derivation function", "home-rolled cryptography", "custom cipher", "unpredictable key schedule", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid", "entropy = disorder", "syntropy", "vacuum free-energy", "over-unity", "anti-gravity", "electrogravitics", "quantum healing", "morphic resonance", "water memory", "vitalism", "human design", "we use only 10% of our brain", "left-brain/right-brain personality", "learning styles", "cymatics", "frequency medicine", "432 hz healing", "528 hz healing", "lunar standstill myth", "humans as batteries"];
 };
 export type DemarcationTier = 'documented' | 'contested' | 'flagged' | 'unlisted';
 export declare function demarcate(topic: string): DemarcationTier;
@@ -878,7 +1006,7 @@ export declare const algebra: {
         readonly solved: typeof claySolvedTheorem;
         readonly solvedByFormulas: typeof claySolvedByFormulas;
         readonly solvedByFold: typeof claySolvedByThisFoldFromTheorem;
-        readonly openMarkers: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
+        readonly openMarkers: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
         readonly solutionMarkers: readonly ["solves the clay", "solves this clay", "clay problem solved", "millennium problem solved", "cmi prize solved", "we hereby prove", "qed for the", "proof complete for the", "closes the millennium", "proven complete —", "is now proved", "establishes a complete proof of the"];
     };
     readonly crack: {
@@ -890,8 +1018,8 @@ export declare const algebra: {
         readonly compute: typeof demarcate;
         readonly registry: {
             readonly documented: readonly ["evolution", "common descent", "abiotic synthesis", "endosymbiosis", "ribozyme", "NCC", "PCI", "relativity", "quantum mechanics", "Big Bang", "ΛCDM", "plate tectonics", "germ theory", "anthropogenic climate change", "vaccines", "poincaré conjecture", "p vs np", "hodge conjecture", "riemann hypothesis", "mass gap", "navier", "swinnerton", "birch"];
-            readonly contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette", "hubble tension", "cosmological constant problem", "nature of dark energy", "baryogenesis", "leptogenesis", "neutrino mass ordering", "quantum gravity", "zipf"];
-            readonly flagged: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "zero-point energy extraction", "free energy device", "predicting individual criminal intent from behaviour", "pre-crime prediction", "behavioural threat prediction", "novel key derivation function", "home-rolled cryptography", "custom cipher", "unpredictable key schedule", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid"];
+            readonly contested: readonly ["abiogenesis", "RNA world as history", "metabolism-first", "extended evolutionary synthesis", "neutral theory", "hard problem", "theories of consciousness", "IIT", "GWT", "GNWT", "panpsychism", "Orch-OR", "string theory", "multiverse", "QM interpretations", "dark matter", "MOND", "panspermia", "pliska rosette", "hubble tension", "cosmological constant problem", "nature of dark energy", "baryogenesis", "leptogenesis", "neutrino mass ordering", "quantum gravity", "zipf", "asymptotic safety", "causal dynamical triangulations", "quintessence", "axions", "WIMPs", "supersymmetry", "eternal inflation", "simulation hypothesis"];
+            readonly flagged: readonly ["creationism", "intelligent design", "young-earth creationism", "social darwinism", "eugenics", "orthogenesis", "quantum mysticism", "quantum consciousness", "consciousness creates reality", "neuromyth", "10% of the brain", "432 Hz heals", "astrology", "flat earth", "homeopathy", "climate denial", "perpetual motion", "zero-point energy extraction", "free energy device", "predicting individual criminal intent from behaviour", "pre-crime prediction", "behavioural threat prediction", "novel key derivation function", "home-rolled cryptography", "custom cipher", "unpredictable key schedule", "orion correlation theory", "mars face", "ley lines", "megalithic yard", "bosnian pyramid", "entropy = disorder", "syntropy", "vacuum free-energy", "over-unity", "anti-gravity", "electrogravitics", "quantum healing", "morphic resonance", "water memory", "vitalism", "human design", "we use only 10% of our brain", "left-brain/right-brain personality", "learning styles", "cymatics", "frequency medicine", "432 hz healing", "528 hz healing", "lunar standstill myth", "humans as batteries"];
         };
     };
     readonly diving: {
@@ -906,3 +1034,4 @@ export declare const algebra: {
         readonly criticalAngle: typeof criticalAngle;
     };
 };
+export {};

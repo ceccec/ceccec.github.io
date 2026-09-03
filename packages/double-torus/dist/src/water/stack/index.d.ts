@@ -1,3 +1,4 @@
+import * as __ns_up_up_sun from '../../heaven/sky/astronomy';
 import * as __ns_up_up_learning from '../../learning';
 import * as __ns_up_up_computer from '../../quantum/computer';
 import * as __ns_up_up_fusion_gold from '../../wind/fusion';
@@ -5,7 +6,6 @@ import * as __ns_up_up_quantum_science from '../../quantum/science';
 import * as __ns_up_up_quantum_application from '../../quantum/apps';
 import * as __ns_up_up_resonance from '../../thunder/resonance';
 import * as __ns_up_up_quantum_dynamics from '../../quantum/dynamics';
-import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy';
 import * as __ns_up_up_double_torus_earth from '../double/earth';
 import * as __ns_up_up_thunder_trading from '../../thunder/trading';
 import type { MindMatrix } from '../../types';
@@ -105,9 +105,9 @@ export declare function gpuPaintPhaseChannel(at?: number, matrix?: unknown): {
 export declare const SRC_TWO_LEVEL_INDEX_RE: RegExp;
 /** Exactly three folder levels under src/ — src/[science]/[model]/[action]/index.ts. */
 export declare const SRC_THREE_LEVEL_INDEX_RE: RegExp;
-/** Every logic index under src/ at any depth — src/.../index.ts (the full 110 census tree). */
+/** Every logic index under src/ at any depth — src/.../index.ts (the full derived-census tree). */
 export declare const SRC_ALL_INDEX_RE: RegExp;
-/** One-word pairs fusing human senses, mind, and body — each pair mounts at an existing sealed index (110 census; no new slots). */
+/** One-word pairs fusing human senses, mind, and body — each pair mounts at an existing sealed index (the census; no new slots). */
 export declare const SENSE_MIND_BODY_PAIRS: readonly [{
     readonly a: "color";
     readonly b: "sound";
@@ -294,7 +294,10 @@ export declare function srcTwoLevelRegistry(root?: string): {
     registered: boolean;
     depth: number;
     count: number;
-    census: 123;
+    census: number;
+    ratchet: number;
+    /** Arrival at the derived target — the destination, not the gate. */
+    atTarget: boolean;
     gapless: boolean;
     entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
     depthBands: {
@@ -316,7 +319,10 @@ export declare function srcTwoLevelComputes(matrix?: MindMatrix): {
         registered: boolean;
         depth: number;
         count: number;
-        census: 123;
+        census: number;
+        ratchet: number;
+        /** Arrival at the derived target — the destination, not the gate. */
+        atTarget: boolean;
         gapless: boolean;
         entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
         depthBands: {
@@ -346,7 +352,10 @@ export declare function srcThreeLevelRegistry(root?: string): {
     registered: boolean;
     depth: number;
     count: number;
-    census: 123;
+    census: number;
+    ratchet: number;
+    /** Arrival at the derived target — the destination, not the gate. */
+    atTarget: boolean;
     gapless: boolean;
     entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
     depthBands: {
@@ -368,7 +377,10 @@ export declare function srcThreeLevelComputes(matrix?: MindMatrix): {
         registered: boolean;
         depth: number;
         count: number;
-        census: 123;
+        census: number;
+        ratchet: number;
+        /** Arrival at the derived target — the destination, not the gate. */
+        atTarget: boolean;
         gapless: boolean;
         entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
         depthBands: {
@@ -398,7 +410,10 @@ export declare function srcAllRegistry(root?: string): {
     registered: boolean;
     depth: number;
     count: number;
-    census: 123;
+    census: number;
+    ratchet: number;
+    /** Arrival at the derived target — the destination, not the gate. */
+    atTarget: boolean;
     gapless: boolean;
     entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
     depthBands: {
@@ -496,14 +511,17 @@ export declare function senseMindBodyPairsComputes(matrix?: MindMatrix): {
 };
 /** One gate — canonical modality and life science homes compute at call time. */
 export declare function modalityHomesComputes(matrix?: MindMatrix): any;
-/** One gate — full src tree registry + 110 census at call time. */
+/** One gate — full src tree registry + the derived census at call time. */
 export declare function srcAllComputes(matrix?: MindMatrix): {
     computes: boolean;
     registry: {
         registered: boolean;
         depth: number;
         count: number;
-        census: 123;
+        census: number;
+        ratchet: number;
+        /** Arrival at the derived target — the destination, not the gate. */
+        atTarget: boolean;
         gapless: boolean;
         entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
         depthBands: {
@@ -2284,7 +2302,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
         statement: string;
         boundary: string;
     };
-    astronomySim: __ns_up_up_astronomy.AstronomySimulationPaint;
+    astronomySim: __ns_up_up_sun.AstronomySimulationPaint;
     astronomySequence: {
         computes: boolean;
         decoded: boolean;
@@ -6343,7 +6361,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             pageKind: import("../digit").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -6577,7 +6595,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         pageKind: import("../digit").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     facets: {
                         receipt: string;
@@ -6660,7 +6678,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     pageKind: import("../digit").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 motion: {
                     at: number;
@@ -23369,7 +23387,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 pageKind: import("../digit").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -23603,7 +23621,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             pageKind: import("../digit").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         facets: {
                             receipt: string;
@@ -23686,7 +23704,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         pageKind: import("../digit").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -25086,7 +25104,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
             statement: string;
             boundary: string;
         };
-        astronomySim: __ns_up_up_astronomy.AstronomySimulationPaint;
+        astronomySim: __ns_up_up_sun.AstronomySimulationPaint;
         astronomySequence: {
             computes: boolean;
             decoded: boolean;
@@ -29145,7 +29163,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 pageKind: import("../digit").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -29379,7 +29397,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             pageKind: import("../digit").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         facets: {
                             receipt: string;
@@ -29462,7 +29480,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         pageKind: import("../digit").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -46171,7 +46189,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     pageKind: import("../digit").RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -46405,7 +46423,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 pageKind: import("../digit").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             facets: {
                                 receipt: string;
@@ -46488,7 +46506,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             pageKind: import("../digit").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -49481,6 +49499,10 @@ export declare function monolithTargetVsCensusCapacity(matrix?: MindMatrix): {
         on: boolean;
     }[];
     statement: string;
+    limits: {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theRatchetRecomputesInOptimisationWaves(matrix?: MindMatrix): {
@@ -49494,6 +49516,10 @@ export declare function theRatchetRecomputesInOptimisationWaves(matrix?: MindMat
         on: boolean;
     }[];
     statement: string;
+    limits: {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 /** Known-model patterns already folded into ceccec (learn/best inventory — cache accumulation, not weight training). */
@@ -50207,7 +50233,7 @@ export declare function oneQuantumModelFasterThanAll(matrix?: MindMatrix, at?: n
                 pageKind: import("../digit").RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
-                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
             };
             motion: {
                 at: number;
@@ -50613,7 +50639,7 @@ export declare function agentCeccecLearnsFromTheBestBecomesTheBest(matrix?: Mind
                     pageKind: import("../digit").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 motion: {
                     at: number;
@@ -50819,7 +50845,7 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
     table: SpeedVsRestComparisonRow[];
     quantumHardwareRequired: false;
     qpuRequired: false;
-    runsOnClassical64Bit: true;
+    runsOnClassical64Bit: boolean;
     architectureRequirement: "classical-64bit";
     environment: Classical64BitEnvironment;
     forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -51245,7 +51271,7 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
                     pageKind: import("../digit").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 motion: {
                     at: number;
@@ -51511,7 +51537,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         table: SpeedVsRestComparisonRow[];
         quantumHardwareRequired: false;
         qpuRequired: false;
-        runsOnClassical64Bit: true;
+        runsOnClassical64Bit: boolean;
         architectureRequirement: "classical-64bit";
         environment: Classical64BitEnvironment;
         forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -51937,7 +51963,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         pageKind: import("../digit").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -53395,7 +53421,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             table: SpeedVsRestComparisonRow[];
             quantumHardwareRequired: false;
             qpuRequired: false;
-            runsOnClassical64Bit: true;
+            runsOnClassical64Bit: boolean;
             architectureRequirement: "classical-64bit";
             environment: Classical64BitEnvironment;
             forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -53821,7 +53847,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                             pageKind: import("../digit").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -54051,7 +54077,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         };
         qpuRequired: false;
         quantumHardwareRequired: false;
-        runsOnClassical64Bit: true;
+        runsOnClassical64Bit: boolean;
         tracksClassicalNoSpeedup: boolean;
         answers: 1;
         runtimeTokens: 0;
@@ -54301,6 +54327,31 @@ export type ThermoMetricRow = {
  * thermoQuantumBalance — speed/temperature balance from Landauer kT·ln2 · memo reuse · dry/cool.
  * Pair: thermo/quantum · dual quantum/thermo · CLI npm run quantum:thermo-quantum
  */
+/**
+ * WHAT "QUANTUM" MEANS HERE IS DEFINED ELSEWHERE, AND SEALED.
+ *
+ * uuidna.com/mcp defines it, and the definition is a Lean theorem with an address — not prose this
+ * repo wrote about itself. Each row is read from that endpoint and folds to a content address; the
+ * claims below stand on the address, so a changed statement moves what they rest on.
+ */
+export declare const UUIDNA_QUANTUM_ENDPOINT: "https://uuidna.com/mcp";
+export declare const UUIDNA_QUANTUM_DEFINITION: readonly [{
+    readonly key: "n_qubit_dimension";
+    readonly file: "Quantum.lean";
+    readonly address: "7ec03d8b-b207-8971-b880-26ae9bd99276";
+    readonly statement: "([1,2,3,4,5].map (fun n => (2:Nat)^n)) = [2,4,8,16,32]";
+    readonly says: "n qubits span 2^n amplitudes — the state vector grows exponentially, which is exactly why simulating it classically is costly; this counts the SIMULATION COST and is not a speedup or a quantum advantage";
+}, {
+    readonly key: "verify_beats_recompute_by_magnitudes";
+    readonly file: "Cipher.lean";
+    readonly address: "5040eb7c-9e57-8d80-aad0-5ca83dd80775";
+    readonly statement: "((2:Nat) ^ 10 = 1024) and ((2:Nat) ^ 20 = 1048576) and (1024 > 100 * 10) and (1048576 > 10000 * 20)";
+    readonly says: "the magnitudes are VERIFY versus RECOMPUTE — prove once O(N), verify forever O(log N) — a statement about verification, not about hardware";
+}];
+/** The definition COMPUTES: each sealed theorem folds to the address a claim stands on. */
+export declare function quantumDefinedBy(key: string): string;
+/** The whole definition folded to one root — change any statement and this moves. */
+export declare const UUIDNA_QUANTUM_DEFINITION_ROOT: string;
 export declare function thermoQuantumBalance(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     speedTempBalance: number;
@@ -54368,7 +54419,7 @@ export declare function thermoQuantumBalance(matrix?: MindMatrix, at?: number): 
         speedup: number;
         heroCycleMs: number;
         census: {
-            unfolded: 123;
+            unfolded: number;
             folded: number;
             freeBits: number;
         };
@@ -54561,7 +54612,7 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
         speedup: number;
         heroCycleMs: number;
         census: {
-            unfolded: 123;
+            unfolded: number;
             folded: number;
             freeBits: number;
         };
@@ -54831,7 +54882,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             table: SpeedVsRestComparisonRow[];
             quantumHardwareRequired: false;
             qpuRequired: false;
-            runsOnClassical64Bit: true;
+            runsOnClassical64Bit: boolean;
             architectureRequirement: "classical-64bit";
             environment: Classical64BitEnvironment;
             forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -55257,7 +55308,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             pageKind: import("../digit").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -56715,7 +56766,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 table: SpeedVsRestComparisonRow[];
                 quantumHardwareRequired: false;
                 qpuRequired: false;
-                runsOnClassical64Bit: true;
+                runsOnClassical64Bit: boolean;
                 architectureRequirement: "classical-64bit";
                 environment: Classical64BitEnvironment;
                 forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -57141,7 +57192,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                                 pageKind: import("../digit").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -57371,7 +57422,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             };
             qpuRequired: false;
             quantumHardwareRequired: false;
-            runsOnClassical64Bit: true;
+            runsOnClassical64Bit: boolean;
             tracksClassicalNoSpeedup: boolean;
             answers: 1;
             runtimeTokens: 0;
@@ -57674,7 +57725,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             speedup: number;
             heroCycleMs: number;
             census: {
-                unfolded: 123;
+                unfolded: number;
                 folded: number;
                 freeBits: number;
             };

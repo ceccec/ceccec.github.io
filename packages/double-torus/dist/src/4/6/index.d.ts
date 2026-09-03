@@ -251,12 +251,21 @@ export declare const CANDIDATE_THEOREMS: readonly {
  *  no algebraic identity to surface; per the algebraic-theorems-only law these stay identity-free BY DECISION,
  *  recorded here so the derived queue row completes instead of counting them forever. Reopen by removing a name. */
 export declare const IDENTITY_JUDGED_PROCESS: readonly string[];
+/**
+ * `proofPending` — set ONLY where `provedBy` names a function that does not exist yet.
+ * It is not a licence to leave a claim unproved: verify:theorems recomputes the set of
+ * non-resolving provedBy names and fails if it differs from the rows marked here, in either
+ * direction. So the marker cannot rot, cannot be forgotten on a new row, and cannot be left
+ * behind once the fold is written. The README counts it, and says the number out loud
+ * instead of calling all 761 atoms "computationally proven".
+ */
 export declare const THEOREM_ATOM_SEED: readonly {
     theorem: string;
     states: string;
     provedBy: string;
     home: string;
     algebraicStatement?: string;
+    proofPending?: true;
 }[];
 /** AXIOMS BECOME THEOREMS (user law, 2026-07-16: "fill the gaps in all sciences by replacing
  * axioms with theorems") — the crack law generalized from numbers to knowledge: every assumption

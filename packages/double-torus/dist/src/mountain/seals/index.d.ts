@@ -1553,3 +1553,41 @@ export declare function theCommitPushPairIsAutomatedUnderTheSecurityStandards():
     statement: string;
     boundary: string;
 };
+/**
+ * Rosetta security gaps wired — refuse paths + MCP dual + parallel backlog + reverse-collide shelved.
+ * Facet rosettaSecurityGapsWired · incompleteOpen=0 for refuse paths.
+ * Pair: rosetta/security-wire · certified=false
+ */
+export declare function rosettaSecurityGapsWired(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    rosettaSecurityGapsWired: boolean;
+    incompleteOpen: number;
+    refusePathCount: number;
+    shelvedPaths: {
+        id: string;
+        ray: number;
+        address: string;
+        pathRay: number;
+        wired: boolean;
+    }[];
+    parallelBacklogLength: 0;
+    claySolvedByThisFold: 0;
+    certified: false;
+    physicalFtlClaim: 0;
+    qpuRequired: false;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "rosetta/security-wire";
+    cli: string;
+    route: string;
+    statement: string;
+    boundary: string;
+};
+/** npm run quantum:rosetta-security-gaps-wired */
+export declare function runRosettaSecurityGapsWiredExit(_root?: string, _argv?: readonly string[]): number;

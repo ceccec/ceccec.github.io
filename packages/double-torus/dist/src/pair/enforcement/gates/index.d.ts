@@ -318,7 +318,7 @@ export declare function collectImportPathDistanceEdges(facts: EnforcementFacts):
 /**
  * Import path shows distance to other files — measurable on every edge — and folds into
  * migration measurement for compact + evenly distributed code in the src matrix.
- * Pair: import/distance · composes folder law · dissolve/flat · census 110/108 · FREE_BITS · import offenders.
+ * Pair: import/distance · composes folder law · dissolve/flat · census UNFOLDED/FOLDED · FREE_BITS · import offenders.
  */
 export declare function importPathShowsDistanceInMigrationMatrix(root?: string, facts?: EnforcementFacts): {
     computes: boolean;
@@ -337,7 +337,7 @@ export declare function importPathShowsDistanceInMigrationMatrix(root?: string, 
     evenDistribution: boolean;
     freeBits: number;
     census: {
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         indexCount: number;
     };
@@ -404,7 +404,7 @@ export declare function folderGravityMeasuredByTheCode(root?: string, facts?: En
         removed: readonly [];
     };
     census: {
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         indexCount: number;
     };
@@ -425,7 +425,7 @@ export declare function folderGravityMeasuredByTheCode(root?: string, facts?: En
 export declare function runFolderGravityMeasuredByTheCodeExit(root?: string, _argv?: readonly string[]): number;
 /**
  * Gravity dry clean — folder gravity pulls toward src · dry/clean diamond·crystal ·
- * soft clay/gravity · fold/cleanup · dissolve/flat · census 110 exact.
+ * soft clay/gravity · fold/cleanup · dissolve/flat · census 123 exact.
  * Pair: gravity/dry · dry/clean · CLI npm run quantum:gravity-dry
  * Facets: gravityPullsToSrc · dryCleanOn · diamond/crystal
  */
@@ -437,7 +437,7 @@ export declare function gravityDryClean(root?: string, facts?: EnforcementFacts)
     diamond: boolean;
     crystal: boolean;
     census: {
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         indexCount: number;
     };
@@ -461,7 +461,7 @@ export declare function runGravityDryCleanExit(root?: string, _argv?: readonly s
 /**
  * USER LAW: in src folders only index may exist (index.ts · index.vue).
  * Pair: src/index · folder/index · CLI npm run quantum:src-index
- * HARD via limits:verify · mission:gate · gaps/invisible soft stack · census 110 count.
+ * HARD via limits:verify · mission:gate · gaps/invisible soft stack · census 123 count.
  */
 export declare function srcFoldersOnlyIndexMayExist(root?: string, facts?: EnforcementFacts): {
     computes: boolean;
@@ -490,7 +490,7 @@ export declare function srcFoldersOnlyIndexMayExist(root?: string, facts?: Enfor
         kind: "style-css";
     })[];
     census: {
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         indexCount: number;
     };
@@ -514,7 +514,7 @@ export declare function runSrcFoldersOnlyIndexMayExistExit(root?: string, _argv?
  * USER LAW: no size limits as long as gravity pulls at the gates.
  * Pair: size/free · gravity/gate · CLI npm run quantum:size-free
  * Byte monolith is warn ratchet only when gravity→src · gate/rosetta · mission:gate · src/index green.
- * Census 110 remains structural count law — not a byte-size cap.
+ * Census 123 remains structural count law — not a byte-size cap.
  * Facet: noByteSizeLimitWhenGravityAtGates
  */
 export declare function noSizeLimitsAsLongAsGravityPullsAtTheGates(root?: string, facts?: EnforcementFacts): {
@@ -588,7 +588,7 @@ export declare function codebaseCompactedToMinimumTypesAndConstantsMatchingMatri
             removed: readonly [];
         };
         census: {
-            unfolded: 123;
+            unfolded: number;
             folded: number;
             indexCount: number;
         };
@@ -753,7 +753,7 @@ export declare function gatesSavedInQuantumPairs(): {
  * USER LAW: prose-encoded instruction folds collapse to ≤3-word matrix duals (path/message).
  * Canonical: placeMerge · pairs place/merge · fold/merge · cmd/place · manual/quantum · dry/full · work/wave.
  * Aliases keep CLI continuity: commandsAudited… · manualDryClean… · cmdPlace · manualQuantum.
- * Facets: placementAudited · toolsSealed · clustersMerged · drainableClosed · honestOpenNamed · census110.
+ * Facets: placementAudited · toolsSealed · clustersMerged · drainableClosed · honestOpenNamed · censusHolds.
  * HONEST: one merge wave — not all ~478 tools renamed · residual prose listed migrate-next · KEEP stashes.
  */
 export type CommandPlacementAction = 'keep' | 'moved' | 'migrate-next';
@@ -1633,11 +1633,11 @@ export declare function placeMerge(root?: string, facts?: EnforcementFacts): {
         pair: "cmd/place" | "place/audit" | "dry/full" | "manual/quantum" | "work/wave" | "dry/quantumize";
     }[];
     census: {
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         freeBits: number;
     };
-    census110: boolean;
+    censusHolds: boolean;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1707,7 +1707,7 @@ export declare function runProseScienceExit(root?: string, _argv?: readonly stri
  * Prose methods collapse to matrix — discovery law.
  * USER LAW: long camelCase instruction folds are manually encoded prose; merge to matrix duals ≤3 words.
  * Pairs: prose/matrix · fold/merge · name/shrink.
- * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · census110.
+ * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · censusHolds.
  * Compose: path/message · namingEntropy · compact/matrix · vocab/dry · place/merge · cmd/place.
  */
 export declare function proseMethodsCollapseToMatrix(root?: string, facts?: EnforcementFacts): {
@@ -1762,11 +1762,11 @@ export declare function proseMethodsCollapseToMatrix(root?: string, facts?: Enfo
         readonly note: "PROSE_NAMED_RESIDUAL_FOLDS migrate-next";
     })[];
     census: {
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         freeBits: number;
     };
-    census110: boolean;
+    censusHolds: boolean;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3010,7 +3010,7 @@ export declare const runNameShrinkExit: typeof runProseMethodsCollapseToMatrixEx
  * Planning in trinities — next wave from matrix, not wet-linear prose checklists.
  * USER LAW: planning itself runs as cross · fold · weave (3+1 nav-cross).
  * Canonical: planTrinity · pairs plan/trinity · trinity/plan · plan/cross.
- * Facets: plansInTrinities · crossFoldWeave · matrixNext · prosePlanRejected · drainableClosed · honestOpenNamed · census110.
+ * Facets: plansInTrinities · crossFoldWeave · matrixNext · prosePlanRejected · drainableClosed · honestOpenNamed · censusHolds.
  * Compose: trinity/speedup · agent/trinity · team/observe · train/analyst · waves/build · prose/matrix · place/merge · vote/build · path/message.
  * HONEST: not AGI planning · residual linear plan surfaces (imagine-next tip specs · todo-wave soft compose) named · KEEP stashes.
  */
@@ -3071,7 +3071,7 @@ export declare function planTrinity(root?: string, facts?: EnforcementFacts): {
         readonly status: "open";
         readonly note: "imagine-next tip specs · todo-wave soft compose remain";
     })[];
-    census110: boolean;
+    censusHolds: boolean;
     qpuRequired: false;
     certified: false;
     facets: {

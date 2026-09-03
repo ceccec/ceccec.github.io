@@ -25,11 +25,11 @@ export type MissionCommand = {
 /** All mission npm scripts — saved in src before agents rediscover the loop. */
 export declare const MISSION_COMMANDS: readonly MissionCommand[];
 /** Cursor agent skills — saved in src before IDE mounts (.cursor/skills/* are thin projections). */
-export declare const CURSOR_AGENT_SKILL_IDS: readonly ["ceccec-build-waves", "ceccec-census-110", "ceccec-folder-law-mission", "ceccec-learn-best", "ceccec-limits-verify", "ceccec-mission-commands"];
+export declare const CURSOR_AGENT_SKILL_IDS: readonly ["ceccec-build-waves", "ceccec-census-123", "ceccec-folder-law-mission", "ceccec-learn-best", "ceccec-limits-verify", "ceccec-mission-commands"];
 export declare function cursorAgentToolsSaved(matrix?: MindMatrix): {
     saved: boolean;
     count: 6;
-    skills: readonly ["ceccec-build-waves", "ceccec-census-110", "ceccec-folder-law-mission", "ceccec-learn-best", "ceccec-limits-verify", "ceccec-mission-commands"];
+    skills: readonly ["ceccec-build-waves", "ceccec-census-123", "ceccec-folder-law-mission", "ceccec-learn-best", "ceccec-limits-verify", "ceccec-mission-commands"];
     facets: {
         receipt: string;
         facet: string;

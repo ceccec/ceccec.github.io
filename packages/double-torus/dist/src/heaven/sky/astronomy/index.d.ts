@@ -2056,7 +2056,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
         nav: {
             computed: boolean;
             at: number;
-            observer: import("../../../water/double/earth").EarthTimespaceAt;
+            observer: __ns_up_double_torus_earth.EarthTimespaceAt;
             rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             bearingToHinge: number;
             distanceToHingeKm: number;
@@ -2064,13 +2064,13 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             nav: {
                 researched: boolean;
                 path: string;
-                at: import("../../../water/double/earth").EarthTimespaceAt;
+                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                 solutionCount: number;
-                solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                 formed: {
                     formed: boolean;
                     path: string;
-                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                     deviceEarth: {
                         proven: boolean;
                         side: "device" | "code";
@@ -2089,7 +2089,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -2127,7 +2127,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -2149,7 +2149,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     };
                     timespace: {
                         proven: boolean;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         earth: {
                             proven: boolean;
                             realised: boolean;
@@ -2244,7 +2244,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -2282,7 +2282,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -2409,9 +2409,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         bidirectional: boolean;
                         merged: string;
                     };
-                    deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                    invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                    gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                     gatewayRoot: string;
                     facets: {
                         receipt: string;
@@ -2432,9 +2432,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     closesCompassLoop: boolean;
                     deviceHueSteps: number[];
                     formed: {
-                        deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                         deviceEarth: {
                             proven: boolean;
                             side: "device" | "code";
@@ -2453,7 +2453,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -2491,7 +2491,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -2542,9 +2542,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         closesCompassLoop: boolean;
                         deviceHueSteps: number[];
                         formed: {
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -2563,7 +2563,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -2601,7 +2601,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -2667,7 +2667,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     };
                     phiNorth: number;
                     phiSouth: number;
-                    solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                    solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -2692,7 +2692,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     formed: {
                         formed: boolean;
                         path: string;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         deviceEarth: {
                             proven: boolean;
                             side: "device" | "code";
@@ -2711,7 +2711,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -2749,7 +2749,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -2771,7 +2771,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         };
                         timespace: {
                             proven: boolean;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             earth: {
                                 proven: boolean;
                                 realised: boolean;
@@ -2866,7 +2866,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -2904,7 +2904,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -3031,9 +3031,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             bidirectional: boolean;
                             merged: string;
                         };
-                        deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                         gatewayRoot: string;
                         facets: {
                             receipt: string;
@@ -3044,7 +3044,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         statement: string;
                         boundary: string;
                     };
-                    solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                    solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -3056,7 +3056,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 };
                 timespace: {
                     proven: boolean;
-                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                     earth: {
                         proven: boolean;
                         realised: boolean;
@@ -3151,7 +3151,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -3189,7 +3189,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -3389,9 +3389,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 statement: string;
                 boundary: string;
             };
-            gpsSatellites: import("../../../water/double").GpsSatellitePhaseReceipt[];
+            gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
             gpsOrbitCount: number;
-            celestialPhases: import("../../../water/double").CelestialDisplayPhase[];
+            celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -3401,7 +3401,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             statement: string;
             boundary: string;
         };
-        sunDisplay: import("../../../water/double").CelestialDisplayPhase;
+        sunDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
         celestial: {
             computed: boolean;
             count: number;
@@ -3596,7 +3596,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
         nav: {
             computed: boolean;
             at: number;
-            observer: import("../../../water/double/earth").EarthTimespaceAt;
+            observer: __ns_up_double_torus_earth.EarthTimespaceAt;
             rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             bearingToHinge: number;
             distanceToHingeKm: number;
@@ -3604,13 +3604,13 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             nav: {
                 researched: boolean;
                 path: string;
-                at: import("../../../water/double/earth").EarthTimespaceAt;
+                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                 solutionCount: number;
-                solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                 formed: {
                     formed: boolean;
                     path: string;
-                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                     deviceEarth: {
                         proven: boolean;
                         side: "device" | "code";
@@ -3629,7 +3629,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -3667,7 +3667,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -3689,7 +3689,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     };
                     timespace: {
                         proven: boolean;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         earth: {
                             proven: boolean;
                             realised: boolean;
@@ -3784,7 +3784,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -3822,7 +3822,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -3949,9 +3949,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         bidirectional: boolean;
                         merged: string;
                     };
-                    deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                    invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                    gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                     gatewayRoot: string;
                     facets: {
                         receipt: string;
@@ -3972,9 +3972,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     closesCompassLoop: boolean;
                     deviceHueSteps: number[];
                     formed: {
-                        deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                         deviceEarth: {
                             proven: boolean;
                             side: "device" | "code";
@@ -3993,7 +3993,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4031,7 +4031,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4082,9 +4082,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         closesCompassLoop: boolean;
                         deviceHueSteps: number[];
                         formed: {
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -4103,7 +4103,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -4141,7 +4141,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -4207,7 +4207,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     };
                     phiNorth: number;
                     phiSouth: number;
-                    solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                    solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -4232,7 +4232,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     formed: {
                         formed: boolean;
                         path: string;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         deviceEarth: {
                             proven: boolean;
                             side: "device" | "code";
@@ -4251,7 +4251,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4289,7 +4289,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4311,7 +4311,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         };
                         timespace: {
                             proven: boolean;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             earth: {
                                 proven: boolean;
                                 realised: boolean;
@@ -4406,7 +4406,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -4444,7 +4444,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -4571,9 +4571,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             bidirectional: boolean;
                             merged: string;
                         };
-                        deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                         gatewayRoot: string;
                         facets: {
                             receipt: string;
@@ -4584,7 +4584,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         statement: string;
                         boundary: string;
                     };
-                    solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                    solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -4596,7 +4596,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 };
                 timespace: {
                     proven: boolean;
-                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                     earth: {
                         proven: boolean;
                         realised: boolean;
@@ -4691,7 +4691,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -4729,7 +4729,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -4929,9 +4929,9 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 statement: string;
                 boundary: string;
             };
-            gpsSatellites: import("../../../water/double").GpsSatellitePhaseReceipt[];
+            gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
             gpsOrbitCount: number;
-            celestialPhases: import("../../../water/double").CelestialDisplayPhase[];
+            celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -4941,7 +4941,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             statement: string;
             boundary: string;
         };
-        moonDisplay: import("../../../water/double").CelestialDisplayPhase;
+        moonDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
         celestial: {
             computed: boolean;
             count: number;
@@ -5366,7 +5366,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         pageKind: import("../../../3/7").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -5600,7 +5600,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     pageKind: import("../../../3/7").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 facets: {
                     receipt: string;
@@ -5683,7 +5683,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 pageKind: import("../../../3/7").RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
-                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
             };
             motion: {
                 at: number;
@@ -7248,7 +7248,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 nav: {
                     computed: boolean;
                     at: number;
-                    observer: import("../../../water/double/earth").EarthTimespaceAt;
+                    observer: __ns_up_double_torus_earth.EarthTimespaceAt;
                     rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                     bearingToHinge: number;
                     distanceToHingeKm: number;
@@ -7256,13 +7256,13 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     nav: {
                         researched: boolean;
                         path: string;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         solutionCount: number;
-                        solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                        solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                         formed: {
                             formed: boolean;
                             path: string;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -7281,7 +7281,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -7319,7 +7319,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -7341,7 +7341,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             };
                             timespace: {
                                 proven: boolean;
-                                at: import("../../../water/double/earth").EarthTimespaceAt;
+                                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                 earth: {
                                     proven: boolean;
                                     realised: boolean;
@@ -7436,7 +7436,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -7474,7 +7474,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -7601,9 +7601,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 bidirectional: boolean;
                                 merged: string;
                             };
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             gatewayRoot: string;
                             facets: {
                                 receipt: string;
@@ -7624,9 +7624,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             closesCompassLoop: boolean;
                             deviceHueSteps: number[];
                             formed: {
-                                deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                 deviceEarth: {
                                     proven: boolean;
                                     side: "device" | "code";
@@ -7645,7 +7645,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -7683,7 +7683,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -7734,9 +7734,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 closesCompassLoop: boolean;
                                 deviceHueSteps: number[];
                                 formed: {
-                                    deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                    invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                    gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                     deviceEarth: {
                                         proven: boolean;
                                         side: "device" | "code";
@@ -7755,7 +7755,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -7793,7 +7793,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -7859,7 +7859,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             };
                             phiNorth: number;
                             phiSouth: number;
-                            solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                            solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -7884,7 +7884,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             formed: {
                                 formed: boolean;
                                 path: string;
-                                at: import("../../../water/double/earth").EarthTimespaceAt;
+                                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                 deviceEarth: {
                                     proven: boolean;
                                     side: "device" | "code";
@@ -7903,7 +7903,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -7941,7 +7941,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -7963,7 +7963,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 };
                                 timespace: {
                                     proven: boolean;
-                                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                     earth: {
                                         proven: boolean;
                                         realised: boolean;
@@ -8058,7 +8058,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -8096,7 +8096,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -8223,9 +8223,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     bidirectional: boolean;
                                     merged: string;
                                 };
-                                deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                 gatewayRoot: string;
                                 facets: {
                                     receipt: string;
@@ -8236,7 +8236,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                            solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -8248,7 +8248,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         };
                         timespace: {
                             proven: boolean;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             earth: {
                                 proven: boolean;
                                 realised: boolean;
@@ -8343,7 +8343,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8381,7 +8381,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8581,9 +8581,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    gpsSatellites: import("../../../water/double").GpsSatellitePhaseReceipt[];
+                    gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
                     gpsOrbitCount: number;
-                    celestialPhases: import("../../../water/double").CelestialDisplayPhase[];
+                    celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -8593,7 +8593,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                sunDisplay: import("../../../water/double").CelestialDisplayPhase;
+                sunDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
                 celestial: {
                     computed: boolean;
                     count: number;
@@ -8788,7 +8788,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 nav: {
                     computed: boolean;
                     at: number;
-                    observer: import("../../../water/double/earth").EarthTimespaceAt;
+                    observer: __ns_up_double_torus_earth.EarthTimespaceAt;
                     rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                     bearingToHinge: number;
                     distanceToHingeKm: number;
@@ -8796,13 +8796,13 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     nav: {
                         researched: boolean;
                         path: string;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         solutionCount: number;
-                        solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                        solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                         formed: {
                             formed: boolean;
                             path: string;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -8821,7 +8821,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8859,7 +8859,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8881,7 +8881,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             };
                             timespace: {
                                 proven: boolean;
-                                at: import("../../../water/double/earth").EarthTimespaceAt;
+                                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                 earth: {
                                     proven: boolean;
                                     realised: boolean;
@@ -8976,7 +8976,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9014,7 +9014,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9141,9 +9141,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 bidirectional: boolean;
                                 merged: string;
                             };
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             gatewayRoot: string;
                             facets: {
                                 receipt: string;
@@ -9164,9 +9164,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             closesCompassLoop: boolean;
                             deviceHueSteps: number[];
                             formed: {
-                                deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                 deviceEarth: {
                                     proven: boolean;
                                     side: "device" | "code";
@@ -9185,7 +9185,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9223,7 +9223,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9274,9 +9274,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 closesCompassLoop: boolean;
                                 deviceHueSteps: number[];
                                 formed: {
-                                    deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                    invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                    gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                     deviceEarth: {
                                         proven: boolean;
                                         side: "device" | "code";
@@ -9295,7 +9295,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -9333,7 +9333,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -9399,7 +9399,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             };
                             phiNorth: number;
                             phiSouth: number;
-                            solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                            solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -9424,7 +9424,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             formed: {
                                 formed: boolean;
                                 path: string;
-                                at: import("../../../water/double/earth").EarthTimespaceAt;
+                                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                 deviceEarth: {
                                     proven: boolean;
                                     side: "device" | "code";
@@ -9443,7 +9443,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9481,7 +9481,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9503,7 +9503,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 };
                                 timespace: {
                                     proven: boolean;
-                                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                     earth: {
                                         proven: boolean;
                                         realised: boolean;
@@ -9598,7 +9598,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -9636,7 +9636,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -9763,9 +9763,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     bidirectional: boolean;
                                     merged: string;
                                 };
-                                deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                 gatewayRoot: string;
                                 facets: {
                                     receipt: string;
@@ -9776,7 +9776,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                            solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                             facets: {
                                 receipt: string;
                                 facet: string;
@@ -9788,7 +9788,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         };
                         timespace: {
                             proven: boolean;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             earth: {
                                 proven: boolean;
                                 realised: boolean;
@@ -9883,7 +9883,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -9921,7 +9921,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -10121,9 +10121,9 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    gpsSatellites: import("../../../water/double").GpsSatellitePhaseReceipt[];
+                    gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
                     gpsOrbitCount: number;
-                    celestialPhases: import("../../../water/double").CelestialDisplayPhase[];
+                    celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
                     facets: {
                         receipt: string;
                         facet: string;
@@ -10133,7 +10133,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                moonDisplay: import("../../../water/double").CelestialDisplayPhase;
+                moonDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
                 celestial: {
                     computed: boolean;
                     count: number;
@@ -10558,7 +10558,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 pageKind: import("../../../3/7").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -10792,7 +10792,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             pageKind: import("../../../3/7").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         facets: {
                             receipt: string;
@@ -10875,7 +10875,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         pageKind: import("../../../3/7").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -11757,8 +11757,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11783,7 +11783,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -11807,8 +11807,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11909,8 +11909,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 }[];
                 activatedGates: number[];
                 definedChannels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -11935,7 +11935,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -11959,8 +11959,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12024,8 +12024,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12051,7 +12051,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -12113,8 +12113,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 }[];
                 activatedGates: number[];
                 definedChannels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12139,7 +12139,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -12163,8 +12163,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12265,8 +12265,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     }[];
                     activatedGates: number[];
                     definedChannels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12291,7 +12291,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -12315,8 +12315,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                         centerCount: 9;
                         channels: {
-                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                             key: string;
                             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12380,8 +12380,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12407,7 +12407,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -12444,8 +12444,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12571,8 +12571,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     }[];
                     activatedGates: number[];
                     definedChannels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12597,7 +12597,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -12621,8 +12621,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                         centerCount: 9;
                         channels: {
-                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                             key: string;
                             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12723,8 +12723,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         }[];
                         activatedGates: number[];
                         definedChannels: {
-                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                             key: string;
                             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12749,7 +12749,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             designSunArcDeg: number;
                             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                             bodyCount: 13;
-                            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                             starts: number[];
                             sample: {
                                 gate: number;
@@ -12773,8 +12773,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                             centerCount: 9;
                             channels: {
-                                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                                 key: string;
                                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12838,8 +12838,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                         centerCount: 9;
                         channels: {
-                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                             key: string;
                             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -12865,7 +12865,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -12902,8 +12902,8 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13176,8 +13176,8 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
     }[];
     activatedGates: number[];
     definedChannels: {
-        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
         key: string;
         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13202,7 +13202,7 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
         starts: number[];
         sample: {
             gate: number;
@@ -13226,8 +13226,8 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13335,8 +13335,8 @@ export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, b
         }[];
         activatedGates: number[];
         definedChannels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13361,7 +13361,7 @@ export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -13385,8 +13385,8 @@ export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, b
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13450,8 +13450,8 @@ export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, b
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13477,7 +13477,7 @@ export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, b
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
         starts: number[];
         sample: {
             gate: number;
@@ -13590,8 +13590,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
         }[];
         activatedGates: number[];
         definedChannels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13616,7 +13616,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -13640,8 +13640,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13742,8 +13742,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13768,7 +13768,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -13792,8 +13792,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13857,8 +13857,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -13884,7 +13884,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -13921,8 +13921,8 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -14070,8 +14070,8 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -14096,7 +14096,7 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -14120,8 +14120,8 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -14222,8 +14222,8 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                 }[];
                 activatedGates: number[];
                 definedChannels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -14248,7 +14248,7 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -14272,8 +14272,8 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -14337,8 +14337,8 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -14364,7 +14364,7 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -14401,8 +14401,8 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -15885,7 +15885,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             nav: {
                 computed: boolean;
                 at: number;
-                observer: import("../../../water/double/earth").EarthTimespaceAt;
+                observer: __ns_up_double_torus_earth.EarthTimespaceAt;
                 rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 bearingToHinge: number;
                 distanceToHingeKm: number;
@@ -15893,13 +15893,13 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 nav: {
                     researched: boolean;
                     path: string;
-                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                     solutionCount: number;
-                    solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                    solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                     formed: {
                         formed: boolean;
                         path: string;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         deviceEarth: {
                             proven: boolean;
                             side: "device" | "code";
@@ -15918,7 +15918,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -15956,7 +15956,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -15978,7 +15978,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         };
                         timespace: {
                             proven: boolean;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             earth: {
                                 proven: boolean;
                                 realised: boolean;
@@ -16073,7 +16073,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16111,7 +16111,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16238,9 +16238,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             bidirectional: boolean;
                             merged: string;
                         };
-                        deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                         gatewayRoot: string;
                         facets: {
                             receipt: string;
@@ -16261,9 +16261,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         closesCompassLoop: boolean;
                         deviceHueSteps: number[];
                         formed: {
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -16282,7 +16282,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16320,7 +16320,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16371,9 +16371,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             closesCompassLoop: boolean;
                             deviceHueSteps: number[];
                             formed: {
-                                deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                 deviceEarth: {
                                     proven: boolean;
                                     side: "device" | "code";
@@ -16392,7 +16392,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -16430,7 +16430,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -16496,7 +16496,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         };
                         phiNorth: number;
                         phiSouth: number;
-                        solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                        solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -16521,7 +16521,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         formed: {
                             formed: boolean;
                             path: string;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -16540,7 +16540,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16578,7 +16578,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16600,7 +16600,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             };
                             timespace: {
                                 proven: boolean;
-                                at: import("../../../water/double/earth").EarthTimespaceAt;
+                                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                 earth: {
                                     proven: boolean;
                                     realised: boolean;
@@ -16695,7 +16695,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -16733,7 +16733,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -16860,9 +16860,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 bidirectional: boolean;
                                 merged: string;
                             };
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             gatewayRoot: string;
                             facets: {
                                 receipt: string;
@@ -16873,7 +16873,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             statement: string;
                             boundary: string;
                         };
-                        solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                        solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -16885,7 +16885,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     };
                     timespace: {
                         proven: boolean;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         earth: {
                             proven: boolean;
                             realised: boolean;
@@ -16980,7 +16980,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17018,7 +17018,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17218,9 +17218,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                gpsSatellites: import("../../../water/double").GpsSatellitePhaseReceipt[];
+                gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
                 gpsOrbitCount: number;
-                celestialPhases: import("../../../water/double").CelestialDisplayPhase[];
+                celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -17230,7 +17230,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            sunDisplay: import("../../../water/double").CelestialDisplayPhase;
+            sunDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
             celestial: {
                 computed: boolean;
                 count: number;
@@ -17425,7 +17425,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             nav: {
                 computed: boolean;
                 at: number;
-                observer: import("../../../water/double/earth").EarthTimespaceAt;
+                observer: __ns_up_double_torus_earth.EarthTimespaceAt;
                 rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 bearingToHinge: number;
                 distanceToHingeKm: number;
@@ -17433,13 +17433,13 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 nav: {
                     researched: boolean;
                     path: string;
-                    at: import("../../../water/double/earth").EarthTimespaceAt;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
                     solutionCount: number;
-                    solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                    solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                     formed: {
                         formed: boolean;
                         path: string;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         deviceEarth: {
                             proven: boolean;
                             side: "device" | "code";
@@ -17458,7 +17458,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17496,7 +17496,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17518,7 +17518,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         };
                         timespace: {
                             proven: boolean;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             earth: {
                                 proven: boolean;
                                 realised: boolean;
@@ -17613,7 +17613,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -17651,7 +17651,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -17778,9 +17778,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             bidirectional: boolean;
                             merged: string;
                         };
-                        deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                        gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                         gatewayRoot: string;
                         facets: {
                             receipt: string;
@@ -17801,9 +17801,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         closesCompassLoop: boolean;
                         deviceHueSteps: number[];
                         formed: {
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -17822,7 +17822,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -17860,7 +17860,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -17911,9 +17911,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             closesCompassLoop: boolean;
                             deviceHueSteps: number[];
                             formed: {
-                                deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                                gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                                 deviceEarth: {
                                     proven: boolean;
                                     side: "device" | "code";
@@ -17932,7 +17932,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -17970,7 +17970,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -18036,7 +18036,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         };
                         phiNorth: number;
                         phiSouth: number;
-                        solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                        solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -18061,7 +18061,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         formed: {
                             formed: boolean;
                             path: string;
-                            at: import("../../../water/double/earth").EarthTimespaceAt;
+                            at: __ns_up_double_torus_earth.EarthTimespaceAt;
                             deviceEarth: {
                                 proven: boolean;
                                 side: "device" | "code";
@@ -18080,7 +18080,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -18118,7 +18118,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -18140,7 +18140,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             };
                             timespace: {
                                 proven: boolean;
-                                at: import("../../../water/double/earth").EarthTimespaceAt;
+                                at: __ns_up_double_torus_earth.EarthTimespaceAt;
                                 earth: {
                                     proven: boolean;
                                     realised: boolean;
@@ -18235,7 +18235,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -18273,7 +18273,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -18400,9 +18400,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 bidirectional: boolean;
                                 merged: string;
                             };
-                            deviceGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            invertedGateways: import("../../../water/double/earth").ComputableEarthGateway[];
-                            gateways: import("../../../water/double/earth").ComputableEarthGateway[];
+                            deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                            gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
                             gatewayRoot: string;
                             facets: {
                                 receipt: string;
@@ -18413,7 +18413,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             statement: string;
                             boundary: string;
                         };
-                        solutions: import("../../../water/double/earth").EarthNavigationSolution[];
+                        solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
                         facets: {
                             receipt: string;
                             facet: string;
@@ -18425,7 +18425,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     };
                     timespace: {
                         proven: boolean;
-                        at: import("../../../water/double/earth").EarthTimespaceAt;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
                         earth: {
                             proven: boolean;
                             realised: boolean;
@@ -18520,7 +18520,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -18558,7 +18558,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -18758,9 +18758,9 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                gpsSatellites: import("../../../water/double").GpsSatellitePhaseReceipt[];
+                gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
                 gpsOrbitCount: number;
-                celestialPhases: import("../../../water/double").CelestialDisplayPhase[];
+                celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -18770,7 +18770,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            moonDisplay: import("../../../water/double").CelestialDisplayPhase;
+            moonDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
             celestial: {
                 computed: boolean;
                 count: number;
@@ -19195,7 +19195,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             pageKind: import("../../../3/7").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -19429,7 +19429,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         pageKind: import("../../../3/7").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     facets: {
                         receipt: string;
@@ -19512,7 +19512,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     pageKind: import("../../../3/7").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 motion: {
                     at: number;
@@ -20394,8 +20394,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         }[];
         activatedGates: number[];
         definedChannels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20420,7 +20420,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -20444,8 +20444,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20546,8 +20546,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20572,7 +20572,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -20596,8 +20596,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20661,8 +20661,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20688,7 +20688,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -20750,8 +20750,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             }[];
             activatedGates: number[];
             definedChannels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20776,7 +20776,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -20800,8 +20800,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20902,8 +20902,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 }[];
                 activatedGates: number[];
                 definedChannels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -20928,7 +20928,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -20952,8 +20952,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21017,8 +21017,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21044,7 +21044,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -21081,8 +21081,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
             centerCount: 9;
             channels: {
-                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                 key: string;
                 from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                 to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21208,8 +21208,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 }[];
                 activatedGates: number[];
                 definedChannels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21234,7 +21234,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -21258,8 +21258,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21360,8 +21360,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     }[];
                     activatedGates: number[];
                     definedChannels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21386,7 +21386,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -21410,8 +21410,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                         centerCount: 9;
                         channels: {
-                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                             key: string;
                             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21475,8 +21475,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                     centerCount: 9;
                     channels: {
-                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                         key: string;
                         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21502,7 +21502,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -21539,8 +21539,8 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
                 centerCount: 9;
                 channels: {
-                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+                    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+                    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
                     key: string;
                     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
                     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -21659,3 +21659,3257 @@ export declare function drawAstronomyProjection(ctx: CanvasRenderingContext2D, w
     dark?: boolean;
     reduce?: boolean;
 }): void;
+import * as __ns_up_double_torus_earth from '../../../water/double/earth';
+/** Hero day phase — lazy require breaks plasma/sun cycles. */
+export declare function sunDayPhase(at?: number, matrix?: MindMatrix): {
+    phase: number;
+    cycleMs: number;
+    receipt: string;
+};
+/** Schumann day-side ionosphere facet — structural ELF model; canonical path src/resonance. */
+export declare function sunSchumannDaySideIonosphere(at?: number, matrix?: MindMatrix): {
+    harmonised: boolean;
+    computes: boolean;
+    at: number;
+    harmonics: {
+        hz: number;
+        mode: number;
+        phase: number;
+        hue: number;
+        receipt: string;
+    }[];
+    schumannPhase: number;
+    heroPhase: number;
+    ionospherePhase: number;
+    phaseDelta: number;
+    phaseLocked: boolean;
+    bound: {
+        bound: boolean;
+        liveApis: string[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    blood: {
+        isBlood: boolean;
+        bloodstream: boolean;
+        baseHue: number;
+        heart: {
+            hsl: string;
+            receipt: string;
+            i: number;
+            name: string;
+            band: string;
+            hue: number;
+        };
+        count: number;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    waves: import("../../../types").WaveCoordination;
+    breath: number;
+    dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
+    freqApis: {
+        decoded: boolean;
+        sources: {
+            receipt: string;
+            api: string;
+            band: string;
+            data: string;
+            auth: string;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    modulatedReceipt: string;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** One gate — solar constants, obliquity coupling, hero day phase, Schumann day-side, nav display phase. */
+export declare function sunComputes(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    sun: {
+        kind: "star";
+        name: string;
+        au: number;
+        emits: boolean;
+        schwarzschildM: number;
+        schwarzschildBand: boolean;
+        lobe: string;
+        exactMatch: boolean;
+        receipt: string;
+    };
+    obliquityDeg: number;
+    dayPhase: {
+        phase: number;
+        cycleMs: number;
+        receipt: string;
+    };
+    schumann: {
+        harmonised: boolean;
+        computes: boolean;
+        at: number;
+        harmonics: {
+            hz: number;
+            mode: number;
+            phase: number;
+            hue: number;
+            receipt: string;
+        }[];
+        schumannPhase: number;
+        heroPhase: number;
+        ionospherePhase: number;
+        phaseDelta: number;
+        phaseLocked: boolean;
+        bound: {
+            bound: boolean;
+            liveApis: string[];
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        blood: {
+            isBlood: boolean;
+            bloodstream: boolean;
+            baseHue: number;
+            heart: {
+                hsl: string;
+                receipt: string;
+                i: number;
+                name: string;
+                band: string;
+                hue: number;
+            };
+            count: number;
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        waves: import("../../../types").WaveCoordination;
+        breath: number;
+        dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
+        freqApis: {
+            decoded: boolean;
+            sources: {
+                receipt: string;
+                api: string;
+                band: string;
+                data: string;
+                auth: string;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        modulatedReceipt: string;
+        facets: ({
+            facet: string;
+            on: boolean;
+        } & {
+            receipt: string;
+        })[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    nav: {
+        computed: boolean;
+        at: number;
+        observer: __ns_up_double_torus_earth.EarthTimespaceAt;
+        rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
+        bearingToHinge: number;
+        distanceToHingeKm: number;
+        obliquityDeg: number;
+        nav: {
+            researched: boolean;
+            path: string;
+            at: __ns_up_double_torus_earth.EarthTimespaceAt;
+            solutionCount: number;
+            solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
+            formed: {
+                formed: boolean;
+                path: string;
+                at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                deviceEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                invertedEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                timespace: {
+                    proven: boolean;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                    earth: {
+                        proven: boolean;
+                        realised: boolean;
+                        torus1: {
+                            torus: 1;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        torus2: {
+                            torus: 2;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        surface: {
+                            rendered: boolean;
+                            tori: number;
+                            genus: number;
+                            euler: number;
+                            areas: number;
+                            perLobe: number;
+                            majorRadius: number;
+                            minorRadius: number;
+                            lobeOffset: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        homology: {
+                            closed: boolean;
+                            cells: {
+                                c0: number;
+                                c1: number;
+                                c2: number;
+                            };
+                            boundary1: number[][];
+                            boundary2: number[][];
+                            chainComplex: boolean;
+                            betti: number[];
+                            euler: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        fold: {
+                            forward: string;
+                            reverse: string;
+                            merged: string;
+                        };
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        count: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    deviceEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    invertedEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    earthSurface: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    invertedSurface: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    coexist: {
+                        forward: string;
+                        reverse: string;
+                        bidirectional: boolean;
+                        merged: string;
+                    };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                model: {
+                    proven: boolean;
+                    realised: boolean;
+                    torus1: {
+                        torus: 1;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    torus2: {
+                        torus: 2;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    surface: {
+                        rendered: boolean;
+                        tori: number;
+                        genus: number;
+                        euler: number;
+                        areas: number;
+                        perLobe: number;
+                        majorRadius: number;
+                        minorRadius: number;
+                        lobeOffset: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    homology: {
+                        closed: boolean;
+                        cells: {
+                            c0: number;
+                            c1: number;
+                            c2: number;
+                        };
+                        boundary1: number[][];
+                        boundary2: number[][];
+                        chainComplex: boolean;
+                        betti: number[];
+                        euler: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    fold: {
+                        forward: string;
+                        reverse: string;
+                        merged: string;
+                    };
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    count: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                formation: {
+                    forward: string;
+                    reverse: string;
+                    bidirectional: boolean;
+                    merged: string;
+                };
+                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                gatewayRoot: string;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            compass: {
+                impossible: boolean;
+                cardinalCount: number;
+                cardinalDeg: number;
+                gatewayCount: number;
+                gatewayDeg: number;
+                cardinalCircuit3: number;
+                closesCompassLoop: boolean;
+                deviceHueSteps: number[];
+                formed: {
+                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    deviceEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    invertedEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    root: string;
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            sixty: {
+                proven: boolean;
+                sixfoldParts: number;
+                sixfoldDeg: number;
+                halfHexDeg: number;
+                cardinalDeg: number;
+                gatewayDeg: number;
+                cardinalViaHex: boolean;
+                hexRays: number[];
+                gatewayBearings: number[];
+                compass: {
+                    impossible: boolean;
+                    cardinalCount: number;
+                    cardinalDeg: number;
+                    gatewayCount: number;
+                    gatewayDeg: number;
+                    cardinalCircuit3: number;
+                    closesCompassLoop: boolean;
+                    deviceHueSteps: number[];
+                    formed: {
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        deviceEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        invertedEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        root: string;
+                    };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            poles: {
+                proven: boolean;
+                north: {
+                    name: "north";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                };
+                south: {
+                    name: "south";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                };
+                deviceApex: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                invertedApex: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                phiNorth: number;
+                phiSouth: number;
+                solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            neverMiss: {
+                proven: boolean;
+                gatewayCircuit: {
+                    step: number;
+                    bearing: number;
+                    slug: string;
+                    realm: "proven" | "animated" | "presented";
+                    trinityLeg: "fold" | "cross" | "weave";
+                    glyph: string;
+                }[];
+                hexEvenSteps: number[];
+                wiringSlugs: string[];
+                formed: {
+                    formed: boolean;
+                    path: string;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                    deviceEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    invertedEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    timespace: {
+                        proven: boolean;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                        earth: {
+                            proven: boolean;
+                            realised: boolean;
+                            torus1: {
+                                torus: 1;
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                apexZ: number;
+                                polarity: number;
+                                receipt: string;
+                            }[];
+                            torus2: {
+                                torus: 2;
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                apexZ: number;
+                                polarity: number;
+                                receipt: string;
+                            }[];
+                            surface: {
+                                rendered: boolean;
+                                tori: number;
+                                genus: number;
+                                euler: number;
+                                areas: number;
+                                perLobe: number;
+                                majorRadius: number;
+                                minorRadius: number;
+                                lobeOffset: number;
+                                root: string;
+                                statement: string;
+                                boundary: string;
+                            };
+                            homology: {
+                                closed: boolean;
+                                cells: {
+                                    c0: number;
+                                    c1: number;
+                                    c2: number;
+                                };
+                                boundary1: number[][];
+                                boundary2: number[][];
+                                chainComplex: boolean;
+                                betti: number[];
+                                euler: number;
+                                root: string;
+                                statement: string;
+                                boundary: string;
+                            };
+                            fold: {
+                                forward: string;
+                                reverse: string;
+                                merged: string;
+                            };
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            count: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        deviceEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        invertedEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        earthSurface: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        invertedSurface: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        coexist: {
+                            forward: string;
+                            reverse: string;
+                            bidirectional: boolean;
+                            merged: string;
+                        };
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    model: {
+                        proven: boolean;
+                        realised: boolean;
+                        torus1: {
+                            torus: 1;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        torus2: {
+                            torus: 2;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        surface: {
+                            rendered: boolean;
+                            tori: number;
+                            genus: number;
+                            euler: number;
+                            areas: number;
+                            perLobe: number;
+                            majorRadius: number;
+                            minorRadius: number;
+                            lobeOffset: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        homology: {
+                            closed: boolean;
+                            cells: {
+                                c0: number;
+                                c1: number;
+                                c2: number;
+                            };
+                            boundary1: number[][];
+                            boundary2: number[][];
+                            chainComplex: boolean;
+                            betti: number[];
+                            euler: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        fold: {
+                            forward: string;
+                            reverse: string;
+                            merged: string;
+                        };
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        count: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    formation: {
+                        forward: string;
+                        reverse: string;
+                        bidirectional: boolean;
+                        merged: string;
+                    };
+                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gatewayRoot: string;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            timespace: {
+                proven: boolean;
+                at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                earth: {
+                    proven: boolean;
+                    realised: boolean;
+                    torus1: {
+                        torus: 1;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    torus2: {
+                        torus: 2;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    surface: {
+                        rendered: boolean;
+                        tori: number;
+                        genus: number;
+                        euler: number;
+                        areas: number;
+                        perLobe: number;
+                        majorRadius: number;
+                        minorRadius: number;
+                        lobeOffset: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    homology: {
+                        closed: boolean;
+                        cells: {
+                            c0: number;
+                            c1: number;
+                            c2: number;
+                        };
+                        boundary1: number[][];
+                        boundary2: number[][];
+                        chainComplex: boolean;
+                        betti: number[];
+                        euler: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    fold: {
+                        forward: string;
+                        reverse: string;
+                        merged: string;
+                    };
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    count: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                deviceEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                invertedEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                earthSurface: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                invertedSurface: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                coexist: {
+                    forward: string;
+                    reverse: string;
+                    bidirectional: boolean;
+                    merged: string;
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        celestial: {
+            computed: boolean;
+            count: number;
+            matched: number;
+            bodies: ({
+                kind: "planet";
+                name: string;
+                au: number;
+                periodYr: number;
+                x: number;
+                y: number;
+                radiusComputed: number;
+                radiusMatch: boolean;
+                auStable: boolean;
+                periodStable: boolean;
+                orbitClosed: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            } | {
+                kind: "star";
+                name: string;
+                au: number;
+                emits: boolean;
+                schwarzschildM: number;
+                schwarzschildBand: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            } | {
+                kind: "satellite";
+                name: string;
+                inclinationDeg: number;
+                nodalPeriodYr: number;
+                earthRadiusKm: number;
+                reflects: string;
+                emits: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            } | {
+                kind: "major-moon";
+                name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+                parent: "Jupiter" | "Saturn" | "Neptune";
+                periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+                radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+                orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+                x: number;
+                y: number;
+                orbitClosed: boolean;
+                periodStable: boolean;
+                parentStable: boolean;
+                radiusStable: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            })[];
+            planets: {
+                kind: "planet";
+                name: string;
+                au: number;
+                periodYr: number;
+                x: number;
+                y: number;
+                radiusComputed: number;
+                radiusMatch: boolean;
+                auStable: boolean;
+                periodStable: boolean;
+                orbitClosed: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            }[];
+            sun: {
+                kind: "star";
+                name: string;
+                au: number;
+                emits: boolean;
+                schwarzschildM: number;
+                schwarzschildBand: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            };
+            moon: {
+                kind: "satellite";
+                name: string;
+                inclinationDeg: number;
+                nodalPeriodYr: number;
+                earthRadiusKm: number;
+                reflects: string;
+                emits: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            };
+            majorMoons: {
+                kind: "major-moon";
+                name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+                parent: "Jupiter" | "Saturn" | "Neptune";
+                periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+                radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+                orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+                x: number;
+                y: number;
+                orbitClosed: boolean;
+                periodStable: boolean;
+                parentStable: boolean;
+                radiusStable: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        astronomy: {
+            cited: boolean;
+            report: {
+                id: string;
+                title: string;
+                published: string;
+                url: string;
+                instruments: readonly ["LIGO Hanford", "LIGO Livingston", "Virgo", "KAGRA"];
+                observingWindow: string;
+                highlights: string[];
+                simulationParams: {
+                    eventId: string;
+                    m1Solar: number;
+                    m2Solar: number;
+                    mfSolar: number;
+                    chiFinal: number;
+                    snrNetwork: number;
+                    strainAmplitude: number;
+                    ringdownF220Hz: number;
+                    ringdownGamma220Hz: number;
+                    catalogTotalEvents: number;
+                    catalogNewEvents: number;
+                };
+            };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
+        gpsOrbitCount: number;
+        celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    sunDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
+    celestial: {
+        computed: boolean;
+        count: number;
+        matched: number;
+        bodies: ({
+            kind: "planet";
+            name: string;
+            au: number;
+            periodYr: number;
+            x: number;
+            y: number;
+            radiusComputed: number;
+            radiusMatch: boolean;
+            auStable: boolean;
+            periodStable: boolean;
+            orbitClosed: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        } | {
+            kind: "star";
+            name: string;
+            au: number;
+            emits: boolean;
+            schwarzschildM: number;
+            schwarzschildBand: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        } | {
+            kind: "satellite";
+            name: string;
+            inclinationDeg: number;
+            nodalPeriodYr: number;
+            earthRadiusKm: number;
+            reflects: string;
+            emits: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        } | {
+            kind: "major-moon";
+            name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+            parent: "Jupiter" | "Saturn" | "Neptune";
+            periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+            radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+            orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+            x: number;
+            y: number;
+            orbitClosed: boolean;
+            periodStable: boolean;
+            parentStable: boolean;
+            radiusStable: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        })[];
+        planets: {
+            kind: "planet";
+            name: string;
+            au: number;
+            periodYr: number;
+            x: number;
+            y: number;
+            radiusComputed: number;
+            radiusMatch: boolean;
+            auStable: boolean;
+            periodStable: boolean;
+            orbitClosed: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        }[];
+        sun: {
+            kind: "star";
+            name: string;
+            au: number;
+            emits: boolean;
+            schwarzschildM: number;
+            schwarzschildBand: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        };
+        moon: {
+            kind: "satellite";
+            name: string;
+            inclinationDeg: number;
+            nodalPeriodYr: number;
+            earthRadiusKm: number;
+            reflects: string;
+            emits: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        };
+        majorMoons: {
+            kind: "major-moon";
+            name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+            parent: "Jupiter" | "Saturn" | "Neptune";
+            periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+            radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+            orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+            x: number;
+            y: number;
+            orbitClosed: boolean;
+            periodStable: boolean;
+            parentStable: boolean;
+            radiusStable: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+import * as __ns_up_mountain_geometry from '../../../mountain/geometry';
+/** Synodic month phase (display) — ~29.53059 d; hero-clock mapped, not JPL lunar ephemeris. */
+export declare const SYNODIC_MONTH_DAYS = 29.53059;
+export declare function moonSynodicPhase(at?: number): {
+    phase: number;
+    synodicDays: number;
+    receipt: string;
+};
+/** Tidal lock metaphor — same face toward Earth; reflector lobe, no self-emission. */
+export declare function moonTidalLockMetaphor(matrix?: MindMatrix): {
+    locked: boolean;
+    inclinationDeg: number;
+    nodalPeriodYr: number;
+    sunMoon: {
+        paired: boolean;
+        sun: {
+            body: string;
+            role: string;
+            emits: boolean;
+            lobe: string;
+            root: string;
+        };
+        moon: {
+            body: string;
+            role: string;
+            emits: boolean;
+            lobe: string;
+            reflects: string;
+            root: string;
+        };
+        reflects: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    moon: {
+        kind: "satellite";
+        name: string;
+        inclinationDeg: number;
+        nodalPeriodYr: number;
+        earthRadiusKm: number;
+        reflects: string;
+        emits: boolean;
+        lobe: string;
+        exactMatch: boolean;
+        receipt: string;
+    };
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** Merkaba night-side — outer shell phase from dual-Earth counter-rotation. */
+export declare function moonMerkabaNightSide(at?: number, matrix?: MindMatrix): {
+    nightSide: __ns_up_vortex_math.BothEarthsRotationShell;
+    outerPhase: number;
+    rotates: boolean;
+    root: string;
+    receipt: string;
+};
+/** One gate — lunar phase, tidal lock, merkaba night-side, gateway nav moon anchor at call time. */
+export declare function moonComputes(matrix?: MindMatrix, at?: number): {
+    computes: boolean;
+    moon: {
+        kind: "satellite";
+        name: string;
+        inclinationDeg: number;
+        nodalPeriodYr: number;
+        earthRadiusKm: number;
+        reflects: string;
+        emits: boolean;
+        lobe: string;
+        exactMatch: boolean;
+        receipt: string;
+    };
+    synodic: {
+        phase: number;
+        synodicDays: number;
+        receipt: string;
+    };
+    tidal: {
+        locked: boolean;
+        inclinationDeg: number;
+        nodalPeriodYr: number;
+        sunMoon: {
+            paired: boolean;
+            sun: {
+                body: string;
+                role: string;
+                emits: boolean;
+                lobe: string;
+                root: string;
+            };
+            moon: {
+                body: string;
+                role: string;
+                emits: boolean;
+                lobe: string;
+                reflects: string;
+                root: string;
+            };
+            reflects: boolean;
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        moon: {
+            kind: "satellite";
+            name: string;
+            inclinationDeg: number;
+            nodalPeriodYr: number;
+            earthRadiusKm: number;
+            reflects: string;
+            emits: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        };
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    nightSide: {
+        nightSide: __ns_up_vortex_math.BothEarthsRotationShell;
+        outerPhase: number;
+        rotates: boolean;
+        root: string;
+        receipt: string;
+    };
+    nav: {
+        computed: boolean;
+        at: number;
+        observer: __ns_up_double_torus_earth.EarthTimespaceAt;
+        rotation: __ns_up_vortex_math.BothEarthsMerkabaRotation;
+        bearingToHinge: number;
+        distanceToHingeKm: number;
+        obliquityDeg: number;
+        nav: {
+            researched: boolean;
+            path: string;
+            at: __ns_up_double_torus_earth.EarthTimespaceAt;
+            solutionCount: number;
+            solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
+            formed: {
+                formed: boolean;
+                path: string;
+                at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                deviceEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                invertedEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                timespace: {
+                    proven: boolean;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                    earth: {
+                        proven: boolean;
+                        realised: boolean;
+                        torus1: {
+                            torus: 1;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        torus2: {
+                            torus: 2;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        surface: {
+                            rendered: boolean;
+                            tori: number;
+                            genus: number;
+                            euler: number;
+                            areas: number;
+                            perLobe: number;
+                            majorRadius: number;
+                            minorRadius: number;
+                            lobeOffset: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        homology: {
+                            closed: boolean;
+                            cells: {
+                                c0: number;
+                                c1: number;
+                                c2: number;
+                            };
+                            boundary1: number[][];
+                            boundary2: number[][];
+                            chainComplex: boolean;
+                            betti: number[];
+                            euler: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        fold: {
+                            forward: string;
+                            reverse: string;
+                            merged: string;
+                        };
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        count: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    deviceEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    invertedEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    earthSurface: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    invertedSurface: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    coexist: {
+                        forward: string;
+                        reverse: string;
+                        bidirectional: boolean;
+                        merged: string;
+                    };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                model: {
+                    proven: boolean;
+                    realised: boolean;
+                    torus1: {
+                        torus: 1;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    torus2: {
+                        torus: 2;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    surface: {
+                        rendered: boolean;
+                        tori: number;
+                        genus: number;
+                        euler: number;
+                        areas: number;
+                        perLobe: number;
+                        majorRadius: number;
+                        minorRadius: number;
+                        lobeOffset: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    homology: {
+                        closed: boolean;
+                        cells: {
+                            c0: number;
+                            c1: number;
+                            c2: number;
+                        };
+                        boundary1: number[][];
+                        boundary2: number[][];
+                        chainComplex: boolean;
+                        betti: number[];
+                        euler: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    fold: {
+                        forward: string;
+                        reverse: string;
+                        merged: string;
+                    };
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    count: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                formation: {
+                    forward: string;
+                    reverse: string;
+                    bidirectional: boolean;
+                    merged: string;
+                };
+                deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                gatewayRoot: string;
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            compass: {
+                impossible: boolean;
+                cardinalCount: number;
+                cardinalDeg: number;
+                gatewayCount: number;
+                gatewayDeg: number;
+                cardinalCircuit3: number;
+                closesCompassLoop: boolean;
+                deviceHueSteps: number[];
+                formed: {
+                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    deviceEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    invertedEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    root: string;
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            sixty: {
+                proven: boolean;
+                sixfoldParts: number;
+                sixfoldDeg: number;
+                halfHexDeg: number;
+                cardinalDeg: number;
+                gatewayDeg: number;
+                cardinalViaHex: boolean;
+                hexRays: number[];
+                gatewayBearings: number[];
+                compass: {
+                    impossible: boolean;
+                    cardinalCount: number;
+                    cardinalDeg: number;
+                    gatewayCount: number;
+                    gatewayDeg: number;
+                    cardinalCircuit3: number;
+                    closesCompassLoop: boolean;
+                    deviceHueSteps: number[];
+                    formed: {
+                        deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                        deviceEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        invertedEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        root: string;
+                    };
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            poles: {
+                proven: boolean;
+                north: {
+                    name: "north";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                };
+                south: {
+                    name: "south";
+                    bearing: number;
+                    x: number;
+                    y: number;
+                };
+                deviceApex: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                invertedApex: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                phiNorth: number;
+                phiSouth: number;
+                solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            neverMiss: {
+                proven: boolean;
+                gatewayCircuit: {
+                    step: number;
+                    bearing: number;
+                    slug: string;
+                    realm: "proven" | "animated" | "presented";
+                    trinityLeg: "fold" | "cross" | "weave";
+                    glyph: string;
+                }[];
+                hexEvenSteps: number[];
+                wiringSlugs: string[];
+                formed: {
+                    formed: boolean;
+                    path: string;
+                    at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                    deviceEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    invertedEarth: {
+                        proven: boolean;
+                        side: "device" | "code";
+                        trinityRays: readonly [string, string, string];
+                        apex: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        poles: {
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            z: number;
+                            slantFromApex: number;
+                            receipt: string;
+                        }[];
+                        faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                        baseArea: number;
+                        volume: number;
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    timespace: {
+                        proven: boolean;
+                        at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                        earth: {
+                            proven: boolean;
+                            realised: boolean;
+                            torus1: {
+                                torus: 1;
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                apexZ: number;
+                                polarity: number;
+                                receipt: string;
+                            }[];
+                            torus2: {
+                                torus: 2;
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                apexZ: number;
+                                polarity: number;
+                                receipt: string;
+                            }[];
+                            surface: {
+                                rendered: boolean;
+                                tori: number;
+                                genus: number;
+                                euler: number;
+                                areas: number;
+                                perLobe: number;
+                                majorRadius: number;
+                                minorRadius: number;
+                                lobeOffset: number;
+                                root: string;
+                                statement: string;
+                                boundary: string;
+                            };
+                            homology: {
+                                closed: boolean;
+                                cells: {
+                                    c0: number;
+                                    c1: number;
+                                    c2: number;
+                                };
+                                boundary1: number[][];
+                                boundary2: number[][];
+                                chainComplex: boolean;
+                                betti: number[];
+                                euler: number;
+                                root: string;
+                                statement: string;
+                                boundary: string;
+                            };
+                            fold: {
+                                forward: string;
+                                reverse: string;
+                                merged: string;
+                            };
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            count: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        deviceEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        invertedEarth: {
+                            proven: boolean;
+                            side: "device" | "code";
+                            trinityRays: readonly [string, string, string];
+                            apex: {
+                                x: number;
+                                y: number;
+                                z: number;
+                            };
+                            poles: {
+                                name: "north" | "east" | "south" | "west";
+                                bearing: number;
+                                x: number;
+                                y: number;
+                                z: number;
+                                slantFromApex: number;
+                                receipt: string;
+                            }[];
+                            faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                            baseArea: number;
+                            volume: number;
+                            proofs: {
+                                task: string;
+                                expr: string;
+                                computed: number;
+                                expected: number;
+                                on: boolean;
+                                receipt: string;
+                            }[];
+                            facets: {
+                                receipt: string;
+                                facet: string;
+                                on: boolean;
+                            }[];
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        earthSurface: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        invertedSurface: {
+                            x: number;
+                            y: number;
+                            z: number;
+                        };
+                        coexist: {
+                            forward: string;
+                            reverse: string;
+                            bidirectional: boolean;
+                            merged: string;
+                        };
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    model: {
+                        proven: boolean;
+                        realised: boolean;
+                        torus1: {
+                            torus: 1;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        torus2: {
+                            torus: 2;
+                            name: "north" | "east" | "south" | "west";
+                            bearing: number;
+                            x: number;
+                            y: number;
+                            apexZ: number;
+                            polarity: number;
+                            receipt: string;
+                        }[];
+                        surface: {
+                            rendered: boolean;
+                            tori: number;
+                            genus: number;
+                            euler: number;
+                            areas: number;
+                            perLobe: number;
+                            majorRadius: number;
+                            minorRadius: number;
+                            lobeOffset: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        homology: {
+                            closed: boolean;
+                            cells: {
+                                c0: number;
+                                c1: number;
+                                c2: number;
+                            };
+                            boundary1: number[][];
+                            boundary2: number[][];
+                            chainComplex: boolean;
+                            betti: number[];
+                            euler: number;
+                            root: string;
+                            statement: string;
+                            boundary: string;
+                        };
+                        fold: {
+                            forward: string;
+                            reverse: string;
+                            merged: string;
+                        };
+                        proofs: {
+                            task: string;
+                            expr: string;
+                            computed: number;
+                            expected: number;
+                            on: boolean;
+                            receipt: string;
+                        }[];
+                        facets: {
+                            receipt: string;
+                            facet: string;
+                            on: boolean;
+                        }[];
+                        count: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    formation: {
+                        forward: string;
+                        reverse: string;
+                        bidirectional: boolean;
+                        merged: string;
+                    };
+                    deviceGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    invertedGateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gateways: __ns_up_double_torus_earth.ComputableEarthGateway[];
+                    gatewayRoot: string;
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                solutions: __ns_up_double_torus_earth.EarthNavigationSolution[];
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            timespace: {
+                proven: boolean;
+                at: __ns_up_double_torus_earth.EarthTimespaceAt;
+                earth: {
+                    proven: boolean;
+                    realised: boolean;
+                    torus1: {
+                        torus: 1;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    torus2: {
+                        torus: 2;
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        apexZ: number;
+                        polarity: number;
+                        receipt: string;
+                    }[];
+                    surface: {
+                        rendered: boolean;
+                        tori: number;
+                        genus: number;
+                        euler: number;
+                        areas: number;
+                        perLobe: number;
+                        majorRadius: number;
+                        minorRadius: number;
+                        lobeOffset: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    homology: {
+                        closed: boolean;
+                        cells: {
+                            c0: number;
+                            c1: number;
+                            c2: number;
+                        };
+                        boundary1: number[][];
+                        boundary2: number[][];
+                        chainComplex: boolean;
+                        betti: number[];
+                        euler: number;
+                        root: string;
+                        statement: string;
+                        boundary: string;
+                    };
+                    fold: {
+                        forward: string;
+                        reverse: string;
+                        merged: string;
+                    };
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    count: number;
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                deviceEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                invertedEarth: {
+                    proven: boolean;
+                    side: "device" | "code";
+                    trinityRays: readonly [string, string, string];
+                    apex: {
+                        x: number;
+                        y: number;
+                        z: number;
+                    };
+                    poles: {
+                        name: "north" | "east" | "south" | "west";
+                        bearing: number;
+                        x: number;
+                        y: number;
+                        z: number;
+                        slantFromApex: number;
+                        receipt: string;
+                    }[];
+                    faces: __ns_up_mountain_geometry.TrinityPyramidFace[];
+                    baseArea: number;
+                    volume: number;
+                    proofs: {
+                        task: string;
+                        expr: string;
+                        computed: number;
+                        expected: number;
+                        on: boolean;
+                        receipt: string;
+                    }[];
+                    facets: {
+                        receipt: string;
+                        facet: string;
+                        on: boolean;
+                    }[];
+                    root: string;
+                    statement: string;
+                    boundary: string;
+                };
+                earthSurface: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                invertedSurface: {
+                    x: number;
+                    y: number;
+                    z: number;
+                };
+                coexist: {
+                    forward: string;
+                    reverse: string;
+                    bidirectional: boolean;
+                    merged: string;
+                };
+                facets: {
+                    receipt: string;
+                    facet: string;
+                    on: boolean;
+                }[];
+                root: string;
+                statement: string;
+                boundary: string;
+            };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        celestial: {
+            computed: boolean;
+            count: number;
+            matched: number;
+            bodies: ({
+                kind: "planet";
+                name: string;
+                au: number;
+                periodYr: number;
+                x: number;
+                y: number;
+                radiusComputed: number;
+                radiusMatch: boolean;
+                auStable: boolean;
+                periodStable: boolean;
+                orbitClosed: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            } | {
+                kind: "star";
+                name: string;
+                au: number;
+                emits: boolean;
+                schwarzschildM: number;
+                schwarzschildBand: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            } | {
+                kind: "satellite";
+                name: string;
+                inclinationDeg: number;
+                nodalPeriodYr: number;
+                earthRadiusKm: number;
+                reflects: string;
+                emits: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            } | {
+                kind: "major-moon";
+                name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+                parent: "Jupiter" | "Saturn" | "Neptune";
+                periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+                radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+                orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+                x: number;
+                y: number;
+                orbitClosed: boolean;
+                periodStable: boolean;
+                parentStable: boolean;
+                radiusStable: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            })[];
+            planets: {
+                kind: "planet";
+                name: string;
+                au: number;
+                periodYr: number;
+                x: number;
+                y: number;
+                radiusComputed: number;
+                radiusMatch: boolean;
+                auStable: boolean;
+                periodStable: boolean;
+                orbitClosed: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            }[];
+            sun: {
+                kind: "star";
+                name: string;
+                au: number;
+                emits: boolean;
+                schwarzschildM: number;
+                schwarzschildBand: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            };
+            moon: {
+                kind: "satellite";
+                name: string;
+                inclinationDeg: number;
+                nodalPeriodYr: number;
+                earthRadiusKm: number;
+                reflects: string;
+                emits: boolean;
+                lobe: string;
+                exactMatch: boolean;
+                receipt: string;
+            };
+            majorMoons: {
+                kind: "major-moon";
+                name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+                parent: "Jupiter" | "Saturn" | "Neptune";
+                periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+                radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+                orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+                x: number;
+                y: number;
+                orbitClosed: boolean;
+                periodStable: boolean;
+                parentStable: boolean;
+                radiusStable: boolean;
+                exactMatch: boolean;
+                receipt: string;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        astronomy: {
+            cited: boolean;
+            report: {
+                id: string;
+                title: string;
+                published: string;
+                url: string;
+                instruments: readonly ["LIGO Hanford", "LIGO Livingston", "Virgo", "KAGRA"];
+                observingWindow: string;
+                highlights: string[];
+                simulationParams: {
+                    eventId: string;
+                    m1Solar: number;
+                    m2Solar: number;
+                    mfSolar: number;
+                    chiFinal: number;
+                    snrNetwork: number;
+                    strainAmplitude: number;
+                    ringdownF220Hz: number;
+                    ringdownGamma220Hz: number;
+                    catalogTotalEvents: number;
+                    catalogNewEvents: number;
+                };
+            };
+            facets: {
+                receipt: string;
+                facet: string;
+                on: boolean;
+            }[];
+            root: string;
+            statement: string;
+            boundary: string;
+        };
+        gpsSatellites: __ns_up_double_torus_earth.GpsSatellitePhaseReceipt[];
+        gpsOrbitCount: number;
+        celestialPhases: __ns_up_double_torus_earth.CelestialDisplayPhase[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    moonDisplay: __ns_up_double_torus_earth.CelestialDisplayPhase;
+    celestial: {
+        computed: boolean;
+        count: number;
+        matched: number;
+        bodies: ({
+            kind: "planet";
+            name: string;
+            au: number;
+            periodYr: number;
+            x: number;
+            y: number;
+            radiusComputed: number;
+            radiusMatch: boolean;
+            auStable: boolean;
+            periodStable: boolean;
+            orbitClosed: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        } | {
+            kind: "star";
+            name: string;
+            au: number;
+            emits: boolean;
+            schwarzschildM: number;
+            schwarzschildBand: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        } | {
+            kind: "satellite";
+            name: string;
+            inclinationDeg: number;
+            nodalPeriodYr: number;
+            earthRadiusKm: number;
+            reflects: string;
+            emits: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        } | {
+            kind: "major-moon";
+            name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+            parent: "Jupiter" | "Saturn" | "Neptune";
+            periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+            radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+            orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+            x: number;
+            y: number;
+            orbitClosed: boolean;
+            periodStable: boolean;
+            parentStable: boolean;
+            radiusStable: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        })[];
+        planets: {
+            kind: "planet";
+            name: string;
+            au: number;
+            periodYr: number;
+            x: number;
+            y: number;
+            radiusComputed: number;
+            radiusMatch: boolean;
+            auStable: boolean;
+            periodStable: boolean;
+            orbitClosed: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        }[];
+        sun: {
+            kind: "star";
+            name: string;
+            au: number;
+            emits: boolean;
+            schwarzschildM: number;
+            schwarzschildBand: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        };
+        moon: {
+            kind: "satellite";
+            name: string;
+            inclinationDeg: number;
+            nodalPeriodYr: number;
+            earthRadiusKm: number;
+            reflects: string;
+            emits: boolean;
+            lobe: string;
+            exactMatch: boolean;
+            receipt: string;
+        };
+        majorMoons: {
+            kind: "major-moon";
+            name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+            parent: "Jupiter" | "Saturn" | "Neptune";
+            periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+            radiusKm: 1821.6 | 1560.8 | 2634.1 | 2410.3 | 2574.7 | 1353.4;
+            orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+            x: number;
+            y: number;
+            orbitClosed: boolean;
+            periodStable: boolean;
+            parentStable: boolean;
+            radiusStable: boolean;
+            exactMatch: boolean;
+            receipt: string;
+        }[];
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

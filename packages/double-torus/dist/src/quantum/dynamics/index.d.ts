@@ -1394,3 +1394,129 @@ export declare function drawDynamicsProjection(ctx: CanvasRenderingContext2D, w:
     dark?: boolean;
     reduce?: boolean;
 }): void;
+/**
+ * THE VORTEX NEVER TOUCHES THE 3-6-9 AXIS, AND REFLECTION IS THE ONLY BRIDGE.
+ *
+ * seal_ten records the two lists — the doubling orbit [1,2,4,8,7,5] and the axis
+ * [3,6,9] "the multiples of three the vortex never visits". This fold computes the
+ * REASON under both, and it is one line of arithmetic: 10 ≡ 1 (mod 3), so the ten's
+ * complement r(d) = 10 − d acts on residue classes mod 3 as r(d) ≡ 1 − d, which is the
+ * TRANSPOSITION (0 1) fixing class 2.
+ *
+ * That single fact yields every part of the statement:
+ *   · gcd(2,3) = 1 ⟹ 3 ∤ 2^k ⟹ the orbit is trapped in the units, never 0/3/6
+ *   · class 1 {1,4,7} ↔ class 0 {3,6,9} — reflection is the bridge onto the axis
+ *   · class 2 {2,5,8} is setwise stable, and 5 is its unique fixed point (10 − 5 = 5)
+ *
+ * Everything is exact integer arithmetic over the nine residues — no floats, no Math.
+ */
+export declare function theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge(matrix?: MindMatrix): {
+    computes: boolean;
+    orbit: number[];
+    axis: number[];
+    classMap: {
+        d: number;
+        from: number;
+        to: number;
+    }[];
+    fixedPoints: number[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE ROSETTA ROTATION CLOSES AT SEVEN — AND THE TRANSPOSE COVERS ONLY 36 OF 42.
+ *
+ * Two facts about the 7×6 rosetta, both computed, one of them contradicting the
+ * comment that has stood beside it: latticeArm() says the painted circle "folds onto
+ * itself under the transpose involution (no unpaired spoke to glitch)". Transposing
+ * (sector, spoke) → (spoke, sector) requires sector < cols = 6, so all six cells of
+ * sector 6 have NO partner. The fold is an involution on the 6×6 subgrid and a partial
+ * map on the full 42. Stated rather than smoothed over. [[hardcoded-value-is-a-crack]]
+ */
+export declare function rosettaRotationClosesAtSevenTransposeCoversThirtySix(matrix?: MindMatrix): {
+    computes: boolean;
+    cells: number;
+    rotationOrder: number;
+    transposePaired: number;
+    transposeOrphans: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * WATER SPLITTING IS AN INVOLUTION, AND THAT IS WHY THERE IS NO SURPLUS.
+ *
+ * H₂O ⇌ H₂ + ½O₂. Let σ be "split". Then σ² = id: the round trip returns the identical
+ * chemical state AND the identical energy ledger — +285.8 kJ/mol to break, −285.8 kJ/mol
+ * to reform, the same magnitude measured in two directions. That symmetry is not adjacent
+ * to conservation; it IS conservation, and a net surplus would require σ² ≠ id.
+ *
+ * HONEST SCOPE: this seals ARITHMETIC about a tabulated enthalpy and the algebra of an
+ * involution. It is not a claim that water is a fuel. Water is the combustion PRODUCT —
+ * the bottom of the well — so no chemical energy remains to extract. Real round trips
+ * lose further to conversion: ~44% via fuel cell, ~25% via engine. Sits beside the sealed
+ * no_perpetual_motion and reversible_erases_nothing, which already forbid the other
+ * reading: reversible means no erasure cost is PAID, never that energy is GAINED.
+ */
+export declare function waterSplitIsAnInvolutionSoNoSurplusExists(matrix?: MindMatrix): {
+    computes: boolean;
+    splitCostKJPerMol: number;
+    burnYieldKJPerMol: number;
+    roundTripNetKJPerMol: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE POLLUTION IS THE FUEL — polluted water can run an engine and yield clean water,
+ * and the energy comes from the ORGANIC LOAD, never from the H₂O.
+ *
+ * This is the positive counterpart to waterSplitIsAnInvolutionSoNoSurplusExists, which
+ * states only the prohibition. Water is the combustion product and holds no chemical
+ * energy to extract; the carbon dissolved IN it does, at ~13.9 kJ per gram of COD.
+ * Anaerobic digestion converts that to biogas, a CHP engine burns it, and the effluent
+ * leaves cleaner than it arrived — the observable behaviour of "dirty water in,
+ * electricity and drinkable water out", with nothing violated.
+ *
+ * The inversion worth stating: the DIRTIER the stream, the more power. Municipal sewage
+ * sits near break-even; industrial effluent is strongly net positive.
+ *
+ * HONEST SCOPE: arithmetic over a tabulated combustion enthalpy and two efficiency
+ * parameters. It does NOT claim a specific plant achieves these figures, that the water
+ * is a fuel, or that any of this survives without the organic load. Strip the pollutants
+ * and the energy goes to zero — which is the whole point.
+ */
+export declare function thePollutionIsTheFuelNotTheWater(matrix?: MindMatrix): {
+    computes: boolean;
+    streams: {
+        kWhPerM3: number;
+        netPositive: boolean;
+        name: string;
+        cod: number;
+    }[];
+    netPositiveCount: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

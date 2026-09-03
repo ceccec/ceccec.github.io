@@ -51,6 +51,10 @@ export declare function theToolsAreSavedAndTheWavesSent(matrix?: MindMatrix): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function updateSkillsWaves(matrix?: MindMatrix): {
@@ -481,6 +485,7 @@ export declare function theoremAtoms(matrix?: MindMatrix): {
         provedBy: string;
         home: string;
         algebraicStatement?: string;
+        proofPending?: true;
     }[];
     count: number;
     homes: string[];
@@ -858,6 +863,10 @@ export declare function magnitudeComesWithPrecisionInClustersOfWaves(matrix?: Mi
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheoremsCoresStayOpen(): {
@@ -889,6 +898,10 @@ export declare function auditTheoremTitlesWithTheQuantumSeoLens(matrix?: MindMat
         on: boolean;
     }[];
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(matrix?: MindMatrix): {
@@ -906,6 +919,10 @@ export declare function theoremsMergeCreatingSpaceForOthersToEmergeAndBalance(ma
         on: boolean;
     }[];
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function lifeAndDeathAreTheTwoBitsLeftAtEachDimensionInputOutputGateway(matrix?: MindMatrix): {
@@ -941,6 +958,10 @@ export declare function improveScienceByClaimingRefutableTheoremsToReplaceWeaker
         on: boolean;
     }[];
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theoremsSortByTagCloudMostUsedFirst(matrix?: MindMatrix): {
@@ -957,6 +978,10 @@ export declare function theoremsSortByTagCloudMostUsedFirst(matrix?: MindMatrix)
         on: boolean;
     }[];
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theoremsOfTheoremsGainGravityReuseCreatesVacuumForEmergence(matrix?: MindMatrix): {

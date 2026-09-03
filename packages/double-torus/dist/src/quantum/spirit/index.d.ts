@@ -50,7 +50,7 @@ export declare function humanDesign(): {
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
         starts: number[];
         sample: {
             gate: number;
@@ -74,8 +74,8 @@ export declare function humanDesign(): {
         centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
         centerCount: 9;
         channels: {
-            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+            a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+            b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
             key: string;
             from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -131,8 +131,8 @@ export declare const RAVE_CHANNELS_36: readonly [readonly [1, 8], readonly [2, 1
 export declare function raveCenterOfGate(gate: number): (typeof RAVE_CENTERS_9)[number] | undefined;
 /** Channels whose both gates are in the activated set (structure definition, not personality claim). */
 export declare function raveDefinedChannels(activated: ReadonlySet<number> | readonly number[]): {
-    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+    a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+    b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
     key: string;
     from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
     to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -147,8 +147,8 @@ export declare function humanDesignChannelsAndCenters(matrixRoot?: string): {
     centers: ("Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root")[];
     centerCount: 9;
     channels: {
-        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 34 | 21 | 13 | 17 | 12 | 18 | 23 | 32 | 42 | 19 | 30 | 37 | 25 | 24 | 35 | 39 | 28 | 47 | 29 | 26 | 11;
-        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 55 | 34 | 51 | 31 | 63 | 14 | 41 | 49 | 22 | 36 | 45 | 15 | 52 | 62 | 56 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43;
+        a: 2 | 16 | 9 | 5 | 4 | 7 | 1 | 3 | 6 | 27 | 20 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 23 | 35 | 32 | 42 | 30 | 37 | 25 | 21 | 24 | 39 | 28 | 47 | 29 | 26 | 34;
+        b: 8 | 54 | 64 | 20 | 46 | 61 | 53 | 51 | 22 | 14 | 15 | 63 | 41 | 49 | 55 | 36 | 45 | 52 | 62 | 56 | 31 | 33 | 44 | 50 | 57 | 48 | 40 | 59 | 58 | 38 | 60 | 43 | 34;
         key: string;
         from: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
         to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
@@ -186,7 +186,7 @@ export declare function humanDesignVerifiedWheel(matrixRoot?: string): {
     designSunArcDeg: number;
     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
     bodyCount: 13;
-    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 55 | 34 | 21 | 13 | 17 | 12 | 18 | 51 | 23 | 31 | 32 | 42 | 63 | 14 | 41 | 19 | 49 | 30 | 37 | 22 | 36 | 25 | 24 | 35 | 45 | 15 | 52 | 39 | 62 | 56 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 11 | 58 | 38 | 60 | 43)[];
+    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
     starts: number[];
     sample: {
         gate: number;

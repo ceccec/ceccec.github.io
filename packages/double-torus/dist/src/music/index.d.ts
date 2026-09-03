@@ -180,7 +180,7 @@ export declare function a432DigitSpectrum(matrix?: MindMatrix): {
  * (4·108), the H₁ Betti rank (432/108=4), the 108-s hero clock, the 122-bit address entropy (2·7+108) and the
  * a432 octave ladder all derive from it. `FOLDED_CENSUS` is the FLOATING corpus fold (UNFOLDED+χ), which rides
  * the string-dimensional Fibonacci bands and only coincided with 108 while the corpus was 110. Any quantity that
- * reads `FOLDED_CENSUS` where it means 108 is the crack this fold refutes at call time — reuse it, don't remember it.
+ * reads `FOLDED_CENSUS` where it means the a432 octave — NOT the corpus census — is the crack this fold refutes at call time — reuse it, don't remember it.
  */
 export declare function a432DecoupledFromCorpusFold(matrix?: MindMatrix): {
     computes: boolean;
@@ -526,6 +526,11 @@ export declare function soundWiredToOneSharedContext(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * Count the places an AudioContext is actually CONSTRUCTED, across src and the render
+ * harness. Returns 0 under the browser shim (no fs), which is honest: nothing was scanned.
+ */
+export declare function countAudioContextSites(): number;
 export declare function colorRootsAtA432HeartBalances(matrix?: MindMatrix): {
     rooted: boolean;
     baseHue: number;

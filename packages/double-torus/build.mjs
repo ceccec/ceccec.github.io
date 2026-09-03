@@ -9,8 +9,8 @@
 //
 // The core is pure and dependency-free, so this emits a clean, agnostic library. Both tools are
 // resolved from the repository's node_modules. Commit dist/ so the package publishes as-is.
-import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from 'node:fs'
+import { dirname, join, resolve, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { build } from 'esbuild'
 import ts from 'typescript'
@@ -116,11 +116,56 @@ const entryDts = join(outDir, 'packages', 'double-torus', 'src', 'index.d.ts')
 // here a deep build-time helper, src/wind/fusion fusionComputes, that is NOT on the published surface. With
 // `noCheck`, every declaration file is still written best-effort, so emitSkipped alone must not fail the build
 // (TS5 did not fail on it). We gate on the real artifact instead.
+// THE DECLARATION GRAPH MUST CLOSE. The note above said the module TS7056 drops is "NOT on the
+// published declaration surface"; it is. `src/wind/fusion` is imported by the emitted declarations
+// for water/double and quantum/heaven/mind, so its absence is 10 TS2307 errors for anyone who type
+// -checks this package under moduleResolution:bundler — and 0 for anyone with skipLibCheck on,
+// which is why it shipped in 1.4.0 unnoticed. Gating on the ENTRY file alone could not see it.
+// Every relative specifier in an emitted .d.ts must land on another emitted .d.ts, or the build fails.
+function declarationClosure(dir) {
+  const missing = []
+  const walk = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const full = join(d, e.name)
+      if (e.isDirectory()) { walk(full); continue }
+      if (!e.name.endsWith('.d.ts')) continue
+      const text = readFileSync(full, 'utf8')
+      for (const m of text.matchAll(/from\s+'(\.[^']*)'/g)) {
+        const spec = m[1]
+        const base = resolve(dirname(full), spec.replace(/\.(js|ts)$/, ''))  // tsc rewrites .ts -> .js in most files, not all
+        if (existsSync(`${base}.d.ts`) || existsSync(join(base, 'index.d.ts'))) continue
+        missing.push(`${relative(outDir, full)} -> ${spec}`)
+      }
+    }
+  }
+  walk(dir)
+  return [...new Set(missing)]
+}
+
+const ts7056 = diagnostics.filter((d) => d.code === 7056)
+if (ts7056.length) {
+  console.error(`TS7056 — ${ts7056.length} inferred type(s) too large to serialize:`)
+  for (const d of ts7056.slice(0, 20)) {
+    const f = d.file ? `${relative(repoRoot, d.file.fileName)}:${d.file.getLineAndCharacterOfPosition(d.start ?? 0).line + 1}` : '?'
+    console.error(`  ${f}`)
+  }
+}
+
 if (!existsSync(entryDts)) {
   for (const d of diagnostics.slice(0, 20)) console.error(ts.flattenDiagnosticMessageText(d.messageText, '\n'))
   console.error('Build failed: the entry declaration (dist/packages/double-torus/src/index.d.ts) was not emitted.')
   process.exit(1)
 }
+const unresolved = declarationClosure(outDir)
+if (unresolved.length) {
+  console.error(`Build failed: ${unresolved.length} declaration import(s) resolve to nothing that was emitted.`)
+  for (const u of unresolved.slice(0, 12)) console.error(`  ${u}`)
+  console.error('A consumer type-checking this package sees each of these as TS2307. Give the dropped module an')
+  console.error('explicit return type (TS7056 means tsc could not serialize the inferred one) or stop exporting it.')
+  process.exit(1)
+}
+console.log(`declaration graph closes: every relative import in dist/**/*.d.ts resolves to an emitted file`)
+
 if (diagnostics.length || result.emitSkipped) {
   // Non-fatal and honest: the src/ core is consumed by esbuild (type-stripped) and ships no tsconfig, so a
   // full tsc pass surfaces latent type-check issues (and TS6's TS7056 serialization cap). They do NOT remove

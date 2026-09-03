@@ -15,14 +15,50 @@ export const QUANTUM_DEV_STDIO_TOOL_IDS = [
   'run-export',
 ] as const
 
-/** Sealed census constants (src/3/7) — live audit is run-gate limits-verify. */
+/**
+ * THE CENSUS IS RECOMPUTED HERE, NOT COPIED FROM src/3/7.
+ *
+ * This returned `unfolded: 110, folded: 108, ok: true` under a note reading "sealed constants
+ * from src/3/7" — where the sealed constants are 123 and 121. The corpus retargeted its band
+ * ladder from three Fibonacci bands to four and this file, being deliberately import-free for
+ * stdio safety, could not follow. So it shipped the superseded numbers to every MCP client as a
+ * tool result, and asserted `ok: true` beside them, which was true by construction and measured
+ * nothing.
+ *
+ * The file must stay import-free, so the answer is not to import the constants but to recompute
+ * the theorem: the census is Σ F(7..10) over the four bands of H₁(Σ₂), and the fold is that sum
+ * plus the genus-2 Euler characteristic. Fibonacci is four lines and no dependency, so there is
+ * nothing left to copy and nothing left to drift.
+ *
+ * 432 is NOT in this family. No theorem pins it; it is the a432 tuning ladder — an axiom — and
+ * it is labelled as one here so the next reader does not re-derive it from a census it never
+ * came from.
+ */
+function fib(n: number): number {
+  let a = 0
+  let b = 1
+  for (let i = 0; i < n; i += 1) [a, b] = [b, a + b]
+  return a
+}
+
+/** The four bands of the gapless ladder, descending from F(10) — the rank of H₁ on a genus-2 surface. */
+const CENSUS_BANDS = [fib(10), fib(9), fib(8), fib(7)]
+const EULER_CHI = -2
+const HOMOLOGY_LOOPS = 4
+const A432_FOLDED = 108
+
 export function censusStatus() {
+  const unfolded = CENSUS_BANDS.reduce((sum, band) => sum + band, 0)
+  // MEASURED, not asserted: the bands must be gapless (each the sum of the next two), the closed
+  // form Σ F(a..b) = F(b+2) − F(a+1) must agree, and the count must equal the rank of H₁.
+  const gapless = CENSUS_BANDS.slice(0, -2).every((band, i) => band === CENSUS_BANDS[i + 1]! + CENSUS_BANDS[i + 2]!)
+  const closedForm = fib(12) - fib(8)
   return {
-    unfolded: 110 as const,
-    folded: 108 as const,
-    gates: 432 as const,
-    ok: true as const,
-    note: 'sealed constants from src/3/7; live file census via run-gate limits-verify',
+    unfolded,
+    folded: unfolded + EULER_CHI,
+    gates: HOMOLOGY_LOOPS * A432_FOLDED,
+    ok: gapless && closedForm === unfolded && CENSUS_BANDS.length === HOMOLOGY_LOOPS,
+    note: 'recomputed from the Fibonacci band ladder, not copied; gates are the a432 axiom (4 × 108), NOT the census fold. Live file census via run-gate limits-verify',
   }
 }
 

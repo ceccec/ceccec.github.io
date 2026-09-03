@@ -1468,7 +1468,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                         pageKind: import("../heaven/mind").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -1702,7 +1702,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                     pageKind: import("../heaven/mind").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 facets: {
                     receipt: string;
@@ -1785,7 +1785,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 pageKind: import("../heaven/mind").RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
-                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
             };
             motion: {
                 at: number;
@@ -2389,7 +2389,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                             pageKind: import("../heaven/mind").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -2623,7 +2623,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                         pageKind: import("../heaven/mind").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     facets: {
                         receipt: string;
@@ -2706,7 +2706,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     pageKind: import("../heaven/mind").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 motion: {
                     at: number;
@@ -3647,7 +3647,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                             pageKind: import("../heaven/mind").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -3881,7 +3881,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                         pageKind: import("../heaven/mind").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     facets: {
                         receipt: string;
@@ -3964,7 +3964,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     pageKind: import("../heaven/mind").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
-                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                 };
                 motion: {
                     at: number;

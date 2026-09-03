@@ -393,22 +393,22 @@ export declare function movieUnbalancedAroundCenterIsCrack(matrix?: MindMatrix, 
     layers: readonly [{
         readonly id: "proof-animation-translate";
         readonly was: "ctx.translate((s/9)*tour) off-axis canvas";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly receipt: string;
     }, {
         readonly id: "layout-backdrop-inset";
         readonly was: "hero backdrop not inset:0 full viewport";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly receipt: string;
     }, {
         readonly id: "page-field-center-h2";
         readonly was: "page movie scroll≠0 shifts centre off h/2";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly receipt: string;
     }, {
         readonly id: "vortex-center-not-ball";
         readonly was: "centre as wet ball ornament";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly receipt: string;
     }];
     theorems: {

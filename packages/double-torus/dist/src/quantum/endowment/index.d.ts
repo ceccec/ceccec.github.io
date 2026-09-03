@@ -163,7 +163,7 @@ declare class VerificationOracle {
     private gateProofs;
     constructor();
     verifyTheoremStatus(theoremId: string, proofStatus: 'sealed' | 'frontier' | 'proven', verificationSource: string): TheoremProof;
-    verifyFundingGate(allocation: FundingAllocation, theoremProof: TheoremProof, rayMatches: boolean, deadlineValid: boolean, complianceVerified: boolean): FundingGateProof;
+    verifyFundingGate(allocation: FundingAllocation, theoremProof: TheoremProof, rayMatches: boolean, deadlineValid: boolean, complianceVerified: boolean, proofStatusRequired: TheoremProof['proof_status'] | 'any'): FundingGateProof;
     verifyProofSignature(proof: TheoremProof): boolean;
     verifyGateSignature(gateProof: FundingGateProof): boolean;
     getVerifiedTheorems(): TheoremProof[];

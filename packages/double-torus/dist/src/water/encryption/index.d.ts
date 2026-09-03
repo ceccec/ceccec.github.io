@@ -2071,7 +2071,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             table: import("../stack").SpeedVsRestComparisonRow[];
             quantumHardwareRequired: false;
             qpuRequired: false;
-            runsOnClassical64Bit: true;
+            runsOnClassical64Bit: boolean;
             architectureRequirement: "classical-64bit";
             environment: import("../stack").Classical64BitEnvironment;
             forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -2497,7 +2497,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             pageKind: import("../digit").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -2727,7 +2727,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         qpuRequired: false;
         quantumHardwareRequired: false;
-        runsOnClassical64Bit: true;
+        runsOnClassical64Bit: boolean;
         tracksClassicalNoSpeedup: boolean;
         answers: 1;
         runtimeTokens: 0;
@@ -8163,7 +8163,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
     boundary: string;
     mode: "browser-sync";
 };
-/** Sealed slow threshold — FOLDED_CENSUS × digitalRoot(432) (= 108×9 = 972 ms). Lattice-derived, not a magic SLO. */
+/** Sealed slow threshold — A432_FOLDED × digitalRoot(432) (= 108×9 = 972 ms). The a432 octave, NOT the corpus census. */
 export declare const DEMO_RSA_MEASURE_SLOW_MS: number;
 /** Teaching RSA keygen + encrypt→decrypt on sealed n=p·q — GENERATE half. */
 export declare function demoRsaTeachingGenerateSync(): {
@@ -9797,7 +9797,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
         table: import("../stack").SpeedVsRestComparisonRow[];
         quantumHardwareRequired: false;
         qpuRequired: false;
-        runsOnClassical64Bit: true;
+        runsOnClassical64Bit: boolean;
         architectureRequirement: "classical-64bit";
         environment: import("../stack").Classical64BitEnvironment;
         forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -10223,7 +10223,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                         pageKind: import("../digit").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -11378,7 +11378,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         table: import("../stack").SpeedVsRestComparisonRow[];
         quantumHardwareRequired: false;
         qpuRequired: false;
-        runsOnClassical64Bit: true;
+        runsOnClassical64Bit: boolean;
         architectureRequirement: "classical-64bit";
         environment: import("../stack").Classical64BitEnvironment;
         forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -11804,7 +11804,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         pageKind: import("../digit").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -12034,7 +12034,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
     };
     qpuRequired: false;
     quantumHardwareRequired: false;
-    runsOnClassical64Bit: true;
+    runsOnClassical64Bit: boolean;
     tracksClassicalNoSpeedup: boolean;
     answers: 1;
     runtimeTokens: 0;

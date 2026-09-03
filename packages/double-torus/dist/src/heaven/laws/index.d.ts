@@ -143,7 +143,7 @@ export declare function zeroTokenUsagePolicy(matrix?: MindMatrix): {
 };
 export declare function minimumFilesMaximumFeaturesCost(matrix?: MindMatrix): {
     optimal: boolean;
-    files: 123;
+    files: number;
     count: number;
     facets: {
         receipt: string;

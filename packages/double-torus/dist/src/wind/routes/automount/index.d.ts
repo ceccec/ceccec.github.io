@@ -242,7 +242,7 @@ export declare function monographSliceFromRoute(path: string, locale?: 'gla' | '
             pageKind: import("../../../3/7").RosettaComputationType;
             heroPhase: number;
             bodySeed: string;
-            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         };
         facets: {
             receipt: string;

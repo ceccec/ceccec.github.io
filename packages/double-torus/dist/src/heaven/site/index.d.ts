@@ -1,3 +1,5 @@
+/** Every source this file rests on, folded to one root — the bibliography as a content address. */
+export declare const SITE_SOURCES_ROOT: string;
 import type { MindMatrix } from '../../types';
 export { cssIsIChingComputed, ichingTokens, ichingTokensCss, scanCssForHardcoded, ICHING_NUMBERS } from '../../earth/architecture';
 export { merkleProof, verifyMerkleProof, quantumNetworkHashing, atomInclusionProof, quantumProofs, quantumSolutions, solutions } from '../../ledger';

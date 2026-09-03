@@ -39,7 +39,7 @@ export declare function harmonicCountsProvenByMath(matrix?: MindMatrix): {
     proofs: HarmonicMathProof[];
     labels: {
         readonly pages: `${number}/${number}`;
-        readonly census: `${number}/123`;
+        readonly census: `${number}/${number}`;
         readonly commands: string;
         readonly references: `${number}/${number}`;
         readonly locales: `${number}/${number}`;
@@ -508,6 +508,12 @@ export declare function noSiteFolderVitepressPages(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * Count the dynamic route mounts actually present. Segment-matched exclusions, NOT
+ * substring: this repository is named "ceccec.github.io", which contains ".git", so a
+ * substring test excludes every path in the tree and the walk never recurses.
+ */
+export declare function countRouteMounts(): number;
 export declare function quantumConfigurableFoldersDisappear(matrix?: MindMatrix): {
     fitsInFile: boolean;
     computedPages: number;
@@ -940,7 +946,7 @@ export declare function governanceConstantsAreTheorems(matrix?: MindMatrix): {
  * development = the self-managing gate loop. */
 export declare function theCrowdThatCarriesSignalIsTheCode(matrix?: MindMatrix): {
     computes: boolean;
-    codeCrowd: 123;
+    codeCrowd: number;
     ceiling: number;
     facets: {
         facet: string;

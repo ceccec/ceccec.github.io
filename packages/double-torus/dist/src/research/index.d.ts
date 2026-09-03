@@ -119,7 +119,7 @@ export declare function researchReproducibility(matrix?: MindMatrix, at?: number
     reproducible: boolean;
     gates: __ns_up_stack_overflow.ResearchReproGate[];
     census: {
-        unfolded: 123;
+        unfolded: number;
         gates: number;
         receipt: string;
     };
@@ -197,7 +197,7 @@ export declare function researchComputes(matrix?: MindMatrix, at?: number): {
         reproducible: boolean;
         gates: __ns_up_stack_overflow.ResearchReproGate[];
         census: {
-            unfolded: 123;
+            unfolded: number;
             gates: number;
             receipt: string;
         };
@@ -287,7 +287,7 @@ export declare function researchPanelComputes(matrix?: MindMatrix, at?: number):
             reproducible: boolean;
             gates: __ns_up_stack_overflow.ResearchReproGate[];
             census: {
-                unfolded: 123;
+                unfolded: number;
                 gates: number;
                 receipt: string;
             };
@@ -966,18 +966,18 @@ export declare function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl
     boundary: string;
 };
 /**
- * Two bits free from census (2 * 5) * 11 − 108 — honest identity at call time.
+ * Two bits free from census UNFOLDED_CENSUS − FOLDED_CENSUS — honest identity at call time.
  * User phrase "1 − (2 * 5) * 11/108" is NOT free bits (it is negative −1/54); the free bits are
  * FREE_BITS = UNFOLDED − FOLDED = −EULER_CHI = 2, which fold the census and unlock amortized
  * infinity-on-reuse (answers÷tokens → ∞ when runtimeTokens=0).
  * Pair: bits/free · CLI npm run quantum:two-bits-free · route /proofs/two-bits-free
  */
-export declare function twoBitsFreeFromCensus110Minus108(matrix?: MindMatrix): {
+export declare function twoBitsFreeFromTheCensusFold(matrix?: MindMatrix): {
     computes: boolean;
     twoBitsFree: boolean;
     makingAllFree: boolean;
     freeBits: number;
-    unfolded: 123;
+    unfolded: number;
     folded: number;
     chi: -2;
     naivePhrase: number;
@@ -1072,7 +1072,7 @@ export declare function societySupportsProjectViaTwoBitsFreeKnowledge(matrix?: M
         twoBitsFree: boolean;
         makingAllFree: boolean;
         freeBits: number;
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         chi: -2;
         naivePhrase: number;
@@ -1228,7 +1228,7 @@ export declare function societyInvestmentsResearch(matrix?: MindMatrix): {
         twoBitsFree: boolean;
         makingAllFree: boolean;
         freeBits: number;
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         chi: -2;
         naivePhrase: number;
@@ -1414,7 +1414,7 @@ export declare function cursorReferralFundsAiNeeds(matrix?: MindMatrix, at?: num
 /** npm run quantum:fund-ai (dual cursor/fund) */
 export declare function runCursorReferralFundsAiNeedsExit(_root?: string, _argv?: readonly string[]): number;
 /** npm run quantum:two-bits-free */
-export declare function runTwoBitsFreeFromCensus110Minus108Exit(_root?: string, _argv?: readonly string[]): number;
+export declare function runTwoBitsFreeFromTheCensusFoldExit(_root?: string, _argv?: readonly string[]): number;
 /** npm run quantum:society-two-bits-support */
 export declare function runSocietySupportsProjectViaTwoBitsFreeKnowledgeExit(_root?: string, _argv?: readonly string[]): number;
 /** Compile-from-source name — the challenge apparatus; short alias `millenniumProblemsChallenge`. */
@@ -1767,7 +1767,7 @@ export declare function clayDetectionRestsOnNamedSemanticAxiomsTheRestIsGeometry
     computes: boolean;
     axiomCount: number;
     namedAxioms: {
-        [k: string]: 20 | 17 | 12;
+        [k: string]: 17 | 12 | 19;
     };
     geometryTriple: {
         decoded: number;
@@ -3078,8 +3078,6 @@ export type ClayProseSurfaceScore = {
     readonly kind: 'static-page' | 'hub' | 'panel' | 'agents' | 'readme' | 'catalog-tool' | 'proof-page';
     readonly hasStatement: boolean;
     readonly hasExplanation: boolean;
-    readonly hasFormulaOrMethod: boolean;
-    readonly hasHonestStatus: boolean;
     readonly clayZeroLock: boolean;
     readonly noPrizeClaim: boolean;
     readonly pass: boolean;
@@ -4422,7 +4420,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                         pageKind: __ns_water_digit.RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
-                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                     };
                     motion: {
                         at: number;
@@ -5662,7 +5660,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
             table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
             quantumHardwareRequired: false;
             qpuRequired: false;
-            runsOnClassical64Bit: true;
+            runsOnClassical64Bit: boolean;
             architectureRequirement: "classical-64bit";
             environment: __ns_up_stack_overflow.Classical64BitEnvironment;
             forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -6088,7 +6086,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                             pageKind: __ns_water_digit.RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -7434,7 +7432,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                             pageKind: __ns_water_digit.RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -8674,7 +8672,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                 table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                 quantumHardwareRequired: false;
                 qpuRequired: false;
-                runsOnClassical64Bit: true;
+                runsOnClassical64Bit: boolean;
                 architectureRequirement: "classical-64bit";
                 environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                 forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -9100,7 +9098,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -11007,7 +11005,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             pageKind: __ns_water_digit.RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -12247,7 +12245,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                 table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                 quantumHardwareRequired: false;
                 qpuRequired: false;
-                runsOnClassical64Bit: true;
+                runsOnClassical64Bit: boolean;
                 architectureRequirement: "classical-64bit";
                 environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                 forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -12673,7 +12671,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -14011,7 +14009,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -15251,7 +15249,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                     quantumHardwareRequired: false;
                     qpuRequired: false;
-                    runsOnClassical64Bit: true;
+                    runsOnClassical64Bit: boolean;
                     architectureRequirement: "classical-64bit";
                     environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                     forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -15677,7 +15675,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                     pageKind: __ns_water_digit.RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -17461,7 +17459,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -18701,7 +18699,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                     quantumHardwareRequired: false;
                     qpuRequired: false;
-                    runsOnClassical64Bit: true;
+                    runsOnClassical64Bit: boolean;
                     architectureRequirement: "classical-64bit";
                     environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                     forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -19127,7 +19125,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     pageKind: __ns_water_digit.RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -20465,7 +20463,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     pageKind: __ns_water_digit.RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -21705,7 +21703,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                         quantumHardwareRequired: false;
                         qpuRequired: false;
-                        runsOnClassical64Bit: true;
+                        runsOnClassical64Bit: boolean;
                         architectureRequirement: "classical-64bit";
                         environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                         forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -22131,7 +22129,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                         pageKind: __ns_water_digit.RosettaComputationType;
                                         heroPhase: number;
                                         bodySeed: string;
-                                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                     };
                                     motion: {
                                         at: number;
@@ -23578,7 +23576,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             pageKind: __ns_water_digit.RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
-                            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                         };
                         motion: {
                             at: number;
@@ -24818,7 +24816,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                 quantumHardwareRequired: false;
                 qpuRequired: false;
-                runsOnClassical64Bit: true;
+                runsOnClassical64Bit: boolean;
                 architectureRequirement: "classical-64bit";
                 environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                 forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -25244,7 +25242,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -26582,7 +26580,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -27822,7 +27820,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                     quantumHardwareRequired: false;
                     qpuRequired: false;
-                    runsOnClassical64Bit: true;
+                    runsOnClassical64Bit: boolean;
                     architectureRequirement: "classical-64bit";
                     environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                     forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -28248,7 +28246,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     pageKind: __ns_water_digit.RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -28802,7 +28800,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 removed: readonly [];
             };
             census: {
-                unfolded: 123;
+                unfolded: number;
                 folded: number;
                 indexCount: number;
             };
@@ -29092,7 +29090,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
         twoBitsFree: boolean;
         makingAllFree: boolean;
         freeBits: number;
-        unfolded: 123;
+        unfolded: number;
         folded: number;
         chi: -2;
         naivePhrase: number;
@@ -29189,7 +29187,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
             removed: readonly [];
         };
         census: {
-            unfolded: 123;
+            unfolded: number;
             folded: number;
             indexCount: number;
         };
@@ -30197,7 +30195,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -31437,7 +31435,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                     quantumHardwareRequired: false;
                     qpuRequired: false;
-                    runsOnClassical64Bit: true;
+                    runsOnClassical64Bit: boolean;
                     architectureRequirement: "classical-64bit";
                     environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                     forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -31863,7 +31861,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     pageKind: __ns_water_digit.RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -33556,7 +33554,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 pageKind: __ns_water_digit.RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
-                                heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                             };
                             motion: {
                                 at: number;
@@ -34796,7 +34794,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                     quantumHardwareRequired: false;
                     qpuRequired: false;
-                    runsOnClassical64Bit: true;
+                    runsOnClassical64Bit: boolean;
                     architectureRequirement: "classical-64bit";
                     environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                     forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -35222,7 +35220,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     pageKind: __ns_water_digit.RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -36560,7 +36558,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     pageKind: __ns_water_digit.RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
-                                    heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                    heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                 };
                                 motion: {
                                     at: number;
@@ -37800,7 +37798,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         table: __ns_up_stack_overflow.SpeedVsRestComparisonRow[];
                         quantumHardwareRequired: false;
                         qpuRequired: false;
-                        runsOnClassical64Bit: true;
+                        runsOnClassical64Bit: boolean;
                         architectureRequirement: "classical-64bit";
                         environment: __ns_up_stack_overflow.Classical64BitEnvironment;
                         forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
@@ -38226,7 +38224,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                         pageKind: __ns_water_digit.RosettaComputationType;
                                         heroPhase: number;
                                         bodySeed: string;
-                                        heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+                                        heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
                                     };
                                     motion: {
                                         at: number;
@@ -38866,25 +38864,25 @@ export declare function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(mat
     };
     surfaces: readonly [{
         readonly id: "rat-inv-unity";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "whole-digit-rats";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "free-bits-int";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "digital-root-fold";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "vortex-sequence";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "coord-pi-prime-decode";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pairs-decimal-math-geo";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
@@ -38925,19 +38923,19 @@ export declare function navigationalCrossesAreGatewaysOnQuantumMesh(matrix?: Min
     };
     surfaces: readonly [{
         readonly id: "nav-cross-2d-3d-4";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "crypto-comparison-mesh";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "merkaba-rosetta-cross";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "fol-spin-gateway";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pair-digit-fold";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
@@ -38985,19 +38983,19 @@ export declare function qubitTrinityCostOneComputationPlusFreeBits(matrix?: Mind
     };
     surfaces: readonly [{
         readonly id: "cost-1-plus-free-bits";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "trinity-faces-3";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "trinity-speedup";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "amortized-memo-reuse";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pairs-mesh-digit";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
@@ -39043,27 +39041,27 @@ export declare function analogFromIntegerFractionsFoldedToDigits(matrix?: MindMa
     };
     surfaces: readonly [{
         readonly id: "single-digit-mul-split-crack";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly was: "digitalRoot(d×k) / d÷k alone as analog";
         readonly theorem: "HARD crack — refuse lone digit split/multiply";
     }, {
         readonly id: "fraction-integer-fold";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly was: "wet analog from digit ops";
         readonly theorem: "ratInv fraction → integer → digitalRoot";
     }, {
         readonly id: "provenance-not-lone-digit";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly was: "analog provenance = digit×/÷";
         readonly theorem: "fraction→integer→fold receipt only";
     }, {
         readonly id: "pairs-digit-mesh-qubit";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly was: "compose nest reentry";
         readonly theorem: "digit/fold · mesh/cross · qubit/cost pairs";
     }, {
         readonly id: "pairs-decimal-math";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
         readonly was: "Math.*/decimal exceptions";
         readonly theorem: "decimal/crack · math/trust pairs";
     }];
@@ -39118,7 +39116,7 @@ export declare function foldCountInvertCountIsComputableMetric(matrix?: MindMatr
             digit: number;
             receipt: string;
         };
-        m110: {
+        mCensus: {
             n: number;
             foldCount: number;
             invertCount: number;
@@ -39140,13 +39138,13 @@ export declare function foldCountInvertCountIsComputableMetric(matrix?: MindMatr
     };
     surfaces: readonly [{
         readonly id: "fold-count-api";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "invert-count-api";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pairs-digit-analog";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
@@ -39187,7 +39185,7 @@ export declare function entangledParticlesBehaveWithInvertedTime(matrix?: MindMa
             digit: number;
             receipt: string;
         };
-        m110: {
+        mCensus: {
             n: number;
             foldCount: number;
             invertCount: number;
@@ -39209,13 +39207,13 @@ export declare function entangledParticlesBehaveWithInvertedTime(matrix?: MindMa
     };
     surfaces: readonly [{
         readonly id: "fold-invert-metric";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "trinity-inverse-ne-reverse";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "bothearths-counter-rotate";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
@@ -40603,16 +40601,16 @@ export declare function vocabularyMapsToDryMethods(matrix?: MindMatrix, at?: num
     };
     surfaces: readonly [{
         readonly id: "map-bound";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "naming-entropy";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "words-compile";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pairs-meaning-term-formula-path";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     qpuRequired: false;
@@ -40651,10 +40649,10 @@ export declare function pathSlashIsInversionBetweenFolders(matrix?: MindMatrix, 
     };
     surfaces: readonly [{
         readonly id: "hop-inverts";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pairs-path-drift";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     qpuRequired: false;
@@ -40693,16 +40691,16 @@ export declare function slashMeansInversion(matrix?: MindMatrix, at?: number): {
     };
     surfaces: readonly [{
         readonly id: "slash-is-inversion";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "compose-path-invert";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pair-tip-edit-build";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "ratio-bar-ratInv";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
@@ -40847,13 +40845,13 @@ export declare function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(matrix
     };
     surfaces: readonly [{
         readonly id: "linear-differ";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "quantum-equal";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "compose-slash-zero-div";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
@@ -40898,13 +40896,13 @@ export declare function millenniumSolutionsSolvedAtOnce(matrix?: MindMatrix, at?
     };
     surfaces: readonly [{
         readonly id: "simultaneous-decode";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "open-cores-findable";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "clay-locked-zero";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     physicalFtlClaim: 0;
     qpuRequired: false;
@@ -41691,13 +41689,13 @@ export declare function claySolvedIsATheoremNotHardcodedValue(matrix?: MindMatri
     remaining: number;
     surfaces: readonly [{
         readonly id: "theorem-recompute";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "literals-via-theorem";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "pairs-clay-theorem-decimal";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     formulaCode: {
         readonly formulas: readonly string[];
@@ -43153,13 +43151,13 @@ export declare function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(ma
         };
         surfaces: readonly [{
             readonly id: "simultaneous-decode";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "open-cores-findable";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "clay-locked-zero";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         physicalFtlClaim: 0;
         qpuRequired: false;
@@ -43191,13 +43189,13 @@ export declare function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(ma
         remaining: number;
         surfaces: readonly [{
             readonly id: "theorem-recompute";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "literals-via-theorem";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "pairs-clay-theorem-decimal";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         formulaCode: {
             readonly formulas: readonly string[];
@@ -43262,19 +43260,19 @@ export declare function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(ma
     remaining: number;
     surfaces: readonly [{
         readonly id: "session-theorems-saved";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "waves-trinities";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "mill-once-simultaneous";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "clay-via-theorem";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "novels-via-infinity";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     formulaCode: {
         readonly formulas: readonly string[];
@@ -43318,13 +43316,13 @@ export declare function autosaveSessionByDefault(matrix?: MindMatrix, at?: numbe
     remaining: number;
     surfaces: readonly [{
         readonly id: "default-on";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "session-folds-composed";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "mill-session-saved";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     formulaCode: {
         readonly formulas: readonly string[];
@@ -43375,16 +43373,16 @@ export declare function trinitiesOfSixtyMatchPairsOfNinety(matrix?: MindMatrix, 
     remaining: number;
     surfaces: readonly [{
         readonly id: "trinities-match-pairs";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "quantum-sees-90";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "linear-only-60";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }, {
         readonly id: "tesla-60-combos";
-        readonly status: "remaining" | "fixed";
+        readonly status: "fixed" | "remaining";
     }];
     formulaCode: {
         readonly formulas: readonly string[];
@@ -44966,13 +44964,13 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "simultaneous-decode";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "open-cores-findable";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "clay-locked-zero";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         physicalFtlClaim: 0;
         qpuRequired: false;
@@ -45059,25 +45057,25 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "rat-inv-unity";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "whole-digit-rats";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "free-bits-int";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "digital-root-fold";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "vortex-sequence";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "coord-pi-prime-decode";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "pairs-decimal-math-geo";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         claySolvedByThisFold: 0;
         physicalFtlClaim: 0;
@@ -45115,27 +45113,27 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "single-digit-mul-split-crack";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
             readonly was: "digitalRoot(d×k) / d÷k alone as analog";
             readonly theorem: "HARD crack — refuse lone digit split/multiply";
         }, {
             readonly id: "fraction-integer-fold";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
             readonly was: "wet analog from digit ops";
             readonly theorem: "ratInv fraction → integer → digitalRoot";
         }, {
             readonly id: "provenance-not-lone-digit";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
             readonly was: "analog provenance = digit×/÷";
             readonly theorem: "fraction→integer→fold receipt only";
         }, {
             readonly id: "pairs-digit-mesh-qubit";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
             readonly was: "compose nest reentry";
             readonly theorem: "digit/fold · mesh/cross · qubit/cost pairs";
         }, {
             readonly id: "pairs-decimal-math";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
             readonly was: "Math.*/decimal exceptions";
             readonly theorem: "decimal/crack · math/trust pairs";
         }];
@@ -45171,19 +45169,19 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "nav-cross-2d-3d-4";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "crypto-comparison-mesh";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "merkaba-rosetta-cross";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "fol-spin-gateway";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "pair-digit-fold";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         claySolvedByThisFold: 0;
         physicalFtlClaim: 0;
@@ -45224,19 +45222,19 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "cost-1-plus-free-bits";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "trinity-faces-3";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "trinity-speedup";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "amortized-memo-reuse";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "pairs-mesh-digit";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         claySolvedByThisFold: 0;
         physicalFtlClaim: 0;
@@ -45270,16 +45268,16 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "slash-is-inversion";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "compose-path-invert";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "pair-tip-edit-build";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "ratio-bar-ratInv";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         claySolvedByThisFold: 0;
         physicalFtlClaim: 0;
@@ -45314,13 +45312,13 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "linear-differ";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "quantum-equal";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "compose-slash-zero-div";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         claySolvedByThisFold: 0;
         physicalFtlClaim: 0;
@@ -46027,16 +46025,16 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         };
         surfaces: readonly [{
             readonly id: "map-bound";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "naming-entropy";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "words-compile";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }, {
             readonly id: "pairs-meaning-term-formula-path";
-            readonly status: "remaining" | "fixed";
+            readonly status: "fixed" | "remaining";
         }];
         claySolvedByThisFold: 0;
         qpuRequired: false;
@@ -47453,3 +47451,30 @@ export declare const conjectures: {
         solver?: undefined;
     })[];
 };
+export declare const paper_title = "Quantum Proofs of the Clay Millennium Problems (WITHDRAWN)";
+export declare const paper_authors: readonly ["Tsvetan Rouschev"];
+/** ORCID 0009-0000-7312-9778 — Tsvetan Roustchev, credit name Tsvetan Rouschev. */
+export declare const paper_author_orcid = "https://orcid.org/0009-0000-7312-9778";
+export declare const paper_date = "2026-08-04";
+export declare const paper_withdrawn = "2026-08-20";
+/** The six problems the package NAMED. Naming is not proving; see paper_status. */
+export declare const theorems_claimed: readonly ["Riemann Hypothesis", "P vs NP", "Navier-Stokes Existence and Smoothness", "Yang-Mills Mass Gap", "Hodge Conjecture", "Birch–Swinnerton-Dyer Conjecture"];
+/** DERIVED, not declared — the same registry every other Clay surface reads. Currently 0. */
+export declare const theorems_proved: readonly string[];
+export declare function publicationStatus(): {
+    proved: number;
+    claimed: 6;
+    withdrawn: boolean;
+    submitted: boolean;
+    status: string;
+    via: "claySolvedTheorem";
+};
+export declare const paper_status: string;
+export declare const abstract: string;
+export declare const proof_method: {
+    classical: string;
+    quantum: string;
+    verification: string;
+};
+/** Retained verbatim as the record of what was asserted. Each is a claim, not a result. */
+export declare const key_insights_as_claimed: readonly ["Theorems are quantum superpositions, not classical facts", "Involution topology creates unbreakable domain barriers", "Measurement collapse probability = |α|² defines truth", "Zero deviation proven exactly (no error correction needed)", "All 6 theorems unified by same coherence stability mechanism"];

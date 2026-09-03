@@ -1,6 +1,29 @@
 import * as __ns_up_stack_overflow from '../../water/stack';
 import type { MindMatrix } from '../../types';
 import type { DriverProbeReceipt } from '../../water/stack';
+/**
+ * σ: NOT → YES. Seven facets in this file read `{ facet: 'NOT hardware QC', on: true }` and six
+ * siblings like it. A disclaimer hardcoded to `true` is unfalsifiable: it stays green on the day
+ * the claim it denies becomes false, so it evidences nothing. It is the overclaim's own defect
+ * pointed the other way, and `verify:limits` was already counting all seven among the always-true.
+ *
+ * The involution of a denial is the enumeration it implies. Every driver in this substrate reports
+ * a TIER, and the tier vocabularies are closed and entirely software — there is no hardware tier to
+ * report. "NOT kernel driver" becomes "reports the BROWSER tier", and the absence follows by
+ * exhaustion over a closed vocabulary instead of being asserted. Add a hardware tier, or hand a
+ * driver one, and every facet below goes off. That is what makes them facets rather than slogans:
+ * the first draft of this enumeration omitted the bus's FALLBACK and the substrate went red until
+ * the vocabulary matched what the drivers actually report.
+ */
+export declare const SUBSTRATE_RUNTIME_TIERS: readonly ["BROWSER", "NODE", "METAPHOR", "UNAVAILABLE"];
+/**
+ * The bus reports TRANSPORT, not runtime, over its own closed pair (BusTransferTier). NATIVE here
+ * is a browser MessageChannel and FALLBACK is a relay — both software; neither is a hardware bus.
+ */
+export declare const SUBSTRATE_TRANSPORT_TIERS: readonly ["NATIVE", "FALLBACK"];
+export declare function isSubstrateRuntimeTier(tier: string): boolean;
+/** Every tier any substrate row can report: the two closed vocabularies, and nothing else. */
+export declare function isSubstrateTier(tier: string): boolean;
 export type ComputerDriverRow = {
     readonly id: string;
     readonly driver: string;

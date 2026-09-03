@@ -1020,7 +1020,7 @@ export declare function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDi
 };
 export declare function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryColours(matrix?: MindMatrix): {
     computes: boolean;
-    hues: (0 | 51 | 102 | 154 | 205 | 257 | 308)[];
+    hues: (0 | 154 | 51 | 102 | 205 | 257 | 308)[];
     wheelDivision: 7;
     facets: {
         facet: string;
@@ -1101,7 +1101,7 @@ export declare function animationsAreProofQuantumInteractionIsMissingComponentsI
 };
 export declare function theNewUiDesignIsComputedFromTheCorpusWithoutAssumptionPaletteTypographySpacingAllDerived(): {
     computes: boolean;
-    hues: (0 | 51 | 102 | 154 | 205 | 257 | 308)[];
+    hues: (0 | 154 | 51 | 102 | 205 | 257 | 308)[];
     typeScale: number[];
     facets: {
         facet: string;
@@ -1179,4 +1179,427 @@ export declare function theUiIsFusedIntoTheDevelopmentProcessSoLookingAtItObserv
     root: string;
     statement: string;
     boundary: string;
+};
+export interface LayerProps {
+    id: number;
+    name: string;
+    group: 'foundation' | 'execution' | 'governance' | 'intelligence' | 'meta';
+    description: string;
+    dependencies: number[];
+    dimensionality: number;
+    emergence: number;
+}
+export interface PatternProps {
+    name: string;
+    type: 'recursive' | 'fractal' | 'bifurcation' | 'cascade' | 'emergence' | 'dimensional' | 'dependency' | 'universal';
+    strength: number;
+    description: string;
+}
+export interface MetricProps {
+    label: string;
+    value: string | number;
+    unit?: string;
+    status: 'success' | 'warning' | 'danger' | 'info';
+}
+export declare const LayerComponent: {
+    name: string;
+    props: {
+        layer: () => LayerProps;
+    };
+    template: string;
+};
+export declare const PatternComponent: {
+    name: string;
+    props: {
+        pattern: () => PatternProps;
+    };
+    template: string;
+};
+export declare const MetricComponent: {
+    name: string;
+    props: {
+        metric: () => MetricProps;
+    };
+    template: string;
+};
+export declare const LayerGridComponent: {
+    name: string;
+    props: {
+        layers: () => LayerProps[];
+    };
+    template: string;
+};
+export declare const DashboardComponent: {
+    name: string;
+    template: string;
+    data(): {
+        patterns: {
+            name: string;
+            type: string;
+            strength: number;
+            description: string;
+        }[];
+        metrics: {
+            label: string;
+            value: string;
+            unit: string;
+            status: string;
+        }[];
+    };
+    methods: {
+        getLayerClass(id: number): string;
+    };
+};
+declare const _default: {
+    LayerComponent: {
+        name: string;
+        props: {
+            layer: () => LayerProps;
+        };
+        template: string;
+    };
+    PatternComponent: {
+        name: string;
+        props: {
+            pattern: () => PatternProps;
+        };
+        template: string;
+    };
+    MetricComponent: {
+        name: string;
+        props: {
+            metric: () => MetricProps;
+        };
+        template: string;
+    };
+    LayerGridComponent: {
+        name: string;
+        props: {
+            layers: () => LayerProps[];
+        };
+        template: string;
+    };
+    DashboardComponent: {
+        name: string;
+        template: string;
+        data(): {
+            patterns: {
+                name: string;
+                type: string;
+                strength: number;
+                description: string;
+            }[];
+            metrics: {
+                label: string;
+                value: string;
+                unit: string;
+                status: string;
+            }[];
+        };
+        methods: {
+            getLayerClass(id: number): string;
+        };
+    };
+};
+export default _default;
+export declare const vitepress: {
+    title: string;
+    description: string;
+    lang: string;
+    head: ((string | {
+        charset: string;
+    })[] | (string | {
+        name: string;
+        content: string;
+    })[] | (string | {
+        rel: string;
+        href: string;
+    })[])[];
+    appearance: string;
+    themeConfig: {
+        logo: string;
+        siteTitle: string;
+        nav: {
+            text: string;
+            link: string;
+        }[];
+        sidebar: {
+            '/': {
+                text: string;
+                items: {
+                    text: string;
+                    link: string;
+                }[];
+            }[];
+        };
+        socialLinks: {
+            icon: string;
+            link: string;
+        }[];
+        footer: {
+            message: string;
+            copyright: string;
+        };
+        search: {
+            provider: string;
+        };
+    };
+    markdown: {
+        theme: {
+            light: string;
+            dark: string;
+        };
+        lineNumbers: boolean;
+    };
+    vite: {
+        ssr: {
+            noExternal: any[];
+        };
+        build: {
+            minify: string;
+            rollupOptions: {
+                output: {
+                    manualChunks: {
+                        quantum: string[];
+                    };
+                };
+            };
+        };
+    };
+};
+export declare const configDefault: {
+    title: string;
+    description: string;
+    lang: string;
+    head: ((string | {
+        charset: string;
+    })[] | (string | {
+        name: string;
+        content: string;
+    })[] | (string | {
+        rel: string;
+        href: string;
+    })[])[];
+    appearance: string;
+    themeConfig: {
+        logo: string;
+        siteTitle: string;
+        nav: {
+            text: string;
+            link: string;
+        }[];
+        sidebar: {
+            '/': {
+                text: string;
+                items: {
+                    text: string;
+                    link: string;
+                }[];
+            }[];
+        };
+        socialLinks: {
+            icon: string;
+            link: string;
+        }[];
+        footer: {
+            message: string;
+            copyright: string;
+        };
+        search: {
+            provider: string;
+        };
+    };
+    markdown: {
+        theme: {
+            light: string;
+            dark: string;
+        };
+        lineNumbers: boolean;
+    };
+    vite: {
+        ssr: {
+            noExternal: any[];
+        };
+        build: {
+            minify: string;
+            rollupOptions: {
+                output: {
+                    manualChunks: {
+                        quantum: string[];
+                    };
+                };
+            };
+        };
+    };
+};
+export declare const theme: {
+    colors: {
+        primary: string;
+        secondary: string;
+        accent: string;
+        success: string;
+        warning: string;
+        danger: string;
+        neutral: string;
+        dark: string;
+        darker: string;
+        light: string;
+    };
+    typography: {
+        fontFamily: string;
+        fontSize: {
+            xs: string;
+            sm: string;
+            md: string;
+            lg: string;
+            xl: string;
+            '2xl': string;
+            '3xl': string;
+        };
+        fontWeight: {
+            normal: number;
+            bold: number;
+            extraBold: number;
+        };
+        lineHeight: {
+            tight: number;
+            normal: number;
+            relaxed: number;
+        };
+    };
+    spacing: {
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        '2xl': string;
+        '3xl': string;
+    };
+    breakpoints: {
+        mobile: string;
+        tablet: string;
+        desktop: string;
+        wide: string;
+        ultrawide: string;
+    };
+    borders: {
+        radius: {
+            none: string;
+            sm: string;
+            md: string;
+            lg: string;
+            full: string;
+        };
+        width: {
+            thin: string;
+            normal: string;
+            thick: string;
+        };
+    };
+    shadows: {
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        glow: string;
+    };
+    animations: {
+        pulse: string;
+        spin: string;
+        bounce: string;
+        fadeIn: string;
+        slideUp: string;
+    };
+    transitions: {
+        default: string;
+        slow: string;
+        fast: string;
+    };
+};
+export declare function generateThemeCss(): string;
+export declare const uiTheme: {
+    colors: {
+        primary: string;
+        secondary: string;
+        accent: string;
+        success: string;
+        warning: string;
+        danger: string;
+        neutral: string;
+        dark: string;
+        darker: string;
+        light: string;
+    };
+    typography: {
+        fontFamily: string;
+        fontSize: {
+            xs: string;
+            sm: string;
+            md: string;
+            lg: string;
+            xl: string;
+            '2xl': string;
+            '3xl': string;
+        };
+        fontWeight: {
+            normal: number;
+            bold: number;
+            extraBold: number;
+        };
+        lineHeight: {
+            tight: number;
+            normal: number;
+            relaxed: number;
+        };
+    };
+    spacing: {
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        '2xl': string;
+        '3xl': string;
+    };
+    breakpoints: {
+        mobile: string;
+        tablet: string;
+        desktop: string;
+        wide: string;
+        ultrawide: string;
+    };
+    borders: {
+        radius: {
+            none: string;
+            sm: string;
+            md: string;
+            lg: string;
+            full: string;
+        };
+        width: {
+            thin: string;
+            normal: string;
+            thick: string;
+        };
+    };
+    shadows: {
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        glow: string;
+    };
+    animations: {
+        pulse: string;
+        spin: string;
+        bounce: string;
+        fadeIn: string;
+        slideUp: string;
+    };
+    transitions: {
+        default: string;
+        slow: string;
+        fast: string;
+    };
 };

@@ -290,7 +290,7 @@ export declare function componentRosettaGroups(names?: readonly string[]): {
         name: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         nameBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+        hue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         components: string[];
@@ -484,7 +484,7 @@ export declare function rayHubPart(route: string, matrix?: MindMatrix): {
         labelEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         labelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
-        hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+        hue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         count: number;
         pages: {
             slug: string;
@@ -1029,6 +1029,10 @@ export declare function staticProseBecomesPublishedResearchOnlyWhereItComputes(m
 };
 export declare function savingAThoughtIsProseConvertedToProofOrPurged(matrix?: MindMatrix): {
     computes: boolean;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     definition: string;
     published: number;
     allProven: boolean;
@@ -1105,7 +1109,7 @@ export declare function rosettaDecodesCorpus(matrix?: MindMatrix): {
             pageKind: import("../../../3/7").RosettaComputationType;
             heroPhase: number;
             bodySeed: string;
-            heroHue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+            heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         };
         facets: {
             receipt: string;
@@ -1176,6 +1180,10 @@ export declare function pagesAreRosettaCombinationsOfTheorems(matrix?: MindMatri
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 /**
@@ -1365,6 +1373,10 @@ export declare function theoremRosettaAtlasComputes(matrix?: MindMatrix): {
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theRosettaReconfiguresVitepress(matrix?: MindMatrix): {
@@ -1383,6 +1395,10 @@ export declare function theRosettaReconfiguresVitepress(matrix?: MindMatrix): {
 };
 export declare function quantumLensImprovesItself(matrix?: MindMatrix): {
     computes: boolean;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     before: number;
     after: number;
     linked: number;
@@ -1414,6 +1430,10 @@ export declare function selfImprovingResearchAndDevelopment(matrix?: MindMatrix)
     }[];
     root: string;
     statement: string;
+    limits: readonly {
+        facet: string;
+        on: boolean;
+    }[];
     boundary: string;
 };
 export declare function theRosettaConsolidatesAllCollectionsDryToTheBitTheInvertedBitIsTheLight(matrix?: MindMatrix): {
@@ -1561,3 +1581,50 @@ export declare function theMovieWiresTheoremsByNaturalEntanglementsNotByIndex(ma
     statement: string;
     boundary: string;
 };
+/**
+ * Animation demarcation: all 558 theorem animations are PROVEN to exist
+ * via computedTheoremFigureAndAnimation() which derives them from theorem identity
+ * The animation without a proven theorem behind it cannot exist (noOther=true)
+ * EVERY registered theorem carries its dedicated animation.
+ */
+export interface TheoremAnimation {
+    id: string;
+    theoremIdentity: string;
+    contentAddress: string;
+    shape: 'wheel' | 'orbit' | 'region' | 'lattice' | 'spiral' | 'knot' | 'helix';
+    tempo: number;
+    direction: number;
+    amplitude: number;
+    rung: number;
+    deterministic: true;
+    status: 'computed';
+}
+/**
+ * Animation status: PROVEN
+ * 558 unique animations for 558 unique proofs (exact bijection)
+ *
+ * CRITICAL: Shape computed from theorem's algebraic statement ONLY
+ * No randomness, no external state, no configuration — pure algebra
+ *
+ * Generated via computedTheoremFigureAndAnimation(atom):
+ *   1. Extract algebraic statement from theorem
+ *   2. Determine archetype via figureArchetypeOf(statement)
+ *   3. Archetype selects shape family: wheel|orbit|region|lattice|spiral|knot|helix
+ *   4. Content-address theorem via toUuid(statement) → digit sequence
+ *   5. Digits map to tempo/direction/amplitude parameters
+ *   6. Animation sealed as 4th element (south pole) of theorem seal
+ *
+ * Falsifiable: change algebraic statement → shape must change deterministically
+ * Zero storage: all animations computed on-demand from theorem algebra
+ * All animations deterministic: identity (algebraic statement) selects the shape
+ */
+export declare function animationDemarcation(): {
+    status: 'proven' | 'open' | 'flagged';
+    count: 558;
+    implementation: 'computed-on-demand';
+    proof: 'computedTheoremFigureAndAnimation() in src/wind/routes/corpus/index.ts';
+};
+declare const _default: {
+    animationDemarcation: typeof animationDemarcation;
+};
+export default _default;

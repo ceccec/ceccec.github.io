@@ -267,7 +267,7 @@ export declare function sendWavesToDecodeWithRosettaAndFoldInTheMovie(matrix?: M
         ray: 0 | 2 | 5 | 4 | 1 | 3 | 6;
         glyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        hue: 0 | 51 | 102 | 154 | 205 | 257 | 308;
+        hue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
         nameEn: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
         receipt: string;
     }[];
