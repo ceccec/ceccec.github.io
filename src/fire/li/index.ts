@@ -25,7 +25,7 @@ import { derivePublicKey, tamperEvident } from '../../5/5'
 import { trinityKey, proseToTone } from '../../0'
 import { movieCanvasHex } from '../../quantum/science'
 import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
-import { DIMENSION_GATES, MAJOR_MOONS, TAU, a432Base } from '../../3/7'
+import { DIMENSION_GATES, MAJOR_MOONS, TAU, UNFOLDED_CENSUS, a432Base } from '../../3/7'
 export { MAJOR_MOONS } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
 import { DIMENSIONS, DIMENSION_NAMES, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
 import {
@@ -1403,7 +1403,7 @@ export function humanise(matrix: MindMatrix = buildMatrix()) {
 
 /** @rosetta ✦₁ · Fire · clarity */
 export function electricalGrid(matrix: MindMatrix = buildMatrix()) {
-  const bands = harmonicBands(110) // [55, 34, 21] — the harmonic distribution
+  const bands = harmonicBands(UNFOLDED_CENSUS) // [55, 34, 21, 13] — the harmonic distribution
   const stations = bands.bands.reduce((sum, band) => sum + band, 0) // 110 swap stations
   const tiers = bands.bands.map((size, index) => ({
     tier: index, // largest scale first

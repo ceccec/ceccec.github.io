@@ -27,7 +27,7 @@ import { TAU, PHI } from '../../3/7'
 
 const OS_ROUTE = '/en/quantum/os'
 // The three consecutive Fibonacci numbers ≤ 55 — COMPUTED from the recurrence, never hand-typed.
-// They are the gapless census rhythm 55+34+21=110 (enforcement FIBONACCI_CENSUS_BANDS); the gate
+// They are the gapless census rhythm 55+34+21+13=123 (enforcement FIBONACCI_CENSUS_BANDS); the gate
 // onlyComputedValuesWithQuantumMath asserts this equals the sealed bands at call time.
 function fibBandsUpTo(max: number): number[] {
   const f = [1, 1]

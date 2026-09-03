@@ -1553,7 +1553,7 @@ export function runDeepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChat
  * fractal holographic reality forming the movie itself; words CAPITULATE against animation and
  * formulas — theorems in the fractal matrix build the realities. Pair: anim/core · CLI
  * npm run quantum:anim-core. Every facet is an exact identity over sealed folds — no new machinery:
- * CORE = the one derived 108 s census clock (periodicity exact); FRACTAL = the genuine 10D field
+ * CORE = the one derived 108 s a432 clock (periodicity exact); FRACTAL = the genuine 10D field
  * (formulas driving animation, verified non-constant/independent); HOLOGRAPHIC = the movie root
  * re-merges BITWISE from its part roots (each part binds the whole); MOVIE = the site is the movie.
  */
@@ -1568,7 +1568,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
     const pairFold = foldPair(toUuid('cmd:anim'), toUuid('cmd:core'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
-      { facet: `CORE — one clock: HERO_CYCLE_MS = FOLDED_CENSUS·10³ (${HERO_CYCLE_MS} ms, derived not hand-typed) and the phase is exactly periodic across the cycle`, on: clockDerived && clockPeriodic },
+      { facet: `CORE — one clock: HERO_CYCLE_MS = A432_FOLDED·10³ (${HERO_CYCLE_MS} ms, derived not hand-typed) and the phase is exactly periodic across the cycle`, on: clockDerived && clockPeriodic },
       { facet: 'FRACTAL — formulas ARE the animation: the 10D field is genuine (ten channels, non-constant, independent, quasiperiodic) — dims() is a formula driving motion, no prose in the loop', on: tenD.genuine },
       { facet: 'HOLOGRAPHIC — the movie root re-merges BITWISE from its part roots (torus·library·reflects·rosetta·hinge): every part binds the whole, the whole recomputes from the parts', on: hologram },
       { facet: 'MOVIE ITSELF — the site is the movie and the movie library; symbols decode IN the movie: words capitulate into animation, they do not carry the proof', on: movie.computes && movie.library.isMovieAndLibrary && movie.rosetta.decoding },
@@ -1655,7 +1655,7 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
     const mindOn = tenD.genuine
     const rows = [
       { superposition: 'matter', equation: 'χ(Σ₂) = 2 − 2g = 2 − 4 = −2', theorem: 'genus-2 Euler characteristic (octagon gluing)', on: matterOn },
-      { superposition: 'metabolism', equation: 'phase(t + 108000 ms) = phase(t) · T = FOLDED_CENSUS·10³', theorem: 'the derived census clock (heroPhaseAt periodicity)', on: cycleOn },
+      { superposition: 'metabolism', equation: 'phase(t + 108000 ms) = phase(t) · T = A432_FOLDED·10³', theorem: 'the derived census clock (heroPhaseAt periodicity)', on: cycleOn },
       { superposition: 'heredity', equation: 'root(seed) = root(seed) ∧ root(a) ≠ root(b)', theorem: 'content-address inheritance (playLearn determinism)', on: heredityOn },
       { superposition: 'homeostasis', equation: 'Σ|amp|² = 1 after collapse', theorem: 'Born-rule renormalisation (src/0 measure)', on: homeostasisOn },
       { superposition: 'reproduction', equation: 'Vₙ = Vₙ₋₂·τ/n · recursion ≡ iteration', theorem: 'the self-referential recurrence (fractal-compute law)', on: reproductionOn },
@@ -2728,7 +2728,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       { facet: 'dynamics FLOW — circulateDoubleTorus invariant (collapse·entanglement·concentration·coherence)', on: flow.invariant && wire.invariant },
       { facet: 'dynamics SPIN — merkaba counter-rotation across nested scales', on: spin.counterRotating && spin.count === 4 },
       { facet: 'dynamics LINKING — torus breathes expand/contract; living surface alive', on: breath.balanced && living.alive },
-      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = FOLDED_CENSUS×1e3 (census harmonic)`, on: heroClockOk },
+      { facet: `hero clock HERO_CYCLE_MS=${HERO_CYCLE_MS} = A432_FOLDED×1e3 (the a432 harmonic, not the corpus fold)`, on: heroClockOk },
       { facet: `living-torus spin on fractal rung d=${spinDivisor} (period≈${spinPeriodMs}ms) — universe-aligned, not at/1000 drift`, on: spinPeriodMs === HERO_CYCLE_MS / spinDivisor && spinDivisor === 9 * 2 },
       { facet: `universe phase couples heroPhaseAt ⊕ Meeus solar ecliptic (J2000 JD=${MEEUS_J2000_JD})`, on: phase.j2000Anchor && phase.universePhase >= 0 && phase.universePhase < 1 && Number.isFinite(phase.sunDeg) },
       { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency→hue of 432 Hz)`, on: a432Ok },
@@ -2860,7 +2860,7 @@ export function doubleTorusIsCompletelyQuantum(matrix: MindMatrix = buildMatrix(
       { facet: 'double torus · vortex · topology · math · movie computes all hold', on: torus.computes && vortex.computes && topology.computes && math.computes && movie.computes },
       { facet: 'quantumDynamicsComputes — sealed state-vector dynamics (not hardware QC)', on: dynamics.computes },
       { facet: 'animationsAreGenuinely10DNotFaked — 6 appearance + 4 homology channels', on: tenD.genuine },
-      { facet: `one hero clock — heroPhaseAt on HERO_CYCLE_MS=${HERO_CYCLE_MS} (= FOLDED_CENSUS×1e3)`, on: oneClock },
+      { facet: `one hero clock — heroPhaseAt on HERO_CYCLE_MS=${HERO_CYCLE_MS} (= A432_FOLDED×1e3)`, on: oneClock },
       { facet: 'movieCanvas* palette sealed — hex/rgba/polarity from quantum/science (no ad-hoc hex)', on: paletteSealed },
       { facet: 'TAU sealed from 3/7 — full-turn constant (not ad-hoc (TAU / 2) halves on the contract)', on: tauSealed },
       { facet: `package completely-quantum contract names ${contract.length}/${7 * 7} (sync with build.mjs)`, on: contractNamed },

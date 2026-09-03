@@ -108,7 +108,7 @@ export const SRC_THREE_LEVEL_INDEX_RE = /^src\/[^/]+\/[^/]+\/[^/]+\/index\.ts$/
 /** Every logic index under src/ at any depth — src/.../index.ts (the full derived-census tree). */
 export const SRC_ALL_INDEX_RE = /^src\/(?:[^/]+\/)+index\.ts$/
 
-/** One-word pairs fusing human senses, mind, and body — each pair mounts at an existing sealed index (110 census; no new slots). */
+/** One-word pairs fusing human senses, mind, and body — each pair mounts at an existing sealed index (the census; no new slots). */
 export const SENSE_MIND_BODY_PAIRS = [
   { a: 'color', b: 'sound', fuse: 'frequency — one quantity, octave bridge (Hz ↔ hue)', mount: 'src/sound (colorComputes folded)' },
   { a: 'sight', b: 'hearing', fuse: 'light waves ↔ pressure waves — hero movie hue from creationWave', mount: 'src/sun · src/sound · plasma/ball' },
@@ -838,7 +838,7 @@ export function naturePrefixesRemovedFromUnprovenNames(matrix: MindMatrix = buil
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       statement:
-        'Nature/element prefixes removed from unproven identifier names: folder paths may retain historical science names for the 110 census; function and balance-dim names must match what memoByRoot and gate on: prove at call time.',
+        'Nature/element prefixes removed from unproven identifier names: folder paths may retain historical science names for the census; function and balance-dim names must match what memoByRoot and gate on: prove at call time.',
       boundary:
         'Documents this rename pass — not a runtime rename engine. src/earth, src/water, etc. are census paths, not claims about nature. Identifiers like sealHonestyToPath name computed receipts; spirit/earth/heaven in unproven metaphors are retired with aliases.' }
   })
@@ -1369,7 +1369,7 @@ export function computeMoreModelsCatalog(matrix: MindMatrix = buildMatrix(), at 
       { id: 'rosetta-dimensions', name: 'all 432 rosetta quantum dimensions emerged', status: 'sealed', home: 'src/pair/enforcement', invoke: 'runRosettaDimensionsBatchExit(root) — exit 0: 432 emerged, 0 open', boundary: 'Emerged through the session waves themselves — the batch gate verifies, never infers', censusImpact: 'neutral' },
     ]
     const planned: Omit<ComputableModelEntry, 'receipt'>[] = [
-      { id: 'fire-li-monolith', name: 'Dissolve fire/li monolith debt', status: 'planned', home: 'src/fire/li', invoke: 'folderLaw dissolve wave', boundary: '110 census — swap or fold only', censusImpact: 'swap-only' },
+      { id: 'fire-li-monolith', name: 'Dissolve fire/li monolith debt', status: 'planned', home: 'src/fire/li', invoke: 'folderLaw dissolve wave', boundary: 'census law — swap or fold only', censusImpact: 'swap-only' },
       { id: 'fusion-monolith', name: 'Dissolve fusion monolith debt', status: 'planned', home: 'src/fusion', invoke: 'rosetta:batch dimensions', boundary: 'Compose into existing barrels', censusImpact: 'swap-only' },
       { id: 'plasma-ball-monolith', name: 'Dissolve plasma/ball monolith debt', status: 'planned', home: 'src/plasma/ball', invoke: 'dissolve:flat preview', boundary: 'Paint channels stay — logic folds inward', censusImpact: 'swap-only' },
     ]
@@ -1641,7 +1641,7 @@ export function onlyComputedValuesWithQuantumMath(matrix: MindMatrix = buildMatr
       checks,
       root: merkleFold(checks.map((c) => c.receipt)),
       statement:
-        'Only computed values with quantum math: the golden angle (360/φ²), the a432 brand hue, the Fibonacci census bands (55+34+21+13), the dimension gates (4×108 a432), and the Rosetta areas (6×7) each equal their sealed-math derivation recomputed at call time — no re-typed sealed quantity.',
+        'Only computed values with quantum math: the golden angle (360/φ²), the a432 brand hue, the Fibonacci census bands (55+34+21+13), the dimension gates (4×108, the a432 ladder and NOT the corpus census), and the Rosetta areas (6×7) each equal their sealed-math derivation recomputed at call time — no re-typed sealed quantity.',
       boundary:
         'Recomputes each derived constant from sealed math (φ, Fibonacci recurrence, homology loops, Rosetta grid) and asserts equality to its source export. Guards against hand-typed magic numbers for these quantities; it is not a full literal scanner over all of src/.' }
   })
@@ -1933,7 +1933,7 @@ export function humanDescendsSouthToQuantumAndBeyond(at = 0, matrix: MindMatrix 
 }
 
 // ── THE MONOLITH BYTE-TARGET EXCEEDS THE CENSUS CAPACITY — a ratchet with an unreachable zero, by
-// pigeonhole. The census law fixes EXACTLY 110 index.ts (mission:gate, HARD) and the index-only law
+// pigeonhole. The census law fixes EXACTLY UNFOLDED_CENSUS index.ts (mission:gate, HARD) and the index-only law
 // forbids other code files, so total capacity under the 8192-byte monolith target is 110 · 2¹³ =
 // 901,120 bytes; the measured corpus is ~9× that. The conjunction {index-only ∧ exactly-110 ∧ every
 // index ≤ 8192 B} is UNSATISFIABLE while corpus > capacity — the byte ratchet cannot reach zero
@@ -1961,7 +1961,7 @@ export function monolithTargetVsCensusCapacity(matrix: MindMatrix = buildMatrix(
       }
     } catch { /* browser or sandbox: sizes stays empty, facets pass trivially (fail-open, documented) */ }
     const measured = sizes.length > 0
-    const CENSUS = 2 + 108 // 110 — the mission:gate census (55+34+21 Fibonacci), asserted HARD there, cross-checked here
+    const CENSUS = UNFOLDED_CENSUS // the mission:gate census (the Fibonacci bands), asserted HARD there, cross-checked here
     const TARGET = 2 ** (16 - 3) // 8192 B — the monolith-file byte target, derived
     const capacity = CENSUS * TARGET
     const corpus = sizes.reduce((s, b) => s + b, 0)

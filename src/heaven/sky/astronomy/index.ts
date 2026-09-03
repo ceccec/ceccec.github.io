@@ -352,7 +352,7 @@ export function astronomySequenceDecodeResearch(matrix: MindMatrix = buildMatrix
           { key: 'vortex-sequence', value: VORTEX_SEQUENCE.join('·'), source: 'src/0 · VORTEX_SEQUENCE' },
           { key: 'digit-folder-probe', value: vortexSaved.digits.fused ? 'fused 1-2-4-8-7-5·3-6-9-0' : 'unfused', source: 'vortex/math · digitFolderSequenceProbe' },
           { key: 'pi-train-stations', value: String(train.diamonds.length), source: 'fire/diamonds · piTrainDiamonds' },
-          { key: 'census-indices', value: '110 gapless (55+34+21 Fibonacci)', source: 'thunder/decode · foldedCensus' },
+          { key: 'census-indices', value: '123 gapless (55+34+21+13 Fibonacci)', source: 'thunder/decode · foldedCensus' },
         ] },
       {
         id: 'astronomy-layer',

@@ -1,4 +1,4 @@
-import { earned, physicalFtlClaimTheorem } from '../../../../3/7'
+import { A432_FOLDED, earned, physicalFtlClaimTheorem } from '../../../../3/7'
 // Script shell — build/precommit seal; bundle runtime in pair/cache/quantum.
 import { phase } from '../../../../6/4'
 import { digitalRoot, foldPair, toUuid, merkleFold } from '../../../../0'
@@ -16,9 +16,9 @@ import {
   vitepressEditsInvalidateTheSeal } from '../../../cache/quantum'
 
 /** Lattice-derived docs:build phase thresholds — NOT an SLA; CI variance remains. Pair: gate/slow-build. */
-export const SLOW_BUILD_MERKLE_MS = FOLDED_CENSUS * digitalRoot(DIMENSION_GATES) // 108×9 = 972
-export const SLOW_BUILD_TYPES_MS = FOLDED_CENSUS * DIMENSION_GATES // 108×432 = 46656
-export const SLOW_BUILD_VITEPRESS_MS = DIMENSION_GATES * FOLDED_CENSUS * digitalRoot(DIMENSION_GATES) // 432×108×9
+export const SLOW_BUILD_MERKLE_MS = A432_FOLDED * digitalRoot(DIMENSION_GATES) // the a432 octave × 9 — the tuning ladder, not the corpus fold
+export const SLOW_BUILD_TYPES_MS = A432_FOLDED * DIMENSION_GATES // the a432 octave × the gate count
+export const SLOW_BUILD_VITEPRESS_MS = DIMENSION_GATES * A432_FOLDED * digitalRoot(DIMENSION_GATES) // gates × octave × 9
 export const SLOW_BUILD_RESPAWN_WALL_MS = SLOW_BUILD_MERKLE_MS
 
 /** srcMerkle-bound quantumize techniques — regressing past these is a HARD slow-build gap (PR #19). */
@@ -468,7 +468,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
         'slow-build:phase-merkle',
         'WARN',
         'src-merkle',
-        `merkleMs ≤ SLOW_BUILD_MERKLE_MS (${SLOW_BUILD_MERKLE_MS}) — FOLDED_CENSUS×digitalRoot(432)`,
+        `merkleMs ≤ SLOW_BUILD_MERKLE_MS (${SLOW_BUILD_MERKLE_MS}) — A432_FOLDED×digitalRoot(432)`,
         under,
         timing.merkleMs,
         SLOW_BUILD_MERKLE_MS,
@@ -480,7 +480,7 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
         'slow-build:phase-types',
         'WARN',
         'check:types',
-        `typesMs ≤ SLOW_BUILD_TYPES_MS (${SLOW_BUILD_TYPES_MS}) — FOLDED_CENSUS×DIMENSION_GATES`,
+        `typesMs ≤ SLOW_BUILD_TYPES_MS (${SLOW_BUILD_TYPES_MS}) — A432_FOLDED×DIMENSION_GATES`,
         under,
         timing.typesMs,
         SLOW_BUILD_TYPES_MS,

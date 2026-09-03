@@ -4,7 +4,7 @@
 import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../widgets'
-import { SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, physicalFtlClaimTheorem, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7'
+import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, physicalFtlClaimTheorem, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
@@ -26,7 +26,7 @@ import { BARYON_TO_PHOTON_RATIO, hawkingTemperature } from '../../4/6'
 import { ELECTRON_G_FACTOR_ANOMALY, zeroPointEnergy, casimirPressure, rebreatherInertBar } from '../../1/9'
 import { NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8'
 import { zeroPointDecoded, acousticsCymaticsDecoded, thermodynamicsEntropyDecoded, gatesAutoTighten } from '../../heaven/site'
-import { PHI, TAU, DIMENSION_GATES, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, earned } from '../../3/7'
+import { DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, PHI, TAU, earned } from '../../3/7'
 
 // Zero-point, DEEP and WIDE — a 5-angle sourced wave (59 documented, 22 flagged) going past the ½ħω core into the
 // quantitative Casimir metrology, the QED radiative corrections, the cosmological-constant problem, condensed-matter
@@ -2229,7 +2229,7 @@ export function stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix: Mind
     ]
 
     const sealed = sealFacets('string-theory-quantumized-a432-rosetta-merkle', [
-      { facet: `A432 SUBSTRATE — DIMENSION_GATES=${a432} = 4·FOLDED_CENSUS=${clock} (${a432IsFourClocks}); homology rank ${homologyRank}=HOMOLOGY_LOOPS; algebra.decoded=${algebra.decoded}`, on: a432IsFourClocks && homologyOk && algebra.decoded },
+      { facet: `A432 SUBSTRATE — DIMENSION_GATES=${a432} = 4·A432_FOLDED=${clock} (${a432IsFourClocks}); homology rank ${homologyRank}=HOMOLOGY_LOOPS; algebra.decoded=${algebra.decoded}`, on: a432IsFourClocks && homologyOk && algebra.decoded },
       { facet: `M-THEORY LADDER STRUCTURAL — superstringD=${algebra.superstringD} + 1 ⇒ M-theoryD=${mTheoryD} (count only; physics UNCONFIRMED)`, on: mTheoryLadder },
       { facet: `CALABI–YAU COMPACTIFICATION MODEL — compactDims=D−4=${compactDims}, CY complex dim=${cyComplexDim}; NOT sealed h^{p,q} on a projective CY`, on: calabiYauStructural },
       { facet: `BRANE p-INDEX FROM VORTEX — ${braneP.length} digital-root stations; structural addressing, NOT a Dp-brane mass spectrum`, on: braneIndexed },

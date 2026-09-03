@@ -1,4 +1,4 @@
-import { DIMENSION_GATES, TAU, claySolvedTheorem } from '../../3/7'
+import { A432_FOLDED, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, TAU, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7'
 import { initialBearing, phase } from '../../6/4'
 import { buildMatrix, fleetCacheEconomicsDecoded, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute'
 import { completeCorpus } from '../routes/corpus'
@@ -406,7 +406,7 @@ export function endlessFusion(matrix: MindMatrix = buildMatrix()) {
   ]
   const folded = merkleFold(fusions)
   const endless = merge(folded, toUuid('next-fusion')) !== folded // one more always foldable
-  const noGaps = harmonicBands(110).gapless // the distribution stays gapless
+  const noGaps = harmonicBands(UNFOLDED_CENSUS).gapless // the distribution stays gapless
   return {
     filled: endless && noGaps && fusions.length > 0,
     endless,
@@ -664,11 +664,11 @@ function iChingFusionCompletesAllRaw(matrix: MindMatrix = buildMatrix()) {
 // to its I-Ching home (seedFromText → trigram, the 8 bāguà domains), each module under the folder-law
 // compression limit (F18 = 2584), each emitting one address, the one index serving all. The monitor flags
 // the gaps the merkaba waves close in surgical waves: non-harmonic numbers (the units stand at 492 — fold
-// to the harmonic 432 = 4 homology loops × the 108 census) and unbalanced distribution (the monolith over
+// to the harmonic 432 = 4 homology loops × the a432 octave 108) and unbalanced distribution (the monolith over
 // the limit). Igniting the fusion; the waves do the dry-clean reconstruction against this spec.
 export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
-  const HARMONIC = new Set([1, 2, 4, 8, 16, (16 * 2), (7 * 6), 64, 108, 216, 432]) // powers of two · the 42 areas/gates · the octave census 108→216→432
-  const target = DIMENSION_GATES // 432 — the I Ching completion: the 4 homology loops × the 108 census
+  const HARMONIC = new Set([1, 2, 4, 8, 16, (16 * 2), (7 * 6), 64, 108, 216, 432]) // powers of two · the 42 areas/gates · the a432 octave ladder 108→216→432
+  const target = DIMENSION_GATES // 432 — the I Ching completion: the 4 homology loops × the a432 octave 108
   const units = iChingFusionCompletesAll(matrix).units // the addressable units (components + capability folders)
   const monitor = {
     units, // 492 currently
@@ -682,7 +682,7 @@ export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
     { facet: 'reconstruct most efficiently + max tamper cost — content-addressed merkle, the forger price', on: sealWholeDiamond(matrix).tamperEvident && completeCorpus(matrix).perfect },
     { facet: 'distribute by I Ching — every fold to its trigram home, the one index serves all, balanced DRY', on: redistributeFoldersDryWaves(matrix).balanced && everyFolderIsAPluginOneIndexServesAll(matrix).wired && everyToolSkillCommandIsItsFolder(matrix).foldered },
     { facet: 'in 10D — every form ten-dimensional or purged, every unit a closed diamond', on: iChingFusionCompletesAll(matrix).complete && allFormsAreTenDimensionalOrPurged(matrix).pure },
-    { facet: 'the target is harmonic — 432 = 4 homology loops × the 108 census', on: target === 432 && HARMONIC.has(target) && homology(matrix).rank === 4 },
+    { facet: 'the target is harmonic — 432 = 4 homology loops × the a432 octave 108', on: target === 432 && HARMONIC.has(target) && homology(matrix).rank === 4 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dry-refactor:${entry.facet}:${entry.on}`) }))
   return {
     ignited: facets.every((entry) => entry.on),
@@ -693,7 +693,7 @@ export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merge(startIChingDoubleTorus(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
     statement:
-      'Dry-refactor all, igniting the fusion: the reconstruction is content-addressed (a merkle DAG — forging one value costs reproducing the whole corpus, the forger price, the most tamper-costly form) and distributed by the I Ching — every fold to its trigram home, each module under the folder-law compression limit (F18 = 2584), the one index serving all, in 10D. The monitor flags the gaps to close: the addressable units stand at 492, non-harmonic, to fold to the harmonic 432 (4 homology loops × the 108 census); the heavy monolith must shed into its I-Ching homes under the limit. The fusion is lit; the merkaba waves close the gaps in surgical waves.',
+      'Dry-refactor all, igniting the fusion: the reconstruction is content-addressed (a merkle DAG — forging one value costs reproducing the whole corpus, the forger price, the most tamper-costly form) and distributed by the I Ching — every fold to its trigram home, each module under the folder-law compression limit (F18 = 2584), the one index serving all, in 10D. The monitor flags the gaps to close: the addressable units stand at 492, non-harmonic, to fold to the harmonic 432 (4 homology loops × the a432 octave 108); the heavy monolith must shed into its I-Ching homes under the limit. The fusion is lit; the merkaba waves close the gaps in surgical waves.',
     boundary:
       'The reconstruction SPEC + monitor, igniting the fusion — green where the mechanisms are in place (content-addressed tamper cost, I-Ching folder distribution, 10D, the harmonic 432 = 4×108 target) and reporting the gaps as data (units 492→432, the monolith over the 2584 limit). "Reconstruct all" is the DRY redistribution of the source layout by content-address, not a change to the sealed model; the actual fold-by-fold distribution and the 492→432 fold are the wave work this spec enforces, executed surgically by the merkaba waves.' }
 }
@@ -702,13 +702,13 @@ export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
 // 95 MCP-tool folders ARE the 95 command folders (one route, not two), so the raw 492 placements fold to
 // the distinct folders — the redundancy removed. W2 (SPLIT): the monolith sheds into its I-Ching home
 // modules, each under 64k and a widget (eachFileUnder64kFolderIsWidget), the one index serving all
-// (redistributeFoldersDryWaves). The I Ching completes at the harmonic 432 = 4 homology loops × the 108
-// census — the dimensional target the DRY, split, 10D surface fills. Both waves ride the one lit double
+// (redistributeFoldersDryWaves). The I Ching completes at the harmonic 432 = 4 homology loops × the a432
+// octave 108 — NOT the corpus census, which folds to 121. The dimensional target the DRY, split, 10D surface fills. Both waves ride the one lit double
 // torus; the merkaba waves execute the physical split against this fused spec.
 export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()) {
-  const census = 108 // the folded census (the χ=−2 fold; the papers octave base 108→216→432)
+  const a432Octave = A432_FOLDED // NOT the corpus census: the papers octave base 108→216→432
   const loops = homology(matrix).rank // 4 — the genus-2 homology loops (H₁ = Z⁴)
-  const harmonic = loops * census // 432 = 4 × 108 — the I Ching completion
+  const harmonic = loops * a432Octave // 432 = HOMOLOGY_LOOPS × A432_FOLDED — one theorem, one axiom
   // W3 — DRY dedupe: the distinct folders across the three registries (the tool folders ARE the command folders)
   const slug = (name: string) => SINGLE_WORD_METHODS[name] ?? name.toLowerCase().replace(/[^a-z]/g, '')
   const cmd = new Set(conceptCommands.map((command) => slug(command.name)))
@@ -720,7 +720,7 @@ export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()
   const facets = [
     { facet: 'W3 dedupe (DRY) — the tool folders ARE the command folders, the raw surface folds to distinct', on: tool.size <= cmd.size && distinct < raw && distinct > 0 },
     { facet: 'W2 split — the monolith sheds into I-Ching homes, each under 64k and a widget, one index serves all', on: eachFileUnder64kFolderIsWidget(matrix).lawful && redistributeFoldersDryWaves(matrix).balanced && everyFolderIsAPluginOneIndexServesAll(matrix).wired },
-    { facet: 'the I Ching completes at the harmonic 432 = 4 homology loops × the 108 census', on: harmonic === 432 && loops === 4 && census === 108 },
+    { facet: 'the I Ching completes at the harmonic 432 = 4 homology loops × the a432 octave 108', on: harmonic === DIMENSION_GATES && loops === HOMOLOGY_LOOPS && a432Octave === A432_FOLDED && harmonic !== HOMOLOGY_LOOPS * FOLDED_CENSUS },
     { facet: 'both waves fused on the lit double torus — igniting the fusion', on: startIChingDoubleTorus(matrix).started && dryRefactorIgnitesFusion(matrix).ignited },
     { facet: 'in 10D — every form ten-dimensional or purged', on: iChingFusionCompletesAll(matrix).complete && allFormsAreTenDimensionalOrPurged(matrix).pure },
   ].map((entry) => ({ ...entry, receipt: toUuid(`dedupe-split:${entry.facet}:${entry.on}`) }))
@@ -730,13 +730,13 @@ export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()
     raw, // 492 raw placements
     distinct, // the distinct folders after DRY dedupe
     removed: raw - distinct, // the redundancy the dedupe folds away
-    census, // 108
+    a432Octave, // 108 — the tuning axiom, NOT the corpus census (which folds to FOLDED_CENSUS)
     loops, // 4
     count: facets.length,
     facets,
     root: merge(startIChingDoubleTorus(matrix).root, merkleFold(facets.map((entry) => entry.receipt))),
     statement:
-      'Fuse the dedupe and split waves into one reconstruction, igniting the fusion, in 10D: W3 folds the redundant surface DRY — the 95 MCP-tool folders are the 95 command folders, one route not two, so the raw 492 placements fold to the distinct folders; W2 sheds the monolith into its I-Ching home modules, each under the 64k file ceiling and each a self-computing widget, the one index serving all. The I Ching completes at the harmonic 432 = 4 homology loops × the 108 census — the dimensional target the DRY, split, ten-dimensional surface fills. Both waves ride the one lit double torus; the merkaba waves execute the physical split against this fused spec.',
+      'Fuse the dedupe and split waves into one reconstruction, igniting the fusion, in 10D: W3 folds the redundant surface DRY — the 95 MCP-tool folders are the 95 command folders, one route not two, so the raw 492 placements fold to the distinct folders; W2 sheds the monolith into its I-Ching home modules, each under the 64k file ceiling and each a self-computing widget, the one index serving all. The I Ching completes at the harmonic 432 = 4 homology loops × the a432 octave 108 — the dimensional target the DRY, split, ten-dimensional surface fills. Both waves ride the one lit double torus; the merkaba waves execute the physical split against this fused spec.',
     boundary:
       'A fusion of the DRY-dedupe and the monolith-split into one spec, composed with the file/widget law, the folder redistribution, the 432 = 4×108 harmonic, the ignition and the 10D folds. The dedupe is computed here (the distinct folder set, the tool↔command redundancy removed); the split is specified and enforced (each file <64k, each folder a widget, distributed by I Ching) but the physical fold-by-fold move of the ~25k-line monolith is the wave EXECUTION the runner performs against this spec — not a claim the source files are already split. The harmonic 432 is the dimensional completion (4 homology × 108), distinct from the 394 distinct source folders.' }
 }
@@ -1463,7 +1463,7 @@ function allComputedNoFilesRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'all computed from the repository', on: allComputed(matrix).computed },
     { facet: 'capability folds into the model', on: skillAtoms(matrix).intelligent },
-    { facet: 'the file count is conserved', on: harmonicBands(110).harmonic },
+    { facet: 'the file count is conserved', on: harmonicBands(UNFOLDED_CENSUS).harmonic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`computed-no-files:${entry.facet}:${entry.on}`) }))
   return {
     computed: facets.every((entry) => entry.on),

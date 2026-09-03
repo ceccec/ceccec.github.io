@@ -1351,7 +1351,7 @@ export function openGraphCardFromRoute(
       { facet: `SEO FROM ROUTE — title/description/category via computedSeo (${seo.computed})`, on: seo.computed },
       { facet: `LINKS ABSOLUTE — ${links.length} links on ${CANONICAL_HOST}`, on: absoluteLinks && links.length >= 4 },
       { facet: `PLATFORM BRANCH — ${platform.id} supportsAnimatedOgImage=${supportsAnimation} → ${imagePath}`, on: limits.computes && (supportsAnimation ? imagePath.endsWith('.svg') && !imagePath.includes('.still.') : imagePath.includes('.still.')) },
-      { facet: `ANIMATION SUBSTRATE — cycleMs=${cycleMs}=FOLDED_CENSUS·1e3; SMIL count=${smilCount} (0 when still)`, on: cycleMs === A432_FOLDED * 1e3 && (supportsAnimation ? smilCount > 0 : smilCount === 0) },
+      { facet: `ANIMATION SUBSTRATE — cycleMs=${cycleMs}=A432_FOLDED·1e3; SMIL count=${smilCount} (0 when still)`, on: cycleMs === A432_FOLDED * 1e3 && (supportsAnimation ? smilCount > 0 : smilCount === 0) },
       { facet: `HERO PREVIEW — hue/seed from heroPreviewForRoute`, on: preview.hue >= 0 && /^[0-9a-f]{8}$/.test(preview.seed) },
       { facet: `LIMITS CITED — card.on branches on platformOgLimitsMeasured root ${limits.root.slice(0, 8)}`, on: isUuid(limits.root) && limits.platforms.some((p) => p.id === platform.id) },
       { facet: `STATIC GAP FACET — animationGap=${animationGap} when platform is first-frame-only`, on: animationGap === !supportsAnimation },

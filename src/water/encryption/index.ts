@@ -1028,8 +1028,8 @@ const MS_PER_SEC = (2 * 5) ** 3
 /** 1 ms floor for clock quantization — 1 / MS_PER_SEC. */
 const MS_FLOOR = 1 / MS_PER_SEC
 
-/** Sealed slow threshold — FOLDED_CENSUS × digitalRoot(432) (= 108×9 = 972 ms). Lattice-derived, not a magic SLO. */
-export const DEMO_RSA_MEASURE_SLOW_MS = FOLDED_CENSUS * digitalRoot(432)
+/** Sealed slow threshold — A432_FOLDED × digitalRoot(432) (= 108×9 = 972 ms). The a432 octave, NOT the corpus census. */
+export const DEMO_RSA_MEASURE_SLOW_MS = A432_FOLDED * digitalRoot(432)
 
 /** Teaching RSA keygen + encrypt→decrypt on sealed n=p·q — GENERATE half. */
 export function demoRsaTeachingGenerateSync() {
@@ -1104,7 +1104,7 @@ export function demoRsaGenerateAndReverseMeasured(matrix: MindMatrix = buildMatr
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain}) — wall-clock excluded from merkle`, on: root === rootAgain && isUuid(root) },
     { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: productionRefused },
     { facet: `far-over-ceiling ${far.probe} + Bitcoin/mainnet material REFUSED`, on: bitcoinRefused },
-    { facet: `THRESHOLD = FOLDED_CENSUS×digitalRoot(432)=${thresholdMs}`, on: thresholdMs === FOLDED_CENSUS * digitalRoot(432) },
+    { facet: `THRESHOLD = A432_FOLDED×digitalRoot(432)=${thresholdMs}`, on: thresholdMs === A432_FOLDED * digitalRoot(432) },
     { facet: `SLOW BIND — gen=${slowGenerate}===${generateMs > thresholdMs} rev=${slowReverse}===${reverseMs > thresholdMs}`, on: slowGenerate === (generateMs > thresholdMs) && slowReverse === (reverseMs > thresholdMs) },
   ]
   const sealed = sealFacets('demo-rsa-generate-and-reverse-measured', facets)
@@ -2561,7 +2561,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       auditRow({ id: 'directional-trinity', standardOrDimension: 'Directional trinity forward·inverse·reverse', auditExport: 'directionalTrinityForwardInverseReverse', reverseOrInverse: 'both', on: dirTrinity.computes && dirTrinity.digits.length === DIMENSIONS, root: dirTrinity.root, route: '/en/quantum-tools#directional-trinity', browserRunnable: true, browserGap: '', boundary: 'Compose sealed digit trinity — inverse≠reverse; named coincidence digit 1 only' }),
       auditRow({ id: 'content-address', standardOrDimension: 'Content-address / merkle integrity', auditExport: 'toUuid·merkleFold', reverseOrInverse: 'neither', on: contentAddressOk, root: merkleProbe, route: '/en/encryption', browserRunnable: true, browserGap: '', boundary: 'Integrity Shor-safe — authenticity still needs PQC migrate' }),
       auditRow({ id: 'a432', standardOrDimension: 'A432 brand spine', auditExport: 'A432_HUE·frequencyToLight', reverseOrInverse: 'neither', on: a432Ok, root: toUuid(`audit-a432:${A432_HUE}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Derived hue from 432 Hz — not a healing claim' }),
-      auditRow({ id: 'census-110', standardOrDimension: 'Census-110 / folded-108 / gates-432', auditExport: 'UNFOLDED_CENSUS·FOLDED_CENSUS·DIMENSION_GATES', reverseOrInverse: 'neither', on: censusOk, root: toUuid(`audit-census:${UNFOLDED_CENSUS}:${FOLDED_CENSUS}:${DIMENSION_GATES}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Constant identity audit — limits:verify is the enforcement twin' }),
+      auditRow({ id: 'census-123', standardOrDimension: 'Census-123 / folded-121 / a432 gates-432', auditExport: 'UNFOLDED_CENSUS·FOLDED_CENSUS·DIMENSION_GATES', reverseOrInverse: 'neither', on: censusOk, root: toUuid(`audit-census:${UNFOLDED_CENSUS}:${FOLDED_CENSUS}:${DIMENSION_GATES}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Constant identity audit — limits:verify is the enforcement twin' }),
       auditRow({ id: 'animation-10d', standardOrDimension: 'Animation field 10D names', auditExport: 'DIMENSIONS·DIMENSION_NAMES', reverseOrInverse: 'neither', on: dimsOk, root: toUuid(`audit-10d:${DIMENSIONS}:${DIMENSION_NAMES.join('.')}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Model dimensions (6 cross-fold + 4 homology) — not spacetime claim' }),
       auditRow({ id: 'millennium-probes', standardOrDimension: 'Millennium challenge probes', auditExport: 'millenniumProblemsChallenge ( honesty)', reverseOrInverse: 'neither', on: millClaySolvedByThisFold === 0, root: millRoot, route: '/en/millennium-challenge', browserRunnable: true, browserGap: '', boundary: 'MODELED CHALLENGE honesty — ' }),
       auditRow({ id: 'rosetta-rays', standardOrDimension: 'Rosetta ray addressing', auditExport: 'rosettaShelve(tool) via catalog ids', reverseOrInverse: 'neither', on: ['pqc-nist-fips', 'reverse-demo-rsa', 'inverse-digit-zero'].every((id) => isUuid(toUuid(`rosetta-audit-probe:${id}`))), root: toUuid('audit-rosetta:probe'), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Probe that audit ids content-address; full shelve lives in quantumCliToolsCatalog' }),
@@ -2833,7 +2833,7 @@ export function quantumDimensionAuditCoverage(
     { dimension: 'depthFade', auditIds: ['iso-hash-sig-taxonomy', 'pqc-migration', 'iso-14888-sig'] },
     { dimension: 'hueShift', auditIds: ['a432'] },
     { dimension: 'twist', auditIds: ['rosetta-rays', 'shor-break-map'] },
-    { dimension: 'shrink', auditIds: ['census-110'] },
+    { dimension: 'shrink', auditIds: ['census-123'] },
     { dimension: 'breath', auditIds: ['animation-10d', 'iso-11770-km'] },
     { dimension: 'loopA1', auditIds: ['inverse-digit-zero', 'inverse-ratInv'] },
     { dimension: 'loopB1', auditIds: ['inverse-f-pq', 'reverse-ne-inverse', 'directional-trinity'] },

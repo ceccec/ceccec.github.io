@@ -293,7 +293,7 @@ function censusDelta(actual: number, target: number): { delta: number; detail: s
   return { delta, detail: `${-delta} over — not more: dissolve ${-delta} index.ts into the model until exactly ${target}` }
 }
 
-/** Gapless census — consecutive Fibonacci bands sum exactly to 110 (reuse harmonicBands from lake/icons). */
+/** Gapless census — consecutive Fibonacci bands sum exactly to UNFOLDED_CENSUS (reuse harmonicBands from lake/icons). */
 export function verifyGaplessCensus(count: number) {
   const n = max(0, floor(count))
   const harmonic = harmonicBands(n)
@@ -757,7 +757,7 @@ export function scanRootDistributionViolations(root: string): ComputationalViola
  * 1·2·4·8·7·5 + 3·6·9 trinity rays). The on-disk pairing N/(10−N) is the additive ten's-complement folder
  * lattice — NOT the n/0 inverse of a digit, which is the multiplicative inverse n⁻¹ mod 9 (see zeroDivisionTable);
  * the folder names are the additive structure. The gate enforces THAT structure is present and gapless — it adds
- * NO digit-root barrels (src/N/index.ts), so it never grows the 110 census. A recomputed fail-the-build invariant.
+ * NO digit-root barrels (src/N/index.ts), so it never grows the census. A recomputed fail-the-build invariant.
  */
 export function scanDigitLatticeViolations(root: string): ComputationalViolation[] {
   const offenders: ComputationalViolation[] = []

@@ -8,7 +8,7 @@ import { a432, animationEngineLivesInZero, buildEnforcementPipeline, contentAddr
 import { healByDefault, createByDefault } from '../../heaven/laws'
 import { thriveByDefault } from '../../earth/civilisation'
 import { commandsRegistry } from '../../thunder/commands'
-import { SINGLE_WORD_METHODS, claySolvedTheorem, titleCarriesAlgebra, normalizeTitle } from '../../3/7'
+import { A432_FOLDED, SINGLE_WORD_METHODS, claySolvedTheorem, normalizeTitle, titleCarriesAlgebra } from '../../3/7'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { cloudflareBindings } from '../../heaven/core'
 import * as __ns_heaven_site from '../../heaven/site'
@@ -998,7 +998,7 @@ export function foldsLiveAtTheirDomainHome(
 export function toolsSavedInSrcFirst(
   scripts: readonly { path: string; lines: number; routesThroughSrc: boolean }[] = [],
 ) {
-  const LINE_BUDGET = 108 // the folded census; a shell beyond this is a logic home — put the logic in src
+  const LINE_BUDGET = A432_FOLDED // the a432 octave; a shell beyond this is a logic home — put the logic in src
   const violations = scripts
     .filter((script) => !script.routesThroughSrc || script.lines > LINE_BUDGET)
     .map((script) => `${script.path} (${script.lines} lines · routesThroughSrc:${script.routesThroughSrc})`)

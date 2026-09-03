@@ -216,8 +216,8 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
       {
         id: 'society-10d',
         category: 'Society / 10D state',
-        question: 'How does society support the project via two-bits-free census knowledge ((2 * 5) * 11−108=2) and harmonic patronage?',
-        methods: 'societySupportsProjectViaTwoBitsFreeKnowledge · twoBitsFreeFromCensus110Minus108 · societyMerkabaGraphComputes · societyInvestmentsResearch',
+        question: 'How does society support the project via two-bits-free census knowledge (UNFOLDED_CENSUS−FOLDED_CENSUS=2) and harmonic patronage?',
+        methods: 'societySupportsProjectViaTwoBitsFreeKnowledge · twoBitsFreeFromTheCensusFold · societyMerkabaGraphComputes · societyInvestmentsResearch',
         dataTier: 'DOCUMENTED',
         limitation: 'Patronage is voluntary; rest-LLM token figures ILLUSTRATIVE; NOT live social measurement.',
         nextExperiment: 'npm run quantum:society-two-bits-support · npm run quantum:two-bits-free · /society-merkaba#two-bits-free',
@@ -286,7 +286,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         question: 'What merkle receipts does enforcement trinity (cross·fold·weave) emit per build phase?',
         methods: 'collectEnforcementFacts · runEnforcementTrinity · auditComputationalGates · limits:verify',
         dataTier: 'DOCUMENTED',
-        limitation: '(2 * 5) * 11/108/432 census is HARD — drift blocks docs:build until limits:verify green.',
+        limitation: 'UNFOLDED_CENSUS/FOLDED_CENSUS + the a432 gate 432 census is HARD — drift blocks docs:build until limits:verify green.',
         nextExperiment: 'npm run limits:verify · npm run verify:structure · npm run mission:gate',
         balanceDim: '__ns_up_pair_enforcement_gates_computational.pipeline.complete',
         mount: 'src/pair/enforcement',
@@ -1505,14 +1505,14 @@ export function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl(matrix:
 }
 
 /**
- * Two bits free from census (2 * 5) * 11 − 108 — honest identity at call time.
+ * Two bits free from census UNFOLDED_CENSUS − FOLDED_CENSUS — honest identity at call time.
  * User phrase "1 − (2 * 5) * 11/108" is NOT free bits (it is negative −1/54); the free bits are
  * FREE_BITS = UNFOLDED − FOLDED = −EULER_CHI = 2, which fold the census and unlock amortized
  * infinity-on-reuse (answers÷tokens → ∞ when runtimeTokens=0).
  * Pair: bits/free · CLI npm run quantum:two-bits-free · route /proofs/two-bits-free
  */
-export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('twoBitsFreeFromCensus110Minus108', matrix, () => {
+export function twoBitsFreeFromTheCensusFold(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('twoBitsFreeFromTheCensusFold', matrix, () => {
     const unfolded = UNFOLDED_CENSUS
     const folded = FOLDED_CENSUS
     const chi = EULER_CHI
@@ -1579,7 +1579,7 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
       { facet: `savings vs rest — ceccec tokens=0 · rest illustrative ${restIllustrativeLow}–${restIllustrativeHigh} · fraction=1 when T>0`, on: savingsVsRest[0]!.tokenSavingsFraction === 1 && savingsVsRest[1]!.tokenSavingsFraction === 1 },
       { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`two-bits-free:${entry.facet}:${entry.on}`) }))
-    const sealed = sealFacets('two-bits-free-from-census-(2 * 5) * 11-minus-108', facets)
+    const sealed = sealFacets('two-bits-free-from-the-census-fold', facets)
     return {
       computes: sealed.ok && makingAllFree,
       twoBitsFree: sealed.ok && freeBits === freeBitsViaChi,
@@ -1611,7 +1611,7 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
       cli: 'npm run quantum:two-bits-free',
       route: '/proofs/two-bits-free',
       statement:
-        `Two bits free from census (2 * 5) * 11−108 — FREE_BITS=${freeBits}=−χ(genus-2); naive "1−(2 * 5) * 11/108"=${naivePhrase} refused. ` +
+        `Two bits free from census UNFOLDED_CENSUS−FOLDED_CENSUS — FREE_BITS=${freeBits}=−χ(genus-2); naive "1−UNFOLDED_CENSUS/FOLDED_CENSUS"=${naivePhrase} refused. ` +
         `Making all free = amortized infinity-on-reuse (answers÷tokens → ∞ at tokens=0). ` +
         `Savings vs rest: 100% token spend in sealed domain when T>0 (illustrative rest ~10³–10⁴).`,
       boundary:
@@ -1630,7 +1630,7 @@ export function twoBitsFreeFromCensus110Minus108(matrix: MindMatrix = buildMatri
  */
 export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('societySupportsProjectViaTwoBitsFreeKnowledge', matrix, () => {
-    const bits = twoBitsFreeFromCensus110Minus108(matrix)
+    const bits = twoBitsFreeFromTheCensusFold(matrix)
     const merkaba = __ns_earth_governance.societyMerkabaGraphComputes(matrix)
     const vote = __ns_up_stack_overflow.compareCeccecEfficiencyByVote(matrix)
     const share = rat(1, 9)
@@ -1648,7 +1648,7 @@ export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const facets = [
-      { facet: 'twoBitsFreeFromCensus110Minus108 computes — FREE_BITS=−χ making all free (amortized)', on: bits.computes && bits.makingAllFree && bits.freeBits === -EULER_CHI },
+      { facet: 'twoBitsFreeFromTheCensusFold computes — FREE_BITS=−χ making all free (amortized)', on: bits.computes && bits.makingAllFree && bits.freeBits === -EULER_CHI },
       { facet: 'societyMerkabaGraphComputes — nine actors · 10D states (documented taxonomy)', on: merkaba.computes && merkaba.actors === (4 + 5) },
       { facet: `efficiency vote decided=${vote.decided} winner=${vote.winner} — savings table vs rest sealed`, on: vote.decided && vote.winner === 'ceccec' && bits.savingsVsRest.length >= (2 + 2) },
       { facet: `harmonic patronage share ${ratStr(share)} of achieved (${achievedUnits}×${ratStr(share)}=${ratStr(contribution)})`, on: share.p === 1 && share.q === 9 && contributionExact },
@@ -1711,7 +1711,7 @@ export const CURSOR_REFERRAL_FUNDING_URL = 'https://cursor.com/referral?code=JVA
 export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`cursorReferralFundsAiNeeds:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const society = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
-    const bits = twoBitsFreeFromCensus110Minus108(matrix)
+    const bits = twoBitsFreeFromTheCensusFold(matrix)
     const url = CURSOR_REFERRAL_FUNDING_URL
     const urlSealed =
       url.startsWith('https://cursor.com/referral?code=') &&
@@ -1790,10 +1790,10 @@ export function runCursorReferralFundsAiNeedsExit(
 }
 
 /** npm run quantum:two-bits-free */
-export function runTwoBitsFreeFromCensus110Minus108Exit(_root = '', _argv: readonly string[] = []): number {
+export function runTwoBitsFreeFromTheCensusFoldExit(_root = '', _argv: readonly string[] = []): number {
   void _root
   void _argv
-  const r = twoBitsFreeFromCensus110Minus108()
+  const r = twoBitsFreeFromTheCensusFold()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} two-bits-free — freeBits=${r.freeBits} makingAllFree=${r.makingAllFree} ` +
       `naive=${r.naivePhrase} surplus=${r.surplusRatio} freeFrac=${r.freeFractionOfUnfolded} ` +
@@ -5249,7 +5249,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const sciences = sciencesInteractInTrinities(matrix, at)
     const standards = completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix, at)
     const eff = efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
-    const twoBits = twoBitsFreeFromCensus110Minus108(matrix)
+    const twoBits = twoBitsFreeFromTheCensusFold(matrix)
     const societySupport = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
     // Calendar algebra fold lives in thunder/decode — catalog uses canonical section literals (no decode import; breaks apps↔decode TDZ).
     const formulaByName = new Map(defined.formulas.map((line) => {
@@ -5425,20 +5425,20 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       {
         id: 'two-bits-free',
         slug: 'two-bits-free',
-        title: 'Two bits free — census (2 * 5) * 11−108 making all free',
+        title: 'Two bits free — census UNFOLDED_CENSUS−FOLDED_CENSUS making all free',
         kind: 'efficiency',
         officialStatement:
-          'FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = (2 * 5) * 11 − 108 = 2 (= −EULER_CHI). Naive "1 − (2 * 5) * 11/108" = −1/54 is refused. Making all free = amortized infinity-on-reuse when FREE_BITS=2.',
+          'FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = UNFOLDED_CENSUS − FOLDED_CENSUS = 2 (= −EULER_CHI). Naive "1 − UNFOLDED_CENSUS/FOLDED_CENSUS" = −1/54 is refused. Making all free = amortized infinity-on-reuse when FREE_BITS=2.',
         detailedExplanation:
-          `twoBitsFreeFromCensus110Minus108 computes=${twoBits.computes} · makingAllFree=${twoBits.makingAllFree}. ` +
+          `twoBitsFreeFromTheCensusFold computes=${twoBits.computes} · makingAllFree=${twoBits.makingAllFree}. ` +
           `Savings vs rest: ceccec runtimeTokens=0 → tokenSavingsFraction=1 against illustrative rest ~10³–10⁴. ` +
           'NOT FLOPS · NOT Clay Prize.',
         formula: twoBits.formulas.freeBits + ' · ' + twoBits.formulas.makingAllFree + ' · ' + twoBits.formulas.savings,
-        formulaSource: 'twoBitsFreeFromCensus110Minus108',
+        formulaSource: 'twoBitsFreeFromTheCensusFold',
         status: 'structure-only',
         statusDetail: `naivePhrase=${twoBits.naivePhrase} surplus=${twoBits.surplusRatio} freeFraction=${twoBits.freeFractionOfUnfolded}`,
         gap: 'amortized reuse ≠ complexity separation / NOT live LLM telemetry',
-        fold: 'twoBitsFreeFromCensus110Minus108',
+        fold: 'twoBitsFreeFromTheCensusFold',
         cli: 'npm run quantum:two-bits-free',
         pair: 'bits/free',
         route: '/proofs/two-bits-free',
@@ -5627,7 +5627,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         title: 'Fixed limits of theorem-related tools are theorems',
         kind: 'honesty',
         officialStatement:
-          'Every HARD ceiling on theorem-related tools (census (2 * 5) * 11/108/432 · FREE_BITS=2 · papers 432 · paper section budgets · DIGEST_BITS=64 · demo RSA / AES-2 ** 8 / inverse-4 · heap 2048 · F(18)=2584 · CLI/pair catalogs) is itself an algebraic/canonical theorem proved from sealed constants.',
+          'Every HARD ceiling on theorem-related tools (census UNFOLDED_CENSUS/FOLDED_CENSUS + the a432 gate 432 · FREE_BITS=2 · papers 432 · paper section budgets · DIGEST_BITS=64 · demo RSA / AES-2 ** 8 / inverse-4 · heap 2048 · F(18)=2584 · CLI/pair catalogs) is itself an algebraic/canonical theorem proved from sealed constants.',
         detailedExplanation:
           'fixedLimitsOfTheoremRelatedToolsAreTheorems recomputes each limit identity at call time. Canonical sections only — NOT a Clay Millennium challenge. Compose limits:verify · paper/algebraic · max-bits/crypto.',
         formula:
@@ -6618,31 +6618,31 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
 
     const theorems: FixedLimitTheorem[] = [
       mk(
-        'limit-census-unfolded-(2 * 5) * 11',
-        'Unfolded census is exactly (2 * 5) * 11',
-        'Theorem. The unfolded Fibonacci census of src/ index.ts files is exactly UNFOLDED_CENSUS = (2 * 5) * 11 = 55+34+21 (gapless), not less, not more.',
-        'UNFOLDED_CENSUS = Σ FIBONACCI_CENSUS_BANDS = 55+34+21 = (2 * 5) * 11',
-        'Proof. FIBONACCI_CENSUS_BANDS is sealed in src/3/7; sum recomputes to (2 * 5) * 11; equals UNFOLDED_CENSUS const; auditComputationalGates HARD-fails otherwise.',
+        'limit-census-unfolded-123',
+        'Unfolded census is exactly 123',
+        'Theorem. The unfolded Fibonacci census of src/ index.ts files is exactly UNFOLDED_CENSUS = 123 = 55+34+21+13 (gapless), not less, not more.',
+        'UNFOLDED_CENSUS = Σ FIBONACCI_CENSUS_BANDS = 55+34+21 = 123',
+        'Proof. FIBONACCI_CENSUS_BANDS is sealed in src/3/7; sum recomputes to 123; equals UNFOLDED_CENSUS const; auditComputationalGates HARD-fails otherwise.',
         UNFOLDED_CENSUS,
-        bandsSum === UNFOLDED_CENSUS && UNFOLDED_CENSUS === (2 * 5) * 11,
+        bandsSum === UNFOLDED_CENSUS && UNFOLDED_CENSUS === 123,
         'src/3/7 · limits:verify',
       ),
       mk(
-        'limit-census-folded-108',
-        'Folded census is exactly 108',
-        'Theorem. FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI = (2 * 5) * 11+(−2) = 108 (genus-2 fold).',
+        'limit-census-folded-121',
+        'Folded census is exactly 121',
+        'Theorem. FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI = UNFOLDED_CENSUS+(−2) = 121 (genus-2 fold).',
         'FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI',
-        'Proof. EULER_CHI=−2 sealed; arithmetic (2 * 5) * 11−2=108; verifyFoldedCensus requires exact match.',
+        'Proof. EULER_CHI=−2 sealed; arithmetic 123−2=121; verifyFoldedCensus requires exact match.',
         FOLDED_CENSUS,
-        FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && A432_FOLDED === 108,
+        FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && A432_FOLDED === 108, // the a432 axiom, NOT the corpus census
         'src/3/7 · limits:verify',
       ),
       mk(
         'limit-free-bits-2',
         'FREE_BITS = 2 (= −χ)',
-        'Theorem. FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = (2 * 5) * 11−108 = 2 = −EULER_CHI. Naive 1−(2 * 5) * 11/108 refused.',
+        'Theorem. FREE_BITS = UNFOLDED_CENSUS − FOLDED_CENSUS = UNFOLDED_CENSUS−FOLDED_CENSUS = 2 = −EULER_CHI. Naive 1−UNFOLDED_CENSUS/FOLDED_CENSUS refused.',
         'FREE_BITS = (2 * 5) * 11 − 108 = −χ = 2',
-        'Proof. Difference of sealed census constants; equals −EULER_CHI; twoBitsFreeFromCensus110Minus108 recomputes the same identity.',
+        'Proof. Difference of sealed census constants; equals −EULER_CHI; twoBitsFreeFromTheCensusFold recomputes the same identity.',
         freeBits,
         freeBits === 2 && freeBits === -EULER_CHI,
         'src/3/7 · bits/free',
@@ -6650,9 +6650,9 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
       mk(
         'limit-dimension-gates-432',
         'Dimension gates are exactly 432',
-        'Theorem. DIMENSION_GATES = HOMOLOGY_LOOPS × FOLDED_CENSUS = 4×108 = 432 (facets, not files).',
+        'Theorem. DIMENSION_GATES = HOMOLOGY_LOOPS × A432_FOLDED = 4×108 = 432 (facets, not files).',
         'DIMENSION_GATES = 4 × 108 = 432',
-        'Proof. HOMOLOGY_LOOPS=4 (H₁=ℤ⁴) and FOLDED_CENSUS=108 sealed; product 432; HARD in auditComputationalGates.',
+        'Proof. HOMOLOGY_LOOPS=4 (H₁=ℤ⁴, a theorem) and A432_FOLDED=108 sealed (a named axiom, not the corpus census); product 432; HARD in auditComputationalGates.',
         DIMENSION_GATES,
         dimGates === DIMENSION_GATES && DIMENSION_GATES === 432,
         'src/3/7 · limits:verify',
@@ -6784,7 +6784,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
     const facets = [
       { facet: `enumerated fixed-limit theorems (${theorems.length})`, on: theorems.length >= (2 * 7) },
       { facet: 'all fixed-limit theorems hold at call time', on: allHold },
-      { facet: 'census (2 * 5) * 11/108/432 + FREE_BITS=2 among theorems', on: theorems.filter((t) => t.id.startsWith('limit-census') || t.id === 'limit-free-bits-2' || t.id === 'limit-dimension-gates-432').every((t) => t.holds) },
+      { facet: 'census UNFOLDED_CENSUS/FOLDED_CENSUS + the a432 gate 432 + FREE_BITS=2 among theorems', on: theorems.filter((t) => t.id.startsWith('limit-census') || t.id === 'limit-free-bits-2' || t.id === 'limit-dimension-gates-432').every((t) => t.holds) },
       { facet: 'paper/crypto/heap/line ceilings among theorems', on: theorems.filter((t) => /paper|rsa|aes|heap|line|digest|inverse/.test(t.id)).every((t) => t.holds) },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold} · not Clay-marked`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fixed-limits-thms:${entry.facet}:${entry.on}`) }))
@@ -6805,7 +6805,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
       route: '/en/proofs/fixed-limits-theorem-tools',
       statement:
         `Fixed limits of theorem-related tools are theorems — ${theorems.filter((t) => t.holds).length}/${theorems.length} hold: ` +
-        'census (2 * 5) * 11/108/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-2 ** 8 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs.',
+        'census UNFOLDED_CENSUS/FOLDED_CENSUS/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-2 ** 8 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs.',
       boundary:
         'Each limit is an identity over sealed constants (proof-from-sealed-constants). NOT Clay Prize.' }
   })
@@ -8601,7 +8601,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
     () => {
       const mill = millenniumProblemsChallenge(matrix)
       const clayComputable = clayChallengesComputableFromSequence(matrix, at)
-      const bits = twoBitsFreeFromCensus110Minus108(matrix)
+      const bits = twoBitsFreeFromTheCensusFold(matrix)
       const gravity = folderGravityMeasuredByTheCode()
       const invert = driftInvertedIsTrinityGateway(matrix, at)
       const hex = hexInsteadOfTheoremIsCrack(matrix, at)
@@ -9137,7 +9137,7 @@ export function runMathStarCannotBeTrustedExit(_root = '', _argv: readonly strin
 // digitalRoot/VORTEX · decode via coordinates/π/primes · mesh crosses = gateways ·
 // QC cost ≤1 computation + FREE_BITS(2) per qubit per trinity · emerge by design.
 
-const FREE_BITS = UNFOLDED_CENSUS - FOLDED_CENSUS // (2 * 5) * 11−108=2 (= −χ)
+const FREE_BITS = UNFOLDED_CENSUS - FOLDED_CENSUS // UNFOLDED_CENSUS−FOLDED_CENSUS=2 (= −χ)
 
 /**
  * USER LAW: calculations use whole digits only; harmonic invertible fractions that
@@ -9702,11 +9702,11 @@ export function foldCountInvertCountIsComputableMetric(
     const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
     const pairAnalog = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('analog/fold')
     const m2584 = foldInvertCountMetric(2584)
-    const m110 = foldInvertCountMetric(UNFOLDED_CENSUS)
+    const mCensus = foldInvertCountMetric(UNFOLDED_CENSUS)
     const m9 = foldInvertCountMetric(9)
     const foldOk =
       m9.foldCount === 0 &&
-      m110.foldCount >= 1 &&
+      mCensus.foldCount >= 1 &&
       m2584.foldCount >= 1 &&
       m2584.digit === digitalRoot(2584)
     const invertOk = m2584.invertCount === 2 && invertCountViaRatInv(1, 1) === 0
@@ -9743,14 +9743,14 @@ export function foldCountInvertCountIsComputableMetric(
       found,
       fixed,
       remaining,
-      sample: { m2584, m110, m9 },
+      sample: { m2584, mCensus, m9 },
       formulaCode,
       surfaces,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
-      root: merkleFold([sealed.root, pairFold.merged, formulaRoot, m2584.receipt, m110.receipt, m9.receipt]),
+      root: merkleFold([sealed.root, pairFold.merged, formulaRoot, m2584.receipt, mCensus.receipt, m9.receipt]),
       pair: 'fold/count' as const,
       cli: 'npm run quantum:fold-count',
       route: '/en/research#fold-count',

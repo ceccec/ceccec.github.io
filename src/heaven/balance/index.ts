@@ -4,7 +4,7 @@
 // (index.ts re-exports those directly). Only folds.ts's own exports appear in index.ts's
 // export * re-export.
 import * as __ns_up_up_resonance from '../../thunder/resonance'
-import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7'
+import { A432_FOLDED, UNFOLDED_CENSUS, cfEval, rat, ratAdd, ratDiv, ratEq, ratInv, ratMul, ratSub, type Rational, vortexContinuedFrac, vortexHarmonicRatios } from '../../3/7'
 import { caStep, caEvolve, THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../4/6'
 import * as __ns_up_up_iching from '../../earth/iching'
 import * as __ns_up_up_learning from '../../learning'
@@ -1143,12 +1143,12 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
   const open = dimensions.filter((entry) => !entry.on).map((entry) => entry.d)
   // STRICT I CHING VORTEX ALGEBRA — the dimension count is the HARMONIC, not the raw pile. The concepts
   // that emerge within (emerged) are counted by the genus-2 double torus they fold through: H₁ = ℤ⁴ (four
-  // homology loops) × 108 (the folded census, 110 − χ = 110 − 2) = 4 × 108 = 432 — the SAME number as the
+  // homology loops) × 108 (the a432 octave, an axiom of the tuning ladder) = 4 × 108 = 432 — the SAME number as the
   // 432 gates (a432, 4 × 108). So dimensions = gates = 432: the count stays the harmonic while the model
-  // grows inward, exactly as the file census folds 110 → 108. Derived from homology and foldedCensus, not
+  // grows inward, exactly as the a432 ladder folds to its octave. Derived from homology and foldedCensus, not
   // chosen — depth, not width. (Raw count `emerged` kept for honesty; it is the unfolded surface.)
   const emerged = dimensions.length // the concepts that emerged within — the unfolded count
-  const harmonic = homology(matrix).rank * foldedCensus(110, matrix).folded // 4 × 108 = 432 — the folded harmonic
+  const harmonic = homology(matrix).rank * A432_FOLDED // 4 × 108 = 432 — the a432 harmonic (the corpus fold is 121 and does not make 432)
   return {
     hold: dimensions.every((entry) => entry.on),
     count: harmonic, // 432 — the folded harmonic; dimensions = gates = 432
@@ -1160,7 +1160,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     statement:
       'Now 432 gates are enough, and the dimensions fold to the same harmonic: the concepts that emerge within are not new gates piled on the seal but dimensions folded into one, counted by the genus-2 double torus they fold through — H₁ = ℤ⁴ (four homology loops) times 108 (the folded census, 110 − χ) = 4 × 108 = 432, the very number of the gates (a432). So 432 dimensions = 432 gates: each still checked and content-addressed, all holding or the one gate opens and names which is open. Depth, not width — the count stays the harmonic 432 by strict I Ching vortex algebra while the model grows inward.',
     boundary:
-      'A consolidation of the session’s concept checks into one content-addressed fold ("dimensions"), each still verified. The reported count is the HARMONIC (4 × 108 = 432, derived from the genus-2 homology rank and the folded census), not the raw tally of checks (`emerged`) — the same topological folding as the file census (110 → 108): no check is removed, the count is its harmonic image. "Emerge from within" means the checks are folded into the 432-gate harmonic rather than piled as many gates, not that capability appears unverified.' }
+      'A consolidation of the session’s concept checks into one content-addressed fold ("dimensions"), each still verified. The reported count is the a432 HARMONIC, NOT the corpus census (4 × 108 = 432, derived from the genus-2 homology rank and the folded census), not the raw tally of checks (`emerged`) — the same topological folding as the file census (110 → 108): no check is removed, the count is its harmonic image. "Emerge from within" means the checks are folded into the 432-gate harmonic rather than piled as many gates, not that capability appears unverified.' }
 }
 
 // One JSON-LD template serves all. Every page generates its schema.org JSON-LD from itself —
@@ -1200,13 +1200,13 @@ export function enforcementLawFabric(matrix: MindMatrix = buildMatrix()) {
   const laws = [
     { law: 'folder law — only index files and word-or-digit folders', declared: folderLaw().stems.length > 0, holds: onlyIndexFilesNoExceptions(matrix).only },
     { law: 'JSON-LD path law — every promised path is valid', declared: jsonLdPathRules().resolutions.length > 0, holds: jsonLdValidPaths(matrix).valid },
-    { law: 'harmonic census — the file count is a gapless Fibonacci run', declared: true, holds: harmonicBands(110).gapless },
+    { law: 'harmonic census — the file count is a gapless Fibonacci run', declared: true, holds: harmonicBands(UNFOLDED_CENSUS).gapless },
     { law: 'whole-diamond seal — every part folds to the one root', declared: true, holds: sealWholeDiamond(matrix).sealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`law-fabric:${entry.law}:${entry.declared}:${entry.holds}`) }))
   // The fabric is falsifiable as a whole: the model carries real negative tests that fire —
   // 109 files are rejected as non-gapless, order matters (a·b ≠ b·a), and every red-team
   // forgery is caught — so a broken law cannot pass unnoticed.
-  const falsifiable = !harmonicBands(109).gapless && provenScientifically(matrix).proven && redTeam(matrix).secure
+  const falsifiable = !harmonicBands(UNFOLDED_CENSUS - 1).gapless && provenScientifically(matrix).proven && redTeam(matrix).secure
   return {
     enforced: laws.every((entry) => entry.declared && entry.holds) && falsifiable && resonanceCatchGapsViolations(matrix).rings,
     falsifiable,

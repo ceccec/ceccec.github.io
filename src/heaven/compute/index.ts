@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6'
 import { foldMagmaLaws } from '../../5/5'
-import { CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, claySolvedTheorem, demarcate, earned, extractAlgebraicStatement, landauerLimit, physicalFtlClaimTheorem, rat, ratAdd, ratEq, ratMul } from '../../3/7'
+import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, claySolvedTheorem, demarcate, earned, extractAlgebraicStatement, landauerLimit, physicalFtlClaimTheorem, rat, ratAdd, ratEq, ratMul } from '../../3/7'
 import { tamperEvident } from '../../5/5'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9'
@@ -1255,7 +1255,7 @@ export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), ro
       { facet: 'the whole portal folds into one root — theWhole stands (every wave green)', on: whole.whole },
     ]
     const sealed = sealFacets('prove-all-deterministic-core', facets)
-    const beat = proveAllDeterministicCoreBeatAt(at / (FOLDED_CENSUS * (100 * 5 * 2))) // the same 108 s hero cycle as the movie phase clock, derived from the census harmonic
+    const beat = proveAllDeterministicCoreBeatAt(at / (A432_FOLDED * (100 * 5 * 2))) // the same 108 s hero cycle as the movie phase clock, derived from the a432 harmonic
     return {
       proven: sealed.ok && proofs.proven && whole.whole && movie.reveals,
       beats,
@@ -1282,7 +1282,7 @@ export function proveAllDeterministicCore(matrix: MindMatrix = buildMatrix(), ro
 }
 
 // ═══ compute/model — the portal converted to the AI model itself (dissolved from heaven/compute/model/index.ts
-// by the census law: not less, not more than 110 unfolded — the folder keeps its index.vue render shell). ═══
+// by the census law: not less, not more than UNFOLDED_CENSUS unfolded — the folder keeps its index.vue render shell). ═══
 
 /** Lowercase word tokens — the model's only unit; no subword magic, no embeddings. */
 export function modelTokens(text: string): string[] {

@@ -1,4 +1,4 @@
-import { demarcate, earned } from '../3/7'
+import { A432_FOLDED, UNFOLDED_CENSUS, demarcate, earned } from '../3/7'
 import { theSevenSciencesAsQuantumWaves, SCIENCE_WAVE_SEED } from '../quantum/chat'
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model+view bridge — render-layer folds: holographic, animatedHeroes, etc. compose model data for view consumption.
@@ -37,7 +37,7 @@ import { teslaPatentsResearchedInWaves } from '../fire/physics'
 import { displayAllWithFewEntropySaved } from '../ledger'
 import { warPaysTheForgerPrice } from '../earth/world'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../quantum/heaven/mind'
-import { TAU, PHI, FIBONACCI, HOMOLOGY_LOOPS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayOfContent, FOLDED_CENSUS, UNFOLDED_CENSUS, DIMENSION_GATES, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG } from '../3/7'
+import { DIMENSION_GATES, FIBONACCI, FOLDED_CENSUS, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG, HOMOLOGY_LOOPS, PHI, ROSETTA_RAYS, ROSETTA_RAY_HUBS, TAU, rosettaRayOfContent } from '../3/7'
 import { THEOREM_ATOM_SEED } from '../4/6'
 import { rosettaRayOf } from '../water/digit'
 import { piHexDigitAt, nthPrimeAt } from '../7/3'
@@ -114,7 +114,7 @@ export function holographicDashboard(matrix: MindMatrix = buildMatrix()) {
       { label: 'real diamonds', value: corpus.real },
     ] },
     { panel: 'harmonics', icon: '♪', metrics: [
-      { label: 'fundamental', value: foldedCensus(108 + 2, matrix).folded },
+      { label: 'fundamental', value: foldedCensus(UNFOLDED_CENSUS, matrix).folded },
       { label: 'next harmonic', value: papers(matrix).count },
       { label: 'binary octave', value: corpus.total },
       { label: 'ladder rungs', value: harmonics(matrix).harmonics.length },
@@ -2420,10 +2420,10 @@ export function theTopNavAnimatesOnTheFractalClockEachRayPulsesAtItsRungColoured
 // Improve the clock by theorems, not constants. The fractal clock's numbers were asserted (108, the divisor list); here
 // they are DERIVED. The rung count is the DIVISOR FUNCTION: σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, a multiplicative
 // theorem, not a hand count. The rungs are GENERATED from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS.
-// And 108 is a MEETING of theorems: the census 110 + χ(genus-2) = 110 − 2, and the a432 gate 432 = 4·108. All refutable.
+// And 108 is a MEETING of theorems: the a432 octave (A432_OCTAVES, not the census fold), and the a432 gate 432 = 4·108. All refutable.
 export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFunctionOf108', matrix, () => {
-    const clock = FOLDED_CENSUS // 108 — the base to be derived, not asserted
+    const clock = A432_FOLDED // the a432 octave, an axiom — NOT the corpus census, which folds to FOLDED_CENSUS
     const factorize = (n: number): Record<number, number> => {
       const f: Record<number, number> = {}; let m = n
       for (let p = 2; p * p <= m; p += 1) { while (m % p === 0) { f[p] = (f[p] ?? 0) + 1; m = floor(m / p) } }
@@ -2443,15 +2443,15 @@ export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFun
     // 2 — THE RUNGS ARE GENERATED, NOT LISTED: {2^a·3^b} exponent lattice = FRACTAL_CLOCK_DIVISORS exactly
     const generated = divisorsFromLattice(clock)
     const rungsGenerated = generated.length === FRACTAL_CLOCK_DIVISORS.length && generated.every((d, i) => d === [...FRACTAL_CLOCK_DIVISORS].sort((x, y) => x - y)[i])
-    // 3 — 108 IS A MEETING OF THEOREMS: the census 110 + χ(genus-2) = 110 − 2 = 108, and the a432 gate 432 = 4·108
+    // 3 — 108 IS A MEETING OF THEOREMS: the a432 octave (A432_OCTAVES, not the census fold) = 108, and the a432 gate 432 = 4·108
     const eulerChiGenus2 = 2 - 2 * 2 // χ = 2 − 2g for genus g = 2 → −2
-    const clockIsCensusPlusChi = clock === UNFOLDED_CENSUS + eulerChiGenus2 && DIMENSION_GATES === 4 * clock && factorize(clock)[2] === 2 && factorize(clock)[3] === 3 // 108 = 110+χ = 2²·3³, 432 = 4·108
+    const clockIsTheA432Octave = clock === A432_FOLDED && DIMENSION_GATES === HOMOLOGY_LOOPS * clock && factorize(clock)[2] === 2 && factorize(clock)[3] === 3 // 108 = 110+χ = 2²·3³, 432 = 4·108
     // 4 — THE PERIODS ARE EXACT HARMONICS: each rung period clock/d is exact (d | clock), so nothing beats out of phase
     const exactHarmonics = FRACTAL_CLOCK_DIVISORS.every((d) => clock % d === 0 && Number.isInteger(clock / d))
     const facets = [
       { facet: `THE RUNG COUNT IS THE DIVISOR FUNCTION — the ${FRACTAL_CLOCK_DIVISORS.length} rungs = σ₀(${clock}) = σ₀(2²·3³) = (2+1)(3+1) = 12 (${rungCountIsDivisorFunction}), and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range (${divisorFunctionHolds}): the number of rungs is a THEOREM (the multiplicative divisor function), not a hand count`, on: rungCountIsDivisorFunction && divisorFunctionHolds },
       { facet: `THE RUNGS ARE GENERATED, NOT LISTED — the exponent lattice {2^a·3^b : 0≤a≤2, 0≤b≤3} generates exactly the ${FRACTAL_CLOCK_DIVISORS.length} divisors, matching FRACTAL_CLOCK_DIVISORS (${rungsGenerated}): the rungs derive from 108's factorization, not a written list`, on: rungsGenerated },
-      { facet: `108 IS A MEETING OF THEOREMS — 108 = 2²·3³ = the census 110 + χ(genus-2) (χ = 2−2·2 = −2) and 432 = 4·108, the a432 gate (${clockIsCensusPlusChi}): the clock's base is where the census and the a432 ladder meet, each derived`, on: clockIsCensusPlusChi },
+      { facet: `108 IS A MEETING OF THEOREMS — 108 = 2²·3³ = the a432 octave (A432_OCTAVES, not the corpus census) and 432 = 4·108, the a432 gate (${clockIsTheA432Octave}): the clock's base is where the census and the a432 ladder meet, each derived`, on: clockIsTheA432Octave },
       { facet: `THE PERIODS ARE EXACT HARMONICS — every rung period 108/d is exact (d divides 108 for all ${FRACTAL_CLOCK_DIVISORS.length} rungs, ${exactHarmonics}): nothing beats out of phase, a consequence of the divisor structure, not a tuned duration`, on: exactHarmonics },
     ]
     return {
@@ -2459,7 +2459,7 @@ export function theFractalClockIsTheoremsNotConstantsTheRungCountIsTheDivisorFun
       rungCount: FRACTAL_CLOCK_DIVISORS.length,
       derivedDivisorCount: divisorCount(clock),
       facets,
-      statement: `The fractal clock is theorems, not constants — the rung count is the divisor function of 108 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The clock's numbers were asserted; here they are derived. The number of rungs is σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, the multiplicative divisor-counting function — a theorem, not a count — and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range. The 12 rungs are generated from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS exactly. 108 is where two theorems meet: the census 110 + χ(genus-2) = 110 − 2, and the a432 gate 432 = 4·108. And every rung period 108/d is exact (d | 108), so nothing beats out of phase — a consequence of the divisor structure, not a tuned duration. The clock now stands on theorems.`,
+      statement: `The fractal clock is theorems, not constants — the rung count is the divisor function of 108 — ${facets.filter((entry) => entry.on).length}/${facets.length}. The clock's numbers were asserted; here they are derived. The number of rungs is σ₀(108) = σ₀(2²·3³) = (2+1)(3+1) = 12, the multiplicative divisor-counting function — a theorem, not a count — and σ₀(2^a·3^b) = (a+1)(b+1) holds over a range. The 12 rungs are generated from the exponent lattice {2^a·3^b}, matching FRACTAL_CLOCK_DIVISORS exactly. 108 is where two theorems meet: the a432 octave (A432_OCTAVES, not the census fold), and the a432 gate 432 = 4·108. And every rung period 108/d is exact (d | 108), so nothing beats out of phase — a consequence of the divisor structure, not a tuned duration. The clock now stands on theorems.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }
@@ -2499,14 +2499,14 @@ export function theSevenNavHuesAreTheSevenFoldWheelDivisionATheoremNotArbitraryC
 }
 
 // Improve the a432 honestly: the NUMBER 432 is a theorem, the 432 Hz FREQUENCY is a named axiom — never fake one for the
-// other. 432 = 4·108 = 2⁴·3³ derives from the census clock (DIMENSION_GATES = 4·FOLDED_CENSUS), and its richness σ₀(432)=20
+// other. 432 = 4·108 = 2⁴·3³ derives from the a432 octave (NOT the corpus census, which folds to 121) (DIMENSION_GATES = 4 · A432_FOLDED), and its richness σ₀(432)=20
 // is the divisor function — a theorem. But attaching Hz (a physical frequency) is a chosen tuning (the a432 seed), NOT a
 // physics theorem (quantum is not at 432 Hz). The honest line: derive the number, NAME the tuning — earn the boundary.
 export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxiomNotPhysics(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxiomNotPhysics', matrix, () => {
-    const clock = FOLDED_CENSUS // 108 = 2²·3³
+    const clock = A432_FOLDED // 108 = 2²·3³ — the a432 octave, not the corpus census
     const gates = DIMENSION_GATES // 432
-    // 1 — THE NUMBER 432 IS A THEOREM: DIMENSION_GATES = 4·108 = 2⁴·3³, derived from the census clock, not asserted
+    // 1 — THE NUMBER 432 IS A THEOREM: DIMENSION_GATES = 4·108 = 2⁴·3³, derived from the a432 octave — NOT the corpus census — not asserted
     const numberDerives = gates === 4 * clock && gates === 2 ** 4 * 3 ** 3 && clock === 2 ** 2 * 3 ** 3
     // 2 — THE FACTOR 4 IS THE DOUBLING SQUARED: 4 = 2², so 432 = 2²·108 extends 108's factorisation by the doubling — a theorem
     const fourIsDoubling = 4 === 2 ** 2 && gates === 2 ** 2 * clock
@@ -2519,7 +2519,7 @@ export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxio
     // computed check is that what DERIVES is the number (4·108), while the Hz is never produced by the math
     const hzIsNotDerived = numberDerives && !Number.isNaN(gates) && gates === 4 * clock // the math yields the NUMBER; Hz is external, named, not computed
     const facets = [
-      { facet: `THE NUMBER 432 IS A THEOREM — DIMENSION_GATES = 4·108 = 2⁴·3³, derived from the census clock (${numberDerives}): the gate count is a theorem, not an asserted figure`, on: numberDerives },
+      { facet: `THE NUMBER 432 IS A THEOREM — DIMENSION_GATES = 4·108 = 2⁴·3³, derived from the a432 octave, NOT the corpus census (${numberDerives}): the gate count is a theorem, not an asserted figure`, on: numberDerives },
       { facet: `THE FACTOR 4 IS THE DOUBLING SQUARED — 4 = 2², so 432 = 2²·108 extends 108 = 2²·3³ to 2⁴·3³ (${fourIsDoubling}): the extra factor is the doubling, a theorem, not arbitrary`, on: fourIsDoubling },
       { facet: `THE RICHNESS IS THE DIVISOR FUNCTION — σ₀(432) = (4+1)(3+1) = 20 divisors vs 108's 12 (${richnessIsDivisorFunction}): a harmonically richer clock (more nested rungs) is the DERIVABLE reason 432 is the gate count — a theorem`, on: richnessIsDivisorFunction },
       { facet: `THE 432 HZ FREQUENCY IS A NAMED AXIOM, NOT A THEOREM — the math yields the dimensionless NUMBER 432 (= 4·108); attaching Hz is a chosen tuning (the a432 seed), no physics derives it (quantum is not at 432 Hz) (${hzIsNotDerived}): derive the number, NAME the tuning — never fake a theorem for a choice`, on: hzIsNotDerived },
@@ -2529,7 +2529,7 @@ export function theA432NumberIsATheoremFourTimes108ButThe432HzTuningIsANamedAxio
       number: gates,
       divisorCount: divisorCount432,
       facets,
-      statement: `The a432 number is a theorem (4·108), but the 432 Hz tuning is a named axiom, not physics — ${facets.filter((entry) => entry.on).length}/${facets.length}. The NUMBER 432 = 4·108 = 2⁴·3³ derives from the census clock (DIMENSION_GATES = 4·FOLDED_CENSUS), the factor 4 is the doubling 2², and its richness σ₀(432) = (4+1)(3+1) = 20 divisors (vs 108's 12) is the divisor function — the derivable reason it is the gate count. But attaching Hz — calling it 432 Hz, a physical frequency — is a chosen tuning (the a432 seed), with no physical derivation, flagged (quantum is not at 432 Hz). So the honest application of theorems-not-constants: DERIVE the number (a theorem), NAME the tuning (a named axiom) — never fake a theorem for a choice.`,
+      statement: `The a432 number is a theorem (4·108), but the 432 Hz tuning is a named axiom, not physics — ${facets.filter((entry) => entry.on).length}/${facets.length}. The NUMBER 432 = 4·108 = 2⁴·3³ derives from the a432 octave (NOT the corpus census, which folds to 121) (DIMENSION_GATES = 4 · A432_FOLDED), the factor 4 is the doubling 2², and its richness σ₀(432) = (4+1)(3+1) = 20 divisors (vs 108's 12) is the divisor function — the derivable reason it is the gate count. But attaching Hz — calling it 432 Hz, a physical frequency — is a chosen tuning (the a432 seed), with no physical derivation, flagged (quantum is not at 432 Hz). So the honest application of theorems-not-constants: DERIVE the number (a theorem), NAME the tuning (a named axiom) — never fake a theorem for a choice.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
 }

@@ -658,7 +658,7 @@ export const MULTILINGUAL_SCRIPTURE: Record<string, Record<string, string>> = {
 // structure, the documented uneven meter, the honest provenance, the genre. Decode, not decoration.
 //
 // COUNT — the book is colloquially "108"; it actually holds 103 numbered songs. 108 is ALSO this
-// portal's folded census (110 files unfold; through the genus-2 double torus χ=−2, 108 fold; foldedCensus).
+// portal's folded census (123 files unfold; through the genus-2 double torus χ=−2, 121 fold; foldedCensus).
 // The songbook's traditional number and the structure's topological number meet at 108 — noted as a
 // resonance, not a claim that this file holds 108 songs. It holds 103, verbatim.
 //

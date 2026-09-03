@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Display gate — full src tree registry (110 gapless census)
+// Display gate — full src tree registry (gapless census)
 </script>
 
 <template>

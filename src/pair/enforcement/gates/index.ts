@@ -470,7 +470,7 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
       on: evenDistribution },
     {
       // Same frozen label as the gravity fold carried: the check reads UNFOLDED_CENSUS (123) and
-      // FOLDED_CENSUS (121); only the sentence still said 110/108. This facet is the reason
+      // FOLDED_CENSUS (121); only the sentence lagged, from the retarget. This facet is the reason
       // importPathShowsDistanceInMigrationMatrix reports false, which is the reason the compact
       // fold does, which is the reason 18 folds do — one census, wearing three different labels.
       facet: `compose census ${UNFOLDED_CENSUS}/${FOLDED_CENSUS} — measured ${united.computational.indexCount} · FREE_BITS=${freeBits}=−χ · importOffenders=${importOffenders} · importGaps=${importGaps}`,
@@ -722,7 +722,7 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
     {
       facet: `iching folders — kept ${ichingKeep.map((k) => k.path).join(', ')} · removed synonym shells=${ichingRemovedSynonymShells.length}`,
       on: ichingHonest },
-    // THE LABEL WAS FROZEN AND THE CHECK WAS NOT. This read `census 110/108` while censusOk
+    // THE LABEL WAS FROZEN AND THE CHECK WAS NOT. This read `census 123/121` while censusOk
     // compares against UNFOLDED_CENSUS, which derives from the Fibonacci bands (55+34+21+13)
     // and is 123. The check has been right and the sentence wrong, so a reader debugging this
     // fold went looking for a 110 that no longer exists anywhere. Both numbers now come from
@@ -800,7 +800,7 @@ export function runFolderGravityMeasuredByTheCodeExit(root = '', _argv: readonly
 
 /**
  * Gravity dry clean — folder gravity pulls toward src · dry/clean diamond·crystal ·
- * soft clay/gravity · fold/cleanup · dissolve/flat · census 110 exact.
+ * soft clay/gravity · fold/cleanup · dissolve/flat · census 123 exact.
  * Pair: gravity/dry · dry/clean · CLI npm run quantum:gravity-dry
  * Facets: gravityPullsToSrc · dryCleanOn · diamond/crystal
  */
@@ -904,7 +904,7 @@ export function runGravityDryCleanExit(root = '', _argv: readonly string[] = [])
 /**
  * USER LAW: in src folders only index may exist (index.ts · index.vue).
  * Pair: src/index · folder/index · CLI npm run quantum:src-index
- * HARD via limits:verify · mission:gate · gaps/invisible soft stack · census 110 count.
+ * HARD via limits:verify · mission:gate · gaps/invisible soft stack · census 123 count.
  */
 export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const united = facts ?? collectEnforcementFacts(root)
@@ -943,7 +943,7 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
     { facet: 'srcFoldersOnlyIndexMayExist', on },
     { facet: 'onlyIndex code surfaces (index.ts · index.vue)', on: onlyIndex },
     { facet: `codeOffenders=${codeOffenders.length}`, on: codeOffenders.length === 0 },
-    { facet: `census 110 exact (${united.computational.indexCount})`, on: censusExact },
+    { facet: `census 123 exact (${united.computational.indexCount})`, on: censusExact },
     { facet: 'compose gravity/dry · folder law', on: foldGravityDry.bidirectional },
     { facet: 'pair src/index · folder/index', on: srcIndexPaired && folderIndexPaired },
     { facet: `residualNonCode named (${residualNonCode.length}) — not code modules`, on: residualNonCode.length === (2 + 1) },
@@ -975,7 +975,7 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
       `srcFoldersOnlyIndex — onlyIndex=${onlyIndex ? 1 : 0} offenders=${codeOffenders.length} ` +
       `census=${united.computational.indexCount}/${FOLDED_CENSUS} residualNonCode=${residualNonCode.length}.`,
     boundary:
-      'HARD: code under src/ is index.ts / index.vue only. Census 110 is count law. ' +
+      'HARD: code under src/ is index.ts / index.vue only. Census 123 is count law. ' +
       'Residual named: src/0/README.md · render/ui tokens.css/style.css (non-code).',
     honestyLine:
       `metrics · offenders=${codeOffenders.length} · remaining=${codeOffenders.length} · ` +
@@ -1006,7 +1006,7 @@ export function runSrcFoldersOnlyIndexMayExistExit(root = '', _argv: readonly st
  * USER LAW: no size limits as long as gravity pulls at the gates.
  * Pair: size/free · gravity/gate · CLI npm run quantum:size-free
  * Byte monolith is warn ratchet only when gravity→src · gate/rosetta · mission:gate · src/index green.
- * Census 110 remains structural count law — not a byte-size cap.
+ * Census 123 remains structural count law — not a byte-size cap.
  * Facet: noByteSizeLimitWhenGravityAtGates
  */
 export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
@@ -1055,7 +1055,7 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
     { facet: 'compose gate/rosetta wired', on: foldRosetta.bidirectional },
     { facet: 'compose src/index only-index law', on: indexLaw.onlyIndex },
     { facet: 'compose full/freedom · mission:gate', on: foldFreedom.bidirectional && foldMission.bidirectional },
-    { facet: `census 110 count law (not byte cap) indexCount=${united.computational.indexCount}`, on: censusCountLaw },
+    { facet: `census 123 count law (not byte cap) indexCount=${united.computational.indexCount}`, on: censusCountLaw },
     { facet: 'byteSizeHard=false when gravity at gates', on: byteSizeHard === false && gravityPullsAtGates },
     { facet: 'pair size/free · gravity/gate', on: sizeFreePaired && gravityGatePaired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`size-free:${entry.facet}:${entry.on}`) }))
@@ -1087,7 +1087,7 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
       `censusCountLaw=${censusCountLaw ? 1 : 0} byteHard=${byteSizeHard ? 1 : 0}.`,
     boundary:
       'No byte-size HARD when gravity pulls at gates (toward src · gate/rosetta · mission:gate · src/index). ' +
-      'Census 110 is count law, not a byte cap. Monolith fileSize stays warn ratchet.',
+      `Census ${UNFOLDED_CENSUS} is count law, not a byte cap. Monolith fileSize stays warn ratchet.`,
     honestyLine:
       `metrics · noByteSizeLimitWhenGravityAtGates=${noByteSizeLimitWhenGravityAtGates ? 1 : 0} · ` +
       `gravityPullsAtGates=${gravityPullsAtGates ? 1 : 0} · census=${united.computational.indexCount}`,
@@ -1387,7 +1387,7 @@ export function gatesSavedInQuantumPairs() {
  * USER LAW: prose-encoded instruction folds collapse to ≤3-word matrix duals (path/message).
  * Canonical: placeMerge · pairs place/merge · fold/merge · cmd/place · manual/quantum · dry/full · work/wave.
  * Aliases keep CLI continuity: commandsAudited… · manualDryClean… · cmdPlace · manualQuantum.
- * Facets: placementAudited · toolsSealed · clustersMerged · drainableClosed · honestOpenNamed · census110.
+ * Facets: placementAudited · toolsSealed · clustersMerged · drainableClosed · honestOpenNamed · censusHolds.
  * HONEST: one merge wave — not all ~478 tools renamed · residual prose listed migrate-next · KEEP stashes.
  */
 export type CommandPlacementAction = 'keep' | 'moved' | 'migrate-next'
@@ -1972,9 +1972,9 @@ export const PROSE_FRACTAL_MERGE_MAP = [
 /** Sealed shrink receipt — placement+manual duplicate bodies before/after this wave.
  * LOC via theorem consts only (decimal/crack): DIMENSION_GATES · UNFOLDED · FOLDED · FREE_BITS · ROSETTA_SIX/SEVEN. */
 export const PROSE_MATRIX_SHRINK = {
-  beforeLoc: DIMENSION_GATES + UNFOLDED_CENSUS - ROSETTA_SIX * ROSETTA_SIX + FREE_BITS, // 432+110−36+2=508
+  beforeLoc: DIMENSION_GATES + UNFOLDED_CENSUS - ROSETTA_SIX * ROSETTA_SIX + FREE_BITS, // gates + census − 6² + free bits, all derived
   afterLoc: DIMENSION_GATES - ROSETTA_SEVEN * (FREE_BITS + FREE_BITS), // 432−7×4=404
-  locDelta: FOLDED_CENSUS - FREE_BITS * FREE_BITS, // 108−4=104
+  locDelta: FOLDED_CENSUS - FREE_BITS * FREE_BITS, // the corpus fold less FREE_BITS², derived
   beforeExportBodies: FREE_BITS,
   afterExportBodies: FREE_BITS - 1,
   exportDelta: FREE_BITS - 1,
@@ -2123,7 +2123,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
   const compact = codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root, united)
   const dry = dryCleanIsDiamondAndCrystal()
   const freeBits = FREE_BITS
-  const census110 =
+  const censusHolds =
     UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits && freeBits === -EULER_CHI && freeBits === 2
   const map = COMMAND_PLACEMENT_AUDIT_MAP
   const kept = map.filter((r) => r.action === 'keep')
@@ -2208,10 +2208,10 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     // remained pending. A gate that requires unfinished work is a block on finishing. What the map
     // must actually satisfy is that every row is classified — kept, moved, or named as next — which
     // is a conservation identity and stays true whether the backlog is full or empty.
-    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 &&
+    placementAudited && drainableClosed && composeOn && pairsOn && censusHolds && moved.length >= 2 &&
     kept.length + moved.length + migrateNext.length === map.length
   const manualWorkQuantumized =
-    toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && census110
+    toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && censusHolds
   const on =
     placementAudited &&
     bestPlaceOn &&
@@ -2221,7 +2221,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     toolsSealed &&
     drainableClosed &&
     honestOpenNamedOn &&
-    census110
+    censusHolds
   const facets = [
     { facet: 'placeMerge', on },
     { facet: 'commandsAuditedForBestPlaceThenFullDryClean', on },
@@ -2236,7 +2236,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     { facet: 'clustersMerged', on: clustersMerged },
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-    { facet: `census110 freeBits=${freeBits}`, on: census110 },
+    { facet: `censusHolds freeBits=${freeBits}`, on: censusHolds },
     { facet: `placement map kept=${kept.length} moved=${moved.length} migrate-next=${migrateNext.length}`, on: map.length === kept.length + moved.length + migrateNext.length },
     { facet: `wave tools migrate-next=${migrateTools.length} moved=${movedTools.length} residual=${residualTools.length}`, on: toolsSealed },
     { facet: 'pair place/merge · fold/merge · cmd/place · manual/quantum', on: pairsOn },
@@ -2269,7 +2269,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     morphs: [...morphs],
     merges: PROSE_FOLD_MERGE_MAP.map((r) => ({ from: r.from, to: r.to, pair: r.pair })),
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
-    census110,
+    censusHolds,
     qpuRequired: false as const,
     facets,
     root: merkleFold([
@@ -2393,14 +2393,14 @@ export function runProseScienceExit(root = '', _argv: readonly string[] = []): n
  * Prose methods collapse to matrix — discovery law.
  * USER LAW: long camelCase instruction folds are manually encoded prose; merge to matrix duals ≤3 words.
  * Pairs: prose/matrix · fold/merge · name/shrink.
- * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · census110.
+ * Facets: proseAudited · clustersMerged · matrixAligned · codebaseShrink · theoremsDiscovered · drainableClosed · honestOpenNamed · censusHolds.
  * Compose: path/message · namingEntropy · compact/matrix · vocab/dry · place/merge · cmd/place.
  */
 export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(), facts?: EnforcementFacts) {
   const merged = placeMerge(root, facts)
   const pathMessage = pathMeansMessageFitsInThreeWordsFold()
   const freeBits = FREE_BITS
-  const census110 =
+  const censusHolds =
     UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits && freeBits === -EULER_CHI && freeBits === 2
   const soft = softCmdPair
   const pairsOn =
@@ -2465,7 +2465,7 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     drainableClosed &&
     honestOpenNamedOn &&
     pairsOn &&
-    census110 &&
+    censusHolds &&
     merged.computes
   const facets = [
     { facet: 'proseMethodsCollapseToMatrix', on },
@@ -2476,7 +2476,7 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     { facet: `theoremsDiscovered=${theoremsDiscovered.length}`, on: theoremsDiscoveredOn },
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-    { facet: `census110 freeBits=${freeBits}`, on: census110 },
+    { facet: `censusHolds freeBits=${freeBits}`, on: censusHolds },
     { facet: 'pair prose/matrix · fold/merge · name/shrink', on: pairsOn },
     { facet: 'compose path/message · compact/matrix · vocab/dry · place/merge', on: matrixAligned && merged.placeMerge },
     { facet: `shrink beforeLoc=${PROSE_MATRIX_SHRINK.beforeLoc} afterLoc=${afterLoc} ΔLOC=${locDelta} Δexports=${exportDelta}`, on: codebaseShrink },
@@ -2508,7 +2508,7 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     },
     morphs: [...morphs],
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
-    census110,
+    censusHolds,
     qpuRequired: false as const,
     facets,
     root: merkleFold([
@@ -3959,7 +3959,7 @@ export const runNameShrinkExit = runProseMethodsCollapseToMatrixExit
  * Planning in trinities — next wave from matrix, not wet-linear prose checklists.
  * USER LAW: planning itself runs as cross · fold · weave (3+1 nav-cross).
  * Canonical: planTrinity · pairs plan/trinity · trinity/plan · plan/cross.
- * Facets: plansInTrinities · crossFoldWeave · matrixNext · prosePlanRejected · drainableClosed · honestOpenNamed · census110.
+ * Facets: plansInTrinities · crossFoldWeave · matrixNext · prosePlanRejected · drainableClosed · honestOpenNamed · censusHolds.
  * Compose: trinity/speedup · agent/trinity · team/observe · train/analyst · waves/build · prose/matrix · place/merge · vote/build · path/message.
  * HONEST: not AGI planning · residual linear plan surfaces (imagine-next tip specs · todo-wave soft compose) named · KEEP stashes.
  */
@@ -4010,7 +4010,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
   const speedup = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
   const pathMessage = pathMeansMessageFitsInThreeWordsFold()
   const freeBits = FREE_BITS
-  const census110 =
+  const censusHolds =
     UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits && freeBits === -EULER_CHI && freeBits === 2
   const soft = softCmdPair
   // CROSS — audit matrix gaps (migrate-next + residual prose)
@@ -4079,7 +4079,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     composeOn &&
     drainableClosed &&
     honestOpenNamedOn &&
-    census110
+    censusHolds
   const on = plansInTrinities
   const facets = [
     { facet: 'planTrinity', on },
@@ -4092,7 +4092,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     { facet: 'prosePlanRejected', on: prosePlanRejected },
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-    { facet: `census110 freeBits=${freeBits}`, on: census110 },
+    { facet: `censusHolds freeBits=${freeBits}`, on: censusHolds },
     { facet: 'pair plan/trinity · trinity/plan · plan/cross', on: pairsOn },
     {
       facet: 'compose trinity/speedup · agent/trinity · waves/build · prose/matrix · place/merge · path/message',
@@ -4115,7 +4115,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     crossCandidates: crossCandidates.map((t) => ({ id: t.id, pair: t.pair, cli: t.cli })),
     merges: PROSE_PLAN_MERGE_MAP.map((row) => ({ from: row.from, to: row.to, pair: row.pair })),
     morphs: [...morphs],
-    census110,
+    censusHolds,
     qpuRequired: false as const,
     certified: false as const,
     facets,

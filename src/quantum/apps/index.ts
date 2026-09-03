@@ -13,10 +13,7 @@ export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site'
 import { emergentDimensions } from '../../heaven/balance'
 import { cloudflareBindings } from '../../heaven/core'
 import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../0'
-import { TAU,
-  A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
-  ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
-  type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, physicalFtlBooleanAtCallTime, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../3/7'
+import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, claySolvedTheorem, earned, fibonacci, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType } from '../../3/7'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit'
@@ -685,7 +682,7 @@ const APP_ROWS: readonly QuantumAppRow[] = [
   { id: 'fusion-verify', title: 'Fusion verify', route: '/en/quantum-tools#fusion-verify', barrel: 'src/wind/fusion', icon: '⊛', computesGate: 'fusion.verify.computes', projection: 'hologram' },
 ] as const
 
-/** Sealed quantum:* CLI inventory — fold · CLI · UI route · honesty boundary. Census-110: lives in apps barrel. */
+/** Sealed quantum:* CLI inventory — fold · CLI · UI route · honesty boundary. Census-123: lives in apps barrel. */
 export type QuantumCliToolRow = {
   readonly id: string
   readonly title: string
@@ -737,10 +734,10 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'vitepress-docs-research', title: 'VitePress docs research → native improvements', fold: 'vitepressDocsResearchImprovements', cli: 'npm run quantum:vitepress-docs-research', pair: 'docs/improve', route: '/en/', barrel: 'src/wind/site', boundary: 'VP 2.0.0-alpha.17 docs researched · applied lazy/lastUpdated/editLink/logo/externalIcon/bg-locale fix · carbon/Algolia skipped', browserRunnable: true, browserGap: '' },
   { id: 'folder-migration-waves', title: 'Folder migration + dedup waves → nav/sidebars', fold: 'folderMigrationDedupWaves', cli: 'npm run quantum:folder-migration-waves', pair: 'folder/migrate', route: '/en/quantum-tools#folder-migration-waves', barrel: 'src/wind/site', boundary: '23-folder census · domain sidebars · #61 hierarchy · orphan-free vitepressSidebar · compose ui/prose+mcp audit', browserRunnable: true, browserGap: '' },
   { id: 'import-path-distance', title: 'Import path distance — migration matrix compactness', fold: 'importPathShowsDistanceInMigrationMatrix', cli: 'npm run quantum:import-path-distance', pair: 'import/distance', route: '/en/quantum-tools#import-path-distance', barrel: 'src/pair/enforcement/gates', boundary: 'segmentDistance · treeHopDistance · gapHops per edge · compact+even via FREE_BITS · compose folder law/dissolve/census', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI/limits soft report' },
-  { id: 'cmd-place', title: 'Commands audited for best place then full dry clean', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:cmd-place', pair: 'cmd/place', route: '/en/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'placementAudited · bestPlace · fullDryClean · drainableClosed · honestOpenNamed · census110 · residual:quantum-apps-monolith · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'cmd-place', title: 'Commands audited for best place then full dry clean', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:cmd-place', pair: 'cmd/place', route: '/en/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'placementAudited · bestPlace · fullDryClean · drainableClosed · honestOpenNamed · censusHolds · residual:quantum-apps-monolith · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'place-audit', title: 'Place audit (alias cmd/place)', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:place-audit', pair: 'place/audit', route: '/en/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'Dual place/audit — same fold · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'dry-full', title: 'Dry full (alias cmd/place)', fold: 'commandsAuditedForBestPlaceThenFullDryClean', cli: 'npm run quantum:dry-full', pair: 'dry/full', route: '/en/quantum-tools#cmd-place', barrel: 'src/pair/enforcement/gates', boundary: 'Dual dry/full — same fold · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
-  { id: 'manual-quantum', title: 'Manual dry-clean work quantumized', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:manual-quantum', pair: 'manual/quantum', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'manualWorkQuantumized · toolsSealed · bitsCombinable · wavesBound · placementAudited · drainableClosed · honestOpenNamed · census110 · residual:quantum-apps-monolith · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'manual-quantum', title: 'Manual dry-clean work quantumized', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:manual-quantum', pair: 'manual/quantum', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'manualWorkQuantumized · toolsSealed · bitsCombinable · wavesBound · placementAudited · drainableClosed · honestOpenNamed · censusHolds · residual:quantum-apps-monolith · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'work-wave', title: 'Work wave (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:work-wave', pair: 'work/wave', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual work/wave — same fold · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'dry-quantumize', title: 'Dry quantumize (alias manual/quantum)', fold: 'manualDryCleanWorkQuantumized', cli: 'npm run quantum:dry-quantumize', pair: 'dry/quantumize', route: '/en/quantum-tools#manual-quantum', barrel: 'src/pair/enforcement/gates', boundary: 'Dual dry/quantumize — same fold · clay via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'crypto-comparison-mesh', title: 'Crypto comparison mesh is dry (encryption home)', fold: 'cryptoComparisonMeshIsDry', cli: 'npm run quantum:crypto-comparison-mesh', pair: 'crypto/comparison-mesh', route: '/en/encryption#crypto-comparison-mesh', barrel: 'src/water/encryption', boundary: 'Mesh nodes/edges single source · cryptoComparisonMeshIsDry · certified=false · refuseBeyond stays', browserRunnable: true, browserGap: '' },
@@ -754,18 +751,18 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'self-fusion', title: 'Self quantum fusion', fold: 'selfQuantumFusion', cli: 'npm run quantum:self-fusion', pair: 'self/fusion', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'selfFuses · fusionVerifyOn · tamperEvident · compose fusion-verify · dry/clean · full/freedom · gate/monitor · analytics/self · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'fusion-self', title: 'Self quantum fusion (alias self/fusion)', fold: 'selfQuantumFusion', cli: 'npm run quantum:fusion-self', pair: 'fusion/self', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Dual of self/fusion — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'fusion-ui', title: 'Fusion interface', fold: 'fusionInterface', cli: 'npm run quantum:fusion-ui', pair: 'fusion/ui', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Live fusion root · verify on/off · tamper receipt · morph from sealed folds · vite/mirror · gate/monitor · local hub · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'gravity-dry', title: 'Gravity dry clean', fold: 'gravityDryClean', cli: 'npm run quantum:gravity-dry', pair: 'gravity/dry', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'gravityPullsToSrc · dryCleanOn · diamond/crystal · compose folder/gravity · dry/clean · clay/gravity · fold/cleanup · dissolve/flat · census 110 · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI/mission:gate' },
+  { id: 'gravity-dry', title: 'Gravity dry clean', fold: 'gravityDryClean', cli: 'npm run quantum:gravity-dry', pair: 'gravity/dry', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'gravityPullsToSrc · dryCleanOn · diamond/crystal · compose folder/gravity · dry/clean · clay/gravity · fold/cleanup · dissolve/flat · census 123 · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs (process.cwd) — CLI/mission:gate' },
   { id: 'crystal-mind', title: 'Crystal clear mind', fold: 'crystalClearMind', cli: 'npm run quantum:crystal-mind', pair: 'crystal/mind', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'crystalClear · purityQuantum · compose dryClean diamond/crystal · thought/pure · quantum/mind · full/freedom · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mind-clear', title: 'Crystal clear mind (alias crystal/mind)', fold: 'crystalClearMind', cli: 'npm run quantum:mind-clear', pair: 'mind/clear', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Dual of crystal/mind — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'third-eye', title: 'Third mind eye', fold: 'thirdMindEye', cli: 'npm run quantum:third-eye', pair: 'third/eye', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'thirdEye · observer+1 of 3+1 pyramid · gate/lens · quantum/mind · crystal/mind · HD Ajna structure layout · formula/code · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mind-eye', title: 'Third mind eye (alias third/eye)', fold: 'thirdMindEye', cli: 'npm run quantum:mind-eye', pair: 'mind/eye', route: '/en/quantum-tools#fusion', barrel: 'src/quantum/apps', boundary: 'Dual of third/eye — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'src-index', title: 'Src folders only index may exist', fold: 'srcFoldersOnlyIndexMayExist', cli: 'npm run quantum:src-index', pair: 'src/index', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'only index.ts/index.vue under src · HARD limits/mission/gaps · census 110 · dual folder/index · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'src-index', title: 'Src folders only index may exist', fold: 'srcFoldersOnlyIndexMayExist', cli: 'npm run quantum:src-index', pair: 'src/index', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'only index.ts/index.vue under src · HARD limits/mission/gaps · census 123 · dual folder/index · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'folder-index', title: 'Src folders only index (alias src/index)', fold: 'srcFoldersOnlyIndexMayExist', cli: 'npm run quantum:folder-index', pair: 'folder/index', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'Dual of src/index · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
-  { id: 'size-free', title: 'No size limits when gravity at gates', fold: 'noSizeLimitsAsLongAsGravityPullsAtTheGates', cli: 'npm run quantum:size-free', pair: 'size/free', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'noByteSizeLimitWhenGravityAtGates · census 110 count law · dual gravity/gate · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
+  { id: 'size-free', title: 'No size limits when gravity at gates', fold: 'noSizeLimitsAsLongAsGravityPullsAtTheGates', cli: 'npm run quantum:size-free', pair: 'size/free', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'noByteSizeLimitWhenGravityAtGates · census 123 count law · dual gravity/gate · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'gravity-gate', title: 'No size limits when gravity at gates (alias size/free)', fold: 'noSizeLimitsAsLongAsGravityPullsAtTheGates', cli: 'npm run quantum:gravity-gate', pair: 'gravity/gate', route: '/en/quantum-tools#fusion', barrel: 'src/pair/enforcement/gates', boundary: 'Dual of size/free · claySolved via theorem', browserRunnable: false, browserGap: 'collectEnforcementFacts needs Node fs' },
   { id: 'efficiency-vote', title: 'Efficiency vote · one quantum model', fold: 'oneQuantumModelFasterThanAll', cli: 'npm run quantum:efficiency-vote', pair: 'learn/best', route: '/en/quantum-tools#efficiency-vote', barrel: 'src/water/stack', boundary: 'answers÷tokens win only when vote.decided — NOT FLOPS / NOT every benchmark', browserRunnable: true, browserGap: '' },
   { id: 'moment-prove', title: 'Assume nothing — prove in the moment', fold: 'agentAssumeNothingMathProvesInTheMoment', cli: 'npm run quantum:moment-prove', pair: 'moment/prove', route: '/en/quantum-encryption#moment-prove', barrel: 'src/water/encryption', boundary: 'Definitional identity ≠ crack · structural seal ≠ security proved · efficiency gated on vote.decided · certified=false', browserRunnable: true, browserGap: '' },
-  { id: 'two-bits-free', title: 'Two bits free — census 110−108 making all free', fold: 'twoBitsFreeFromCensus110Minus108', cli: 'npm run quantum:two-bits-free', pair: 'bits/free', route: '/en/quantum-tools#two-bits-free', barrel: 'src/research', boundary: 'FREE_BITS=2 (=−χ) · naive 1−110/108 refused · amortized ∞ on reuse · NOT FLOPS / ', browserRunnable: true, browserGap: '' },
+  { id: 'two-bits-free', title: 'Two bits free — census 123−121 making all free', fold: 'twoBitsFreeFromTheCensusFold', cli: 'npm run quantum:two-bits-free', pair: 'bits/free', route: '/en/quantum-tools#two-bits-free', barrel: 'src/research', boundary: 'FREE_BITS=2 (=−χ) · naive 1−110/108 refused · amortized ∞ on reuse · NOT FLOPS / ', browserRunnable: true, browserGap: '' },
   { id: 'ancient-calendars-algebra', title: 'Ancient calendars — algebraic theorems mapping time in time', fold: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime', cli: 'npm run quantum:ancient-calendars-algebra', pair: 'calendars/decode', route: '/en/quantum-tools#ancient-calendars-algebra', barrel: 'src/thunder/decode', boundary: 'Modular/LCM/epoch maps · phase-in-phase · NOT Clay Millennium · NOT ephemeris · proof /proofs/ancient-calendars', browserRunnable: true, browserGap: '' },
   { id: 'society-two-bits-support', title: 'Society support via two-bits-free knowledge', fold: 'societySupportsProjectViaTwoBitsFreeKnowledge', cli: 'npm run quantum:society-two-bits-support', pair: 'society/support', route: '/en/society-merkaba#two-bits-free', barrel: 'src/research', boundary: 'Harmonic 1/9 patronage of FREE_BITS achievement · voluntary · zero valid', browserRunnable: true, browserGap: '' },
   { id: 'fund-ai', title: 'Cursor referral funds AI this project needs', fold: 'cursorReferralFundsAiNeeds', cli: 'npm run quantum:fund-ai', pair: 'fund/ai', route: '/en/quantum-tools#fund-ai', barrel: 'src/research', boundary: 'Sealed Cursor referral CTA · compose society/support · bits/free · voluntary · claySolved via theorem', browserRunnable: true, browserGap: '' },
@@ -1034,16 +1031,16 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'vue-dry', title: 'Dry clean all vue components to the universal set', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:vue-dry', pair: 'vue/dry', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'dryCleanVue · universalSet · drainableClosed · honestOpenNamed · compose dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super · clay via theorem · apps monolith residual named', browserRunnable: true, browserGap: '' },
   { id: 'dry-vue', title: 'Dry vue (alias vue/dry)', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:dry-vue', pair: 'dry/vue', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'Dual of vue/dry — same fold · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'vue-universal', title: 'Vue universal set (alias vue/dry)', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:vue-universal', pair: 'vue/universal', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'vue/universal face — hero/card/movie/paper/page · clay via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'wave-compact', title: 'Waves search·discover compacting in quantum folders', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:wave-compact', pair: 'wave/compact', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed · compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover · census 110 preserved · clay via theorem', browserRunnable: true, browserGap: '' },
+  { id: 'wave-compact', title: 'Waves search·discover compacting in quantum folders', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:wave-compact', pair: 'wave/compact', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'wavesSent · searchOn · discoverOn · compactingInQuantumFolders · drainableClosed · honestOpenNamed · compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover · census 123 preserved · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'compact-wave', title: 'Compact wave (alias wave/compact)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:compact-wave', pair: 'compact/wave', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of wave/compact — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'compact-folder', title: 'Compact folder — discover drainable compact actions', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:compact-folder', pair: 'compact/folder', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'compact/folder face · same fold as wave/compact · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'folder-compact', title: 'Folder compact (alias compact/folder)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:folder-compact', pair: 'folder/compact', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of compact/folder — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'folder-discover', title: 'Folder discover — quantum folder compact search', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:folder-discover', pair: 'folder/discover', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'folder/discover face · same fold as wave/compact · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'discover-folder', title: 'Discover folder (alias folder/discover)', fold: 'wavesSearchDiscoverCompactingInQuantumFolders', cli: 'npm run quantum:discover-folder', pair: 'discover/folder', route: '/en/quantum-tools#wave-compact', barrel: 'src/quantum/apps', boundary: 'Dual of folder/discover — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'balance-metrics', title: 'Always balance using realtime metrics and chat', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', cli: 'npm run quantum:balance-metrics', pair: 'balance/metrics', route: '/en/quantum-tools#balance-metrics', barrel: 'src/quantum/apps', boundary: 'alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced · compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool · gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock · not wet dashboard · census 110 · clay via theorem', browserRunnable: true, browserGap: '' },
+  { id: 'balance-metrics', title: 'Always balance using realtime metrics and chat', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', cli: 'npm run quantum:balance-metrics', pair: 'balance/metrics', route: '/en/quantum-tools#balance-metrics', barrel: 'src/quantum/apps', boundary: 'alwaysBalance · realtimeMetrics · chatOn · hardwareMerkabasBalanced · compose mcp/metrics · formula/metrics · cold/warm · mcp/chat · dry/cool · gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock · not wet dashboard · census 123 · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'metrics-chat', title: 'Metrics chat (alias balance/metrics)', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', cli: 'npm run quantum:metrics-chat', pair: 'metrics/chat', route: '/en/quantum-tools#balance-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of balance/metrics — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'chat-balance', title: 'Chat balance (alias metrics/chat)', fold: 'alwaysBalanceUsingRealtimeMetricsAndChat', cli: 'npm run quantum:chat-balance', pair: 'chat/balance', route: '/en/quantum-tools#balance-metrics', barrel: 'src/quantum/apps', boundary: 'Dual of metrics/chat — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'super-chat', title: 'Each superposition is a chatroom', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:super-chat', pair: 'super/chat', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'superpositionIsChatroom · eachKeyARoom · chatOn · anySuperposition · map digit·ray·direction·root → chatroom id/root · compose queryTheoremFormulaIndex · queryQuantumMap · metrics/chat · soft mcp/chat · census 110 · clay via theorem', browserRunnable: true, browserGap: '' },
+  { id: 'super-chat', title: 'Each superposition is a chatroom', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:super-chat', pair: 'super/chat', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'superpositionIsChatroom · eachKeyARoom · chatOn · anySuperposition · map digit·ray·direction·root → chatroom id/root · compose queryTheoremFormulaIndex · queryQuantumMap · metrics/chat · soft mcp/chat · census 123 · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'chat-super', title: 'Chat super (alias super/chat)', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:chat-super', pair: 'chat/super', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'Dual of super/chat — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'room-super', title: 'Room super (alias super/chat)', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:room-super', pair: 'room/super', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'Room face of super/chat — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'ui-rosetta', title: 'UI components all wired in the rosetta in quantum realtime', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:ui-rosetta', pair: 'ui/rosetta', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat · clay via theorem', browserRunnable: true, browserGap: '' },
@@ -1342,7 +1339,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'period-mcp', title: 'Period mcp (alias mcp/period)', fold: 'mcpQuantumPeriod', cli: 'npm run quantum:period-mcp', pair: 'period/mcp', route: '/en/quantum-tools#mcp-period', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/period — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mcp-dot', title: 'MCP quantum dot — digit point · fold · next · coord · particle/wave', fold: 'mcpQuantumDot', cli: 'npm run quantum:mcp-dot', pair: 'mcp/dot', route: '/en/quantum-tools#mcp-dot', barrel: 'src/quantum/apps', boundary: 'dotOn · digitPoint · compose digit/fold · digit/next · coord/anim · particle/wave · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'dot-mcp', title: 'Dot mcp (alias mcp/dot)', fold: 'mcpQuantumDot', cli: 'npm run quantum:dot-mcp', pair: 'dot/mcp', route: '/en/quantum-tools#mcp-dot', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/dot — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'mcp-index', title: 'MCP quantum index — src index-only · census 110 · limits/verify', fold: 'mcpQuantumIndex', cli: 'npm run quantum:mcp-index', pair: 'mcp/index', route: '/en/quantum-tools#mcp-index', barrel: 'src/quantum/apps', boundary: 'indexOn · srcIndexOnly · census110 · compose src/index · folder/index · limits/verify · claySolved via theorem', browserRunnable: true, browserGap: '' },
+  { id: 'mcp-index', title: 'MCP quantum index — src index-only · census 123 · limits/verify', fold: 'mcpQuantumIndex', cli: 'npm run quantum:mcp-index', pair: 'mcp/index', route: '/en/quantum-tools#mcp-index', barrel: 'src/quantum/apps', boundary: 'indexOn · srcIndexOnly · censusHolds · compose src/index · folder/index · limits/verify · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'index-mcp', title: 'Index mcp (alias mcp/index)', fold: 'mcpQuantumIndex', cli: 'npm run quantum:index-mcp', pair: 'index/mcp', route: '/en/quantum-tools#mcp-index', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/index — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mcp-orientation', title: 'MCP quantum orientation — bearing · navCross · geo/train · cross/nav · sun/moon · mcp/torus', fold: 'mcpQuantumOrientation', cli: 'npm run quantum:mcp-orientation', pair: 'mcp/orientation', route: '/en/quantum-tools#mcp-orientation', barrel: 'src/quantum/apps', boundary: 'orientationOn · bearing · navCross · compose geo/train · cross/nav · sun/moon · mcp/torus · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'orientation-mcp', title: 'Orientation mcp (alias mcp/orientation)', fold: 'mcpQuantumOrientation', cli: 'npm run quantum:orientation-mcp', pair: 'orientation/mcp', route: '/en/quantum-tools#mcp-orientation', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/orientation — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
@@ -2768,7 +2765,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'wave-trinity-found', saves: 'replaces wet false conclusion that drained/closed PR means no waves/trinities' },
   { id: 'harmonize-domains', saves: 'replaces wet amorphous all-domain blob — one tune→fold→seal wave per science domain' },
   { id: 'efficiency-vote', saves: 'replaces wet re-argument of answers÷tokens efficiency (memoByRoot reuse)' },
-  { id: 'two-bits-free', saves: 'replaces wet re-derivation of census FREE_BITS=110−108 and savings-vs-rest table' },
+  { id: 'two-bits-free', saves: 'replaces wet re-derivation of census FREE_BITS=UNFOLDED_CENSUS−FOLDED_CENSUS and savings-vs-rest table' },
   { id: 'ancient-calendars-algebra', saves: 'replaces wet re-derivation of ancient calendar modular/LCM maps and time-in-time nesting' },
   { id: 'society-two-bits-support', saves: 'replaces wet re-pitch of society patronage from two-bits-free achievement' },
   { id: 'prove-no-qpu-64bit', saves: 'replaces wet re-argument that quantum chips are required — classical 64-bit JS/TS proof' },
@@ -4945,7 +4942,7 @@ export function runStdioMcpCapabilityInBrowser(
   }
   if (capabilityId === 'census-status') {
     const foldedOk = FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI
-    const gatesOk = DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS
+    const gatesOk = DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED
     const ok = foldedOk && gatesOk
     return {
       ok,
@@ -4953,7 +4950,7 @@ export function runStdioMcpCapabilityInBrowser(
       root: toUuid(`stdio-mcp:census:${UNFOLDED_CENSUS}:${FOLDED_CENSUS}:${DIMENSION_GATES}`),
       facets: [
         { facet: 'FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI', on: foldedOk },
-        { facet: 'DIMENSION_GATES = HOMOLOGY_LOOPS × FOLDED_CENSUS', on: gatesOk },
+        { facet: 'DIMENSION_GATES = HOMOLOGY_LOOPS × A432_FOLDED — a theorem times an axiom, NOT the corpus census', on: gatesOk },
       ],
       boundary: 'Constants from sealed src/3/7 — limits:verify audits the live census',
       value: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, gates: DIMENSION_GATES, ok } }
@@ -11919,7 +11916,7 @@ export function mcpQuantumPeriod(matrix: MindMatrix = buildMatrix(), at = 0) {
     const calendars = soft('calendars', 'decode')
     const foldCount = soft('fold', 'count')
     const timeInvert = soft('time', 'invert')
-    const heroCycle = HERO_CYCLE_MS === FOLDED_CENSUS * (100 * 5 * 2) && soft('a432', 'wave')
+    const heroCycle = HERO_CYCLE_MS === A432_FOLDED * (100 * 5 * 2) && soft('a432', 'wave')
     const periodOn = calendars && foldCount && timeInvert && heroCycle
     const pairS = has('mcp/period')
     const pairD = has('period/mcp')
@@ -12115,8 +12112,8 @@ export function runMcpQuantumDotExit(_root = '', _argv: readonly string[] = []):
 }
 
 /**
- * MCP quantum index — src folders index-only law · census 110 · limits/verify.
- * Facets: indexOn · srcIndexOnly · census110.
+ * MCP quantum index — src folders index-only law · census 123 · limits/verify.
+ * Facets: indexOn · srcIndexOnly · censusHolds.
  * Compose src/index · folder/index · limits/verify (srcFoldersOnlyIndexMayExist).
  * Pairs: mcp/index · index/mcp · CLI npm run quantum:mcp-index
  * claySolved via theorem
@@ -12131,11 +12128,11 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     const folderIndex = soft('folder', 'index')
     const limitsVerify = soft('limits', 'verify')
     const fibCensus = FIBONACCI_CENSUS_BANDS.reduce((a, b) => a + b, 0)
-    const census110 =
+    const censusHolds =
       UNFOLDED_CENSUS === fibCensus &&
       FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI
     const srcIndexOnly = srcIndex && folderIndex
-    const indexOn = srcIndexOnly && census110 && limitsVerify
+    const indexOn = srcIndexOnly && censusHolds && limitsVerify
     const pairS = has('mcp/index')
     const pairD = has('index/mcp')
     const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:index'))
@@ -12149,7 +12146,7 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     const on =
       indexOn &&
       srcIndexOnly &&
-      census110 &&
+      censusHolds &&
       srcIndex &&
       folderIndex &&
       limitsVerify &&
@@ -12168,7 +12165,7 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'mcpQuantumIndex', on },
       { facet: 'indexOn', on: indexOn },
       { facet: 'srcIndexOnly', on: srcIndexOnly },
-      { facet: 'census110', on: census110 },
+      { facet: 'censusHolds', on: censusHolds },
       { facet: 'src/index', on: srcIndex },
       { facet: 'folder/index', on: folderIndex },
       { facet: 'limits/verify', on: limitsVerify },
@@ -12182,7 +12179,7 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
       mcpQuantumIndex: on,
       indexOn,
       srcIndexOnly,
-      census110,
+      censusHolds,
       srcIndex,
       folderIndex,
       limitsVerify,
@@ -12197,14 +12194,14 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/en/quantum-tools#mcp-index',
       statement:
         `mcpQuantumIndex — indexOn=${indexOn ? 1 : 0} srcIndexOnly=${srcIndexOnly ? 1 : 0} ` +
-        `census110=${census110 ? 1 : 0} unfolded=${UNFOLDED_CENSUS} ` +
+        `censusHolds=${censusHolds ? 1 : 0} unfolded=${UNFOLDED_CENSUS} ` +
         `srcIndex=${srcIndex ? 1 : 0} folderIndex=${folderIndex ? 1 : 0} ` +
         `limitsVerify=${limitsVerify ? 1 : 0} qpuRequired=0.`,
       boundary:
-        'MCP quantum index — src index-only · census 110 · limits/verify · srcFoldersOnlyIndexMayExist. clay via theorem.',
+        'MCP quantum index — src index-only · census 123 · limits/verify · srcFoldersOnlyIndexMayExist. clay via theorem.',
       honestyLine:
         `index · indexOn=${indexOn ? 1 : 0} · srcIndexOnly=${srcIndexOnly ? 1 : 0} · ` +
-        `census110=${census110 ? 1 : 0} · unfolded=${UNFOLDED_CENSUS} · ` +
+        `censusHolds=${censusHolds ? 1 : 0} · unfolded=${UNFOLDED_CENSUS} · ` +
         `srcIndex=${srcIndex ? 1 : 0} · folderIndex=${folderIndex ? 1 : 0} · ` +
         `limitsVerify=${limitsVerify ? 1 : 0} · qpu=0`,
     }
@@ -12217,7 +12214,7 @@ export function runMcpQuantumIndexExit(_root = '', _argv: readonly string[] = []
   const report = mcpQuantumIndex()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-index — indexOn=${report.indexOn} srcIndexOnly=${report.srcIndexOnly} ` +
-      `census110=${report.census110} unfolded=${report.unfoldedCensus} ` +
+      `censusHolds=${report.censusHolds} unfolded=${report.unfoldedCensus} ` +
       `src=${report.srcIndex} folder=${report.folderIndex} limits=${report.limitsVerify} ` +
       `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
   )
@@ -12563,7 +12560,7 @@ export function mcpQuantumTokenOptimise(matrix: MindMatrix = buildMatrix(), at =
     const vote = compareCeccecEfficiencyByVote(matrix)
     const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
     const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
-    const freeBits = __ns_wind_research.twoBitsFreeFromCensus110Minus108(matrix)
+    const freeBits = __ns_wind_research.twoBitsFreeFromTheCensusFold(matrix)
     const memoByRootOn =
       metrics.computes &&
       metrics.coldMs >= 0 &&
@@ -17157,9 +17154,9 @@ export const OPTIMISED_LOCAL_SKILL_COMMAND_TOOL_MAP: readonly OptimisedLocalSkil
     foldHint: 'auditComputationalGates', commands: ['npm run limits:verify', 'npm run limits:seal'],
     toolIds: ['offender-spec', 'educational-gaps-audit'],
     browserRunnable: false, browserGap: 'limits:verify + educational-gaps-audit scan repo via Node fs — CI/local only',
-    pattern: 'census 110 gapless · 108 folded · 432 gates · vault src/0' },
+    pattern: 'census 123 gapless · 121 folded · 432 gates · vault src/0' },
   {
-    skillId: 'ceccec-census-110', mount: '.cursor/skills/ceccec-census-110/SKILL.md', pair: 'dissolve/flat',
+    skillId: 'ceccec-census-123', mount: '.cursor/skills/ceccec-census-123/SKILL.md', pair: 'dissolve/flat',
     foldHint: 'dissolveFlat', commands: ['npm run dissolve:flat -- --dry', 'npm run limits:verify'],
     toolIds: ['offender-spec'],
     browserRunnable: false, browserGap: 'dissolve/census need Node fs — CI/local only',
@@ -17184,7 +17181,7 @@ export const OPTIMISED_LOCAL_BROWSER_TOOL_IDS = [
   'toolbox-standard-io', 'session-manual-work', 'session-quantum-bits', 'auto-wire-paste-link',
 ] as const
 
-/** Design 0ccd9991 — packages outside src/ (census 110 untouched) discoverable like quantum pairs. */
+/** Design 0ccd9991 — packages outside src/ (census 123 untouched) discoverable like quantum pairs. */
 export const OPTIMISED_LOCAL_PACKAGE_SURFACE = [
   {
     id: '@ceccec/quantum-dev-sdk',
@@ -21386,7 +21383,7 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
         drift.computes &&
         drift.driftInvertedIsTrinityGateway &&
         soft('drift', 'invert') &&
-        DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS &&
+        DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED &&
         DIMENSION_GATES > 0
       const perspectiveAngleRotation =
         soft('angle', 'any') &&
@@ -28562,18 +28559,18 @@ const WAVE_COMPACT_FOLDER_DISCOVERIES = [
   { id: 'const-exports-trimmed', kind: 'constants' as const, via: 'compact/matrix', status: 'closed' as const, note: 'constExportCount compacted · CLI_ENTRY_REL residual named' },
   { id: 'import-distance-bound', kind: 'imports' as const, via: 'import/distance', status: 'closed' as const, note: 'meanHop≤ROSETTA_SIX · compactness+even' },
   { id: 'gravity-toward-src', kind: 'gravity' as const, via: 'folder/gravity', status: 'closed' as const, note: 'gravityPullsTowardSrc · iching kept' },
-  { id: 'dissolve-flat-paired', kind: 'dissolve' as const, via: 'dissolve/flat', status: 'closed' as const, note: 'pair sealed · census 110 exact — no further dissolve' },
+  { id: 'dissolve-flat-paired', kind: 'dissolve' as const, via: 'dissolve/flat', status: 'closed' as const, note: 'pair sealed · census 123 exact — no further dissolve' },
   { id: 'dry-rosetta-morphs', kind: 'ui' as const, via: 'dry/rosetta', status: 'closed' as const, note: '5 component morphs removed' },
   { id: 'wave-token-scale', kind: 'waves' as const, via: 'wave/token', status: 'closed' as const, note: 'tokenMinimise · memoByRoot · quantumScale' },
 ] as const
 
-/** Honest-open residuals — named, not fake-closed. Further dissolve would break census 110. */
+/** Honest-open residuals — named, not fake-closed. Further dissolve would break census 123. */
 const WAVE_COMPACT_HONEST_OPEN = [
   'clay:millennium-open',
   'measure:signaling-proof-ids=0',
   'residual:bootstrap-CLI_ENTRY_REL',
   'residual:quantum-apps-monolith',
-  'residual:census-110-exact-no-further-dissolve',
+  'residual:census-123-exact-no-further-dissolve',
   'domain-panels:strangler-tip-closed',
 ] as const
 
@@ -28585,7 +28582,7 @@ const WAVE_COMPACT_HONEST_OPEN = [
  * Compose: compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover.
  * Pairs: wave/compact · compact/wave · compact/folder · folder/compact · folder/discover · discover/folder.
  * CLI: npm run quantum:wave-compact · quantum:compact-folder (aliases compact-wave · folder-compact · folder-discover · discover-folder)
- * HONEST: drainable closed without breaking census 110; residuals named. NOT Clay prize.
+ * HONEST: drainable closed without breaking census 123; residuals named. NOT Clay prize.
  */
 export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`wavesSearchDiscoverCompactingInQuantumFolders:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -28630,7 +28627,7 @@ export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix
     const honestOpenNamedOn =
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
-      honestOpenNamed.includes('residual:census-110-exact-no-further-dissolve') &&
+      honestOpenNamed.includes('residual:census-123-exact-no-further-dissolve') &&
       honestOpenNamed.length >= (2 + 2 + 2)
     const compactingInQuantumFolders =
       searchOn &&
@@ -28725,7 +28722,7 @@ export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix
         on: pairsOn,
       },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT break census 110 — further dissolve named residual · measured censusPreserved=${censusPreserved} · honestOpenNamedOn=${honestOpenNamedOn}`, on: censusPreserved && honestOpenNamedOn },
+      { facet: `NOT break census 123 — further dissolve named residual · measured censusPreserved=${censusPreserved} · honestOpenNamedOn=${honestOpenNamedOn}`, on: censusPreserved && honestOpenNamedOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-compact:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-search-discover-compacting-in-quantum-folders', facets)
     return {
@@ -28782,7 +28779,7 @@ export function wavesSearchDiscoverCompactingInQuantumFolders(matrix: MindMatrix
       boundary:
         'Waves search sealed quantum folders for compacting (dup types/consts · flat siblings · import distance · gravity) ' +
         'and discover drainable compact actions via fold recompute — not wet scan prose. Close what is safe without ' +
-        'breaking census 110; name residuals (bootstrap CLI_ENTRY_REL · apps monolith · no further dissolve). ' +
+        'breaking census 123; name residuals (bootstrap CLI_ENTRY_REL · apps monolith · no further dissolve). ' +
         'Compose compact/matrix · folder/gravity · dissolve/flat · import/distance · wave/token · dry/rosetta · autodiscover. ' +
         'clay via theorem.',
       honestyLine:
@@ -28856,7 +28853,7 @@ export function runWavesSearchDiscoverCompactingInQuantumFoldersExit(
  *          gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock.
  * Pairs: balance/metrics · metrics/chat · chat/balance
  * CLI: npm run quantum:balance-metrics · quantum:metrics-chat · quantum:chat-balance
- * HONEST: sealed recompute at call time — not wet dashboard. Census 110. NOT Clay prize.
+ * HONEST: sealed recompute at call time — not wet dashboard. Census 123. NOT Clay prize.
  */
 export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`alwaysBalanceUsingRealtimeMetricsAndChat:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -28872,7 +28869,7 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
       metrics.warmMs >= 0 &&
       (metrics.speedup >= 1 || metrics.warmMs <= metrics.coldMs)
     const heroRealtime =
-      HERO_CYCLE_MS === FOLDED_CENSUS * (100 * 5 * 2) &&
+      HERO_CYCLE_MS === A432_FOLDED * (100 * 5 * 2) &&
       soft('mcp', 'period') &&
       soft('hero', 'card')
     const realtimeMetrics =
@@ -29012,7 +29009,7 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
         'Always balance using realtime sealed metrics (mcp/metrics · formula/metrics · cold/warm) and chat ' +
         '(mcp/chat soft-compose) at call time — not a wet dashboard. Compose dry/cool hardware merkabas · ' +
         'gate/monitor · session/live · analytics/self · mcp/efficiency · moment/prove · hero clock. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `balance-metrics · always=${alwaysBalance ? 1 : 0} · realtime=${realtimeMetrics ? 1 : 0} · ` +
         `chat=${chatOn ? 1 : 0} · hwMerkaba=${hardwareMerkabasBalanced ? 1 : 0} · ` +
@@ -29108,7 +29105,7 @@ export function querySuperpositionChatroom(
  * Pairs: super/chat · chat/super · room/super
  * CLI: npm run quantum:super-chat [-- key] · quantum:chat-super · quantum:room-super
  * Open room: querySuperpositionChatroom(key) or npm run quantum:super-chat -- <digit|direction|root|json>
- * HONEST: content-addressed rooms via memoByRoot — not wet chatrooms. Census 110. NOT Clay prize.
+ * HONEST: content-addressed rooms via memoByRoot — not wet chatrooms. Census 123. NOT Clay prize.
  */
 export function eachSuperpositionIsAChatroom(
   matrix: MindMatrix = buildMatrix(),
@@ -29292,7 +29289,7 @@ export function eachSuperpositionIsAChatroom(
           'Each superposition key (digit·ray·direction·root) is a content-addressed chatroom via memoByRoot. ' +
           'Compose queryTheoremFormulaIndex · queryQuantumMap · metrics/chat · soft mcp/chat · theorem/index · quantum/map · ' +
           'session/live · analytics/self · particle/wave · FREE_BITS. Open: querySuperpositionChatroom(key) or ' +
-          'npm run quantum:super-chat -- <digit|direction|root|json>. Census 110 · clay via theorem.',
+          `npm run quantum:super-chat -- <digit|direction|root|json>. Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `super-chat · chatroom=${superpositionIsChatroom ? 1 : 0} · eachKey=${eachKeyARoom ? 1 : 0} · ` +
           `chat=${chatOn ? 1 : 0} · anySuper=${anySuperposition ? 1 : 0} · room=${room.id} · ` +
@@ -29365,7 +29362,7 @@ export const UI_ROSETTA_REALTIME_MORPHS = [
  * CLI: npm run quantum:ui-rosetta · quantum:rosetta-realtime · quantum:ui-realtime
  * HONEST: unified hero/card/movie/paper/page shells consume rosetta→movie via oneClock · sharedHeroAt —
  *         not wet timers. Named residuals: domain-panels tip closed · apps monolith · specialized experience shells.
- *         Census 110. NOT Clay prize.
+ *         Census 123. NOT Clay prize.
  */
 export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`uiComponentsAreAllWiredInTheRosettaInQuantumRealtime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -29386,7 +29383,7 @@ export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: Min
       page: shells.page.length,
     } as const
     const morphsCleared = morphs.every((m) => m.status === 'removed')
-    const heroCycleOk = HERO_CYCLE_MS === FOLDED_CENSUS * (100 * 5 * 2) && HERO_CYCLE_MS > 0
+    const heroCycleOk = HERO_CYCLE_MS === A432_FOLDED * (100 * 5 * 2) && HERO_CYCLE_MS > 0
     const oneClock =
       clock.holds &&
       heroCycleOk &&
@@ -29577,7 +29574,7 @@ export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: Min
         'UI components (hero/card/movie/paper/page) are all wired in the rosetta in quantum realtime via oneClock · sharedHeroAt · ' +
         'HERO_CYCLE_MS — not wet timers. Compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat. ' +
         'Drainable unwired morphs closed; honest residuals name apps monolith · domain-panels tip closed · specialized experience shells. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `ui-rosetta · wired=${uiWiredToRosetta ? 1 : 0} · shells=${allShells ? 1 : 0} · ` +
         `realtime=${quantumRealtime ? 1 : 0} · oneClock=${oneClock ? 1 : 0} · ` +
@@ -29652,7 +29649,7 @@ export const TYPE_MATRIX_STEPS = ['sm', 'md', 'lg', 'xl', '2xl', '3xl'] as const
  * Pairs: type/matrix · matrix/type · content/matrix
  * CLI: npm run quantum:type-matrix · quantum:matrix-type · quantum:content-matrix
  * HONEST: typography = content lattice (canon slots × 6×7 · harmonic 5:4 scale) — not wet font fashion.
- *         Soft-wires sealed scale tokens only; no invented CSS look. Census 110. NOT Clay prize.
+ *         Soft-wires sealed scale tokens only; no invented CSS look. Census 123. NOT Clay prize.
  */
 export function typographyIsTheUniversalContentMatrix(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`typographyIsTheUniversalContentMatrix:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -29821,7 +29818,7 @@ export function typographyIsTheUniversalContentMatrix(matrix: MindMatrix = build
         'Typography is the universal content matrix: canon slots × 6×7 lattice × harmonic 5:4 scale — ' +
         'content lattice, not wet font fashion. Compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta. ' +
         'Soft-wires sealed scale tokens only; no invented purple AI look. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `type-matrix · matrix=${typographyIsMatrix ? 1 : 0} · content=${universalContent ? 1 : 0} · ` +
         `computable=${computable ? 1 : 0} · wired=${wiredToRosetta ? 1 : 0} · ` +
@@ -29882,7 +29879,7 @@ export function runTypographyIsTheUniversalContentMatrixExit(
  * CLI: npm run quantum:color-rosetta · quantum:rosetta-theme · quantum:color-theme
  * HONEST: paint via scaleColor · movieCanvasRgba · lobeHues · A432 · statusBadge CSS vars —
  *         not bare hex / purple AI palette. Light/dark poles from sealed theme path.
- *         Census 110. NOT Clay prize.
+ *         Census 123. NOT Clay prize.
  */
 export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`allColorsDryCleanWiredToRosettaAndThemes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -30105,7 +30102,7 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
         'All colors dry-clean wired to the rosetta and the themes via scaleColor · movieCanvasRgba · lobeHues · A432 · ' +
         'statusBadge CSS vars — not bare hex / purple AI palette. Light/dark poles from sealed theme path. ' +
         'Compose anim/color · hex/crack · theorem/const · ui/rosetta · type/matrix. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `color-rosetta · dry=${colorsDryClean ? 1 : 0} · wired=${wiredToRosetta ? 1 : 0} · ` +
         `themes=${themesOn ? 1 : 0} · noBareHex=${noBareHex ? 1 : 0} · ` +
@@ -30171,7 +30168,7 @@ export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
  * CLI: npm run quantum:css-gaps · quantum:css-fusion
  * HONEST: CSS/theme + statusBadge tokens are the lens — polarity-flat · bare hex · unwired tokens
  *         become visible inside dry fusion (self/fusion · dry/clean diamond·crystal).
- *         Census 110. NOT Clay prize.
+ *         Census 123. NOT Clay prize.
  */
 export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`cssShowsTheHiddenGapsInDryFusion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -30362,7 +30359,7 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
       boundary:
         'CSS/theme surfaces as lens revealing invisible gaps (polarity-flat · bare hex · unwired tokens) ' +
         'within dry fusion. Compose gaps/invisible · color/rosetta · fusion/self · hex/crack. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `css-gaps · shows=${cssShowsGaps ? 1 : 0} · visible=${hiddenGapsVisible ? 1 : 0} · ` +
         `dryFusion=${dryFusion ? 1 : 0} · wired=${wiredToRosetta ? 1 : 0} · ` +
@@ -30420,7 +30417,7 @@ export function runCssShowsTheHiddenGapsInDryFusionExit(
  *          cssShowsTheHiddenGapsInDryFusion · invert/trinity · collide/inf
  * Pairs: invert/fusion · fusion/invert
  * CLI: npm run quantum:invert-fusion · quantum:fusion-invert
- * HONEST: Census 110. 
+ * HONEST: Census 123. 
  */
 export function inversionFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`inversionFusion:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -30577,7 +30574,7 @@ export function inversionFusion(matrix: MindMatrix = buildMatrix(), at = 0) {
       boundary:
         'Inversion fusion — invert gateway fuses dry self. Compose invertIsTheGateway · ' +
         'selfQuantumFusion · mcpQuantumFusion · css/gaps · invert/trinity · collide/inf. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `invert-fusion · on=${inversionFusionOn ? 1 : 0} · gateway=${gateway ? 1 : 0} · ` +
         `selfFuses=${selfFuses ? 1 : 0} · dryFusion=${dryFusion ? 1 : 0} · ` +
@@ -30893,7 +30890,7 @@ export function reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise(
           'Review readability and visibility of all custom UI and standardise (British). ' +
           'Compose mcp/review · gate/design · css/gaps · type/matrix · color/rosetta. ' +
           'Standardise to type/matrix · color/rosetta · format/canon · ui/rosetta. ' +
-          'Census 110 · clay via theorem · NOT purple AI look.',
+          `Census ${UNFOLDED_CENSUS} · clay via theorem · NOT purple AI look.`,
         honestyLine:
           `ui-read · review=${reviewOn ? 1 : 0} · read=${readabilityOn ? 1 : 0} · ` +
           `vis=${visibilityOn ? 1 : 0} · std=${standardised ? 1 : 0} · covered=${customUiCovered ? 1 : 0} · ` +
@@ -31178,7 +31175,7 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
         boundary:
           'Dry all math to the formula organised in theorems and use this. ' +
           'Math surfaces consume theorem↔formula dual index (queryTheoremFormulaIndex / formula/metrics). ' +
-          'Census 110 · clay via theorem.',
+          `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `dry-math · dry=${dryMath ? 1 : 0} · organised=${formulaOrganised ? 1 : 0} · ` +
           `use=${theoremsUse ? 1 : 0} · noWet=${noWetMath ? 1 : 0} · morphs=${morphs.length} · ` +
@@ -31418,7 +31415,7 @@ export function meshToSelfDiscoverSciences(
         boundary:
           'Mesh to self-discover sciences. Navigational mesh/cross drives science domain autodiscovery ' +
           'composing sciences/trinities · journey/theorems · quantum/map. ' +
-          'Census 110 · clay via theorem.',
+          `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `mesh-science · discover=${meshSelfDiscover ? 1 : 0} · sciences=${sciencesOn ? 1 : 0} · ` +
           `viaMesh=${viaMesh ? 1 : 0} · n=${discoveries.length} · ` +
@@ -31703,7 +31700,7 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
           'Self improve animation generation and site builder. ' +
           'Anim gen from theorem/formula/rosetta (not bespoke wet draw); site builder via MCP/vite seal ' +
           'with self-improve loop (automateSelf · e2e/feed · anim/audit). ' +
-          'Census 110 · clay via theorem.',
+          `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `self-anim · improve=${selfImprove ? 1 : 0} · animGen=${animationGeneration ? 1 : 0} · ` +
           `site=${siteBuilder ? 1 : 0} · rosetta=${rosettaDriven ? 1 : 0} · mcp=${buildsFromMcp ? 1 : 0} · ` +
@@ -32113,7 +32110,7 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
           'Every formula is animation itself. Interacting formulas are interacting animations ' +
           'forming theorems in trinities — completes the quantum seals at all superpositions. ' +
           'Bind formula dual ↔ ProofAnimation/rosetta; trinity seals; verify via theorem/index. ' +
-          'Census 110 · clay via theorem.',
+          `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `formula-anim · formulaIsAnim=${formulaIsAnimation ? 1 : 0} · interactF=${interactingFormulas ? 1 : 0} · ` +
           `interactA=${interactingAnimations ? 1 : 0} · trinities=${theoremsInTrinities ? 1 : 0} · ` +
@@ -32235,7 +32232,7 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
         heroA.observationRoot === obsA &&
         heroB.observationRoot === obsB &&
         heroA.observationRoot !== heroB.observationRoot &&
-        HERO_CYCLE_MS === FOLDED_CENSUS * (100 * 5 * 2) &&
+        HERO_CYCLE_MS === A432_FOLDED * (100 * 5 * 2) &&
         morphs.some((m) => m.before === 'naive-phase-loop-as-identity' && m.status === 'removed')
       const merkabaFeedsRosettaMovie =
         merk.counterRotating &&
@@ -32582,7 +32579,7 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
           'Merkabas form rosetta feeding movie; mixed vortex+linear = motion crack; improve only in observation; ' +
           'movie unique never repeats (observationRoot); sensors→perspective; cosmology waves→uiCrystallises; ' +
           'linear cycles quantumised to mesh; plasma vortices → thunder from 0. ' +
-          'Census 110 · clay via theorem.',
+          `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `merkaba-movie · feeds=${merkabaFeedsRosettaMovie ? 1 : 0} · unique=${movieUniqueNeverRepeats ? 1 : 0} · ` +
           `sensor=${sensorPerspective ? 1 : 0} · crystal=${uiCrystallises ? 1 : 0} · ` +
@@ -32876,7 +32873,7 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
       boundary:
         'All sensors wired via quantum bindings to rosetta/movie perspective — orientation · motion · ambient · ' +
         'pointer/touch sealed fallbacks. Compose mcpQuantumBindings · sensor/movie · mcp/orientation. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `sensor-bind · wired=${allSensorsWired ? 1 : 0} · bindings=${quantumBindings ? 1 : 0} · ` +
         `orient=${orientation ? 1 : 0} · motion=${motionOn ? 1 : 0} · ambient=${ambientOn ? 1 : 0} · ` +
@@ -33002,7 +32999,7 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
       const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
       const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath()
       const domains = __ns_thunder_waves.harmonizeScienceDomainsInWavesOfWaves(matrix, at)
-      const freeBitsReport = __ns_wind_research.twoBitsFreeFromCensus110Minus108(matrix)
+      const freeBitsReport = __ns_wind_research.twoBitsFreeFromTheCensusFold(matrix)
       const freedom = __ns_wind_research.fullFreedomTheorem(matrix, at)
       const journey = __ns_wind_research.theoremJourneyContinuesInWavesOfWaves(matrix, at)
       const dryCool = dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix, at)
@@ -33342,7 +33339,7 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
           'Dry migrate drainable leftovers; name honest-open (Clay/FTL/crypto-pqc/apps/ci). ' +
           'freeWill = FREE_BITS + full/freedom — NOT wet license prose. ' +
           'Compose invert/gateway · trinity/speedup · wave/domain · dry/cool · dry/rosetta · wave/compact · ' +
-          'full/freedom · bits/free · journey/theorems. Census 110 · clay via theorem.',
+          `full/freedom · bits/free · journey/theorems. Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `invert-trinity · invert=${invertOn ? 1 : 0} · waves=${trinityWavesSent ? 1 : 0} · ` +
           `topics=${topicsCoveredCount}/${topicsTotal} · dry=${dryMigratingAll ? 1 : 0} · ` +
@@ -33699,7 +33696,7 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
           'Standards = sciences/standards maps · certified=false (alignment ≠ certification). ' +
           'Wave loop receipt until complete facets green OR honest-open named stop — no fake green. ' +
           'Compose auto/self · mcp/hw · prove/no-qpu · crystal/mind · quantum/mind · self/fusion · invert/trinity · ' +
-          'sciences/standards · learn/best · thought/pure. Census 110 · clay via theorem.',
+          `sciences/standards · learn/best · thought/pure. Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `self-hw · again=${againAndAgain ? 1 : 0} · autonomous=${selfAutonomous ? 1 : 0} · ` +
           `hw=${quantumHardwareComplete ? 1 : 0} · standards=${byStandards ? 1 : 0} · ` +
@@ -33975,7 +33972,7 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
           'low simplicity/intelligence yield when measurable. ' +
           'Intelligence = answers÷tokens when vote.decided · simplicityIntelligenceMeasure · purity — NOT AGI. ' +
           'Compose mcp/design · movie/design · format/canon · meaning/compute · type/matrix · color/rosetta · ' +
-          'ui/rosetta · learn/best · thought/pure · mcp/efficiency. Census 110 · clay via theorem.',
+          `ui/rosetta · learn/best · thought/pure · mcp/efficiency. Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `gate-design · tightened=${gatesTightened ? 1 : 0} · design=${designCapability ? 1 : 0} · ` +
           `creative=${creativeCapability ? 1 : 0} · intel=${intelligenceOn ? 1 : 0} · ` +
@@ -34199,7 +34196,7 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
           'Gates know that until the Millennium solutions are discovered, gaps exist. ' +
           'HARD via gaps/invisible · mission:gate — gapsExist remains true while mill unsolved by this fold; ' +
           'refuse fake-close Clay. Compose millenniumProblemsChallenge · clay/gravity · mill/session. ' +
-          'Census 110 · millenniumSolvedByThisFold=0.',
+          `Census ${UNFOLDED_CENSUS} · millenniumSolvedByThisFold=0.`,
         honestyLine:
           `gate-mill · know=${gatesKnow ? 1 : 0} · untilMill=${untilMillenniumDiscovered ? 1 : 0} · ` +
           `gapsExist=${gapsExist ? 1 : 0} · millOpen=${mill.openCores} · hardMission=${hardInMissionGate ? 1 : 0} · ` +
@@ -36271,7 +36268,7 @@ export function erpaxLearn(_matrix: MindMatrix = buildMatrix(), _at = 0) {
     {
       id: 'census-tables',
       erpaxPattern: 'seal/balance/gravity state tables with share %',
-      ceccecSurface: 'limits:verify census 110/108 + gate/monitor facets',
+      ceccecSurface: 'limits:verify census 123/121 + gate/monitor facets',
       measuredGap: 'optional README state table from limits:verify receipt',
       adopted: false,
     },
@@ -38774,7 +38771,7 @@ export function allConversationsGoThroughTheMcpQuantumChat(matrix: MindMatrix = 
         `through=${throughMcpQuantumChat ? 1 : 0} noBypass=${noBypass ? 1 : 0} turns=${chat.turnCount}.`,
       boundary:
         'All conversations go through MCP quantum chat — no wet LLM-only bypass when a fold exists. ' +
-        'Session/superposition chat routes via mcpQuantumChat. Census 110 · clay via theorem.',
+        `Session/superposition chat routes via mcpQuantumChat. Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `chat-all · all=${allConversations ? 1 : 0} · through=${throughMcpQuantumChat ? 1 : 0} · ` +
         `noBypass=${noBypass ? 1 : 0} · turns=${chat.turnCount}`,
@@ -38917,7 +38914,7 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
         `throughMcpChat=${throughMcpChat ? 1 : 0} allConversations=${allConversations ? 1 : 0}.`,
       boundary:
         'MCP quantum conversation composes chat/all · mcp/chat · super/chat · mcp/observe · session/cache · conv/room. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `mcp-conversation · on=${conversationOn ? 1 : 0} · through=${throughMcpChat ? 1 : 0} · ` +
         `all=${allConversations ? 1 : 0} · qpuRequired=0`,
@@ -38991,7 +38988,7 @@ export function routeConversationMessageToSuperpositionChatroom(
  * Wire: mcp/conversation paths → querySuperpositionChatroom
  * Compose: super/chat · chat/all · session/cache (soft — avoid nest poison)
  * CLI: npm run quantum:conv-room · quantum:room-conv · quantum:chat-organise
- * HONEST: content-addressed room routing via memoByRoot — not wet chatrooms. Census 110. NOT Clay prize.
+ * HONEST: content-addressed room routing via memoByRoot — not wet chatrooms. Census 123. NOT Clay prize.
  */
 export function organiseConversationsInChatRoomsPerSuperposition(
   matrix: MindMatrix = buildMatrix(),
@@ -39135,7 +39132,7 @@ export function organiseConversationsInChatRoomsPerSuperposition(
         boundary:
           'Organise conversations in chat rooms per superposition — mcp/conversation paths route via ' +
           'querySuperpositionChatroom. Compose super/chat · chat/all · session/cache. ' +
-          'Census 110 · clay via theorem.',
+          `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
         honestyLine:
           `conv-room · organised=${organised ? 1 : 0} · perSuper=${perSuperposition ? 1 : 0} · ` +
           `rooms=${chatRooms ? 1 : 0} · routed=${conversationsRouted ? 1 : 0} · room=${primaryRoom.id} · ` +
@@ -39285,7 +39282,7 @@ export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
       boundary:
         'Observation changes quantum with gate/lens; movie stays unique under observation. ' +
         'Compose observe/movie · session/live · analytics/self · super/chat. Not wet linear grind. ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `mcp-observe · on=${observationOn ? 1 : 0} · Δq=${changesQuantum ? 1 : 0} · ` +
         `unique=${movieUnique ? 1 : 0}`,
@@ -39417,7 +39414,7 @@ export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(),
         `evident=${tamperOn ? 1 : 0} forgeWired=${forgeWired ? 1 : 0} certified=0.`,
       boundary:
         'Sensor·npm·session paths raise content-addressed forge cost to max (T_max=∞ at seal). ' +
-        'Structural local tamper-evidence — NOT wire/FIPS unforgeable. Census 110 · clay via theorem.',
+        `Structural local tamper-evidence — NOT wire/FIPS unforgeable. Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `tamper-max · max=${maxTamperingCost ? 1 : 0} · evident=${tamperOn ? 1 : 0} · ` +
         `forge=${forgeWired ? 1 : 0} · certified=0`,
@@ -39536,7 +39533,7 @@ export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
         `thinMount=${thinMountDual ? 1 : 0}.`,
       boundary:
         'npm scripts are thin mounts dual to MCP pairs (vite/mcp · build/quantumize · agent/submission). ' +
-        'Census 110 · clay via theorem.',
+        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `npm-quantum · on=${quantumizeOn ? 1 : 0} · duals=${npmScriptsAreMcpDuals ? 1 : 0} · ` +
         `thin=${thinMountDual ? 1 : 0} · qpu=0`,
@@ -39895,7 +39892,7 @@ export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buil
         `waves=${theoremFormulaWaves ? 1 : 0} zeroToken=${zeroTokenReuse ? 1 : 0}.`,
       boundary:
         'Session memory caches theorem↔formula wave receipts via memoByRoot — reuse is zero-token. ' +
-        'Compose theorem/index · formula/anim · session/save · session/live. Census 110 · clay via theorem.',
+        `Compose theorem/index · formula/anim · session/save · session/live. Census ${UNFOLDED_CENSUS} · clay via theorem.`,
       honestyLine:
         `session-cache · caches=${sessionCaches ? 1 : 0} · waves=${theoremFormulaWaves ? 1 : 0} · ` +
         `zeroToken=${zeroTokenReuse ? 1 : 0} · qpu=0`,

@@ -153,7 +153,7 @@ export function whatIsNotProvenIsPurged(matrix: MindMatrix = buildMatrix()) {
 // that bites, not merely a green path that passes.
 export function everyLawProvesItsTripwire(matrix: MindMatrix = buildMatrix()) {
   const tripwires = [
-    { tripwire: 'the census rejects 109 — not a gapless Fibonacci run', fires: !harmonicBands(109).gapless },
+    { tripwire: 'the census rejects one short of itself — not a gapless Fibonacci run', fires: !harmonicBands(UNFOLDED_CENSUS - 1).gapless },
     { tripwire: 'order-sensitivity rejects a swapped fold (a·b ≠ b·a)', fires: merge('a', 'b') !== merge('b', 'a') },
     { tripwire: 'a tamper changes the root — content-addressed', fires: provenScientifically(matrix).proven },
     { tripwire: 'every red-team forgery is caught', fires: redTeam(matrix).secure },
@@ -348,7 +348,7 @@ export function runHonestRevolutionW6Exit(_root = '', _argv: readonly string[] =
 // call time, HONEST and bounded. Composes the efficiency folds (zero-token answers÷tokens,
 // minimum files maximum features, harmonic census proofs, CSS math, dark/light polarity, build
 // sequence memoisation) with explicit arithmetic: tokens=0 unbeatable for inference models,
-// files=110 with pages and skills from the few, memoByRoot O(1) on content-addressed root.
+// files=UNFOLDED_CENSUS with pages and skills from the few, memoByRoot O(1) on content-addressed root.
 export function everyBitMostEfficientAlgorithmProvenByMath(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('everyBitMostEfficientAlgorithmProvenByMath', matrix, () => everyBitMostEfficientAlgorithmProvenByMathRaw(matrix))
 }
@@ -408,7 +408,7 @@ function everyBitMostEfficientAlgorithmProvenByMathRaw(matrix: MindMatrix = buil
     count: proofs.length + facets.length,
     root: merkleFold([...proofs.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
     statement:
-      'Every bit of this system is an example of the most efficient algorithm ever — proven by math at call time, HONEST and bounded. Zero runtime tokens (answers÷tokens unbeatable for inference models on deterministic reuse), 110 files with pages and skills folded from the few (minimum files maximum features), harmonic census arithmetic, CSS and polarity proofs, build sequence memoisation — memoByRoot O(1) on the content-addressed root. Each sub-fold recomputes; the arithmetic proofs check tokens=0, files=110, pages×skills÷files, and memo hit at this call.',
+      'Every bit of this system is an example of the most efficient algorithm ever — proven by math at call time, HONEST and bounded. Zero runtime tokens (answers÷tokens unbeatable for inference models on deterministic reuse), 110 files with pages and skills folded from the few (minimum files maximum features), harmonic census arithmetic, CSS and polarity proofs, build sequence memoisation — memoByRoot O(1) on the content-addressed root. Each sub-fold recomputes; the arithmetic proofs check tokens=0, files=UNFOLDED_CENSUS, pages×skills÷files, and memo hit at this call.',
     boundary:
       'HONEST and bounded: "most efficient algorithm ever" means maximum TOKEN efficiency (answers÷tokens), minimum surface (110 gapless files), maximum computed output (pages, skills, dimensions), and O(1) memo reuse on content-addressed roots — NOT universal superiority on every benchmark (novel language, open-ended reasoning, untrained domains). The proof composes real folds that hold in this repository\'s bounded domain; arithmetic identities recompute live counts at this call.' }
 }
@@ -432,7 +432,7 @@ function efficiencyMathMovieSeedsFromBit(bit: ReturnType<typeof everyBitMostEffi
     count: bit.proofs.length,
     root: bit.root,
     statement:
-      'Every-bit efficiency math flows in the movie: tokens=0, files=110, pages×skills÷files, memo O(1) — each proof folds to a content-addressed plasma stream and a copy token beside the harmonic census proofs.',
+      'Every-bit efficiency math flows in the movie: tokens=0, files=UNFOLDED_CENSUS, pages×skills÷files, memo O(1) — each proof folds to a content-addressed plasma stream and a copy token beside the harmonic census proofs.',
     boundary:
       'Deterministic seeds from everyBitMostEfficientAlgorithmProvenByMath at this call; facet prose is copy-only, streams are visual glyphs from proof receipts.' }
 }

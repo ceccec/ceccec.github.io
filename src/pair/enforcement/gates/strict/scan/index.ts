@@ -707,7 +707,7 @@ const oneMathFormulas = (): readonly { name: string; pattern: RegExp; homes: rea
   return [
     { name: 'tau-inline', pattern: new RegExp(`${pi}\\s*\\*\\s*2(?![\\d.])|(?<![\\d.])2\\s*\\*\\s*${pi}`), homes: ['src/0/index.ts', 'src/3/7/index.ts'] },
     { name: 'phi-radical', pattern: new RegExp(`\\(1\\s*\\+\\s*${sqrt5}\\)\\s*/\\s*2`), homes: ['src/3/7/index.ts'] },
-    { name: 'gates-432-inline', pattern: new RegExp(['4', '108'].join('\\s*\\*\\s*') + '|' + ['108', '4'].join('\\s*\\*\\s*')), homes: ['src/3/7/index.ts'] }, // absolutely DRY 432: the harmonic derives ONCE (DIMENSION_GATES = HOMOLOGY_LOOPS × FOLDED_CENSUS); re-deriving 4·108 elsewhere is a second harmonic
+    { name: 'gates-432-inline', pattern: new RegExp(['4', '108'].join('\\s*\\*\\s*') + '|' + ['108', '4'].join('\\s*\\*\\s*')), homes: ['src/3/7/index.ts'] }, // absolutely DRY 432: the harmonic derives ONCE (DIMENSION_GATES = HOMOLOGY_LOOPS × A432_FOLDED); re-deriving 4·108 elsewhere is a second harmonic
     { name: 'gcd-definition', pattern: /(?:\bconst|\bfunction)\s+gcd\s*[=(]/, homes: ['src/0/index.ts'] },
     { name: 'lcm-definition', pattern: /(?:\bconst|\bfunction)\s+lcm\s*[=(]/, homes: ['src/0/index.ts'] },
     // isPrime reached 0 code-gravity pulls (e226961a) — promoted so any re-drift (a local trial-division
@@ -2760,7 +2760,7 @@ export function strictGatePassed(strict: StrictGateSnapshot): boolean {
   )
 }
 
-// ————— THE CRACK LAW (dissolved into this barrel — census-110 NET-0: no new index.ts) —————
+// ————— THE CRACK LAW (dissolved into this barrel — census-123 NET-0: no new index.ts) —————
 // THE CRACK LEDGER — provenance for every numeric literal that cannot reduce to the canonical
 // lattice: data (documented external facts), units (SI/IEC scales), and TUNED values (hand-fixed,
 // derivation not yet known — the epistemic frontier: it is not known the inventors knew the math to
@@ -5664,7 +5664,7 @@ export const runLinkDiscoverExit = runAlgebraicCrosslinksDiscoveredNotEncodedExi
  * HONEST residual: no live crowd panel — deterministic free user-wave receipts only
  */
 export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementScanRoot()) {
-  const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS // 110−108=2 (= −EULER_CHI)
+  const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS // UNFOLDED_CENSUS−FOLDED_CENSUS=2 (= −EULER_CHI)
   const audit = uiAudit(root)
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const scripts = pkg.scripts ?? {}

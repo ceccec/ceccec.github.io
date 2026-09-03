@@ -1,3 +1,4 @@
+import { UNFOLDED_CENSUS } from '../3/7'
 // ☱ Duì · Lake — statistics & compression: the analytics, build statistics & gaps, text entropy, max-compression forge, coverage-per-pixel, the REST formats. Barrel-routed; folds.ts back-imports the gate folds.
 import { HARMONICS_LADDER_LENGTH } from '../pair/enforcement/gates/computational'
 import type { MindMatrix } from '../types'
@@ -230,7 +231,7 @@ export function compression(matrix: MindMatrix = buildMatrix()) {
 export function analysisFlower(matrix: MindMatrix = buildMatrix()) {
   const measures = [
     { measure: 'file distribution', value: 110, note: 'gapless Fibonacci 21+34+55 (unfolded)' },
-    { measure: 'folded census', value: foldedCensus(110, matrix).folded, note: '110 + chi = 108' },
+    { measure: 'folded census', value: foldedCensus(UNFOLDED_CENSUS, matrix).folded, note: 'unfolded + chi = folded' },
     { measure: 'papers', value: papers(matrix).count, note: 'next harmonic 4 x 108' },
     { measure: 'references', value: paperReferences(matrix).length, note: 'reverse duals' },
     { measure: 'real diamonds', value: completeCorpus(matrix).real, note: '432 + 432' },
@@ -374,7 +375,7 @@ export function coveragePerPixel(matrix: MindMatrix = buildMatrix()) {
 export function buildStatisticsShowGaps(matrix: MindMatrix = buildMatrix()) {
   const eyes = [
     { eye: 'command gaps (trinity eyes)', gaps: commandGapsToTrinityEyes(matrix).gaps },
-    { eye: 'file-distribution gaps', gaps: harmonicBands(110).gaps },
+    { eye: 'file-distribution gaps', gaps: harmonicBands(UNFOLDED_CENSUS).gaps },
     { eye: 'corpus drift', gaps: papersReferencesDiamondsNoDrift(matrix).noDrift ? 0 : 1 },
   ].map((entry) => ({ ...entry, clear: entry.gaps === 0, receipt: toUuid(`build-gap:${entry.eye}:${entry.gaps}`) }))
   const totalGaps = eyes.reduce((sum, entry) => sum + entry.gaps, 0)

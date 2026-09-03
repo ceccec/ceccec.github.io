@@ -401,7 +401,7 @@ export async function runDiagnoseExit(root: string, argv: readonly string[] = []
     const dims = emergentDimensions(buildMatrix())
     const off = (dims.dimensions as { d: string; on: boolean }[]).filter((entry) => !entry.on)
     if (off.length) reds.push(`dimensions ${off.length}/${dims.count} off — ${off.slice(0, 8).map((entry) => entry.d).join(', ')}${off.length > 8 ? ' …' : ''}`)
-    // 4 · the census family — srcAllComputes off facets (the 110-census root family)
+    // 4 · the census family — srcAllComputes off facets (the census root family)
     const census = srcAllComputes(buildMatrix())
     for (const facet of (census.facets as { facet: string; on: boolean }[]).filter((entry) => !entry.on))
       reds.push(`census — ${facet.facet.slice(0, 100)}`)

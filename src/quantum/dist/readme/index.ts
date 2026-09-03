@@ -35,7 +35,7 @@ import {
   efficiencyScalesToInfinityAtNoCostOnReuse,
   clayChallengesComputableFromSequence,
   toolboxRecomputesRelatedSciencesInTrinityWaves,
-  twoBitsFreeFromCensus110Minus108,
+  twoBitsFreeFromTheCensusFold,
   societySupportsProjectViaTwoBitsFreeKnowledge,
   domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER } from '../../../research'
 import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../mountain/vortex'
@@ -395,13 +395,13 @@ export function twoBitsFreeSocietySupportMarkdownSection(
   matrix: MindMatrix = buildMatrix(),
   linkBase = '',
 ): readonly string[] {
-  const bits = twoBitsFreeFromCensus110Minus108(matrix)
+  const bits = twoBitsFreeFromTheCensusFold(matrix)
   const support = societySupportsProjectViaTwoBitsFreeKnowledge(matrix)
   const href = (path: string) => vitePressCompatibleHref(path, linkBase)
   return [
     '## Two bits free · society support',
     '',
-    '*Clay-standard · sealed `twoBitsFreeFromCensus110Minus108` · `societySupportsProjectViaTwoBitsFreeKnowledge`. humanityNovel stays 0.*',
+    '*Clay-standard · sealed `twoBitsFreeFromTheCensusFold` · `societySupportsProjectViaTwoBitsFreeKnowledge`. humanityNovel stays 0.*',
     '',
     '### Statement',
     '',
@@ -409,7 +409,7 @@ export function twoBitsFreeSocietySupportMarkdownSection(
     '',
     support.statement,
     '',
-    'The census seals 110 gapless Fibonacci indices (55+34+21) and folds them by the genus-2 Euler characteristic χ=−2 to 108. ' +
+    'The census seals 123 gapless Fibonacci indices (55+34+21+13) and folds them by the genus-2 Euler characteristic χ=−2 to 121. ' +
     'Those **two free bits** are FREE_BITS = 110−108 = −χ — not the rational phrase 1−110/108 (= −1/54), which is honestly refused. ' +
     'With FREE_BITS sealed, amortized memoByRoot reuse makes answers÷tokens unbounded at runtimeTokens=0 ("making all free"). ' +
     'Society is invited to support with a harmonic 1/9 of that achieved knowledge — voluntary; zero valid; access stays ungated.',
@@ -444,7 +444,7 @@ export function twoBitsFreeSocietySupportMarkdownSection(
           '- Routes (VitePress): `/proofs/two-bits-free` · `/proofs/society-two-bits-support` · `/society-merkaba#two-bits-free` · `/efficiency-vote`',
           `- Support CTA (voluntary): \`${support.patronage.url}\``,
         ]),
-    `- ${foldNameReceipt('twoBitsFreeFromCensus110Minus108')} · ${foldNameReceipt('societySupportsProjectViaTwoBitsFreeKnowledge')} · CLI \`npm run quantum:two-bits-free\` · \`npm run quantum:society-two-bits-support\`.`,
+    `- ${foldNameReceipt('twoBitsFreeFromTheCensusFold')} · ${foldNameReceipt('societySupportsProjectViaTwoBitsFreeKnowledge')} · CLI \`npm run quantum:two-bits-free\` · \`npm run quantum:society-two-bits-support\`.`,
     '',
   ]
 }

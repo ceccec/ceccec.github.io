@@ -1,3 +1,4 @@
+import { UNFOLDED_CENSUS } from '../3/7'
 // Quantum widget registry — canonical home (dissolved src/lake/widgets → re-export only). Dashboard tiles, gallery, OS launcher compose.
 import * as __ns_up_up_stack_overflow from '../water/stack'
 // call-time namespace edge (cycle-safe): shadcn imports this folder; the token bridge reads at call time
@@ -93,14 +94,14 @@ export function multimediaFirstPlainText(matrix: MindMatrix = buildMatrix()) {
 // status (and the rest of the model) surfaces through the portal’s own VitePress components, which
 // come in pairs — each a duality, a thing and its complement folded together — so the interface
 // reads the computed status rather than carrying its own. (Honest: no new component file is added,
-// because the file census is the gapless 110 = 55 + 34 + 21; the status is surfaced through the
+// because the file census is the gapless 123 = 55 + 34 + 21 + 13; the status is surfaced through the
 // existing paired components, not a new widget.)
 export function shownInUiVitepressComponentsPairs(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the production/development status is computed and available to the UI', on: folder64SealsProductionElseDevelopment(matrix).discriminates },
     { facet: 'shown in the UI through VitePress components', on: componentGraph().interacting },
     { facet: 'in pairs — the components fold as dualities, a thing and its complement', on: dualitiesMeetInCrossFolders(matrix).meet },
-    { facet: 'no new component file — surfaced through existing pairs, the census stays 110', on: harmonicBands(110).gapless },
+    { facet: 'no new component file — surfaced through existing pairs, the census stays at UNFOLDED_CENSUS', on: harmonicBands(UNFOLDED_CENSUS).gapless },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-pairs:${entry.facet}:${entry.on}`) }))
   return {
     shown: facets.every((entry) => entry.on),
@@ -108,7 +109,7 @@ export function shownInUiVitepressComponentsPairs(matrix: MindMatrix = buildMatr
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'This is shown in the UI using VitePress components, in pairs: the production-or-development status (and the rest of the model) surfaces through the portal’s own VitePress components, which come in pairs — each a duality, a thing and its complement folded together — so the interface reads the computed status rather than carrying its own. No new component file is added: the file census is the gapless 110 = 55 + 34 + 21, so the status is surfaced through the existing paired components, not a new widget.',
+      'This is shown in the UI using VitePress components, in pairs: the production-or-development status (and the rest of the model) surfaces through the portal’s own VitePress components, which come in pairs — each a duality, a thing and its complement folded together — so the interface reads the computed status rather than carrying its own. No new component file is added: the file census is the gapless 123 = 55 + 34 + 21 + 13, so the status is surfaced through the existing paired components, not a new widget.',
     boundary:
       'A composition of the production/development discriminator, the component graph and the duality models, stating the status is shown through existing VitePress components arranged as pairs. Honest limit: no new component is created (it would break the 110-file Fibonacci census); "shown in the UI in pairs" describes surfacing through the existing paired component machinery, a structural framing — this fold does not itself render a status widget.' }
 }

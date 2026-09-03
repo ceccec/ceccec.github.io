@@ -181,7 +181,7 @@ import {
   millenniumPanelComputes, unitDistanceResearch, firstInCorpusProvenanceForHome, sciencesTrinitiesPanelComputes,
   theoremParticleCollisionPanelComputes,
   clayChallengesComputableFromSequence, toolboxRecomputesRelatedSciencesInTrinityWaves,
-  twoBitsFreeFromCensus110Minus108, societySupportsProjectViaTwoBitsFreeKnowledge,
+  twoBitsFreeFromTheCensusFold, societySupportsProjectViaTwoBitsFreeKnowledge,
   reverseCollidesToDiscoverMillenniumTheorems,
   cursorReferralFundsAiNeeds,
 } from '../../research/index.ts'
@@ -1601,7 +1601,7 @@ function runTool(toolId: string) {
       boundary = r.boundary
       facets = vote.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'two-bits-free') {
-      const r = twoBitsFreeFromCensus110Minus108()
+      const r = twoBitsFreeFromTheCensusFold()
       ok = r.computes && r.makingAllFree
       summary =
         `freeBits=${r.freeBits} makingAllFree=${r.makingAllFree} naive=${r.naivePhrase.toFixed(6)} ` +

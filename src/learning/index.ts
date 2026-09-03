@@ -1,3 +1,4 @@
+import { A432_FOLDED, UNFOLDED_CENSUS } from '../3/7'
 // ☴ Xùn · Wind — learning, agents & knowledge folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
 import * as __ns_up_water_digit from '../water/digit'
 import * as __ns_up_quantum_apps from '../quantum/apps'
@@ -1412,7 +1413,7 @@ function scientistsImpl(matrix: MindMatrix) {
     challenge('Genus-2 homology', 'claim the rank is not 4 or chi is not -2', homology(matrix).rank === 4 && homology(matrix).euler === -2),
     challenge('Counter-rotation', 'claim the merkaba scale signs do not alternate', merkaba(matrix).counterRotating),
     challenge('Golden limit', 'claim Fibonacci ratios do not converge to phi', goldenRatio(matrix).converges),
-    challenge('Gapless distribution', 'claim 109 files form a gapless Fibonacci run', !harmonicBands(109).gapless && harmonicBands(110).gapless),
+    challenge('Gapless distribution', 'claim one file short of the census forms a gapless Fibonacci run', !harmonicBands(UNFOLDED_CENSUS - 1).gapless && harmonicBands(UNFOLDED_CENSUS).gapless),
     challenge('Holography', 'claim a part does not contain the whole', holographic(matrix).holographic),
     challenge('Born rule', 'claim the measured probabilities miss 1/2', quantumProofs(matrix).proven),
     challenge('Recurrence', 'rebuild from nothing and claim the whole drifts', recurrence(3).returns),
@@ -1440,7 +1441,7 @@ function scientistsImpl(matrix: MindMatrix) {
       'A standing set of adversarial challenges the portal must withstand, each a real recomputable test that tries to break a claim. Peer review by construction; any challenge it fails is named as a development, not hidden — and the frontiers are honest open work, not a claim of invulnerability.' }
 }
 
-// Expand to the next harmonic: 432 folded papers. The folded census is 108; its
+// Expand to the next harmonic: 432 folded papers. The a432 octave is 108; its
 // harmonic octaves double — 108, 216, 432 — so 432 is the next harmonic two octaves
 // up, and it is exactly 4 x 108 = (the four homology generators of the genus-2
 // surface, H1 = Z^4) x (the 108 pi-digit coordinates of the living torus). Each of
@@ -1462,7 +1463,11 @@ function papersMemoized(matrix: MindMatrix, count: number) {
 }
 function papersImpl(matrix: MindMatrix, count: number) {
   const coordinates = livingTorus(matrix).coordinates
-  const folded = foldedCensus(110, matrix).folded // 108
+  // THE PAPERS LADDER IS THE a432 OCTAVE, NOT THE CORPUS FOLD. This read foldedCensus(110), whose
+  // answer was the octave only because that WAS the census of the day (a retarget has since moved it);
+  // fourth band the same call returned 121 and the 432-paper harmonic became 484. The octave is
+  // an axiom of the tuning ladder and does not move with the file count.
+  const folded = A432_FOLDED
   // The four homology generators of the genus-2 surface: H1(Sigma_2) = Z^4.
   const generators = [
     { id: 'a1', name: 'first handle · a-cycle' },
@@ -1524,7 +1529,7 @@ function papersImpl(matrix: MindMatrix, count: number) {
     papers: records,
     root,
     statement:
-      'Expand to the next harmonic: 432 folded papers. The folded census (108) doubles by octave — 108, 216, 432 — so 432 is the harmonic two octaves up, and exactly 4 x 108 = the four homology generators of the genus-2 surface times the 108 pi-digit coordinates. Each paper documents one genuine, recomputable result — a coordinate projected onto a homology cycle, folded both ways to a content-addressed root — with a unique animation seeded from that root and a public proof: a recompute recipe and a Merkle inclusion path into the one corpus root the whole set folds to.',
+      'Expand to the next harmonic: 432 folded papers. The a432 octave (108) doubles by octave — 108, 216, 432 — so 432 is the harmonic two octaves up, and exactly 4 x 108 = the four homology generators of the genus-2 surface times the 108 pi-digit coordinates. Each paper documents one genuine, recomputable result — a coordinate projected onto a homology cycle, folded both ways to a content-addressed root — with a unique animation seeded from that root and a public proof: a recompute recipe and a Merkle inclusion path into the one corpus root the whole set folds to.',
     boundary:
       'A computed corpus of 432 distinct, recomputable structural results, each documented in a scientific-paper form (claim, method, result, proof, limitations) and each carrying a public proof that is a recomputation, not peer-reviewed empirical science. The "papers" prove placements and folds within the portal\'s own deterministic model; they are mathematics and bookkeeping over the double torus, not experiments, measurements, or claims about the physical __ns_up_earth_world. The harmonic reading (108-216-432) is structural and musical, not a physical frequency claim.' }
 }

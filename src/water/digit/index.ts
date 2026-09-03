@@ -2,7 +2,7 @@
 // @mvc model — pure domain math: rosetta decoder, digital root, zero-division — no UI, no routing.
 import { CANONICAL_SCIENCE_MASK, EIGHT_CURRICULUM_SCIENCES, FORBIDDEN_FOLDER_NAMES, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, displayPathFromScienceModelAction, folderTailFromMethodName, indexRegistryFromLogicRel, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMethodName, scienceModelActionFromMindTail, scienceModelActionFromWords, scienceModelActionMaskRowsFromMindTails, scienceModelActionTail, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import { GENETIC_CODE, codeRobustness, mutationClass } from '../../earth/life'
-import { BOLTZMANN, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, ELECTRONVOLT, HIGGS_VEV_GEV, IONIZING_EV, JARLSKOG_INVARIANT, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, SQRT2, STANDARD_GRAVITY, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, otuPerMin, photonEnergyEv, radarRange, resonanceBandwidth, riseAzimuthDeg, schwarzschildRadius, seesawLightMassEv, soundWavelength, type RosettaComputationType, type RosettaRay } from '../../3/7'
+import { BOLTZMANN, DARK_ENERGY_EOS_W, EARTH_RADIUS_KM, ELECTRONVOLT, HIGGS_VEV_GEV, IONIZING_EV, JARLSKOG_INVARIANT, NEWTON_G, PLANCK, PROTON_MASS_MEV, REDUCED_PLANCK, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, SCHWINGER_FIELD_VM, SPEED_OF_LIGHT, SPEED_OF_SOUND_AIR, SQRT2, STANDARD_GRAVITY, UNFOLDED_CENSUS, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bekensteinBoundBits, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, conditionalEntropyBits, dopplerShift, eigenErrorThreshold, equivalentNarcoticDepthM, frequencyOf, gasReserveThirds, haldaneLoad, landauerLimit, maxOperatingDepthM, otuPerMin, photonEnergyEv, radarRange, resonanceBandwidth, riseAzimuthDeg, schwarzschildRadius, seesawLightMassEv, soundWavelength, type RosettaComputationType, type RosettaRay } from '../../3/7'
 import { admixToward, bumpEvolve, bumpStep, chsh, congruence, hopfieldEnergy, hopfieldRecall, hopfieldStore, inductionEvolve, inductionStep, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, pmixStep, realign, residueVector, stationary, survive } from '../../mountain/vortex'
 import { algorithmicCoolingBias, bb84, bernsteinVazirani, bitFlipCode, commutator, concurrence, deutschJozsa, entanglementSwap, gateMul, ghzMermin, innerProduct, interactionFreeMeasurement, noCloningWitness, quantumBatteryAdvantage, repetitionLogicalError, simon, teleportQubit, CRITICAL_MAGNETIC_FIELD_T, LUNAR_NODAL_PERIOD_YEARS, MOND_ACCELERATION_A0, OMEGA_BARYON, bumpProfile, isIonizing, leafFromPathTail, methodNameFromFolderTail, qcdMassFractionOfProton, ratIsInteger, ratStr, superdense, syncSpeedRpm } from '../../9/1'
 import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } from '../../6/4'
@@ -782,7 +782,7 @@ export function dissolveExportsAtPiTrainStations(
 }
 
 // Physical wave 1 along the sequence: open sub-station barrels for orders 0–5 (1/9, 2/8, 4/6, 8/2, 7/3, 5/5).
-// Census +6 → 110 gapless; routing receipts on disk; code cuts follow in later waves.
+// Census +6 → 123 gapless; routing receipts on disk; code cuts follow in later waves.
 export function piTrainStationsOpenWaveOne(matrix: MindMatrix = buildMatrix()) {
   const dissolve = dissolveExportsAtPiTrainStations(matrix)
   const math = digitFolderMath(matrix)
@@ -2150,7 +2150,7 @@ export function rosettaComputesItself(at = 0, matrix: MindMatrix = buildMatrix()
       { facet: 'wave 2 applied — fusion · language at src/<action>/', on: rows.filter((row) => row.wave === 2).every((row) => row.applied) },
       { facet: 'routes barrel anchored at src/routes/ (topic barrels nested)', on: rows.find((row) => row.tail === 'routes')?.canonical === 'src/routes/index.ts' },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-self-facet:${entry.facet}:${entry.on}`) }))
-    const censusTarget = 110
+    const censusTarget = UNFOLDED_CENSUS
     const censusPendingDissolve = [
       'src/water/double/math/index.ts → merged into src/double/torus/index.ts (doubleTorusMathComputes)',
       'src/water/double/movie/index.ts → merged into src/double/torus/index.ts (doubleTorusMovieComputes)',

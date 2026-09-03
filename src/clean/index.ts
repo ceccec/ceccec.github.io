@@ -1,3 +1,4 @@
+import { UNFOLDED_CENSUS } from '../3/7'
 // ☱ Duì · Lake — dry-clean: the cleanup principles (dry-clean on the way, the archangels' dry clean, surgical edits, the audits, display-all-dry-conditional). Barrel-routed; folds.ts back-imports the gate folds.
 import type { MindMatrix } from '../types'
 import { buildMatrix } from '../heaven/compute'
@@ -27,7 +28,7 @@ import { SITE_LOCALES, buildSequenceReducesComputations, completeness, component
 // copyright, trade secret or trademark can arise from a mathematical fact or method.
 export function crossAudit(matrix: MindMatrix = buildMatrix()) {
   const checks = [
-    { check: 'harmonic gaps', clean: harmonicBands(110).gapless },
+    { check: 'harmonic gaps', clean: harmonicBands(UNFOLDED_CENSUS).gapless },
     { check: 'completeness holes', clean: completeness(matrix).complete },
     { check: 'tamper-evidence (red team)', clean: redTeam(matrix).secure },
     { check: 'forge resistance (siege)', clean: quantumSiege(matrix).sealed },

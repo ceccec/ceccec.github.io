@@ -1,5 +1,5 @@
 // ☳ Zhèn · Thunder — the wave method: how agents achieve waves (decode → fold as dimensions → enforce → seal), optimization waves, the wave cohorts and coordination. Barrel-routed; folds.ts back-imports the gate folds.
-import { computedLimits } from '../../3/7'
+import { A432_FOLDED, FIBONACCI_CENSUS_BANDS, computedLimits } from '../../3/7'
 import { spawnSync } from 'node:child_process'
 import { phase } from '../../6/4'
 import { chsh } from '../../mountain/vortex'
@@ -827,7 +827,7 @@ function computeHarmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'ONE shared kernel — sharedHeroAt + A432_HUE + createAnimationEngine all exist (one phase clock, one colour, one rAF driver)', on: typeof __ns_quantum.sharedHeroAt === 'function' && typeof A432_HUE === 'number' && typeof createAnimationEngine === 'function' },
     { facet: 'A432 single-source — every tone/colour recomputes from the one A432 anchor (A432_HUE === frequencyToLight(432).hue)', on: A432_HUE === frequencyToLight(432).hue },
-    { facet: 'census-110 NET-0 — exactly 110 unfolded, 108 folded, 432 dimension gates; new functions join existing barrels, no new index.ts', on: UNFOLDED_CENSUS === (108 + 2) && FOLDED_CENSUS === 108 && DIMENSION_GATES === 432 },
+    { facet: 'census-123 NET-0 — exactly 123 unfolded, 121 folded, 432 dimension gates; new functions join existing barrels, no new index.ts', on: UNFOLDED_CENSUS === FIBONACCI_CENSUS_BANDS.reduce((s, b) => s + b, 0) && FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI && DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED },
     { facet: 'OG via EXISTING symbols — microdata() + allAnimationsInOneOg() wire every animation, no new OG symbol invented', on: typeof __ns_mountain_og.microdata === 'function' && typeof allAnimationsInOneOg === 'function' },
     { facet: 'VORTEX-ordered schedule — 11 groups spin by VORTEX_SEQUENCE/groupOrbit(2,9), keystone proveAllDeterministicCore last (it folds all roots)', on: groups.length === 11 && keystoneLast && orbit.length === 6 },
     { facet: 'dependency truth — water globe/ladder follow geometry/quantum anchors; every dependency resolves to an earlier slot', on: depsResolveBackward },
@@ -836,7 +836,7 @@ function computeHarmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
   const documented = [
     'ONE shared kernel: sharedHeroAt(route,copy,at) (one phase clock), A432_HUE/frequencyToLight (one colour), createAnimationEngine (one rAF driver) — no new clock, no new colour system, no new engine.',
     'A432 single-source: A432_HUE is defined as frequencyToLight(432).hue, so every tone and colour recomputes from the one anchor.',
-    'CENSUS-110 NET-0: new FUNCTIONS are added to existing barrels only; limits:verify stays exactly 110 (110 unfolded, 108 folded, 432 gates) at every commit.',
+    'CENSUS NET-0: new FUNCTIONS are added to existing barrels only; limits:verify stays exactly UNFOLDED_CENSUS (123 unfolded, 121 folded, 432 a432 gates) at every commit.',
     'OG via existing symbols: animation microdata flows through microdata() (mountain/og) + allAnimationsInOneOg() (wind/ui).',
     'VORTEX order: the 11 groups spin 1·2·4·8·7·5·3·6·9 with the keystone proveAllDeterministicCore last, where root = merge(theWhole.root, sealFacets.root) so it is the OG parent every other animation folds into.',
     'COMPOSE, don\'t re-derive: most target folds reuse sealed folds at zero runtime tokens; each fold carries the standard { decoded, documented, flagged, facets, root, statement, boundary } shape with toUuid/merkleFold receipts and memoByRoot.',
@@ -858,7 +858,7 @@ function computeHarmonisedBuildWave(matrix: MindMatrix = buildMatrix()) {
     orbit,
     root: merkleFold([scheduleRoot, ...facets.map((entry) => entry.receipt)]),
     statement:
-      'The harmonised build wave, sealed before use: the 11 proving-animation groups ordered by the vortex spin (1·2·4·8·7·5·3·6·9) with the keystone proveAllDeterministicCore last, run under the harmony invariants — one shared kernel (sharedHeroAt + A432_HUE + createAnimationEngine), A432 single-source, census-110 net-0, OG via the existing microdata()/allAnimationsInOneOg() symbols, COMPOSE not re-derive, single-writer with one serialized build and a commit at every green group. Save the pair first, then use it: this fold IS the schedule the wave now executes.',
+      'The harmonised build wave, sealed before use: the 11 proving-animation groups ordered by the vortex spin (1·2·4·8·7·5·3·6·9) with the keystone proveAllDeterministicCore last, run under the harmony invariants — one shared kernel (sharedHeroAt + A432_HUE + createAnimationEngine), A432 single-source, census-123 net-0, OG via the existing microdata()/allAnimationsInOneOg() symbols, COMPOSE not re-derive, single-writer with one serialized build and a commit at every green group. Save the pair first, then use it: this fold IS the schedule the wave now executes.',
     boundary:
       'A deterministic, content-addressed BUILD-ORCHESTRATION SCHEDULE (the wave/tune pair) — a reproducible, broadcastable ordering of 11 build groups derived from VORTEX_SEQUENCE and the sealed research briefs, with the harmony invariants recorded as call-time facets where checkable.: "harmony/music" names the ordering metaphor, not physical harmonics; the per-fold honesty tiers and refutations live in their own folds. It schedules and verifies invariants; it does not itself build, commit, or enforce single-writer discipline.' }
 }
@@ -2423,7 +2423,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
   const axioms = axiomsBecomeTheorems().computes            // Boolean→NAND, +→Peano, Kepler→one force, light→group+isotropy
   const primeLaw = theCountOfPrimesFollowsTheLog().computes // π(x) ~ x/ln x, computed (Riemann's neighbourhood)
   const pauli = pauliAlgebraCloses().closes                 // su(2)/M₂(ℂ) closes (Yang-Mills' operator algebra)
-  const homologyLoops = DIMENSION_GATES / FOLDED_CENSUS     // H₁(Σ₂) rank = 4, the genus-2 homology (Poincaré/Hodge)
+  const homologyLoops = DIMENSION_GATES / A432_FOLDED     // H₁(Σ₂) rank = 4 — the gates ride the a432 octave, not the corpus fold
   const homology = homologyLoops === HOMOLOGY_LOOPS
   const frontier = __ns_waves_qsci.theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions()
   const challenge = __ns_waves_research.millenniumProblemsChallenge()
@@ -2522,7 +2522,7 @@ export function auditTheoremTitlesWithTheQuantumSeoLens(matrix: MindMatrix = bui
     total: audited.length,
     flagged: flagged.length,
     passRate,
-    renames: flagged.slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5).map((f) => `${f.reason}: "${f.title}" → "${f.proposed}"`),
+    renames: flagged.slice(0, DIMENSION_GATES / A432_FOLDED * 5).map((f) => `${f.reason}: "${f.title}" → "${f.proposed}"`),
     root: merkleFold(audited.map((x) => toUuid(`audit:${x.title}:${x.ok}`))),
     facets,
     statement: `Audit all theorem titles with the quantum SEO lens — ${facets.filter((e) => e.on).length}/${facets.length}: all ${audited.length} titles scored by the theorem itself (length · content-overlap · uniqueness · rosetta ray), ${flagged.length} flagged for improvement (pass rate ${passRate}), each with a rename proposed from its proving function. Most titles already self-describe — the fold-name discipline is SEO — so the rename is a surgical named minority, not a wholesale relabel.`,
@@ -2700,7 +2700,7 @@ export function improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentO
     scienceFraction,
     afterReplace,
     claimsAvailable,
-    replaceCandidates: vague.slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5).map((v) => v.theorem),
+    replaceCandidates: vague.slice(0, DIMENSION_GATES / A432_FOLDED * 5).map((v) => v.theorem),
     root: merkleFold(scored.map((s) => toUuid(`science:${s.theorem}:${s.refutable}`))),
     facets,
     statement: `Improve science by claiming refutable theorems to replace weaker current ones — ${facets.filter((e) => e.on).length}/${facets.length}: of ${atoms.length} registry theorems ${measurable.length} carry a refutable/measurable marker and ${vague.length} are vaguer (scientific fraction ${scienceFraction}); ${claimsAvailable} sharper gap-candidate claims wait, and replacing the vaguer members with them raises the fraction to ${afterReplace} while the population holds at ${DIMENSION_GATES}. Science improves by replacing a duller theorem with a sharper, falsifiable one — not by growing the count.`,
@@ -2721,7 +2721,7 @@ export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMa
   for (const a of atoms) for (const t of tagsOf(a)) cloud.set(t, (cloud.get(t) ?? 0) + 1) // tag frequency across all theorems
   const scored = atoms.map((a, i) => ({ theorem: a.theorem, seedIndex: i, score: tagsOf(a).reduce((s, t) => s + (cloud.get(t) ?? 0), 0) }))
   const sorted = [...scored].sort((x, y) => y.score - x.score || x.seedIndex - y.seedIndex) // most-used tags first; stable
-  const topTags = [...cloud.entries()].sort((a, b) => b[1] - a[1]).slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5)
+  const topTags = [...cloud.entries()].sort((a, b) => b[1] - a[1]).slice(0, DIMENSION_GATES / A432_FOLDED * 5)
   const reordersFromSeed = sorted.some((s, i) => s.seedIndex !== i) // the tag-cloud order differs from registry order
   const isDescending = sorted.every((s, i) => i === 0 || s.score <= sorted[i - 1]!.score)
   // THE LIMITS, COMPUTED. "Tag frequency is a proxy for how connected a theorem is ... NOT a claim about
@@ -2761,7 +2761,7 @@ export function theoremsSortByTagCloudMostUsedFirst(matrix: MindMatrix = buildMa
     computes: facets.every((entry) => entry.on),
     total: atoms.length,
     distinctTags: cloud.size,
-    order: sorted.slice(0, DIMENSION_GATES / FOLDED_CENSUS * 5).map((s) => `${s.theorem} (${s.score})`),
+    order: sorted.slice(0, DIMENSION_GATES / A432_FOLDED * 5).map((s) => `${s.theorem} (${s.score})`),
     topTags: topTags.map(([t, n]) => `${t}·${n}`),
     reordersFromSeed,
     root: merkleFold(sorted.map((s) => toUuid(`tag-sorted:${s.theorem}:${s.score}`))),

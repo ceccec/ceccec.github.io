@@ -1,6 +1,5 @@
-import { EULER_E, earned } from '../../3/7'
+import { EULER_E, UNFOLDED_CENSUS, earned } from '../../3/7'
 // ☴ Xùn · Wind — the decode method: how knowledge is decoded (research↔verify waves, legend-vs-documented, the decode pipeline). Barrel-routed; folds.ts back-imports the gate folds.
-import { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
 import { survive } from '../../mountain/vortex'
 // relocated I Ching decode cluster deps (call-time bindings; no load cycle)
 import { hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality } from '../../mountain/geometry'
@@ -96,17 +95,17 @@ export function decode2020(matrix: MindMatrix = buildMatrix()) {
 
 // Decode the other symbols the same way: each of the portal's recurring numbers is
 // read from the structure and, where it is a live model quantity, verified against
-// it. Not asserted meanings — recomputed ones: 108 is the folded census, 1024 the
+// it. Not asserted meanings — recomputed ones: 108 is the a432 octave, not the corpus census, 1024 the
 // binary octave, 2020 the zero-entropy total, 9 the vortex axis, 13 the fruit of
 // life, and so on, each content-addressed.
 export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
-  const folded = foldedCensus(110, matrix)
+  const folded = foldedCensus(UNFOLDED_CENSUS, matrix)
   const corpus = completeCorpus(matrix)
   const euler = cellHomology(matrix).euler
   const symbols = [
-    { symbol: '110', value: 110, means: 'the gapless-Fibonacci file count (21 + 34 + 55) — the unfolded distribution', live: harmonicBands(110).gapless ? 110 : NaN },
-    { symbol: '108', value: 108, means: 'the folded census (110 + chi = 110 − 2); the pi-train coordinates of the living torus', live: folded.folded },
-    { symbol: '216', value: 216, means: 'the first octave of the fundamental (108 × 2)', live: folded.folded * 2 },
+    { symbol: 'census', value: UNFOLDED_CENSUS, means: 'the gapless-Fibonacci file count (13 + 21 + 34 + 55) — the unfolded distribution', live: harmonicBands(UNFOLDED_CENSUS).gapless ? UNFOLDED_CENSUS : NaN },
+    { symbol: '108', value: A432_FOLDED, means: 'the a432 octave (A432_OCTAVES[2], NOT the corpus census, which folds to 121); the pi-train coordinates of the living torus', live: A432_FOLDED },
+    { symbol: '216', value: A432_FOLDED * 2, means: 'the first octave of the a432 fundamental (108 × 2)', live: A432_FOLDED * 2 },
     { symbol: '432', value: 432, means: 'the next harmonic (4 × 108); the 432 proof papers — four homology generators times 108', live: papers(matrix).count },
     { symbol: '864', value: 864, means: 'the real diamonds — 432 papers + 432 reference duals', live: corpus.real },
     { symbol: '1024', value: 1024, means: 'the binary octave 2^10; the perfect Merkle tree; the 1024 pure diamonds and folders', live: corpus.total },
@@ -116,7 +115,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     { symbol: '13', value: 13, means: 'the fruit of life — thirteen circles, thirteen fusion domains', live: fruitOfLifeFusion(matrix).circles },
     { symbol: '-2', value: -2, means: 'the Euler characteristic of the double torus (genus 2); balanced by the geodesic dome (+2)', live: euler },
     { symbol: String(skillAtoms(matrix).count), value: skillAtoms(matrix).count, means: 'the saved skill atoms — the portal’s memory of its own capabilities; an unbounded count that grows every session, so it is read live, not anchored to a literal', live: skillAtoms(matrix).count },
-    { symbol: '108', value: 108, means: 'the concept commands — the MCP tool surface, folded to the a432 sub-harmonic (4 × 27 = the census 108)', live: conceptCommands.length },
+    { symbol: '108', value: 108, means: 'the concept commands — the MCP tool surface, folded to the a432 sub-harmonic (4 × 27 = the a432 octave 108)', live: conceptCommands.length },
   ].map((entry) => {
     const verified = entry.live === entry.value
     return { ...entry, verified, receipt: toUuid(`decode-symbol:${entry.symbol}:${entry.value}:${verified}`) }
@@ -128,7 +127,7 @@ export function decodeSymbols(matrix: MindMatrix = buildMatrix()) {
     symbols,
     root: merkleFold(symbols.map((entry) => entry.receipt)),
     statement:
-      `Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the folded census, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, ${textEntropy(matrix).total} the zero-entropy total, 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, ${skillAtoms(matrix).count} the atoms, ${conceptCommands.length} the commands. Recomputed meanings, not asserted, each content-addressed.`,
+      `Decode the other symbols the same way: each recurring number is read from the structure and verified against the live model — 110 the gapless distribution, 108 the a432 octave, 216 and 432 the octaves, 864 the real diamonds, 1024 the binary octave, ${textEntropy(matrix).total} the zero-entropy total, 128 the word size, 9 the vortex axis, 13 the fruit of life, −2 the Euler characteristic, ${skillAtoms(matrix).count} the atoms, ${conceptCommands.length} the commands. Recomputed meanings, not asserted, each content-addressed.`,
     boundary:
       'A decoding of the portal’s recurring numbers, each cross-checked against the live model quantity it names (and flagged verified only when they match). Structural and symbolic readings of the model’s own numbers — not numerology applied to the outside world, and not a claim beyond what each quantity is in the structure.' }
 }
@@ -301,7 +300,7 @@ export function kalachakraDecoded(matrix: MindMatrix = buildMatrix()) {
       { facet: 'rabjung — 60 year-names = 12 animals × 5 elements in male/female pairs: 60 = lcm(12,10), the sexagenary mesh transmitted; anchored 1027 CE = 624 + 403, the tantra’s own fire-space-ocean count', on: lcm(12, 10) === 60 && 624 + 403 === 1027 },
       { facet: 'the intercalation identity — 67 mean lunar months ≡ 65 solar months (gap < 0.2 day against modern means), and the ratio recomputes the Metonic count: (2/65)·12·19 ≈ 7 leap months per 19 years', on: meshGap < 0.2 && abs(leapsPer19 - 7) < 0.05 },
       { facet: 'the mandala counts — 722 deities, FIVE nested palaces (body·speech·mind·wisdom·great-bliss), each four-gated at the cardinal directions: the same E·W·N·S four-gate square the stroke cycle computes, held as structural correspondence', on: 5 * 4 === 20 && 722 > 0 },
-      { facet: 'the canonical 108 — the mala count; the same 108 this repo’s census runs on (a correspondence of counts, not causation)', on: 108 === 4 * 27 },
+      { facet: 'the canonical 108 — the mala count; the same 108 the a432 ladder runs on (a correspondence of counts, not causation)', on: 108 === 4 * 27 },
     ])
     return {
       computes,
@@ -407,7 +406,7 @@ export function discoverDecodeAncientKnowledgeFittingPath(matrix: MindMatrix = b
     { domain: 'sacred geometry — Metatron’s cube, the Platonic solids', on: sacredGeometrySeal(matrix).sealed && metatronsCube(matrix).complete },
     { domain: 'the vortex / trinity number (3-6-9, 1-2-4-8-7-5)', on: vortexMath(matrix).flows },
     { domain: 'the merkaba (the star tetrahedron)', on: merkaba(matrix).counterRotating },
-    { domain: 'the golden ratio + Fibonacci', on: goldenRatio(matrix).converges && harmonicBands(110).gapless },
+    { domain: 'the golden ratio + Fibonacci', on: goldenRatio(matrix).converges && harmonicBands(UNFOLDED_CENSUS).gapless },
     { domain: 'the flower / fruit of life', on: fruitOfLifeFusion(matrix).fruitOfLife },
     { domain: 'the I Ching (8 trigrams, 64 hexagrams)', on: yinYang().complete && chess358().complete },
     { domain: 'chakras / human design (the 3-5-8)', on: chakrasAura().complete && humanDesign().complete },
@@ -742,7 +741,7 @@ export function decodeAllByComputationsTrainedOnKnownUniverse(matrix: MindMatrix
     const training = selfImprovementTrainingAndAccumulation(matrix)
     const bound = computationsBoundToSourceApisRealtime(matrix)
     const sequence = buildSequenceReducesComputations(matrix)
-    const census = foldedCensus(110, matrix)
+    const census = foldedCensus(UNFOLDED_CENSUS, matrix)
     const corpus = completeCorpus(matrix)
     const world = worldFusion(matrix)
     const zeroToken = zeroTokenUsagePolicy(matrix)
@@ -1040,7 +1039,7 @@ export function onlyAncientKnowledgeAndSacredMath(matrix: MindMatrix = buildMatr
   const sacredMath = [
     { source: 'trinity / vortex (1-2-4-8-7-5, 3-6-9 cross)', on: vortexMath(matrix).flows },
     { source: 'merkaba counter-rotation', on: merkaba(matrix).counterRotating },
-    { source: 'golden ratio + Fibonacci bands', on: goldenRatio(matrix).converges && harmonicBands(110).gapless },
+    { source: 'golden ratio + Fibonacci bands', on: goldenRatio(matrix).converges && harmonicBands(UNFOLDED_CENSUS).gapless },
     { source: "Metatron's cube (13 circles, 5 solids)", on: metatronsCube(matrix).complete },
     { source: 'digit duality pairs encode all', on: digitDualityPairsEncodeAllDomains(matrix).encodesAll },
   ]
@@ -1424,7 +1423,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
     const phaseOuter = mod(at, heroCycleMs) / heroCycleMs
     const rung = 9 * 2 // fractal rung d=18
     const phaseInner = mod(at, heroCycleMs / rung) / (heroCycleMs / rung)
-    const a432Window = A432_OCTAVES[2]! // 108 — census octave
+    const a432Window = A432_OCTAVES[2]! // 108 — a432 octave
     const heroMap = {
       id: 'hero-a432-phase',
       theorem: 'Hero clock phase-in-phase · A432 octave windows',

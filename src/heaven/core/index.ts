@@ -1,4 +1,4 @@
-import { earned } from '../../3/7'
+import { UNFOLDED_CENSUS, earned } from '../../3/7'
 import { codeRobustness } from '../../earth/life'
 import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, type Discovery, verifyDiscovery, fieldOfContent, cyclicUnitsOrder } from '../../3/7'
 import { caStep, caEvolve } from '../../4/6'
@@ -235,7 +235,7 @@ function completenessImpl(matrix: MindMatrix) {
   const soc = society(matrix)
   const proofs = quantumProofs(matrix)
   const determinism = determinismProofs(matrix)
-  const bands = harmonicBands(108 + 2) // 110 — the raw census
+  const bands = harmonicBands(UNFOLDED_CENSUS) // the raw census, as the kernel pins it
   const claims = [
     { claim: 'the whole', challenge: 'a wave is missing from theWhole', complete: whole.standing === whole.count, ratio: `${whole.standing}/${whole.count}` },
     { claim: 'holography', challenge: 'a page or animation does not contain the whole', complete: holo.cells.every((cell) => cell.holographic), ratio: `${holo.count}/${holo.count}` },

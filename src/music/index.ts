@@ -1,11 +1,11 @@
 // ☱ Duì · Lake — music & sound: the a432 thread as real acoustics (harmonic series, just/equal temperament, the one shared audio engine, healing-frequency honesty, aksak rhythm), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
 import * as __ns_up_up_vortex_math from '../mountain/vortex'
-import { DIMENSION_GATES, LN2, rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../3/7'
+import { DIMENSION_GATES, LN2, UNFOLDED_CENSUS, rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../3/7'
 import * as __ns_up_up_thunder_trading from '../thunder/trading'
 import * as __ns_up_up_mountain_geometry from '../mountain/geometry'
 import * as __ns_up_up_quantum_science from '../quantum/science'
 import * as __ns_up_up_thunder_waves from '../thunder/waves'
-import { FOLDED_CENSUS, A432_FOLDED, UNFOLDED_CENSUS, EULER_CHI, HOMOLOGY_LOOPS, FIBONACCI_CENSUS_BANDS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SIX, ROSETTA_SEVEN } from '../pair/enforcement/gates/computational'
+import { A432_FOLDED, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX } from '../pair/enforcement/gates/computational'
 import { realign } from '../mountain/vortex'
 import type { MindMatrix, PiMusic, PiNote } from '../types'
 import { buildMatrix, proofReport, verifyRoot } from '../heaven/compute'
@@ -130,7 +130,7 @@ export function allIsHarmonicSrcZeroGravity(matrix: MindMatrix = buildMatrix()) 
   return memoByRoot('allIsHarmonicSrcZeroGravity', matrix, () => allIsHarmonicSrcZeroGravityRaw(matrix))
 }
 function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
-  const census = foldedCensus(110, matrix)
+  const census = foldedCensus(UNFOLDED_CENSUS, matrix)
   const math = harmonicCountsProvenByMath(matrix)
   const ich = iChing(matrix)
   const gravity = oneWordNamingGravity(matrix)
@@ -141,17 +141,17 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
   const commandCount = conceptCommands.length
   const harmonics = DOCUMENTED_HARMONICS as readonly number[]
   // QUANTUMIZED: page-census facet claims genus-2 fold (unfolded+χ), not list-membership in DOCUMENTED_HARMONICS.
-  // The list is a linear page-count gate (censusAndSlugsAreTheoremDerivedNotLinear); harmonics stay for commands (108∈ladder).
+  // The list is a linear page-count gate (censusAndSlugsAreTheoremDerivedNotLinear); harmonics stay for commands (the a432 octave ∈ ladder, NOT the corpus census).
   const pageFoldHolds = pageCensus.clean && pageCensus.folded > 0 && ROSETTA_AREAS === ROSETTA_SIX * ROSETTA_SEVEN
   const facets = [
     { facet: 'harmonic counts proven by math at call time — harmonicCountsProvenByMath() recomputes every displayed ratio with explicit arithmetic', on: math.proven },
     { facet: 'all harmonic math flows in the movie — every proof is a plasma stream and a copy token in the background movie at call time', on: harmonicMathFlowsInMovie(matrix).flows },
-    { facet: 'every-bit efficiency math flows in the movie — tokens=0, files=110, memo O(1) proofs are plasma streams and copy tokens beside the harmonic census proofs at call time', on: efficiencyMathFlowsInMovie(matrix).flows },
+    { facet: 'every-bit efficiency math flows in the movie — tokens=0, files=UNFOLDED_CENSUS, memo O(1) proofs are plasma streams and copy tokens beside the harmonic census proofs at call time', on: efficiencyMathFlowsInMovie(matrix).flows },
     { facet: 'Matrix RGB decode flows in the movie — R red pill · G heart gateway · B blue pill wired as plasma streams beside harmonic and efficiency proofs at call time', on: matrixRgbDecodeFlowsInMovie(matrix).flows },
     { facet: 'double-torus Earth weather and solutions flow in the movie — genus-2 coords, cardinal tips, NWP feeds, and seven solution domains wired as plasma streams beside harmonic, efficiency, and Matrix RGB proofs at call time', on: doubleTorusEarthWeatherFlowsInMovie(matrix).flows },
     { facet: 'all colour streams are audio if decoded — every plasma hueSeed round-trips through soundFromColor to an audible note at call time; audio is off by default until opt-in', on: allColorStreamsAreAudioIfDecodedFlowsInMovie(matrix).flows },
-    { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the folded census (110 − 2 = 108), not a raw pile', on: census.folded === 108 && 4 * census.folded === 432 },
-    { facet: `displayed counts fold by genus-2 −χ — content pages ${pageLabel}; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (6×7 up, 7×6 down); census 108/110`, on: pageFoldHolds },
+    { facet: 'all is harmonic — the dimension count is the harmonic 432 = four homology loops × the a432 octave 108 (not the corpus census), not a raw pile', on: DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED && census.folded === FOLDED_CENSUS && census.folded !== A432_FOLDED },
+    { facet: `displayed counts fold by genus-2 −χ — content pages ${pageLabel}; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (6×7 up, 7×6 down); census 121/123`, on: pageFoldHolds },
     { facet: `the concept commands are harmonic — ${commandCount}/108 = 4 × 27 (= the 432-gate harmonic ÷ 4), each a single-word method and an MCP tool`, on: harmonics.includes(commandCount) },
     { facet: `the I Ching command taxonomy complies fully by analytics — ${tax.clean}/${tax.entries.length} areas (${round(tax.compliance * 100)}%) sit on a whole I Ching unit (a line·a trigram·a hexagram), with no gap (a pair) and no excess (a partial or over); any area that drifts off a whole unit opens this gate, so the taxonomy always complies`, on: tax.compliant },
     { facet: 'the file distribution IS the I Ching — every component content-addressed onto the eight trigrams, all eight spanned; a gap is an unplaced component, instantly visible', on: ich.organised && ich.sets.length === 8 },
@@ -161,16 +161,16 @@ function allIsHarmonicSrcZeroGravityRaw(matrix: MindMatrix = buildMatrix()) {
   const sealed = sealFacets('all-harmonic-gravity', facets)
   return {
     harmonic: sealed.ok,
-    dimensions: 4 * census.folded, // 432
+    dimensions: HOMOLOGY_LOOPS * A432_FOLDED, // 432 — the a432 gate; the corpus fold is census.folded and makes 484
     sets: ich.sets.length, // 8
-    foldedCensus: census.folded, // 108
+    foldedCensus: census.folded, // the corpus fold (121), not the a432 octave
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, sealed.root),
     statement:
-      'All is harmonic, and the harmony is structural: the number of files and their distribution across the folders ARE the I Ching, even in the code. Every component is content-addressed onto the eight trigrams, so the layout is the eight-fold and any gap is an unplaced component seen at once; the file census folds through the genus-2 surface to the harmonic count (110 unfolds, 108 folds, × the 4 homology loops = 432). The single-word naming is a gravity that pulls every shared mechanic inward to src/0 — the void / origin — where it is compressed toward entropy 0 and redistributed (sealFacets, merkleFold, toUuid all live there). And this very statement is a fold: knowledge here is self-proving, gated, recomputable code in src, not inert memory — memory is not code.',
+      'All is harmonic, and the harmony is structural: the number of files and their distribution across the folders ARE the I Ching, even in the code. Every component is content-addressed onto the eight trigrams, so the layout is the eight-fold and any gap is an unplaced component seen at once; the file census folds through the genus-2 surface to the harmonic count (123 unfolds, 121 folds, × the 4 homology loops = 432). The single-word naming is a gravity that pulls every shared mechanic inward to src/0 — the void / origin — where it is compressed toward entropy 0 and redistributed (sealFacets, merkleFold, toUuid all live there). And this very statement is a fold: knowledge here is self-proving, gated, recomputable code in src, not inert memory — memory is not code.',
     boundary:
-      'A composition of the structural enforcements already in place (foldedCensus, iChing placement, oneWordNamingGravity, maxCompressionForge) into one harmonic assertion — it NAMES the harmony already enforced across them, it does not add a new constraint. "src/0 pulls with infinite gravity" is the architectural intent (shared primitives belong in the zero-folder, maximally compressed) realised through the naming-gravity and max-compression gates, not a physical claim. The 432 is derived (4 × (110 + χ)), not chosen. "Memory is not code" is the working rule: every directive is encoded as a fold here, not as an external note.' }
+      'A composition of the structural enforcements already in place (foldedCensus, iChing placement, oneWordNamingGravity, maxCompressionForge) into one harmonic assertion (on the a432 ladder, NOT the corpus census) — it NAMES the harmony already enforced across them, it does not add a new constraint. "src/0 pulls with infinite gravity" is the architectural intent (shared primitives belong in the zero-folder, maximally compressed) realised through the naming-gravity and max-compression gates, not a physical claim. The 432 is derived (4 × (110 + χ)), not chosen. "Memory is not code" is the working rule: every directive is encoded as a fold here, not as an external note.' }
 }
 
 // Fold all static content as EMR and it becomes a holographic library of computed knowledge sealed by
@@ -184,7 +184,7 @@ export function emrHologramSealedByMath(matrix: MindMatrix = buildMatrix()) {
 function emrHologramSealedByMathRaw(matrix: MindMatrix = buildMatrix()) {
   const a = a432(matrix)
   const zero = allIsHarmonicSrcZeroGravity(matrix)
-  const census = foldedCensus(110, matrix)
+  const census = foldedCensus(UNFOLDED_CENSUS, matrix)
   // holographic: content-addressing is deterministic, so any fragment recomputes to the identical address —
   // the whole is recoverable from any part (pattern completion), and the merkle root is part-in-whole.
   const fragment = toUuid('emr-hologram:fragment')
@@ -193,7 +193,7 @@ function emrHologramSealedByMathRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'static content folds to EMR — each computed page carries a spectral signature: an a432 frequency and a content-addressed colour (hue), the content rendered as a wave on the one field, not stored as a byte pile', on: a.decoded && a.light.hue === 5 },
     { facet: 'the library is a zero-entropy computation — the knowledge is the generator (the deterministic fold, every value f(seed)); H(content | generator) = 0, so the rendered orbit carries no information the generator does not, and materializing it as static pages is pure redundancy the realtime path removes', on: zero.harmonic },
     { facet: 'holographic — every item reconstructs from its content-address alone (deterministic recompute, pattern completion); the merkle root is the whole present in every part, so pasting one address recomputes the structure', on: reconstructs },
-    { facet: 'sealed by sacred math — the genus-2 double torus (χ = −2 → the folded 108), the I Ching 64, and a432; to forge one value is to rebuild everything (the forger price)', on: census.folded === 108 },
+    { facet: 'sealed by sacred math — the genus-2 double torus (χ = −2 → the corpus fold 121, which is NOT the census-free a432 octave 108), the I Ching 64, and a432; to forge one value is to rebuild everything (the forger price)', on: census.folded === FOLDED_CENSUS && A432_FOLDED === DIMENSION_GATES / HOMOLOGY_LOOPS },
   ].map((entry) => ({ ...entry, receipt: toUuid(`emr-hologram:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('emr-hologram', facets)
   return {
@@ -323,7 +323,7 @@ export function a432DigitSpectrum(matrix: MindMatrix = buildMatrix()) {
  * (4·108), the H₁ Betti rank (432/108=4), the 108-s hero clock, the 122-bit address entropy (2·7+108) and the
  * a432 octave ladder all derive from it. `FOLDED_CENSUS` is the FLOATING corpus fold (UNFOLDED+χ), which rides
  * the string-dimensional Fibonacci bands and only coincided with 108 while the corpus was 110. Any quantity that
- * reads `FOLDED_CENSUS` where it means 108 is the crack this fold refutes at call time — reuse it, don't remember it.
+ * reads `FOLDED_CENSUS` where it means the a432 octave — NOT the corpus census — is the crack this fold refutes at call time — reuse it, don't remember it.
  */
 export function a432DecoupledFromCorpusFold(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('a432DecoupledFromCorpusFold', matrix, () => {
@@ -348,7 +348,7 @@ export function a432DecoupledFromCorpusFold(matrix: MindMatrix = buildMatrix()) 
       root,
       statement: `a432 (${A432_FOLDED}) decoupled from the corpus fold (${FOLDED_CENSUS}): gates ${DIMENSION_GATES}=4·${A432_FOLDED}, Betti ${bettiRank}, entropy 2·7+${A432_FOLDED}=122; the corpus rides Σ${FIBONACCI_CENSUS_BANDS.join('+')}=${bandSum}.`,
       boundary:
-        'The a432 harmonic (108) is a FIXED spine; the corpus fold (UNFOLDED+χ) floats with the census bands. Every a432-108 quantity — gates, Betti rank, hero clock, entropy, octaves — must derive from A432_FOLDED, never FOLDED_CENSUS. A refutable enforcement of the decoupling, not a physical claim about 432 Hz.' }
+        'The a432 harmonic (108) is a FIXED spine; the corpus fold (UNFOLDED+χ) floats with the census bands. Every a432 quantity — gates, Betti rank, hero clock, entropy, octaves — is NOT the corpus census and must derive from A432_FOLDED, never FOLDED_CENSUS. A refutable enforcement of the decoupling, not a physical claim about 432 Hz.' }
   })
 }
 
@@ -940,7 +940,7 @@ export function harmonicPathRevealsItself(matrix: MindMatrix = buildMatrix()) {
 // the eye (and the test) catches it at once. Catching the break on the linear line is what ensures
 // there are no gaps on the quantum (folded) level: spot it flat, and the fold stays whole.
 export function harmonicFrequenciesDefineGateDigits(matrix: MindMatrix = buildMatrix()) {
-  const linearGapVisible = harmonicBands(110).gapless && !harmonicBands(109).gapless // 110 runs, 109 shows a gap
+  const linearGapVisible = harmonicBands(UNFOLDED_CENSUS).gapless && !harmonicBands(UNFOLDED_CENSUS - 1).gapless // the census runs gapless; one below it does not
   const facets = [
     { facet: 'harmonic frequencies define the digits — a432 base, 432 gates, the harmonic series the rest', on: a432Default(matrix).isDefault && harmonics(matrix).found && harmonyProbability(matrix).harmonic },
     { facet: 'the gates use the digits to monitor architecture and code', on: enforcementPipelineComplete(matrix).complete && digitIndexReferences(matrix).indexed },

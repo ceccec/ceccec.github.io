@@ -1082,7 +1082,7 @@ export function qpu() {
     reflect: '\\',                               // reflection through 0 — the bounded return
     harmonics: reflectFoldFamily(1).rows.map((r) => ({ angleDeg: r.angleDeg, modulus: r.modulus, fixedPoints: r.fixedPoints })),
   }
-  const measurement = unfoldWithinRing('qpu', (4 * 3 * 9)) // one 108-shot readout — the fractal-clock census harmonic
+  const measurement = unfoldWithinRing('qpu', (4 * 3 * 9)) // one 108-shot readout — the fractal-clock a432 harmonic
   // QPU + FTL IS the double torus itself. foldPair is the double-torus fold: two counter-rotating lobes and one
   // throat. The two lobes (forward, reverse) are the QPU — the fold processing; the throat (merged) is the FTL
   // link — the point where the lobes meet with NO traversal, because merge(a,b) is a direct address computation.

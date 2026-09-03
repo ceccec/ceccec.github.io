@@ -3,8 +3,8 @@ import { phase } from '../../6/4'
 // call-time namespace edge (cycle-safe): thunder/waves reaches back here via the mind barrel; the registry reads at call time
 import * as __ns_thunder_waves from '../../thunder/waves'
 import { MONOLITH_FILE_BYTES } from '../../pair/enforcement/gates/strict/scan'
-import { fibonacci, A432_FOLDED } from '../../3/7'
-import { CANONICAL_ROOT_FOLDERS, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
+import { A432_FOLDED, UNFOLDED_CENSUS, fibonacci } from '../../3/7'
+import { CANONICAL_ROOT_FOLDERS, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HARMONICS_LADDER_LENGTH, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, MAX_SUBFOLDERS_PER_FOLDER, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SCHEMA_TWO_LEVEL_MODEL, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES, SRC_SCIENCE_MODEL_ACTION_SCHEMA, folderTailFromMethodName, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail, scienceModelActionMaskRowsFromMindTails, splitMethodWords, srcLogicPathFromScienceModelAction } from '../../pair/enforcement/gates/computational'
 import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrainDiamond } from '../../types'
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute'
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry'
@@ -41,7 +41,7 @@ export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational'
 // overtone in the open polygon. Folded through the double torus's own boundary
 // identifications (eight edges glue to four, eight corners to one), the cell
 // count changes by exactly the Euler characteristic chi = -2, so the folded
-// census is the unfolded count minus two: 110 unfolds, 108 folds. A dry clean —
+// census is the unfolded count minus two: 123 unfolds, 121 folds. A dry clean —
 // no file is added or removed on disk; the fold is a pure topological accounting
 // the surface performs on its own files, with chi drawn from the explicit cell
 // homology, not chosen.
@@ -71,7 +71,7 @@ export function foldedCensus(unfolded: number, matrix: MindMatrix = buildMatrix(
 }
 
 /** Documented harmonic rungs — a count off this ladder opens the harmonic gate. */
-export const DOCUMENTED_HARMONICS = [9, (2 * 9), (108 / 4), (7 * 6), 43, 64, 108, (16 * 9), 216, 432, (64 * 16)] as const // 18 = 2·9: the 9-ladder step between 9 and 27 (the blog of theorems folds 20 posts → 18) // 27 = 108/4 — the commands quarter (4×27), the served-page census fold under the theorem-science lens
+export const DOCUMENTED_HARMONICS = [9, (2 * 9), (108 / 4), (7 * 6), 43, 64, 108, (16 * 9), 216, 432, (64 * 16)] as const // 18 = 2·9: the 9-ladder step between 9 and 27 (the blog of theorems folds 20 posts → 18) // 27 = 108/4 — the commands quarter (4×27) on the a432 ladder, NOT the corpus census, under the theorem-science lens
 
 /** Agent task label under genus-2 χ=−2: `${folded}/${unfolded}` (e.g. 108/110, 43/45). */
 export function harmonicFoldLabel(unfolded: number, matrix: MindMatrix = buildMatrix()): string {
@@ -565,7 +565,7 @@ export function treeStackRotationCollapse(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the tree, turned 1/4 counter-clockwise, is a stack', on: diamonds.depth === (5 * 2) },
     { facet: 'recursion weights on the lower floors', on: diamonds.count === (64 * 16) },
     { facet: 'a lower floor not full collapses — the base must be complete', on: diamonds.pure },
-    { facet: 'the floors are full — the distribution is gapless', on: harmonicBands(110).harmonic },
+    { facet: 'the floors are full — the distribution is gapless', on: harmonicBands(UNFOLDED_CENSUS).harmonic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`tree-stack:${entry.facet}:${entry.on}`) }))
   return {
     holds: facets.every((entry) => entry.on),

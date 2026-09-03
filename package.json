@@ -56,7 +56,7 @@
     "manifest:check": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/manifest.ts manifestDrift",
     "verify:run": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/index.ts runVerification",
     "verify:folds": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/folds.ts assertFolds",
-    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths && npm run verify:lean && npm run verify:theorems && npm run verify:side-effects && npm run verify:scope && npm run verify:limits && npm run verify:lean-latex",
+    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths && npm run verify:lean && npm run verify:theorems && npm run verify:side-effects && npm run verify:scope && npm run verify:limits && npm run verify:lean-latex && npm run verify:lean-arbiter",
     "verify:structure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify:structure",
     "limits:verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:verify",
     "limits:seal": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:seal",
@@ -542,7 +542,7 @@
     "quantum:simplicity-measure-verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runSimplicityMeasureVerifyGuardedExit",
     "quantum:efficiency-vote": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runEfficiencyVoteExit",
     "quantum:moment-prove": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/encryption/index.ts runAgentAssumeNothingMathProvesInTheMomentExit",
-    "quantum:two-bits-free": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTwoBitsFreeFromCensus110Minus108Exit",
+    "quantum:two-bits-free": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runTwoBitsFreeFromTheCensusFoldExit",
     "quantum:ancient-calendars-algebra": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/thunder/decode/index.ts runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeExit",
     "quantum:society-two-bits-support": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/research/index.ts runSocietySupportsProjectViaTwoBitsFreeKnowledgeExit",
     "quantum:prove-no-qpu-64bit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/water/stack/index.ts runProveCeccecSpeedVsRestNoQuantumHardwareAny64BitExit",
@@ -1062,7 +1062,8 @@
     "crypto:inverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:inverse",
     "test:crypto": "node --experimental-strip-types src/crypto/test.ts",
     "paper:lean-latex": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-latex.ts writeLeanLatex",
-    "verify:lean-latex": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-latex.ts assertLeanLatexAgrees"
+    "verify:lean-latex": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-latex.ts assertLeanLatexAgrees",
+    "verify:lean-arbiter": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-arbiter.ts assertLeanArbitrates"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

@@ -1,6 +1,6 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational'
-import { JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, UNIVERSE_AGE_YEARS, complementIsInverse, earned, rat, ratMul, ratToFloat } from '../../3/7'
+import { JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, UNIVERSE_AGE_YEARS, complementIsInverse, earned, rat, ratMul, ratToFloat } from '../../3/7'
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7'
 import type { MindMatrix } from '../../types'
 import { buildMatrix } from '../../heaven/compute'
@@ -95,7 +95,7 @@ export function redTeam(matrix: MindMatrix = buildMatrix()) {
     { attack: 'reorder a folded pair (pass a·b off as b·a)', caught: merge('a', 'b') !== merge('b', 'a') },
     { attack: 'forge the whole root from a substituted part', caught: merge(wholeRoot, toUuid('forge')) !== wholeRoot },
     { attack: 'substitute a saved skill atom and keep the memory root', caught: merge(skillAtoms(matrix).memory, toUuid('swap')) !== skillAtoms(matrix).memory },
-    { attack: 'claim 109 files form a gapless Fibonacci run', caught: !harmonicBands(109).gapless },
+    { attack: 'claim one file short of the census forms a gapless Fibonacci run', caught: !harmonicBands(UNFOLDED_CENSUS - 1).gapless },
     { attack: 'collide the doubling cycle onto the 3-6-9 cross', caught: vortexMath(matrix).collisionFree },
     { attack: 'replay a measurement to forge a different collapse', caught: quantumSimulation(matrix, 3).measured === quantumSimulation(matrix, 3).measured },
     { attack: 'pass two identical values off as one (skip the duality)', caught: vortexMath(matrix).identicalRoutesToDuality },

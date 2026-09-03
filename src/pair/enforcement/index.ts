@@ -1422,7 +1422,7 @@ export const MISSION_COMMANDS: readonly MissionCommand[] = [
 /** Cursor agent skills — saved in src before IDE mounts (.cursor/skills/* are thin projections). */
 export const CURSOR_AGENT_SKILL_IDS = [
   'ceccec-build-waves',
-  'ceccec-census-110',
+  'ceccec-census-123',
   'ceccec-folder-law-mission',
   'ceccec-learn-best',
   'ceccec-limits-verify',

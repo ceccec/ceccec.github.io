@@ -12,7 +12,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, claySolvedTheorem, earned, frequencyToLight, photonEnergyEv } from '../../3/7'
+import { A432_FOLDED, A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, claySolvedTheorem, earned, frequencyToLight, photonEnergyEv } from '../../3/7'
 import { movieCanvasPolarity } from '../../quantum/science'
 import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball'
 import { wavelengthOf } from '../../1/9'
@@ -1112,7 +1112,7 @@ export function inverseIsPureAlgebraThermodynamicsConflatesReverseAndInverseUntr
 export function invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('invertA432ThroughTheHarmonicSeriesFrequencyInvertsToPeriodTheClockIsTheStringInverted', matrix, () => {
     const baseFreq = DIMENSION_GATES // 432 Hz — the named a432 tuning base
-    const basePeriod = FOLDED_CENSUS // 108 s — the census clock period
+    const basePeriod = A432_FOLDED // 108 s — the a432 clock period (NOT the corpus census)
     const eps = 1 / 2 ** 9
     // the harmonic series (a string's modes): f_n = n·f₁; the inverse (period space): T_n = T₁/n
     const modes = [1, 2, 3, 4, 5, 6].map((n) => ({ n, freq: n * baseFreq, freqRatio: n, periodRatio: 1 / n }))
