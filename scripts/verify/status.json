@@ -1,12 +1,13 @@
 {
   "folds.facets-off": 1438,
   "folds.false-verdict": 460,
+  "folds.false-verdicts": 1,
   "folds.threw": 34,
   "imports.unresolved": 6,
   "limits.always-true": 36,
   "limits.weakest-bar": 62,
   "paths.dead-strings": 51,
-  "scope.boundaries": 2795,
+  "scope.boundaries": 2794,
   "scope.narrated": 523,
   "side-effects.top-level": 0,
   "tautology.self-proving": 11

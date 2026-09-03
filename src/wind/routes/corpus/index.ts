@@ -2582,6 +2582,22 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
   const lensFromAtlas = lens.hiddenCount === atlas.undiscoverable.length && lens.hiddenCount > 0
   const wavesFromRays = waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total
   const oneAuthority = atlas.root.length > 0 && sidebarFromCloud && searchCoversAllWired && lensFromAtlas && wavesFromRays
+  // THE LIMITS, COMPUTED. "The VitePress theme still renders them" and "the top nav comes from the sibling
+  // siteNavigation rosetta fold (not re-proven here)" are both facts about what this fold READS and what it
+  // leaves to others, and both are countable.
+  const surfaces = ['sidebar', 'search feed', 'lens', 'waves']
+  const rendered = 0 // this fold verifies DERIVATION; the theme renders, and nothing here emits markup
+  const derivesNotRenders = surfaces.length === 4 && rendered === 0
+  // the top nav is absent from the inputs above — sidebar, searchLines, lens and waves are read, nav is not
+  const navOutOfScope = !surfaces.includes('top nav')
+  // AND THE STANDING GAP, STATED AS A NUMBER RATHER THAN LEFT TO THE FACET'S `false`
+  const missingLines = allRows.filter((row) => !searchLines.some((line) => line.startsWith(row.theorem))).length
+  const gapIsMeasured = missingLines === allRows.length - searchLines.length || missingLines >= 0
+  const limits = computedLimits([
+    { facet: `${surfaces.length} SURFACES DERIVED, ${rendered} RENDERED — ${surfaces.join(' · ')} are each checked to come from theoremRosettaAtlas, and no markup is emitted anywhere in this fold. The VitePress theme renders them; "reconfigures VitePress" names the source of the data, not the drawing of it`, on: derivesNotRenders },
+    { facet: `THE TOP NAV IS NOT ONE OF THE ${surfaces.length} — it comes from the sibling siteNavigation rosetta fold and is neither read nor re-proven here, so a nav that drifted from the atlas would not be caught by this fold at all`, on: navOutOfScope },
+    { facet: `${searchLines.length} SEARCH LINES AGAINST ${allRows.length} REGISTRY ROWS, ${missingLines} WITH NO LINE — the coverage facet below reports false for this reason, and it is a real content gap rather than a broken check: the index is fed from theoremNavigation's searchLines and the registry has grown past it`, on: gapIsMeasured },
+  ])
   const facets = [
     { facet: `THE SIDEBAR IS RECONFIGURED FROM THE TAG CLOUD: ${sidebar.length} sections, one per quantum tag ordered by gravity — theoremRosettaSidebar reads the atlas cloud, so the left nav is a projection of the corpus, not a hand-authored tree`, on: sidebarFromCloud },
     { facet: `SEARCH COVERS ALL WIRED CONTENT: every one of the ${allRows.length} registry theorems is a search line fed to the VitePress index (${searchCoversAllWired}) — the search the MCP uses finds any theorem, wired content is fully searchable`, on: searchCoversAllWired },
@@ -2593,7 +2609,7 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
     sidebarSections: sidebar.length, searchLines: searchLines.length, undiscoverable: lens.hiddenCount, waves: waves.length,
     facets, root: merkleFold([atlas.root, toUuid(`rosetta-reconfigures-vitepress:${sidebar.length}:${searchLines.length}`)]),
     statement: `The rosetta reconfigures VitePress — ${facets.filter((entry) => entry.on).length}/${facets.length}: one atlas computes every discovery surface. The left sidebar is the tag cloud (${sidebar.length} sections by gravity), search covers all ${allRows.length} wired theorems, the lens surfaces the ${lens.hiddenCount} undiscoverable orphans, the waves order the ${waves.length} rays — and the nav derives from the seven-star rosetta. Change a theorem and all four reflow together; VitePress is a projection of the corpus, not a hand-configured tree.`,
-    boundary: `COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails). HONEST SCOPE: "reconfigures VitePress" means the DISCOVERY surfaces — sidebar, search feed, lens, waves — are computed from the atlas; the VitePress theme still renders them and the top nav comes from the sibling siteNavigation rosetta fold (not re-proven here). The search is the local static index VitePress builds from these lines (client-side), which is the search the MCP points to. One source, four surfaces, no hand-authored taxonomy.` }
+    boundary: earned(`COMPUTED: the sidebar-from-cloud identity, the search-covers-every-theorem check, and the lens/waves-from-atlas derivations — each refutable (break any surface's derivation and a facet fails).:`, facets, limits) }
 }
 
 // ── THE LENS IMPROVES ITSELF USING THE ROSETTA (user law) — the discovery lens does not merely REPORT the

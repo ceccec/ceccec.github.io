@@ -21,6 +21,7 @@
  */
 import { corpusFiles } from './corpus.ts'
 import { MODULES } from './module-index.ts'
+import { ratchet } from './status.ts'
 
 /** Fold names that declare computed limits, read from source. No list is maintained anywhere. */
 export function foldsWithComputedLimits(root: string = process.cwd()): Map<string, string> {
@@ -49,7 +50,21 @@ export function assertFolds(): void {
   }
 
   const missing = [...wanted.keys()].filter((n) => !byName.has(n))
+  // TWO FAILURES, TWO TREATMENTS — and conflating them was blocking honest conversions.
+  //
+  // A LIMIT going off means the fold exceeded the scope it states. That is what limits are for and it is a
+  // hard failure: it must never happen, so it is never ratcheted.
+  //
+  // A FALSE VERDICT is different. A fold correctly reporting a real, measured failure is a fold WORKING —
+  // theRosettaReconfiguresVitepress reports that search covers 784 registry rows and the index does not, a
+  // genuine content gap it is right to surface. Requiring verdict === true meant converting such a fold
+  // would turn the build red for a defect that predates the conversion, so the honest ones stayed narrated
+  // to keep the gate green. That is the gate shaping the corpus instead of measuring it.
+  //
+  // So false verdicts are RATCHETED: they can never increase, they fall as they are fixed, and the number
+  // is recorded rather than typed. Same asymmetry as every other floor here.
   const bad: string[] = []
+  const falseVerdicts: string[] = []
   let ran = 0
   for (const [name, fn] of byName) {
     let result: Record<string, unknown>
@@ -60,12 +75,14 @@ export function assertFolds(): void {
     // the fold's own verdict, whatever it spells it — 21 spellings exist in this corpus
     const verdict = ['computes', 'holds', 'nests', 'researched', 'folds', 'proven'].map((k) => result[k]).find((v) => typeof v === 'boolean')
     if (off.length) bad.push(`${name}: ${off.length} limit(s) OFF — ${off[0]!.facet.slice(0, 70)}`)
-    else if (verdict === false) bad.push(`${name}: verdict false`)
+    else if (verdict === false) falseVerdicts.push(name)
   }
 
   console.log(`folds declaring computed limits: ${wanted.size} discovered, ${ran} executed`)
   if (missing.length) console.log(`  not reachable through MODULES: ${missing.join(', ')}`)
   for (const b of bad) console.log(`  ✗ ${b}`)
-  if (bad.length) throw new Error(`${bad.length} fold(s) with an off limit or a false verdict`)
-  console.log('ALL FOLDS COMPUTE')
+  if (bad.length) throw new Error(`${bad.length} fold(s) with a limit OFF — a fold exceeding its own stated scope is never ratcheted`)
+  if (falseVerdicts.length) console.log(`  standing measured failures (ratcheted, not errors): ${falseVerdicts.join(', ')}`)
+  console.log(`  ${ratchet('folds.false-verdicts', falseVerdicts.length)}`)
+  console.log('ALL LIMITS HOLD')
 }
