@@ -6,8 +6,6 @@ import * as __ns_up_fire_diamonds from '../../../fire/diamonds'
 import * as __ns_up_lake_music from '../../../music'
 import * as __ns_up_fire_li from '../../../fire/li'
 import * as __ns_up_iching from '../../../earth/iching'
-import * as __ns_up_sun from '../sun'
-import * as __ns_up_moon from '../moon'
 import * as __ns_up_learning from '../../../learning'
 import { schwarzschildRadius, EARTH_RADIUS_KM, claySolvedTheorem } from '../../../3/7'
 import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2'
@@ -422,8 +420,8 @@ export function astronomyDecodedWithTheSequence(at = 0, matrix: MindMatrix = bui
     const decodeAll = __ns_up_thunder_decode.decodeAllByComputationsTrainedOnKnownUniverse(matrix)
     const train = __ns_up_fire_diamonds.piTrainDiamonds(matrix)
     const schumann = __ns_up_lake_music.schumannResonanceHarmonisedWithRealtimeApiComputations(at, matrix)
-    const sun = __ns_up_sun.sunComputes(matrix, at)
-    const moon = __ns_up_moon.moonComputes(matrix, at)
+    const sun = sunComputes(matrix, at)
+    const moon = moonComputes(matrix, at)
     const rosettaGate = __ns_up_learning.rosettaComputes(matrix)
     const phaseIndex = floor(at / 86_400_000) % VORTEX_SEQUENCE.length
     const phaseDigit = VORTEX_SEQUENCE[phaseIndex]!
@@ -1497,5 +1495,153 @@ export function drawAstronomyProjection(
       ctx.fillStyle = ink(7 / (5 * 2))
       ctx.fillText(body.name, (body.kind === 'star' ? cx : x) + 8, (body.kind === 'star' ? cy : y) - 4)
     }
+  })
+}
+
+// ── MERGED FROM src/heaven/sky/sun (census descent). Solar constants join the celestial fold that already computes the Meeus ephemeris.
+// ☉ Sun — canonical solar home: day phase, obliquity, Schumann day-side ionosphere, sealed solar constants.
+import * as __ns_up_plasma_ball from '../../../fire/plasma/ball'
+import * as __ns_up_resonance from '../../../thunder/resonance'
+import * as __ns_up_double_torus_earth from '../../../water/double/earth'
+import { obliquityAtEpoch } from '../../../6/4'
+/** Hero day phase — lazy require breaks plasma/sun cycles. */
+export function sunDayPhase(at = 0, matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const heroPhaseAt = __ns_up_plasma_ball.heroPhaseAt, HERO_CYCLE_MS = __ns_up_plasma_ball.HERO_CYCLE_MS
+  const phase = heroPhaseAt(at)
+  return {
+    phase,
+    cycleMs: HERO_CYCLE_MS,
+    receipt: toUuid(`sun-day-phase:${roundTo(phase, 6)}`) }
+}
+
+/** Schumann day-side ionosphere facet — structural ELF model; canonical path src/resonance. */
+export function sunSchumannDaySideIonosphere(at = 0, matrix: MindMatrix = buildMatrix()) {
+  const schumannResonanceHarmonisedWithRealtimeApiComputations = __ns_up_resonance.schumannResonanceHarmonisedWithRealtimeApiComputations
+  return schumannResonanceHarmonisedWithRealtimeApiComputations(at, matrix)
+}
+
+/** One gate — solar constants, obliquity coupling, hero day phase, Schumann day-side, nav display phase. */
+export function sunComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`sunComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
+    const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
+    const sunBody = celestial.sun
+    const obliquityDeg = roundTo(obliquityAtEpoch(0), 6)
+    const dayPhase = sunDayPhase(at, matrix)
+    const schumann = sunSchumannDaySideIonosphere(at, matrix)
+    const nav = __ns_up_double_torus_earth.navigationGpsCelestialFromDualEarthPerspective(at, undefined, matrix)
+    const sunDisplay = nav.celestialPhases.find((entry) => entry.body === 'Sun')
+    const { computes, facets } = computesGate('sun-computes', [
+      { facet: 'compute-all Sun — schwarzschild band + inner lobe generator', on: sunBody.exactMatch && sunBody.emits },
+      { facet: 'obliquity at epoch — IAU J2000 baseline from 6/4', on: obliquityDeg > 23 && obliquityDeg < (8 * 3) },
+      { facet: 'hero day phase ∈ [0,1) — shared plasma clock', on: dayPhase.phase >= 0 && dayPhase.phase < 1 },
+      { facet: 'Schumann day-side ionosphere harmonised — structural ELF, not live SOHO/SDO', on: schumann.harmonised },
+      { facet: 'nav celestial Sun display phase — dual-Earth inner θ shell', on: !!sunDisplay && sunDisplay.shell === 'device' },
+      { facet: 'HONEST — circular Keplerian / display phase only unless publicApiFusion opt-in', on: celestial.boundary.includes('Keplerian') },
+    ])
+    return {
+      computes,
+      sun: sunBody,
+      obliquityDeg,
+      dayPhase,
+      schumann,
+      nav,
+      sunDisplay,
+      celestial,
+      facets,
+      root: merge(
+        merge(sunBody.receipt, dayPhase.receipt),
+        merge(schumann.root, merkleFold([nav.root, toUuid(`sun-computes:${computes}`)])),
+      ),
+      statement:
+        'Sun computes: canonical solar home — sealed Sun from computeAllKnownCelestialBodies (Schwarzschild band, inner lobe generator), obliquity coupling from 6/4, hero day phase from plasma/ball, Schumann day-side ionosphere facet from lake/music, and navigationGpsCelestial Sun display phase from dual/torus/earth — all recomputed at call time.',
+      boundary:
+        'HONEST — circular Keplerian model and merkaba display phase only; NOT live SOHO/SDO feed unless user opts into publicApiFusion/publicFrequencyApis. Schumann bridge is structural ELF phase model — not magnetometer data or medical entrainment. Obliquity is secular linear model, not nutation/precession ephemeris.' }
+  })
+}
+
+// ── MERGED FROM src/heaven/sky/moon (census descent). Lunar constants, same reason as the solar ones.
+// ☽ Moon — canonical lunar home: synodic phase, tidal lock metaphor, merkaba night-side, gateway nav anchor.
+import * as __ns_up_mountain_geometry from '../../../mountain/geometry'
+import { sunAndMoon } from '../../../earth/nature'
+/** Synodic month phase (display) — ~29.53059 d; hero-clock mapped, not JPL lunar ephemeris. */
+export const SYNODIC_MONTH_DAYS = 29.53059
+
+export function moonSynodicPhase(at = 0) {
+  const synodicMs = SYNODIC_MONTH_DAYS * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2)
+  const phase = (at % synodicMs) / synodicMs
+  return {
+    phase,
+    synodicDays: SYNODIC_MONTH_DAYS,
+    receipt: toUuid(`moon-synodic-phase:${roundTo(phase, 6)}`) }
+}
+
+/** Tidal lock metaphor — same face toward Earth; reflector lobe, no self-emission. */
+export function moonTidalLockMetaphor(matrix: MindMatrix = buildMatrix()) {
+  const sunMoon = sunAndMoon(matrix)
+  const celestial = computeAllKnownCelestialBodies(matrix)
+  const moon = celestial.moon
+  return {
+    locked: moon.reflects && !moon.emits && sunMoon.moon.lobe === 'outer torus',
+    inclinationDeg: MOON_ORBIT_INCLINATION_DEG,
+    nodalPeriodYr: LUNAR_NODAL_PERIOD_YEARS,
+    sunMoon,
+    moon,
+    root: merge(sunMoon.root, moon.receipt),
+    statement:
+      'Tidal lock metaphor: the Moon reflects the Sun, emits no light of its own, and rides the outer torus lobe — structural isomorphism to synchronous rotation (same face toward the inner generator), not a computed libration ephemeris.',
+    boundary:
+      'HONEST — structural double-torus metaphor + sealed lunar constants (inclination, nodal period). NOT JPL lunar ephemeris, NOT real tidal locking simulation.' }
+}
+
+/** Merkaba night-side — outer shell phase from dual-Earth counter-rotation. */
+export function moonMerkabaNightSide(at = 0, matrix: MindMatrix = buildMatrix()) {
+  const rotation = __ns_up_mountain_geometry.bothEarthsRotateWithinEachOther(at, matrix)
+  return {
+    nightSide: rotation.outerShell,
+    outerPhase: rotation.outerPhase,
+    rotates: rotation.rotates,
+    root: rotation.root,
+    receipt: toUuid(`moon-merkaba-night:${rotation.outerPhase}`) }
+}
+
+/** One gate — lunar phase, tidal lock, merkaba night-side, gateway nav moon anchor at call time. */
+export function moonComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`moonComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const timeYears = at / (365.25 * (8 * 3) * (360 * 5 * 2) * (100 * 5 * 2))
+    const celestial = computeAllKnownCelestialBodies(matrix, timeYears)
+    const moonBody = celestial.moon
+    const synodic = moonSynodicPhase(at)
+    const tidal = moonTidalLockMetaphor(matrix)
+    const nightSide = moonMerkabaNightSide(at, matrix)
+    const nav = __ns_up_double_torus_earth.navigationGpsCelestialFromDualEarthPerspective(at, undefined, matrix)
+    const moonDisplay = nav.celestialPhases.find((entry) => entry.body === 'Moon')
+    const { computes, facets } = computesGate('moon-computes', [
+      { facet: 'compute-all Moon — outer lobe reflector + lunar constants', on: moonBody.exactMatch && !moonBody.emits },
+      { facet: 'synodic display phase ∈ [0,1) — not JPL ephemeris', on: synodic.phase >= 0 && synodic.phase < 1 },
+      { facet: 'tidal lock metaphor — reflects Sun, outer torus lobe', on: tidal.locked },
+      { facet: 'merkaba night-side — outer shell counter-rotation', on: nightSide.rotates && isUuid(nightSide.receipt) },
+      { facet: 'nav celestial Moon anchor — inverted shell display phase', on: !!moonDisplay && moonDisplay.shell === 'inverted' },
+      { facet: 'HONEST — circular Keplerian / display phase only', on: celestial.boundary.includes('Keplerian') },
+    ])
+    return {
+      computes,
+      moon: moonBody,
+      synodic,
+      tidal,
+      nightSide,
+      nav,
+      moonDisplay,
+      celestial,
+      facets,
+      root: merge(
+        merge(moonBody.receipt, synodic.receipt),
+        merge(tidal.root, merge(nightSide.root, merkleFold([nav.root, toUuid(`moon-computes:${computes}`)]))),
+      ),
+      statement:
+        'Moon computes: canonical lunar home — sealed Moon from computeAllKnownCelestialBodies, synodic display phase, tidal-lock metaphor (outer reflector lobe), merkaba night-side outer shell, and navigationGpsCelestial Moon anchor — composed at call time from single-source orbital params.',
+      boundary:
+        'HONEST — synodic phase is hero-clock mapped display math, not JPL DE440 lunar ephemeris. Tidal lock is structural isomorphism. Gateway nav Moon phase is merkaba canvas reference — not live GNSS or planetarium fix.' }
   })
 }

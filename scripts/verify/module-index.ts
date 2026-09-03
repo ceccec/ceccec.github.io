@@ -46,8 +46,6 @@ import * as m42 from '../../src/heaven/essence'
 import * as m44 from '../../src/heaven/laws'
 import * as m45 from '../../src/heaven/site'
 import * as m46 from '../../src/heaven/sky/astronomy'
-import * as m47 from '../../src/heaven/sky/moon'
-import * as m48 from '../../src/heaven/sky/sun'
 import * as m50 from '../../src/learning'
 import * as m51 from '../../src/ledger'
 import * as m52 from '../../src/media'
@@ -134,7 +132,6 @@ import * as m141 from '../../src/water/stack'
 import * as m142 from '../../src/widgets'
 import * as m143 from '../../src/wind/fusion'
 import * as m144 from '../../src/wind/language'
-import * as m145 from '../../src/wind/routes/animations'
 import * as m146 from '../../src/wind/routes/automount'
 import * as m147 from '../../src/wind/routes/corpus'
 import * as m148 from '../../src/wind/site'
@@ -185,8 +182,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/heaven/laws/index.ts', m44 as unknown as Record<string, unknown>],
   ['src/heaven/site/index.ts', m45 as unknown as Record<string, unknown>],
   ['src/heaven/sky/astronomy/index.ts', m46 as unknown as Record<string, unknown>],
-  ['src/heaven/sky/moon/index.ts', m47 as unknown as Record<string, unknown>],
-  ['src/heaven/sky/sun/index.ts', m48 as unknown as Record<string, unknown>],
   ['src/learning/index.ts', m50 as unknown as Record<string, unknown>],
   ['src/ledger/index.ts', m51 as unknown as Record<string, unknown>],
   ['src/media/index.ts', m52 as unknown as Record<string, unknown>],
@@ -273,7 +268,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/widgets/index.ts', m142 as unknown as Record<string, unknown>],
   ['src/wind/fusion/index.ts', m143 as unknown as Record<string, unknown>],
   ['src/wind/language/index.ts', m144 as unknown as Record<string, unknown>],
-  ['src/wind/routes/animations/index.ts', m145 as unknown as Record<string, unknown>],
   ['src/wind/routes/automount/index.ts', m146 as unknown as Record<string, unknown>],
   ['src/wind/routes/corpus/index.ts', m147 as unknown as Record<string, unknown>],
   ['src/wind/site/index.ts', m148 as unknown as Record<string, unknown>],
