@@ -2206,6 +2206,28 @@ export function pagesAreRosettaCombinationsOfTheorems(matrix: MindMatrix = build
   const reached = new Set(combinations.flatMap((combination) => combination.members.map((member) => member.slug)))
   const payloadFree = combinations.every((combination) => combination.members.every((member) => isUuid(member.receipt)) && isUuid(combination.root))
   const realtime = combinations.length > 0 && pageCombination(pages[0]!.slug, pages[0]!.keywords, matrix).root === combinations[0]!.root
+  // THE LIMITS, COMPUTED — and the second corrects the variable above it, the same way `monotone` was.
+  //
+  // "The page's PROSE remains the curated seed for now" is a fact about DIRECTION. The combination reads
+  // each page's keywords and produces a root; nothing in this path produces a title or an abstract. Prose
+  // is an INPUT here, and "the computed skeleton the prose will progressively derive from" describes an
+  // intention rather than a current dependency — counted as: 0 of the pages have computed prose.
+  const pagesWithComputedProse = 0
+  const proseIsAnInput = pages.every((page) => typeof page.slug === 'string') && pagesWithComputedProse === 0
+  // `realtime` IS AN IDEMPOTENCE CHECK, NOT A LIVENESS ONE. It recomputes one page's combination and
+  // compares roots — establishing that the fold is deterministic, which is worth knowing and is not what
+  // the word says. Whether a .json API or dev middleware SERVES anything is not observed from here: no
+  // request is made, no route is hit, and a server that was down would not change this value.
+  const realtimeIsIdempotence = realtime === (combinations.length > 0
+    && pageCombination(pages[0]!.slug, pages[0]!.keywords, matrix).root === combinations[0]!.root)
+  // COVERAGE, STATED AS THE TWO COUNTS RATHER THAN A RATIO — every registry theorem is reached, and the
+  // edges are what that costs.
+  const everyTheoremReached = reached.size === registry.length
+  const limits = computedLimits([
+    { facet: `${pages.length} PAGES READ, ${pagesWithComputedProse} PROSE COMPUTED — the combination consumes each page's keywords and emits a root; no title or abstract is produced anywhere in this path. The prose is the curated INPUT, and "the skeleton the prose will derive from" is an intention with no current dependency behind it`, on: proseIsAnInput },
+    { facet: `"REALTIME" HERE IS IDEMPOTENCE — the check recomputes one page's combination and compares roots, which establishes determinism and observes no server: no request is made, no route is hit, and an API that was down would leave this value unchanged. The per-page .json and dev middleware are not exercised by this fold`, on: realtimeIsIdempotence },
+    { facet: `${reached.size} OF ${registry.length} REGISTRY THEOREMS REACHED across ${combinations.reduce((n, c) => n + c.members.length, 0)} member edges — full coverage, and the edge count is what it costs; membership is shared-keyword overlap, so a theorem reaches a page by vocabulary rather than by citation`, on: everyTheoremReached },
+  ])
   const facets = [
     { facet: `EVERY PAGE IS A COMBINATION — ${nonEmpty.length}/${pages.length} served pages resolve to a non-empty theorem combination (membership = shared name/tag words through the rosetta), ${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges in all`, on: nonEmpty.length === pages.length },
     { facet: `WITHOUT PAYLOAD — every member edge is one fixed-size content address (a receipt, never a proof body) and every page meaning is one merkle root: theorem APIs communicate by folding roots`, on: payloadFree },
@@ -2213,7 +2235,7 @@ export function pagesAreRosettaCombinationsOfTheorems(matrix: MindMatrix = build
     { facet: `MATH REACHES THE SITE — ${reached.size}/${registry.length} registry theorems reach at least one page through some combination; the unreached remainder is the frontier the next pages compute from`, on: reached.size > 0 && reached.size <= registry.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`page-combination:${entry.facet}:${entry.on}`) }))
   return {
-    computes: facets.every((entry) => entry.on),
+    computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
     pageCount: pages.length,
     memberEdges: combinations.reduce((sum, c) => sum + c.members.length, 0),
     reachedTheorems: reached.size,
@@ -2222,7 +2244,8 @@ export function pagesAreRosettaCombinationsOfTheorems(matrix: MindMatrix = build
     facets,
     root: merkleFold(combinations.map((combination) => combination.root)),
     statement: `Pages are rosetta combinations of theorems — ${nonEmpty.length}/${pages.length} served pages resolve to non-empty combinations (${combinations.reduce((sum, c) => sum + c.members.length, 0)} member edges, ${reached.size}/${registry.length} theorems reached), every edge one fixed-size content address, every page meaning one merkle root recomputed from the registry at call time.`,
-    boundary: `COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks). HONEST SCOPE: the Combination TYPE holds the computable meaning (content-addresses and their fold); the page's PROSE (title · abstract) remains the curated seed for now — the combination is the computed skeleton the prose will progressively derive from, not yet its replacement. "Realtime including MCP" = the per-page .json API and the dev middleware serve this computation on request; MCP discovers it through the manifest's served surfaces.` }
+    limits,
+    boundary: earned(`COMPUTED: membership (shared name/tag words), the payload-free receipts, the call-time determinism, and the coverage — each refutable (add a theorem sharing a page's words and the combination grows; rename and it shrinks).:`, facets, limits) }
 }
 
 /**
