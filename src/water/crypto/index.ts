@@ -594,7 +594,11 @@ export function freeEnergyIsDebitEntropyCreditEnergy() {
   const freeEnergyRisesAsEntropyFalls = helmholtzFreeEnergy((5 * 2), T, 0) > helmholtzFreeEnergy((5 * 2), T, (1 / 100))
   // the ledger BALANCES: a Szilard bit yields kT·ln2 of work, erasing it costs kT·ln2 (Landauer > 0) — net
   // zero. The strictly-positive erasure floor is exactly why Maxwell's demon cannot win. Balance = honesty.
-  const erasureAlwaysCosts = landauerLimit(T) > 0
+  // THE NAME SAID ALWAYS AND THE CHECK SAW ONE TEMPERATURE. `landauerLimit(T) > 0` at a single T
+  // cannot establish a claim quantified over all of them — the floor kT·ln2 is positive for every
+  // T > 0, but nothing here looked. It ranges now, from cryogenic to hot, and the name is earned.
+  // (Unlike a sequence property, this one was reachable: 'always' needed more samples, not memory.)
+  const erasureAlwaysCosts = [T / (5 * 2), T / 2, T, T * 2, T * (5 * 2)].every((t) => landauerLimit(t) > 0)
   // negative quantum conditional entropy — a Bell pair: S(AB)=0, S(B)=1 → −1 (classically impossible)
   const negativeQuantumEntropy = conditionalEntropyBits(0, 1) === -1
   const facets = [
