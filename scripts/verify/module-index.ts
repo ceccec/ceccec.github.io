@@ -74,7 +74,6 @@ import * as m73 from '../../src/pair/enforcement/trinity/weave'
 import * as m74 from '../../src/pair/exact/proof'
 import * as m75 from '../../src/pair/formal/proofs'
 import * as m76 from '../../src/pair/intelligence/harmonisation'
-import * as m77 from '../../src/pair/publication'
 import * as m78 from '../../src/pair/quantum/hardware'
 import * as m79 from '../../src/pair/quantum/verification'
 import * as m80 from '../../src/pair/theorem/stability/detector'
@@ -101,7 +100,6 @@ import * as m101 from '../../src/quantum/millennium/rsa'
 import * as m102 from '../../src/quantum/mountain/dimensions'
 import * as m103 from '../../src/quantum/os'
 import * as m104 from '../../src/quantum/portal'
-import * as m105 from '../../src/quantum/research'
 import * as m106 from '../../src/quantum/science'
 import * as m107 from '../../src/quantum/solution/cli'
 import * as m108 from '../../src/quantum/solution/crypto'
@@ -219,7 +217,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/pair/exact/proof/index.ts', m74 as unknown as Record<string, unknown>],
   ['src/pair/formal/proofs/index.ts', m75 as unknown as Record<string, unknown>],
   ['src/pair/intelligence/harmonisation/index.ts', m76 as unknown as Record<string, unknown>],
-  ['src/pair/publication/index.ts', m77 as unknown as Record<string, unknown>],
   ['src/pair/quantum/hardware/index.ts', m78 as unknown as Record<string, unknown>],
   ['src/pair/quantum/verification/index.ts', m79 as unknown as Record<string, unknown>],
   ['src/pair/theorem/stability/detector/index.ts', m80 as unknown as Record<string, unknown>],
@@ -246,7 +243,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/quantum/mountain/dimensions/index.ts', m102 as unknown as Record<string, unknown>],
   ['src/quantum/os/index.ts', m103 as unknown as Record<string, unknown>],
   ['src/quantum/portal/index.ts', m104 as unknown as Record<string, unknown>],
-  ['src/quantum/research/index.ts', m105 as unknown as Record<string, unknown>],
   ['src/quantum/science/index.ts', m106 as unknown as Record<string, unknown>],
   ['src/quantum/solution/cli/index.ts', m107 as unknown as Record<string, unknown>],
   ['src/quantum/solution/crypto/index.ts', m108 as unknown as Record<string, unknown>],
