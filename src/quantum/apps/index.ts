@@ -41702,6 +41702,41 @@ export type ScientificPaperBody = {
   readonly locks: readonly ScientificPaperLock[]
 }
 
+/**
+ * THE FORMULA BLOCK IS A THEOREM ENVIRONMENT, NOT A CODE BLOCK.
+ *
+ * theoremFormulaCodeDual already emits canonical paper form — "Theorem. … Proof. … ∎" — and the UI
+ * rendered the whole thing inside <pre><code>, which is the typography of source code: monospace,
+ * left-ragged, no run-in heads, no italics. A printed page of that is a listing, not a paper.
+ *
+ * The classification belongs here rather than in the component (thin-shell law: the shell reads what
+ * src computed). Each line is typed by the environment it opens, so the renderer can set a run-in
+ * head in bold, the statement in italic, the proof body in roman, and hang the ∎ — the standard
+ * theorem-environment conventions, which is what "standard format" means on paper.
+ */
+export type PaperFormulaPart = {
+  readonly kind: 'theorem' | 'proof' | 'closing' | 'plain'
+  readonly head: string
+  readonly body: string
+  readonly qed: boolean
+}
+
+/** Split a canonical formula block into typed theorem-environment parts. Empty in, empty out. */
+export function paperFormulaParts(formulas: string): readonly PaperFormulaPart[] {
+  return String(formulas)
+    .split('\n')
+    .map((raw) => raw.trim())
+    .filter((line) => line.length > 0)
+    .map((line) => {
+      const qed = line.endsWith('∎')
+      const body = qed ? line.slice(0, -1).trim() : line
+      const opens = (head: string) => body.startsWith(head)
+      if (opens('Theorem.')) return { kind: 'theorem' as const, head: 'Theorem.', body: body.slice('Theorem.'.length).trim(), qed }
+      if (opens('Proof.')) return { kind: 'proof' as const, head: 'Proof.', body: body.slice('Proof.'.length).trim(), qed }
+      return { kind: (qed ? 'closing' : 'plain') as 'closing' | 'plain', head: '', body, qed }
+    })
+}
+
 export type ScientificPageAnimation = {
   readonly kind: string
   readonly ratePhi: number
