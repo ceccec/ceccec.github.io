@@ -4,6 +4,7 @@
   "folds.false-verdicts": 1,
   "folds.threw": 34,
   "imports.unresolved": 6,
+  "independence.cross-checked": -473,
   "lean-arbiter.census-contradictions": 22,
   "limits.always-true": 36,
   "limits.weakest-bar": 62,
