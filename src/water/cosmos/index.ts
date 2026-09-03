@@ -2892,7 +2892,7 @@ export function theCompleteTenDIsTheConfluenceOfIndependentCompletions() {
     roads: { octonionCritical: octonion.criticalDimension, tetractys: tetractys.decad, metric: geometry.symmetric4x4, poincare: geometry.poincareGenerators },
     facets,
     statement: `The complete 10D is the confluence of independent completions — ${facets.filter((e) => e.on).length}/${facets.length}: the octonion critical dimension (${octonion.criticalDimension}), the tetractys (${tetractys.decad}), and the 4·5/2 geometry (metric ${geometry.symmetric4x4}, Poincaré ${geometry.poincareGenerators}) all land on the same ten (${allLandOnTen}), each a self-standing proven count (${allCompletionsCompute}). Completeness is the meeting of unrelated roads, not a claim about the number.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — octonion.computes · tetractys.computes · geometry.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: octonion.computes && tetractys.computes && geometry.computes }]) }
 }
 
 // ── The ten dimensions in detail, and the human is born as the observer (user: "and human is born / literary in

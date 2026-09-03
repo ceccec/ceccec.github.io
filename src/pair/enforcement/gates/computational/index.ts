@@ -1942,7 +1942,7 @@ export function theTrinitiesAreQuantumTwoMakeThreeIsTheGhzEntanglingStructureCno
     root: merkleFold([fold.merged, toUuid(`ghz:${probs[0]}:${probs[7]}`)]),
     facets,
     statement: `The trinities are quantum — two make three is the GHZ entangling structure, ${facets.filter((entry) => entry.on).length}/${facets.length}. On the simulator, H then two CNOTs bind a third qubit to the first pair, leaving only |000⟩ and |111⟩ (${half} each): the three bits always agree, so measuring any one determines the other two — the quantum dual of foldPair's bidirectional merged third. All ${census.trinityCount} census trinities share this 2-make-three shape. Honest: it is a structural dual, not an identity — GHZ's third is entangled (nonclassical), foldPair's is a deterministic content-address; the shape is shared, the mechanism is not.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — census.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: census.computes }]) }
 }
 
 // Quantum caching further improves speed in trinities of magnitudes. A content-addressed cache keys a result by the
@@ -2412,7 +2412,7 @@ export function measureTheUxAndTheEfficiencyToFindAndUseTheoremsNavDepthReachabi
     facets,
     root: merkleFold([toUuid(`find-depth:${maxDepth}`), toUuid(`use-reuse:${round(avgReuse)}`), toUuid(`reachable:${relation.importDangling}`)]),
     statement: `Measured the UX and the efficiency to find and use theorems — nav depth, reachability and reuse are computed metrics — ${facets.filter((entry) => entry.on).length}/${facets.length}. FIND: the folder tree is shallow — every one of the ${files.length} theorem files is within ${maxDepth} folders of src, a bounded search. USE: the import graph has average degree ${round(avgReuse)} (${relation.edges} edges over ${relation.homes} homes) — theorems are heavily reused, a proven API. Every theorem is reachable (${relation.importDangling} dangling). These are deterministic; the rendered visual/interaction UX is the browser/human boundary.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — relation.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: relation.computes }]) }
 }
 
 // Token usage: the boundary/statement PROSE is the sink (~180k tokens across the corpus, avg 1059 chars/boundary). The

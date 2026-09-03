@@ -573,7 +573,7 @@ export function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root = process.
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — gate.passed; if one of them stops computing, this claim is outside the scope it was verified in`, on: gate.passed }]),
   }
 }
 

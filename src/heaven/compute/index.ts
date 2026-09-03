@@ -3253,7 +3253,7 @@ export function invertingWorldProblemsIntoSolutionDirectionsInChatStartingWithSc
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — minds.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: minds.computes }]),
   }
 }
 
@@ -3849,7 +3849,7 @@ export function ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsSt
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — sample.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: sample.computes }]),
   }
 }
 
@@ -4189,7 +4189,7 @@ export function theMostSuccessfulMetricIsEverythingComputesWithZeroOverclaimAndA
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — audit.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: audit.computes }]),
   }
 }
 
@@ -4273,7 +4273,7 @@ export function gravityPullsAllCodeIntoFractalHologramsByContentAddressDryCollap
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — dry.computes · sample.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: dry.computes && sample.computes }]),
   }
 }
 
@@ -4519,7 +4519,7 @@ export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheorems
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — decode.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: decode.computes }]),
   }
 }
 
@@ -4757,7 +4757,7 @@ export function dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMa
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — audit.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: audit.computes }]),
   }
 }
 
@@ -6571,7 +6571,7 @@ export function deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprov
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — collective.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: collective.computes }]),
   }
 }
 
@@ -6697,7 +6697,7 @@ export function chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossS
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — shared.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: shared.computes }]),
   }
 }
 
@@ -7936,7 +7936,7 @@ export function theThousandTwentyFourDiamondsAreTenReferralDirectionBitsDyadicNo
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — gateway.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: gateway.computes }]),
   }
 }
 
@@ -8600,7 +8600,7 @@ export function usingTheUiChatImprovesItByExperienceViaTheSharedRelevanceIndex(m
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted'),
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — shared.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: shared.computes }]),
   }
 }
 

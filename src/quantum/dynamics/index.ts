@@ -764,7 +764,7 @@ export function quantizeCountingHowManyAddressesMatchQuantumCountingIsRootNQueri
       queryAdvantage: roundTo(queryAdvantage, 1),
       facets,
       statement: `Fill the gap — quantize counting: quantum counting estimates how many match in √N queries, a quadratic query advantage only — ${facets.filter((entry) => entry.on).length}/${facets.length}. The corpus counts matching content-addresses constantly; classically that is O(N) — the predicate on every candidate (${classicalQueries}, M = ${matches}). Quantum counting (amplitude estimation) reads the Grover rotation angle θ (sin θ = √(M/N)) to estimate M in ${quantumQueries} ≈ √N operator applications — the counting twin of Grover search, ${roundTo(queryAdvantage, 1)}× fewer queries. The algorithm is proven (M = N·sin²θ recovers the counts). HONEST: a QUERY advantage yielding an ESTIMATE not an exact count, real on hardware, but the classical simulation is still O(N). Counting joins search as the second and last unstructured shape that quantizes — the gap is filled.`,
-      boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+      boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — counting.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: counting.computes }]) }
   })
 }
 

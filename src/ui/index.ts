@@ -2833,7 +2833,7 @@ export function theUiIsFusedIntoTheDevelopmentProcessSoLookingAtItObservesTheSel
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: `The UI is fused into the development process, so looking at it observes the self-improvement — ${facets.filter((e) => e.on).length}/${facets.length}. Homed in src/ui, the render layer's content is COMPUTED from the development state: the chat waves surface the ${SCIENCE_WAVE_SEED.length} field theorems as ${waves.waves.length} spreading-activation waves from the brain (Hopfield) hub, so rendering the UI is observing development. Each science is audited by the scientific community — its contested claims demarcate-classified, the documented core standing — and the loop self-improves: the theorems, once isolated, are now one connected entanglement network the UI delivers, with the reducible workflow-gap debt (gauged live) the next frontier. The UI is the development process made visible, healing itself.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, [{ facet: `THIS FOLD STANDS ON THE FOLDS IT COMPOSES — waves.computes; if one of them stops computing, this claim is outside the scope it was verified in`, on: waves.computes }]) }
 }
 
 // ── merged from components/ (census: one index per fold; nothing imported it) ──
