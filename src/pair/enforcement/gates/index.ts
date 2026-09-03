@@ -718,7 +718,13 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
     {
       facet: `iching folders — kept ${ichingKeep.map((k) => k.path).join(', ')} · removed synonym shells=${ichingRemovedSynonymShells.length}`,
       on: ichingHonest },
-    { facet: `census 110/108 exact after gravity audit`, on: censusOk },
+    // THE LABEL WAS FROZEN AND THE CHECK WAS NOT. This read `census 110/108` while censusOk
+    // compares against UNFOLDED_CENSUS, which derives from the Fibonacci bands (55+34+21+13)
+    // and is 123. The check has been right and the sentence wrong, so a reader debugging this
+    // fold went looking for a 110 that no longer exists anywhere. Both numbers now come from
+    // the same place, and the measured count is stated beside them: this facet is OFF because
+    // the census descent is unfinished, which is the same fact descent_is_not_finished proves.
+    { facet: `census ${UNFOLDED_CENSUS}/${FOLDED_CENSUS} exact after gravity audit — measured ${united.computational.indexCount}`, on: censusOk },
     {
       facet: 'folder/gravity pair bidirectional',
       on: gravityPaired && gravityFold.bidirectional && gravityFold.forward !== gravityFold.reverse },
