@@ -10,7 +10,7 @@
  * - P vs NP: σ(problem)=verify(solution), fixed point → verifier=solver
  */
 
-import type { InvolutionStructure } from '../involution'
+import type { InvolutionStructure } from '../millennium'
 import { tkIsPrime } from '../../9/1' // one-math gate: the prime predicate is homed in src/9/1
 
 export type FixedPoint = {

@@ -98,7 +98,6 @@ import * as m93 from '../../src/quantum/heaven/library'
 import * as m94 from '../../src/quantum/heaven/mind'
 import * as m95 from '../../src/quantum/icons'
 import * as m96 from '../../src/quantum'
-import * as m97 from '../../src/quantum/involution'
 import * as m98 from '../../src/quantum/lattice'
 import * as m99 from '../../src/quantum/mesh'
 import * as m100 from '../../src/quantum/millennium'
@@ -249,7 +248,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/quantum/heaven/mind/index.ts', m94 as unknown as Record<string, unknown>],
   ['src/quantum/icons/index.ts', m95 as unknown as Record<string, unknown>],
   ['src/quantum/index.ts', m96 as unknown as Record<string, unknown>],
-  ['src/quantum/involution/index.ts', m97 as unknown as Record<string, unknown>],
   ['src/quantum/lattice/index.ts', m98 as unknown as Record<string, unknown>],
   ['src/quantum/mesh/index.ts', m99 as unknown as Record<string, unknown>],
   ['src/quantum/millennium/index.ts', m100 as unknown as Record<string, unknown>],

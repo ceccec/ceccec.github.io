@@ -10,7 +10,7 @@
  * Works for any theorem encoding involution structure
  */
 
-import { recognizeInvolution, type InvolutionStructure } from '../involution'
+import { recognizeInvolution, type InvolutionStructure } from '../millennium'
 import { solveViaInvolution, type SolutionSet } from '../fixedpoint'
 
 export type ProofCertificate = {
