@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
 import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
 import { TAU } from '../../3/7/index.ts'
+import { rosettaSecurityGapsWired } from '../../mountain/seals/index.ts'
 import {
   quantumAppsPanelComputes, quantumAppLaunch, slowProcessIsQuantumGap,
   sessionManualWorkAsQuantumTools, rosettaCoreApi,
@@ -18,7 +19,6 @@ import {
   improveLocalFromSessionExperience, localToolsMorphProseCodeLogic, animationsFindRedundancyOrInaccuracy, LOCAL_SESSION_EXPERIMENT_STORAGE_KEY,
   upgradeLocalFromOptimisedManualWorkExperience,
   uiProseDuplicationRemoved,
-  rosettaSecurityGapsWired,
   cryptoRelatedSurfacesAreDry,
   gatesMonitorThemselvesThroughTheUi,
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix,

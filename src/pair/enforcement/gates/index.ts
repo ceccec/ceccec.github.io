@@ -1430,7 +1430,7 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'sslTestUiComplete', pair: 'ssl/test', currentBarrel: 'src/water/encryption', bestPlace: 'src/water/encryption', action: 'keep', reason: 'quantumised stack→receipt beside encryption kit · FE+BE live/both · FTL warm path' },
   { fold: 'quantumiseIsAtFtlSpeed', pair: 'quantumise/ftl', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'USER LAW quantumise at FTL · beside ftl/max·compute · soft ssl/test' },
   { fold: 'cryptoRelatedSurfacesAreDry', pair: 'crypto/comparison-mesh', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'soft-nest closed · mesh core already in water/encryption · fold body stays apps (catalog/toolbox/MCP audit) · apps→encryption import edge blocks barrel move' },
-  { fold: 'rosettaSecurityGapsWired', pair: 'rosetta/security-wire', currentBarrel: 'src/quantum/apps', bestPlace: 'src/mountain/seals', action: 'migrate-next', reason: 'seals already imports · security wire' },
+  { fold: 'rosettaSecurityGapsWired', pair: 'rosetta/security-wire', currentBarrel: 'src/mountain/seals', bestPlace: 'src/mountain/seals', action: 'moved', reason: 'MOVED — fold and its runExit wrapper both, so apps no longer calls it and no apps↔seals cycle forms; the .vue consumer repointed too. seals already imports · security wire' },
   { fold: 'invisibleGapsCaughtByGates', pair: 'gaps/invisible', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'weave/ops import gates · census-safe strict/scan · apps helpers deferred lazy · circular init closed' },
   { fold: 'placeMerge', pair: 'place/merge', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'merged cmd/place + manual/quantum prose cluster → one matrix slot' },
   { fold: 'proseMethodsCollapseToMatrix', pair: 'prose/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'discovery law · prose→matrix shrink proof' },
@@ -2203,7 +2203,13 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     honestOpenNamed.includes('residual:gaps-invisible-apps-helpers-deferred') &&
     honestOpenNamed.length === (8 + 2)
   const fullDryClean =
-    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 && migrateNext.length >= 1
+    // `migrateNext.length >= 1` USED TO STAND HERE, and it meant the dry clean could never finish:
+    // completing the last migration turned fullDryClean red, so the gate was green only while work
+    // remained pending. A gate that requires unfinished work is a block on finishing. What the map
+    // must actually satisfy is that every row is classified — kept, moved, or named as next — which
+    // is a conservation identity and stays true whether the backlog is full or empty.
+    placementAudited && drainableClosed && composeOn && pairsOn && census110 && moved.length >= 2 &&
+    kept.length + moved.length + migrateNext.length === map.length
   const manualWorkQuantumized =
     toolsSealed && bitsCombinable && wavesBound && placementAudited && drainableClosed && honestOpenNamedOn && pairsOn && composeOn && census110
   const on =

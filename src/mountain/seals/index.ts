@@ -1,14 +1,14 @@
 // ☶ Gèn · Mountain — seals & proofs: the proof registry, the gigabit/terabyte seal sets, the signed elements, the diamond completeness proofs. Barrel-routed; folds.ts back-imports the gate folds.
 import type { DigitalQuantumProof, MindMatrix, ProofBundle, SelfCompletionGate } from '../../types'
 import { buildMatrix, entropy, proofReport } from '../../heaven/compute'
-import { abs, ceil, floor, fold, foldPair, isUuid, memoByRoot, merge, merkleFold, round, roundTo, toUuid, trinityKey } from '../../0'
+import { abs, ceil, floor, fold, foldPair, isUuid, memoByRoot, merge, merkleFold, round, roundTo, sealFacets, toUuid, trinityKey } from '../../0'
 import { areaPairs, dna, dualTorusTrinities, foldImpossibilities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba, rgbCmyComplementIsCmykDuality, sacredGeometry, sixtyFourThreeQubitPauliBasis, theSixtyFourObjectEveryGrouping, threeIsRealButNotOneTrinity, threeTrinitiesRenderAsRgb, vortexMath } from '../geometry'
 import { a432, animationEngineLivesInZero, buildEnforcementPipeline, contentAddressingHasRealPrecedent, crossFoldTrinity, enforcementTrinity, hammingThreeParityAddressesError, inHouse, metatronsCube, oneOpenGraphAll, plasmaContainment, quantumGreenPlanet, qubitTrinityPauliBloch, securityScan, torusUuid, taxonomyIcons } from '../../fire/li'
 // relocated trinity cluster deps (call-time bindings; no load cycle)
 import { healByDefault, createByDefault } from '../../heaven/laws'
 import { thriveByDefault } from '../../earth/civilisation'
 import { commandsRegistry } from '../../thunder/commands'
-import { SINGLE_WORD_METHODS, titleCarriesAlgebra, normalizeTitle } from '../../3/7'
+import { SINGLE_WORD_METHODS, claySolvedTheorem, titleCarriesAlgebra, normalizeTitle } from '../../3/7'
 import { STATIC_PAGE_SEED } from '../../8/2'
 import { cloudflareBindings } from '../../heaven/core'
 import * as __ns_heaven_site from '../../heaven/site'
@@ -97,7 +97,8 @@ import {
   universeAlmostDescribedInTheoremsDiscoverRest,
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities,
   crossWavesUpgradeAll,
-  rosettaSecurityGapsWired } from '../../quantum/apps'
+  mcpCommandsScriptsGapsAudit,
+  rosettaShelve } from '../../quantum/apps'
 import {
   encryptionReverseVerify,
   isoNistPqcStandardsCatalog,
@@ -1462,4 +1463,101 @@ export function theCommitPushPairIsAutomatedUnderTheSecurityStandards() {
     facets,
     statement: `The commit-push pair is automated under the security standards — ${facets.filter((e) => e.on).length}/${facets.length}: commit → push, two ordered steps gated by verify:structure on BOTH hooks, so the deterministic local agents block a non-conforming tree before the remote. The ${standards.length} standards (stage-selectively, verify-or-block, crack-clean, author-only, tamper-evident seal) are real enforcement points, sealed to a content-address. Zero-token; quantum security is the deterministic model, not hardware.`,
     boundary: `The automation is the existing gate chain: the pre-commit and pre-push hooks both run verify:structure (crack · one-math · index-only · merkle · digit · shell), and the commit-msg hook forbids third-party author/generator trailers — so committing and pushing is already performed by deterministic local agents that enforce the standards, no tokens. The standards are sealed here to a content-address (merkleFold) that any edit flips. HONEST SCOPE: the seal is tamper-EVIDENT (detectable), NOT cryptographically unforgeable — the SHA-256/Ed25519 machinery is built but the signing cutover is deliberate and pending (the crypto-honesty discipline). Quantum security is the repo\'s deterministic, content-addressed model and its gates, not quantum-cryptographic hardware. What stays MANUAL by design: the selective staging and the concurrency handling are decisions made per commit; the automation verifies and blocks, it does not choose what to stage. HARMONY does not equal TRUTH.` }
+}
+
+// ── MIGRATED FROM src/quantum/apps (placeMerge migrateNext: rosetta/security-wire → src/mountain/seals).
+// The corpus computed this move itself and the reason it gave — 'seals already imports' — is the whole
+// story: seals consumed the fold, and every dependency the fold carries was ALREADY imported here.
+// One name swapped in the apps import, two added to imports that already existed, no new module edge,
+// and 91 lines out of the 2.3 MB monolith that the byte target names as its largest offender.
+/**
+ * Rosetta security gaps wired — refuse paths + MCP dual + parallel backlog + reverse-collide shelved.
+ * Facet rosettaSecurityGapsWired · incompleteOpen=0 for refuse paths.
+ * Pair: rosetta/security-wire · certified=false
+ */
+export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`rosettaSecurityGapsWired:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const refuse = productionRsaRefuseCompletesQuantumViaRosetta(matrix)
+    const core = rosettaCoreApi(at, matrix)
+    const mcp = mcpCommandsScriptsGapsAudit(matrix, at)
+    const reverseCollide = reverseCollidesToDiscoverMillenniumTheorems(matrix, at)
+    const catalog = quantumCliToolsCatalog(matrix, at)
+    const shelvedPaths = refuse.paths.map((p) => {
+      const surface = rosettaShelve(p.id, 'compute')
+      return {
+        id: p.id,
+        ray: surface.ray,
+        address: surface.address,
+        pathRay: p.ray,
+        wired: p.wired && isUuid(surface.address) && surface.ray === p.ray }
+    })
+    const refuseShelved = shelvedPaths.every((s) => s.wired)
+    const parallelEmpty = core.inventory.parallel.length === 0
+    const conceptToolsHonest = mcp.rows.some((r) => r.id === 'concept-tools-legacy-dual' && r.status === 'kept-intentional')
+    const tradingHonest = mcp.rows.some((r) => r.id === 'trading-scripts-outside-primary-mcp' && r.status === 'kept-intentional')
+    const catalogHasRefuse = catalog.tools.some((t) => t.id === 'production-rsa-refuse-rosetta')
+    const catalogHasSecurity = catalog.tools.some((t) => t.id === 'rosetta-security-gaps-wired')
+    const catalogHasCollide = catalog.tools.some((t) => t.id === 'reverse-collide-discover-millennium')
+    const incompleteOpen = refuse.incompleteOpen
+    const rosettaSecurityGapsWiredOn =
+      refuse.computes
+      && incompleteOpen === 0
+      && refuseShelved
+      && parallelEmpty
+      && conceptToolsHonest
+      && tradingHonest
+      && reverseCollide.computes
+      && catalogHasRefuse
+      && catalogHasSecurity
+      && catalogHasCollide
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const certified = false as const
+    const physicalFtlClaim = 0 as const
+    const facets = [
+      { facet: `rosettaSecurityGapsWired — incompleteOpen=${incompleteOpen}`, on: rosettaSecurityGapsWiredOn && incompleteOpen === 0 },
+      { facet: 'productionRsaRefuseCompletesQuantumViaRosetta computes · paths shelved', on: refuse.computes && refuseShelved },
+      { facet: 'ROSETTA_PARALLEL_REGISTRY_BACKLOG empty (security-relevant strangler closed)', on: parallelEmpty },
+      { facet: 'MCP conceptTools+trading:* REFUSE PRIMARY kept-intentional (honest dual)', on: conceptToolsHonest && tradingHonest && mcp.computes },
+      { facet: 'reverseCollidesToDiscoverMillenniumTheorems shelved via catalog', on: reverseCollide.computes && catalogHasCollide },
+      { facet: 'encryption↔rosetta refuse + security tools in quantumCliToolsCatalog', on: catalogHasRefuse && catalogHasSecurity },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold} certified=${certified} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && !certified && physicalFtlClaim === 0 },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-security-gaps:${entry.facet}:${entry.on}`) }))
+    const sealed = sealFacets('rosetta-security-gaps-wired', facets)
+    return {
+      computes: sealed.ok && rosettaSecurityGapsWiredOn,
+      rosettaSecurityGapsWired: rosettaSecurityGapsWiredOn,
+      incompleteOpen,
+      refusePathCount: refuse.pathCount,
+      shelvedPaths,
+      parallelBacklogLength: core.inventory.parallel.length,
+      claySolvedByThisFold,
+      certified,
+      physicalFtlClaim,
+      qpuRequired: false as const,
+      facets: sealed.facets,
+      root: merge(matrix.root, merkleFold([sealed.root, refuse.root, core.root, mcp.root, reverseCollide.root, catalog.root, ...shelvedPaths.map((s) => s.address)])),
+      pair: 'rosetta/security-wire' as const,
+      cli: 'npm run quantum:rosetta-security-gaps-wired',
+      route: '/en/quantum-tools#rosetta-security-gaps-wired',
+      statement:
+        `Rosetta security gaps wired — incompleteOpen=${incompleteOpen} refusePaths=${refuse.pathCount} ` +
+        `parallel=${core.inventory.parallel.length} reverseCollide=${reverseCollide.computes} .`,
+      boundary:
+        'Security-relevant rosetta wiring: sealed refuse receipts · empty parallel backlog · MCP dual residuals honest · reverse-collide Millennium path shelved. ' +
+        'NOT production RSA break · NOT CMI prize. certified=false.' }
+  })
+}
+
+/** npm run quantum:rosetta-security-gaps-wired */
+export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly string[] = []): number {
+  void _root
+  void _argv
+  const r = rosettaSecurityGapsWired()
+  process.stdout.write(
+    `${r.computes ? '✓' : '✗'} rosetta-security-gaps-wired — on=${r.rosettaSecurityGapsWired} ` +
+      `incompleteOpen=${r.incompleteOpen} refusePaths=${r.refusePathCount} ` +
+      `parallel=${r.parallelBacklogLength} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
+  )
+  process.stdout.write(`  boundary: ${r.boundary}\n`)
+  return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 ? 0 : 1
 }
