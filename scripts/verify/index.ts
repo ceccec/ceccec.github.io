@@ -15,7 +15,7 @@
 import { grover, toUuid } from '../../src/0'
 import { deutschJozsa, simon } from '../../src/9/1'
 import { shorsAlgorithm } from '../../src/crypto/reverse'
-import { verifyQuantumKEMRoundtrip } from '../../src/quantum/lattice'
+import { verifyQuantumKEMRoundtrip } from '../../src/quantum'
 import { quantumTestFramework } from '../../src/quantum/testing'
 
 export function runVerification(): void {
@@ -61,7 +61,7 @@ export function runVerification(): void {
     check(`factor ${n}`, !!f && f[0] * f[1] === n && f[0] > 1 && f[1] > 1, f ? `${f[0]} x ${f[1]}` : 'no factors found')
   }
 
-  console.log('\n=== Lattice KEM (src/quantum/lattice) — NOT ML-KEM, NOT FIPS 203 ===')
+  console.log('\n=== Lattice KEM (src/quantum) — NOT ML-KEM, NOT FIPS 203 ===')
   const kem = verifyQuantumKEMRoundtrip()
   known('roundtrip does not close', !kem.success, 'no key generation exists — see RELEASE-AUDIT-uuidna.md')
 

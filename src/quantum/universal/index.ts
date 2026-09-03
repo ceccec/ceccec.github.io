@@ -11,7 +11,7 @@
  */
 
 import { recognizeInvolution, type InvolutionStructure } from '../millennium'
-import { solveViaInvolution, type SolutionSet } from '../fixedpoint'
+import { solveViaInvolution, type SolutionSet } from '..'
 
 export type ProofCertificate = {
   theorem: string

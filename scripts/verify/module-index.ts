@@ -75,7 +75,6 @@ import * as m74 from '../../src/pair/exact/proof'
 import * as m75 from '../../src/pair/formal/proofs'
 import * as m76 from '../../src/pair/intelligence/harmonisation'
 import * as m78 from '../../src/pair/quantum/hardware'
-import * as m79 from '../../src/pair/quantum/verification'
 import * as m80 from '../../src/pair/theorem/stability/detector'
 import * as m81 from '../../src/quantum/apps'
 import * as m82 from '../../src/quantum/apps/shared'
@@ -88,12 +87,10 @@ import * as m88 from '../../src/quantum/endowment'
 import * as m89 from '../../src/quantum/fire/experiments'
 import * as m90 from '../../src/quantum/fire/forecasts'
 import * as m91 from '../../src/quantum/fire/simulations'
-import * as m92 from '../../src/quantum/fixedpoint'
 import * as m93 from '../../src/quantum/heaven/library'
 import * as m94 from '../../src/quantum/heaven/mind'
 import * as m95 from '../../src/quantum/icons'
 import * as m96 from '../../src/quantum'
-import * as m98 from '../../src/quantum/lattice'
 import * as m99 from '../../src/quantum/mesh'
 import * as m100 from '../../src/quantum/millennium'
 import * as m101 from '../../src/quantum/millennium/rsa'
@@ -127,7 +124,6 @@ import * as m129 from '../../src/thunder/waves'
 import * as m130 from '../../src/types'
 import * as m131 from '../../src/ui/harmonic'
 import * as m132 from '../../src/ui'
-import * as m133 from '../../src/ui/theme'
 import * as m134 from '../../src/water/cosmos'
 import * as m135 from '../../src/water/crypto'
 import * as m136 from '../../src/water/digit'
@@ -218,7 +214,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/pair/formal/proofs/index.ts', m75 as unknown as Record<string, unknown>],
   ['src/pair/intelligence/harmonisation/index.ts', m76 as unknown as Record<string, unknown>],
   ['src/pair/quantum/hardware/index.ts', m78 as unknown as Record<string, unknown>],
-  ['src/pair/quantum/verification/index.ts', m79 as unknown as Record<string, unknown>],
   ['src/pair/theorem/stability/detector/index.ts', m80 as unknown as Record<string, unknown>],
   ['src/quantum/apps/index.ts', m81 as unknown as Record<string, unknown>],
   ['src/quantum/apps/shared/index.ts', m82 as unknown as Record<string, unknown>],
@@ -231,12 +226,10 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/quantum/fire/experiments/index.ts', m89 as unknown as Record<string, unknown>],
   ['src/quantum/fire/forecasts/index.ts', m90 as unknown as Record<string, unknown>],
   ['src/quantum/fire/simulations/index.ts', m91 as unknown as Record<string, unknown>],
-  ['src/quantum/fixedpoint/index.ts', m92 as unknown as Record<string, unknown>],
   ['src/quantum/heaven/library/index.ts', m93 as unknown as Record<string, unknown>],
   ['src/quantum/heaven/mind/index.ts', m94 as unknown as Record<string, unknown>],
   ['src/quantum/icons/index.ts', m95 as unknown as Record<string, unknown>],
   ['src/quantum/index.ts', m96 as unknown as Record<string, unknown>],
-  ['src/quantum/lattice/index.ts', m98 as unknown as Record<string, unknown>],
   ['src/quantum/mesh/index.ts', m99 as unknown as Record<string, unknown>],
   ['src/quantum/millennium/index.ts', m100 as unknown as Record<string, unknown>],
   ['src/quantum/millennium/rsa/index.ts', m101 as unknown as Record<string, unknown>],
@@ -270,7 +263,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/types/index.ts', m130 as unknown as Record<string, unknown>],
   ['src/ui/harmonic/index.ts', m131 as unknown as Record<string, unknown>],
   ['src/ui/index.ts', m132 as unknown as Record<string, unknown>],
-  ['src/ui/theme/index.ts', m133 as unknown as Record<string, unknown>],
   ['src/water/cosmos/index.ts', m134 as unknown as Record<string, unknown>],
   ['src/water/crypto/index.ts', m135 as unknown as Record<string, unknown>],
   ['src/water/digit/index.ts', m136 as unknown as Record<string, unknown>],
