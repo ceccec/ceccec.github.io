@@ -1492,6 +1492,14 @@ export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(ma
   const carnotBelowOne = [[3, 6], [3, 4], [1, 2]].every(([tc, th]) => { const e = carnot(tc! * 100, th! * 100); return e < 1 && e > 0 }) // η < 1 for T_c > 0
   // 4 — ERASURE IS IRREVERSIBLE, A REVERSIBLE OP IS FREE: the kT·ln2 is paid only when information is DESTROYED.
   const reversibleIsFree = eraseOneBit(0) === 0 && eraseOneBit(T) > 0 // at T→0 no cost; a reversible (non-erasing) op is 0
+  // AN AUTHORED SCOPE. The boilerplate here said the claim 'is computed from the facets and
+  // refutable' — true of every fold in this corpus, so it bounded nothing at all. What actually
+  // bounds THIS fold is that Landauer and Carnot are exact identities checked on a SAMPLE: one
+  // temperature, five bit counts, three (T_cold, T_hot) pairs. The algebra generalises; the
+  // verification does not, and that edge is the only thing a scope is for.
+  const limits = [
+    { facet: `VERIFIED ON A SAMPLE, NOT A RANGE — Landauer checked at ${T} K over ${nBits.length} bit counts, Carnot at three (T_cold, T_hot) pairs; no other temperature is touched here`, on: landauerInBand && erasureIsBijection && carnotBelowOne },
+  ]
   const discoveries: Discovery[] = [
     { name: 'landauer:E=k_B·T·ln2', holds: () => landauerInBand && erasureIsBijection && titleCarriesAlgebra(title) },
     { name: 'boltzmann:S(2ⁿ)=n·k_B·ln2', holds: () => boltzmannPerBit },
@@ -1513,7 +1521,7 @@ export function thermodynamicsLandauerErasureIsKTLn2AndCarnotBoundsEfficiency(ma
     facets,
     root: merge(box.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: `Thermodynamics and the physics of information, led by Landauer's principle — ${facets.filter((e) => e.on).length}/${facets.length}: erasing one bit dissipates at least E = k_B·T·ln2 = ${landauerAt300K.toExponential(2)} J at ${T} K, and n bits cost n× that; Boltzmann's S = k_B·ln W makes one bit exactly k_B·ln2 of entropy; the Carnot bound η = 1 − T_c/T_h < 1 (1/2 for 300 K / 600 K) forbids perpetual motion and unit efficiency; and the price is paid only for IRREVERSIBLE erasure — a reversible operation is free. The joules of a bit, computed exactly.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, limits) }
 }
 
 // ── Cross waves: Tesla patents × trinity directions × merkaba/rosetta cross tips ───────────
