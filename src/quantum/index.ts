@@ -23,6 +23,7 @@ import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CY
 import { livingTorus } from '../fire/diamonds/index.ts'
 import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid } from '../0/index.ts'
 import { claySolvedTheorem, earned } from '../3/7/index.ts'
+import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../8/2/index.ts'
 import type { MindMatrix } from '../types/index.ts'
 import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth/index.ts'
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry/index.ts'
@@ -9303,14 +9304,21 @@ export const neuroscienceDefault = {
 }
 
 // ── merged from rosetta/ (census: one index per fold; nothing imported it) ──
-// RENAMED from BaguaElement/BAGUA_ELEMENTS. These are the bagua ELEMENT folders
-// (earth·fire·water·wind·mountain·lake·thunder), not the sealed rosetta rays in src/3/7,
-// which are origin·expression·knowledge·nature·computation·geometry·language. Two
-// different seven-element vocabularies were sharing one name; quantum/index.ts imports
-// the sealed one, and this parallel table is what its comment forbids
-// ("glyph/domain from sealed BAGUA_ELEMENTS only — no parallel table").
-export type BaguaElement = 'earth' | 'fire' | 'water' | 'wind' | 'mountain' | 'lake' | 'thunder'
-export const BAGUA_ELEMENTS: BaguaElement[] = ['earth', 'fire', 'water', 'wind', 'mountain', 'lake', 'thunder']
+// THE ELEMENT FOLDERS, DERIVED FROM THE SEALED EIGHT — not retyped beside them. This was a
+// hand-written list whose own comment forbade hand-written lists ("no parallel table"), and it
+// had drifted: it named `lake`, which src/thunder/waves records as DISSOLVED into src/music·
+// src/stats, and omitted `heaven`, which is a live top-level folder. Both errors survived
+// because nothing compared the list to the disk. The damage was not cosmetic — `lake` was the
+// DEFAULT ray for every frontier theorem the classifier could not place, and the Hodge
+// conjecture's ray besides, so unclassified work was filed to a folder that does not exist.
+//
+// Now it is one line of arithmetic over src/8/2's sealed EIGHT_FOLD_SCIENCES: the bāguà minus
+// the dissolved one. Adding or dissolving a folder moves this set without anyone editing it,
+// and scripts/verify/bagua.ts refutes it against the actual directory listing.
+export type BaguaElement = Exclude<EightFoldScience, 'lake'>
+export const BAGUA_ELEMENTS: BaguaElement[] = EIGHT_FOLD_SCIENCES.filter(
+  (s): s is BaguaElement => s !== 'lake'
+)
 
 interface TheoremOnRay {
   ray: BaguaElement
@@ -9335,7 +9343,7 @@ const SEQUENCE_TO_RAY: Record<number, BaguaElement> = {
   4: 'water',
   8: 'wind',
   7: 'mountain',
-  5: 'lake',
+  5: 'heaven',  // was 'lake' — dissolved into src/music and src/stats
   3: 'thunder'
 }
 
@@ -9345,7 +9353,7 @@ const CLAY_SEVEN: Record<string, BaguaElement> = {
   'p-vs-np': 'water',            // flow of computation
   'yang-mills': 'wind',          // gauge symmetry
   'navier-stokes': 'mountain',   // fluid peaks
-  'hodge': 'lake',               // duality waters
+  'hodge': 'heaven',             // duality waters — was 'lake', dissolved into src/music·stats
   'birch-swinnerton-dyer': 'thunder'  // elliptic prophecy
 }
 
@@ -9362,8 +9370,8 @@ export async function mapTheoremsToRosetta(): Promise<RosettaMap> {
     water: [],
     wind: [],
     mountain: [],
-    lake: [],
-    thunder: []
+    thunder: [],
+    heaven: []
   }
 
   // Place Clay 7 on their rays
@@ -9388,7 +9396,9 @@ export async function mapTheoremsToRosetta(): Promise<RosettaMap> {
       'inversion': 'wind',
       'reflection': 'mountain'
     }
-    const ray = rayMap[patternType || ''] || 'lake'
+    // The fallback must name a folder that EXISTS; this said 'lake' after lake dissolved,
+    // so every unclassified frontier theorem was routed nowhere. heaven/compute is the keystone.
+    const ray = rayMap[patternType || ''] || 'heaven'
 
     rays[ray].push({
       ray,
