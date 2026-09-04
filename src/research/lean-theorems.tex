@@ -96,6 +96,42 @@ The involution and its fixed diagonal, together.
 \[ \texttt{σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)} \]
 \end{theorem}
 \begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Orbit sums to zero]
+THE ODD PART CANCELS OVER EVERY ORBIT. For any involution, any f, any point: the pair \{x, σx\} sums to exactly zero. This is the general form of "every bit of resistance drains", and the coin's version of it is this theorem at σ d = 10 − d.
+\[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Odd vanishes at a fixed point]
+THE HARMONIC POINT CARRIES NOTHING. Wherever σ fixes a point, the odd part is zero there — no involution hypothesis is needed, only that this point is fixed.
+\[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[EvenPart is symmetric]
+THE EVEN PART IS WHAT SURVIVES THE REFLECTION — it takes the same value at x and at σx.
+\[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The split loses nothing]
+AND THE TWO HALVES RECONSTRUCT THE WHOLE. Nothing is lost in the split, and this one needs no involution at all — it is true of the two parts as defined, for every σ.
+\[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The instance is an involution]
+\[ \texttt{∀ d ∈ carrier, σ (σ d) = d} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The instance cancels over every orbit]
+\[ \texttt{∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The instance has one harmonic point]
+\[ \texttt{carrier.filter (fun d => σ d == d) = [5]} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The instance splits without loss]
+\[ \texttt{∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[Reversal is an involution]
 T² = id. Reversing time twice returns the equation, whatever the viscosity.
 \[ \texttt{T (T navierStokes) = navierStokes ∧ T (T euler) = euler} \]

@@ -59,6 +59,10 @@ export const PRIOR_ART_SEARCHED: readonly {
    *  and each is a different statement with different prior art. Unscoped searches match by title. */
   readonly leanFile?: string
 }[] = [
+  { theorem: '*', leanFile: 'involution.lean',
+    searched: 'decomposition function into symmetric antisymmetric parts under involution f(x)-f(σx) odd part sums to zero orbit',
+    when: '2026-09-04',
+    found: 'classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics.' },
   { theorem: '*', leanFile: 'coin.lean',
     searched: 'reflection involution d to 10-d digits 1..9 unique fixed point 5 odd function sums to zero',
     when: '2026-09-04',

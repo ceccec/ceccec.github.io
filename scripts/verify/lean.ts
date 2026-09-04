@@ -76,11 +76,11 @@ function leanFiles(root: string): string[] {
  * rest on Classical.choice or, worse, sorryAx, which `#print axioms` would surface and a plain
  * compile would not.
  */
-export function axiomFreedom(file: string): { total: number; axiomFree: number; dependent: string[] } {
+export function axiomFreedom(file: string): { total: number; axiomFree: number; propextOnly: number; dependent: string[] } {
   const text = readFileSync(file, 'utf8')
   const ns = (text.match(/^namespace\s+([A-Za-z.]+)/m) ?? [])[1] ?? ''
   const names = [...text.matchAll(/^theorem\s+([A-Za-z0-9_]+)/gm)].map((m) => m[1]!)
-  if (!names.length) return { total: 0, axiomFree: 0, dependent: [] }
+  if (!names.length) return { total: 0, axiomFree: 0, propextOnly: 0, dependent: [] }
   const probe = `${text}\n${names.map((n) => `#print axioms ${ns ? ns + '.' : ''}${n}`).join('\n')}\n`
   const tmp = join(process.cwd(), '.vitepress', 'cache', `axprobe-${names.length}-${text.length}.lean`)
   writeFileSync(tmp, probe)
@@ -91,10 +91,20 @@ export function axiomFreedom(file: string): { total: number; axiomFree: number; 
     out = `${(e as { stdout?: Buffer }).stdout?.toString() ?? ''}`
   }
   const axiomFree = (out.match(/does not depend on any axioms/g) ?? []).length
-  const dependent = [...out.matchAll(/'([^']+)' depends on axioms: \[([^\]]*)\]/g)]
-    .filter((m) => /sorryAx/.test(m[2]!))
+  const deps = [...out.matchAll(/'([^']+)' depends on axioms: \[([^\]]*)\]/g)]
+  // TWO CLASSES, NOT ONE NUMBER. A `decide` proof reduces a finite proposition to a Boolean
+  // computation and invokes no lemma, so it depends on nothing — that is what "the theorems prove
+  // themselves" has always meant here. A GENERAL theorem cannot do that: it quantifies over a type, so
+  // it must reason, and Lean's own core arithmetic reasons through propext — Int.add_assoc and
+  // Int.sub_self both depend on it, measured, not assumed. Averaging the two into one figure would
+  // either bar the corpus from ever stating a general theorem or quietly weaken a claim it makes
+  // loudly. propext is one of Lean's three foundational axioms and says nothing about involutions.
+  // Classical.choice and sorryAx are different animals and still fail below.
+  const propextOnly = deps.filter((m) => m[2]!.split(',').every((a) => a.trim() === 'propext')).length
+  const dependent = deps
+    .filter((m) => /sorryAx|Classical\.choice/.test(m[2]!))
     .map((m) => `${m[1]} (${m[2]})`)
-  return { total: names.length, axiomFree, dependent }
+  return { total: names.length, axiomFree, propextOnly, dependent }
 }
 
 export function compileLean(root: string = process.cwd()): LeanResult[] {
@@ -144,16 +154,19 @@ export function assertLeanCompiles(): void {
   // never on sorryAx, which would make a green file a lie). Checked only for the formal proofs.
   let totalThm = 0
   let totalFree = 0
+  let totalPropext = 0
   const cheats: string[] = []
   for (const r of results) {
     if (!r.file.includes('pair/formal/proofs/')) continue
     const a = axiomFreedom(join(process.cwd(), r.file))
     totalThm += a.total
     totalFree += a.axiomFree
+    totalPropext += a.propextOnly
     if (a.dependent.length) cheats.push(`${r.file}: ${a.dependent.join(', ')}`)
-    console.log(`  axioms ${r.file.replace('src/pair/formal/proofs/', '')}: ${a.axiomFree}/${a.total} prove themselves (0 axioms)`)
+    console.log(`  axioms ${r.file.replace('src/pair/formal/proofs/', '')}: ${a.axiomFree}/${a.total} prove themselves (0 axioms)${a.propextOnly ? `, ${a.propextOnly} general (propext only)` : ''}`)
   }
-  console.log(`involution proofs axiom-free: ${totalFree}/${totalThm} — the theorems prove themselves`)
-  if (cheats.length) throw new Error(`Lean theorem(s) depend on sorryAx: ${cheats.join(' · ')}`)
-  if (totalFree < totalThm) throw new Error(`${totalThm - totalFree} formal-proof theorem(s) depend on an axiom — expected all to prove themselves by decide`)
+  console.log(`involution proofs: ${totalFree}/${totalThm} decided by computation with NO axiom · ${totalPropext} general, depending on propext alone`)
+  if (cheats.length) throw new Error(`Lean theorem(s) depend on sorryAx or Classical.choice: ${cheats.join(' · ')}`)
+  const unaccounted = totalThm - totalFree - totalPropext
+  if (unaccounted > 0) throw new Error(`${unaccounted} formal-proof theorem(s) depend on something other than propext — every proof here is either decided by computation or reasons through Lean's core arithmetic, and nothing else is allowed`)
 }

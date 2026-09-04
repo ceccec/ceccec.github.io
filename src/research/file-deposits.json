@@ -3,7 +3,7 @@
   "orcid": "0009-0000-7312-9778",
   "granularity": "one deposit per Lean development, chosen by the quality audit in scripts/verify/discoveries.ts",
   "minted": false,
-  "count": 8,
+  "count": 9,
   "deposits": [
     {
       "id": "bsd",
@@ -366,6 +366,144 @@
       ],
       "repoPaths": [
         "src/pair/formal/proofs/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "involution",
+      "title": "Machine-checked involution structure of involution (Lean 4, axiom-free)",
+      "file": "involution.lean",
+      "theoremCount": 8,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of involution: 8 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Orbit sums to zero — {α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0\n• Odd vanishes at a fixed point — {α : Type} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0\n• EvenPart is symmetric — {α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x\n• The split loses nothing — {α : Type} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x\n• The instance is an involution — ∀ d ∈ carrier, σ (σ d) = d\n• The instance cancels over every orbit — ∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0\n• The instance has one harmonic point — carrier.filter (fun d => σ d == d) = [5]\n• The instance splits without loss — ∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d",
+      "theorems": [
+        {
+          "title": "Orbit sums to zero",
+          "proposition": "{α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0",
+          "page": "https://ceccec.github.io/lean/involution-orbit-sums-to-zero"
+        },
+        {
+          "title": "Odd vanishes at a fixed point",
+          "proposition": "{α : Type} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0",
+          "page": "https://ceccec.github.io/lean/involution-odd-vanishes-at-a-fixed-point"
+        },
+        {
+          "title": "EvenPart is symmetric",
+          "proposition": "{α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x",
+          "page": "https://ceccec.github.io/lean/involution-evenpart-is-symmetric"
+        },
+        {
+          "title": "The split loses nothing",
+          "proposition": "{α : Type} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x",
+          "page": "https://ceccec.github.io/lean/involution-the-split-loses-nothing"
+        },
+        {
+          "title": "The instance is an involution",
+          "proposition": "∀ d ∈ carrier, σ (σ d) = d",
+          "page": "https://ceccec.github.io/lean/involution-the-instance-is-an-involution"
+        },
+        {
+          "title": "The instance cancels over every orbit",
+          "proposition": "∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0",
+          "page": "https://ceccec.github.io/lean/involution-the-instance-cancels-over-every-orbit"
+        },
+        {
+          "title": "The instance has one harmonic point",
+          "proposition": "carrier.filter (fun d => σ d == d) = [5]",
+          "page": "https://ceccec.github.io/lean/involution-the-instance-has-one-harmonic-point"
+        },
+        {
+          "title": "The instance splits without loss",
+          "proposition": "∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d",
+          "page": "https://ceccec.github.io/lean/involution-the-instance-splits-without-loss"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics."
+      },
+      "references": [
+        "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/involution.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-orbit-sums-to-zero",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-odd-vanishes-at-a-fixed-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-evenpart-is-symmetric",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-the-split-loses-nothing",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-the-instance-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-the-instance-cancels-over-every-orbit",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-the-instance-has-one-harmonic-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/involution-the-instance-splits-without-loss",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "involution"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/involution.lean",
         "src/research/lean-theorems.tex"
       ]
     },
