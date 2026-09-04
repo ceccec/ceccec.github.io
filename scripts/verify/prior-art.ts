@@ -145,6 +145,69 @@ export const PRIOR_ART_SEARCHED: readonly {
     // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
     // base classes and a material that throws when drawn. null is what claims this row.
     found: null },
+  // ── Wave tick 2026-09-05: ten more world-subject rows, four searches, four clusters — the regular
+  // 4-polytopes, the Catalan and Motzkin Hankel determinants, a combinatorics cluster (pentominoes,
+  // Latin squares of order 4, Cayley trees, the birthday threshold) and a calendar cluster (Sothic,
+  // Maya long count, Sumerian sexagesimal). Every one found prior art; none is claimed.
+  //
+  // MOVED ON THE SECOND PASS, AND THE REASON IS THE POINT. `exactly 3 regular tilings` was left
+  // unclassified first time: the polytope search had returned the ADJACENT fact — only three regular
+  // polytopes survive in dimension five and above — and attributing one to a search that found the
+  // other is how a ledger fills with citations nobody checked.
+  //
+  // Searched properly, the two turn out to be reflections of each other rather than neighbours. The
+  // count of regular figures is 3 at the bottom (the triangular, square and hexagonal tilings are the
+  // only regular tilings of the Euclidean plane) and 3 at the top (simplex, cube and cross-polytope,
+  // in every dimension from five up), and it SWELLS in between: 5 Platonic solids in dimension three,
+  // 6 regular polytopes in dimension four. Exceptional in the middle, constant on both sides — which
+  // is the shape this corpus keeps finding, and it was sitting inside a row I had declined to move.
+  //
+  // The refusal was still right. What was wrong was stopping there instead of searching the other
+  // side.
+  { theorem: 'exactly 3 regular tilings',
+    searched: 'exactly three regular tilings of the plane triangular square hexagonal only regular tilings Euclidean plane',
+    when: '2026-09-05',
+    found: 'The triangular, square and hexagonal tilings are the only regular tilings of the Euclidean plane — classical, and the planar case of the same classification Schlafli carried into higher dimensions. Its reflection is the dimension-five-and-above case, where exactly three regular polytopes survive (simplex, cube, cross-polytope); the count is exceptional only in dimensions three and four, at 5 and 6.' },
+  { theorem: 'exactly 6 regular 4-polytopes',
+    searched: 'Schlafli six regular convex 4-polytopes classification 5-cell 24-cell 600-cell dimensions five and above',
+    when: '2026-09-05',
+    found: 'Schlafli (1852, Theorie der vielfachen Kontinuitat, published 1901) classified the convex regular 4-polytopes and found exactly six: the 5-cell, 8-cell, 16-cell, 24-cell, 120-cell and 600-cell. Five are analogues of Platonic solids; the 24-cell has no three-dimensional counterpart. In dimension five and above only three survive.' },
+  { theorem: 'Hankel–Catalan determinants = 1',
+    searched: 'Hankel determinant of Catalan numbers equals 1 Lindstrom Gessel Viennot lattice paths',
+    when: '2026-09-05',
+    found: 'The Hankel determinant of the Catalan numbers is 1, and likewise for the Motzkin numbers. Classical; proofs by the Lindstrom-Gessel-Viennot lemma over non-intersecting lattice paths, by orthogonal polynomials and continued fractions, and by LU decomposition. See Viennot on Motzkin path enumeration and the survey Hankel determinants of Catalan, Motzkin and Schroder numbers.' },
+  { theorem: 'Motzkin Hankel determinants = 1',
+    searched: 'Hankel determinant of Motzkin numbers equals 1 Viennot Motzkin paths orthogonal polynomials',
+    when: '2026-09-05',
+    found: 'The Hankel determinant of the Catalan numbers is 1, and likewise for the Motzkin numbers. Classical; proofs by the Lindstrom-Gessel-Viennot lemma over non-intersecting lattice paths, by orthogonal polynomials and continued fractions, and by LU decomposition. See Viennot on Motzkin path enumeration and the survey Hankel determinants of Catalan, Motzkin and Schroder numbers.' },
+  { theorem: 'exactly 12 pentominoes',
+    searched: 'exactly 12 free pentominoes Golomb polyominoes 18 one-sided 63 fixed',
+    when: '2026-09-05',
+    found: 'Golomb (1954, and Polyominoes, 1965) named and popularised them: there are exactly 12 free pentominoes, 18 one-sided and 63 fixed. The 12 are named for the letters they resemble (F I L P N, T U V W X Y Z).' },
+  { theorem: 'exactly 576 Latin squares of order 4',
+    searched: 'number of Latin squares of order 4 is 576 enumeration 1 2 12 576 161280',
+    when: '2026-09-05',
+    found: 'There are 576 Latin squares of order 4; the sequence for orders 1, 2, 3, 4, 5 is 1, 2, 12, 576, 161280 (OEIS A002860). Classical enumeration.' },
+  { theorem: 'Cayley n^(n−2) to n = 7',
+    searched: 'Cayley formula n^(n-2) labelled trees Borchardt 1860 Prufer sequence matrix-tree',
+    when: '2026-09-05',
+    found: 'n^(n-2) labelled trees on n vertices. Due to Borchardt (1860) and extended by Cayley (1889), so the common name understates the attribution. Proofs by Prufer sequences, by Joyal, and by Kirchhoff via the matrix-tree theorem.' },
+  { theorem: 'birthday threshold = 23',
+    searched: 'birthday problem 23 people probability exceeds one half 50.7 percent 253 pairs',
+    when: '2026-09-05',
+    found: 'The birthday problem: with 23 people the probability of a shared birthday first exceeds one half, at about 50.7 percent, because 23 people form 253 pairs. Classical; commonly attributed to von Mises (1939), popularised by Feller.' },
+  { theorem: 'the Sothic cycle meshes the Egyptian civil year exactly — 1461 civil = 1460 Julian',
+    searched: 'Sothic cycle 1461 Egyptian civil years equal 1460 Julian years Sirius heliacal rising Censorinus',
+    when: '2026-09-05',
+    found: 'The Sothic cycle is 1461 Egyptian civil years of 365 days, equal to 1460 Julian years of 365.25 days, after which the civil year realigns with the heliacal rising of Sirius. Described in antiquity by Censorinus, De Die Natali (238 CE).' },
+  { theorem: 'the Maya long count is positional base-20 with a true zero — 13 baktun = 1 872 000 days',
+    searched: 'Maya long count positional base-20 true zero baktun 144000 days 13 baktun 1872000',
+    when: '2026-09-05',
+    found: 'The Mesoamerican Long Count is positional base-20 (with the tun of 360 days breaking strict base-20) and uses a true zero. One baktun is 144000 days, so 13 baktun is 1872000 days, about 5125 tropical years — the Great Cycle.' },
+  { theorem: 'Sumer counts in base-60 — 3661 is 1:01:01 exactly',
+    searched: 'Sumerian Babylonian sexagesimal base 60 origin divisors time angle measure',
+    when: '2026-09-05',
+    found: 'Sexagesimal counting originated with the Sumerians in the 3rd millennium BC and passed to the Babylonians; it survives in time, angle and coordinate measure. 3661 seconds is 1:01:01 exactly because 3661 = 1*3600 + 1*60 + 1. Its many divisors (2, 3, 4, 5) are the usual explanation for the base.' },
   // ── Wave tick 2026-09-04: eight world-subject rows moved out of unclassified by REAL searches,
   // four queries covering four clusters. Every one found prior art, so every one is ATTRIBUTED and
   // none is claimed. That is the expected shape: these are named classical results, and a ledger

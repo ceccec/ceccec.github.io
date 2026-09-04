@@ -44710,7 +44710,7 @@ function theGatesAndWaysBecomeTheNavigationAndLinks() {
 function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnceInQuantum() {
   const HEX_BITS = 2 * 3;
   const HEXAGRAMS = 2 ** HEX_BITS;
-  const TRIGRAM_MASK = 2 ** 3 - 1;
+  const TRIGRAM_MASK2 = 2 ** 3 - 1;
   let register = qubits(HEX_BITS);
   for (let q = 0; q < HEX_BITS; q += 1) register = applyGate(register, GATES.H, q);
   const probs = probabilities(register);
@@ -44718,10 +44718,10 @@ function completeTheIChingWithTheRosettaAllSixtyFourHexagramsSealedAtOnceInQuant
   const rayOfTrigram = (trigram) => trigram === 0 ? "Home" : ROSETTA_RAYS[(trigram - 1) % ROSETTA_RAYS.length].nameEn;
   const hexagrams = Array.from({ length: HEXAGRAMS }, (_, hex) => ({
     hex,
-    upper: hex >> 3 & TRIGRAM_MASK,
-    lower: hex & TRIGRAM_MASK,
-    upperRay: rayOfTrigram(hex >> 3 & TRIGRAM_MASK),
-    lowerRay: rayOfTrigram(hex & TRIGRAM_MASK)
+    upper: hex >> 3 & TRIGRAM_MASK2,
+    lower: hex & TRIGRAM_MASK2,
+    upperRay: rayOfTrigram(hex >> 3 & TRIGRAM_MASK2),
+    lowerRay: rayOfTrigram(hex & TRIGRAM_MASK2)
   }));
   const everyHexagramCarriesTwoRays = hexagrams.length === HEXAGRAMS && hexagrams.every((entry2) => entry2.upperRay.length > 0 && entry2.lowerRay.length > 0);
   const eightTrigramsSevenRaysPlusHome = new Set(hexagrams.flatMap((entry2) => [entry2.upperRay, entry2.lowerRay])).size === ROSETTA_RAYS.length + 1;
@@ -45596,6 +45596,11 @@ function researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause(matri
     };
   });
 }
+var HEXBIT_LINES = 6;
+var HEXBIT_LATTICE = 2 ** HEXBIT_LINES;
+var HEXBIT_MASK = HEXBIT_LATTICE - 1;
+var TRIGRAM_LINES = HEXBIT_LINES / 2;
+var TRIGRAM_MASK = 2 ** TRIGRAM_LINES - 1;
 
 // ../../src/quantum/water/cache/index.ts
 function uuidForPath(path12) {

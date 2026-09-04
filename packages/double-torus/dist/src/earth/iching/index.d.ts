@@ -359,3 +359,57 @@ export declare function researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNo
     statement: string;
     boundary: string;
 };
+/** Lines in a hexagram. Six, because a hexagram is six lines — the name says so. */
+export declare const HEXBIT_LINES = 6;
+/** The lattice: every value a hexbit can take. */
+export declare const HEXBIT_LATTICE: number;
+/** All bits set — the reflection mask. */
+export declare const HEXBIT_MASK: number;
+export type Hexbit = number;
+export type LineArray = readonly boolean[];
+export declare const hexbitReflect: (h: Hexbit) => Hexbit;
+export declare const hexbitLower: (h: Hexbit) => number;
+export declare const hexbitUpper: (h: Hexbit) => number;
+/** 互卦 — the sealed definition from src/mountain/geometry, restated as one expression. */
+export declare const hexbitNuclear: (h: Hexbit) => Hexbit;
+/** 綜卦 — the hexagram turned upside down: line i becomes line (5 - i). */
+export declare function hexbitReverse(h: Hexbit): Hexbit;
+export declare const linesOf: (h: Hexbit) => boolean[];
+export declare const hexbitOfLines: (l: LineArray) => Hexbit;
+export declare const linesReflect: (l: LineArray) => boolean[];
+export declare const linesReverse: (l: LineArray) => boolean[];
+export declare const linesNuclear: (l: LineArray) => boolean[];
+export declare const stringOf: (h: Hexbit) => string;
+export declare const hexbitOfString: (s: string) => Hexbit;
+export declare const stringReflect: (s: string) => string;
+export declare const stringReverse: (s: string) => string;
+export declare const stringNuclear: (s: string) => string;
+export type HexbitRow = {
+    readonly h: Hexbit;
+    readonly reflect: Hexbit;
+    readonly nuclear: Hexbit;
+    readonly reverse: Hexbit;
+};
+export declare function hexbitTable(): readonly HexbitRow[];
+/**
+ * THE FOUR REPRESENTATIONS AGREE, ON ALL 64, FOR EVERY OPERATION — and the nuclear operation agrees
+ * with the SEALED fold in src/mountain/geometry, which is the cross-check that matters most: it means
+ * the hexbit here is the same hexbit the corpus already computes with, not a lookalike defined to make
+ * a benchmark come out well.
+ *
+ * DIRECTION OF FAILURE: loud and specific. A disagreement names the operation, the input, and the two
+ * representations that differ, because a benchmark run over implementations that disagree is a
+ * measurement of nothing.
+ */
+export declare function hexbitRepresentationsAgree(matrix?: MindMatrix): {
+    computes: boolean;
+    lattice: number;
+    disagreements: string[];
+    orbits: number;
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
