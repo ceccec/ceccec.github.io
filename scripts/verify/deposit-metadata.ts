@@ -144,10 +144,31 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
   // The licence the record publishes must be the licence the repository ships.
   const cff = readFileSync(join(root, 'CITATION.cff'), 'utf8')
   const licence = /license:\s*"?([A-Za-z0-9.-]+)"?/.exec(cff)?.[1] ?? ''
-  const licenceUrl = licence.toLowerCase().replace(/^cc-/, '').replace(/-4\.0$/, '')
-  const rightsText = rec.rights.join(' ').toLowerCase()
-  const licenceAgrees = licenceUrl.split('-').every((part) => rightsText.includes(part))
-  console.log(`  ${licenceAgrees ? 'on ' : 'OFF'}  published rights match CITATION.cff licence ${licence}`)
+  // COMPARED BY WHAT THE LICENCE PERMITS, NOT BY THE SHAPE OF ITS NAME.
+  //
+  // This checked that every hyphen-part of the declared licence appeared somewhere in the published
+  // rights text. That is a SUBSET test, and it fails in the direction that matters: a CITATION.cff
+  // declaring CC-BY-4.0 passes against a record that is actually CC-BY-NC-ND, because "by" appears in
+  // both. It catches a declaration claiming MORE restrictions than the deposit carries and waves
+  // through one claiming FEWER — the repository advertising a permissive licence over a deposit that
+  // forbids derivatives, which is the case a reader is actually harmed by.
+  //
+  // hitsol-8d hit the same substitution from the other side within an hour of building its resolver:
+  // it classified cc-by-nc-nd-4.0 as OPEN because the string starts with "cc-by", reporting the most
+  // restrictive Creative Commons licence as the most permissive. Prefix and substring matching are
+  // easier to check than the property they stand for, which is this corpus's oldest defect wearing a
+  // licence for a hat.
+  const permits = (text: string) => ({
+    commercial: !/\bnon-?commercial\b|(^|[^a-z])nc([^a-z]|$)/i.test(text),
+    derivatives: !/\bno-?derivat/i.test(text) && !/(^|[^a-z])nd([^a-z]|$)/i.test(text),
+  })
+  const declared = permits(licence)
+  const published = permits(rec.rights.join(' '))
+  const licenceAgrees = declared.commercial === published.commercial && declared.derivatives === published.derivatives
+  const describe = (p: { commercial: boolean; derivatives: boolean }) =>
+    `commercial ${p.commercial ? 'permitted' : 'FORBIDDEN'} · derivatives ${p.derivatives ? 'permitted' : 'FORBIDDEN'}`
+  console.log(`  ${licenceAgrees ? 'on ' : 'OFF'}  licence terms agree — declared ${licence}: ${describe(declared)}`)
+  console.log(`         published record: ${describe(published)}`)
 
   // THE VERSION CHAIN THIS RECORD SITS IN MAY NOT BE THIS CORPUS'S. Followed, not assumed.
   const head = await resolveConcept(CONCEPT_DOI)
@@ -166,7 +187,11 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
   }
 
   if (!licenceAgrees) {
-    throw new Error(`the published record's rights (${rec.rights.join(' | ')}) do not match CITATION.cff licence ${licence}`)
+    throw new Error(
+      `the licence this repository DECLARES and the one the deposit CARRIES permit different things — ` +
+      `CITATION.cff says ${licence} (${describe(declared)}) and the published record grants ${describe(published)}. ` +
+      `Compared by permission rather than by name, because a name comparison passes a permissive claim over a restrictive deposit.`
+    )
   }
   if (refuted.length) {
     throw new Error(
