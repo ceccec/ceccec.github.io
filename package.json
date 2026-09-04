@@ -31,11 +31,13 @@
   "packageManager": "pnpm@11.8.0+sha512.c1f5e7c4cb241c8f174b743851d82f42b802324afc8b0f116b96adb15aa06664948dde36960a3ba1079ba5b4b29dd0140135b94b5b5f5263592249d68e555f26",
   "devDependencies": {
     "@types/node": "^26.0.1",
+    "@types/three": "^0.185.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "esbuild": "0.28.1",
     "radix-vue": "^1.9.17",
     "tailwind-merge": "^3.6.0",
+    "three": "^0.185.1",
     "typescript": "6.0.3",
     "vite": "^8.1.0",
     "vitepress": "2.0.0-alpha.17",
@@ -60,7 +62,7 @@
     "manifest:check": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/manifest.ts manifestDrift",
     "verify:run": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/index.ts runVerification",
     "verify:folds": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/folds.ts assertFolds",
-    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths && npm run verify:lean && npm run verify:theorems && npm run verify:side-effects && npm run verify:scope && npm run verify:limits && npm run verify:lean-latex && npm run verify:lean-arbiter && npm run verify:prior-art && npm run verify:mcp-transport && npm run verify:independence && npm run verify:purity && npm run verify:fabrication && npm run verify:discoveries && npm run verify:axioms && npm run verify:citation",
+    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths && npm run verify:lean && npm run verify:theorems && npm run verify:side-effects && npm run verify:scope && npm run verify:limits && npm run verify:lean-latex && npm run verify:lean-arbiter && npm run verify:prior-art && npm run verify:mcp-transport && npm run verify:independence && npm run verify:purity && npm run verify:fabrication && npm run verify:discoveries && npm run verify:axioms && npm run verify:citation && npm run verify:bagua && npm run verify:three",
     "verify:structure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify:structure",
     "limits:verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:verify",
     "limits:seal": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:seal",
@@ -1079,6 +1081,8 @@
     "paper:file-deposits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/discoveries.ts writeFileDeposits",
     "audit:deposit-quality": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/discoveries.ts assertDepositQuality",
     "verify:axioms": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/axioms.ts assertAxiomIndex",
-    "verify:citation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/citation.ts assertCitationIsCurrent"
+    "verify:citation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/citation.ts assertCitationIsCurrent",
+    "verify:three": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/three.ts assertThreeCoverage",
+    "verify:bagua": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/bagua.ts assertBaguaNamesRealFolders"
   }
 }

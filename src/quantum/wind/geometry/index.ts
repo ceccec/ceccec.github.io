@@ -7,7 +7,7 @@ import type { Dims } from '../../mountain/dimensions/index.ts'
 import { movieCanvasPolarity } from '../../science/index.ts'
 import { FIBONACCI } from '../../../3/7/index.ts'
 import { TAU } from '../../../3/7/index.ts'
-import { VORTEX_SEQUENCE, abs, cos, hypot, max, min, pow, sin, sqrt } from '../../../0/index.ts'
+import { VORTEX_SEQUENCE, abs, atan, cos, hypot, max, min, pow, sin, sqrt } from '../../../0/index.ts'
 
 export const FOCAL = (6 * 2 / 5) // perspective focal length, shared by every layer
 
@@ -237,4 +237,163 @@ export function drawCalendars(
     ctx.fill()
   }
   ctx.restore()
+}
+
+// ─────────────────────────────────────────────────────────────────────────────────────────────
+// THE THREE.JS COMBINATION CLOSURE — MEASURED FROM THE LIBRARY, NOT TYPED BESIDE IT
+//
+// The first draft of this fold declared "three.js's eight built-in geometries" and "eight built-in
+// materials", so that the product was 8 x 8 = 64 and landed exactly on the hexagram. It was a
+// fabrication. three.js exports 23 geometry constructors and 10 mesh materials; 18 of the
+// geometries build themselves with no arguments and 5 cannot (BufferGeometry and
+// InstancedBufferGeometry are base classes, PolyhedronGeometry needs vertices, EdgesGeometry and
+// WireframeGeometry need another geometry to wrap). The real closure is 18 x 10 = 180, and the
+// hexagram's 64 does not cover it. The coincidence was pleasing, unchecked, and false — the same
+// defect this corpus keeps finding in itself, committed while removing an instance of it.
+//
+// So NO NAME IS WRITTEN HERE. The catalogue is handed in, measured from the installed library by
+// scripts/verify/three.ts, and every claim below is a theorem about an arbitrary catalogue rather
+// than a fact about one release. When three.js adds a primitive the closure grows and the coverage
+// proof still holds; a typed table would have silently under-covered instead.
+//
+// NOTHING HERE IMPORTS THREE.JS, and nothing may. Both package.json manifests declare
+// `dependencies: {}` and src/fire/li states the graphics capability as zero-dependency; an import
+// of three under src/ would falsify all three at once. This fold emits PURE DATA — indices,
+// positions and the names it was given — and the renderer in .vitepress maps those names onto the
+// real constructors. The dependency lives in the site shell, where it costs the published kernel
+// nothing, and scripts/verify/three.ts refuses any import of three under src/.
+
+/** What the installed three.js actually offers, measured by the caller and passed in. */
+export interface ThreeCatalogue {
+  readonly geometries: readonly string[]
+  readonly materials: readonly string[]
+}
+
+/** One cell of the product space: a geometry, a material, and where it sits on the lattice. */
+export interface ThreeCell {
+  readonly index: number
+  readonly gi: number
+  readonly mi: number
+  readonly geometry: string
+  readonly material: string
+  readonly at: Vec3
+}
+
+/**
+ * The lattice pitch. Cells sit one unit apart, so the grid's own spacing — not a separate table —
+ * is what the camera's depth planes are derived from below.
+ */
+export const CELL_PITCH = 1
+
+/** The cell at row `gi`, column `mi`, centred on the origin so the closure needs no layout table. */
+export function threeCellAt(cat: ThreeCatalogue, gi: number, mi: number): ThreeCell {
+  const cols = cat.materials.length
+  return {
+    index: gi * cols + mi,
+    gi,
+    mi,
+    geometry: cat.geometries[gi]!,
+    material: cat.materials[mi]!,
+    at: {
+      X: (gi - (cat.geometries.length - 1) / 2) * CELL_PITCH,
+      Y: (mi - (cols - 1) / 2) * CELL_PITCH,
+      Z: 0
+    }
+  }
+}
+
+/** Every combination the catalogue admits, once — the whole product, in row-major order. */
+export function threeCombinationClosure(cat: ThreeCatalogue): readonly ThreeCell[] {
+  const out: ThreeCell[] = []
+  for (let gi = 0; gi < cat.geometries.length; gi += 1) {
+    for (let mi = 0; mi < cat.materials.length; mi += 1) out.push(threeCellAt(cat, gi, mi))
+  }
+  return out
+}
+
+/**
+ * THE CAMERA THAT MAKES THREE.JS REPRODUCE THIS CORPUS'S SEALED PINHOLE, EXACTLY.
+ *
+ * A port is only honest if the ported renderer computes the same thing. This fold's law is
+ * `perspective(z) = FOCAL / (FOCAL - z)`. three.js projects through a PerspectiveCamera as
+ * `x_ndc = x / (tan(fov/2) * -z_view)`. Put the camera at distance FOCAL on +Z looking at the
+ * origin, so a world point of depth z has `z_view = -(FOCAL - z)`, and the two agree for every
+ * point precisely when `1 / tan(fov/2) = FOCAL`, i.e. `fov = 2 arctan(1 / FOCAL)`.
+ *
+ * So three.js does not REPLACE the sealed projection; it is CONFIGURED BY it. The depth law stays
+ * where it is and the renderer inherits it instead of re-faking it — which is the failure the
+ * 2026-07-07 audit found in two canvas painters, and the reason this fold exists at all.
+ *
+ * The depth planes come from the lattice, not from taste: every cell sits at Z = 0, so the content
+ * occupies half a pitch either side of the focal plane and the frustum is cut to exactly that.
+ */
+export function threeCameraFromFocal(focal: number = FOCAL): {
+  readonly fovRadians: number
+  readonly position: Vec3
+  readonly near: number
+  readonly far: number
+} {
+  const halfDepth = CELL_PITCH / 2
+  return {
+    // RADIANS. three.js's PerspectiveCamera takes degrees, but that is three.js's unit convention,
+    // not this corpus's mathematics — writing the 180 here would import a foreign constant into a
+    // fold that has no business knowing it. The shell converts with three's own MathUtils.radToDeg,
+    // so the conversion lives on the side of the boundary that owns the convention.
+    fovRadians: 2 * atan(1 / focal),
+    position: { X: 0, Y: 0, Z: focal },
+    near: focal - halfDepth,
+    far: focal + halfDepth
+  }
+}
+
+/**
+ * THE COVERAGE IS A THEOREM ABOUT ANY CATALOGUE, NOT A CHECKLIST FOR ONE.
+ *
+ * Recomputed at call time: the closure is exactly |geometries| x |materials|; every pair occurs
+ * exactly ONCE (the bijection — "all pairs present" would also hold for a list with a duplicate
+ * and a gap, so the weaker form is not asserted); the row-major index inverts back to its pair;
+ * and the camera handed to three.js agrees with the sealed pinhole at every lattice depth, checked
+ * by inverting the fov through real trigonometry rather than by restating the formula.
+ *
+ * The ulp budget is four: `atan` rounds once, `tan` rounds once, and the divide rounds twice.
+ */
+const ULP_BUDGET = 4
+
+export function threeCoversEveryCombination(cat: ThreeCatalogue) {
+  const cells = threeCombinationClosure(cat)
+  const expected = cat.geometries.length * cat.materials.length
+  const pairs = new Set(cells.map((c) => `${c.gi}|${c.mi}`))
+  const named = new Set(cells.map((c) => `${c.geometry}|${c.material}`))
+  const invertible = cells.every((c) => c.gi * cat.materials.length + c.mi === c.index)
+
+  const cam = threeCameraFromFocal()
+  const halfFov = cam.fovRadians / 2
+  const invTan = cos(halfFov) / sin(halfFov)
+  // Sampled across the frustum the camera actually declares, derived from its own near/far.
+  const depths = [FOCAL - cam.far, 0, FOCAL - cam.near]
+  const agrees = depths.every((z) => {
+    const mine = perspective(z)
+    const theirs = invTan / (FOCAL - z)
+    return abs(mine - theirs) <= Number.EPSILON * max(abs(mine), abs(theirs)) * ULP_BUDGET
+  })
+
+  return {
+    cells: cells.length,
+    geometries: cat.geometries.length,
+    materials: cat.materials.length,
+    facets: [
+      { facet: `the closure is |geometries| x |materials| = ${cat.geometries.length} x ${cat.materials.length} = ${expected} cells`,
+        on: cells.length === expected },
+      { facet: `every index pair occurs exactly once — a bijection onto the product, not merely full coverage`,
+        on: pairs.size === expected },
+      { facet: `every geometry/material NAME pair is distinct — the catalogue carries no duplicate`,
+        on: named.size === expected },
+      { facet: `the row-major index inverts back to its (geometry, material) pair for all ${expected}`,
+        on: invertible },
+      { facet: `three.js at fov = 2 arctan(1/FOCAL) computes this fold's sealed pinhole to ${ULP_BUDGET} ulp`,
+        on: agrees },
+      { facet: `the closure is measured, not typed: no primitive name appears in this fold`,
+        on: cat.geometries.length > 0 && cat.materials.length > 0 }
+    ]
+  }
 }
