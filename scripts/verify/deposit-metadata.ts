@@ -31,10 +31,13 @@
  * credentials, never this script's.
  */
 
-import { readFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const OAI = 'https://zenodo.org/oai2d'
+const REPO_URL = 'https://github.com/ceccec/ceccec.github.io'
+const SITE_URL = 'https://ceccec.github.io'
+const CONCEPT_DOI = '10.5281/zenodo.21787143'
 
 /** The record id inside a Zenodo DOI: 10.5281/zenodo.<id>. */
 export function zenodoRecordId(doi: string): string {
@@ -138,4 +141,70 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
     )
   }
   console.log(`the published record asserts nothing the corpus refutes`)
+}
+
+
+/**
+ * THE CORRECTED METADATA, GENERATED FROM THE SEALED SOURCES.
+ *
+ * The published record cannot be edited, but a NEW VERSION under the same concept DOI can be, and the
+ * concept DOI always resolves to the newest version — so a new version repoints every citation without
+ * destroying the dated original or the priority it establishes.
+ *
+ * Every figure below is READ from the sealed sources rather than typed, because the record that
+ * replaces a false claim must not be the second file in this repository whose numbers drift. It claims
+ * everything the corpus can actually support and nothing it cannot: the formalisation, the axiom
+ * accounting, and the three candidate originals whose prior-art searches came back empty. It states
+ * the negative result in the abstract rather than the footnotes, because that is the sentence the
+ * record it replaces got wrong.
+ *
+ * This WRITES A FILE. It does not talk to Zenodo, and it holds no credentials. Publishing is the
+ * author's action.
+ */
+export function writeCorrectedMetadata(root: string = process.cwd()): void {
+  const deposits = JSON.parse(readFileSync(join(root, 'src/research/theorem-deposits.json'), 'utf8')) as {
+    repositoryDoi: string
+    orcid: string
+    records: { title: string; file: string; priorArt: { kind: string; searched?: string } }[]
+  }
+  const recs = deposits.records
+  const claimed = recs.filter((r) => r.priorArt.kind === 'searched-none-found')
+  const attributed = recs.filter((r) => r.priorArt.kind === 'attributed')
+  const files = [...new Set(recs.map((r) => r.file))].sort()
+
+  const description = [
+    `<p><strong>A machine-checked corpus of ${recs.length} theorems in Lean 4, across ${files.length} files, compiling with no Mathlib and no <code>sorry</code>.</strong></p>`,
+    `<p><strong>This deposit proves no Clay Millennium Prize Problem.</strong> The corpus contains a theorem saying so, <code>Corpus.clay_sealed_count_is_zero</code>, which computes that its registry of prize-grade proofs is empty; a companion theorem, <code>Corpus.computable_is_not_solved</code>, states that recomputing a path entails nothing about a prize problem. An earlier version of this record claimed the opposite. It was wrong, and this version exists to correct it.</p>`,
+    `<p><strong>What is actually established.</strong> Of the ${recs.length} theorems, machine verification reports that the great majority depend on NO axiom at all — they are decided by computation in the kernel, so the proof is the computation and nothing is assumed — and the remainder depend on <code>propext</code> alone, which is one of Lean&rsquo;s three foundational axioms and is what its own core arithmetic reasons through. None depends on <code>Classical.choice</code>, and none on <code>sorryAx</code>. That accounting is re-derived on every run by asking the kernel with <code>#print axioms</code>, never by restating it.</p>`,
+    `<p><strong>Priority is claimed over ${claimed.length} results</strong>, each with a prior-art search on record that returned nothing:</p><ul>`,
+    ...claimed.map((c) => `<li><strong>${c.title}</strong> (<code>${c.file}</code>)</li>`),
+    `</ul><p>The remaining ${attributed.length} are FORMALISATIONS of known results and each carries its citation. Nothing here claims to have discovered the pinhole camera, central inversion, or row-major addressing.</p>`,
+    `<p><strong>A DOI dates an expression; it does not establish novelty.</strong> What is claimed above is the expression, dated by this deposit.</p>`,
+  ].join('\n')
+
+  const meta = {
+    metadata: {
+      upload_type: 'software',
+      title: `Machine-checked involution theorems in Lean 4 — ${recs.length} theorems, axiom accounting, ${claimed.length} candidate originals`,
+      description,
+      creators: [{ name: 'Rouschev, Tsvetan', orcid: deposits.orcid }],
+      license: 'cc-by-nc-nd-4.0',
+      language: 'eng',
+      keywords: [
+        'Lean 4', 'machine-checked proof', 'formal verification', 'axiom-free', 'involution',
+        'proof theory', 'decidability', 'three.js', 'computational geometry',
+      ],
+      related_identifiers: [
+        { identifier: REPO_URL, relation: 'isSupplementTo', scheme: 'url' },
+        { identifier: SITE_URL, relation: 'isPublishedIn', scheme: 'url' },
+        ...files.map((f) => ({ identifier: `${REPO_URL}/blob/main/src/pair/formal/proofs/${f}`, relation: 'isDerivedFrom', scheme: 'url' })),
+      ],
+      notes: 'This version CORRECTS the metadata of the previous version, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false and is refuted by a theorem inside the corpus itself. The software and its dates are unchanged; only the description of what it establishes is corrected.',
+    },
+  }
+  const out = join(root, 'src/research/zenodo-new-version.json')
+  writeFileSync(out, `${JSON.stringify(meta, null, 2)}\n`)
+  console.log(`wrote ${out}`)
+  console.log(`  ${recs.length} theorems · ${claimed.length} claimed · ${attributed.length} attributed · ${files.length} Lean files`)
+  console.log(`  publish as a NEW VERSION of concept DOI ${CONCEPT_DOI} — this script holds no credentials and contacts nothing`)
 }

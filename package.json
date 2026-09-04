@@ -1087,6 +1087,7 @@
     "verify:deposit-metadata": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts assertDepositMetadataIsHonest",
     "verify:credits": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/credits.ts assertEveryPageIsCredited",
     "verify:build-time": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/build-time.ts assertBuildIsNotSlower",
-    "verify:barrel": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/barrel.ts assertBarrelExportsResolve"
+    "verify:barrel": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/barrel.ts assertBarrelExportsResolve",
+    "zenodo:new-version": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts writeCorrectedMetadata"
   }
 }
