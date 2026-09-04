@@ -339,6 +339,77 @@ export const PRIOR_ART_SEARCHED: readonly {
  */
 const CORPUS_SUBJECT = /\b(this corpus|this repo|this project|the corpus|the site|the portal|src\/|index\.ts|the fold|the folds|facet|facets|gate|gates|ratchet|receipt|census|merkleFold|toUuid|memoByRoot|rosetta|vitepress|npm run|MCP|readme|README|the wave|waves|barrel|the ledger|CRACK_LEDGER|verify:)/i
 
+
+/**
+ * IS THE POOL BINDABLE PER ROW AT ALL? — a declared field, because neither available test works.
+ *
+ * uuidna-49 asked whether unclassified rows are unsearched because nobody searched, or because no
+ * search is WELL POSED for them — and that those need opposite responses while looking identical in
+ * a report. Its own count inverted on that question: what it had called 51 subject domains turned out
+ * to be DOI registrant prefixes, so binding a row to one would have fabricated a citation.
+ *
+ * millennium-solutions-5f then tried both mechanical tests and both failed. Classifying by each row is
+ * own note is CIRCULAR — every note says the deposit derived it, because that is what those notes were
+ * written to say, so 13 of 13 came back the same and the check confirmed the prose rather than the
+ * fact. Classifying by SUBJECT misfires the other way: rows whose statements are numeric read as
+ * searchable while their subject is the artifact itself.
+ *
+ * This corpus has both failure modes visibly. `reuse graph acyclic` reads as corpus-subject to any
+ * vocabulary heuristic and is general graph theory; `zeropoint-node is the origin` reads as
+ * world-subject and is about a sibling repository. The gate has always refused to act on that split
+ * for exactly this reason — a row moved to a not-applicable bucket is a row nobody ever searches,
+ * which is claiming by silence one step removed.
+ *
+ * So the pool is DECLARED, one row at a time, with a reason. BOUNDED means a search is well posed and
+ * simply has not been run — those are the actionable rows. UNBOUNDED means the subject IS this
+ * artifact or a sibling one, and no literature can restate it, so the row stays unclassified forever
+ * and that is the correct resting state rather than a debt. MIXED means the row carries both, like a
+ * classical result wearing this corpus is vocabulary, and it should be split before it is searched.
+ *
+ * UNDECLARED IS REPORTED SEPARATELY AND IS THE HONEST REMAINDER. Declaring a row is work; pretending
+ * the undeclared ones are unbounded would shrink the number without answering anything.
+ */
+export const PRIOR_ART_POOL: readonly {
+  readonly theorem: string
+  readonly pool: 'bounded' | 'unbounded' | 'mixed'
+  readonly why: string
+}[] = [
+  { theorem: 'digital root closed form validates the sealed src/0 code', pool: 'unbounded',
+    why: 'the subject is src/0 itself — no literature restates a claim about this repository' },
+  { theorem: 'the self-sufficient kernel derives from the corpus — the stack ranks itself by theorem density', pool: 'unbounded',
+    why: 'ranks THIS corpus by its own theorem density; there is no outside author' },
+  { theorem: 'the waves feed the chat — the wave chain reports itself as computation', pool: 'unbounded',
+    why: 'a property of this system reporting on itself' },
+  { theorem: 'waves of waves in chat — the composition of the chat’s wave engines has its own fixed point', pool: 'unbounded',
+    why: 'the fixed point is of this chat is own engines' },
+  { theorem: 'rosters derive or ledger — a hand-list inside a fold is the hardcoded-value crack one level up', pool: 'unbounded',
+    why: 'a rule this repository holds about its own folds' },
+  { theorem: 'zeropoint-node is the origin — the published sequence is the sealed genesis cycle entered at the void', pool: 'unbounded',
+    why: 'about a sibling repository is published sequence — another artifact, still not literature' },
+  { theorem: 'ζ(−1) = −1/12', pool: 'bounded',
+    why: 'zeta regularisation and the Ramanujan summation of the naturals; a well posed search nobody has run here' },
+  { theorem: 'superstring D = 10 twice', pool: 'bounded',
+    why: 'the critical dimension of superstring theory; the bosonic D = 26 row beside it is already attributed' },
+  { theorem: 'Catalan parity = Mersenne', pool: 'bounded',
+    why: 'parity of the Catalan numbers and its relation to Mersenne exponents is a known combinatorial result' },
+  { theorem: 'non-integer dimension', pool: 'bounded',
+    why: 'Hausdorff and box-counting dimension; a large and locatable literature' },
+  { theorem: 'hitting a prime is the inversion point — ℤ/pℤ is a field, inversion becomes total', pool: 'bounded',
+    why: 'that Z/pZ is a field exactly when p is prime is elementary and attributable' },
+  { theorem: 'reuse graph acyclic', pool: 'bounded',
+    why: 'general graph theory, and the SPECIFIC row the heuristic split misreads as corpus-subject — declared here so the misreading cannot recur' },
+  { theorem: 'the publication timeline is measured from public registries — the sequence went public 205 days before the portal', pool: 'mixed',
+    why: 'the registries and their dates are external and checkable; which sequence went public is ours' },
+  { theorem: 'The circle of fifths is a rosetta', pool: 'mixed',
+    why: 'the circle of fifths is music theory with centuries of literature; that it IS the rosetta is this corpus is claim' },
+  { theorem: 'Scales are necklaces on the rosetta', pool: 'mixed',
+    why: 'necklace counting is standard combinatorics; the rosetta half is ours' },
+  { theorem: 'the rosetta addresses any position — π hex digit and n-th prime', pool: 'mixed',
+    why: 'the BBP formula for a hex digit of pi is external and attributable; the addressing claim is ours' },
+  { theorem: 'The pentagram is the rosetta meeting its inverse', pool: 'mixed',
+    why: 'the pentagram and the golden ratio are classical; the inverse-meeting claim is ours' },
+]
+
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
 
 export function priorArtLedger() {
@@ -369,7 +440,29 @@ export function assertPriorArtLedger(): void {
   const notYetSearched = new Set(l.unclassified)
   const corpusSubject = atoms.filter((r) => notYetSearched.has(String(r.theorem)) &&
     CORPUS_SUBJECT.test(`${r.theorem ?? ''} ${r.states ?? ''} ${r.algebraicStatement ?? ''}`)).length
-  console.log(`               of those, ~${corpusSubject} read as statements about THIS tree and ~${l.unclassified.length - corpusSubject} about the world — advisory, no row moves on it`)
+  console.log(`               of those, ~${corpusSubject} read as statements about THIS tree and ~${l.unclassified.length - corpusSubject} about the world — HEURISTIC, advisory, no row moves on it`)
+
+  // THE DECLARED SPLIT — the only one anything may act on. See PRIOR_ART_POOL for why neither
+  // mechanical test works and why this is declared a row at a time.
+  const unclassified = new Set(l.unclassified)
+  const declared = PRIOR_ART_POOL.filter((d) => unclassified.has(d.theorem))
+  const stale = PRIOR_ART_POOL.filter((d) => !unclassified.has(d.theorem))
+  const count = (pool: string) => declared.filter((d) => d.pool === pool).length
+  const undeclared = l.unclassified.length - declared.length
+  console.log(`  of the ${l.unclassified.length} unclassified, by DECLARED pool:`)
+  console.log(`    bounded    ${String(count('bounded')).padStart(4)}  a search is well posed and has not been run — the actionable rows`)
+  console.log(`    unbounded  ${String(count('unbounded')).padStart(4)}  the subject IS this artifact or a sibling; no literature can restate it, so unclassified is the correct resting state`)
+  console.log(`    mixed      ${String(count('mixed')).padStart(4)}  carries both — split before searching`)
+  console.log(`    UNDECLARED ${String(undeclared).padStart(4)}  the honest remainder: nobody has asked whether a search is even well posed`)
+
+  // A DECLARATION FOR A ROW THAT IS NO LONGER UNCLASSIFIED IS STALE, and a stale declaration is worse
+  // than none: it describes a bucket the row has left. Same rule the deposits ledger holds.
+  if (stale.length) {
+    throw new Error(
+      `${stale.length} prior-art pool declaration(s) name rows that are no longer unclassified: ` +
+      `${stale.map((d) => d.theorem).join(', ')}. A row that has been attributed or claimed does not need a pool.`
+    )
+  }
   if (l.attributed.length + l.claimed.length + l.unclassified.length !== l.total) {
     throw new Error('the buckets do not partition the registry — every atom must fall in exactly one')
   }

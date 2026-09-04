@@ -97566,10 +97566,11 @@ function displayDualDebtReceipt(matrix = buildMatrix(), missingComponentNames = 
   const graph = componentGraph();
   const law = folderLaw();
   const missing = [...missingComponentNames];
+  const waiverNeedsDebt = (debt) => debt.length > 0;
   const facets = [
     {
       facet: "display-dual debt sealed \u2014 componentGraph declares more .vue than the render inventory holds",
-      on: missing.length > 0
+      on: waiverNeedsDebt(missing)
     },
     {
       facet: "every missing name is declared in componentGraph (no invented debt)",
@@ -97577,15 +97578,24 @@ function displayDualDebtReceipt(matrix = buildMatrix(), missingComponentNames = 
     },
     {
       facet: "gate waiver \u2014 fifth/no-file BLOCKING deferred to display-dual convergence wave",
-      on: missing.length > 0
+      on: waiverNeedsDebt(missing)
     },
     {
       facet: "folderLaw.displayDual law unchanged \u2014 index.ts + index.vue co-located at science/model/action",
       on: typeof law.displayDual?.law === "string" && law.displayDual.law.includes("index.vue")
     },
     {
-      facet: "HONEST \u2014 waiver recomputes every build; debt count must shrink as thin mounts land",
-      on: true
+      // WAS `on: true`. It asserted an INTENTION — that the debt must shrink — and an intention cannot
+      // be false, so the facet could not fail and the word HONEST in its own text was doing the work a
+      // computation should do. zeropoint-node-8a calls this state PRESENT BUT HOLLOWED: the claim
+      // stands, the check has been gutted, and the name still resolves.
+      //
+      // What is actually checkable is the property the intention rests on: THE WAIVER CANNOT OUTLIVE
+      // THE DEBT. Its gate is evaluated here against an empty list, so if anyone widens it to hold
+      // unconditionally this fires. The intention itself has moved to the boundary, where a caveat
+      // belongs, rather than posing as a claim.
+      facet: "the waiver expires by construction \u2014 its own gate, evaluated against a cleared debt, is false",
+      on: waiverNeedsDebt([]) === false && waiverNeedsDebt(missing) === missing.length > 0
     }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`display-dual-debt:${entry2.facet}:${entry2.on}`) }));
   const waiverOn = facets.every((entry2) => entry2.on);
