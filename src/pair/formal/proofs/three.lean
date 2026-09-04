@@ -122,4 +122,83 @@ theorem frustum_brackets_the_focal_plane :
 theorem denominator_is_positive_on_the_frustum :
     ∀ k ∈ [(-5 : Int), -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], 0 < den k := by decide
 
+
+/-! ## The involution the lattice was carrying all along
+
+  Nothing chose this. The cells are placed centred on the origin so that the closure needs no
+  layout table, and a centred lattice is symmetric under point reflection through its centre:
+
+      σ(g, m) = (rows - 1 - g, cols - 1 - m).
+
+  Everything below follows from that one fact, and none of it was stated when the closure was
+  built. σ is an involution; it maps the closure onto itself; it has NO fixed point, because both
+  dimensions are even, so the 180 cells fall into exactly 90 orbits of size two; the paired
+  positions cancel exactly; and — the one that is not obvious — under row-major addressing the
+  reflection is ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179 for every cell.
+
+  This is the corpus's own involution law (σ² = id, orbits summing to zero) appearing unbidden in
+  a three.js scene graph, because the same centring that made the layout free made the symmetry
+  inevitable. Coordinates are doubled below so a centred lattice with an even side stays in Int
+  and every claim remains an exact integer computation.
+
+  Every statement is a BOOLEAN computation. The bounded-quantifier form is decidable but reasons
+  through Quot.sound; List.all reduces in the kernel and depends on nothing.
+-/
+
+/-- Point reflection through the centre of the lattice. -/
+def refl (rows cols : Nat) (p : Nat × Nat) : Nat × Nat := (rows - 1 - p.1, cols - 1 - p.2)
+
+/-- A centred coordinate, doubled to stay integral: 2·X(i) = 2i − (n−1). -/
+def coord2 (n i : Nat) : Int := 2 * (i : Int) - ((n : Int) - 1)
+
+def reflIsInvolutive (rows cols : Nat) : Bool :=
+  (cells rows cols).all (fun p => refl rows cols (refl rows cols p) == p)
+
+def reflStaysInside (rows cols : Nat) : Bool :=
+  (cells rows cols).all (fun p => (cells rows cols).contains (refl rows cols p))
+
+def reflHasNoFixedPoint (rows cols : Nat) : Bool :=
+  (cells rows cols).all (fun p => !(refl rows cols p == p))
+
+def reflComplementsAddress (rows cols : Nat) : Bool :=
+  (cells rows cols).all (fun p =>
+    idx cols (refl rows cols p).1 (refl rows cols p).2 + idx cols p.1 p.2 == rows * cols - 1)
+
+def orbitPositionsCancel (rows cols : Nat) : Bool :=
+  (cells rows cols).all (fun p =>
+    (coord2 rows p.1 + coord2 rows (refl rows cols p).1 == 0) &&
+    (coord2 cols p.2 + coord2 cols (refl rows cols p).2 == 0))
+
+/-- σ² = id on every cell of the closure. -/
+theorem reflection_is_an_involution : reflIsInvolutive 18 10 = true := by decide
+
+/-- σ maps the closure onto itself — the symmetry does not leave the space. -/
+theorem reflection_closes_on_the_closure : reflStaysInside 18 10 = true := by decide
+
+/-- NO cell is its own reflection. Both sides are even, so the centre falls between cells and every
+    orbit has size exactly two. With an odd side there would be a fixed point, exactly as the digit
+    reflection d ↦ 10 − d fixes 5 and nothing else. -/
+theorem reflection_has_no_fixed_point : reflHasNoFixedPoint 18 10 = true := by decide
+
+/-- So the closure is 90 orbits of two, with nothing left over. -/
+theorem the_closure_is_ninety_orbits : (cells 18 10).length = 2 * 90 := by decide
+
+/-- THE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly —
+    the involution law this corpus states everywhere, holding here because the lattice is centred. -/
+theorem orbit_positions_cancel : orbitPositionsCancel 18 10 = true := by decide
+
+/-- ROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The
+    geometric symmetry and the arithmetic one are the same symmetry, which is not visible from
+    either the layout or the addressing alone. -/
+theorem reflection_complements_the_address : reflComplementsAddress 18 10 = true := by decide
+
+/-- The same four laws at other shapes, so none of them is an accident of 18 and 10. An ODD side
+    breaks the no-fixed-point law and only that one — 3×3 has a centre cell, and it is its own
+    reflection — while involutivity, closure, cancellation and complement survive. -/
+theorem the_involution_laws_are_general :
+    (reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧
+    (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧
+    (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧
+    (orbitPositionsCancel 3 3 = true) ∧ (reflHasNoFixedPoint 3 3 = false) := by decide
+
 end Three

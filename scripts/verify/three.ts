@@ -25,7 +25,7 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { threeCameraFromFocal, threeCombinationClosure, threeCoversEveryCombination, type ThreeCatalogue } from '../../src/quantum/wind/geometry/index.ts'
+import { threeCameraFromFocal, threeClosureIsInvolutive, threeCombinationClosure, threeCoversEveryCombination, type ThreeCatalogue } from '../../src/quantum/wind/geometry/index.ts'
 
 /**
  * What the installed three.js actually offers. A geometry counts only if it BUILDS ITSELF with no
@@ -95,6 +95,12 @@ export async function assertThreeCoverage(): Promise<void> {
   for (const f of r.facets) console.log(`  ${f.on ? 'on ' : 'OFF'}  ${f.facet}`)
   const off = r.facets.filter((f) => !f.on)
   if (off.length) throw new Error(`three coverage: ${off.length} facet(s) refuted — ${off.map((f) => f.facet).join(' · ')}`)
+
+  const inv = threeClosureIsInvolutive(cat)
+  console.log(`  involution: ${inv.orbits} orbits, ${inv.fixedPoints} fixed point(s)`)
+  for (const f of inv.facets) console.log(`  ${f.on ? 'on ' : 'OFF'}  ${f.facet}`)
+  const invOff = inv.facets.filter((f) => !f.on)
+  if (invOff.length) throw new Error(`three involution: ${invOff.length} facet(s) refuted — ${invOff.map((f) => f.facet).join(' · ')}`)
 
   const leaks = threeImportsUnderSrc()
   if (leaks.length) {

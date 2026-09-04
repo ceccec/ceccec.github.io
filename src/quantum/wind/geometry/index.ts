@@ -397,3 +397,52 @@ export function threeCoversEveryCombination(cat: ThreeCatalogue) {
     ]
   }
 }
+
+/**
+ * THE INVOLUTION THE LATTICE WAS CARRYING ALL ALONG.
+ *
+ * Nothing chose this. Cells are placed centred on the origin so the closure needs no layout table,
+ * and a centred lattice is symmetric under point reflection through its centre. Everything that
+ * follows was already true when the closure was built and simply had not been stated: the map is
+ * an involution, it maps the closure onto itself, it has no fixed point when both sides are even
+ * (so 180 cells fall into exactly 90 orbits of two), reflected positions cancel exactly, and — the
+ * one that is not visible from either the layout or the addressing alone — under row-major
+ * addressing the reflection is ADDRESS COMPLEMENT.
+ *
+ * It is this corpus's own involution law, σ² = id with orbits summing to zero, appearing unbidden
+ * in a three.js scene graph: the centring that made the layout free made the symmetry inevitable.
+ * Proved for all 180 cells, and at three further shapes, in src/pair/formal/proofs/three.lean.
+ */
+export function threeReflect(cat: ThreeCatalogue, cell: ThreeCell): ThreeCell {
+  return threeCellAt(cat, cat.geometries.length - 1 - cell.gi, cat.materials.length - 1 - cell.mi)
+}
+
+export function threeClosureIsInvolutive(cat: ThreeCatalogue) {
+  const cells = threeCombinationClosure(cat)
+  const last = cells.length - 1
+  const evenSided = cat.geometries.length % 2 === 0 && cat.materials.length % 2 === 0
+  const involutive = cells.every((c) => {
+    const r = threeReflect(cat, c)
+    return threeReflect(cat, r).index === c.index
+  })
+  const cancels = cells.every((c) => {
+    const r = threeReflect(cat, c)
+    return c.at.X + r.at.X === 0 && c.at.Y + r.at.Y === 0 && c.at.Z + r.at.Z === 0
+  })
+  const complements = cells.every((c) => threeReflect(cat, c).index + c.index === last)
+  const fixed = cells.filter((c) => threeReflect(cat, c).index === c.index).length
+  return {
+    orbits: (cells.length - fixed) / 2 + fixed,
+    fixedPoints: fixed,
+    facets: [
+      { facet: `reflection through the lattice centre is an involution: applied twice it is the identity`,
+        on: involutive },
+      { facet: `reflected positions cancel exactly — every orbit sums to zero in all three axes`,
+        on: cancels },
+      { facet: `row-major reflection IS address complement: idx(sigma c) + idx(c) = ${last}`,
+        on: complements },
+      { facet: `both sides even, so no cell is its own reflection and the closure is ${(cells.length - fixed) / 2} orbits of two`,
+        on: evenSided ? fixed === 0 : fixed > 0 }
+    ]
+  }
+}

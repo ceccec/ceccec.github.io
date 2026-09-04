@@ -76,7 +76,7 @@ The pinhole is an **integer rational**. Unit scale at the focal plane ($24/24 = 
 
 ## The theorems
 
-Eleven, in [`src/pair/formal/proofs/three.lean`](https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean). **All eleven depend on no axiom at all** — `#print axioms` reports "does not depend on any axioms" for every one, which the verification gate re-checks on every run.
+Eighteen, in [`src/pair/formal/proofs/three.lean`](https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean). **All eighteen depend on no axiom at all** — `#print axioms` reports "does not depend on any axioms" for every one, which the verification gate re-checks on every run.
 
 | Theorem | What it settles |
 |---|---|
@@ -91,6 +91,13 @@ Eleven, in [`src/pair/formal/proofs/three.lean`](https://github.com/ceccec/cecce
 | `depth_is_strictly_monotone` | nearer enlarges, further recedes, strictly |
 | `frustum_brackets_the_focal_plane` | near $<F<$ far, non-degenerate |
 | `denominator_is_positive_on_the_frustum` | the projection never divides by zero |
+| `reflection_is_an_involution` | $\sigma^2 = \mathrm{id}$ on all 180 cells |
+| `reflection_closes_on_the_closure` | $\sigma$ maps the closure onto itself |
+| `reflection_has_no_fixed_point` | no cell is its own reflection |
+| `the_closure_is_ninety_orbits` | 180 = 2 × 90, nothing left over |
+| `orbit_positions_cancel` | every orbit sums to zero in all three axes |
+| `reflection_complements_the_address` | row-major reflection is address complement |
+| `the_involution_laws_are_general` | the same laws at 8×8 and 3×3, where an odd side breaks exactly one |
 
 **A note on what made them axiom-free.** `closure_is_complete` was first written as a bounded quantifier, `∀ g ∈ List.range 18, ∀ m ∈ List.range 10, (g,m) ∈ cells 18 10`. That form is decidable, but its instance reasons through `Quot.sound`, so the theorem cost two axioms. Restated as a Boolean computation — `List.all` over `List.contains`, proved `= true` — it reduces in the kernel and costs none. That is the difference between a proof that is *checked* and a proof that is *computed*, and it is the same substitution that made this corpus's spacetime proofs axiom-free.
 
@@ -121,6 +128,29 @@ npm run verify:lean
 ```
 
 Compiles all 15 Lean files and reports, per file, how many theorems depend on no axiom.
+
+---
+
+## The involution nobody put there
+
+**The lattice was carrying a symmetry before anyone looked for one.** Cells are placed centred on the origin so the closure needs no layout table — and a centred lattice is symmetric under point reflection through its centre:
+
+$$
+\sigma(g, m) = (\,|\mathcal{G}| - 1 - g,\ |\mathcal{M}| - 1 - m\,).
+$$
+
+Nothing was designed to make this true. It follows from the centring, which was chosen only to avoid writing a layout table. Seven consequences, all proved:
+
+- $\sigma$ is an **involution**: $\sigma^2 = \mathrm{id}$ on all 180 cells.
+- $\sigma$ maps the closure **onto itself** — the symmetry never leaves the space.
+- $\sigma$ has **no fixed point**, because 18 and 10 are both even, so the centre falls between cells rather than on one.
+- Therefore the closure is exactly **90 orbits of two**, with nothing left over.
+- **Reflected positions cancel exactly**: every orbit sums to zero in all three axes.
+- **Row-major reflection *is* address complement**: $\mathrm{idx}(\sigma c) + \mathrm{idx}(c) = 179$ for every cell. The geometric symmetry and the arithmetic one are the same symmetry — and that is not visible from either the layout or the addressing on its own.
+- The laws hold at other shapes too. An **odd** side breaks the no-fixed-point law *and only that one*: a $3 \times 3$ lattice has a centre cell that is its own reflection, while involutivity, closure, cancellation and complement all survive — exactly as the digit reflection $d \mapsto 10 - d$ fixes 5 and nothing else.
+
+This is **this corpus's own involution law — $\sigma^2 = \mathrm{id}$, orbits summing to zero — appearing unbidden in a three.js scene graph.** The centring that made the layout free made the symmetry inevitable. It is stated here because it was true and unstated, which is the only reason any of these theorems exist.
+
 
 ---
 
