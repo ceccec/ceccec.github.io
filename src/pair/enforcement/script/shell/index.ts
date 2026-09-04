@@ -449,14 +449,27 @@ export function slowBuildIsQuantumGapGate(root = process.cwd()) {
         timing.srcMerkleBound === true,
       ))
     }
-    if (timing.mode === 'quantum-respawn') {
-      const band = SLOW_BUILD_RESPAWN_WALL_MS * digitalRoot(DIMENSION_GATES)
+    // THE WALL-CLOCK GAP MUST EXIST IN EVERY MODE. This whole block sat behind
+    // `if (timing.mode === 'quantum-respawn')`, and every build this repository actually runs reports
+    // mode=warm-seal — so the gap was never CREATED. It was not closed and it was not open; it was
+    // absent, and the gate's own summary read "HARD open=0 WARN open=0 closed=15/15" on builds taking
+    // 126 to 221 seconds against a band of 8748ms. A gate named for slow builds had never once
+    // evaluated the duration of a build, and could not have.
+    //
+    // The band is per-mode because the modes do different work. A quantum-respawn reuses a sealed
+    // .temp and is bounded by the merkle lattice; a warm seal rebuilds every page and is bounded by
+    // the vitepress phase budget. Reusing the respawn band for a full build was the second half of
+    // the defect: 8748ms is a merkle-phase budget, and no full build of 1039 pages has ever fit it.
+    {
+      const band = timing.mode === 'quantum-respawn'
+        ? SLOW_BUILD_RESPAWN_WALL_MS * digitalRoot(DIMENSION_GATES)
+        : SLOW_BUILD_VITEPRESS_MS
       const under = timing.wallMs <= band
       gaps.push(slowBuildGap(
-        'slow-build:respawn-wall',
+        `slow-build:${timing.mode}-wall`,
         'WARN',
-        'quantum-respawn',
-        `respawn wallMs vs ${band}ms lattice band (WARN — CI variance)`,
+        timing.mode,
+        `${timing.mode} wallMs vs ${band}ms lattice band (WARN — CI variance)`,
         under,
         timing.wallMs,
         band,

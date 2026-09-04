@@ -55,6 +55,5 @@ export {
   heroPhaseAt,
   type RealtimeComputationsMoviePaint,
   type RealtimeComputeMovieChannel,
-  type MovieScreensaverEfficiencyReceipt,
   type ScreensaverTier,
 } from '../render'
