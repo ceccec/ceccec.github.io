@@ -93,13 +93,21 @@ onMounted(async () => {
   key.position.set(1, 1, 1)
   scene.add(key)
 
-  // The grid spans |geometries| x |materials| pitches; fit it into the frustum's half-width at the
-  // focal plane, which the fov itself gives: halfWidth = tan(fov/2) * FOCAL = 1 by construction.
-  const span = Math.max(cat.geometries.length, cat.materials.length) * (1 + 1 / 2)
+  // FIT DERIVED FROM THE FRUSTUM, not chosen. At the focal plane the visible half-height is
+  // tan(fov/2) * FOCAL, and fov was defined so tan(fov/2) = 1/FOCAL — so the half-height is exactly
+  // 1 and the half-width is the aspect ratio. The lattice occupies half a pitch beyond its outermost
+  // centres, giving half-extents of |G|/2 and |M|/2, and the scale is whichever axis binds first.
+  const halfH = 1
+  const halfW = halfH * (width / height)
   const group = new THREE.Group()
-  group.scale.setScalar(2 / span)
+  // No fudge margin: the half-extents are |G|/2 and |M|/2 rather than (|G|-1)/2 and (|M|-1)/2, so
+  // half a pitch of padding is already built in on every side — exactly the radius each cell is
+  // scaled to. An extra factor here would be a magic number, and the literal ledger says so.
+  group.scale.setScalar(Math.min(halfW / (cat.geometries.length / 2), halfH / (cat.materials.length / 2)))
   scene.add(group)
 
+  // One hue for every cell, so the comparison is of SHAPE and SHADING and never of colour.
+  const COLOUR = 0x8899ff
   const meshes: { mesh: InstanceType<typeof THREE.Mesh>; cell: ThreeCell }[] = []
   const built: unknown[] = []
   for (const cell of closure) {
@@ -109,7 +117,13 @@ onMounted(async () => {
     // Every cell drawn at the same size, so the comparison is of SHAPE and SHADING, not of scale.
     geo.computeBoundingSphere()
     const r = geo.boundingSphere?.radius || 1
-    const mat = new M({ color: 0x8899ff, wireframe: false })
+    // Three of the ten mesh materials take no colour (Normal, Depth and Distance derive it), and
+    // one takes no wireframe flag. Passing them anyway is harmless but three.js warns once per
+    // cell per build, which buried the real error in the console when this was being debugged.
+    const probe = new M() as unknown as Record<string, unknown>
+    const opts: Record<string, unknown> = {}
+    if ('color' in probe) opts.color = COLOUR
+    const mat = new M(opts)
     const mesh = new THREE.Mesh(geo, mat)
     mesh.scale.setScalar((1 / 2) / r)
     mesh.position.set(cell.at.X, cell.at.Y, cell.at.Z)
@@ -120,13 +134,29 @@ onMounted(async () => {
 
   const draw = (t: number) => {
     if (!visible) return
+    // THE LATTICE FACES THE VIEWER; THE OBJECTS TURN. Spinning the whole grid about Y sent it
+    // edge-on twice a cycle and the catalogue vanished into a line — a flat lattice is the wrong
+    // thing to rotate. So the grid holds its plane and each cell turns on its own axis, which is
+    // also the only way to see that these are 180 distinct SHAPES rather than 180 sprites.
+    //
     // One turn per HERO CYCLE, phase-locked to the shared clock: the same t that drives every other
     // surface on the page, at the cycle length they all share, so nothing runs on a private
-    // schedule OR at a private rate. The oblique tilt is the sealed one the canvas merkaba and
-    // living-torus painters already use — a second tilt would be a second corpus.
+    // schedule OR at a private rate. Each cell's phase offset is its own address over the closure
+    // size, so the lattice never beats in unison and the offsets need no table. The oblique tilt is
+    // the sealed one the canvas merkaba and living-torus painters already use — a second tilt would
+    // be a second corpus.
+    // THE LATTICE DOES NOT TILT. The sealed frustum is exactly one pitch deep — near and far sit
+    // half a pitch either side of the focal plane, because that is the depth a flat centred lattice
+    // occupies. Tilting the plane pushed its far corners to Z = +/-0.62 in world units, outside
+    // [near, far], and three.js clipped most of the catalogue away: first to a sliver, then to
+    // nothing. The frustum is derived from the projection law and is not the thing to widen, so the
+    // lattice stays in its plane and only the cells turn.
     const a = (t / HERO_CYCLE_MS) * TAU
-    group.rotation.y = a
-    group.rotation.x = Math.sin(a) * OBLIQUE_VIEW_TILT
+    for (const { mesh, cell } of meshes) {
+      const phase = (cell.index / closure.length) * TAU
+      mesh.rotation.y = a + phase
+      mesh.rotation.x = OBLIQUE_VIEW_TILT
+    }
     renderer.render(scene, camera)
   }
 

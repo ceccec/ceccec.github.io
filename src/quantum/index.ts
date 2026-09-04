@@ -2127,12 +2127,45 @@ export {
   type RealtimeComputationsMoviePaint,
   type RealtimeComputeMovieChannel } from '../fire/plasma/ball/index.ts'
 
+/**
+ * ONE THROWING SUBSCRIBER MUST NOT STOP THE CLOCK.
+ *
+ * The tick used to be `listeners.forEach((fn) => fn(at))` followed by the next
+ * requestAnimationFrame. A single subscriber throwing anywhere in that forEach propagated out of
+ * the tick, so the next frame was never scheduled — and because `heroClockRaf` stayed truthy, no
+ * later subscriber could ever start a replacement loop. EVERY animation on the site froze
+ * permanently, from one fault in one component, and the only visible symptom was stillness.
+ *
+ * That is what a single shared clock costs if it has no isolation, and it was found the honest
+ * way: a new subscriber's draw was never called once, while the surfaces around it had already
+ * stopped and nobody had noticed, because a frozen animation looks like a static design.
+ *
+ * So dispatch is isolated per subscriber, and a subscriber that throws is DROPPED rather than
+ * left to throw sixty times a second. Dropping is not silence: the failure is counted and the
+ * count is readable, so a dead animation is a number somewhere rather than a mystery.
+ */
+export const heroClockFailures: { at: number; message: string }[] = []
+
+export function dispatchHeroClock(at: number, listeners: Set<(at: number) => void>): number {
+  let failed = 0
+  for (const fn of [...listeners]) {
+    try {
+      fn(at)
+    } catch (e) {
+      failed += 1
+      listeners.delete(fn)
+      heroClockFailures.push({ at, message: e instanceof Error ? e.message : String(e) })
+    }
+  }
+  return failed
+}
+
 export function subscribeHeroClock(listener: (at: number) => void): () => void {
   heroClockListeners.add(listener)
   if (typeof globalThis !== 'undefined' && 'requestAnimationFrame' in globalThis && !heroClockRaf) {
     const tick = () => {
       const at = typeof performance !== 'undefined' ? performance.now() : Date.now()
-      heroClockListeners.forEach((fn) => fn(at))
+      dispatchHeroClock(at, heroClockListeners)
       heroClockRaf = requestAnimationFrame(tick)
     }
     heroClockRaf = requestAnimationFrame(tick)
@@ -2178,7 +2211,26 @@ export function oneClockProcessLaw(matrix: MindMatrix = buildMatrix()) {
       else g.cancelAnimationFrame = savedCan
     }
   }
+  // PERTURBATION, not assertion: a listener that throws is fed to the real dispatcher, and the
+  // law checks that the good listener beside it still ran, that the dispatcher did not propagate,
+  // and that the offender was dropped. Before this the law described a clock that a single fault
+  // could stop for good.
+  let survivedAThrow = false
+  let droppedTheOffender = false
+  {
+    const probe = new Set<(at: number) => void>()
+    let goodRan = 0
+    const bad = () => { throw new Error('perturbation: a subscriber that throws') }
+    const good = () => { goodRan += 1 }
+    probe.add(bad)
+    probe.add(good)
+    const failures = dispatchHeroClock(0, probe)
+    survivedAThrow = failures === 1 && goodRan === 1
+    droppedTheOffender = !probe.has(bad) && probe.has(good)
+    heroClockFailures.length = 0 // the probe's own failure is not a site failure
+  }
   const claims = [
+    { facet: 'a subscriber that throws does not stop the clock — the others still tick, and it is dropped', on: survivedAThrow && droppedTheOffender },
     { facet: 'three subscribers start exactly ONE loop — the clock coalesces every animation into one tick', on: startedForThree === 1 },
     { facet: 'the last unsubscribe cancels the loop — zero orphan processes outside the sequence', on: cancelledAfterLast === 1 },
   ]
