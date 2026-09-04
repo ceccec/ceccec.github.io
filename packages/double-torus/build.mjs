@@ -36,8 +36,19 @@ mkdirSync(outDir, { recursive: true })
 // library consumer — but a value-import pulls the whole module, so esbuild would otherwise fail to resolve
 // `node:fs`/`node:path`/… under platform:neutral. We resolve every `node:` specifier to one inline stub so
 // the published bundle has NO external imports and runs unchanged in any browser or Node. `path` gets real
-// (pure, POSIX) string logic; `fs`/`crypto`/`url` are benign no-ops (the build-only helpers degrade to empty
-// rather than crash). This keeps the package honestly zero-dependency and agnostic.
+// (pure, POSIX) string logic, because path arithmetic is pure and correct off-platform.
+//
+// THE IMPURE ONES REFUSE RATHER THAN ANSWER. They used to degrade to empty: existsSync() => false,
+// readdirSync() => [], readFileSync() => "", statSync().size => 0, and createHash().digest() => ""
+// — ONE HASH VALUE FOR EVERY INPUT, in a package whose entire subject is content addressing. Off
+// Node that is not a degraded read, it is a fabricated measurement: a fold counting files gets 0
+// and reports it; a fold hashing a payload gets "" and seals it. This corpus spent a whole session
+// removing exactly that class from its own source — a function that answers instead of refusing —
+// while shipping it in the bundle.
+//
+// The line above says these helpers are "never invoked by a library consumer". That is an ASSERTION.
+// Refusing turns it into a measurement: if it is true nothing changes, and if it is false the caller
+// finds out at the call site instead of believing an empty answer.
 const NODE_BUILTIN_STUB = [
   'const _seg = (p) => String(p).split("/").filter(Boolean)',
   'export const join = (...parts) => parts.filter((p) => p != null && p !== "").join("/").replace(/\\/+/g, "/")',
@@ -45,20 +56,21 @@ const NODE_BUILTIN_STUB = [
   'export const basename = (p, ext) => { let b = _seg(p).pop() || ""; if (ext && b.endsWith(ext)) b = b.slice(0, -ext.length); return b }',
   'export const resolve = (...parts) => "/" + parts.flatMap(_seg).join("/")',
   'export const relative = (from, to) => { const a = _seg(from), b = _seg(to); let i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++; return [...a.slice(i).map(() => ".."), ...b.slice(i)].join("/") }',
-  'export const existsSync = () => false',
-  'export const readdirSync = () => []',
-  'export const readFileSync = () => ""',
-  'export const writeFileSync = () => undefined',
-  'export const mkdirSync = () => undefined',
-  'export const rmSync = () => undefined',
-  'export const statSync = () => ({ isDirectory: () => false, isFile: () => false, size: 0 })',
-  'export const createHash = () => ({ update() { return this }, digest() { return "" } })',
+  'const refuse = (n) => { throw new Error("node:" + n + " is not available in this bundle. @ceccec/double-torus is bundled platform-neutral, so a published path reached a build-time helper. It refuses rather than returning an empty answer, which would be indistinguishable from a real measurement.") }',
+  'export const existsSync = () => refuse("fs.existsSync")',
+  'export const readdirSync = () => refuse("fs.readdirSync")',
+  'export const readFileSync = () => refuse("fs.readFileSync")',
+  'export const writeFileSync = () => refuse("fs.writeFileSync")',
+  'export const mkdirSync = () => refuse("fs.mkdirSync")',
+  'export const rmSync = () => refuse("fs.rmSync")',
+  'export const statSync = () => refuse("fs.statSync")',
+  'export const createHash = () => refuse("crypto.createHash")',
   'export const pathToFileURL = (p) => ({ href: "file://" + String(p) })',
   'export const fileURLToPath = (u) => String(u).replace(/^file:\\/\\//, "")',
   // child_process / module — repo tooling (enforcement shell, quantum cache). Never invoked by the
   // published computational/animation API; stub so the browser/Node-neutral bundle stays zero-dep.
-  'export const spawn = () => ({ on() { return this }, kill() {}, pid: 0, stdout: null, stderr: null })',
-  'export const spawnSync = () => ({ status: 1, signal: null, stdout: "", stderr: "", error: new Error("node:child_process stub") })',
+  'export const spawn = () => refuse("child_process.spawn")',
+  'export const spawnSync = () => refuse("child_process.spawnSync")',
   'export const createRequire = () => () => ({})',
   'export default {}',
 ].join('\n')

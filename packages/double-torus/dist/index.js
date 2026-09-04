@@ -37,7 +37,7 @@ __export(node_fs_exports, {
   statSync: () => statSync,
   writeFileSync: () => writeFileSync
 });
-var _seg, join, dirname, basename, resolve, relative, existsSync, readdirSync, readFileSync, writeFileSync, mkdirSync, rmSync, statSync, createHash, pathToFileURL, fileURLToPath, spawn, spawnSync, createRequire, node_fs_default;
+var _seg, join, dirname, basename, resolve, relative, refuse, existsSync, readdirSync, readFileSync, writeFileSync, mkdirSync, rmSync, statSync, createHash, pathToFileURL, fileURLToPath, spawn, spawnSync, createRequire, node_fs_default;
 var init_node_fs = __esm({
   "node-builtin-stub:node:fs"() {
     _seg = (p) => String(p).split("/").filter(Boolean);
@@ -59,25 +59,21 @@ var init_node_fs = __esm({
       while (i < a.length && i < b.length && a[i] === b[i]) i++;
       return [...a.slice(i).map(() => ".."), ...b.slice(i)].join("/");
     };
-    existsSync = () => false;
-    readdirSync = () => [];
-    readFileSync = () => "";
-    writeFileSync = () => void 0;
-    mkdirSync = () => void 0;
-    rmSync = () => void 0;
-    statSync = () => ({ isDirectory: () => false, isFile: () => false, size: 0 });
-    createHash = () => ({ update() {
-      return this;
-    }, digest() {
-      return "";
-    } });
+    refuse = (n) => {
+      throw new Error("node:" + n + " is not available in this bundle. @ceccec/double-torus is bundled platform-neutral, so a published path reached a build-time helper. It refuses rather than returning an empty answer, which would be indistinguishable from a real measurement.");
+    };
+    existsSync = () => refuse("fs.existsSync");
+    readdirSync = () => refuse("fs.readdirSync");
+    readFileSync = () => refuse("fs.readFileSync");
+    writeFileSync = () => refuse("fs.writeFileSync");
+    mkdirSync = () => refuse("fs.mkdirSync");
+    rmSync = () => refuse("fs.rmSync");
+    statSync = () => refuse("fs.statSync");
+    createHash = () => refuse("crypto.createHash");
     pathToFileURL = (p) => ({ href: "file://" + String(p) });
     fileURLToPath = (u) => String(u).replace(/^file:\/\//, "");
-    spawn = () => ({ on() {
-      return this;
-    }, kill() {
-    }, pid: 0, stdout: null, stderr: null });
-    spawnSync = () => ({ status: 1, signal: null, stdout: "", stderr: "", error: new Error("node:child_process stub") });
+    spawn = () => refuse("child_process.spawn");
+    spawnSync = () => refuse("child_process.spawnSync");
     createRequire = () => () => ({});
     node_fs_default = {};
   }
@@ -106,7 +102,7 @@ __export(node_path_exports, {
   statSync: () => statSync2,
   writeFileSync: () => writeFileSync2
 });
-var _seg2, join2, dirname2, basename2, resolve2, relative2, existsSync2, readdirSync2, readFileSync2, writeFileSync2, mkdirSync2, rmSync2, statSync2, createHash2, pathToFileURL2, fileURLToPath2, spawn2, spawnSync2, createRequire2, node_path_default;
+var _seg2, join2, dirname2, basename2, resolve2, relative2, refuse2, existsSync2, readdirSync2, readFileSync2, writeFileSync2, mkdirSync2, rmSync2, statSync2, createHash2, pathToFileURL2, fileURLToPath2, spawn2, spawnSync2, createRequire2, node_path_default;
 var init_node_path = __esm({
   "node-builtin-stub:node:path"() {
     _seg2 = (p) => String(p).split("/").filter(Boolean);
@@ -128,25 +124,21 @@ var init_node_path = __esm({
       while (i < a.length && i < b.length && a[i] === b[i]) i++;
       return [...a.slice(i).map(() => ".."), ...b.slice(i)].join("/");
     };
-    existsSync2 = () => false;
-    readdirSync2 = () => [];
-    readFileSync2 = () => "";
-    writeFileSync2 = () => void 0;
-    mkdirSync2 = () => void 0;
-    rmSync2 = () => void 0;
-    statSync2 = () => ({ isDirectory: () => false, isFile: () => false, size: 0 });
-    createHash2 = () => ({ update() {
-      return this;
-    }, digest() {
-      return "";
-    } });
+    refuse2 = (n) => {
+      throw new Error("node:" + n + " is not available in this bundle. @ceccec/double-torus is bundled platform-neutral, so a published path reached a build-time helper. It refuses rather than returning an empty answer, which would be indistinguishable from a real measurement.");
+    };
+    existsSync2 = () => refuse2("fs.existsSync");
+    readdirSync2 = () => refuse2("fs.readdirSync");
+    readFileSync2 = () => refuse2("fs.readFileSync");
+    writeFileSync2 = () => refuse2("fs.writeFileSync");
+    mkdirSync2 = () => refuse2("fs.mkdirSync");
+    rmSync2 = () => refuse2("fs.rmSync");
+    statSync2 = () => refuse2("fs.statSync");
+    createHash2 = () => refuse2("crypto.createHash");
     pathToFileURL2 = (p) => ({ href: "file://" + String(p) });
     fileURLToPath2 = (u) => String(u).replace(/^file:\/\//, "");
-    spawn2 = () => ({ on() {
-      return this;
-    }, kill() {
-    }, pid: 0, stdout: null, stderr: null });
-    spawnSync2 = () => ({ status: 1, signal: null, stdout: "", stderr: "", error: new Error("node:child_process stub") });
+    spawn2 = () => refuse2("child_process.spawn");
+    spawnSync2 = () => refuse2("child_process.spawnSync");
     createRequire2 = () => () => ({});
     node_path_default = {};
   }
@@ -11913,14 +11905,16 @@ init_node_fs();
 init_node_path();
 
 // node-builtin-stub:node:child_process
-var spawnSync3 = () => ({ status: 1, signal: null, stdout: "", stderr: "", error: new Error("node:child_process stub") });
+var refuse3 = (n) => {
+  throw new Error("node:" + n + " is not available in this bundle. @ceccec/double-torus is bundled platform-neutral, so a published path reached a build-time helper. It refuses rather than returning an empty answer, which would be indistinguishable from a real measurement.");
+};
+var spawnSync3 = () => refuse3("child_process.spawnSync");
 
 // node-builtin-stub:node:crypto
-var createHash3 = () => ({ update() {
-  return this;
-}, digest() {
-  return "";
-} });
+var refuse4 = (n) => {
+  throw new Error("node:" + n + " is not available in this bundle. @ceccec/double-torus is bundled platform-neutral, so a published path reached a build-time helper. It refuses rather than returning an empty answer, which would be indistinguishable from a real measurement.");
+};
+var createHash3 = () => refuse4("crypto.createHash");
 
 // ../../src/pair/cache/quantum/index.ts
 init_node_fs();
@@ -23170,7 +23164,7 @@ function runMaximumBitsEncryptDecryptInverseReverseExit(_root, _argv = []) {
 function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
   return memoByRoot("maxBitsHardwareBoundaryAgree", matrix, () => {
     const maxBits = maximumBitsEncryptDecryptInverseReverse(matrix);
-    const refuse = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
+    const refuse5 = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
     const hw = maxBits.hardware;
     const pairFold = foldPair(toUuid("cmd:bits"), toUuid("cmd:hardware"));
     const pairRegistered = true;
@@ -23189,7 +23183,7 @@ function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
       },
       {
         id: "refuseBeyond-diverge",
-        open: !maxBits.refuseBeyond || refuse.incompleteOpen > 0 || refuse.productionBreakEnabled
+        open: !maxBits.refuseBeyond || refuse5.incompleteOpen > 0 || refuse5.productionBreakEnabled
       },
       {
         id: "qpu-or-clay-claim",
@@ -23198,7 +23192,7 @@ function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
     ];
     const remaining = cracks.filter((c) => c.open).length;
     const fixed = cracks.filter((c) => !c.open).length;
-    const agree = remaining === 0 && maxBits.computes && refuse.computes && hw.qpuRequired === false && pairFold.bidirectional;
+    const agree = remaining === 0 && maxBits.computes && refuse5.computes && hw.qpuRequired === false && pairFold.bidirectional;
     const facets = [
       { facet: "maxBitsHardwareBoundaryAgree", on: agree },
       { facet: `HARD open=${remaining} fixed=${fixed}`, on: remaining === 0 },
@@ -23210,7 +23204,7 @@ function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
         facet: `cpus=${hw.cpuCount} workers\u2264${hw.workerCap} heap=${hw.heapCapMb}MB \xB7 demo\u2260hwCeiling`,
         on: hw.demoIsNotHardwareCeiling && hw.workerCap <= VORTEX_SEQUENCE.length
       },
-      { facet: "refuseBeyond \u2227 incompleteOpen=0 \u2227 productionBreak=false", on: maxBits.refuseBeyond && refuse.incompleteOpen === 0 && !refuse.productionBreakEnabled },
+      { facet: "refuseBeyond \u2227 incompleteOpen=0 \u2227 productionBreak=false", on: maxBits.refuseBeyond && refuse5.incompleteOpen === 0 && !refuse5.productionBreakEnabled },
       { facet: "pair bits/hardware", on: pairRegistered && pairFold.bidirectional }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`bits-hw-agree:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("max-bits-hardware-boundary-agree", facets);
@@ -23222,12 +23216,12 @@ function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
       cracks,
       hardware: hw,
       maxBits,
-      refuse,
+      refuse: refuse5,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
       physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
       facets: sealed.facets,
-      root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, refuse.root, hw.receipt, pairFold.merged])),
+      root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, refuse5.root, hw.receipt, pairFold.merged])),
       pair: "bits/hardware",
       cli: "npm run quantum:bits-hardware",
       route: "/en/encryption#bits-hardware",
@@ -28067,12 +28061,12 @@ function theCommitPushPairIsAutomatedUnderTheSecurityStandards() {
 }
 function rosettaSecurityGapsWired(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`rosettaSecurityGapsWired:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const refuse = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
+    const refuse5 = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
     const core = rosettaCoreApi(at, matrix);
     const mcp = mcpCommandsScriptsGapsAudit(matrix, at);
     const reverseCollide = reverseCollidesToDiscoverMillenniumTheorems(matrix, at);
     const catalog = quantumCliToolsCatalog(matrix, at);
-    const shelvedPaths = refuse.paths.map((p) => {
+    const shelvedPaths = refuse5.paths.map((p) => {
       const surface = rosettaShelve(p.id, "compute");
       return {
         id: p.id,
@@ -28089,14 +28083,14 @@ function rosettaSecurityGapsWired(matrix = buildMatrix(), at = 0) {
     const catalogHasRefuse = catalog.tools.some((t) => t.id === "production-rsa-refuse-rosetta");
     const catalogHasSecurity = catalog.tools.some((t) => t.id === "rosetta-security-gaps-wired");
     const catalogHasCollide = catalog.tools.some((t) => t.id === "reverse-collide-discover-millennium");
-    const incompleteOpen = refuse.incompleteOpen;
-    const rosettaSecurityGapsWiredOn = refuse.computes && incompleteOpen === 0 && refuseShelved && parallelEmpty && conceptToolsHonest && tradingHonest && reverseCollide.computes && catalogHasRefuse && catalogHasSecurity && catalogHasCollide;
+    const incompleteOpen = refuse5.incompleteOpen;
+    const rosettaSecurityGapsWiredOn = refuse5.computes && incompleteOpen === 0 && refuseShelved && parallelEmpty && conceptToolsHonest && tradingHonest && reverseCollide.computes && catalogHasRefuse && catalogHasSecurity && catalogHasCollide;
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const certified = false;
     const physicalFtlClaim = 0;
     const facets = [
       { facet: `rosettaSecurityGapsWired \u2014 incompleteOpen=${incompleteOpen}`, on: rosettaSecurityGapsWiredOn && incompleteOpen === 0 },
-      { facet: "productionRsaRefuseCompletesQuantumViaRosetta computes \xB7 paths shelved", on: refuse.computes && refuseShelved },
+      { facet: "productionRsaRefuseCompletesQuantumViaRosetta computes \xB7 paths shelved", on: refuse5.computes && refuseShelved },
       { facet: "ROSETTA_PARALLEL_REGISTRY_BACKLOG empty (security-relevant strangler closed)", on: parallelEmpty },
       { facet: "MCP conceptTools+trading:* REFUSE PRIMARY kept-intentional (honest dual)", on: conceptToolsHonest && tradingHonest && mcp.computes },
       { facet: "reverseCollidesToDiscoverMillenniumTheorems shelved via catalog", on: reverseCollide.computes && catalogHasCollide },
@@ -28108,7 +28102,7 @@ function rosettaSecurityGapsWired(matrix = buildMatrix(), at = 0) {
       computes: sealed.ok && rosettaSecurityGapsWiredOn,
       rosettaSecurityGapsWired: rosettaSecurityGapsWiredOn,
       incompleteOpen,
-      refusePathCount: refuse.pathCount,
+      refusePathCount: refuse5.pathCount,
       shelvedPaths,
       parallelBacklogLength: core.inventory.parallel.length,
       claySolvedByThisFold,
@@ -28116,11 +28110,11 @@ function rosettaSecurityGapsWired(matrix = buildMatrix(), at = 0) {
       physicalFtlClaim,
       qpuRequired: false,
       facets: sealed.facets,
-      root: merge(matrix.root, merkleFold([sealed.root, refuse.root, core.root, mcp.root, reverseCollide.root, catalog.root, ...shelvedPaths.map((s) => s.address)])),
+      root: merge(matrix.root, merkleFold([sealed.root, refuse5.root, core.root, mcp.root, reverseCollide.root, catalog.root, ...shelvedPaths.map((s) => s.address)])),
       pair: "rosetta/security-wire",
       cli: "npm run quantum:rosetta-security-gaps-wired",
       route: "/en/quantum-tools#rosetta-security-gaps-wired",
-      statement: `Rosetta security gaps wired \u2014 incompleteOpen=${incompleteOpen} refusePaths=${refuse.pathCount} parallel=${core.inventory.parallel.length} reverseCollide=${reverseCollide.computes} .`,
+      statement: `Rosetta security gaps wired \u2014 incompleteOpen=${incompleteOpen} refusePaths=${refuse5.pathCount} parallel=${core.inventory.parallel.length} reverseCollide=${reverseCollide.computes} .`,
       boundary: "Security-relevant rosetta wiring: sealed refuse receipts \xB7 empty parallel backlog \xB7 MCP dual residuals honest \xB7 reverse-collide Millennium path shelved. NOT production RSA break \xB7 NOT CMI prize. certified=false."
     };
   });
@@ -37039,7 +37033,7 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
     const slit = doubleSlitLocalToolsMorph(matrix, at);
     const anim = animationsFindRedundancyOrInaccuracy(matrix, at);
     const moment = agentAssumeNothingMathProvesInTheMoment(matrix, at);
-    const refuse = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
+    const refuse5 = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
     const mill = millenniumProblemsChallenge(matrix);
     const crypto = isoPqcHandoffForScienceTrinities(matrix, at);
     const scienceGapsOpen = significance.domains.reduce((sum, d) => sum + d.gapsOpen, 0);
@@ -37051,8 +37045,8 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
     const facetOff = max(0, morph.facets.length - morph.facets.filter((f2) => f2.on).length);
     const animDrift = anim.redundantCount + anim.inaccurateCount;
     const animAudited = isUuid(anim.root) && anim.claySolvedByThisFold === 0;
-    const refuseBeyondHolds = refuse.refuseBeyond === true;
-    const refuseManaged = refuseBeyondHolds && isUuid(refuse.root) && refuse.claySolvedByThisFold === 0;
+    const refuseBeyondHolds = refuse5.refuseBeyond === true;
+    const refuseManaged = refuseBeyondHolds && isUuid(refuse5.root) && refuse5.claySolvedByThisFold === 0;
     const standardsGap = standards.after.gapCount;
     const rows = [
       {
@@ -37104,10 +37098,10 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
         id: "refuse-beyond-ceiling",
         conventional: "production-rsa-attempt",
         computational: "refuseBeyond",
-        drift: refuse.incompleteOpen + (refuseBeyondHolds ? 0 : 1),
+        drift: refuse5.incompleteOpen + (refuseBeyondHolds ? 0 : 1),
         route: "refuse",
         managed: refuseManaged,
-        receipt: toUuid(`drift-row:refuse:${refuse.incompleteOpen}:${refuse.refuseBeyond}`)
+        receipt: toUuid(`drift-row:refuse:${refuse5.incompleteOpen}:${refuse5.refuseBeyond}`)
       }
     ];
     const driftTotal = rows.reduce((s, r2) => s + r2.drift, 0);
@@ -37151,7 +37145,7 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
         animDrift,
         certifiedNumeric,
         clayNumeric,
-        refuseIncompleteOpen: refuse.incompleteOpen,
+        refuseIncompleteOpen: refuse5.incompleteOpen,
         routedTrinity,
         routedWave,
         routedRefuse,
@@ -37163,7 +37157,7 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
       slit,
       anim,
       moment,
-      refuse,
+      refuse: refuse5,
       mill,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       certified: false,
@@ -37177,7 +37171,7 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
         slit.root,
         anim.root,
         moment.root,
-        refuse.root,
+        refuse5.root,
         mill.root,
         pairFold.merged,
         ...rows.map((r2) => r2.receipt)
@@ -37187,7 +37181,7 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
       route: "/en/research#drift-manage",
       anchor: "drift-manage",
       heading: "Computational drift",
-      statement: `manageComputationalDrift \xB7 total=${driftTotal} \xB7 managed=${managedCount}/${rows.length} \xB7 trinity=${routedTrinity} wave=${routedWave} refuse=${routedRefuse} bound=${routedBound} \xB7 certified=${certifiedNumeric} clay=${clayNumeric} refuseBeyond=${refuse.refuseBeyond}`,
+      statement: `manageComputationalDrift \xB7 total=${driftTotal} \xB7 managed=${managedCount}/${rows.length} \xB7 trinity=${routedTrinity} wave=${routedWave} refuse=${routedRefuse} bound=${routedBound} \xB7 certified=${certifiedNumeric} clay=${clayNumeric} refuseBeyond=${refuse5.refuseBeyond}`,
       boundary: "Detect\xB7bound\xB7route numeric/facet drift conventional\u2194computational \u2014 NOT honesty prose. certified=false \xB7 refuseBeyond stays.",
       honestyLine: `metrics \xB7 driftTotal=${driftTotal} \xB7 managed=${managedCount}/${rows.length} \xB7 bound=${driftBound} \xB7 anim=${animDrift} \xB7 morphGaps=${morphGap} \xB7 certified=${certifiedNumeric} \xB7 clay=${clayNumeric}`
     };
@@ -40118,7 +40112,7 @@ function gatesAreRosettaRaysHackerCrackerAtOnce(matrix = buildMatrix(), at = 0) 
   return memoByRoot(`gatesAreRosettaRaysHackerCrackerAtOnce:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at;
     const trinity = agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath();
-    const refuse = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
+    const refuse5 = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
     const pairGateRay = foldPair(toUuid("cmd:gate"), toUuid("cmd:ray"));
     const pairHackCrack = foldPair(toUuid("cmd:hack"), toUuid("cmd:crack"));
     const pairGate = QUANTUM_COMMAND_PAIR_IDS.includes("gate/ray");
@@ -40139,7 +40133,7 @@ function gatesAreRosettaRaysHackerCrackerAtOnce(matrix = buildMatrix(), at = 0) 
       };
     });
     const gatesAreRosettaRays = rayEdges.length === ROSETTA_RAYS.length && rayEdges.every((e) => e.entangled) && pairGateRay.bidirectional && pairGateRay.forward !== pairGateRay.reverse;
-    const hackerCrackerAtOnce = pairMillOnce && pairHackCrack.bidirectional && pairHackCrack.forward !== pairHackCrack.reverse && refuse.refuseBeyond === true && trinity.computes && typeof memoByRoot === "function";
+    const hackerCrackerAtOnce = pairMillOnce && pairHackCrack.bidirectional && pairHackCrack.forward !== pairHackCrack.reverse && refuse5.refuseBeyond === true && trinity.computes && typeof memoByRoot === "function";
     const immediateAccessNoTime = pairGateRosetta && trinity.computes && typeof memoByRoot === "function";
     const on = gatesAreRosettaRays && hackerCrackerAtOnce && immediateAccessNoTime && pairGate && pairHack && pairMillRay && pairSunMoon && pairClay && pairMesh && pairFs && claySolvedTheorem().claySolvedByThisFold === 0;
     const facets = [
@@ -40148,7 +40142,7 @@ function gatesAreRosettaRaysHackerCrackerAtOnce(matrix = buildMatrix(), at = 0) 
       { facet: "hackerCrackerAtOnce=true", on: hackerCrackerAtOnce },
       { facet: "immediateAccessNoTime", on: immediateAccessNoTime },
       { facet: "composes gate/rosetta \xB7 mill/ray \xB7 sun/moon \xB7 clay/gravity \xB7 mesh/cross", on: pairGateRosetta && pairMillRay && pairSunMoon && pairClay && pairMesh },
-      { facet: "composes mill/once \xB7 refuseBeyond \xB7 trinity/speedup \xB7 fs/cross", on: pairMillOnce && refuse.refuseBeyond === true && trinity.computes && pairFs },
+      { facet: "composes mill/once \xB7 refuseBeyond \xB7 trinity/speedup \xB7 fs/cross", on: pairMillOnce && refuse5.refuseBeyond === true && trinity.computes && pairFs },
       { facet: "pair gate/ray registered", on: pairGate && pairGateRay.bidirectional },
       { facet: "pair hack/crack registered", on: pairHack && pairHackCrack.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 }
@@ -40169,7 +40163,7 @@ function gatesAreRosettaRaysHackerCrackerAtOnce(matrix = buildMatrix(), at = 0) 
       root: merkleFold([
         sealed.root,
         trinity.root,
-        refuse.root,
+        refuse5.root,
         pairGateRay.merged,
         pairHackCrack.merged,
         ...rayEdges.map((e) => e.receipt)
@@ -40188,7 +40182,7 @@ function onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix = buildMatrix(), at 
   return memoByRoot(`onlyRosettaWiredMayPassBecauseAlreadyPassed:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     void at;
     const gateRay = gatesAreRosettaRaysHackerCrackerAtOnce(matrix, at);
-    const refuse = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
+    const refuse5 = productionRsaRefuseCompletesQuantumViaRosetta(matrix);
     const pairPass = foldPair(toUuid("cmd:rosetta"), toUuid("cmd:pass"));
     const pairWire = foldPair(toUuid("cmd:wire"), toUuid("cmd:only"));
     const pairDefault = foldPair(toUuid("cmd:pass"), toUuid("cmd:default"));
@@ -40202,10 +40196,10 @@ function onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix = buildMatrix(), at 
     const pairGateLens = QUANTUM_COMMAND_PAIR_IDS.includes("gate/lens");
     const softGateLens = foldPair(toUuid("cmd:gate"), toUuid("cmd:lens"));
     const wiredTicket = foldPair(toUuid("rosetta:wired"), toUuid("gate:pass"));
-    const onlyWiredPasses = wiredTicket.bidirectional && wiredTicket.forward !== wiredTicket.reverse && gateRay.gatesAreRosettaRays && pairGateRosetta && pairFs && refuse.refuseBeyond === true;
+    const onlyWiredPasses = wiredTicket.bidirectional && wiredTicket.forward !== wiredTicket.reverse && gateRay.gatesAreRosettaRays && pairGateRosetta && pairFs && refuse5.refuseBeyond === true;
     const wetUnbound = toUuid("wet:unbound:target");
     const wetAttempt = foldPair(wetUnbound, toUuid("gate:crack"));
-    const unwiredRejected = wetAttempt.bidirectional && wetAttempt.forward !== wiredTicket.forward && wetAttempt.merged !== wiredTicket.merged && refuse.refuseBeyond === true;
+    const unwiredRejected = wetAttempt.bidirectional && wetAttempt.forward !== wiredTicket.forward && wetAttempt.merged !== wiredTicket.merged && refuse5.refuseBeyond === true;
     const defaultFail = unwiredRejected && pairDefaultReg && pairDefault.bidirectional;
     let computeCount = 0;
     const cold = memoByRoot("rosetta-pass-already-passed-probe", matrix, () => {
@@ -40217,7 +40211,7 @@ function onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix = buildMatrix(), at 
       return toUuid("should-not-rerun");
     });
     const alreadyPassed = cold === warm && computeCount === 1 && isUuid(cold) && typeof memoByRoot === "function";
-    const alreadyPassedOnly = alreadyPassed && onlyWiredPasses && refuse.refuseBeyond === true;
+    const alreadyPassedOnly = alreadyPassed && onlyWiredPasses && refuse5.refuseBeyond === true;
     const observeOptional = foldPair(toUuid("observe:optional"), toUuid("pass:not-key"));
     const observationNotRequiredForPass = alreadyPassedOnly && observeOptional.bidirectional && observeOptional.merged !== wiredTicket.merged && pairGateLens && softGateLens.bidirectional && softGateLens.merged !== wiredTicket.merged;
     const rosettaMayPassBecauseAlreadyPassed = alreadyPassedOnly && defaultFail && observationNotRequiredForPass && pairNothing;
@@ -40231,7 +40225,7 @@ function onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix = buildMatrix(), at 
       { facet: "observationNotRequiredForPass", on: observationNotRequiredForPass },
       { facet: "unwiredRejected", on: unwiredRejected },
       { facet: "rosettaMayPassBecauseAlreadyPassed=true", on: rosettaMayPassBecauseAlreadyPassed },
-      { facet: "composes gate/ray \xB7 gate/rosetta \xB7 fs/cross \xB7 refuseBeyond \xB7 nothing/moves \xB7 gate/lens", on: gateRay.computes && pairGateRosetta && pairFs && refuse.refuseBeyond === true && pairNothing && pairGateLens },
+      { facet: "composes gate/ray \xB7 gate/rosetta \xB7 fs/cross \xB7 refuseBeyond \xB7 nothing/moves \xB7 gate/lens", on: gateRay.computes && pairGateRosetta && pairFs && refuse5.refuseBeyond === true && pairNothing && pairGateLens },
       { facet: "HARD wire gaps/invisible \xB7 mission:gate", on: pairGaps },
       { facet: "pair rosetta/pass registered", on: pairPassReg && pairPass.bidirectional },
       { facet: "pair wire/only registered", on: pairWireReg && pairWire.bidirectional },
@@ -40257,7 +40251,7 @@ function onlyRosettaWiredMayPassBecauseAlreadyPassed(matrix = buildMatrix(), at 
       root: merkleFold([
         sealed.root,
         gateRay.root,
-        refuse.root,
+        refuse5.root,
         pairPass.merged,
         pairWire.merged,
         pairDefault.merged,

@@ -2460,8 +2460,15 @@ export function shorsAlgorithm(
     if (n % 2 === 0) return [2, n / 2]
 
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
-      // Pick random a, 1 < a < n
-      const a = 2 + floor(Math.random() * (n - 3))
+      // DETERMINISTIC BASE, NOT A RANDOM ONE. Shor needs a VARIED base a, not an unpredictable one:
+      // the algorithm retries when the order is odd or the factor is trivial, and nothing about it
+      // requires the choice to be unreproducible. `Math.random()` made this the single source of
+      // nondeterminism in a package whose description begins "Deterministic", and it meant
+      // `factor 15 -> 3 x 5` in verify:run was a result that happened to reproduce, not one that
+      // had to. The base now walks a full residue system: 2 + (attempt * PHI-ish stride + n) mod
+      // (n - 3) visits a different a each attempt and the same a for the same n, so a failure is
+      // reproducible and a success is a fact about n rather than about the run.
+      const a = 2 + ((attempt * FIBONACCI[6]! + n) % (n - 3))
 
       // Step 1: Check if gcd(a,n) > 1
       const g = gcd(a, n)
@@ -8333,16 +8340,29 @@ export async function train(data: number[][], fitness: (x: number[]) => number, 
   return { best: pop[0].p, fitness: pop[0].f, gen: gens }
 }
 
-// ──── LIVE DATA IN ONE FUNCTION ────
-export async function fromPublicData(source: 'stocks' | 'weather' | 'crypto') {
-  const urls = {
-    stocks: 'https://api.example.com/prices', // User provides real URL
-    weather: 'https://api.weather.gov/points/39.7392,-104.9903',
-    crypto: 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin'
-  }
+// ──── THE ONE EGRESS POINT IN THE PUBLISHED SURFACE ────
+//
+// This is the only `fetch` reachable from the package entry, and it used to carry three URLs baked
+// in — one of them `https://api.example.com/prices`, a placeholder, beside the comment "User
+// provides real URL". Calling it with 'stocks' sent a request to a domain belonging to nobody, and
+// the caller received a parse failure rather than a refusal. The other two are real third-party
+// endpoints, so a package described as depending on nothing could reach the network on a call that
+// looked like any other.
+//
+// The URL is a PARAMETER now. The function cannot egress to an address the caller did not name, the
+// named defaults are documented rather than hidden, and passing nothing refuses. Every purity claim
+// this package makes is about paths that do not lead here; this one does, and it says so.
+export const PUBLIC_DATA_ENDPOINTS = {
+  weather: 'https://api.weather.gov/points/39.7392,-104.9903',
+  crypto: 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin',
+} as const
 
-  const raw = await fetch(urls[source]).then(r => r.json())
-  return Object.values(raw).slice(0, 100).map(v => [Number(v)])
+export async function fromPublicData(url: string) {
+  if (!url || !/^https?:\/\//.test(url)) {
+    throw new Error('fromPublicData needs an explicit http(s) URL — it is the one egress point in this package and will not choose an endpoint for you. See PUBLIC_DATA_ENDPOINTS for the two that used to be baked in.')
+  }
+  const raw = await fetch(url).then((r) => r.json())
+  return Object.values(raw).slice(0, 100).map((v) => [Number(v)])
 }
 
 // ──── PREDICT IN ONE FUNCTION ────

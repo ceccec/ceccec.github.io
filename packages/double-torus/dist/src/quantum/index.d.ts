@@ -2829,7 +2829,11 @@ export declare function train(data: number[][], fitness: (x: number[]) => number
     fitness: number;
     gen: number;
 }>;
-export declare function fromPublicData(source: 'stocks' | 'weather' | 'crypto'): Promise<number[][]>;
+export declare const PUBLIC_DATA_ENDPOINTS: {
+    readonly weather: "https://api.weather.gov/points/39.7392,-104.9903";
+    readonly crypto: "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin";
+};
+export declare function fromPublicData(url: string): Promise<number[][]>;
 export declare function predict(history: number[], strategy: (x: number) => number, steps?: number): number[];
 export declare class Balance {
     run(train_fn: () => Promise<any>): Promise<{

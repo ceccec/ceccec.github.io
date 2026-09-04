@@ -60,7 +60,7 @@
     "manifest:check": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/manifest.ts manifestDrift",
     "verify:run": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/index.ts runVerification",
     "verify:folds": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/folds.ts assertFolds",
-    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths && npm run verify:lean && npm run verify:theorems && npm run verify:side-effects && npm run verify:scope && npm run verify:limits && npm run verify:lean-latex && npm run verify:lean-arbiter && npm run verify:prior-art && npm run verify:mcp-transport && npm run verify:independence",
+    "verify:all": "npm run verify && npm run verify:run && npm run verify:folds && npm run manifest:check && npm run verify:tautology && npm run verify:imports && npm run verify:paths && npm run verify:lean && npm run verify:theorems && npm run verify:side-effects && npm run verify:scope && npm run verify:limits && npm run verify:lean-latex && npm run verify:lean-arbiter && npm run verify:prior-art && npm run verify:mcp-transport && npm run verify:independence && npm run verify:purity",
     "verify:structure": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify:structure",
     "limits:verify": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:verify",
     "limits:seal": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts limits:seal",
@@ -1070,6 +1070,7 @@
     "verify:lean-arbiter": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-arbiter.ts assertLeanArbitrates",
     "verify:prior-art": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/prior-art.ts assertPriorArtLedger",
     "verify:mcp-transport": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/mcp-transport.ts assertMcpTransport",
-    "verify:independence": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/independence.ts show"
+    "verify:independence": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/independence.ts show",
+    "verify:purity": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/purity.ts assertPurity"
   }
 }
