@@ -610,10 +610,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       },
       "references": [
-        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       ],
       "creators": [
         {
@@ -718,10 +718,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
       "references": [
-        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       ],
       "creators": [
         {
@@ -826,10 +826,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
       "references": [
-        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       ],
       "creators": [
         {

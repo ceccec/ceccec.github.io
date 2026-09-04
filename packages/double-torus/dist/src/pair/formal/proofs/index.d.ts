@@ -531,3 +531,43 @@ export type LeanTheoremLatex = {
 export declare function leanTheoremsForLatex(root?: string): readonly LeanTheoremLatex[];
 /** The same theorems as a LaTeX section — amsthm environments, one per machine-checked proposition. */
 export declare function leanTheoremsAsLatex(root?: string): string;
+/**
+ * THE LEAN THEOREMS AS PAGES — one canonical URL per kernel-checked proof.
+ *
+ * The site serves 785 per-theorem pages and every one is built from the registry, so none of the Lean
+ * corpus had a page: the per-theorem Zenodo deposits could name the .lean source and the generated
+ * LaTeX, and had nowhere on the web to point. Emitting a /theorems/ URL anyway would have aimed a
+ * permanent record at a 404, which is what the frontier gate already forbids — every declared link
+ * resolves to a real page, no dead link, ever.
+ *
+ * These are a DIFFERENT KIND of object from a registry atom and get their own route rather than being
+ * folded into that corpus: a registry atom is a claim with a proving function, and one of these is a
+ * proposition the Lean kernel decided with no axiom. Keeping them apart also leaves the 785-page count
+ * and the harmonic page census untouched, which a merge would have moved for no reason.
+ *
+ * Every field is read from the sealed .lean sources at call time. Nothing is authored here.
+ */
+export type LeanPageRow = {
+    readonly slug: string;
+    readonly title: string;
+    readonly name: string;
+    readonly file: string;
+    readonly proposition: string;
+    readonly tactic: string;
+    readonly doc: string;
+    /** The source of truth on disk, and the generated paper — both linkable, both checked to exist. */
+    readonly sourcePath: string;
+    readonly texPath: string;
+    /** The deposit this page is the landing page for. */
+    readonly depositId: string;
+};
+/** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
+export declare function leanPageSlug(file: string, name: string): string;
+export declare function leanPageRows(root?: string): readonly LeanPageRow[];
+export declare function leanPagePaths(root?: string): {
+    params: {
+        slug: string;
+        title: string;
+    };
+}[];
+export declare function leanPageBySlug(slug: string, root?: string): LeanPageRow | null;

@@ -2224,7 +2224,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe round trip is the identity: χ and g carry the same information.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2260,7 +2260,7 @@
         }
       ],
       "references": [
-        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       ],
       "creators": [
         {
@@ -2303,7 +2303,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2339,7 +2339,7 @@
         }
       ],
       "references": [
-        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       ],
       "creators": [
         {
@@ -2382,7 +2382,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2418,7 +2418,7 @@
         }
       ],
       "references": [
-        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       ],
       "creators": [
         {
@@ -2461,7 +2461,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2497,7 +2497,7 @@
         }
       ],
       "references": [
-        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       ],
       "creators": [
         {
@@ -2540,7 +2540,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nrank H₁(Σ_g) = 2g, equivalently 2 − χ, at every genus checked.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2576,7 +2576,7 @@
         }
       ],
       "references": [
-        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
       ],
       "creators": [
         {
@@ -2619,7 +2619,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2655,7 +2655,7 @@
         }
       ],
       "references": [
-        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       ],
       "creators": [
         {
@@ -2698,7 +2698,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed point is n = 1, i.e. s = 1/2 — the critical line.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2734,7 +2734,7 @@
         }
       ],
       "references": [
-        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       ],
       "creators": [
         {
@@ -2777,7 +2777,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).",
       "priorArt": {
         "kind": "attributed",
-        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2813,7 +2813,7 @@
         }
       ],
       "references": [
-        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       ],
       "creators": [
         {
@@ -2856,7 +2856,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nRe(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2892,7 +2892,7 @@
         }
       ],
       "references": [
-        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       ],
       "creators": [
         {
@@ -2935,7 +2935,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed point, together.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -2971,7 +2971,7 @@
         }
       ],
       "references": [
-        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       ],
       "creators": [
         {
@@ -3014,7 +3014,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\ndim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -3050,7 +3050,7 @@
         }
       ],
       "references": [
-        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       ],
       "creators": [
         {
@@ -3093,7 +3093,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nStar squares to the identity",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -3129,7 +3129,7 @@
         }
       ],
       "references": [
-        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       ],
       "creators": [
         {
@@ -3172,7 +3172,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe split: self-dual ⊕ anti-self-dual, 3 + 3 = 6. This is why four dimensions are special — only there does ★ map middle forms to middle forms.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -3208,7 +3208,7 @@
         }
       ],
       "references": [
-        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       ],
       "creators": [
         {
@@ -3251,7 +3251,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n★ sends Λ^k to Λ^(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -3287,7 +3287,7 @@
         }
       ],
       "references": [
-        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       ],
       "creators": [
         {
@@ -3330,7 +3330,7 @@
       "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and the split it produces, together.",
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       },
       "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
@@ -3366,7 +3366,7 @@
         }
       ],
       "references": [
-        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
       ],
       "creators": [
         {

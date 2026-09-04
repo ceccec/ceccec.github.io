@@ -295,7 +295,16 @@ export function writeFileDeposits(root: string = process.cwd()): void {
  *                     tell one DOI from another
  *   ABSTRACT          every deposit needs prose beyond the standard claim line
  *   SUBSTANCE         a deposit is a development, not a fragment
- *   RESOLVABLE CITES  prior art should be citable by DOI, not only named in prose
+ *   RESOLVABLE CITES  prior art must be citable — a DOI where one exists, else a complete
+ *                     bibliographic locator (author, year, venue, pages)
+ *
+ * THAT LAST CRITERION WAS WRONG WHEN I WROTE IT and the fix came from measuring it. It required a DOI,
+ * and Riemann 1859 has none: Monatsberichte der Berliner Akademie, 671–680, published a century and a
+ * half before the DOI system. Requiring an identifier that cannot exist would have blocked a correct
+ * deposit forever, and millennium-solutions warned of exactly this — most of what this corpus
+ * attributes predates the DOI, so a gate keyed on DOIs measures the century a result was published in
+ * rather than whether it is cited. A citation is resolvable when a reader can find the work: a DOI, or
+ * author + year + venue + pages.
  *
  * DIRECTION OF FAILURE: loud, and it does not block the build. This reports and returns; nothing here
  * mints, because nothing in this repository can — the deposit step runs in the release workflow under a
@@ -311,10 +320,17 @@ export function assertDepositQuality(): void {
     for (const r of rows) titles.set(r.title, (titles.get(r.title) ?? 0) + 1)
     const shared = [...titles.values()].filter((n) => n > 1).reduce((a, b) => a + b, 0)
     const thin = rows.filter((r) => r.description.replace(boiler, '').trim().length < minBody).length
-    const cited = rows.filter((r) => r.references.some((x) => /10\.\d{4,9}\//.test(x))).length
+    // RESOLVABLE = a reader can find the work. Twice now this definition has been too narrow: it began
+    // as "has a DOI", which Riemann 1859 cannot; then as "author, year, venue and PAGE RANGE", which a
+    // textbook has no need of — Hatcher's Algebraic Topology is located by publisher, not by pages.
+    // A year, plus any one locator that identifies the edition or the article.
+    const YEAR = /\((1[5-9]\d\d|20\d\d)\)|\b(1[5-9]\d\d|20\d\d)\b/
+    const LOCATOR = /10\.\d{4,9}\/|\d+\s*[–-]\s*\d+|University Press|Springer|Wiley|Elsevier|Academic Press|ISBN/
+    const RESOLVABLE = (x: string) => YEAR.test(x) && LOCATOR.test(x)
+    const cited = rows.filter((r) => r.references.some((x) => RESOLVABLE(x))).length
     const pass = shared === 0 && thin === 0 && cited === rows.length
     console.log(`  ${pass ? 'MEETS' : 'BELOW'} the bar — ${name}, ${rows.length} deposits`)
-    console.log(`         indistinguishable titles ${shared} · abstracts under ${minBody} chars ${thin} · references resolving to a DOI ${cited}/${rows.length}`)
+    console.log(`         indistinguishable titles ${shared} · abstracts under ${minBody} chars ${thin} · citations a reader can resolve ${cited}/${rows.length}`)
     return pass
   }
 
