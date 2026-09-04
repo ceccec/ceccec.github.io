@@ -421,15 +421,25 @@ export function hexbitRepresentationsAgree(matrix: MindMatrix = buildMatrix()) {
   const table = hexbitTable()
   const tableAgrees = all.every((h) => table[h]!.reflect === hexbitReflect(h) && table[h]!.nuclear === hexbitNuclear(h) && table[h]!.reverse === hexbitReverse(h))
 
-  // The involution, recomputed rather than recalled: reflect is xor with an all-ones mask, so it is
-  // its own inverse, and it has NO fixed point because h ^ mask = h would need mask = 0.
+  // A CLAIM THAT CANNOT BE FALSE IS NOT A CHECK. This read `reflect(reflect(h)) === h` and nothing
+  // else, which is true of xor with ANY mask — 63, 31, 7, 1 all pass, because self-inverseness is a
+  // property of xor and not of this reflection. It tested the operator. zeropoint-node-8a found the
+  // same shape in its own tree as `reverse(reverse(x)) === x`, which tests Array.prototype.reverse,
+  // and auditing me for it is how this one surfaced; it was written the day before.
+  //
+  // So the mask is PINNED. For a six-bit word `h ^ 63` equals `63 - h`, and that identity holds for
+  // no other mask: at mask 31, h = 1 gives 30 where 63 - 1 is 62. The involution and the absent fixed
+  // point are still stated, because they are the properties the corpus reasons with — but they are no
+  // longer the only thing standing between a wrong mask and a green facet.
   const involutive = all.every((h) => hexbitReflect(hexbitReflect(h)) === h)
+  const pinsTheMask = all.every((h) => hexbitReflect(h) === HEXBIT_MASK - h)
   const fixed = all.filter((h) => hexbitReflect(h) === h).length
 
   const facets = [
     { facet: `the lattice is 2^${HEXBIT_LINES} = ${HEXBIT_LATTICE} — a hexagram IS a six-bit word`, on: HEXBIT_LATTICE === 64 && all.length === 64 },
     { facet: `all four representations agree on all ${HEXBIT_LATTICE} inputs for reflect, reverse and nuclear`, on: disagreements.length === 0 && tableAgrees },
     { facet: `nuclear agrees with the SEALED nuclearHexagramFold — the same hexbit the corpus already computes with`, on: all.every((h) => sealed[h]!.nuclear === hexbitNuclear(h)) },
+    { facet: `reflect is xor with the all-ones mask — pinned by h ^ mask = ${HEXBIT_MASK} - h, which no other mask satisfies`, on: pinsTheMask },
     { facet: `reflect is an involution with no fixed point, so the lattice is ${HEXBIT_LATTICE / 2} orbits of two`, on: involutive && fixed === 0 },
     // PARENTHESISED, and it was not. This read `hexbitLower(h) | (hexbitUpper(h) << T) === h || (...)`,
     // which JavaScript parses as `lower | (shifted === h)` — a NUMBER — and `||` treats any non-zero
