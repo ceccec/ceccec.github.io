@@ -2863,7 +2863,7 @@ export interface HealingAction {
     change: string;
     confidence: number;
     impact: string;
-    status: 'proposed' | 'applied' | 'verified';
+    status: 'proposed' | 'applied' | 'verified' | 'unverified';
 }
 export declare class SelfHealer {
     private actions;

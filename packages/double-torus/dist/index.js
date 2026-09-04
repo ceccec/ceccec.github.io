@@ -137908,7 +137908,12 @@ var PredictiveModel = class {
       success_probability: Math.min(1, successProbability),
       estimated_citation_count: projectedCitations,
       estimated_adoption_count: projectedAdoptions,
-      confidence_score: 0.75 + Math.random() * 0.2,
+      // CONFIDENCE IS EVIDENCE VOLUME, and it is the one field here that was invented. Every other
+      // number in this record comes from the four factors above; this read 0.75 + random()*0.2, so a
+      // prediction built from NO citations, NO publications, NO collaborators and NO funding still
+      // announced 75-95% confidence. Confidence in an estimate is not the estimate: it is how much
+      // evidence the estimate rests on, which is exactly countable here.
+      confidence_score: [historicalCitations, publicationCount, collaboratorCount, fundingHistoryUsd].filter((source) => source > 0).length / 4,
       predicted_at: (/* @__PURE__ */ new Date()).toISOString(),
       factors: {
         citation: citationFactor,
@@ -139876,7 +139881,11 @@ var FieldAnalyzer = class {
       funding_gap_usd: fundingGap,
       required_expertise: requiredExpertise,
       time_to_breakthrough_years: yearsToBreakthrough,
-      confidence: 0.7 + Math.random() * 0.2,
+      // The same defect: opportunity_score is computed from impact and funding gap, and confidence
+      // beside it was 0.7 + random()*0.2 — an opportunity named with no fields, no expertise and no
+      // horizon claimed the same confidence as a fully specified one. It is now how specified the
+      // opportunity actually is: the fraction of its five descriptive inputs that carry anything.
+      confidence: [relatedFields.length, potentialImpact, fundingGap, requiredExpertise.length, yearsToBreakthrough].filter((input) => input > 0).length / 5,
       identified_at: (/* @__PURE__ */ new Date()).toISOString()
     };
     this.opportunities.set(opportunityId, opportunity);
@@ -143102,7 +143111,10 @@ var FederationCoordinator = class {
       learning_content: learning,
       applicability: applicableOrgs,
       adoption_count: 0,
-      confidence: 0.7 + Math.random() * 0.25,
+      // A LEARNING NOTHING HAS ADOPTED HAS NO CONFIDENCE YET, and this asserted 0.7-0.95 on the same
+      // line as adoption_count: 0. Confidence in shared learning is what adoption confers, so it
+      // starts at zero and is a function of the count beside it rather than of a random number.
+      confidence: 0,
       global_impact: 0
     };
     this.federatedLearnings.set(learningId, federatedLearning);

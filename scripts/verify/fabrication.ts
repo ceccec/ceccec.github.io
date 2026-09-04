@@ -34,6 +34,22 @@ import { ratchet } from './status.ts'
 /** The vocabulary that turns a number into a claim about the world. */
 const MEASUREMENT_WORDS = /[✓✔✗×]|\bpassing\b|\bpassed\b|\bbenchmark|\bmeasured\b|\bverified\b|\bsuccess\b|\baccuracy\b|\buptime\b|%\)|\bavg\b|\blatency\b|\bthroughput\b/i
 
+/**
+ * A TICK BESIDE A HARDCODED COUNT IS A FABRICATION WITH NO RANDOMNESS IN IT.
+ *
+ * The sweep that emptied this gate found `console.log("    ✓ Tests passing (42/42)")` and
+ * `"✓ Type checking (0 errors)"` sitting beside the one line that used Math.random — and only the
+ * random one was detectable, because the rule required nondeterminism. The 42/42 was as invented as
+ * the percentage; it was just invented once, at edit time, instead of on every call.
+ *
+ * So the second rule needs no randomness at all: a log line that is a CONSTANT string, carrying a
+ * tick and a measurement-shaped figure — (n/n), n%, "0 errors" — is claiming a result with nothing
+ * computed anywhere in the expression. A log that interpolates a real value is untouched, which is
+ * the distinction that keeps this from flagging every progress message in the corpus.
+ */
+const CONSTANT_VERDICT = /[✓✔]/
+const MEASUREMENT_SHAPE = /\(\s*\d+\s*\/\s*\d+\s*\)|\d+\s*%|\b\d+\s+(errors?|failures?|warnings?|tests?|passing)\b/i
+
 /** Property names that promise a reading rather than a setting. */
 const METRIC_PROPERTY = /^(.*_percent|.*_pct|cpu|gpu|memory|latency|throughput|accuracy|uptime|score|confidence|success|passing|passed|failed|elapsed|duration|coverage|benchmark.*|.*Measured|.*Score|.*Rate)$/i
 
@@ -46,7 +62,7 @@ export function fabrications(root: string = process.cwd()): Fabrication[] {
   for (const entry of corpusFiles(root)) {
     const rel = entry.rel
     const src = entry.text
-    if (!src.includes('Math.random')) continue
+    if (!src.includes('Math.random') && !/[✓✔]/.test(src)) continue
     // corpusFiles parses on first access and reuses — the gates that need an AST share one.
     const file = entry.ast()
 
@@ -69,6 +85,17 @@ export function fabrications(root: string = process.cwd()): Fabrication[] {
       // an object property named like a reading, assigned a random value
       if (ts.isPropertyAssignment(node) && METRIC_PROPERTY.test(node.name.getText(file)) && isRandom(node.initializer)) {
         out.push({ file: rel, line: at(node), why: `the property '${node.name.getText(file)}' promises a reading`, text: node.getText(file).replace(/\s+/g, ' ').slice(0, 120) })
+      }
+      // a log line that is entirely constant, ticking a result it did not compute
+      if (ts.isCallExpression(node) && /^console\.(log|info)$/.test(node.expression.getText(file))) {
+        for (const arg of node.arguments) {
+          const constant = ts.isStringLiteral(arg) || ts.isNoSubstitutionTemplateLiteral(arg)
+          if (!constant) continue
+          const text = arg.getText(file)
+          if (CONSTANT_VERDICT.test(text) && MEASUREMENT_SHAPE.test(text)) {
+            out.push({ file: rel, line: at(arg), why: 'a tick and a count, both typed by hand — nothing here was computed', text: text.replace(/\s+/g, ' ').slice(0, 120) })
+          }
+        }
       }
       // a variable named like a verdict, assigned from a coin flip
       if (ts.isVariableDeclaration(node) && node.initializer && METRIC_PROPERTY.test(node.name.getText(file)) && isRandom(node.initializer)) {

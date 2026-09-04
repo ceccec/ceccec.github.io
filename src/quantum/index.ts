@@ -5638,25 +5638,20 @@ export class EquilibriumResourceManager {
    * In production: query /proc/stat, nvidia-smi, /proc/meminfo, df
    */
   async captureMetrics(): Promise<ResourceMetrics> {
-    // Simulated metrics for demo
-    const metrics: ResourceMetrics = {
-      cpu_percent: 50 + Math.random() * 30,
-      gpu_percent: 45 + Math.random() * 35,
-      ram_percent: 60 + Math.random() * 20,
-      storage_percent: 40 + Math.random() * 15,
-      cpu_temp: 65 + Math.random() * 15,
-      gpu_temp: 70 + Math.random() * 20,
-      throughput_ops_per_sec: 1000000 + Math.random() * 500000,
-      latency_ms: 50 + Math.random() * 100,
-      timestamp: Date.now()
-    }
-
-    this.metrics_history.push(metrics)
-    if (this.metrics_history.length > 1000) {
-      this.metrics_history.shift() // Keep last 1000 samples
-    }
-
-    return metrics
+    // IT CANNOT MEASURE, SO IT REFUSES. This returned eight invented readings — cpu_percent,
+    // gpu_percent, ram_percent, storage_percent, two temperatures, a throughput and a latency — and
+    // pushed them into metrics_history, so a caller received a plausible thousand-sample time series
+    // of a machine that was never read. The doc comment above says what a real implementation would
+    // do; nothing below it did any of it.
+    //
+    // A degraded reading and a fabricated one are not the same thing, and eight numbers in the shape
+    // of a reading are indistinguishable from a reading. Refusing is the only answer that cannot be
+    // mistaken for data.
+    throw new Error(
+      'captureMetrics is not implemented: it would need /proc/stat (cpu), nvidia-smi (gpu), ' +
+      '/proc/meminfo (ram) and df (storage), none of which this bundle can reach. It previously ' +
+      'returned invented figures in the shape of readings, which is worse than refusing.',
+    )
   }
 
   /**
@@ -7838,15 +7833,20 @@ export class MetaIntelligence {
   }
 
   private async verify(): Promise<number> {
-    // Verify all improvements
-    console.log(`  Running verification suite...`)
-    console.log(`    ✓ Type checking (0 errors)`)
-    console.log(`    ✓ Tests passing (42/42)`)
-    console.log(`    ✓ Build successful`)
-    console.log(`    ✓ Performance benchmarks (avg +${Math.random() * 20 + 10 | 0}%)`)
-    console.log(`    ✓ Documentation validated`)
-
-    return Math.floor(Math.random() * 15 + 85) // 85-100 health
+    // FIVE TICKS FOR WORK NOBODY DID. This printed "✓ Type checking (0 errors)", "✓ Tests passing
+    // (42/42)", "✓ Build successful", a benchmark percentage drawn from Math.random(), and
+    // "✓ Documentation validated" — then returned a health score of Math.floor(Math.random()*15+85),
+    // which scheduleNextCycle reads to decide when to run again. A number nobody measured was
+    // steering a schedule, under five ticks nobody earned. The 42/42 was as invented as the
+    // percentage; only the percentage was detectable, because only it used a random number.
+    //
+    // The real checks exist and have names: npm run check:types, verify:all, docs:build. This method
+    // does not run them and will not claim they passed.
+    throw new Error(
+      'verify is not implemented: it printed ✓ for type checking, tests, build, benchmarks and docs ' +
+      'without running any of them, and returned a random health score that scheduleNextCycle acted ' +
+      'on. Run check:types, verify:all and docs:build, and feed their real exit codes in.',
+    )
   }
 
   private scheduleNextCycle(health_score: number): number {
@@ -8478,7 +8478,7 @@ export interface HealingAction {
   change: string
   confidence: number // 0-1, how confident the fix is correct
   impact: string // What gets better
-  status: 'proposed' | 'applied' | 'verified'
+  status: 'proposed' | 'applied' | 'verified' | 'unverified' // 'unverified' exists because the type could not previously SAY that verification did not happen — the only statuses were stages of success
 }
 
 export class SelfHealer {
@@ -8626,17 +8626,14 @@ export class SelfHealer {
   private async verifyFixes(actions: HealingAction[]): Promise<number> {
     let verified = 0
 
+    // A COIN FLIP WROTE A VERDICT. `Math.random() > 0.1` decided whether each action was marked
+    // status = 'verified' and printed "✓ Verified", at a rate chosen to look like a real 90% pass.
+    // The status persisted on the object, so a later reader saw a verification that never happened.
+    // Nothing here can build, test or type-check, so nothing here can verify: every action stays
+    // unverified and the count returned is the truth, zero.
     for (const action of actions) {
-      // Simulate verification (build, tests, type check)
-      const success = Math.random() > 0.1 // 90% success rate
-
-      if (success) {
-        action.status = 'verified'
-        verified++
-        console.log(`    ✓ Verified: ${action.module}`)
-      } else {
-        console.log(`    ✗ FAILED: ${action.module} (will retry)`)
-      }
+      action.status = 'unverified'
+      console.log(`    · NOT VERIFIED: ${action.module} — verifyFixes cannot build, test or type-check from here`)
     }
 
     return verified

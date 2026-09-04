@@ -1,5 +1,5 @@
 {
-  "fabrication.invented-measurements": 9,
+  "fabrication.invented-measurements": 0,
   "folds.facets-off": 1438,
   "folds.false-verdict": 460,
   "folds.false-verdicts": 1,
@@ -11,7 +11,7 @@
   "limits.weakest-bar": 62,
   "paths.dead-strings": 51,
   "prior-art.unclassified": 421,
-  "purity.core-nondeterminism": 34,
+  "purity.core-nondeterminism": 31,
   "scope.boundaries": 2792,
   "scope.narrated": 523,
   "side-effects.top-level": 0,
