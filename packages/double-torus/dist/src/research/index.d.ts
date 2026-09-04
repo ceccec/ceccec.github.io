@@ -47457,6 +47457,52 @@ export declare const paper_authors: readonly ["Tsvetan Rouschev"];
 export declare const paper_author_orcid = "https://orcid.org/0009-0000-7312-9778";
 export declare const paper_date = "2026-08-04";
 export declare const paper_withdrawn = "2026-08-20";
+/**
+ * THE ONE PLACE THE PUBLICATION CREDIT IS WRITTEN.
+ *
+ * A measurement over the built site found 1039 pages carrying no author, no licence, and — outside the
+ * 78 Lean theorem pages — no DOI. Every page here is a printable scientific paper by the corpus's own
+ * law, and a paper without an author, a licence and a way to cite it is not one. The credit is rendered
+ * at the foot of every document from this fold, so a page cannot exist without it.
+ *
+ * It is also the single source. The repository DOI had been written three times over — in
+ * scripts/verify/discoveries.ts, in the generated theorem-deposits.json, and in CITATION.cff — which is
+ * how a stale count survived in one file while another was corrected. The gate now imports it from here.
+ */
+export declare const PUBLICATION_CREDIT: {
+    readonly author: "Tsvetan Rouschev";
+    readonly orcid: "0009-0000-7312-9778";
+    readonly orcidUrl: "https://orcid.org/0009-0000-7312-9778";
+    /** The versioned record for THIS work. See scripts/verify/deposit-metadata.ts — harvested and checked. */
+    readonly repositoryDoi: "10.5281/zenodo.21787144";
+    /**
+     * The all-versions DOI — and NOT what a citation here may carry, which inverts the usual advice.
+     *
+     * A concept DOI normally always resolves to the newest version of one work, so it is the right thing
+     * to cite. This one does not: 10.5281/zenodo.21787143 currently resolves to record 22256708, which is
+     * a DIFFERENT project (uuidna). Three unrelated works share that version chain. Citing it would hand
+     * every reader of this corpus somebody else's deposit, and it was doing exactly that on 1038 pages
+     * until millennium-solutions-57 followed the DOI from another repository and said so.
+     *
+     * OAI-PMH cannot see this: a concept DOI returns idDoesNotExist, so a harvesting gate reports a false
+     * absence. It has to be followed over HTTP, which scripts/verify/deposit-metadata.ts now does.
+     */
+    readonly conceptDoi: "10.5281/zenodo.21787143";
+    readonly licence: "CC-BY-NC-ND-4.0";
+    readonly licenceUrl: "https://creativecommons.org/licenses/by-nc-nd/4.0/";
+    /** The deposit year, taken from the record's own date — never from a clock. A citation year that
+        moves every January would make the same page cite differently on either side of midnight. */
+    readonly year: number;
+};
+/** How to cite one page: author, title, year, the concept DOI, and the page's own address. */
+export declare function pageCitation(title: string, url: string, year?: number): {
+    readonly text: string;
+    readonly author: string;
+    readonly orcidUrl: string;
+    readonly doiUrl: string;
+    readonly licence: string;
+    readonly licenceUrl: string;
+};
 /** The six problems the package NAMED. Naming is not proving; see paper_status. */
 export declare const theorems_claimed: readonly ["Riemann Hypothesis", "P vs NP", "Navier-Stokes Existence and Smoothness", "Yang-Mills Mass Gap", "Hodge Conjecture", "Birch–Swinnerton-Dyer Conjecture"];
 /** DERIVED, not declared — the same registry every other Clay surface reads. Currently 0. */

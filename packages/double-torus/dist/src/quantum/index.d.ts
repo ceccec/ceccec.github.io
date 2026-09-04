@@ -2,6 +2,7 @@ import { type Burst } from './fire/experiments/index.ts';
 import type { Dims } from './mountain/dimensions/index.ts';
 import { type PlasmaMoviePalette, type PlasmaWiredStream } from '../fire/plasma/ball/index.ts';
 import { livingTorus } from '../fire/diamonds/index.ts';
+import { type EightFoldScience } from '../8/2/index.ts';
 import type { MindMatrix } from '../types/index.ts';
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry/index.ts';
 import { type QuantumProjection } from './apps/index.ts';
@@ -363,6 +364,12 @@ export declare function heroSceneFromShared(shared: SharedHeroState, bursts?: Bu
  */
 export declare function drawHeroMovieFrame(ctx: CanvasRenderingContext2D, w: number, h: number, shared: SharedHeroState): void;
 export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'][number];
+/**
+ * The oblique view angle the canvas painters previously FAKED as a "+0.35·z" y-offset: an honest
+ * YZ rotation whose sine is that same 0.35, composed through the sealed atoms (rotate3) so depth
+ * is real and carried by the perspective divide — size attenuation, not a screen offset.
+ */
+export declare const OBLIQUE_VIEW_TILT: number;
 /** Genus-2 torus point field — hero-clock phase; static at phase 0 when reduced motion. */
 export declare function drawLivingTorusFrame(ctx: CanvasRenderingContext2D, w: number, h: number, at: number, coordinates: readonly LivingTorusCoordinate[], reduce?: boolean, dark?: boolean): void;
 /** Dual-Earth merkaba — star tetrahedra only (bothEarthsRotateWithinEachOther); no shell ring frames. */
@@ -515,6 +522,28 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
 };
 /** One RAF loop for BackgroundMovie — subscribe in Vue onMounted, unsubscribe onUnmounted. */
 export { realtimeComputationsMoviePaint, allRealtimeComputationsVisibleInMovie, type RealtimeComputationsMoviePaint, type RealtimeComputeMovieChannel } from '../fire/plasma/ball/index.ts';
+/**
+ * ONE THROWING SUBSCRIBER MUST NOT STOP THE CLOCK.
+ *
+ * The tick used to be `listeners.forEach((fn) => fn(at))` followed by the next
+ * requestAnimationFrame. A single subscriber throwing anywhere in that forEach propagated out of
+ * the tick, so the next frame was never scheduled — and because `heroClockRaf` stayed truthy, no
+ * later subscriber could ever start a replacement loop. EVERY animation on the site froze
+ * permanently, from one fault in one component, and the only visible symptom was stillness.
+ *
+ * That is what a single shared clock costs if it has no isolation, and it was found the honest
+ * way: a new subscriber's draw was never called once, while the surfaces around it had already
+ * stopped and nobody had noticed, because a frozen animation looks like a static design.
+ *
+ * So dispatch is isolated per subscriber, and a subscriber that throws is DROPPED rather than
+ * left to throw sixty times a second. Dropping is not silence: the failure is counted and the
+ * count is readable, so a dead animation is a number somewhere rather than a mystery.
+ */
+export declare const heroClockFailures: {
+    at: number;
+    message: string;
+}[];
+export declare function dispatchHeroClock(at: number, listeners: Set<(at: number) => void>): number;
 export declare function subscribeHeroClock(listener: (at: number) => void): () => void;
 /**
  * Gate: every animation process rides the ONE clock. If even a single process runs outside the
@@ -3132,7 +3161,7 @@ export declare const neuroscienceDefault: {
         respect_prefers_reduced_motion: boolean;
     };
 };
-export type BaguaElement = 'earth' | 'fire' | 'water' | 'wind' | 'mountain' | 'lake' | 'thunder';
+export type BaguaElement = Exclude<EightFoldScience, 'lake'>;
 export declare const BAGUA_ELEMENTS: BaguaElement[];
 interface TheoremOnRay {
     ray: BaguaElement;

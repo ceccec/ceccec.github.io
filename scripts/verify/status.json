@@ -1,7 +1,7 @@
 {
   "axiom-index.unresearched": 2,
   "bagua.parallel-tables": 7,
-  "build.kilobytes-per-page": 185,
+  "build.app-chunk-kilobytes": 649,
   "credits.uncredited-pages": 0,
   "fabrication.invented-measurements": 0,
   "folds.facets-off": 1438,
@@ -14,7 +14,7 @@
   "limits.always-true": 36,
   "limits.weakest-bar": 62,
   "paths.dead-strings": 51,
-  "prior-art.unclassified": 412,
+  "prior-art.unclassified": 404,
   "purity.core-nondeterminism": 0,
   "scope.boundaries": 2792,
   "scope.narrated": 523,

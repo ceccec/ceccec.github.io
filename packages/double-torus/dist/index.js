@@ -41566,6 +41566,31 @@ var DEVELOPMENT_TRACKS = [
 var conjectureCounts = { total: 5 ** 2, clay: 7, tier1_direct: 3, tier2_cousins: 3, tier3_expansions: 2, tier4_frontier: 5, tier5_extended: 5, \u03C3_structure_proven: 12, \u03C3_structure_candidate: 13 };
 var paper_date = "2026-08-04";
 var paper_withdrawn = "2026-08-20";
+var PUBLICATION_CREDIT = {
+  author: "Tsvetan Rouschev",
+  orcid: "0009-0000-7312-9778",
+  orcidUrl: "https://orcid.org/0009-0000-7312-9778",
+  /** The versioned record for THIS work. See scripts/verify/deposit-metadata.ts — harvested and checked. */
+  repositoryDoi: "10.5281/zenodo.21787144",
+  /**
+   * The all-versions DOI — and NOT what a citation here may carry, which inverts the usual advice.
+   *
+   * A concept DOI normally always resolves to the newest version of one work, so it is the right thing
+   * to cite. This one does not: 10.5281/zenodo.21787143 currently resolves to record 22256708, which is
+   * a DIFFERENT project (uuidna). Three unrelated works share that version chain. Citing it would hand
+   * every reader of this corpus somebody else's deposit, and it was doing exactly that on 1038 pages
+   * until millennium-solutions-57 followed the DOI from another repository and said so.
+   *
+   * OAI-PMH cannot see this: a concept DOI returns idDoesNotExist, so a harvesting gate reports a false
+   * absence. It has to be followed over HTTP, which scripts/verify/deposit-metadata.ts now does.
+   */
+  conceptDoi: "10.5281/zenodo.21787143",
+  licence: "CC-BY-NC-ND-4.0",
+  licenceUrl: "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  /** The deposit year, taken from the record's own date — never from a clock. A citation year that
+      moves every January would make the same page cite differently on either side of midnight. */
+  year: Number(paper_date.slice(0, 4))
+};
 var theorems_claimed = [
   "Riemann Hypothesis",
   "P vs NP",
@@ -75091,12 +75116,26 @@ function drawTorusFieldProjection(ctx, w, h, frame) {
 }
 var heroClockRaf = 0;
 var heroClockListeners = /* @__PURE__ */ new Set();
+var heroClockFailures = [];
+function dispatchHeroClock(at, listeners) {
+  let failed = 0;
+  for (const fn of [...listeners]) {
+    try {
+      fn(at);
+    } catch (e) {
+      failed += 1;
+      listeners.delete(fn);
+      heroClockFailures.push({ at, message: e instanceof Error ? e.message : String(e) });
+    }
+  }
+  return failed;
+}
 function subscribeHeroClock(listener) {
   heroClockListeners.add(listener);
   if (typeof globalThis !== "undefined" && "requestAnimationFrame" in globalThis && !heroClockRaf) {
     const tick = () => {
       const at = typeof performance !== "undefined" ? performance.now() : Date.now();
-      heroClockListeners.forEach((fn) => fn(at));
+      dispatchHeroClock(at, heroClockListeners);
       heroClockRaf = requestAnimationFrame(tick);
     };
     heroClockRaf = requestAnimationFrame(tick);
@@ -75140,7 +75179,26 @@ function oneClockProcessLaw(matrix = buildMatrix()) {
       else g.cancelAnimationFrame = savedCan;
     }
   }
+  let survivedAThrow = false;
+  let droppedTheOffender = false;
+  {
+    const probe = /* @__PURE__ */ new Set();
+    let goodRan = 0;
+    const bad = () => {
+      throw new Error("perturbation: a subscriber that throws");
+    };
+    const good = () => {
+      goodRan += 1;
+    };
+    probe.add(bad);
+    probe.add(good);
+    const failures = dispatchHeroClock(0, probe);
+    survivedAThrow = failures === 1 && goodRan === 1;
+    droppedTheOffender = !probe.has(bad) && probe.has(good);
+    heroClockFailures.length = 0;
+  }
   const claims = [
+    { facet: "a subscriber that throws does not stop the clock \u2014 the others still tick, and it is dropped", on: survivedAThrow && droppedTheOffender },
     { facet: "three subscribers start exactly ONE loop \u2014 the clock coalesces every animation into one tick", on: startedForThree === 1 },
     { facet: "the last unsubscribe cancels the loop \u2014 zero orphan processes outside the sequence", on: cancelledAfterLast === 1 }
   ];
@@ -75239,6 +75297,9 @@ var API = class {
   }
 };
 var api = new API();
+var BAGUA_ELEMENTS = EIGHT_FOLD_SCIENCES.filter(
+  (s) => s !== "lake"
+);
 function computeLatticeParams(nQubits = 8) {
   const dimension = 2 ** nQubits;
   const involutionFixed = dimension / 2;
@@ -125931,14 +125992,14 @@ function slowBuildIsQuantumGapGate(root = process.cwd()) {
         timing.srcMerkleBound === true
       ));
     }
-    if (timing.mode === "quantum-respawn") {
-      const band = SLOW_BUILD_RESPAWN_WALL_MS * digitalRoot(DIMENSION_GATES);
+    {
+      const band = timing.mode === "quantum-respawn" ? SLOW_BUILD_RESPAWN_WALL_MS * digitalRoot(DIMENSION_GATES) : SLOW_BUILD_VITEPRESS_MS;
       const under = timing.wallMs <= band;
       gaps2.push(slowBuildGap(
-        "slow-build:respawn-wall",
+        `slow-build:${timing.mode}-wall`,
         "WARN",
-        "quantum-respawn",
-        `respawn wallMs vs ${band}ms lattice band (WARN \u2014 CI variance)`,
+        timing.mode,
+        `${timing.mode} wallMs vs ${band}ms lattice band (WARN \u2014 CI variance)`,
         under,
         timing.wallMs,
         band
