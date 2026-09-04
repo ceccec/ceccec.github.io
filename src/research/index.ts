@@ -17989,6 +17989,54 @@ export const paper_author_orcid = 'https://orcid.org/0009-0000-7312-9778'
 export const paper_date = '2026-08-04'
 export const paper_withdrawn = '2026-08-20'
 
+/**
+ * THE ONE PLACE THE PUBLICATION CREDIT IS WRITTEN.
+ *
+ * A measurement over the built site found 1039 pages carrying no author, no licence, and — outside the
+ * 78 Lean theorem pages — no DOI. Every page here is a printable scientific paper by the corpus's own
+ * law, and a paper without an author, a licence and a way to cite it is not one. The credit is rendered
+ * at the foot of every document from this fold, so a page cannot exist without it.
+ *
+ * It is also the single source. The repository DOI had been written three times over — in
+ * scripts/verify/discoveries.ts, in the generated theorem-deposits.json, and in CITATION.cff — which is
+ * how a stale count survived in one file while another was corrected. The gate now imports it from here.
+ */
+export const PUBLICATION_CREDIT = {
+  author: 'Tsvetan Rouschev',
+  orcid: '0009-0000-7312-9778',
+  orcidUrl: 'https://orcid.org/0009-0000-7312-9778',
+  /** The versioned record. See scripts/verify/deposit-metadata.ts — its metadata is harvested and checked. */
+  repositoryDoi: '10.5281/zenodo.21787144',
+  /** The all-versions DOI: always resolves to the newest version, so it is what a citation should carry. */
+  conceptDoi: '10.5281/zenodo.21787143',
+  licence: 'CC-BY-NC-ND-4.0',
+  licenceUrl: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+  /** The deposit year, taken from the record's own date — never from a clock. A citation year that
+      moves every January would make the same page cite differently on either side of midnight. */
+  year: Number(paper_date.slice(0, 4)),
+} as const
+
+/** How to cite one page: author, title, year, the concept DOI, and the page's own address. */
+export function pageCitation(title: string, url: string, year: number = PUBLICATION_CREDIT.year): {
+  readonly text: string
+  readonly author: string
+  readonly orcidUrl: string
+  readonly doiUrl: string
+  readonly licence: string
+  readonly licenceUrl: string
+} {
+  const c = PUBLICATION_CREDIT
+  return {
+    text: `${c.author} (${year}). ${title}. Double Torus. https://doi.org/${c.conceptDoi} · ${url}`,
+    author: c.author,
+    orcidUrl: c.orcidUrl,
+    doiUrl: `https://doi.org/${c.conceptDoi}`,
+    licence: c.licence,
+    licenceUrl: c.licenceUrl,
+  }
+}
+
+
 /** The six problems the package NAMED. Naming is not proving; see paper_status. */
 export const theorems_claimed = [
   'Riemann Hypothesis',

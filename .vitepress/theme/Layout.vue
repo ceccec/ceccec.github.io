@@ -16,7 +16,7 @@ import { applyHeroChromeVars } from '../lib/hero-chrome'
 
 const { Layout: VPLayout } = DefaultTheme
 const route = useRoute()
-const { frontmatter } = useData()
+const { frontmatter, page: pageData } = useData()
 const showHomeHero = computed(() => Boolean(frontmatter.value.hero))
 const cssWidth = ref((64 * 16))
 const slots = useSlots()
@@ -55,6 +55,15 @@ onUnmounted(() => {
   themeObserver?.disconnect()
   themeObserver = null
 })
+// EVERY PAGE IS A PAPER, SO EVERY PAGE CARRIES ITS CREDIT. A measurement over the built site found
+// 1039 pages with no author, no licence and no DOI outside the Lean theorem pages. The citation is
+// computed from the ONE sealed credit fold, never typed here.
+import { pageCitation, CANONICAL_HOST } from '../render'
+const credit = computed(() => pageCitation(
+  (pageData.value.title || frontmatter.value.title || 'Double Torus') as string,
+  `${CANONICAL_HOST}/${pageData.value.relativePath.replace(/(index)?\.md$/, '')}`
+))
+
 </script>
 
 <template>
@@ -84,6 +93,16 @@ onUnmounted(() => {
           <slot name="aside-bottom" />
         </template>
         <template #doc-footer-before>
+          <section class="page-credit">
+            <p class="page-credit__cite"><strong>Cite this page.</strong> {{ credit.text }}</p>
+            <p class="page-credit__meta">
+              <a :href="credit.orcidUrl" rel="author noopener">{{ credit.author }} · ORCID</a>
+              <span aria-hidden="true"> · </span>
+              <a :href="credit.doiUrl" rel="noopener">DOI {{ credit.doiUrl.replace('https://doi.org/', '') }}</a>
+              <span aria-hidden="true"> · </span>
+              <a :href="credit.licenceUrl" rel="license noopener">{{ credit.licence }}</a>
+            </p>
+          </section>
           <CollectiveMind />
           <GlobalHelp />
           <SpeechReader />
@@ -98,6 +117,17 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.page-credit {
+  margin: var(--ich-sp6) 0 var(--ich-sp4);
+  padding-top: var(--ich-sp3);
+  border-top: 1px solid var(--vp-c-divider);
+  font-size: 0.82rem;
+  color: var(--vp-c-text-2);
+}
+.page-credit__cite { margin: 0 0 0.25rem; word-break: break-word; }
+.page-credit__meta { margin: 0; }
+.page-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
 .vp-with-hero-movie {
   position: relative;
   min-height: 100vh;
