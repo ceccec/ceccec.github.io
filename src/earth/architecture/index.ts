@@ -2378,22 +2378,34 @@ export function displayDualDebtReceipt(
   const graph = componentGraph()
   const law = folderLaw()
   const missing = [...missingComponentNames]
+  // THE WAIVER'S GATE, NAMED ONCE AND REFERENCED — so the facet below can evaluate it against a debt
+  // that has cleared. It was inlined three times and the honesty facet beside it was `on: true`.
+  const waiverNeedsDebt = (debt: readonly string[]): boolean => debt.length > 0
   const facets = [
     {
       facet: 'display-dual debt sealed — componentGraph declares more .vue than the render inventory holds',
-      on: missing.length > 0 },
+      on: waiverNeedsDebt(missing) },
     {
       facet: 'every missing name is declared in componentGraph (no invented debt)',
       on: missing.length === 0 || missing.every((name) => graph.components.includes(name)) },
     {
       facet: 'gate waiver — fifth/no-file BLOCKING deferred to display-dual convergence wave',
-      on: missing.length > 0 },
+      on: waiverNeedsDebt(missing) },
     {
       facet: 'folderLaw.displayDual law unchanged — index.ts + index.vue co-located at science/model/action',
       on: typeof law.displayDual?.law === 'string' && law.displayDual.law.includes('index.vue') },
     {
-      facet: 'HONEST — waiver recomputes every build; debt count must shrink as thin mounts land',
-      on: true },
+      // WAS `on: true`. It asserted an INTENTION — that the debt must shrink — and an intention cannot
+      // be false, so the facet could not fail and the word HONEST in its own text was doing the work a
+      // computation should do. zeropoint-node-8a calls this state PRESENT BUT HOLLOWED: the claim
+      // stands, the check has been gutted, and the name still resolves.
+      //
+      // What is actually checkable is the property the intention rests on: THE WAIVER CANNOT OUTLIVE
+      // THE DEBT. Its gate is evaluated here against an empty list, so if anyone widens it to hold
+      // unconditionally this fires. The intention itself has moved to the boundary, where a caveat
+      // belongs, rather than posing as a claim.
+      facet: 'the waiver expires by construction — its own gate, evaluated against a cleared debt, is false',
+      on: waiverNeedsDebt([]) === false && waiverNeedsDebt(missing) === (missing.length > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`display-dual-debt:${entry.facet}:${entry.on}`) }))
   const waiverOn = facets.every((entry) => entry.on)
   return {
