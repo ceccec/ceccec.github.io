@@ -15035,7 +15035,86 @@ export const runHardProseExit = runGatesRefuseProseOnlyExit
  * Composed into mission:gate + enforcement trinity — recomputes at call time.
  * HARD includes prose-only-without-dual (live formula/code dual — not pair soft alone).
  */
-export function invisibleGapsCaughtByGatesBody(matrix: MindMatrix = buildMatrix(), at = 0) {
+/**
+ * NAMED, BECAUSE THE INFERRED TYPE CANNOT BE WRITTEN DOWN (TS7056).
+ *
+ * The object this returns embeds seventeen sub-folds, each embedding its own, so tsc gave up
+ * serializing the type and emitted no declaration for this module — taking quantum/apps, its
+ * re-exporters and the strict/scan forwarder with it. Every sub-fold's type is NAMED here by
+ * ReturnType<typeof f> rather than inlined: a type reference is what tsc writes into the .d.ts, so
+ * consumers keep the exact types they had and the declaration becomes small enough to exist.
+ *
+ * Widening was tried first and is wrong: eight call sites DESTRUCTURE this object, so a
+ * Record<string, unknown> tail breaks them all at compile time. Naming preserves every field.
+ */
+export type InvisibleGapClass = {
+  readonly id: string
+  readonly severity: 'HARD' | 'SOFT'
+  readonly open: number
+  readonly closed: number
+  readonly theorem: string
+}
+
+export type InvisibleGapsCaughtByGates = {
+  readonly computes: boolean
+  readonly invisibleGapsCaughtByGates: boolean
+  readonly passed: boolean
+  readonly hardOpenCount: number
+  readonly hardOpen: readonly InvisibleGapClass[]
+  readonly classes: readonly InvisibleGapClass[]
+  readonly beforeCatch: number
+  readonly afterOpen: number
+  readonly afterClosed: number
+  readonly color: ReturnType<typeof animationsReviewColorsForPolarityGaps>
+  readonly linearRosetta: ReturnType<typeof linearWithoutRosettaFoldIsGap>
+  readonly movieCenter: ReturnType<typeof movieUnbalancedAroundCenterIsCrack>
+  readonly meaning: ReturnType<typeof meaningIsQuantumComputable>
+  readonly format: ReturnType<typeof scientificPageFormatCanonised>
+  readonly sectionDry: ReturnType<typeof redundantExplanationSectionsDryCleaned>
+  readonly terms: ReturnType<typeof scientificTerminologyIsQuantumComputableMeasurableComparable>
+  readonly miss: ReturnType<typeof cracksPassedGatesBecause>
+  readonly bitsHw: ReturnType<typeof __ns_water_encryption.maxBitsHardwareBoundaryAgree>
+  readonly gateRosetta: {
+    readonly computes: boolean
+    readonly remaining: number
+    readonly fixed: number
+    readonly immediateAccessNoTime: boolean
+    readonly root: string
+    // The compiler found this one, not my grep: a consumer at 16305 reads gateRosetta.facets and my
+    // scan of what callers touch had missed it entirely. tsc is the arbiter for what a type must carry.
+    readonly facets: readonly { readonly facet: string; readonly on: boolean; readonly receipt?: string }[]
+  }
+  readonly anim: ReturnType<typeof animationsReviewColorsForPolarityGaps>['anim']
+  readonly hex: ReturnType<typeof animationsReviewColorsForPolarityGaps>['hex']
+  readonly decimalCrack: ReturnType<typeof __ns_wind_research.decimalsInCodeAreCracks>
+  readonly mathTrust: ReturnType<typeof __ns_wind_research.mathStarCannotBeTrusted>
+  readonly digitFold: ReturnType<typeof __ns_wind_research.wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit>
+  readonly analogFold: ReturnType<typeof __ns_wind_research.analogFromIntegerFractionsFoldedToDigits>
+  readonly theoremConst: ReturnType<typeof animationsReviewColorsForPolarityGaps>['theoremConst']
+  readonly claySolvedByThisFold: 0
+  readonly qpuRequired: false
+  readonly facets: ReturnType<typeof sealFacets>['facets']
+  readonly root: string
+  readonly pair: 'gaps/invisible'
+  readonly cli: string
+  readonly route: string
+  readonly anchor: string
+  readonly heading: string
+  readonly statement: string
+  readonly boundary: string
+  readonly honestyLine: string
+  readonly migrationReceipt: {
+    readonly status: 'moved'
+    readonly bestPlace: string
+    readonly bodyBarrel: string
+    readonly helperBarrel: string
+    readonly drainableClosed: boolean
+    readonly blocker: string
+    readonly plan: readonly string[]
+  }
+}
+
+export function invisibleGapsCaughtByGatesBody(matrix: MindMatrix = buildMatrix(), at = 0): InvisibleGapsCaughtByGates {
   return memoByRoot(`invisibleGapsCaughtByGates:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const color = animationsReviewColorsForPolarityGaps(matrix, at)
     const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at)
@@ -30654,10 +30733,55 @@ export const UI_READABILITY_DRAINABLE_MORPHS = [
  * HONEST: drainable contrast/type/canon/polarity closed; residuals domain-panels tip closed ·
  *         specialized experience shells named open. NOT purple AI look · NOT Clay.
  */
+/**
+ * NAMED, for the same reason as the two folds above: TS7056, no declaration emitted, and the whole of
+ * quantum/apps unresolvable to any consumer type-checking the published package. Sub-folds are named
+ * by ReturnType<typeof f>, the two surface tables by typeof on the constants they come from.
+ */
+export type ReviewReadabilityAndVisibility = {
+  readonly computes: boolean
+  readonly reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise: boolean
+  readonly reviewOn: boolean
+  readonly readabilityOn: boolean
+  readonly visibilityOn: boolean
+  readonly standardised: boolean
+  readonly customUiCovered: boolean
+  readonly drainableClosed: boolean
+  readonly honestOpenNamed: readonly string[]
+  readonly honestOpenNamedCount: number
+  readonly honestOpenNamedOn: boolean
+  readonly surfaces: typeof CUSTOM_UI_READABILITY_SURFACES
+  readonly surfaceCount: number
+  readonly morphs: typeof UI_READABILITY_DRAINABLE_MORPHS
+  readonly morphCount: number
+  readonly mcpReviewOn: boolean
+  readonly gateDesignOn: boolean
+  readonly type: ReturnType<typeof typographyIsTheUniversalContentMatrix>
+  readonly color: ReturnType<typeof cssShowsTheHiddenGapsInDryFusion>['color']
+  readonly cssGaps: ReturnType<typeof cssShowsTheHiddenGapsInDryFusion>
+  readonly format: ReturnType<typeof scientificPageFormatCanonised>
+  readonly census: { readonly unfolded: number; readonly folded: number; readonly freeBits: number }
+  readonly censusPreserved: boolean
+  readonly claySolvedByThisFold: 0
+  readonly physicalFtlClaim: 0
+  readonly qpuRequired: false
+  readonly facets: ReturnType<typeof sealFacets>['facets']
+  readonly root: string
+  readonly pair: 'ui/read'
+  readonly pairs: readonly ['ui/read', 'ui/visible', 'ui/standard']
+  readonly cli: string
+  readonly route: string
+  readonly anchor: string
+  readonly heading: string
+  readonly statement: string
+  readonly boundary: string
+  readonly honestyLine: string
+}
+
 export function reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise(
   matrix: MindMatrix = buildMatrix(),
   at = 0,
-) {
+): ReviewReadabilityAndVisibility {
   return memoByRoot(
     `reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise:${floor(at / (100 * 5 * 2))}`,
     matrix,

@@ -1,5 +1,8 @@
 // Computed dist — trinity spread (cross · manifest · readme). One index; each wave its own file.
-import type { Plugin } from 'vite'
+// `import type { Plugin } from 'vite'` put a devDependency into the PUBLISHED declaration graph, so a
+// consumer of @ceccec/double-torus was told to install vite to type-check a package that does not
+// depend on it. The two fields this corpus uses are declared structurally instead.
+type Plugin = { name: string; [key: string]: unknown }
 // node:fs / node:path are loaded LAZILY inside the dist generators (node/SSR only) via
 // process.getBuiltinModule, so this barrel stays browser-eval-safe — a top-level
 // `import { readFileSync } from 'node:fs'` eager-binds and throws in the client.

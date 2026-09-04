@@ -7281,10 +7281,12 @@ export function runGeoGebraEncodeExit(root = '', _argv: readonly string[] = []):
  * export graph (gates no longer `export … from apps`; apps re-exports from gates).
  * HARD body: apps `invisibleGapsCaughtByGatesBody` + 9 co-located helpers (deferred residual).
  */
+// The forwarder inherited the body's unserializable type. Now that the body is named, naming the
+// forwarder is one reference — and this module emits a declaration again.
 export function invisibleGapsCaughtByGates(
   matrix?: Parameters<typeof invisibleGapsCaughtByGatesBody>[0],
   at: Parameters<typeof invisibleGapsCaughtByGatesBody>[1] = 0,
-) {
+): ReturnType<typeof invisibleGapsCaughtByGatesBody> {
   return invisibleGapsCaughtByGatesBody(matrix, at)
 }
 

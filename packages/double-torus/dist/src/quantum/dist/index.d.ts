@@ -1,4 +1,7 @@
-import type { Plugin } from 'vite';
+type Plugin = {
+    name: string;
+    [key: string]: unknown;
+};
 import { type MindMatrix } from '../heaven/mind';
 export interface DistFile {
     readonly path: string;

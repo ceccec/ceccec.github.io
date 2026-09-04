@@ -1920,7 +1920,36 @@ export function allIsFusedComputes(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** One gate — every fusion research wave and compose capstone proves science barrels fused at call time. */
-export function fusionComputes(matrix: MindMatrix = buildMatrix()) {
+/**
+ * THE INFERRED TYPE COULD NOT BE WRITTEN DOWN, SO THIS ONE IS.
+ *
+ * The object below embeds seven whole sub-folds, each of which embeds its own, so tsc could not
+ * serialize the inferred return type (TS7056) and emitted NO declaration file for this module. The
+ * published package then shipped .d.ts files importing a module that was not there — sixteen TS2307
+ * errors for any consumer type-checking under moduleResolution:bundler, and none at all for the
+ * majority running skipLibCheck, which is why 1.4.0 went out with the hole in it.
+ *
+ * The fix is NOT to widen the type: that was tried and broke eight call sites that destructure. It is
+ * to NAME each sub-fold's type instead of inlining it. `ReturnType<typeof f>` is a type REFERENCE,
+ * which tsc writes into the .d.ts as a reference rather than expanding — so every consumer keeps the
+ * exact type it had, and the declaration becomes small enough to exist.
+ */
+export type FusionComputes = {
+  readonly computes: boolean
+  readonly researched: ReturnType<typeof fusionResearchedInWaves>
+  readonly reactor: ReturnType<typeof __ns_self.developmentIsFusionReactor>
+  readonly endless: ReturnType<typeof __ns_self.endlessFusion>
+  readonly allFused: ReturnType<typeof allIsFusedComputes>
+  readonly used: ReturnType<typeof allComputedAndUsedInComputations>
+  readonly goldFusion: ReturnType<typeof goldFusionComputes>
+  readonly localMath: ReturnType<typeof __ns_up_stack_overflow.localMathComputes>
+  readonly facets: ReturnType<typeof computesGate>['facets']
+  readonly root: string
+  readonly statement: string
+  readonly boundary: string
+}
+
+export function fusionComputes(matrix: MindMatrix = buildMatrix()): FusionComputes {
   return memoByRoot('fusionComputes', matrix, () => {
     const developmentIsFusionReactor = __ns_self.developmentIsFusionReactor, endlessFusion = __ns_self.endlessFusion, fusionResearchedInWaves = __ns_self.fusionResearchedInWaves
     const researched = fusionResearchedInWaves(matrix)

@@ -15,7 +15,7 @@ export declare const MAX_QUANTUM_TIMEOUT_MS = 900000;
 export declare const MAX_TRADING_TIMEOUT_MS = 120000;
 export declare function defaultTimeoutMs(kind: TimeoutKind): number;
 export declare function maxTimeoutMs(kind: TimeoutKind): number;
-export declare function envTimeoutMs(kind: TimeoutKind, env?: NodeJS.ProcessEnv): number;
+export declare function envTimeoutMs(kind: TimeoutKind, env?: Readonly<Record<string, string | undefined>>): number;
 export declare function parseTimeoutCliArgs(argv?: readonly string[]): TimeoutCliOptions;
 export declare function resolveScriptTimeoutMs(kind: TimeoutKind, cli: TimeoutCliOptions): number;
 export declare function timeoutDryRefactorToQuantum(opts: {

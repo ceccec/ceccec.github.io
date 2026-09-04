@@ -52,7 +52,11 @@ export function maxTimeoutMs(kind: TimeoutKind): number {
   return kind === 'build' || kind === 'agent-budget' || kind === 'generic' ? MAX_QUANTUM_TIMEOUT_MS : MAX_TRADING_TIMEOUT_MS
 }
 
-export function envTimeoutMs(kind: TimeoutKind, env: NodeJS.ProcessEnv = process.env): number {
+// STRUCTURAL, NOT NodeJS.ProcessEnv. The published declaration graph carried `NodeJS.ProcessEnv`
+// into a package that declares no @types/node dependency, so every consumer type-checking it saw
+// "Cannot find namespace 'NodeJS'" — a build-time type leaking onto a shipped surface, the same class
+// as the node: builtins the bundle stubs. The shape this function actually needs is a string map.
+export function envTimeoutMs(kind: TimeoutKind, env: Readonly<Record<string, string | undefined>> = process.env): number {
   const key = kind === 'build' || kind === 'agent-budget' || kind === 'generic' ? 'QUANTUM_TIMEOUT_MS' : 'TRADING_TIMEOUT_MS'
   const raw = env[key]
   if (raw !== undefined && raw !== '') {

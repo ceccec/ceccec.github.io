@@ -63,6 +63,33 @@ const STEPS: readonly Step[] = [
     },
   },
   {
+    name: 'the published declarations type-check as a consumer sees them',
+    run: () => {
+      // THE NUMBER A CONSUMER GETS, not a proxy for it. The declaration graph closing means the files
+      // EXIST; it does not mean they check. Both were measured against the published 1.4.0 before this
+      // wave — bundler 10, skipLibCheck 0, nodenext 338 — and the first two are the modes real projects
+      // use. nodenext is measured and NOT gated, for a reason stated in the detail line.
+      const tsc = join(process.cwd(), 'node_modules/.bin/tsc')
+      if (!existsSync(tsc)) return { ok: false, detail: 'typescript not installed' }
+      const entry = 'packages/double-torus/dist/index.d.ts'
+      if (!existsSync(join(process.cwd(), entry))) return { ok: false, detail: 'dist not built' }
+      const count = (mode: readonly string[]) =>
+        (shell(tsc, ['--noEmit', '--ignoreConfig', '--target', 'es2022', '--strict', ...mode, entry]).out.match(/error TS/g) ?? []).length
+      const bundler = count(['--module', 'esnext', '--moduleResolution', 'bundler'])
+      const skipLib = count(['--skipLibCheck', '--module', 'nodenext', '--moduleResolution', 'nodenext'])
+      const nodenext = count(['--module', 'nodenext', '--moduleResolution', 'nodenext'])
+      // nodenext rejects a relative import in a .d.ts that carries no file extension (TS2834), and
+      // this corpus writes every relative import extensionless — its convention, in thousands of
+      // places. Closing the graph made that visible at scale rather than causing it: before, four
+      // modules simply did not exist to be checked. Supporting nodenext means adding an extension to
+      // every relative import in src/, which is a decision about the corpus, not about this package.
+      return {
+        ok: bundler === 0 && skipLib === 0,
+        detail: `bundler ${bundler} · skipLibCheck ${skipLib} · nodenext ${nodenext} (NOT gated — TS2834, extensionless relative imports, a corpus-wide convention)`,
+      }
+    },
+  },
+  {
     name: 'purity of the freshly built artifacts',
     run: () => {
       const kernel = measureBundle('packages/kernel/index.mjs')
