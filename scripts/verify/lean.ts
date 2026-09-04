@@ -19,7 +19,8 @@
  */
 
 import { execFileSync } from 'node:child_process'
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { join, relative } from 'node:path'
 
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', 'worktrees'])
@@ -82,13 +83,21 @@ export function axiomFreedom(file: string): { total: number; axiomFree: number; 
   const names = [...text.matchAll(/^theorem\s+([A-Za-z0-9_]+)/gm)].map((m) => m[1]!)
   if (!names.length) return { total: 0, axiomFree: 0, propextOnly: 0, dependent: [] }
   const probe = `${text}\n${names.map((n) => `#print axioms ${ns ? ns + '.' : ''}${n}`).join('\n')}\n`
-  const tmp = join(process.cwd(), '.vitepress', 'cache', `axprobe-${names.length}-${text.length}.lean`)
+  // THE PROBE GETS ITS OWN DIRECTORY. This wrote into .vitepress/cache, which VitePress owns and
+  // wipes: a docs:build running beside verify:all deleted the directory between two probes and the
+  // gate died ENOENT mid-measurement — a green-or-red verdict lost to a race with a sibling process,
+  // and 40+ stale axprobe-*.lean left behind when it did survive. A private mkdtemp cannot collide
+  // with anything and is removed whether the probe succeeds or throws.
+  const dir = mkdtempSync(join(tmpdir(), 'axprobe-'))
+  const tmp = join(dir, `probe-${names.length}-${text.length}.lean`)
   writeFileSync(tmp, probe)
   let out = ''
   try {
     out = execFileSync('lean', [tmp], { stdio: 'pipe', timeout: 300_000 }).toString()
   } catch (e) {
     out = `${(e as { stdout?: Buffer }).stdout?.toString() ?? ''}`
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
   }
   const axiomFree = (out.match(/does not depend on any axioms/g) ?? []).length
   const deps = [...out.matchAll(/'([^']+)' depends on axioms: \[([^\]]*)\]/g)]
