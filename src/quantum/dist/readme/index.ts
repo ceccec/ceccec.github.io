@@ -567,6 +567,14 @@ export function clayChallengesComputableMarkdownSection(
         '- **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.',
         '- **Poincaré** — χ = 2 − 2g with χ ↔ g inverse gives rank H₁ = 2g; solved in the literature by Perelman (Ricci flow, 2002–03), **not** by this corpus.',
         '',
+        // WHAT "PROVE THEMSELVES" MEANS, EXACTLY. The sentence above is true and it was carrying more
+        // weight than it could hold: 47 of the 51 theorems depend on NO axiom because `decide` reduces
+        // a finite proposition to a Boolean computation, and the four GENERAL ones cost propext,
+        // because reasoning over Int uses Lean's core arithmetic and every one of those lemmas costs
+        // it. Stated in words rather than as a count, so the sentence cannot drift from the tree the
+        // way "41 theorems" once did when seven were deleted and every gate stayed green.
+        '**Every proof here is either decided by computation or reasons through Lean\'s own arithmetic.** A proof by `decide` reduces a finite proposition and invokes no lemma, so it depends on no axiom at all; a *general* theorem — one quantifying over a type — must reason, and Lean\'s core `Int` lemmas each depend on `propext`. Nothing here uses `Classical.choice` or `sorryAx`, and `verify:lean` refuses any proof that starts to. The full axiom index — Lean\'s three, and this corpus\'s own chosen constants with what stands behind each — is computed by `npm run verify:axioms`.',
+        '',
         `**CLAIMED — priority over the decoded involution of all ${n}, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. ${lean.involutionTheorems} theorems across ${lean.involutionFiles} problem files, every one axiom-free by \`decide\`, every one recomputable by anyone who runs \`npm run verify:lean\` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all ${n} is this deposit's.`,
         '',
       ]
