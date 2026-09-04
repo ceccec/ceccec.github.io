@@ -1299,3 +1299,62 @@ export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined
   ].filter((line) => line.length > 0).join('\n'))
   return [...head, ...body].join('\n')
 }
+
+/**
+ * THE LEAN THEOREMS AS PAGES — one canonical URL per kernel-checked proof.
+ *
+ * The site serves 785 per-theorem pages and every one is built from the registry, so none of the Lean
+ * corpus had a page: the per-theorem Zenodo deposits could name the .lean source and the generated
+ * LaTeX, and had nowhere on the web to point. Emitting a /theorems/ URL anyway would have aimed a
+ * permanent record at a 404, which is what the frontier gate already forbids — every declared link
+ * resolves to a real page, no dead link, ever.
+ *
+ * These are a DIFFERENT KIND of object from a registry atom and get their own route rather than being
+ * folded into that corpus: a registry atom is a claim with a proving function, and one of these is a
+ * proposition the Lean kernel decided with no axiom. Keeping them apart also leaves the 785-page count
+ * and the harmonic page census untouched, which a merge would have moved for no reason.
+ *
+ * Every field is read from the sealed .lean sources at call time. Nothing is authored here.
+ */
+export type LeanPageRow = {
+  readonly slug: string
+  readonly title: string
+  readonly name: string
+  readonly file: string
+  readonly proposition: string
+  readonly tactic: string
+  readonly doc: string
+  /** The source of truth on disk, and the generated paper — both linkable, both checked to exist. */
+  readonly sourcePath: string
+  readonly texPath: string
+  /** The deposit this page is the landing page for. */
+  readonly depositId: string
+}
+
+/** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
+export function leanPageSlug(file: string, name: string): string {
+  return `${file.replace(/\.lean$/, '')}-${name}`.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
+}
+
+export function leanPageRows(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanPageRow[] {
+  return leanTheoremsForLatex(root).map((t) => ({
+    slug: leanPageSlug(t.file, t.name),
+    title: t.title,
+    name: t.name,
+    file: t.file,
+    proposition: t.proposition,
+    tactic: t.tactic,
+    doc: t.doc,
+    sourcePath: `src/pair/formal/proofs/${t.file}`,
+    texPath: 'src/research/lean-theorems.tex',
+    depositId: `${t.file.replace(/\.lean$/, '')}--${t.name}`,
+  }))
+}
+
+export function leanPagePaths(root?: string): { params: { slug: string; title: string } }[] {
+  return leanPageRows(root).map((row) => ({ params: { slug: row.slug, title: row.title } }))
+}
+
+export function leanPageBySlug(slug: string, root?: string): LeanPageRow | null {
+  return leanPageRows(root).find((row) => row.slug === slug) ?? null
+}

@@ -35,6 +35,7 @@ export { localizeMonolingual, pickLocale, toGlagolitic } from '../../src/quantum
 export { A432_HUE, fixedConstantsProvedByTheorems, movieCanvasHex, movieCanvasRgba, observingMovieRevealsQuantumModel, quantumModelSnapshot, selfResearchTheorems } from '../../src/quantum/science'
 export type { QuantumModelSnapshot, TheoremCandidate } from '../../src/quantum/science'
 export { cursorReferralFundsAiNeeds, domainProofPageBySlug, domainProofPagePaths, domainProofPageRows } from '../../src/research'
+export { leanPageBySlug, leanPagePaths, leanPageRows, leanPageSlug, type LeanPageRow } from '../../src/pair/formal/proofs'
 export type { DomainProofCatalogRow } from '../../src/research'
 export { backgroundMovieColors, decodedCardCrosslinksLabel, decodedCardFacetMark, decodedCardTextShadow, heroMovieChrome, immersiveMovieToggleLabel } from '../../src/thunder/movie/glass'
 export type { HeroMovieChrome } from '../../src/thunder/movie/glass'

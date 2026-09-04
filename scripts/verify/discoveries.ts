@@ -26,7 +26,7 @@
 
 import { writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
+import { leanPageSlug, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
 import { priorArtLedger, PRIOR_ART_SEARCHED } from './prior-art.ts'
 
 /** The repository deposit every per-theorem record is part of. */
@@ -60,6 +60,9 @@ export type DepositRecord = {
   /** Every path this record points into the repository. The gate resolves each one on disk, because a
    *  deposit is permanent and a dead link inside one cannot be corrected later. */
   readonly repoPaths: readonly string[]
+  /** The canonical landing page for this deposit, and the built file that must exist for it. */
+  readonly landingPage: string
+  readonly landingPageBuilt: string
 }
 
 /** The ledger's verdict for a theorem name, matched loosely because Lean names are snake_case and the
@@ -100,6 +103,7 @@ export function depositRecords(root: string = process.cwd()): DepositRecord[] {
     const leanPath = `src/pair/formal/proofs/${t.file}`
     const texPath = 'src/research/lean-theorems.tex'
     const cited = status.kind === 'attributed' ? [status.citation] : []
+    const slug = leanPageSlug(t.file, t.name)
     return {
       id: `${t.file.replace(/\.lean$/, '')}--${t.name}`,
       title: t.title,
@@ -122,6 +126,7 @@ export function depositRecords(root: string = process.cwd()): DepositRecord[] {
         { identifier: `${BLOB}/${leanPath}`, relation: 'isDerivedFrom', scheme: 'url' },
         { identifier: `${BLOB}/${texPath}`, relation: 'isDocumentedBy', scheme: 'url' },
         { identifier: SITE, relation: 'isPublishedIn', scheme: 'url' },
+        { identifier: `${SITE}/lean/${slug}`, relation: 'isDocumentedBy', scheme: 'url' },
       ],
       references: cited,
       creators: [{ name: 'Rouschev, Tsvetan', orcid: ORCID }],
@@ -133,6 +138,8 @@ export function depositRecords(root: string = process.cwd()): DepositRecord[] {
         { term: 'Proof theory', identifier: 'https://id.loc.gov/authorities/subjects/sh85107437' },
       ],
       repoPaths: [leanPath, texPath],
+      landingPage: `${SITE}/lean/${slug}`,
+      landingPageBuilt: `.vitepress/dist/lean/${slug}.html`,
     }
   })
 }
@@ -170,8 +177,17 @@ export function assertDepositsAreHonest(): void {
   const paths = new Set(records.flatMap((r) => r.repoPaths))
   console.log(`  ${paths.size} referenced repository path(s) all resolve on disk`)
 
-  // THE LANDING PAGES DO NOT EXIST YET AND NO RECORD PRETENDS THEY DO. The theorem-page corpus is
-  // built from the registry (785 pages) and none of it is sourced from the .lean files, so none of
-  // these 43 has a page. Reported, so the gap is visible rather than papered over with a URL.
-  console.log(`  0 of ${records.length} have a per-theorem landing page — the /theorems/ corpus is registry-sourced; no record links to one`)
+  // EVERY LANDING PAGE IS A FILE THE BUILD PRODUCED. This is the rule openFrontierCardLinks holds for
+  // /theorems/ — every declared link resolves to a REAL page, no dead link, ever — applied where it
+  // matters most, because a Zenodo record is permanent and its URL cannot be corrected after minting.
+  // It is checked against dist, so a page that stops being built fails here before anything is
+  // deposited. If dist is absent the step says so instead of passing.
+  const dist = existsSync(join(process.cwd(), '.vitepress/dist'))
+  if (!dist) {
+    console.log(`  landing pages NOT MEASURED — .vitepress/dist absent, run docs:build`)
+  } else {
+    const dead = records.filter((r) => !existsSync(join(process.cwd(), r.landingPageBuilt)))
+    if (dead.length) throw new Error(`${dead.length} deposit(s) name a landing page the build does not produce: ${dead.slice(0, 3).map((r) => r.landingPage).join(', ')}`)
+    console.log(`  ${records.length}/${records.length} landing pages exist in dist — every deposit URL resolves`)
+  }
 }

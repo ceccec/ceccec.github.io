@@ -17,6 +17,8 @@ export { default as PaperFrame } from './PaperFrame.vue'
 export { default as TheoremSupport } from './TheoremSupport.vue'
 export { default as ModelCardPages } from './ModelCardPages.vue'
 export { default as TheoremPages } from './TheoremPages.vue'
+export { default as LeanTheoremPages } from './LeanTheoremPages.vue'
+export { default as LeanTheoremIndex } from './LeanTheoremIndex.vue'
 export { default as DomainProofPages } from './DomainProofPages.vue'
 export { default as TheoremIndex } from './TheoremIndex.vue'
 export { default as SourceAtlas } from './SourceAtlas.vue'
@@ -48,6 +50,8 @@ export const VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG = [
   { id: 'TheoremSupport', path: 'TheoremSupport.vue', kind: 'eager' as const, role: 'aside' },
   { id: 'ModelCardPages', path: 'ModelCardPages.vue', kind: 'eager' as const, role: 'page' },
   { id: 'TheoremPages', path: 'TheoremPages.vue', kind: 'eager' as const, role: 'page-shell' },
+  { id: 'LeanTheoremPages', path: 'LeanTheoremPages.vue', kind: 'eager' as const, role: 'page-shell' },
+  { id: 'LeanTheoremIndex', path: 'LeanTheoremIndex.vue', kind: 'eager' as const, role: 'index' },
   { id: 'DomainProofPages', path: 'DomainProofPages.vue', kind: 'eager' as const, role: 'page-shell' },
   { id: 'TheoremIndex', path: 'TheoremIndex.vue', kind: 'eager' as const, role: 'index' },
   { id: 'SourceAtlas', path: 'SourceAtlas.vue', kind: 'eager' as const, role: 'atlas' },
