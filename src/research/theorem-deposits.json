@@ -2,7 +2,7 @@
   "repositoryDoi": "10.5281/zenodo.21787144",
   "orcid": "0009-0000-7312-9778",
   "generated": "derived from the sealed .lean sources; do not edit by hand",
-  "count": 58,
+  "count": 76,
   "records": [
     {
       "id": "bsd--sigma_is_an_involution",
@@ -4190,6 +4190,1374 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself",
       "landingPageBuilt": ".vitepress/dist/lean/spacetime-the-light-cone-is-carried-to-itself.html"
+    },
+    {
+      "id": "three--closure_is_one_hundred_sixty_two",
+      "title": "Closure is one hundred sixty two",
+      "file": "three.lean",
+      "proposition": "(cells 18 9).length = 162",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-closure-is-one-hundred-sixty-two",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-closure-is-one-hundred-sixty-two",
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-one-hundred-sixty-two.html"
+    },
+    {
+      "id": "three--closure_is_the_product",
+      "title": "Closure is the product",
+      "file": "three.lean",
+      "proposition": "(cells 1 1).length = 1 ∧ (cells 8 8).length = 64 ∧ (cells 18 9).length = 162 ∧ (cells 9 18).length = 162 ∧ (cells 18 10).length = 180",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-closure-is-the-product",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-closure-is-the-product",
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-the-product.html"
+    },
+    {
+      "id": "three--closure_has_no_duplicate",
+      "title": "Closure has no duplicate",
+      "file": "three.lean",
+      "proposition": "(cells 18 9).Nodup",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nNO CELL IS REPEATED. This is the bijection, and it is strictly stronger than \"every pair is present\": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-closure-has-no-duplicate",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-closure-has-no-duplicate",
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-has-no-duplicate.html"
+    },
+    {
+      "id": "three--closure_is_complete",
+      "title": "Closure is complete",
+      "file": "three.lean",
+      "proposition": "coversEveryPair 18 9 = true",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nClosure is complete",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-closure-is-complete",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-closure-is-complete",
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-complete.html"
+    },
+    {
+      "id": "three--address_inverts",
+      "title": "Address inverts",
+      "file": "three.lean",
+      "proposition": "∀ p ∈ cells 18 9, row 9 (idx 9 p.1 p.2) = p.1 ∧ col 9 (idx 9 p.1 p.2) = p.2",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nTHE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-address-inverts",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-address-inverts",
+      "landingPageBuilt": ".vitepress/dist/lean/three-address-inverts.html"
+    },
+    {
+      "id": "three--addresses_are_the_interval",
+      "title": "Addresses are the interval",
+      "file": "three.lean",
+      "proposition": "(cells 18 9).map (fun p => idx 9 p.1 p.2) = List.range 162",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-addresses-are-the-interval",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-addresses-are-the-interval",
+      "landingPageBuilt": ".vitepress/dist/lean/three-addresses-are-the-interval.html"
+    },
+    {
+      "id": "three--the_compound_fraction_clears",
+      "title": "The compound fraction clears",
+      "file": "three.lean",
+      "proposition": "(12 : Int) * 10 = 5 * 24",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-the-compound-fraction-clears",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-the-compound-fraction-clears",
+      "landingPageBuilt": ".vitepress/dist/lean/three-the-compound-fraction-clears.html"
+    },
+    {
+      "id": "three--focal_plane_is_unit_scale",
+      "title": "Focal plane is unit scale",
+      "file": "three.lean",
+      "proposition": "den 0 = 24",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nAT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-focal-plane-is-unit-scale",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-focal-plane-is-unit-scale",
+      "landingPageBuilt": ".vitepress/dist/lean/three-focal-plane-is-unit-scale.html"
+    },
+    {
+      "id": "three--depth_is_strictly_monotone",
+      "title": "Depth is strictly monotone",
+      "file": "three.lean",
+      "proposition": "∀ k1 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], ∀ k2 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], k1 < k2 → 24 * den k2 < 24 * den k1",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nNEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-depth-is-strictly-monotone",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-depth-is-strictly-monotone",
+      "landingPageBuilt": ".vitepress/dist/lean/three-depth-is-strictly-monotone.html"
+    },
+    {
+      "id": "three--frustum_brackets_the_focal_plane",
+      "title": "Frustum brackets the focal plane",
+      "file": "three.lean",
+      "proposition": "(19 : Int) < 24 ∧ (24 : Int) < 29 ∧ (0 : Int) < 19",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-frustum-brackets-the-focal-plane",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-frustum-brackets-the-focal-plane",
+      "landingPageBuilt": ".vitepress/dist/lean/three-frustum-brackets-the-focal-plane.html"
+    },
+    {
+      "id": "three--denominator_is_positive_on_the_frustum",
+      "title": "Denominator is positive on the frustum",
+      "file": "three.lean",
+      "proposition": "∀ k ∈ [(-5 : Int), -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], 0 < den k",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-denominator-is-positive-on-the-frustum",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-denominator-is-positive-on-the-frustum",
+      "landingPageBuilt": ".vitepress/dist/lean/three-denominator-is-positive-on-the-frustum.html"
+    },
+    {
+      "id": "three--reflection_is_an_involution",
+      "title": "Reflection is an involution",
+      "file": "three.lean",
+      "proposition": "reflIsInvolutive 18 9 = true",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nσ² = id on every cell of the closure.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-reflection-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-reflection-is-an-involution",
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-is-an-involution.html"
+    },
+    {
+      "id": "three--reflection_closes_on_the_closure",
+      "title": "Reflection closes on the closure",
+      "file": "three.lean",
+      "proposition": "reflStaysInside 18 9 = true",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nσ maps the closure onto itself — the symmetry does not leave the space.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-reflection-closes-on-the-closure",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-reflection-closes-on-the-closure",
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-closes-on-the-closure.html"
+    },
+    {
+      "id": "three--reflection_has_no_fixed_point",
+      "title": "Reflection has no fixed point",
+      "file": "three.lean",
+      "proposition": "reflHasNoFixedPoint 18 9 = true",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nNO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-reflection-has-no-fixed-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-reflection-has-no-fixed-point",
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-has-no-fixed-point.html"
+    },
+    {
+      "id": "three--the_closure_is_eighty_one_orbits",
+      "title": "The closure is eighty one orbits",
+      "file": "three.lean",
+      "proposition": "(cells 18 9).length = 2 * 81",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nSo the closure is 81 orbits of two, with nothing left over.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-the-closure-is-eighty-one-orbits",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-the-closure-is-eighty-one-orbits",
+      "landingPageBuilt": ".vitepress/dist/lean/three-the-closure-is-eighty-one-orbits.html"
+    },
+    {
+      "id": "three--orbit_positions_cancel",
+      "title": "Orbit positions cancel",
+      "file": "three.lean",
+      "proposition": "orbitPositionsCancel 18 9 = true",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nTHE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-orbit-positions-cancel",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-orbit-positions-cancel",
+      "landingPageBuilt": ".vitepress/dist/lean/three-orbit-positions-cancel.html"
+    },
+    {
+      "id": "three--reflection_complements_the_address",
+      "title": "Reflection complements the address",
+      "file": "three.lean",
+      "proposition": "reflComplementsAddress 18 9 = true",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The geometric symmetry and the arithmetic one are the same symmetry, which is not visible from either the layout or the addressing alone.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-reflection-complements-the-address",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-reflection-complements-the-address",
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-complements-the-address.html"
+    },
+    {
+      "id": "three--the_involution_laws_are_general",
+      "title": "The involution laws are general",
+      "file": "three.lean",
+      "proposition": "(reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧ (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧ (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧ (orbitPositionsCancel 3 3 = true) ∧ -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does. (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧ (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false)",
+      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.",
+      "priorArt": {
+        "kind": "no-search-on-record"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/three.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/three-the-involution-laws-are-general",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "three"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/three.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/three-the-involution-laws-are-general",
+      "landingPageBuilt": ".vitepress/dist/lean/three-the-involution-laws-are-general.html"
     },
     {
       "id": "yang-mills--middle_forms_have_dimension_six",

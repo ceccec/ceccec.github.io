@@ -24,7 +24,7 @@
  * cannot describe itself as original while the ledger says a citation exists — or the reverse.
  */
 
-import { writeFileSync, existsSync } from 'node:fs'
+import { writeFileSync, existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { leanPageSlug, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
 import { priorArtLedger, PRIOR_ART_SEARCHED } from './prior-art.ts'
@@ -151,7 +151,35 @@ export function writeDeposits(root: string = process.cwd()): void {
   console.log(`wrote ${out} — ${records.length} per-theorem deposit records`)
 }
 
+/**
+ * A GENERATED FILE THAT NOTHING COMPARES TO ITS SOURCE IS A CLAIM, NOT A DERIVATION.
+ *
+ * src/research/theorem-deposits.json carries the header "derived from the sealed .lean sources; do not
+ * edit by hand" and is written by `npm run paper:deposits`. That command is not in verify:all, so
+ * nothing ran it and nothing noticed: the file sat at 58 records while the sources held 76. CITATION.cff
+ * quoted the same stale 58 and WAS caught, because it has a drift gate and this did not — the identical
+ * defect, one file with an instrument pointed at it and one without.
+ *
+ * It matters more here than in the prose, because these records are what a permanent DOI would be minted
+ * from, and a Zenodo record's metadata cannot be corrected after the fact.
+ */
+function assertGeneratedDepositsAreCurrent(root: string = process.cwd()): void {
+  const live = depositRecords(root)
+  const file = join(root, 'src/research/theorem-deposits.json')
+  if (!existsSync(file)) throw new Error(`${file} is missing — run \`npm run paper:deposits\``)
+  const onDisk = JSON.parse(readFileSync(file, 'utf8')) as { count?: number; records?: unknown[] }
+  const stored = onDisk.records?.length ?? 0
+  if (stored !== live.length || onDisk.count !== live.length) {
+    throw new Error(
+      `src/research/theorem-deposits.json holds ${stored} records (count field ${onDisk.count}) and the sealed ` +
+      `sources hold ${live.length} — the file a DOI would be minted from has drifted. Run \`npm run paper:deposits\`.`
+    )
+  }
+  console.log(`  generated deposits in sync: ${stored} records match the sealed sources`)
+}
+
 export function assertDepositsAreHonest(): void {
+  assertGeneratedDepositsAreCurrent()
   const records = depositRecords()
   const byKind = { attributed: 0, 'searched-none-found': 0, 'no-search-on-record': 0 }
   for (const r of records) byKind[r.priorArt.kind] += 1

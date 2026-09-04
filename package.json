@@ -1083,6 +1083,7 @@
     "verify:axioms": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/axioms.ts assertAxiomIndex",
     "verify:citation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/citation.ts assertCitationIsCurrent",
     "verify:three": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/three.ts assertThreeCoverage",
-    "verify:bagua": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/bagua.ts assertBaguaNamesRealFolders"
+    "verify:bagua": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/bagua.ts assertBaguaNamesRealFolders",
+    "verify:deposit-metadata": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts assertDepositMetadataIsHonest"
   }
 }

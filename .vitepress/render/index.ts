@@ -27,7 +27,7 @@ export { WATCH_MS_STORAGE_KEY, attunementTier, encodeWatchMsPersist, harmonizeFi
 export type { ObserverContext } from '../../src/music'
 export { HERO_CYCLE_MS, QUANTUM_SENSOR_BINDING_CATALOG, backgroundSceneFromShared, cardFieldScroll, deviceSensorPerspectiveAt, deviceTouchPerspectiveAt, drawBackgroundMovie, drawBothEarthsMerkabaFrame, drawHeroMovieFrame, drawLivingTorusFrame, drawQuantumAppFrame, heroFieldCenterY, movieObservationReceipt, movieTextFromCopy, quantumSensorBindingCatalog, realtimeSubtitleAt, sharedHeroAt, subscribeHeroClock } from '../../src/quantum'
 export type { BothEarthsMerkabaRotation, DeviceSensorSample, LivingTorusCoordinate, MoviePerspectiveBias, QuantumAppFrame, QuantumSensorKind, RealtimeSubtitleState, SharedHeroCopy, SharedHeroState } from '../../src/quantum'
-export { CELL_PITCH, FOCAL, threeCameraFromFocal, threeCellAt, threeCombinationClosure, threeCoversEveryCombination } from '../../src/quantum/wind/geometry'
+export { CELL_PITCH, FOCAL, UNRENDERABLE_MATERIALS, threeCameraFromFocal, threeCellAt, threeClosureIsInvolutive, threeCombinationClosure, threeCoversEveryCombination, threeReflect } from '../../src/quantum/wind/geometry'
 export type { ThreeCatalogue, ThreeCell } from '../../src/quantum/wind/geometry'
 export { OBLIQUE_VIEW_TILT } from '../../src/quantum'
 export { SCIENCE_PAGE_CANON_SLOTS, SCIENCE_PAPER_SECTION_LABELS, componentProjectionFor, frontierNeighboursFor, pageComputedGapsAt, quantumAppForComponent, sciencePaperBodyFromCorpusSections, sciencePaperBodyFromDomainRow, slowProcessIsQuantumGap } from '../../src/quantum/apps'
