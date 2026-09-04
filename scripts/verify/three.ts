@@ -25,7 +25,7 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { threeCameraFromFocal, threeClosureIsInvolutive, threeCombinationClosure, threeCoversEveryCombination, type ThreeCatalogue } from '../../src/quantum/wind/geometry/index.ts'
+import { UNRENDERABLE_MATERIALS, threeCameraFromFocal, threeClosureIsInvolutive, threeCombinationClosure, threeCoversEveryCombination, type ThreeCatalogue } from '../../src/quantum/wind/geometry/index.ts'
 
 /**
  * What the installed three.js actually offers. A geometry counts only if it BUILDS ITSELF with no
@@ -46,8 +46,12 @@ export async function measureThreeCatalogue(): Promise<ThreeCatalogue> {
       // Cannot build itself: not a cell of the closure.
     }
   }
+  // CONSTRUCTING IS NOT RENDERING. MeshDistanceMaterial builds itself and then throws when drawn —
+  // it is three's internal shadow-distance material. This process has no GPU, so it cannot make that
+  // measurement; it applies the ledgered exclusion the browser measured and the browser re-measures.
   const materials: string[] = []
   for (const name of Object.keys(T).filter((k) => k.startsWith('Mesh') && k.endsWith('Material')).sort()) {
+    if (UNRENDERABLE_MATERIALS.includes(name)) continue
     try { new T[name]!(); materials.push(name) } catch { /* not constructible bare */ }
   }
   return { geometries, materials }
@@ -85,7 +89,8 @@ export async function assertThreeCoverage(): Promise<void> {
   const closure = threeCombinationClosure(cat)
   const cam = threeCameraFromFocal()
   console.log(`three.js catalogue MEASURED from the installed library:`)
-  console.log(`  ${cat.geometries.length} self-constructing geometries · ${cat.materials.length} mesh materials`)
+  console.log(`  ${cat.geometries.length} self-constructing geometries · ${cat.materials.length} RENDERABLE mesh materials`)
+  console.log(`  excluded as unrenderable (ledgered, measured in a browser): ${UNRENDERABLE_MATERIALS.join(', ')}`)
   console.log(`  closure = ${cat.geometries.length} x ${cat.materials.length} = ${closure.length} combinations, every one addressable`)
   // Converted by three's OWN utility, so the degree convention is quoted from its owner.
   const { MathUtils } = await import('three')

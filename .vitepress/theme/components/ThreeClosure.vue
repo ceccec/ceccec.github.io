@@ -16,7 +16,7 @@
 import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
 import { useData } from 'vitepress'
 import { TAU, HERO_CYCLE_MS, OBLIQUE_VIEW_TILT } from '../../render'
-import { threeCameraFromFocal, threeCombinationClosure, threeCoversEveryCombination } from '../../render'
+import { UNRENDERABLE_MATERIALS, threeCameraFromFocal, threeCombinationClosure, threeCoversEveryCombination } from '../../render'
 import type { ThreeCatalogue, ThreeCell } from '../../render'
 import { subscribeHeroClock } from '../../lib/hero-movie-paint'
 
@@ -27,6 +27,8 @@ const host = ref<HTMLDivElement | null>(null)
 const catalogue = ref<ThreeCatalogue | null>(null)
 const cells = ref<readonly ThreeCell[]>([])
 const failed = ref('')
+/** Materials where this browser's live measurement and src/'s recorded exclusion disagree. */
+const ledgerDisagrees = ref<string[]>([])
 let dispose: (() => void) | null = null
 let offClock: (() => void) | null = null
 let io: IntersectionObserver | null = null
@@ -56,10 +58,44 @@ onMounted(async () => {
       if ((g.getAttribute?.('position')?.count ?? 0) > 0) geometries.push(name)
     } catch { /* base class or needs arguments — not a cell */ }
   }
+  // CONSTRUCTING IS NOT RENDERING, and this is the only place that can tell the difference. Each
+  // material is drawn once, alone, into a throwaway renderer; whatever throws is not a cell of the
+  // closure. MeshDistanceMaterial is the one that does — it is three's internal point-light
+  // shadow-distance material and reads a reference position only the shadow map supplies. Including
+  // it put a mesh in the scene that killed the render on the first frame.
+  //
+  // This measurement is also what REFUTES the ledger. src/ has no GPU, so it carries
+  // UNRENDERABLE_MATERIALS as a recorded exclusion; if a three.js release changes what renders, the
+  // two disagree here and the caption says so rather than quietly following the stale record.
   const materials: string[] = []
-  for (const name of Object.keys(THREE).filter((k) => k.startsWith('Mesh') && k.endsWith('Material')).sort()) {
-    try { new T[name]!(); materials.push(name) } catch { /* not constructible bare */ }
+  const unrenderable: string[] = []
+  {
+    const probeCanvas = document.createElement('canvas')
+    const probe = new THREE.WebGLRenderer({ canvas: probeCanvas })
+    probe.setSize(1, 1, false)
+    const probeScene = new THREE.Scene()
+    probeScene.add(new THREE.AmbientLight(0xffffff, 1))
+    const probeCam = new THREE.PerspectiveCamera()
+    probeCam.position.set(0, 0, 1)
+    const probeGeo = new THREE.SphereGeometry()
+    for (const name of Object.keys(THREE).filter((k) => k.startsWith('Mesh') && k.endsWith('Material')).sort()) {
+      let mesh: InstanceType<typeof THREE.Mesh> | null = null
+      try {
+        mesh = new THREE.Mesh(probeGeo, new (T[name] as new () => InstanceType<typeof THREE.Material>)())
+        probeScene.add(mesh)
+        probe.render(probeScene, probeCam)
+        materials.push(name)
+      } catch {
+        unrenderable.push(name)
+      } finally {
+        if (mesh) probeScene.remove(mesh)
+      }
+    }
+    probeGeo.dispose()
+    probe.dispose()
   }
+  ledgerDisagrees.value = unrenderable.filter((m) => !UNRENDERABLE_MATERIALS.includes(m))
+    .concat(UNRENDERABLE_MATERIALS.filter((m) => !unrenderable.includes(m)))
   const cat: ThreeCatalogue = { geometries, materials }
   catalogue.value = cat
   const closure = threeCombinationClosure(cat)
@@ -193,6 +229,11 @@ onBeforeUnmount(() => { offClock?.(); io?.disconnect(); dispose?.() })
           <span class="mark">{{ f.on ? '✓' : '✗' }}</span>{{ f.facet }}
         </li>
       </ul>
+      <p v-if="ledgerDisagrees.length" class="disagree">
+        <strong>This browser disagrees with the recorded exclusion</strong> for
+        {{ ledgerDisagrees.join(', ') }} — src/quantum/wind/geometry's UNRENDERABLE_MATERIALS was
+        measured against three.js 0.185 and needs re-measuring.
+      </p>
       <details class="catalogue">
         <summary>the catalogue this browser measured</summary>
         <p><b>geometries</b> <span v-for="g in catalogue?.geometries" :key="g" class="chip">{{ g.replace('Geometry', '') }}</span></p>
@@ -221,4 +262,5 @@ onBeforeUnmount(() => { offClock?.(); io?.disconnect(); dispose?.() })
   font-family: var(--vp-font-family-mono); font-size: 0.78em;
 }
 .failed { color: var(--vp-c-danger-1); font-size: 0.9rem; }
+.disagree { color: var(--vp-c-warning-1, var(--vp-c-danger-1)); }
 </style>

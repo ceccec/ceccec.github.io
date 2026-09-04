@@ -263,11 +263,36 @@ export function drawCalendars(
 // real constructors. The dependency lives in the site shell, where it costs the published kernel
 // nothing, and scripts/verify/three.ts refuses any import of three under src/.
 
-/** What the installed three.js actually offers, measured by the caller and passed in. */
+/**
+ * What the installed three.js actually offers, measured by the caller and passed in.
+ *
+ * CONSTRUCTING IS NOT RENDERING. The first criterion here was "does it build itself with no
+ * arguments", which is a question about a constructor rather than about a scene. `MeshDistanceMaterial`
+ * passes it and then THROWS when rendered — it is three.js's internal material for point-light shadow
+ * distance and reads a reference position that only the shadow map supplies. Including it put a mesh in
+ * the closure that killed the render, and because every animation on this site shares one clock, that
+ * one cell froze the whole page. A criterion that asks about construction is bookkeeping; the criterion
+ * that constrains the subject is whether the thing RENDERS.
+ *
+ * So a catalogue carries the renderable set. Rendering can only be measured where rendering exists, so
+ * the browser measures it directly (ThreeClosure.vue attempts each material and drops what throws) and
+ * the Node gate, which has no GPU, carries `UNRENDERABLE_MATERIALS` below as a ledgered exclusion with
+ * its reason. The browser's live measurement is what refutes that ledger: if a three.js release makes
+ * the material renderable, the two disagree and the component reports it.
+ */
 export interface ThreeCatalogue {
   readonly geometries: readonly string[]
   readonly materials: readonly string[]
 }
+
+/**
+ * Mesh materials that construct but cannot be rendered in an ordinary scene. Measured in a browser on
+ * 2026-09-04 against three.js 0.185 by rendering each material alone and catching: nine of the ten
+ * rendered, and this one threw `Cannot read properties of undefined (reading 'matrixWorld')` inside
+ * three's own `refreshUniformsDistance`. It is a ledgered exclusion rather than a derivation because
+ * this fold cannot rasterise; the derivation lives in the browser and disagrees loudly if it changes.
+ */
+export const UNRENDERABLE_MATERIALS: readonly string[] = ['MeshDistanceMaterial']
 
 /** One cell of the product space: a geometry, a material, and where it sits on the lattice. */
 export interface ThreeCell {
@@ -420,7 +445,11 @@ export function threeReflect(cat: ThreeCatalogue, cell: ThreeCell): ThreeCell {
 export function threeClosureIsInvolutive(cat: ThreeCatalogue) {
   const cells = threeCombinationClosure(cat)
   const last = cells.length - 1
-  const evenSided = cat.geometries.length % 2 === 0 && cat.materials.length % 2 === 0
+  // ONE even side is enough. A fixed cell would need gi = |G|-1-gi AND mi = |M|-1-mi, so an even side
+  // makes its own coordinate unfixable and the conjunction fails whatever the other side does. This
+  // read `&&` while the catalogue happened to be 18 x 10; the moment it became 18 x 9 the facet was
+  // refuted and the gate said so, which is the whole point of stating it as a computation.
+  const anEvenSide = cat.geometries.length % 2 === 0 || cat.materials.length % 2 === 0
   const involutive = cells.every((c) => {
     const r = threeReflect(cat, c)
     return threeReflect(cat, r).index === c.index
@@ -441,8 +470,8 @@ export function threeClosureIsInvolutive(cat: ThreeCatalogue) {
         on: cancels },
       { facet: `row-major reflection IS address complement: idx(sigma c) + idx(c) = ${last}`,
         on: complements },
-      { facet: `both sides even, so no cell is its own reflection and the closure is ${(cells.length - fixed) / 2} orbits of two`,
-        on: evenSided ? fixed === 0 : fixed > 0 }
+      { facet: `${anEvenSide ? 'an even side' : 'both sides odd'}, so ${anEvenSide ? 'no cell is its own reflection' : 'the centre cell is fixed'} — ${(cells.length - fixed) / 2} orbits of two${fixed ? ` and ${fixed} fixed` : ''}`,
+        on: anEvenSide ? fixed === 0 : fixed > 0 }
     ]
   }
 }

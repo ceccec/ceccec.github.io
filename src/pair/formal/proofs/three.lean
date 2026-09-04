@@ -8,7 +8,13 @@
   The space is measured, not chosen. three.js 0.185 exports 23 geometry constructors, of which 18
   build themselves with no arguments (BufferGeometry and InstancedBufferGeometry are base classes,
   PolyhedronGeometry needs vertices, EdgesGeometry and WireframeGeometry need another geometry to
-  wrap), and 10 mesh materials. So the product space is 18 x 10 = 180. An earlier draft of the
+  wrap), and 10 mesh materials of which 9 can actually be RENDERED — MeshDistanceMaterial constructs
+  and then throws when drawn, because it is three's internal material for point-light shadow distance.
+  So the product space is 18 x 9 = 162.
+
+  That number moved twice, both times downward, and both times because a criterion was easier to state
+  than the property it stood for. First 64, from asserting eight geometries and eight materials without
+  asking the library. Then 180, from asking "does it construct" when the question was "does it render". An earlier draft of the
   TypeScript fold claimed eight and eight, which would have made the product 64 and landed it on
   the hexagram; that was a fabrication, and this file exists partly so the number can never again
   be pleasing rather than measured.
@@ -40,18 +46,19 @@ def col (cols n : Nat) : Nat := n % cols
 
 /-! ## The coverage theorems -/
 
-/-- The closure has exactly rows x cols cells: 18 x 10 = 180 for the installed library. -/
-theorem closure_is_one_hundred_eighty : (cells 18 10).length = 180 := by decide
+/-- The closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library. -/
+theorem closure_is_one_hundred_sixty_two : (cells 18 9).length = 162 := by decide
 
 /-- The product law, at several shapes — the size is rows x cols and not an accident of 18 and 10. -/
 theorem closure_is_the_product :
     (cells 1 1).length = 1 ∧ (cells 8 8).length = 64 ∧
-    (cells 18 10).length = 180 ∧ (cells 10 18).length = 180 := by decide
+    (cells 18 9).length = 162 ∧ (cells 9 18).length = 162 ∧
+    (cells 18 10).length = 180 := by decide
 
 /-- NO CELL IS REPEATED. This is the bijection, and it is strictly stronger than "every pair is
     present": a list carrying one pair twice and omitting another would satisfy presence at the
     right length, and would still have a hole in it. -/
-theorem closure_has_no_duplicate : (cells 18 10).Nodup := by decide
+theorem closure_has_no_duplicate : (cells 18 9).Nodup := by decide
 
 /-- EVERY PAIR IS PRESENT. Together with the previous theorem, the enumeration is exactly the
     product set — nothing missing, nothing twice.
@@ -65,16 +72,16 @@ theorem closure_has_no_duplicate : (cells 18 10).Nodup := by decide
 def coversEveryPair (rows cols : Nat) : Bool :=
   (List.range rows).all (fun g => (List.range cols).all (fun m => (cells rows cols).contains (g, m)))
 
-theorem closure_is_complete : coversEveryPair 18 10 = true := by decide
+theorem closure_is_complete : coversEveryPair 18 9 = true := by decide
 
 /-- THE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene
     can be addressed by one number without losing which geometry and which material it names. -/
 theorem address_inverts :
-    ∀ p ∈ cells 18 10, row 10 (idx 10 p.1 p.2) = p.1 ∧ col 10 (idx 10 p.1 p.2) = p.2 := by decide
+    ∀ p ∈ cells 18 9, row 9 (idx 9 p.1 p.2) = p.1 ∧ col 9 (idx 9 p.1 p.2) = p.2 := by decide
 
 /-- The addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter. -/
 theorem addresses_are_the_interval :
-    (cells 18 10).map (fun p => idx 10 p.1 p.2) = List.range 180 := by decide
+    (cells 18 9).map (fun p => idx 9 p.1 p.2) = List.range 162 := by decide
 
 /-! ## The projection — three.js's camera computes this corpus's sealed pinhole
 
@@ -170,35 +177,40 @@ def orbitPositionsCancel (rows cols : Nat) : Bool :=
     (coord2 cols p.2 + coord2 cols (refl rows cols p).2 == 0))
 
 /-- σ² = id on every cell of the closure. -/
-theorem reflection_is_an_involution : reflIsInvolutive 18 10 = true := by decide
+theorem reflection_is_an_involution : reflIsInvolutive 18 9 = true := by decide
 
 /-- σ maps the closure onto itself — the symmetry does not leave the space. -/
-theorem reflection_closes_on_the_closure : reflStaysInside 18 10 = true := by decide
+theorem reflection_closes_on_the_closure : reflStaysInside 18 9 = true := by decide
 
-/-- NO cell is its own reflection. Both sides are even, so the centre falls between cells and every
-    orbit has size exactly two. With an odd side there would be a fixed point, exactly as the digit
+/-- NO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND
+    m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever
+    the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL
+    is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit
     reflection d ↦ 10 − d fixes 5 and nothing else. -/
-theorem reflection_has_no_fixed_point : reflHasNoFixedPoint 18 10 = true := by decide
+theorem reflection_has_no_fixed_point : reflHasNoFixedPoint 18 9 = true := by decide
 
-/-- So the closure is 90 orbits of two, with nothing left over. -/
-theorem the_closure_is_ninety_orbits : (cells 18 10).length = 2 * 90 := by decide
+/-- So the closure is 81 orbits of two, with nothing left over. -/
+theorem the_closure_is_eighty_one_orbits : (cells 18 9).length = 2 * 81 := by decide
 
 /-- THE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly —
     the involution law this corpus states everywhere, holding here because the lattice is centred. -/
-theorem orbit_positions_cancel : orbitPositionsCancel 18 10 = true := by decide
+theorem orbit_positions_cancel : orbitPositionsCancel 18 9 = true := by decide
 
 /-- ROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The
     geometric symmetry and the arithmetic one are the same symmetry, which is not visible from
     either the layout or the addressing alone. -/
-theorem reflection_complements_the_address : reflComplementsAddress 18 10 = true := by decide
+theorem reflection_complements_the_address : reflComplementsAddress 18 9 = true := by decide
 
-/-- The same four laws at other shapes, so none of them is an accident of 18 and 10. An ODD side
-    breaks the no-fixed-point law and only that one — 3×3 has a centre cell, and it is its own
-    reflection — while involutivity, closure, cancellation and complement survive. -/
+/-- The same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd
+    breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection —
+    while involutivity, closure, cancellation and complement survive everywhere. -/
 theorem the_involution_laws_are_general :
     (reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧
     (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧
     (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧
-    (orbitPositionsCancel 3 3 = true) ∧ (reflHasNoFixedPoint 3 3 = false) := by decide
+    (orbitPositionsCancel 3 3 = true) ∧
+    -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does.
+    (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧
+    (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false) := by decide
 
 end Three
