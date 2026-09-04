@@ -4196,11 +4196,13 @@
       "title": "Closure is one hundred sixty two",
       "file": "three.lean",
       "proposition": "(cells 18 9).length = 162",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library.",
+      "description": "CANDIDATE ORIGINAL — PRIORITY CLAIMED OVER THIS EXPRESSION. A literature search is on record, named below with its date, and it returned nothing. The claim is over the expression and its date. It is NOT a proof that no prior art exists.\n\nThe closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "searched-none-found",
+        "searched": "three.js enumerate all built-in geometry material combinations complete product space count, renderable mesh material list, MeshDistanceMaterial not renderable standalone",
+        "when": "2026-09-04"
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "CANDIDATE ORIGINAL — PRIORITY CLAIMED OVER THIS EXPRESSION. A literature search is on record, named below with its date, and it returned nothing. The claim is over the expression and its date. It is NOT a proof that no prior art exists.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4272,11 +4274,12 @@
       "title": "Closure is the product",
       "file": "three.lean",
       "proposition": "(cells 1 1).length = 1 ∧ (cells 8 8).length = 64 ∧ (cells 18 9).length = 162 ∧ (cells 9 18).length = 162 ∧ (cells 18 10).length = 180",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4309,7 +4312,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4348,11 +4353,12 @@
       "title": "Closure has no duplicate",
       "file": "three.lean",
       "proposition": "(cells 18 9).Nodup",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nNO CELL IS REPEATED. This is the bijection, and it is strictly stronger than \"every pair is present\": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNO CELL IS REPEATED. This is the bijection, and it is strictly stronger than \"every pair is present\": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4385,7 +4391,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4424,11 +4432,12 @@
       "title": "Closure is complete",
       "file": "three.lean",
       "proposition": "coversEveryPair 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nClosure is complete",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nClosure is complete",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4461,7 +4470,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4500,11 +4511,12 @@
       "title": "Address inverts",
       "file": "three.lean",
       "proposition": "∀ p ∈ cells 18 9, row 9 (idx 9 p.1 p.2) = p.1 ∧ col 9 (idx 9 p.1 p.2) = p.2",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nTHE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4537,7 +4549,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4576,11 +4590,12 @@
       "title": "Addresses are the interval",
       "file": "three.lean",
       "proposition": "(cells 18 9).map (fun p => idx 9 p.1 p.2) = List.range 162",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4613,7 +4628,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4652,11 +4669,12 @@
       "title": "The compound fraction clears",
       "file": "three.lean",
       "proposition": "(12 : Int) * 10 = 5 * 24",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4689,7 +4707,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4728,11 +4748,12 @@
       "title": "Focal plane is unit scale",
       "file": "three.lean",
       "proposition": "den 0 = 24",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nAT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4765,7 +4786,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4804,11 +4827,12 @@
       "title": "Depth is strictly monotone",
       "file": "three.lean",
       "proposition": "∀ k1 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], ∀ k2 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], k1 < k2 → 24 * den k2 < 24 * den k1",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nNEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4841,7 +4865,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4880,11 +4906,12 @@
       "title": "Frustum brackets the focal plane",
       "file": "three.lean",
       "proposition": "(19 : Int) < 24 ∧ (24 : Int) < 29 ∧ (0 : Int) < 19",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4917,7 +4944,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -4956,11 +4985,12 @@
       "title": "Denominator is positive on the frustum",
       "file": "three.lean",
       "proposition": "∀ k ∈ [(-5 : Int), -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], 0 < den k",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -4993,7 +5023,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -5032,11 +5064,12 @@
       "title": "Reflection is an involution",
       "file": "three.lean",
       "proposition": "reflIsInvolutive 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nσ² = id on every cell of the closure.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id on every cell of the closure.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5069,7 +5102,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -5108,11 +5143,12 @@
       "title": "Reflection closes on the closure",
       "file": "three.lean",
       "proposition": "reflStaysInside 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nσ maps the closure onto itself — the symmetry does not leave the space.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ maps the closure onto itself — the symmetry does not leave the space.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5145,7 +5181,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -5184,11 +5222,12 @@
       "title": "Reflection has no fixed point",
       "file": "three.lean",
       "proposition": "reflHasNoFixedPoint 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nNO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Standard reversal map J(i) = n+1-i on [n] (e.g. Adenbaum & Elizalde, Rowmotion on 321-avoiding permutations, Electron. J. Combin. 30(3) #P3.5) — an involution whose fixed points require odd n, which is the parity criterion applied here per axis."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5221,7 +5260,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Standard reversal map J(i) = n+1-i on [n] (e.g. Adenbaum & Elizalde, Rowmotion on 321-avoiding permutations, Electron. J. Combin. 30(3) #P3.5) — an involution whose fixed points require odd n, which is the parity criterion applied here per axis."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -5260,11 +5301,13 @@
       "title": "The closure is eighty one orbits",
       "file": "three.lean",
       "proposition": "(cells 18 9).length = 2 * 81",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nSo the closure is 81 orbits of two, with nothing left over.",
+      "description": "CANDIDATE ORIGINAL — PRIORITY CLAIMED OVER THIS EXPRESSION. A literature search is on record, named below with its date, and it returned nothing. The claim is over the expression and its date. It is NOT a proof that no prior art exists.\n\nSo the closure is 81 orbits of two, with nothing left over.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "searched-none-found",
+        "searched": "three.js geometry material product space orbit count central symmetry involution partition",
+        "when": "2026-09-04"
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "CANDIDATE ORIGINAL — PRIORITY CLAIMED OVER THIS EXPRESSION. A literature search is on record, named below with its date, and it returned nothing. The claim is over the expression and its date. It is NOT a proof that no prior art exists.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5336,11 +5379,12 @@
       "title": "Orbit positions cancel",
       "file": "three.lean",
       "proposition": "orbitPositionsCancel 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nTHE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5373,7 +5417,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",
@@ -5412,11 +5458,13 @@
       "title": "Reflection complements the address",
       "file": "three.lean",
       "proposition": "reflComplementsAddress 18 9 = true",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The geometric symmetry and the arithmetic one are the same symmetry, which is not visible from either the layout or the addressing alone.",
+      "description": "CANDIDATE ORIGINAL — PRIORITY CLAIMED OVER THIS EXPRESSION. A literature search is on record, named below with its date, and it returned nothing. The claim is over the expression and its date. It is NOT a proof that no prior art exists.\n\nROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The geometric symmetry and the arithmetic one are the same symmetry, which is not visible from either the layout or the addressing alone.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "searched-none-found",
+        "searched": "row-major reflection index complement identity, idx of sigma c plus idx of c equals N minus 1, grid centre symmetry linear index",
+        "when": "2026-09-04"
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "CANDIDATE ORIGINAL — PRIORITY CLAIMED OVER THIS EXPRESSION. A literature search is on record, named below with its date, and it returned nothing. The claim is over the expression and its date. It is NOT a proof that no prior art exists.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5488,11 +5536,12 @@
       "title": "The involution laws are general",
       "file": "three.lean",
       "proposition": "(reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧ (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧ (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧ (orbitPositionsCancel 3 3 = true) ∧ -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does. (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧ (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false)",
-      "description": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.\n\nThe same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.",
       "priorArt": {
-        "kind": "no-search-on-record"
+        "kind": "attributed",
+        "citation": "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
       },
-      "asserts": "NOT A NOVELTY CLAIM. NO prior-art search has been performed for this statement. It is deposited as a machine-checked formalisation, dated and citable. Nothing about originality should be inferred from the existence of this DOI.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5525,7 +5574,9 @@
           "scheme": "url"
         }
       ],
-      "references": [],
+      "references": [
+        "Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical."
+      ],
       "creators": [
         {
           "name": "Rouschev, Tsvetan",

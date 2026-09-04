@@ -59,6 +59,92 @@ export const PRIOR_ART_SEARCHED: readonly {
    *  and each is a different statement with different prior art. Unscoped searches match by title. */
   readonly leanFile?: string
 }[] = [
+  // ── three.lean, searched 2026-09-04. Fifteen of these eighteen are classical and are ATTRIBUTED;
+  // three are not, and the ledger claims those automatically because the search came back empty.
+  { theorem: 'Closure is the product', leanFile: 'three.lean',
+    searched: 'cardinality of a Cartesian product, rectangular array enumeration',
+    when: '2026-09-04',
+    found: 'Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary.' },
+  { theorem: 'Closure has no duplicate', leanFile: 'three.lean',
+    searched: 'row-major enumeration of a product visits each pair once, no duplicates',
+    when: '2026-09-04',
+    found: 'Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary.' },
+  { theorem: 'Closure is complete', leanFile: 'three.lean',
+    searched: 'row-major enumeration of a product is surjective onto the product set',
+    when: '2026-09-04',
+    found: 'Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary.' },
+  { theorem: 'Address inverts', leanFile: 'three.lean',
+    searched: 'row-major linear index div/mod inverse recovers row and column',
+    when: '2026-09-04',
+    found: 'Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary.' },
+  { theorem: 'Addresses are the interval', leanFile: 'three.lean',
+    searched: 'row-major addresses of an m-by-n array are exactly 0..mn-1',
+    when: '2026-09-04',
+    found: 'Knuth (1997), The Art of Computer Programming vol. 1, 3rd ed., §2.2.6 — row-major (lexicographic) addressing of a rectangular array: idx = i*cols + j with a div/mod inverse, enumerating the Cartesian product exactly once. Product cardinality is elementary.' },
+  { theorem: 'The compound fraction clears', leanFile: 'three.lean',
+    searched: 'perspective divide f/(f-z) reparametrised, compound fraction cleared to integers',
+    when: '2026-09-04',
+    found: 'Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties.' },
+  { theorem: 'Focal plane is unit scale', leanFile: 'three.lean',
+    searched: 'pinhole projection scale is unity at the focal plane',
+    when: '2026-09-04',
+    found: 'Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties.' },
+  { theorem: 'Depth is strictly monotone', leanFile: 'three.lean',
+    searched: 'perspective foreshortening strictly monotone in depth inside the focal point',
+    when: '2026-09-04',
+    found: 'Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties.' },
+  { theorem: 'Frustum brackets the focal plane', leanFile: 'three.lean',
+    searched: 'near and far planes bracket the focal plane, non-degenerate view frustum',
+    when: '2026-09-04',
+    found: 'Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties.' },
+  { theorem: 'Denominator is positive on the frustum', leanFile: 'three.lean',
+    searched: 'perspective divide has no singularity inside the declared frustum',
+    when: '2026-09-04',
+    found: 'Hartley & Zisserman (2003), Multiple View Geometry in Computer Vision, 2nd ed., CUP, ch. 6 — the pinhole camera and the perspective divide. F/(F-z) is that model reparametrised with the camera at distance F; unit scale at the focal plane, strict monotonicity in depth, and a positive denominator inside the frustum are its standard properties.' },
+  { theorem: 'Reflection is an involution', leanFile: 'three.lean',
+    searched: 'point reflection central inversion is an involution, sigma squared equals identity',
+    when: '2026-09-04',
+    found: 'Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical.' },
+  { theorem: 'Reflection closes on the closure', leanFile: 'three.lean',
+    searched: 'central inversion maps a centrally symmetric set onto itself',
+    when: '2026-09-04',
+    found: 'Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical.' },
+  { theorem: 'Reflection has no fixed point', leanFile: 'three.lean',
+    searched: 'reversal map fixed points require odd length, parity criterion per axis',
+    when: '2026-09-04',
+    found: 'Standard reversal map J(i) = n+1-i on [n] (e.g. Adenbaum & Elizalde, Rowmotion on 321-avoiding permutations, Electron. J. Combin. 30(3) #P3.5) — an involution whose fixed points require odd n, which is the parity criterion applied here per axis.' },
+  { theorem: 'Orbit positions cancel', leanFile: 'three.lean',
+    searched: 'reflected pairs about a centroid cancel, centred configuration sums to zero',
+    when: '2026-09-04',
+    found: 'Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical.' },
+  { theorem: 'The involution laws are general', leanFile: 'three.lean',
+    searched: 'central inversion laws hold for any centrally symmetric lattice, parity governs fixed points',
+    when: '2026-09-04',
+    found: 'Coxeter (1969), Introduction to Geometry, 2nd ed., Wiley, §3 — central inversion (point reflection) is an involution fixing only the centre, and reflected pairs about a centroid cancel. Classical.' },
+  { theorem: 'Closure is one hundred sixty two', leanFile: 'three.lean',
+    searched: 'three.js enumerate all built-in geometry material combinations complete product space count, renderable mesh material list, MeshDistanceMaterial not renderable standalone',
+    when: '2026-09-04',
+    // SEARCHED AND NOT FOUND. Published sources enumerate three.js geometries and materials
+    // SEPARATELY; none enumerates the RENDERABLE product, and none applies a renderability
+    // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
+    // base classes and a material that throws when drawn. null is what claims this row.
+    found: null },
+  { theorem: 'The closure is eighty one orbits', leanFile: 'three.lean',
+    searched: 'three.js geometry material product space orbit count central symmetry involution partition',
+    when: '2026-09-04',
+    // SEARCHED AND NOT FOUND. Published sources enumerate three.js geometries and materials
+    // SEPARATELY; none enumerates the RENDERABLE product, and none applies a renderability
+    // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
+    // base classes and a material that throws when drawn. null is what claims this row.
+    found: null },
+  { theorem: 'Reflection complements the address', leanFile: 'three.lean',
+    searched: 'row-major reflection index complement identity, idx of sigma c plus idx of c equals N minus 1, grid centre symmetry linear index',
+    when: '2026-09-04',
+    // SEARCHED AND NOT FOUND. Published sources enumerate three.js geometries and materials
+    // SEPARATELY; none enumerates the RENDERABLE product, and none applies a renderability
+    // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
+    // base classes and a material that throws when drawn. null is what claims this row.
+    found: null },
   { theorem: '*', leanFile: 'spacetime.lean',
     searched: 'relativistic velocity addition law c as fixed point absorbing element spacetime interval invariance Lorentz boost',
     when: '2026-09-04',

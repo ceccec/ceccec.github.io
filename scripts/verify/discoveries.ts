@@ -71,7 +71,13 @@ function statusFor(title: string, file: string, ledger: ReturnType<typeof priorA
   // A FILE-SCOPED SEARCH FIRST. `Sigma is an involution` is three different statements in three files
   // — σ(s)=1−s, σ(s)=2−s and complex conjugation — with three different prior arts, so a search
   // recorded against a file covers that file's theorems and a title match is the fallback.
-  const search = PRIOR_ART_SEARCHED.find((r) => r.leanFile === file && r.theorem === '*')
+  // MOST SPECIFIC FIRST: a search recorded against THIS theorem in THIS file. That pair used to match
+  // nothing — the lookup accepted a file-wide '*' or an unscoped title and no combination of the two —
+  // so eighteen searches recorded against named theorems in three.lean bound to nothing and the deposits
+  // still read "no search on record". A record that cannot bind is worse than an absent one: the work
+  // was done, the file says so, and the ledger reports it as never having happened.
+  const search = PRIOR_ART_SEARCHED.find((r) => r.leanFile === file && r.theorem.toLowerCase() === title.toLowerCase())
+    ?? PRIOR_ART_SEARCHED.find((r) => r.leanFile === file && r.theorem === '*')
     ?? PRIOR_ART_SEARCHED.find((r) => r.theorem.toLowerCase() === title.toLowerCase() && !r.leanFile)
   if (search) {
     return search.found === null
