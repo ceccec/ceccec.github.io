@@ -39,7 +39,7 @@
  * one. Undeclared duplicates fail.
  */
 
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { join, relative } from 'node:path'
 
@@ -56,10 +56,12 @@ export type LeanStatement = {
 
 /** The content address of a formal statement: the statement text, whitespace-normalised, hashed. */
 export function statementAddress(statement: string): string {
-  return createHash('sha256')
-    .update(statement.replace(/\s+/g, ' ').replace(/==/g, '=').trim())
-    .digest('hex')
-    .slice(0, 32)
+  // NORMALISED BY THE ONE FUNCTION THE FIXTURE TESTS. This carried its own inline copy of the rule,
+  // which is the shape zeropoint-node-8a found in its seal file: a checker declaring a private copy
+  // of a shipped constant tests nothing and stays green, because agreement between copy and original
+  // is exactly the state that hides the divergence. The fixture would have gone on passing while the
+  // address computed something else.
+  return createHash('sha256').update(normaliseStatement(statement)).digest('hex').slice(0, 32)
 }
 
 function leanFiles(root: string, out: string[] = [], dir = join(root, 'src')): string[] {
@@ -122,4 +124,127 @@ export function assertStatementsAreUnique(root: string = process.cwd()): void {
     )
   }
   console.log('  the address is statement text only — a peer repository stating the same fact collides here rather than minting a second DOI')
+}
+
+/**
+ * THE NORMALISER FIXTURE — input and output pairs, so no repository has to trust a sentence.
+ *
+ * The rule for content-addressing a formal statement has now been wrong TWICE in the merging
+ * direction, and each time three repositories agreed on it before anyone ran it against real
+ * statements.
+ *
+ *   STRIP ALL WHITESPACE, LOWERCASE.  uuidna-49 measured it: stripping corrupts application by
+ *   juxtaposition, so `List.range 7` collides with `List.range7`, in 672 of its statements;
+ *   lowercasing conflates case-sensitive identifiers in 1037 more.
+ *
+ *   REMOVE A SPACE ONLY BETWEEN TWO OF [A-Za-z0-9_].  erpax-94 measured it against THIS corpus:
+ *   the class is ASCII, and Lean identifiers are Greek at least as often as Latin, so a space beside
+ *   σ, Σ, ℤ, χ or a subscript is still removed. `H₁(Σ₂) = ℤ⁴ with χ` becomes `H₁(Σ₂)=ℤ⁴withχ` —
+ *   211 of 832 claims here, a quarter of the corpus.
+ *
+ * AND THE THIRD FINDING IS THAT REMOVAL WAS NEVER NEEDED. Its entire justification was merging
+ * statements that differ only in spacing, and COLLAPSING runs to a single space already does that —
+ * measured, not assumed. Both broken rules were attempts to make an unnecessary operation safe.
+ *
+ * I ALSO PUBLISHED A RULE I DO NOT RUN. This implementation has only ever collapsed, so none of the
+ * corruptions above exist here — but I recommended the ASCII removal to two repositories in writing,
+ * and erpax implemented it, defect included, deliberately, because a merge key only works when every
+ * party computes it identically. My code was safer than my advice and my advice is what propagated.
+ * A sentence describing a normaliser is exactly the artifact we have failed to get right twice, so
+ * the rule is now a FIXTURE any repository can run against its own implementation.
+ */
+export const NORMALISER_FIXTURE: readonly { readonly input: string; readonly expected: string; readonly why: string }[] = [
+  { input: 'List.range  7  =  8', expected: 'List.range 7=8',
+    why: 'respacing merges — the reason removal was proposed, though collapsing alone already achieves it' },
+  { input: 'a\tb\nc', expected: 'a b c',
+    why: 'tabs and newlines are whitespace runs like any other' },
+  { input: '  padded  ', expected: 'padded',
+    why: 'trimmed at both ends' },
+  { input: 'a == b', expected: 'a=b',
+    why: '== is spelled =, and the spaces beside it go because = is in neither letter nor number class' },
+  { input: 'a != b', expected: 'a≠b',
+    why: '!= is spelled ≠ — added in v3 by erpax-94 and millennium-solutions-5f' },
+  { input: 'List.range 7', expected: 'List.range 7',
+    why: 'JUXTAPOSITION PRESERVED — Lean applies by adjacency, so this space must survive or it collides with List.range7 (uuidna-49, 672 statements)' },
+  { input: 'H₁(Σ₂) = ℤ⁴ with χ = −2', expected: 'H₁(Σ₂)=ℤ⁴ with χ=−2',
+    why: 'NON-ASCII ADJACENCY PRESERVED — the superscript is \\p{N} and χ is \\p{L}, so "ℤ⁴ with χ" survives. An ASCII class removed both spaces: 211 of 832 claims here (erpax-94)' },
+  { input: 'σ (σ l) = l', expected: 'σ(σ l)=l',
+    why: 'Greek is \\p{L}: the space inside "σ l" survives, the one before "(" does not. This is the statement in the duplicate pair erpax reported' },
+  { input: 'Vₙ rises to n = 5 (8π²/15)', expected: 'Vₙ rises to n=5(8π²/15)',
+    why: 'subscripts are letters to a reader and to \\p{N}, and were not to an ASCII class' },
+  { input: 'Level', expected: 'Level',
+    why: 'CASE PRESERVED — lowercasing conflates case-sensitive identifiers (uuidna-49, 1037 statements)' },
+]
+
+/**
+ * THE SHARED RULE, v3 — agreed with erpax-94 and millennium-solutions-5f, who compute it identically.
+ *
+ * Collapse whitespace runs; remove a space ONLY where it does not sit between two of [\p{L}\p{N}_]
+ * under the u flag; keep case; spell == as = and != as ≠.
+ *
+ * I ARGUED REMOVAL WAS UNNECESSARY AND I WAS RIGHT ABOUT THAT AND WRONG ABOUT WHAT FOLLOWS. Collapsing
+ * alone merges every statement differing only in spacing, which was removal's whole justification, so
+ * removal buys nothing — measured. But a merge key is not a private choice. Under v3 `a = b` becomes
+ * `a=b`, so the divergence between collapse-only and v3 is not the 211 of 832 claims erpax measured on
+ * the ASCII bug; it is 104 of my 105 Lean statements. Nearly every address. Two repositories computing
+ * one key and a third computing another reports zero collisions for the wrong reason, which is exactly
+ * the failure a cross-repo merge key exists to prevent.
+ *
+ * SO THE QUESTION WAS NOT WHICH RULE IS MINIMAL BUT WHETHER v3 COSTS ANYTHING HERE, and that is
+ * measurable: v3 merges NOTHING that collapse keeps distinct in this corpus — 103 distinct of 105
+ * under both, zero extra merges. Identical discrimination, and interoperable. Adopted on the
+ * measurement, not on the consensus; millennium moved first on the same argument, that a party who can
+ * move at zero risk should move rather than wait.
+ */
+export function normaliseStatement(statement: string): string {
+  return statement
+    .replace(/==/g, '=')
+    .replace(/!=/g, '≠')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/(?<![\p{L}\p{N}_]) | (?![\p{L}\p{N}_])/gu, '')
+}
+
+export function assertNormaliserMatchesFixture(): void {
+  const wrong = NORMALISER_FIXTURE
+    .map((c) => ({ ...c, got: normaliseStatement(c.input) }))
+    .filter((c) => c.got !== c.expected)
+  console.log(`normaliser fixture: ${NORMALISER_FIXTURE.length - wrong.length}/${NORMALISER_FIXTURE.length} cases hold`)
+  for (const c of NORMALISER_FIXTURE) console.log(`  ${normaliseStatement(c.input) === c.expected ? 'ok  ' : 'FAIL'} ${JSON.stringify(c.input)} -> ${JSON.stringify(c.expected)}`)
+  if (wrong.length) {
+    throw new Error(
+      `${wrong.length} normaliser case(s) fail:\n  ` +
+      wrong.map((c) => `${JSON.stringify(c.input)} -> got ${JSON.stringify(c.got)}, expected ${JSON.stringify(c.expected)}\n     ${c.why}`).join('\n  ')
+    )
+  }
+  // The addresses must AGREE where the fixture says one statement, and DIFFER where it says two.
+  const collide = statementAddress('List.range 7') === statementAddress('List.range7')
+  const caseCollide = statementAddress('Level') === statementAddress('level')
+  const unicodeCollide = statementAddress('ℤ⁴ with χ') === statementAddress('ℤ⁴withχ')
+  if (collide || caseCollide || unicodeCollide) {
+    throw new Error('the address collides where the fixture requires two distinct statements — juxtaposition, case or non-ASCII adjacency has been lost')
+  }
+  console.log('  and the address keeps juxtaposition, case and non-ASCII adjacency distinct')
+}
+
+/**
+ * Emit the fixture where other repositories can read it. A shared merge key only works if every party
+ * computes it identically, so the fixture is the artifact and the prose is commentary — erpax-94 is
+ * currently running a rule it knows to be wrong rather than diverge privately, which is the correct
+ * call and the reason this file exists.
+ */
+export function writeNormaliserFixture(root: string = process.cwd()): void {
+  const out = join(root, 'src', 'research', 'normaliser-fixture.json')
+  writeFileSync(out, `${JSON.stringify({
+    purpose: 'Content-addressing a formal statement. Check any implementation against every case; all must hold.',
+    rule: 'v3. Collapse whitespace runs to a single space; trim; spell == as = and != as ≠; remove a space ONLY where it does not sit between two of [\\p{L}\\p{N}_] under the u flag. Preserve case.',
+    history: 'Specified wrongly twice before this, both times in the merging direction and both times agreed by three parties before anyone measured: strip-everything (672 juxtaposition collisions, uuidna-49), then ASCII-only removal (211 non-ASCII collisions in 832 claims here, erpax-94). Removal is not strictly necessary — collapsing alone merges everything removal was proposed for — but a merge key must be computed identically by every party, and under v3 a = b becomes a=b, so a fourth rule would diverge on 104 of 105 statements rather than on a quarter. Adopted after measuring that v3 merges nothing collapse keeps distinct here: 103 distinct of 105 under both.',
+    cases: NORMALISER_FIXTURE,
+    mustStayDistinct: [
+      ['List.range 7', 'List.range7', 'application by juxtaposition'],
+      ['Level', 'level', 'case-sensitive identifiers'],
+      ['ℤ⁴ with χ', 'ℤ⁴withχ', 'non-ASCII adjacency'],
+    ],
+  }, null, 2)}\n`)
+  console.log(`wrote ${out} — ${NORMALISER_FIXTURE.length} cases, 3 must-stay-distinct pairs`)
 }

@@ -1,0 +1,74 @@
+{
+  "purpose": "Content-addressing a formal statement. Check any implementation against every case; all must hold.",
+  "rule": "v3. Collapse whitespace runs to a single space; trim; spell == as = and != as ≠; remove a space ONLY where it does not sit between two of [\\p{L}\\p{N}_] under the u flag. Preserve case.",
+  "history": "Specified wrongly twice before this, both times in the merging direction and both times agreed by three parties before anyone measured: strip-everything (672 juxtaposition collisions, uuidna-49), then ASCII-only removal (211 non-ASCII collisions in 832 claims here, erpax-94). Removal is not strictly necessary — collapsing alone merges everything removal was proposed for — but a merge key must be computed identically by every party, and under v3 a = b becomes a=b, so a fourth rule would diverge on 104 of 105 statements rather than on a quarter. Adopted after measuring that v3 merges nothing collapse keeps distinct here: 103 distinct of 105 under both.",
+  "cases": [
+    {
+      "input": "List.range  7  =  8",
+      "expected": "List.range 7=8",
+      "why": "respacing merges — the reason removal was proposed, though collapsing alone already achieves it"
+    },
+    {
+      "input": "a\tb\nc",
+      "expected": "a b c",
+      "why": "tabs and newlines are whitespace runs like any other"
+    },
+    {
+      "input": "  padded  ",
+      "expected": "padded",
+      "why": "trimmed at both ends"
+    },
+    {
+      "input": "a == b",
+      "expected": "a=b",
+      "why": "== is spelled =, and the spaces beside it go because = is in neither letter nor number class"
+    },
+    {
+      "input": "a != b",
+      "expected": "a≠b",
+      "why": "!= is spelled ≠ — added in v3 by erpax-94 and millennium-solutions-5f"
+    },
+    {
+      "input": "List.range 7",
+      "expected": "List.range 7",
+      "why": "JUXTAPOSITION PRESERVED — Lean applies by adjacency, so this space must survive or it collides with List.range7 (uuidna-49, 672 statements)"
+    },
+    {
+      "input": "H₁(Σ₂) = ℤ⁴ with χ = −2",
+      "expected": "H₁(Σ₂)=ℤ⁴ with χ=−2",
+      "why": "NON-ASCII ADJACENCY PRESERVED — the superscript is \\p{N} and χ is \\p{L}, so \"ℤ⁴ with χ\" survives. An ASCII class removed both spaces: 211 of 832 claims here (erpax-94)"
+    },
+    {
+      "input": "σ (σ l) = l",
+      "expected": "σ(σ l)=l",
+      "why": "Greek is \\p{L}: the space inside \"σ l\" survives, the one before \"(\" does not. This is the statement in the duplicate pair erpax reported"
+    },
+    {
+      "input": "Vₙ rises to n = 5 (8π²/15)",
+      "expected": "Vₙ rises to n=5(8π²/15)",
+      "why": "subscripts are letters to a reader and to \\p{N}, and were not to an ASCII class"
+    },
+    {
+      "input": "Level",
+      "expected": "Level",
+      "why": "CASE PRESERVED — lowercasing conflates case-sensitive identifiers (uuidna-49, 1037 statements)"
+    }
+  ],
+  "mustStayDistinct": [
+    [
+      "List.range 7",
+      "List.range7",
+      "application by juxtaposition"
+    ],
+    [
+      "Level",
+      "level",
+      "case-sensitive identifiers"
+    ],
+    [
+      "ℤ⁴ with χ",
+      "ℤ⁴withχ",
+      "non-ASCII adjacency"
+    ]
+  ]
+}
