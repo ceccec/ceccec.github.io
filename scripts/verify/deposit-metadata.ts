@@ -38,12 +38,42 @@ const OAI = 'https://zenodo.org/oai2d'
 const REPO_URL = 'https://github.com/ceccec/ceccec.github.io'
 const SITE_URL = 'https://ceccec.github.io'
 const CONCEPT_DOI = '10.5281/zenodo.21787143'
+const REPOSITORY_DOI_NOTE = '10.5281/zenodo.21787144'
 
 /** The record id inside a Zenodo DOI: 10.5281/zenodo.<id>. */
 export function zenodoRecordId(doi: string): string {
   const m = /zenodo\.(\d+)/.exec(doi)
   if (!m) throw new Error(`not a Zenodo DOI: ${doi}`)
   return m[1]!
+}
+
+
+/**
+ * A CONCEPT DOI CAN ONLY BE FOLLOWED, NEVER HARVESTED — AND FOLLOWING IT IS THE POINT.
+ *
+ * OAI-PMH returns idDoesNotExist for a concept DOI, because Zenodo exposes only version records
+ * through it. I read that absence as "concept DOIs are not harvestable", which is true, and stopped —
+ * then recommended, in this gate's own error message and in a commit, that the correction be published
+ * as a new version under the concept DOI, on the general and correct principle that a concept DOI
+ * always resolves to the newest version.
+ *
+ * I never checked WHAT it resolves to. millennium-solutions-57 did, from another repository:
+ * 10.5281/zenodo.21787143 resolves to record 22256708 — "uuidna — content-addressed identity" — which
+ * is a DIFFERENT WORK. Three unrelated projects share that version chain, and its head is not this
+ * corpus. So the advice was actively dangerous: a new version there would have repointed every
+ * citation of this repository at uuidna, and superseded uuidna's current record in the same act.
+ *
+ * A general truth applied without measuring the specific instance. The absence of an OAI record was
+ * the signal to resolve it by HTTP, not to stop.
+ */
+export type ConceptHead = { readonly conceptDoi: string; readonly record: string; readonly title: string }
+
+export async function resolveConcept(conceptDoi: string): Promise<ConceptHead> {
+  const res = await fetch(`https://doi.org/${conceptDoi}`, { redirect: 'follow' })
+  const record = /zenodo\.org\/records\/(\d+)/.exec(res.url)?.[1] ?? ''
+  if (!record) throw new Error(`${conceptDoi} did not resolve to a Zenodo record (landed on ${res.url})`)
+  const head = await harvest(`10.5281/zenodo.${record}`)
+  return { conceptDoi, record, title: head.title }
 }
 
 export type HarvestedRecord = {
@@ -118,6 +148,16 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
   const licenceAgrees = licenceUrl.split('-').every((part) => rightsText.includes(part))
   console.log(`  ${licenceAgrees ? 'on ' : 'OFF'}  published rights match CITATION.cff licence ${licence}`)
 
+  // THE VERSION CHAIN THIS RECORD SITS IN MAY NOT BE THIS CORPUS'S. Followed, not assumed.
+  const head = await resolveConcept(CONCEPT_DOI)
+  const chainIsOurs = head.record === zenodoRecordId(doi)
+  console.log(`  concept ${CONCEPT_DOI} currently resolves to record ${head.record}`)
+  console.log(`    ${chainIsOurs ? 'that is this deposit' : 'THAT IS A DIFFERENT WORK'}: ${head.title.slice(0, 96)}`)
+  if (!chainIsOurs) {
+    console.log(`    so a new version under this concept would repoint every citation at that work, AND supersede it.`)
+    console.log(`    The correction must be a NEW, INDEPENDENT deposit with its own DOI — never a version in a shared chain.`)
+  }
+
   const text = `${rec.title} ${rec.description}`
   const refuted = REFUTED_BY_THE_CORPUS.filter((r) => r.pattern.test(text))
   for (const r of refuted) {
@@ -133,11 +173,11 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
       `(${refuted.map((r) => r.theorem).join(', ')}). Its title is "${rec.title}". This record is what CITATION.cff ` +
       `names as repositoryDoi, what README prints as CLAIMED, and what all ${deposits.records.length} per-theorem ` +
       `deposits declare themselves part of — so the corrected work inherits the uncorrected claim. A published deposit ` +
-      `cannot be edited; correcting it means publishing a NEW VERSION with honest metadata under the same concept DOI ` +
-      `(10.5281/zenodo.21787143, which OAI-PMH reports as idDoesNotExist because Zenodo exposes only version records — ` +
-      `the concept DOI always resolves to the newest version, so a new version corrects what the citation points at ` +
-      `without destroying the dated original). That is the author's decision and the author's credentials, never this ` +
-      `script's. This gate only refuses to let it stay invisible.`
+      `cannot be edited. The correction is a NEW, INDEPENDENT DEPOSIT with its own DOI, relating back to this one — ` +
+      `NOT a new version under concept ${CONCEPT_DOI}, which currently resolves to a DIFFERENT WORK. Three unrelated ` +
+      `projects share that version chain, so publishing into it would repoint this corpus's citations at that work and ` +
+      `supersede it at the same time. That is the author's decision and the author's credentials, never this script's. ` +
+      `This gate only refuses to let the false claim stay invisible.`
     )
   }
   console.log(`the published record asserts nothing the corpus refutes`)
@@ -199,12 +239,14 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
         { identifier: SITE_URL, relation: 'isPublishedIn', scheme: 'url' },
         ...files.map((f) => ({ identifier: `${REPO_URL}/blob/main/src/pair/formal/proofs/${f}`, relation: 'isDerivedFrom', scheme: 'url' })),
       ],
-      notes: 'This version CORRECTS the metadata of the previous version, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false and is refuted by a theorem inside the corpus itself. The software and its dates are unchanged; only the description of what it establishes is corrected.',
+      notes: `This deposit CORRECTS the record at ${REPOSITORY_DOI_NOTE}, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false and is refuted by a theorem inside the corpus itself (Corpus.clay_sealed_count_is_zero), and the repository has recorded the paper as withdrawn since 2026-08-20. Publish this as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under concept 10.5281/zenodo.21787143, which resolves to a different work and whose version chain is shared by three unrelated projects.`,
     },
   }
   const out = join(root, 'src/research/zenodo-new-version.json')
   writeFileSync(out, `${JSON.stringify(meta, null, 2)}\n`)
   console.log(`wrote ${out}`)
   console.log(`  ${recs.length} theorems · ${claimed.length} claimed · ${attributed.length} attributed · ${files.length} Lean files`)
-  console.log(`  publish as a NEW VERSION of concept DOI ${CONCEPT_DOI} — this script holds no credentials and contacts nothing`)
+  console.log(`  publish as an INDEPENDENT deposit with its own DOI — NOT a version under concept ${CONCEPT_DOI},`)
+  console.log(`  which resolves to a different work; that chain is shared by three unrelated projects.`)
+  console.log(`  this script holds no credentials and contacts nothing`)
 }

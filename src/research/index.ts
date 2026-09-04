@@ -18005,9 +18005,20 @@ export const PUBLICATION_CREDIT = {
   author: 'Tsvetan Rouschev',
   orcid: '0009-0000-7312-9778',
   orcidUrl: 'https://orcid.org/0009-0000-7312-9778',
-  /** The versioned record. See scripts/verify/deposit-metadata.ts — its metadata is harvested and checked. */
+  /** The versioned record for THIS work. See scripts/verify/deposit-metadata.ts — harvested and checked. */
   repositoryDoi: '10.5281/zenodo.21787144',
-  /** The all-versions DOI: always resolves to the newest version, so it is what a citation should carry. */
+  /**
+   * The all-versions DOI — and NOT what a citation here may carry, which inverts the usual advice.
+   *
+   * A concept DOI normally always resolves to the newest version of one work, so it is the right thing
+   * to cite. This one does not: 10.5281/zenodo.21787143 currently resolves to record 22256708, which is
+   * a DIFFERENT project (uuidna). Three unrelated works share that version chain. Citing it would hand
+   * every reader of this corpus somebody else's deposit, and it was doing exactly that on 1038 pages
+   * until millennium-solutions-57 followed the DOI from another repository and said so.
+   *
+   * OAI-PMH cannot see this: a concept DOI returns idDoesNotExist, so a harvesting gate reports a false
+   * absence. It has to be followed over HTTP, which scripts/verify/deposit-metadata.ts now does.
+   */
   conceptDoi: '10.5281/zenodo.21787143',
   licence: 'CC-BY-NC-ND-4.0',
   licenceUrl: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
@@ -18027,10 +18038,12 @@ export function pageCitation(title: string, url: string, year: number = PUBLICAT
 } {
   const c = PUBLICATION_CREDIT
   return {
-    text: `${c.author} (${year}). ${title}. Double Torus. https://doi.org/${c.conceptDoi} · ${url}`,
+    // The VERSION DOI, not the concept: see the note on conceptDoi above — the concept resolves to a
+    // different project, so citing it would send every reader of this page to somebody else's work.
+    text: `${c.author} (${year}). ${title}. Double Torus. https://doi.org/${c.repositoryDoi} · ${url}`,
     author: c.author,
     orcidUrl: c.orcidUrl,
-    doiUrl: `https://doi.org/${c.conceptDoi}`,
+    doiUrl: `https://doi.org/${c.repositoryDoi}`,
     licence: c.licence,
     licenceUrl: c.licenceUrl,
   }

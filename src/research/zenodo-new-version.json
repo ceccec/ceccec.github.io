@@ -89,6 +89,6 @@
         "scheme": "url"
       }
     ],
-    "notes": "This version CORRECTS the metadata of the previous version, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false and is refuted by a theorem inside the corpus itself. The software and its dates are unchanged; only the description of what it establishes is corrected."
+    "notes": "This deposit CORRECTS the record at 10.5281/zenodo.21787144, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false and is refuted by a theorem inside the corpus itself (Corpus.clay_sealed_count_is_zero), and the repository has recorded the paper as withdrawn since 2026-08-20. Publish this as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under concept 10.5281/zenodo.21787143, which resolves to a different work and whose version chain is shared by three unrelated projects."
   }
 }

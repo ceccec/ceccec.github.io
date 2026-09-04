@@ -28,7 +28,7 @@ export function creditMarks(): readonly { readonly name: string; readonly needle
   return [
     { name: 'author', needle: PUBLICATION_CREDIT.author },
     { name: 'ORCID', needle: PUBLICATION_CREDIT.orcid },
-    { name: 'DOI', needle: PUBLICATION_CREDIT.conceptDoi },
+    { name: 'DOI', needle: PUBLICATION_CREDIT.repositoryDoi },
     { name: 'licence', needle: PUBLICATION_CREDIT.licenceUrl },
     { name: 'citation', needle: 'Cite this page' },
   ]
