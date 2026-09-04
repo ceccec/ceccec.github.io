@@ -269,6 +269,16 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
  * cannot see a concept DOI at all and reports a false absence for the identifier most likely to have
  * moved. It has to be RESOLVED, over HTTP, on a schedule.
  *
+ * PERTURBED BEFORE IT WAS TRUSTED, with the exact error that was live: CITATION.cff pointed at the
+ * concept DOI, and the gate named the substitution, the record it landed on, and that a citation did
+ * not reach this work. Restored, it passes. A check nobody has watched fail is not a check.
+ *
+ * THE COMPARISON IS ON RECORD ID, NOT TITLE. millennium-solutions-57 hit two instrument errors doing
+ * this by title — harvesting oai_datacite while reading dc:title, which is absent there so both sides
+ * read empty, and comparing with startsWith across two legitimately different phrasings of one name.
+ * Both produced a confident substitution report about a record that was correct. A comparison against
+ * an empty string fails every time and looks exactly like a finding.
+ *
  * Read-only. It follows redirects and reads public metadata; it holds no credentials and can change
  * nothing.
  */
