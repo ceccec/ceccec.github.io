@@ -300,3 +300,151 @@ export function researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCaus
       boundary: `COMPUTED and DEMARCATED: the divisor count is enumerated AND matches the exponent formula (τ = ∏(eᵢ+1)); the orbit count is the exhaustive V₄ census (Burnside, sealed in hexagramOrbitCensusTwelveFoursEightTwos); HARMONICS_LADDER_LENGTH is a src constant (6+9+5). The theorem is precisely which coincidences are STRUCTURAL (forced — the divisor formula and Burnside both count over 2-3 exponent lattices, 432 = 2⁴·3³ and 64 = 2⁶) and which is CONTINGENT (the harmonics ladder, defined to that length). Landing on the same integer is NOT evidence of a shared cause — that is the a432 "432 is mathematically special" flag applied to itself: the twenties harmonise, they are not one truth. The registry is sealed at 432 (theoremsReach432AndEntangleWithUsage holds the merge), so this is proven KNOWLEDGE that the wave discovered and computes, not a renumbering of the merged registry.` }
   })
 }
+
+
+// ─────────────────────────────────────────────────────────────────────────────────────────────
+// THE HEXBIT: ONE HEXAGRAM IS SIX BITS, AND THE LATTICE IS EVERY VALUE OF THEM
+//
+// A hexagram is six lines, each yin or yang. That is a six-bit word — a HEXBIT — and the 64
+// hexagrams are exactly its 2^6 values, so the I Ching's lattice and the range of a six-bit integer
+// are the same set. This is not a new encoding: src/mountain/geometry already computes the nuclear
+// hexagram as `(n >> 2) & 7 | ((n >> 3) & 7) << 3`, which is shift-and-mask on a hexbit. The folds
+// below make the representation explicit and, more usefully, make it COMPARABLE — because "hexbits
+// compute faster than all else" is a claim about alternatives, and a claim about alternatives cannot
+// be settled without them.
+//
+// So four representations of the same lattice are defined here, each with the same four operations,
+// and a fold that checks all four agree on all 64 inputs before anyone times them. THAT ORDER MATTERS.
+// A benchmark that times implementations without first proving they compute the same thing measures
+// which one cuts the most corners, and the fastest way to answer a question is always to answer it
+// wrongly. Timing lives in scripts/verify/hexbit.ts; nothing here reads a clock.
+//
+// The operations are the corpus's own, not invented for the benchmark:
+//   reflect  — 錯卦, every line inverted. The involution this corpus is built on.
+//   nuclear  — 互卦, the inner trigrams, cross-checked against the sealed nuclearHexagramFold.
+//   reverse  — 綜卦, the hexagram turned upside down.
+//   trigrams — the split into lower and upper, which is what makes 64 = 8 x 8.
+
+/** Lines in a hexagram. Six, because a hexagram is six lines — the name says so. */
+export const HEXBIT_LINES = 6
+/** The lattice: every value a hexbit can take. */
+export const HEXBIT_LATTICE = 2 ** HEXBIT_LINES
+/** All bits set — the reflection mask. */
+export const HEXBIT_MASK = HEXBIT_LATTICE - 1
+/** Lines in a trigram, and its mask. */
+const TRIGRAM_LINES = HEXBIT_LINES / 2
+const TRIGRAM_MASK = (2 ** TRIGRAM_LINES) - 1
+
+export type Hexbit = number
+export type LineArray = readonly boolean[]
+
+/* ── A. HEXBIT: the six-bit integer. Every operation is a shift, a mask or an xor. ── */
+
+export const hexbitReflect = (h: Hexbit): Hexbit => h ^ HEXBIT_MASK
+export const hexbitLower = (h: Hexbit): number => h & TRIGRAM_MASK
+export const hexbitUpper = (h: Hexbit): number => (h >> TRIGRAM_LINES) & TRIGRAM_MASK
+/** 互卦 — the sealed definition from src/mountain/geometry, restated as one expression. */
+export const hexbitNuclear = (h: Hexbit): Hexbit => ((h >> 2) & TRIGRAM_MASK) | (((h >> 3) & TRIGRAM_MASK) << TRIGRAM_LINES)
+/** 綜卦 — the hexagram turned upside down: line i becomes line (5 - i). */
+export function hexbitReverse(h: Hexbit): Hexbit {
+  let out = 0
+  for (let i = 0; i < HEXBIT_LINES; i += 1) if ((h >> i) & 1) out |= 1 << (HEXBIT_LINES - 1 - i)
+  return out
+}
+
+/* ── B. LINE ARRAY: six booleans, bottom line first. The literal reading of "six lines". ── */
+
+export const linesOf = (h: Hexbit): boolean[] =>
+  Array.from({ length: HEXBIT_LINES }, (_, i) => ((h >> i) & 1) === 1)
+export const hexbitOfLines = (l: LineArray): Hexbit =>
+  l.reduce((acc, on, i) => (on ? acc | (1 << i) : acc), 0)
+export const linesReflect = (l: LineArray): boolean[] => l.map((on) => !on)
+export const linesReverse = (l: LineArray): boolean[] => [...l].reverse()
+export const linesNuclear = (l: LineArray): boolean[] =>
+  [l[2]!, l[3]!, l[4]!, l[3]!, l[4]!, l[5]!]
+
+/* ── C. STRING: "101010", the shape a human writes down and a Map is usually keyed by. ── */
+
+export const stringOf = (h: Hexbit): string => linesOf(h).map((on) => (on ? '1' : '0')).join('')
+export const hexbitOfString = (s: string): Hexbit => hexbitOfLines([...s].map((c) => c === '1'))
+export const stringReflect = (s: string): string => [...s].map((c) => (c === '1' ? '0' : '1')).join('')
+export const stringReverse = (s: string): string => [...s].reverse().join('')
+export const stringNuclear = (s: string): string => `${s[2]}${s[3]}${s[4]}${s[3]}${s[4]}${s[5]}`
+
+/* ── D. LOOKUP TABLE: 64 precomputed rows, the answer fetched rather than computed. ── */
+
+export type HexbitRow = { readonly h: Hexbit; readonly reflect: Hexbit; readonly nuclear: Hexbit; readonly reverse: Hexbit }
+
+export function hexbitTable(): readonly HexbitRow[] {
+  return Array.from({ length: HEXBIT_LATTICE }, (_, h) => ({
+    h,
+    reflect: hexbitReflect(h),
+    nuclear: hexbitNuclear(h),
+    reverse: hexbitReverse(h),
+  }))
+}
+
+/**
+ * THE FOUR REPRESENTATIONS AGREE, ON ALL 64, FOR EVERY OPERATION — and the nuclear operation agrees
+ * with the SEALED fold in src/mountain/geometry, which is the cross-check that matters most: it means
+ * the hexbit here is the same hexbit the corpus already computes with, not a lookalike defined to make
+ * a benchmark come out well.
+ *
+ * DIRECTION OF FAILURE: loud and specific. A disagreement names the operation, the input, and the two
+ * representations that differ, because a benchmark run over implementations that disagree is a
+ * measurement of nothing.
+ */
+export function hexbitRepresentationsAgree(matrix: MindMatrix = buildMatrix()) {
+  const all = Array.from({ length: HEXBIT_LATTICE }, (_, h) => h)
+  const sealed = nuclearHexagramFold(matrix).map
+  const disagreements: string[] = []
+  for (const h of all) {
+    const viaLines = {
+      reflect: hexbitOfLines(linesReflect(linesOf(h))),
+      reverse: hexbitOfLines(linesReverse(linesOf(h))),
+      nuclear: hexbitOfLines(linesNuclear(linesOf(h))),
+    }
+    const viaString = {
+      reflect: hexbitOfString(stringReflect(stringOf(h))),
+      reverse: hexbitOfString(stringReverse(stringOf(h))),
+      nuclear: hexbitOfString(stringNuclear(stringOf(h))),
+    }
+    const bits = { reflect: hexbitReflect(h), reverse: hexbitReverse(h), nuclear: hexbitNuclear(h) }
+    for (const op of ['reflect', 'reverse', 'nuclear'] as const) {
+      if (viaLines[op] !== bits[op]) disagreements.push(`${op}(${h}): lines ${viaLines[op]} vs hexbit ${bits[op]}`)
+      if (viaString[op] !== bits[op]) disagreements.push(`${op}(${h}): string ${viaString[op]} vs hexbit ${bits[op]}`)
+    }
+    if (sealed[h]!.nuclear !== bits.nuclear) {
+      disagreements.push(`nuclear(${h}): sealed fold ${sealed[h]!.nuclear} vs hexbit ${bits.nuclear}`)
+    }
+  }
+  const table = hexbitTable()
+  const tableAgrees = all.every((h) => table[h]!.reflect === hexbitReflect(h) && table[h]!.nuclear === hexbitNuclear(h) && table[h]!.reverse === hexbitReverse(h))
+
+  // The involution, recomputed rather than recalled: reflect is xor with an all-ones mask, so it is
+  // its own inverse, and it has NO fixed point because h ^ mask = h would need mask = 0.
+  const involutive = all.every((h) => hexbitReflect(hexbitReflect(h)) === h)
+  const fixed = all.filter((h) => hexbitReflect(h) === h).length
+
+  const facets = [
+    { facet: `the lattice is 2^${HEXBIT_LINES} = ${HEXBIT_LATTICE} — a hexagram IS a six-bit word`, on: HEXBIT_LATTICE === 64 && all.length === 64 },
+    { facet: `all four representations agree on all ${HEXBIT_LATTICE} inputs for reflect, reverse and nuclear`, on: disagreements.length === 0 && tableAgrees },
+    { facet: `nuclear agrees with the SEALED nuclearHexagramFold — the same hexbit the corpus already computes with`, on: all.every((h) => sealed[h]!.nuclear === hexbitNuclear(h)) },
+    { facet: `reflect is an involution with no fixed point, so the lattice is ${HEXBIT_LATTICE / 2} orbits of two`, on: involutive && fixed === 0 },
+    // PARENTHESISED, and it was not. This read `hexbitLower(h) | (hexbitUpper(h) << T) === h || (...)`,
+    // which JavaScript parses as `lower | (shifted === h)` — a NUMBER — and `||` treats any non-zero
+    // number as truthy, so `.every` passed on a value rather than on the property. It happened to be
+    // green for the wrong reason, which is the only kind of green worth being afraid of.
+    { facet: `64 = 8 x 8 through the trigram split: every hexbit is (lower, upper) and back`,
+      on: all.every((h) => (hexbitLower(h) | (hexbitUpper(h) << TRIGRAM_LINES)) === h) },
+  ]
+  return {
+    computes: facets.every((f) => f.on),
+    lattice: HEXBIT_LATTICE,
+    disagreements,
+    orbits: (HEXBIT_LATTICE - fixed) / 2,
+    facets,
+    root: merkleFold(facets.map((f) => toUuid(f.facet))),
+    statement: `A hexagram is a hexbit: six bits, 64 values, and the corpus's own nuclear operation is shift-and-mask on it. Four representations of the same lattice agree on every input, which is what makes timing them a measurement rather than a race between different answers.`,
+  }
+}

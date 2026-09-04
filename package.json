@@ -1091,6 +1091,7 @@
     "zenodo:new-version": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts writeCorrectedMetadata",
     "verify:publications": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/discoveries.ts assertPublicationsAreUnique",
     "verify:statements": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/statements.ts assertStatementsAreUnique",
-    "verify:dois": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts assertCitedDoisResolve"
+    "verify:dois": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts assertCitedDoisResolve",
+    "bench:hexbit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/hexbit.ts runHexbitBenchmark"
   }
 }
