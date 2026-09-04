@@ -2,12 +2,12 @@
 // with. rotate3 turns a vector through all three planes (xy, yz, zx) so the figure tumbles in space, not just
 // spins in the plane; perspective() turns the rotated z into a foreshortening factor (nearer grows, farther
 // recedes), shared by the fractal arms, the architecture ring and the tag ring so they tumble as one figure.
-import { phase } from '../../../6/4'
-import type { Dims } from '../../mountain/dimensions'
-import { movieCanvasPolarity } from '../../science'
-import { FIBONACCI } from '../../../3/7'
-import { TAU } from '../../../3/7'
-import { VORTEX_SEQUENCE, abs, cos, hypot, max, min, pow, sin, sqrt } from '../../../0'
+import { phase } from '../../../6/4/index.ts'
+import type { Dims } from '../../mountain/dimensions/index.ts'
+import { movieCanvasPolarity } from '../../science/index.ts'
+import { FIBONACCI } from '../../../3/7/index.ts'
+import { TAU } from '../../../3/7/index.ts'
+import { VORTEX_SEQUENCE, abs, cos, hypot, max, min, pow, sin, sqrt } from '../../../0/index.ts'
 
 export const FOCAL = (6 * 2 / 5) // perspective focal length, shared by every layer
 

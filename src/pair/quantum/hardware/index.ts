@@ -2,8 +2,8 @@
 // compare simulation vs physical measurement. Merged flat (hardware-comparison + ibm-qiskit-
 // executor) to satisfy the src index census.
 
-import { quantumMeasurement, computeCoherence, applyDecoherence, clay_theorems_quantum } from '../../theorem/stability/detector'
-import type { TheoremQuantumState } from '../../theorem/stability/detector'
+import { quantumMeasurement, computeCoherence, applyDecoherence, clay_theorems_quantum } from '../../theorem/stability/detector/index.ts'
+import type { TheoremQuantumState } from '../../theorem/stability/detector/index.ts'
 
 // ───── module: hardwareComparison ─────
 // Wave 32b: Simulation vs Hardware Comparison
@@ -677,7 +677,7 @@ export const ibmQiskitExecutorDefault = {
 // Quantum Verification Module — Wave 33: execute detector, check sequence self-consistency.
 // Merged flat (detector-execution) to satisfy the src index census.
 
-import { verifyAllTheorems, quantumStabilityProof } from '../../theorem/stability/detector'
+import { verifyAllTheorems, quantumStabilityProof } from '../../theorem/stability/detector/index.ts'
 // ───── module: detectorExecution ─────
 // Wave 33: Execute quantum coherence detector
 // Run the simulator, verify zero deviation from expected sequence

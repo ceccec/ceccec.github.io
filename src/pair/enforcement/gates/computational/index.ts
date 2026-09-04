@@ -1,15 +1,15 @@
-import { earned } from '../../../../3/7'
+import { earned } from '../../../../3/7/index.ts'
 // ONE source for computational limit constants and checks — gate · weave · verify · folderLaw read here only.
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
-import { GATES, abs, antichainLevels, applyGate, ceil, cnot, floor, foldPair, isUuid, log, log2, max, merkleFold, min, probabilities, qubits, round, toUuid, type QuantumState } from '../../../../0'
-import { computeCodeGravity, computePathMigration, stripStringsAndComments } from '../strict/scan'
-import { stringMass, enforcementScanRoot } from '../strict/scan'
-export { enforcementScanRoot } from '../strict/scan'
-import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1'
-import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2'
-import { THEOREM_ATOM_SEED } from '../../../../4/6'
-import { harmonicBands } from '../../../../quantum/icons'
+import { GATES, abs, antichainLevels, applyGate, ceil, cnot, floor, foldPair, isUuid, log, log2, max, merkleFold, min, probabilities, qubits, round, toUuid, type QuantumState } from '../../../../0/index.ts'
+import { computeCodeGravity, computePathMigration, stripStringsAndComments } from '../strict/scan/index.ts'
+import { stringMass, enforcementScanRoot } from '../strict/scan/index.ts'
+export { enforcementScanRoot } from '../strict/scan/index.ts'
+import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1/index.ts'
+import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2/index.ts'
+import { THEOREM_ATOM_SEED } from '../../../../4/6/index.ts'
+import { harmonicBands } from '../../../../quantum/icons/index.ts'
 
 // vaultSplitCamelSegment deduped → splitCamelSegment (the 8/2 pi-train leaf owns the body;
 // dry/dupe spin 2, 2026-07-24) — the vault name stays as the local alias documenting intent.
@@ -49,12 +49,12 @@ export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
 // The census / gate numeric constants are hosted in the zero-import leaf src/3/7 (imported + re-exported
 // below) so they initialise before any cyclic consumer barrel runs — removing the SSR-bundle TDZ. This file
 // remains the ONE public source (re-export); limits:verify + folder-law read the same values by import.
-import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, A432_FOLDED, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7'
+import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, A432_FOLDED, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7/index.ts'
 
 // DRY: the two canonical recursive src walkers, extracted from the ~9 inline copies the gate folds each defined.
 const indexFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...indexFilesUnder(full)); else if (entry.name === 'index.ts') out.push(full) } return out }
 const tsFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...tsFilesUnder(full)); else if (entry.name.endsWith('.ts')) out.push(full) } return out }
-export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7'
+export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7/index.ts'
 
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
 export const FORBIDDEN_FOLDER_NAMES = ['index'] as const

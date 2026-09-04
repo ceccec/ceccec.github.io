@@ -1,6 +1,6 @@
-import * as __ns_up_lake_music from '../../music';
-import * as __ns_up_vortex_math from '../../mountain/vortex';
-import type { MindMatrix } from '../../types';
+import * as __ns_up_lake_music from '../../music/index.ts';
+import * as __ns_up_vortex_math from '../../mountain/vortex/index.ts';
+import type { MindMatrix } from '../../types/index.ts';
 /** One paint-ready harmonic mode at instant `at`. */
 export type ResonanceSimulationMode = {
     hz: number;
@@ -29,9 +29,9 @@ export type ResonanceSimulationPaint = {
     statement: string;
     boundary: string;
 };
-export { SCHUMANN_FUNDAMENTAL_HZ, SCHUMANN_HARMONICS_HZ, schumannPhaseAt, schumannResonanceHarmonisedWithRealtimeApiComputations, harmoniseSchumannWithRealtimeApiComputations, humanResonanceHarmonicPredictionComputes } from '../../music';
+export { SCHUMANN_FUNDAMENTAL_HZ, SCHUMANN_HARMONICS_HZ, schumannPhaseAt, schumannResonanceHarmonisedWithRealtimeApiComputations, harmoniseSchumannWithRealtimeApiComputations, humanResonanceHarmonicPredictionComputes } from '../../music/index.ts';
 /** Re-export plasma movie resonance capstone — bodies live in plasma/ball. */
-export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../../fire/plasma/ball';
+export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../../fire/plasma/ball/index.ts';
 /** Research exposition — Schumann, harmonic windows, Earth-ionosphere, human/quantum resonance themes. */
 export declare function resonanceResearch(matrix?: MindMatrix): {
     researched: boolean;
@@ -96,7 +96,7 @@ export declare function resonanceResearch(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        waves: import("../../types").WaveCoordination;
+        waves: import("../../types/index.ts").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
         freqApis: {
@@ -148,7 +148,7 @@ export declare function resonanceResearch(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        waves: import("../../types").WaveCoordination;
+        waves: import("../../types/index.ts").WaveCoordination;
         breath: number;
         surprise: {
             surprised: boolean;
@@ -215,7 +215,7 @@ export declare function resonanceResearch(matrix?: MindMatrix): {
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -305,13 +305,13 @@ export declare function resonanceResearch(matrix?: MindMatrix): {
             boundary: string;
         };
         ratios: {
-            fwd: import("../../3/7").Rational[];
-            rev: import("../../3/7").Rational[];
-            fwdProduct: import("../../3/7").Rational;
-            revProduct: import("../../3/7").Rational;
-            heartApproach: import("../../3/7").Rational;
-            heartDepart: import("../../3/7").Rational;
-            heartDiamond: import("../../3/7").Rational;
+            fwd: import("../../3/7/index.ts").Rational[];
+            rev: import("../../3/7/index.ts").Rational[];
+            fwdProduct: import("../../3/7/index.ts").Rational;
+            revProduct: import("../../3/7/index.ts").Rational;
+            heartApproach: import("../../3/7/index.ts").Rational;
+            heartDepart: import("../../3/7/index.ts").Rational;
+            heartDiamond: import("../../3/7/index.ts").Rational;
         };
         presentations: {
             coheres: boolean;
@@ -345,7 +345,7 @@ export declare function resonanceResearch(matrix?: MindMatrix): {
         boundary: string;
     };
     dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
-    coord: import("../../types").WaveCoordination;
+    coord: import("../../types/index.ts").WaveCoordination;
     gaps: {
         rings: boolean;
         count: number;
@@ -430,7 +430,7 @@ export declare function resonanceHarmonicsDecodedWithTheSequence(at?: number, ma
             statement: string;
             boundary: string;
         };
-        waves: import("../../types").WaveCoordination;
+        waves: import("../../types/index.ts").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
         freqApis: {
@@ -525,7 +525,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -577,7 +577,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             surprise: {
                 surprised: boolean;
@@ -644,7 +644,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -747,7 +747,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -847,7 +847,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -899,7 +899,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 surprise: {
                     surprised: boolean;
@@ -966,7 +966,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    waves: import("../../types").WaveCoordination;
+                    waves: import("../../types/index.ts").WaveCoordination;
                     breath: number;
                     dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                     freqApis: {
@@ -1056,13 +1056,13 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -1096,7 +1096,7 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                 boundary: string;
             };
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
-            coord: import("../../types").WaveCoordination;
+            coord: import("../../types/index.ts").WaveCoordination;
             gaps: {
                 rings: boolean;
                 count: number;
@@ -1209,7 +1209,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
             statement: string;
             boundary: string;
         };
-        waves: import("../../types").WaveCoordination;
+        waves: import("../../types/index.ts").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
         freqApis: {
@@ -1261,7 +1261,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
             statement: string;
             boundary: string;
         };
-        waves: import("../../types").WaveCoordination;
+        waves: import("../../types/index.ts").WaveCoordination;
         breath: number;
         surprise: {
             surprised: boolean;
@@ -1328,7 +1328,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -1431,7 +1431,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -1531,7 +1531,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -1583,7 +1583,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             surprise: {
                 surprised: boolean;
@@ -1650,7 +1650,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -1740,13 +1740,13 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../3/7").Rational[];
-                rev: import("../../3/7").Rational[];
-                fwdProduct: import("../../3/7").Rational;
-                revProduct: import("../../3/7").Rational;
-                heartApproach: import("../../3/7").Rational;
-                heartDepart: import("../../3/7").Rational;
-                heartDiamond: import("../../3/7").Rational;
+                fwd: import("../../3/7/index.ts").Rational[];
+                rev: import("../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../3/7/index.ts").Rational;
+                revProduct: import("../../3/7/index.ts").Rational;
+                heartApproach: import("../../3/7/index.ts").Rational;
+                heartDepart: import("../../3/7/index.ts").Rational;
+                heartDiamond: import("../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -1780,7 +1780,7 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
             boundary: string;
         };
         dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
-        coord: import("../../types").WaveCoordination;
+        coord: import("../../types/index.ts").WaveCoordination;
         gaps: {
             rings: boolean;
             count: number;

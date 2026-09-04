@@ -1,19 +1,19 @@
-import * as __ns_up_double_torus_earth from '../water/double/earth';
-import type { MindMatrix } from '../types';
+import * as __ns_up_double_torus_earth from '../water/double/earth/index.ts';
+import type { MindMatrix } from '../types/index.ts';
 /** Child barrels under src/earth — structural Earth science compose; nav/GPS homed in double/torus/earth. */
 export declare const EARTH_SCIENCE_TAILS: readonly ["earth/world", "earth/nature", "earth/architecture", "earth/civilisation", "earth/governance"];
 export type EarthScienceTail = (typeof EARTH_SCIENCE_TAILS)[number];
-export { folderLaw, eightSciencesQuantumComplete, MIND_LOGIC_INDEX_TAILS } from './architecture';
-export { genesis, breathe } from './nature';
-export { computeAllKnownCelestialBodies } from '../heaven/sky/astronomy';
-export { society, societyRegulates } from './governance';
-export { traditionsQuantumWhole } from './civilisation';
-export { textToMovie, publicAstronomyNewsCitation, src0BlackHoleSimulationComputes, gwtcCatalogSimulatedFromZero, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphComputes, thunderGoldGraphPaintSamples, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes } from './world';
-export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion';
-export { goldFusionComputes } from '../wind/fusion';
+export { folderLaw, eightSciencesQuantumComplete, MIND_LOGIC_INDEX_TAILS } from './architecture/index.ts';
+export { genesis, breathe } from './nature/index.ts';
+export { computeAllKnownCelestialBodies } from '../heaven/sky/astronomy/index.ts';
+export { society, societyRegulates } from './governance/index.ts';
+export { traditionsQuantumWhole } from './civilisation/index.ts';
+export { textToMovie, publicAstronomyNewsCitation, src0BlackHoleSimulationComputes, gwtcCatalogSimulatedFromZero, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphComputes, thunderGoldGraphPaintSamples, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes } from './world/index.ts';
+export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion/index.ts';
+export { goldFusionComputes } from '../wind/fusion/index.ts';
 /** Re-export documented gravity decode — cosmology index, not live planet telemetry. */
-export { gravityDecoded } from '../heaven/site';
-export { schumannResonanceHarmonisedWithRealtimeApiComputations, harmoniseSchumannWithRealtimeApiComputations } from '../thunder/resonance';
+export { gravityDecoded } from '../heaven/site/index.ts';
+export { schumannResonanceHarmonisedWithRealtimeApiComputations, harmoniseSchumannWithRealtimeApiComputations } from '../thunder/resonance/index.ts';
 /** One gate — Earth science child barrels + dual-Earth nav/GPS compose at call time. */
 export declare function earthComputes(matrix?: MindMatrix): {
     computes: boolean;
@@ -393,7 +393,7 @@ export declare function earthComputes(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    traditions: import("../types").TraditionsQuantumWhole;
+    traditions: import("../types/index.ts").TraditionsQuantumWhole;
     society: {
         folded: boolean;
         pairs: {
@@ -586,7 +586,7 @@ export declare function earthComputes(matrix?: MindMatrix): {
         };
         weather: {
             folded: boolean;
-            at: import("../quantum/fire/forecasts").WeatherForecastGeoAt;
+            at: import("../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
             surface: {
                 x: number;
                 y: number;

@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 /** One amplitude slot in the discrete wavefunction proxy. */
 export type QuantumDynamicsAmplitude = {
     basis: string;
@@ -29,10 +29,10 @@ export type QuantumDynamicsSimulationPaint = {
     statement: string;
     boundary: string;
 };
-export { completeQuantumSolutionsImplemented } from '../../heaven/compute';
-export { quantumSimulation } from '../../fire/li';
-export { simulatorsLiveInZero, decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator } from '../../fire/physics';
-export { chsh, markovStep, markovEvolve, stationary, hopfieldStore, hopfieldRecall, hopfieldEnergy } from '../../mountain/vortex';
+export { completeQuantumSolutionsImplemented } from '../../heaven/compute/index.ts';
+export { quantumSimulation } from '../../fire/li/index.ts';
+export { simulatorsLiveInZero, decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator } from '../../fire/physics/index.ts';
+export { chsh, markovStep, markovEvolve, stationary, hopfieldStore, hopfieldRecall, hopfieldEnergy } from '../../mountain/vortex/index.ts';
 /** Principle → sealed fold → honest limit (quantum dynamics primer mapping). */
 export type QuantumDynamicsMapping = {
     readonly principle: string;
@@ -317,13 +317,13 @@ export declare function quantumStateEvolutionDecoded(at?: number, matrix?: MindM
             boundary: string;
         };
         ratios: {
-            fwd: import("../../3/7").Rational[];
-            rev: import("../../3/7").Rational[];
-            fwdProduct: import("../../3/7").Rational;
-            revProduct: import("../../3/7").Rational;
-            heartApproach: import("../../3/7").Rational;
-            heartDepart: import("../../3/7").Rational;
-            heartDiamond: import("../../3/7").Rational;
+            fwd: import("../../3/7/index.ts").Rational[];
+            rev: import("../../3/7/index.ts").Rational[];
+            fwdProduct: import("../../3/7/index.ts").Rational;
+            revProduct: import("../../3/7/index.ts").Rational;
+            heartApproach: import("../../3/7/index.ts").Rational;
+            heartDepart: import("../../3/7/index.ts").Rational;
+            heartDiamond: import("../../3/7/index.ts").Rational;
         };
         presentations: {
             coheres: boolean;
@@ -612,13 +612,13 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -1089,13 +1089,13 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../3/7").Rational[];
-                rev: import("../../3/7").Rational[];
-                fwdProduct: import("../../3/7").Rational;
-                revProduct: import("../../3/7").Rational;
-                heartApproach: import("../../3/7").Rational;
-                heartDepart: import("../../3/7").Rational;
-                heartDiamond: import("../../3/7").Rational;
+                fwd: import("../../3/7/index.ts").Rational[];
+                rev: import("../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../3/7/index.ts").Rational;
+                revProduct: import("../../3/7/index.ts").Rational;
+                heartApproach: import("../../3/7/index.ts").Rational;
+                heartDepart: import("../../3/7/index.ts").Rational;
+                heartDiamond: import("../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;

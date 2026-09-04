@@ -1,8 +1,8 @@
 
-import { toUuid, foldPair, derivePublicKey } from '../0'
-import { isUuid } from '../0'
-import { gcd } from '../0'
-import { shorsAlgorithm, recoverDiscreteLog, recoverLatticeSvp, recoverEdDSA, recoverAllKeys, parseKeyData, modularInverseBig } from './reverse'
+import { toUuid, foldPair, derivePublicKey } from '../0/index.ts'
+import { isUuid } from '../0/index.ts'
+import { gcd } from '../0/index.ts'
+import { shorsAlgorithm, recoverDiscreteLog, recoverLatticeSvp, recoverEdDSA, recoverAllKeys, parseKeyData, modularInverseBig } from './reverse/index.ts'
 /**
  * @cross/crypto — Universal Cryptographic Solution
  *
@@ -20,13 +20,13 @@ import { shorsAlgorithm, recoverDiscreteLog, recoverLatticeSvp, recoverEdDSA, re
  */
 
 // Export all crypto modules
-export * from './reverse'
+export * from './reverse/index.ts'
 
 
 
 
 // Re-export for convenience
-export { runCryptoReverseExit } from './reverse'
+export { runCryptoReverseExit } from './reverse/index.ts'
 
 
 

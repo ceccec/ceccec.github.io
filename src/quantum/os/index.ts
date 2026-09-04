@@ -1,16 +1,16 @@
 // Quantum OS — site UX shell metaphor (desktop / window manager for the monograph).
-import * as __ns_up_heaven_mind from '../heaven/mind'
-import * as __ns_up_up_fire_li from '../../fire/li'
-import * as __ns_up_up_lake_music from '../../music'
-import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
-import * as __ns_up_up_fusion from '../../wind/fusion'
-import * as __ns_up_up_fusion_gold from '../../wind/fusion'
-import * as __ns_up_dynamics from '../dynamics'
-import * as __ns_up_up_computer from '../computer'
-import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, computesGate, digitalRoot, floor, max, memoByRoot, merkleFold, min, round, roundTo, runQuantumCircuit, toUuid } from '../../0'
-import type { CircuitOp, CircuitResult } from '../../0'
+import * as __ns_up_heaven_mind from '../heaven/mind/index.ts'
+import * as __ns_up_up_fire_li from '../../fire/li/index.ts'
+import * as __ns_up_up_lake_music from '../../music/index.ts'
+import * as __ns_up_up_mountain_geometry from '../../mountain/geometry/index.ts'
+import * as __ns_up_up_fusion from '../../wind/fusion/index.ts'
+import * as __ns_up_up_fusion_gold from '../../wind/fusion/index.ts'
+import * as __ns_up_dynamics from '../dynamics/index.ts'
+import * as __ns_up_up_computer from '../computer/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import { VORTEX_SEQUENCE, computesGate, digitalRoot, floor, max, memoByRoot, merkleFold, min, round, roundTo, runQuantumCircuit, toUuid } from '../../0/index.ts'
+import type { CircuitOp, CircuitResult } from '../../0/index.ts'
 import {
   busDriverProbe,
   cpuDriverProbe,
@@ -19,11 +19,11 @@ import {
   memoryDriverProbe,
   powerComputes,
   storageDriverProbe,
-  terminalDriverProbe } from '../computer'
-import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../fire/plasma/ball'
-import { A432_HUE, GOLDEN_ANGLE, QC_DEFAULT_CIRCUIT, QC_GATE_PALETTE, quantumComputerHonestClaim } from '../science'
-import { quantumAppsComputes, quantumAppsCoverHomeAnimations, quantumAppsRegistry, type QuantumAppEntry } from '../apps'
-import { TAU, PHI } from '../../3/7'
+  terminalDriverProbe } from '../computer/index.ts'
+import { heroMoviePhaseHue, heroPhaseAt, HERO_CYCLE_MS } from '../../fire/plasma/ball/index.ts'
+import { A432_HUE, GOLDEN_ANGLE, QC_DEFAULT_CIRCUIT, QC_GATE_PALETTE, quantumComputerHonestClaim } from '../science/index.ts'
+import { quantumAppsComputes, quantumAppsCoverHomeAnimations, quantumAppsRegistry, type QuantumAppEntry } from '../apps/index.ts'
+import { TAU, PHI } from '../../3/7/index.ts'
 
 const OS_ROUTE = '/en/quantum/os'
 // The three consecutive Fibonacci numbers ≤ 55 — COMPUTED from the recurrence, never hand-typed.

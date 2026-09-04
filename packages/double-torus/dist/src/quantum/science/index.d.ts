@@ -1,8 +1,8 @@
-import * as __ns_up_dynamics from '../dynamics';
-import * as __ns_up_os from '../os';
-import type { MindMatrix } from '../../types';
-import type { CircuitOp } from '../../0';
-export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7';
+import * as __ns_up_dynamics from '../dynamics/index.ts';
+import * as __ns_up_os from '../os/index.ts';
+import type { MindMatrix } from '../../types/index.ts';
+import type { CircuitOp } from '../../0/index.ts';
+export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7/index.ts';
 export declare function quantumScienceResearch(matrix?: MindMatrix): {
     researched: boolean;
     mappings: any[];
@@ -255,13 +255,13 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -720,13 +720,13 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                         boundary: string;
                     };
                     ratios: {
-                        fwd: import("../../3/7").Rational[];
-                        rev: import("../../3/7").Rational[];
-                        fwdProduct: import("../../3/7").Rational;
-                        revProduct: import("../../3/7").Rational;
-                        heartApproach: import("../../3/7").Rational;
-                        heartDepart: import("../../3/7").Rational;
-                        heartDiamond: import("../../3/7").Rational;
+                        fwd: import("../../3/7/index.ts").Rational[];
+                        rev: import("../../3/7/index.ts").Rational[];
+                        fwdProduct: import("../../3/7/index.ts").Rational;
+                        revProduct: import("../../3/7/index.ts").Rational;
+                        heartApproach: import("../../3/7/index.ts").Rational;
+                        heartDepart: import("../../3/7/index.ts").Rational;
+                        heartDiamond: import("../../3/7/index.ts").Rational;
                     };
                     presentations: {
                         coheres: boolean;
@@ -1200,7 +1200,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
         statement: string;
         boundary: string;
     };
-    entangled: import("../../0").QuantumState;
+    entangled: import("../../0/index.ts").QuantumState;
     tsirelson: number;
     ic: {
         organised: boolean;
@@ -1374,11 +1374,11 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
             core: {
                 computes: boolean;
                 at: number;
-                surfaces: import("../apps").RosettaCoreSurface[];
+                surfaces: import("../apps/index.ts").RosettaCoreSurface[];
                 inventory: {
                     core: {
                         label: string;
-                        kind: import("../apps").RosettaCoreSurfaceKind;
+                        kind: import("../apps/index.ts").RosettaCoreSurfaceKind;
                         ray: number;
                         address: string;
                     }[];
@@ -1390,14 +1390,14 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                         hue: number;
                     }[];
                 };
-                hubs: readonly import("../heaven/mind").RosettaRayHub[];
+                hubs: readonly import("../heaven/mind/index.ts").RosettaRayHub[];
                 raysUsed: number;
                 kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                resolve: (label: string, kind?: import("../apps").RosettaCoreSurfaceKind) => import("../apps").RosettaCoreSurface;
-                shelve: typeof import("../apps").rosettaShelve;
-                byRay: (ray: number) => import("../apps").RosettaCoreSurface[];
+                resolve: (label: string, kind?: import("../apps/index.ts").RosettaCoreSurfaceKind) => import("../apps/index.ts").RosettaCoreSurface;
+                shelve: typeof import("../apps/index.ts").rosettaShelve;
+                byRay: (ray: number) => import("../apps/index.ts").RosettaCoreSurface[];
                 resolveRoute: (route: string) => {
-                    surface: import("../apps").RosettaCoreSurface;
+                    surface: import("../apps/index.ts").RosettaCoreSurface;
                     address: string;
                     computed: boolean;
                     route: string;
@@ -1461,11 +1461,11 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../types").ConceptCommandName[];
+                        siblings: import("../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../heaven/mind").RosettaComputationType;
+                        pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -1516,7 +1516,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                     boundary: string;
                 };
                 resolveProjection: (label: string) => {
-                    surface: import("../apps").RosettaCoreSurface;
+                    surface: import("../apps/index.ts").RosettaCoreSurface;
                     phase: number;
                     hue: number;
                     motion: {
@@ -1569,7 +1569,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
             slots: {
                 ray: number;
                 kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                pageKind: import("../heaven/mind").RosettaComputationType;
+                pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                 vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
             }[];
@@ -1645,7 +1645,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 ray: number;
                 station: number;
                 crossPair: string;
-                computationType: import("../heaven/mind").RosettaComputationType;
+                computationType: import("../heaven/mind/index.ts").RosettaComputationType;
                 glagoliticAddress: string;
                 rayMeta: {
                     readonly ray: 0;
@@ -1699,7 +1699,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 };
                 sharedRoot: string;
                 content: {
-                    pageKind: import("../heaven/mind").RosettaComputationType;
+                    pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -1778,11 +1778,11 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                siblings: import("../../types").ConceptCommandName[];
+                siblings: import("../../types/index.ts").ConceptCommandName[];
                 siblingCount: number;
             };
             content: {
-                pageKind: import("../heaven/mind").RosettaComputationType;
+                pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -1837,7 +1837,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
             placedCount: number;
             raysCovered: number;
             trinityLegs: number;
-            items: import("../heaven/mind").RosettaIChingTrinityPlacement[];
+            items: import("../heaven/mind/index.ts").RosettaIChingTrinityPlacement[];
             count: number;
             facets: {
                 receipt: string;
@@ -1976,8 +1976,8 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
             circuit: string;
             ok: boolean;
         }[];
-        bell: import("../../0").CircuitResult;
-        ghz: import("../../0").CircuitResult;
+        bell: import("../../0/index.ts").CircuitResult;
+        ghz: import("../../0/index.ts").CircuitResult;
         grover: {
             n: number;
             size: number;
@@ -2121,7 +2121,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
             statement: string;
             boundary: string;
         };
-        entangled: import("../../0").QuantumState;
+        entangled: import("../../0/index.ts").QuantumState;
         tsirelson: number;
         ic: {
             organised: boolean;
@@ -2295,11 +2295,11 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                 core: {
                     computes: boolean;
                     at: number;
-                    surfaces: import("../apps").RosettaCoreSurface[];
+                    surfaces: import("../apps/index.ts").RosettaCoreSurface[];
                     inventory: {
                         core: {
                             label: string;
-                            kind: import("../apps").RosettaCoreSurfaceKind;
+                            kind: import("../apps/index.ts").RosettaCoreSurfaceKind;
                             ray: number;
                             address: string;
                         }[];
@@ -2311,14 +2311,14 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                             hue: number;
                         }[];
                     };
-                    hubs: readonly import("../heaven/mind").RosettaRayHub[];
+                    hubs: readonly import("../heaven/mind/index.ts").RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                    resolve: (label: string, kind?: import("../apps").RosettaCoreSurfaceKind) => import("../apps").RosettaCoreSurface;
-                    shelve: typeof import("../apps").rosettaShelve;
-                    byRay: (ray: number) => import("../apps").RosettaCoreSurface[];
+                    resolve: (label: string, kind?: import("../apps/index.ts").RosettaCoreSurfaceKind) => import("../apps/index.ts").RosettaCoreSurface;
+                    shelve: typeof import("../apps/index.ts").rosettaShelve;
+                    byRay: (ray: number) => import("../apps/index.ts").RosettaCoreSurface[];
                     resolveRoute: (route: string) => {
-                        surface: import("../apps").RosettaCoreSurface;
+                        surface: import("../apps/index.ts").RosettaCoreSurface;
                         address: string;
                         computed: boolean;
                         route: string;
@@ -2382,11 +2382,11 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../types").ConceptCommandName[];
+                            siblings: import("../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../heaven/mind").RosettaComputationType;
+                            pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -2437,7 +2437,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                         boundary: string;
                     };
                     resolveProjection: (label: string) => {
-                        surface: import("../apps").RosettaCoreSurface;
+                        surface: import("../apps/index.ts").RosettaCoreSurface;
                         phase: number;
                         hue: number;
                         motion: {
@@ -2490,7 +2490,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                 slots: {
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                    pageKind: import("../heaven/mind").RosettaComputationType;
+                    pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                     vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
@@ -2566,7 +2566,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     ray: number;
                     station: number;
                     crossPair: string;
-                    computationType: import("../heaven/mind").RosettaComputationType;
+                    computationType: import("../heaven/mind/index.ts").RosettaComputationType;
                     glagoliticAddress: string;
                     rayMeta: {
                         readonly ray: 0;
@@ -2620,7 +2620,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     };
                     sharedRoot: string;
                     content: {
-                        pageKind: import("../heaven/mind").RosettaComputationType;
+                        pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -2699,11 +2699,11 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../../types").ConceptCommandName[];
+                    siblings: import("../../types/index.ts").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
-                    pageKind: import("../heaven/mind").RosettaComputationType;
+                    pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -2758,7 +2758,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                 placedCount: number;
                 raysCovered: number;
                 trinityLegs: number;
-                items: import("../heaven/mind").RosettaIChingTrinityPlacement[];
+                items: import("../heaven/mind/index.ts").RosettaIChingTrinityPlacement[];
                 count: number;
                 facets: {
                     receipt: string;
@@ -2897,8 +2897,8 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                 circuit: string;
                 ok: boolean;
             }[];
-            bell: import("../../0").CircuitResult;
-            ghz: import("../../0").CircuitResult;
+            bell: import("../../0/index.ts").CircuitResult;
+            ghz: import("../../0/index.ts").CircuitResult;
             grover: {
                 n: number;
                 size: number;
@@ -3055,8 +3055,8 @@ export declare function quantumComputerVerifies(matrix?: MindMatrix): {
         circuit: string;
         ok: boolean;
     }[];
-    bell: import("../../0").CircuitResult;
-    ghz: import("../../0").CircuitResult;
+    bell: import("../../0/index.ts").CircuitResult;
+    ghz: import("../../0/index.ts").CircuitResult;
     grover: {
         n: number;
         size: number;
@@ -3379,7 +3379,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
             statement: string;
             boundary: string;
         };
-        entangled: import("../../0").QuantumState;
+        entangled: import("../../0/index.ts").QuantumState;
         tsirelson: number;
         ic: {
             organised: boolean;
@@ -3553,11 +3553,11 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                 core: {
                     computes: boolean;
                     at: number;
-                    surfaces: import("../apps").RosettaCoreSurface[];
+                    surfaces: import("../apps/index.ts").RosettaCoreSurface[];
                     inventory: {
                         core: {
                             label: string;
-                            kind: import("../apps").RosettaCoreSurfaceKind;
+                            kind: import("../apps/index.ts").RosettaCoreSurfaceKind;
                             ray: number;
                             address: string;
                         }[];
@@ -3569,14 +3569,14 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                             hue: number;
                         }[];
                     };
-                    hubs: readonly import("../heaven/mind").RosettaRayHub[];
+                    hubs: readonly import("../heaven/mind/index.ts").RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                    resolve: (label: string, kind?: import("../apps").RosettaCoreSurfaceKind) => import("../apps").RosettaCoreSurface;
-                    shelve: typeof import("../apps").rosettaShelve;
-                    byRay: (ray: number) => import("../apps").RosettaCoreSurface[];
+                    resolve: (label: string, kind?: import("../apps/index.ts").RosettaCoreSurfaceKind) => import("../apps/index.ts").RosettaCoreSurface;
+                    shelve: typeof import("../apps/index.ts").rosettaShelve;
+                    byRay: (ray: number) => import("../apps/index.ts").RosettaCoreSurface[];
                     resolveRoute: (route: string) => {
-                        surface: import("../apps").RosettaCoreSurface;
+                        surface: import("../apps/index.ts").RosettaCoreSurface;
                         address: string;
                         computed: boolean;
                         route: string;
@@ -3640,11 +3640,11 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../types").ConceptCommandName[];
+                            siblings: import("../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../heaven/mind").RosettaComputationType;
+                            pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -3695,7 +3695,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                         boundary: string;
                     };
                     resolveProjection: (label: string) => {
-                        surface: import("../apps").RosettaCoreSurface;
+                        surface: import("../apps/index.ts").RosettaCoreSurface;
                         phase: number;
                         hue: number;
                         motion: {
@@ -3748,7 +3748,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                 slots: {
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                    pageKind: import("../heaven/mind").RosettaComputationType;
+                    pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                     vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
@@ -3824,7 +3824,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     ray: number;
                     station: number;
                     crossPair: string;
-                    computationType: import("../heaven/mind").RosettaComputationType;
+                    computationType: import("../heaven/mind/index.ts").RosettaComputationType;
                     glagoliticAddress: string;
                     rayMeta: {
                         readonly ray: 0;
@@ -3878,7 +3878,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     };
                     sharedRoot: string;
                     content: {
-                        pageKind: import("../heaven/mind").RosettaComputationType;
+                        pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -3957,11 +3957,11 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../../types").ConceptCommandName[];
+                    siblings: import("../../types/index.ts").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
-                    pageKind: import("../heaven/mind").RosettaComputationType;
+                    pageKind: import("../heaven/mind/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -4016,7 +4016,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                 placedCount: number;
                 raysCovered: number;
                 trinityLegs: number;
-                items: import("../heaven/mind").RosettaIChingTrinityPlacement[];
+                items: import("../heaven/mind/index.ts").RosettaIChingTrinityPlacement[];
                 count: number;
                 facets: {
                     receipt: string;
@@ -4155,8 +4155,8 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                 circuit: string;
                 ok: boolean;
             }[];
-            bell: import("../../0").CircuitResult;
-            ghz: import("../../0").CircuitResult;
+            bell: import("../../0/index.ts").CircuitResult;
+            ghz: import("../../0/index.ts").CircuitResult;
             grover: {
                 n: number;
                 size: number;
@@ -4343,7 +4343,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
         n: number;
         ops: CircuitOp[];
     };
-    run: import("../../0").CircuitResult;
+    run: import("../../0/index.ts").CircuitResult;
     parts: {
         receipt: string;
         id: string;

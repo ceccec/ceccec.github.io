@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export type SpeedupMeasurement = {
     readonly algorithm: string;
     /** Oracle/gate invocations actually performed. */

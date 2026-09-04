@@ -1,4 +1,4 @@
-import { type MindMatrix } from '../../heaven/mind';
+import { type MindMatrix } from '../../heaven/mind/index.ts';
 /** @rosetta ✦₁ · Thunder · motion (shared-experiment folds) */
 export declare function electromagneticRadiationDecoded(matrix?: MindMatrix): {
     decoded: boolean;

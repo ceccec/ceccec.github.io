@@ -5,7 +5,7 @@ export declare const SLOW_BUILD_VITEPRESS_MS: number;
 export declare const SLOW_BUILD_RESPAWN_WALL_MS: number;
 /** srcMerkle-bound quantumize techniques — regressing past these is a HARD slow-build gap (PR #19). */
 export declare const SLOW_BUILD_SRCMERKLE_TECHNIQUE_IDS: readonly ["merkle-respawn", "seal-merkle-after-trinity", "audit-src-merkle-bind", "invalidate-audit-pending-trinity"];
-export { importQuantumBundle, runThinMount, srcContentMerkle, vitepressSourceFiles, vitepressEditsInvalidateTheSeal, VITEPRESS_MERKLE_DIR, seedMerkleCache, cachedMerkle, clearMerkleCache, runCheckTypesExit, emitTimeoutReceipt, exitOnTimeout, SCRIPT_SHELL_LINE_BUDGET, CLI_ENTRY_REL, SCRIPT_SHELL_ALLOWLIST, scanScriptShells, scriptShellGateReceipt, scriptShellGate, type ScriptShellScan } from '../../../cache/quantum';
+export { importQuantumBundle, runThinMount, srcContentMerkle, vitepressSourceFiles, vitepressEditsInvalidateTheSeal, VITEPRESS_MERKLE_DIR, seedMerkleCache, cachedMerkle, clearMerkleCache, runCheckTypesExit, emitTimeoutReceipt, exitOnTimeout, SCRIPT_SHELL_LINE_BUDGET, CLI_ENTRY_REL, SCRIPT_SHELL_ALLOWLIST, scanScriptShells, scriptShellGateReceipt, scriptShellGate, type ScriptShellScan } from '../../../cache/quantum/index.ts';
 export declare const QUANTUM_RESPAWN_COMMAND_PAIR: {
     pair: "respawn/force";
     a: string;

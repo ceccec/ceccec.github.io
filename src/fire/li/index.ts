@@ -1,75 +1,75 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — auxiliary pure-leaf folds: no cross-deps to other folds.ts functions.
 // ☰ Qián · Heaven · creative · lower·yin · spread — type contracts for all fold return shapes
-import { phase } from '../../6/4'
+import { phase } from '../../6/4/index.ts'
 import type {
   MindMatrix, FusionReactor, ReactorItem, DistributedCompute, DoubleTorusMathReport,
   AncientTech, AncientTechLens, SelfDevelopment, MethodFusionReport, Block, Blockchain,
   QuantumFoldedBlockchains, TaxonomyIcons, TaxonomyEntry, FairLife, FairStep,
   SelfAddressed, UtfAnalog, CrossFoldTrinity, CrossFoldReference, SourceContributionReport,
-  SelfInteraction, SelfState } from '../../types'
+  SelfInteraction, SelfState } from '../../types/index.ts'
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — matrix primitives: buildMatrix, consciousness, repositoryApi
-import { buildMatrix, consciousness, repositoryApi, isPerfectlySelfModeling, proofReport } from '../../heaven/compute'
+import { buildMatrix, consciousness, repositoryApi, isPerfectlySelfModeling, proofReport } from '../../heaven/compute/index.ts'
 // ☴ Xùn · Wind · gentle · lower·yin · hueShift — site structure: quantumSitemap
-import { quantumSitemap } from '../../wind/site'
+import { quantumSitemap } from '../../wind/site/index.ts'
 // ☰ Qián · Heaven · creative · lower·yin · spread — atom registry: conceptCommands, SINGLE_WORD_METHODS, atoms
-import { conceptCommands, SINGLE_WORD_METHODS, atoms } from '../../heaven/atoms'
+import { conceptCommands, SINGLE_WORD_METHODS, atoms } from '../../heaven/atoms/index.ts'
 // ☱ Duì · Lake · joyous · lower·yin · depthFade — inclusion proof: atomInclusionProof
-import { atomInclusionProof } from '../../ledger'
+import { atomInclusionProof } from '../../ledger/index.ts'
 // ☷ Kūn · Earth · receptive · lower·yin · hueShift — vocab primitives: openGraph, harmonicBands, deviceSensors, dualities
 import {
   openGraph, multidimensional, plainLanguage, typographySeo,
-  harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS, tiers358 } from '../../quantum/icons'
+  harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS, tiers358 } from '../../quantum/icons/index.ts'
 // ☷ Kūn · Earth · receptive · lower·yin · spread — ground primitives: toUuid, merkleFold, foldPair, merge, sha256Sync
-import { DIGEST_BITS, VORTEX_DASH_ANGLE_DEG, VORTEX_DASH_ENCODED, abs, asTorus, asVortex, atan2, cos, coverageCostLog2, decodeVortexDashAngles, digitalRoot, ed25519Sign, floor, fold, foldPair, humanEase, isUuid, log2, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sha256Sync, sin, sqrt, tamperCostLog2, toUuid } from '../../0'
-import { derivePublicKey, tamperEvident } from '../../5/5'
-import { trinityKey, proseToTone } from '../../0'
-import { movieCanvasHex } from '../../quantum/science'
-import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6'
-import { DIMENSION_GATES, MAJOR_MOONS, TAU, UNFOLDED_CENSUS, a432Base } from '../../3/7'
-export { MAJOR_MOONS } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import { DIMENSIONS, DIMENSION_NAMES, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
+import { DIGEST_BITS, VORTEX_DASH_ANGLE_DEG, VORTEX_DASH_ENCODED, abs, asTorus, asVortex, atan2, cos, coverageCostLog2, decodeVortexDashAngles, digitalRoot, ed25519Sign, floor, fold, foldPair, humanEase, isUuid, log2, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sha256Sync, sin, sqrt, tamperCostLog2, toUuid } from '../../0/index.ts'
+import { derivePublicKey, tamperEvident } from '../../5/5/index.ts'
+import { trinityKey, proseToTone } from '../../0/index.ts'
+import { movieCanvasHex } from '../../quantum/science/index.ts'
+import { MAX_TAMPERING_COST_PRINCIPLE } from '../../4/6/index.ts'
+import { DIMENSION_GATES, MAJOR_MOONS, TAU, UNFOLDED_CENSUS, a432Base } from '../../3/7/index.ts'
+export { MAJOR_MOONS } from '../../3/7/index.ts' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import { DIMENSIONS, DIMENSION_NAMES, tenDimensionalAnimation } from '../../quantum/mountain/dimensions/index.ts'
 import {
   toGlagolitic, glagoliticBits, glagoliticFromBits, GLAGOLITIC_MAP,
   glagoliticAcrostic, GLAGOLITIC_LETTERS, glagoliticValue, toGlagoliticNumber,
   gematria, mayaLongCount, mayaDays, hekatFraction, runeCoordinate, runeOrdinal,
-  sexagesimal, fromSexagesimal, luoShu } from '../../quantum/heaven/library'
-import { verifyRoot, reciprocity } from '../../heaven/compute'
-import { folderLaw, treeOfLifeSephirotFolders, dualitiesMeetInCrossFolders } from '../../earth/architecture'
-import { iChingDomainMap, threeEightFoldsTopNav, enforcementPipelineComplete } from '../../heaven/balance'
-import { BAGUA, iChing, cloudflareBindings } from '../../heaven/core'
-import { a432IsTheBlood, harmonics, harmonicPathRevealsItself, rhythm } from '../../music'
-import { quantumProofs } from '../../ledger'
-import { imagineTheRest } from '../../media'
+  sexagesimal, fromSexagesimal, luoShu } from '../../quantum/heaven/library/index.ts'
+import { verifyRoot, reciprocity } from '../../heaven/compute/index.ts'
+import { folderLaw, treeOfLifeSephirotFolders, dualitiesMeetInCrossFolders } from '../../earth/architecture/index.ts'
+import { iChingDomainMap, threeEightFoldsTopNav, enforcementPipelineComplete } from '../../heaven/balance/index.ts'
+import { BAGUA, iChing, cloudflareBindings } from '../../heaven/core/index.ts'
+import { a432IsTheBlood, harmonics, harmonicPathRevealsItself, rhythm } from '../../music/index.ts'
+import { quantumProofs } from '../../ledger/index.ts'
+import { imagineTheRest } from '../../media/index.ts'
 import {
   hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality,
-  dualTorusTrinities, merkaba, vortexMath, sacredGeometrySeal } from '../../mountain/geometry'
-import { fuse64SealsMerkaba64Tetrahedra, quantumDoubleTorus, merkabasInDoubleTorus } from '../../mountain/topology'
-import { livingTorus } from '../diamonds'
-import { digitDualityPairsEncodeAllDomains } from '../../water/digit'
-import { healByDefault, createByDefault } from '../../heaven/laws'
-import { everyLawProvesItsTripwire } from '../../thunder/verify'
-import { allFormsAreTenDimensionalOrPurged } from '../../wind/fusion'
-import { allComputedQuantumMathAnalog } from '../../wind/fusion'
-import { onlyIndexFilesNoExceptions } from '../../heaven/essence'
-import { thriveByDefault, regenerateSocialSystem } from '../../earth/civilisation'
-import { bulgarianHeritageEightfold } from '../../earth/world'
-import { debitImportCreditExportAccounting, computedWiringNotImported } from '../../mountain/source'
-import { commandsRegistry, commandsSavedInQuantumPairs } from '../../thunder/commands'
-import { skillAtoms, mcpToolManifest, papers, quantumAcademy, threeWordWaves } from '../../learning'
-import { completeCorpus, siteNavigation } from '../../wind/routes/corpus'
-import { quantumSynthesis, quantumCoordinateNav, quantumFirewallProxyWorker } from '../features'
-import { quantumPhysics } from '../physics'
-import { determinismProofs } from '../../mountain/seals'
-import { theWhole, accessiblePathsForAll, refactorLinearToTrinities } from '../../heaven/essence'
-import { buildQuantumComputerOsApps } from '../../heaven/compute'
-import { pathIsMeaningDecodesCoordinates } from '../../thunder/decode'
-import { rosettaGlagoliticGlobalKeyDecodeAll } from '../../wind/language'
-import { endlessFusion, iChingFusionCompletesAll } from '../../wind/fusion'
-import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
-import { warPaysTheForgerPrice } from '../../earth/world'
-import { ogInOgWaves } from '../../thunder/waves'
-import { selfSufficientWave } from '../../mountain/geometry'
-import { PHI } from '../../3/7'
+  dualTorusTrinities, merkaba, vortexMath, sacredGeometrySeal } from '../../mountain/geometry/index.ts'
+import { fuse64SealsMerkaba64Tetrahedra, quantumDoubleTorus, merkabasInDoubleTorus } from '../../mountain/topology/index.ts'
+import { livingTorus } from '../diamonds/index.ts'
+import { digitDualityPairsEncodeAllDomains } from '../../water/digit/index.ts'
+import { healByDefault, createByDefault } from '../../heaven/laws/index.ts'
+import { everyLawProvesItsTripwire } from '../../thunder/verify/index.ts'
+import { allFormsAreTenDimensionalOrPurged } from '../../wind/fusion/index.ts'
+import { allComputedQuantumMathAnalog } from '../../wind/fusion/index.ts'
+import { onlyIndexFilesNoExceptions } from '../../heaven/essence/index.ts'
+import { thriveByDefault, regenerateSocialSystem } from '../../earth/civilisation/index.ts'
+import { bulgarianHeritageEightfold } from '../../earth/world/index.ts'
+import { debitImportCreditExportAccounting, computedWiringNotImported } from '../../mountain/source/index.ts'
+import { commandsRegistry, commandsSavedInQuantumPairs } from '../../thunder/commands/index.ts'
+import { skillAtoms, mcpToolManifest, papers, quantumAcademy, threeWordWaves } from '../../learning/index.ts'
+import { completeCorpus, siteNavigation } from '../../wind/routes/corpus/index.ts'
+import { quantumSynthesis, quantumCoordinateNav, quantumFirewallProxyWorker } from '../features/index.ts'
+import { quantumPhysics } from '../physics/index.ts'
+import { determinismProofs } from '../../mountain/seals/index.ts'
+import { theWhole, accessiblePathsForAll, refactorLinearToTrinities } from '../../heaven/essence/index.ts'
+import { buildQuantumComputerOsApps } from '../../heaven/compute/index.ts'
+import { pathIsMeaningDecodesCoordinates } from '../../thunder/decode/index.ts'
+import { rosettaGlagoliticGlobalKeyDecodeAll } from '../../wind/language/index.ts'
+import { endlessFusion, iChingFusionCompletesAll } from '../../wind/fusion/index.ts'
+import { endlessBackgroundMovie } from '../../thunder/movie/canvas/index.ts'
+import { warPaysTheForgerPrice } from '../../earth/world/index.ts'
+import { ogInOgWaves } from '../../thunder/waves/index.ts'
+import { selfSufficientWave } from '../../mountain/geometry/index.ts'
+import { PHI } from '../../3/7/index.ts'
 
 // ☲ Lí · Fire · clinging · upper·yang · breath — fold exports: all pure-leaf folds for this domain
 

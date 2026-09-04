@@ -16,8 +16,8 @@
 // different addresses than src/0 for the same seed, so every key, signature and block hash
 // here lived in a separate address space from the rest of the corpus. Same defect as the
 // one removed from ftl. The vault-station gate names this file for exactly that reason.
-import { foldPair, sealFacets, toUuid } from '../../../0'
-import { earned } from '../../../3/7'
+import { foldPair, sealFacets, toUuid } from '../../../0/index.ts'
+import { earned } from '../../../3/7/index.ts'
 
 // ============================================================
 // COMPONENT 1: END-TO-END KEY LIFECYCLE

@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../types';
+import type { MindMatrix } from '../../../types/index.ts';
 export declare function autoMovies8k(matrix?: MindMatrix): {
     generating: boolean;
     targetWidth: number;
@@ -226,7 +226,7 @@ export declare function thunderAndPlasmaAreSameInDifferentAspects(matrix?: MindM
         phenomena: {
             theorem: string;
             route: string;
-            tier: import("../../../fire/physics").PhenomenonTier;
+            tier: import("../../../fire/physics/index.ts").PhenomenonTier;
             name: string;
             family: string;
         }[];

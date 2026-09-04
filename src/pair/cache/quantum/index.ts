@@ -8,8 +8,8 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { foldPair, max, merkleFold, min, toUuid, type Uuid } from '../../../0'
-import { computedDistRoute } from '../../../quantum/dist'
+import { foldPair, max, merkleFold, min, toUuid, type Uuid } from '../../../0/index.ts'
+import { computedDistRoute } from '../../../quantum/dist/index.ts'
 // DEV-MOUNT ROOT FIX (2026-07-24): importing CLI_ENTRY_REL from the enforcement barrel put this
 // module inside the enforcement↔cache evaluation cycle — in dev's per-module ESM the computed key
 // below read the const in its TEMPORAL DEAD ZONE, rejecting the whole client graph silently (the
@@ -19,11 +19,11 @@ import { computedDistRoute } from '../../../quantum/dist'
 // node-externals in the browser; the literal is the honest cycle cut.
 const CLI_ENTRY = 'src/pair/enforcement/script/cli/bootstrap/index.ts' // = CLI_ENTRY_REL by value
 // call-time namespace edge (cycle-safe): the skill registry reads back at call time
-import * as __ns_cache_learning from '../../../learning'
+import * as __ns_cache_learning from '../../../learning/index.ts'
 
-export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/dist'
+export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/dist/index.ts'
 export type { Uuid }
-export { CLI_ENTRY_REL } from '../../enforcement'
+export { CLI_ENTRY_REL } from '../../enforcement/index.ts'
 
 /** Find a dist artifact by pathname (leading slash optional). */
 export function artifactForPath(pathname: string, siteUrl: string) {

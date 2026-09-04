@@ -1,12 +1,12 @@
 // Pi-train station 9/1 — dissolution sequence order 8 (digit/reverse 9/1).
 // Domain cuts only — vault primitives import from src/0 at call sites.
-import { IONIZING_EV, LN2, PROTON_MASS_MEV, SQRT1_2, SQRT2, photonEnergyEv } from '../../3/7'
-import type { Rational } from '../../3/7'
-import { GATES, abs, applyGate, atan2, ceil, cnot, cos, exp, floor, hypot, log2, max, measure, merkleFold, min, prng, probabilities, qubits, round, sin, sqrt, toUuid } from '../../0'
-import type { QuantumState } from '../../0'
-import { TAU, earned } from '../../3/7'
-import { BOLTZMANN, PHI, SPEED_OF_LIGHT } from '../../3/7'
-import { gcd, memoByRoot, merge, sealFacets } from '../../0'
+import { IONIZING_EV, LN2, PROTON_MASS_MEV, SQRT1_2, SQRT2, photonEnergyEv } from '../../3/7/index.ts'
+import type { Rational } from '../../3/7/index.ts'
+import { GATES, abs, applyGate, atan2, ceil, cnot, cos, exp, floor, hypot, log2, max, measure, merkleFold, min, prng, probabilities, qubits, round, sin, sqrt, toUuid } from '../../0/index.ts'
+import type { QuantumState } from '../../0/index.ts'
+import { TAU, earned } from '../../3/7/index.ts'
+import { BOLTZMANN, PHI, SPEED_OF_LIGHT } from '../../3/7/index.ts'
+import { gcd, memoByRoot, merge, sealFacets } from '../../0/index.ts'
 
 // ── The theorem kit — the group/combinatorics/number-theory helpers reused across the discovery
 // waves, extracted here (digit-pure) so every wave file imports one copy instead of redefining them.

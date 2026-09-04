@@ -59363,12 +59363,12 @@ function animationsPureAlgebra(matrix = buildMatrix()) {
 function bgFromEnglishChrome(text) {
   return offlineTranslateEnToBg(text).text;
 }
-function defaultCamelize(basename3) {
-  const name2 = basename3.replace(/\.[^.]+$/, "");
+function defaultCamelize(basename4) {
+  const name2 = basename4.replace(/\.[^.]+$/, "");
   return name2.split(/[-_]/).map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1)).join("");
 }
 function defaultInflector() {
-  return { rules: [], camelize: (basename3) => defaultCamelize(basename3) };
+  return { rules: [], camelize: (basename4) => defaultCamelize(basename4) };
 }
 function matchesGlob(pathStr, glob) {
   const escaped = glob.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*\*/g, "\xA7DOUBLESTAR\xA7").replace(/\*/g, "[^/]*").replace(/§DOUBLESTAR§/g, ".*");
@@ -59425,9 +59425,9 @@ function createZeitwerkLoader(tag = "main") {
         reason: "sealed src is immutable at runtime \u2014 reload is a receipt, not a mutation"
       };
     },
-    cnameFor(basename3, abspath = "") {
-      if (ignores.some((glob) => matchesGlob(basename3, glob) || matchesGlob(abspath, glob))) return "";
-      return inflector.camelize(basename3, abspath);
+    cnameFor(basename4, abspath = "") {
+      if (ignores.some((glob) => matchesGlob(basename4, glob) || matchesGlob(abspath, glob))) return "";
+      return inflector.camelize(basename4, abspath);
     },
     filepathFor(cname, namespace = "") {
       const segments = cname.replace(/([A-Z])/g, (_, c, i) => (i > 0 ? "-" : "") + c.toLowerCase()).split("-").filter(Boolean);
@@ -59436,8 +59436,8 @@ function createZeitwerkLoader(tag = "main") {
       const base = dir ? dir.path : "src";
       return `${base}/${collapsed.join("/")}/index.ts`;
     },
-    camelize(basename3, abspath = "") {
-      return inflector.camelize(basename3, abspath);
+    camelize(basename4, abspath = "") {
+      return inflector.camelize(basename4, abspath);
     },
     collapse(glob) {
       const segments = glob.replace(/\*/g, "").split("/").filter(Boolean);
@@ -59449,10 +59449,10 @@ function createZeitwerkLoader(tag = "main") {
     inflect(rule) {
       inflector.rules.push(rule);
       const prev = inflector.camelize;
-      inflector.camelize = (basename3, abspath) => {
-        const name2 = basename3.replace(/\.[^.]+$/, "");
+      inflector.camelize = (basename4, abspath) => {
+        const name2 = basename4.replace(/\.[^.]+$/, "");
         if (rule.pattern.test(name2)) return name2.replace(rule.pattern, rule.replacement);
-        return prev(basename3, abspath);
+        return prev(basename4, abspath);
       };
     },
     setInflector(newInflector) {
@@ -126576,12 +126576,6 @@ function coreMathFreeForAll(root = enforcementScanRoot()) {
     boundary: "Core math (vault \xB7 theorem/formula duals \xB7 digit/fold) = FREE FOR ALL defensive disclosure (patent/canon). The rest licensed through license@psg.bg \u2014 contact for license; agent does not invent grant prose. Not legal advice."
   };
 }
-function filenameModuleExists(parentDir, base) {
-  if (!existsSync(parentDir)) return false;
-  const folderPath = join2(parentDir, base);
-  if (existsSync(folderPath) && statSync(folderPath).isDirectory()) return false;
-  return existsSync(join2(parentDir, `${base}.ts`));
-}
 function relativeImportSpecs(text) {
   return [
     ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]),
@@ -126625,40 +126619,27 @@ function scanImportGaps(root, codeFiles, bodies) {
   return offenders;
 }
 function scanImports(root, codeFiles, bodies) {
-  const extRe = /\.ts$/;
   const offenders = [];
   for (const file of codeFiles) {
     const rel = relative2(root, file);
     const specs = relativeImportSpecs(stripComments2(bodies.get(rel) ?? ""));
     for (const spec of specs) {
       if (!spec.startsWith(".")) continue;
-      if (extRe.test(spec)) {
-        offenders.push({ file, spec, reason: "file extension \u2014 import the folder only, never the filename" });
+      const last = spec.split("/").pop() ?? "";
+      if (last === "index.ts" || last === "index.vue") continue;
+      if (/\.(ts|vue|js|mjs|json|css)$/.test(spec)) {
+        offenders.push({ file, spec, reason: `names ${last} \u2014 the only importable file is index.ts (or index.vue); dissolve into <name>/index.ts` });
         continue;
       }
       if (/\/index$/.test(spec)) {
-        offenders.push({ file, spec, reason: "trailing /index \u2014 import the folder path only" });
+        offenders.push({ file, spec, reason: "trailing /index without an extension \u2014 write /index.ts, which nodenext requires and the build rewrites to .js" });
         continue;
       }
-      const last = spec.split("/").pop() ?? "";
       if (last.includes(".") && last !== ".." && last !== ".") {
-        offenders.push({ file, spec, reason: "filename segment in path \u2014 folder imports only" });
+        offenders.push({ file, spec, reason: "filename segment in path \u2014 folder index only" });
         continue;
       }
-      const resolved = resolve2(dirname2(file), spec);
-      if (existsSync(resolved) && statSync(resolved).isFile()) {
-        offenders.push({ file, spec, reason: "resolves to file on disk \u2014 dissolve into <name>/index.ts and import the folder" });
-        continue;
-      }
-      const parent = dirname2(resolved);
-      const base = basename2(resolved);
-      if (filenameModuleExists(parent, base)) {
-        offenders.push({
-          file,
-          spec,
-          reason: "import targets filename module \u2014 only folder imports allowed; dissolve into <name>/index.ts"
-        });
-      }
+      offenders.push({ file, spec, reason: "bare folder import \u2014 write <folder>/index.ts; a specifier with no extension cannot resolve under nodenext and is why the package shipped 2670 TS2834 errors" });
     }
   }
   return offenders;

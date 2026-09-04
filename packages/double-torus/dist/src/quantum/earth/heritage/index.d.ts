@@ -1,4 +1,4 @@
-import { type Entry } from '../../../0';
+import { type Entry } from '../../../0/index.ts';
 export type { Entry };
 /** @rosetta ✦₄ · Earth · receptive */
 export declare function bulgarianHeritage(): {

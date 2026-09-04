@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export declare function quantifyGates(matrix?: MindMatrix): {
     tight: boolean;
     doubleFolded: boolean;

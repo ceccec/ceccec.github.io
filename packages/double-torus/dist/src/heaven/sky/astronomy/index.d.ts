@@ -1,7 +1,7 @@
-import * as __ns_up_vortex_math from '../../../mountain/vortex';
-import * as __ns_up_learning from '../../../learning';
-import type { MindMatrix } from '../../../types';
-import { RAVE_BODIES_13, RAVE_CENTERS_9 } from '../../../quantum/spirit';
+import * as __ns_up_vortex_math from '../../../mountain/vortex/index.ts';
+import * as __ns_up_learning from '../../../learning/index.ts';
+import type { MindMatrix } from '../../../types/index.ts';
+import { RAVE_BODIES_13, RAVE_CENTERS_9 } from '../../../quantum/spirit/index.ts';
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
     name: string;
@@ -1168,13 +1168,13 @@ export declare function astronomySequenceDecodeResearch(matrix?: MindMatrix): {
             boundary: string;
         };
         ratios: {
-            fwd: import("../../../3/7").Rational[];
-            rev: import("../../../3/7").Rational[];
-            fwdProduct: import("../../../3/7").Rational;
-            revProduct: import("../../../3/7").Rational;
-            heartApproach: import("../../../3/7").Rational;
-            heartDepart: import("../../../3/7").Rational;
-            heartDiamond: import("../../../3/7").Rational;
+            fwd: import("../../../3/7/index.ts").Rational[];
+            rev: import("../../../3/7/index.ts").Rational[];
+            fwdProduct: import("../../../3/7/index.ts").Rational;
+            revProduct: import("../../../3/7/index.ts").Rational;
+            heartApproach: import("../../../3/7/index.ts").Rational;
+            heartDepart: import("../../../3/7/index.ts").Rational;
+            heartDiamond: import("../../../3/7/index.ts").Rational;
         };
         presentations: {
             coheres: boolean;
@@ -1823,13 +1823,13 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             boundary: string;
         };
         ratios: {
-            fwd: import("../../../3/7").Rational[];
-            rev: import("../../../3/7").Rational[];
-            fwdProduct: import("../../../3/7").Rational;
-            revProduct: import("../../../3/7").Rational;
-            heartApproach: import("../../../3/7").Rational;
-            heartDepart: import("../../../3/7").Rational;
-            heartDiamond: import("../../../3/7").Rational;
+            fwd: import("../../../3/7/index.ts").Rational[];
+            rev: import("../../../3/7/index.ts").Rational[];
+            fwdProduct: import("../../../3/7/index.ts").Rational;
+            revProduct: import("../../../3/7/index.ts").Rational;
+            heartApproach: import("../../../3/7/index.ts").Rational;
+            heartDepart: import("../../../3/7/index.ts").Rational;
+            heartDiamond: import("../../../3/7/index.ts").Rational;
         };
         presentations: {
             coheres: boolean;
@@ -2026,7 +2026,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../../types").WaveCoordination;
+            waves: import("../../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -5115,7 +5115,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             statement: string;
             boundary: string;
         };
-        waves: import("../../../types").WaveCoordination;
+        waves: import("../../../types/index.ts").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
         freqApis: {
@@ -5272,11 +5272,11 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             core: {
                 computes: boolean;
                 at: number;
-                surfaces: import("../../../quantum/apps").RosettaCoreSurface[];
+                surfaces: import("../../../quantum/apps/index.ts").RosettaCoreSurface[];
                 inventory: {
                     core: {
                         label: string;
-                        kind: import("../../../quantum/apps").RosettaCoreSurfaceKind;
+                        kind: import("../../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                         ray: number;
                         address: string;
                     }[];
@@ -5288,14 +5288,14 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         hue: number;
                     }[];
                 };
-                hubs: readonly import("../../../3/7").RosettaRayHub[];
+                hubs: readonly import("../../../3/7/index.ts").RosettaRayHub[];
                 raysUsed: number;
                 kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                resolve: (label: string, kind?: import("../../../quantum/apps").RosettaCoreSurfaceKind) => import("../../../quantum/apps").RosettaCoreSurface;
+                resolve: (label: string, kind?: import("../../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                 shelve: typeof __ns_up_learning.rosettaShelve;
-                byRay: (ray: number) => import("../../../quantum/apps").RosettaCoreSurface[];
+                byRay: (ray: number) => import("../../../quantum/apps/index.ts").RosettaCoreSurface[];
                 resolveRoute: (route: string) => {
-                    surface: import("../../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                     address: string;
                     computed: boolean;
                     route: string;
@@ -5359,11 +5359,11 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../../types").ConceptCommandName[];
+                        siblings: import("../../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../../../3/7").RosettaComputationType;
+                        pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -5414,7 +5414,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                     boundary: string;
                 };
                 resolveProjection: (label: string) => {
-                    surface: import("../../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                     phase: number;
                     hue: number;
                     motion: {
@@ -5467,7 +5467,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             slots: {
                 ray: number;
                 kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                pageKind: import("../../../3/7").RosettaComputationType;
+                pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                 vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                 receipt: string;
             }[];
@@ -5543,7 +5543,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 ray: number;
                 station: number;
                 crossPair: string;
-                computationType: import("../../../3/7").RosettaComputationType;
+                computationType: import("../../../3/7/index.ts").RosettaComputationType;
                 glagoliticAddress: string;
                 rayMeta: {
                     readonly ray: 0;
@@ -5597,7 +5597,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 };
                 sharedRoot: string;
                 content: {
-                    pageKind: import("../../../3/7").RosettaComputationType;
+                    pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -5676,11 +5676,11 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                siblings: import("../../../types").ConceptCommandName[];
+                siblings: import("../../../types/index.ts").ConceptCommandName[];
                 siblingCount: number;
             };
             content: {
-                pageKind: import("../../../3/7").RosettaComputationType;
+                pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -5735,7 +5735,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
             placedCount: number;
             raysCovered: number;
             trinityLegs: number;
-            items: import("../../../earth/architecture").RosettaIChingTrinityPlacement[];
+            items: import("../../../earth/architecture/index.ts").RosettaIChingTrinityPlacement[];
             count: number;
             facets: {
                 receipt: string;
@@ -7015,13 +7015,13 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../../3/7").Rational[];
-                    rev: import("../../../3/7").Rational[];
-                    fwdProduct: import("../../../3/7").Rational;
-                    revProduct: import("../../../3/7").Rational;
-                    heartApproach: import("../../../3/7").Rational;
-                    heartDepart: import("../../../3/7").Rational;
-                    heartDiamond: import("../../../3/7").Rational;
+                    fwd: import("../../../3/7/index.ts").Rational[];
+                    rev: import("../../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../../3/7/index.ts").Rational;
+                    revProduct: import("../../../3/7/index.ts").Rational;
+                    heartApproach: import("../../../3/7/index.ts").Rational;
+                    heartDepart: import("../../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -7218,7 +7218,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    waves: import("../../../types").WaveCoordination;
+                    waves: import("../../../types/index.ts").WaveCoordination;
                     breath: number;
                     dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                     freqApis: {
@@ -10307,7 +10307,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../../types").WaveCoordination;
+                waves: import("../../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -10464,11 +10464,11 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     core: {
                         computes: boolean;
                         at: number;
-                        surfaces: import("../../../quantum/apps").RosettaCoreSurface[];
+                        surfaces: import("../../../quantum/apps/index.ts").RosettaCoreSurface[];
                         inventory: {
                             core: {
                                 label: string;
-                                kind: import("../../../quantum/apps").RosettaCoreSurfaceKind;
+                                kind: import("../../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                                 ray: number;
                                 address: string;
                             }[];
@@ -10480,14 +10480,14 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 hue: number;
                             }[];
                         };
-                        hubs: readonly import("../../../3/7").RosettaRayHub[];
+                        hubs: readonly import("../../../3/7/index.ts").RosettaRayHub[];
                         raysUsed: number;
                         kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                        resolve: (label: string, kind?: import("../../../quantum/apps").RosettaCoreSurfaceKind) => import("../../../quantum/apps").RosettaCoreSurface;
+                        resolve: (label: string, kind?: import("../../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                         shelve: typeof __ns_up_learning.rosettaShelve;
-                        byRay: (ray: number) => import("../../../quantum/apps").RosettaCoreSurface[];
+                        byRay: (ray: number) => import("../../../quantum/apps/index.ts").RosettaCoreSurface[];
                         resolveRoute: (route: string) => {
-                            surface: import("../../../quantum/apps").RosettaCoreSurface;
+                            surface: import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                             address: string;
                             computed: boolean;
                             route: string;
@@ -10551,11 +10551,11 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../../../types").ConceptCommandName[];
+                                siblings: import("../../../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
-                                pageKind: import("../../../3/7").RosettaComputationType;
+                                pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
                                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -10606,7 +10606,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             boundary: string;
                         };
                         resolveProjection: (label: string) => {
-                            surface: import("../../../quantum/apps").RosettaCoreSurface;
+                            surface: import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                             phase: number;
                             hue: number;
                             motion: {
@@ -10659,7 +10659,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     slots: {
                         ray: number;
                         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                        pageKind: import("../../../3/7").RosettaComputationType;
+                        pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                         vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                         receipt: string;
                     }[];
@@ -10735,7 +10735,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         ray: number;
                         station: number;
                         crossPair: string;
-                        computationType: import("../../../3/7").RosettaComputationType;
+                        computationType: import("../../../3/7/index.ts").RosettaComputationType;
                         glagoliticAddress: string;
                         rayMeta: {
                             readonly ray: 0;
@@ -10789,7 +10789,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         };
                         sharedRoot: string;
                         content: {
-                            pageKind: import("../../../3/7").RosettaComputationType;
+                            pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -10868,11 +10868,11 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../../types").ConceptCommandName[];
+                        siblings: import("../../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../../../3/7").RosettaComputationType;
+                        pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -10927,7 +10927,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     placedCount: number;
                     raysCovered: number;
                     trinityLegs: number;
-                    items: import("../../../earth/architecture").RosettaIChingTrinityPlacement[];
+                    items: import("../../../earth/architecture/index.ts").RosettaIChingTrinityPlacement[];
                     count: number;
                     facets: {
                         receipt: string;
@@ -11559,13 +11559,13 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../../3/7").Rational[];
-                    rev: import("../../../3/7").Rational[];
-                    fwdProduct: import("../../../3/7").Rational;
-                    revProduct: import("../../../3/7").Rational;
-                    heartApproach: import("../../../3/7").Rational;
-                    heartDepart: import("../../../3/7").Rational;
-                    heartDiamond: import("../../../3/7").Rational;
+                    fwd: import("../../../3/7/index.ts").Rational[];
+                    rev: import("../../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../../3/7/index.ts").Rational;
+                    revProduct: import("../../../3/7/index.ts").Rational;
+                    heartApproach: import("../../../3/7/index.ts").Rational;
+                    heartDepart: import("../../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -15652,13 +15652,13 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../../3/7").Rational[];
-                rev: import("../../../3/7").Rational[];
-                fwdProduct: import("../../../3/7").Rational;
-                revProduct: import("../../../3/7").Rational;
-                heartApproach: import("../../../3/7").Rational;
-                heartDepart: import("../../../3/7").Rational;
-                heartDiamond: import("../../../3/7").Rational;
+                fwd: import("../../../3/7/index.ts").Rational[];
+                rev: import("../../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../../3/7/index.ts").Rational;
+                revProduct: import("../../../3/7/index.ts").Rational;
+                heartApproach: import("../../../3/7/index.ts").Rational;
+                heartDepart: import("../../../3/7/index.ts").Rational;
+                heartDiamond: import("../../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -15855,7 +15855,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../../types").WaveCoordination;
+                waves: import("../../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -18944,7 +18944,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../../types").WaveCoordination;
+            waves: import("../../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
             freqApis: {
@@ -19101,11 +19101,11 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 core: {
                     computes: boolean;
                     at: number;
-                    surfaces: import("../../../quantum/apps").RosettaCoreSurface[];
+                    surfaces: import("../../../quantum/apps/index.ts").RosettaCoreSurface[];
                     inventory: {
                         core: {
                             label: string;
-                            kind: import("../../../quantum/apps").RosettaCoreSurfaceKind;
+                            kind: import("../../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                             ray: number;
                             address: string;
                         }[];
@@ -19117,14 +19117,14 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             hue: number;
                         }[];
                     };
-                    hubs: readonly import("../../../3/7").RosettaRayHub[];
+                    hubs: readonly import("../../../3/7/index.ts").RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                    resolve: (label: string, kind?: import("../../../quantum/apps").RosettaCoreSurfaceKind) => import("../../../quantum/apps").RosettaCoreSurface;
+                    resolve: (label: string, kind?: import("../../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                     shelve: typeof __ns_up_learning.rosettaShelve;
-                    byRay: (ray: number) => import("../../../quantum/apps").RosettaCoreSurface[];
+                    byRay: (ray: number) => import("../../../quantum/apps/index.ts").RosettaCoreSurface[];
                     resolveRoute: (route: string) => {
-                        surface: import("../../../quantum/apps").RosettaCoreSurface;
+                        surface: import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                         address: string;
                         computed: boolean;
                         route: string;
@@ -19188,11 +19188,11 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../../types").ConceptCommandName[];
+                            siblings: import("../../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../../../3/7").RosettaComputationType;
+                            pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -19243,7 +19243,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         boundary: string;
                     };
                     resolveProjection: (label: string) => {
-                        surface: import("../../../quantum/apps").RosettaCoreSurface;
+                        surface: import("../../../quantum/apps/index.ts").RosettaCoreSurface;
                         phase: number;
                         hue: number;
                         motion: {
@@ -19296,7 +19296,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 slots: {
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                    pageKind: import("../../../3/7").RosettaComputationType;
+                    pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                     vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
@@ -19372,7 +19372,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     ray: number;
                     station: number;
                     crossPair: string;
-                    computationType: import("../../../3/7").RosettaComputationType;
+                    computationType: import("../../../3/7/index.ts").RosettaComputationType;
                     glagoliticAddress: string;
                     rayMeta: {
                         readonly ray: 0;
@@ -19426,7 +19426,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     };
                     sharedRoot: string;
                     content: {
-                        pageKind: import("../../../3/7").RosettaComputationType;
+                        pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -19505,11 +19505,11 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../../../types").ConceptCommandName[];
+                    siblings: import("../../../types/index.ts").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
-                    pageKind: import("../../../3/7").RosettaComputationType;
+                    pageKind: import("../../../3/7/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -19564,7 +19564,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 placedCount: number;
                 raysCovered: number;
                 trinityLegs: number;
-                items: import("../../../earth/architecture").RosettaIChingTrinityPlacement[];
+                items: import("../../../earth/architecture/index.ts").RosettaIChingTrinityPlacement[];
                 count: number;
                 facets: {
                     receipt: string;
@@ -20196,13 +20196,13 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../../3/7").Rational[];
-                rev: import("../../../3/7").Rational[];
-                fwdProduct: import("../../../3/7").Rational;
-                revProduct: import("../../../3/7").Rational;
-                heartApproach: import("../../../3/7").Rational;
-                heartDepart: import("../../../3/7").Rational;
-                heartDiamond: import("../../../3/7").Rational;
+                fwd: import("../../../3/7/index.ts").Rational[];
+                rev: import("../../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../../3/7/index.ts").Rational;
+                revProduct: import("../../../3/7/index.ts").Rational;
+                heartApproach: import("../../../3/7/index.ts").Rational;
+                heartDepart: import("../../../3/7/index.ts").Rational;
+                heartDiamond: import("../../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -21659,7 +21659,7 @@ export declare function drawAstronomyProjection(ctx: CanvasRenderingContext2D, w
     dark?: boolean;
     reduce?: boolean;
 }): void;
-import * as __ns_up_double_torus_earth from '../../../water/double/earth';
+import * as __ns_up_double_torus_earth from '../../../water/double/earth/index.ts';
 /** Hero day phase — lazy require breaks plasma/sun cycles. */
 export declare function sunDayPhase(at?: number, matrix?: MindMatrix): {
     phase: number;
@@ -21717,7 +21717,7 @@ export declare function sunSchumannDaySideIonosphere(at?: number, matrix?: MindM
         statement: string;
         boundary: string;
     };
-    waves: import("../../../types").WaveCoordination;
+    waves: import("../../../types/index.ts").WaveCoordination;
     breath: number;
     dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
     freqApis: {
@@ -21814,7 +21814,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
             statement: string;
             boundary: string;
         };
-        waves: import("../../../types").WaveCoordination;
+        waves: import("../../../types/index.ts").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_vortex_math.BothEarthsMerkabaRotation;
         freqApis: {
@@ -23313,7 +23313,7 @@ export declare function sunComputes(matrix?: MindMatrix, at?: number): {
     statement: string;
     boundary: string;
 };
-import * as __ns_up_mountain_geometry from '../../../mountain/geometry';
+import * as __ns_up_mountain_geometry from '../../../mountain/geometry/index.ts';
 /** Synodic month phase (display) — ~29.53059 d; hero-clock mapped, not JPL lunar ephemeris. */
 export declare const SYNODIC_MONTH_DAYS = 29.53059;
 export declare function moonSynodicPhase(at?: number): {

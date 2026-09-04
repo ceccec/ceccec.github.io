@@ -1,7 +1,7 @@
-import type { MindMatrix } from '../../../types';
-export { genesis } from '../../nature';
-export { createByDefault } from '../../../heaven/laws';
-export { creationWave } from '../../../thunder/waves';
+import type { MindMatrix } from '../../../types/index.ts';
+export { genesis } from '../../nature/index.ts';
+export { createByDefault } from '../../../heaven/laws/index.ts';
+export { creationWave } from '../../../thunder/waves/index.ts';
 /** Double-torus genesis — one seed unfolds number, structure, genetics, music, geometry, language. */
 export declare function birthGenesis(matrix?: MindMatrix): {
     genesis: boolean;
@@ -281,7 +281,7 @@ export declare function birthLifeDeathTriadComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        harmony: import("../../../types").HarmonyProbability;
+        harmony: import("../../../types/index.ts").HarmonyProbability;
         immune: {
             healthy: boolean;
             maxHealth: boolean;

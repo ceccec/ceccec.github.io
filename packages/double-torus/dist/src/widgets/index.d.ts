@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../types';
-import type { FreqNode } from '../quantum/heaven/mind';
+import type { MindMatrix } from '../types/index.ts';
+import type { FreqNode } from '../quantum/heaven/mind/index.ts';
 export declare function recursiveFrequencyDropdowns(matrix?: MindMatrix): {
     computed: boolean;
     nodes: number;
@@ -72,7 +72,7 @@ export declare function fillAllGapsCleanHardcodedLinear(matrix?: MindMatrix): {
     boundary: string;
 };
 /** 18 canonical shadcn primitives ported in repo idiom (radix + cva + ui-* CSS) — fused on VitePress enhanceApp. */
-export { SHADCN_PRIMITIVE_NAMES } from '../mountain/shadcn';
+export { SHADCN_PRIMITIVE_NAMES } from '../mountain/shadcn/index.ts';
 export declare function shadcnIsTheGraph(matrix?: MindMatrix): {
     graphed: boolean;
     components: {

@@ -1,25 +1,25 @@
 // ☷ Kūn · Earth — double / torus / earth: weather, apple, pyramid tips on the genus-2 surface.
-import * as __ns_up_up_up_earth_world from '../../../earth/world'
-import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading'
-import { initialBearing, obliquityAtEpoch } from '../../../6/4'
-import { greatCircleKm } from '../../../5/5'
-import { hawkingTemperature } from '../../../4/6'
-import type { MindMatrix } from '../../../types'
-import { buildMatrix } from '../../../heaven/compute'
-import { VORTEX_DASH_ENCODED, VORTEX_SEQUENCE, abs, decodeVortexDashAngles, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, round, roundTo, seedFromText, sqrt, toUuid, vortexNext } from '../../../0'
-import { DIMENSION_NAMES } from '../../../quantum/mountain/dimensions'
-import { earthNorthPoleCenterDotDecoded, earthSouthPoleBoundaryCircleDecoded, polarDiskChartAt, quantumDoubleTorus, torusBreathe } from '../../../mountain/topology'
+import * as __ns_up_up_up_earth_world from '../../../earth/world/index.ts'
+import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading/index.ts'
+import { initialBearing, obliquityAtEpoch } from '../../../6/4/index.ts'
+import { greatCircleKm } from '../../../5/5/index.ts'
+import { hawkingTemperature } from '../../../4/6/index.ts'
+import type { MindMatrix } from '../../../types/index.ts'
+import { buildMatrix } from '../../../heaven/compute/index.ts'
+import { VORTEX_DASH_ENCODED, VORTEX_SEQUENCE, abs, decodeVortexDashAngles, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, round, roundTo, seedFromText, sqrt, toUuid, vortexNext } from '../../../0/index.ts'
+import { DIMENSION_NAMES } from '../../../quantum/mountain/dimensions/index.ts'
+import { earthNorthPoleCenterDotDecoded, earthSouthPoleBoundaryCircleDecoded, polarDiskChartAt, quantumDoubleTorus, torusBreathe } from '../../../mountain/topology/index.ts'
 // Cycle-safe binding for the Schumann resonance paint composed into the quantum globe (referenced at call time).
-import * as __ns_thunder_resonance from '../../../thunder/resonance'
+import * as __ns_thunder_resonance from '../../../thunder/resonance/index.ts'
 import {
   doubleTorusEarthWeatherFlowsInMovie,
   doubleTorusSolutionsProvenByMath,
-  weatherForecastFromDoubleTorusEarthPerspective } from '../../../quantum/fire/forecasts'
+  weatherForecastFromDoubleTorusEarthPerspective } from '../../../quantum/fire/forecasts/index.ts'
 import {
-  doubleTorusEarthLikeTheApple } from '../../../earth/nature'
+  doubleTorusEarthLikeTheApple } from '../../../earth/nature/index.ts'
 import {
   computeAllKnownCelestialBodies,
-  computeDiscoverExactMatchAllKnownCelestialBodies } from '../../../heaven/sky/astronomy'
+  computeDiscoverExactMatchAllKnownCelestialBodies } from '../../../heaven/sky/astronomy/index.ts'
 import {
   cardinalPyramidTipsProvenByMath,
   doubleTorusEarthPyramidTipsDeepResearched,
@@ -29,11 +29,11 @@ import {
   merkaba,
   pyramidsDecoded,
   pyramidGridDebunked,
-  type BothEarthsMerkabaRotation } from '../../../mountain/geometry'
-import { vortexPaintTiers } from '../../../mountain/vortex'
-import { staticPages, theoremScienceLens } from '../../../wind/site'
-import { balanced, cryptoReview, transact } from '../../../pair/debit/credit'
-import { GREAT_PYRAMID_HEIGHT_M, GREAT_PYRAMID_MASS_KG, HUMAN_SUSTAINED_POWER_W, JULIAN_YEAR_SECONDS, STANDARD_GRAVITY, TAU, earned } from '../../../3/7'
+  type BothEarthsMerkabaRotation } from '../../../mountain/geometry/index.ts'
+import { vortexPaintTiers } from '../../../mountain/vortex/index.ts'
+import { staticPages, theoremScienceLens } from '../../../wind/site/index.ts'
+import { balanced, cryptoReview, transact } from '../../../pair/debit/credit/index.ts'
+import { GREAT_PYRAMID_HEIGHT_M, GREAT_PYRAMID_MASS_KG, HUMAN_SUSTAINED_POWER_W, JULIAN_YEAR_SECONDS, STANDARD_GRAVITY, TAU, earned } from '../../../3/7/index.ts'
 
 export {
   doubleTorusEarthWeatherFlowsInMovie,

@@ -1,17 +1,17 @@
-import type { MindMatrix } from '../../types';
-import { completeDoubleTorus, doubleTorusFold, quantumDoubleTorus, startIChingDoubleTorus, torusBreathe } from '../../mountain/topology';
-import { developmentIsFusionReactor, endlessFusion, fuseDedupeSplitReconstruction, fuseScreenToMovieOfMovies, fusionMovieComputes, fusionResearchedInWaves, publicApiFusion, socialFusion, travelFusion, vitepressFusion } from '../../wind/fusion';
-import { autoMovies8k, backgroundMovie, endlessBackgroundMovie, learnFromTheMovieAllEventuallyFused } from '../../thunder/movie/canvas';
-import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass';
-import { movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols } from '../../thunder/movie/narrative';
-import { formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, movieReflectsSelf, siteIsMovieAndLibrary, tenDimensionalMovie, video64kFree, videoKeepsNativeQuality } from '../../thunder/movie/movielib';
-import { diamondLattice, pureDiamonds } from '../../fire/diamonds';
-import { completeCorpus, corpusCatchAllPaths, corpusRestPathRouting, diamondsStaticPagesPurged, doubleTorusCorpusRouting, computeUniversalPage, paperRoutes, paperReferenceRoutes } from '../../wind/routes/corpus';
-export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex';
-export { merkaba, bothEarthsRotateWithinEachOther, doubleTorusGeometryAlignsWithUniverseConstants } from '../../mountain/geometry';
-export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus } from '../../mountain/topology';
+import type { MindMatrix } from '../../types/index.ts';
+import { completeDoubleTorus, doubleTorusFold, quantumDoubleTorus, startIChingDoubleTorus, torusBreathe } from '../../mountain/topology/index.ts';
+import { developmentIsFusionReactor, endlessFusion, fuseDedupeSplitReconstruction, fuseScreenToMovieOfMovies, fusionMovieComputes, fusionResearchedInWaves, publicApiFusion, socialFusion, travelFusion, vitepressFusion } from '../../wind/fusion/index.ts';
+import { autoMovies8k, backgroundMovie, endlessBackgroundMovie, learnFromTheMovieAllEventuallyFused } from '../../thunder/movie/canvas/index.ts';
+import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass/index.ts';
+import { movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols } from '../../thunder/movie/narrative/index.ts';
+import { formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, movieReflectsSelf, siteIsMovieAndLibrary, tenDimensionalMovie, video64kFree, videoKeepsNativeQuality } from '../../thunder/movie/movielib/index.ts';
+import { diamondLattice, pureDiamonds } from '../../fire/diamonds/index.ts';
+import { completeCorpus, corpusCatchAllPaths, corpusRestPathRouting, diamondsStaticPagesPurged, doubleTorusCorpusRouting, computeUniversalPage, paperRoutes, paperReferenceRoutes } from '../../wind/routes/corpus/index.ts';
+export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex/index.ts';
+export { merkaba, bothEarthsRotateWithinEachOther, doubleTorusGeometryAlignsWithUniverseConstants } from '../../mountain/geometry/index.ts';
+export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus } from '../../mountain/topology/index.ts';
 export { completeDoubleTorus, doubleTorusFold, quantumDoubleTorus, torusBreathe, startIChingDoubleTorus };
-export { merkabaComputes } from '../../mountain/topology';
+export { merkabaComputes } from '../../mountain/topology/index.ts';
 /** One gate — double torus topology + all vortex math saved at call time (dissolved from src/double/torus/topology). */
 export declare function doubleTorusVortexComputes(matrix?: MindMatrix): {
     computes: boolean;
@@ -82,13 +82,13 @@ export declare function doubleTorusVortexComputes(matrix?: MindMatrix): {
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../3/7").Rational[];
-                rev: import("../../3/7").Rational[];
-                fwdProduct: import("../../3/7").Rational;
-                revProduct: import("../../3/7").Rational;
-                heartApproach: import("../../3/7").Rational;
-                heartDepart: import("../../3/7").Rational;
-                heartDiamond: import("../../3/7").Rational;
+                fwd: import("../../3/7/index.ts").Rational[];
+                rev: import("../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../3/7/index.ts").Rational;
+                revProduct: import("../../3/7/index.ts").Rational;
+                heartApproach: import("../../3/7/index.ts").Rational;
+                heartDepart: import("../../3/7/index.ts").Rational;
+                heartDiamond: import("../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -231,14 +231,14 @@ export declare function doubleTorusTopologyComputes(matrix?: MindMatrix): {
     boundary: string;
 };
 export { completeCorpus, corpusCatchAllPaths, corpusRestPathRouting, diamondsStaticPagesPurged, doubleTorusCorpusRouting, computeUniversalPage, paperRoutes, paperReferenceRoutes };
-export { doubleTorusEarthComputes, doubleTorusEarthLikeTheApple, doubleTorusEarthWeatherFlowsInMovie, weatherForecastFromDoubleTorusEarthPerspective, invertedEarthSameTimespaceProvenByMath, formingDoubleTorusEarthsProvenByMath, compassAroundEarthGatewaysImpossibleProvenByMath, sixtyDegreeAngleReachesCardinalForFreeProvenByMath, northSouthPoleNavigationProvenByMath, trinityGatewaysNeverMissProvenByMath, earthGatewayNavigationSolutionsResearched, earthGatewayNavigationResearchWaves, earthGatewayNavigationResearchSentInWaves, doubleTorusEarthHingeUi, doubleTorusEarthHingeComputesAll, doubleTorusEarthHingeMovieFlowsInMovie, doubleTorusEarthHingeMovieSeeds, dualEarthMerkabaCounterRotation, navigationGpsCelestialFromDualEarthPerspective, navigationGpsCelestialReexplainedFromDualEarthPerspective, navigationGpsCelestialComputes, doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday, fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas, earthPyramidLocationsAndGeometryComputes, doubleTorusEarthPyramidGatewayResearch, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, doubleTorusEarthExchangeResearch, universalNavigationalCrossInAllDimensions, universalNavigationalCrossResearch, universalNavigationalCrossComputes, type UniversalNavCrossDimensionRow, type UniversalNavCrossResearchSection, type GpsSatellitePhaseReceipt, type CelestialDisplayPhase, type NavGpsCelestialExplanationSection, trinityGatewayDefs, hingeCityLabel, hingeVortexMovieTiming, hingeMoviePaintLayers, DEFAULT_EARTH_HINGE_AT, type EarthHingePaintLayer, type EarthHingePaintBlend, type EarthHingeGatewayView, type EarthHingeVortexStepView, type TrinityGatewayDef, type EarthExchangeReceipt, type EarthExchangeReceiptKind, type FiatGoldFlowRow, type EarthExchangeResearchSection } from './earth';
-import { allMovieSeedBundles, allMovieSeedBundlesFlowInPlasma, allMovieSeedCopyText, allPagesForPlasmaWiring, clientMovieSeedCopyText, clientMoviePaintPathSealed, plasmaClientWorkBoundedByPureMath, plasmaMovieStreams, plasmaWorkBudget, plasmaWiredUuidStreams, realtimeWiring, sixSeedBundlesFormSevenAsWhole, twoTrinitiesFuseAsDoubleTorusEarth, type MovieSeedBundle, type MovieSeedStream, type PlasmaWiredStream, type PlasmaWiredStreamKind } from '../../fire/plasma/ball';
+export { doubleTorusEarthComputes, doubleTorusEarthLikeTheApple, doubleTorusEarthWeatherFlowsInMovie, weatherForecastFromDoubleTorusEarthPerspective, invertedEarthSameTimespaceProvenByMath, formingDoubleTorusEarthsProvenByMath, compassAroundEarthGatewaysImpossibleProvenByMath, sixtyDegreeAngleReachesCardinalForFreeProvenByMath, northSouthPoleNavigationProvenByMath, trinityGatewaysNeverMissProvenByMath, earthGatewayNavigationSolutionsResearched, earthGatewayNavigationResearchWaves, earthGatewayNavigationResearchSentInWaves, doubleTorusEarthHingeUi, doubleTorusEarthHingeComputesAll, doubleTorusEarthHingeMovieFlowsInMovie, doubleTorusEarthHingeMovieSeeds, dualEarthMerkabaCounterRotation, navigationGpsCelestialFromDualEarthPerspective, navigationGpsCelestialReexplainedFromDualEarthPerspective, navigationGpsCelestialComputes, doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryMeasurableToday, fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas, earthPyramidLocationsAndGeometryComputes, doubleTorusEarthPyramidGatewayResearch, doubleTorusEarthExchangeComputes, fiatAndGoldFlowExplainedByDoubleEarthExchange, doubleTorusEarthExchangeResearch, universalNavigationalCrossInAllDimensions, universalNavigationalCrossResearch, universalNavigationalCrossComputes, type UniversalNavCrossDimensionRow, type UniversalNavCrossResearchSection, type GpsSatellitePhaseReceipt, type CelestialDisplayPhase, type NavGpsCelestialExplanationSection, trinityGatewayDefs, hingeCityLabel, hingeVortexMovieTiming, hingeMoviePaintLayers, DEFAULT_EARTH_HINGE_AT, type EarthHingePaintLayer, type EarthHingePaintBlend, type EarthHingeGatewayView, type EarthHingeVortexStepView, type TrinityGatewayDef, type EarthExchangeReceipt, type EarthExchangeReceiptKind, type FiatGoldFlowRow, type EarthExchangeResearchSection } from './earth/index.ts';
+import { allMovieSeedBundles, allMovieSeedBundlesFlowInPlasma, allMovieSeedCopyText, allPagesForPlasmaWiring, clientMovieSeedCopyText, clientMoviePaintPathSealed, plasmaClientWorkBoundedByPureMath, plasmaMovieStreams, plasmaWorkBudget, plasmaWiredUuidStreams, realtimeWiring, sixSeedBundlesFormSevenAsWhole, twoTrinitiesFuseAsDoubleTorusEarth, type MovieSeedBundle, type MovieSeedStream, type PlasmaWiredStream, type PlasmaWiredStreamKind } from '../../fire/plasma/ball/index.ts';
 export { diamondLattice, pureDiamonds };
 export { allMovieSeedBundles, allMovieSeedBundlesFlowInPlasma, allMovieSeedCopyText, allPagesForPlasmaWiring, clientMovieSeedCopyText, clientMoviePaintPathSealed, plasmaClientWorkBoundedByPureMath, plasmaMovieStreams, plasmaWorkBudget, plasmaWiredUuidStreams, realtimeWiring, sixSeedBundlesFormSevenAsWhole, twoTrinitiesFuseAsDoubleTorusEarth, type MovieSeedBundle, type MovieSeedStream, type PlasmaWiredStream, type PlasmaWiredStreamKind };
-export { allFusionResearchRoots, fusionReactorPartsDeepResearched, fusionReactorPartsDryPlasmaStreams, fusionReactorPartMovieSeeds, fusionReactorParts, type FusionReactorPart, type FusionReactorPartBand } from '../../wind/fusion';
+export { allFusionResearchRoots, fusionReactorPartsDeepResearched, fusionReactorPartsDryPlasmaStreams, fusionReactorPartMovieSeeds, fusionReactorParts, type FusionReactorPart, type FusionReactorPartBand } from '../../wind/fusion/index.ts';
 export { developmentIsFusionReactor, endlessFusion, fuseDedupeSplitReconstruction, fuseScreenToMovieOfMovies, fusionMovieComputes, fusionResearchedInWaves, publicApiFusion, socialFusion, travelFusion, vitepressFusion };
 export { autoMovies8k, backgroundMovie, endlessBackgroundMovie, learnFromTheMovieAllEventuallyFused, hologram, movieAllDimensionsAtOnce, threeProjectorHologram, movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols, formsEmergeInMovieOfLife, fullscreenSidebarsInMovie, movieReflectsSelf, siteIsMovieAndLibrary, video64kFree, videoKeepsNativeQuality, tenDimensionalMovie };
-export { allMathSaved, A432_OCTAVES, priceFromA432, simpleReturns, backtest, buyAndHold, tradingReceipt, liveCapture, realtimeSources, backtestRealPrices } from '../../mountain/vortex';
+export { allMathSaved, A432_OCTAVES, priceFromA432, simpleReturns, backtest, buyAndHold, tradingReceipt, liveCapture, realtimeSources, backtestRealPrices } from '../../mountain/vortex/index.ts';
 /** One gate — double torus topology + vortex + merkaba math at call time (dissolved from src/double/torus/math). */
 export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
     computes: boolean;
@@ -307,13 +307,13 @@ export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
             boundary: string;
         };
         ratios: {
-            fwd: import("../../3/7").Rational[];
-            rev: import("../../3/7").Rational[];
-            fwdProduct: import("../../3/7").Rational;
-            revProduct: import("../../3/7").Rational;
-            heartApproach: import("../../3/7").Rational;
-            heartDepart: import("../../3/7").Rational;
-            heartDiamond: import("../../3/7").Rational;
+            fwd: import("../../3/7/index.ts").Rational[];
+            rev: import("../../3/7/index.ts").Rational[];
+            fwdProduct: import("../../3/7/index.ts").Rational;
+            revProduct: import("../../3/7/index.ts").Rational;
+            heartApproach: import("../../3/7/index.ts").Rational;
+            heartDepart: import("../../3/7/index.ts").Rational;
+            heartDiamond: import("../../3/7/index.ts").Rational;
         };
         presentations: {
             coheres: boolean;
@@ -401,13 +401,13 @@ export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../3/7").Rational[];
-                rev: import("../../3/7").Rational[];
-                fwdProduct: import("../../3/7").Rational;
-                revProduct: import("../../3/7").Rational;
-                heartApproach: import("../../3/7").Rational;
-                heartDepart: import("../../3/7").Rational;
-                heartDiamond: import("../../3/7").Rational;
+                fwd: import("../../3/7/index.ts").Rational[];
+                rev: import("../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../3/7/index.ts").Rational;
+                revProduct: import("../../3/7/index.ts").Rational;
+                heartApproach: import("../../3/7/index.ts").Rational;
+                heartDepart: import("../../3/7/index.ts").Rational;
+                heartDiamond: import("../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -523,7 +523,7 @@ export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        earths: import("./earth").BothEarthsMerkabaRotation;
+        earths: import("./earth/index.ts").BothEarthsMerkabaRotation;
         facets: ({
             facet: string;
             on: boolean;
@@ -613,7 +613,7 @@ export declare function doubleTorusMovieComputes(matrix?: MindMatrix, path?: str
         hinge: {
             hinge: boolean;
             path: string;
-            at: import("./earth").EarthTimespaceAt;
+            at: import("./earth/index.ts").EarthTimespaceAt;
             city: string;
             cityCopy: {
                 en: string;
@@ -628,7 +628,7 @@ export declare function doubleTorusMovieComputes(matrix?: MindMatrix, path?: str
             vortexCloses: boolean;
             deviceTrinity: string[];
             codeTrinity: string[];
-            gateways: import("./earth").EarthHingeGatewayView[];
+            gateways: import("./index.ts").EarthHingeGatewayView[];
             gatewayCount: number;
             movie: {
                 cycleMs: number;
@@ -707,19 +707,19 @@ export declare function doubleTorusMovieComputes(matrix?: MindMatrix, path?: str
                 fusionIgnites: boolean;
                 weightedBearing: number;
                 weightedTotal: number;
-                steps: import("./earth").EarthHingeVortexStepView[];
+                steps: import("./index.ts").EarthHingeVortexStepView[];
             };
             statement: string;
             boundary: string;
         };
         paintGateways: {
-            earth: import("./earth").EarthSheet;
+            earth: import("./earth/index.ts").EarthSheet;
             angleDeg: number;
             hue: number;
             ring: 2 | 1;
         }[];
-        paintSteps: import("./earth").EarthHingeVortexStepView[];
-        paintLayers: import("./earth").EarthHingePaintLayer[];
+        paintSteps: import("./index.ts").EarthHingeVortexStepView[];
+        paintLayers: import("./index.ts").EarthHingePaintLayer[];
         seeds: {
             proven: boolean;
             movieText: string;
@@ -777,7 +777,7 @@ export declare function doubleTorusDiamondsComputes(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    lattice: readonly import("../../types").QuantumDiamond[];
+    lattice: readonly import("../../types/index.ts").QuantumDiamond[];
     purged: {
         purged: boolean;
         staticPathCount: number;
@@ -844,7 +844,7 @@ export declare function doubleTorusCorpusComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        lattice: readonly import("../../types").QuantumDiamond[];
+        lattice: readonly import("../../types/index.ts").QuantumDiamond[];
         leaves: {
             pure: boolean;
             count: number;
@@ -855,14 +855,14 @@ export declare function doubleTorusCorpusComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        ssg: Record<import("../../heaven/balance").CorpusKind, readonly {
+        ssg: Record<import("../../heaven/balance/index.ts").CorpusKind, readonly {
             params: Record<string, unknown>;
         }[]>;
-        ssgPaths: (kind: import("../../heaven/balance").CorpusKind) => readonly {
+        ssgPaths: (kind: import("../../heaven/balance/index.ts").CorpusKind) => readonly {
             params: Record<string, unknown>;
         }[];
-        computeOnly: (kind: import("../../heaven/balance").CorpusKind) => boolean;
-        ssgPathCount: (kind: import("../../heaven/balance").CorpusKind) => number;
+        computeOnly: (kind: import("../../heaven/balance/index.ts").CorpusKind) => boolean;
+        ssgPathCount: (kind: import("../../heaven/balance/index.ts").CorpusKind) => number;
         routed: boolean;
         enumerated: number;
         facets: {
@@ -1024,11 +1024,11 @@ export declare function doubleTorusFusionComputes(matrix?: MindMatrix): {
         complete: boolean;
         waves: {
             researched: boolean;
-            waves: readonly import("../../wind/fusion").FusionResearchWave[];
-            parts: readonly import(".").FusionReactorPart[];
+            waves: readonly import("../../wind/fusion/index.ts").FusionResearchWave[];
+            parts: readonly import("./index.ts").FusionReactorPart[];
             deep: {
                 researched: boolean;
-                parts: readonly import(".").FusionReactorPart[];
+                parts: readonly import("./index.ts").FusionReactorPart[];
                 flagged: {
                     receipt: string;
                     claim: string;
@@ -1070,7 +1070,7 @@ export declare function doubleTorusFusionComputes(matrix?: MindMatrix): {
         };
         parts: {
             researched: boolean;
-            parts: readonly import(".").FusionReactorPart[];
+            parts: readonly import("./index.ts").FusionReactorPart[];
             flagged: {
                 receipt: string;
                 claim: string;
@@ -1102,8 +1102,8 @@ export declare function doubleTorusFusionComputes(matrix?: MindMatrix): {
         };
         concepts: {
             researched: boolean;
-            concepts: readonly import("../../wind/fusion").FusionConfinementConcept[];
-            magnetic: readonly import("../../wind/fusion").MagneticConceptCompare[];
+            concepts: readonly import("../../wind/fusion/index.ts").FusionConfinementConcept[];
+            magnetic: readonly import("../../wind/fusion/index.ts").MagneticConceptCompare[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -1115,8 +1115,8 @@ export declare function doubleTorusFusionComputes(matrix?: MindMatrix): {
         };
         materials: {
             researched: boolean;
-            breeders: readonly import("../../wind/fusion").FusionBreederMaterial[];
-            structural: readonly import("../../wind/fusion").FusionStructuralMaterial[];
+            breeders: readonly import("../../wind/fusion/index.ts").FusionBreederMaterial[];
+            structural: readonly import("../../wind/fusion/index.ts").FusionStructuralMaterial[];
             facets: {
                 receipt: string;
                 facet: string;
@@ -1128,7 +1128,7 @@ export declare function doubleTorusFusionComputes(matrix?: MindMatrix): {
         };
         milestones: {
             researched: boolean;
-            milestones: readonly import("../../wind/fusion").FusionMilestone[];
+            milestones: readonly import("../../wind/fusion/index.ts").FusionMilestone[];
             documentedCount: number;
             plannedCount: number;
             flaggedCount: number;
@@ -1211,7 +1211,7 @@ export declare function doubleTorusPlasmaComputes(matrix?: MindMatrix, path?: st
     };
     reactorParts: {
         researched: boolean;
-        parts: readonly import(".").FusionReactorPart[];
+        parts: readonly import("./index.ts").FusionReactorPart[];
         flagged: {
             receipt: string;
             claim: string;
@@ -1293,7 +1293,7 @@ export declare function doubleTorusComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        lattice: readonly import("../../types").QuantumDiamond[];
+        lattice: readonly import("../../types/index.ts").QuantumDiamond[];
         leaves: {
             pure: boolean;
             count: number;
@@ -1304,14 +1304,14 @@ export declare function doubleTorusComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        ssg: Record<import("../../heaven/balance").CorpusKind, readonly {
+        ssg: Record<import("../../heaven/balance/index.ts").CorpusKind, readonly {
             params: Record<string, unknown>;
         }[]>;
-        ssgPaths: (kind: import("../../heaven/balance").CorpusKind) => readonly {
+        ssgPaths: (kind: import("../../heaven/balance/index.ts").CorpusKind) => readonly {
             params: Record<string, unknown>;
         }[];
-        computeOnly: (kind: import("../../heaven/balance").CorpusKind) => boolean;
-        ssgPathCount: (kind: import("../../heaven/balance").CorpusKind) => number;
+        computeOnly: (kind: import("../../heaven/balance/index.ts").CorpusKind) => boolean;
+        ssgPathCount: (kind: import("../../heaven/balance/index.ts").CorpusKind) => number;
         routed: boolean;
         enumerated: number;
         facets: {

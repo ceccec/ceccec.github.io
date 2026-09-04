@@ -78,14 +78,15 @@ const STEPS: readonly Step[] = [
       const bundler = count(['--module', 'esnext', '--moduleResolution', 'bundler'])
       const skipLib = count(['--skipLibCheck', '--module', 'nodenext', '--moduleResolution', 'nodenext'])
       const nodenext = count(['--module', 'nodenext', '--moduleResolution', 'nodenext'])
-      // nodenext rejects a relative import in a .d.ts that carries no file extension (TS2834), and
-      // this corpus writes every relative import extensionless — its convention, in thousands of
-      // places. Closing the graph made that visible at scale rather than causing it: before, four
-      // modules simply did not exist to be checked. Supporting nodenext means adding an extension to
-      // every relative import in src/, which is a decision about the corpus, not about this package.
+      // nodenext IS gated now. It was not, for one wave: it rejects a relative import in a .d.ts that
+      // carries no file extension (TS2834), and this corpus wrote every relative import extensionless
+      // — its convention, in 2823 places. Closing the declaration graph made that visible at its true
+      // size, 2670 errors, and the convention has since moved: every relative import in src/ names
+      // <folder>/index.ts, which the build rewrites to .js on emit. All three modes are 0, so all
+      // three are held. The reason not to gate was the convention, and the convention changed.
       return {
-        ok: bundler === 0 && skipLib === 0,
-        detail: `bundler ${bundler} · skipLibCheck ${skipLib} · nodenext ${nodenext} (NOT gated — TS2834, extensionless relative imports, a corpus-wide convention)`,
+        ok: bundler === 0 && skipLib === 0 && nodenext === 0,
+        detail: `bundler ${bundler} · skipLibCheck ${skipLib} · nodenext ${nodenext} — all three held (published 1.4.0 measured 10 · 0 · 338)`,
       }
     },
   },

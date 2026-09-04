@@ -1,13 +1,13 @@
 // United gate runner facts — ONE merkle pass + ONE src walk + ONE strict snapshot per build phase (gate/unite · scan/fold pairs).
-import { phase } from '../../../6/4'
-import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, enforcementScanRoot, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail } from './computational'
+import { phase } from '../../../6/4/index.ts'
+import { DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, FORBIDDEN_FOLDER_NAMES, HOMOLOGY_LOOPS, ICHING_EIGHT_FOLD, ICHING_TRIGRAMS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, ROSETTA_SEVEN, ROSETTA_SIX, SRC_SCIENCE_MODEL_ACTION_SCHEMA, UNFOLDED_CENSUS, enforcementScanRoot, isForbiddenFolderName, renderUiPathFromScienceModelAction, scienceModelActionFromMindTail } from './computational/index.ts'
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
-import { foldPair, isUuid, log10, log2, max, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../0'
-import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack'
-import { dryCleanIsDiamondAndCrystal } from '../../../clean'
-import { quantumizeVitepressBuild, scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell'
+import { foldPair, isUuid, log10, log2, max, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../0/index.ts'
+import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack/index.ts'
+import { dryCleanIsDiamondAndCrystal } from '../../../clean/index.ts'
+import { quantumizeVitepressBuild, scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell/index.ts'
 import {
   relativeImportSpecs,
   importGapCount,
@@ -17,8 +17,8 @@ import {
   buildMin,
   waveVerify,
   rostersDeriveOrLedger,
-} from './strict/scan'
-import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../../4/6'
+} from './strict/scan/index.ts'
+import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../../4/6/index.ts'
 import {
   auditStrictGates,
   strictGatePassed,
@@ -27,13 +27,13 @@ import {
   scanVitepressIndex,
   type StrictGateSnapshot,
   type StrictHyphenOffender,
-  type StrictNonTsOffender } from './strict'
-import { claySolvedTheorem, physicalFtlClaimTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7'
+  type StrictNonTsOffender } from './strict/index.ts'
+import { claySolvedTheorem, physicalFtlClaimTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7/index.ts'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
   theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest,
-  type ComputationalLimitSnapshot } from './computational'
+  type ComputationalLimitSnapshot } from './computational/index.ts'
 
 /** One normalised finding from any trinity wave. */
 export type Finding = {
@@ -116,9 +116,9 @@ export type ImportPathDistanceEdge = {
   /** Up-hops only — count of `../` in the spec (composes import-gap scan). */
   readonly gapHops: number
 }
-export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict'
-export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict'
-export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict'
+export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict/index.ts'
+export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict/index.ts'
+export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict/index.ts'
 export {
   dryDupe,
   theoremAudit,
@@ -140,7 +140,7 @@ export {
   runPsgLicenseExit,
   legalCanon,
   patentCanon,
-} from './strict/scan'
+} from './strict/scan/index.ts'
 export {
   
   FIBONACCI_BANDS,
@@ -181,7 +181,7 @@ export {
   auditComputationalGates,
   type ComputationalLimitSnapshot,
   type IChingDistributionSnapshot,
-  type RosettaDistributionSnapshot } from './computational'
+  type RosettaDistributionSnapshot } from './computational/index.ts'
 export {
   auditStrictGates,
   strictGatePassed,
@@ -190,7 +190,7 @@ export {
   scanVitepressIndex,
   type StrictGateSnapshot,
   type StrictHyphenOffender,
-  type StrictNonTsOffender } from './strict'
+  type StrictNonTsOffender } from './strict/index.ts'
 
 export type EnforcementFacts = {
   readonly root: string

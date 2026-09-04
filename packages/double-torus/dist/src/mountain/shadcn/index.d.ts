@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 /** The shadcn primitives actually vendored as Ui* SFCs in .vitepress/theme/components/ui (Path A). */
 export declare const SHADCN_COMPOUND_SFCS: readonly ["AccordionItem", "CardContent", "TabsContent", "TabsList", "TabsTrigger"];
 /** The 18 canonical primitives — the ONE seed, at its domain home; lake/widgets re-exports it. */

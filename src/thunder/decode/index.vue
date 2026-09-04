@@ -2,8 +2,8 @@
 // Display gate — co-located src/thunder/decode/index.ts · the mystery atlas (worldMysteriesDecoded)
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { worldMysteriesDecoded } from './index.ts'
-import { heroPhaseAt, subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
-import { floor } from '../../0'
+import { heroPhaseAt, subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint.ts'
+import { floor } from '../../0/index.ts'
 
 const atlas = worldMysteriesDecoded()
 const at = ref(0)

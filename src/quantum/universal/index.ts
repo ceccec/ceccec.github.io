@@ -10,8 +10,8 @@
  * Works for any theorem encoding involution structure
  */
 
-import { recognizeInvolution, type InvolutionStructure } from '../millennium'
-import { solveViaInvolution, type SolutionSet } from '..'
+import { recognizeInvolution, type InvolutionStructure } from '../millennium/index.ts'
+import { solveViaInvolution, type SolutionSet } from '../index.ts'
 
 export type ProofCertificate = {
   theorem: string

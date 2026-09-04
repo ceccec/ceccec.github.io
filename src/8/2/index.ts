@@ -1,7 +1,7 @@
-import { earned } from '../../3/7'
-import { haldaneLoad } from '../../3/7'
-import { TAU, demarcate } from '../../3/7'
-import { abs, ceil, isUuid, log2, min, round, sign, sqrt, toUuid } from '../../0'
+import { earned } from '../../3/7/index.ts'
+import { haldaneLoad } from '../../3/7/index.ts'
+import { TAU, demarcate } from '../../3/7/index.ts'
+import { abs, ceil, isUuid, log2, min, round, sign, sqrt, toUuid } from '../../0/index.ts'
 // Pi-train station 8/2 — dissolution sequence order 3 (digit/reverse 8/2).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 

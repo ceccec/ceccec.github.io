@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../../../types';
-import { type Uuid } from '../../../0';
+import type { MindMatrix } from '../../../types/index.ts';
+import { type Uuid } from '../../../0/index.ts';
 export type { Uuid };
 export declare function uuidForPath(path: string): Uuid;
 export declare function foldUuids(a: Uuid, b: Uuid): Uuid;

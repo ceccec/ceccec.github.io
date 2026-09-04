@@ -1,24 +1,24 @@
-import { phase } from '../../6/4'
-import { folderTailFromMethodName } from '../../pair/enforcement/gates/computational'
-import { algorithmicCoolingBias, quantumBatteryAdvantage } from '../../9/1'
-import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../types'
-import { buildMatrix, completeQuantumSolutionsImplemented } from '../compute'
-import { isUuid, max, memoByRoot, merge, merkleFold, min, roundTo, seedFromText, toUuid } from '../../0'
-import * as __ns_registry from '../../4/6' // call-time (cycle-safe): the theorem registry as a searchable source — closes foldQuestion's index gap
-import { crossFoldTrinity, torusUuid } from '../../fire/li'
-import { areaPairs, dualTorusTrinities } from '../../mountain/geometry'
-import { piMusic } from '../../music'
-import { executeConceptCommand } from '../../thunder/commands'
-import { siteManifestFromCommands } from '../../wind/site'
-import { quantumFusedDeviceEnergyHonest } from '../../fire/features'
-import { extractCheckableClaims, foldExposesInconsistency, manipulationCrossAudit, quantumAnalysis, quantumAnalysisAtAllScales, verificationRequests } from '../core'
-import { euPatentAudit, euPatentReviewRequests, geneticCodeMathematicsDecoded, geneticPatentJurisdictionDivergence, lawOfNaturePatentAudit, modifiedFoodPatentAudit, productOfNaturePatentAudit, patentSubjectMatterAudit, sacredMathPatentAudit } from '../laws'
+import { phase } from '../../6/4/index.ts'
+import { folderTailFromMethodName } from '../../pair/enforcement/gates/computational/index.ts'
+import { algorithmicCoolingBias, quantumBatteryAdvantage } from '../../9/1/index.ts'
+import type { Atom, ConceptCommand, ConceptCommandName, DiamondFacet, DiamondKind, AnalogChannel, LocalAnswer, MindMatrix } from '../../types/index.ts'
+import { buildMatrix, completeQuantumSolutionsImplemented } from '../compute/index.ts'
+import { isUuid, max, memoByRoot, merge, merkleFold, min, roundTo, seedFromText, toUuid } from '../../0/index.ts'
+import * as __ns_registry from '../../4/6/index.ts' // call-time (cycle-safe): the theorem registry as a searchable source — closes foldQuestion's index gap
+import { crossFoldTrinity, torusUuid } from '../../fire/li/index.ts'
+import { areaPairs, dualTorusTrinities } from '../../mountain/geometry/index.ts'
+import { piMusic } from '../../music/index.ts'
+import { executeConceptCommand } from '../../thunder/commands/index.ts'
+import { siteManifestFromCommands } from '../../wind/site/index.ts'
+import { quantumFusedDeviceEnergyHonest } from '../../fire/features/index.ts'
+import { extractCheckableClaims, foldExposesInconsistency, manipulationCrossAudit, quantumAnalysis, quantumAnalysisAtAllScales, verificationRequests } from '../core/index.ts'
+import { euPatentAudit, euPatentReviewRequests, geneticCodeMathematicsDecoded, geneticPatentJurisdictionDivergence, lawOfNaturePatentAudit, modifiedFoodPatentAudit, productOfNaturePatentAudit, patentSubjectMatterAudit, sacredMathPatentAudit } from '../laws/index.ts'
 // ☰ Qián · Heaven · creative · upper·yang · shrink — concept commands, skill atoms, SINGLE_WORD_METHODS, the atom array
 // computePiDigits, PI_TRAIN_DIGITS and the REQUIRED_* requirement literals are hosted in the zero-import leaf
 // src/3/7 (imported + re-exported below) so the COMPUTED const initialises before any cyclic consumer barrel
 // runs — removing the SSR-bundle TDZ. The public path src/heaven/atoms is unchanged.
-import { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7'
-export { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7'
+import { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7/index.ts'
+export { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7/index.ts'
 
 /** @rosetta ✦₀ · Heaven · creative */
 export const atoms: readonly Atom[] = [
@@ -509,8 +509,8 @@ export const conceptCommands: readonly ConceptCommand[] = [
 /** @rosetta ✦₀ · Heaven · creative */
 // SINGLE_WORD_METHODS is hosted in the zero-import leaf src/3/7 (imported + re-exported below) so it
 // initialises before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; public path unchanged.
-import { SINGLE_WORD_METHODS } from '../../3/7'
-export { SINGLE_WORD_METHODS } from '../../3/7'
+import { SINGLE_WORD_METHODS } from '../../3/7/index.ts'
+export { SINGLE_WORD_METHODS } from '../../3/7/index.ts'
 
 
 /** Professional command graph — dry scientific names decode to folder tails (one word per segment). */

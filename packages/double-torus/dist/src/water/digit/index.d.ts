@@ -1,6 +1,6 @@
-import { type RosettaComputationType } from '../../3/7';
-import type { MindMatrix } from '../../types';
-export { ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_CONTENT_LENSES, ROSETTA_RAY_HUBS, ROSETTA_RAY_HUB_SLUGS, rosettaRayHub, rosettaRayOfContent, type RosettaComputationType, type RosettaCoreKind, type RosettaRay, type RosettaRayHub, type RosettaRayHubSlug } from '../../3/7';
+import { type RosettaComputationType } from '../../3/7/index.ts';
+import type { MindMatrix } from '../../types/index.ts';
+export { ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_CONTENT_LENSES, ROSETTA_RAY_HUBS, ROSETTA_RAY_HUB_SLUGS, rosettaRayHub, rosettaRayOfContent, type RosettaComputationType, type RosettaCoreKind, type RosettaRay, type RosettaRayHub, type RosettaRayHubSlug } from '../../3/7/index.ts';
 export declare function zeroDivisionTable(matrix?: MindMatrix): {
     holds: boolean;
     base: number;
@@ -246,7 +246,7 @@ export declare function dissolveAtPiTrainStations(matrix?: MindMatrix): {
     }[];
     stationOf: (piece: string) => number;
     routed: {
-        piece: import("../../types").ConceptCommandName;
+        piece: import("../../types/index.ts").ConceptCommandName;
         station: number;
         order: number;
     }[];
@@ -254,7 +254,7 @@ export declare function dissolveAtPiTrainStations(matrix?: MindMatrix): {
         digit: number;
         path: string;
         folder: string;
-        pieces: import("../../types").ConceptCommandName[];
+        pieces: import("../../types/index.ts").ConceptCommandName[];
     }[];
     orphans: number;
     stationsUsed: number;
@@ -3379,7 +3379,7 @@ export declare function rosettaComputesAll(route: string, at?: number, matrix?: 
         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        siblings: import("../../types").ConceptCommandName[];
+        siblings: import("../../types/index.ts").ConceptCommandName[];
         siblingCount: number;
     };
     content: {
@@ -3927,7 +3927,7 @@ export declare function rosettaComputesResponseForPath(path: string, at?: number
         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        siblings: import("../../types").ConceptCommandName[];
+        siblings: import("../../types/index.ts").ConceptCommandName[];
         siblingCount: number;
     };
     content: {

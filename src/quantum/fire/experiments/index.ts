@@ -4,20 +4,20 @@
 // primitives (src/0, ../simulations, ../math) with the mind core (buildMatrix, a432, the merkaba decode); each
 // run is content-addressed. mind does not import these (they are leaves) — the barrel aggregates them.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind core: matrix builder, a432, merkaba fold, frequency APIs
-import { IONIZING_EV, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7'
-import { stationary } from '../../../mountain/vortex'
-import { buildMatrix, a432, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind'
+import { IONIZING_EV, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7/index.ts'
+import { stationary } from '../../../mountain/vortex/index.ts'
+import { buildMatrix, a432, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind/index.ts'
 // ☵ Kǎn · Water · abysmal · lower·yin · depthFade — base primitives: uuid, merkle, math constants, EM functions
-import { larmorFrequency, wavelengthOf } from '../../../1/9'
-import { abs, cos, floor, isUuid, merkleFold, min, roundTo, sin, toUuid } from '../../../0'
-import { isIonizing } from '../../../9/1'
-import { radarRange } from '../../../3/7'
-import { movieCanvasPolarity } from '../../science'
+import { larmorFrequency, wavelengthOf } from '../../../1/9/index.ts'
+import { abs, cos, floor, isUuid, merkleFold, min, roundTo, sin, toUuid } from '../../../0/index.ts'
+import { isIonizing } from '../../../9/1/index.ts'
+import { radarRange } from '../../../3/7/index.ts'
+import { movieCanvasPolarity } from '../../science/index.ts'
 // ☴ Xùn · Wind · gentle · lower·yin · hueShift — EM simulators: plane wave, CT, Bloch MRI, FMCW radar
-import { planeWaveReceipt, planeWaveField, planeWaveIntensity, planeWaveSpeed, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarReceipt, radarVelocity } from '../simulations'
+import { planeWaveReceipt, planeWaveField, planeWaveIntensity, planeWaveSpeed, beamProfile, beerLambert, backProjectAxis, ctReceipt, blochStep, fid, t1Recovery, blochReceipt, radarReceipt, radarVelocity } from '../simulations/index.ts'
 // ☳ Zhèn · Thunder · arousing · lower·yin · spread — trading + realtime math: strategies, backtests, live captures
-import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionPositions, spectralCyclePositions, regimeSwitchPositions, volTargetPositions, tradingReceipt, A432_OCTAVES, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources } from '../../../mountain/vortex'
-import { TAU } from '../../../3/7'
+import { priceFromA432, backtest, buyAndHold, crossoverPositions, meanReversionPositions, spectralCyclePositions, regimeSwitchPositions, volTargetPositions, tradingReceipt, A432_OCTAVES, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources } from '../../../mountain/vortex/index.ts'
+import { TAU } from '../../../3/7/index.ts'
 
 // ☳ Zhèn · Thunder · arousing (shared-experiment folds) · upper·yang · depthFade — exported folds
 // ElectroMagnetic radiation decoded across the spectrum — the physics under X-ray, MRI-RF and microwave

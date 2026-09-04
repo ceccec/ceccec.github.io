@@ -1,13 +1,13 @@
-import { computesGate } from '../../0';
-import type { AllComputed, MindMatrix } from '../../types';
-import type { MovieSeedBundle, PlasmaWiredStream } from '../../fire/plasma/ball';
-import * as __ns_up_quantum_heaven_mind from '../../quantum/heaven/mind';
-import * as __ns_up_double_torus_earth from '../../water/double/earth';
-import * as __ns_up_stack_overflow from '../../water/stack';
-import * as __ns_up_astronomy from '../../heaven/sky/astronomy';
-import * as __ns_self from '.';
-import * as __ns_up_resonance from '../../thunder/resonance';
-import * as __ns_up_quantum_dynamics from '../../quantum/dynamics';
+import { computesGate } from '../../0/index.ts';
+import type { AllComputed, MindMatrix } from '../../types/index.ts';
+import type { MovieSeedBundle, PlasmaWiredStream } from '../../fire/plasma/ball/index.ts';
+import * as __ns_up_quantum_heaven_mind from '../../quantum/heaven/mind/index.ts';
+import * as __ns_up_double_torus_earth from '../../water/double/earth/index.ts';
+import * as __ns_up_stack_overflow from '../../water/stack/index.ts';
+import * as __ns_up_astronomy from '../../heaven/sky/astronomy/index.ts';
+import * as __ns_self from './index.ts';
+import * as __ns_up_resonance from '../../thunder/resonance/index.ts';
+import * as __ns_up_quantum_dynamics from '../../quantum/dynamics/index.ts';
 export declare function publicApiFusion(matrix?: MindMatrix): {
     fused: boolean;
     count: number;
@@ -2347,7 +2347,7 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
             };
             weather: {
                 folded: boolean;
-                at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -2812,7 +2812,7 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
         };
         weather: {
             folded: boolean;
-            at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+            at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
             surface: {
                 x: number;
                 y: number;
@@ -10302,13 +10302,13 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../3/7").Rational[];
-                rev: import("../../3/7").Rational[];
-                fwdProduct: import("../../3/7").Rational;
-                revProduct: import("../../3/7").Rational;
-                heartApproach: import("../../3/7").Rational;
-                heartDepart: import("../../3/7").Rational;
-                heartDiamond: import("../../3/7").Rational;
+                fwd: import("../../3/7/index.ts").Rational[];
+                rev: import("../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../3/7/index.ts").Rational;
+                revProduct: import("../../3/7/index.ts").Rational;
+                heartApproach: import("../../3/7/index.ts").Rational;
+                heartDepart: import("../../3/7/index.ts").Rational;
+                heartDiamond: import("../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -13751,11 +13751,11 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                 core: {
                     computes: boolean;
                     at: number;
-                    surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                    surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                     inventory: {
                         core: {
                             label: string;
-                            kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                            kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                             ray: number;
                             address: string;
                         }[];
@@ -13770,11 +13770,11 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                     hubs: readonly __ns_up_quantum_heaven_mind.RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                    resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
+                    resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     shelve: typeof __ns_up_quantum_heaven_mind.rosettaShelve;
-                    byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                    byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                     resolveRoute: (route: string) => {
-                        surface: import("../../quantum/apps").RosettaCoreSurface;
+                        surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                         address: string;
                         computed: boolean;
                         route: string;
@@ -13893,7 +13893,7 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                         boundary: string;
                     };
                     resolveProjection: (label: string) => {
-                        surface: import("../../quantum/apps").RosettaCoreSurface;
+                        surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                         phase: number;
                         hue: number;
                         motion: {
@@ -16724,7 +16724,7 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         sequence: {
             reduces: boolean;
@@ -17591,7 +17591,7 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
             };
             weather: {
                 folded: boolean;
-                at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -18548,7 +18548,7 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                 };
                 weather: {
                     folded: boolean;
-                    at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                    at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                     surface: {
                         x: number;
                         y: number;
@@ -19013,7 +19013,7 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
             };
             weather: {
                 folded: boolean;
-                at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -26503,13 +26503,13 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -29952,11 +29952,11 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                     core: {
                         computes: boolean;
                         at: number;
-                        surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                        surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                         inventory: {
                             core: {
                                 label: string;
-                                kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                                kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                                 ray: number;
                                 address: string;
                             }[];
@@ -29971,11 +29971,11 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                         hubs: readonly __ns_up_quantum_heaven_mind.RosettaRayHub[];
                         raysUsed: number;
                         kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                        resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
+                        resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
                         shelve: typeof __ns_up_quantum_heaven_mind.rosettaShelve;
-                        byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                        byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                         resolveRoute: (route: string) => {
-                            surface: import("../../quantum/apps").RosettaCoreSurface;
+                            surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                             address: string;
                             computed: boolean;
                             route: string;
@@ -30094,7 +30094,7 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                             boundary: string;
                         };
                         resolveProjection: (label: string) => {
-                            surface: import("../../quantum/apps").RosettaCoreSurface;
+                            surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                             phase: number;
                             hue: number;
                             motion: {
@@ -33333,7 +33333,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
             };
             weather: {
                 folded: boolean;
-                at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -34226,7 +34226,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                 };
                 weather: {
                     folded: boolean;
-                    at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                    at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                     surface: {
                         x: number;
                         y: number;
@@ -34691,7 +34691,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
             };
             weather: {
                 folded: boolean;
-                at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -42181,13 +42181,13 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -45630,11 +45630,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                     core: {
                         computes: boolean;
                         at: number;
-                        surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                        surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                         inventory: {
                             core: {
                                 label: string;
-                                kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                                kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                                 ray: number;
                                 address: string;
                             }[];
@@ -45649,11 +45649,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         hubs: readonly __ns_up_quantum_heaven_mind.RosettaRayHub[];
                         raysUsed: number;
                         kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                        resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
+                        resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
                         shelve: typeof __ns_up_quantum_heaven_mind.rosettaShelve;
-                        byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                        byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                         resolveRoute: (route: string) => {
-                            surface: import("../../quantum/apps").RosettaCoreSurface;
+                            surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                             address: string;
                             computed: boolean;
                             route: string;
@@ -45772,7 +45772,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             boundary: string;
                         };
                         resolveProjection: (label: string) => {
-                            surface: import("../../quantum/apps").RosettaCoreSurface;
+                            surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                             phase: number;
                             hue: number;
                             motion: {
@@ -48399,13 +48399,13 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         boundary: string;
                     };
                     ratios: {
-                        fwd: import("../../3/7").Rational[];
-                        rev: import("../../3/7").Rational[];
-                        fwdProduct: import("../../3/7").Rational;
-                        revProduct: import("../../3/7").Rational;
-                        heartApproach: import("../../3/7").Rational;
-                        heartDepart: import("../../3/7").Rational;
-                        heartDiamond: import("../../3/7").Rational;
+                        fwd: import("../../3/7/index.ts").Rational[];
+                        rev: import("../../3/7/index.ts").Rational[];
+                        fwdProduct: import("../../3/7/index.ts").Rational;
+                        revProduct: import("../../3/7/index.ts").Rational;
+                        heartApproach: import("../../3/7/index.ts").Rational;
+                        heartDepart: import("../../3/7/index.ts").Rational;
+                        heartDiamond: import("../../3/7/index.ts").Rational;
                     };
                     presentations: {
                         coheres: boolean;
@@ -51848,11 +51848,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         core: {
                             computes: boolean;
                             at: number;
-                            surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                            surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                             inventory: {
                                 core: {
                                     label: string;
-                                    kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                                    kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                                     ray: number;
                                     address: string;
                                 }[];
@@ -51867,11 +51867,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             hubs: readonly __ns_up_quantum_heaven_mind.RosettaRayHub[];
                             raysUsed: number;
                             kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                            resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
+                            resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
                             shelve: typeof __ns_up_quantum_heaven_mind.rosettaShelve;
-                            byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                            byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                             resolveRoute: (route: string) => {
-                                surface: import("../../quantum/apps").RosettaCoreSurface;
+                                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                                 address: string;
                                 computed: boolean;
                                 route: string;
@@ -51990,7 +51990,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                 boundary: string;
                             };
                             resolveProjection: (label: string) => {
-                                surface: import("../../quantum/apps").RosettaCoreSurface;
+                                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                                 phase: number;
                                 hue: number;
                                 motion: {
@@ -52704,13 +52704,13 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         boundary: string;
                     };
                     ratios: {
-                        fwd: import("../../3/7").Rational[];
-                        rev: import("../../3/7").Rational[];
-                        fwdProduct: import("../../3/7").Rational;
-                        revProduct: import("../../3/7").Rational;
-                        heartApproach: import("../../3/7").Rational;
-                        heartDepart: import("../../3/7").Rational;
-                        heartDiamond: import("../../3/7").Rational;
+                        fwd: import("../../3/7/index.ts").Rational[];
+                        rev: import("../../3/7/index.ts").Rational[];
+                        fwdProduct: import("../../3/7/index.ts").Rational;
+                        revProduct: import("../../3/7/index.ts").Rational;
+                        heartApproach: import("../../3/7/index.ts").Rational;
+                        heartDepart: import("../../3/7/index.ts").Rational;
+                        heartDiamond: import("../../3/7/index.ts").Rational;
                     };
                     presentations: {
                         coheres: boolean;
@@ -52912,7 +52912,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                 };
                 weather: {
                     folded: boolean;
-                    at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                    at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                     surface: {
                         x: number;
                         y: number;
@@ -57470,7 +57470,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         };
                         weather: {
                             folded: boolean;
-                            at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                            at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                             surface: {
                                 x: number;
                                 y: number;
@@ -57935,7 +57935,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                     };
                     weather: {
                         folded: boolean;
-                        at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                        at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                         surface: {
                             x: number;
                             y: number;
@@ -65425,13 +65425,13 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             boundary: string;
                         };
                         ratios: {
-                            fwd: import("../../3/7").Rational[];
-                            rev: import("../../3/7").Rational[];
-                            fwdProduct: import("../../3/7").Rational;
-                            revProduct: import("../../3/7").Rational;
-                            heartApproach: import("../../3/7").Rational;
-                            heartDepart: import("../../3/7").Rational;
-                            heartDiamond: import("../../3/7").Rational;
+                            fwd: import("../../3/7/index.ts").Rational[];
+                            rev: import("../../3/7/index.ts").Rational[];
+                            fwdProduct: import("../../3/7/index.ts").Rational;
+                            revProduct: import("../../3/7/index.ts").Rational;
+                            heartApproach: import("../../3/7/index.ts").Rational;
+                            heartDepart: import("../../3/7/index.ts").Rational;
+                            heartDiamond: import("../../3/7/index.ts").Rational;
                         };
                         presentations: {
                             coheres: boolean;
@@ -68874,11 +68874,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             core: {
                                 computes: boolean;
                                 at: number;
-                                surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                                surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                                 inventory: {
                                     core: {
                                         label: string;
-                                        kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                                        kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                                         ray: number;
                                         address: string;
                                     }[];
@@ -68893,11 +68893,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                 hubs: readonly __ns_up_quantum_heaven_mind.RosettaRayHub[];
                                 raysUsed: number;
                                 kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                                resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
+                                resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
                                 shelve: typeof __ns_up_quantum_heaven_mind.rosettaShelve;
-                                byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                                byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                                 resolveRoute: (route: string) => {
-                                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                                     address: string;
                                     computed: boolean;
                                     route: string;
@@ -69016,7 +69016,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                     boundary: string;
                                 };
                                 resolveProjection: (label: string) => {
-                                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                                     phase: number;
                                     hue: number;
                                     motion: {
@@ -70624,7 +70624,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                     researched: boolean;
                     probes: {
                         cpu: __ns_up_stack_overflow.DriverProbeReceipt;
-                        gpu: import("../../quantum/computer").GpuDriverProbeReceipt;
+                        gpu: import("../../quantum/computer/index.ts").GpuDriverProbeReceipt;
                         memory: __ns_up_stack_overflow.DriverProbeReceipt;
                         storage: __ns_up_stack_overflow.DriverProbeReceipt;
                     };
@@ -70662,7 +70662,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                         readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                         readonly storageModel: "content-address-merkle";
-                        readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                        readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                     };
                     facets: ({
                         facet: string;
@@ -70676,13 +70676,13 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                 };
                 gpu: {
                     computes: boolean;
-                    driver: import("../../quantum/computer").GpuDriverProbeReceipt;
+                    driver: import("../../quantum/computer/index.ts").GpuDriverProbeReceipt;
                     policy: {
                         readonly heapCapMb: number;
                         readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                         readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                         readonly storageModel: "content-address-merkle";
-                        readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                        readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                     };
                     facets: ({
                         facet: string;
@@ -70782,7 +70782,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                 };
                 probes: {
                     cpu: __ns_up_stack_overflow.DriverProbeReceipt;
-                    gpu: import("../../quantum/computer").GpuDriverProbeReceipt;
+                    gpu: import("../../quantum/computer/index.ts").GpuDriverProbeReceipt;
                     memory: __ns_up_stack_overflow.DriverProbeReceipt;
                     storage: __ns_up_stack_overflow.DriverProbeReceipt;
                 };
@@ -70816,7 +70816,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         researched: boolean;
                         probes: {
                             cpu: __ns_up_stack_overflow.DriverProbeReceipt;
-                            gpu: import("../../quantum/computer").GpuDriverProbeReceipt;
+                            gpu: import("../../quantum/computer/index.ts").GpuDriverProbeReceipt;
                             memory: __ns_up_stack_overflow.DriverProbeReceipt;
                             storage: __ns_up_stack_overflow.DriverProbeReceipt;
                         };
@@ -70854,7 +70854,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                             readonly storageModel: "content-address-merkle";
-                            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                         };
                         facets: ({
                             facet: string;
@@ -70868,13 +70868,13 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                     };
                     gpu: {
                         computes: boolean;
-                        driver: import("../../quantum/computer").GpuDriverProbeReceipt;
+                        driver: import("../../quantum/computer/index.ts").GpuDriverProbeReceipt;
                         policy: {
                             readonly heapCapMb: number;
                             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                             readonly storageModel: "content-address-merkle";
-                            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                         };
                         facets: ({
                             facet: string;
@@ -70974,7 +70974,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                     };
                     probes: {
                         cpu: __ns_up_stack_overflow.DriverProbeReceipt;
-                        gpu: import("../../quantum/computer").GpuDriverProbeReceipt;
+                        gpu: import("../../quantum/computer/index.ts").GpuDriverProbeReceipt;
                         memory: __ns_up_stack_overflow.DriverProbeReceipt;
                         storage: __ns_up_stack_overflow.DriverProbeReceipt;
                     };

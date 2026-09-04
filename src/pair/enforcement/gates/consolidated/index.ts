@@ -4,10 +4,10 @@
 // session-wave-complete, speedup-demarcated, theorem-registry-update,
 // wave-17-prose-consolidation) to satisfy the src index census.
 
-import harmonic from '../../../../ui/harmonic'
-import { merkleFold, toUuid } from '../../../../0'
-import { PHI as phi, SCIENCE_DOMAINS, fibonacci } from '../../../../3/7'
-import { THEOREM_ATOM_SEED } from '../../../../4/6'
+import harmonic from '../../../../ui/harmonic/index.ts'
+import { merkleFold, toUuid } from '../../../../0/index.ts'
+import { PHI as phi, SCIENCE_DOMAINS, fibonacci } from '../../../../3/7/index.ts'
+import { THEOREM_ATOM_SEED } from '../../../../4/6/index.ts'
 import { createHash } from 'node:crypto'
 
 // ───── module: animationAudit ─────

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
-import { computerSciencePanelComputes } from '../../../quantum/computer'
+import { computerSciencePanelComputes } from '../../../quantum/computer/index.ts'
 import UiCard from '../../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../../.vitepress/theme/components/ui/Badge.vue'

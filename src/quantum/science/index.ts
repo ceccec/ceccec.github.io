@@ -1,30 +1,30 @@
 // Quantum science — principles exposition + thunder (EMF/efficiency/Tesla/colour primitives) + quantum computer toy model (canonical home). Folded from thunder.ts + computer-folds.ts.
-import * as __ns_up_dynamics from '../dynamics'
-import * as __ns_up_up_fire_physics from '../../fire/physics'
-import * as __ns_up_up_pair_enforcement from '../../pair/enforcement'
-import * as __ns_up_up_mountain_geometry from '../../mountain/geometry'
-import * as __ns_up_os from '../os'
-import type { MindMatrix } from '../../types'
-import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented, noQpuRequired } from '../../heaven/compute'
-import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, ceil, chsh, cnot, computesGate, cos, digitalRoot, exp, floor, grover, isUuid, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, pow, prng, probabilities, qubits, round, roundTo, runQuantumCircuit, sample, sealFacets, sin, sqrt, toUuid } from '../../0'
-import type { CircuitOp } from '../../0'
-import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi, bernsteinVazirani } from '../../9/1'
-import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK, SQRT1_2, SQRT2, frequencyToLight, resonanceBandwidth } from '../../3/7'
-import { gcd } from '../../0'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7'
+import * as __ns_up_dynamics from '../dynamics/index.ts'
+import * as __ns_up_up_fire_physics from '../../fire/physics/index.ts'
+import * as __ns_up_up_pair_enforcement from '../../pair/enforcement/index.ts'
+import * as __ns_up_up_mountain_geometry from '../../mountain/geometry/index.ts'
+import * as __ns_up_os from '../os/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { analogComputationDecoded, buildMatrix, completeQuantumSolutionsImplemented, noQpuRequired } from '../../heaven/compute/index.ts'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, ceil, chsh, cnot, computesGate, cos, digitalRoot, exp, floor, grover, isUuid, log10, log2, max, measure, memoByRoot, merge, merkleFold, min, pow, prng, probabilities, qubits, round, roundTo, runQuantumCircuit, sample, sealFacets, sin, sqrt, toUuid } from '../../0/index.ts'
+import type { CircuitOp } from '../../0/index.ts'
+import { bitFlipCode, concurrence, deutschJozsa, repetitionLogicalError, tkIsPrime, innerProduct, pauliAlgebraCloses, commutator, sixtyDegreesDecodesPi, bernsteinVazirani } from '../../9/1/index.ts'
+import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, GOLDEN_ANGLE, PHI, REDUCED_PLANCK, SQRT1_2, SQRT2, frequencyToLight, resonanceBandwidth } from '../../3/7/index.ts'
+import { gcd } from '../../0/index.ts'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS } from '../../3/7/index.ts'
 // frequencyToLight / A432_HUE / GOLDEN_ANGLE live in the zero-import leaf src/3/7 (beside SPEED_OF_LIGHT) so the
 // brand-anchor const initialises before any cyclic barrel, then re-export here for the canonical public path.
-export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7'
-import { resonantAmplitude } from '../../6/4'
-import { resonancePeakGain } from '../../7/3'
-import { conceptCommands } from '../../heaven/atoms'
+export { frequencyToLight, A432_HUE, GOLDEN_ANGLE } from '../../3/7/index.ts'
+import { resonantAmplitude } from '../../6/4/index.ts'
+import { resonancePeakGain } from '../../7/3/index.ts'
+import { conceptCommands } from '../../heaven/atoms/index.ts'
 // Static dependencies of the quantum-computer closure: the 64 I Ching hexagrams ARE the 6-qubit
 // computational basis, and Rosetta is the state/result codec. Referenced inside quantumComputerComputes
 // (call time, cycle-safe) so they are genuine static edges of the closure, not dead imports.
-import { iChing } from '../../earth/iching'
-import { rosettaComputes } from '../../learning'
-import { TAU } from '../../3/7'
-import { HARMONY, earned } from '../../3/7'
+import { iChing } from '../../earth/iching/index.ts'
+import { rosettaComputes } from '../../learning/index.ts'
+import { TAU } from '../../3/7/index.ts'
+import { HARMONY, earned } from '../../3/7/index.ts'
 export function quantumScienceResearch(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumScienceResearch', matrix, () => {
     const qdyn = __ns_up_dynamics.quantumDynamicsResearch(matrix)

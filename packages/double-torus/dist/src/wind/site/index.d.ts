@@ -1,6 +1,6 @@
-export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7';
-import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types';
-import { type LocaleName } from '../../1/9';
+export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts';
+import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types/index.ts';
+import { type LocaleName } from '../../1/9/index.ts';
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
 export declare const SITE_DOMAIN_SEED: readonly [{
     readonly id: "tools";
@@ -730,8 +730,8 @@ export declare function folderMigrationDedupWaves(matrix?: MindMatrix): {
 };
 /** npm run quantum:folder-migration-waves — print per-folder migration/dedup receipt (exit 0 iff computes). */
 export declare function runFolderMigrationDedupWavesExit(_root?: string, _argv?: readonly string[]): number;
-export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9';
-export { pickLocale, localizeMonolingual, localizeMonolingual as displayText } from '../../quantum/heaven/library';
+export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts';
+export { pickLocale, localizeMonolingual, localizeMonolingual as displayText } from '../../quantum/heaven/library/index.ts';
 export type VitePressLocaleKey = 'root' | 'bg' | 'gla';
 export declare function vitepressLocaleLink(localeKey: VitePressLocaleKey): string;
 export declare function localePaths(route: string): {
@@ -805,7 +805,7 @@ export declare function vitepressDevServerBind(): {
     port: number;
     strictPort: boolean;
 };
-export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../routes/corpus';
+export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../routes/corpus/index.ts';
 export declare function siteConfig(matrix?: MindMatrix): {
     title: string;
     titleBg: string;
@@ -1021,7 +1021,7 @@ export declare function staticPagesAll(): StaticPage[];
  * no route, no build, no search entry, no sitemap line. The full catalog stays in staticPagesAll (data,
  * not surface); restoring a page = giving it a science keyword, never re-wiring VitePress. */
 export declare function staticPages(): StaticPage[];
-export { theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS } from '../../3/7';
+export { theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS } from '../../3/7/index.ts';
 /** THE SERVED-ROUTE LAW (user law: purge old links) — a route is LIVE iff its bare slug is the home,
  * a served science page, a populated ray hub, a corpus surface, or a real file artifact. Every guide,
  * gateway and section map sanitizes through THIS predicate, so no surface can emit a removed link. */

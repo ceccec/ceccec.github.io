@@ -1,10 +1,10 @@
 // ☵ Kǎn · Water · quantum discovery portal — live mesh interface
 // Serves algorithm signatures, contrasts, and Millennium Prize candidates via quantum routing
 
-import { memoByRoot, toUuid, floor } from '../../0'
-import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { comparisonMesh, type AlgorithmSignature, type SolutionCandidate } from '../mesh'
+import { memoByRoot, toUuid, floor } from '../../0/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import { comparisonMesh, type AlgorithmSignature, type SolutionCandidate } from '../mesh/index.ts'
 
 export type PortalState = {
   readonly algorithms: AlgorithmSignature[]

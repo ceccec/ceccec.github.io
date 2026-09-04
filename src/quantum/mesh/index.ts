@@ -1,9 +1,9 @@
 // ☵ Kǎn · Water · dynamic comparison mesh for solution discovery
 // Comparative analysis across algorithm families to hypothesize undiscovered solution paths
 
-import { memoByRoot, toUuid, floor } from '../../0'
-import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
+import { memoByRoot, toUuid, floor } from '../../0/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
 
 export type AlgorithmSignature = {
   readonly name: string

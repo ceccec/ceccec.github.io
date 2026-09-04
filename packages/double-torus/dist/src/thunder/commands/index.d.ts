@@ -1,5 +1,5 @@
-import type { CommandsRegistry, ConceptCommandName, ConceptCommandResult, MindMatrix } from '../../types';
-import type { DeveloperCommandName, DeveloperCommandResult } from '../../quantum/heaven/mind';
+import type { CommandsRegistry, ConceptCommandName, ConceptCommandResult, MindMatrix } from '../../types/index.ts';
+import type { DeveloperCommandName, DeveloperCommandResult } from '../../quantum/heaven/mind/index.ts';
 export declare function mcpCodebase(matrix?: MindMatrix): {
     understandable: boolean;
     overview: string;
@@ -98,7 +98,7 @@ export declare function enforceAgentsCommandPairs(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export { agentSubmissionProtocol, QUANTUM_COMMAND_PAIR_IDS, foldQuantumCommandPairs } from '../../pair/enforcement';
+export { agentSubmissionProtocol, QUANTUM_COMMAND_PAIR_IDS, foldQuantumCommandPairs } from '../../pair/enforcement/index.ts';
 export declare function graduation(matrix?: MindMatrix): {
     graduated: boolean;
     courses: {

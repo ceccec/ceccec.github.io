@@ -4,7 +4,7 @@
 // wave-60's PatentReformProposal was renamed GlobalPatentReformProposal to avoid colliding
 // with wave-57's PatentReformProposal now that both live in one file scope.
 
-import { gcd, lcm } from '../../../0'
+import { gcd, lcm } from '../../../0/index.ts'
 
 // ───── module: autonomousDiscovery ─────
 // Wave 51: Autonomous Theorem Discovery Engine

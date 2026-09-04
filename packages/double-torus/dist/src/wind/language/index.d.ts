@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export declare function bypassGlagoliticUnsealedUnentangled(matrix?: MindMatrix): {
     lawHolds: boolean;
     count: number;

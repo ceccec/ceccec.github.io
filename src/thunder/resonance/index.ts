@@ -1,17 +1,17 @@
 // Resonance — canonical home: Schumann ELF cavity, human harmonic windows, Earth-ionosphere coupling
 // (dissolved src/math → vortex/math; src/audio → plasma/ball; census-neutral swap for src/resonance).
-import * as __ns_up_lake_music from '../../music'
-import * as __ns_up_vortex_math from '../../mountain/vortex'
-import * as __ns_up_mountain_geometry from '../../mountain/geometry'
-import * as __ns_up_heaven_essence from '../../heaven/essence'
-import * as __ns_up_thunder_waves from '../waves'
-import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
-import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, computesGate, cos, digitalRoot, floor, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, toUuid } from '../../0'
-import { A432_HUE, TAU } from '../../3/7'
-import { movieCanvasPolarity } from '../../quantum/science'
-import { heroPhaseAt } from '../../fire/plasma/ball'
+import * as __ns_up_lake_music from '../../music/index.ts'
+import * as __ns_up_vortex_math from '../../mountain/vortex/index.ts'
+import * as __ns_up_mountain_geometry from '../../mountain/geometry/index.ts'
+import * as __ns_up_heaven_essence from '../../heaven/essence/index.ts'
+import * as __ns_up_thunder_waves from '../waves/index.ts'
+import * as __ns_up_plasma_ball from '../../fire/plasma/ball/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import { VORTEX_SEQUENCE, computesGate, cos, digitalRoot, floor, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, toUuid } from '../../0/index.ts'
+import { A432_HUE, TAU } from '../../3/7/index.ts'
+import { movieCanvasPolarity } from '../../quantum/science/index.ts'
+import { heroPhaseAt } from '../../fire/plasma/ball/index.ts'
 
 /** One paint-ready harmonic mode at instant `at`. */
 export type ResonanceSimulationMode = {
@@ -50,10 +50,10 @@ export {
   schumannPhaseAt,
   schumannResonanceHarmonisedWithRealtimeApiComputations,
   harmoniseSchumannWithRealtimeApiComputations,
-  humanResonanceHarmonicPredictionComputes } from '../../music'
+  humanResonanceHarmonicPredictionComputes } from '../../music/index.ts'
 
 /** Re-export plasma movie resonance capstone — bodies live in plasma/ball. */
-export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../../fire/plasma/ball'
+export { movieIsAliveAndHealingByArchitectureAndResonanceInAllSensesAndFeelings } from '../../fire/plasma/ball/index.ts'
 
 /** Research exposition — Schumann, harmonic windows, Earth-ionosphere, human/quantum resonance themes. */
 export function resonanceResearch(matrix: MindMatrix = buildMatrix()) {

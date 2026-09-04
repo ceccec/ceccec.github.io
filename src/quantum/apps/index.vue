@@ -207,8 +207,8 @@ import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.v
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../../.vitepress/theme/components/ui/Separator.vue'
-import { statusBadgeKind, statusBadgeTokens, type StatusBadgeKind } from '../../../.vitepress/lib/status-badge'
-import { min } from '../../0'
+import { statusBadgeKind, statusBadgeTokens, type StatusBadgeKind } from '../../../.vitepress/lib/status-badge.ts'
+import { min } from '../../0/index.ts'
 
 /** Session hub badge props — class uses sealed ui-badge--status-* → --status-* tokens. */
 function badgeProps(input: boolean | StatusBadgeKind | string) {

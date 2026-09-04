@@ -1,8 +1,8 @@
 // Browser-safe public surface — quantum pairs + mission registry (no node:fs).
-import type { MindMatrix } from '../../types'
-import { buildMatrix, verifyRoot, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute'
-import { floor, foldPair, foldVortex, isUuid, max, memoByRoot, merkleFold, round, toUuid } from '../../0'
-import { scanUuidKernelOffenders } from './gates/strict/scan'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix, verifyRoot, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute/index.ts'
+import { floor, foldPair, foldVortex, isUuid, max, memoByRoot, merkleFold, round, toUuid } from '../../0/index.ts'
+import { scanUuidKernelOffenders } from './gates/strict/scan/index.ts'
 
 export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
 
@@ -1732,9 +1732,9 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
 }
 
 // call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
-import * as __ns_up_wind_learning from '../../learning'
-import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
-import { claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7'
+import * as __ns_up_wind_learning from '../../learning/index.ts'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6/index.ts'
+import { claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7/index.ts'
 
 // ── DYNAMIC STRATEGIES FROM THE THEOREMS, REALTIME (user law: develop dynamic strategies based on
 // the theorems used realtime by the agents) — the agent's playbook is COMPUTED, never remembered:

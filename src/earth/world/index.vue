@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // Display gate — co-located src/earth/world/index.ts
 import { computed } from 'vue'
-import { src0BlackHoleSimulationComputes, goldMineMapComputes } from './index'
-import { decodeAndComputeAllFromEarthToGalaxiesAndBeyond } from '../../wind/fusion'
-import { goldFusionComputes } from '../../wind/fusion'
+import { src0BlackHoleSimulationComputes, goldMineMapComputes } from './index.ts'
+import { decodeAndComputeAllFromEarthToGalaxiesAndBeyond } from '../../wind/fusion/index.ts'
+import { goldFusionComputes } from '../../wind/fusion/index.ts'
 
 const gate = computed(() => src0BlackHoleSimulationComputes())
 const sim = computed(() => gate.value.sim)

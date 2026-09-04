@@ -1,23 +1,23 @@
 // ☶ Gèn · Mountain — vortex / math: 1-2-4-8-7-5 lattice, paint tiers (dissolved src/math compose mount).
-import type { MindMatrix } from '../../types'
-import { earned, frequencyToLight, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7'
-import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute'
-import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev } from '../../0'
-import { merkaba } from '../geometry'
-import { merkabaComputes, merkabasInDoubleTorus } from '../topology'
-import { TAU } from '../../3/7'
-export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0'
-export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2'
-export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry'
-export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus, merkabaComputes } from '../topology'
-export { phase } from '../../6/4'
+import type { MindMatrix } from '../../types/index.ts'
+import { earned, frequencyToLight, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7/index.ts'
+import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute/index.ts'
+import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev } from '../../0/index.ts'
+import { merkaba } from '../geometry/index.ts'
+import { merkabaComputes, merkabasInDoubleTorus } from '../topology/index.ts'
+import { TAU } from '../../3/7/index.ts'
+export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0/index.ts'
+export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2/index.ts'
+export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry/index.ts'
+export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus, merkabaComputes } from '../topology/index.ts'
+export { phase } from '../../6/4/index.ts'
 export {
   A432_OCTAVES, priceFromA432, simpleReturns, backtest, buyAndHold, sma, crossoverPositions,
   rollingZScores, meanReversionPositions, dominantCycle, cycleSlope, spectralCyclePositions,
   regimeLabels, estimateRegimeMatrix, regimeSwitchPositions, realizedVol, inverseVolSize,
   volTargetPositions, tradingReceipt, liveCapture, larmorFromMicrotesla, dopplerFromMotion,
   spectrumFromSamples, backtestRealPrices, realtimeSources, tradingSimulationComputes,
-  type BacktestResult } from '../../thunder/trading'
+  type BacktestResult } from '../../thunder/trading/index.ts'
 
 export function vortexMath(matrix: MindMatrix = buildMatrix()) {
   void matrix

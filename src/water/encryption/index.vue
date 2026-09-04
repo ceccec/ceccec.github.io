@@ -10,8 +10,8 @@ import {
   globalCyberStandardsAuditEveryAspect,
   useCasesBeyondQuantum,
 } from './index.ts'
-import { quantumEncryptionProof, quantumEncryptionReference, quantumEncryptionComplete, encryptionSequenceReflection } from '../../heaven/core'
-import { toUuid, toUuidSha256, sha256Sync, foldPair, trinityKey } from '../../0'
+import { quantumEncryptionProof, quantumEncryptionReference, quantumEncryptionComplete, encryptionSequenceReflection } from '../../heaven/core/index.ts'
+import { toUuid, toUuidSha256, sha256Sync, foldPair, trinityKey } from '../../0/index.ts'
 
 // ── PRODUCTION TOOLS — real, usable, deterministic, client-side, ZERO-EGRESS. Type your OWN input; every output
 // recomputes locally from the sealed primitives (no network, no key ever leaves the tab). HONEST: these are

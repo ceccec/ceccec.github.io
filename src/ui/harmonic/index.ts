@@ -1,5 +1,5 @@
-import { pow, round } from '../../0'
-import { CMI_PRIZE_SOLVED_CORE_IDS } from '../../3/7'
+import { pow, round } from '../../0/index.ts'
+import { CMI_PRIZE_SOLVED_CORE_IDS } from '../../3/7/index.ts'
 
 // σ-involution harmonic foundation
 // Audio, vibration, and numeric thresholds all derive from ONE sequence

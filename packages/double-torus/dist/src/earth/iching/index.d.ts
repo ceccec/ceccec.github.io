@@ -1,11 +1,11 @@
-import type { MindMatrix } from '../../types';
-export { BAGUA, iChing } from '../../heaven/core';
-export { iChingDomainMap } from '../../heaven/balance';
-export { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete } from '../../thunder/decode';
-export { ICHING_NUMBERS, cssIsIChingComputed, ichingTokens, ichingTokensCss, iChingFusionCompletesFolders, rosettaIChingTrinityPlacesAllTools } from '../architecture';
-export { iChingFusionCompletesAll } from '../../wind/fusion';
-export { startIChingDoubleTorus } from '../../mountain/topology';
-export { pagesRenderInBaguaSets } from '../../ui';
+import type { MindMatrix } from '../../types/index.ts';
+export { BAGUA, iChing } from '../../heaven/core/index.ts';
+export { iChingDomainMap } from '../../heaven/balance/index.ts';
+export { iChingImportExportTenD, iChingMotionAddsTheRest, iChingScalesComplete } from '../../thunder/decode/index.ts';
+export { ICHING_NUMBERS, cssIsIChingComputed, ichingTokens, ichingTokensCss, iChingFusionCompletesFolders, rosettaIChingTrinityPlacesAllTools } from '../architecture/index.ts';
+export { iChingFusionCompletesAll } from '../../wind/fusion/index.ts';
+export { startIChingDoubleTorus } from '../../mountain/topology/index.ts';
+export { pagesRenderInBaguaSets } from '../../ui/index.ts';
 /** One gate — 64 hexagrams, eight trigrams, seven scales, and Rosetta·I Ching trinity at call time. */
 export declare function ichingComputes(matrix?: MindMatrix): {
     computes: boolean;
@@ -141,7 +141,7 @@ export declare function ichingComputes(matrix?: MindMatrix): {
         placedCount: number;
         raysCovered: number;
         trinityLegs: number;
-        items: import("../architecture").RosettaIChingTrinityPlacement[];
+        items: import("../architecture/index.ts").RosettaIChingTrinityPlacement[];
         count: number;
         facets: {
             receipt: string;

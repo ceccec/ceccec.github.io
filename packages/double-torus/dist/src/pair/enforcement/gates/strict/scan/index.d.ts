@@ -1,6 +1,6 @@
-export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7';
-import type { ScriptShellScan } from '../../../script/shell';
-import { invisibleGapsCaughtByGatesBody } from '../../../../../quantum/apps';
+export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7/index.ts';
+import type { ScriptShellScan } from '../../../script/shell/index.ts';
+import { invisibleGapsCaughtByGatesBody } from '../../../../../quantum/apps/index.ts';
 /** The ONE browser-safe scan root — bare `process` is undefined in the dev client (only node:fs/node:path are
  * shimmed), so a bare `process.cwd()` default arg throws the moment a gate is called there. '/' keeps the fs walks
  * no-op in the browser (existsSync('/src') is false under the shim), so gates compute over zero entries —
@@ -713,20 +713,20 @@ export declare function buildMin(root?: string): {
         readonly deployJobMs: 11000;
         readonly workflowMs: 241000;
     };
-    timing: import("../../../script/shell").DocsBuildTimingReceipt;
+    timing: import("../../../script/shell/index.ts").DocsBuildTimingReceipt;
     slow: {
         computes: boolean;
         passed: boolean;
-        hardOpen: import("../../../script/shell").SlowBuildGapRow[];
-        warnOpen: import("../../../script/shell").SlowBuildGapRow[];
-        closed: import("../../../script/shell").SlowBuildGapRow[];
-        gaps: import("../../../script/shell").SlowBuildGapRow[];
+        hardOpen: import("../../../script/shell/index.ts").SlowBuildGapRow[];
+        warnOpen: import("../../../script/shell/index.ts").SlowBuildGapRow[];
+        closed: import("../../../script/shell/index.ts").SlowBuildGapRow[];
+        gaps: import("../../../script/shell/index.ts").SlowBuildGapRow[];
         openCount: number;
         hardOpenCount: number;
         warnOpenCount: number;
         closedCount: number;
         count: number;
-        timing: import("../../../script/shell").DocsBuildTimingReceipt;
+        timing: import("../../../script/shell/index.ts").DocsBuildTimingReceipt;
         quantumize: {
             computes: boolean;
             techniques: ({
@@ -1443,6 +1443,23 @@ export type StrictGateSnapshot = {
 export declare function relativeImportSpecs(text: string): string[];
 export declare function importGapCount(spec: string): number;
 declare function scanImportGaps(root: string, codeFiles: readonly string[], bodies: ReadonlyMap<string, string>): StrictImportGapOffender[];
+/**
+ * THE LAW IS UNCHANGED; ITS SPELLING IS. This forbade every extension and every trailing `/index`,
+ * so the canonical import was the bare folder: `from '../../3/7'`. The law it enforces is that you
+ * may reach a folder's INDEX and nothing else — never a sibling file, never past the barrel — and
+ * that law is why the corpus is index-only.
+ *
+ * A bare folder specifier is also unresolvable to Node's ESM resolver and to TypeScript under
+ * moduleResolution:nodenext, which needs an explicit file extension on every relative import in an
+ * emitted .d.ts (TS2834). The published package carried 2670 of those, one per import in its
+ * declaration graph, and no consumer type-checking under nodenext could use it.
+ *
+ * So the canonical form is now `<folder>/index.ts`, which satisfies both: the ONLY filename any
+ * relative import may name is `index.ts` (or `index.vue` for a display dual), so reaching past an
+ * index is still an offence — it is just now an offence the reader can see in the specifier rather
+ * than one the resolver silently permitted. The build rewrites `.ts` to `.js` on emit
+ * (rewriteRelativeImportExtensions), so the published declarations carry `/index.js` and resolve.
+ */
 declare function scanImports(root: string, codeFiles: readonly string[], bodies: ReadonlyMap<string, string>): StrictImportOffender[];
 declare function scanIndexOnly(codeFiles: readonly string[]): StrictIndexOffender[];
 declare function scanScriptShellViolations(scripts: readonly ScriptShellScan[]): string[];

@@ -43,11 +43,11 @@ import {
   toUuid,
   merkleFold,
   verifyRoot,
-  type MindMatrix } from '../heaven/mind'
-import { readmeMarkdown, servedRouteFamilies } from './readme'
+  type MindMatrix } from '../heaven/mind/index.ts'
+import { readmeMarkdown, servedRouteFamilies } from './readme/index.ts'
 import {
   agentBashWorkflowsAreToolsSavedInSrc, agentSubmissionProtocol,
-  dynamicStrategiesFromTheorems, sequenceStations } from '../../pair/enforcement'
+  dynamicStrategiesFromTheorems, sequenceStations } from '../../pair/enforcement/index.ts'
 import {
   sessionManualWorkAsQuantumTools, standardToolboxIoCatalog, distributedReuseExtendsCapacity,
   autoWireAnyAiModelFromPastedLink, AUTO_WIRE_PASTE_LINK_ONE_LINER,
@@ -56,19 +56,19 @@ import {
   upgradeLocalFromOptimisedManualWorkExperience,
   automateNightlyViaNpmScriptPath,
   siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis,
-  developmentFeedJson } from '../apps'
-import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6'
-import { SESSION_SKILL_FNS } from '../../2/8'
-import { STATIC_PAGE_SEED } from '../../8/2'
-import { SOURCE_REPO, AUTHOR_HANDLE, CANONICAL_HOST, citationBlock, servedRoute } from '../../3/7'
-import { publicationTimelineMeasured } from '../../research'
-import { observingMovieRevealsQuantumModel } from '../science'
-import { theoremPagePaths, theoremPageRows } from '../../wind/routes/corpus'
-import { domainProofPagePaths } from '../../research'
-import { honestRevolutionReceipt, quantumFusionJson } from '../../wind/fusion'
-import { honestRevolutionFpgaHonesty } from '../computer'
-import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify'
-import { cos, max, round, sin } from '../../0'
+  developmentFeedJson } from '../apps/index.ts'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6/index.ts'
+import { SESSION_SKILL_FNS } from '../../2/8/index.ts'
+import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
+import { SOURCE_REPO, AUTHOR_HANDLE, CANONICAL_HOST, citationBlock, servedRoute } from '../../3/7/index.ts'
+import { publicationTimelineMeasured } from '../../research/index.ts'
+import { observingMovieRevealsQuantumModel } from '../science/index.ts'
+import { theoremPagePaths, theoremPageRows } from '../../wind/routes/corpus/index.ts'
+import { domainProofPagePaths } from '../../research/index.ts'
+import { honestRevolutionReceipt, quantumFusionJson } from '../../wind/fusion/index.ts'
+import { honestRevolutionFpgaHonesty } from '../computer/index.ts'
+import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify/index.ts'
+import { cos, max, round, sin } from '../../0/index.ts'
 
 export interface DistFile {
   readonly path: string
@@ -76,7 +76,7 @@ export interface DistFile {
   readonly mime: string
 }
 
-export { readme, readmeMarkdown, homeMarkdown, readmeSignatureValid } from './readme'
+export { readme, readmeMarkdown, homeMarkdown, readmeSignatureValid } from './readme/index.ts'
 
 /** The saved manual workflows as a dist artifact — one source (the enforcement fold), served at
  *  /workflows.json and listed as an MCP resource, so any agent fetches the operational toolkit

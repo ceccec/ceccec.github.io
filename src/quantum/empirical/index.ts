@@ -14,13 +14,13 @@
 // implementation here reports measured:false rather than a plausible number.
 // [[hardcoded-value-is-a-crack]]
 
-import { memoByRoot, toUuid } from '../../0'
-import { buildMatrix } from '../../heaven/compute'
-import { quantumAlgorithmBenchmarks, quantumTestFramework, verifyAlgorithm } from '../testing'
+import { memoByRoot, toUuid } from '../../0/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import { quantumAlgorithmBenchmarks, quantumTestFramework, verifyAlgorithm } from '../testing/index.ts'
 import { existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { quantumTestCoverageReport } from '../testing/coverage'
-import type { MindMatrix } from '../../types'
+import { quantumTestCoverageReport } from '../testing/coverage/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
 
 export type SpeedupMeasurement = {
   readonly algorithm: string

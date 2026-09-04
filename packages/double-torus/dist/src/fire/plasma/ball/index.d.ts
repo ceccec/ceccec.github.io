@@ -1,4 +1,4 @@
-import type { MindMatrix, StaticPage } from '../../../types';
+import type { MindMatrix, StaticPage } from '../../../types/index.ts';
 export declare function allPagesForPlasmaWiring(matrix?: MindMatrix): StaticPage[];
 export type WiredGateway = {
     slug: string;

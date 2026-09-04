@@ -3,11 +3,11 @@
 // Dual: src/spirit/voice/quantum (browse/display primitives). Pure, only src/0 imports.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — content-addressing and merkle primitives
-import { servedRouteFromSlugs, theoremScienceVisible } from '../../3/7'
-import { STATIC_PAGE_SEED } from '../../8/2'
-import { toUuid, merkleFold } from '../../0'
-import { movieCanvasHex } from '../science'
-import { a432NoteHz } from '../../fire/li'
+import { servedRouteFromSlugs, theoremScienceVisible } from '../../3/7/index.ts'
+import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
+import { toUuid, merkleFold } from '../../0/index.ts'
+import { movieCanvasHex } from '../science/index.ts'
+import { a432NoteHz } from '../../fire/li/index.ts'
 
 // ☵ Kǎn · Water · abysmal · upper·yang · hueShift — voice domain exports
 // Quantum signalling: entanglement communication, coherence messaging, involution-forced protocols

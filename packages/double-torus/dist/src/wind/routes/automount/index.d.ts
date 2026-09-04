@@ -1,5 +1,5 @@
-export { ROUTE_ALIASES } from '../../site';
-export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational';
+export { ROUTE_ALIASES } from '../../site/index.ts';
+export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational/index.ts';
 /** Inflection rule: a pattern match → replacement for custom constant naming. */
 export type InflectionRule = {
     pattern: RegExp;
@@ -108,7 +108,7 @@ export declare function zeitwerkPort(slug?: string): {
     statement: string;
     boundary: string;
 };
-export declare function indexOfIndexes(projectRoot?: string): readonly import("../../../pair/enforcement/gates").DiscoveredIndexEntry[];
+export declare function indexOfIndexes(projectRoot?: string): readonly import("../../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
 /** Declared route aliases — old/duplicate slugs that render a canonical page's content. The learning portal
  * unified the School age-ladder and the Academy tracks into one /learn surface, so /academy and /school are
  * kept as aliases (old URLs still resolve, canonical points at /learn) rather than separate pages. */
@@ -185,7 +185,7 @@ export declare function monographSliceFromRoute(path: string, locale?: 'gla' | '
         ray: number;
         station: number;
         crossPair: string;
-        computationType: import("../../../3/7").RosettaComputationType;
+        computationType: import("../../../3/7/index.ts").RosettaComputationType;
         glagoliticAddress: string;
         rayMeta: {
             readonly ray: 0;
@@ -239,7 +239,7 @@ export declare function monographSliceFromRoute(path: string, locale?: 'gla' | '
         };
         sharedRoot: string;
         content: {
-            pageKind: import("../../../3/7").RosettaComputationType;
+            pageKind: import("../../../3/7/index.ts").RosettaComputationType;
             heroPhase: number;
             bodySeed: string;
             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -303,7 +303,7 @@ export declare function gateComplexityCollapsesToOneContentAddressedRoot(): {
 export declare function vitepressIndexOfIndexesLaw(): {
     schema: "src/[science]/[action]";
     law: string;
-    registry: readonly import("../../../pair/enforcement/gates").DiscoveredIndexEntry[];
+    registry: readonly import("../../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
     automount: number;
     incomplete: number;
     count: number;

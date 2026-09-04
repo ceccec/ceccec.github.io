@@ -1,7 +1,7 @@
-import * as __ns_waves_research from '../../research';
-export { CANDIDATE_THEOREMS } from '../../4/6';
-import type { MindMatrix, WaveCoordination, QuantumChessGame } from '../../types';
-import type { OgNode } from '../../quantum/heaven/mind';
+import * as __ns_waves_research from '../../research/index.ts';
+export { CANDIDATE_THEOREMS } from '../../4/6/index.ts';
+import type { MindMatrix, WaveCoordination, QuantumChessGame } from '../../types/index.ts';
+import type { OgNode } from '../../quantum/heaven/mind/index.ts';
 export declare function coordinatedWaves(matrix?: MindMatrix): WaveCoordination;
 export declare function surgicalWaves(matrix?: MindMatrix): {
     surgical: boolean;
@@ -291,8 +291,8 @@ export declare function translationWavesFillGaps(matrix?: MindMatrix): {
     totalGaps: number;
     missing: string[];
     inaccurate: string[];
-    hard: import("../../mountain/source").TranslationGapRow[];
-    warn: import("../../mountain/source").TranslationGapRow[];
+    hard: import("../../mountain/source/index.ts").TranslationGapRow[];
+    warn: import("../../mountain/source/index.ts").TranslationGapRow[];
     count: number;
     audits: {
         clear: boolean;
@@ -1022,7 +1022,7 @@ export declare function sendTheWavesToSendTheWavesEachAntichainLevelExposesTheNe
     statement: string;
     boundary: string;
 };
-export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, foldNameReceipt, theoremFacingCliLabel, isHexCrumbIdentity, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../research';
+export { wavesAutoScaleCapacityAtNoCostOnReuse, theoremAlgebraFirstSealedInCorpus, theoremTenDProjectionsProveAlgebraRoots, firstInCorpusProvenanceForHome, firstInCorpusProvenanceMarkdownSection, foldNameReceipt, theoremFacingCliLabel, isHexCrumbIdentity, type TheoremAlgebraNoveltyKind, type TheoremAlgebraNoveltyRow, type TheoremTenDProjectionRow, type FirstInCorpusHomeRow } from '../../research/index.ts';
 /** Eight ceccec-build-waves phases — one coherent batch per agent turn (pair: waves/build). */
 export declare const MANUAL_AGENT_WAVE_PHASES: readonly ["origin", "decode", "design", "learn", "tune", "edit", "rebuild", "verify"];
 /**

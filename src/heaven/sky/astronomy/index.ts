@@ -1,32 +1,32 @@
 // ☊ Astronomy — canonical celestial home: sixteen-body catalog, VORTEX_SEQUENCE decode, galaxy compute (dissolved src/audio → plasma/ball; census-neutral swap).
-import * as __ns_up_earth_nature from '../../../earth/nature'
-import * as __ns_up_thunder_decode from '../../../thunder/decode'
-import * as __ns_up_vortex_math from '../../../mountain/vortex'
-import * as __ns_up_fire_diamonds from '../../../fire/diamonds'
-import * as __ns_up_lake_music from '../../../music'
-import * as __ns_up_fire_li from '../../../fire/li'
-import * as __ns_up_iching from '../../../earth/iching'
-import * as __ns_up_learning from '../../../learning'
-import { schwarzschildRadius, EARTH_RADIUS_KM, claySolvedTheorem } from '../../../3/7'
-import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2'
-import { LUNAR_NODAL_PERIOD_YEARS } from '../../../9/1'
-import type { MindMatrix } from '../../../types'
-import { buildMatrix } from '../../compute'
-import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, digitalRoot, floor, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../../0'
-import { planetIsComputable, torusUuid } from '../../../fire/li'
-import { majorMoons, solarSystem } from '../../../water/cosmos'
-import { ROSETTA_RAYS } from '../../../water/digit'
-import { allComputedNoFiles } from '../../../wind/fusion'
-import { animatedHeroes, freeAnimations } from '../../../ui'
-import { atoms } from '../../atoms'
-import { atomInclusionProof } from '../../../ledger'
-import { A432_HUE, FIBONACCI, GOLDEN_ANGLE, PHI, TAU } from '../../../3/7'
-import { movieCanvasPolarity, scaleColor } from '../../../quantum/science'
-import { fractalClockDur, heroPhaseAt } from '../../../fire/plasma/ball'
+import * as __ns_up_earth_nature from '../../../earth/nature/index.ts'
+import * as __ns_up_thunder_decode from '../../../thunder/decode/index.ts'
+import * as __ns_up_vortex_math from '../../../mountain/vortex/index.ts'
+import * as __ns_up_fire_diamonds from '../../../fire/diamonds/index.ts'
+import * as __ns_up_lake_music from '../../../music/index.ts'
+import * as __ns_up_fire_li from '../../../fire/li/index.ts'
+import * as __ns_up_iching from '../../../earth/iching/index.ts'
+import * as __ns_up_learning from '../../../learning/index.ts'
+import { schwarzschildRadius, EARTH_RADIUS_KM, claySolvedTheorem } from '../../../3/7/index.ts'
+import { MOON_ORBIT_INCLINATION_DEG } from '../../../8/2/index.ts'
+import { LUNAR_NODAL_PERIOD_YEARS } from '../../../9/1/index.ts'
+import type { MindMatrix } from '../../../types/index.ts'
+import { buildMatrix } from '../../compute/index.ts'
+import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, digitalRoot, floor, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../../0/index.ts'
+import { planetIsComputable, torusUuid } from '../../../fire/li/index.ts'
+import { majorMoons, solarSystem } from '../../../water/cosmos/index.ts'
+import { ROSETTA_RAYS } from '../../../water/digit/index.ts'
+import { allComputedNoFiles } from '../../../wind/fusion/index.ts'
+import { animatedHeroes, freeAnimations } from '../../../ui/index.ts'
+import { atoms } from '../../atoms/index.ts'
+import { atomInclusionProof } from '../../../ledger/index.ts'
+import { A432_HUE, FIBONACCI, GOLDEN_ANGLE, PHI, TAU } from '../../../3/7/index.ts'
+import { movieCanvasPolarity, scaleColor } from '../../../quantum/science/index.ts'
+import { fractalClockDur, heroPhaseAt } from '../../../fire/plasma/ball/index.ts'
 import {
   RAVE_BODIES_13, RAVE_CENTER_GATES, RAVE_CENTERS_9, RAVE_CHANNELS_36, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
   humanDesignChannelsAndCenters, humanDesignVerifiedWheel,
-  raveDefinedChannels, raveMandalaGateLineAt } from '../../../quantum/spirit'
+  raveDefinedChannels, raveMandalaGateLineAt } from '../../../quantum/spirit/index.ts'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
@@ -1500,10 +1500,10 @@ export function drawAstronomyProjection(
 
 // ── MERGED FROM src/heaven/sky/sun (census descent). Solar constants join the celestial fold that already computes the Meeus ephemeris.
 // ☉ Sun — canonical solar home: day phase, obliquity, Schumann day-side ionosphere, sealed solar constants.
-import * as __ns_up_plasma_ball from '../../../fire/plasma/ball'
-import * as __ns_up_resonance from '../../../thunder/resonance'
-import * as __ns_up_double_torus_earth from '../../../water/double/earth'
-import { obliquityAtEpoch } from '../../../6/4'
+import * as __ns_up_plasma_ball from '../../../fire/plasma/ball/index.ts'
+import * as __ns_up_resonance from '../../../thunder/resonance/index.ts'
+import * as __ns_up_double_torus_earth from '../../../water/double/earth/index.ts'
+import { obliquityAtEpoch } from '../../../6/4/index.ts'
 /** Hero day phase — lazy require breaks plasma/sun cycles. */
 export function sunDayPhase(at = 0, matrix: MindMatrix = buildMatrix()) {
   void matrix
@@ -1563,8 +1563,8 @@ export function sunComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 
 // ── MERGED FROM src/heaven/sky/moon (census descent). Lunar constants, same reason as the solar ones.
 // ☽ Moon — canonical lunar home: synodic phase, tidal lock metaphor, merkaba night-side, gateway nav anchor.
-import * as __ns_up_mountain_geometry from '../../../mountain/geometry'
-import { sunAndMoon } from '../../../earth/nature'
+import * as __ns_up_mountain_geometry from '../../../mountain/geometry/index.ts'
+import { sunAndMoon } from '../../../earth/nature/index.ts'
 /** Synodic month phase (display) — ~29.53059 d; hero-clock mapped, not JPL lunar ephemeris. */
 export const SYNODIC_MONTH_DAYS = 29.53059
 

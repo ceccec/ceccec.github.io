@@ -1,6 +1,6 @@
-import * as __ns_up_up_vortex_math from '../mountain/vortex';
-import type { MindMatrix, PiMusic, PiNote } from '../types';
-export { SCHUMANN_FUNDAMENTAL_HZ } from '../3/7';
+import * as __ns_up_up_vortex_math from '../mountain/vortex/index.ts';
+import type { MindMatrix, PiMusic, PiNote } from '../types/index.ts';
+export { SCHUMANN_FUNDAMENTAL_HZ } from '../3/7/index.ts';
 export declare function harmonicMap(matrix?: MindMatrix): {
     distributed: boolean;
     fundamental: number;
@@ -731,7 +731,7 @@ export declare function schumannResonanceHarmonisedWithRealtimeApiComputations(a
         statement: string;
         boundary: string;
     };
-    waves: import("../types").WaveCoordination;
+    waves: import("../types/index.ts").WaveCoordination;
     breath: number;
     dualEarth: __ns_up_up_vortex_math.BothEarthsMerkabaRotation;
     freqApis: {
@@ -786,7 +786,7 @@ export declare function humanResonanceHarmonicPredictionComputes(matrix?: MindMa
         statement: string;
         boundary: string;
     };
-    waves: import("../types").WaveCoordination;
+    waves: import("../types/index.ts").WaveCoordination;
     breath: number;
     surprise: {
         surprised: boolean;
@@ -853,7 +853,7 @@ export declare function humanResonanceHarmonicPredictionComputes(matrix?: MindMa
             statement: string;
             boundary: string;
         };
-        waves: import("../types").WaveCoordination;
+        waves: import("../types/index.ts").WaveCoordination;
         breath: number;
         dualEarth: __ns_up_up_vortex_math.BothEarthsMerkabaRotation;
         freqApis: {

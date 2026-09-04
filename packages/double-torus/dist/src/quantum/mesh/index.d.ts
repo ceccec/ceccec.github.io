@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export type AlgorithmSignature = {
     readonly name: string;
     readonly speedup: number;

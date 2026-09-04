@@ -1,7 +1,7 @@
-import { merkleFold, toUuid } from '../../0'
-import { openTheoremsWithGaps, sealedTheoremsWithProofs } from '../chat'
-import { portal } from '../portal'
-import type { Theorem } from '../chat'
+import { merkleFold, toUuid } from '../../0/index.ts'
+import { openTheoremsWithGaps, sealedTheoremsWithProofs } from '../chat/index.ts'
+import { portal } from '../portal/index.ts'
+import type { Theorem } from '../chat/index.ts'
 
 // ─── dissolved: explorer.ts ───
 // Wave 6: Realtime Live Explorer — discover theorem patterns via σ-involution analysis

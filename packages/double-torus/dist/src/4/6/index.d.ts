@@ -1,4 +1,4 @@
-export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7';
+export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7/index.ts';
 /** Baryon-to-photon ratio η = n_B/n_γ — CMB + BBN agree. */
 export declare const BARYON_TO_PHOTON_RATIO = 6.12e-10;
 /** Reversible classical CNOT — bit flip on target when control set. */
@@ -19,7 +19,7 @@ export declare function soundPressureLevelDb(pressurePa: number): number;
 export declare function hawkingTemperature(massKg: number): number;
 /** Helmholtz free energy F = U − TS. */
 export declare function helmholtzFreeEnergy(internalEnergyJ: number, tempK: number, entropyJPerK: number): number;
-export { inductionStep } from '../../0';
+export { inductionStep } from '../../0/index.ts';
 export declare function caStep(rule: number, state: readonly number[]): number[];
 export declare function caEvolve(rule: number, initial: readonly number[], steps: number): number[][];
 export type Bit = 0 | 1;

@@ -10,12 +10,12 @@
 
 // Type-only, therefore fully erased: no runtime cycle back to the parent index. The
 // `typeof chatAudit` query below is a type position, not a value use.
-import type { StandardToolHonesty, SessionQuantumBitStatus, chatAudit } from '..'
+import type { StandardToolHonesty, SessionQuantumBitStatus, chatAudit } from '../index.ts'
 
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
-  type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, physicalFtlBooleanAtCallTime, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../../3/7'
+  type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, physicalFtlBooleanAtCallTime, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../../3/7/index.ts'
 import {
   agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath,
   claimAudit,
@@ -39,10 +39,10 @@ import {
   MANUAL_MIGRATE_WAVE_TOOLS,
   coreMathFreeForAll,
   LICENSE_CONTACT_PSG,
-} from '../../../pair/enforcement/gates'
-import type { MindMatrix } from '../../../types'
-import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../../0'
-import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../../wind/routes/corpus'
+} from '../../../pair/enforcement/gates/index.ts'
+import type { MindMatrix } from '../../../types/index.ts'
+import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../../0/index.ts'
+import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../../wind/routes/corpus/index.ts'
 
 export const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [] as const
 

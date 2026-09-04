@@ -121,8 +121,8 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { proveTheorem, proveMillenniumProblems, solutionCapabilitySummary } from '../../universal'
-import type { ProofCertificate } from '../../universal'
+import { proveTheorem, proveMillenniumProblems, solutionCapabilitySummary } from '../../universal/index.ts'
+import type { ProofCertificate } from '../../universal/index.ts'
 
 const selectedTheorem = ref('Riemann Hypothesis')
 const currentProof = ref<ProofCertificate | null>(null)

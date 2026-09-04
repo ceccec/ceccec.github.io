@@ -1,4 +1,4 @@
-import type { Theorem } from '../chat';
+import type { Theorem } from '../chat/index.ts';
 interface TheoremPattern {
     name: string;
     σStructure: string;

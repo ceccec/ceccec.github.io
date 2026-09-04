@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export declare const CLI_ENTRY_REL = "src/pair/enforcement/script/cli/bootstrap/index.ts";
 /** Split pair id into dual halves — first segment / remainder (handles vote/build/commit/push). */
 export declare function splitQuantumCommandPair(command: string): {

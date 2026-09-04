@@ -1,22 +1,22 @@
 // Strict gate scans — import · index · vitepress · file-size · snapshot collectors.
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
-import { ICHING_NUMBERS, abs, ceil, exp, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../../../0'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7'
-import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../../../4/6'
-export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7'
-import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7'
-import { SCIENCE_DOMAINS, ENGAGEMENT_MODES } from '../../../../../3/7'
-import { HARMONY, earned, TAU, PHI, FOLDED_CENSUS, UNFOLDED_CENSUS, EULER_CHI } from '../../../../../3/7'
+import { ICHING_NUMBERS, abs, ceil, exp, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../../../0/index.ts'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7/index.ts'
+import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../../../4/6/index.ts'
+export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7/index.ts'
+import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7/index.ts'
+import { SCIENCE_DOMAINS, ENGAGEMENT_MODES } from '../../../../../3/7/index.ts'
+import { HARMONY, earned, TAU, PHI, FOLDED_CENSUS, UNFOLDED_CENSUS, EULER_CHI } from '../../../../../3/7/index.ts'
 import {
   SCRIPT_SHELL_ALLOWLIST,
   SCRIPT_SHELL_LINE_BUDGET,
   readDocsBuildTiming,
   slowBuildIsQuantumGapGate,
   quantumizeVitepressBuild,
-} from '../../../script/shell'
-import type { ScriptShellScan } from '../../../script/shell'
-import { invisibleGapsCaughtByGatesBody } from '../../../../../quantum/apps'
+} from '../../../script/shell/index.ts'
+import type { ScriptShellScan } from '../../../script/shell/index.ts'
+import { invisibleGapsCaughtByGatesBody } from '../../../../../quantum/apps/index.ts'
 
 
 /** The ONE browser-safe scan root — bare `process` is undefined in the dev client (only node:fs/node:path are
@@ -2567,44 +2567,52 @@ function scanImportGaps(
   return offenders
 }
 
+/**
+ * THE LAW IS UNCHANGED; ITS SPELLING IS. This forbade every extension and every trailing `/index`,
+ * so the canonical import was the bare folder: `from '../../3/7'`. The law it enforces is that you
+ * may reach a folder's INDEX and nothing else — never a sibling file, never past the barrel — and
+ * that law is why the corpus is index-only.
+ *
+ * A bare folder specifier is also unresolvable to Node's ESM resolver and to TypeScript under
+ * moduleResolution:nodenext, which needs an explicit file extension on every relative import in an
+ * emitted .d.ts (TS2834). The published package carried 2670 of those, one per import in its
+ * declaration graph, and no consumer type-checking under nodenext could use it.
+ *
+ * So the canonical form is now `<folder>/index.ts`, which satisfies both: the ONLY filename any
+ * relative import may name is `index.ts` (or `index.vue` for a display dual), so reaching past an
+ * index is still an offence — it is just now an offence the reader can see in the specifier rather
+ * than one the resolver silently permitted. The build rewrites `.ts` to `.js` on emit
+ * (rewriteRelativeImportExtensions), so the published declarations carry `/index.js` and resolve.
+ */
 function scanImports(
   root: string,
   codeFiles: readonly string[],
   bodies: ReadonlyMap<string, string>,
 ): StrictImportOffender[] {
-  const extRe = /\.ts$/
   const offenders: StrictImportOffender[] = []
   for (const file of codeFiles) {
     const rel = relative(root, file)
     const specs = relativeImportSpecs(stripComments(bodies.get(rel) ?? ''))
     for (const spec of specs) {
       if (!spec.startsWith('.')) continue
-      if (extRe.test(spec)) {
-        offenders.push({ file, spec, reason: 'file extension — import the folder only, never the filename' })
+      const last = spec.split('/').pop() ?? ''
+
+      // The one permitted filename, in either surface.
+      if (last === 'index.ts' || last === 'index.vue') continue
+
+      if (/\.(ts|vue|js|mjs|json|css)$/.test(spec)) {
+        offenders.push({ file, spec, reason: `names ${last} — the only importable file is index.ts (or index.vue); dissolve into <name>/index.ts` })
         continue
       }
       if (/\/index$/.test(spec)) {
-        offenders.push({ file, spec, reason: 'trailing /index — import the folder path only' })
+        offenders.push({ file, spec, reason: 'trailing /index without an extension — write /index.ts, which nodenext requires and the build rewrites to .js' })
         continue
       }
-      const last = spec.split('/').pop() ?? ''
       if (last.includes('.') && last !== '..' && last !== '.') {
-        offenders.push({ file, spec, reason: 'filename segment in path — folder imports only' })
+        offenders.push({ file, spec, reason: 'filename segment in path — folder index only' })
         continue
       }
-      const resolved = resolve(dirname(file), spec)
-      if (existsSync(resolved) && statSync(resolved).isFile()) {
-        offenders.push({ file, spec, reason: 'resolves to file on disk — dissolve into <name>/index.ts and import the folder' })
-        continue
-      }
-      const parent = dirname(resolved)
-      const base = basename(resolved)
-      if (filenameModuleExists(parent, base)) {
-        offenders.push({
-          file,
-          spec,
-          reason: 'import targets filename module — only folder imports allowed; dissolve into <name>/index.ts' })
-      }
+      offenders.push({ file, spec, reason: 'bare folder import — write <folder>/index.ts; a specifier with no extension cannot resolve under nodenext and is why the package shipped 2670 TS2834 errors' })
     }
   }
   return offenders

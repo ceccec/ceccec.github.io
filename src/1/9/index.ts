@@ -4,12 +4,12 @@
 // PROTON_GYROMAGNETIC → pi-train wave 10 physical cut at src/6/4.
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
-import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7'
-import { abs, atan2, ceil, cos, digitalRoot, floor, gcd, hypot, isUuid, log, log10, log2, max, merkleFold, min, round, roundTo, sin, sqrt, toUuid, topologicalOrder, transliterateByMap, trunc, vortexNext, vortexPrev } from '../../0'
-import { piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3'
-import { PROTON_GYROMAGNETIC } from '../../6/4'
-import { TAU, PHI } from '../../3/7'
-import { earned, landauerLimit } from '../../3/7'
+import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7/index.ts'
+import { abs, atan2, ceil, cos, digitalRoot, floor, gcd, hypot, isUuid, log, log10, log2, max, merkleFold, min, round, roundTo, sin, sqrt, toUuid, topologicalOrder, transliterateByMap, trunc, vortexNext, vortexPrev } from '../../0/index.ts'
+import { piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3/index.ts'
+import { PROTON_GYROMAGNETIC } from '../../6/4/index.ts'
+import { TAU, PHI } from '../../3/7/index.ts'
+import { earned, landauerLimit } from '../../3/7/index.ts'
 
 export const digit = 1
 export const role = 'circuit' as const

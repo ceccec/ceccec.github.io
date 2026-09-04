@@ -1,6 +1,6 @@
-import type { MindMatrix } from '../../types';
-export { A432_OCTAVES } from '../../3/7';
-export { typographySeo, openGraph, multidimensional } from '../../quantum/icons';
+import type { MindMatrix } from '../../types/index.ts';
+export { A432_OCTAVES } from '../../3/7/index.ts';
+export { typographySeo, openGraph, multidimensional } from '../../quantum/icons/index.ts';
 export declare function realtimeSkills(matrix?: MindMatrix): {
     upgraded: boolean;
     maxTamperingCost: boolean;
@@ -147,7 +147,7 @@ export declare function terabyteRealtimeFromAllPublicDataBreathing(matrix?: Mind
     statement: string;
     boundary: string;
 };
-export { realtimeWiring } from '../../fire/plasma/ball';
+export { realtimeWiring } from '../../fire/plasma/ball/index.ts';
 /** @rosetta ✦₁ · Fire · clarity (trading+signals, analytic math) */
 export declare function priceFromA432(variant: string, n: number, opts?: {
     drift?: number;

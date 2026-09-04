@@ -1,9 +1,9 @@
-import type { MindMatrix } from '../../../types';
-import { discoveryDomain } from '../../../4/6';
-import { type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site';
-import { type RosettaRayHub } from '../../../water/digit';
-import type { CorpusKind } from '../../../quantum/heaven/mind';
-import { type ComponentCrosslink, type CorpusPaperStandardSections } from '../../../learning';
+import type { MindMatrix } from '../../../types/index.ts';
+import { discoveryDomain } from '../../../4/6/index.ts';
+import { type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site/index.ts';
+import { type RosettaRayHub } from '../../../water/digit/index.ts';
+import type { CorpusKind } from '../../../quantum/heaven/mind/index.ts';
+import { type ComponentCrosslink, type CorpusPaperStandardSections } from '../../../learning/index.ts';
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export declare const CLIENT_WORK_TIERS: readonly [3, 5, 8];
 export declare const NAV358_TOTAL: number;
@@ -151,7 +151,7 @@ export declare function doubleTorusCorpusRouting(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    lattice: readonly import("../../../types").QuantumDiamond[];
+    lattice: readonly import("../../../types/index.ts").QuantumDiamond[];
     leaves: {
         pure: boolean;
         count: number;
@@ -509,13 +509,13 @@ export declare function rosettaBreadcrumbs(route: string, at?: number, matrix?: 
 };
 /** One fold per route — hero, rosetta groups, corpus, or catch-all monograph. */
 export declare function computeUniversalPage(route: string, params?: Record<string, unknown>, matrix?: MindMatrix): UniversalPage;
-export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount';
-export type { ZeitwerkEntry, ZeitwerkLoader, ZeitwerkRegistryEntry } from '../automount';
-export { harmonisedNavigation, navigationIsMovie, ogBuildsNavigation, rosettaComputesNavigationAndContent, siteNavigation, vitepressSidebar } from '../../../learning';
-export { pageForgeMaxTamper, type PageForgeSeal } from '../../site';
-export { contentIsMonographOfMonographs, eachPageSpeaksContinuesNext, everyElementIsALinkedNodeOrUseless, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, monographs, onlyPageRouteForAll, theMonograph } from '../../../learning';
-export { homePageNoDifferent, homepage, pageStatusStatistics, proveAllOnHomePage } from '../../site';
-export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/digit';
+export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount/index.ts';
+export type { ZeitwerkEntry, ZeitwerkLoader, ZeitwerkRegistryEntry } from '../automount/index.ts';
+export { harmonisedNavigation, navigationIsMovie, ogBuildsNavigation, rosettaComputesNavigationAndContent, siteNavigation, vitepressSidebar } from '../../../learning/index.ts';
+export { pageForgeMaxTamper, type PageForgeSeal } from '../../site/index.ts';
+export { contentIsMonographOfMonographs, eachPageSpeaksContinuesNext, everyElementIsALinkedNodeOrUseless, everyGraphAMonographConsolidateExtend, everyPageGraphOfGraphsFractal, monographs, onlyPageRouteForAll, theMonograph } from '../../../learning/index.ts';
+export { homePageNoDifferent, homepage, pageStatusStatistics, proveAllOnHomePage } from '../../site/index.ts';
+export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/digit/index.ts';
 /** All is monograph — every page is a scientific paper with one template. */
 export declare function allIsMonographScientificPaper(matrix?: MindMatrix): {
     papered: boolean;
@@ -1052,7 +1052,7 @@ export declare function rosettaDecodesCorpus(matrix?: MindMatrix): {
         ray: number;
         station: number;
         crossPair: string;
-        computationType: import("../../../3/7").RosettaComputationType;
+        computationType: import("../../../3/7/index.ts").RosettaComputationType;
         glagoliticAddress: string;
         rayMeta: {
             readonly ray: 0;
@@ -1106,7 +1106,7 @@ export declare function rosettaDecodesCorpus(matrix?: MindMatrix): {
         };
         sharedRoot: string;
         content: {
-            pageKind: import("../../../3/7").RosettaComputationType;
+            pageKind: import("../../../3/7/index.ts").RosettaComputationType;
             heroPhase: number;
             bodySeed: string;
             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;

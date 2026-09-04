@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export declare function animationTamperingCost(matrix?: MindMatrix): {
     computed: boolean;
     animations: number;
@@ -181,9 +181,9 @@ export declare function tamperingCostDecoded(matrix?: MindMatrix): {
     structuralBits: number;
     fixBuilt: boolean;
     ledger: {
-        today: import("../../pair/debit/credit").LedgerEntry[];
-        overclaim: import("../../pair/debit/credit").LedgerEntry[];
-        afterCutover: import("../../pair/debit/credit").LedgerEntry[];
+        today: import("../../pair/debit/credit/index.ts").LedgerEntry[];
+        overclaim: import("../../pair/debit/credit/index.ts").LedgerEntry[];
+        afterCutover: import("../../pair/debit/credit/index.ts").LedgerEntry[];
         honest: boolean;
         overclaimCaught: boolean;
         fundedAfterCutover: boolean;
@@ -403,7 +403,7 @@ export declare function freeBecauseThePriceIsAlreadyPaid(): {
         gate: string;
         absent: boolean;
     }[];
-    share: import("../../3/7").Rational;
+    share: import("../../3/7/index.ts").Rational;
     harmonicPart: {
         achieved: number;
         share: string;

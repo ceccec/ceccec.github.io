@@ -7,16 +7,16 @@
  * No hardcoding. No demos. Real cryptographic recovery.
  */
 
-import { prng, gcd } from '../../0'
+import { prng, gcd } from '../../0/index.ts'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { toUuid, floor, ceil, sqrt, min } from '../../0'
+import { toUuid, floor, ceil, sqrt, min } from '../../0/index.ts'
 // The key-recovery functions below are IMPORTED from crypto/reverse rather than
 // redefined. They were byte-identical copies — which is how the recoverEdDSA fix
 // (a fabricated Math.random Ed25519 scalar returned with recovered:true) landed in
 // crypto/reverse this session and survived untouched in this file. One definition,
 // one place to fix.
-import { modularInverse, parseKeyData, parseSshPublicKey, recoverAllKeys, recoverDiscreteLog, recoverEdDSA, recoverLatticeSvp, shorsAlgorithm } from '../../crypto/reverse'
+import { modularInverse, parseKeyData, parseSshPublicKey, recoverAllKeys, recoverDiscreteLog, recoverEdDSA, recoverLatticeSvp, shorsAlgorithm } from '../../crypto/reverse/index.ts'
 
 export type PublicKey = {
   type: 'rsa' | 'lattice-kem' | 'discrete-log' | 'unknown'

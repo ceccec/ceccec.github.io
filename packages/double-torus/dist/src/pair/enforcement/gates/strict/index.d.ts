@@ -1,9 +1,9 @@
-import type { Finding } from '..';
-import { type StrictGateSnapshot } from './scan';
-export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, stripComments, type StrictImportOffender, type StrictIndexOffender, type StrictVitepressIndexOffender, type StrictHyphenOffender, type StrictNonTsOffender, type StrictImportGapOffender, type StrictGateSnapshot } from './scan';
-export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './scan';
-export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './scan';
-export { scanAppHtml, appAuditSummary, type AppPageAudit } from './scan';
+import type { Finding } from '../index.ts';
+import { type StrictGateSnapshot } from './scan/index.ts';
+export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, stripComments, type StrictImportOffender, type StrictIndexOffender, type StrictVitepressIndexOffender, type StrictHyphenOffender, type StrictNonTsOffender, type StrictImportGapOffender, type StrictGateSnapshot } from './scan/index.ts';
+export { computeStrictGateSnapshot, strictGatePassed, scanVitepressIndex, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './scan/index.ts';
+export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './scan/index.ts';
+export { scanAppHtml, appAuditSummary, type AppPageAudit } from './scan/index.ts';
 export declare const FOLD_HOMES: Record<string, readonly string[]>;
 export declare function foldsLiveAtTheirDomainHome(definers?: readonly {
     name: string;

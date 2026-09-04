@@ -1,10 +1,10 @@
-import type { Atom, ConceptCommand, ConceptCommandName, LocalAnswer, MindMatrix } from '../../types';
-export { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7';
+import type { Atom, ConceptCommand, ConceptCommandName, LocalAnswer, MindMatrix } from '../../types/index.ts';
+export { computePiDigits, PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, REQUIRED_DIAMOND_POLES, REQUIRED_ANALOG_CHANNELS } from '../../3/7/index.ts';
 /** @rosetta ✦₀ · Heaven · creative */
 export declare const atoms: readonly Atom[];
 /** @rosetta ✦₀ · Heaven · creative */
 export declare const conceptCommands: readonly ConceptCommand[];
-export { SINGLE_WORD_METHODS } from '../../3/7';
+export { SINGLE_WORD_METHODS } from '../../3/7/index.ts';
 /** Professional command graph — dry scientific names decode to folder tails (one word per segment). */
 export declare function professionalCommandGraph(): {
     name: ConceptCommandName;

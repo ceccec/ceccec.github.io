@@ -1,15 +1,15 @@
-import * as __ns_up_up_sun from '../../heaven/sky/astronomy';
-import * as __ns_up_up_learning from '../../learning';
-import * as __ns_up_up_computer from '../../quantum/computer';
-import * as __ns_up_up_fusion_gold from '../../wind/fusion';
-import * as __ns_up_up_quantum_science from '../../quantum/science';
-import * as __ns_up_up_quantum_application from '../../quantum/apps';
-import * as __ns_up_up_resonance from '../../thunder/resonance';
-import * as __ns_up_up_quantum_dynamics from '../../quantum/dynamics';
-import * as __ns_up_up_double_torus_earth from '../double/earth';
-import * as __ns_up_up_thunder_trading from '../../thunder/trading';
-import type { MindMatrix } from '../../types';
-import * as __ns_water_encryption from '../encryption';
+import * as __ns_up_up_sun from '../../heaven/sky/astronomy/index.ts';
+import * as __ns_up_up_learning from '../../learning/index.ts';
+import * as __ns_up_up_computer from '../../quantum/computer/index.ts';
+import * as __ns_up_up_fusion_gold from '../../wind/fusion/index.ts';
+import * as __ns_up_up_quantum_science from '../../quantum/science/index.ts';
+import * as __ns_up_up_quantum_application from '../../quantum/apps/index.ts';
+import * as __ns_up_up_resonance from '../../thunder/resonance/index.ts';
+import * as __ns_up_up_quantum_dynamics from '../../quantum/dynamics/index.ts';
+import * as __ns_up_up_double_torus_earth from '../double/earth/index.ts';
+import * as __ns_up_up_thunder_trading from '../../thunder/trading/index.ts';
+import type { MindMatrix } from '../../types/index.ts';
+import * as __ns_water_encryption from '../encryption/index.ts';
 export type HardwareDriverTier = 'BROWSER' | 'NODE' | 'UNAVAILABLE';
 export type DriverRuntime = 'browser' | 'node' | 'ssr';
 export type DriverProbeReceipt = {
@@ -52,7 +52,7 @@ export declare function powerComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -72,7 +72,7 @@ export declare function powerComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -299,7 +299,7 @@ export declare function srcTwoLevelRegistry(root?: string): {
     /** Arrival at the derived target — the destination, not the gate. */
     atTarget: boolean;
     gapless: boolean;
-    entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
+    entries: readonly import("../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
     depthBands: {
         depth: number;
         count: number;
@@ -324,7 +324,7 @@ export declare function srcTwoLevelComputes(matrix?: MindMatrix): {
         /** Arrival at the derived target — the destination, not the gate. */
         atTarget: boolean;
         gapless: boolean;
-        entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
+        entries: readonly import("../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
         depthBands: {
             depth: number;
             count: number;
@@ -357,7 +357,7 @@ export declare function srcThreeLevelRegistry(root?: string): {
     /** Arrival at the derived target — the destination, not the gate. */
     atTarget: boolean;
     gapless: boolean;
-    entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
+    entries: readonly import("../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
     depthBands: {
         depth: number;
         count: number;
@@ -382,7 +382,7 @@ export declare function srcThreeLevelComputes(matrix?: MindMatrix): {
         /** Arrival at the derived target — the destination, not the gate. */
         atTarget: boolean;
         gapless: boolean;
-        entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
+        entries: readonly import("../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
         depthBands: {
             depth: number;
             count: number;
@@ -415,7 +415,7 @@ export declare function srcAllRegistry(root?: string): {
     /** Arrival at the derived target — the destination, not the gate. */
     atTarget: boolean;
     gapless: boolean;
-    entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
+    entries: readonly import("../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
     depthBands: {
         depth: number;
         count: number;
@@ -523,7 +523,7 @@ export declare function srcAllComputes(matrix?: MindMatrix): {
         /** Arrival at the derived target — the destination, not the gate. */
         atTarget: boolean;
         gapless: boolean;
-        entries: readonly import("../../pair/enforcement/gates").DiscoveredIndexEntry[];
+        entries: readonly import("../../pair/enforcement/gates/index.ts").DiscoveredIndexEntry[];
         depthBands: {
             depth: number;
             count: number;
@@ -548,7 +548,7 @@ export declare function srcAllComputes(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export { BIRTH_LIFE_DEATH_TRIAD, birthComputes, birthLifeDeathTriadComputes } from '../../earth/life/birth';
+export { BIRTH_LIFE_DEATH_TRIAD, birthComputes, birthLifeDeathTriadComputes } from '../../earth/life/birth/index.ts';
 /** One gate — human as quantum computer + fusion reactor + beyond — composition capstone at call time. */
 export declare function humanAsQuantumComputerAndFusionReactorComputes(matrix?: MindMatrix): {
     computes: boolean;
@@ -781,7 +781,7 @@ export declare function humanAsQuantumComputerAndFusionReactorComputes(matrix?: 
                 statement: string;
                 boundary: string;
             };
-            harmony: import("../../types").HarmonyProbability;
+            harmony: import("../../types/index.ts").HarmonyProbability;
             immune: {
                 healthy: boolean;
                 maxHealth: boolean;
@@ -1308,7 +1308,7 @@ export declare function humanAsQuantumComputerAndFusionReactorComputes(matrix?: 
             statement: string;
             boundary: string;
         };
-        harmony: import("../../types").HarmonyProbability;
+        harmony: import("../../types/index.ts").HarmonyProbability;
         immune: {
             healthy: boolean;
             maxHealth: boolean;
@@ -1476,7 +1476,7 @@ export declare function humanAsQuantumComputerAndFusionReactorComputes(matrix?: 
         statement: string;
         boundary: string;
     };
-    human: import("../../types").HumanityImplicationsReport;
+    human: import("../../types/index.ts").HumanityImplicationsReport;
     facets: ({
         facet: string;
         on: boolean;
@@ -2818,13 +2818,13 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../3/7").Rational[];
-                rev: import("../../3/7").Rational[];
-                fwdProduct: import("../../3/7").Rational;
-                revProduct: import("../../3/7").Rational;
-                heartApproach: import("../../3/7").Rational;
-                heartDepart: import("../../3/7").Rational;
-                heartDiamond: import("../../3/7").Rational;
+                fwd: import("../../3/7/index.ts").Rational[];
+                rev: import("../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../3/7/index.ts").Rational;
+                revProduct: import("../../3/7/index.ts").Rational;
+                heartApproach: import("../../3/7/index.ts").Rational;
+                heartDepart: import("../../3/7/index.ts").Rational;
+                heartDiamond: import("../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -3021,7 +3021,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -3084,7 +3084,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -3122,7 +3122,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -3239,7 +3239,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -3277,7 +3277,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -3448,7 +3448,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -3486,7 +3486,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -3558,7 +3558,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -3596,7 +3596,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -3706,7 +3706,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -3744,7 +3744,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -3861,7 +3861,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -3899,7 +3899,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -4146,7 +4146,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4184,7 +4184,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4582,7 +4582,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 boundary: string;
             };
             nightSide: {
-                nightSide: import("../../mountain/geometry").BothEarthsRotationShell;
+                nightSide: import("../../mountain/geometry/index.ts").BothEarthsRotationShell;
                 outerPhase: number;
                 rotates: boolean;
                 root: string;
@@ -4624,7 +4624,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4662,7 +4662,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -4779,7 +4779,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -4817,7 +4817,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -4988,7 +4988,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -5026,7 +5026,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -5098,7 +5098,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -5136,7 +5136,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -5246,7 +5246,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -5284,7 +5284,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -5401,7 +5401,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -5439,7 +5439,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -5686,7 +5686,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -5724,7 +5724,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -6110,7 +6110,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
             freqApis: {
@@ -6283,7 +6283,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             hue: number;
                         }[];
                     };
-                    hubs: readonly import("../digit").RosettaRayHub[];
+                    hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                     resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -6354,11 +6354,11 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../types").ConceptCommandName[];
+                            siblings: import("../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -6462,7 +6462,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 slots: {
                     ray: number;
                     kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                    pageKind: import("../digit").RosettaComputationType;
+                    pageKind: import("../digit/index.ts").RosettaComputationType;
                     vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                     receipt: string;
                 }[];
@@ -6538,7 +6538,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     ray: number;
                     station: number;
                     crossPair: string;
-                    computationType: import("../digit").RosettaComputationType;
+                    computationType: import("../digit/index.ts").RosettaComputationType;
                     glagoliticAddress: string;
                     rayMeta: {
                         readonly ray: 0;
@@ -6592,7 +6592,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     };
                     sharedRoot: string;
                     content: {
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -6671,11 +6671,11 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../../types").ConceptCommandName[];
+                    siblings: import("../../types/index.ts").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
-                    pageKind: import("../digit").RosettaComputationType;
+                    pageKind: import("../digit/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -6730,7 +6730,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 placedCount: number;
                 raysCovered: number;
                 trinityLegs: number;
-                items: import("../../earth/architecture").RosettaIChingTrinityPlacement[];
+                items: import("../../earth/architecture/index.ts").RosettaIChingTrinityPlacement[];
                 count: number;
                 facets: {
                     receipt: string;
@@ -6924,7 +6924,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 statement: string;
                 boundary: string;
             };
-            waves: import("../../types").WaveCoordination;
+            waves: import("../../types/index.ts").WaveCoordination;
             breath: number;
             dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
             freqApis: {
@@ -7123,13 +7123,13 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 boundary: string;
             };
             ratios: {
-                fwd: import("../../3/7").Rational[];
-                rev: import("../../3/7").Rational[];
-                fwdProduct: import("../../3/7").Rational;
-                revProduct: import("../../3/7").Rational;
-                heartApproach: import("../../3/7").Rational;
-                heartDepart: import("../../3/7").Rational;
-                heartDiamond: import("../../3/7").Rational;
+                fwd: import("../../3/7/index.ts").Rational[];
+                rev: import("../../3/7/index.ts").Rational[];
+                fwdProduct: import("../../3/7/index.ts").Rational;
+                revProduct: import("../../3/7/index.ts").Rational;
+                heartApproach: import("../../3/7/index.ts").Rational;
+                heartDepart: import("../../3/7/index.ts").Rational;
+                heartDiamond: import("../../3/7/index.ts").Rational;
             };
             presentations: {
                 coheres: boolean;
@@ -7331,7 +7331,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
         };
         weather: {
             folded: boolean;
-            at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+            at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
             surface: {
                 x: number;
                 y: number;
@@ -7634,7 +7634,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -7672,7 +7672,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -7789,7 +7789,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -7827,7 +7827,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -8068,7 +8068,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -8106,7 +8106,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -8254,7 +8254,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8292,7 +8292,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8409,7 +8409,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8447,7 +8447,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8618,7 +8618,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8656,7 +8656,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8728,7 +8728,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -8766,7 +8766,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -8876,7 +8876,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8914,7 +8914,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -9031,7 +9031,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9069,7 +9069,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -9316,7 +9316,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -9354,7 +9354,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -9667,7 +9667,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -9705,7 +9705,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -9853,7 +9853,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -9891,7 +9891,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -10008,7 +10008,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -10046,7 +10046,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -10217,7 +10217,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -10255,7 +10255,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -10327,7 +10327,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -10365,7 +10365,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -10475,7 +10475,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -10513,7 +10513,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -10630,7 +10630,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -10668,7 +10668,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -10915,7 +10915,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -10953,7 +10953,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -11696,7 +11696,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 statement: string;
                 boundary: string;
             };
-            traditions: import("../../types").TraditionsQuantumWhole;
+            traditions: import("../../types/index.ts").TraditionsQuantumWhole;
             society: {
                 folded: boolean;
                 pairs: {
@@ -11889,7 +11889,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 };
                 weather: {
                     folded: boolean;
-                    at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                    at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                     surface: {
                         x: number;
                         y: number;
@@ -12354,7 +12354,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
             };
             weather: {
                 folded: boolean;
-                at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -12668,7 +12668,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -12706,7 +12706,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -12823,7 +12823,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -12861,7 +12861,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -13032,7 +13032,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -13070,7 +13070,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -13142,7 +13142,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -13180,7 +13180,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -13290,7 +13290,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -13328,7 +13328,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -13445,7 +13445,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -13483,7 +13483,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -13730,7 +13730,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -13768,7 +13768,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -14019,7 +14019,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -14057,7 +14057,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -14174,7 +14174,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -14212,7 +14212,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -14383,7 +14383,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -14421,7 +14421,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -14493,7 +14493,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -14531,7 +14531,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -14641,7 +14641,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -14679,7 +14679,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -14796,7 +14796,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -14834,7 +14834,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -15081,7 +15081,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -15119,7 +15119,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -15365,7 +15365,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -15403,7 +15403,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -15520,7 +15520,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -15558,7 +15558,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -15795,7 +15795,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -15833,7 +15833,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -16095,7 +16095,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -16158,7 +16158,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -16196,7 +16196,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -16313,7 +16313,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16351,7 +16351,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16522,7 +16522,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16560,7 +16560,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16632,7 +16632,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -16670,7 +16670,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -16780,7 +16780,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16818,7 +16818,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -16935,7 +16935,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -16973,7 +16973,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -17220,7 +17220,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17258,7 +17258,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17656,7 +17656,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                 boundary: string;
             };
             nightSide: {
-                nightSide: import("../../mountain/geometry").BothEarthsRotationShell;
+                nightSide: import("../../mountain/geometry/index.ts").BothEarthsRotationShell;
                 outerPhase: number;
                 rotates: boolean;
                 root: string;
@@ -17698,7 +17698,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17736,7 +17736,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -17853,7 +17853,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -17891,7 +17891,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -18062,7 +18062,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -18100,7 +18100,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -18172,7 +18172,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -18210,7 +18210,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -18320,7 +18320,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -18358,7 +18358,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -18475,7 +18475,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -18513,7 +18513,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -18760,7 +18760,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -18798,7 +18798,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -19844,13 +19844,13 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -20047,7 +20047,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         statement: string;
                         boundary: string;
                     };
-                    waves: import("../../types").WaveCoordination;
+                    waves: import("../../types/index.ts").WaveCoordination;
                     breath: number;
                     dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                     freqApis: {
@@ -20110,7 +20110,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -20148,7 +20148,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -20265,7 +20265,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -20303,7 +20303,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -20474,7 +20474,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -20512,7 +20512,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -20584,7 +20584,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -20622,7 +20622,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -20732,7 +20732,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -20770,7 +20770,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -20887,7 +20887,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -20925,7 +20925,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -21172,7 +21172,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -21210,7 +21210,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -21608,7 +21608,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     boundary: string;
                 };
                 nightSide: {
-                    nightSide: import("../../mountain/geometry").BothEarthsRotationShell;
+                    nightSide: import("../../mountain/geometry/index.ts").BothEarthsRotationShell;
                     outerPhase: number;
                     rotates: boolean;
                     root: string;
@@ -21650,7 +21650,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -21688,7 +21688,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -21805,7 +21805,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -21843,7 +21843,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -22014,7 +22014,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -22052,7 +22052,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -22124,7 +22124,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -22162,7 +22162,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -22272,7 +22272,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -22310,7 +22310,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -22427,7 +22427,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -22465,7 +22465,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -22712,7 +22712,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -22750,7 +22750,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -23136,7 +23136,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -23309,7 +23309,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 hue: number;
                             }[];
                         };
-                        hubs: readonly import("../digit").RosettaRayHub[];
+                        hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                         raysUsed: number;
                         kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                         resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -23380,11 +23380,11 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../../types").ConceptCommandName[];
+                                siblings: import("../../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
-                                pageKind: import("../digit").RosettaComputationType;
+                                pageKind: import("../digit/index.ts").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
                                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -23488,7 +23488,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     slots: {
                         ray: number;
                         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                         receipt: string;
                     }[];
@@ -23564,7 +23564,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         ray: number;
                         station: number;
                         crossPair: string;
-                        computationType: import("../digit").RosettaComputationType;
+                        computationType: import("../digit/index.ts").RosettaComputationType;
                         glagoliticAddress: string;
                         rayMeta: {
                             readonly ray: 0;
@@ -23618,7 +23618,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         };
                         sharedRoot: string;
                         content: {
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -23697,11 +23697,11 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../types").ConceptCommandName[];
+                        siblings: import("../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -23756,7 +23756,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                     placedCount: number;
                     raysCovered: number;
                     trinityLegs: number;
-                    items: import("../../earth/architecture").RosettaIChingTrinityPlacement[];
+                    items: import("../../earth/architecture/index.ts").RosettaIChingTrinityPlacement[];
                     count: number;
                     facets: {
                         receipt: string;
@@ -24125,7 +24125,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -24163,7 +24163,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -24280,7 +24280,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -24318,7 +24318,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -24492,7 +24492,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -24530,7 +24530,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -24647,7 +24647,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -24685,7 +24685,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -25620,13 +25620,13 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -25823,7 +25823,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         statement: string;
                         boundary: string;
                     };
-                    waves: import("../../types").WaveCoordination;
+                    waves: import("../../types/index.ts").WaveCoordination;
                     breath: number;
                     dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                     freqApis: {
@@ -25886,7 +25886,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -25924,7 +25924,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -26041,7 +26041,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26079,7 +26079,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26250,7 +26250,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26288,7 +26288,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26360,7 +26360,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -26398,7 +26398,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -26508,7 +26508,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26546,7 +26546,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26663,7 +26663,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -26701,7 +26701,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -26948,7 +26948,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -26986,7 +26986,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -27384,7 +27384,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     boundary: string;
                 };
                 nightSide: {
-                    nightSide: import("../../mountain/geometry").BothEarthsRotationShell;
+                    nightSide: import("../../mountain/geometry/index.ts").BothEarthsRotationShell;
                     outerPhase: number;
                     rotates: boolean;
                     root: string;
@@ -27426,7 +27426,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -27464,7 +27464,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -27581,7 +27581,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -27619,7 +27619,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -27790,7 +27790,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -27828,7 +27828,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -27900,7 +27900,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -27938,7 +27938,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -28048,7 +28048,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -28086,7 +28086,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -28203,7 +28203,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -28241,7 +28241,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -28488,7 +28488,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -28526,7 +28526,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -28912,7 +28912,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -29085,7 +29085,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 hue: number;
                             }[];
                         };
-                        hubs: readonly import("../digit").RosettaRayHub[];
+                        hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                         raysUsed: number;
                         kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                         resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -29156,11 +29156,11 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../../types").ConceptCommandName[];
+                                siblings: import("../../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
-                                pageKind: import("../digit").RosettaComputationType;
+                                pageKind: import("../digit/index.ts").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
                                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -29264,7 +29264,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     slots: {
                         ray: number;
                         kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                         receipt: string;
                     }[];
@@ -29340,7 +29340,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         ray: number;
                         station: number;
                         crossPair: string;
-                        computationType: import("../digit").RosettaComputationType;
+                        computationType: import("../digit/index.ts").RosettaComputationType;
                         glagoliticAddress: string;
                         rayMeta: {
                             readonly ray: 0;
@@ -29394,7 +29394,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         };
                         sharedRoot: string;
                         content: {
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -29473,11 +29473,11 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../types").ConceptCommandName[];
+                        siblings: import("../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -29532,7 +29532,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     placedCount: number;
                     raysCovered: number;
                     trinityLegs: number;
-                    items: import("../../earth/architecture").RosettaIChingTrinityPlacement[];
+                    items: import("../../earth/architecture/index.ts").RosettaIChingTrinityPlacement[];
                     count: number;
                     facets: {
                         receipt: string;
@@ -29726,7 +29726,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                waves: import("../../types").WaveCoordination;
+                waves: import("../../types/index.ts").WaveCoordination;
                 breath: number;
                 dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                 freqApis: {
@@ -29925,13 +29925,13 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     boundary: string;
                 };
                 ratios: {
-                    fwd: import("../../3/7").Rational[];
-                    rev: import("../../3/7").Rational[];
-                    fwdProduct: import("../../3/7").Rational;
-                    revProduct: import("../../3/7").Rational;
-                    heartApproach: import("../../3/7").Rational;
-                    heartDepart: import("../../3/7").Rational;
-                    heartDiamond: import("../../3/7").Rational;
+                    fwd: import("../../3/7/index.ts").Rational[];
+                    rev: import("../../3/7/index.ts").Rational[];
+                    fwdProduct: import("../../3/7/index.ts").Rational;
+                    revProduct: import("../../3/7/index.ts").Rational;
+                    heartApproach: import("../../3/7/index.ts").Rational;
+                    heartDepart: import("../../3/7/index.ts").Rational;
+                    heartDiamond: import("../../3/7/index.ts").Rational;
                 };
                 presentations: {
                     coheres: boolean;
@@ -30133,7 +30133,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
             };
             weather: {
                 folded: boolean;
-                at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -30436,7 +30436,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -30474,7 +30474,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -30591,7 +30591,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -30629,7 +30629,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -30870,7 +30870,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -30908,7 +30908,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -31056,7 +31056,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -31094,7 +31094,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -31211,7 +31211,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -31249,7 +31249,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -31420,7 +31420,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -31458,7 +31458,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -31530,7 +31530,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -31568,7 +31568,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -31678,7 +31678,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -31716,7 +31716,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -31833,7 +31833,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -31871,7 +31871,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -32118,7 +32118,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -32156,7 +32156,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -32469,7 +32469,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -32507,7 +32507,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -32655,7 +32655,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -32693,7 +32693,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -32810,7 +32810,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -32848,7 +32848,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -33019,7 +33019,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -33057,7 +33057,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -33129,7 +33129,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -33167,7 +33167,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -33277,7 +33277,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -33315,7 +33315,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -33432,7 +33432,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -33470,7 +33470,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -33717,7 +33717,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -33755,7 +33755,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -34498,7 +34498,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     statement: string;
                     boundary: string;
                 };
-                traditions: import("../../types").TraditionsQuantumWhole;
+                traditions: import("../../types/index.ts").TraditionsQuantumWhole;
                 society: {
                     folded: boolean;
                     pairs: {
@@ -34691,7 +34691,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     };
                     weather: {
                         folded: boolean;
-                        at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                        at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                         surface: {
                             x: number;
                             y: number;
@@ -35156,7 +35156,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                 };
                 weather: {
                     folded: boolean;
-                    at: import("../../quantum/fire/forecasts").WeatherForecastGeoAt;
+                    at: import("../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
                     surface: {
                         x: number;
                         y: number;
@@ -35470,7 +35470,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -35508,7 +35508,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -35625,7 +35625,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -35663,7 +35663,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -35834,7 +35834,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -35872,7 +35872,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -35944,7 +35944,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -35982,7 +35982,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -36092,7 +36092,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -36130,7 +36130,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -36247,7 +36247,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -36285,7 +36285,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -36532,7 +36532,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -36570,7 +36570,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -36821,7 +36821,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -36859,7 +36859,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -36976,7 +36976,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -37014,7 +37014,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -37185,7 +37185,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -37223,7 +37223,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -37295,7 +37295,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -37333,7 +37333,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -37443,7 +37443,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -37481,7 +37481,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -37598,7 +37598,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -37636,7 +37636,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -37883,7 +37883,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -37921,7 +37921,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -38167,7 +38167,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -38205,7 +38205,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -38322,7 +38322,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -38360,7 +38360,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -38597,7 +38597,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -38635,7 +38635,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -38897,7 +38897,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         statement: string;
                         boundary: string;
                     };
-                    waves: import("../../types").WaveCoordination;
+                    waves: import("../../types/index.ts").WaveCoordination;
                     breath: number;
                     dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                     freqApis: {
@@ -38960,7 +38960,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -38998,7 +38998,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -39115,7 +39115,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -39153,7 +39153,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -39324,7 +39324,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -39362,7 +39362,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -39434,7 +39434,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -39472,7 +39472,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -39582,7 +39582,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -39620,7 +39620,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -39737,7 +39737,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -39775,7 +39775,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -40022,7 +40022,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -40060,7 +40060,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -40458,7 +40458,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     boundary: string;
                 };
                 nightSide: {
-                    nightSide: import("../../mountain/geometry").BothEarthsRotationShell;
+                    nightSide: import("../../mountain/geometry/index.ts").BothEarthsRotationShell;
                     outerPhase: number;
                     rotates: boolean;
                     root: string;
@@ -40500,7 +40500,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -40538,7 +40538,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -40655,7 +40655,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -40693,7 +40693,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -40864,7 +40864,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -40902,7 +40902,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -40974,7 +40974,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -41012,7 +41012,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -41122,7 +41122,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -41160,7 +41160,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -41277,7 +41277,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -41315,7 +41315,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -41562,7 +41562,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -41600,7 +41600,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -42646,13 +42646,13 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         boundary: string;
                     };
                     ratios: {
-                        fwd: import("../../3/7").Rational[];
-                        rev: import("../../3/7").Rational[];
-                        fwdProduct: import("../../3/7").Rational;
-                        revProduct: import("../../3/7").Rational;
-                        heartApproach: import("../../3/7").Rational;
-                        heartDepart: import("../../3/7").Rational;
-                        heartDiamond: import("../../3/7").Rational;
+                        fwd: import("../../3/7/index.ts").Rational[];
+                        rev: import("../../3/7/index.ts").Rational[];
+                        fwdProduct: import("../../3/7/index.ts").Rational;
+                        revProduct: import("../../3/7/index.ts").Rational;
+                        heartApproach: import("../../3/7/index.ts").Rational;
+                        heartDepart: import("../../3/7/index.ts").Rational;
+                        heartDiamond: import("../../3/7/index.ts").Rational;
                     };
                     presentations: {
                         coheres: boolean;
@@ -42849,7 +42849,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             statement: string;
                             boundary: string;
                         };
-                        waves: import("../../types").WaveCoordination;
+                        waves: import("../../types/index.ts").WaveCoordination;
                         breath: number;
                         dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                         freqApis: {
@@ -42912,7 +42912,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -42950,7 +42950,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -43067,7 +43067,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -43105,7 +43105,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -43276,7 +43276,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -43314,7 +43314,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -43386,7 +43386,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -43424,7 +43424,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -43534,7 +43534,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -43572,7 +43572,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -43689,7 +43689,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -43727,7 +43727,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -43974,7 +43974,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -44012,7 +44012,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -44410,7 +44410,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         boundary: string;
                     };
                     nightSide: {
-                        nightSide: import("../../mountain/geometry").BothEarthsRotationShell;
+                        nightSide: import("../../mountain/geometry/index.ts").BothEarthsRotationShell;
                         outerPhase: number;
                         rotates: boolean;
                         root: string;
@@ -44452,7 +44452,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -44490,7 +44490,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -44607,7 +44607,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -44645,7 +44645,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -44816,7 +44816,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -44854,7 +44854,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -44926,7 +44926,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -44964,7 +44964,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -45074,7 +45074,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -45112,7 +45112,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                             slantFromApex: number;
                                             receipt: string;
                                         }[];
-                                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                         baseArea: number;
                                         volume: number;
                                         proofs: {
@@ -45229,7 +45229,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -45267,7 +45267,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                                 slantFromApex: number;
                                                 receipt: string;
                                             }[];
-                                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                             baseArea: number;
                                             volume: number;
                                             proofs: {
@@ -45514,7 +45514,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -45552,7 +45552,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -45938,7 +45938,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         statement: string;
                         boundary: string;
                     };
-                    waves: import("../../types").WaveCoordination;
+                    waves: import("../../types/index.ts").WaveCoordination;
                     breath: number;
                     dualEarth: __ns_up_up_double_torus_earth.BothEarthsMerkabaRotation;
                     freqApis: {
@@ -46111,7 +46111,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     hue: number;
                                 }[];
                             };
-                            hubs: readonly import("../digit").RosettaRayHub[];
+                            hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                             raysUsed: number;
                             kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                             resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -46182,11 +46182,11 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../../types").ConceptCommandName[];
+                                    siblings: import("../../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
-                                    pageKind: import("../digit").RosettaComputationType;
+                                    pageKind: import("../digit/index.ts").RosettaComputationType;
                                     heroPhase: number;
                                     bodySeed: string;
                                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -46290,7 +46290,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         slots: {
                             ray: number;
                             kind: "hub" | "route" | "compute" | "nav" | "tool" | "app" | "projection";
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             vortexDigit: 2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6;
                             receipt: string;
                         }[];
@@ -46366,7 +46366,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             ray: number;
                             station: number;
                             crossPair: string;
-                            computationType: import("../digit").RosettaComputationType;
+                            computationType: import("../digit/index.ts").RosettaComputationType;
                             glagoliticAddress: string;
                             rayMeta: {
                                 readonly ray: 0;
@@ -46420,7 +46420,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             };
                             sharedRoot: string;
                             content: {
-                                pageKind: import("../digit").RosettaComputationType;
+                                pageKind: import("../digit/index.ts").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
                                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -46499,11 +46499,11 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../types").ConceptCommandName[];
+                            siblings: import("../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -46558,7 +46558,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         placedCount: number;
                         raysCovered: number;
                         trinityLegs: number;
-                        items: import("../../earth/architecture").RosettaIChingTrinityPlacement[];
+                        items: import("../../earth/architecture/index.ts").RosettaIChingTrinityPlacement[];
                         count: number;
                         facets: {
                             receipt: string;
@@ -46927,7 +46927,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -46965,7 +46965,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -47082,7 +47082,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -47120,7 +47120,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -47294,7 +47294,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -47332,7 +47332,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -47449,7 +47449,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -47487,7 +47487,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -47883,7 +47883,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -47903,7 +47903,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -48075,7 +48075,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                         readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                         readonly storageModel: "content-address-merkle";
-                        readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                        readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                     };
                     facets: ({
                         facet: string;
@@ -48095,7 +48095,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                         readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                         readonly storageModel: "content-address-merkle";
-                        readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                        readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                     };
                     facets: ({
                         facet: string;
@@ -48324,7 +48324,7 @@ export declare function computeSubstrateDriversComputes(matrix?: MindMatrix, at?
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -48344,7 +48344,7 @@ export declare function computeSubstrateDriversComputes(matrix?: MindMatrix, at?
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -48505,7 +48505,7 @@ export declare function computeAllWithHardwareDrivers(at?: number, matrix?: Mind
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -48525,7 +48525,7 @@ export declare function computeAllWithHardwareDrivers(at?: number, matrix?: Mind
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -48699,7 +48699,7 @@ export declare function computeSubstrateWithBus(at?: number, matrix?: MindMatrix
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -48719,7 +48719,7 @@ export declare function computeSubstrateWithBus(at?: number, matrix?: MindMatrix
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -48891,7 +48891,7 @@ export declare function computeSubstrateWithBus(at?: number, matrix?: MindMatrix
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -48911,7 +48911,7 @@ export declare function computeSubstrateWithBus(at?: number, matrix?: MindMatrix
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -49093,7 +49093,7 @@ export declare function computeSubstrateComputes(matrix?: MindMatrix, at?: numbe
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -49113,7 +49113,7 @@ export declare function computeSubstrateComputes(matrix?: MindMatrix, at?: numbe
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -49286,7 +49286,7 @@ export declare function displayTerminalComputes(matrix?: MindMatrix, at?: number
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -49306,7 +49306,7 @@ export declare function displayTerminalComputes(matrix?: MindMatrix, at?: number
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -49430,8 +49430,8 @@ export declare function displayTerminalComputes(matrix?: MindMatrix, at?: number
     statement: string;
     boundary: string;
 };
-export type { ProfessionalResearchDataTier, ProfessionalResearchProgramRow, ResearchIndexRow, ResearchReproGate } from '../../research';
-export { professionalResearchIndex, professionalResearchComputes, researchIndex, researchComputes, researchReproducibility, researchPanelComputes } from '../../research';
+export type { ProfessionalResearchDataTier, ProfessionalResearchProgramRow, ResearchIndexRow, ResearchReproGate } from '../../research/index.ts';
+export { professionalResearchIndex, professionalResearchComputes, researchIndex, researchComputes, researchReproducibility, researchPanelComputes } from '../../research/index.ts';
 export type ScaleRung = {
     readonly name: string;
     readonly metres: number;
@@ -50155,7 +50155,7 @@ export declare function oneQuantumModelFasterThanAll(matrix?: MindMatrix, at?: n
                 hue: number;
             }[];
         };
-        hubs: readonly import("../digit").RosettaRayHub[];
+        hubs: readonly import("../digit/index.ts").RosettaRayHub[];
         raysUsed: number;
         kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
         resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -50226,11 +50226,11 @@ export declare function oneQuantumModelFasterThanAll(matrix?: MindMatrix, at?: n
                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                siblings: import("../../types").ConceptCommandName[];
+                siblings: import("../../types/index.ts").ConceptCommandName[];
                 siblingCount: number;
             };
             content: {
-                pageKind: import("../digit").RosettaComputationType;
+                pageKind: import("../digit/index.ts").RosettaComputationType;
                 heroPhase: number;
                 bodySeed: string;
                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -50561,7 +50561,7 @@ export declare function agentCeccecLearnsFromTheBestBecomesTheBest(matrix?: Mind
                     hue: number;
                 }[];
             };
-            hubs: readonly import("../digit").RosettaRayHub[];
+            hubs: readonly import("../digit/index.ts").RosettaRayHub[];
             raysUsed: number;
             kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
             resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -50632,11 +50632,11 @@ export declare function agentCeccecLearnsFromTheBestBecomesTheBest(matrix?: Mind
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../../types").ConceptCommandName[];
+                    siblings: import("../../types/index.ts").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
-                    pageKind: import("../digit").RosettaComputationType;
+                    pageKind: import("../digit/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -51193,7 +51193,7 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
                     hue: number;
                 }[];
             };
-            hubs: readonly import("../digit").RosettaRayHub[];
+            hubs: readonly import("../digit/index.ts").RosettaRayHub[];
             raysUsed: number;
             kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
             resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -51264,11 +51264,11 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../../types").ConceptCommandName[];
+                    siblings: import("../../types/index.ts").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
-                    pageKind: import("../digit").RosettaComputationType;
+                    pageKind: import("../digit/index.ts").RosettaComputationType;
                     heroPhase: number;
                     bodySeed: string;
                     heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -51885,7 +51885,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         hue: number;
                     }[];
                 };
-                hubs: readonly import("../digit").RosettaRayHub[];
+                hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                 raysUsed: number;
                 kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                 resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -51956,11 +51956,11 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../types").ConceptCommandName[];
+                        siblings: import("../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -52708,8 +52708,8 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -52989,8 +52989,8 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -53118,8 +53118,8 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -53769,7 +53769,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                             hue: number;
                         }[];
                     };
-                    hubs: readonly import("../digit").RosettaRayHub[];
+                    hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                     resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -53840,11 +53840,11 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../types").ConceptCommandName[];
+                            siblings: import("../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -54118,20 +54118,20 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             readonly deployJobMs: 11000;
             readonly workflowMs: 241000;
         };
-        timing: import("../../pair/enforcement/script/shell").DocsBuildTimingReceipt;
+        timing: import("../../pair/enforcement/script/shell/index.ts").DocsBuildTimingReceipt;
         slow: {
             computes: boolean;
             passed: boolean;
-            hardOpen: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
-            warnOpen: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
-            closed: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
-            gaps: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
+            hardOpen: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
+            warnOpen: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
+            closed: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
+            gaps: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
             openCount: number;
             hardOpenCount: number;
             warnOpenCount: number;
             closedCount: number;
             count: number;
-            timing: import("../../pair/enforcement/script/shell").DocsBuildTimingReceipt;
+            timing: import("../../pair/enforcement/script/shell/index.ts").DocsBuildTimingReceipt;
             quantumize: {
                 computes: boolean;
                 techniques: ({
@@ -54799,8 +54799,8 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -55230,7 +55230,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             hue: number;
                         }[];
                     };
-                    hubs: readonly import("../digit").RosettaRayHub[];
+                    hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                     resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -55301,11 +55301,11 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../types").ConceptCommandName[];
+                            siblings: import("../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -56053,8 +56053,8 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -56334,8 +56334,8 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../../3/7").Rational;
-                            inverse: import("../../3/7").Rational;
+                            forward: import("../../3/7/index.ts").Rational;
+                            inverse: import("../../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -56463,8 +56463,8 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -57114,7 +57114,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                                 hue: number;
                             }[];
                         };
-                        hubs: readonly import("../digit").RosettaRayHub[];
+                        hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                         raysUsed: number;
                         kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
                         resolve: (label: string, kind?: __ns_up_up_quantum_application.RosettaCoreSurfaceKind) => __ns_up_up_quantum_application.RosettaCoreSurface;
@@ -57185,11 +57185,11 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../../types").ConceptCommandName[];
+                                siblings: import("../../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
-                                pageKind: import("../digit").RosettaComputationType;
+                                pageKind: import("../digit/index.ts").RosettaComputationType;
                                 heroPhase: number;
                                 bodySeed: string;
                                 heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -57463,20 +57463,20 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 readonly deployJobMs: 11000;
                 readonly workflowMs: 241000;
             };
-            timing: import("../../pair/enforcement/script/shell").DocsBuildTimingReceipt;
+            timing: import("../../pair/enforcement/script/shell/index.ts").DocsBuildTimingReceipt;
             slow: {
                 computes: boolean;
                 passed: boolean;
-                hardOpen: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
-                warnOpen: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
-                closed: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
-                gaps: import("../../pair/enforcement/script/shell").SlowBuildGapRow[];
+                hardOpen: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
+                warnOpen: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
+                closed: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
+                gaps: import("../../pair/enforcement/script/shell/index.ts").SlowBuildGapRow[];
                 openCount: number;
                 hardOpenCount: number;
                 warnOpenCount: number;
                 closedCount: number;
                 count: number;
-                timing: import("../../pair/enforcement/script/shell").DocsBuildTimingReceipt;
+                timing: import("../../pair/enforcement/script/shell/index.ts").DocsBuildTimingReceipt;
                 quantumize: {
                     computes: boolean;
                     techniques: ({
@@ -58028,8 +58028,8 @@ export declare function directionalTrinityForwardInverseReverse(matrix?: MindMat
         bidirectional: boolean;
     };
     ratInvSample: {
-        forward: import("../../3/7").Rational;
-        inverse: import("../../3/7").Rational;
+        forward: import("../../3/7/index.ts").Rational;
+        inverse: import("../../3/7/index.ts").Rational;
     };
     fInverse: {
         computes: boolean;

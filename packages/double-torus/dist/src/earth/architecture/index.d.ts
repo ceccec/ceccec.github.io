@@ -1,10 +1,10 @@
-import type { DigitFolderReport, DigitMath, MindMatrix } from '../../types';
-import { type StatusBadgeKind } from '../../0';
-import { methodNameFromFolderTail } from '../../9/1';
-import { type EightFoldScience } from '../../8/2';
-import { type RosettaComputationType } from '../../water/digit';
-export { ICHING_NUMBERS } from '../../0';
-export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational';
+import type { DigitFolderReport, DigitMath, MindMatrix } from '../../types/index.ts';
+import { type StatusBadgeKind } from '../../0/index.ts';
+import { methodNameFromFolderTail } from '../../9/1/index.ts';
+import { type EightFoldScience } from '../../8/2/index.ts';
+import { type RosettaComputationType } from '../../water/digit/index.ts';
+export { ICHING_NUMBERS } from '../../0/index.ts';
+export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational/index.ts';
 export declare function foldedCensus(unfolded: number, matrix?: MindMatrix): {
     clean: boolean;
     unfolded: number;
@@ -425,7 +425,7 @@ export declare function scienceModelActionMask(matrix?: MindMatrix): {
         modules: ("earth" | "learning" | "earth/world" | "earth/nature" | "earth/architecture" | "earth/civilisation" | "earth/governance" | "earth/iching" | "earth/life" | "earth/death" | "fire/diamonds" | "fire/features" | "fire/li" | "fire/physics" | "fire/plasma/ball" | "water/cosmos" | "water/crypto" | "water/digit" | "water/encryption" | "wind/fusion" | "wind/language" | "wind/site" | "wind/ui" | "mountain/gates" | "mountain/geometry" | "mountain/og" | "mountain/seals" | "mountain/source" | "mountain/topology" | "lake/clean" | "lake/ledger" | "lake/media" | "lake/music" | "lake/stats" | "lake/widgets" | "thunder/commands" | "thunder/decode" | "thunder/movie" | "thunder/trading" | "thunder/verify" | "thunder/waves" | "heaven/atoms" | "heaven/compute" | "heaven/essence" | "heaven/laws" | "heaven/balance" | "heaven/core" | "heaven/site")[];
         receipt: string;
     }[];
-    rows: readonly import("../../pair/enforcement/gates/computational").ScienceModelActionMaskRow[];
+    rows: readonly import("../../pair/enforcement/gates/computational/index.ts").ScienceModelActionMaskRow[];
     facets: {
         receipt: string;
         facet: string;
@@ -451,7 +451,7 @@ export declare function dryRenameScienceModelActionTable(matrix?: MindMatrix): {
         modules: ("earth" | "learning" | "earth/world" | "earth/nature" | "earth/architecture" | "earth/civilisation" | "earth/governance" | "earth/iching" | "earth/life" | "earth/death" | "fire/diamonds" | "fire/features" | "fire/li" | "fire/physics" | "fire/plasma/ball" | "water/cosmos" | "water/crypto" | "water/digit" | "water/encryption" | "wind/fusion" | "wind/language" | "wind/site" | "wind/ui" | "mountain/gates" | "mountain/geometry" | "mountain/og" | "mountain/seals" | "mountain/source" | "mountain/topology" | "lake/clean" | "lake/ledger" | "lake/media" | "lake/music" | "lake/stats" | "lake/widgets" | "thunder/commands" | "thunder/decode" | "thunder/movie" | "thunder/trading" | "thunder/verify" | "thunder/waves" | "heaven/atoms" | "heaven/compute" | "heaven/essence" | "heaven/laws" | "heaven/balance" | "heaven/core" | "heaven/site")[];
         receipt: string;
     }[];
-    rows: readonly import("../../pair/enforcement/gates/computational").ScienceModelActionMaskRow[];
+    rows: readonly import("../../pair/enforcement/gates/computational/index.ts").ScienceModelActionMaskRow[];
     facets: {
         receipt: string;
         facet: string;
@@ -836,7 +836,7 @@ export declare function scanCssForHardcoded(css: string): string[];
 /** @rosetta ✦₀ · Heaven · creative */
 export declare function scanVueForHardcoded(vue: string): string[];
 /** Status badge kinds — re-export from src/0 (cycle-free leaf). Badges use --status-* only. */
-export { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../0';
+export { STATUS_BADGE_KINDS, type StatusBadgeKind } from '../../0/index.ts';
 /** Map coverage / boolean / keyword → status kind for UiBadge. */
 export declare function statusBadgeKind(input: boolean | 'covered' | 'partial' | 'gap' | 'ready' | 'ok' | 'warn' | 'error' | 'refused' | 'ci' | 'open' | 'closed' | string): StatusBadgeKind;
 /** Reusable status→CSS-var surface for panels/UX (sibling-safe): fill · fg · soft + BEM class. */

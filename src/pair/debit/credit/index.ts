@@ -1,5 +1,5 @@
 // ☷ Kūn · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) · upper·yang · spread — double-entry ledger primitives: transact/balance/balanced + cryptoReview maps every security claim to a debit/credit pair so honesty IS the balance
-import { DIGEST_BITS } from '../../../0'
+import { DIGEST_BITS } from '../../../0/index.ts'
 
 /** Ledger row — named away from src/0 `Entry` (URL catalog) to kill type-name synonym sprawl. */
 /** @rosetta ✦₄ · Earth · receptive (debit=import, receives from the matrix for the crypto-review pair) */

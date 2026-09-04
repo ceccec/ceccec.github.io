@@ -1,6 +1,6 @@
-import * as __ns_up_stack_overflow from '../../water/stack';
-import type { MindMatrix } from '../../types';
-import type { DriverProbeReceipt } from '../../water/stack';
+import * as __ns_up_stack_overflow from '../../water/stack/index.ts';
+import type { MindMatrix } from '../../types/index.ts';
+import type { DriverProbeReceipt } from '../../water/stack/index.ts';
 /**
  * σ: NOT → YES. Seven facets in this file read `{ facet: 'NOT hardware QC', on: true }` and six
  * siblings like it. A disclaimer hardcoded to `true` is unfalsifiable: it stays green on the day
@@ -68,7 +68,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -88,7 +88,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -201,7 +201,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             sequence: {
                 reduces: boolean;
@@ -356,7 +356,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -402,7 +402,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -422,7 +422,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -451,7 +451,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         sequence: {
             reduces: boolean;
@@ -564,7 +564,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -584,7 +584,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -740,7 +740,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -760,7 +760,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             facets: ({
                 facet: string;
@@ -873,7 +873,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 sequence: {
                     reduces: boolean;
@@ -1028,7 +1028,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -1074,7 +1074,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -1094,7 +1094,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -1123,7 +1123,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                 readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                 readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                 readonly storageModel: "content-address-merkle";
-                readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
             };
             sequence: {
                 reduces: boolean;
@@ -1236,7 +1236,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -1256,7 +1256,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                     readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
                     readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
                     readonly storageModel: "content-address-merkle";
-                    readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+                    readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
                 };
                 facets: ({
                     facet: string;
@@ -1462,7 +1462,7 @@ export declare function cpuComputes(matrix?: MindMatrix, at?: number): {
         readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
         readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
         readonly storageModel: "content-address-merkle";
-        readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+        readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
     };
     facets: ({
         facet: string;
@@ -1483,7 +1483,7 @@ export declare function gpuComputes(matrix?: MindMatrix, at?: number): {
         readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
         readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
         readonly storageModel: "content-address-merkle";
-        readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+        readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
     };
     facets: ({
         facet: string;
@@ -1709,7 +1709,7 @@ export declare function busComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         sequence: {
             reduces: boolean;
@@ -1909,7 +1909,7 @@ export declare function terminalComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -1955,7 +1955,7 @@ export declare function powerComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;
@@ -1975,7 +1975,7 @@ export declare function powerComputes(matrix?: MindMatrix, at?: number): {
             readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
             readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
             readonly storageModel: "content-address-merkle";
-            readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+            readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
         };
         facets: ({
             facet: string;

@@ -8,7 +8,7 @@ export declare function gasReserveHalfOnTop(requiredLitres: number): number;
 export declare function equivalentAirDepthM(depthM: number, fO2: number, freshWater?: boolean, surfaceBar?: number): number;
 /** Hubble tension significance in σ. */
 export declare function hubbleTensionSigma(localKmsMpc: number, localErr: number, cmbKmsMpc: number, cmbErr: number): number;
-export { inductionEvolve, inductionStep } from '../../0';
+export { inductionEvolve, inductionStep } from '../../0/index.ts';
 export declare const SESSION_SKILL_FNS: readonly string[];
 /** NO-SIGNALLING, COMPUTED (user claim, 2026-07-16: quantum computation "faster than light in
  * magnitudes times the participants"). Tested, not assumed — and refuted by partial trace: for a

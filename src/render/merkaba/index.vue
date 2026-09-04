@@ -11,8 +11,8 @@ import {
   universalNavigationalCrossResearch,
 } from '../../water/double/earth/index.ts'
 import { drawBothEarthsMerkabaFrame } from '../../../.vitepress/lib/hero-movie-paint.ts'
-import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas'
-import { useSiteLocale } from '../../../.vitepress/lib/mounts'
+import { prefersReducedMotion, useVisibleMovieCanvas } from '../../../.vitepress/lib/movie-canvas.ts'
+import { useSiteLocale } from '../../../.vitepress/lib/mounts.ts'
 import UiCardShell from '../../../.vitepress/theme/components/UiCardShell.vue'
 import { UiBadge } from '../../../.vitepress/lib/shadcn-ui.ts'
 

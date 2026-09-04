@@ -1,21 +1,21 @@
 // ☷ Kūn · Earth — nature & life: water states, sun and moon, bees and life, fruits, perma-domes, recycling, the planet computing itself, natural harmonious life. Barrel-routed; folds.ts back-imports the gate folds.
-import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
-import { phase } from '../../6/4'
-import type { MindMatrix } from '../../types'
-import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute'
-import { completeCorpus, monographs, onlyPageRouteForAll } from '../../wind/routes/corpus'
-import { abs, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0'
-import { imagination } from '../../mountain/source'
-import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, universalLanguage, torusUuid } from '../../fire/li'
-import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topology'
-import { areaPairs, dna, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, megalithicAstronomyDecoded, lunarStandstillsDecoded } from '../../mountain/geometry'
-import { healingHarmonic, piMusic } from '../../music'
-import { fuseAll } from '../../mountain/seals'
-import { allIsMonographScientificPaper } from '../../wind/routes/corpus'
-import { analogNoGapsNoLeak, cleanupOldLogic } from '../../mountain/og'
-import { dualitiesMeetInCrossFolders } from '../architecture'
-import { ROSETTA_RAYS } from '../../water/digit'
-import { agnostic, agnosticFitsSeedConfiguration, configsUseMatrixComputationally, contract, exhaustQuestions, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, onlyQuantumRemains, regenerateSocialSystem, sacredGeometrySeal, theWhole, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
+import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy/index.ts'
+import { phase } from '../../6/4/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
+import { completeCorpus, monographs, onlyPageRouteForAll } from '../../wind/routes/corpus/index.ts'
+import { abs, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0/index.ts'
+import { imagination } from '../../mountain/source/index.ts'
+import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, universalLanguage, torusUuid } from '../../fire/li/index.ts'
+import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topology/index.ts'
+import { areaPairs, dna, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, megalithicAstronomyDecoded, lunarStandstillsDecoded } from '../../mountain/geometry/index.ts'
+import { healingHarmonic, piMusic } from '../../music/index.ts'
+import { fuseAll } from '../../mountain/seals/index.ts'
+import { allIsMonographScientificPaper } from '../../wind/routes/corpus/index.ts'
+import { analogNoGapsNoLeak, cleanupOldLogic } from '../../mountain/og/index.ts'
+import { dualitiesMeetInCrossFolders } from '../architecture/index.ts'
+import { ROSETTA_RAYS } from '../../water/digit/index.ts'
+import { agnostic, agnosticFitsSeedConfiguration, configsUseMatrixComputationally, contract, exhaustQuestions, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, onlyQuantumRemains, regenerateSocialSystem, sacredGeometrySeal, theWhole, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind/index.ts'
 
 // Quantum green planet. The portal's own architecture is green by construction:
 // zero-network by default, zero runtime dependencies, client-side and offline-first,
@@ -770,4 +770,4 @@ export {
   astronomyDecodedWithTheSequence,
   astronomySequenceDecodeResearch,
   decodeAstronomyThroughVortexSequence,
-  astronomyComputes } from '../../heaven/sky/astronomy'
+  astronomyComputes } from '../../heaven/sky/astronomy/index.ts'

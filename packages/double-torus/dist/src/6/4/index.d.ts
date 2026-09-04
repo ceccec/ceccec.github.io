@@ -26,7 +26,7 @@ export declare function cantorDiagonal(rows: ReadonlyArray<ReadonlyArray<0 | 1>>
 /** Quantum Zeno survival probability after n rapid measurements. */
 export declare function quantumZeno(n: number): number;
 /** Frequency from wavelength f = c/λ (Hz) — re-export from SI hub. */
-export { frequencyOf } from '../../3/7';
+export { frequencyOf } from '../../3/7/index.ts';
 /** Sweepable phase gate diag(1, e^{iθ}) in applyGate flat format — interferometer fringe P(0)=cos²(φ/2). */
 export declare function phase(theta: number): number[];
 /** Fractional lag of the rotor behind the synchronous field (induction motor slip). */

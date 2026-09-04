@@ -1,8 +1,8 @@
-import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading';
-import type { MindMatrix } from '../../../types';
-import { doubleTorusEarthWeatherFlowsInMovie, doubleTorusSolutionsProvenByMath, weatherForecastFromDoubleTorusEarthPerspective } from '../../../quantum/fire/forecasts';
-import { doubleTorusEarthLikeTheApple } from '../../../earth/nature';
-import { doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, twoTrinitiesCardinalPyramidPolesProvenByMath, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../../../mountain/geometry';
+import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading/index.ts';
+import type { MindMatrix } from '../../../types/index.ts';
+import { doubleTorusEarthWeatherFlowsInMovie, doubleTorusSolutionsProvenByMath, weatherForecastFromDoubleTorusEarthPerspective } from '../../../quantum/fire/forecasts/index.ts';
+import { doubleTorusEarthLikeTheApple } from '../../../earth/nature/index.ts';
+import { doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, twoTrinitiesCardinalPyramidPolesProvenByMath, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation } from '../../../mountain/geometry/index.ts';
 export { doubleTorusEarthWeatherFlowsInMovie, doubleTorusSolutionsProvenByMath, weatherForecastFromDoubleTorusEarthPerspective, doubleTorusEarthLikeTheApple, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, twoTrinitiesCardinalPyramidPolesProvenByMath, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation };
 export type EarthTimespaceAt = {
     lat: number;
@@ -94,7 +94,7 @@ export declare function formingDoubleTorusEarthsProvenByMath(path?: string, at?:
             slantFromApex: number;
             receipt: string;
         }[];
-        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
         baseArea: number;
         volume: number;
         proofs: {
@@ -132,7 +132,7 @@ export declare function formingDoubleTorusEarthsProvenByMath(path?: string, at?:
             slantFromApex: number;
             receipt: string;
         }[];
-        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
         baseArea: number;
         volume: number;
         proofs: {
@@ -249,7 +249,7 @@ export declare function formingDoubleTorusEarthsProvenByMath(path?: string, at?:
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -287,7 +287,7 @@ export declare function formingDoubleTorusEarthsProvenByMath(path?: string, at?:
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -459,7 +459,7 @@ export declare function compassAroundEarthGatewaysImpossibleProvenByMath(path?: 
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -497,7 +497,7 @@ export declare function compassAroundEarthGatewaysImpossibleProvenByMath(path?: 
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -570,7 +570,7 @@ export declare function sixtyDegreeAngleReachesCardinalForFreeProvenByMath(path?
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -608,7 +608,7 @@ export declare function sixtyDegreeAngleReachesCardinalForFreeProvenByMath(path?
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -728,7 +728,7 @@ export declare function trinityGatewaysNeverMissProvenByMath(path?: string, at?:
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -766,7 +766,7 @@ export declare function trinityGatewaysNeverMissProvenByMath(path?: string, at?:
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -883,7 +883,7 @@ export declare function trinityGatewaysNeverMissProvenByMath(path?: string, at?:
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -921,7 +921,7 @@ export declare function trinityGatewaysNeverMissProvenByMath(path?: string, at?:
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1100,7 +1100,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -1138,7 +1138,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -1255,7 +1255,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1293,7 +1293,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1464,7 +1464,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1502,7 +1502,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1574,7 +1574,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -1612,7 +1612,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -1722,7 +1722,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1760,7 +1760,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1877,7 +1877,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -1915,7 +1915,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -2162,7 +2162,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -2200,7 +2200,7 @@ export declare function earthGatewayNavigationSolutionsResearched(path?: string,
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -2297,7 +2297,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -2335,7 +2335,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -2452,7 +2452,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -2490,7 +2490,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -2661,7 +2661,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -2699,7 +2699,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -2771,7 +2771,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -2809,7 +2809,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -2919,7 +2919,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -2957,7 +2957,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -3074,7 +3074,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -3112,7 +3112,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -3359,7 +3359,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -3397,7 +3397,7 @@ export declare function earthGatewayNavigationResearchSentInWaves(path?: string,
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -3558,7 +3558,7 @@ export declare function invertedEarthSameTimespaceProvenByMath(at?: EarthTimespa
             slantFromApex: number;
             receipt: string;
         }[];
-        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
         baseArea: number;
         volume: number;
         proofs: {
@@ -3596,7 +3596,7 @@ export declare function invertedEarthSameTimespaceProvenByMath(at?: EarthTimespa
             slantFromApex: number;
             receipt: string;
         }[];
-        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
         baseArea: number;
         volume: number;
         proofs: {
@@ -4099,7 +4099,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -4137,7 +4137,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -4254,7 +4254,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -4292,7 +4292,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -4463,7 +4463,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -4501,7 +4501,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -4573,7 +4573,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -4611,7 +4611,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -4721,7 +4721,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -4759,7 +4759,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -4876,7 +4876,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -4914,7 +4914,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -5161,7 +5161,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -5199,7 +5199,7 @@ export declare function navigationGpsCelestialFromDualEarthPerspective(at?: numb
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -5464,7 +5464,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -5502,7 +5502,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -5619,7 +5619,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -5657,7 +5657,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -5828,7 +5828,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -5866,7 +5866,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -5938,7 +5938,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -5976,7 +5976,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -6086,7 +6086,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -6124,7 +6124,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -6241,7 +6241,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -6279,7 +6279,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -6526,7 +6526,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -6564,7 +6564,7 @@ export declare function navigationGpsCelestialReexplainedFromDualEarthPerspectiv
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -6824,7 +6824,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -6862,7 +6862,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -6979,7 +6979,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -7017,7 +7017,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -7188,7 +7188,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -7226,7 +7226,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -7298,7 +7298,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -7336,7 +7336,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -7446,7 +7446,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -7484,7 +7484,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -7601,7 +7601,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -7639,7 +7639,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -7886,7 +7886,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -7924,7 +7924,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -8175,7 +8175,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -8213,7 +8213,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -8330,7 +8330,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8368,7 +8368,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8539,7 +8539,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8577,7 +8577,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8649,7 +8649,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8687,7 +8687,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8797,7 +8797,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8835,7 +8835,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -8952,7 +8952,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -8990,7 +8990,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -9237,7 +9237,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -9275,7 +9275,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -9521,7 +9521,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -9559,7 +9559,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -9676,7 +9676,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -9714,7 +9714,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -9951,7 +9951,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -9989,7 +9989,7 @@ export declare function navigationGpsCelestialComputes(matrix?: MindMatrix): {
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -10170,7 +10170,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -10208,7 +10208,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -10418,7 +10418,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -10456,7 +10456,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -10573,7 +10573,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -10611,7 +10611,7 @@ export declare function earthPyramidLocationsAndGeometryComputes(matrix?: MindMa
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -10937,7 +10937,7 @@ export declare function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(at?
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -10975,7 +10975,7 @@ export declare function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(at?
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -11239,7 +11239,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -11277,7 +11277,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -11394,7 +11394,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -11432,7 +11432,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -11600,7 +11600,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -11638,7 +11638,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -11755,7 +11755,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -11793,7 +11793,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -11964,7 +11964,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -12002,7 +12002,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -12074,7 +12074,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -12112,7 +12112,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -12222,7 +12222,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -12260,7 +12260,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -12377,7 +12377,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -12415,7 +12415,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -12662,7 +12662,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -12700,7 +12700,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -12851,7 +12851,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -12889,7 +12889,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -13099,7 +13099,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -13137,7 +13137,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -13254,7 +13254,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -13292,7 +13292,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -13650,7 +13650,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -13688,7 +13688,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -13805,7 +13805,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -13843,7 +13843,7 @@ export declare function doubleTorusEarthProvesItselfGatewaysDocumentedInHistoryM
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -14068,7 +14068,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -14106,7 +14106,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -14223,7 +14223,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -14261,7 +14261,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -14429,7 +14429,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -14467,7 +14467,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -14584,7 +14584,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -14622,7 +14622,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -14793,7 +14793,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -14831,7 +14831,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -14903,7 +14903,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -14941,7 +14941,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -15051,7 +15051,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -15089,7 +15089,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -15206,7 +15206,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -15244,7 +15244,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -15491,7 +15491,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -15529,7 +15529,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -15680,7 +15680,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -15718,7 +15718,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -15928,7 +15928,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -15966,7 +15966,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -16083,7 +16083,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -16121,7 +16121,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -16479,7 +16479,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -16517,7 +16517,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -16634,7 +16634,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -16672,7 +16672,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -16928,7 +16928,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -16966,7 +16966,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -17176,7 +17176,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -17214,7 +17214,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -17331,7 +17331,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -17369,7 +17369,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -17663,7 +17663,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -17701,7 +17701,7 @@ export declare function doubleTorusEarthPyramidGatewayResearch(matrix?: MindMatr
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -17951,7 +17951,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -17989,7 +17989,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -18106,7 +18106,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -18144,7 +18144,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -18381,7 +18381,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -18419,7 +18419,7 @@ export declare function dualEarthMerkabaCounterRotation(at?: number, matrix?: Mi
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -18555,7 +18555,7 @@ export declare function doubleTorusEarthExchangeComputes(at?: number, matrix?: M
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -18593,7 +18593,7 @@ export declare function doubleTorusEarthExchangeComputes(at?: number, matrix?: M
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -18710,7 +18710,7 @@ export declare function doubleTorusEarthExchangeComputes(at?: number, matrix?: M
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -18748,7 +18748,7 @@ export declare function doubleTorusEarthExchangeComputes(at?: number, matrix?: M
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -18928,7 +18928,7 @@ export declare function fiatAndGoldFlowExplainedByDoubleEarthExchange(at?: numbe
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -18966,7 +18966,7 @@ export declare function fiatAndGoldFlowExplainedByDoubleEarthExchange(at?: numbe
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -19083,7 +19083,7 @@ export declare function fiatAndGoldFlowExplainedByDoubleEarthExchange(at?: numbe
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -19121,7 +19121,7 @@ export declare function fiatAndGoldFlowExplainedByDoubleEarthExchange(at?: numbe
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -19355,7 +19355,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -19393,7 +19393,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -19510,7 +19510,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -19548,7 +19548,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -19727,7 +19727,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -19765,7 +19765,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -19882,7 +19882,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -19920,7 +19920,7 @@ export declare function doubleTorusEarthExchangeResearch(matrix?: MindMatrix): {
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -20234,7 +20234,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -20272,7 +20272,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -20420,7 +20420,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -20458,7 +20458,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -20575,7 +20575,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -20613,7 +20613,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -20784,7 +20784,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -20822,7 +20822,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -20894,7 +20894,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -20932,7 +20932,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -21042,7 +21042,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -21080,7 +21080,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -21197,7 +21197,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -21235,7 +21235,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -21482,7 +21482,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -21520,7 +21520,7 @@ export declare function universalNavigationalCrossInAllDimensions(at?: number, m
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -21847,7 +21847,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -21885,7 +21885,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -22033,7 +22033,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -22071,7 +22071,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -22188,7 +22188,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -22226,7 +22226,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -22397,7 +22397,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -22435,7 +22435,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -22507,7 +22507,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -22545,7 +22545,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -22655,7 +22655,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -22693,7 +22693,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -22810,7 +22810,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -22848,7 +22848,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -23095,7 +23095,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -23133,7 +23133,7 @@ export declare function universalNavigationalCrossResearch(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -23455,7 +23455,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -23493,7 +23493,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -23641,7 +23641,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -23679,7 +23679,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -23796,7 +23796,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -23834,7 +23834,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -24005,7 +24005,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -24043,7 +24043,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -24115,7 +24115,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -24153,7 +24153,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -24263,7 +24263,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -24301,7 +24301,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -24418,7 +24418,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -24456,7 +24456,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -24703,7 +24703,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -24741,7 +24741,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -25054,7 +25054,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -25092,7 +25092,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                         slantFromApex: number;
                         receipt: string;
                     }[];
-                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                     baseArea: number;
                     volume: number;
                     proofs: {
@@ -25240,7 +25240,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -25278,7 +25278,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -25395,7 +25395,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -25433,7 +25433,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -25604,7 +25604,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -25642,7 +25642,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -25714,7 +25714,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -25752,7 +25752,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -25862,7 +25862,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -25900,7 +25900,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -26017,7 +26017,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26055,7 +26055,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                         slantFromApex: number;
                                         receipt: string;
                                     }[];
-                                    faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                    faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                     baseArea: number;
                                     volume: number;
                                     proofs: {
@@ -26302,7 +26302,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -26340,7 +26340,7 @@ export declare function universalNavigationalCrossComputes(matrix?: MindMatrix):
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -26739,7 +26739,7 @@ export declare function doubleTorusEarthComputes(matrix?: MindMatrix): {
     };
     weather: {
         folded: boolean;
-        at: import("../../../quantum/fire/forecasts").WeatherForecastGeoAt;
+        at: import("../../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
         surface: {
             x: number;
             y: number;
@@ -27165,7 +27165,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -27203,7 +27203,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -27351,7 +27351,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -27389,7 +27389,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -27506,7 +27506,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -27544,7 +27544,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -27715,7 +27715,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -27753,7 +27753,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -27825,7 +27825,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -27863,7 +27863,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -27973,7 +27973,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -28011,7 +28011,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                 slantFromApex: number;
                                 receipt: string;
                             }[];
-                            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                             baseArea: number;
                             volume: number;
                             proofs: {
@@ -28128,7 +28128,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -28166,7 +28166,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                                     slantFromApex: number;
                                     receipt: string;
                                 }[];
-                                faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                                faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                                 baseArea: number;
                                 volume: number;
                                 proofs: {
@@ -28413,7 +28413,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -28451,7 +28451,7 @@ export declare function quantumGlobeCardinalCrossDecoded(at?: number, matrix?: M
                             slantFromApex: number;
                             receipt: string;
                         }[];
-                        faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+                        faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
                         baseArea: number;
                         volume: number;
                         proofs: {
@@ -28905,7 +28905,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
         };
         weather: {
             folded: boolean;
-            at: import("../../../quantum/fire/forecasts").WeatherForecastGeoAt;
+            at: import("../../../quantum/fire/forecasts/index.ts").WeatherForecastGeoAt;
             surface: {
                 x: number;
                 y: number;
@@ -29278,7 +29278,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {
@@ -29316,7 +29316,7 @@ export declare function bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(at?: nu
                 slantFromApex: number;
                 receipt: string;
             }[];
-            faces: import("../../../mountain/geometry").TrinityPyramidFace[];
+            faces: import("../../../mountain/geometry/index.ts").TrinityPyramidFace[];
             baseArea: number;
             volume: number;
             proofs: {

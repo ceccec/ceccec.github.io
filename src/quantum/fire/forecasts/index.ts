@@ -3,17 +3,17 @@
 // weatherForecastQuantumComputedRealtime is referenced by mind's duality matrix, so mind imports it back (an
 // ESM-safe function-binding cycle). (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind matrix and merkaba fold imports
-import * as __ns_up_up_up_earth_nature from '../../../earth/nature'
-import { initialBearing } from '../../../6/4'
-import { buildMatrix, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind'
-import { circulateDoubleTorus } from '../../../heaven/compute'
-import { doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath } from '../../../mountain/geometry'
-import { doubleTorusCompost } from '../../../fire/li'
-import { doubleTorusMotifRealGeometryNotFringePhysics } from '../../../mountain/topology'
-import { earthPolesAreADipoleDoubleTorusNotAGrid } from '../../water/cache'
-import { abs, digitalRoot, doubleTorusSurface, isUuid, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, toUuid } from '../../../0'
-import { addressed, covers } from '../../../5/5'
-import { TAU } from '../../../3/7'
+import * as __ns_up_up_up_earth_nature from '../../../earth/nature/index.ts'
+import { initialBearing } from '../../../6/4/index.ts'
+import { buildMatrix, knowledgeRevealedByMerkabaFold, publicFrequencyApisDecoded, type MindMatrix } from '../../heaven/mind/index.ts'
+import { circulateDoubleTorus } from '../../../heaven/compute/index.ts'
+import { doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath } from '../../../mountain/geometry/index.ts'
+import { doubleTorusCompost } from '../../../fire/li/index.ts'
+import { doubleTorusMotifRealGeometryNotFringePhysics } from '../../../mountain/topology/index.ts'
+import { earthPolesAreADipoleDoubleTorusNotAGrid } from '../../water/cache/index.ts'
+import { abs, digitalRoot, doubleTorusSurface, isUuid, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, toUuid } from '../../../0/index.ts'
+import { addressed, covers } from '../../../5/5/index.ts'
+import { TAU } from '../../../3/7/index.ts'
 
 // ☵ Kǎn · Water · abysmal (weather realtime feeds) · upper·yang · spread — realtime forecast feeds
 // Weather forecast computed in realtime. Free, no-key realtime forecast feeds — Open-Meteo (fuses 15+

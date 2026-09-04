@@ -1,6 +1,6 @@
-import type { MindMatrix } from '../../types';
-import type { CircuitOp, CircuitResult } from '../../0';
-import { type QuantumAppEntry } from '../apps';
+import type { MindMatrix } from '../../types/index.ts';
+import type { CircuitOp, CircuitResult } from '../../0/index.ts';
+import { type QuantumAppEntry } from '../apps/index.ts';
 /** [55, 34, 21, 13] — consecutive-Fibonacci census rhythm, descending; sum = 123 (the QPU-inclusive 4th band). */
 export declare const CENSUS_FIBONACCI: readonly [number, number, number, number];
 export type QuantumUiDesignTokens = {
@@ -113,7 +113,7 @@ export declare function quantumComputerDriverComputes(matrix?: MindMatrix, at?: 
         };
         cost: {
             proven: boolean;
-            rows: import("../science").DimensionCostRow[];
+            rows: import("../science/index.ts").DimensionCostRow[];
             crossover: number;
             asymptoticallyInsufficient: boolean;
             facets: ({
@@ -132,7 +132,7 @@ export declare function quantumComputerDriverComputes(matrix?: MindMatrix, at?: 
             faithful: boolean;
             physicalQpuWouldSeparate: boolean;
             verdict: string;
-            rows: import("../science").BenchmarkRow[];
+            rows: import("../science/index.ts").BenchmarkRow[];
             facets: ({
                 facet: string;
                 on: boolean;

@@ -1,4 +1,4 @@
-import type { DigitalQuantumProof, MindMatrix, ProofBundle } from '../../types';
+import type { DigitalQuantumProof, MindMatrix, ProofBundle } from '../../types/index.ts';
 export declare function digitalQuantumProof(matrix?: MindMatrix): DigitalQuantumProof;
 export declare function sealAll(matrix?: MindMatrix): {
     sealed: boolean;
@@ -575,7 +575,7 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         demoFactors: string[];
         boundaryNamesDemo: boolean;
         boundaryNamesHw: boolean;
-        hardware: import("../../water/encryption").MaxBitsHardwareCapabilities;
+        hardware: import("../../water/encryption/index.ts").MaxBitsHardwareCapabilities;
         count: number;
         facets: ({
             receipt: string;
@@ -623,7 +623,7 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         mapping: {
             problem: string;
             ray: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
-            status: import("../../research").MillenniumChallengeStatus;
+            status: import("../../research/index.ts").MillenniumChallengeStatus;
             theoremsInPlace: number;
         }[];
         facets: {
@@ -646,7 +646,7 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         algebraExcludedCount: number;
         rows: {
             problem: string;
-            rigor: import("../../research").ClayRigorLevel;
+            rigor: import("../../research/index.ts").ClayRigorLevel;
             toolStructure: "Ricci flow with surgery — geometric analysis/PDE, external to topology (Perelman 2003)" | "a non-relativizing ∧ non-natural ∧ non-algebrizing technique — the intersection is non-empty (Williams: NEXP⊄ACC⁰) but no member yet reaches NP" | "the true nonlinear vortex-stretching structure the averaged equation discards (Tao 2016 blows up a same-energy-same-scaling proxy)" | "function-field cohomology transported to ℤ — RH is a THEOREM over 𝔽_q (Deligne 1974); the arithmetic-site bridge is unbuilt" | "a constructive interacting 4D QFT plus a positive-mass-gap proof — no barrier theorem, none found" | "a construction of algebraic cycles from arbitrary Hodge classes — no barrier theorem, none found" | "the rank ↔ L-vanishing-order bridge for rank ≥ 2 — no barrier theorem, none found";
         }[];
         reusedInversions: number;
@@ -932,9 +932,9 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         structuralBits: number;
         fixBuilt: boolean;
         ledger: {
-            today: import("../../pair/debit/credit").LedgerEntry[];
-            overclaim: import("../../pair/debit/credit").LedgerEntry[];
-            afterCutover: import("../../pair/debit/credit").LedgerEntry[];
+            today: import("../../pair/debit/credit/index.ts").LedgerEntry[];
+            overclaim: import("../../pair/debit/credit/index.ts").LedgerEntry[];
+            afterCutover: import("../../pair/debit/credit/index.ts").LedgerEntry[];
             honest: boolean;
             overclaimCaught: boolean;
             fundedAfterCutover: boolean;
@@ -1453,7 +1453,7 @@ export declare function commandGapsToTrinityEyes(matrix?: MindMatrix): {
     gaps: number;
     complete: boolean;
     commands: {
-        command: import("../../types").ConceptCommandName;
+        command: import("../../types/index.ts").ConceptCommandName;
         eyesSeen: number;
         gap: boolean;
         receipt: string;

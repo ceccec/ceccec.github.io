@@ -1,4 +1,4 @@
-import { type MindMatrix } from '../../heaven/mind';
+import { type MindMatrix } from '../../heaven/mind/index.ts';
 /** The README signature check, as a typed src fold: the committed README.md must equal the src-computed
  *  readmeMarkdown() (the README is computed from src — do not hand-edit). The commit shell reads the file
  *  and calls this; the judgment lives here in src, not in the untyped script. */

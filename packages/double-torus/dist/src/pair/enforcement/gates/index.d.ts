@@ -1,7 +1,7 @@
-import { type ScriptShellScan } from '../script/shell';
-import { importGapCount } from './strict/scan';
-import { type StrictGateSnapshot, type StrictHyphenOffender } from './strict';
-import { type ComputationalLimitSnapshot } from './computational';
+import { type ScriptShellScan } from '../script/shell/index.ts';
+import { importGapCount } from './strict/scan/index.ts';
+import { type StrictGateSnapshot, type StrictHyphenOffender } from './strict/index.ts';
+import { type ComputationalLimitSnapshot } from './computational/index.ts';
 /** One normalised finding from any trinity wave. */
 export type Finding = {
     wave: 'cross' | 'fold' | 'weave' | 'gate';
@@ -271,12 +271,12 @@ export type ImportPathDistanceEdge = {
     /** Up-hops only — count of `../` in the spec (composes import-gap scan). */
     readonly gapHops: number;
 };
-export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict';
-export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict';
-export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict';
-export { dryDupe, theoremAudit, geoGebraEncode, buildMin, mathAlgebra, invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit, coreMathFreeForAll, mathFree, freeMath, licensePsg, psgLicense, LICENSE_CONTACT_PSG, runCoreMathFreeForAllExit, runMathFreeExit, runFreeMathExit, runLicensePsgExit, runPsgLicenseExit, legalCanon, patentCanon, } from './strict/scan';
-export { FIBONACCI_BANDS, VAULT_STATION, NOT_LESS_NOT_MORE_LAW, COMPUTATIONAL_LIMITS_LAW, verifyGaplessCensus, verifyFoldedCensus, verifyDimensionGates, scanVaultViolations, scanLogicDisplayViolations, scanRenderIndexViolations, scanStaticPathViolations, displayUiPathFromLogicIndex, logicIndexRequiresDisplayGate, LOGIC_DISPLAY_PREFIX, UI_DISPLAY_PREFIX, MAX_RECURSION_DEPTH, displaySubpathFromLogicTail, mindRecursionDepth, RENDER_BARREL_ALLOWLIST, scanForbiddenFolderNameViolations, CANONICAL_ROOT_FOLDERS, scanRootDistributionViolations, scanDigitLatticeViolations, discoverSrcIndexes, scanIncompleteIndexViolations, vitepressAutomountPaths, type DiscoveredIndexEntry, computeComputationalLimitSnapshot, computationalGatePassed, computationalLimitsGapDetail, scanIChingDistribution, scanRosettaDistribution, ichingDistributionGuidance, rosettaCensusGuidance, verifyRosettaTaxonomy, auditComputationalGates, type ComputationalLimitSnapshot, type IChingDistributionSnapshot, type RosettaDistributionSnapshot } from './computational';
-export { auditStrictGates, strictGatePassed, stripComments, computeStrictGateSnapshot, scanVitepressIndex, type StrictGateSnapshot, type StrictHyphenOffender, type StrictNonTsOffender } from './strict';
+export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict/index.ts';
+export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict/index.ts';
+export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict/index.ts';
+export { dryDupe, theoremAudit, geoGebraEncode, buildMin, mathAlgebra, invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit, coreMathFreeForAll, mathFree, freeMath, licensePsg, psgLicense, LICENSE_CONTACT_PSG, runCoreMathFreeForAllExit, runMathFreeExit, runFreeMathExit, runLicensePsgExit, runPsgLicenseExit, legalCanon, patentCanon, } from './strict/scan/index.ts';
+export { FIBONACCI_BANDS, VAULT_STATION, NOT_LESS_NOT_MORE_LAW, COMPUTATIONAL_LIMITS_LAW, verifyGaplessCensus, verifyFoldedCensus, verifyDimensionGates, scanVaultViolations, scanLogicDisplayViolations, scanRenderIndexViolations, scanStaticPathViolations, displayUiPathFromLogicIndex, logicIndexRequiresDisplayGate, LOGIC_DISPLAY_PREFIX, UI_DISPLAY_PREFIX, MAX_RECURSION_DEPTH, displaySubpathFromLogicTail, mindRecursionDepth, RENDER_BARREL_ALLOWLIST, scanForbiddenFolderNameViolations, CANONICAL_ROOT_FOLDERS, scanRootDistributionViolations, scanDigitLatticeViolations, discoverSrcIndexes, scanIncompleteIndexViolations, vitepressAutomountPaths, type DiscoveredIndexEntry, computeComputationalLimitSnapshot, computationalGatePassed, computationalLimitsGapDetail, scanIChingDistribution, scanRosettaDistribution, ichingDistributionGuidance, rosettaCensusGuidance, verifyRosettaTaxonomy, auditComputationalGates, type ComputationalLimitSnapshot, type IChingDistributionSnapshot, type RosettaDistributionSnapshot } from './computational/index.ts';
+export { auditStrictGates, strictGatePassed, stripComments, computeStrictGateSnapshot, scanVitepressIndex, type StrictGateSnapshot, type StrictHyphenOffender, type StrictNonTsOffender } from './strict/index.ts';
 export type EnforcementFacts = {
     readonly root: string;
     readonly merkle: string;
@@ -291,13 +291,13 @@ export type EnforcementFacts = {
 export declare function collectEnforcementFacts(root: string): EnforcementFacts;
 export declare function readFact(facts: EnforcementFacts, path: string): string;
 /** Read-only views of facts.strict — no re-scans. */
-export declare function collectImportOffenders(facts: EnforcementFacts): import("./strict").StrictImportOffender[];
-export declare function collectIndexOnlyOffenders(facts: EnforcementFacts): import("./strict").StrictIndexOffender[];
+export declare function collectImportOffenders(facts: EnforcementFacts): import("./strict/index.ts").StrictImportOffender[];
+export declare function collectIndexOnlyOffenders(facts: EnforcementFacts): import("./strict/index.ts").StrictIndexOffender[];
 export declare function collectHyphenFolderOffenders(facts: EnforcementFacts): StrictHyphenOffender[];
 export declare function collectStrictGateOffenders(facts: EnforcementFacts): {
-    imports: readonly import("./strict").StrictImportOffender[];
-    importGaps: readonly import("./strict").StrictImportGapOffender[];
-    indexOnly: readonly import("./strict").StrictIndexOffender[];
+    imports: readonly import("./strict/index.ts").StrictImportOffender[];
+    importGaps: readonly import("./strict/index.ts").StrictImportGapOffender[];
+    indexOnly: readonly import("./strict/index.ts").StrictIndexOffender[];
     hyphenFolders: readonly StrictHyphenOffender[];
 };
 export declare function collectFoldDefiners(facts: EnforcementFacts, foldNames: readonly string[]): {
@@ -2207,20 +2207,20 @@ export declare function gateLight(root?: string): {
             readonly deployJobMs: 11000;
             readonly workflowMs: 241000;
         };
-        timing: import("../script/shell").DocsBuildTimingReceipt;
+        timing: import("../script/shell/index.ts").DocsBuildTimingReceipt;
         slow: {
             computes: boolean;
             passed: boolean;
-            hardOpen: import("../script/shell").SlowBuildGapRow[];
-            warnOpen: import("../script/shell").SlowBuildGapRow[];
-            closed: import("../script/shell").SlowBuildGapRow[];
-            gaps: import("../script/shell").SlowBuildGapRow[];
+            hardOpen: import("../script/shell/index.ts").SlowBuildGapRow[];
+            warnOpen: import("../script/shell/index.ts").SlowBuildGapRow[];
+            closed: import("../script/shell/index.ts").SlowBuildGapRow[];
+            gaps: import("../script/shell/index.ts").SlowBuildGapRow[];
             openCount: number;
             hardOpenCount: number;
             warnOpenCount: number;
             closedCount: number;
             count: number;
-            timing: import("../script/shell").DocsBuildTimingReceipt;
+            timing: import("../script/shell/index.ts").DocsBuildTimingReceipt;
             quantumize: {
                 computes: boolean;
                 techniques: ({

@@ -1,6 +1,6 @@
-import type { Atom, MindMatrix, ConsciousnessVector, ProofReport, RepositoryApi, DoubleTorusWire, DoubleTorusFlow } from '../../types';
-import { uuidHero } from '../../0';
-import type { RosettaComputationType } from '../../water/digit';
+import type { Atom, MindMatrix, ConsciousnessVector, ProofReport, RepositoryApi, DoubleTorusWire, DoubleTorusFlow } from '../../types/index.ts';
+import { uuidHero } from '../../0/index.ts';
+import type { RosettaComputationType } from '../../water/digit/index.ts';
 /** @rosetta ✦₁ · Water · depth */
 export declare function buildMatrix(source?: readonly Atom[]): MindMatrix;
 /** @rosetta ✦₁ · Water · depth */
@@ -309,7 +309,7 @@ export declare function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix?: Min
         readonly memoTiers: readonly ("matrix-root" | "weak-map" | "content-address")[];
         readonly gpuSurface: "browser-canvas-raf" | "none-ssr";
         readonly storageModel: "content-address-merkle";
-        readonly tiers: readonly import("../../0").ResourceCooperationTier[];
+        readonly tiers: readonly import("../../0/index.ts").ResourceCooperationTier[];
     };
     sequence: {
         reduces: boolean;
@@ -436,7 +436,7 @@ export declare function hardwareSpecFromInvariants(matrix?: MindMatrix): {
     decoded: boolean;
     ringOrder: (2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6)[];
     doublingOrbit: number[];
-    tiers: import("../../0").ResourceTier[];
+    tiers: import("../../0/index.ts").ResourceTier[];
     documented: string[];
     flagged: string[];
     facets: {
@@ -4111,7 +4111,7 @@ export declare function quantumStringTheoryChatDecodesCriticalDimensionsRealMath
     bosonic: number;
     superstring: number;
     mTheory: number;
-    tier: import("../../3/7").DemarcationTier;
+    tier: import("../../3/7/index.ts").DemarcationTier;
     facets: {
         receipt: string;
         facet: string;
@@ -4668,7 +4668,7 @@ export declare function chatNavContext(referrer: string, prompt: string, matrix?
         generated: string;
         root: string;
     };
-    related: readonly import("../../4/6").DiscoveryRow[];
+    related: readonly import("../../4/6/index.ts").DiscoveryRow[];
     superposition: string;
 };
 /** chatUsesReferrerToQuantumiseAll — the chat surface joins the (referrer, node) superposition law (user, 2026-07-25:

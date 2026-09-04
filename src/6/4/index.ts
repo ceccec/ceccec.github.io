@@ -1,11 +1,11 @@
 // Pi-train station 6/4 — dissolution sequence order 7 (digit/reverse 6/4).
 // Domain cuts only — vault primitives import from src/0 at call sites.
 
-import { ALVEOLAR_CO2_BAR, ALVEOLAR_H2O_BAR, LN2, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, SQRT2 } from '../../3/7'
-import { abs, acos, atan, atan2, cos, exp, floor, hypot, log, max, merkleFold, min, prng, round, sin, sqrt, toUuid } from '../../0'
-import { greatCircleKm } from '../../5/5'
-import { TAU } from '../../3/7'
-import { PHI } from '../../3/7'
+import { ALVEOLAR_CO2_BAR, ALVEOLAR_H2O_BAR, LN2, NEWTON_G, REDUCED_PLANCK, SPEED_OF_LIGHT, SQRT2 } from '../../3/7/index.ts'
+import { abs, acos, atan, atan2, cos, exp, floor, hypot, log, max, merkleFold, min, prng, round, sin, sqrt, toUuid } from '../../0/index.ts'
+import { greatCircleKm } from '../../5/5/index.ts'
+import { TAU } from '../../3/7/index.ts'
+import { PHI } from '../../3/7/index.ts'
 
 export function initialBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const r = TAU / (9 * 8 * 5) // deg→rad via sealed TAU (math/trust — not bare (TAU / 2))
@@ -77,7 +77,7 @@ export function quantumZeno(n: number): number {
 }
 
 /** Frequency from wavelength f = c/λ (Hz) — re-export from SI hub. */
-export { frequencyOf } from '../../3/7'
+export { frequencyOf } from '../../3/7/index.ts'
 
 /** Sweepable phase gate diag(1, e^{iθ}) in applyGate flat format — interferometer fringe P(0)=cos²(φ/2). */
 export function phase(theta: number): number[] {

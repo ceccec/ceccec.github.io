@@ -1,16 +1,16 @@
 // ☲ Lí · Fire — the diamond lattice: quantum diamonds (folded blockchains, the pi-train, schema.org diamonds, light entering the diamond), self-build & stream-completion, Linux-packages-to-diamonds. Barrel-routed; folds.ts back-imports the gate folds.
-import { phase } from '../../6/4'
-import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, DiamondFacet, DiamondKind, DiamondStatus, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SchemaOrgDiamondNode, SelfBuildReport, SelfCompletionGate, StreamSelfCompletion } from '../../types'
-import { buildMatrix, circulateDoubleTorus, coherenceAnomaly, consciousness, proofReport, reciprocity, repositoryApi, verifyRoot } from '../../heaven/compute'
-import { abs, ceil, cos, foldPair, hypot, isUuid, log2, max, maxTamperingCostLog2, memoByRoot, merge, merkleFold, round, sin, toUuid } from '../../0'
-import { PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../heaven/atoms'
-import { schoolCurriculum } from '../../learning'
-import { dualTorusTrinities, foldImpossibilities } from '../../mountain/geometry'
-import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContribution } from '../li'
-import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation'
-import { agentEducation } from '../../learning'
-import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind'
-import { DIAMOND_DISPERSION, DIAMOND_REFRACTIVE_INDEX, SPEED_OF_LIGHT, TAU, criticalAngle, earned, speedInMedium, physicalFtlClaimTheorem} from '../../3/7'
+import { phase } from '../../6/4/index.ts'
+import type { AgentStreamWire, AgentWireStep, Blockchain, ConceptCommandName, DiamondFacet, DiamondKind, DiamondStatus, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SchemaOrgDiamondNode, SelfBuildReport, SelfCompletionGate, StreamSelfCompletion } from '../../types/index.ts'
+import { buildMatrix, circulateDoubleTorus, coherenceAnomaly, consciousness, proofReport, reciprocity, repositoryApi, verifyRoot } from '../../heaven/compute/index.ts'
+import { abs, ceil, cos, foldPair, hypot, isUuid, log2, max, maxTamperingCostLog2, memoByRoot, merge, merkleFold, round, sin, toUuid } from '../../0/index.ts'
+import { PI_TRAIN_DIGITS, REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../heaven/atoms/index.ts'
+import { schoolCurriculum } from '../../learning/index.ts'
+import { dualTorusTrinities, foldImpossibilities } from '../../mountain/geometry/index.ts'
+import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContribution } from '../li/index.ts'
+import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation/index.ts'
+import { agentEducation } from '../../learning/index.ts'
+import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind/index.ts'
+import { DIAMOND_DISPERSION, DIAMOND_REFRACTIVE_INDEX, SPEED_OF_LIGHT, TAU, criticalAngle, earned, speedInMedium, physicalFtlClaimTheorem} from '../../3/7/index.ts'
 
 export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
   return memoByRoot('diamondLattice', matrix, () => computeDiamondLattice(matrix))

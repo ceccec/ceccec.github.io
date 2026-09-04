@@ -1,7 +1,7 @@
 // Digit 7 — sequence descent `7/`, fold → 5. Fluid dynamics.
 // Computes and seals its OWN physics: the digit across every angle and both polarities.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 7
 

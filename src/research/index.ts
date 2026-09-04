@@ -1,50 +1,50 @@
 // Research — canonical home: program index, reproducibility gates, professional monograph rows.
-import * as __ns_up_stack_overflow from '../water/stack'
-import * as __ns_up_computer from '../quantum/computer'
-import * as __ns_up_quantum_science from '../quantum/science'
-import * as __ns_up_quantum_application from '../quantum/apps'
-import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforcement/gates/computational'
-import * as __ns_mountain_vortex from '../mountain/vortex'
-import * as __ns_water_digit from '../water/digit'
-import * as __ns_water_cosmos from '../water/cosmos'
-import type { MindMatrix } from '../types'
-import { buildMatrix, eachCardLinksToDedicatedScientificPaper } from '../heaven/compute'
+import * as __ns_up_stack_overflow from '../water/stack/index.ts'
+import * as __ns_up_computer from '../quantum/computer/index.ts'
+import * as __ns_up_quantum_science from '../quantum/science/index.ts'
+import * as __ns_up_quantum_application from '../quantum/apps/index.ts'
+import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforcement/gates/computational/index.ts'
+import * as __ns_mountain_vortex from '../mountain/vortex/index.ts'
+import * as __ns_water_digit from '../water/digit/index.ts'
+import * as __ns_water_cosmos from '../water/cosmos/index.ts'
+import type { MindMatrix } from '../types/index.ts'
+import { buildMatrix, eachCardLinksToDedicatedScientificPaper } from '../heaven/compute/index.ts'
 import {
   quantumProjectionParams, rosettaShelve, slowProcessIsQuantumGap, standardToolboxIoCatalog,
   quantumCliToolsCatalog,
-  type QuantumProjection } from '../quantum/apps'
-import * as __ns_quantum_apps from '../quantum/apps'
-import * as __ns_water_encryption from '../water/encryption'
-import * as __ns_wind_site from '../wind/site'
-import * as __ns_wind_fusion from '../wind/fusion' // call-time (cycle-safe): the public-API fusion catalog
-import * as __ns_thunder_decode from '../thunder/decode'
-import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../0'
-import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1'
-import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7'
-import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../earth/iching'
-import { greatCircleKm } from '../5/5'
-import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../6/4'
-import { QUANTUM_COMMAND_PAIR_IDS } from '../pair/enforcement'
-import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix } from '../pair/enforcement/gates'
-import { STATIC_PAGE_SEED } from '../8/2'
-import { paperParamsById, papers } from '../learning'
-import { computeUniversalPage, theoremFormulaCodeDual, theoremSlug, theoremPageRows } from '../wind/routes/corpus'
-import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../1/9'
-import { zeroPointEnergy } from '../1/9'
-import { teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotion } from '../1/9'
+  type QuantumProjection } from '../quantum/apps/index.ts'
+import * as __ns_quantum_apps from '../quantum/apps/index.ts'
+import * as __ns_water_encryption from '../water/encryption/index.ts'
+import * as __ns_wind_site from '../wind/site/index.ts'
+import * as __ns_wind_fusion from '../wind/fusion/index.ts' // call-time (cycle-safe): the public-API fusion catalog
+import * as __ns_thunder_decode from '../thunder/decode/index.ts'
+import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../0/index.ts'
+import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1/index.ts'
+import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, physicalFtlFromMeasurements, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7/index.ts'
+import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../earth/iching/index.ts'
+import { greatCircleKm } from '../5/5/index.ts'
+import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../6/4/index.ts'
+import { QUANTUM_COMMAND_PAIR_IDS } from '../pair/enforcement/index.ts'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath, codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix } from '../pair/enforcement/gates/index.ts'
+import { STATIC_PAGE_SEED } from '../8/2/index.ts'
+import { paperParamsById, papers } from '../learning/index.ts'
+import { computeUniversalPage, theoremFormulaCodeDual, theoremSlug, theoremPageRows } from '../wind/routes/corpus/index.ts'
+import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../1/9/index.ts'
+import { zeroPointEnergy } from '../1/9/index.ts'
+import { teslaPatentsDecodeToOneRotatingFieldPrincipleFlowerOfLifeInMotion } from '../1/9/index.ts'
 import {
   earthRealisedByComputingPolesAsPyramid, merkaba, bothEarthsRotateWithinEachOther,
-  doubleTorusEarthPyramidTipsProvenByMath, metatronCube, sacredGeometry } from '../mountain/geometry'
+  doubleTorusEarthPyramidTipsProvenByMath, metatronCube, sacredGeometry } from '../mountain/geometry/index.ts'
 import {
   doubleTorusIsCompletelyQuantum,
   sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
-  universalNavigationalCrossInAllDimensions } from '../water/double'
-import { ROSETTA_RAYS, rosettaRayOf } from '../water/digit'
-import { flowerUnlocksFruitBySpin, flowerOfLifeCenters, fruitOfLifeCenters } from '../quantum/wind/geometry'
-import { folderGravityMeasuredByTheCode } from '../pair/enforcement/gates'
-import { movieUnbalancedAroundCenterIsCrack } from '../thunder/movie/canvas'
-import * as __ns_earth_governance from '../earth/governance'
-import { ratStr } from '../9/1'
+  universalNavigationalCrossInAllDimensions } from '../water/double/index.ts'
+import { ROSETTA_RAYS, rosettaRayOf } from '../water/digit/index.ts'
+import { flowerUnlocksFruitBySpin, flowerOfLifeCenters, fruitOfLifeCenters } from '../quantum/wind/geometry/index.ts'
+import { folderGravityMeasuredByTheCode } from '../pair/enforcement/gates/index.ts'
+import { movieUnbalancedAroundCenterIsCrack } from '../thunder/movie/canvas/index.ts'
+import * as __ns_earth_governance from '../earth/governance/index.ts'
+import { ratStr } from '../9/1/index.ts'
 
 export type ProfessionalResearchDataTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS' | 'SIMULATOR' | 'METAPHOR' | 'OPEN'
 
@@ -17981,7 +17981,7 @@ export const conjectures = { byGroup: conjecturesByGroup, byId: conjectureById, 
 // can no longer ASSERT the claim: the status is derived from the same sealed theorem every
 // other Clay-adjacent surface reads, so if the registry ever fills, this fills with it — and
 // until then it says so.
-import { CMI_PRIZE_SOLVED_CORE_IDS } from '../3/7'
+import { CMI_PRIZE_SOLVED_CORE_IDS } from '../3/7/index.ts'
 export const paper_title = 'Quantum Proofs of the Clay Millennium Problems (WITHDRAWN)'
 export const paper_authors = ['Tsvetan Rouschev'] as const
 /** ORCID 0009-0000-7312-9778 — Tsvetan Roustchev, credit name Tsvetan Rouschev. */

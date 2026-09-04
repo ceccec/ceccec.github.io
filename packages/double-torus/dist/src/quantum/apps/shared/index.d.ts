@@ -1,5 +1,5 @@
-import type { StandardToolHonesty, SessionQuantumBitStatus, chatAudit } from '..';
-import type { MindMatrix } from '../../../types';
+import type { StandardToolHonesty, SessionQuantumBitStatus, chatAudit } from '../index.ts';
+import type { MindMatrix } from '../../../types/index.ts';
 export declare const ROSETTA_PARALLEL_REGISTRY_BACKLOG: readonly [];
 export declare const STANDARD_TOOL_HONESTY: StandardToolHonesty;
 export type SessionQuantumBitSeed = {

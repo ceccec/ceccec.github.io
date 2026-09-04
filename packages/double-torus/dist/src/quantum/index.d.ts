@@ -1,11 +1,11 @@
-import { type Burst } from './fire/experiments';
-import type { Dims } from './mountain/dimensions';
-import { type PlasmaMoviePalette, type PlasmaWiredStream } from '../fire/plasma/ball';
-import { livingTorus } from '../fire/diamonds';
-import type { MindMatrix } from '../types';
-import { type BothEarthsMerkabaRotation } from '../mountain/geometry';
-import { type QuantumProjection } from './apps';
-import { type LatticeArm } from '../3/7';
+import { type Burst } from './fire/experiments/index.ts';
+import type { Dims } from './mountain/dimensions/index.ts';
+import { type PlasmaMoviePalette, type PlasmaWiredStream } from '../fire/plasma/ball/index.ts';
+import { livingTorus } from '../fire/diamonds/index.ts';
+import type { MindMatrix } from '../types/index.ts';
+import { type BothEarthsMerkabaRotation } from '../mountain/geometry/index.ts';
+import { type QuantumProjection } from './apps/index.ts';
+import { type LatticeArm } from '../3/7/index.ts';
 export interface ArchNode {
     folder: string;
     glyph: string;
@@ -18,11 +18,11 @@ export declare function drawArchitecture(ctx: CanvasRenderingContext2D, cx: numb
 export declare function seedOf(text: string): number;
 export declare function hueOf(seed: number): number;
 export declare function armsOf(seed: number): number;
-export { createAnimationEngine, type AnimationEngine } from '../0';
-export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0';
-export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './mountain/dimensions';
-export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, depthIsThePerspectiveDivide, type Vec3 } from './wind/geometry';
-export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './fire/experiments';
+export { createAnimationEngine, type AnimationEngine } from '../0/index.ts';
+export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0/index.ts';
+export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './mountain/dimensions/index.ts';
+export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, depthIsThePerspectiveDivide, type Vec3 } from './wind/geometry/index.ts';
+export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './fire/experiments/index.ts';
 export interface HeroScene {
     t: number;
     p: number;
@@ -339,7 +339,7 @@ export interface RosettaPerspective {
  * Collapse: glyph/domain from sealed ROSETTA_RAYS only — no parallel ROSETTA_RAY_VIEWS table.
  */
 export declare function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective;
-export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball';
+export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball/index.ts';
 export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean, scroll?: number, perspective?: MoviePerspectiveBias): SharedHeroState;
 /** Page copy folded to one movie/subtitle seed string. */
 export declare function movieTextFromCopy(copy: SharedHeroCopy): string;
@@ -386,7 +386,7 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
         hinge: {
             hinge: boolean;
             path: string;
-            at: import("../water/double/earth").EarthTimespaceAt;
+            at: import("../water/double/earth/index.ts").EarthTimespaceAt;
             city: string;
             cityCopy: {
                 en: string;
@@ -401,7 +401,7 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
             vortexCloses: boolean;
             deviceTrinity: string[];
             codeTrinity: string[];
-            gateways: import("./heaven/mind").EarthHingeGatewayView[];
+            gateways: import("./heaven/mind/index.ts").EarthHingeGatewayView[];
             gatewayCount: number;
             movie: {
                 cycleMs: number;
@@ -480,19 +480,19 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
                 fusionIgnites: boolean;
                 weightedBearing: number;
                 weightedTotal: number;
-                steps: import("./heaven/mind").EarthHingeVortexStepView[];
+                steps: import("./heaven/mind/index.ts").EarthHingeVortexStepView[];
             };
             statement: string;
             boundary: string;
         };
         paintGateways: {
-            earth: import("../water/double/earth").EarthSheet;
+            earth: import("../water/double/earth/index.ts").EarthSheet;
             angleDeg: number;
             hue: number;
             ring: 2 | 1;
         }[];
-        paintSteps: import("./heaven/mind").EarthHingeVortexStepView[];
-        paintLayers: import("./heaven/mind").EarthHingePaintLayer[];
+        paintSteps: import("./heaven/mind/index.ts").EarthHingeVortexStepView[];
+        paintLayers: import("./heaven/mind/index.ts").EarthHingePaintLayer[];
         facets: {
             receipt: string;
             facet: string;
@@ -514,7 +514,7 @@ export declare function clientDoubleTorusEarthHingePaintSealed(path?: string, ma
     boundary: string;
 };
 /** One RAF loop for BackgroundMovie — subscribe in Vue onMounted, unsubscribe onUnmounted. */
-export { realtimeComputationsMoviePaint, allRealtimeComputationsVisibleInMovie, type RealtimeComputationsMoviePaint, type RealtimeComputeMovieChannel } from '../fire/plasma/ball';
+export { realtimeComputationsMoviePaint, allRealtimeComputationsVisibleInMovie, type RealtimeComputationsMoviePaint, type RealtimeComputeMovieChannel } from '../fire/plasma/ball/index.ts';
 export declare function subscribeHeroClock(listener: (at: number) => void): () => void;
 /**
  * Gate: every animation process rides the ONE clock. If even a single process runs outside the
@@ -739,7 +739,7 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
             };
             weather: {
                 folded: boolean;
-                at: import("./fire/forecasts").WeatherForecastGeoAt;
+                at: import("./fire/forecasts/index.ts").WeatherForecastGeoAt;
                 surface: {
                     x: number;
                     y: number;
@@ -890,7 +890,7 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
                 hinge: {
                     hinge: boolean;
                     path: string;
-                    at: import("../water/double/earth").EarthTimespaceAt;
+                    at: import("../water/double/earth/index.ts").EarthTimespaceAt;
                     city: string;
                     cityCopy: {
                         en: string;
@@ -905,7 +905,7 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
                     vortexCloses: boolean;
                     deviceTrinity: string[];
                     codeTrinity: string[];
-                    gateways: import("./heaven/mind").EarthHingeGatewayView[];
+                    gateways: import("./heaven/mind/index.ts").EarthHingeGatewayView[];
                     gatewayCount: number;
                     movie: {
                         cycleMs: number;
@@ -984,19 +984,19 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
                         fusionIgnites: boolean;
                         weightedBearing: number;
                         weightedTotal: number;
-                        steps: import("./heaven/mind").EarthHingeVortexStepView[];
+                        steps: import("./heaven/mind/index.ts").EarthHingeVortexStepView[];
                     };
                     statement: string;
                     boundary: string;
                 };
                 paintGateways: {
-                    earth: import("../water/double/earth").EarthSheet;
+                    earth: import("../water/double/earth/index.ts").EarthSheet;
                     angleDeg: number;
                     hue: number;
                     ring: 2 | 1;
                 }[];
-                paintSteps: import("./heaven/mind").EarthHingeVortexStepView[];
-                paintLayers: import("./heaven/mind").EarthHingePaintLayer[];
+                paintSteps: import("./heaven/mind/index.ts").EarthHingeVortexStepView[];
+                paintLayers: import("./heaven/mind/index.ts").EarthHingePaintLayer[];
                 facets: {
                     receipt: string;
                     facet: string;
@@ -1017,7 +1017,7 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
         };
         timespace: {
             proven: boolean;
-            at: import("../water/double/earth").EarthTimespaceAt;
+            at: import("../water/double/earth/index.ts").EarthTimespaceAt;
             earth: {
                 proven: boolean;
                 realised: boolean;
@@ -1112,7 +1112,7 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("./heaven/mind").TrinityPyramidFace[];
+                faces: import("./heaven/mind/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1150,7 +1150,7 @@ export declare function lifeDeathDoubleTorusFusedInMovie(path?: string, matrix?:
                     slantFromApex: number;
                     receipt: string;
                 }[];
-                faces: import("./heaven/mind").TrinityPyramidFace[];
+                faces: import("./heaven/mind/index.ts").TrinityPyramidFace[];
                 baseArea: number;
                 volume: number;
                 proofs: {
@@ -1282,9 +1282,9 @@ export declare function devHeroMoviePaintWithinBudgetMs(maxMs?: number, path?: s
     statement: string;
     boundary: string;
 };
-export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, openTheorems, theoremsByInvolutionType, formatTheoremForChat, theoremSummary, type Theorem, type ChatQueryResult, type ProofStatus } from './chat';
-export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, comparisonMesh, meshEnrichedMillennium, type AlgorithmSignature, type ContrastAnalysis, type SolutionCandidate } from './mesh';
-export { quantumDiscoveryPortal, discoverMillenniumProblem, exploreAlgorithm, exploreContrast, quantumDiscoveryDashboard, type PortalState, type DiscoveryView } from './portal';
+export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, openTheorems, theoremsByInvolutionType, formatTheoremForChat, theoremSummary, type Theorem, type ChatQueryResult, type ProofStatus } from './chat/index.ts';
+export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, comparisonMesh, meshEnrichedMillennium, type AlgorithmSignature, type ContrastAnalysis, type SolutionCandidate } from './mesh/index.ts';
+export { quantumDiscoveryPortal, discoverMillenniumProblem, exploreAlgorithm, exploreContrast, quantumDiscoveryDashboard, type PortalState, type DiscoveryView } from './portal/index.ts';
 export type LinearSystemSolution = {
     readonly systemSize: number;
     readonly conditionNumber: number;
@@ -3201,7 +3201,7 @@ export declare function quantumResearchDisplayInfo(domainId: string): QuantumRes
  * - Goldbach: σ(p)=n-p, fixed points at pairs → even n = p + σ(p)
  * - P vs NP: σ(problem)=verify(solution), fixed point → verifier=solver
  */
-import type { InvolutionStructure } from './millennium';
+import type { InvolutionStructure } from './millennium/index.ts';
 export type FixedPoint = {
     value: string;
     theoremContext: string;

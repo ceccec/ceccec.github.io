@@ -1,10 +1,10 @@
-import * as __ns_up_stack_overflow from '../water/stack';
-import * as __ns_up_quantum_science from '../quantum/science';
-import * as __ns_up_quantum_application from '../quantum/apps';
-import * as __ns_water_digit from '../water/digit';
-import type { MindMatrix } from '../types';
-import { type QuantumProjection } from '../quantum/apps';
-import * as __ns_water_encryption from '../water/encryption';
+import * as __ns_up_stack_overflow from '../water/stack/index.ts';
+import * as __ns_up_quantum_science from '../quantum/science/index.ts';
+import * as __ns_up_quantum_application from '../quantum/apps/index.ts';
+import * as __ns_water_digit from '../water/digit/index.ts';
+import type { MindMatrix } from '../types/index.ts';
+import { type QuantumProjection } from '../quantum/apps/index.ts';
+import * as __ns_water_encryption from '../water/encryption/index.ts';
 export type ProfessionalResearchDataTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS' | 'SIMULATOR' | 'METAPHOR' | 'OPEN';
 export type ProfessionalResearchProgramRow = {
     readonly id: string;
@@ -2113,7 +2113,7 @@ export declare function clayChallengesComputableFromSequence(matrix?: MindMatrix
         status: MillenniumChallengeStatus;
         challengeMethods: number;
         computablePath: boolean;
-        demarcation: import("../3/7").DemarcationTier;
+        demarcation: import("../3/7/index.ts").DemarcationTier;
         gap: string;
         algebraicStatement: string;
         formula: readonly string[];
@@ -3909,7 +3909,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
         computes: boolean;
         redundantCount: number;
         inaccurateCount: number;
-        redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+        redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
         inaccurate: {
             id: string;
             reason: string;
@@ -3934,8 +3934,8 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
         })[];
         movie: {
             computes: boolean;
-            surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-            open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+            surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+            open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
             openCount: number;
             closedCount: number;
             privateRafOpen: boolean;
@@ -4204,8 +4204,8 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
             };
             movie: {
                 computes: boolean;
-                surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 openCount: number;
                 closedCount: number;
                 privateRafOpen: boolean;
@@ -4413,7 +4413,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../types").ConceptCommandName[];
+                        siblings: import("../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
@@ -5278,8 +5278,8 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../3/7").Rational;
-                        inverse: import("../3/7").Rational;
+                        forward: import("../3/7/index.ts").Rational;
+                        inverse: import("../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -5407,8 +5407,8 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../3/7").Rational;
-                    inverse: import("../3/7").Rational;
+                    forward: import("../3/7/index.ts").Rational;
+                    inverse: import("../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -6079,7 +6079,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../types").ConceptCommandName[];
+                            siblings: import("../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -6921,7 +6921,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
             computes: boolean;
             redundantCount: number;
             inaccurateCount: number;
-            redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+            redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
             inaccurate: {
                 id: string;
                 reason: string;
@@ -6946,8 +6946,8 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
             })[];
             movie: {
                 computes: boolean;
-                surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 openCount: number;
                 closedCount: number;
                 privateRafOpen: boolean;
@@ -7216,8 +7216,8 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                 };
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -7425,7 +7425,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../types").ConceptCommandName[];
+                            siblings: import("../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -8290,8 +8290,8 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -8419,8 +8419,8 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../3/7").Rational;
-                        inverse: import("../3/7").Rational;
+                        forward: import("../3/7/index.ts").Rational;
+                        inverse: import("../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -9091,7 +9091,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -9462,8 +9462,8 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../3/7").Rational;
-            inverse: import("../3/7").Rational;
+            forward: import("../3/7/index.ts").Rational;
+            inverse: import("../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -10494,7 +10494,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
             computes: boolean;
             redundantCount: number;
             inaccurateCount: number;
-            redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+            redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
             inaccurate: {
                 id: string;
                 reason: string;
@@ -10519,8 +10519,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
             })[];
             movie: {
                 computes: boolean;
-                surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 openCount: number;
                 closedCount: number;
                 privateRafOpen: boolean;
@@ -10789,8 +10789,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                 };
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -10998,7 +10998,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../types").ConceptCommandName[];
+                            siblings: import("../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -11863,8 +11863,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -11992,8 +11992,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../3/7").Rational;
-                        inverse: import("../3/7").Rational;
+                        forward: import("../3/7/index.ts").Rational;
+                        inverse: import("../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -12664,7 +12664,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -13498,7 +13498,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                 computes: boolean;
                 redundantCount: number;
                 inaccurateCount: number;
-                redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 inaccurate: {
                     id: string;
                     reason: string;
@@ -13523,8 +13523,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                 })[];
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -13793,8 +13793,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     };
                     movie: {
                         computes: boolean;
-                        surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                        open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                        surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                        open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                         openCount: number;
                         closedCount: number;
                         privateRafOpen: boolean;
@@ -14002,7 +14002,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -14867,8 +14867,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 bidirectional: boolean;
                             };
                             ratInvSample: {
-                                forward: import("../3/7").Rational;
-                                inverse: import("../3/7").Rational;
+                                forward: import("../3/7/index.ts").Rational;
+                                inverse: import("../3/7/index.ts").Rational;
                             };
                             fInverse: {
                                 computes: boolean;
@@ -14996,8 +14996,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -15668,7 +15668,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../types").ConceptCommandName[];
+                                    siblings: import("../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
@@ -16039,8 +16039,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../3/7").Rational;
-                inverse: import("../3/7").Rational;
+                forward: import("../3/7/index.ts").Rational;
+                inverse: import("../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -16948,7 +16948,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 computes: boolean;
                 redundantCount: number;
                 inaccurateCount: number;
-                redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 inaccurate: {
                     id: string;
                     reason: string;
@@ -16973,8 +16973,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 })[];
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -17243,8 +17243,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     };
                     movie: {
                         computes: boolean;
-                        surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                        open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                        surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                        open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                         openCount: number;
                         closedCount: number;
                         privateRafOpen: boolean;
@@ -17452,7 +17452,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -18317,8 +18317,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 bidirectional: boolean;
                             };
                             ratInvSample: {
-                                forward: import("../3/7").Rational;
-                                inverse: import("../3/7").Rational;
+                                forward: import("../3/7/index.ts").Rational;
+                                inverse: import("../3/7/index.ts").Rational;
                             };
                             fInverse: {
                                 computes: boolean;
@@ -18446,8 +18446,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -19118,7 +19118,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../types").ConceptCommandName[];
+                                    siblings: import("../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
@@ -19952,7 +19952,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     computes: boolean;
                     redundantCount: number;
                     inaccurateCount: number;
-                    redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     inaccurate: {
                         id: string;
                         reason: string;
@@ -19977,8 +19977,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     })[];
                     movie: {
                         computes: boolean;
-                        surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                        open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                        surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                        open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                         openCount: number;
                         closedCount: number;
                         privateRafOpen: boolean;
@@ -20247,8 +20247,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         };
                         movie: {
                             computes: boolean;
-                            surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                            open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                            surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                            open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                             openCount: number;
                             closedCount: number;
                             privateRafOpen: boolean;
@@ -20456,7 +20456,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../types").ConceptCommandName[];
+                                    siblings: import("../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
@@ -21321,8 +21321,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     bidirectional: boolean;
                                 };
                                 ratInvSample: {
-                                    forward: import("../3/7").Rational;
-                                    inverse: import("../3/7").Rational;
+                                    forward: import("../3/7/index.ts").Rational;
+                                    inverse: import("../3/7/index.ts").Rational;
                                 };
                                 fInverse: {
                                     computes: boolean;
@@ -21450,8 +21450,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 bidirectional: boolean;
                             };
                             ratInvSample: {
-                                forward: import("../3/7").Rational;
-                                inverse: import("../3/7").Rational;
+                                forward: import("../3/7/index.ts").Rational;
+                                inverse: import("../3/7/index.ts").Rational;
                             };
                             fInverse: {
                                 computes: boolean;
@@ -22122,7 +22122,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                        siblings: import("../types").ConceptCommandName[];
+                                        siblings: import("../types/index.ts").ConceptCommandName[];
                                         siblingCount: number;
                                     };
                                     content: {
@@ -22493,8 +22493,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../3/7").Rational;
-                    inverse: import("../3/7").Rational;
+                    forward: import("../3/7/index.ts").Rational;
+                    inverse: import("../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -23065,7 +23065,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
             computes: boolean;
             redundantCount: number;
             inaccurateCount: number;
-            redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+            redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
             inaccurate: {
                 id: string;
                 reason: string;
@@ -23090,8 +23090,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
             })[];
             movie: {
                 computes: boolean;
-                surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 openCount: number;
                 closedCount: number;
                 privateRafOpen: boolean;
@@ -23360,8 +23360,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 };
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -23569,7 +23569,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../types").ConceptCommandName[];
+                            siblings: import("../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
@@ -24434,8 +24434,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -24563,8 +24563,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../3/7").Rational;
-                        inverse: import("../3/7").Rational;
+                        forward: import("../3/7/index.ts").Rational;
+                        inverse: import("../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -25235,7 +25235,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -26069,7 +26069,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 computes: boolean;
                 redundantCount: number;
                 inaccurateCount: number;
-                redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 inaccurate: {
                     id: string;
                     reason: string;
@@ -26094,8 +26094,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 })[];
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -26364,8 +26364,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     };
                     movie: {
                         computes: boolean;
-                        surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                        open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                        surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                        open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                         openCount: number;
                         closedCount: number;
                         privateRafOpen: boolean;
@@ -26573,7 +26573,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -27438,8 +27438,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 bidirectional: boolean;
                             };
                             ratInvSample: {
-                                forward: import("../3/7").Rational;
-                                inverse: import("../3/7").Rational;
+                                forward: import("../3/7/index.ts").Rational;
+                                inverse: import("../3/7/index.ts").Rational;
                             };
                             fInverse: {
                                 computes: boolean;
@@ -27567,8 +27567,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -28239,7 +28239,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../types").ConceptCommandName[];
+                                    siblings: import("../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
@@ -28610,8 +28610,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../3/7").Rational;
-                inverse: import("../3/7").Rational;
+                forward: import("../3/7/index.ts").Rational;
+                inverse: import("../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -28788,9 +28788,9 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
             computes: boolean;
             folderGravityMeasuredByTheCode: boolean;
             gravityPullsTowardSrc: boolean;
-            masses: import("../pair/enforcement/gates").FolderGravityMass[];
+            masses: import("../pair/enforcement/gates/index.ts").FolderGravityMass[];
             srcMass: number;
-            migrationDirections: import("../pair/enforcement/gates").FolderMigrationDirection[];
+            migrationDirections: import("../pair/enforcement/gates/index.ts").FolderMigrationDirection[];
             migrationDirectionCount: number;
             iching: {
                 kept: readonly [{
@@ -29049,7 +29049,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
             status: MillenniumChallengeStatus;
             challengeMethods: number;
             computablePath: boolean;
-            demarcation: import("../3/7").DemarcationTier;
+            demarcation: import("../3/7/index.ts").DemarcationTier;
             gap: string;
             algebraicStatement: string;
             formula: readonly string[];
@@ -29175,9 +29175,9 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
         computes: boolean;
         folderGravityMeasuredByTheCode: boolean;
         gravityPullsTowardSrc: boolean;
-        masses: import("../pair/enforcement/gates").FolderGravityMass[];
+        masses: import("../pair/enforcement/gates/index.ts").FolderGravityMass[];
         srcMass: number;
-        migrationDirections: import("../pair/enforcement/gates").FolderMigrationDirection[];
+        migrationDirections: import("../pair/enforcement/gates/index.ts").FolderMigrationDirection[];
         migrationDirectionCount: number;
         iching: {
             kept: readonly [{
@@ -29684,7 +29684,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                 computes: boolean;
                 redundantCount: number;
                 inaccurateCount: number;
-                redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 inaccurate: {
                     id: string;
                     reason: string;
@@ -29709,8 +29709,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                 })[];
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -29979,8 +29979,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     };
                     movie: {
                         computes: boolean;
-                        surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                        open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                        surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                        open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                         openCount: number;
                         closedCount: number;
                         privateRafOpen: boolean;
@@ -30188,7 +30188,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -31053,8 +31053,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 bidirectional: boolean;
                             };
                             ratInvSample: {
-                                forward: import("../3/7").Rational;
-                                inverse: import("../3/7").Rational;
+                                forward: import("../3/7/index.ts").Rational;
+                                inverse: import("../3/7/index.ts").Rational;
                             };
                             fInverse: {
                                 computes: boolean;
@@ -31182,8 +31182,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -31854,7 +31854,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../types").ConceptCommandName[];
+                                    siblings: import("../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
@@ -32225,8 +32225,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../3/7").Rational;
-                inverse: import("../3/7").Rational;
+                forward: import("../3/7/index.ts").Rational;
+                inverse: import("../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -33043,7 +33043,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                 computes: boolean;
                 redundantCount: number;
                 inaccurateCount: number;
-                redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                 inaccurate: {
                     id: string;
                     reason: string;
@@ -33068,8 +33068,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                 })[];
                 movie: {
                     computes: boolean;
-                    surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                    open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                    open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     openCount: number;
                     closedCount: number;
                     privateRafOpen: boolean;
@@ -33338,8 +33338,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     };
                     movie: {
                         computes: boolean;
-                        surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                        open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                        surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                        open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                         openCount: number;
                         closedCount: number;
                         privateRafOpen: boolean;
@@ -33547,7 +33547,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                siblings: import("../types").ConceptCommandName[];
+                                siblings: import("../types/index.ts").ConceptCommandName[];
                                 siblingCount: number;
                             };
                             content: {
@@ -34412,8 +34412,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 bidirectional: boolean;
                             };
                             ratInvSample: {
-                                forward: import("../3/7").Rational;
-                                inverse: import("../3/7").Rational;
+                                forward: import("../3/7/index.ts").Rational;
+                                inverse: import("../3/7/index.ts").Rational;
                             };
                             fInverse: {
                                 computes: boolean;
@@ -34541,8 +34541,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../3/7").Rational;
-                            inverse: import("../3/7").Rational;
+                            forward: import("../3/7/index.ts").Rational;
+                            inverse: import("../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -35213,7 +35213,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../types").ConceptCommandName[];
+                                    siblings: import("../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
@@ -36047,7 +36047,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     computes: boolean;
                     redundantCount: number;
                     inaccurateCount: number;
-                    redundant: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                    redundant: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                     inaccurate: {
                         id: string;
                         reason: string;
@@ -36072,8 +36072,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     })[];
                     movie: {
                         computes: boolean;
-                        surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                        open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                        surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                        open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                         openCount: number;
                         closedCount: number;
                         privateRafOpen: boolean;
@@ -36342,8 +36342,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         };
                         movie: {
                             computes: boolean;
-                            surfaces: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
-                            open: import("../thunder/movie/canvas").MovieQuantumGapSurface[];
+                            surfaces: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
+                            open: import("../thunder/movie/canvas/index.ts").MovieQuantumGapSurface[];
                             openCount: number;
                             closedCount: number;
                             privateRafOpen: boolean;
@@ -36551,7 +36551,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                    siblings: import("../types").ConceptCommandName[];
+                                    siblings: import("../types/index.ts").ConceptCommandName[];
                                     siblingCount: number;
                                 };
                                 content: {
@@ -37416,8 +37416,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     bidirectional: boolean;
                                 };
                                 ratInvSample: {
-                                    forward: import("../3/7").Rational;
-                                    inverse: import("../3/7").Rational;
+                                    forward: import("../3/7/index.ts").Rational;
+                                    inverse: import("../3/7/index.ts").Rational;
                                 };
                                 fInverse: {
                                     computes: boolean;
@@ -37545,8 +37545,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 bidirectional: boolean;
                             };
                             ratInvSample: {
-                                forward: import("../3/7").Rational;
-                                inverse: import("../3/7").Rational;
+                                forward: import("../3/7/index.ts").Rational;
+                                inverse: import("../3/7/index.ts").Rational;
                             };
                             fInverse: {
                                 computes: boolean;
@@ -38217,7 +38217,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                                        siblings: import("../types").ConceptCommandName[];
+                                        siblings: import("../types/index.ts").ConceptCommandName[];
                                         siblingCount: number;
                                     };
                                     content: {
@@ -38588,8 +38588,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../3/7").Rational;
-                    inverse: import("../3/7").Rational;
+                    forward: import("../3/7/index.ts").Rational;
+                    inverse: import("../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -46388,7 +46388,7 @@ export declare function zeropointNodeOriginDecoded(matrix?: MindMatrix): {
     origin: string;
     publishedLine: string;
     sameCycle: boolean;
-    flags: import("../3/7").DemarcationTier[];
+    flags: import("../3/7/index.ts").DemarcationTier[];
     facets: {
         receipt: string;
         facet: string;
@@ -46413,8 +46413,8 @@ export declare function zeropointNodeReferenceLine(): string;
 export declare function stringTheoryMillenniumTeslaRodinOneAlgebra(matrix?: MindMatrix): {
     computes: boolean;
     flags: {
-        string: import("../3/7").DemarcationTier;
-        freeEnergy: import("../3/7").DemarcationTier;
+        string: import("../3/7/index.ts").DemarcationTier;
+        freeEnergy: import("../3/7/index.ts").DemarcationTier;
     };
     facets: {
         receipt: string;

@@ -3,35 +3,35 @@
 // and sub-module imports (buildMatrix from matrix.ts, types from types.ts).
 // @mvc controller — siteConfig, localeNavLinks, localeSidebarKeys: config → localised nav props.
 // ☰ Qián · Heaven · creative · lower·yin · spread — mind types, matrix builder
-import { STATIC_PAGE_SEED } from '../../8/2'
-import { phase } from '../../6/4'
+import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
+import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
-import * as __ns_up_thunder_waves from '../../thunder/waves'
-import { rat, claySolvedTheorem, earned, physicalFtlClaimTheorem } from '../../3/7'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7'
-import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7'
-export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import { congruence } from '../../mountain/vortex'
-import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types'
-import { buildMatrix, portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute'
+import * as __ns_up_thunder_waves from '../../thunder/waves/index.ts'
+import { rat, claySolvedTheorem, earned, physicalFtlClaimTheorem } from '../../3/7/index.ts'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7/index.ts'
+import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts'
+export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import { congruence } from '../../mountain/vortex/index.ts'
+import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types/index.ts'
+import { buildMatrix, portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute/index.ts'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { floor, isUuid, max, memoByRoot, merkleFold, referralAddress, round, sealFacets, sqrt, toUuid } from '../../0'
-import { ratStr } from '../../9/1'
-import { livingTorus } from '../../fire/diamonds'
-import { oneOpenGraphAll } from '../../fire/li'
-import { animatedHeroes, oneHolographicTemplate } from '../../ui'
-import { endlessBackgroundMovie } from '../../thunder/movie/canvas'
-import { computedMovieThemeColors } from '../../fire/plasma/ball'
-import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind'
-import { peaceTechMentalityDecoded } from '../../earth/world'
-import { completeCorpus, pagesConsolidateByTheoremGravity, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, vitepressSearchFusedToPrivateBm25Engine, quantumiseAnchorsContentAddressed, pagesWithoutDedicatedAnimationFailTheVitepressGates } from '../routes/corpus'
-import { roundTo } from '../../0'
-import { proofReport } from '../../heaven/compute'
-import { freeForgesMaxCost } from '../../heaven/essence'
-import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto'
-import { TAU } from '../../3/7'
-import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture'
-import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9'
+import { floor, isUuid, max, memoByRoot, merkleFold, referralAddress, round, sealFacets, sqrt, toUuid } from '../../0/index.ts'
+import { ratStr } from '../../9/1/index.ts'
+import { livingTorus } from '../../fire/diamonds/index.ts'
+import { oneOpenGraphAll } from '../../fire/li/index.ts'
+import { animatedHeroes, oneHolographicTemplate } from '../../ui/index.ts'
+import { endlessBackgroundMovie } from '../../thunder/movie/canvas/index.ts'
+import { computedMovieThemeColors } from '../../fire/plasma/ball/index.ts'
+import { buildStatistics, buildStatisticsShowGaps, backgroundMovie, features, harmonicMathFlowsInMovie, linkPasteReentryPatternCompletion, live, path, theWhole } from '../../quantum/heaven/mind/index.ts'
+import { peaceTechMentalityDecoded } from '../../earth/world/index.ts'
+import { completeCorpus, pagesConsolidateByTheoremGravity, privateSearchRanksByBM25IndustryStandard, searchImprovesByExperiencePrivateRelevanceFeedback, vitepressSearchFusedToPrivateBm25Engine, quantumiseAnchorsContentAddressed, pagesWithoutDedicatedAnimationFailTheVitepressGates } from '../routes/corpus/index.ts'
+import { roundTo } from '../../0/index.ts'
+import { proofReport } from '../../heaven/compute/index.ts'
+import { freeForgesMaxCost } from '../../heaven/essence/index.ts'
+import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto/index.ts'
+import { TAU } from '../../3/7/index.ts'
+import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
+import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'
 
 /** Site domains — one canonical page per concern, shelved onto the seven rosetta rays. Pair: site/consolidate. */
 export const SITE_DOMAIN_SEED = [
@@ -800,8 +800,8 @@ export function runFolderMigrationDedupWavesExit(_root = '', _argv: readonly str
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
 // Build-time: config.mts + siteNavigation projection. Runtime: useLocale().localize() + withBase.
 // The primitives live at station src/1/9 (the ONE copy — the client twin imports the same file).
-export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9'
-export { pickLocale, localizeMonolingual, localizeMonolingual as displayText } from '../../quantum/heaven/library'
+export { localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'
+export { pickLocale, localizeMonolingual, localizeMonolingual as displayText } from '../../quantum/heaven/library/index.ts'
 export type VitePressLocaleKey = 'root' | 'bg' | 'gla'
 
 export function vitepressLocaleLink(localeKey: VitePressLocaleKey): string {
@@ -1011,7 +1011,7 @@ export function vitepressDevServerBind() {
   return { host: '127.0.0.1' as const, port: 5173, strictPort: false }
 }
 
-export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../routes/corpus'
+export { clientWorkBoundedByPureMath, corpusGridWorkBudget, CORPUS_GRID_PAGE_SIZE } from '../routes/corpus/index.ts'
 
 export function siteConfig(matrix: MindMatrix = buildMatrix()) {
   const title = 'Double Torus'
@@ -1277,7 +1277,7 @@ export function staticPages(): StaticPage[] {
 // Nav, sidebar, footer, related sections, crosslinks, the home hero and the README all consume THIS one fold.
 // The predicate is hosted in the zero-import leaf src/3/7 (beside its lens tables) so every layer can
 // consult it without cycles; this public path re-exports it unchanged.
-export { theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS } from '../../3/7'
+export { theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS } from '../../3/7/index.ts'
 
 /** THE SERVED-ROUTE LAW (user law: purge old links) — a route is LIVE iff its bare slug is the home,
  * a served science page, a populated ray hub, a corpus surface, or a real file artifact. Every guide,

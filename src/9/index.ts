@@ -1,7 +1,7 @@
 // Digit 9 — sequence step `9/`, fold → 0 (the void seam 9→0→1). Frontier: open/contested problems the ring
 // reaches but has not sealed. Computes and seals its OWN physics: every angle and both polarities.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 9
 

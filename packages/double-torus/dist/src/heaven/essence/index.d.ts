@@ -1,5 +1,5 @@
-import type { MindMatrix, DiamondCompletenessReport, DimensionalGapClosure } from '../../types';
-import type { DeveloperLearning } from '../../quantum/heaven/mind';
+import type { MindMatrix, DiamondCompletenessReport, DimensionalGapClosure } from '../../types/index.ts';
+import type { DeveloperLearning } from '../../quantum/heaven/mind/index.ts';
 export declare function theWhole(matrix?: MindMatrix): {
     whole: boolean;
     parts: {
@@ -319,7 +319,7 @@ export declare function showInAction(matrix?: MindMatrix): {
     ran: number;
     ok: number;
     runs: {
-        command: import("../../types").ConceptCommandName;
+        command: import("../../types/index.ts").ConceptCommandName;
         ok: boolean;
         uuid: string;
     }[];

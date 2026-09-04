@@ -9,36 +9,36 @@
 // The render subfolders (the hero's dimensions) are: seed (page→identity), dimensions (the continuous phase), geometry
 // (the trinity of rotation + perspective), fractal (the self-similar arms), flower (the fruit of life),
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
-import { phase } from '../6/4'
-import { dims, dimWalk } from './mountain/dimensions'
-import { perspective, rotate3, branch } from './wind/geometry'
-import { drawFlower, drawCalendars } from './wind/geometry'
-import { drawBursts, type Burst } from './fire/experiments'
-import { folderLaw } from '../earth/architecture'
-import { glagoliticGlyph, autoSpeech } from '../fire/li'
-import { movieCanvasRgba, movieCanvasPolarity, quantumScaleHue } from './science'
-import type { Dims } from './mountain/dimensions'
-import { buildMatrix } from '../heaven/compute'
-import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball'
-import { livingTorus } from '../fire/diamonds'
-import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid } from '../0'
-import { claySolvedTheorem, earned } from '../3/7'
-import type { MindMatrix } from '../types'
-import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth'
-import { type BothEarthsMerkabaRotation } from '../mountain/geometry'
-import { quantumProjectionParams, type QuantumProjection } from './apps'
-import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7'
-import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational'
-import { memoByRoot, gcd } from '../0'
+import { phase } from '../6/4/index.ts'
+import { dims, dimWalk } from './mountain/dimensions/index.ts'
+import { perspective, rotate3, branch } from './wind/geometry/index.ts'
+import { drawFlower, drawCalendars } from './wind/geometry/index.ts'
+import { drawBursts, type Burst } from './fire/experiments/index.ts'
+import { folderLaw } from '../earth/architecture/index.ts'
+import { glagoliticGlyph, autoSpeech } from '../fire/li/index.ts'
+import { movieCanvasRgba, movieCanvasPolarity, quantumScaleHue } from './science/index.ts'
+import type { Dims } from './mountain/dimensions/index.ts'
+import { buildMatrix } from '../heaven/compute/index.ts'
+import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball/index.ts'
+import { livingTorus } from '../fire/diamonds/index.ts'
+import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid } from '../0/index.ts'
+import { claySolvedTheorem, earned } from '../3/7/index.ts'
+import type { MindMatrix } from '../types/index.ts'
+import { doubleTorusEarthHingeComputesAll, bothEarthsAreOneWhiteBlackHoleThroatProvenByMath } from '../water/double/earth/index.ts'
+import { type BothEarthsMerkabaRotation } from '../mountain/geometry/index.ts'
+import { quantumProjectionParams, type QuantumProjection } from './apps/index.ts'
+import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7/index.ts'
+import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational/index.ts'
+import { memoByRoot, gcd } from '../0/index.ts'
 import { existsSync, rmSync, statSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
-import { log } from '../0'
-import { physicalFtlBooleanAtCallTime } from '../3/7'
-import { exp } from '../0'
-import { quantumTestCoverageReport } from './testing/coverage'
-import { productionDeploymentAssessment } from './empirical'
-import { portal } from './portal'
-import { explorer, synthesis } from './waves'
+import { log } from '../0/index.ts'
+import { physicalFtlBooleanAtCallTime } from '../3/7/index.ts'
+import { exp } from '../0/index.ts'
+import { quantumTestCoverageReport } from './testing/coverage/index.ts'
+import { productionDeploymentAssessment } from './empirical/index.ts'
+import { portal } from './portal/index.ts'
+import { explorer, synthesis } from './waves/index.ts'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -124,11 +124,11 @@ function plasmaRayCount(streamCount: number): number {
   )
 }
 
-export { createAnimationEngine, type AnimationEngine } from '../0' // the rAF driver from the void/origin — the hero's loop folds through it too
-export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0' // the one math (the fold) and its presentations — projections of a single address
-export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './mountain/dimensions'
-export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, depthIsThePerspectiveDivide, type Vec3 } from './wind/geometry'
-export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './fire/experiments'
+export { createAnimationEngine, type AnimationEngine } from '../0/index.ts' // the rAF driver from the void/origin — the hero's loop folds through it too
+export { fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace, type Fold } from '../0/index.ts' // the one math (the fold) and its presentations — projections of a single address
+export { dims, dimWalk, DIMENSIONS, DIMENSION_NAMES, type Dims } from './mountain/dimensions/index.ts'
+export { FOCAL, perspective, rotate3, rot2, rotateXY, rotateYZ, rotateZX, branch, drawFlower, drawCalendars, depthIsThePerspectiveDivide, type Vec3 } from './wind/geometry/index.ts'
+export { makeBurst, drawBursts, HEALING_PAIRS, type Burst } from './fire/experiments/index.ts'
 
 // The whole scene for one frame: the resolved time t and phase p, the page's seeded identity (hue, arms), the
 // related tags and the architecture nodes, the responsiveness inputs (reduce, cssWidth) and the live bursts.
@@ -1045,7 +1045,7 @@ export function rosettaPerspectiveFold(ray: number, field: AnimationField): Rose
     root: toUuid(`rosetta-perspective:${field.root}:${r}`) }
 }
 
-export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball'
+export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball/index.ts'
 
 export function sharedHeroAt(
   route: string,
@@ -2122,7 +2122,7 @@ export {
   realtimeComputationsMoviePaint,
   allRealtimeComputationsVisibleInMovie,
   type RealtimeComputationsMoviePaint,
-  type RealtimeComputeMovieChannel } from '../fire/plasma/ball'
+  type RealtimeComputeMovieChannel } from '../fire/plasma/ball/index.ts'
 
 export function subscribeHeroClock(listener: (at: number) => void): () => void {
   heroClockListeners.add(listener)
@@ -2353,13 +2353,13 @@ export function devHeroMoviePaintWithinBudgetMs(maxMs = DEV_HERO_MOVIE_PAINT_BUD
 }
 
 // Theorem Chat Portal — σ-involution proof discovery via live query
-export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, openTheorems, theoremsByInvolutionType, formatTheoremForChat, theoremSummary, type Theorem, type ChatQueryResult, type ProofStatus } from './chat'
+export { chatPortalNamespace, theoremByQuery, theoremsByStatus, sealedTheorems, openTheorems, theoremsByInvolutionType, formatTheoremForChat, theoremSummary, type Theorem, type ChatQueryResult, type ProofStatus } from './chat/index.ts'
 
 // Dynamic Comparison Mesh — solution discovery via algorithm contrast analysis
-export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, comparisonMesh, meshEnrichedMillennium, type AlgorithmSignature, type ContrastAnalysis, type SolutionCandidate } from './mesh'
+export { algorithmSignature, contrastAlgorithms, generateMillenniumCandidates, comparisonMesh, meshEnrichedMillennium, type AlgorithmSignature, type ContrastAnalysis, type SolutionCandidate } from './mesh/index.ts'
 
 // Quantum Discovery Portal — live mesh interface via quantum routing
-export { quantumDiscoveryPortal, discoverMillenniumProblem, exploreAlgorithm, exploreContrast, quantumDiscoveryDashboard, type PortalState, type DiscoveryView } from './portal'
+export { quantumDiscoveryPortal, discoverMillenniumProblem, exploreAlgorithm, exploreContrast, quantumDiscoveryDashboard, type PortalState, type DiscoveryView } from './portal/index.ts'
 
 // ── merged from advanced/ (census: one index per fold; nothing imported it) ──
 export type LinearSystemSolution = {
@@ -9644,8 +9644,8 @@ export function quantumResearchDisplayInfo(domainId: string): QuantumResearchDis
  * - P vs NP: σ(problem)=verify(solution), fixed point → verifier=solver
  */
 
-import type { InvolutionStructure } from './millennium'
-import { tkIsPrime } from '../9/1' // one-math gate: the prime predicate is homed in src/9/1
+import type { InvolutionStructure } from './millennium/index.ts'
+import { tkIsPrime } from '../9/1/index.ts' // one-math gate: the prime predicate is homed in src/9/1
 
 export type FixedPoint = {
   value: string

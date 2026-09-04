@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../../../types';
-export { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7';
+import type { MindMatrix } from '../../../types/index.ts';
+export { DIMENSIONS, DIMENSION_NAMES } from '../../../3/7/index.ts';
 /** @rosetta ✦₀ · Heaven · creative (the 10 dimensions are the model) */
 export interface Dims {
     spread: number;

@@ -1,30 +1,30 @@
 // Mission ops — gate compliance · mission verify · CLI router.
-import { CANONICAL_HOST } from '../../../3/7'
-import * as __ns_up_up_up_fire_li from '../../../fire/li'
-import * as __ns_up_up_up_mountain_geometry from '../../../mountain/geometry'
-import * as __ns_up_up_up_quantum_lake_dist_generators from '../../../quantum/dist/generators'
-import * as __ns_up_gates_computational from '../gates/computational'
-import * as __ns_up_up_up_heaven_atoms from '../../../heaven/atoms'
-import { DIMENSION_GATES, FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, UNFOLDED_CENSUS, enforcementScanRoot } from '../gates/computational'
+import { CANONICAL_HOST } from '../../../3/7/index.ts'
+import * as __ns_up_up_up_fire_li from '../../../fire/li/index.ts'
+import * as __ns_up_up_up_mountain_geometry from '../../../mountain/geometry/index.ts'
+import * as __ns_up_up_up_quantum_lake_dist_generators from '../../../quantum/dist/generators/index.ts'
+import * as __ns_up_gates_computational from '../gates/computational/index.ts'
+import * as __ns_up_up_up_heaven_atoms from '../../../heaven/atoms/index.ts'
+import { DIMENSION_GATES, FOLDED_CENSUS, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, UNFOLDED_CENSUS, enforcementScanRoot } from '../gates/computational/index.ts'
 import { readdirSync, readFileSync, rmSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { join, dirname, resolve, relative } from 'node:path'
-import { abs, max, memoByRoot, merkleFold, roundTo, toUuid } from '../../../0'
-import { buildMatrix } from '../../../heaven/compute'
-import type { MindMatrix } from '../../../types'
-import { taxonomyIcons } from '../../../fire/li'
-import { areaPairs } from '../../../mountain/geometry'
-import { modelSeal, emergentDimensions } from '../../../heaven/balance'
-import { healByDefault } from '../../../heaven/laws'
-import { dryCleanByImportExportNaming } from '../../../clean'
-import { gatesHealSpottedCompromise } from '../../../mountain/gates'
-import { saveAllTranslationLogicAutotranslateLocale } from '../../../mountain/og'
-import { knowledgeRevealedByMerkabaFold } from '../../../mountain/topology'
-import { commandsSavedInQuantumPairs } from '../../../thunder/commands'
-import { sendWavesSealKnowledgeDecodeWorld } from '../../../thunder/waves'
-import { rosettaReuse } from '../../../water/digit'
-import { srcAllComputes } from '../../../water/stack'
-import { harmonicCountsProvenByMath } from '../../../earth/architecture'
+import { abs, max, memoByRoot, merkleFold, roundTo, toUuid } from '../../../0/index.ts'
+import { buildMatrix } from '../../../heaven/compute/index.ts'
+import type { MindMatrix } from '../../../types/index.ts'
+import { taxonomyIcons } from '../../../fire/li/index.ts'
+import { areaPairs } from '../../../mountain/geometry/index.ts'
+import { modelSeal, emergentDimensions } from '../../../heaven/balance/index.ts'
+import { healByDefault } from '../../../heaven/laws/index.ts'
+import { dryCleanByImportExportNaming } from '../../../clean/index.ts'
+import { gatesHealSpottedCompromise } from '../../../mountain/gates/index.ts'
+import { saveAllTranslationLogicAutotranslateLocale } from '../../../mountain/og/index.ts'
+import { knowledgeRevealedByMerkabaFold } from '../../../mountain/topology/index.ts'
+import { commandsSavedInQuantumPairs } from '../../../thunder/commands/index.ts'
+import { sendWavesSealKnowledgeDecodeWorld } from '../../../thunder/waves/index.ts'
+import { rosettaReuse } from '../../../water/digit/index.ts'
+import { srcAllComputes } from '../../../water/stack/index.ts'
+import { harmonicCountsProvenByMath } from '../../../earth/architecture/index.ts'
 import {
   collectEnforcementFacts,
   collectFoldDefiners,
@@ -49,7 +49,7 @@ import {
   scanHandLists,
   handListMirrors,
   scanAppHtml,
-  appAuditSummary } from '../gates'
+  appAuditSummary } from '../gates/index.ts'
 import {
   CLI_ENTRY_REL,
   SCRIPT_SHELL_ALLOWLIST,
@@ -62,7 +62,7 @@ import {
   slowBuildIsQuantumGapGate,
   runSlowBuildIsQuantumGapGateExit,
   runThinMount,
-  importQuantumBundle } from '../script/shell'
+  importQuantumBundle } from '../script/shell/index.ts'
 
 import {
   agentSubmissionProtocol,
@@ -72,9 +72,9 @@ import {
   shardOf,
   shardWork,
   splitQuantumCommandPair,
-  type MissionCommand } from '..'
-import { runSurgicalExit } from '../../cache/quantum'
-import { invisibleGapsCaughtByGates } from '../gates'
+  type MissionCommand } from '../index.ts'
+import { runSurgicalExit } from '../../cache/quantum/index.ts'
+import { invisibleGapsCaughtByGates } from '../gates/index.ts'
 
 export {
   agentSubmissionProtocol,
@@ -82,7 +82,7 @@ export {
   MISSION_COMMANDS,
   QUANTUM_COMMAND_PAIR_IDS,
   splitQuantumCommandPair,
-  type MissionCommand } from '..'
+  type MissionCommand } from '../index.ts'
 
 
 export async function runMissionGateExit(root: string): Promise<number> {
@@ -93,7 +93,7 @@ export async function runMissionGateExit(root: string): Promise<number> {
   const structure = await runVerifyStructureExit(root)
   if (structure !== 0) return structure
   // HARD demarcation — all theorems must have computed status (no undeclared)
-  const { runDemarcationGateExit } = await import('../gates/consolidated')
+  const { runDemarcationGateExit } = await import('../gates/consolidated/index.ts')
   const demarcation = runDemarcationGateExit()
   if (demarcation !== 0) return demarcation
   // HARD invisible classes (also in limits:verify) — recompute at mission:gate call time
@@ -108,7 +108,7 @@ export async function runMissionGateExit(root: string): Promise<number> {
   }
   if (!invisible.passed) return 1
   // HARD math/algebra — Math.* outside host floor (src/0 · src/3/7 only)
-  const { runMathAlgebraExit } = await import('../gates/strict/scan')
+  const { runMathAlgebraExit } = await import('../gates/strict/scan/index.ts')
   const mathAlgebraExit = runMathAlgebraExit(root)
   if (mathAlgebraExit !== 0) return mathAlgebraExit
   // HARD srcMerkle/quantumize regression; WARN phase timings — pair gate/slow-build
@@ -700,7 +700,7 @@ async function runSkillExit(root: string, argv: readonly string[]): Promise<numb
   const skill = skills.find((s) => s.skill === name || s.fn === name)
   if (!skill) { console.error(`unknown skill: ${name}`); return 1 }
   // resolve the fn's home via the source atlas (symbol → defining folder), then RUN it
-  const { sourceAtlas } = await import('../../cache/quantum')
+  const { sourceAtlas } = await import('../../cache/quantum/index.ts')
   const files: { rel: string; text: string }[] = []
   const walk = (rel: string): void => {
     let entries: { name: string; isDirectory: () => boolean }[]
@@ -760,12 +760,12 @@ export async function runCliExit(root: string, argv: string[] = []) {
       // One argv for VitePress + trinity — npm `docs:build -- --force` must reach both (pair: build/seal · build/quantumize).
       const buildCode = await runDocsBuildExit(root, rest)
       if (buildCode !== 0) return buildCode
-      const { runEnforcementTrinityShellExit } = await import('../trinity/weave')
+      const { runEnforcementTrinityShellExit } = await import('../trinity/weave/index.ts')
       return runEnforcementTrinityShellExit(root, rest)
     }
     case 'check:types': return runCheckTypesExit(root)
     case 'enforcement-trinity': {
-      const { runEnforcementTrinityShellExit } = await import('../trinity/weave')
+      const { runEnforcementTrinityShellExit } = await import('../trinity/weave/index.ts')
       return runEnforcementTrinityShellExit(root, rest)
     }
     case 'run': {

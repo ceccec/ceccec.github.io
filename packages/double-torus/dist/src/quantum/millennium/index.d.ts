@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../../types';
-import { type SolutionCandidate } from '../mesh';
+import type { MindMatrix } from '../../types/index.ts';
+import { type SolutionCandidate } from '../mesh/index.ts';
 export type MillenniumProblem = {
     readonly name: string;
     readonly field: string;

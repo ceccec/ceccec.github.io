@@ -1,6 +1,6 @@
-import type { DualTorusTrinities, MindMatrix, MetatronCubeReport, SacredGeometrySeal } from '../../types';
-import type { SelfSufficientWave } from '../../types';
-export { allVortexMathSaved, vortexMath, vortexPaintTiers } from '../vortex';
+import type { DualTorusTrinities, MindMatrix, MetatronCubeReport, SacredGeometrySeal } from '../../types/index.ts';
+import type { SelfSufficientWave } from '../../types/index.ts';
+export { allVortexMathSaved, vortexMath, vortexPaintTiers } from '../vortex/index.ts';
 export declare function dualTorusTrinities(matrix?: MindMatrix): DualTorusTrinities;
 export declare function directions(matrix?: MindMatrix): {
     calculated: boolean;
@@ -1650,9 +1650,9 @@ export declare function selfConsult(question?: string, matrix?: MindMatrix): {
     question: string;
     answer: string;
     concept: string;
-    command: import("../../types").ConceptCommandName;
+    command: import("../../types/index.ts").ConceptCommandName;
     confidence: number;
-    links: readonly import("../../types").LocalAnswerLink[];
+    links: readonly import("../../types/index.ts").LocalAnswerLink[];
     areas: {
         area: string;
         glyph: string;

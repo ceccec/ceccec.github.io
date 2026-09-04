@@ -1,4 +1,4 @@
-import { type MindMatrix } from '../../heaven/mind';
+import { type MindMatrix } from '../../heaven/mind/index.ts';
 /** @rosetta ✦₁ · Water · depth (weather realtime feeds) */
 export declare function weatherForecastApis(): {
     realtime: boolean;

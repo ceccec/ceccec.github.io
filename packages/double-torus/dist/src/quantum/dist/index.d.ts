@@ -2,13 +2,13 @@ type Plugin = {
     name: string;
     [key: string]: unknown;
 };
-import { type MindMatrix } from '../heaven/mind';
+import { type MindMatrix } from '../heaven/mind/index.ts';
 export interface DistFile {
     readonly path: string;
     readonly content: string;
     readonly mime: string;
 }
-export { readme, readmeMarkdown, homeMarkdown, readmeSignatureValid } from './readme';
+export { readme, readmeMarkdown, homeMarkdown, readmeSignatureValid } from './readme/index.ts';
 /** The saved manual workflows as a dist artifact — one source (the enforcement fold), served at
  *  /workflows.json and listed as an MCP resource, so any agent fetches the operational toolkit
  *  (probe, verify, regenerate, commit-isolated, the token-audit improvement loop) instead of

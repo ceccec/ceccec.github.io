@@ -1,9 +1,9 @@
 // Pi-train station 5/5 — dissolution sequence order 5 (digit/reverse 5/5).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
-import { BOLTZMANN, EARTH_RADIUS_KM, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU } from '../../3/7'
-import { asin, cos, foldPair, isUuid, merge, merkleFold, min, sin, sqrt, toUuid } from '../../0'
-import { riseAzimuthDeg } from '../../3/7'
+import { BOLTZMANN, EARTH_RADIUS_KM, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU } from '../../3/7/index.ts'
+import { asin, cos, foldPair, isUuid, merge, merkleFold, min, sin, sqrt, toUuid } from '../../0/index.ts'
+import { riseAzimuthDeg } from '../../3/7/index.ts'
 
 /** ΛCDM dark-matter density fraction Ω_c. */
 export const OMEGA_DARK_MATTER = (1 - (7 * 7 * 3) / (100 * 2))

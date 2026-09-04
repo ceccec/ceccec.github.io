@@ -1,4 +1,4 @@
-import type { MindMatrix, QuantumUiEvidenceReport } from '../../types';
+import type { MindMatrix, QuantumUiEvidenceReport } from '../../types/index.ts';
 export declare function quantumBrowserOs(matrix?: MindMatrix): {
     complete: boolean;
     subsystems: {

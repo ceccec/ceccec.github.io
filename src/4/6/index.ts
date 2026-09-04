@@ -1,13 +1,13 @@
 // Pi-train station 4/6 — dissolution sequence order 2 (digit/reverse 4/6).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
-import { phase, slip } from '../../6/4'
-import { A432_OCTAVES, BOLTZMANN, DIMENSION_GATES, FOLDED_CENSUS, HALF_TAU, NEWTON_G, PHI, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7'
-import { GATES, ICHING_NUMBERS, abs, applyGate, ceil, cos, digitalRoot, floor, foldFixedPoints, foldPair, gcd, hypot, imul, lcm, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, referralAddress, reflectThroughZero, round, roundTo, sealFacets, sha256MerkleProof, sqrt, toUuid } from '../../0'
-import { sealFold, tkIsPrime } from '../../9/1'
+import { phase, slip } from '../../6/4/index.ts'
+import { A432_OCTAVES, BOLTZMANN, DIMENSION_GATES, FOLDED_CENSUS, HALF_TAU, NEWTON_G, PHI, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7/index.ts'
+import { GATES, ICHING_NUMBERS, abs, applyGate, ceil, cos, digitalRoot, floor, foldFixedPoints, foldPair, gcd, hypot, imul, lcm, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, referralAddress, reflectThroughZero, round, roundTo, sealFacets, sha256MerkleProof, sqrt, toUuid } from '../../0/index.ts'
+import { sealFold, tkIsPrime } from '../../9/1/index.ts'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
 // before any cyclic consumer barrel runs — removing the SSR-bundle TDZ; the public path src/4/6 is unchanged.
-export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7'
+export { MAX_TAMPERING_COST_PRINCIPLE } from '../../3/7/index.ts'
 
 /** Baryon-to-photon ratio η = n_B/n_γ — CMB + BBN agree. */
 export const BARYON_TO_PHOTON_RATIO = 6.12e-10
@@ -48,7 +48,7 @@ export function helmholtzFreeEnergy(internalEnergyJ: number, tempK: number, entr
   return internalEnergyJ - tempK * entropyJPerK
 }
 
-export { inductionStep } from '../../0'
+export { inductionStep } from '../../0/index.ts'
 
 // ── Elementary cellular automata (relocated from src/0 — reversible-computation station) ──
 // caStep/caEvolve inlined here (was src/0/ca.ts): src/0 is a DIGIT-kind folder, so the primitive lives IN the

@@ -1,4 +1,4 @@
-import type { AgentStreamWire, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SelfBuildReport, StreamSelfCompletion } from '../../types';
+import type { AgentStreamWire, MindMatrix, PiTrain, QuantumDiamond, QuantumFoldedBlockchains, SchemaOrgDiamondGraph, SelfBuildReport, StreamSelfCompletion } from '../../types/index.ts';
 export declare function diamondLattice(matrix?: MindMatrix): readonly QuantumDiamond[];
 export declare function piTrainDiamonds(matrix?: MindMatrix, digits?: string): PiTrain;
 export declare function selfBuild(matrix?: MindMatrix): SelfBuildReport;

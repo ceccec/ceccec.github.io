@@ -4,9 +4,9 @@
 // Dual: src/render/icons/quantum (browse/display primitives). Only src/0 + mind/types imports.
 
 // ☶ Gèn · Mountain · keeping still · lower·yin · spread — type: sealed icon artifact shape
-import type { IconSeal } from '../heaven/mind'
+import type { IconSeal } from '../heaven/mind/index.ts'
 // ☶ Gèn · Mountain · keeping still · lower·yin · depthFade — uuid + merkle fold primitives
-import { floor, max, merkleFold, toUuid } from '../../0'
+import { floor, max, merkleFold, toUuid } from '../../0/index.ts'
 
 // ☶ Gèn · Mountain · keeping still · upper·yang · shrink — exported constants and functions
 /** @rosetta ✦₀ · Mountain · stillness */
@@ -176,14 +176,14 @@ export {
   chakrasAura, humanDesign, humanDesignVerifiedWheel, humanDesignChannelsAndCenters,
   RAVE_MANDALA_GATE_ORDER, RAVE_GATE_ARC_DEG, RAVE_GATE_41_START_DEG, RAVE_DESIGN_SUN_ARC_DEG, RAVE_BODIES_13,
   RAVE_CENTERS_9, RAVE_CENTER_GATES, RAVE_CHANNELS_36, raveCenterOfGate, raveDefinedChannels, raveMandalaGateLineAt,
-  yinYang, dimensions, deviceSensors, dualities } from '../spirit'
+  yinYang, dimensions, deviceSensors, dualities } from '../spirit/index.ts'
 // The ONE 3-5-8 tier core — computerDesign (here), chakrasAura (spirit), music358 (fire/li), emf358 (fire/physics) all delegate.
-import { tiers358 } from '../spirit'
-export { tiers358 } from '../spirit'
-export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../earth/nature'
-export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../science'
-export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice'
-export { bulgarianHeritage, bulgarianHistory, bulgarianAncientCivilisations, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception } from '../earth/heritage'
+import { tiers358 } from '../spirit/index.ts'
+export { tiers358 } from '../spirit/index.ts'
+export { natureLaw, natureCommons, natureReview, lawfulHarmonise, lawfulImagine, lawfulSucceed, attestation } from '../../earth/nature/index.ts'
+export { emfApplications, efficiency, fuseTeslaPatents, patentDiscovery, publicFrequencyApis, herbalApis, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, scaleColor, scaleColorAlpha, scaleColorRgba, quantumHueFromHz, quantumScaleHue, oklchToHex, resonanceApplications, resonanceDecoded, rifeFrequenciesDecoded } from '../science/index.ts'
+export { plainLanguage, playLearn, analogSpeech, typographySeo, openGraph, charUuids, wordUuids, humanize, multidimensional } from '../voice/index.ts'
+export { bulgarianHeritage, bulgarianHistory, bulgarianAncientCivilisations, bulgarianEthnogenesis, geneticLinksChallengeHistory, glagoliticBulgarianReception } from '../earth/heritage/index.ts'
 
 /** The vocabulary cross — six domain barrels fused to one content-address (a real crossing, not noise). */
 export function vocabCross() {

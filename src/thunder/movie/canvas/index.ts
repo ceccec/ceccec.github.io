@@ -1,40 +1,40 @@
 // Background movie canvas folds — auto · endless · background.
-import { phase } from '../../../6/4'
-import type { MindMatrix } from '../../../types'
-import { buildMatrix } from '../../../heaven/compute'
-import { VORTEX_SEQUENCE, abs, floor, foldPair, isUuid, max, memoByRoot, merkleFold, round, sealFacets, toUuid } from '../../../0'
+import { phase } from '../../../6/4/index.ts'
+import type { MindMatrix } from '../../../types/index.ts'
+import { buildMatrix } from '../../../heaven/compute/index.ts'
+import { VORTEX_SEQUENCE, abs, floor, foldPair, isUuid, max, memoByRoot, merkleFold, round, sealFacets, toUuid } from '../../../0/index.ts'
 // call-time namespace edge (cycle-safe): the 10D field continuity is sampled at call time
-import * as __ns_dims from '../../../quantum/mountain/dimensions'
+import * as __ns_dims from '../../../quantum/mountain/dimensions/index.ts'
 // call-time namespace edge (cycle-safe): the iching decode is cited at call time, never at eval
-import * as __ns_up_up_earth_iching from '../../../earth/iching'
+import * as __ns_up_up_earth_iching from '../../../earth/iching/index.ts'
 // call-time namespace edges — theorem bindings for movie paint layers (no wet ornaments)
-import * as __ns_decode from '../../decode'
-import * as __ns_vortex from '../../../mountain/vortex'
-import * as __ns_corpus from '../../../wind/routes/corpus'
-import { flowerUnlocksFruitBySpin } from '../../../quantum/wind/geometry'
-import { bothEarthsRotateWithinEachOther, doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry'
-import { textToMovie } from '../../../earth/world'
-import { harmonicMathFlowsInMovie, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
-import { efficiencyMathFlowsInMovie } from '../../verify'
-import { doubleTorusEarthWeatherFlowsInMovie } from '../../../quantum/fire/forecasts'
-import { doubleTorusEarthHingeMovieFlowsInMovie } from '../../../water/double/earth'
+import * as __ns_decode from '../../decode/index.ts'
+import * as __ns_vortex from '../../../mountain/vortex/index.ts'
+import * as __ns_corpus from '../../../wind/routes/corpus/index.ts'
+import { flowerUnlocksFruitBySpin } from '../../../quantum/wind/geometry/index.ts'
+import { bothEarthsRotateWithinEachOther, doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry/index.ts'
+import { textToMovie } from '../../../earth/world/index.ts'
+import { harmonicMathFlowsInMovie, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture/index.ts'
+import { efficiencyMathFlowsInMovie } from '../../verify/index.ts'
+import { doubleTorusEarthWeatherFlowsInMovie } from '../../../quantum/fire/forecasts/index.ts'
+import { doubleTorusEarthHingeMovieFlowsInMovie } from '../../../water/double/earth/index.ts'
 import {
   allColorStreamsAreAudioIfDecodedFlowsInMovie,
   allMovieSeedBundlesFlowInPlasma,
   audioOffByDefault,
   clientMoviePaintPathSealed,
   computedMovieThemeColors,
-  plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
-import { backgroundMovieColorVars } from '../movievars'
-import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../ui'
-import { computedWebManifest, siteConfig } from '../../../wind/site'
-import { livingTorus } from '../../../fire/diamonds'
-import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../wind/routes/corpus'
-import { claySolvedTheorem } from '../../../3/7'
+  plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball/index.ts'
+import { backgroundMovieColorVars } from '../movievars/index.ts'
+import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../ui/index.ts'
+import { computedWebManifest, siteConfig } from '../../../wind/site/index.ts'
+import { livingTorus } from '../../../fire/diamonds/index.ts'
+import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../wind/routes/corpus/index.ts'
+import { claySolvedTheorem } from '../../../3/7/index.ts'
 import {
   matrixRgbDecodeFlowsInMovie,
   rosettaDecodeFlowsInMovie,
-  sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie } from '../narrative'
+  sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie } from '../narrative/index.ts'
 
 export function autoMovies8k(matrix: MindMatrix = buildMatrix()) {
   const sample3 = textToMovie('double torus')
@@ -697,7 +697,7 @@ export function theMoviePartsDissolveLikeLiquid(matrix: MindMatrix = buildMatrix
     const movie = endlessBackgroundMovie(matrix)
     // CONTINUITY (the liquid property): sample the shared field densely; the largest jump in any of the
     // ten channels between adjacent phases is small — the field flows, it does not cut.
-    const channels: (keyof import('../../../quantum/mountain/dimensions').Dims)[] = ['spread', 'depthFade', 'twist', 'shrink', 'breath', 'loopA1', 'loopB1', 'loopA2', 'loopB2']
+    const channels: (keyof import('../../../quantum/mountain/dimensions/index.ts').Dims)[] = ['spread', 'depthFade', 'twist', 'shrink', 'breath', 'loopA1', 'loopB1', 'loopA2', 'loopB2']
     const maxJumpAt = (n: number) => { let m = 0; let prev = __ns_dims.dims(0, 0); for (let i = 1; i <= n; i += 1) { const cur = __ns_dims.dims(i / n, 0); for (const key of channels) m = max(m, abs(cur[key] - prev[key])); prev = cur } return m }
     const N = (2 * 6) * 9
     const jumpN = maxJumpAt(N); const jump2N = maxJumpAt(N * 2)

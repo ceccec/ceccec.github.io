@@ -1,28 +1,28 @@
-import { earned } from '../../3/7'
+import { earned } from '../../3/7/index.ts'
 // Life — canonical biology/neurology home: genes, immune system, harmony, neurology movie.
-import * as __ns_up_earth_civilisation from '../civilisation'
-import * as __ns_up_stack_overflow from '../../water/stack'
-import * as __ns_up_plasma_ball from '../../fire/plasma/ball'
-import { phase } from '../../6/4'
-import { THEOREM_ATOM_SEED, theoremsReach432AndEntangleWithUsage } from '../../4/6'
-import { bellMeasurementOutcomesAreUniform } from '../../2/8'
+import * as __ns_up_earth_civilisation from '../civilisation/index.ts'
+import * as __ns_up_stack_overflow from '../../water/stack/index.ts'
+import * as __ns_up_plasma_ball from '../../fire/plasma/ball/index.ts'
+import { phase } from '../../6/4/index.ts'
+import { THEOREM_ATOM_SEED, theoremsReach432AndEntangleWithUsage } from '../../4/6/index.ts'
+import { bellMeasurementOutcomesAreUniform } from '../../2/8/index.ts'
 // call-time namespace edge (cycle-safe): iching imports heaven/core which imports this folder
-import * as __ns_up_earth_iching from '../iching'
-import { DIMENSION_GATES, DEMARCATION_REGISTRY, demarcate, eigenErrorThreshold, GENETIC_CODE } from '../../3/7'
-export { GENETIC_CODE } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { determinismProofs } from '../../mountain/seals'
-import { animationTamperingCost, redTeam, tamperProofFabric } from '../../water/crypto'
-import { scientists } from '../../learning'
-import { holographic } from '../../ui'
-import { abs, computesGate, floor, isUuid, merge, merkleFold, roundTo, sealFacets, toUuid } from '../../0'
-import { hardyWeinbergGenotypes } from '../../7/3'
-import { PCI_CONSCIOUSNESS_THRESHOLD } from '../../8/2'
-import { society, societyRegulates } from '../governance'
-import { dna } from '../../mountain/geometry'
-import { coordinatedWaves } from '../../thunder/waves'
-import { diamondLattice, piTrainDiamonds, selfBuild } from '../../fire/diamonds'
+import * as __ns_up_earth_iching from '../iching/index.ts'
+import { DIMENSION_GATES, DEMARCATION_REGISTRY, demarcate, eigenErrorThreshold, GENETIC_CODE } from '../../3/7/index.ts'
+export { GENETIC_CODE } from '../../3/7/index.ts' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import type { ArtistSurface, ArtistSurfaceReport, HarmonyChannel, HarmonyProbability, MindMatrix } from '../../types/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import { determinismProofs } from '../../mountain/seals/index.ts'
+import { animationTamperingCost, redTeam, tamperProofFabric } from '../../water/crypto/index.ts'
+import { scientists } from '../../learning/index.ts'
+import { holographic } from '../../ui/index.ts'
+import { abs, computesGate, floor, isUuid, merge, merkleFold, roundTo, sealFacets, toUuid } from '../../0/index.ts'
+import { hardyWeinbergGenotypes } from '../../7/3/index.ts'
+import { PCI_CONSCIOUSNESS_THRESHOLD } from '../../8/2/index.ts'
+import { society, societyRegulates } from '../governance/index.ts'
+import { dna } from '../../mountain/geometry/index.ts'
+import { coordinatedWaves } from '../../thunder/waves/index.ts'
+import { diamondLattice, piTrainDiamonds, selfBuild } from '../../fire/diamonds/index.ts'
 import {
   heroTapMusic,
   piMusic,
@@ -31,11 +31,11 @@ import {
   attunementTier,
   attunementWatchComputes,
   unlockedHarmonicDepth,
-  harmonizeFieldComputes } from '../../music'
-import { inverseShiftConsciousness } from '../../fire/li'
-import { backgroundMovie } from '../../thunder/movie/canvas'
-import { a432IsTheBlood, allFormsAreTenDimensionalOrPurged, colorRootsAtA432HeartBalances, completeness, diamondCompleteness, donutLabyrinthOfGlyphsHeroEnteringExiting, folderLaw, frequencyBalance, generativeSpace, glagoliticOcrReverseClosesRoundTrip, iChingShadcnFuseTenDWidgets, collective, livingTorus, memoByRoot, neuron, pathIsMeaningDecodesCoordinates, quantumSociety, seedFromText, skillAtoms, theWhole, verifyRoot } from '../../quantum/heaven/mind'
-import { TAU } from '../../3/7'
+  harmonizeFieldComputes } from '../../music/index.ts'
+import { inverseShiftConsciousness } from '../../fire/li/index.ts'
+import { backgroundMovie } from '../../thunder/movie/canvas/index.ts'
+import { a432IsTheBlood, allFormsAreTenDimensionalOrPurged, colorRootsAtA432HeartBalances, completeness, diamondCompleteness, donutLabyrinthOfGlyphsHeroEnteringExiting, folderLaw, frequencyBalance, generativeSpace, glagoliticOcrReverseClosesRoundTrip, iChingShadcnFuseTenDWidgets, collective, livingTorus, memoByRoot, neuron, pathIsMeaningDecodesCoordinates, quantumSociety, seedFromText, skillAtoms, theWhole, verifyRoot } from '../../quantum/heaven/mind/index.ts'
+import { TAU } from '../../3/7/index.ts'
 
 // Max health, max tampering cost — the immune system. The portal's defenses are
 // antibodies: each catches a class of attack, and the more of them hold, the higher

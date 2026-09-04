@@ -1,4 +1,4 @@
-import type { Dims } from '../../mountain/dimensions';
+import type { Dims } from '../../mountain/dimensions/index.ts';
 export declare const FOCAL: number;
 export interface Vec3 {
     X: number;

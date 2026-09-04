@@ -1,11 +1,11 @@
-import { HALF_TAU, LN2, earned } from '../../3/7'
+import { HALF_TAU, LN2, earned } from '../../3/7/index.ts'
 // Pi-train station 7/3 — dissolution sequence order 4 (digit/reverse 7/3).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
-import { MOON_ORBIT_INCLINATION_DEG } from '../../8/2'
-import { abs, atan2, ceil, cos, floor, gcd, log, max, merkleFold, min, pow, round, sign, sin, sqrt, toUuid } from '../../0'
-import { tkIsPrime } from '../../9/1'
-import { TAU, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub } from '../../3/7'
+import { MOON_ORBIT_INCLINATION_DEG } from '../../8/2/index.ts'
+import { abs, atan2, ceil, cos, floor, gcd, log, max, merkleFold, min, pow, round, sign, sin, sqrt, toUuid } from '../../0/index.ts'
+import { tkIsPrime } from '../../9/1/index.ts'
+import { TAU, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub } from '../../3/7/index.ts'
 
 /** Planck 2018 primordial spectral index n_s. */
 export const SCALAR_SPECTRAL_INDEX_NS = 0.9649

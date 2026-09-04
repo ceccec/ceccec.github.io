@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export declare function decode2020(matrix?: MindMatrix): {
     decoded: boolean;
     total: number;
@@ -998,7 +998,7 @@ export declare function humanDesignStructureDecoded(matrix?: MindMatrix): {
             to: "Head" | "Ajna" | "Throat" | "G" | "Heart" | "Sacral" | "SolarPlexus" | "Spleen" | "Root";
         }[];
         channelCount: 36;
-        gateCenter: Record<number, typeof import("../../quantum/spirit").RAVE_CENTERS_9[number]>;
+        gateCenter: Record<number, typeof import("../../quantum/spirit/index.ts").RAVE_CENTERS_9[number]>;
         count: number;
         facets: {
             receipt: string;
@@ -1362,7 +1362,7 @@ export declare function plasmaBallIsScreenHoldingThunderAndPlasma(matrix?: MindM
     phenomena: {
         theorem: string;
         route: string;
-        tier: import("../../fire/physics").PhenomenonTier;
+        tier: import("../../fire/physics/index.ts").PhenomenonTier;
         name: string;
         family: string;
     }[];

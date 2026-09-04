@@ -1,7 +1,7 @@
 // Digit 3 — sequence step `3\`, reflect through 0 → 6. Secondary-cycle gate (non-unit), the 5→3 seam target.
 // Structural: carries no Clay theorem — its physics IS the angle × polarity spectrum it computes and seals.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 3
 

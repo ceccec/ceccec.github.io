@@ -1,5 +1,5 @@
-export { GENETIC_CODE } from '../../3/7';
-import type { ArtistSurfaceReport, HarmonyProbability, MindMatrix } from '../../types';
+export { GENETIC_CODE } from '../../3/7/index.ts';
+import type { ArtistSurfaceReport, HarmonyProbability, MindMatrix } from '../../types/index.ts';
 export declare function immuneSystem(matrix?: MindMatrix): {
     healthy: boolean;
     maxHealth: boolean;
@@ -313,8 +313,8 @@ export declare function movieIsNeuroscienceComputation(matrix?: MindMatrix, at?:
             statement: string;
             boundary: string;
         };
-        observer: import("../../music").ObserverContext;
-        field: import("../../music").HarmonizeableField;
+        observer: import("../../music/index.ts").ObserverContext;
+        field: import("../../music/index.ts").HarmonizeableField;
         coherence: number;
         cadence: number;
         facets: {
@@ -474,7 +474,7 @@ export declare function humanResonancePanelComputes(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    human: import("../../types").HumanityImplicationsReport;
+    human: import("../../types/index.ts").HumanityImplicationsReport;
     capstone: {
         computes: boolean;
         senses: {
@@ -1401,7 +1401,7 @@ export declare function humanResonancePanelComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        human: import("../../types").HumanityImplicationsReport;
+        human: import("../../types/index.ts").HumanityImplicationsReport;
         facets: ({
             facet: string;
             on: boolean;

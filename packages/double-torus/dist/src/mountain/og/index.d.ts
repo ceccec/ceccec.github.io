@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../../types';
-import type { JsonLdPageIdentity } from '../../heaven/balance';
+import type { MindMatrix } from '../../types/index.ts';
+import type { JsonLdPageIdentity } from '../../heaven/balance/index.ts';
 export type MicrodataPage = {
     slug: string;
     title: string;

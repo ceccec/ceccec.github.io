@@ -1,7 +1,7 @@
 // Digit 2 — sequence step `2\`, reflect through 0 → 4. Analysis.
 // Computes and seals its OWN physics: the digit across every angle and both polarities.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 2
 

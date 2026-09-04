@@ -1,11 +1,11 @@
-import type { MindMatrix } from '../../types';
-import { type Rational } from '../../3/7';
-export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0';
-export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2';
-export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry';
-export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus, merkabaComputes } from '../topology';
-export { phase } from '../../6/4';
-export { A432_OCTAVES, priceFromA432, simpleReturns, backtest, buyAndHold, sma, crossoverPositions, rollingZScores, meanReversionPositions, dominantCycle, cycleSlope, spectralCyclePositions, regimeLabels, estimateRegimeMatrix, regimeSwitchPositions, realizedVol, inverseVolSize, volTargetPositions, tradingReceipt, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources, tradingSimulationComputes, type BacktestResult } from '../../thunder/trading';
+import type { MindMatrix } from '../../types/index.ts';
+import { type Rational } from '../../3/7/index.ts';
+export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0/index.ts';
+export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2/index.ts';
+export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry/index.ts';
+export { knowledgeRevealedByMerkabaFold, merkabaTrace, merkabasInDoubleTorus, merkabaComputes } from '../topology/index.ts';
+export { phase } from '../../6/4/index.ts';
+export { A432_OCTAVES, priceFromA432, simpleReturns, backtest, buyAndHold, sma, crossoverPositions, rollingZScores, meanReversionPositions, dominantCycle, cycleSlope, spectralCyclePositions, regimeLabels, estimateRegimeMatrix, regimeSwitchPositions, realizedVol, inverseVolSize, volTargetPositions, tradingReceipt, liveCapture, larmorFromMicrotesla, dopplerFromMotion, spectrumFromSamples, backtestRealPrices, realtimeSources, tradingSimulationComputes, type BacktestResult } from '../../thunder/trading/index.ts';
 export declare function vortexMath(matrix?: MindMatrix): {
     flows: boolean;
     doubling: number[];
@@ -745,7 +745,7 @@ export declare function allMathSaved(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        earths: import(".").BothEarthsMerkabaRotation;
+        earths: import("./index.ts").BothEarthsMerkabaRotation;
         facets: ({
             facet: string;
             on: boolean;

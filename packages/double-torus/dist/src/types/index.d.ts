@@ -111,7 +111,7 @@ export interface DoubleTorusFlow {
     readonly invariant: boolean;
     readonly statement: string;
 }
-import type { ConceptCommandName, DiamondKind, AnalogChannel, DiamondFacet } from '../3/7';
+import type { ConceptCommandName, DiamondKind, AnalogChannel, DiamondFacet } from '../3/7/index.ts';
 export type { ConceptCommandName, DiamondKind, AnalogChannel, DiamondFacet };
 export interface ConceptCommand {
     readonly name: ConceptCommandName;

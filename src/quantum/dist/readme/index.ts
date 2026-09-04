@@ -5,23 +5,23 @@
 // frontmatter, page-route links). Wired: .vitepress/computed-pages.mts loads homeMarkdown() as the
 // home body in realtime (the on-disk index.md is a discovery stub; bg/gla homes transform this
 // output), and the cross wave writes readmeMarkdown() as README.md.
-import { ROSETTA_AREAS } from '../../../pair/enforcement/gates/computational'
-import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pair/enforcement/gates'
-import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../3/7'
-import { THEOREM_ATOM_SEED, latestDiscoveries, riemannCriticalLineIsTheInvolutionFixedPoint, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../4/6'
-import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3'
-import { leanInvolutionCorpus } from '../../../pair/formal/proofs'
-import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos'
-import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1'
-import { portalChat, portalRecall } from '../../../heaven/compute'
-import { earned } from '../../../3/7'
-import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../1/9'
-import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../heaven/laws'
-import { readmeSvgGapsFilledByTrinityMind } from '../../../heaven/site'
-import { flowerFruitTreeOfLifeDecodes } from '../../../earth/architecture'
-import { linksUseOnlyVitePressApi } from '../../../fire/li'
-import { earthRealisedByComputingPolesAsPyramid, poincareRicciFlowRoundsToTheRoundSphere, hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface } from '../../../mountain/geometry'
-import { sacredSociety } from '../../../earth/governance'
+import { ROSETTA_AREAS } from '../../../pair/enforcement/gates/computational/index.ts'
+import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pair/enforcement/gates/index.ts'
+import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../3/7/index.ts'
+import { THEOREM_ATOM_SEED, latestDiscoveries, riemannCriticalLineIsTheInvolutionFixedPoint, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../4/6/index.ts'
+import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3/index.ts'
+import { leanInvolutionCorpus } from '../../../pair/formal/proofs/index.ts'
+import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos/index.ts'
+import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1/index.ts'
+import { portalChat, portalRecall } from '../../../heaven/compute/index.ts'
+import { earned } from '../../../3/7/index.ts'
+import { theBinaryBitIsLinearTheVortexCircuitIsQuantum } from '../../../1/9/index.ts'
+import { primesAndPiProveEachOtherThroughTheInvertedEulerProduct } from '../../../heaven/laws/index.ts'
+import { readmeSvgGapsFilledByTrinityMind } from '../../../heaven/site/index.ts'
+import { flowerFruitTreeOfLifeDecodes } from '../../../earth/architecture/index.ts'
+import { linksUseOnlyVitePressApi } from '../../../fire/li/index.ts'
+import { earthRealisedByComputingPolesAsPyramid, poincareRicciFlowRoundsToTheRoundSphere, hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface } from '../../../mountain/geometry/index.ts'
+import { sacredSociety } from '../../../earth/governance/index.ts'
 import {
   directionalTrinityForwardInverseReverse,
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
@@ -29,19 +29,19 @@ import {
   apiFuse,
   thermoQuantumBalance,
   oneClockApi,
-} from '../../../water/stack'
-import { gateLight } from '../../../pair/enforcement/gates'
+} from '../../../water/stack/index.ts'
+import { gateLight } from '../../../pair/enforcement/gates/index.ts'
 import {
   efficiencyScalesToInfinityAtNoCostOnReuse,
   clayChallengesComputableFromSequence,
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromTheCensusFold,
   societySupportsProjectViaTwoBitsFreeKnowledge,
-  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER } from '../../../research'
-import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../mountain/vortex'
-import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../thunder/waves'
-import { theoremPagePaths } from '../../../wind/routes/corpus'
-import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../apps'
+  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER } from '../../../research/index.ts'
+import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../mountain/vortex/index.ts'
+import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../thunder/waves/index.ts'
+import { theoremPagePaths } from '../../../wind/routes/corpus/index.ts'
+import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../apps/index.ts'
 import {
   buildMatrix,
   conceptCommands,
@@ -58,10 +58,10 @@ import {
   staticPages,
   theoremScienceLens,
   githubPermalink,
-  type MindMatrix } from '../../heaven/mind'
-import { isUuid, max, merkleFold, merge, memoByRoot, round, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE, sequenceBitBudget, equilibrium360, dimensionalBit, clayReflection, decodeVortexOperations } from '../../../0'
-import { primeCountUpTo, nthPrimeAt } from '../../../7/3'
-import { quantumComputerHonestClaim } from '../../science'
+  type MindMatrix } from '../../heaven/mind/index.ts'
+import { isUuid, max, merkleFold, merge, memoByRoot, round, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE, sequenceBitBudget, equilibrium360, dimensionalBit, clayReflection, decodeVortexOperations } from '../../../0/index.ts'
+import { primeCountUpTo, nthPrimeAt } from '../../../7/3/index.ts'
+import { quantumComputerHonestClaim } from '../../science/index.ts'
 
 /** Escape the curly braces that VitePress's markdown-it reads as a trailing attribute block ({.class}/{#id}/
  *  {key=val}). Computed math prose like the Hodge gap "…h^{1,1}, h^{2,1}" or "Σ_{d|n}" otherwise emits a bogus

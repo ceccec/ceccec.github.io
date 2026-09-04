@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../../types';
-import { type AlgorithmSignature, type SolutionCandidate } from '../mesh';
+import type { MindMatrix } from '../../types/index.ts';
+import { type AlgorithmSignature, type SolutionCandidate } from '../mesh/index.ts';
 export type PortalState = {
     readonly algorithms: AlgorithmSignature[];
     readonly millenniumProblems: string[];

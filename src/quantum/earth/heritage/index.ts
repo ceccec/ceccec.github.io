@@ -4,7 +4,7 @@
 // Browse/display helpers inlined (formerly src/render/heritage/quantum). Pure, zero matrix dependency.
 
 // ☷ Kūn · Earth · receptive · lower·yin · spread — core content-addressing primitives (toUuid, merkleFold)
-import { floor, max, merkleFold, round, toUuid, type Entry } from '../../../0'
+import { floor, max, merkleFold, round, toUuid, type Entry } from '../../../0/index.ts'
 
 export type { Entry }
 

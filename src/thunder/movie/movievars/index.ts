@@ -1,18 +1,18 @@
 // Hero glass CSS vars — VitePress transparent chrome (palette/vars barrel).
-import type { MindMatrix } from '../../../types'
-import { buildMatrix, coverage } from '../../../heaven/compute'
-import { floor, max, memoByRoot, merkleFold, min, round, roundTo, seedFromText, toUuid } from '../../../0'
-import { lobeHues, scaleColor, scaleColorAlpha, GOLDEN_ANGLE } from '../../../quantum/science'
+import type { MindMatrix } from '../../../types/index.ts'
+import { buildMatrix, coverage } from '../../../heaven/compute/index.ts'
+import { floor, max, memoByRoot, merkleFold, min, round, roundTo, seedFromText, toUuid } from '../../../0/index.ts'
+import { lobeHues, scaleColor, scaleColorAlpha, GOLDEN_ANGLE } from '../../../quantum/science/index.ts'
 import {
   computedMovieThemeColors,
   movieRouteKey,
-  plasmaMoviePalette } from '../../../fire/plasma/ball'
-import { PLANE_VIS, HERO_CYCLE_MS, REALTIME_COMPUTE_MOVIE_CAP } from '../../../fire/plasma/ball'
-import { hingeMoviePaintLayers } from '../../../water/double/earth'
-import { vortexPaintTiers } from '../../../mountain/vortex'
-import { vortexNext, digitalRoot, sealFacets } from '../../../0'
-import { A432_FOLDED, FOLDED_CENSUS, ROSETTA_AREAS, EULER_CHI, PHI } from '../../../3/7'
-import { dims } from '../../../quantum/mountain/dimensions'
+  plasmaMoviePalette } from '../../../fire/plasma/ball/index.ts'
+import { PLANE_VIS, HERO_CYCLE_MS, REALTIME_COMPUTE_MOVIE_CAP } from '../../../fire/plasma/ball/index.ts'
+import { hingeMoviePaintLayers } from '../../../water/double/earth/index.ts'
+import { vortexPaintTiers } from '../../../mountain/vortex/index.ts'
+import { vortexNext, digitalRoot, sealFacets } from '../../../0/index.ts'
+import { A432_FOLDED, FOLDED_CENSUS, ROSETTA_AREAS, EULER_CHI, PHI } from '../../../3/7/index.ts'
+import { dims } from '../../../quantum/mountain/dimensions/index.ts'
 
 const TIERS = [3, 5, 8] as const
 const CHROMA = 9 / 64

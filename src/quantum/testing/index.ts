@@ -18,10 +18,10 @@
 // is reported instead as queryCount, which is what the complexity claims are actually about.
 // [[hardcoded-value-is-a-crack]] [[every-page-is-a-proof-standards-formulas-graphs-animations]]
 
-import { memoByRoot, toUuid, floor, grover, runQuantumCircuit } from '../../0'
-import { deutschJozsa, simon } from '../../9/1'
-import { buildMatrix } from '../../heaven/compute'
-import type { MindMatrix } from '../../types'
+import { memoByRoot, toUuid, floor, grover, runQuantumCircuit } from '../../0/index.ts'
+import { deutschJozsa, simon } from '../../9/1/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
 
 export type TestCase = {
   readonly id: string

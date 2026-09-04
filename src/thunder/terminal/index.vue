@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, shallowRef, watch } from 'vue'
 import { terminalPanelComputes } from '../../heaven/compute/computer'
-import { useSiteLocale } from '../../../.vitepress/lib/mounts'
+import { useSiteLocale } from '../../../.vitepress/lib/mounts.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'

@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../types';
+import type { MindMatrix } from '../../../types/index.ts';
 export declare function movieFoldsLinearities(matrix?: MindMatrix): {
     folds: boolean;
     directions: string[];
@@ -19,7 +19,7 @@ export declare function darkLightIsNegativePositive(matrix?: MindMatrix): {
     analog: boolean;
     polarity: {
         proven: boolean;
-        proofs: import("../movievars").PolarityMathProof[];
+        proofs: import("../movievars/index.ts").PolarityMathProof[];
         count: number;
         polarity: {
             dark: number;

@@ -1,8 +1,8 @@
-import * as __ns_up_water_digit from '../water/digit';
-import * as __ns_up_quantum_apps from '../quantum/apps';
-import * as __ns_up_earth_architecture from '../earth/architecture';
-import type { AgentEducation, McpToolManifest, MindMatrix, SchoolCurriculum } from '../types';
-import { type LocaleName } from '../wind/site';
+import * as __ns_up_water_digit from '../water/digit/index.ts';
+import * as __ns_up_quantum_apps from '../quantum/apps/index.ts';
+import * as __ns_up_earth_architecture from '../earth/architecture/index.ts';
+import type { AgentEducation, McpToolManifest, MindMatrix, SchoolCurriculum } from '../types/index.ts';
+import { type LocaleName } from '../wind/site/index.ts';
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
 export declare function skillAtoms(matrix?: MindMatrix): {
@@ -160,7 +160,7 @@ export declare function searchTrinity(query?: string, matrix?: MindMatrix): {
 export declare function portalThinksReasonsSearches(query?: string, matrix?: MindMatrix): {
     thinks: boolean;
     query: string;
-    thought: import("../0").Fold;
+    thought: import("../0/index.ts").Fold;
     proven: boolean;
     found: {
         enough: boolean;
@@ -328,7 +328,7 @@ export declare function navigation358(matrix?: MindMatrix): {
                 rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                 rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                 rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                siblings: import("../types").ConceptCommandName[];
+                siblings: import("../types/index.ts").ConceptCommandName[];
                 siblingCount: number;
             };
             content: {
@@ -1428,12 +1428,12 @@ export declare function everyElementIsALinkedNodeOrUseless(matrix?: MindMatrix):
     statement: string;
     boundary: string;
 };
-export { ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, rosettaComputesAll, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion } from '../water/digit';
-export { rosettaCoreApi, rosettaCoreApiSelfWires, rosettaShelve, rosettaCoreApiSurface } from '../quantum/apps';
-export { movieIsNeuroscienceComputation } from '../earth/life';
-export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../wind/language';
-export { rosettaIChingTrinityPlacesAllTools } from '../earth/architecture';
-export { publicAstronomyNewsCitation } from '../earth/world';
+export { ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, rosettaComputesAll, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion } from '../water/digit/index.ts';
+export { rosettaCoreApi, rosettaCoreApiSelfWires, rosettaShelve, rosettaCoreApiSurface } from '../quantum/apps/index.ts';
+export { movieIsNeuroscienceComputation } from '../earth/life/index.ts';
+export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../wind/language/index.ts';
+export { rosettaIChingTrinityPlacesAllTools } from '../earth/architecture/index.ts';
+export { publicAstronomyNewsCitation } from '../earth/world/index.ts';
 /** One gate — Glagolitic global key, 7-ray taxonomy, decode-all chain, and path response at call time. */
 export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
     computes: boolean;
@@ -1652,7 +1652,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
                     rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                     rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                     rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                    siblings: import("../types").ConceptCommandName[];
+                    siblings: import("../types/index.ts").ConceptCommandName[];
                     siblingCount: number;
                 };
                 content: {
@@ -1969,7 +1969,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-            siblings: import("../types").ConceptCommandName[];
+            siblings: import("../types/index.ts").ConceptCommandName[];
             siblingCount: number;
         };
         content: {

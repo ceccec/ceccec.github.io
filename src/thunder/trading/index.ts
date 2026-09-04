@@ -1,22 +1,22 @@
 // ☳ Zhèn · Thunder — trading & live data: strategies from the decoded primitives (a432 the deterministic engine-starter, no look-ahead), realtime live-data/device testing. HONEST: synthetic mechanics ≠ alpha, not advice. Barrel-routed; folds.ts back-imports the gate folds.
-import * as __ns_up_waves from '../waves'
-import type { MindMatrix } from '../../types'
-import { buildMatrix, circulateDoubleTorus, freeChatTurnAtArchitecturalFtl, proofReport } from '../../heaven/compute'
-import { skillAtoms } from '../../learning'
-import { claySolvedTheorem, dopplerShift, earned, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7'
-export { A432_OCTAVES } from '../../3/7'
-import { powerSpectrum, larmorFrequency } from '../../1/9'
-import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, exp, floor, foldPair, hypot, isUuid, markovStep, max, memoByRoot, memoComputing, merge, merkleFold, min, prng, roundTo, sealFacets, seedFromText, sign, sin, sqrt, toUuid, uuidHero } from '../../0'
-import { QUANTUM_COMMAND_PAIR_IDS, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement'
-import { rosettaRayOf } from '../../water/digit'
-import { querySuperpositionChatroom, rosettaCoreApi, rosettaShelve } from '../../quantum/apps'
-import { vortexMath } from '../../mountain/vortex'
-import { dimensions, multidimensional, openGraph, typographySeo } from '../../quantum/icons'
-export { typographySeo, openGraph, multidimensional } from '../../quantum/icons'
-import { quantumSitemap, staticPages } from '../../wind/site'
-import { realtimeMovieParticipation } from '../../earth/world'
-import { deviceHardwareVisibleInComputedWidgets } from '../../earth/world'
-import { allComputed, allComputedQuantumMathAnalog, buildStatisticsShowGaps, complete, completeCorpus, componentGraph, componentPages, computedSeo, dimensionsPerMegabyteMetric, fairTrade, forgerFoldsIntoHarmony, fusionCipher, gigabitEncryption64SealSet, heroGraphStatisticsEnrichFusion, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabasInDoubleTorus, path, quantumCoordinateNav, schemaOrgDiamonds } from '../../quantum/heaven/mind'
+import * as __ns_up_waves from '../waves/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix, circulateDoubleTorus, freeChatTurnAtArchitecturalFtl, proofReport } from '../../heaven/compute/index.ts'
+import { skillAtoms } from '../../learning/index.ts'
+import { claySolvedTheorem, dopplerShift, earned, A432_OCTAVES, ROSETTA_RAYS, TAU } from '../../3/7/index.ts'
+export { A432_OCTAVES } from '../../3/7/index.ts'
+import { powerSpectrum, larmorFrequency } from '../../1/9/index.ts'
+import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, exp, floor, foldPair, hypot, isUuid, markovStep, max, memoByRoot, memoComputing, merge, merkleFold, min, prng, roundTo, sealFacets, seedFromText, sign, sin, sqrt, toUuid, uuidHero } from '../../0/index.ts'
+import { QUANTUM_COMMAND_PAIR_IDS, pairsSentToChatEntangleByAlgebra } from '../../pair/enforcement/index.ts'
+import { rosettaRayOf } from '../../water/digit/index.ts'
+import { querySuperpositionChatroom, rosettaCoreApi, rosettaShelve } from '../../quantum/apps/index.ts'
+import { vortexMath } from '../../mountain/vortex/index.ts'
+import { dimensions, multidimensional, openGraph, typographySeo } from '../../quantum/icons/index.ts'
+export { typographySeo, openGraph, multidimensional } from '../../quantum/icons/index.ts'
+import { quantumSitemap, staticPages } from '../../wind/site/index.ts'
+import { realtimeMovieParticipation } from '../../earth/world/index.ts'
+import { deviceHardwareVisibleInComputedWidgets } from '../../earth/world/index.ts'
+import { allComputed, allComputedQuantumMathAnalog, buildStatisticsShowGaps, complete, completeCorpus, componentGraph, componentPages, computedSeo, dimensionsPerMegabyteMetric, fairTrade, forgerFoldsIntoHarmony, fusionCipher, gigabitEncryption64SealSet, heroGraphStatisticsEnrichFusion, knowledgeRevealedByMerkabaFold, merkabaArchitectureFieldsMovements, merkabasInDoubleTorus, path, quantumCoordinateNav, schemaOrgDiamonds } from '../../quantum/heaven/mind/index.ts'
 // Upgrade all skills for realtime communication, at max tampering costs — fuse the
 // necessary bindings. Every skill gains a realtime channel through real browser
 // APIs, and every realtime message is content-addressed and folded, so tampering is
@@ -298,7 +298,7 @@ export function terabyteRealtimeFromAllPublicDataBreathing(matrix: MindMatrix = 
       'HONEST — aggregating all public data grows the keyspace STRUCTURE (2^(128×sources), terabyte and far beyond), but public data is PUBLIC: an attacker reads the same feeds, so it adds almost no genuine cryptographic SECRET entropy. The security is the AES-256 key, NOT the public streams; "terabyte" is structure/cardinality (as before), "breathing" is the expand-while-contract of the fold, and "realtime encryption" means the content-address recomputes live — it does NOT mean public data is a secret key or that genuine entropy reaches a terabyte (it does not).' }
 }
 
-export { realtimeWiring } from '../../fire/plasma/ball'
+export { realtimeWiring } from '../../fire/plasma/ball/index.ts'
 
 // ── a432 synthetic price engine + five strategy backtests (canonical trading simulation home) ──
 // A432_OCTAVES is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the

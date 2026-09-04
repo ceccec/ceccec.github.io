@@ -1,4 +1,4 @@
-import type { GovernanceVote, MindMatrix, SacredSociety, ScientificSociety, SocietyRelations } from '../../types';
+import type { GovernanceVote, MindMatrix, SacredSociety, ScientificSociety, SocietyRelations } from '../../types/index.ts';
 export declare function society(matrix?: MindMatrix): {
     folded: boolean;
     pairs: {

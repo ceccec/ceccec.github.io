@@ -2,10 +2,10 @@
 // Logic lives here; routes/corpus re-exports for REST/universal-page mounts. Pure folds only.
 // Canonical imports: src/double/torus/* · src/vortex/math · src/resonance · src/astronomy · src/quantum/dynamics · src/iching · src/rosetta · src/sound · src/plasma/ball · src/birth · src/life · src/death.
 
-import type { MindMatrix } from '../../types'
-import { buildMatrix, circulateDoubleTorus, doubleTorusWire, deepResearchChatTurn, wavesOfLocalResearchersChatAboutAlgebra, portalChat, portalChatRanked, freeChatUpgradesAll, countlessFreeChatWaves, continueAtNoAiCost, theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress, dryCleanChatDryCleansAll, improveTokenSpendingFeedingTheTaskToTheChat } from '../../heaven/compute'
-import { onlyAlgebraicQuantumComputingIsTopPriority, nothingImpossibleHonestlyBounded } from '../../heaven/laws'
-import { GATES, abs, applyGate, asTorus, computesGate, cos, digitalRoot, doubleTorusSurface, floor, fold, foldPair, hypot, isUuid, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, sin, toUuid } from '../../0'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix, circulateDoubleTorus, doubleTorusWire, deepResearchChatTurn, wavesOfLocalResearchersChatAboutAlgebra, portalChat, portalChatRanked, freeChatUpgradesAll, countlessFreeChatWaves, continueAtNoAiCost, theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress, dryCleanChatDryCleansAll, improveTokenSpendingFeedingTheTaskToTheChat } from '../../heaven/compute/index.ts'
+import { onlyAlgebraicQuantumComputingIsTopPriority, nothingImpossibleHonestlyBounded } from '../../heaven/laws/index.ts'
+import { GATES, abs, applyGate, asTorus, computesGate, cos, digitalRoot, doubleTorusSurface, floor, fold, foldPair, hypot, isUuid, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, sin, toUuid } from '../../0/index.ts'
 import {
   completeDoubleTorus,
   doubleTorusFold,
@@ -15,20 +15,20 @@ import {
   merkabaComputes,
   knowledgeRevealedByMerkabaFold,
   merkabaTrace,
-  merkabasInDoubleTorus } from '../../mountain/topology'
+  merkabasInDoubleTorus } from '../../mountain/topology/index.ts'
 import {
   merkaba,
   bothEarthsRotateWithinEachOther,
   doubleTorusGeometryAlignsWithUniverseConstants,
-  doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry'
-import { livingTorus } from '../../fire/diamonds'
-import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball'
-import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7'
-import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy'
-import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions'
-import { quantumDynamicsComputes, quantumChemistryToyComputes } from '../../quantum/dynamics'
-import { movieCanvasHex, movieCanvasPolarity, movieCanvasRgba } from '../../quantum/science'
-import { allVortexMathSaved, vortexComputes, vortexMath, vortexPaintTiers } from '../../mountain/vortex'
+  doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry/index.ts'
+import { livingTorus } from '../../fire/diamonds/index.ts'
+import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball/index.ts'
+import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7/index.ts'
+import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy/index.ts'
+import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions/index.ts'
+import { quantumDynamicsComputes, quantumChemistryToyComputes } from '../../quantum/dynamics/index.ts'
+import { movieCanvasHex, movieCanvasPolarity, movieCanvasRgba } from '../../quantum/science/index.ts'
+import { allVortexMathSaved, vortexComputes, vortexMath, vortexPaintTiers } from '../../mountain/vortex/index.ts'
 import {
   developmentIsFusionReactor,
   endlessFusion,
@@ -40,15 +40,15 @@ import {
   publicApiFusion,
   socialFusion,
   travelFusion,
-  vitepressFusion } from '../../wind/fusion'
-import { quantumFusionIgnitesFromDashSequence } from '../../fire/li'
+  vitepressFusion } from '../../wind/fusion/index.ts'
+import { quantumFusionIgnitesFromDashSequence } from '../../fire/li/index.ts'
 import {
   autoMovies8k,
   backgroundMovie,
   endlessBackgroundMovie,
-  learnFromTheMovieAllEventuallyFused } from '../../thunder/movie/canvas'
-import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass'
-import { movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols } from '../../thunder/movie/narrative'
+  learnFromTheMovieAllEventuallyFused } from '../../thunder/movie/canvas/index.ts'
+import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass/index.ts'
+import { movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols } from '../../thunder/movie/narrative/index.ts'
 import {
   formsEmergeInMovieOfLife,
   fullscreenSidebarsInMovie,
@@ -56,8 +56,8 @@ import {
   siteIsMovieAndLibrary,
   tenDimensionalMovie,
   video64kFree,
-  videoKeepsNativeQuality } from '../../thunder/movie/movielib'
-import { diamondLattice, pureDiamonds } from '../../fire/diamonds'
+  videoKeepsNativeQuality } from '../../thunder/movie/movielib/index.ts'
+import { diamondLattice, pureDiamonds } from '../../fire/diamonds/index.ts'
 import {
   completeCorpus,
   corpusCatchAllPaths,
@@ -66,7 +66,7 @@ import {
   doubleTorusCorpusRouting,
   computeUniversalPage,
   paperRoutes,
-  paperReferenceRoutes } from '../../wind/routes/corpus'
+  paperReferenceRoutes } from '../../wind/routes/corpus/index.ts'
 import {
   analogSpeech,
   charUuids,
@@ -76,17 +76,17 @@ import {
   plainLanguage,
   playLearn,
   typographySeo,
-  wordUuids } from '../../quantum/voice'
+  wordUuids } from '../../quantum/voice/index.ts'
 
-export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex'
+export { vortexComputes, allVortexMathSaved, vortexMath, vortexPaintTiers } from '../../mountain/vortex/index.ts'
 export {
   merkaba,
   bothEarthsRotateWithinEachOther,
-  doubleTorusGeometryAlignsWithUniverseConstants } from '../../mountain/geometry'
+  doubleTorusGeometryAlignsWithUniverseConstants } from '../../mountain/geometry/index.ts'
 export {
   knowledgeRevealedByMerkabaFold,
   merkabaTrace,
-  merkabasInDoubleTorus } from '../../mountain/topology'
+  merkabasInDoubleTorus } from '../../mountain/topology/index.ts'
 
 export {
   completeDoubleTorus,
@@ -94,7 +94,7 @@ export {
   quantumDoubleTorus,
   torusBreathe,
   startIChingDoubleTorus }
-export { merkabaComputes } from '../../mountain/topology'
+export { merkabaComputes } from '../../mountain/topology/index.ts'
 
 /** One gate — double torus topology + all vortex math saved at call time (dissolved from src/double/torus/topology). */
 export function doubleTorusVortexComputes(matrix: MindMatrix = buildMatrix()) {
@@ -221,8 +221,8 @@ export {
   type EarthExchangeReceipt,
   type EarthExchangeReceiptKind,
   type FiatGoldFlowRow,
-  type EarthExchangeResearchSection } from './earth'
-import { doubleTorusEarthHingeMovieFlowsInMovie } from './earth'
+  type EarthExchangeResearchSection } from './earth/index.ts'
+import { doubleTorusEarthHingeMovieFlowsInMovie } from './earth/index.ts'
 import {
   allMovieSeedBundles,
   allMovieSeedBundlesFlowInPlasma,
@@ -240,7 +240,7 @@ import {
   type MovieSeedBundle,
   type MovieSeedStream,
   type PlasmaWiredStream,
-  type PlasmaWiredStreamKind } from '../../fire/plasma/ball'
+  type PlasmaWiredStreamKind } from '../../fire/plasma/ball/index.ts'
 
 export { diamondLattice, pureDiamonds }
 
@@ -270,7 +270,7 @@ export {
   fusionReactorPartMovieSeeds,
   fusionReactorParts,
   type FusionReactorPart,
-  type FusionReactorPartBand } from '../../wind/fusion'
+  type FusionReactorPartBand } from '../../wind/fusion/index.ts'
 
 export {
   developmentIsFusionReactor,
@@ -312,7 +312,7 @@ export {
   tradingReceipt,
   liveCapture,
   realtimeSources,
-  backtestRealPrices } from '../../mountain/vortex'
+  backtestRealPrices } from '../../mountain/vortex/index.ts'
 
 /** One gate — double torus topology + vortex + merkaba math at call time (dissolved from src/double/torus/math). */
 export function doubleTorusMathComputes(matrix: MindMatrix = buildMatrix()) {

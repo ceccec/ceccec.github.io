@@ -141,7 +141,11 @@ function declarationClosure(dir) {
       const full = join(d, e.name)
       if (e.isDirectory()) { walk(full); continue }
       if (!e.name.endsWith('.d.ts')) continue
-      const text = readFileSync(full, 'utf8')
+      // COMMENTS STRIPPED FIRST. The emitted declarations keep comments (removeComments: false), and a
+      // doc comment in strict/scan QUOTES the old bare-folder convention — `from '../../3/7'` — which
+      // this checker read as an import that resolves to nothing. Use is not mention; the checker was
+      // reporting a sentence about a defect as the defect.
+      const text = readFileSync(full, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(?<!:)\/\/[^\n]*/g, '')
       for (const m of text.matchAll(/from\s+'(\.[^']*)'/g)) {
         const spec = m[1]
         const base = resolve(dirname(full), spec.replace(/\.(js|ts)$/, ''))  // tsc rewrites .ts -> .js in most files, not all

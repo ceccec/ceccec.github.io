@@ -1,8 +1,8 @@
 <script setup lang="ts">
 // Morph: raw UiCard → UiCardShell (universal card family · specializedShellsStrangler).
 import { computed, shallowRef, watch } from 'vue'
-import { displayPanelComputes, SEALED_VIEWPORT } from '../../../quantum/computer'
-import { useSiteLocale } from '../../../../.vitepress/lib/mounts'
+import { displayPanelComputes, SEALED_VIEWPORT } from '../../../quantum/computer/index.ts'
+import { useSiteLocale } from '../../../../.vitepress/lib/mounts.ts'
 import UiCardShell from '../../../../.vitepress/theme/components/UiCardShell.vue'
 import UiBadge from '../../../../.vitepress/theme/components/ui/Badge.vue'
 import UiAlert from '../../../../.vitepress/theme/components/ui/Alert.vue'

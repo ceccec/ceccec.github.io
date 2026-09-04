@@ -1,5 +1,5 @@
-import type { Rational } from '../../3/7';
-import type { QuantumState } from '../../0';
+import type { Rational } from '../../3/7/index.ts';
+import type { QuantumState } from '../../0/index.ts';
 export declare const tkCompose: (p: number[], q: number[]) => number[];
 export declare const tkInverse: (p: number[]) => any[];
 export declare const tkKey: (p: number[]) => string;

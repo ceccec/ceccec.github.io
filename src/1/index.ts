@@ -2,7 +2,7 @@
 // This folder computes and seals its OWN physics from src/0 primitives — the digit across every angle and both
 // polarities, not a thin re-export. A digit is not a point: it is a spectrum over angles × polarities.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 1
 

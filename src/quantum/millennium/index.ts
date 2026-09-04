@@ -2,10 +2,10 @@
 // The ultimate test: Can verifiable computing framework make progress on unsolved problems?
 // Honesty-first: claySolvedByThisFold === 0 (not solved; advancing comprehension)
 
-import { memoByRoot, toUuid, floor } from '../../0'
-import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { comparisonMesh, type SolutionCandidate } from '../mesh'
+import { memoByRoot, toUuid, floor } from '../../0/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import { comparisonMesh, type SolutionCandidate } from '../mesh/index.ts'
 
 export type MillenniumProblem = {
   readonly name: string

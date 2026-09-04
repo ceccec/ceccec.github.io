@@ -8,13 +8,13 @@
 // Together — quantum/water/cache ⇄ cache/quantum — they are the quantum cache pair: compute the address
 // here, find the payload there. Agnostic, zero-dependency, deterministic.
 
-import { bb84 } from '../../../9/1'
-import type { MindMatrix } from '../../../types'
-import { buildMatrix } from '../../../heaven/compute'
-import { dash, folderLaw, payload } from '../../../earth/architecture'
-import { textToMovie } from '../../../earth/world'
-import { abs, foldPair, hypot, isUuid, log, log2, merge, merkleFold, round, seedFromText, sqrt, toUuid, type Uuid, uuidPoint } from '../../../0'
-import { DIMENSIONS } from '../../mountain/dimensions'
+import { bb84 } from '../../../9/1/index.ts'
+import type { MindMatrix } from '../../../types/index.ts'
+import { buildMatrix } from '../../../heaven/compute/index.ts'
+import { dash, folderLaw, payload } from '../../../earth/architecture/index.ts'
+import { textToMovie } from '../../../earth/world/index.ts'
+import { abs, foldPair, hypot, isUuid, log, log2, merge, merkleFold, round, seedFromText, sqrt, toUuid, type Uuid, uuidPoint } from '../../../0/index.ts'
+import { DIMENSIONS } from '../../mountain/dimensions/index.ts'
 
 export type { Uuid }
 

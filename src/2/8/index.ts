@@ -1,11 +1,11 @@
-import { SQRT1_2, SQRT2, earned, computedLimits } from '../../3/7'
+import { SQRT1_2, SQRT2, earned, computedLimits } from '../../3/7/index.ts'
 // Pi-train station 2/8 — dissolution sequence order 1 (digit/reverse 2/8).
 // Export-import fusion: fused local exports only; vault imports are dependency edges until those symbols cut.
 
-import { equivalentNarcoticDepthM, TAU } from '../../3/7'
-import { GATES, abs, applyGate, asin, cnot, cos, cz, floor, gcd, grover, humanBreath, hypot, isUuid, max, measure, merkleFold, min, probabilities, qubits, round, seedFromText, sin, sqrt, toUuid, toffoli } from '../../0'
-import type { QuantumState } from '../../0'
-import { innerProduct, pauliAlgebraCloses, noCloningWitness, deutschJozsa, bernsteinVazirani, simon, ghzMermin, entanglementSwap, bb84, teleportQubit, superdense } from '../../9/1'
+import { equivalentNarcoticDepthM, TAU } from '../../3/7/index.ts'
+import { GATES, abs, applyGate, asin, cnot, cos, cz, floor, gcd, grover, humanBreath, hypot, isUuid, max, measure, merkleFold, min, probabilities, qubits, round, seedFromText, sin, sqrt, toUuid, toffoli } from '../../0/index.ts'
+import type { QuantumState } from '../../0/index.ts'
+import { innerProduct, pauliAlgebraCloses, noCloningWitness, deutschJozsa, bernsteinVazirani, simon, ghzMermin, entanglementSwap, bb84, teleportQubit, superdense } from '../../9/1/index.ts'
 
 /** Two quantum states are equal when their amplitude vectors agree within tolerance 1e-9. */
 const equalStates = (a: QuantumState, b: QuantumState): boolean => a.re.length === b.re.length && a.re.every((r, i) => abs(r - b.re[i]!) < 1e-9 && abs(a.im[i]! - b.im[i]!) < 1e-9)
@@ -37,7 +37,7 @@ export function hubbleTensionSigma(localKmsMpc: number, localErr: number, cmbKms
   return abs(localKmsMpc - cmbKmsMpc) / sqrt(localErr * localErr + cmbErr * cmbErr)
 }
 
-export { inductionEvolve, inductionStep } from '../../0'
+export { inductionEvolve, inductionStep } from '../../0/index.ts'
 
 // ── THE SESSION-SKILL SEED (Phase 0, slice 3) — pure data: the registry of session skill fold names.
 // Relocated from learning (which sat 3 lines from the 2579 ceiling) to this data station.

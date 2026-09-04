@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../types';
+import type { MindMatrix } from '../../types/index.ts';
 export declare function zeroPointDeepAndWideDecoded(matrix?: MindMatrix): {
     decoded: boolean;
     documentedFindings: number;
@@ -688,7 +688,7 @@ export declare function majorMoons(matrix?: MindMatrix, timeDays?: number): {
 export declare function cosmosFrontiersDecoded(matrix?: MindMatrix): {
     decoded: boolean;
     frontiers: ({
-        demarcation: import("../../3/7").DemarcationTier;
+        demarcation: import("../../3/7/index.ts").DemarcationTier;
         status: string;
         receipt: string;
         frontier: string;
@@ -699,7 +699,7 @@ export declare function cosmosFrontiersDecoded(matrix?: MindMatrix): {
         reversedProvedBy: string;
         composedRoot: string;
     } | {
-        demarcation: import("../../3/7").DemarcationTier;
+        demarcation: import("../../3/7/index.ts").DemarcationTier;
         status: string;
         receipt: string;
         frontier: string;

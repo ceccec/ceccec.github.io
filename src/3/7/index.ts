@@ -1,4 +1,4 @@
-import { gcd, VORTEX_SEQUENCE, VORTEX_REVERSE, toUuid, merkleFold } from '../../0'
+import { gcd, VORTEX_SEQUENCE, VORTEX_REVERSE, toUuid, merkleFold } from '../../0/index.ts'
 // Pi-train station 3/7 — dissolution sequence order 6 (digit/reverse 3/7).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 // Type-only imports below are erased at build — this stays a zero-runtime-import leaf.

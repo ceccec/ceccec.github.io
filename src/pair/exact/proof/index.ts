@@ -2,7 +2,7 @@
 // exact-theorems/formal-proof) to satisfy the src index census. Zero floating-point,
 // pure symbolic algebra; proves all 6 Clay theorems with zero deviation exactly.
 
-import { gcdBigInt } from '../../../0'
+import { gcdBigInt } from '../../../0/index.ts'
 
 // ───── module: rational ─────
 // Wave 34a: Exact Rational Arithmetic

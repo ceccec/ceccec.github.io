@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../types';
-import { AtomInclusionProof, MerkleProof, MerkleStep } from '../quantum/heaven/mind';
+import type { MindMatrix } from '../types/index.ts';
+import { AtomInclusionProof, MerkleProof, MerkleStep } from '../quantum/heaven/mind/index.ts';
 export declare function harmonicApparatus(matrix?: MindMatrix): {
     proven: boolean;
     shared: boolean;

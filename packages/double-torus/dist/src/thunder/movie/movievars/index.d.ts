@@ -1,4 +1,4 @@
-import type { MindMatrix } from '../../../types';
+import type { MindMatrix } from '../../../types/index.ts';
 /** Perceptual OKLCH band — dark field lifts paint; light field lifts chrome washes (near-white back)
  * and deepens accent glow for contrast. Light back matches computedMovieThemeColors (24/25). */
 export declare function chromeLightnessBand(mode: 'light' | 'dark'): {

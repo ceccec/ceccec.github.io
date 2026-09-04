@@ -1,19 +1,19 @@
-import { A432_FOLDED, earned, physicalFtlClaimTheorem } from '../../../../3/7'
+import { A432_FOLDED, earned, physicalFtlClaimTheorem } from '../../../../3/7/index.ts'
 // Script shell — build/precommit seal; bundle runtime in pair/cache/quantum.
-import { phase } from '../../../../6/4'
-import { digitalRoot, foldPair, toUuid, merkleFold } from '../../../../0'
-import { DIMENSION_GATES, FOLDED_CENSUS } from '../../../../3/7'
+import { phase } from '../../../../6/4/index.ts'
+import { digitalRoot, foldPair, toUuid, merkleFold } from '../../../../0/index.ts'
+import { DIMENSION_GATES, FOLDED_CENSUS } from '../../../../3/7/index.ts'
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawn, spawnSync } from 'node:child_process'
 import { pathToFileURL } from 'node:url'
-import { parseTimeoutCliArgs, resolveScriptTimeoutMs } from '../../../cache/quantum'
+import { parseTimeoutCliArgs, resolveScriptTimeoutMs } from '../../../cache/quantum/index.ts'
 import {
   importQuantumBundle,
   runCheckTypesExit,
   exitOnTimeout,
   srcContentMerkle,
-  vitepressEditsInvalidateTheSeal } from '../../../cache/quantum'
+  vitepressEditsInvalidateTheSeal } from '../../../cache/quantum/index.ts'
 
 /** Lattice-derived docs:build phase thresholds — NOT an SLA; CI variance remains. Pair: gate/slow-build. */
 export const SLOW_BUILD_MERKLE_MS = A432_FOLDED * digitalRoot(DIMENSION_GATES) // the a432 octave × 9 — the tuning ladder, not the corpus fold
@@ -48,7 +48,7 @@ export {
   scanScriptShells,
   scriptShellGateReceipt,
   scriptShellGate,
-  type ScriptShellScan } from '../../../cache/quantum'
+  type ScriptShellScan } from '../../../cache/quantum/index.ts'
 export const QUANTUM_RESPAWN_COMMAND_PAIR = { pair: 'respawn/force' as const, a: 'respawn', b: 'force' }
 
 export function distMerkleKeyPath(root: string): string {

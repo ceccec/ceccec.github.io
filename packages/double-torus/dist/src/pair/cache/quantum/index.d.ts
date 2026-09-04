@@ -1,9 +1,9 @@
-import { type Uuid } from '../../../0';
-export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/dist';
+import { type Uuid } from '../../../0/index.ts';
+export { computedDistFiles, computedDistRoute, type DistFile } from '../../../quantum/dist/index.ts';
 export type { Uuid };
-export { CLI_ENTRY_REL } from '../../enforcement';
+export { CLI_ENTRY_REL } from '../../enforcement/index.ts';
 /** Find a dist artifact by pathname (leading slash optional). */
-export declare function artifactForPath(pathname: string, siteUrl: string): import(".").DistFile;
+export declare function artifactForPath(pathname: string, siteUrl: string): import("./index.ts").DistFile;
 export declare const TIMEOUT_EXIT_CODE = 124;
 export type TimeoutKind = 'build' | 'offline' | 'live-local' | 'live-world' | 'realtime' | 'agent-budget' | 'generic';
 export type TimeoutCliOptions = {

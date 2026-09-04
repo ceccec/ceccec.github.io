@@ -1,24 +1,24 @@
-import { earned } from '../../3/7'
+import { earned } from '../../3/7/index.ts'
 // Death — canonical compost/entropy/recycle/regeneration/terminal-end home (dual to src/life).
-import * as __ns_up_life from '../life'
-import type { MindMatrix } from '../../types'
-import { buildMatrix, entropy } from '../../heaven/compute'
-import { GATES, applyGate, computesGate, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, probabilities, qubits, round, toUuid, type QuantumState } from '../../0'
-import { doubleTorusCompost } from '../../fire/li'
-import { trinityOtherSideDoomed } from '../../mountain/seals'
-import { inverseAndNewGapsEmerge } from '../../heaven/site'
+import * as __ns_up_life from '../life/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix, entropy } from '../../heaven/compute/index.ts'
+import { GATES, applyGate, computesGate, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, probabilities, qubits, round, toUuid, type QuantumState } from '../../0/index.ts'
+import { doubleTorusCompost } from '../../fire/li/index.ts'
+import { trinityOtherSideDoomed } from '../../mountain/seals/index.ts'
+import { inverseAndNewGapsEmerge } from '../../heaven/site/index.ts'
 import {
   decodeTheBittenApple,
   enforceAllAtGatesEntropyRecycled,
   equilibrium,
   questionAnswerEquilibrium,
-  recycling } from '../nature'
-import { regenerateSocialSystem } from '../civilisation'
-import { obsoleteHardwareSecondLifeAntiEwaste } from '../world'
-import { cleanupOldLogic } from '../../mountain/og'
-import { decodeAncientKnowledgeInReusableCode } from '../../thunder/decode'
+  recycling } from '../nature/index.ts'
+import { regenerateSocialSystem } from '../civilisation/index.ts'
+import { obsoleteHardwareSecondLifeAntiEwaste } from '../world/index.ts'
+import { cleanupOldLogic } from '../../mountain/og/index.ts'
+import { decodeAncientKnowledgeInReusableCode } from '../../thunder/decode/index.ts'
 
-export { doubleTorusCompost as compost } from '../../fire/li'
+export { doubleTorusCompost as compost } from '../../fire/li/index.ts'
 
 /** Double torus compost — waste folds to soil and soil to life (тор/torus pun). */
 export function deathCompost(matrix: MindMatrix = buildMatrix()) {

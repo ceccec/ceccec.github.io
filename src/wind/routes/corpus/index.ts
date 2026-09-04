@@ -1,33 +1,33 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { computedLimits } from '../../../3/7'
-import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7'
-import type { MindMatrix, StaticPage } from '../../../types'
+import { computedLimits } from '../../../3/7/index.ts'
+import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
+import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
-import * as __ns_up_up_thunder_waves from '../../../thunder/waves'
-import * as __ns_earth_architecture from '../../../earth/architecture' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
-import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute'
-import { abs, ceil, cos, digitalRoot, floor, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, round, sin, toUuid } from '../../../0'
-import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6'
-import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit'
-import { conceptCommands } from '../../../heaven/atoms'
-import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1'
-import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/movievars'
-import { heroMoviePhaseHue, heroPhaseAt, plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball'
-import { allPagesForPlasmaWiring } from '../../../water/double'
-import { cosmosFrontiersDecoded } from '../../../water/cosmos'
-import { monographSliceFromRoute, catchAllRoutePaths } from '../automount'
-import { siteRoutes } from '../../../fire/li'
-import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture'
-import { diamondLattice, pureDiamonds } from '../../../fire/diamonds'
-import { quantumDoubleTorus } from '../../../mountain/topology'
-import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../../quantum/heaven/mind'
-import type { CorpusKind } from '../../../quantum/heaven/mind'
+import * as __ns_up_up_thunder_waves from '../../../thunder/waves/index.ts'
+import * as __ns_earth_architecture from '../../../earth/architecture/index.ts' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
+import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute/index.ts'
+import { abs, ceil, cos, digitalRoot, floor, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, round, sin, toUuid } from '../../../0/index.ts'
+import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6/index.ts'
+import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site/index.ts'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit/index.ts'
+import { conceptCommands } from '../../../heaven/atoms/index.ts'
+import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1/index.ts'
+import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/movievars/index.ts'
+import { heroMoviePhaseHue, heroPhaseAt, plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball/index.ts'
+import { allPagesForPlasmaWiring } from '../../../water/double/index.ts'
+import { cosmosFrontiersDecoded } from '../../../water/cosmos/index.ts'
+import { monographSliceFromRoute, catchAllRoutePaths } from '../automount/index.ts'
+import { siteRoutes } from '../../../fire/li/index.ts'
+import { folderLaw, placementForRoute, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture/index.ts'
+import { diamondLattice, pureDiamonds } from '../../../fire/diamonds/index.ts'
+import { quantumDoubleTorus } from '../../../mountain/topology/index.ts'
+import { diamondParamsById, papersReferencesDiamondsNoDrift } from '../../../quantum/heaven/mind/index.ts'
+import type { CorpusKind } from '../../../quantum/heaven/mind/index.ts'
 import {
   componentCrosslinks, harmonisedNavigation, monographs, navigation358, paperParamsById, paperReferences, papers,
   referenceParamsById, sciencePortalParts, siteNavigation,
-  type ComponentCrosslink, type CorpusPaperStandardSections } from '../../../learning'
+  type ComponentCrosslink, type CorpusPaperStandardSections } from '../../../learning/index.ts'
 
 /** Fibonacci tiers [3,5,8] — same math as plasma hero; closes O(pages) client hangs. */
 export const CLIENT_WORK_TIERS = [3, 5, 8] as const
@@ -939,16 +939,16 @@ function computeUniversalPageRaw(
 }
 
 // Thin routes hub — dissolved src/routes/index.ts shell (census −1).
-export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount'
-export type { ZeitwerkEntry, ZeitwerkLoader, ZeitwerkRegistryEntry } from '../automount'
+export { resolveZeitwerkRegistryEntry, zeitwerkPort } from '../automount/index.ts'
+export type { ZeitwerkEntry, ZeitwerkLoader, ZeitwerkRegistryEntry } from '../automount/index.ts'
 export {
   harmonisedNavigation,
   navigationIsMovie,
   ogBuildsNavigation,
   rosettaComputesNavigationAndContent,
   siteNavigation,
-  vitepressSidebar } from '../../../learning'
-export { pageForgeMaxTamper, type PageForgeSeal } from '../../site'
+  vitepressSidebar } from '../../../learning/index.ts'
+export { pageForgeMaxTamper, type PageForgeSeal } from '../../site/index.ts'
 export {
   contentIsMonographOfMonographs,
   eachPageSpeaksContinuesNext,
@@ -957,13 +957,13 @@ export {
   everyPageGraphOfGraphsFractal,
   monographs,
   onlyPageRouteForAll,
-  theMonograph } from '../../../learning'
+  theMonograph } from '../../../learning/index.ts'
 export {
   homePageNoDifferent,
   homepage,
   pageStatusStatistics,
-  proveAllOnHomePage } from '../../site'
-export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/digit'
+  proveAllOnHomePage } from '../../site/index.ts'
+export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/digit/index.ts'
 
 /** All is monograph — every page is a scientific paper with one template. */
 export function allIsMonographScientificPaper(matrix: MindMatrix = buildMatrix()) {

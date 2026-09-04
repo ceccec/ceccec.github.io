@@ -4,14 +4,14 @@
 // shared experiment. They compose the foundational EM constants/conversions from src/0; the FOLDS that RUN them
 // live in src/quantum/fire/experiments. (folderLaw: one word, one index — under the 2584-line compression limit.)
 // ☲ Lí · Fire · clinging · lower·yin · spread — EM primitives (constants, conversions, content-addressing)
-import { phase } from '../../../6/4'
-import { ELECTRONVOLT, PLANCK, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7'
-import { inductionStep } from '../../../mountain/vortex'
-import { wavelengthOf, larmorFrequency } from '../../../1/9'
-import { cos, exp, hypot, merkleFold, prng, roundTo, sin, toUuid } from '../../../0'
-import { isIonizing } from '../../../9/1'
-import { radarRange } from '../../../3/7'
-import { TAU } from '../../../3/7'
+import { phase } from '../../../6/4/index.ts'
+import { ELECTRONVOLT, PLANCK, SPEED_OF_LIGHT, dopplerShift, photonEnergyEv } from '../../../3/7/index.ts'
+import { inductionStep } from '../../../mountain/vortex/index.ts'
+import { wavelengthOf, larmorFrequency } from '../../../1/9/index.ts'
+import { cos, exp, hypot, merkleFold, prng, roundTo, sin, toUuid } from '../../../0/index.ts'
+import { isIonizing } from '../../../9/1/index.ts'
+import { radarRange } from '../../../3/7/index.ts'
+import { TAU } from '../../../3/7/index.ts'
 
 // ── EM simulators: deterministic, content-addressed teaching models of the field and its three modalities ──
 // Developed + adversarially verified in a research wave (every governing equation re-derived, every test vector

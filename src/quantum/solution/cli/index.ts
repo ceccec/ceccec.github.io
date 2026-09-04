@@ -20,7 +20,7 @@ import {
   migrationRoadmap,
   migrationToolkit,
   solutionManifest,
-} from '../crypto'
+} from '../crypto/index.ts'
 
 export async function runSolutionDemoExit(root: string, argv: string[] = []): Promise<number> {
   console.log('\n╔════════════════════════════════════════════════════════════════╗')

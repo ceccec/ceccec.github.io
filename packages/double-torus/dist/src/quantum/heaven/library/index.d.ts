@@ -1,5 +1,5 @@
-import { entry, merkabaFoldUrl, type Entry, type Uuid } from '../../../0';
-import { type LocaleName } from '../../../1/9';
+import { entry, merkabaFoldUrl, type Entry, type Uuid } from '../../../0/index.ts';
+import { type LocaleName } from '../../../1/9/index.ts';
 export { merkabaFoldUrl, entry, type Uuid, type Entry };
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
 export declare const GLAGOLITIC_MAP: Record<string, string>;

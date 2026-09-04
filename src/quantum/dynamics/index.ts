@@ -1,20 +1,20 @@
-import { SQRT2, earned, overclaimByFormulas, entangledArmField, ROSETTA_SEVEN, ROSETTA_SIX } from '../../3/7'
+import { SQRT2, earned, overclaimByFormulas, entangledArmField, ROSETTA_SEVEN, ROSETTA_SIX } from '../../3/7/index.ts'
 // Quantum dynamics — canonical home: state-vector evolution, classical stochastic dynamics,
 // simulator compose, research exposition (dissolved src/double/torus/plasma → src/double/torus; census-neutral swap).
-import * as __ns_up_up_heaven_compute from '../../heaven/compute'
-import * as __ns_up_up_fire_physics from '../../fire/physics'
-import * as __ns_up_up_fire_li from '../../fire/li'
-import * as __ns_up_up_thunder_trading from '../../thunder/trading'
-import * as __ns_up_up_vortex_math from '../../mountain/vortex'
-import * as __ns_up_up_pair_enforcement from '../../pair/enforcement'
-import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy'
-import * as __ns_up_up_lake_music from '../../music'
-import * as __ns_up_science from '../science'
-import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib'
-import { amplitudeAmplificationAndQuantumCounting } from '../../2/8'
-import type { MindMatrix } from '../../types'
-import { buildMatrix } from '../../heaven/compute'
-import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, cnot, computesGate, cos, exp, floor, gcd, grover, isUuid, max, measure, memoByRoot, merge, merkleFold, min, probabilities, qubits, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../0'
+import * as __ns_up_up_heaven_compute from '../../heaven/compute/index.ts'
+import * as __ns_up_up_fire_physics from '../../fire/physics/index.ts'
+import * as __ns_up_up_fire_li from '../../fire/li/index.ts'
+import * as __ns_up_up_thunder_trading from '../../thunder/trading/index.ts'
+import * as __ns_up_up_vortex_math from '../../mountain/vortex/index.ts'
+import * as __ns_up_up_pair_enforcement from '../../pair/enforcement/index.ts'
+import * as __ns_up_up_astronomy from '../../heaven/sky/astronomy/index.ts'
+import * as __ns_up_up_lake_music from '../../music/index.ts'
+import * as __ns_up_science from '../science/index.ts'
+import * as __ns_up_up_thunder_movie_movielib from '../../thunder/movie/movielib/index.ts'
+import { amplitudeAmplificationAndQuantumCounting } from '../../2/8/index.ts'
+import type { MindMatrix } from '../../types/index.ts'
+import { buildMatrix } from '../../heaven/compute/index.ts'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, bellPair, cnot, computesGate, cos, exp, floor, gcd, grover, isUuid, max, measure, memoByRoot, merge, merkleFold, min, probabilities, qubits, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../0/index.ts'
 import {
   chsh,
   markovStep,
@@ -23,10 +23,10 @@ import {
   hopfieldStore,
   hopfieldRecall,
   hopfieldEnergy,
-  phaseDrift } from '../../mountain/vortex'
-import { A432_HUE, TAU } from '../../3/7'
-import { movieCanvasPolarity } from '../science'
-import { heroPhaseAt } from '../../fire/plasma/ball'
+  phaseDrift } from '../../mountain/vortex/index.ts'
+import { A432_HUE, TAU } from '../../3/7/index.ts'
+import { movieCanvasPolarity } from '../science/index.ts'
+import { heroPhaseAt } from '../../fire/plasma/ball/index.ts'
 
 /** One amplitude slot in the discrete wavefunction proxy. */
 export type QuantumDynamicsAmplitude = {
@@ -61,12 +61,12 @@ export type QuantumDynamicsSimulationPaint = {
   boundary: string
 }
 
-export { completeQuantumSolutionsImplemented } from '../../heaven/compute'
-export { quantumSimulation } from '../../fire/li'
+export { completeQuantumSolutionsImplemented } from '../../heaven/compute/index.ts'
+export { quantumSimulation } from '../../fire/li/index.ts'
 export {
   simulatorsLiveInZero,
   decodedAreasAreMostlyClassical,
-  everyDecodedDomainHasASimulator } from '../../fire/physics'
+  everyDecodedDomainHasASimulator } from '../../fire/physics/index.ts'
 export {
   chsh,
   markovStep,
@@ -74,7 +74,7 @@ export {
   stationary,
   hopfieldStore,
   hopfieldRecall,
-  hopfieldEnergy } from '../../mountain/vortex'
+  hopfieldEnergy } from '../../mountain/vortex/index.ts'
 
 /** Principle → sealed fold → honest limit (quantum dynamics primer mapping). */
 export type QuantumDynamicsMapping = {

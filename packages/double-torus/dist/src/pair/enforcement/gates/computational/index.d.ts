@@ -1,4 +1,4 @@
-export { enforcementScanRoot } from '../strict/scan';
+export { enforcementScanRoot } from '../strict/scan/index.ts';
 export declare function splitMethodWords(name: string, prefix?: string): readonly string[];
 /** Method name → folder tail (concept.agent.stream.wire → agent/stream/wire). */
 export declare function folderTailFromMethodName(name: string, prefix?: string): string;
@@ -15,7 +15,7 @@ export type ScienceModelAction = {
 export declare const SRC_SCIENCE_MODEL_ACTION_SCHEMA: "src/[science]/[action]";
 /** Canonical mask — co-located index.ts + index.vue; no render/ui prefix. */
 export declare const CANONICAL_SCIENCE_MASK: "src/<science>/<action>";
-export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7';
+export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7/index.ts';
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */
 export declare const FORBIDDEN_FOLDER_NAMES: readonly ["index"];
 export declare function isForbiddenFolderName(name: string): boolean;

@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../../types';
-export { doubleTorusCompost as compost } from '../../fire/li';
+import type { MindMatrix } from '../../types/index.ts';
+export { doubleTorusCompost as compost } from '../../fire/li/index.ts';
 /** Double torus compost — waste folds to soil and soil to life (тор/torus pun). */
 export declare function deathCompost(matrix?: MindMatrix): {
     revives: boolean;
@@ -467,7 +467,7 @@ export declare function lifeDeathPairComputes(matrix?: MindMatrix): {
             statement: string;
             boundary: string;
         };
-        harmony: import("../../types").HarmonyProbability;
+        harmony: import("../../types/index.ts").HarmonyProbability;
         immune: {
             healthy: boolean;
             maxHealth: boolean;

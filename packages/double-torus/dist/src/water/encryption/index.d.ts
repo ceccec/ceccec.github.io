@@ -1,5 +1,5 @@
-import * as __ns_mountain_geometry from '../../mountain/geometry';
-import type { MindMatrix } from '../../types';
+import * as __ns_mountain_geometry from '../../mountain/geometry/index.ts';
+import type { MindMatrix } from '../../types/index.ts';
 export declare function deploySecretUuidSignedObservers(matrix?: MindMatrix): {
     deployed: boolean;
     observers: number;
@@ -671,7 +671,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -686,8 +686,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -953,7 +953,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -968,8 +968,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -1082,7 +1082,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -1097,8 +1097,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -1340,7 +1340,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -1355,8 +1355,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -1622,7 +1622,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 trinity: {
                     computes: boolean;
-                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                     table: {
                         digit: number;
                         forward: number;
@@ -1637,8 +1637,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -1751,7 +1751,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -1766,8 +1766,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -2017,7 +2017,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 cost: {
                     proven: boolean;
-                    rows: import("../../quantum/science").DimensionCostRow[];
+                    rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                     crossover: number;
                     asymptoticallyInsufficient: boolean;
                     facets: ({
@@ -2036,7 +2036,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     faithful: boolean;
                     physicalQpuWouldSeparate: boolean;
                     verdict: string;
-                    rows: import("../../quantum/science").BenchmarkRow[];
+                    rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                     facets: ({
                         facet: string;
                         on: boolean;
@@ -2067,13 +2067,13 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             noQuantumHardwareProved: boolean;
             winner: "ceccec" | "undecided";
             decided: boolean;
-            comparison: import("../stack").SpeedVsRestComparisonRow[];
-            table: import("../stack").SpeedVsRestComparisonRow[];
+            comparison: import("../stack/index.ts").SpeedVsRestComparisonRow[];
+            table: import("../stack/index.ts").SpeedVsRestComparisonRow[];
             quantumHardwareRequired: false;
             qpuRequired: false;
             runsOnClassical64Bit: boolean;
             architectureRequirement: "classical-64bit";
-            environment: import("../stack").Classical64BitEnvironment;
+            environment: import("../stack/index.ts").Classical64BitEnvironment;
             forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
             tracksClassicalNoSpeedup: boolean;
             benchVerdict: string;
@@ -2194,7 +2194,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     };
                     cost: {
                         proven: boolean;
-                        rows: import("../../quantum/science").DimensionCostRow[];
+                        rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                         crossover: number;
                         asymptoticallyInsufficient: boolean;
                         facets: ({
@@ -2213,7 +2213,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         faithful: boolean;
                         physicalQpuWouldSeparate: boolean;
                         verdict: string;
-                        rows: import("../../quantum/science").BenchmarkRow[];
+                        rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                         facets: ({
                             facet: string;
                             on: boolean;
@@ -2356,7 +2356,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         };
                         cost: {
                             proven: boolean;
-                            rows: import("../../quantum/science").DimensionCostRow[];
+                            rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                             crossover: number;
                             asymptoticallyInsufficient: boolean;
                             facets: ({
@@ -2375,7 +2375,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             faithful: boolean;
                             physicalQpuWouldSeparate: boolean;
                             verdict: string;
-                            rows: import("../../quantum/science").BenchmarkRow[];
+                            rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                             facets: ({
                                 facet: string;
                                 on: boolean;
@@ -2403,11 +2403,11 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 core: {
                     computes: boolean;
                     at: number;
-                    surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                    surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                     inventory: {
                         core: {
                             label: string;
-                            kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                            kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                             ray: number;
                             address: string;
                         }[];
@@ -2419,14 +2419,14 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             hue: number;
                         }[];
                     };
-                    hubs: readonly import("../digit").RosettaRayHub[];
+                    hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                     raysUsed: number;
                     kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                    resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
-                    shelve: typeof import("../../learning").rosettaShelve;
-                    byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                    resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
+                    shelve: typeof import("../../learning/index.ts").rosettaShelve;
+                    byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                     resolveRoute: (route: string) => {
-                        surface: import("../../quantum/apps").RosettaCoreSurface;
+                        surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                         address: string;
                         computed: boolean;
                         route: string;
@@ -2490,11 +2490,11 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                             rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                             rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                            siblings: import("../../types").ConceptCommandName[];
+                            siblings: import("../../types/index.ts").ConceptCommandName[];
                             siblingCount: number;
                         };
                         content: {
-                            pageKind: import("../digit").RosettaComputationType;
+                            pageKind: import("../digit/index.ts").RosettaComputationType;
                             heroPhase: number;
                             bodySeed: string;
                             heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -2545,7 +2545,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         boundary: string;
                     };
                     resolveProjection: (label: string) => {
-                        surface: import("../../quantum/apps").RosettaCoreSurface;
+                        surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                         phase: number;
                         hue: number;
                         motion: {
@@ -2596,31 +2596,31 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     boundary: string;
                 };
                 learned: ({
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     receipt: string;
                     source: "GPT/Claude/Gemini tool-use";
                     fold: "rosettaCoreApi · quantumCliToolsCatalog";
                     kind: "tools";
                 } | {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     receipt: string;
                     source: "agent protocols (AGENTS/llms/MCP)";
                     fold: "agentSubmissionProtocol · gatesHealSpottedCompromise";
                     kind: "protocol";
                 } | {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     receipt: string;
                     source: "content-addressed corpus";
                     fold: "memoByRoot · completeCorpus · sealFacets";
                     kind: "corpus";
                 } | {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     receipt: string;
                     source: "adversarial efficiency voters";
                     fold: "noKnownModelMoreEfficientProven · compareCeccecEfficiencyByVote";
                     kind: "voters";
                 } | {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     receipt: string;
                     source: "honest QC simulator (no FLOPS claim)";
                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
@@ -2678,7 +2678,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 cost: {
                     proven: boolean;
-                    rows: import("../../quantum/science").DimensionCostRow[];
+                    rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                     crossover: number;
                     asymptoticallyInsufficient: boolean;
                     facets: ({
@@ -2697,7 +2697,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     faithful: boolean;
                     physicalQpuWouldSeparate: boolean;
                     verdict: string;
-                    rows: import("../../quantum/science").BenchmarkRow[];
+                    rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                     facets: ({
                         facet: string;
                         on: boolean;
@@ -2928,7 +2928,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -2943,8 +2943,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -3312,7 +3312,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -3327,8 +3327,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -3548,7 +3548,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -3563,8 +3563,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -3673,7 +3673,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -3688,8 +3688,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -3920,7 +3920,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -3935,8 +3935,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -4202,7 +4202,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 trinity: {
                     computes: boolean;
-                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                     table: {
                         digit: number;
                         forward: number;
@@ -4217,8 +4217,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -4331,7 +4331,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -4346,8 +4346,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -4451,7 +4451,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -4466,8 +4466,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -4680,7 +4680,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -4695,8 +4695,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -4875,7 +4875,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 trinity: {
                     computes: boolean;
-                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                     table: {
                         digit: number;
                         forward: number;
@@ -4890,8 +4890,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -5157,7 +5157,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     };
                     trinity: {
                         computes: boolean;
-                        digits: import("../stack").DirectionalTrinityDigitRow[];
+                        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                         table: {
                             digit: number;
                             forward: number;
@@ -5172,8 +5172,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             bidirectional: boolean;
                         };
                         ratInvSample: {
-                            forward: import("../../3/7").Rational;
-                            inverse: import("../../3/7").Rational;
+                            forward: import("../../3/7/index.ts").Rational;
+                            inverse: import("../../3/7/index.ts").Rational;
                         };
                         fInverse: {
                             computes: boolean;
@@ -5286,7 +5286,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 trinity: {
                     computes: boolean;
-                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                     table: {
                         digit: number;
                         forward: number;
@@ -5301,8 +5301,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -6163,7 +6163,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -6178,8 +6178,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -6288,7 +6288,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -6303,8 +6303,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -6556,7 +6556,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 trinity: {
                     computes: boolean;
-                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                     table: {
                         digit: number;
                         forward: number;
@@ -6571,8 +6571,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -6792,7 +6792,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 trinity: {
                     computes: boolean;
-                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                     table: {
                         digit: number;
                         forward: number;
@@ -6807,8 +6807,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -6917,7 +6917,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -6932,8 +6932,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -7041,7 +7041,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         modulusNotAUnit: boolean;
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -7056,8 +7056,8 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -7638,7 +7638,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -7653,8 +7653,8 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -7920,7 +7920,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -7935,8 +7935,8 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -8049,7 +8049,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -8064,8 +8064,8 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -8584,7 +8584,7 @@ export declare function localEncryptionReverseTimedVsStandards(matrix?: MindMatr
     };
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -8599,8 +8599,8 @@ export declare function localEncryptionReverseTimedVsStandards(matrix?: MindMatr
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -8911,7 +8911,7 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -8926,8 +8926,8 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -9040,7 +9040,7 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
     };
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -9055,8 +9055,8 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -9398,7 +9398,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -9413,8 +9413,8 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -9527,7 +9527,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -9542,8 +9542,8 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -9743,7 +9743,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
             };
             cost: {
                 proven: boolean;
-                rows: import("../../quantum/science").DimensionCostRow[];
+                rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                 crossover: number;
                 asymptoticallyInsufficient: boolean;
                 facets: ({
@@ -9762,7 +9762,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 faithful: boolean;
                 physicalQpuWouldSeparate: boolean;
                 verdict: string;
-                rows: import("../../quantum/science").BenchmarkRow[];
+                rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                 facets: ({
                     facet: string;
                     on: boolean;
@@ -9793,13 +9793,13 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
         noQuantumHardwareProved: boolean;
         winner: "ceccec" | "undecided";
         decided: boolean;
-        comparison: import("../stack").SpeedVsRestComparisonRow[];
-        table: import("../stack").SpeedVsRestComparisonRow[];
+        comparison: import("../stack/index.ts").SpeedVsRestComparisonRow[];
+        table: import("../stack/index.ts").SpeedVsRestComparisonRow[];
         quantumHardwareRequired: false;
         qpuRequired: false;
         runsOnClassical64Bit: boolean;
         architectureRequirement: "classical-64bit";
-        environment: import("../stack").Classical64BitEnvironment;
+        environment: import("../stack/index.ts").Classical64BitEnvironment;
         forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
         tracksClassicalNoSpeedup: boolean;
         benchVerdict: string;
@@ -9920,7 +9920,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 };
                 cost: {
                     proven: boolean;
-                    rows: import("../../quantum/science").DimensionCostRow[];
+                    rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                     crossover: number;
                     asymptoticallyInsufficient: boolean;
                     facets: ({
@@ -9939,7 +9939,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                     faithful: boolean;
                     physicalQpuWouldSeparate: boolean;
                     verdict: string;
-                    rows: import("../../quantum/science").BenchmarkRow[];
+                    rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                     facets: ({
                         facet: string;
                         on: boolean;
@@ -10082,7 +10082,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                     };
                     cost: {
                         proven: boolean;
-                        rows: import("../../quantum/science").DimensionCostRow[];
+                        rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                         crossover: number;
                         asymptoticallyInsufficient: boolean;
                         facets: ({
@@ -10101,7 +10101,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                         faithful: boolean;
                         physicalQpuWouldSeparate: boolean;
                         verdict: string;
-                        rows: import("../../quantum/science").BenchmarkRow[];
+                        rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                         facets: ({
                             facet: string;
                             on: boolean;
@@ -10129,11 +10129,11 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
             core: {
                 computes: boolean;
                 at: number;
-                surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                 inventory: {
                     core: {
                         label: string;
-                        kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                        kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                         ray: number;
                         address: string;
                     }[];
@@ -10145,14 +10145,14 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                         hue: number;
                     }[];
                 };
-                hubs: readonly import("../digit").RosettaRayHub[];
+                hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                 raysUsed: number;
                 kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
-                shelve: typeof import("../../learning").rosettaShelve;
-                byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
+                shelve: typeof import("../../learning/index.ts").rosettaShelve;
+                byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                 resolveRoute: (route: string) => {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     address: string;
                     computed: boolean;
                     route: string;
@@ -10216,11 +10216,11 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../types").ConceptCommandName[];
+                        siblings: import("../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -10271,7 +10271,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                     boundary: string;
                 };
                 resolveProjection: (label: string) => {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     phase: number;
                     hue: number;
                     motion: {
@@ -10322,31 +10322,31 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 boundary: string;
             };
             learned: ({
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "GPT/Claude/Gemini tool-use";
                 fold: "rosettaCoreApi · quantumCliToolsCatalog";
                 kind: "tools";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "agent protocols (AGENTS/llms/MCP)";
                 fold: "agentSubmissionProtocol · gatesHealSpottedCompromise";
                 kind: "protocol";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "content-addressed corpus";
                 fold: "memoByRoot · completeCorpus · sealFacets";
                 kind: "corpus";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "adversarial efficiency voters";
                 fold: "noKnownModelMoreEfficientProven · compareCeccecEfficiencyByVote";
                 kind: "voters";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "honest QC simulator (no FLOPS claim)";
                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
@@ -10404,7 +10404,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
             };
             cost: {
                 proven: boolean;
-                rows: import("../../quantum/science").DimensionCostRow[];
+                rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                 crossover: number;
                 asymptoticallyInsufficient: boolean;
                 facets: ({
@@ -10423,7 +10423,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 faithful: boolean;
                 physicalQpuWouldSeparate: boolean;
                 verdict: string;
-                rows: import("../../quantum/science").BenchmarkRow[];
+                rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                 facets: ({
                     facet: string;
                     on: boolean;
@@ -10647,7 +10647,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -10662,8 +10662,8 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -10929,7 +10929,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -10944,8 +10944,8 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -11058,7 +11058,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -11073,8 +11073,8 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -11324,7 +11324,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             };
             cost: {
                 proven: boolean;
-                rows: import("../../quantum/science").DimensionCostRow[];
+                rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                 crossover: number;
                 asymptoticallyInsufficient: boolean;
                 facets: ({
@@ -11343,7 +11343,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 faithful: boolean;
                 physicalQpuWouldSeparate: boolean;
                 verdict: string;
-                rows: import("../../quantum/science").BenchmarkRow[];
+                rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                 facets: ({
                     facet: string;
                     on: boolean;
@@ -11374,13 +11374,13 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         noQuantumHardwareProved: boolean;
         winner: "ceccec" | "undecided";
         decided: boolean;
-        comparison: import("../stack").SpeedVsRestComparisonRow[];
-        table: import("../stack").SpeedVsRestComparisonRow[];
+        comparison: import("../stack/index.ts").SpeedVsRestComparisonRow[];
+        table: import("../stack/index.ts").SpeedVsRestComparisonRow[];
         quantumHardwareRequired: false;
         qpuRequired: false;
         runsOnClassical64Bit: boolean;
         architectureRequirement: "classical-64bit";
-        environment: import("../stack").Classical64BitEnvironment;
+        environment: import("../stack/index.ts").Classical64BitEnvironment;
         forbiddenQpuSdks: readonly ["@qiskit", "qiskit", "braket", "amazon-braket", "cuda-quantum", "pennylane", "cirq", "qsharp", "ibm-quantum", "pyquil"];
         tracksClassicalNoSpeedup: boolean;
         benchVerdict: string;
@@ -11501,7 +11501,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 };
                 cost: {
                     proven: boolean;
-                    rows: import("../../quantum/science").DimensionCostRow[];
+                    rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                     crossover: number;
                     asymptoticallyInsufficient: boolean;
                     facets: ({
@@ -11520,7 +11520,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     faithful: boolean;
                     physicalQpuWouldSeparate: boolean;
                     verdict: string;
-                    rows: import("../../quantum/science").BenchmarkRow[];
+                    rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                     facets: ({
                         facet: string;
                         on: boolean;
@@ -11663,7 +11663,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     };
                     cost: {
                         proven: boolean;
-                        rows: import("../../quantum/science").DimensionCostRow[];
+                        rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                         crossover: number;
                         asymptoticallyInsufficient: boolean;
                         facets: ({
@@ -11682,7 +11682,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         faithful: boolean;
                         physicalQpuWouldSeparate: boolean;
                         verdict: string;
-                        rows: import("../../quantum/science").BenchmarkRow[];
+                        rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                         facets: ({
                             facet: string;
                             on: boolean;
@@ -11710,11 +11710,11 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             core: {
                 computes: boolean;
                 at: number;
-                surfaces: import("../../quantum/apps").RosettaCoreSurface[];
+                surfaces: import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                 inventory: {
                     core: {
                         label: string;
-                        kind: import("../../quantum/apps").RosettaCoreSurfaceKind;
+                        kind: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind;
                         ray: number;
                         address: string;
                     }[];
@@ -11726,14 +11726,14 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         hue: number;
                     }[];
                 };
-                hubs: readonly import("../digit").RosettaRayHub[];
+                hubs: readonly import("../digit/index.ts").RosettaRayHub[];
                 raysUsed: number;
                 kinds: readonly ["route", "hub", "compute", "nav", "tool", "app", "projection"];
-                resolve: (label: string, kind?: import("../../quantum/apps").RosettaCoreSurfaceKind) => import("../../quantum/apps").RosettaCoreSurface;
-                shelve: typeof import("../../learning").rosettaShelve;
-                byRay: (ray: number) => import("../../quantum/apps").RosettaCoreSurface[];
+                resolve: (label: string, kind?: import("../../quantum/apps/index.ts").RosettaCoreSurfaceKind) => import("../../quantum/apps/index.ts").RosettaCoreSurface;
+                shelve: typeof import("../../learning/index.ts").rosettaShelve;
+                byRay: (ray: number) => import("../../quantum/apps/index.ts").RosettaCoreSurface[];
                 resolveRoute: (route: string) => {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     address: string;
                     computed: boolean;
                     route: string;
@@ -11797,11 +11797,11 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         rayLabelBg: "Произход" | "Доказателства" | "Изследване" | "Обучение" | "Приложения" | "Граници" | "Справочник";
                         rayGlyph: "Ⰰ" | "Ⰲ" | "Ⰴ" | "Ⰶ" | "Ⰹ" | "Ⰿ" | "Ⱄ";
                         rayDomain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                        siblings: import("../../types").ConceptCommandName[];
+                        siblings: import("../../types/index.ts").ConceptCommandName[];
                         siblingCount: number;
                     };
                     content: {
-                        pageKind: import("../digit").RosettaComputationType;
+                        pageKind: import("../digit/index.ts").RosettaComputationType;
                         heroPhase: number;
                         bodySeed: string;
                         heroHue: 0 | 154 | 51 | 102 | 205 | 257 | 308;
@@ -11852,7 +11852,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     boundary: string;
                 };
                 resolveProjection: (label: string) => {
-                    surface: import("../../quantum/apps").RosettaCoreSurface;
+                    surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                     phase: number;
                     hue: number;
                     motion: {
@@ -11903,31 +11903,31 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 boundary: string;
             };
             learned: ({
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "GPT/Claude/Gemini tool-use";
                 fold: "rosettaCoreApi · quantumCliToolsCatalog";
                 kind: "tools";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "agent protocols (AGENTS/llms/MCP)";
                 fold: "agentSubmissionProtocol · gatesHealSpottedCompromise";
                 kind: "protocol";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "content-addressed corpus";
                 fold: "memoByRoot · completeCorpus · sealFacets";
                 kind: "corpus";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "adversarial efficiency voters";
                 fold: "noKnownModelMoreEfficientProven · compareCeccecEfficiencyByVote";
                 kind: "voters";
             } | {
-                surface: import("../../quantum/apps").RosettaCoreSurface;
+                surface: import("../../quantum/apps/index.ts").RosettaCoreSurface;
                 receipt: string;
                 source: "honest QC simulator (no FLOPS claim)";
                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
@@ -11985,7 +11985,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             };
             cost: {
                 proven: boolean;
-                rows: import("../../quantum/science").DimensionCostRow[];
+                rows: import("../../quantum/science/index.ts").DimensionCostRow[];
                 crossover: number;
                 asymptoticallyInsufficient: boolean;
                 facets: ({
@@ -12004,7 +12004,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 faithful: boolean;
                 physicalQpuWouldSeparate: boolean;
                 verdict: string;
-                rows: import("../../quantum/science").BenchmarkRow[];
+                rows: import("../../quantum/science/index.ts").BenchmarkRow[];
                 facets: ({
                     facet: string;
                     on: boolean;
@@ -12405,7 +12405,7 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
     };
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -12420,8 +12420,8 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -12819,7 +12819,7 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -12834,8 +12834,8 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -13459,7 +13459,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -13474,8 +13474,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -13741,7 +13741,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -13756,8 +13756,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -13870,7 +13870,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -13885,8 +13885,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -13990,7 +13990,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
     };
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -14005,8 +14005,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -14219,7 +14219,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -14234,8 +14234,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -14414,7 +14414,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -14429,8 +14429,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -14696,7 +14696,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 };
                 trinity: {
                     computes: boolean;
-                    digits: import("../stack").DirectionalTrinityDigitRow[];
+                    digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                     table: {
                         digit: number;
                         forward: number;
@@ -14711,8 +14711,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                         bidirectional: boolean;
                     };
                     ratInvSample: {
-                        forward: import("../../3/7").Rational;
-                        inverse: import("../../3/7").Rational;
+                        forward: import("../../3/7/index.ts").Rational;
+                        inverse: import("../../3/7/index.ts").Rational;
                     };
                     fInverse: {
                         computes: boolean;
@@ -14825,7 +14825,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -14840,8 +14840,8 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -15253,7 +15253,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
     };
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -15268,8 +15268,8 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -15448,7 +15448,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -15463,8 +15463,8 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -15730,7 +15730,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -15745,8 +15745,8 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -15859,7 +15859,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -15874,8 +15874,8 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -16319,7 +16319,7 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -16334,8 +16334,8 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -16555,7 +16555,7 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -16570,8 +16570,8 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -16680,7 +16680,7 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
     };
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -16695,8 +16695,8 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -17021,7 +17021,7 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -17036,8 +17036,8 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -17257,7 +17257,7 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -17272,8 +17272,8 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -17382,7 +17382,7 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -17397,8 +17397,8 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -18178,7 +18178,7 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -18193,8 +18193,8 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -18303,7 +18303,7 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
     };
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -18318,8 +18318,8 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;
@@ -18571,7 +18571,7 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -18586,8 +18586,8 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -18807,7 +18807,7 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             };
             trinity: {
                 computes: boolean;
-                digits: import("../stack").DirectionalTrinityDigitRow[];
+                digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
                 table: {
                     digit: number;
                     forward: number;
@@ -18822,8 +18822,8 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                     bidirectional: boolean;
                 };
                 ratInvSample: {
-                    forward: import("../../3/7").Rational;
-                    inverse: import("../../3/7").Rational;
+                    forward: import("../../3/7/index.ts").Rational;
+                    inverse: import("../../3/7/index.ts").Rational;
                 };
                 fInverse: {
                     computes: boolean;
@@ -18932,7 +18932,7 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
         };
         trinity: {
             computes: boolean;
-            digits: import("../stack").DirectionalTrinityDigitRow[];
+            digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
             table: {
                 digit: number;
                 forward: number;
@@ -18947,8 +18947,8 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                 bidirectional: boolean;
             };
             ratInvSample: {
-                forward: import("../../3/7").Rational;
-                inverse: import("../../3/7").Rational;
+                forward: import("../../3/7/index.ts").Rational;
+                inverse: import("../../3/7/index.ts").Rational;
             };
             fInverse: {
                 computes: boolean;
@@ -19092,7 +19092,7 @@ export declare function secp256k1FieldPrimeInvertAndDecode(matrix?: MindMatrix):
     modulusNotAUnit: boolean;
     trinity: {
         computes: boolean;
-        digits: import("../stack").DirectionalTrinityDigitRow[];
+        digits: import("../stack/index.ts").DirectionalTrinityDigitRow[];
         table: {
             digit: number;
             forward: number;
@@ -19107,8 +19107,8 @@ export declare function secp256k1FieldPrimeInvertAndDecode(matrix?: MindMatrix):
             bidirectional: boolean;
         };
         ratInvSample: {
-            forward: import("../../3/7").Rational;
-            inverse: import("../../3/7").Rational;
+            forward: import("../../3/7/index.ts").Rational;
+            inverse: import("../../3/7/index.ts").Rational;
         };
         fInverse: {
             computes: boolean;

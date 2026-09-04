@@ -288,8 +288,8 @@ export function endowmentStatement(): string {
 }
 
 // ───── merged domain imports ─────
-import { floor, merkleFold, prng, toUuid } from '../../0'
-import { ROSETTA_RAYS } from '../../3/7'
+import { floor, merkleFold, prng, toUuid } from '../../0/index.ts'
+import { ROSETTA_RAYS } from '../../3/7/index.ts'
 // ───── domain: dispatch ─────
 // Funding Dispatch System — automated theorem-to-funding orchestration
 // Continuously matches sealed proofs to eligible funding, allocates capital, gates releases

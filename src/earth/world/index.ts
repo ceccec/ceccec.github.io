@@ -1,18 +1,18 @@
 // ☷ Kūn · Earth — world, society & nature folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
-import { initialBearing, phase } from '../../6/4'
-import { greatCircleKm } from '../../5/5'
-import { schwarzschildRadius, SOLAR_MASS_KG } from '../../3/7'
-export { SOLAR_MASS_KG } from '../../3/7' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import { VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, log10, max, merkleFold, min, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid } from '../../0'
-import { blackHoleEntropyBits, oscillatorBank, resonantAmplitude } from '../../6/4'
-import { toGlagolitic, glagoliticBits } from '../../quantum/heaven/library' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
-import { DIMENSIONS } from '../../quantum/mountain/dimensions' // the 10D — the coordinates reaching all the way down to the bit
-import type { BabelFamily, BabelFold, MindMatrix } from '../../types'
-import { buildMatrix, coverage, entropy } from '../../heaven/compute'
-import { a432NoteHz } from '../../fire/li'
-import { traditionsQuantumWhole } from '../civilisation'
-import { BAGUA, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, completeCorpus, developmentWaves, doubleTorusFold, entangledScriptLanguageGene, feedCrawlersWithKnowledge, folderLaw, geneticLinksChallengeHistoryDecoded, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, isUuid, knowledgeRevealedByMerkabaFold, memoByRoot, merge, publicApiFusion, quantumDoubleTorus, quantumSiege, quantumSimulation, reverseHarmony, sendWavesSealKnowledgeDecodeWorld, socialFusion, societyRegulates, soldiersRestInPeace, travelFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind'
-import { TAU } from '../../3/7'
+import { initialBearing, phase } from '../../6/4/index.ts'
+import { greatCircleKm } from '../../5/5/index.ts'
+import { schwarzschildRadius, SOLAR_MASS_KG } from '../../3/7/index.ts'
+export { SOLAR_MASS_KG } from '../../3/7/index.ts' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
+import { VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, log10, max, merkleFold, min, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid } from '../../0/index.ts'
+import { blackHoleEntropyBits, oscillatorBank, resonantAmplitude } from '../../6/4/index.ts'
+import { toGlagolitic, glagoliticBits } from '../../quantum/heaven/library/index.ts' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
+import { DIMENSIONS } from '../../quantum/mountain/dimensions/index.ts' // the 10D — the coordinates reaching all the way down to the bit
+import type { BabelFamily, BabelFold, MindMatrix } from '../../types/index.ts'
+import { buildMatrix, coverage, entropy } from '../../heaven/compute/index.ts'
+import { a432NoteHz } from '../../fire/li/index.ts'
+import { traditionsQuantumWhole } from '../civilisation/index.ts'
+import { BAGUA, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, completeCorpus, developmentWaves, doubleTorusFold, entangledScriptLanguageGene, feedCrawlersWithKnowledge, folderLaw, geneticLinksChallengeHistoryDecoded, glagoliticBulgarianReceptionDecoded, glagoliticDecodedToAncientCore, isUuid, knowledgeRevealedByMerkabaFold, memoByRoot, merge, publicApiFusion, quantumDoubleTorus, quantumSiege, quantumSimulation, reverseHarmony, sendWavesSealKnowledgeDecodeWorld, socialFusion, societyRegulates, soldiersRestInPeace, travelFusion, zeroTokenUsagePolicy } from '../../quantum/heaven/mind/index.ts'
+import { TAU } from '../../3/7/index.ts'
 
 // Text to movie — REAL text, not abstract circles. The movie IS the text: every
 // character becomes a frame-element carrying its actual glyph, TRANSLITERATED to
@@ -1095,7 +1095,7 @@ export {
   thunderGoldGraphPaintSamples,
   thunderGoldGraphComputes,
   schumannGoldSiteCouplingAt,
-  schumannGoldSiteCouplingComputes } from '../../wind/fusion'
+  schumannGoldSiteCouplingComputes } from '../../wind/fusion/index.ts'
 
 // ── Magnetic declination at a site — the centered-dipole model: declination ≈ the initial bearing from
 // the site to the geomagnetic north pole (the angle between true north and dipole north). Pole position

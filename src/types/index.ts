@@ -1,4 +1,4 @@
-import { phase } from '../6/4'
+import { phase } from '../6/4/index.ts'
 export interface Atom {
   readonly name: string
   readonly body: string
@@ -127,7 +127,7 @@ export interface DoubleTorusFlow {
   readonly statement: string
 }
 
-import type { ConceptCommandName, DiamondKind, AnalogChannel, DiamondFacet } from '../3/7'
+import type { ConceptCommandName, DiamondKind, AnalogChannel, DiamondFacet } from '../3/7/index.ts'
 export type { ConceptCommandName, DiamondKind, AnalogChannel, DiamondFacet }
 
 export interface ConceptCommand {

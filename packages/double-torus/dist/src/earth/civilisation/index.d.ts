@@ -1,4 +1,4 @@
-import type { MindMatrix, HumanityImplicationsReport, TraditionsQuantumWhole } from '../../types';
+import type { MindMatrix, HumanityImplicationsReport, TraditionsQuantumWhole } from '../../types/index.ts';
 export declare function socialCapital(matrix?: MindMatrix): {
     accumulating: boolean;
     where: {

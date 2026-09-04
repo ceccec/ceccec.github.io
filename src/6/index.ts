@@ -1,7 +1,7 @@
 // Digit 6 — sequence step `6\`, reflect through 0 → 9. Secondary-cycle gate (non-unit).
 // Structural: carries no Clay theorem — its physics IS the angle × polarity spectrum it computes and seals.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 6
 

@@ -4,11 +4,11 @@
 // shape is written ONCE: each generator is a pure plan(ctx) → { files, messages, error? }, placed on
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
-import { merkleFold, toUuid, foldVortex } from '../../../0'
-import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../heaven/mind'
-import { glagoliticHomeFromEnglish } from '../../heaven/mind'
-import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../heaven/library'
-import { computedDistFiles, homeMarkdown, readmeMarkdown } from '..'
+import { merkleFold, toUuid, foldVortex } from '../../../0/index.ts'
+import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../heaven/mind/index.ts'
+import { glagoliticHomeFromEnglish } from '../../heaven/mind/index.ts'
+import { bibleParallel, toGlagolitic, toGlagoliticOCS, pesnopoika } from '../../heaven/library/index.ts'
+import { computedDistFiles, homeMarkdown, readmeMarkdown } from '../index.ts'
 
 // What the runner hands every plan: the environment, the positional args after the selector, a
 // repo-relative file reader (null if missing), and the resolved site URL. No plan touches the disk

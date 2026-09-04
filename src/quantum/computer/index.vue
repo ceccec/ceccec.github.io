@@ -5,13 +5,13 @@ import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
 import { TAU } from '../../3/7/index.ts'
 import { siliconFabricationPlanFromModel, siliconFabricationStageAt } from './index.ts'
 import { honestRevolutionComputerPanelComputes } from '../../wind/fusion/index.ts'
-import { subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint'
+import { subscribeHeroClock } from '../../../.vitepress/lib/hero-movie-paint.ts'
 import UiCard from '../../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../../.vitepress/theme/components/ui/Badge.vue'
 import UiButton from '../../../.vitepress/theme/components/ui/Button.vue'
 import UiAlert from '../../../.vitepress/theme/components/ui/Alert.vue'
-import { floor, max, min, round } from '../../0'
+import { floor, max, min, round } from '../../0/index.ts'
 
 const panel = shallowRef(quantumComputerLabComputes())
 const designVars = computed(() => panel.value.cssVars as Record<string, string>)

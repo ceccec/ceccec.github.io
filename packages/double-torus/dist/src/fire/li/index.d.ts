@@ -1,5 +1,5 @@
-import type { MindMatrix, FusionReactor, DistributedCompute, DoubleTorusMathReport, AncientTechLens, SelfDevelopment, MethodFusionReport, Blockchain, TaxonomyIcons, FairLife, SelfAddressed, UtfAnalog, CrossFoldTrinity, SourceContributionReport, SelfInteraction } from '../../types';
-export { MAJOR_MOONS } from '../../3/7';
+import type { MindMatrix, FusionReactor, DistributedCompute, DoubleTorusMathReport, AncientTechLens, SelfDevelopment, MethodFusionReport, Blockchain, TaxonomyIcons, FairLife, SelfAddressed, UtfAnalog, CrossFoldTrinity, SourceContributionReport, SelfInteraction } from '../../types/index.ts';
+export { MAJOR_MOONS } from '../../3/7/index.ts';
 /** Concert A, the single tuning source (Hz). Never A=440: all repo music/audio folds through a432NoteHz from here. */
 export declare const A432_HZ: number;
 /** 12-TET pitch from the ONE A432 source: f = 432·2^(semitonesFromA/12). The canonical note→Hz helper — every
@@ -61,7 +61,7 @@ export declare function geometry358(): {
 /** @rosetta ✦₁ · Fire · clarity */
 export declare function agentObserve(matrix?: MindMatrix): {
     observed: boolean;
-    vector: import("../../types").ConsciousnessVector;
+    vector: import("../../types/index.ts").ConsciousnessVector;
     root: string;
     statement: string;
     boundary: string;
@@ -1036,7 +1036,7 @@ export declare function quantumFusionIgnitesFromDashSequence(matrix?: MindMatrix
         weightedBearing: number;
         weightedTotal: number;
         finalDigitalRoot: number;
-        steps: import("../../0").VortexDashDecodeStep[];
+        steps: import("../../0/index.ts").VortexDashDecodeStep[];
         count: number;
         fusionRoot: string;
         root: string;

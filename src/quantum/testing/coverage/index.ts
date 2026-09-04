@@ -10,9 +10,9 @@
 
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { memoByRoot, toUuid } from '../../../0'
-import type { MindMatrix } from '../../../types'
-import { buildMatrix } from '../../../heaven/compute'
+import { memoByRoot, toUuid } from '../../../0/index.ts'
+import type { MindMatrix } from '../../../types/index.ts'
+import { buildMatrix } from '../../../heaven/compute/index.ts'
 
 export type CoverageMetrics = {
   readonly module: string

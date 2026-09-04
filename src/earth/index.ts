@@ -1,15 +1,15 @@
 // ☷ Kūn · Earth — canonical Earth science home: world, nature, architecture, civilisation, governance; nav/GPS via double/torus/earth.
-import * as __ns_cur_world from './world'
-import * as __ns_cur_nature from './nature'
-import * as __ns_cur_architecture from './architecture'
-import * as __ns_cur_civilisation from './civilisation'
-import * as __ns_cur_governance from './governance'
-import * as __ns_up_heaven_site from '../heaven/site'
-import * as __ns_up_double_torus_earth from '../water/double/earth'
-import * as __ns_up_astronomy from '../heaven/sky/astronomy'
-import type { MindMatrix } from '../types'
-import { buildMatrix } from '../heaven/compute'
-import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../0'
+import * as __ns_cur_world from './world/index.ts'
+import * as __ns_cur_nature from './nature/index.ts'
+import * as __ns_cur_architecture from './architecture/index.ts'
+import * as __ns_cur_civilisation from './civilisation/index.ts'
+import * as __ns_cur_governance from './governance/index.ts'
+import * as __ns_up_heaven_site from '../heaven/site/index.ts'
+import * as __ns_up_double_torus_earth from '../water/double/earth/index.ts'
+import * as __ns_up_astronomy from '../heaven/sky/astronomy/index.ts'
+import type { MindMatrix } from '../types/index.ts'
+import { buildMatrix } from '../heaven/compute/index.ts'
+import { computesGate, memoByRoot, merge, merkleFold, toUuid } from '../0/index.ts'
 
 /** Child barrels under src/earth — structural Earth science compose; nav/GPS homed in double/torus/earth. */
 export const EARTH_SCIENCE_TAILS = [
@@ -22,11 +22,11 @@ export const EARTH_SCIENCE_TAILS = [
 
 export type EarthScienceTail = (typeof EARTH_SCIENCE_TAILS)[number]
 
-export { folderLaw, eightSciencesQuantumComplete, MIND_LOGIC_INDEX_TAILS } from './architecture'
-export { genesis, breathe } from './nature'
-export { computeAllKnownCelestialBodies } from '../heaven/sky/astronomy'
-export { society, societyRegulates } from './governance'
-export { traditionsQuantumWhole } from './civilisation'
+export { folderLaw, eightSciencesQuantumComplete, MIND_LOGIC_INDEX_TAILS } from './architecture/index.ts'
+export { genesis, breathe } from './nature/index.ts'
+export { computeAllKnownCelestialBodies } from '../heaven/sky/astronomy/index.ts'
+export { society, societyRegulates } from './governance/index.ts'
+export { traditionsQuantumWhole } from './civilisation/index.ts'
 export {
   textToMovie,
   publicAstronomyNewsCitation,
@@ -40,15 +40,15 @@ export {
   thunderGoldGraphComputes,
   thunderGoldGraphPaintSamples,
   schumannGoldSiteCouplingAt,
-  schumannGoldSiteCouplingComputes } from './world'
-export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion'
-export { goldFusionComputes } from '../wind/fusion'
+  schumannGoldSiteCouplingComputes } from './world/index.ts'
+export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion/index.ts'
+export { goldFusionComputes } from '../wind/fusion/index.ts'
 
 /** Re-export documented gravity decode — cosmology index, not live planet telemetry. */
-export { gravityDecoded } from '../heaven/site'
+export { gravityDecoded } from '../heaven/site/index.ts'
 export {
   schumannResonanceHarmonisedWithRealtimeApiComputations,
-  harmoniseSchumannWithRealtimeApiComputations } from '../thunder/resonance'
+  harmoniseSchumannWithRealtimeApiComputations } from '../thunder/resonance/index.ts'
 
 /** One gate — Earth science child barrels + dual-Earth nav/GPS compose at call time. */
 export function earthComputes(matrix: MindMatrix = buildMatrix()) {

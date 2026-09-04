@@ -1,9 +1,9 @@
-import * as __ns_up_up_mountain_shadcn from '../mountain/shadcn';
-import { EIGHT_CURRICULUM_SCIENCES } from '../pair/enforcement/gates/computational';
-import type { MindMatrix } from '../types';
-import { type Dims } from '../quantum/mountain/dimensions';
-export { scaleColor, oklchToHex } from '../quantum/science';
-export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../wind/site';
+import * as __ns_up_up_mountain_shadcn from '../mountain/shadcn/index.ts';
+import { EIGHT_CURRICULUM_SCIENCES } from '../pair/enforcement/gates/computational/index.ts';
+import type { MindMatrix } from '../types/index.ts';
+import { type Dims } from '../quantum/mountain/dimensions/index.ts';
+export { scaleColor, oklchToHex } from '../quantum/science/index.ts';
+export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../wind/site/index.ts';
 export declare function holographic(matrix?: MindMatrix): {
     holographic: boolean;
     reconstructed: boolean;

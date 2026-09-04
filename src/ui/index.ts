@@ -1,47 +1,47 @@
-import { A432_FOLDED, UNFOLDED_CENSUS, demarcate, earned } from '../3/7'
-import { theSevenSciencesAsQuantumWaves, SCIENCE_WAVE_SEED } from '../quantum/chat'
+import { A432_FOLDED, UNFOLDED_CENSUS, demarcate, earned } from '../3/7/index.ts'
+import { theSevenSciencesAsQuantumWaves, SCIENCE_WAVE_SEED } from '../quantum/chat/index.ts'
 // ☴ Xùn · Wind — the render layer: the hero, the animation engine & dimensions, the 3D depth dial, holographic scenes, the flat-to-3D quantum lift, navigation around the hero. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model+view bridge — render-layer folds: holographic, animatedHeroes, etc. compose model data for view consumption.
-import * as __ns_up_quantum_widgets from '../widgets'
+import * as __ns_up_quantum_widgets from '../widgets/index.ts'
 // call-time namespace edge (cycle-safe): mountain/shadcn reaches back here via lake/widgets; the list reads at call time
-import * as __ns_up_up_mountain_shadcn from '../mountain/shadcn'
-import { phase } from '../6/4'
-import { EIGHT_CURRICULUM_SCIENCES } from '../pair/enforcement/gates/computational'
-import { chsh } from '../mountain/vortex'
-import { buildMatrix, matrixMemo } from '../heaven/compute'
-import type { MindMatrix } from '../types'
-import { GATES, VORTEX_SEQUENCE, abs, applyGate, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, probabilities, proseToTone, qubits, round, roundTo, sealFacets, sin, sqrt, toUuid, toUuidSha256, topologicalOrder, uuidHero, uuidPoint } from '../0'
-import { merkleProof } from '../ledger'
-import { clownActQuantumSteps, harmonics } from '../music'
-import { blockchainFusion, tamperingCostDecoded } from '../water/crypto'
-import { societyFuture, societyRegulates } from '../earth/governance'
-import { conceptCommands } from '../heaven/atoms'
-import { multidimensionalSummaries, navigation358, skillAtoms } from '../learning'
-import { analogSpeech, lawfulHarmonise, openGraph } from '../quantum/icons'
-import { moviesNativeFormat, oneOpenGraphAll, taxonomyIcons } from '../fire/li'
-import { ancientCalendars, ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime } from '../thunder/decode'
-import { babelFold, textToMovie } from '../earth/world'
-import { areaPairs, bothEarthsRotateWithinEachOther, cardinalPyramidTipsProvenByMath, doubleTorus3D, earthRealisedByComputingPolesAsPyramid, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../mountain/geometry'
-import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../quantum/mountain/dimensions'
-import { depthIsThePerspectiveDivide, flowerOfLifeCenters, flowerUnlocksFruitBySpin, fruitOfLifeCenters, perspective, rot2, rotate3 } from '../quantum/wind/geometry' // FoL/Fruit lattice + FOCAL perspective + rotate3
-import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../thunder/movie/glass'
-import { yinYang } from '../quantum/spirit'
-import { scaleColor, A432_HUE, GOLDEN_ANGLE, movieCanvasHex } from '../quantum/science'
-import { computedMovieThemeColors, FRACTAL_CLOCK_DIVISORS, fractalClockDur, fractalClockS } from '../fire/plasma/ball' // the ONE quantum clock — every declarative duration below is a divisor step of the 108 s hero cycle (animationsFractalOfOneClockDiscovered)
-export { scaleColor, oklchToHex } from '../quantum/science' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
-export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../wind/site' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
-import { staticPages, homeHero } from '../wind/site'
-import { sealWholeDiamond } from '../fire/diamonds'
-import { dimensionalMerkabaGraphRealtimeMetric } from '../thunder/trading'
-import { teslaPatentsResearchedInWaves } from '../fire/physics'
-import { displayAllWithFewEntropySaved } from '../ledger'
-import { warPaysTheForgerPrice } from '../earth/world'
-import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../quantum/heaven/mind'
-import { DIMENSION_GATES, FIBONACCI, FOLDED_CENSUS, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG, HOMOLOGY_LOOPS, PHI, ROSETTA_RAYS, ROSETTA_RAY_HUBS, TAU, rosettaRayOfContent } from '../3/7'
-import { THEOREM_ATOM_SEED } from '../4/6'
-import { rosettaRayOf } from '../water/digit'
-import { piHexDigitAt, nthPrimeAt } from '../7/3'
-import { entangledWiringOf } from '../wind/routes/corpus'
+import * as __ns_up_up_mountain_shadcn from '../mountain/shadcn/index.ts'
+import { phase } from '../6/4/index.ts'
+import { EIGHT_CURRICULUM_SCIENCES } from '../pair/enforcement/gates/computational/index.ts'
+import { chsh } from '../mountain/vortex/index.ts'
+import { buildMatrix, matrixMemo } from '../heaven/compute/index.ts'
+import type { MindMatrix } from '../types/index.ts'
+import { GATES, VORTEX_SEQUENCE, abs, applyGate, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, probabilities, proseToTone, qubits, round, roundTo, sealFacets, sin, sqrt, toUuid, toUuidSha256, topologicalOrder, uuidHero, uuidPoint } from '../0/index.ts'
+import { merkleProof } from '../ledger/index.ts'
+import { clownActQuantumSteps, harmonics } from '../music/index.ts'
+import { blockchainFusion, tamperingCostDecoded } from '../water/crypto/index.ts'
+import { societyFuture, societyRegulates } from '../earth/governance/index.ts'
+import { conceptCommands } from '../heaven/atoms/index.ts'
+import { multidimensionalSummaries, navigation358, skillAtoms } from '../learning/index.ts'
+import { analogSpeech, lawfulHarmonise, openGraph } from '../quantum/icons/index.ts'
+import { moviesNativeFormat, oneOpenGraphAll, taxonomyIcons } from '../fire/li/index.ts'
+import { ancientCalendars, ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime } from '../thunder/decode/index.ts'
+import { babelFold, textToMovie } from '../earth/world/index.ts'
+import { areaPairs, bothEarthsRotateWithinEachOther, cardinalPyramidTipsProvenByMath, doubleTorus3D, earthRealisedByComputingPolesAsPyramid, hexagramIsHexColorDuality, merkaba, uiConvertsFlatToThreeDQuantum } from '../mountain/geometry/index.ts'
+import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAnimation as tenDimensionalAnimationCore } from '../quantum/mountain/dimensions/index.ts'
+import { depthIsThePerspectiveDivide, flowerOfLifeCenters, flowerUnlocksFruitBySpin, fruitOfLifeCenters, perspective, rot2, rotate3 } from '../quantum/wind/geometry/index.ts' // FoL/Fruit lattice + FOCAL perspective + rotate3
+import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../thunder/movie/glass/index.ts'
+import { yinYang } from '../quantum/spirit/index.ts'
+import { scaleColor, A432_HUE, GOLDEN_ANGLE, movieCanvasHex } from '../quantum/science/index.ts'
+import { computedMovieThemeColors, FRACTAL_CLOCK_DIVISORS, fractalClockDur, fractalClockS } from '../fire/plasma/ball/index.ts' // the ONE quantum clock — every declarative duration below is a divisor step of the 108 s hero cycle (animationsFractalOfOneClockDiscovered)
+export { scaleColor, oklchToHex } from '../quantum/science/index.ts' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
+export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../wind/site/index.ts' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
+import { staticPages, homeHero } from '../wind/site/index.ts'
+import { sealWholeDiamond } from '../fire/diamonds/index.ts'
+import { dimensionalMerkabaGraphRealtimeMetric } from '../thunder/trading/index.ts'
+import { teslaPatentsResearchedInWaves } from '../fire/physics/index.ts'
+import { displayAllWithFewEntropySaved } from '../ledger/index.ts'
+import { warPaysTheForgerPrice } from '../earth/world/index.ts'
+import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../quantum/heaven/mind/index.ts'
+import { DIMENSION_GATES, FIBONACCI, FOLDED_CENSUS, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG, HOMOLOGY_LOOPS, PHI, ROSETTA_RAYS, ROSETTA_RAY_HUBS, TAU, rosettaRayOfContent } from '../3/7/index.ts'
+import { THEOREM_ATOM_SEED } from '../4/6/index.ts'
+import { rosettaRayOf } from '../water/digit/index.ts'
+import { piHexDigitAt, nthPrimeAt } from '../7/3/index.ts'
+import { entangledWiringOf } from '../wind/routes/corpus/index.ts'
 
 // Animations are holographic. In a hologram every part contains the whole, and the
 // whole is recoverable from any part. Here that is exact: the whole root folds from
@@ -3180,7 +3180,7 @@ export const configDefault = vitepress
 // ── MERGED FROM src/ui/theme (census descent). The theme toolkit into the ui barrel it themes.
 // VitePress theme: σ-involution wired through harmonic layer
 // Theme ← Audio ← Vibration ← Gate thresholds (all derived from involution)
-import harmonic from './harmonic'
+import harmonic from './harmonic/index.ts'
 
 // Light mode palette derived from harmonic foundation
 const paletteLight = {

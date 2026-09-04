@@ -1,5 +1,5 @@
-import type { MindMatrix } from '../../../types';
-import { type PlasmaMoviePalette } from '../../../fire/plasma/ball';
+import type { MindMatrix } from '../../../types/index.ts';
+import { type PlasmaMoviePalette } from '../../../fire/plasma/ball/index.ts';
 export declare function movieAllDimensionsAtOnce(matrix?: MindMatrix): {
     shows: boolean;
     count: number;

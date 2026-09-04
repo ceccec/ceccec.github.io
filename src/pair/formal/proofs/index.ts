@@ -1,7 +1,7 @@
 // Formal proofs — growth-rate impossibility, quantum-Clay theorems, Riemann canonical
 // involution, zero-crossing emergence — merged flat to satisfy the src index census.
 
-import harmonic from '../../../ui/harmonic'
+import harmonic from '../../../ui/harmonic/index.ts'
 
 // ───── module: growthRateImpossibilityUnified ─────
 // Wave 28: Unified Growth-Rate Impossibility Framework

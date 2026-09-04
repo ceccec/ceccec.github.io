@@ -1,23 +1,23 @@
-import { earned } from '../../../3/7'
+import { earned } from '../../../3/7/index.ts'
 // Node-only VitePress automount — rosetta-decoded routing replaces static page enumeration.
 // @mvc controller — catchAllRoutePaths, monographSliceFromRoute: path → model → view params.
 // Zeitwerk loader port (Ruby zeitwerk gem convention) — folded here to avoid extra census shell.
-import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryFromLogicRel } from '../../../pair/enforcement/gates/computational'
-import {  isUuid, merge, merkleFold, toUuid } from '../../../0'
-import { discoverSrcIndexes, enforcementScanRoot, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
-import { offlineTranslateEnToBg } from '../../../1/9'
-import { toGlagolitic } from '../../../quantum/heaven/library'
-import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf, rosettaRayOfContent } from '../../../water/digit'
+import { SCHEMA_TWO_LEVEL_MODEL, SRC_SCIENCE_MODEL_ACTION_SCHEMA, indexRegistryFromLogicRel } from '../../../pair/enforcement/gates/computational/index.ts'
+import {  isUuid, merge, merkleFold, toUuid } from '../../../0/index.ts'
+import { discoverSrcIndexes, enforcementScanRoot, vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational/index.ts'
+import { offlineTranslateEnToBg } from '../../../1/9/index.ts'
+import { toGlagolitic } from '../../../quantum/heaven/library/index.ts'
+import { rosettaDecodesUrlPath, ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaRayHub, rosettaRayOf, rosettaRayOfContent } from '../../../water/digit/index.ts'
 
 /** BG chrome via sealed phrase table — gla always covers via toGlagolitic (transliteration ≠ meaning). */
 function bgFromEnglishChrome(text: string): string {
   return offlineTranslateEnToBg(text).text
 }
-import { staticPages, ROUTE_ALIASES, SITE_DOMAIN_SEED } from '../../site'
-import { componentPages } from '../../../quantum/heaven/mind'
-export { ROUTE_ALIASES } from '../../site'
+import { staticPages, ROUTE_ALIASES, SITE_DOMAIN_SEED } from '../../site/index.ts'
+import { componentPages } from '../../../quantum/heaven/mind/index.ts'
+export { ROUTE_ALIASES } from '../../site/index.ts'
 
-export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational'
+export { vitepressAutomountPaths } from '../../../pair/enforcement/gates/computational/index.ts'
 
 /** Inflection rule: a pattern match → replacement for custom constant naming. */
 export type InflectionRule = { pattern: RegExp; replacement: string }

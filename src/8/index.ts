@@ -1,7 +1,7 @@
 // Digit 8 — sequence turning point `8/`, fold → 7 (the descent begins). Gauge theory.
 // Computes and seals its OWN physics: the digit across every angle and both polarities.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 8
 

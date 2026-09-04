@@ -1,7 +1,7 @@
 // Digit 5 — sequence seam `5/`, fold → 3 (the 5→3 entry to the secondary cycle). Self-reflective fixed point
 // (σ(5)=5, the duality centre). Computes and seals its OWN physics: every angle and both polarities.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0'
+import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
 
 const D = 5
 
