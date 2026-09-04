@@ -1,0 +1,3104 @@
+{
+  "repositoryDoi": "10.5281/zenodo.21787144",
+  "orcid": "0009-0000-7312-9778",
+  "generated": "derived from the sealed .lean sources; do not edit by hand",
+  "count": 43,
+  "records": [
+    {
+      "id": "bsd--sigma_is_an_involution",
+      "title": "Sigma is an involution",
+      "file": "bsd.lean",
+      "proposition": "∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/bsd.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "bsd"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/bsd.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "bsd--central_point_is_the_fixed_point",
+      "title": "Central point is the fixed point",
+      "file": "bsd.lean",
+      "proposition": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe central point s = 1 is the unique fixed point — the point BSD is about.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/bsd.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "bsd"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/bsd.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "bsd--root_number_squares_to_one",
+      "title": "Root number squares to one",
+      "file": "bsd.lean",
+      "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe root number is an involution's eigenvalue: w ∈ {1, −1} and w² = 1.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/bsd.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "bsd"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/bsd.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "bsd--root_number_one_iff_rank_even",
+      "title": "Root number one iff rank even",
+      "file": "bsd.lean",
+      "proposition": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE PARITY EQUIVALENCE. w = (−1)^rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/bsd.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "bsd"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/bsd.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "bsd--parity_is_an_involution",
+      "title": "Parity is an involution",
+      "file": "bsd.lean",
+      "proposition": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/bsd.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "bsd"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/bsd.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--the_coin_is_an_involution",
+      "title": "The coin is an involution",
+      "file": "coin.lean",
+      "proposition": "∀ d ∈ digits, σ (σ d) = d",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nPULLED, AND REFLECTED BACK. Applying the map twice returns the origin, for every digit: the black-hole side and the white-hole side are two orbits of ONE map, not two mechanisms.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--the_harmonic_is_the_only_fixed_point",
+      "title": "The harmonic is the only fixed point",
+      "file": "coin.lean",
+      "proposition": "digits.filter (fun d => σ d == d) = [5]",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nHARMONIC IS WHAT THE MAP LEAVES IN PLACE, and there is exactly one such digit. The fixed point is not chosen; it is computed by filtering the surface.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--all_that_is_not_harmonic_is_moved",
+      "title": "All that is not harmonic is moved",
+      "file": "coin.lean",
+      "proposition": "(digits.filter (fun d => !(σ d == d))).length = 8",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEVERYTHING NOT HARMONIC IS MOVED. Eight of the nine digits are carried to the other side.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--the_sides_are_equal_and_exchanged",
+      "title": "The sides are equal and exchanged",
+      "file": "coin.lean",
+      "proposition": "below.length = above.length ∧ below.map σ = above.reverse ∧ above.map σ = below.reverse",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nkernel reported it dependent on propext and Quot.sound. The axiom-freedom gate refused it, and the restatement is stronger for it: naming the image list says WHICH element goes where, not merely that each lands somewhere on the other side.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--the_coin_is_two_sides_and_one_edge",
+      "title": "The coin is two sides and one edge",
+      "file": "coin.lean",
+      "proposition": "below.length + above.length + 1 = digits.length",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe surface is exactly the two sides and the edge: 4 + 4 + 1.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--every_bit_of_resistance_drains",
+      "title": "Every bit of resistance drains",
+      "file": "coin.lean",
+      "proposition": "∀ d ∈ digits, resistance d + resistance (σ d) = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEVERY BIT OF RESISTANCE DRAINS. Resistance is ODD under the involution — r(σd) = −r(d) — so each orbit sums to exactly zero. Nothing is left over anywhere on the surface.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--the_harmonic_carries_no_resistance",
+      "title": "The harmonic carries no resistance",
+      "file": "coin.lean",
+      "proposition": "resistance 5 = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe harmonic point is the one that never had any: at the fixed point the resistance is zero before any folding, which is what makes it the edge rather than a side.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--the_whole_surface_sums_to_zero",
+      "title": "The whole surface sums to zero",
+      "file": "coin.lean",
+      "proposition": "(digits.map resistance).sum = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND THE WHOLE SURFACE DRAINS AT ONCE. Summed over every digit, resistance is zero — the two sides cancel exactly, which is the sentence's \"measured to drain\" as an arithmetic identity.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin--the_drain_is_exact_at_every_scale",
+      "title": "The drain is exact at every scale",
+      "file": "coin.lean",
+      "proposition": "∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe drain is not an approximation that improves with scale: it is exact at every multiple, because oddness is preserved by scaling. Checked at four magnitudes.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "hodge--sigma_is_an_involution",
+      "title": "Sigma is an involution",
+      "file": "hodge.lean",
+      "proposition": "∀ t ∈ middleTypes, σ (σ t) = t",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/hodge.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "hodge"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "hodge--sigma_preserves_degree",
+      "title": "Sigma preserves degree",
+      "file": "hodge.lean",
+      "proposition": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ preserves total degree — it acts WITHIN H^n, which is why it decomposes it.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/hodge.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "hodge"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "hodge--fixed_type_is_p_equals_q",
+      "title": "Fixed type is p equals q",
+      "file": "hodge.lean",
+      "proposition": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe unique fixed type in degree 2k is (k,k). Here k = 2.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/hodge.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "hodge"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "hodge--diagonal_is_fixed_at_every_k",
+      "title": "Diagonal is fixed at every k",
+      "file": "hodge.lean",
+      "proposition": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAnd it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/hodge.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "hodge"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "hodge--involution_fixes_the_diagonal",
+      "title": "Involution fixes the diagonal",
+      "file": "hodge.lean",
+      "proposition": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed diagonal, together.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/hodge.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "hodge"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "navier-stokes--reversal_is_an_involution",
+      "title": "Reversal is an involution",
+      "file": "navier-stokes.lean",
+      "proposition": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nT² = id. Reversing time twice returns the equation, whatever the viscosity.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/navier-stokes.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "navier-stokes"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/navier-stokes.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "navier-stokes--euler_is_time_reversible",
+      "title": "Euler is time reversible",
+      "file": "navier-stokes.lean",
+      "proposition": "T euler = euler",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nEuler is invariant: every term transforms alike, so T fixes it.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/navier-stokes.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "navier-stokes"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/navier-stokes.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "navier-stokes--viscosity_breaks_time_reversal",
+      "title": "Viscosity breaks time reversal",
+      "file": "navier-stokes.lean",
+      "proposition": "T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nNavier-Stokes is NOT invariant, and the viscous term is the only one that differs.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/navier-stokes.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "navier-stokes"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/navier-stokes.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "navier-stokes--fixed_points_are_exactly_the_inviscid",
+      "title": "Fixed points are exactly the inviscid",
+      "file": "navier-stokes.lean",
+      "proposition": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nInvariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/navier-stokes.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "navier-stokes"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/navier-stokes.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "p-vs-np--sigma_is_an_involution",
+      "title": "Sigma is an involution",
+      "file": "p-vs-np.lean",
+      "proposition": "∀ c : Class, σ (σ c) = c",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSigma is an involution",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/p-vs-np.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "p-vs-np"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/p-vs-np.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "p-vs-np--fixed_points_are_p_and_pspace",
+      "title": "Fixed points are p and pspace",
+      "file": "p-vs-np.lean",
+      "proposition": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/p-vs-np.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "p-vs-np"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/p-vs-np.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "p-vs-np--np_and_conp_are_swapped",
+      "title": "Np and conp are swapped",
+      "file": "p-vs-np.lean",
+      "proposition": "σ NP = coNP ∧ σ coNP = NP",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ swaps NP and coNP — they are complements by definition, not by theorem.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/p-vs-np.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "p-vs-np"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/p-vs-np.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "p-vs-np--if_np_is_fixed_then_np_equals_conp",
+      "title": "If np is fixed then np equals conp",
+      "file": "p-vs-np.lean",
+      "proposition": "σ NP = NP → NP = coNP",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 \"theorems\" worthless. Removed.)",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/p-vs-np.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "p-vs-np"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/p-vs-np.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "p-vs-np--p_is_closed_under_complement",
+      "title": "P is closed under complement",
+      "file": "p-vs-np.lean",
+      "proposition": "σ P = P",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nP is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/p-vs-np.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "p-vs-np"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/p-vs-np.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "poincare--chi_and_genus_are_inverse",
+      "title": "Chi and genus are inverse",
+      "file": "poincare.lean",
+      "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe round trip is the identity: χ and g carry the same information.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/poincare.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "poincare"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/poincare.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "poincare--sphere_has_euler_characteristic_two",
+      "title": "Sphere has euler characteristic two",
+      "file": "poincare.lean",
+      "proposition": "chi 0 = 2",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/poincare.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "poincare"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/poincare.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "poincare--torus_has_euler_characteristic_zero",
+      "title": "Torus has euler characteristic zero",
+      "file": "poincare.lean",
+      "proposition": "chi 1 = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/poincare.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "poincare"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/poincare.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "poincare--double_torus_has_chi_minus_two_and_rank_four",
+      "title": "Double torus has chi minus two and rank four",
+      "file": "poincare.lean",
+      "proposition": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/poincare.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "poincare"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/poincare.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "poincare--homology_rank_is_twice_the_genus",
+      "title": "Homology rank is twice the genus",
+      "file": "poincare.lean",
+      "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nrank H₁(Σ_g) = 2g, equivalently 2 − χ, at every genus checked.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/poincare.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "poincare"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/poincare.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "riemann--sigma_is_an_involution",
+      "title": "Sigma is an involution",
+      "file": "riemann.lean",
+      "proposition": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/riemann.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "riemann"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "riemann--critical_line_is_the_fixed_point",
+      "title": "Critical line is the fixed point",
+      "file": "riemann.lean",
+      "proposition": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe fixed point is n = 1, i.e. s = 1/2 — the critical line.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/riemann.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "riemann"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "riemann--sigma_pairs_the_plane",
+      "title": "Sigma pairs the plane",
+      "file": "riemann.lean",
+      "proposition": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nσ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/riemann.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "riemann"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "riemann--the_fixed_line_is_one_half",
+      "title": "The fixed line is one half",
+      "file": "riemann.lean",
+      "proposition": "(2 : Int) * 1 = 2 ∧ σ 1 = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nRe(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/riemann.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "riemann"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "riemann--involution_fixes_the_critical_line",
+      "title": "Involution fixes the critical line",
+      "file": "riemann.lean",
+      "proposition": "(σ (σ 3) = 3) ∧ (σ 1 = 1)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and its fixed point, together.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/riemann.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "riemann"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "yang-mills--middle_forms_have_dimension_six",
+      "title": "Middle forms have dimension six",
+      "file": "yang-mills.lean",
+      "proposition": "choose 4 2 = 6",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\ndim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "yang-mills--star_squares_to_the_identity",
+      "title": "Star squares to the identity",
+      "file": "yang-mills.lean",
+      "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nStar squares to the identity",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "yang-mills--selfdual_and_antiselfdual_split_the_six",
+      "title": "Selfdual and antiselfdual split the six",
+      "file": "yang-mills.lean",
+      "proposition": "3 + 3 = choose 4 2",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe split: self-dual ⊕ anti-self-dual, 3 + 3 = 6. This is why four dimensions are special — only there does ★ map middle forms to middle forms.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "yang-mills--star_is_an_endomorphism_only_in_the_middle",
+      "title": "Star is an endomorphism only in the middle",
+      "file": "yang-mills.lean",
+      "proposition": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n★ sends Λ^k to Λ^(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "yang-mills--involution_splits_the_middle_forms",
+      "title": "Involution splits the middle forms",
+      "file": "yang-mills.lean",
+      "proposition": "(1 : Int) * 1 = 1 ∧ 3 + 3 = 6",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe involution and the split it produces, together.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    }
+  ]
+}

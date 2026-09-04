@@ -54,7 +54,43 @@ export const PRIOR_ART_SEARCHED: readonly {
   readonly searched: string
   readonly when: string
   readonly found: string | null
+  /** Scopes the search to one Lean file. Several files share a theorem title — `Sigma is an
+   *  involution` is σ(s)=1−s in riemann.lean, σ(s)=2−s in bsd.lean and conjugation in hodge.lean —
+   *  and each is a different statement with different prior art. Unscoped searches match by title. */
+  readonly leanFile?: string
 }[] = [
+  { theorem: '*', leanFile: 'coin.lean',
+    searched: 'reflection involution d to 10-d digits 1..9 unique fixed point 5 odd function sums to zero',
+    when: '2026-09-04',
+    found: 'classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original.' },
+  { theorem: '*', leanFile: 'riemann.lean',
+    searched: 'Riemann functional equation s to 1-s involution critical line fixed point Re(s)=1/2',
+    when: '2026-09-04',
+    found: 'Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook' },
+  { theorem: '*', leanFile: 'poincare.lean',
+    searched: 'Euler characteristic chi = 2 - 2g genus surface first homology rank 2g classification',
+    when: '2026-09-04',
+    found: 'classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook' },
+  { theorem: '*', leanFile: 'yang-mills.lean',
+    searched: 'Hodge star operator four manifolds squares to identity self-dual anti-self-dual decomposition two-forms dimension 6',
+    when: '2026-09-04',
+    found: 'classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references' },
+  { theorem: '*', leanFile: 'bsd.lean',
+    searched: 'Birch Swinnerton-Dyer root number parity conjecture w = 1 if and only if rank even functional equation s to 2-s',
+    when: '2026-09-04',
+    found: 'the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature' },
+  { theorem: '*', leanFile: 'navier-stokes.lean',
+    searched: 'Euler equations time reversal symmetry t to -t viscosity Navier-Stokes breaks time reversibility',
+    when: '2026-09-04',
+    found: 'classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook' },
+  { theorem: '*', leanFile: 'p-vs-np.lean',
+    searched: 'P closed under complement coNP complexity classes complement involution NP = coNP open problem',
+    when: '2026-09-04',
+    found: 'classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook' },
+  { theorem: '*', leanFile: 'hodge.lean',
+    searched: 'Hodge diamond symmetry h^{p,q} = h^{q,p} complex conjugation fixed on diagonal p=q',
+    when: '2026-09-04',
+    found: 'classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook' },
   { theorem: 'three cubes of 42',
     searched: 'sum of three cubes 42 solution Booker Sutherland 2019',
     when: '2026-09-04',
