@@ -288,7 +288,7 @@ export function endowmentStatement(): string {
 }
 
 // ───── merged domain imports ─────
-import { merkleFold, toUuid } from '../../0'
+import { floor, merkleFold, prng, toUuid } from '../../0'
 import { ROSETTA_RAYS } from '../../3/7'
 // ───── domain: dispatch ─────
 // Funding Dispatch System — automated theorem-to-funding orchestration
@@ -4462,8 +4462,10 @@ class PredictiveModel {
     const h1Year = Math.round(currentHIndex + hGrowthFactor * 2)
     const h3Year = Math.round(currentHIndex + hGrowthFactor * 4)
 
-    // Career peak typically 15-20 years in
-    const careerPeakYear = Math.round(yearsInField + 10 + Math.random() * 10)
+    // THE CODE DID NOT MATCH ITS OWN COMMENT. "typically 15-20 years in" sat above
+    // `yearsInField + 10 + Math.random() * 10`, which spans 10-20. The convention the comment states
+    // is the only thing here anyone can check, so it is what the value uses.
+    const careerPeakYear = Math.round(yearsInField + 15)
 
     // Funding impact ratio (citations per dollar)
     const fundingImpact = fundingHistoryUsd > 0 ? currentHIndex * 100 / fundingHistoryUsd : 0.5
@@ -10763,10 +10765,13 @@ class ProductionManager {
   } {
     const cycleId = toUuid(`cycle:${Date.now()}`)
 
-    // Simulated learning results
-    const patterns = 3 + Math.floor(Math.random() * 5)
-    const optimizations = 2 + Math.floor(Math.random() * 3)
-    const improvement = 2 + Math.floor(Math.random() * 8)
+    // THESE ARE REPORTED AS RESULTS OF A CYCLE THAT DID NOT RUN. They land in
+    // last_cycle_results as patterns_found, optimizations_applied and improvement_percent —
+    // a reader sees "3 patterns found, 8% improvement" from a method that analysed nothing.
+    // Seeding would make the fiction repeatable; zero is what was actually found.
+    const patterns = 0
+    const optimizations = 0
+    const improvement = 0
 
     if (this.learningSchedule) {
       this.learningSchedule.last_cycle_results = {
@@ -11048,7 +11053,9 @@ class ConsciousnessEngine {
         const dimMap = this.reasoningState.dimension_interactions.get(
           relevantDimensions[i]
         )!
-        dimMap.set(relevantDimensions[j], 0.5 + Math.random() * 0.4)
+        // Seeded by the sorted pair, as computeInteractionStrength is — an interaction is a
+        // property of the two dimensions, not of the order the loop reached them in.
+        dimMap.set(relevantDimensions[j], 0.5 + prng(`dim-interaction:${[relevantDimensions[i], relevantDimensions[j]].sort().join(':')}`)() * 0.4)
       }
     }
 
@@ -11385,7 +11392,7 @@ class CollectiveIntelligence {
       strategy_id: strategyId,
       discovered_by: participatingAgents,
       strategy_description: strategyDescription,
-      effectiveness: 75 + Math.random() * 20, // Higher than individual strategies
+      effectiveness: 75 + prng(`strategy-effectiveness:${strategyId}`)() * 20, // seeded by the id above
       emergent_properties: emergentProperties,
       requires_coordination: participatingAgents.length > 1,
       coordination_cost: participatingAgents.length * 5,
@@ -11710,8 +11717,9 @@ class TemporalCausalityEngine {
   ): EdgeCasePattern {
     const patternId = toUuid(`edge:${description}`)
 
-    // Compute base probability from historical frequency
-    const baseProbability = 0.02 + Math.random() * 0.08 // 2-10% base rate
+    // The comment says "from historical frequency" and no history was read. Seeded by the pattern's
+    // own id, so the same edge case carries the same base rate every time it is described.
+    const baseProbability = 0.02 + prng(`edge-base:${patternId}`)() * 0.08 // 2-10% base rate
 
     // Compute conditional probability (given trigger conditions met)
     const conditionalProbability = Math.min(
@@ -11837,8 +11845,11 @@ class TemporalCausalityEngine {
   private computePredictiveValue(events: CausalityChain['events']): number {
     // More events = higher predictive value (stronger pattern)
     // Recent chains = higher predictive value
+    // "Recent chains = higher predictive value" was the comment, and recency was a random number.
+    // The events are the only recency signal available here, so the factor is derived from how many
+    // of them there are relative to the ten-event scale the line below already uses.
     const eventCount = events.length
-    const recencyFactor = 0.5 + Math.random() * 0.5
+    const recencyFactor = 0.5 + Math.min(0.5, eventCount / 20)
     return Math.min(1, (eventCount / 10) * recencyFactor)
   }
 
@@ -11884,7 +11895,11 @@ class TemporalCausalityEngine {
     predictedLayer: string
     confidence: number
   }): number {
-    return patterns.confidence * 0.8 + Math.random() * 0.2
+    // NOISE ADDED TO A REAL NUMBER IS THE WORST FORM. patterns.confidence is computed upstream, and
+    // this returned `confidence * 0.8 + Math.random() * 0.2` — so a genuine value was damped and then
+    // had up to 0.2 of invention added back, which no caller could separate from the measurement. The
+    // 0.8 damping is a stated assumption and stays; the invented remainder does not.
+    return patterns.confidence * 0.8
   }
 
   // Get temporal engine metrics
@@ -12475,13 +12490,16 @@ class HolisticOptimizer {
     ]
 
     for (const dim of dimensionList) {
+      // Seeded by the dimension itself, so a dimension's baseline is a property OF that dimension
+      // rather than of when it happened to be constructed.
+      const r = prng(`dimension:${dim}`)
       this.dimensions.set(dim, {
         dimension: dim,
-        current_value: 70 + Math.random() * 20, // 70-90 baseline
+        current_value: 70 + r() * 20, // 70-90 baseline
         target_value: 95,
-        trend: Math.random() > 0.5 ? 1 : -1,
+        trend: r() > 0.5 ? 1 : -1,
         dependencies: [],
-        sensitivity: 0.5 + Math.random() * 0.4
+        sensitivity: 0.5 + r() * 0.4
       })
     }
   }
@@ -12527,6 +12545,11 @@ class HolisticOptimizer {
 
   // Compute interaction strength between two dimensions
   private computeInteractionStrength(dim_a: string, dim_b: string): number {
+    // BOTH BRANCHES BELOW TEST BOTH ORDERS, so this function is symmetric in its arguments — and the
+    // magnitude it returned was not, because it came from an unseeded draw. Two calls with the same
+    // pair disagreed, and a call with the pair reversed disagreed again. The seed is the SORTED pair,
+    // which makes the value a property of the relationship rather than of the call.
+    const r = prng(`interaction:${[dim_a, dim_b].sort().join(':')}`)
     // Strong positive synergies
     const synergies: Record<string, string[]> = {
       verification: ['compliance', 'fraud'],
@@ -12542,7 +12565,7 @@ class HolisticOptimizer {
       synergies[dim_a]?.includes(dim_b) ||
       synergies[dim_b]?.includes(dim_a)
     ) {
-      return 0.7 + Math.random() * 0.2 // 0.7-0.9
+      return 0.7 + r() * 0.2 // 0.7-0.9
     }
 
     // Tradeoffs
@@ -12557,11 +12580,11 @@ class HolisticOptimizer {
       tradeoffs[dim_a]?.includes(dim_b) ||
       tradeoffs[dim_b]?.includes(dim_a)
     ) {
-      return -0.4 - Math.random() * 0.2 // -0.4 to -0.6
+      return -0.4 - r() * 0.2 // -0.4 to -0.6
     }
 
     // Most pairs are independent
-    return Math.random() * 0.3 - 0.15 // -0.15 to +0.15
+    return r() * 0.3 - 0.15 // -0.15 to +0.15
   }
 
   // Compute synergy multiplier for dimension pairs
@@ -12572,7 +12595,7 @@ class HolisticOptimizer {
   ): number {
     if (strength > 0.6) {
       // Strong synergy: improvements multiply
-      return 1.3 + Math.random() * 0.2 // 1.3x - 1.5x amplification
+      return 1.3 + prng(`synergy-mult:${[dim_a, dim_b].sort().join(':')}`)() * 0.2 // 1.3x - 1.5x
     }
     if (strength < -0.3) {
       // Tradeoff: one improves at cost of other
@@ -12934,7 +12957,7 @@ class FederationCoordinator {
         global_score: org.score,
         dimensions: this.initializeDimensionsForOrg(org.type),
         synergies: [],
-        causality_chains: Math.floor(Math.random() * 500 + 1000),
+        causality_chains: floor(prng(`node:${org.type}`)() * 500 + 1000), // seeded by the same key as nodeId above
         theorem_applications: this.getTheoremApplicationsForOrg(org.type)
       }
 
@@ -13063,9 +13086,11 @@ class FederationCoordinator {
     const allOrgs = Array.from(this.nodes.keys()).map(
       k => this.nodes.get(k)!.system_type
     )
+    // Seeded by the chain and the organisation, so the same discovery reaches the same organisations
+    // on every call — a "shared_with" list that changed between reads was not a record of anything.
     const applicableOrgs = allOrgs.filter(
-      o => o !== discoveredBy && Math.random() > 0.3
-    ) // Random subset
+      o => o !== discoveredBy && prng(`chain-share:${chainId}:${o}`)() > 0.3
+    )
 
     const chainSharing: CausalChainSharing = {
       chain_id: chainId,
@@ -13079,7 +13104,7 @@ class FederationCoordinator {
     // Each organization that adopts learns it
     for (const org of applicableOrgs) {
       chainSharing.adoption_count++
-      chainSharing.cross_domain_value += 0.15 + Math.random() * 0.2
+      chainSharing.cross_domain_value += 0.15 + prng(`chain-value:${chainId}:${org}`)() * 0.2
     }
 
     this.causalChainSharing.set(chainId, chainSharing)
@@ -13122,8 +13147,9 @@ class FederationCoordinator {
             synergy_id: toUuid(`synergy:${org1}+${org2}`),
             synergy_name: `${org1} + ${org2} Collaboration`,
             organizations_involved: [org1, org2],
-            synergy_strength: 0.7 + Math.random() * 0.2,
-            combined_improvement: 15 + Math.random() * 15,
+            // Seeded by the same pair the synergy_id above is addressed with.
+            synergy_strength: 0.7 + prng(`synergy:${org1}+${org2}`)() * 0.2,
+            combined_improvement: 15 + prng(`synergy-gain:${org1}+${org2}`)() * 15,
             example: `${org1}'s strength in ${spec1[0]} × ${org2}'s strength in ${spec2[0]} = better outcomes`
           }
 
@@ -13646,9 +13672,10 @@ class UniversalDomainFunder {
         name: d.name,
         category: d.cat,
         funding_pool_usd: d.pool,
-        active_projects: Math.floor(Math.random() * 100 + 50),
-        breakthrough_probability: 0.3 + Math.random() * 0.5,
-        quantum_acceleration_factor: 4 + Math.random() * 6, // 4-10x speedup
+        // Seeded by the domain name, the same key domainId above is addressed with.
+        active_projects: floor(prng(`domain-projects:${d.name}`)() * 100 + 50),
+        breakthrough_probability: 0.3 + prng(`domain-breakthrough:${d.name}`)() * 0.5,
+        quantum_acceleration_factor: 4 + prng(`domain-accel:${d.name}`)() * 6, // 4-10x speedup
         ftl_prediction_enabled: true
       }
       this.domains.set(domainId, domain)
@@ -13662,7 +13689,9 @@ class UniversalDomainFunder {
     )
     if (!domain) throw new Error(`Domain ${domainName} not found`)
 
-    const classicalTimeline = 48 + Math.random() * 48 // 48-96 months
+    // The whole acceleration result divides by this, so an invented baseline made the speedup
+    // invented too. Seeded by the domain, the same key accelId below is addressed with.
+    const classicalTimeline = 48 + prng(`classical-timeline:${domainName}`)() * 48 // 48-96 months
     const speedupFactor = domain.quantum_acceleration_factor
     const quantumTimeline = classicalTimeline / speedupFactor
 
@@ -13683,6 +13712,9 @@ class UniversalDomainFunder {
 
   // FTL prediction: know breakthroughs before they happen
   predictFTLBreakthrough(domain: string): FTLPrediction {
+    // The numbers below are zero because nothing here computes them. A caller reading this record
+    // gets a named breakthrough and a stated horizon of 0 — which is visibly not a prediction —
+    // rather than 0.85 probability, 17 months and $6.4M, which is visibly a prediction and was not.
     const breakthroughs: Record<string, string> = {
       'Quantum Computing': 'Error correction breakthrough enabling 1000+ qubits',
       'AI': 'Artificial General Intelligence achieving human-level reasoning',
@@ -13699,9 +13731,19 @@ class UniversalDomainFunder {
       prediction_id: predictionId,
       predicted_breakthrough: breakthrough,
       domain: domain,
-      probability: 0.7 + Math.random() * 0.25,
-      months_until_discovery: Math.floor(Math.random() * 24 + 6), // 6-30 months
-      advance_funding_recommendation: Math.floor(Math.random() * 5000000 + 3000000),
+      // SEEDING WOULD NOT HAVE FIXED THIS ONE. A reproducible $5.2M recommendation is no more real
+      // than an unreproducible one — the defect is not that the number changes, it is that nothing
+      // computed it. `domain` is read only to look up a breakthrough STRING; the probability, the
+      // horizon and the funding figure were all drawn from Math.random() and returned under a type
+      // called FTLPrediction, with a five-step "causal_chain_inference" of fixed English beside them
+      // lending the whole record the shape of an analysis.
+      //
+      // A funding recommendation is the one figure here that someone might act on, which is why this
+      // refuses rather than seeds. The other seventeen sites in this file are simulation state and a
+      // stable seed makes them reproducible; this is advice about money and there is nothing behind it.
+      probability: 0,
+      months_until_discovery: 0,
+      advance_funding_recommendation: 0,
       causal_chain_inference: [
         `Current research trajectory in ${domain}`,
         'Recent computational breakthroughs enabling new approaches',
@@ -14030,8 +14072,9 @@ class SequenceResearcher {
         layer_range: r.range,
         local_optima_count: r.optima,
         global_optimum_location: r.global,
-        basin_depth: Math.floor(Math.random() * 10 + 5),
-        escape_velocity: 2.5 + Math.random() * 2.5
+        // Seeded by the layer range, the same key landscape_id above is addressed with.
+        basin_depth: floor(prng(`basin:${r.range}`)() * 10 + 5),
+        escape_velocity: 2.5 + prng(`escape:${r.range}`)() * 2.5
       }
       landscapes.push(landscape)
     }
@@ -14132,7 +14175,9 @@ class SequenceResearcher {
       deps[i] = []
       // Each layer depends on previous layers with decreasing probability
       for (let j = 1; j < i; j++) {
-        if (Math.random() > 0.7 - i / 100) {
+        // THE GRAPH'S SHAPE ITSELF WAS RANDOM, so buildCausalGraph returned different dependencies
+        // on every call and nothing downstream of it could be reproduced. Seeded per edge.
+        if (prng(`causal-edge:${i}:${j}`)() > 0.7 - i / 100) {
           deps[i].push(j)
         }
       }

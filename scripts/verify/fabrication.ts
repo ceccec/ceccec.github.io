@@ -63,8 +63,22 @@ const MEASUREMENT_SHAPE = /\(\s*\d+\s*\/\s*\d+\s*\)|\d+\s*%|\b\d+\s+(errors?|fai
  * Widened here, which RAISES the count — the ratchet is re-seeded deliberately for that reason. A
  * sharper instrument finding more is not a regression, and leaving the number at 0 while the defect
  * ships would be the gate lying in the corpus's own house style.
+ *
+ * WIDENED A SECOND TIME, after the sweep that emptied it found TWELVE MORE BY EYE that this list did
+ * not name: effectiveness, baseProbability, recencyFactor, classicalTimeline, careerPeakYear, and the
+ * three counts an executeLearningCycle reported as its results. Every one was a reading with a name
+ * this regex had never been shown.
+ *
+ * FOUR SHAPES REMAIN INVISIBLE and are named here rather than left as a silent gap, because a gate
+ * that reads 0 is only worth what its blind spots are:
+ *   dimMap.set(key, 0.5 + Math.random() * 0.4)   a measure recorded through a method call
+ *   allOrgs.filter(o => Math.random() > 0.3)     structural randomness choosing a subset
+ *   sharing.cross_domain_value += Math.random()  an accumulator, not an assignment
+ *   if (Math.random() > 0.7 - i / 100)           randomness deciding a graph's shape
+ * Each was found and fixed by reading, not by this gate. Rules for them would need to distinguish
+ * sampling — which is legitimate and common — from fabrication, and I do not have that separation.
  */
-const METRIC_PROPERTY = /^(.*_percent|.*_pct|cpu|gpu|memory|latency|throughput|accuracy|uptime|score|confidence|success|passing|passed|failed|elapsed|duration|coverage|benchmark.*|.*Measured|.*Score|.*Rate|probability|.*_probability|sensitivity|.*_strength|.*_value|.*_factor|.*_count|.*_chains|.*_projects|.*_depth|.*_velocity|.*_improvement|.*_recommendation|.*_timeline|months_.*|.*_usd|impact|prices|readings|packets|samples|estimate.*|projected.*)$/i
+const METRIC_PROPERTY = /^(.*_percent|.*_pct|cpu|gpu|memory|latency|throughput|accuracy|uptime|score|confidence|success|passing|passed|failed|elapsed|duration|coverage|benchmark.*|.*Measured|.*Score|.*Rate|probability|.*_probability|.*Probability|sensitivity|effectiveness|.*_strength|.*Strength|.*_value|.*Value|.*_factor|.*Factor|.*Timeline|.*_timeline|.*Year|.*_count|.*Count|.*_chains|.*_projects|.*_depth|.*_velocity|.*_improvement|improvement|optimizations|patterns|.*_recommendation|months_.*|.*_usd|impact|prices|readings|packets|samples|estimate.*|projected.*)$/i
 
 export type Fabrication = { readonly file: string; readonly line: number; readonly why: string; readonly text: string }
 

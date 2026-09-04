@@ -2497,7 +2497,7 @@ var CRACK_LEDGER = [
   { file: "src/pair/theorem/stability/detector/index.ts", literal: "*", count: 24, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/pair/quantum/hardware/index.ts", literal: "*", count: 13, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/pair/intelligence/harmonisation/index.ts", literal: "*", count: 213, kind: "tuned", source: "wave 51-60 involution-discovery toolkit, merged into one barrel \u2014 example confidence/barrier values, patent dollar figures, timeline years, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: "src/quantum/endowment/index.ts", literal: "*", count: 727, kind: "tuned", source: "endowment governance/patents/pricing toolkit \u2014 merged from 54 domain files (agent, analytics, archive, benchmark, biotechnology, ... universal); example barrier strengths, percentages, and dollar figures, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
+  { file: "src/quantum/endowment/index.ts", literal: "*", count: 721, kind: "tuned", source: "endowment governance/patents/pricing toolkit \u2014 merged from 54 domain files (agent, analytics, archive, benchmark, biotechnology, ... universal); example barrier strengths, percentages, and dollar figures, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   // ── ui/harmonic — the A432 octave wheel: music-theory units, design hues, SI time scales ──
   // Replaces a blanket '*' attestation of 18 'tuned' uses. The three confidence literals it
   // covered are gone (confidence now derives from CMI_PRIZE_SOLVED_CORE_IDS), and the
@@ -137954,7 +137954,7 @@ var PredictiveModel = class {
     const hGrowthFactor = Math.log(yearsInField + 1) * 0.5;
     const h1Year = Math.round(currentHIndex + hGrowthFactor * 2);
     const h3Year = Math.round(currentHIndex + hGrowthFactor * 4);
-    const careerPeakYear = Math.round(yearsInField + 10 + Math.random() * 10);
+    const careerPeakYear = Math.round(yearsInField + 15);
     const fundingImpact = fundingHistoryUsd > 0 ? currentHIndex * 100 / fundingHistoryUsd : 0.5;
     const baseAttritionRisk = 0.1 + yearsInField / 50 * 0.2;
     const fundingStability = Math.min(fundingHistoryUsd / 25e4, 1);
@@ -141705,9 +141705,9 @@ var ProductionManager = class {
   // Execute learning cycle
   executeLearningCycle() {
     const cycleId = toUuid(`cycle:${Date.now()}`);
-    const patterns = 3 + Math.floor(Math.random() * 5);
-    const optimizations = 2 + Math.floor(Math.random() * 3);
-    const improvement = 2 + Math.floor(Math.random() * 8);
+    const patterns = 0;
+    const optimizations = 0;
+    const improvement = 0;
     if (this.learningSchedule) {
       this.learningSchedule.last_cycle_results = {
         patterns_found: patterns,
@@ -141877,7 +141877,7 @@ var ConsciousnessEngine = class {
         const dimMap = this.reasoningState.dimension_interactions.get(
           relevantDimensions[i]
         );
-        dimMap.set(relevantDimensions[j], 0.5 + Math.random() * 0.4);
+        dimMap.set(relevantDimensions[j], 0.5 + prng(`dim-interaction:${[relevantDimensions[i], relevantDimensions[j]].sort().join(":")}`)() * 0.4);
       }
     }
     reasoning.push(`Synthesize ${interactions.length} interactions`);
@@ -142072,8 +142072,8 @@ var CollectiveIntelligence = class {
       strategy_id: strategyId,
       discovered_by: participatingAgents,
       strategy_description: strategyDescription,
-      effectiveness: 75 + Math.random() * 20,
-      // Higher than individual strategies
+      effectiveness: 75 + prng(`strategy-effectiveness:${strategyId}`)() * 20,
+      // seeded by the id above
       emergent_properties: emergentProperties,
       requires_coordination: participatingAgents.length > 1,
       coordination_cost: participatingAgents.length * 5,
@@ -142249,7 +142249,7 @@ var TemporalCausalityEngine = class {
   // Discover edge cases by reasoning about unexplored parameter spaces
   discoverEdgeCase(description, dimensionsInvolved, triggerConditions, mitigationStrategy) {
     const patternId = toUuid(`edge:${description}`);
-    const baseProbability = 0.02 + Math.random() * 0.08;
+    const baseProbability = 0.02 + prng(`edge-base:${patternId}`)() * 0.08;
     const conditionalProbability = Math.min(
       1,
       baseProbability * (1 + dimensionsInvolved.length * 0.15)
@@ -142320,7 +142320,7 @@ var TemporalCausalityEngine = class {
   // Private: Compute predictive value of a chain
   computePredictiveValue(events2) {
     const eventCount = events2.length;
-    const recencyFactor = 0.5 + Math.random() * 0.5;
+    const recencyFactor = 0.5 + Math.min(0.5, eventCount / 20);
     return Math.min(1, eventCount / 10 * recencyFactor);
   }
   // Private: Analyze patterns from similar chains
@@ -142348,7 +142348,7 @@ var TemporalCausalityEngine = class {
   }
   // Private: Compute prediction probability
   computePredictionProbability(patterns) {
-    return patterns.confidence * 0.8 + Math.random() * 0.2;
+    return patterns.confidence * 0.8;
   }
   // Get temporal engine metrics
   getTemporalMetrics() {
@@ -142734,14 +142734,15 @@ var HolisticOptimizer = class {
       "theorem_optimization"
     ];
     for (const dim of dimensionList) {
+      const r2 = prng(`dimension:${dim}`);
       this.dimensions.set(dim, {
         dimension: dim,
-        current_value: 70 + Math.random() * 20,
+        current_value: 70 + r2() * 20,
         // 70-90 baseline
         target_value: 95,
-        trend: Math.random() > 0.5 ? 1 : -1,
+        trend: r2() > 0.5 ? 1 : -1,
         dependencies: [],
-        sensitivity: 0.5 + Math.random() * 0.4
+        sensitivity: 0.5 + r2() * 0.4
       });
     }
   }
@@ -142773,6 +142774,7 @@ var HolisticOptimizer = class {
   }
   // Compute interaction strength between two dimensions
   computeInteractionStrength(dim_a, dim_b) {
+    const r2 = prng(`interaction:${[dim_a, dim_b].sort().join(":")}`);
     const synergies = {
       verification: ["compliance", "fraud"],
       compliance: ["governance", "fairness"],
@@ -142783,7 +142785,7 @@ var HolisticOptimizer = class {
       theorem_optimization: ["performance", "integration"]
     };
     if (synergies[dim_a]?.includes(dim_b) || synergies[dim_b]?.includes(dim_a)) {
-      return 0.7 + Math.random() * 0.2;
+      return 0.7 + r2() * 0.2;
     }
     const tradeoffs = {
       resource: ["commercialization"],
@@ -142792,14 +142794,14 @@ var HolisticOptimizer = class {
       performance: ["security"]
     };
     if (tradeoffs[dim_a]?.includes(dim_b) || tradeoffs[dim_b]?.includes(dim_a)) {
-      return -0.4 - Math.random() * 0.2;
+      return -0.4 - r2() * 0.2;
     }
-    return Math.random() * 0.3 - 0.15;
+    return r2() * 0.3 - 0.15;
   }
   // Compute synergy multiplier for dimension pairs
   computeSynergyMultiplier(dim_a, dim_b, strength) {
     if (strength > 0.6) {
-      return 1.3 + Math.random() * 0.2;
+      return 1.3 + prng(`synergy-mult:${[dim_a, dim_b].sort().join(":")}`)() * 0.2;
     }
     if (strength < -0.3) {
       return 0.8;
@@ -143029,7 +143031,8 @@ var FederationCoordinator = class {
         global_score: org.score,
         dimensions: this.initializeDimensionsForOrg(org.type),
         synergies: [],
-        causality_chains: Math.floor(Math.random() * 500 + 1e3),
+        causality_chains: floor(prng(`node:${org.type}`)() * 500 + 1e3),
+        // seeded by the same key as nodeId above
         theorem_applications: this.getTheoremApplicationsForOrg(org.type)
       };
       this.nodes.set(nodeId, node);
@@ -143131,7 +143134,7 @@ var FederationCoordinator = class {
       (k) => this.nodes.get(k).system_type
     );
     const applicableOrgs = allOrgs.filter(
-      (o) => o !== discoveredBy && Math.random() > 0.3
+      (o) => o !== discoveredBy && prng(`chain-share:${chainId}:${o}`)() > 0.3
     );
     const chainSharing = {
       chain_id: chainId,
@@ -143143,7 +143146,7 @@ var FederationCoordinator = class {
     };
     for (const org of applicableOrgs) {
       chainSharing.adoption_count++;
-      chainSharing.cross_domain_value += 0.15 + Math.random() * 0.2;
+      chainSharing.cross_domain_value += 0.15 + prng(`chain-value:${chainId}:${org}`)() * 0.2;
     }
     this.causalChainSharing.set(chainId, chainSharing);
     return chainSharing;
@@ -143173,8 +143176,9 @@ var FederationCoordinator = class {
             synergy_id: toUuid(`synergy:${org1}+${org2}`),
             synergy_name: `${org1} + ${org2} Collaboration`,
             organizations_involved: [org1, org2],
-            synergy_strength: 0.7 + Math.random() * 0.2,
-            combined_improvement: 15 + Math.random() * 15,
+            // Seeded by the same pair the synergy_id above is addressed with.
+            synergy_strength: 0.7 + prng(`synergy:${org1}+${org2}`)() * 0.2,
+            combined_improvement: 15 + prng(`synergy-gain:${org1}+${org2}`)() * 15,
             example: `${org1}'s strength in ${spec1[0]} \xD7 ${org2}'s strength in ${spec2[0]} = better outcomes`
           };
           this.federatedSynergies.set(synergy.synergy_id, synergy);
@@ -143498,9 +143502,10 @@ var UniversalDomainFunder = class {
         name: d.name,
         category: d.cat,
         funding_pool_usd: d.pool,
-        active_projects: Math.floor(Math.random() * 100 + 50),
-        breakthrough_probability: 0.3 + Math.random() * 0.5,
-        quantum_acceleration_factor: 4 + Math.random() * 6,
+        // Seeded by the domain name, the same key domainId above is addressed with.
+        active_projects: floor(prng(`domain-projects:${d.name}`)() * 100 + 50),
+        breakthrough_probability: 0.3 + prng(`domain-breakthrough:${d.name}`)() * 0.5,
+        quantum_acceleration_factor: 4 + prng(`domain-accel:${d.name}`)() * 6,
         // 4-10x speedup
         ftl_prediction_enabled: true
       };
@@ -143513,7 +143518,7 @@ var UniversalDomainFunder = class {
       (d) => d.name === domainName
     );
     if (!domain) throw new Error(`Domain ${domainName} not found`);
-    const classicalTimeline = 48 + Math.random() * 48;
+    const classicalTimeline = 48 + prng(`classical-timeline:${domainName}`)() * 48;
     const speedupFactor = domain.quantum_acceleration_factor;
     const quantumTimeline = classicalTimeline / speedupFactor;
     const accelId = toUuid(`acceleration:${domainName}`);
@@ -143545,10 +143550,19 @@ var UniversalDomainFunder = class {
       prediction_id: predictionId,
       predicted_breakthrough: breakthrough,
       domain,
-      probability: 0.7 + Math.random() * 0.25,
-      months_until_discovery: Math.floor(Math.random() * 24 + 6),
-      // 6-30 months
-      advance_funding_recommendation: Math.floor(Math.random() * 5e6 + 3e6),
+      // SEEDING WOULD NOT HAVE FIXED THIS ONE. A reproducible $5.2M recommendation is no more real
+      // than an unreproducible one — the defect is not that the number changes, it is that nothing
+      // computed it. `domain` is read only to look up a breakthrough STRING; the probability, the
+      // horizon and the funding figure were all drawn from Math.random() and returned under a type
+      // called FTLPrediction, with a five-step "causal_chain_inference" of fixed English beside them
+      // lending the whole record the shape of an analysis.
+      //
+      // A funding recommendation is the one figure here that someone might act on, which is why this
+      // refuses rather than seeds. The other seventeen sites in this file are simulation state and a
+      // stable seed makes them reproducible; this is advice about money and there is nothing behind it.
+      probability: 0,
+      months_until_discovery: 0,
+      advance_funding_recommendation: 0,
       causal_chain_inference: [
         `Current research trajectory in ${domain}`,
         "Recent computational breakthroughs enabling new approaches",
@@ -143755,8 +143769,9 @@ var SequenceResearcher = class {
         layer_range: r2.range,
         local_optima_count: r2.optima,
         global_optimum_location: r2.global,
-        basin_depth: Math.floor(Math.random() * 10 + 5),
-        escape_velocity: 2.5 + Math.random() * 2.5
+        // Seeded by the layer range, the same key landscape_id above is addressed with.
+        basin_depth: floor(prng(`basin:${r2.range}`)() * 10 + 5),
+        escape_velocity: 2.5 + prng(`escape:${r2.range}`)() * 2.5
       };
       landscapes.push(landscape);
     }
@@ -143840,7 +143855,7 @@ var SequenceResearcher = class {
     for (let i = 1; i <= 52; i++) {
       deps[i] = [];
       for (let j = 1; j < i; j++) {
-        if (Math.random() > 0.7 - i / 100) {
+        if (prng(`causal-edge:${i}:${j}`)() > 0.7 - i / 100) {
           deps[i].push(j);
         }
       }
