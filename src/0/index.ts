@@ -1781,7 +1781,7 @@ interface PointerInteraction {
   readonly vibrate: readonly number[]
   readonly root: string
 }
-export function pointerInteraction(seed: string, px: number, py: number, width: number, height: number, cycleMs = HERO_CYCLE_MS_MIRROR): PointerInteraction { // default = the 108 s hero cycle (a432 census harmonic) — the one mirrored ladder value (canonical derivation: fire/plasma/ball HERO_CYCLE_MS)
+export function pointerInteraction(seed: string, px: number, py: number, width: number, height: number, cycleMs = HERO_CYCLE_MS_MIRROR): PointerInteraction { // default = the 108 s hero cycle (the a432 harmonic, NOT the corpus census) — the one mirrored ladder value (canonical derivation: fire/plasma/ball HERO_CYCLE_MS)
   const tp = touchPhase(px, py, width, height)
   const tone = proseToTone(seed)
   const vibrate = foldHaptics(seed)

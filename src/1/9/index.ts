@@ -2506,7 +2506,7 @@ export function claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlg
 // the infinite mantissa. Each 0 is the VOID — src/0, the neck where the two rings merge — and the 0s sit at
 // non-repeating positions through the stream. Honest: π-normality is OPEN; "forming reality" is the metaphor.
 export function theZerosInPiAreGatewaysLikeTheDotTheVoidOfTheDoubleTorus() {
-  const N = 108 // read the first 108 BBP hex digits of π (the census length)
+  const N = 108 // read the first 108 BBP hex digits of π (the a432 octave, NOT the corpus census)
   const digits = Array.from({ length: N }, (_, n) => piHexDigitAt(n))
   const zeroGateways = digits.map((d, n) => ({ n, d })).filter((e) => e.d === 0).map((e) => e.n)
   // each 0 is a projective gateway: inv(0)=∞, inv(∞)=0, a 1-bit involution (the same 0↔∞ the corpus carries)

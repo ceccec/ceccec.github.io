@@ -6,7 +6,7 @@
   "folds.threw": 34,
   "imports.unresolved": 6,
   "independence.cross-checked": -473,
-  "lean-arbiter.census-contradictions": 12,
+  "lean-arbiter.census-contradictions": 0,
   "limits.always-true": 36,
   "limits.weakest-bar": 62,
   "paths.dead-strings": 51,
