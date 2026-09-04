@@ -130,8 +130,11 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
       `(${refuted.map((r) => r.theorem).join(', ')}). Its title is "${rec.title}". This record is what CITATION.cff ` +
       `names as repositoryDoi, what README prints as CLAIMED, and what all ${deposits.records.length} per-theorem ` +
       `deposits declare themselves part of — so the corrected work inherits the uncorrected claim. A published deposit ` +
-      `cannot be edited; correcting it means publishing a NEW VERSION with honest metadata, which is the author's ` +
-      `decision and the author's credentials. This gate only refuses to let it stay invisible.`
+      `cannot be edited; correcting it means publishing a NEW VERSION with honest metadata under the same concept DOI ` +
+      `(10.5281/zenodo.21787143, which OAI-PMH reports as idDoesNotExist because Zenodo exposes only version records — ` +
+      `the concept DOI always resolves to the newest version, so a new version corrects what the citation points at ` +
+      `without destroying the dated original). That is the author's decision and the author's credentials, never this ` +
+      `script's. This gate only refuses to let it stay invisible.`
     )
   }
   console.log(`the published record asserts nothing the corpus refutes`)
