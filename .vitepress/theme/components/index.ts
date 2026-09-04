@@ -22,6 +22,7 @@ export { default as LeanTheoremIndex } from './LeanTheoremIndex.vue'
 export { default as DomainProofPages } from './DomainProofPages.vue'
 export { default as TheoremIndex } from './TheoremIndex.vue'
 export { default as SourceAtlas } from './SourceAtlas.vue'
+export { default as ThreeClosure } from './ThreeClosure.vue'
 export { default as TrinityGateways } from './TrinityGateways.vue'
 export { default as GlobalHelp } from './GlobalHelp.vue'
 export { default as CollectiveMind } from './CollectiveMind.vue'
@@ -55,6 +56,7 @@ export const VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG = [
   { id: 'DomainProofPages', path: 'DomainProofPages.vue', kind: 'eager' as const, role: 'page-shell' },
   { id: 'TheoremIndex', path: 'TheoremIndex.vue', kind: 'eager' as const, role: 'index' },
   { id: 'SourceAtlas', path: 'SourceAtlas.vue', kind: 'eager' as const, role: 'atlas' },
+  { id: 'ThreeClosure', path: 'ThreeClosure.vue', kind: 'eager' as const, role: 'proof' },
   { id: 'TrinityGateways', path: 'TrinityGateways.vue', kind: 'eager' as const, role: 'chrome' },
   { id: 'GlobalHelp', path: 'GlobalHelp.vue', kind: 'eager' as const, role: 'chrome' },
   { id: 'CollectiveMind', path: 'CollectiveMind.vue', kind: 'eager' as const, role: 'chrome' },
@@ -120,6 +122,7 @@ export const VITEPRESS_COMPONENT_SET = [
   'DomainProofPages',
   'TheoremIndex',
   'SourceAtlas',
+  'ThreeClosure',
   'TrinityGateways',
   'GlobalHelp',
   'CollectiveMind',

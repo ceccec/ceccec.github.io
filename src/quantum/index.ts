@@ -1182,7 +1182,9 @@ export type LivingTorusCoordinate = ReturnType<typeof livingTorus>['coordinates'
  * YZ rotation whose sine is that same 0.35, composed through the sealed atoms (rotate3) so depth
  * is real and carried by the perspective divide — size attenuation, not a screen offset.
  */
-const OBLIQUE_VIEW_TILT = -asin((7 / (5 * 4)))
+// Exported so the three.js closure views the lattice at the SAME oblique angle the canvas
+// merkaba and living-torus painters use. Two tilts would be two corpora.
+export const OBLIQUE_VIEW_TILT = -asin((7 / (5 * 4)))
 
 /** Genus-2 torus point field — hero-clock phase; static at phase 0 when reduced motion. */
 export function drawLivingTorusFrame(
