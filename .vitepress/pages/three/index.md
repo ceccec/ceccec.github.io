@@ -160,6 +160,29 @@ This is **this corpus's own involution law — $\sigma^2 = \mathrm{id}$, orbits 
 
 ---
 
+## What is claimed, and what is not
+
+All eighteen theorems were searched against prior art on 2026-09-04, and the ledger classified them automatically: **a search that finds prior art attributes the result; a search that finds none claims it.** The rule decides, not preference.
+
+**Fifteen are classical and are attributed.** The product enumeration, its non-duplication and completeness, the row-major div/mod inverse and the address interval are [Knuth, *TAOCP* vol. 1 §2.2.6](https://www-cs-faculty.stanford.edu/~knuth/taocp.html). The perspective divide, unit scale at the focal plane, monotonicity in depth, the bracketing frustum and the positive denominator are the pinhole camera model — [Hartley & Zisserman, *Multiple View Geometry* ch. 6](https://www.robots.ox.ac.uk/~vgg/hzbook/). Central inversion as an involution, its closure on a centrally symmetric set, and the cancellation of reflected pairs about a centroid are [Coxeter, *Introduction to Geometry* §3](https://en.wikipedia.org/wiki/Point_reflection). The parity criterion is the standard reversal map $J(i) = n+1-i$.
+
+**Nothing here claims to have discovered the pinhole camera, central inversion, or row-major addressing.**
+
+**Three results are claimed**, each with a search on record that returned nothing:
+
+| Claimed | What it says |
+|---|---|
+| **Closure is one hundred sixty two** | the *renderable* geometry × mesh-material product space of three.js is 162 |
+| **The closure is eighty one orbits** | its central-symmetry involution partitions that space into 81 orbits of two |
+| **Reflection complements the address** | $\mathrm{idx}(\sigma c) + \mathrm{idx}(c) = N-1$ on this lattice |
+
+Published sources enumerate three.js geometries and materials **separately**. None enumerates the renderable product, and none applies a renderability criterion at all — the only product figure found anywhere is a naive $21 \times 18 = 378$ that counts base classes and a material which throws when drawn.
+
+**A DOI dates an expression; it does not establish novelty.** What is claimed above is the expression, dated by its deposit.
+
+
+---
+
 ## References
 
 - **three.js** — [threejs.org](https://threejs.org), [PerspectiveCamera](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera), [geometry index](https://threejs.org/docs/#api/en/geometries/BoxGeometry), [material index](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial). Version measured here: 0.185.
