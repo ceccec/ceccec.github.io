@@ -4929,25 +4929,30 @@ export class LiveDataIngester {
   }
 
   private generateSimulatedData(source: string): any {
+    // SEEDED, so a simulation is reproducible. The method is honestly named — it does not claim the
+    // data is live — but an UNREPEATABLE simulation is still a value nobody can check: the same
+    // source produced a different hundred prices on every call, so no consumer could reproduce a
+    // result derived from it. prng is the corpus's one seeded stream (src/0), not a new generator.
+    const r = prng(`live-sim:${source}`)
     // Simulate different public data sources
     switch (source) {
       case 'stock-prices':
         return {
           timestamp: Date.now(),
-          prices: Array.from({ length: 100 }, () => Math.random() * 1000)
+          prices: Array.from({ length: 100 }, () => r() * 1000)
         }
       case 'weather':
         return {
           timestamp: Date.now(),
-          readings: Array.from({ length: 50 }, () => Math.random() * 40)
+          readings: Array.from({ length: 50 }, () => r() * 40)
         }
       case 'network-traffic':
         return {
           timestamp: Date.now(),
-          packets: Array.from({ length: 1000 }, () => Math.random() * 1000000)
+          packets: Array.from({ length: 1000 }, () => r() * 1000000)
         }
       default:
-        return { timestamp: Date.now(), data: Array.from({ length: 10 }, () => Math.random()) }
+        return { timestamp: Date.now(), data: Array.from({ length: 10 }, () => r()) }
     }
   }
 
@@ -5076,10 +5081,13 @@ export class QuantumCombinatorialTrainer {
    */
   private tournamentSelection(population: Strategy[], tournament_size: number): Strategy[] {
     const selected: Strategy[] = []
+    // A GA needs a VARIED draw, not an unpredictable one — the same argument as Shor's base. Seeded
+    // from the shape of the call, so the same population and size select the same winners.
+    const r = prng(`tournament:${population.length}:${tournament_size}`)
 
     for (let i = 0; i < tournament_size; i++) {
-      const idx1 = Math.floor(Math.random() * population.length)
-      const idx2 = Math.floor(Math.random() * population.length)
+      const idx1 = floor(r() * population.length)
+      const idx2 = floor(r() * population.length)
 
       const winner =
         population[idx1].performance > population[idx2].performance
@@ -5097,16 +5105,17 @@ export class QuantumCombinatorialTrainer {
    */
   private uniformCrossover(selected: Strategy[]): Strategy[] {
     const offspring: Strategy[] = []
+    const r = prng(`crossover:${selected.length}`)
 
     for (let i = 0; i < selected.length; i += 2) {
       const parent1 = selected[i]
       const parent2 = selected[i + 1]
 
       const child1_params = parent1.parameters.map((p, j) =>
-        Math.random() < 0.5 ? p : parent2.parameters[j]
+        r() < 0.5 ? p : parent2.parameters[j]
       )
       const child2_params = parent2.parameters.map((p, j) =>
-        Math.random() < 0.5 ? p : parent1.parameters[j]
+        r() < 0.5 ? p : parent1.parameters[j]
       )
 
       offspring.push({
@@ -5136,14 +5145,17 @@ export class QuantumCombinatorialTrainer {
    */
   private adaptiveMutation(population: Strategy[]): Strategy[] {
     const mutated = population.map(strategy => {
-      const mutation_prob = Math.random() < this.mutation_rate ? 1 : 0
+      // Seeded PER STRATEGY by its own id, so one strategy's mutation does not depend on how many
+      // others were mutated first — the stream is a property of the strategy, not of iteration order.
+      const r = prng(`mutate:${strategy.id}:${this.mutation_rate}`)
+      const mutation_prob = r() < this.mutation_rate ? 1 : 0
 
       if (mutation_prob) {
-        const mutation_index = Math.floor(Math.random() * strategy.parameters.length)
+        const mutation_index = floor(r() * strategy.parameters.length)
         const new_params = [...strategy.parameters]
 
         // Gaussian mutation
-        new_params[mutation_index] += (Math.random() - 0.5) * 0.1
+        new_params[mutation_index] += (r() - 0.5) * 0.1
 
         return {
           ...strategy,
@@ -5168,7 +5180,9 @@ export class QuantumCombinatorialTrainer {
     return Array.from({ length: this.population_size }, (_, i) => ({
       id: toUuid(`strategy:init:${i}`),
       name: `InitialStrategy-${i}`,
-      parameters: Array.from({ length: param_count }, () => Math.random()),
+      // The id one line above is already toUuid(`strategy:init:${i}`); the parameters now share that
+      // seed string, so a strategy's identity and its starting point come from the same place.
+      parameters: ((r) => Array.from({ length: param_count }, () => r()))(prng(`strategy:init:${i}`)),
       performance: 0,
       created_at: Date.now(),
       training_steps: 0
@@ -5468,8 +5482,15 @@ export class FTLPredictor {
   }
 
   private estimateLag(cause: string, effect: string, data: any[]): number {
-    // Simplified: assume lag increases with complexity
-    return Math.floor(Math.random() * 5) + 1
+    // IT IGNORED ALL THREE ARGUMENTS. cause, effect and data were never read; the body returned a
+    // random integer 1-5 under a comment claiming lag "increases with complexity". A caller received
+    // a lag estimate about two named series that had never been compared. Cross-correlation over the
+    // series is what would answer this, and it is not implemented here.
+    void cause; void effect; void data
+    throw new Error(
+      'estimateLag is not implemented: it returned a random 1-5 without reading cause, effect or ' +
+      'data. A lag estimate needs the cross-correlation of the two series at successive offsets.',
+    )
   }
 
   private pearsonCorrelation(x: number[], y: number[]): number {
@@ -7759,12 +7780,14 @@ export class MetaIntelligence {
   }
 
   private async detectDrift(): Promise<number> {
-    // Simulate drift detection
-    // In production: actually scan files
-    const drifts = Math.random() * 0.15 // 0-15% drift
-    console.log(`  Checking ${16} modules for drift...`)
-    console.log(`  Found drift in ${Math.round(drifts * 16)} modules`)
-    return drifts
+    // IT PRINTED A FINDING IT INVENTED. `Math.random() * 0.15` became "Found drift in N modules",
+    // logged as though a scan had run, under a comment that says "In production: actually scan
+    // files". This repository HAS real drift detection — verify:all, the crack gate, the ledger —
+    // and this method ran none of it while reporting its result.
+    throw new Error(
+      'detectDrift is not implemented: it printed "Found drift in N modules" from a random number. ' +
+      'Run the real gates (verify:all, manifest:check) and read their output.',
+    )
   }
 
   private async analyzeCoupling(): Promise<{ score: number }> {
@@ -7973,7 +7996,8 @@ export class Agent {
 
   // Self-train until convergence
   async train(gens = 30): Promise<{ best: number[]; fitness: number }> {
-    let best = { p: Array(5).fill(Math.random()), f: 0 }
+    const r = prng(`agent-train:${this.domain}:${gens}`)
+    let best = { p: Array(5).fill(r()), f: 0 }
 
     for (let g = 0; g < gens; g++) {
       const pop = Array(20)
@@ -7981,7 +8005,7 @@ export class Agent {
         .map(() => {
           const p = Array(5)
             .fill(0)
-            .map(() => Math.random())
+            .map(() => r())
           const f = this.fitness(p)
           return { p, f }
         })
@@ -7999,7 +8023,14 @@ export class Agent {
   private fitness(params: number[]): number {
     // Domain-specific scoring
     const base = params.reduce((a, b) => a + b, 0) / params.length
-    const novelty = this.strategies.length > 0 ? Math.random() * 0.1 : 0.2
+    // NOVELTY IS A DISTANCE, AND IT WAS A RANDOM NUMBER. `Math.random() * 0.1` made fitness itself
+    // nondeterministic, so the same parameters scored differently on each evaluation and the sort
+    // that picks the best was reading noise. this.strategies already holds every vector seen, so
+    // novelty is exactly computable: mean distance to what is known, capped at the old 0.1 weight.
+    const known = this.strategies
+    const novelty = known.length === 0
+      ? 0.2
+      : min(0.1, known.reduce((sum, s) => sum + sqrt(s.p.reduce((d, v, i) => d + (v - (params[i] ?? 0)) ** 2, 0)), 0) / known.length / params.length)
     return Math.min(1, base + novelty)
   }
 
@@ -8224,8 +8255,11 @@ export class Learn {
   static nextReview(quality: number): number {
     // quality: 0-5 (0=forgot, 5=easy)
     if (quality < 2) return 1 // Review tomorrow
-    if (quality < 4) return this.spacing(Math.floor(Math.random() * 3) + 2)
-    return this.spacing(Math.floor(Math.random() * 4) + 3)
+    // Seeded by the quality it is answering, so the same recall performance yields the same
+    // interval — a spaced-repetition schedule that changes on re-read is not a schedule.
+    const r = prng(`next-review:${quality}`)
+    if (quality < 4) return this.spacing(floor(r() * 3) + 2)
+    return this.spacing(floor(r() * 4) + 3)
   }
 
   // Chunk content by working memory limits (7±2)
@@ -8316,7 +8350,9 @@ export const quickLearnDefault = Learn
 
 // ──── ONE-LINE START ────
 export async function train(data: number[][], fitness: (x: number[]) => number, gens = 30) {
-  let pop = Array(50).fill(0).map(() => ({ p: data[0].map(() => Math.random()), f: 0 }))
+  // Seeded from the shape of the problem: same data and same generation count, same search.
+  const r = prng(`quick-train:${data.length}:${data[0]?.length ?? 0}:${gens}`)
+  let pop = Array(50).fill(0).map(() => ({ p: data[0].map(() => r()), f: 0 }))
 
   for (let g = 0; g < gens; g++) {
     // Evaluate
@@ -8329,8 +8365,8 @@ export async function train(data: number[][], fitness: (x: number[]) => number, 
     // Breed (keep top 50%, breed, mutate)
     const half = pop.slice(0, 25)
     const bred = half.flatMap(p1 => {
-      const p2 = half[Math.floor(Math.random() * half.length)]
-      return [p1.p.map((v, i) => (Math.random() > 0.5 ? v : p2.p[i]) + (Math.random() - 0.5) * 0.1)]
+      const p2 = half[floor(r() * half.length)]
+      return [p1.p.map((v, i) => (r() > 0.5 ? v : p2.p[i]) + (r() - 0.5) * 0.1)]
     })
     pop = [...half.map(s => ({ p: s.p, f: s.f })), ...bred.slice(0, 25).map(p => ({ p, f: 0 }))]
 

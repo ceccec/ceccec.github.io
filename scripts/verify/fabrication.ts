@@ -50,8 +50,21 @@ const MEASUREMENT_WORDS = /[✓✔✗×]|\bpassing\b|\bpassed\b|\bbenchmark|\bme
 const CONSTANT_VERDICT = /[✓✔]/
 const MEASUREMENT_SHAPE = /\(\s*\d+\s*\/\s*\d+\s*\)|\d+\s*%|\b\d+\s+(errors?|failures?|warnings?|tests?|passing)\b/i
 
-/** Property names that promise a reading rather than a setting. */
-const METRIC_PROPERTY = /^(.*_percent|.*_pct|cpu|gpu|memory|latency|throughput|accuracy|uptime|score|confidence|success|passing|passed|failed|elapsed|duration|coverage|benchmark.*|.*Measured|.*Score|.*Rate)$/i
+/**
+ * Property names that promise a reading rather than a setting.
+ *
+ * THE FIRST VERSION OF THIS LIST WAS TOO SHORT AND THE GATE READ 0 WHILE 31 FABRICATIONS SHIPPED.
+ * It named cpu/gpu/latency/confidence and stopped, so an entire simulation of research funding went
+ * unseen — `advance_funding_recommendation: Math.floor(Math.random() * 5e6 + 3e6)`, a three-to-eight
+ * million dollar recommendation drawn from a random number, alongside breakthrough_probability,
+ * months_until_discovery, quantum_acceleration_factor and synergy_strength. Every one is a reading
+ * about the world, and none was in the list.
+ *
+ * Widened here, which RAISES the count — the ratchet is re-seeded deliberately for that reason. A
+ * sharper instrument finding more is not a regression, and leaving the number at 0 while the defect
+ * ships would be the gate lying in the corpus's own house style.
+ */
+const METRIC_PROPERTY = /^(.*_percent|.*_pct|cpu|gpu|memory|latency|throughput|accuracy|uptime|score|confidence|success|passing|passed|failed|elapsed|duration|coverage|benchmark.*|.*Measured|.*Score|.*Rate|probability|.*_probability|sensitivity|.*_strength|.*_value|.*_factor|.*_count|.*_chains|.*_projects|.*_depth|.*_velocity|.*_improvement|.*_recommendation|.*_timeline|months_.*|.*_usd|impact|prices|readings|packets|samples|estimate.*|projected.*)$/i
 
 export type Fabrication = { readonly file: string; readonly line: number; readonly why: string; readonly text: string }
 
@@ -85,6 +98,24 @@ export function fabrications(root: string = process.cwd()): Fabrication[] {
       // an object property named like a reading, assigned a random value
       if (ts.isPropertyAssignment(node) && METRIC_PROPERTY.test(node.name.getText(file)) && isRandom(node.initializer)) {
         out.push({ file: rel, line: at(node), why: `the property '${node.name.getText(file)}' promises a reading`, text: node.getText(file).replace(/\s+/g, ' ').slice(0, 120) })
+      }
+      // a RETURN of a random value out of a function whose name promises a reading. The property
+      // rule cannot see these: `private estimateCorrelation() { return 0.7 + Math.random() * 0.2 }`
+      // assigns nothing, it just hands the caller a figure with the authority of the method name.
+      if ((ts.isFunctionDeclaration(node) || ts.isMethodDeclaration(node)) && node.name && node.body) {
+        const fname = node.name.getText(file)
+        if (/^(estimate|measure|calculate|compute|detect|assess|score|predict|evaluate|analyze|analyse)/i.test(fname)) {
+          const returns: import('typescript').Node[] = []
+          const findReturns = (x: import('typescript').Node) => {
+            if (ts.isFunctionDeclaration(x) || ts.isMethodDeclaration(x) || ts.isFunctionExpression(x)) { if (x !== node) return }
+            if (ts.isReturnStatement(x) && x.expression && isRandom(x.expression)) returns.push(x)
+            ts.forEachChild(x, findReturns)
+          }
+          findReturns(node.body)
+          for (const r of returns) {
+            out.push({ file: rel, line: at(r), why: `'${fname}' promises a reading and returns a random value`, text: r.getText(file).replace(/\s+/g, ' ').slice(0, 120) })
+          }
+        }
       }
       // a log line that is entirely constant, ticking a result it did not compute
       if (ts.isCallExpression(node) && /^console\.(log|info)$/.test(node.expression.getText(file))) {
