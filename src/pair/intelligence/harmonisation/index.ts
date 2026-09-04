@@ -1604,24 +1604,23 @@ async function deployTheorem(
  * Continuous monitoring: Watch live data, validate predictions
  */
 async function monitorLiveValidation(solution: DeployedSolution): Promise<void> {
-  console.log(`Monitoring ${solution.theoremId} against live data...`)
-
-  // Pseudo-code: in production, this hooks into event streams
-  // - NewsAPI webhooks
-  // - WebSocket feeds (crypto, stock)
-  // - Twitter Streaming API
-  // - Polling APIs
-
-  // Every incoming data point:
-  // 1. Check if it violates the fixed point (involution prediction)
-  // 2. If violated, lower confidence α
-  // 3. If confirmed, raise confidence α
-  // 4. Auto-refactor proof if confidence drops below threshold
-
-  setInterval(async () => {
-    // Would fetch latest data and compare to prediction
-    console.log(`[${solution.theoremId}] Validation check... (live data pending)`)
-  }, 60000) // Check every minute
+  // IT MONITORED NOTHING, AND IT LEAKED A TIMER WHILE SAYING SO. This printed
+  // "Monitoring … against live data" and then started setInterval(…, 60000) with no clear and a body
+  // whose only statement was console.log("Validation check… (live data pending)"). Running wave 53
+  // started one never-cleared timer per solution, each announcing a validation that no code performs,
+  // for as long as the process lived. Its own comment said "Pseudo-code: in production, this hooks
+  // into event streams" — the honest sentence was already there, under a function that ran anyway.
+  //
+  // Found by applying erpax-94's forge rule, which caught three sites minting
+  // 10.5281/zenodo.${Math.random()} and logging "[ZENODO] Publishing" with no network call. There are
+  // no fabricated DOIs here — scanned, zero — but this is the same shape: a log announcing an action
+  // that does not occur.
+  void solution
+  throw new Error(
+    'monitorLiveValidation is not implemented: it would need the event streams its own comment names ' +
+    '(news webhooks, price feeds, a polling loop). It previously printed a monitoring message and ' +
+    'started a 60s timer that reported "Validation check…" forever without checking anything.',
+  )
 }
 
 /**
@@ -1673,7 +1672,8 @@ export async function executeWave53(): Promise<{
     patterns.map((pattern, i) => deployTheorem(pattern, sources[i]))
   )
 
-  console.log('\n🚀 Deployed theorems with live validation:')
+  // NOT deployed and NOT validated: deployTheorem builds a prediction string and returns an object.
+  console.log('\n🚀 Theorem predictions formed (not deployed, not validated):')
   deployedSolutions.forEach((sol) => {
     console.log(`  • ${sol.theoremId}`)
     console.log(`    Source: ${sol.source}`)
