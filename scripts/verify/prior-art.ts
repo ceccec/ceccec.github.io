@@ -59,6 +59,10 @@ export const PRIOR_ART_SEARCHED: readonly {
    *  and each is a different statement with different prior art. Unscoped searches match by title. */
   readonly leanFile?: string
 }[] = [
+  { theorem: '*', leanFile: 'spacetime.lean',
+    searched: 'relativistic velocity addition law c as fixed point absorbing element spacetime interval invariance Lorentz boost',
+    when: '2026-09-04',
+    found: 'Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment.' },
   { theorem: '*', leanFile: 'involution.lean',
     searched: 'decomposition function into symmetric antisymmetric parts under involution f(x)-f(σx) odd part sums to zero orbit',
     when: '2026-09-04',

@@ -2,7 +2,7 @@
   "repositoryDoi": "10.5281/zenodo.21787144",
   "orcid": "0009-0000-7312-9778",
   "generated": "derived from the sealed .lean sources; do not edit by hand",
-  "count": 51,
+  "count": 58,
   "records": [
     {
       "id": "bsd--sigma_is_an_involution",
@@ -3637,6 +3637,559 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-involution-fixes-the-critical-line",
       "landingPageBuilt": ".vitepress/dist/lean/riemann-involution-fixes-the-critical-line.html"
+    },
+    {
+      "id": "spacetime--light_is_the_fixed_point",
+      "title": "Light is the fixed point",
+      "file": "spacetime.lean",
+      "proposition": "∀ v ∈ sample, same (add light v) light = true",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nLIGHT IS THE FIXED POINT OF COMPOSITION. Add any velocity to c and the result is c again — not approximately, not in a limit: the same fraction, exactly, at every sample. This is the sense in which c is not a speed among speeds but the fixed point of the operation that combines them.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-light-is-the-fixed-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/spacetime-light-is-the-fixed-point",
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-light-is-the-fixed-point.html"
+    },
+    {
+      "id": "spacetime--light_is_fixed_from_either_side",
+      "title": "Light is fixed from either side",
+      "file": "spacetime.lean",
+      "proposition": "∀ v ∈ sample, same (add v light) light = true",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAnd from the other side, because composition is not assumed commutative until it is checked.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-light-is-fixed-from-either-side",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/spacetime-light-is-fixed-from-either-side",
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-light-is-fixed-from-either-side.html"
+    },
+    {
+      "id": "spacetime--rest_is_the_identity",
+      "title": "Rest is the identity",
+      "file": "spacetime.lean",
+      "proposition": "∀ v ∈ sample, same (add rest v) v = true",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nREST IS THE IDENTITY. Adding nothing changes nothing — the other distinguished element.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-rest-is-the-identity",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/spacetime-rest-is-the-identity",
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-rest-is-the-identity.html"
+    },
+    {
+      "id": "spacetime--composition_is_symmetric",
+      "title": "Composition is symmetric",
+      "file": "spacetime.lean",
+      "proposition": "∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nCOMPOSITION IS SYMMETRIC in the two velocities, at every pair of the sample.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-composition-is-symmetric",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/spacetime-composition-is-symmetric",
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-composition-is-symmetric.html"
+    },
+    {
+      "id": "spacetime--below_c_composes_to_below_c",
+      "title": "Below c composes to below c",
+      "file": "spacetime.lean",
+      "proposition": "∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nBelow c composes to below c",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-below-c-composes-to-below-c",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/spacetime-below-c-composes-to-below-c",
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-below-c-composes-to-below-c.html"
+    },
+    {
+      "id": "spacetime--the_boost_preserves_the_interval",
+      "title": "The boost preserves the interval",
+      "file": "spacetime.lean",
+      "proposition": "∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE INTERVAL IS INVARIANT UP TO THE ONE COMMON FACTOR. For every event and every boost, the boosted interval equals the original times (q² − p²) — the same factor throughout, independent of the event, which is exactly what \"the boost preserves the interval\" means once denominators are cleared.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-the-boost-preserves-the-interval",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/spacetime-the-boost-preserves-the-interval",
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-the-boost-preserves-the-interval.html"
+    },
+    {
+      "id": "spacetime--the_light_cone_is_carried_to_itself",
+      "title": "The light cone is carried to itself",
+      "file": "spacetime.lean",
+      "proposition": "∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe light cone is carried to itself",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself",
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-the-light-cone-is-carried-to-itself.html"
     },
     {
       "id": "yang-mills--middle_forms_have_dimension_six",

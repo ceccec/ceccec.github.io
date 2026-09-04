@@ -226,6 +226,39 @@ The involution and its fixed point, together.
 \[ \texttt{(σ (σ 3) = 3) ∧ (σ 1 = 1)} \]
 \end{theorem}
 \begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Light is the fixed point]
+LIGHT IS THE FIXED POINT OF COMPOSITION. Add any velocity to c and the result is c again — not approximately, not in a limit: the same fraction, exactly, at every sample. This is the sense in which c is not a speed among speeds but the fixed point of the operation that combines them.
+\[ \texttt{∀ v ∈ sample, same (add light v) light = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Light is fixed from either side]
+And from the other side, because composition is not assumed commutative until it is checked.
+\[ \texttt{∀ v ∈ sample, same (add v light) light = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Rest is the identity]
+REST IS THE IDENTITY. Adding nothing changes nothing — the other distinguished element.
+\[ \texttt{∀ v ∈ sample, same (add rest v) v = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Composition is symmetric]
+COMPOSITION IS SYMMETRIC in the two velocities, at every pair of the sample.
+\[ \texttt{∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Below c composes to below c]
+\[ \texttt{∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The boost preserves the interval]
+THE INTERVAL IS INVARIANT UP TO THE ONE COMMON FACTOR. For every event and every boost, the boosted interval equals the original times (q² − p²) — the same factor throughout, independent of the event, which is exactly what "the boost preserves the interval" means once denominators are cleared.
+\[ \texttt{∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The light cone is carried to itself]
+\[ \texttt{∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[Middle forms have dimension six]
 dim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.
 \[ \texttt{choose 4 2 = 6} \]

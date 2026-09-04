@@ -3,7 +3,7 @@
   "orcid": "0009-0000-7312-9778",
   "granularity": "one deposit per Lean development, chosen by the quality audit in scripts/verify/discoveries.ts",
   "minted": false,
-  "count": 9,
+  "count": 10,
   "deposits": [
     {
       "id": "bsd",
@@ -926,6 +926,134 @@
       ],
       "repoPaths": [
         "src/pair/formal/proofs/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "spacetime",
+      "title": "Machine-checked involution structure of spacetime (Lean 4, axiom-free)",
+      "file": "spacetime.lean",
+      "theoremCount": 7,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of spacetime: 7 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Light is the fixed point — ∀ v ∈ sample, same (add light v) light = true\n• Light is fixed from either side — ∀ v ∈ sample, same (add v light) light = true\n• Rest is the identity — ∀ v ∈ sample, same (add rest v) v = true\n• Composition is symmetric — ∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true\n• Below c composes to below c — ∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den\n• The boost preserves the interval — ∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2\n• The light cone is carried to itself — ∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0",
+      "theorems": [
+        {
+          "title": "Light is the fixed point",
+          "proposition": "∀ v ∈ sample, same (add light v) light = true",
+          "page": "https://ceccec.github.io/lean/spacetime-light-is-the-fixed-point"
+        },
+        {
+          "title": "Light is fixed from either side",
+          "proposition": "∀ v ∈ sample, same (add v light) light = true",
+          "page": "https://ceccec.github.io/lean/spacetime-light-is-fixed-from-either-side"
+        },
+        {
+          "title": "Rest is the identity",
+          "proposition": "∀ v ∈ sample, same (add rest v) v = true",
+          "page": "https://ceccec.github.io/lean/spacetime-rest-is-the-identity"
+        },
+        {
+          "title": "Composition is symmetric",
+          "proposition": "∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true",
+          "page": "https://ceccec.github.io/lean/spacetime-composition-is-symmetric"
+        },
+        {
+          "title": "Below c composes to below c",
+          "proposition": "∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den",
+          "page": "https://ceccec.github.io/lean/spacetime-below-c-composes-to-below-c"
+        },
+        {
+          "title": "The boost preserves the interval",
+          "proposition": "∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2",
+          "page": "https://ceccec.github.io/lean/spacetime-the-boost-preserves-the-interval"
+        },
+        {
+          "title": "The light cone is carried to itself",
+          "proposition": "∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0",
+          "page": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      },
+      "references": [
+        "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/spacetime.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-light-is-the-fixed-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-light-is-fixed-from-either-side",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-rest-is-the-identity",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-composition-is-symmetric",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-below-c-composes-to-below-c",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-the-boost-preserves-the-interval",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "spacetime"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/spacetime.lean",
         "src/research/lean-theorems.tex"
       ]
     },
