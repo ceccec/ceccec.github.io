@@ -1463,7 +1463,7 @@ function papersMemoized(matrix: MindMatrix, count: number) {
 }
 function papersImpl(matrix: MindMatrix, count: number) {
   const coordinates = livingTorus(matrix).coordinates
-  // THE PAPERS LADDER IS THE a432 OCTAVE, NOT THE CORPUS FOLD. This read foldedCensus(110), whose
+  // THE PAPERS LADDER IS THE a432 OCTAVE, not the corpus census. It read the census of the day, whose
   // answer was the octave only because that WAS the census of the day (a retarget has since moved it);
   // fourth band the same call returned 121 and the 432-paper harmonic became 484. The octave is
   // an axiom of the tuning ladder and does not move with the file count.

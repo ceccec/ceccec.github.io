@@ -91,6 +91,13 @@ export function constantDisagreements(root: string = process.cwd()): string[] {
  * The one exemption is a line that DENIES the link in its own text — `DECOUPLED`, a retarget
  * record, or an explicit "not the census". Those are the sentences that exist to say 108 is
  * the a432 octave and not the corpus fold, and deleting them would delete the correction.
+ *
+ * THE MARKER IS CANONICAL, DELIBERATELY. Two corrected lines carried a denial this list did not
+ * recognise — "a different census from the corpus one" and "NOT the corpus fold" — and the choice was
+ * to widen the exemption or to normalise the sentences. Widening an exemption list is how a gate
+ * quietly stops holding: every new phrasing that means "not the census" becomes another way past it.
+ * The sentences were normalised instead, so the corpus has ONE way to say this and the gate has one
+ * thing to look for. A new phrasing fails, which is the direction to fail in.
  */
 const STALE = /\(2 \* 5\) \* 11|(?<![\d.])110(?![\d.])|(?<![\d.])108(?![\d.])/
 const CENSUS = /census/i

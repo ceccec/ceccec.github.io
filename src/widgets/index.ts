@@ -111,7 +111,7 @@ export function shownInUiVitepressComponentsPairs(matrix: MindMatrix = buildMatr
     statement:
       'This is shown in the UI using VitePress components, in pairs: the production-or-development status (and the rest of the model) surfaces through the portal’s own VitePress components, which come in pairs — each a duality, a thing and its complement folded together — so the interface reads the computed status rather than carrying its own. No new component file is added: the file census is the gapless 123 = 55 + 34 + 21 + 13, so the status is surfaced through the existing paired components, not a new widget.',
     boundary:
-      'A composition of the production/development discriminator, the component graph and the duality models, stating the status is shown through existing VitePress components arranged as pairs. Honest limit: no new component is created (it would break the 110-file Fibonacci census); "shown in the UI in pairs" describes surfacing through the existing paired component machinery, a structural framing — this fold does not itself render a status widget.' }
+      'A composition of the production/development discriminator, the component graph and the duality models, stating the status is shown through existing VitePress components arranged as pairs. Honest limit: no new component is created (it would break the Fibonacci census (UNFOLDED_CENSUS files)); "shown in the UI in pairs" describes surfacing through the existing paired component machinery, a structural framing — this fold does not itself render a status widget.' }
 }
 
 // The beauty is in the math, and every aspect of it must be in the UI in the most effective way —
