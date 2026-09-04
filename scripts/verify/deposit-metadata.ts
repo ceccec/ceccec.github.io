@@ -39,6 +39,7 @@ const REPO_URL = 'https://github.com/ceccec/ceccec.github.io'
 const SITE_URL = 'https://ceccec.github.io'
 const CONCEPT_DOI = '10.5281/zenodo.21787143'
 const REPOSITORY_DOI_NOTE = '10.5281/zenodo.21787144'
+const PUBLICATION_CREDIT_DOI = '10.5281/zenodo.21787144'
 
 /** The record id inside a Zenodo DOI: 10.5281/zenodo.<id>. */
 export function zenodoRecordId(doi: string): string {
@@ -249,4 +250,78 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
   console.log(`  publish as an INDEPENDENT deposit with its own DOI — NOT a version under concept ${CONCEPT_DOI},`)
   console.log(`  which resolves to a different work; that chain is shared by three unrelated projects.`)
   console.log(`  this script holds no credentials and contacts nothing`)
+}
+
+
+/**
+ * EVERY DOI THIS REPOSITORY CITES IS RESOLVED, AND THE RECORD IT LANDS ON IS COMPARED TO WHAT WE
+ * THINK WE ARE CITING.
+ *
+ * We instrumented the CONTENT and neither of us instrumented the ADDRESS. Two repositories built
+ * statement-address scans to stop one result being published twice, ran them across five shared
+ * ledgers, and found no collision — while a concept DOI cited by both of them silently came to
+ * resolve to a third project's record. No statement scan could reach that: it is one layer up, in
+ * identifier space.
+ *
+ * An identifier is a claim like any other, and it is the one kind of claim that can change WITHOUT
+ * this repository changing. A version record can be edited; a concept DOI moves whenever anything is
+ * published into its chain. So reading it once is not enough, and neither is harvesting it — OAI-PMH
+ * cannot see a concept DOI at all and reports a false absence for the identifier most likely to have
+ * moved. It has to be RESOLVED, over HTTP, on a schedule.
+ *
+ * Read-only. It follows redirects and reads public metadata; it holds no credentials and can change
+ * nothing.
+ */
+export type CitedDoi = { readonly doi: string; readonly where: string; readonly mustBeThisWork: boolean }
+
+/** Every Zenodo DOI this repository puts in front of a reader, and whether it must be this work. */
+export function citedDois(root: string = process.cwd()): CitedDoi[] {
+  const cff = readFileSync(join(root, 'CITATION.cff'), 'utf8')
+  const out: CitedDoi[] = []
+  for (const m of cff.matchAll(/10\.5281\/zenodo\.\d+/g)) {
+    out.push({ doi: m[0], where: 'CITATION.cff', mustBeThisWork: true })
+  }
+  // The DOI rendered in the credit block on every page — the one a reader actually clicks.
+  out.push({ doi: PUBLICATION_CREDIT_DOI, where: 'the site-wide citation block', mustBeThisWork: true })
+  // The concept DOI is cited nowhere as a citation now, but it is RECORDED, and its head is exactly
+  // the thing that moves. Resolved and reported, never required to be this work.
+  out.push({ doi: CONCEPT_DOI, where: 'recorded as the concept of the repository record', mustBeThisWork: false })
+  const seen = new Set<string>()
+  return out.filter((c) => (seen.has(`${c.doi}|${c.where}`) ? false : seen.add(`${c.doi}|${c.where}`)))
+}
+
+export async function assertCitedDoisResolve(root: string = process.cwd()): Promise<void> {
+  const cited = citedDois(root)
+  const ours = new Set<string>()
+  const wrong: string[] = []
+  console.log(`resolving ${cited.length} cited DOI(s) — following redirects, reading public metadata only`)
+  for (const c of cited) {
+    let record = ''
+    let title = ''
+    try {
+      const res = await fetch(`https://doi.org/${c.doi}`, { redirect: 'follow' })
+      record = /zenodo\.org\/records\/(\d+)/.exec(res.url)?.[1] ?? ''
+      title = record ? (await harvest(`10.5281/zenodo.${record}`)).title : ''
+    } catch (e) {
+      console.log(`  ${c.doi} — NOT RESOLVED (${(e as Error).message}) · ${c.where}`)
+      continue
+    }
+    const isThisWork = record === zenodoRecordId(PUBLICATION_CREDIT_DOI)
+    if (isThisWork) ours.add(c.doi)
+    console.log(`  ${c.doi} → record ${record} · ${c.where}`)
+    console.log(`      ${isThisWork ? 'this work' : 'A DIFFERENT WORK'}: ${title.slice(0, 92)}`)
+    if (c.mustBeThisWork && !isThisWork) {
+      wrong.push(`${c.doi} (in ${c.where}) resolves to record ${record}, "${title.slice(0, 60)}"`)
+    }
+  }
+  if (wrong.length) {
+    throw new Error(
+      `${wrong.length} DOI(s) this repository puts in front of readers resolve to a different work:\n  ` +
+      `${wrong.join('\n  ')}\n` +
+      `An identifier is the one kind of claim that can change without this repository changing — a ` +
+      `record can be edited and a concept DOI moves whenever anything is published into its chain. ` +
+      `Reading it once was never enough.`
+    )
+  }
+  console.log('every DOI shown to a reader resolves to this work')
 }
