@@ -24,6 +24,7 @@
  * cannot describe itself as original while the ledger says a citation exists — or the reverse.
  */
 
+import { createHash } from 'node:crypto'
 import { writeFileSync, existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { leanPageSlug, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
@@ -151,7 +152,9 @@ export function depositRecords(root: string = process.cwd()): DepositRecord[] {
 }
 
 export function writeDeposits(root: string = process.cwd()): void {
-  const records = depositRecords(root)
+  // PUBLICATIONS, not raw deposits. Two theorems can formalise to the same statement, and a DOI minted
+  // per deposit would put two permanent records on one computation. The merged set is what gets minted.
+  const records = publications(root)
   const out = join(root, 'src/research/theorem-deposits.json')
   writeFileSync(out, `${JSON.stringify({ repositoryDoi: REPOSITORY_DOI, orcid: ORCID, generated: 'derived from the sealed .lean sources; do not edit by hand', count: records.length, records }, null, 2)}\n`)
   console.log(`wrote ${out} — ${records.length} per-theorem deposit records`)
@@ -170,7 +173,9 @@ export function writeDeposits(root: string = process.cwd()): void {
  * from, and a Zenodo record's metadata cannot be corrected after the fact.
  */
 function assertGeneratedDepositsAreCurrent(root: string = process.cwd()): void {
-  const live = depositRecords(root)
+  // Compared against PUBLICATIONS, which is what the file holds: deposits sharing a content address
+  // merge into one, so the deposit count and the file count legitimately differ.
+  const live = publications(root)
   const file = join(root, 'src/research/theorem-deposits.json')
   if (!existsSync(file)) throw new Error(`${file} is missing — run \`npm run paper:deposits\``)
   const onDisk = JSON.parse(readFileSync(file, 'utf8')) as { count?: number; records?: unknown[] }
@@ -373,4 +378,111 @@ export function assertDepositQuality(): void {
   audit('one per Lean development', perFile, 120)
   console.log(`  NOT MINTED — no Zenodo token exists in this environment; the deposit step runs in`)
   console.log(`  .github/workflows/zenodo-publish.yml under secrets.ZENODO_API_TOKEN.`)
+}
+
+/**
+ * A PUBLICATION IS ITS CONTENT, NOT ITS FILENAME — SO IT IS UNIQUE NO MATTER WHICH REPOSITORY IT
+ * COMES FROM.
+ *
+ * Two deposits here carry the byte-identical proposition `(1)*1 = 1 ∧ (-1)*(-1) = 1`: the BSD root
+ * number squaring to one, and the Yang-Mills Hodge star squaring to the identity. They are different
+ * mathematics in prose and the SAME formalised statement, so minting a DOI for each would put two
+ * permanent records on one computation. Nothing detected that, because deposits were keyed by file and
+ * theorem name, and those differ.
+ *
+ * The key is now the CONTENT ADDRESS: a hash of the proposition with whitespace normalised, and
+ * nothing else — not the title, not the file, not the repository. Two statements that compute the same
+ * thing have the same address wherever they live, so:
+ *
+ *   - within this repository, duplicates MERGE into one publication instead of two deposits;
+ *   - across repositories, the address is the merge key. A peer repo depositing the same statement
+ *     resolves to the same publication, and the repos merge in its metadata as occurrences rather
+ *     than minting a second DOI for the same result.
+ *
+ * Merging keeps every occurrence. Nothing is discarded — the publication lists each repository, file
+ * and theorem name it appears under, so the reader sees that one statement carries two readings, which
+ * is more informative than either deposit alone and is exactly what two separate DOIs would have hidden.
+ */
+export const THIS_REPO = REPO
+
+export type Occurrence = {
+  readonly repo: string
+  readonly file: string
+  readonly theorem: string
+  readonly title: string
+}
+
+export type Publication = DepositRecord & {
+  readonly contentAddress: string
+  readonly occurrences: readonly Occurrence[]
+}
+
+/** The content address of a formal statement: its proposition, whitespace-normalised, hashed. */
+export function contentAddress(proposition: string): string {
+  return createHash('sha256').update(proposition.replace(/\s+/g, ' ').trim()).digest('hex').slice(0, 32)
+}
+
+/**
+ * Deposits merged into publications by content address. Order is stable: the first occurrence by id
+ * carries the record, and every occurrence is listed on it.
+ */
+export function publications(root: string = process.cwd()): Publication[] {
+  const byAddress = new Map<string, { record: DepositRecord; occurrences: Occurrence[] }>()
+  for (const r of depositRecords(root)) {
+    const address = contentAddress(r.proposition)
+    const occurrence: Occurrence = {
+      repo: THIS_REPO,
+      file: r.file,
+      theorem: r.id.split('--')[1] ?? r.id,
+      title: r.title,
+    }
+    const hit = byAddress.get(address)
+    if (hit) hit.occurrences.push(occurrence)
+    else byAddress.set(address, { record: r, occurrences: [occurrence] })
+  }
+  return [...byAddress.entries()].map(([contentAddress_, { record, occurrences }]) => ({
+    ...record,
+    contentAddress: contentAddress_,
+    occurrences,
+    // A MERGED PUBLICATION CARRIES BOTH READINGS. The record that survives the merge would otherwise
+    // name only its own source, and a reader of the Zenodo page would never learn that the same
+    // statement is also the other theorem. Every occurrence beyond the first is added as a related
+    // identifier, so the merge is visible in the permanent metadata rather than only in this file.
+    relatedIdentifiers: [
+      ...record.relatedIdentifiers,
+      ...occurrences.slice(1).flatMap((o) => [
+        { identifier: `${BLOB}/src/pair/formal/proofs/${o.file}`, relation: 'isDerivedFrom', scheme: 'url' },
+        { identifier: `${o.repo}#${o.theorem}`, relation: 'isIdenticalTo', scheme: 'url' },
+      ]),
+    ],
+    // The description says it too, in words, because relatedIdentifiers are not read by people.
+    description: occurrences.length > 1
+      ? `${record.description}\n\nTHE SAME FORMAL STATEMENT APPEARS ${occurrences.length} TIMES in this corpus under different readings: ${occurrences.map((o) => `${o.title} (${o.file})`).join('; ')}. They are one publication, not several, because a deposit is its content: minting a DOI for each would place two permanent records on one computation. The content address is ${contentAddress_}.`
+      : record.description,
+  }))
+}
+
+/**
+ * PUBLICATIONS MUST BE UNIQUE BY CONTENT. After merging, no two publications may share an address —
+ * that is what makes the set safe to mint DOIs from, here or in any repository that merges into it.
+ */
+export function assertPublicationsAreUnique(root: string = process.cwd()): void {
+  const pubs = publications(root)
+  const deposits = depositRecords(root)
+  const merged = pubs.filter((p) => p.occurrences.length > 1)
+  console.log(`publications: ${pubs.length} unique by content address, from ${deposits.length} theorem deposits`)
+  for (const m of merged) {
+    console.log(`  MERGED ${m.contentAddress.slice(0, 12)} — one statement, ${m.occurrences.length} readings:`)
+    for (const o of m.occurrences) console.log(`    ${o.file.padEnd(20)} ${o.title}`)
+  }
+  const addresses = new Set(pubs.map((p) => p.contentAddress))
+  if (addresses.size !== pubs.length) {
+    throw new Error(`publications are not unique by content address: ${pubs.length} publications, ${addresses.size} addresses`)
+  }
+  const covered = pubs.reduce((n, p) => n + p.occurrences.length, 0)
+  if (covered !== deposits.length) {
+    throw new Error(`merging lost occurrences: ${deposits.length} deposits went in, ${covered} came out — nothing may be discarded by a merge`)
+  }
+  console.log(`  every one of the ${deposits.length} deposits is accounted for in exactly one publication`)
+  console.log(`  the address is content only — not title, file or repository — so a peer repository depositing the same statement merges here rather than minting a second DOI`)
 }

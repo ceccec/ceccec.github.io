@@ -2,7 +2,7 @@
   "repositoryDoi": "10.5281/zenodo.21787144",
   "orcid": "0009-0000-7312-9778",
   "generated": "derived from the sealed .lean sources; do not edit by hand",
-  "count": 76,
+  "count": 75,
   "records": [
     {
       "id": "bsd--sigma_is_an_involution",
@@ -81,7 +81,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-sigma-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/bsd-sigma-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/bsd-sigma-is-an-involution.html",
+      "contentAddress": "0d31f4921e5f2db873a6a855f1d9c4d7",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "bsd.lean",
+          "theorem": "sigma_is_an_involution",
+          "title": "Sigma is an involution"
+        }
+      ]
     },
     {
       "id": "bsd--central_point_is_the_fixed_point",
@@ -160,14 +169,23 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-central-point-is-the-fixed-point",
-      "landingPageBuilt": ".vitepress/dist/lean/bsd-central-point-is-the-fixed-point.html"
+      "landingPageBuilt": ".vitepress/dist/lean/bsd-central-point-is-the-fixed-point.html",
+      "contentAddress": "40f4475a5646348e75d3c6451c5c4dd5",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "bsd.lean",
+          "theorem": "central_point_is_the_fixed_point",
+          "title": "Central point is the fixed point"
+        }
+      ]
     },
     {
       "id": "bsd--root_number_squares_to_one",
       "title": "Root number squares to one",
       "file": "bsd.lean",
       "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe root number is an involution's eigenvalue: w ∈ {1, −1} and w² = 1.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe root number is an involution's eigenvalue: w ∈ {1, −1} and w² = 1.\n\nTHE SAME FORMAL STATEMENT APPEARS 2 TIMES in this corpus under different readings: Root number squares to one (bsd.lean); Star squares to the identity (yang-mills.lean). They are one publication, not several, because a deposit is its content: minting a DOI for each would place two permanent records on one computation. The content address is 8251fd183d1f9ab056c6805af0e4acd2.",
       "priorArt": {
         "kind": "attributed",
         "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
@@ -202,6 +220,16 @@
         {
           "identifier": "https://ceccec.github.io/lean/bsd-root-number-squares-to-one",
           "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io#star_squares_to_the_identity",
+          "relation": "isIdenticalTo",
           "scheme": "url"
         }
       ],
@@ -239,7 +267,22 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-root-number-squares-to-one",
-      "landingPageBuilt": ".vitepress/dist/lean/bsd-root-number-squares-to-one.html"
+      "landingPageBuilt": ".vitepress/dist/lean/bsd-root-number-squares-to-one.html",
+      "contentAddress": "8251fd183d1f9ab056c6805af0e4acd2",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "bsd.lean",
+          "theorem": "root_number_squares_to_one",
+          "title": "Root number squares to one"
+        },
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "yang-mills.lean",
+          "theorem": "star_squares_to_the_identity",
+          "title": "Star squares to the identity"
+        }
+      ]
     },
     {
       "id": "bsd--root_number_one_iff_rank_even",
@@ -318,7 +361,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-root-number-one-iff-rank-even",
-      "landingPageBuilt": ".vitepress/dist/lean/bsd-root-number-one-iff-rank-even.html"
+      "landingPageBuilt": ".vitepress/dist/lean/bsd-root-number-one-iff-rank-even.html",
+      "contentAddress": "8da060ec4870cde469b8a56b8874e23c",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "bsd.lean",
+          "theorem": "root_number_one_iff_rank_even",
+          "title": "Root number one iff rank even"
+        }
+      ]
     },
     {
       "id": "bsd--parity_is_an_involution",
@@ -397,7 +449,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/bsd-parity-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/bsd-parity-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/bsd-parity-is-an-involution.html",
+      "contentAddress": "57687a8fd2c3617b4d62678c84ab2415",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "bsd.lean",
+          "theorem": "parity_is_an_involution",
+          "title": "Parity is an involution"
+        }
+      ]
     },
     {
       "id": "coin--the_coin_is_an_involution",
@@ -476,7 +537,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-coin-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-the-coin-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-the-coin-is-an-involution.html",
+      "contentAddress": "44221b783e249fc28a339d653ba93543",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "the_coin_is_an_involution",
+          "title": "The coin is an involution"
+        }
+      ]
     },
     {
       "id": "coin--the_harmonic_is_the_only_fixed_point",
@@ -555,7 +625,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-harmonic-is-the-only-fixed-point",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-the-harmonic-is-the-only-fixed-point.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-the-harmonic-is-the-only-fixed-point.html",
+      "contentAddress": "532bfc63e87448c3ef92d6d3c8043864",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "the_harmonic_is_the_only_fixed_point",
+          "title": "The harmonic is the only fixed point"
+        }
+      ]
     },
     {
       "id": "coin--all_that_is_not_harmonic_is_moved",
@@ -634,7 +713,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-all-that-is-not-harmonic-is-moved",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-all-that-is-not-harmonic-is-moved.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-all-that-is-not-harmonic-is-moved.html",
+      "contentAddress": "ddaf71df5ff6809f306708e491e599f3",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "all_that_is_not_harmonic_is_moved",
+          "title": "All that is not harmonic is moved"
+        }
+      ]
     },
     {
       "id": "coin--the_sides_are_equal_and_exchanged",
@@ -713,7 +801,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-sides-are-equal-and-exchanged",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-the-sides-are-equal-and-exchanged.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-the-sides-are-equal-and-exchanged.html",
+      "contentAddress": "9970249e9e9d2676d5543be75bf63563",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "the_sides_are_equal_and_exchanged",
+          "title": "The sides are equal and exchanged"
+        }
+      ]
     },
     {
       "id": "coin--the_coin_is_two_sides_and_one_edge",
@@ -792,7 +889,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-coin-is-two-sides-and-one-edge",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-the-coin-is-two-sides-and-one-edge.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-the-coin-is-two-sides-and-one-edge.html",
+      "contentAddress": "f4ac56591222b8b2252c6cd0aa3f1f71",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "the_coin_is_two_sides_and_one_edge",
+          "title": "The coin is two sides and one edge"
+        }
+      ]
     },
     {
       "id": "coin--every_bit_of_resistance_drains",
@@ -871,7 +977,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-every-bit-of-resistance-drains",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-every-bit-of-resistance-drains.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-every-bit-of-resistance-drains.html",
+      "contentAddress": "6b3b03760cd85e883a7c6985c523e950",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "every_bit_of_resistance_drains",
+          "title": "Every bit of resistance drains"
+        }
+      ]
     },
     {
       "id": "coin--the_harmonic_carries_no_resistance",
@@ -950,7 +1065,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-harmonic-carries-no-resistance",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-the-harmonic-carries-no-resistance.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-the-harmonic-carries-no-resistance.html",
+      "contentAddress": "bea5bd7e34bf0d97a48bae57de21f457",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "the_harmonic_carries_no_resistance",
+          "title": "The harmonic carries no resistance"
+        }
+      ]
     },
     {
       "id": "coin--the_whole_surface_sums_to_zero",
@@ -1029,7 +1153,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-whole-surface-sums-to-zero",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-the-whole-surface-sums-to-zero.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-the-whole-surface-sums-to-zero.html",
+      "contentAddress": "7ed0ca705b3b921034f65b109565c047",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "the_whole_surface_sums_to_zero",
+          "title": "The whole surface sums to zero"
+        }
+      ]
     },
     {
       "id": "coin--the_drain_is_exact_at_every_scale",
@@ -1108,7 +1241,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-drain-is-exact-at-every-scale",
-      "landingPageBuilt": ".vitepress/dist/lean/coin-the-drain-is-exact-at-every-scale.html"
+      "landingPageBuilt": ".vitepress/dist/lean/coin-the-drain-is-exact-at-every-scale.html",
+      "contentAddress": "842719e0b0b9a893e770f86ebd256969",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "coin.lean",
+          "theorem": "the_drain_is_exact_at_every_scale",
+          "title": "The drain is exact at every scale"
+        }
+      ]
     },
     {
       "id": "hodge--sigma_is_an_involution",
@@ -1187,7 +1329,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-sigma-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/hodge-sigma-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/hodge-sigma-is-an-involution.html",
+      "contentAddress": "a528a752aaaf974778a10b2e080dc59b",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "hodge.lean",
+          "theorem": "sigma_is_an_involution",
+          "title": "Sigma is an involution"
+        }
+      ]
     },
     {
       "id": "hodge--sigma_preserves_degree",
@@ -1266,7 +1417,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-sigma-preserves-degree",
-      "landingPageBuilt": ".vitepress/dist/lean/hodge-sigma-preserves-degree.html"
+      "landingPageBuilt": ".vitepress/dist/lean/hodge-sigma-preserves-degree.html",
+      "contentAddress": "563da4be09a1b4a80d44d9bb2644558f",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "hodge.lean",
+          "theorem": "sigma_preserves_degree",
+          "title": "Sigma preserves degree"
+        }
+      ]
     },
     {
       "id": "hodge--fixed_type_is_p_equals_q",
@@ -1345,7 +1505,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-fixed-type-is-p-equals-q",
-      "landingPageBuilt": ".vitepress/dist/lean/hodge-fixed-type-is-p-equals-q.html"
+      "landingPageBuilt": ".vitepress/dist/lean/hodge-fixed-type-is-p-equals-q.html",
+      "contentAddress": "c45a9bf698fad5311563c32430a9065c",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "hodge.lean",
+          "theorem": "fixed_type_is_p_equals_q",
+          "title": "Fixed type is p equals q"
+        }
+      ]
     },
     {
       "id": "hodge--diagonal_is_fixed_at_every_k",
@@ -1424,7 +1593,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-diagonal-is-fixed-at-every-k",
-      "landingPageBuilt": ".vitepress/dist/lean/hodge-diagonal-is-fixed-at-every-k.html"
+      "landingPageBuilt": ".vitepress/dist/lean/hodge-diagonal-is-fixed-at-every-k.html",
+      "contentAddress": "15e20da79f4c7f0ac6a173614a7b21e2",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "hodge.lean",
+          "theorem": "diagonal_is_fixed_at_every_k",
+          "title": "Diagonal is fixed at every k"
+        }
+      ]
     },
     {
       "id": "hodge--involution_fixes_the_diagonal",
@@ -1503,7 +1681,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/hodge-involution-fixes-the-diagonal",
-      "landingPageBuilt": ".vitepress/dist/lean/hodge-involution-fixes-the-diagonal.html"
+      "landingPageBuilt": ".vitepress/dist/lean/hodge-involution-fixes-the-diagonal.html",
+      "contentAddress": "7e88cc1617b29800598223ac2738c9c2",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "hodge.lean",
+          "theorem": "involution_fixes_the_diagonal",
+          "title": "Involution fixes the diagonal"
+        }
+      ]
     },
     {
       "id": "involution--orbit_sums_to_zero",
@@ -1582,7 +1769,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-orbit-sums-to-zero",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-orbit-sums-to-zero.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-orbit-sums-to-zero.html",
+      "contentAddress": "d0893af6c2301b4d95c38073db0133a5",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "orbit_sums_to_zero",
+          "title": "Orbit sums to zero"
+        }
+      ]
     },
     {
       "id": "involution--odd_vanishes_at_a_fixed_point",
@@ -1661,7 +1857,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-odd-vanishes-at-a-fixed-point",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-odd-vanishes-at-a-fixed-point.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-odd-vanishes-at-a-fixed-point.html",
+      "contentAddress": "0881d4c25a5f52da626b7cb9fd8533ed",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "odd_vanishes_at_a_fixed_point",
+          "title": "Odd vanishes at a fixed point"
+        }
+      ]
     },
     {
       "id": "involution--evenPart_is_symmetric",
@@ -1740,7 +1945,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-evenpart-is-symmetric",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-evenpart-is-symmetric.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-evenpart-is-symmetric.html",
+      "contentAddress": "076bb5709dde04ff99a5327040ad5ad4",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "evenPart_is_symmetric",
+          "title": "EvenPart is symmetric"
+        }
+      ]
     },
     {
       "id": "involution--the_split_loses_nothing",
@@ -1819,7 +2033,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-the-split-loses-nothing",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-the-split-loses-nothing.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-the-split-loses-nothing.html",
+      "contentAddress": "91e55826310f443f12db860db56ef643",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "the_split_loses_nothing",
+          "title": "The split loses nothing"
+        }
+      ]
     },
     {
       "id": "involution--the_instance_is_an_involution",
@@ -1898,7 +2121,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-the-instance-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-is-an-involution.html",
+      "contentAddress": "a31f57467e72b13ea94151a0931ecb4c",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "the_instance_is_an_involution",
+          "title": "The instance is an involution"
+        }
+      ]
     },
     {
       "id": "involution--the_instance_cancels_over_every_orbit",
@@ -1977,7 +2209,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-the-instance-cancels-over-every-orbit",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-cancels-over-every-orbit.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-cancels-over-every-orbit.html",
+      "contentAddress": "e922e2093ad7ea40bb63fea7f83a3dff",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "the_instance_cancels_over_every_orbit",
+          "title": "The instance cancels over every orbit"
+        }
+      ]
     },
     {
       "id": "involution--the_instance_has_one_harmonic_point",
@@ -2056,7 +2297,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-the-instance-has-one-harmonic-point",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-has-one-harmonic-point.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-has-one-harmonic-point.html",
+      "contentAddress": "27b3d7d4178473b548f3b27a956a344a",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "the_instance_has_one_harmonic_point",
+          "title": "The instance has one harmonic point"
+        }
+      ]
     },
     {
       "id": "involution--the_instance_splits_without_loss",
@@ -2135,7 +2385,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/involution-the-instance-splits-without-loss",
-      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-splits-without-loss.html"
+      "landingPageBuilt": ".vitepress/dist/lean/involution-the-instance-splits-without-loss.html",
+      "contentAddress": "bcc99e297b9c8621b324d715360a8c40",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "involution.lean",
+          "theorem": "the_instance_splits_without_loss",
+          "title": "The instance splits without loss"
+        }
+      ]
     },
     {
       "id": "navier-stokes--reversal_is_an_involution",
@@ -2214,7 +2473,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/navier-stokes-reversal-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-reversal-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-reversal-is-an-involution.html",
+      "contentAddress": "74dc76f522c6014fbc903e9417a0da3b",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "navier-stokes.lean",
+          "theorem": "reversal_is_an_involution",
+          "title": "Reversal is an involution"
+        }
+      ]
     },
     {
       "id": "navier-stokes--euler_is_time_reversible",
@@ -2293,7 +2561,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/navier-stokes-euler-is-time-reversible",
-      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-euler-is-time-reversible.html"
+      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-euler-is-time-reversible.html",
+      "contentAddress": "f6b571874ea41ee01e4f752336f426a2",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "navier-stokes.lean",
+          "theorem": "euler_is_time_reversible",
+          "title": "Euler is time reversible"
+        }
+      ]
     },
     {
       "id": "navier-stokes--viscosity_breaks_time_reversal",
@@ -2372,7 +2649,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/navier-stokes-viscosity-breaks-time-reversal",
-      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-viscosity-breaks-time-reversal.html"
+      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-viscosity-breaks-time-reversal.html",
+      "contentAddress": "62ffa5b09195cea75cda0db661001f1c",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "navier-stokes.lean",
+          "theorem": "viscosity_breaks_time_reversal",
+          "title": "Viscosity breaks time reversal"
+        }
+      ]
     },
     {
       "id": "navier-stokes--fixed_points_are_exactly_the_inviscid",
@@ -2451,7 +2737,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/navier-stokes-fixed-points-are-exactly-the-inviscid",
-      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-fixed-points-are-exactly-the-inviscid.html"
+      "landingPageBuilt": ".vitepress/dist/lean/navier-stokes-fixed-points-are-exactly-the-inviscid.html",
+      "contentAddress": "affea5104132bd606aa02c0f7a0cf80d",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "navier-stokes.lean",
+          "theorem": "fixed_points_are_exactly_the_inviscid",
+          "title": "Fixed points are exactly the inviscid"
+        }
+      ]
     },
     {
       "id": "p-vs-np--sigma_is_an_involution",
@@ -2530,7 +2825,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/p-vs-np-sigma-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-sigma-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-sigma-is-an-involution.html",
+      "contentAddress": "75d301514aace0113f945e436d55b8ee",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "p-vs-np.lean",
+          "theorem": "sigma_is_an_involution",
+          "title": "Sigma is an involution"
+        }
+      ]
     },
     {
       "id": "p-vs-np--fixed_points_are_p_and_pspace",
@@ -2609,7 +2913,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/p-vs-np-fixed-points-are-p-and-pspace",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-fixed-points-are-p-and-pspace.html"
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-fixed-points-are-p-and-pspace.html",
+      "contentAddress": "919c71cbfc83a68292d6632ce218d86f",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "p-vs-np.lean",
+          "theorem": "fixed_points_are_p_and_pspace",
+          "title": "Fixed points are p and pspace"
+        }
+      ]
     },
     {
       "id": "p-vs-np--np_and_conp_are_swapped",
@@ -2688,7 +3001,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/p-vs-np-np-and-conp-are-swapped",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-np-and-conp-are-swapped.html"
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-np-and-conp-are-swapped.html",
+      "contentAddress": "eeadc8df87d0de3f1631a08e4055bef9",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "p-vs-np.lean",
+          "theorem": "np_and_conp_are_swapped",
+          "title": "Np and conp are swapped"
+        }
+      ]
     },
     {
       "id": "p-vs-np--if_np_is_fixed_then_np_equals_conp",
@@ -2767,7 +3089,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp.html"
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp.html",
+      "contentAddress": "722de9e81400bc77bce394df5412ac91",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "p-vs-np.lean",
+          "theorem": "if_np_is_fixed_then_np_equals_conp",
+          "title": "If np is fixed then np equals conp"
+        }
+      ]
     },
     {
       "id": "p-vs-np--p_is_closed_under_complement",
@@ -2846,7 +3177,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/p-vs-np-p-is-closed-under-complement",
-      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-p-is-closed-under-complement.html"
+      "landingPageBuilt": ".vitepress/dist/lean/p-vs-np-p-is-closed-under-complement.html",
+      "contentAddress": "6d6d8250d39002ed5ffbe598b4e37890",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "p-vs-np.lean",
+          "theorem": "p_is_closed_under_complement",
+          "title": "P is closed under complement"
+        }
+      ]
     },
     {
       "id": "poincare--chi_and_genus_are_inverse",
@@ -2925,7 +3265,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-chi-and-genus-are-inverse",
-      "landingPageBuilt": ".vitepress/dist/lean/poincare-chi-and-genus-are-inverse.html"
+      "landingPageBuilt": ".vitepress/dist/lean/poincare-chi-and-genus-are-inverse.html",
+      "contentAddress": "25d2a7f475b258152bf13b3c86444c74",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "poincare.lean",
+          "theorem": "chi_and_genus_are_inverse",
+          "title": "Chi and genus are inverse"
+        }
+      ]
     },
     {
       "id": "poincare--sphere_has_euler_characteristic_two",
@@ -3004,7 +3353,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-sphere-has-euler-characteristic-two",
-      "landingPageBuilt": ".vitepress/dist/lean/poincare-sphere-has-euler-characteristic-two.html"
+      "landingPageBuilt": ".vitepress/dist/lean/poincare-sphere-has-euler-characteristic-two.html",
+      "contentAddress": "5864907f2c6cf4a3d85774de3fb3b3de",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "poincare.lean",
+          "theorem": "sphere_has_euler_characteristic_two",
+          "title": "Sphere has euler characteristic two"
+        }
+      ]
     },
     {
       "id": "poincare--torus_has_euler_characteristic_zero",
@@ -3083,7 +3441,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-torus-has-euler-characteristic-zero",
-      "landingPageBuilt": ".vitepress/dist/lean/poincare-torus-has-euler-characteristic-zero.html"
+      "landingPageBuilt": ".vitepress/dist/lean/poincare-torus-has-euler-characteristic-zero.html",
+      "contentAddress": "8dac639a5dc769b5c2502e81452deb1c",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "poincare.lean",
+          "theorem": "torus_has_euler_characteristic_zero",
+          "title": "Torus has euler characteristic zero"
+        }
+      ]
     },
     {
       "id": "poincare--double_torus_has_chi_minus_two_and_rank_four",
@@ -3162,7 +3529,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-double-torus-has-chi-minus-two-and-rank-four",
-      "landingPageBuilt": ".vitepress/dist/lean/poincare-double-torus-has-chi-minus-two-and-rank-four.html"
+      "landingPageBuilt": ".vitepress/dist/lean/poincare-double-torus-has-chi-minus-two-and-rank-four.html",
+      "contentAddress": "058f36e8eba1f17011f93c7e44c40f8a",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "poincare.lean",
+          "theorem": "double_torus_has_chi_minus_two_and_rank_four",
+          "title": "Double torus has chi minus two and rank four"
+        }
+      ]
     },
     {
       "id": "poincare--homology_rank_is_twice_the_genus",
@@ -3241,7 +3617,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/poincare-homology-rank-is-twice-the-genus",
-      "landingPageBuilt": ".vitepress/dist/lean/poincare-homology-rank-is-twice-the-genus.html"
+      "landingPageBuilt": ".vitepress/dist/lean/poincare-homology-rank-is-twice-the-genus.html",
+      "contentAddress": "778bc0d62d77b9248b71b5eb21c3fc65",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "poincare.lean",
+          "theorem": "homology_rank_is_twice_the_genus",
+          "title": "Homology rank is twice the genus"
+        }
+      ]
     },
     {
       "id": "riemann--sigma_is_an_involution",
@@ -3320,7 +3705,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-sigma-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/riemann-sigma-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/riemann-sigma-is-an-involution.html",
+      "contentAddress": "7d2772136ad59f104bdb5885bd358fb0",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "riemann.lean",
+          "theorem": "sigma_is_an_involution",
+          "title": "Sigma is an involution"
+        }
+      ]
     },
     {
       "id": "riemann--critical_line_is_the_fixed_point",
@@ -3399,7 +3793,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-critical-line-is-the-fixed-point",
-      "landingPageBuilt": ".vitepress/dist/lean/riemann-critical-line-is-the-fixed-point.html"
+      "landingPageBuilt": ".vitepress/dist/lean/riemann-critical-line-is-the-fixed-point.html",
+      "contentAddress": "63a504bcd11364e655c1a74ec4ee6e91",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "riemann.lean",
+          "theorem": "critical_line_is_the_fixed_point",
+          "title": "Critical line is the fixed point"
+        }
+      ]
     },
     {
       "id": "riemann--sigma_pairs_the_plane",
@@ -3478,7 +3881,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-sigma-pairs-the-plane",
-      "landingPageBuilt": ".vitepress/dist/lean/riemann-sigma-pairs-the-plane.html"
+      "landingPageBuilt": ".vitepress/dist/lean/riemann-sigma-pairs-the-plane.html",
+      "contentAddress": "78dd45adfdb9b3930eb7a7db98e80535",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "riemann.lean",
+          "theorem": "sigma_pairs_the_plane",
+          "title": "Sigma pairs the plane"
+        }
+      ]
     },
     {
       "id": "riemann--the_fixed_line_is_one_half",
@@ -3557,7 +3969,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-the-fixed-line-is-one-half",
-      "landingPageBuilt": ".vitepress/dist/lean/riemann-the-fixed-line-is-one-half.html"
+      "landingPageBuilt": ".vitepress/dist/lean/riemann-the-fixed-line-is-one-half.html",
+      "contentAddress": "ee663e2872a8a3843e23bd692d221f12",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "riemann.lean",
+          "theorem": "the_fixed_line_is_one_half",
+          "title": "The fixed line is one half"
+        }
+      ]
     },
     {
       "id": "riemann--involution_fixes_the_critical_line",
@@ -3636,7 +4057,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/riemann-involution-fixes-the-critical-line",
-      "landingPageBuilt": ".vitepress/dist/lean/riemann-involution-fixes-the-critical-line.html"
+      "landingPageBuilt": ".vitepress/dist/lean/riemann-involution-fixes-the-critical-line.html",
+      "contentAddress": "f24770e5fdda3704e0e0bd4ca81df5c6",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "riemann.lean",
+          "theorem": "involution_fixes_the_critical_line",
+          "title": "Involution fixes the critical line"
+        }
+      ]
     },
     {
       "id": "spacetime--light_is_the_fixed_point",
@@ -3715,7 +4145,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-light-is-the-fixed-point",
-      "landingPageBuilt": ".vitepress/dist/lean/spacetime-light-is-the-fixed-point.html"
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-light-is-the-fixed-point.html",
+      "contentAddress": "51c2e785c82fea603b69220a533d302e",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "spacetime.lean",
+          "theorem": "light_is_the_fixed_point",
+          "title": "Light is the fixed point"
+        }
+      ]
     },
     {
       "id": "spacetime--light_is_fixed_from_either_side",
@@ -3794,7 +4233,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-light-is-fixed-from-either-side",
-      "landingPageBuilt": ".vitepress/dist/lean/spacetime-light-is-fixed-from-either-side.html"
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-light-is-fixed-from-either-side.html",
+      "contentAddress": "076a2a443310e0ea2b12061d6ce04efa",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "spacetime.lean",
+          "theorem": "light_is_fixed_from_either_side",
+          "title": "Light is fixed from either side"
+        }
+      ]
     },
     {
       "id": "spacetime--rest_is_the_identity",
@@ -3873,7 +4321,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-rest-is-the-identity",
-      "landingPageBuilt": ".vitepress/dist/lean/spacetime-rest-is-the-identity.html"
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-rest-is-the-identity.html",
+      "contentAddress": "d2d056ff6d4f2fd81080150d0550658d",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "spacetime.lean",
+          "theorem": "rest_is_the_identity",
+          "title": "Rest is the identity"
+        }
+      ]
     },
     {
       "id": "spacetime--composition_is_symmetric",
@@ -3952,7 +4409,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-composition-is-symmetric",
-      "landingPageBuilt": ".vitepress/dist/lean/spacetime-composition-is-symmetric.html"
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-composition-is-symmetric.html",
+      "contentAddress": "5f1fd80545850cec8801a0bb4416641f",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "spacetime.lean",
+          "theorem": "composition_is_symmetric",
+          "title": "Composition is symmetric"
+        }
+      ]
     },
     {
       "id": "spacetime--below_c_composes_to_below_c",
@@ -4031,7 +4497,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-below-c-composes-to-below-c",
-      "landingPageBuilt": ".vitepress/dist/lean/spacetime-below-c-composes-to-below-c.html"
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-below-c-composes-to-below-c.html",
+      "contentAddress": "d7d915b5d778a75c45c25af84d42fa3d",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "spacetime.lean",
+          "theorem": "below_c_composes_to_below_c",
+          "title": "Below c composes to below c"
+        }
+      ]
     },
     {
       "id": "spacetime--the_boost_preserves_the_interval",
@@ -4110,7 +4585,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-the-boost-preserves-the-interval",
-      "landingPageBuilt": ".vitepress/dist/lean/spacetime-the-boost-preserves-the-interval.html"
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-the-boost-preserves-the-interval.html",
+      "contentAddress": "2ee36808fd5ea005abc2319e98eded5f",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "spacetime.lean",
+          "theorem": "the_boost_preserves_the_interval",
+          "title": "The boost preserves the interval"
+        }
+      ]
     },
     {
       "id": "spacetime--the_light_cone_is_carried_to_itself",
@@ -4189,7 +4673,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself",
-      "landingPageBuilt": ".vitepress/dist/lean/spacetime-the-light-cone-is-carried-to-itself.html"
+      "landingPageBuilt": ".vitepress/dist/lean/spacetime-the-light-cone-is-carried-to-itself.html",
+      "contentAddress": "c8fea04e9b48b05f083b4ae25fba0879",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "spacetime.lean",
+          "theorem": "the_light_cone_is_carried_to_itself",
+          "title": "The light cone is carried to itself"
+        }
+      ]
     },
     {
       "id": "three--closure_is_one_hundred_sixty_two",
@@ -4267,7 +4760,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-closure-is-one-hundred-sixty-two",
-      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-one-hundred-sixty-two.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-one-hundred-sixty-two.html",
+      "contentAddress": "6d4d902a942331155dd2f9fb27174f81",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "closure_is_one_hundred_sixty_two",
+          "title": "Closure is one hundred sixty two"
+        }
+      ]
     },
     {
       "id": "three--closure_is_the_product",
@@ -4346,7 +4848,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-closure-is-the-product",
-      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-the-product.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-the-product.html",
+      "contentAddress": "e80fbec4eed4011a16565727638c6217",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "closure_is_the_product",
+          "title": "Closure is the product"
+        }
+      ]
     },
     {
       "id": "three--closure_has_no_duplicate",
@@ -4425,7 +4936,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-closure-has-no-duplicate",
-      "landingPageBuilt": ".vitepress/dist/lean/three-closure-has-no-duplicate.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-has-no-duplicate.html",
+      "contentAddress": "f6b764382339d08650d196b52ec7bf16",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "closure_has_no_duplicate",
+          "title": "Closure has no duplicate"
+        }
+      ]
     },
     {
       "id": "three--closure_is_complete",
@@ -4504,7 +5024,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-closure-is-complete",
-      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-complete.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-closure-is-complete.html",
+      "contentAddress": "7e10bb4b0be79ede100eccf911e6f6cf",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "closure_is_complete",
+          "title": "Closure is complete"
+        }
+      ]
     },
     {
       "id": "three--address_inverts",
@@ -4583,7 +5112,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-address-inverts",
-      "landingPageBuilt": ".vitepress/dist/lean/three-address-inverts.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-address-inverts.html",
+      "contentAddress": "4f4ec5e41afabe8e2e1e1b05587b3de2",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "address_inverts",
+          "title": "Address inverts"
+        }
+      ]
     },
     {
       "id": "three--addresses_are_the_interval",
@@ -4662,7 +5200,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-addresses-are-the-interval",
-      "landingPageBuilt": ".vitepress/dist/lean/three-addresses-are-the-interval.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-addresses-are-the-interval.html",
+      "contentAddress": "91cdef6f473baa9dda312d34a70c1f17",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "addresses_are_the_interval",
+          "title": "Addresses are the interval"
+        }
+      ]
     },
     {
       "id": "three--the_compound_fraction_clears",
@@ -4741,7 +5288,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-the-compound-fraction-clears",
-      "landingPageBuilt": ".vitepress/dist/lean/three-the-compound-fraction-clears.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-the-compound-fraction-clears.html",
+      "contentAddress": "73ceacfb490264f222b3fdb3d111c7f8",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "the_compound_fraction_clears",
+          "title": "The compound fraction clears"
+        }
+      ]
     },
     {
       "id": "three--focal_plane_is_unit_scale",
@@ -4820,7 +5376,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-focal-plane-is-unit-scale",
-      "landingPageBuilt": ".vitepress/dist/lean/three-focal-plane-is-unit-scale.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-focal-plane-is-unit-scale.html",
+      "contentAddress": "9ba3793c56546422f3c65c204632db9a",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "focal_plane_is_unit_scale",
+          "title": "Focal plane is unit scale"
+        }
+      ]
     },
     {
       "id": "three--depth_is_strictly_monotone",
@@ -4899,7 +5464,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-depth-is-strictly-monotone",
-      "landingPageBuilt": ".vitepress/dist/lean/three-depth-is-strictly-monotone.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-depth-is-strictly-monotone.html",
+      "contentAddress": "eb9ff11e26c53061f8fd1a25263ec3d9",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "depth_is_strictly_monotone",
+          "title": "Depth is strictly monotone"
+        }
+      ]
     },
     {
       "id": "three--frustum_brackets_the_focal_plane",
@@ -4978,7 +5552,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-frustum-brackets-the-focal-plane",
-      "landingPageBuilt": ".vitepress/dist/lean/three-frustum-brackets-the-focal-plane.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-frustum-brackets-the-focal-plane.html",
+      "contentAddress": "acd2ffd067efd65be8a20c27ea077ec8",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "frustum_brackets_the_focal_plane",
+          "title": "Frustum brackets the focal plane"
+        }
+      ]
     },
     {
       "id": "three--denominator_is_positive_on_the_frustum",
@@ -5057,7 +5640,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-denominator-is-positive-on-the-frustum",
-      "landingPageBuilt": ".vitepress/dist/lean/three-denominator-is-positive-on-the-frustum.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-denominator-is-positive-on-the-frustum.html",
+      "contentAddress": "b86c807ca578bb80cbb0244d623f2130",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "denominator_is_positive_on_the_frustum",
+          "title": "Denominator is positive on the frustum"
+        }
+      ]
     },
     {
       "id": "three--reflection_is_an_involution",
@@ -5136,7 +5728,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-reflection-is-an-involution",
-      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-is-an-involution.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-is-an-involution.html",
+      "contentAddress": "d35d212ed208fceca21fef451a65e4f4",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "reflection_is_an_involution",
+          "title": "Reflection is an involution"
+        }
+      ]
     },
     {
       "id": "three--reflection_closes_on_the_closure",
@@ -5215,7 +5816,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-reflection-closes-on-the-closure",
-      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-closes-on-the-closure.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-closes-on-the-closure.html",
+      "contentAddress": "590207d582221e2a2819319cd2c19e9c",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "reflection_closes_on_the_closure",
+          "title": "Reflection closes on the closure"
+        }
+      ]
     },
     {
       "id": "three--reflection_has_no_fixed_point",
@@ -5294,7 +5904,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-reflection-has-no-fixed-point",
-      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-has-no-fixed-point.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-has-no-fixed-point.html",
+      "contentAddress": "2719b578a3ea0573074c9065f2630cf0",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "reflection_has_no_fixed_point",
+          "title": "Reflection has no fixed point"
+        }
+      ]
     },
     {
       "id": "three--the_closure_is_eighty_one_orbits",
@@ -5372,7 +5991,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-the-closure-is-eighty-one-orbits",
-      "landingPageBuilt": ".vitepress/dist/lean/three-the-closure-is-eighty-one-orbits.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-the-closure-is-eighty-one-orbits.html",
+      "contentAddress": "33148955f184893732dd35745385278b",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "the_closure_is_eighty_one_orbits",
+          "title": "The closure is eighty one orbits"
+        }
+      ]
     },
     {
       "id": "three--orbit_positions_cancel",
@@ -5451,7 +6079,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-orbit-positions-cancel",
-      "landingPageBuilt": ".vitepress/dist/lean/three-orbit-positions-cancel.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-orbit-positions-cancel.html",
+      "contentAddress": "0fa06109b7674147ba23ea33475da36b",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "orbit_positions_cancel",
+          "title": "Orbit positions cancel"
+        }
+      ]
     },
     {
       "id": "three--reflection_complements_the_address",
@@ -5529,7 +6166,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-reflection-complements-the-address",
-      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-complements-the-address.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-reflection-complements-the-address.html",
+      "contentAddress": "c6e81cdf8127cbeea1bb345cd877137d",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "reflection_complements_the_address",
+          "title": "Reflection complements the address"
+        }
+      ]
     },
     {
       "id": "three--the_involution_laws_are_general",
@@ -5608,7 +6254,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/three-the-involution-laws-are-general",
-      "landingPageBuilt": ".vitepress/dist/lean/three-the-involution-laws-are-general.html"
+      "landingPageBuilt": ".vitepress/dist/lean/three-the-involution-laws-are-general.html",
+      "contentAddress": "f8931b1c18f46cbaa0e96aa7912f9b4c",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "three.lean",
+          "theorem": "the_involution_laws_are_general",
+          "title": "The involution laws are general"
+        }
+      ]
     },
     {
       "id": "yang-mills--middle_forms_have_dimension_six",
@@ -5687,86 +6342,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/yang-mills-middle-forms-have-dimension-six",
-      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-middle-forms-have-dimension-six.html"
-    },
-    {
-      "id": "yang-mills--star_squares_to_the_identity",
-      "title": "Star squares to the identity",
-      "file": "yang-mills.lean",
-      "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nStar squares to the identity",
-      "priorArt": {
-        "kind": "attributed",
-        "citation": "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
-      },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
-      "relatedIdentifiers": [
+      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-middle-forms-have-dimension-six.html",
+      "contentAddress": "069eb749f1a67b3c05206152db056ec6",
+      "occurrences": [
         {
-          "identifier": "10.5281/zenodo.21787144",
-          "relation": "isPartOf",
-          "scheme": "doi"
-        },
-        {
-          "identifier": "https://github.com/ceccec/ceccec.github.io",
-          "relation": "isSupplementTo",
-          "scheme": "url"
-        },
-        {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
-          "relation": "isDerivedFrom",
-          "scheme": "url"
-        },
-        {
-          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
-          "relation": "isDocumentedBy",
-          "scheme": "url"
-        },
-        {
-          "identifier": "https://ceccec.github.io",
-          "relation": "isPublishedIn",
-          "scheme": "url"
-        },
-        {
-          "identifier": "https://ceccec.github.io/lean/yang-mills-star-squares-to-the-identity",
-          "relation": "isDocumentedBy",
-          "scheme": "url"
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "yang-mills.lean",
+          "theorem": "middle_forms_have_dimension_six",
+          "title": "Middle forms have dimension six"
         }
-      ],
-      "references": [
-        "Atiyah, M., Hitchin, N. & Singer, I. (1978), Self-duality in four-dimensional Riemannian geometry, Proc. R. Soc. Lond. A 362(1711), 425–461, doi:10.1098/rspa.1978.0143 — ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3"
-      ],
-      "creators": [
-        {
-          "name": "Rouschev, Tsvetan",
-          "orcid": "0009-0000-7312-9778"
-        }
-      ],
-      "license": "CC-BY-NC-ND-4.0",
-      "language": "eng",
-      "keywords": [
-        "machine-checked proof",
-        "Lean 4",
-        "axiom-free",
-        "formalisation",
-        "involution",
-        "yang-mills"
-      ],
-      "subjects": [
-        {
-          "term": "Mathematics",
-          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
-        },
-        {
-          "term": "Proof theory",
-          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
-        }
-      ],
-      "repoPaths": [
-        "src/pair/formal/proofs/yang-mills.lean",
-        "src/research/lean-theorems.tex"
-      ],
-      "landingPage": "https://ceccec.github.io/lean/yang-mills-star-squares-to-the-identity",
-      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-star-squares-to-the-identity.html"
+      ]
     },
     {
       "id": "yang-mills--selfdual_and_antiselfdual_split_the_six",
@@ -5845,7 +6430,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/yang-mills-selfdual-and-antiselfdual-split-the-six",
-      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-selfdual-and-antiselfdual-split-the-six.html"
+      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-selfdual-and-antiselfdual-split-the-six.html",
+      "contentAddress": "40219276c8e6981e1ef3f9f29ddc1059",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "yang-mills.lean",
+          "theorem": "selfdual_and_antiselfdual_split_the_six",
+          "title": "Selfdual and antiselfdual split the six"
+        }
+      ]
     },
     {
       "id": "yang-mills--star_is_an_endomorphism_only_in_the_middle",
@@ -5924,7 +6518,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle",
-      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle.html"
+      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle.html",
+      "contentAddress": "4354ab0cfbf119c3c9a86dbc82b3355f",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "yang-mills.lean",
+          "theorem": "star_is_an_endomorphism_only_in_the_middle",
+          "title": "Star is an endomorphism only in the middle"
+        }
+      ]
     },
     {
       "id": "yang-mills--involution_splits_the_middle_forms",
@@ -6003,7 +6606,16 @@
         "src/research/lean-theorems.tex"
       ],
       "landingPage": "https://ceccec.github.io/lean/yang-mills-involution-splits-the-middle-forms",
-      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-involution-splits-the-middle-forms.html"
+      "landingPageBuilt": ".vitepress/dist/lean/yang-mills-involution-splits-the-middle-forms.html",
+      "contentAddress": "864f2bc960946c9cc00650d347db08c3",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "yang-mills.lean",
+          "theorem": "involution_splits_the_middle_forms",
+          "title": "Involution splits the middle forms"
+        }
+      ]
     }
   ]
 }

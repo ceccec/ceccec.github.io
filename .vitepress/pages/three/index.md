@@ -86,24 +86,24 @@ Eighteen, in [`src/pair/formal/proofs/three.lean`](https://github.com/ceccec/cec
 
 | Theorem | What it settles |
 |---|---|
-| `closure_is_one_hundred_sixty_two` | the closure has exactly 162 cells |
-| `closure_is_the_product` | the size is $\text{rows} \times \text{cols}$, at four shapes — not an accident of 18 and 10 |
-| `closure_has_no_duplicate` | no cell is repeated (`Nodup`) |
-| `closure_is_complete` | every pair is present |
-| `address_inverts` | row-major addressing recovers both coordinates, for all 162 |
-| `addresses_are_the_interval` | the addresses are exactly $0 \ldots 161$ — an interval, not a scatter |
-| `the_compound_fraction_clears` | $F/(F-z)$ really is $24/(24-k)$ |
-| `focal_plane_is_unit_scale` | objects on the focal plane are neither enlarged nor reduced |
-| `depth_is_strictly_monotone` | nearer enlarges, further recedes, strictly |
-| `frustum_brackets_the_focal_plane` | near $<F<$ far, non-degenerate |
-| `denominator_is_positive_on_the_frustum` | the projection never divides by zero |
-| `reflection_is_an_involution` | $\sigma^2 = \mathrm{id}$ on all 162 cells |
-| `reflection_closes_on_the_closure` | $\sigma$ maps the closure onto itself |
-| `reflection_has_no_fixed_point` | no cell is its own reflection — one even side suffices |
-| `the_closure_is_eighty_one_orbits` | 162 = 2 × 81, nothing left over |
-| `orbit_positions_cancel` | every orbit sums to zero in all three axes |
-| `reflection_complements_the_address` | row-major reflection is address complement |
-| `the_involution_laws_are_general` | the same laws at 8×8, 9×18, 3×3 and 5×7 — only both-odd has a fixed cell |
+| [`closure_is_one_hundred_sixty_two`](/lean/three-closure-is-one-hundred-sixty-two) | the closure has exactly 162 cells |
+| [`closure_is_the_product`](/lean/three-closure-is-the-product) | the size is $\text{rows} \times \text{cols}$, at four shapes — not an accident of 18 and 10 |
+| [`closure_has_no_duplicate`](/lean/three-closure-has-no-duplicate) | no cell is repeated (`Nodup`) |
+| [`closure_is_complete`](/lean/three-closure-is-complete) | every pair is present |
+| [`address_inverts`](/lean/three-address-inverts) | row-major addressing recovers both coordinates, for all 162 |
+| [`addresses_are_the_interval`](/lean/three-addresses-are-the-interval) | the addresses are exactly $0 \ldots 161$ — an interval, not a scatter |
+| [`the_compound_fraction_clears`](/lean/three-the-compound-fraction-clears) | $F/(F-z)$ really is $24/(24-k)$ |
+| [`focal_plane_is_unit_scale`](/lean/three-focal-plane-is-unit-scale) | objects on the focal plane are neither enlarged nor reduced |
+| [`depth_is_strictly_monotone`](/lean/three-depth-is-strictly-monotone) | nearer enlarges, further recedes, strictly |
+| [`frustum_brackets_the_focal_plane`](/lean/three-frustum-brackets-the-focal-plane) | near $<F<$ far, non-degenerate |
+| [`denominator_is_positive_on_the_frustum`](/lean/three-denominator-is-positive-on-the-frustum) | the projection never divides by zero |
+| [`reflection_is_an_involution`](/lean/three-reflection-is-an-involution) | $\sigma^2 = \mathrm{id}$ on all 162 cells |
+| [`reflection_closes_on_the_closure`](/lean/three-reflection-closes-on-the-closure) | $\sigma$ maps the closure onto itself |
+| [`reflection_has_no_fixed_point`](/lean/three-reflection-has-no-fixed-point) | no cell is its own reflection — one even side suffices |
+| [`the_closure_is_eighty_one_orbits`](/lean/three-the-closure-is-eighty-one-orbits) | 162 = 2 × 81, nothing left over |
+| [`orbit_positions_cancel`](/lean/three-orbit-positions-cancel) | every orbit sums to zero in all three axes |
+| [`reflection_complements_the_address`](/lean/three-reflection-complements-the-address) | row-major reflection is address complement |
+| [`the_involution_laws_are_general`](/lean/three-the-involution-laws-are-general) | the same laws at 8×8, 9×18, 3×3 and 5×7 — only both-odd has a fixed cell |
 
 **A note on what made them axiom-free.** `closure_is_complete` was first written as a bounded quantifier, `∀ g ∈ List.range 18, ∀ m ∈ List.range 9, (g,m) ∈ cells 18 9`. That form is decidable, but its instance reasons through `Quot.sound`, so the theorem cost two axioms. Restated as a Boolean computation — `List.all` over `List.contains`, proved `= true` — it reduces in the kernel and costs none. That is the difference between a proof that is *checked* and a proof that is *computed*, and it is the same substitution that made this corpus's spacetime proofs axiom-free.
 
@@ -172,9 +172,9 @@ All eighteen theorems were searched against prior art on 2026-09-04, and the led
 
 | Claimed | What it says |
 |---|---|
-| **Closure is one hundred sixty two** | the *renderable* geometry × mesh-material product space of three.js is 162 |
-| **The closure is eighty one orbits** | its central-symmetry involution partitions that space into 81 orbits of two |
-| **Reflection complements the address** | $\mathrm{idx}(\sigma c) + \mathrm{idx}(c) = N-1$ on this lattice |
+| **[Closure is one hundred sixty two](/lean/three-closure-is-one-hundred-sixty-two)** | the *renderable* geometry × mesh-material product space of three.js is 162 |
+| **[The closure is eighty one orbits](/lean/three-the-closure-is-eighty-one-orbits)** | its central-symmetry involution partitions that space into 81 orbits of two |
+| **[Reflection complements the address](/lean/three-reflection-complements-the-address)** | $\mathrm{idx}(\sigma c) + \mathrm{idx}(c) = N-1$ on this lattice |
 
 Published sources enumerate three.js geometries and materials **separately**. None enumerates the renderable product, and none applies a renderability criterion at all — the only product figure found anywhere is a naive $21 \times 18 = 378$ that counts base classes and a material which throws when drawn.
 

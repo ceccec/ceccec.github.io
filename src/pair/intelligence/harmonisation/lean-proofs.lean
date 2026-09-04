@@ -102,11 +102,21 @@ def fib (n : Nat) : Nat := fibAux n 0 1
 
 /-- `learning_rate_optimal = 1/φ ≈ 0.618` restated as an exact two-sided bound on a
     Fibonacci ratio, since F(n−1)/F(n) → 1/φ. An approximation is not an equality; this is
-    what the old `≈ 0.618` was reaching for, and it is checkable. -/
+    what the old `≈ 0.618` was reaching for, and it is checkable.
+
+    RESTATED, canonical in corpus.lean, where it is named golden_ratio_minus_one_bounds — the SAME
+    statement under a different name, which is why a scan keyed on theorem names cannot see it and
+    one keyed on the statement can. -/
 theorem inverse_golden_ratio_bounds :
     618 * fib 21 < 1000 * fib 20 ∧ 1000 * fib 20 < 619 * fib 21 := by decide
 
-/-- φ itself, same method. -/
+/-- φ itself, same method. RESTATED, canonical in corpus.lean — this file and
+    src/pair/lean/proofs/corpus.lean prove the byte-identical statement, found by
+    millennium-solutions-57 auditing this repository from outside it. Both are kept because each
+    file is standalone (no imports, no Mathlib) and must carry the bounds it reasons with, but
+    corpus.lean is the citable one: it holds the corpus theorems and states the meaning of the
+    bound. Two DOIs for one statement would be one result published twice with neither record
+    aware of the other. -/
 theorem golden_ratio_bounds :
     1618 * fib 21 < 1000 * fib 22 ∧ 1000 * fib 22 < 1619 * fib 21 := by decide
 
