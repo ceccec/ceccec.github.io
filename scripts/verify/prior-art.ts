@@ -43,6 +43,20 @@ const EXTERNAL = /\b(Tsirelson|Pauli|no-cloning|Hong[–-]Ou[–-]Mandel|GHZ|Mer
  */
 export const PRIOR_ART_SEARCHED: readonly { readonly theorem: string; readonly searched: string }[] = []
 
+/**
+ * WHERE THE UNSEARCHED ROWS ACTUALLY ARE. `unclassified` conflates two things a searcher must treat
+ * differently: a statement about ℤ/9 or the Catalan heptagon, which certainly has prior art and needs
+ * a literature search; and a statement about THIS tree — "reuse graph acyclic", "waves of waves in
+ * chat" — where the search would be about a repository nobody else has published on.
+ *
+ * This is REPORTED AND NOT ACTED ON. No row leaves `unclassified` on the strength of it, because the
+ * split is a regex over corpus vocabulary and it is wrong in the dangerous direction: "reuse graph
+ * acyclic" reads as corpus-subject and is general graph theory. Moving a row to a not-applicable
+ * bucket would mean nobody ever searches it, which is claiming by silence one step removed. The number
+ * is here so the next search knows where to start, and the ratchet stays on the full count.
+ */
+const CORPUS_SUBJECT = /\b(this corpus|this repo|this project|the corpus|the site|the portal|src\/|index\.ts|the fold|the folds|facet|facets|gate|gates|ratchet|receipt|census|merkleFold|toUuid|memoByRoot|rosetta|vitepress|npm run|MCP|readme|README|the wave|waves|barrel|the ledger|CRACK_LEDGER|verify:)/i
+
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
 
 export function priorArtLedger() {
@@ -65,6 +79,12 @@ export function assertPriorArtLedger(): void {
   console.log(`  attributed   ${String(l.attributed.length).padStart(4)}  names a DOI, an eponym or a standard — prior art exists, no claim`)
   console.log(`  claimed      ${String(l.claimed.length).padStart(4)}  a search is on record and found none — claimed over the EXPRESSION, dated by the deposit`)
   console.log(`  unclassified ${String(l.unclassified.length).padStart(4)}  nothing external named YET — an open question, NOT a claim`)
+  // ADVISORY ONLY — see CORPUS_SUBJECT. Nothing moves on this; it says where the searching starts.
+  const atoms = THEOREM_ATOM_SEED as readonly { theorem?: string; states?: string; algebraicStatement?: string }[]
+  const notYetSearched = new Set(l.unclassified)
+  const corpusSubject = atoms.filter((r) => notYetSearched.has(String(r.theorem)) &&
+    CORPUS_SUBJECT.test(`${r.theorem ?? ''} ${r.states ?? ''} ${r.algebraicStatement ?? ''}`)).length
+  console.log(`               of those, ~${corpusSubject} read as statements about THIS tree and ~${l.unclassified.length - corpusSubject} about the world — advisory, no row moves on it`)
   if (l.attributed.length + l.claimed.length + l.unclassified.length !== l.total) {
     throw new Error('the buckets do not partition the registry — every atom must fall in exactly one')
   }
