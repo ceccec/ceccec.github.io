@@ -145,6 +145,10 @@ export const PRIOR_ART_SEARCHED: readonly {
     // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
     // base classes and a material that throws when drawn. null is what claims this row.
     found: null },
+  { theorem: '*', leanFile: 'decidability.lean',
+    searched: 'bounded model checking does not entail unbounded correctness, decidability requires finite check, counterexample beyond the verified bound, decide tactic requires Decidable instance',
+    when: '2026-09-04',
+    found: 'Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed.' },
   { theorem: '*', leanFile: 'spacetime.lean',
     searched: 'relativistic velocity addition law c as fixed point absorbing element spacetime interval invariance Lorentz boost',
     when: '2026-09-04',

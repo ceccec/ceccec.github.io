@@ -12,7 +12,7 @@ abstract: >-
   (0.15×–0.34×) and is offered as a correctness result only. The kernel is
   2,131 lines with zero imports and zero network calls. The geometry is a
   genus-2 double torus, Euler characteristic χ = −2. A sealed ledger of 1,329
-  entries includes 76 machine-checked involution theorems, against which claims
+  entries includes 82 machine-checked involution theorems, against which claims
   are adjudicated by citation.
 
   This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem.

@@ -19,6 +19,20 @@
  * the same fact, the addresses collide and it is ONE publication with two occurrences, rather than two
  * DOIs neither of which knows about the other.
  *
+
+ * THE NORMALISATION IS DELIBERATELY CONSERVATIVE, AND TWO TEMPTING "IMPROVEMENTS" ARE WRONG.
+ * Whitespace is COLLAPSED to single spaces, never stripped, and case is preserved.
+ *
+ * millennium-solutions-57 proposed stripping all Unicode whitespace and lowercasing, and I said I
+ * would adopt it. uuidna-49 then measured it against 2539 statements and refuted both halves:
+ * stripping whitespace corrupts function application, because Lean applies by juxtaposition — so
+ * `List.range 7` becomes `list.range7` and collides with a different term — and it affected 672 of
+ * their statements. Lowercasing conflates case-sensitive identifiers in 1037 more. Collapsing merges
+ * exactly the pairs that stripping does (the same 8 they found) and corrupts none of the 672.
+ *
+ * A peer proposed it, a second peer measured it, and the measurement won. That is the only reason
+ * this comment exists: without it someone tidies `\s+` into `\s*` and silently collides two theorems.
+ *
  * A duplicate is not automatically an error. Two files may legitimately restate a fact — but then one
  * of them is CANONICAL and the other must say so, in the file, next to the theorem. That is the
  * ledgered-axiom pattern: a known duplicate with a stated reason and a pointer, rather than a silent

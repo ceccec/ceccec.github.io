@@ -2,7 +2,7 @@
   "repositoryDoi": "10.5281/zenodo.21787144",
   "orcid": "0009-0000-7312-9778",
   "generated": "derived from the sealed .lean sources; do not edit by hand",
-  "count": 75,
+  "count": 81,
   "records": [
     {
       "id": "bsd--sigma_is_an_involution",
@@ -1249,6 +1249,534 @@
           "file": "coin.lean",
           "theorem": "the_drain_is_exact_at_every_scale",
           "title": "The drain is exact at every scale"
+        }
+      ]
+    },
+    {
+      "id": "decidability--verified_at_every_point_below_the_bound",
+      "title": "Verified at every point below the bound",
+      "file": "decidability.lean",
+      "proposition": "(List.range 1000).all holdsBelowAThousand = true",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nVERIFIED AT EVERY POINT A FINITE CHECK REACHES — a thousand cases, decided in the kernel.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-verified-at-every-point-below-the-bound",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "decidability"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/decidability.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/decidability-verified-at-every-point-below-the-bound",
+      "landingPageBuilt": ".vitepress/dist/lean/decidability-verified-at-every-point-below-the-bound.html",
+      "contentAddress": "68eaccc7b2af42dc4e185c5436dbc3aa",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "decidability.lean",
+          "theorem": "verified_at_every_point_below_the_bound",
+          "title": "Verified at every point below the bound"
+        }
+      ]
+    },
+    {
+      "id": "decidability--and_false_at_the_bound",
+      "title": "And false at the bound",
+      "file": "decidability.lean",
+      "proposition": "holdsBelowAThousand 1000 = false",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND FALSE. The very next case refutes it.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-and-false-at-the-bound",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "decidability"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/decidability.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/decidability-and-false-at-the-bound",
+      "landingPageBuilt": ".vitepress/dist/lean/decidability-and-false-at-the-bound.html",
+      "contentAddress": "6799aca2e32bc011a635d7bf37b7e8a9",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "decidability.lean",
+          "theorem": "and_false_at_the_bound",
+          "title": "And false at the bound"
+        }
+      ]
+    },
+    {
+      "id": "decidability--finite_verification_does_not_entail_the_universal",
+      "title": "Finite verification does not entail the universal",
+      "file": "decidability.lean",
+      "proposition": "((List.range 1000).all holdsBelowAThousand = true) ∧ (holdsBelowAThousand 1000 = false)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSo a finite verification does not entail the unbounded claim: here is a property verified at a thousand consecutive points whose universal statement is FALSE. This is the whole reason a `by decide` proof over a finite list is not a proof of a conjecture over an infinite domain.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-finite-verification-does-not-entail-the-universal",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "decidability"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/decidability.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/decidability-finite-verification-does-not-entail-the-universal",
+      "landingPageBuilt": ".vitepress/dist/lean/decidability-finite-verification-does-not-entail-the-universal.html",
+      "contentAddress": "ffa901921655352d867759a74609fa11",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "decidability.lean",
+          "theorem": "finite_verification_does_not_entail_the_universal",
+          "title": "Finite verification does not entail the universal"
+        }
+      ]
+    },
+    {
+      "id": "decidability--a_bigger_bound_proves_no_more",
+      "title": "A bigger bound proves no more",
+      "file": "decidability.lean",
+      "proposition": "((List.range 10).all (failsAt 10) = true ∧ failsAt 10 10 = false) ∧ ((List.range 100).all (failsAt 100) = true ∧ failsAt 100 100 = false) ∧ ((List.range 1000).all (failsAt 1000) = true ∧ failsAt 1000 1000 = false) ∧ ((List.range 2000).all (failsAt 2000) = true ∧ failsAt 2000 2000 = false)",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA bigger bound proves no more",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-a-bigger-bound-proves-no-more",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "decidability"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/decidability.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/decidability-a-bigger-bound-proves-no-more",
+      "landingPageBuilt": ".vitepress/dist/lean/decidability-a-bigger-bound-proves-no-more.html",
+      "contentAddress": "566f314025ff335a6577074025a60cc3",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "decidability.lean",
+          "theorem": "a_bigger_bound_proves_no_more",
+          "title": "A bigger bound proves no more"
+        }
+      ]
+    },
+    {
+      "id": "decidability--what_a_finite_check_does_establish",
+      "title": "What a finite check does establish",
+      "file": "decidability.lean",
+      "proposition": "∀ n ∈ List.range 1000, holdsBelowAThousand n = true",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nWhat a finite check DOES establish, stated exactly: a counterexample cannot be below the bound. That is a real result and it is not the conjecture.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-what-a-finite-check-does-establish",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "decidability"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/decidability.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/decidability-what-a-finite-check-does-establish",
+      "landingPageBuilt": ".vitepress/dist/lean/decidability-what-a-finite-check-does-establish.html",
+      "contentAddress": "990d27d1c50301c74da3bf6263f2033d",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "decidability.lean",
+          "theorem": "what_a_finite_check_does_establish",
+          "title": "What a finite check does establish"
+        }
+      ]
+    },
+    {
+      "id": "decidability--the_clay_files_quantify_over_finite_lists",
+      "title": "The clay files quantify over finite lists",
+      "file": "decidability.lean",
+      "proposition": "[(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧ [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe corpus's Clay-named theorems quantify over finite lists of this size — nine points for the Riemann functional equation, seven for BSD. Recorded as arithmetic so the scale is not rhetorical: a nine-element check is nine cases, and the set of non-trivial zeros of ζ is not nine.",
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      },
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io",
+          "relation": "isPublishedIn",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-the-clay-files-quantify-over-finite-lists",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "references": [
+        "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "decidability"
+      ],
+      "subjects": [
+        {
+          "term": "Mathematics",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85082139"
+        },
+        {
+          "term": "Proof theory",
+          "identifier": "https://id.loc.gov/authorities/subjects/sh85107437"
+        }
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/decidability.lean",
+        "src/research/lean-theorems.tex"
+      ],
+      "landingPage": "https://ceccec.github.io/lean/decidability-the-clay-files-quantify-over-finite-lists",
+      "landingPageBuilt": ".vitepress/dist/lean/decidability-the-clay-files-quantify-over-finite-lists.html",
+      "contentAddress": "c8c99ca6222abb2d78ffb0c9cd9a895b",
+      "occurrences": [
+        {
+          "repo": "https://github.com/ceccec/ceccec.github.io",
+          "file": "decidability.lean",
+          "theorem": "the_clay_files_quantify_over_finite_lists",
+          "title": "The clay files quantify over finite lists"
         }
       ]
     },
