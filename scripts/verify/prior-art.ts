@@ -37,23 +37,72 @@ const DOI = /10\.\d{4,9}\/[^\s'"`,;)\]]+/
 const EXTERNAL = /\b(Tsirelson|Pauli|no-cloning|Hong[–-]Ou[–-]Mandel|GHZ|Mermin|Hopfield|Perelman|Ricci|Bell|CHSH|Grover|Shor|Deutsch|Jozsa|Simon|Born|Merkle|FNV|SHA-?\d|AES|RSA|Diffie|Hellman|Euler|Fibonacci|Riemann|Hodge|Poincar|Navier|Stokes|Yang|Mills|Birch|Swinnerton|Noether|Galois|Fourier|Laplace|Gauss|Newton|Planck|Schr[oö]dinger|Heisenberg|Dirac|Maxwell|Boltzmann|Shannon|Turing|Church|Kolmogorov|Nyquist|Chebyshev|Hamming|Reed[- ]Solomon|Lagrange|Jacobi|Hilbert|Banach|Cantor|Zeno|Meeus|CODATA|NIST|FIPS|ISO|IEC|RFC|IEEE|Nobel|Cover|Gardner|Wootters|Zurek|Clay|Millennium|Mathlib|Lean|Minkowski|genus-2|homology|Betti|Ricci|so\(\d\)|ℤ\/\d|n-ball|n-cube|bit-flip|phase-flip|stabilis|Hadamard|Toffoli|CNOT|Bloch|Wigner|Lindblad|Virasoro|Hurwitz|T-duality|Golod|Shafarevich|I Ching|Ifá|Glagolitic|tarot|mala|Hz)/i
 
 /**
- * THE SEARCHES ACTUALLY PERFORMED. A row enters here only when someone has looked and recorded
- * what they looked for — the slug is the theorem, the note is the search. Empty is the honest
- * starting state: this wave built the instrument, it did not do 761 literature searches.
+ * THE SEARCHES ACTUALLY PERFORMED, one row per search, with what was looked for and what came back.
+ *
+ * `found` is the citation a search returned, or null for a search that returned nothing. Both are
+ * results; only the second can lead to a claim, and neither can be inferred from silence. A row that
+ * is not in this list has not been searched and stays `unclassified` — the default is never a claim
+ * and never an attribution.
+ *
+ * Recorded 2026-09-04, by web search, a bounded batch. All eight returned prior art, so all eight are
+ * ATTRIBUTED and none is claimed: these are standard results with clear priority and none of them is
+ * this corpus's. That is the expected shape for the world-subject rows — the ledger exists to find the
+ * few that are not, and it will not find them by guessing.
  */
-export const PRIOR_ART_SEARCHED: readonly { readonly theorem: string; readonly searched: string }[] = []
+export const PRIOR_ART_SEARCHED: readonly {
+  readonly theorem: string
+  readonly searched: string
+  readonly when: string
+  readonly found: string | null
+}[] = [
+  { theorem: 'three cubes of 42',
+    searched: 'sum of three cubes 42 solution Booker Sutherland 2019',
+    when: '2026-09-04',
+    found: 'Booker & Sutherland (2019), x³+y³+z³=42 solved on Charity Engine; Univ. of Bristol / MIT announcements, Sept 2019' },
+  { theorem: 'no projective plane of order 6',
+    searched: 'Bruck-Ryser theorem 1949 nonexistence projective plane order 6',
+    when: '2026-09-04',
+    found: 'Bruck & Ryser (1949), Bruck–Ryser–Chowla theorem: order ≡ 1,2 (mod 4) must be a sum of two squares; excludes order 6' },
+  { theorem: 'R(3,3,3) ≤ 17',
+    searched: 'Greenwood Gleason 1955 Ramsey number R(3,3)=6 R(3,3,3)=17',
+    when: '2026-09-04',
+    found: 'Greenwood & Gleason, Combinatorial Relations and Chromatic Graphs, Canad. J. Math. 7 (1955) 1–7, doi:10.4153/CJM-1955-001-4' },
+  { theorem: 'Ramsey R(3,3) = 6',
+    searched: 'Greenwood Gleason 1955 Ramsey number R(3,3)=6 R(3,3,3)=17',
+    when: '2026-09-04',
+    found: 'Greenwood & Gleason (1955), same paper; R(3,3)=6 is the classical two-colour case' },
+  { theorem: 'Fano unique, |Aut| = 168',
+    searched: 'Fano plane unique projective plane order 2 automorphism group order 168 PSL(2,7)',
+    when: '2026-09-04',
+    found: 'classical finite geometry: Aut(Fano) ≅ PGL(3,2) ≅ PSL(2,7), order 168 — standard, no single originator' },
+  { theorem: 'AB/BA shared spectrum',
+    searched: 'Sylvester determinant identity det(I+AB)=det(I+BA) AB BA same nonzero eigenvalues',
+    when: '2026-09-04',
+    found: 'Sylvester (1857), determinant identity det(I+AB) = det(I+BA); AB and BA share nonzero eigenvalues with multiplicity' },
+  { theorem: 'Ramanujan 691 congruence',
+    searched: 'Ramanujan tau function congruence mod 691 tau(n) = sigma_11(n)',
+    when: '2026-09-04',
+    found: 'Ramanujan: τ(n) ≡ σ₁₁(n) (mod 691), equivalently Δ ≡ E₁₂ (mod 691); 691 divides the numerator of B₁₂' },
+  { theorem: 'Catalan heptagon',
+    searched: 'Catalan number C5 = 42 triangulations convex heptagon Euler Segner',
+    when: '2026-09-04',
+    found: 'Euler (1751) computed 42 triangulations of the heptagon; Segner (1758) the recurrence — the Euler–Segner relation' },
+  { theorem: 'bosonic critical D = 26',
+    searched: 'bosonic string critical dimension 26 Lorentz anomaly Goddard Thorn light-cone quantization',
+    when: '2026-09-04',
+    found: 'critical dimension D=26 from the light-cone Lorentz anomaly / conformal anomaly / BRST nilpotency — standard bosonic string theory' },
+]
 
 /**
  * WHERE THE UNSEARCHED ROWS ACTUALLY ARE. `unclassified` conflates two things a searcher must treat
- * differently: a statement about ℤ/9 or the Catalan heptagon, which certainly has prior art and needs
- * a literature search; and a statement about THIS tree — "reuse graph acyclic", "waves of waves in
- * chat" — where the search would be about a repository nobody else has published on.
+ * differently: a statement about the Catalan heptagon, which certainly has prior art and needs a
+ * literature search; and a statement about THIS tree, where the search would be about a repository
+ * nobody else has published on.
  *
- * This is REPORTED AND NOT ACTED ON. No row leaves `unclassified` on the strength of it, because the
- * split is a regex over corpus vocabulary and it is wrong in the dangerous direction: "reuse graph
- * acyclic" reads as corpus-subject and is general graph theory. Moving a row to a not-applicable
- * bucket would mean nobody ever searches it, which is claiming by silence one step removed. The number
- * is here so the next search knows where to start, and the ratchet stays on the full count.
+ * REPORTED AND NOT ACTED ON. No row leaves `unclassified` on the strength of it, because the split is
+ * a regex over corpus vocabulary and it is wrong in the dangerous direction: "reuse graph acyclic"
+ * reads as corpus-subject and is general graph theory. A row moved to a not-applicable bucket is a row
+ * nobody ever searches — claiming by silence, one step removed.
  */
 const CORPUS_SUBJECT = /\b(this corpus|this repo|this project|the corpus|the site|the portal|src\/|index\.ts|the fold|the folds|facet|facets|gate|gates|ratchet|receipt|census|merkleFold|toUuid|memoByRoot|rosetta|vitepress|npm run|MCP|readme|README|the wave|waves|barrel|the ledger|CRACK_LEDGER|verify:)/i
 
@@ -61,13 +110,16 @@ export type Bucket = 'attributed' | 'claimed' | 'unclassified'
 
 export function priorArtLedger() {
   const rows = THEOREM_ATOM_SEED as readonly { theorem?: string; states?: string; algebraicStatement?: string }[]
-  const searched = new Set(PRIOR_ART_SEARCHED.map((r) => r.theorem))
+  const searched = new Map(PRIOR_ART_SEARCHED.map((r) => [r.theorem, r]))
   const buckets: Record<Bucket, string[]> = { attributed: [], claimed: [], unclassified: [] }
   for (const r of rows) {
     const name = String(r.theorem ?? '')
     const text = `${name} ${r.states ?? ''} ${r.algebraicStatement ?? ''}`
-    if (DOI.test(text) || EXTERNAL.test(text)) buckets.attributed.push(name)
-    else if (searched.has(name)) buckets.claimed.push(name)
+    const search = searched.get(name)
+    // A PERFORMED SEARCH OUTRANKS THE PATTERN, in both directions: it can attribute a row the eponym
+    // list never named, and it is the ONLY thing that can claim one. Silence still does neither.
+    if (search) (search.found === null ? buckets.claimed : buckets.attributed).push(name)
+    else if (DOI.test(text) || EXTERNAL.test(text)) buckets.attributed.push(name)
     else buckets.unclassified.push(name)
   }
   return { total: rows.length, ...buckets }
@@ -90,7 +142,8 @@ export function assertPriorArtLedger(): void {
   }
   // A CLAIM MUST NAME ITS SEARCH. Silence is not evidence of absence, so a row cannot reach the
   // claimed bucket without one, and this is the check that makes that structural rather than stated.
-  const unsearched = l.claimed.filter((t) => !PRIOR_ART_SEARCHED.some((r) => r.theorem === t))
+  //  shadowed nothing here before the record grew a field; naming the row plainly avoids it.
+  const unsearched = l.claimed.filter((name) => !PRIOR_ART_SEARCHED.some((r) => r.theorem === name && r.found === null))
   if (unsearched.length) throw new Error(`${unsearched.length} claimed row(s) name no search: ${unsearched.slice(0, 5).join(' · ')}`)
   // ZERO CLAIMS IS NOT FULL ATTRIBUTION, and printing the count alone would imply it was. Most of
   // what this corpus attributes predates the DOI system entirely — Glagolitic 862, the I Ching, the
