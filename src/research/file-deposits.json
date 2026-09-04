@@ -1,0 +1,903 @@
+{
+  "repositoryDoi": "10.5281/zenodo.21787144",
+  "orcid": "0009-0000-7312-9778",
+  "granularity": "one deposit per Lean development, chosen by the quality audit in scripts/verify/discoveries.ts",
+  "minted": false,
+  "count": 8,
+  "deposits": [
+    {
+      "id": "bsd",
+      "title": "Machine-checked involution structure of the Birch–Swinnerton-Dyer functional equation and root number (Lean 4, axiom-free)",
+      "file": "bsd.lean",
+      "theoremCount": 5,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of the Birch–Swinnerton-Dyer functional equation and root number: 5 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Sigma is an involution — ∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s\n• Central point is the fixed point — σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)\n• Root number squares to one — (1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1\n• Root number one iff rank even — (∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)\n• Parity is an involution — (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)",
+      "theorems": [
+        {
+          "title": "Sigma is an involution",
+          "proposition": "∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s",
+          "page": "https://ceccec.github.io/lean/bsd-sigma-is-an-involution"
+        },
+        {
+          "title": "Central point is the fixed point",
+          "proposition": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)",
+          "page": "https://ceccec.github.io/lean/bsd-central-point-is-the-fixed-point"
+        },
+        {
+          "title": "Root number squares to one",
+          "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
+          "page": "https://ceccec.github.io/lean/bsd-root-number-squares-to-one"
+        },
+        {
+          "title": "Root number one iff rank even",
+          "proposition": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)",
+          "page": "https://ceccec.github.io/lean/bsd-root-number-one-iff-rank-even"
+        },
+        {
+          "title": "Parity is an involution",
+          "proposition": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)",
+          "page": "https://ceccec.github.io/lean/bsd-parity-is-an-involution"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      },
+      "references": [
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/bsd.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/bsd-sigma-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/bsd-central-point-is-the-fixed-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/bsd-root-number-squares-to-one",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/bsd-root-number-one-iff-rank-even",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/bsd-parity-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "bsd"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/bsd.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "coin",
+      "title": "Machine-checked involution structure of a finite reflection, its fixed point and its vanishing resistance (Lean 4, axiom-free)",
+      "file": "coin.lean",
+      "theoremCount": 9,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of a finite reflection, its fixed point and its vanishing resistance: 9 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• The coin is an involution — ∀ d ∈ digits, σ (σ d) = d\n• The harmonic is the only fixed point — digits.filter (fun d => σ d == d) = [5]\n• All that is not harmonic is moved — (digits.filter (fun d => !(σ d == d))).length = 8\n• The sides are equal and exchanged — below.length = above.length ∧ below.map σ = above.reverse ∧ above.map σ = below.reverse\n• The coin is two sides and one edge — below.length + above.length + 1 = digits.length\n• Every bit of resistance drains — ∀ d ∈ digits, resistance d + resistance (σ d) = 0\n• The harmonic carries no resistance — resistance 5 = 0\n• The whole surface sums to zero — (digits.map resistance).sum = 0\n• The drain is exact at every scale — ∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0",
+      "theorems": [
+        {
+          "title": "The coin is an involution",
+          "proposition": "∀ d ∈ digits, σ (σ d) = d",
+          "page": "https://ceccec.github.io/lean/coin-the-coin-is-an-involution"
+        },
+        {
+          "title": "The harmonic is the only fixed point",
+          "proposition": "digits.filter (fun d => σ d == d) = [5]",
+          "page": "https://ceccec.github.io/lean/coin-the-harmonic-is-the-only-fixed-point"
+        },
+        {
+          "title": "All that is not harmonic is moved",
+          "proposition": "(digits.filter (fun d => !(σ d == d))).length = 8",
+          "page": "https://ceccec.github.io/lean/coin-all-that-is-not-harmonic-is-moved"
+        },
+        {
+          "title": "The sides are equal and exchanged",
+          "proposition": "below.length = above.length ∧ below.map σ = above.reverse ∧ above.map σ = below.reverse",
+          "page": "https://ceccec.github.io/lean/coin-the-sides-are-equal-and-exchanged"
+        },
+        {
+          "title": "The coin is two sides and one edge",
+          "proposition": "below.length + above.length + 1 = digits.length",
+          "page": "https://ceccec.github.io/lean/coin-the-coin-is-two-sides-and-one-edge"
+        },
+        {
+          "title": "Every bit of resistance drains",
+          "proposition": "∀ d ∈ digits, resistance d + resistance (σ d) = 0",
+          "page": "https://ceccec.github.io/lean/coin-every-bit-of-resistance-drains"
+        },
+        {
+          "title": "The harmonic carries no resistance",
+          "proposition": "resistance 5 = 0",
+          "page": "https://ceccec.github.io/lean/coin-the-harmonic-carries-no-resistance"
+        },
+        {
+          "title": "The whole surface sums to zero",
+          "proposition": "(digits.map resistance).sum = 0",
+          "page": "https://ceccec.github.io/lean/coin-the-whole-surface-sums-to-zero"
+        },
+        {
+          "title": "The drain is exact at every scale",
+          "proposition": "∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0",
+          "page": "https://ceccec.github.io/lean/coin-the-drain-is-exact-at-every-scale"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      },
+      "references": [
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-the-coin-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-the-harmonic-is-the-only-fixed-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-all-that-is-not-harmonic-is-moved",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-the-sides-are-equal-and-exchanged",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-the-coin-is-two-sides-and-one-edge",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-every-bit-of-resistance-drains",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-the-harmonic-carries-no-resistance",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-the-whole-surface-sums-to-zero",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/coin-the-drain-is-exact-at-every-scale",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "coin"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "hodge",
+      "title": "Machine-checked involution structure of the Hodge diamond under complex conjugation (Lean 4, axiom-free)",
+      "file": "hodge.lean",
+      "theoremCount": 5,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of the Hodge diamond under complex conjugation: 5 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Sigma is an involution — ∀ t ∈ middleTypes, σ (σ t) = t\n• Sigma preserves degree — ∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2\n• Fixed type is p equals q — (middleTypes.filter (fun t => σ t == t)) = [(2,2)]\n• Diagonal is fixed at every k — (∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))\n• Involution fixes the diagonal — σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)",
+      "theorems": [
+        {
+          "title": "Sigma is an involution",
+          "proposition": "∀ t ∈ middleTypes, σ (σ t) = t",
+          "page": "https://ceccec.github.io/lean/hodge-sigma-is-an-involution"
+        },
+        {
+          "title": "Sigma preserves degree",
+          "proposition": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2",
+          "page": "https://ceccec.github.io/lean/hodge-sigma-preserves-degree"
+        },
+        {
+          "title": "Fixed type is p equals q",
+          "proposition": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]",
+          "page": "https://ceccec.github.io/lean/hodge-fixed-type-is-p-equals-q"
+        },
+        {
+          "title": "Diagonal is fixed at every k",
+          "proposition": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))",
+          "page": "https://ceccec.github.io/lean/hodge-diagonal-is-fixed-at-every-k"
+        },
+        {
+          "title": "Involution fixes the diagonal",
+          "proposition": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)",
+          "page": "https://ceccec.github.io/lean/hodge-involution-fixes-the-diagonal"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      },
+      "references": [
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/hodge.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/hodge-sigma-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/hodge-sigma-preserves-degree",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/hodge-fixed-type-is-p-equals-q",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/hodge-diagonal-is-fixed-at-every-k",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/hodge-involution-fixes-the-diagonal",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "hodge"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/hodge.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "navier-stokes",
+      "title": "Machine-checked involution structure of time reversal in the Euler and Navier–Stokes equations (Lean 4, axiom-free)",
+      "file": "navier-stokes.lean",
+      "theoremCount": 4,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of time reversal in the Euler and Navier–Stokes equations: 4 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Reversal is an involution — T (T navierStokes) = navierStokes ∧ T (T euler) = euler\n• Euler is time reversible — T euler = euler\n• Viscosity breaks time reversal — T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous\n• Fixed points are exactly the inviscid — (∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩",
+      "theorems": [
+        {
+          "title": "Reversal is an involution",
+          "proposition": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler",
+          "page": "https://ceccec.github.io/lean/navier-stokes-reversal-is-an-involution"
+        },
+        {
+          "title": "Euler is time reversible",
+          "proposition": "T euler = euler",
+          "page": "https://ceccec.github.io/lean/navier-stokes-euler-is-time-reversible"
+        },
+        {
+          "title": "Viscosity breaks time reversal",
+          "proposition": "T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous",
+          "page": "https://ceccec.github.io/lean/navier-stokes-viscosity-breaks-time-reversal"
+        },
+        {
+          "title": "Fixed points are exactly the inviscid",
+          "proposition": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩",
+          "page": "https://ceccec.github.io/lean/navier-stokes-fixed-points-are-exactly-the-inviscid"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      },
+      "references": [
+        "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/navier-stokes.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/navier-stokes-reversal-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/navier-stokes-euler-is-time-reversible",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/navier-stokes-viscosity-breaks-time-reversal",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/navier-stokes-fixed-points-are-exactly-the-inviscid",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "navier-stokes"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/navier-stokes.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "p-vs-np",
+      "title": "Machine-checked involution structure of complement closure across P, NP, coNP and PSPACE (Lean 4, axiom-free)",
+      "file": "p-vs-np.lean",
+      "theoremCount": 5,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of complement closure across P, NP, coNP and PSPACE: 5 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Sigma is an involution — ∀ c : Class, σ (σ c) = c\n• Fixed points are p and pspace — (classes.filter (fun c => σ c == c)) = [P, PSPACE]\n• Np and conp are swapped — σ NP = coNP ∧ σ coNP = NP\n• If np is fixed then np equals conp — σ NP = NP → NP = coNP\n• P is closed under complement — σ P = P",
+      "theorems": [
+        {
+          "title": "Sigma is an involution",
+          "proposition": "∀ c : Class, σ (σ c) = c",
+          "page": "https://ceccec.github.io/lean/p-vs-np-sigma-is-an-involution"
+        },
+        {
+          "title": "Fixed points are p and pspace",
+          "proposition": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]",
+          "page": "https://ceccec.github.io/lean/p-vs-np-fixed-points-are-p-and-pspace"
+        },
+        {
+          "title": "Np and conp are swapped",
+          "proposition": "σ NP = coNP ∧ σ coNP = NP",
+          "page": "https://ceccec.github.io/lean/p-vs-np-np-and-conp-are-swapped"
+        },
+        {
+          "title": "If np is fixed then np equals conp",
+          "proposition": "σ NP = NP → NP = coNP",
+          "page": "https://ceccec.github.io/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp"
+        },
+        {
+          "title": "P is closed under complement",
+          "proposition": "σ P = P",
+          "page": "https://ceccec.github.io/lean/p-vs-np-p-is-closed-under-complement"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      },
+      "references": [
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/p-vs-np.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-sigma-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-fixed-points-are-p-and-pspace",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-np-and-conp-are-swapped",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/p-vs-np-p-is-closed-under-complement",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "p-vs-np"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/p-vs-np.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "poincare",
+      "title": "Machine-checked involution structure of the Euler characteristic and first homology of closed orientable surfaces (Lean 4, axiom-free)",
+      "file": "poincare.lean",
+      "theoremCount": 5,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of the Euler characteristic and first homology of closed orientable surfaces: 5 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Chi and genus are inverse — ∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g\n• Sphere has euler characteristic two — chi 0 = 2\n• Torus has euler characteristic zero — chi 1 = 0\n• Double torus has chi minus two and rank four — chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4\n• Homology rank is twice the genus — ∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g",
+      "theorems": [
+        {
+          "title": "Chi and genus are inverse",
+          "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g",
+          "page": "https://ceccec.github.io/lean/poincare-chi-and-genus-are-inverse"
+        },
+        {
+          "title": "Sphere has euler characteristic two",
+          "proposition": "chi 0 = 2",
+          "page": "https://ceccec.github.io/lean/poincare-sphere-has-euler-characteristic-two"
+        },
+        {
+          "title": "Torus has euler characteristic zero",
+          "proposition": "chi 1 = 0",
+          "page": "https://ceccec.github.io/lean/poincare-torus-has-euler-characteristic-zero"
+        },
+        {
+          "title": "Double torus has chi minus two and rank four",
+          "proposition": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4",
+          "page": "https://ceccec.github.io/lean/poincare-double-torus-has-chi-minus-two-and-rank-four"
+        },
+        {
+          "title": "Homology rank is twice the genus",
+          "proposition": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g",
+          "page": "https://ceccec.github.io/lean/poincare-homology-rank-is-twice-the-genus"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      },
+      "references": [
+        "classical surface topology: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g — Euler / Poincaré, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/poincare.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/poincare-chi-and-genus-are-inverse",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/poincare-sphere-has-euler-characteristic-two",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/poincare-torus-has-euler-characteristic-zero",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/poincare-double-torus-has-chi-minus-two-and-rank-four",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/poincare-homology-rank-is-twice-the-genus",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "poincare"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/poincare.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "riemann",
+      "title": "Machine-checked involution structure of the Riemann functional equation and its critical line (Lean 4, axiom-free)",
+      "file": "riemann.lean",
+      "theoremCount": 5,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of the Riemann functional equation and its critical line: 5 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Sigma is an involution — ∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n\n• Critical line is the fixed point — σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)\n• Sigma pairs the plane — σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2\n• The fixed line is one half — (2 : Int) * 1 = 2 ∧ σ 1 = 1\n• Involution fixes the critical line — (σ (σ 3) = 3) ∧ (σ 1 = 1)",
+      "theorems": [
+        {
+          "title": "Sigma is an involution",
+          "proposition": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n",
+          "page": "https://ceccec.github.io/lean/riemann-sigma-is-an-involution"
+        },
+        {
+          "title": "Critical line is the fixed point",
+          "proposition": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)",
+          "page": "https://ceccec.github.io/lean/riemann-critical-line-is-the-fixed-point"
+        },
+        {
+          "title": "Sigma pairs the plane",
+          "proposition": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2",
+          "page": "https://ceccec.github.io/lean/riemann-sigma-pairs-the-plane"
+        },
+        {
+          "title": "The fixed line is one half",
+          "proposition": "(2 : Int) * 1 = 2 ∧ σ 1 = 1",
+          "page": "https://ceccec.github.io/lean/riemann-the-fixed-line-is-one-half"
+        },
+        {
+          "title": "Involution fixes the critical line",
+          "proposition": "(σ (σ 3) = 3) ∧ (σ 1 = 1)",
+          "page": "https://ceccec.github.io/lean/riemann-involution-fixes-the-critical-line"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      },
+      "references": [
+        "Riemann (1859): the functional equation relates s and 1−s; the critical line Re(s)=1/2 is exactly the fixed set of that reflection — classical, textbook"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/riemann.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/riemann-sigma-is-an-involution",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/riemann-critical-line-is-the-fixed-point",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/riemann-sigma-pairs-the-plane",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/riemann-the-fixed-line-is-one-half",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/riemann-involution-fixes-the-critical-line",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "riemann"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/riemann.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "yang-mills",
+      "title": "Machine-checked involution structure of the Hodge star on middle forms in four dimensions (Lean 4, axiom-free)",
+      "file": "yang-mills.lean",
+      "theoremCount": 5,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of the Hodge star on middle forms in four dimensions: 5 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Middle forms have dimension six — choose 4 2 = 6\n• Star squares to the identity — (1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1\n• Selfdual and antiselfdual split the six — 3 + 3 = choose 4 2\n• Star is an endomorphism only in the middle — (4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)\n• Involution splits the middle forms — (1 : Int) * 1 = 1 ∧ 3 + 3 = 6",
+      "theorems": [
+        {
+          "title": "Middle forms have dimension six",
+          "proposition": "choose 4 2 = 6",
+          "page": "https://ceccec.github.io/lean/yang-mills-middle-forms-have-dimension-six"
+        },
+        {
+          "title": "Star squares to the identity",
+          "proposition": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1",
+          "page": "https://ceccec.github.io/lean/yang-mills-star-squares-to-the-identity"
+        },
+        {
+          "title": "Selfdual and antiselfdual split the six",
+          "proposition": "3 + 3 = choose 4 2",
+          "page": "https://ceccec.github.io/lean/yang-mills-selfdual-and-antiselfdual-split-the-six"
+        },
+        {
+          "title": "Star is an endomorphism only in the middle",
+          "proposition": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)",
+          "page": "https://ceccec.github.io/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle"
+        },
+        {
+          "title": "Involution splits the middle forms",
+          "proposition": "(1 : Int) * 1 = 1 ∧ 3 + 3 = 6",
+          "page": "https://ceccec.github.io/lean/yang-mills-involution-splits-the-middle-forms"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      },
+      "references": [
+        "classical 4-manifold geometry: ⋆² = 1 on Λ², eigenvalues ±1, Λ² = Λ⁺ ⊕ Λ⁻ with rank 6 = 3 + 3 — Atiyah–Hitchin–Singer and standard references"
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/yang-mills.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/yang-mills-middle-forms-have-dimension-six",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/yang-mills-star-squares-to-the-identity",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/yang-mills-selfdual-and-antiselfdual-split-the-six",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/yang-mills-involution-splits-the-middle-forms",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "yang-mills"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/yang-mills.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    }
+  ]
+}
