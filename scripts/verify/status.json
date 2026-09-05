@@ -15,6 +15,7 @@
   "limits.weakest-bar": 60,
   "paths.dead-strings": 51,
   "prior-art.attributed-by-pattern": 323,
+  "prior-art.coverage-unexamined": 408,
   "prior-art.unclassified": 340,
   "purity.core-nondeterminism": 0,
   "scope.boundaries": 2792,

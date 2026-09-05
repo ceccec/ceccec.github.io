@@ -798,7 +798,11 @@ export const PRIOR_ART_POOL: readonly {
  */
 export const ATTRIBUTION_COVERAGE: readonly {
   readonly theorem: string
-  readonly coverage: 'partial' | 'weaker'
+  /** `covers` is not filler. Without it this table could record only DEFECTS, so a row examined and
+   *  found correctly attributed left no trace and the unexamined remainder did not move — the
+   *  instrument paid for finding fault and paid nothing for looking. That is the same asymmetry it
+   *  exists to detect, sitting inside the detector. */
+  readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
   { theorem: 'Frobenius number of (6,9,20) is 43', coverage: 'partial',
@@ -811,6 +815,25 @@ export const ATTRIBUTION_COVERAGE: readonly {
     why: 'the row credits Cauchy theorem, and the result needs only LAGRANGE. Attributing to the heavier tool understates how elementary the row is — an under-claim about its own simplicity rather than about novelty.' },
   { theorem: 'Catalan conjecture 8 and 9 to 10⁶', coverage: 'weaker',
     why: 'the row asserts a verification to 10^6, and Mihailescu proved it UNCONDITIONALLY in 2002. The ledger is quoting a computational bound where a theorem exists — the corpus stating less than mathematics knows.' },
+
+  // ── EXAMINED 2026-09-05, against the citations recorded for them the same day. Eight rows whose
+  // attribution was assumed to cover them; four do, four do not.
+  { theorem: 'K₅ and K₃,₃ non-planar', coverage: 'weaker',
+    why: 'the row states the EULER-BOUND arithmetic — 10 > 3·5−6 and 9 > 2·6−4 — and is attributed to Kuratowski 1930. Kuratowski is the CONVERSE and far heavier: non-planarity of these two graphs follows from Euler’s polyhedron formula alone, which predates it by two centuries. Same defect as the Cauchy row below it: crediting the tool that settles the general classification for a fact that needs only the counting bound.' },
+  { theorem: 'exactly 5 Platonic solids', coverage: 'partial',
+    why: 'Euclid XIII proves the classification by CONSTRUCTION. The row states an inequality — (p−2)(q−2) < 4 has exactly five integer solutions — which Euclid nowhere writes. The conclusion is covered; the stated form is the angle-defect/Schläfli argument, and no search has been run for it.' },
+  { theorem: 'exactly 2 groups of order 6', coverage: 'partial',
+    why: 'the classification (ℤ₆ and S₃) is covered. The row ALSO states that there are 9408 reduced Latin squares of order 6, which is OEIS A000315 and prior art of its own — a second published fact riding on a citation that says nothing about it.' },
+  { theorem: 'Steiner S(2,3,7)', coverage: 'partial',
+    why: 'the Fano/Steiner citation covers the covering half — 7 lines {i,i+1,i+3} meeting the 21 pairs once each. It says nothing about the row’s second clause, that those lines close 7 so(3) triples inside so(7). That half is unattributed and unclaimed.' },
+  { theorem: 'Hurwitz 7D cross product', coverage: 'partial',
+    why: 'Eckmann/Hurwitz covers EXISTENCE in n = 3, 7 only. The row also states the exact Lagrange identity and that Jacobi FAILS (Malcev, not Lie); the failure of Jacobi is classical but the recorded citation does not state it, so that clause rests on nothing cited.' },
+  { theorem: 'Wilson criterion exact to 100', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The row states both directions for every n, and Wilson/Lagrange is exactly a necessary AND sufficient criterion. Nothing is left over and nothing is over-credited.' },
+  { theorem: 'Zeckendorf uniqueness to 1000', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The row states existence and uniqueness of the non-consecutive representation and already cites Lekkerkerker, who proved the uniqueness half. The citation entails the row.' },
+  { theorem: 'perfect numbers < 10⁴ are Euclid’s four', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. Euclid IX.36 with Euler’s converse entails exactly the row’s statement, and the row already refuses the over-claim next door by recording that odd perfect numbers stay OPEN.' },
 ]
 
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
@@ -869,7 +892,11 @@ export function assertPriorArtLedger(): void {
   for (const c of partial) console.log(`               ${c.theorem.slice(0, 64)}`)
   console.log(`    weaker     ${String(weaker.length).padStart(4)}  the ROW states less than the literature establishes — a result quoted as a bound`)
   for (const c of weaker) console.log(`               ${c.theorem.slice(0, 64)}`)
-  console.log(`    ${l.attributed.length - coverage.length} attributed rows have had their coverage assumed, not examined — the under-claim remainder`)
+  const covers = coverage.filter((c) => c.coverage === 'covers')
+  console.log(`    covers     ${String(covers.length).padStart(4)}  examined and clean — the citation entails the row, nothing over- or under-credited`)
+  // THE REMAINDER GETS A FLOOR TOO. It was reported and nothing held it: rows could be added to the
+  // registry faster than they were examined and this line would climb while every gate stayed green.
+  console.log(ratchet('prior-art.coverage-unexamined', l.attributed.length - coverage.length))
 
   // WHAT THE ATTRIBUTED BUCKET IS ACTUALLY MADE OF. Its label says prior art EXISTS, and only a
   // minority of it rests on a search. The rest matched the eponym-or-standards pattern: a word in the
