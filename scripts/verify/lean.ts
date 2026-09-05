@@ -25,7 +25,7 @@ import { join, relative } from 'node:path'
 
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', 'worktrees'])
 
-export type LeanResult = { file: string; ok: boolean; sorries: number; ms: number; error: string }
+export type LeanResult = { file: string; ok: boolean; sorries: number; ms: number; error: string; timedOut: boolean }
 
 /** Lean comments: `-- line` and nested `/- block -/`. Stripped before scanning for `sorry`. */
 export function stripLeanComments(text: string): string {
@@ -127,11 +127,16 @@ export function compileLean(root: string = process.cwd()): LeanResult[] {
     const started = Date.now()
     try {
       execFileSync('lean', [file], { stdio: 'pipe', timeout: 300_000 })
-      return { file: rel, ok: sorries === 0, sorries, ms: Date.now() - started, error: '' }
+      return { file: rel, ok: sorries === 0, sorries, ms: Date.now() - started, error: '', timedOut: false }
     } catch (e) {
-      const err = e as { stdout?: Buffer; stderr?: Buffer; message?: string }
+      const err = e as { stdout?: Buffer; stderr?: Buffer; message?: string; code?: string; signal?: string }
       const text = `${err.stdout?.toString() ?? ''}${err.stderr?.toString() ?? ''}`.trim()
-      return { file: rel, ok: false, sorries, ms: Date.now() - started, error: (text || err.message || 'failed').split('\n').slice(0, 3).join(' · ') }
+      // COULD NOT ASK IS NOT THE ANSWER WAS NO. execFileSync reports a timeout as ETIMEDOUT, or by
+      // killing the child with SIGTERM and leaving no diagnostic behind — and a compiler that was
+      // killed has said NOTHING about the proof.
+      const timedOut = err.code === 'ETIMEDOUT' || err.signal === 'SIGTERM' || /ETIMEDOUT/.test(err.message ?? '')
+      return { file: rel, ok: false, sorries, ms: Date.now() - started, timedOut,
+        error: (text || err.message || 'failed').split('\n').slice(0, 3).join(' · ') }
     }
   })
 }
@@ -150,13 +155,34 @@ export function assertLeanCompiles(): void {
   }
 
   const results = compileLean()
-  const broken = results.filter((r) => !r.ok)
-  console.log(`lean files compiled: ${results.length - broken.length}/${results.length} green, no Mathlib required`)
+  // THREE OUTCOMES, NOT TWO. A file that COMPILED WITH ERRORS and a file the compiler was KILLED on
+  // are different facts, and this gate used to print both as FAIL and throw saying they "do not
+  // compile or contain sorry" — a claim about mathematics, made about a proof nothing had read.
+  //
+  // It happened: on a loaded machine navier-stokes.lean hit the 300s wall while bsd.lean took 172s
+  // and decidability.lean 207s, against well under a second each when the machine is idle. The proof
+  // was fine — 0.21s of CPU on a re-run. The gate had reported a green proof as broken.
+  //
+  // DIRECTION OF FAILURE: still red, never silent, but with the right cause named. A timeout stops
+  // the chain because unmeasured is not a pass, and it says NOT MEASURED rather than accusing the
+  // proof — the same asymmetry hitsol-8d put in its secrets gate (clean / violation / inconclusive)
+  // and erpax-94 in its resolver, which refuses when the registry is unreachable.
+  const broken = results.filter((r) => !r.ok && !r.timedOut)
+  const unmeasured = results.filter((r) => r.timedOut)
+  console.log(`lean files compiled: ${results.length - broken.length - unmeasured.length}/${results.length} green, no Mathlib required`)
   for (const r of results) {
-    console.log(`  ${r.ok ? 'OK  ' : 'FAIL'} ${r.file.padEnd(52)} ${String(r.ms).padStart(5)}ms${r.sorries ? `  ${r.sorries} sorry` : ''}${r.error ? `  ${r.error}` : ''}`)
+    const mark = r.ok ? 'OK  ' : r.timedOut ? 'TIME' : 'FAIL'
+    console.log(`  ${mark} ${r.file.padEnd(52)} ${String(r.ms).padStart(6)}ms${r.sorries ? `  ${r.sorries} sorry` : ''}${r.error ? `  ${r.error}` : ''}`)
   }
   if (broken.length) {
     throw new Error(`${broken.length} Lean file(s) do not compile or contain sorry — a proof that does not run is not a proof`)
+  }
+  if (unmeasured.length) {
+    throw new Error(
+      `${unmeasured.length} Lean file(s) NOT MEASURED — the compiler was killed at the 300s wall before it said anything: ` +
+      `${unmeasured.map((r) => r.file).join(', ')}. This is not a claim that the proof is broken; it is the absence of a claim. ` +
+      `Slowest completed file this run: ${Math.max(...results.filter((r) => r.ok).map((r) => r.ms))}ms, which indicates machine load rather than a hang if it is far above normal. Re-run on an idle machine.`
+    )
   }
 
   // AXIOM-FREEDOM — the involution proofs must prove THEMSELVES, not rest on an axiom (and
