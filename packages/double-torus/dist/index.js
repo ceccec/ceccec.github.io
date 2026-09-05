@@ -2496,7 +2496,7 @@ var CRACK_LEDGER = [
   { file: ".vitepress/theme/components/UiAsideShell.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/pair/theorem/stability/detector/index.ts", literal: "*", count: 24, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/pair/quantum/hardware/index.ts", literal: "*", count: 13, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: "src/pair/intelligence/harmonisation/index.ts", literal: "*", count: 212, kind: "tuned", source: "wave 51-60 involution-discovery toolkit, merged into one barrel \u2014 example confidence/barrier values, patent dollar figures, timeline years, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
+  { file: "src/pair/intelligence/harmonisation/index.ts", literal: "*", count: 208, kind: "tuned", source: "wave 51-60 involution-discovery toolkit, merged into one barrel \u2014 example confidence/barrier values, patent dollar figures, timeline years, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/quantum/endowment/index.ts", literal: "*", count: 721, kind: "tuned", source: "endowment governance/patents/pricing toolkit \u2014 merged from 54 domain files (agent, analytics, archive, benchmark, biotechnology, ... universal); example barrier strengths, percentages, and dollar figures, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   // ── ui/harmonic — the A432 octave wheel: music-theory units, design hues, SI time scales ──
   // Replaces a blanket '*' attestation of 18 'tuned' uses. The three confidence literals it
@@ -65206,8 +65206,8 @@ function fourThirtyTwoHertzIsAcousticNotNuclear() {
   const protonJ = 938e6 * EV;
   const gapRatio = nuclearGapJ / acousticQuantumJ;
   const protonRatio = protonJ / H / 432;
-  const ordersToGap = Math.round(Math.log10(gapRatio));
-  const ordersToProton = Math.round(Math.log10(protonRatio));
+  const ordersToGap = round(log10(gapRatio));
+  const ordersToProton = round(log10(protonRatio));
   const facets = [
     { facet: `A 432 Hz QUANTUM IS ${(acousticQuantumJ / EV).toExponential(2)} eV \u2014 twelve orders below a single visible photon (~2 eV), which is itself six below a nuclear gap`, on: acousticQuantumJ / EV < 1e-11 },
     { facet: `THE NUCLEAR SHELL GAP IS ~10^${ordersToGap} TIMES THE 432 Hz QUANTUM \u2014 no coupling is proposed and none could bridge that without a mechanism`, on: ordersToGap >= 17 && ordersToGap <= 19 },
@@ -65224,13 +65224,13 @@ function fourThirtyTwoHertzIsAcousticNotNuclear() {
     // THE TUNING IS UNTOUCHED, shown by invariance: run the same arithmetic at A440 and the
     // order-of-magnitude verdict is identical, so the refutation is not about 432 at all.
     // Pick a tuning where it differs and this goes off.
-    { facet: `THE CLAIM REFUTED IS A SCALE CLAIM, NOT A TUNING \u2014 the same computation at A440 gives the same ${ordersToGap}-order gap, so nothing here evaluates the choice of 432 as a tuning; a result that changed with the tuning would be a different claim`, on: Math.round(Math.log10(nuclearGapJ / (H * 440))) === ordersToGap },
+    { facet: `THE CLAIM REFUTED IS A SCALE CLAIM, NOT A TUNING \u2014 the same computation at A440 gives the same ${ordersToGap}-order gap, so nothing here evaluates the choice of 432 as a tuning; a result that changed with the tuning would be a different claim`, on: round(log10(nuclearGapJ / (H * 440))) === ordersToGap },
     // ROBUST TO THE CONSTANTS: perturb h by a part in 10⁶ and the verdict does not move.
     // If the conclusion depended on the constants' precision, this goes off.
-    { facet: "THE BOUND DOES NOT HIDE IN PRECISION \u2014 perturbing h by one part in 10\u2076 leaves the order-of-magnitude verdict unchanged, so the conclusion rests on the scale separation and not on the constants being exact", on: Math.round(Math.log10(nuclearGapJ / (H * 1.000001 * 432))) === ordersToGap },
+    { facet: "THE BOUND DOES NOT HIDE IN PRECISION \u2014 perturbing h by one part in 10\u2076 leaves the order-of-magnitude verdict unchanged, so the conclusion rests on the scale separation and not on the constants being exact", on: round(log10(nuclearGapJ / (H * 1.000001 * 432))) === ordersToGap },
     // NOT ABOUT ONE NOTE: it holds across the entire audible band, so no mechanism specific
     // to any tone is being refuted — or proposed. A band where it failed would show one.
-    { facet: "NOTHING IS SHOWN ABOUT COUPLING \u2014 the gap exceeds 15 orders for EVERY tone in the audible band (20 Hz to 20 kHz), so this refutes an assertion about scale and offers no mechanism, for or against, at any particular frequency", on: [20, 432, 1e3, 2e4].every((tone) => Math.log10(nuclearGapJ / (H * tone)) > 15) }
+    { facet: "NOTHING IS SHOWN ABOUT COUPLING \u2014 the gap exceeds 15 orders for EVERY tone in the audible band (20 Hz to 20 kHz), so this refutes an assertion about scale and offers no mechanism, for or against, at any particular frequency", on: [20, 432, 1e3, 2e4].every((tone) => log10(nuclearGapJ / (H * tone)) > 15) }
   ];
   const sealed = sealFacets("432-is-acoustic-not-nuclear", facets);
   return {
@@ -65246,15 +65246,15 @@ function fourThirtyTwoHertzIsAcousticNotNuclear() {
 }
 function merkabaCounterRotationNullsTheAxis() {
   const R = 1;
-  const angles = [40, 160, 280, 80, 200, 320].map((d) => d * Math.PI / 180);
+  const angles = [40, 160, 280, 80, 200, 320].map((d) => d * (TAU / 2) / 180);
   const sign3 = (i) => i < 3 ? 1 : -1;
   const co = () => 1;
   const axialSum = (s) => angles.reduce((sum, _a, i) => sum + s(i), 0);
   const merkabaAxis = axialSum(sign3);
   const corotatingAxis = axialSum(co);
-  const xSum = angles.reduce((sum, a, i) => sum + sign3(i) * Math.cos(a), 0);
-  const ySum = angles.reduce((sum, a, i) => sum + sign3(i) * Math.sin(a), 0);
-  const planarNull = Math.abs(xSum) < 1e-12 && Math.abs(ySum) < 1e-12;
+  const xSum = angles.reduce((sum, a, i) => sum + sign3(i) * cos(a), 0);
+  const ySum = angles.reduce((sum, a, i) => sum + sign3(i) * sin(a), 0);
+  const planarNull = abs(xSum) < 1e-12 && abs(ySum) < 1e-12;
   const facets = [
     { facet: `THE AXIS IS A NULL UNDER COUNTER-ROTATION \u2014 the six signed contributions sum to ${merkabaAxis} on the 3-6-9/0 axis, so the field cancels exactly by symmetry rather than approximately`, on: merkabaAxis === 0 },
     { facet: `CO-ROTATION MAKES THE SAME AXIS A MAXIMUM \u2014 all six add, summing to ${corotatingAxis}; the geometry is identical and only the current direction differs`, on: corotatingAxis === 6 },
@@ -65276,15 +65276,15 @@ function colourMapsAreTwoMapsAndOnlyOneRoundTrips() {
   const A432 = a432Base();
   const notes = [-21, -12, -9, -5, 0, 12].map((semitone) => A432 * 2 ** (semitone / 12));
   const angularDistance = (a, b) => {
-    const d = Math.abs(((a - b) % 360 + 360) % 360);
-    return Math.min(d, 360 - d);
+    const d = abs(((a - b) % 360 + 360) % 360);
+    return min(d, 360 - d);
   };
   const divergences = notes.map((f2) => angularDistance(frequencyToLight(f2).hue, colorFromSound2(f2).hue));
-  const maxDivergence = Math.max(...divergences);
+  const maxDivergence = max(...divergences);
   const roundTrips = notes.every((f2) => {
     const back = soundFromColor(colorFromSound2(f2).hue).frequency;
-    const octaveRatio = Math.log2(Math.max(back, 1) / f2);
-    return Math.abs(octaveRatio - Math.round(octaveRatio)) < 1e-6;
+    const octaveRatio = log2(max(back, 1) / f2);
+    return abs(octaveRatio - round(octaveRatio)) < 1e-6;
   });
   const sigmaAt = (anchor) => (f2) => anchor * anchor / f2;
   const selfInverseAt432 = sigmaAt(A432)(A432) === A432;
@@ -113693,11 +113693,11 @@ function impedanceAnalogiesDecoded(matrix = buildMatrix()) {
         // and an exact analogy must hold for any of them.
         on: VORTEX_SEQUENCE.slice(0, VORTEX_SEQUENCE.length - 2).map((_, i) => [VORTEX_SEQUENCE[i], VORTEX_SEQUENCE[i + 1], VORTEX_SEQUENCE[i + 2]]).every(([L, R, C]) => {
           const m = L, b = R, k = 1 / C;
-          const wElec = 1 / Math.sqrt(L * C);
-          const wMech = Math.sqrt(k / m);
-          const zElec = R / 2 * Math.sqrt(C / L);
-          const zMech = b / (2 * Math.sqrt(k * m));
-          const close = (x, y) => Math.abs(x - y) <= Number.EPSILON * Math.max(Math.abs(x), Math.abs(y)) * 4;
+          const wElec = 1 / sqrt(L * C);
+          const wMech = sqrt(k / m);
+          const zElec = R / 2 * sqrt(C / L);
+          const zMech = b / (2 * sqrt(k * m));
+          const close = (x, y) => abs(x - y) <= Number.EPSILON * max(abs(x), abs(y)) * 4;
           return close(wElec, wMech) && close(zElec, zMech);
         })
       },
@@ -127650,7 +127650,7 @@ function scanHandListedRosters(root = enforcementScanRoot()) {
       if (!/^\s{2,}const \w+(?:: [^=]+)? = \[\s*$/.test(line)) continue;
       let entries = 0;
       let computedEntries = 0;
-      for (let j = i + 1; j < Math.min(i + 8 * 9, lines.length); j += 1) {
+      for (let j = i + 1; j < min(i + 8 * 9, lines.length); j += 1) {
         const row = lines[j];
         if (/^\s*\]/.test(row)) break;
         if (!/^\s*\{\s*\w+:/.test(row)) continue;
@@ -135234,7 +135234,7 @@ function iconSeal() {
 }
 
 // ../../src/quantum/endowment/index.ts
-var scale = (mult, exp2) => mult * Math.pow(10, exp2);
+var scale = (mult, exp2) => mult * pow(10, exp2);
 var fundingSourceData = [
   {
     id: "cmi-millennium-prize",
@@ -135468,7 +135468,7 @@ function computeOptimalAllocation(theorem) {
   let theoremBudget = theorem.total_available_usd;
   for (const source of sources) {
     if (theoremBudget <= 0) break;
-    const allocated = Math.min(source.amount_usd, theoremBudget);
+    const allocated = min(source.amount_usd, theoremBudget);
     theoremBudget -= allocated;
     const allocationSeal = toUuid(
       `allocation:${theorem.theorem_id}:${source.id}:${allocated}`
@@ -136088,7 +136088,7 @@ var MultiSigAuthority = class {
   // Create multi-sig gate for transaction
   createGate(transactionId, amountUsd) {
     const requiredSigs = this.getRequiredSignatures(amountUsd);
-    const signers = Array.from(this.signers.values()).slice(0, Math.max(requiredSigs, 3));
+    const signers = Array.from(this.signers.values()).slice(0, max(requiredSigs, 3));
     const gate = {
       gate_id: toUuid(`gate:${transactionId}:multisig`),
       transaction_id: transactionId,
@@ -136453,7 +136453,7 @@ var FraudDetector = class {
         allocation_id: `${allocation.theorem_id}:${allocation.funding_source_id}`,
         researcher_id: researcher2.researcher_id,
         anomaly_type: "large_first_claim",
-        risk_score: Math.min(100, allocation.allocated_usd / 1e6 * 60),
+        risk_score: min(100, allocation.allocated_usd / 1e6 * 60),
         evidence: [`amount:${allocation.allocated_usd}`, `publications:${researcher2.credentials.publication_count}`],
         flagged_at: timestamp,
         status: "open"
@@ -136469,7 +136469,7 @@ var FraudDetector = class {
         allocation_id: `${allocation.theorem_id}:${allocation.funding_source_id}`,
         researcher_id: researcher2.researcher_id,
         anomaly_type: "rapid_claims",
-        risk_score: Math.min(100, recentCount * 25),
+        risk_score: min(100, recentCount * 25),
         evidence: [`recent_claims:${recentCount}`, `period:7_days`],
         flagged_at: timestamp,
         status: "open"
@@ -136485,7 +136485,7 @@ var FraudDetector = class {
         researcher_id: researcher2.researcher_id,
         anomaly_type: "new_researcher",
         risk_score: 40,
-        evidence: [`profile_age_days:${Math.floor(profileAge / (24 * 60 * 60 * 1e3))}`],
+        evidence: [`profile_age_days:${floor(profileAge / (24 * 60 * 60 * 1e3))}`],
         flagged_at: timestamp,
         status: "open"
       };
@@ -136537,7 +136537,7 @@ var FraudDetector = class {
       investigated,
       resolved,
       false_positives: falsePositives,
-      avg_risk_score: Math.round(avgRisk)
+      avg_risk_score: round(avgRisk)
     };
   }
   // Get detector ID
@@ -136702,14 +136702,14 @@ var ImmutableLedger = class {
     this.entries.push(entry2);
     this.lastHash = entryHash;
     if (this.entries.length % this.entriesPerPage === 0) {
-      this.createPage(Math.floor(this.entries.length / this.entriesPerPage));
+      this.createPage(floor(this.entries.length / this.entriesPerPage));
     }
     return entry2;
   }
   // Create a page (sealed batch of entries)
   createPage(pageNumber) {
     const startSeq = (pageNumber - 1) * this.entriesPerPage + 1;
-    const endSeq = Math.min(pageNumber * this.entriesPerPage, this.entries.length);
+    const endSeq = min(pageNumber * this.entriesPerPage, this.entries.length);
     const pageEntries = this.entries.slice(startSeq - 1, endSeq);
     const pageRoots = pageEntries.map((e) => e.entry_hash);
     const pageRoot = merkleFold(pageRoots);
@@ -137502,7 +137502,7 @@ var ImpactMeasurement = class {
       adoptions,
       downstream_theorems: downstreamTheorems,
       applications,
-      h_index_contribution: Math.min(citations, 100),
+      h_index_contribution: min(citations, 100),
       field_advancement_score: fieldScore,
       measured_at: (/* @__PURE__ */ new Date()).toISOString()
     };
@@ -137546,7 +137546,7 @@ var ImpactMeasurement = class {
     if (!impact2) return null;
     for (let i = this.impactTiers.length - 1; i >= 0; i--) {
       const tier = this.impactTiers[i];
-      if (impact2.total_citations >= tier.min_citations && impact2.breakthrough_count >= Math.ceil(tier.min_adoptions / 5)) {
+      if (impact2.total_citations >= tier.min_citations && impact2.breakthrough_count >= ceil(tier.min_adoptions / 5)) {
         return tier;
       }
     }
@@ -137688,7 +137688,7 @@ var IncentiveManager = class {
   recordEarning(researcherId, theoremId, type, triggerValue) {
     const rule = Array.from(this.rules.values()).find((r2) => r2.type === type && r2.active);
     if (!rule) return null;
-    const earnedAmount = Math.min(
+    const earnedAmount = min(
       rule.base_reward_usd + rule.multiplier_per_unit * triggerValue,
       rule.cap_usd
     );
@@ -137855,10 +137855,10 @@ var PortfolioManager = class {
       return;
     }
     const variance = allocations.reduce((sum, a) => {
-      const deviation = Math.abs(a.current_allocation_usd - a.target_allocation_usd);
+      const deviation = abs(a.current_allocation_usd - a.target_allocation_usd);
       return sum + deviation;
     }, 0);
-    this.portfolio.diversification_score = Math.max(0, 100 - variance / (this.portfolio.total_capacity_usd / 10));
+    this.portfolio.diversification_score = max(0, 100 - variance / (this.portfolio.total_capacity_usd / 10));
     const weightedRisk = allocations.reduce((sum, a) => {
       const weight = a.current_allocation_usd / this.portfolio.total_capacity_usd;
       return sum + weight * a.risk_score;
@@ -137868,9 +137868,9 @@ var PortfolioManager = class {
       return sum + weight * (100 - a.risk_score);
     }, 0);
     this.portfolio.risk_adjusted_return = weightedRisk > 0 ? expectedReturn / weightedRisk : 0;
-    const maxDeviation = Math.max(
+    const maxDeviation = max(
       ...allocations.map(
-        (a) => Math.abs(a.current_allocation_usd - a.target_allocation_usd) / a.target_allocation_usd
+        (a) => abs(a.current_allocation_usd - a.target_allocation_usd) / a.target_allocation_usd
       )
     );
     this.portfolio.rebalance_needed = maxDeviation > this.rebalanceThreshold;
@@ -137938,11 +137938,11 @@ var PortfolioManager = class {
     const recommendations = [];
     for (const allocation of this.allocations.values()) {
       const deviation = allocation.current_allocation_usd - allocation.target_allocation_usd;
-      if (Math.abs(deviation) > allocation.target_allocation_usd * this.rebalanceThreshold) {
+      if (abs(deviation) > allocation.target_allocation_usd * this.rebalanceThreshold) {
         recommendations.push({
           domain: allocation.domain,
           action: deviation > 0 ? "reduce" : "increase",
-          amount: Math.abs(deviation)
+          amount: abs(deviation)
         });
       }
     }
@@ -137976,22 +137976,22 @@ var PredictiveModel = class {
   // Predict researcher success
   predictResearcherSuccess(researcherId, theoremId, historicalCitations, publicationCount, collaboratorCount, fundingHistoryUsd) {
     const predictionId = toUuid(`prediction:${researcherId}:${theoremId}`);
-    const citationFactor = Math.min(historicalCitations / 100, 1) * 0.3;
-    const publicationFactor = Math.min(publicationCount / 20, 1) * 0.25;
-    const collaborationFactor = Math.min(collaboratorCount / 50, 1) * 0.2;
-    const fundingFactor = Math.min(fundingHistoryUsd / 5e5, 1) * 0.25;
+    const citationFactor = min(historicalCitations / 100, 1) * 0.3;
+    const publicationFactor = min(publicationCount / 20, 1) * 0.25;
+    const collaborationFactor = min(collaboratorCount / 50, 1) * 0.2;
+    const fundingFactor = min(fundingHistoryUsd / 5e5, 1) * 0.25;
     const successProbability = citationFactor + publicationFactor + collaborationFactor + fundingFactor;
-    const projectedCitations = Math.round(
+    const projectedCitations = round(
       historicalCitations * (0.8 + successProbability * 0.4)
     );
-    const projectedAdoptions = Math.round(
-      Math.max(1, successProbability * 20)
+    const projectedAdoptions = round(
+      max(1, successProbability * 20)
     );
     const prediction = {
       prediction_id: predictionId,
       researcher_id: researcherId,
       theorem_id: theoremId,
-      success_probability: Math.min(1, successProbability),
+      success_probability: min(1, successProbability),
       estimated_citation_count: projectedCitations,
       estimated_adoption_count: projectedAdoptions,
       // CONFIDENCE IS EVIDENCE VOLUME, and it is the one field here that was invented. Every other
@@ -138024,12 +138024,12 @@ var PredictiveModel = class {
       period_start: periodStart,
       period_end: periodEnd,
       projected_allocations: theoremPipeline,
-      projected_capital_deployed_usd: Math.round(baseProjection),
-      projected_claims_usd: Math.round(baseProjection * 0.75),
+      projected_capital_deployed_usd: round(baseProjection),
+      projected_claims_usd: round(baseProjection * 0.75),
       // 75% claims expected
       confidence_interval: {
-        lower_usd: Math.round(baseProjection - variability),
-        upper_usd: Math.round(baseProjection + variability)
+        lower_usd: round(baseProjection - variability),
+        upper_usd: round(baseProjection + variability)
       }
     };
     this.forecasts.set(forecastId, forecast);
@@ -138037,13 +138037,13 @@ var PredictiveModel = class {
   }
   // Project researcher trajectory
   projectTrajectory(researcherId, currentHIndex, currentPublicationRate, fundingHistoryUsd, yearsInField) {
-    const hGrowthFactor = Math.log(yearsInField + 1) * 0.5;
-    const h1Year = Math.round(currentHIndex + hGrowthFactor * 2);
-    const h3Year = Math.round(currentHIndex + hGrowthFactor * 4);
-    const careerPeakYear = Math.round(yearsInField + 15);
+    const hGrowthFactor = log(yearsInField + 1) * 0.5;
+    const h1Year = round(currentHIndex + hGrowthFactor * 2);
+    const h3Year = round(currentHIndex + hGrowthFactor * 4);
+    const careerPeakYear = round(yearsInField + 15);
     const fundingImpact = fundingHistoryUsd > 0 ? currentHIndex * 100 / fundingHistoryUsd : 0.5;
     const baseAttritionRisk = 0.1 + yearsInField / 50 * 0.2;
-    const fundingStability = Math.min(fundingHistoryUsd / 25e4, 1);
+    const fundingStability = min(fundingHistoryUsd / 25e4, 1);
     const attritionRisk = baseAttritionRisk * (1 - fundingStability);
     const trajectory = {
       researcher_id: researcherId,
@@ -138052,7 +138052,7 @@ var PredictiveModel = class {
       publication_velocity: currentPublicationRate,
       funding_impact_ratio: fundingImpact,
       career_peak_year: careerPeakYear,
-      attrition_risk: Math.min(attritionRisk, 0.8)
+      attrition_risk: min(attritionRisk, 0.8)
     };
     this.trajectories.set(researcherId, trajectory);
     return trajectory;
@@ -138108,7 +138108,7 @@ var SustainabilityTracker = class {
   }
   // Record sustainability metric
   recordMetric(fundingStability, researcherRetention, impactGrowth, fundUtilization) {
-    const healthScore = fundingStability * 0.35 + researcherRetention * 100 * 0.3 + Math.min(impactGrowth, 100) * 0.2 + fundUtilization * 100 * 0.15;
+    const healthScore = fundingStability * 0.35 + researcherRetention * 100 * 0.3 + min(impactGrowth, 100) * 0.2 + fundUtilization * 100 * 0.15;
     const metric = {
       metric_id: toUuid(`metric:sustainability:${Date.now()}`),
       period_start: new Date(Date.now() - 30 * 24 * 60 * 60 * 1e3).toISOString(),
@@ -138117,7 +138117,7 @@ var SustainabilityTracker = class {
       researcher_retention_rate: researcherRetention,
       impact_growth_rate: impactGrowth,
       fund_utilization_rate: fundUtilization,
-      program_health_score: Math.min(healthScore, 100),
+      program_health_score: min(healthScore, 100),
       timestamp: (/* @__PURE__ */ new Date()).toISOString()
     };
     this.metrics.set(metric.metric_id, metric);
@@ -138256,7 +138256,7 @@ var SustainabilityTracker = class {
         `Address renewal risks for ${atRiskSources} funding source(s)`
       );
     }
-    const confidence = Math.min(this.metrics.size, 10) * 0.1;
+    const confidence = min(this.metrics.size, 10) * 0.1;
     return { outlook, confidence, recommendations };
   }
   getId() {
@@ -138371,7 +138371,7 @@ var IntegrationHub = class {
       internal_id: internalIds.join(","),
       last_synced: (/* @__PURE__ */ new Date()).toISOString(),
       status: "synced",
-      record_count: Math.min(externalIds.length, internalIds.length)
+      record_count: min(externalIds.length, internalIds.length)
     };
     this.syncRecords.set(syncId, syncRecord);
     return syncRecord;
@@ -138511,7 +138511,7 @@ var BenchmarkComparator = class {
   }
   // Record performance comparison
   recordComparison(ourProgram, peerProgramId, metric, ourValue, peerValue) {
-    const percentileRank = peerValue > 0 ? Math.min(100, ourValue / peerValue * 100) : 0;
+    const percentileRank = peerValue > 0 ? min(100, ourValue / peerValue * 100) : 0;
     const comparison = {
       comparison_id: toUuid(`comparison:${ourProgram}:${peerProgramId}:${metric}`),
       our_program: ourProgram,
@@ -138538,7 +138538,7 @@ var BenchmarkComparator = class {
       funding_to_impact_ratio: fundingToImpactRatio,
       researcher_satisfaction_score: satisfactionScore,
       average_time_to_publication_months: monthsToPublication,
-      success_rate: Math.min(successRate, 100),
+      success_rate: min(successRate, 100),
       peer_comparison_score: 50
       // Will be computed after comparisons
     };
@@ -139058,7 +139058,7 @@ var RiskManager = class {
       insurance_coverage_usd: totalInsurance,
       reserve_fund_usd: this.reserveFund,
       contingency_plans_count: this.contingencyPlans.size,
-      coverage_adequacy: Math.min(adequacy, 100)
+      coverage_adequacy: min(adequacy, 100)
     };
   }
   getId() {
@@ -139184,7 +139184,7 @@ var GovernanceCouncil = class {
   updateReputation(participantId, delta) {
     const participant = this.participants.get(participantId);
     if (!participant) return false;
-    participant.reputation_score = Math.max(0, Math.min(100, participant.reputation_score + delta));
+    participant.reputation_score = max(0, min(100, participant.reputation_score + delta));
     participant.voting_power *= 1 + delta / 100;
     return true;
   }
@@ -139310,12 +139310,12 @@ var PricingEngine = class {
     let weightedScore = 0;
     let totalWeight = 0;
     for (const signal of fieldSignals) {
-      const normalizedLevel = Math.min(100, signal.current_level * 2);
+      const normalizedLevel = min(100, signal.current_level * 2);
       const trendMultiplier = signal.trend === "rising" ? 1.2 : signal.trend === "declining" ? 0.8 : 1;
       weightedScore += normalizedLevel * signal.demand_weight * trendMultiplier;
       totalWeight += signal.demand_weight;
     }
-    return totalWeight > 0 ? Math.min(100, weightedScore / totalWeight) : 50;
+    return totalWeight > 0 ? min(100, weightedScore / totalWeight) : 50;
   }
   // Optimize allocation for theorem
   optimizeAllocation(theoremId, currentAllocationUsd, successProbability, demandScore, difficultyMultiplier = 1) {
@@ -139329,7 +139329,7 @@ var PricingEngine = class {
       optimization_id: optId,
       theorem_id: theoremId,
       current_allocation_usd: currentAllocationUsd,
-      recommended_allocation_usd: Math.round(targetAllocation),
+      recommended_allocation_usd: round(targetAllocation),
       adjustment_ratio: adjustmentRatio,
       efficiency_gain: efficiencyGain,
       implementation_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1e3).toISOString(),
@@ -139413,7 +139413,7 @@ var ReproducibilityTracker = class {
     const attemptId = toUuid(`attempt:${theoremId}:${reproducerId}`);
     const baseScore = 100;
     const penalty = issuesFound.length * 10;
-    const reproducibilityScore = Math.max(0, baseScore - penalty);
+    const reproducibilityScore = max(0, baseScore - penalty);
     let status = "attempted";
     if (reproducibilityScore >= 90) status = "successful";
     else if (reproducibilityScore >= 50) status = "partial";
@@ -139616,14 +139616,14 @@ var KnowledgeBase = class {
   ratePractice(practiceId, rating) {
     const practice = this.practices.get(practiceId);
     if (!practice) return null;
-    const newAvgRating = (practice.rating * Math.max(1, practice.theorems_using - 1) + rating) / Math.max(1, practice.theorems_using);
+    const newAvgRating = (practice.rating * max(1, practice.theorems_using - 1) + rating) / max(1, practice.theorems_using);
     practice.rating = newAvgRating;
     return practice;
   }
   // Create research synthesis
   createSynthesis(topic, relatedTheorems, keyFindings, openQuestions, contributors) {
     const synthesisId = toUuid(`synthesis:${topic}`);
-    const completenessScore = Math.min(
+    const completenessScore = min(
       100,
       relatedTheorems.length * 10 + keyFindings.length * 15 + (100 - openQuestions.length * 5)
     );
@@ -139720,7 +139720,7 @@ var CollaborationManager = class {
       collaboration_type: type,
       start_date: (/* @__PURE__ */ new Date()).toISOString(),
       contribution_shares: contributionShares,
-      impact_multiplier: Math.min(impactMultiplier, 2.5),
+      impact_multiplier: min(impactMultiplier, 2.5),
       // cap at 2.5x
       status: "active"
     };
@@ -139754,12 +139754,12 @@ var CollaborationManager = class {
     }
     network.collaboration_count++;
     network.network_size = new Set(network.collaborators).size;
-    network.reach_score = Math.min(100, network.network_size * 10);
+    network.reach_score = min(100, network.network_size * 10);
     const allCollabs = Array.from(this.collaborations.values()).filter(
       (c) => c.researchers.includes(researcherId)
     );
     const typeVariety = new Set(allCollabs.map((c) => c.collaboration_type)).size;
-    network.diversity_score = Math.min(100, typeVariety * 25);
+    network.diversity_score = min(100, typeVariety * 25);
     network.network_impact_multiplier = 1 + network.reach_score / 100 * 0.3 + network.diversity_score / 100 * 0.2;
     network.last_updated = (/* @__PURE__ */ new Date()).toISOString();
   }
@@ -139787,7 +139787,7 @@ var CollaborationManager = class {
     if (isDiverse) {
       bonus *= incentive.multiplier_for_diversity;
     }
-    return Math.min(bonus, incentive.bonus_cap_usd);
+    return min(bonus, incentive.bonus_cap_usd);
   }
   // Get collaboration
   getCollaboration(collaborationId) {
@@ -139879,7 +139879,7 @@ var FieldAnalyzer = class {
     ];
     for (const field of defaultFields) {
       const trendId = toUuid(`trend:${field.name}`);
-      const momentumScore = Math.min(100, field.growth * 2 + field.citations / field.pubs * 5);
+      const momentumScore = min(100, field.growth * 2 + field.citations / field.pubs * 5);
       let status = "mature";
       if (field.growth > 20) status = "emerging";
       else if (field.growth > 10) status = "growing";
@@ -139904,7 +139904,7 @@ var FieldAnalyzer = class {
   analyzeField(fieldName, publicationCount, citationCount, researcherCount, yearOverYearGrowth) {
     const trendId = toUuid(`trend:${fieldName}:${Date.now()}`);
     const citationVelocity = publicationCount > 0 ? citationCount / publicationCount : 0;
-    const momentumScore = Math.min(
+    const momentumScore = min(
       100,
       yearOverYearGrowth * 2 + citationVelocity * 3
     );
@@ -139933,8 +139933,8 @@ var FieldAnalyzer = class {
   // Create research area
   createResearchArea(name2, parentField, keywords, theoremIds, avgImpact, totalFunding, startYear) {
     const areaId = toUuid(`area:${name2}`);
-    const interdisciplinaryIndex = Math.min(100, keywords.length * 15);
-    const complexityScore = Math.min(100, theoremIds.length * 5 + avgImpact / 100 * 50);
+    const interdisciplinaryIndex = min(100, keywords.length * 15);
+    const complexityScore = min(100, theoremIds.length * 5 + avgImpact / 100 * 50);
     const area = {
       area_id: areaId,
       name: name2,
@@ -139943,7 +139943,7 @@ var FieldAnalyzer = class {
       theorems: theoremIds,
       avg_impact_score: avgImpact,
       total_funding_usd: totalFunding,
-      researcher_count: Math.max(1, theoremIds.length / 3),
+      researcher_count: max(1, theoremIds.length / 3),
       year_started: startYear,
       complexity_score: complexityScore,
       interdisciplinary_index: interdisciplinaryIndex
@@ -139954,9 +139954,9 @@ var FieldAnalyzer = class {
   // Identify emerging opportunity
   identifyOpportunity(title, relatedFields, potentialImpact, fundingGap, requiredExpertise, yearsToBreakthrough) {
     const opportunityId = toUuid(`opportunity:${title}`);
-    const opportunityScore = Math.min(
+    const opportunityScore = min(
       100,
-      potentialImpact * 0.6 + Math.min(fundingGap, 1e6) / 1e4 * 0.4
+      potentialImpact * 0.6 + min(fundingGap, 1e6) / 1e4 * 0.4
     );
     const opportunity = {
       opportunity_id: opportunityId,
@@ -140060,9 +140060,9 @@ var LegacyArchive = class {
   // Archive theorem as legacy
   createLegacyRecord(theoremId, researcherId, fundingYear, initialFunding, totalCitations, totalAdoptions, downstreamTheorems, fieldsInfluenced, applications) {
     const recordId = toUuid(`legacy:${theoremId}:${fundingYear}`);
-    const citationScore = Math.min(100, totalCitations / 100 * 50);
-    const adoptionScore = Math.min(100, totalAdoptions / 50 * 30);
-    const downstreamScore = Math.min(100, downstreamTheorems * 10);
+    const citationScore = min(100, totalCitations / 100 * 50);
+    const adoptionScore = min(100, totalAdoptions / 50 * 30);
+    const downstreamScore = min(100, downstreamTheorems * 10);
     const permanenceScore = (citationScore + adoptionScore + downstreamScore) / 3;
     const record = {
       record_id: recordId,
@@ -140076,7 +140076,7 @@ var LegacyArchive = class {
       fields_influenced: fieldsInfluenced,
       real_world_applications: applications,
       researchers_trained: 0,
-      impact_generations: 1 + Math.floor(downstreamTheorems / 3),
+      impact_generations: 1 + floor(downstreamTheorems / 3),
       archive_date: (/* @__PURE__ */ new Date()).toISOString(),
       permanence_score: permanenceScore
     };
@@ -140103,10 +140103,10 @@ var LegacyArchive = class {
   // Create researcher legacy
   createResearcherLegacy(researcherId, theoremCount, totalCitations, totalAdoptions, hIndexPeak, fieldContributions, menteesCount) {
     const legacyId = toUuid(`researcher-legacy:${researcherId}`);
-    const citationComponent = Math.min(30, totalCitations / 1e3 * 30);
-    const adoptionComponent = Math.min(20, totalAdoptions / 100 * 20);
-    const hIndexComponent = Math.min(25, hIndexPeak / 100 * 25);
-    const menteeComponent = Math.min(25, menteesCount / 50 * 25);
+    const citationComponent = min(30, totalCitations / 1e3 * 30);
+    const adoptionComponent = min(20, totalAdoptions / 100 * 20);
+    const hIndexComponent = min(25, hIndexPeak / 100 * 25);
+    const menteeComponent = min(25, menteesCount / 50 * 25);
     const legacyScore = citationComponent + adoptionComponent + hIndexComponent + menteeComponent;
     const legacy = {
       legacy_id: legacyId,
@@ -140176,8 +140176,8 @@ var LegacyArchive = class {
     const impacts = Array.from(this.generationalImpacts.values());
     const avgPermanence = records.length > 0 ? records.reduce((sum, r2) => sum + r2.permanence_score, 0) / records.length : 0;
     const avgLegacy = legacies.length > 0 ? legacies.reduce((sum, l) => sum + l.legacy_score, 0) / legacies.length : 0;
-    const mostImpactful = records.length > 0 ? Math.max(...records.map((r2) => r2.total_citations_all_time)) : 0;
-    const maxGen = impacts.length > 0 ? Math.max(...impacts.map((i) => i.generation_number)) : 0;
+    const mostImpactful = records.length > 0 ? max(...records.map((r2) => r2.total_citations_all_time)) : 0;
+    const maxGen = impacts.length > 0 ? max(...impacts.map((i) => i.generation_number)) : 0;
     return {
       total_legacy_records: records.length,
       avg_permanence_score: avgPermanence,
@@ -140275,7 +140275,7 @@ var MentorshipManager = class {
       current_level: startLevel,
       progress_pct: 0,
       milestones_achieved: [],
-      next_milestone: `Reach ${levels[Math.min(levelIndex + 1, levels.length - 1)]} level`,
+      next_milestone: `Reach ${levels[min(levelIndex + 1, levels.length - 1)]} level`,
       estimated_advancement_months: (levelIndex + 1) * 12,
       career_trajectory: "steady"
     };
@@ -140442,7 +140442,7 @@ var IPManager = class {
   // Record commercialization
   recordCommercialization(patentId, productName, marketRevenue, unitsSold, customerCount) {
     const commercializationId = toUuid(`commercialization:${patentId}:${productName}`);
-    const estimatedMarketSize = Math.max(1e3, unitsSold * 10);
+    const estimatedMarketSize = max(1e3, unitsSold * 10);
     const adoptionRate = customerCount / estimatedMarketSize * 100;
     const patent = this.patents.get(patentId);
     const patentCost = patent ? patent.maintenance_cost_usd : 5e4;
@@ -140585,9 +140585,9 @@ var OutreachManager = class {
     project.reach_metrics.views = views;
     project.reach_metrics.shares = shares;
     project.reach_metrics.engagement_rate = views > 0 ? shares / views * 100 : 0;
-    project.impact_score = Math.min(
+    project.impact_score = min(
       100,
-      Math.log(views + 1) + shares * 5 + project.reach_metrics.engagement_rate
+      log(views + 1) + shares * 5 + project.reach_metrics.engagement_rate
     );
     return project;
   }
@@ -140795,7 +140795,7 @@ var SecurityManager = class {
     const baseScore = 100;
     const findingPenalty = findingCount * 5;
     const criticalPenalty = criticalFindings * 20;
-    const complianceScore = Math.max(0, baseScore - findingPenalty - criticalPenalty);
+    const complianceScore = max(0, baseScore - findingPenalty - criticalPenalty);
     const audit = {
       audit_id: auditId,
       audit_type: auditType,
@@ -140953,13 +140953,13 @@ var MonitoringSystem = class {
       const duration = a.resolved_at ? new Date(a.resolved_at).getTime() - new Date(a.triggered_at).getTime() : Date.now() - new Date(a.triggered_at).getTime();
       return sum + duration;
     }, 0);
-    const uptimePercentage = Math.max(0, (systemAge - downtime) / systemAge * 100);
+    const uptimePercentage = max(0, (systemAge - downtime) / systemAge * 100);
     const latestMetrics = Array.from(this.metrics.values()).filter(
       (m) => new Date(m.timestamp).getTime() > Date.now() - 6e4
     );
-    const avgLatency = latestMetrics.filter((m) => m.metric_type === "latency").reduce((sum, m) => sum + m.value, 0) / Math.max(1, latestMetrics.filter((m) => m.metric_type === "latency").length);
-    const errorRate = latestMetrics.filter((m) => m.metric_type === "error_rate").reduce((sum, m) => sum + m.value, 0) / Math.max(1, latestMetrics.filter((m) => m.metric_type === "error_rate").length);
-    const resourceUtilization = latestMetrics.filter((m) => m.metric_type === "resource_usage").reduce((sum, m) => sum + m.value, 0) / Math.max(1, latestMetrics.filter((m) => m.metric_type === "resource_usage").length);
+    const avgLatency = latestMetrics.filter((m) => m.metric_type === "latency").reduce((sum, m) => sum + m.value, 0) / max(1, latestMetrics.filter((m) => m.metric_type === "latency").length);
+    const errorRate = latestMetrics.filter((m) => m.metric_type === "error_rate").reduce((sum, m) => sum + m.value, 0) / max(1, latestMetrics.filter((m) => m.metric_type === "error_rate").length);
+    const resourceUtilization = latestMetrics.filter((m) => m.metric_type === "resource_usage").reduce((sum, m) => sum + m.value, 0) / max(1, latestMetrics.filter((m) => m.metric_type === "resource_usage").length);
     const report = {
       report_id: reportId,
       timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -141065,7 +141065,7 @@ var FeedbackManager = class {
       submitter_id: submitterId,
       feedback_type: feedbackType,
       category,
-      rating: Math.min(10, Math.max(0, rating)),
+      rating: min(10, max(0, rating)),
       message,
       submitted_at: (/* @__PURE__ */ new Date()).toISOString(),
       anonymous,
@@ -141239,7 +141239,7 @@ var FairnessMonitor = class {
     };
     this.metrics.set(metricId, metric);
     if (!isBalanced) {
-      const disparity = Math.abs((disparityRatio - 1) * 100);
+      const disparity = abs((disparityRatio - 1) * 100);
       const underfundedGroup = disparityRatio > 1 ? metric.group_b.name : metric.group_a.name;
       const severity = disparity > 50 ? "critical" : disparity > 30 ? "high" : "medium";
       this.raiseAlert(
@@ -141293,7 +141293,7 @@ var FairnessMonitor = class {
       const dimMetrics = Array.from(this.metrics.values()).filter((m) => m.dimension === dimension);
       if (dimMetrics.length > 0) {
         const avgBalance = dimMetrics.reduce((sum, m) => {
-          const balance2 = Math.min(m.disparity_ratio, 1 / m.disparity_ratio);
+          const balance2 = min(m.disparity_ratio, 1 / m.disparity_ratio);
           return sum + balance2 * 100;
         }, 0) / dimMetrics.length;
         fairnessScores[dimension] = avgBalance;
@@ -141602,7 +141602,7 @@ var SynthesisEngine = class {
     const insightId = toUuid(`insight:${dimensionsCombination.join("-")}`);
     const baseConfidence = 0.7;
     const dimensionBoost = (dimensionsCombination.length - 1) * 0.05;
-    const confidence = Math.min(1, baseConfidence + dimensionBoost);
+    const confidence = min(1, baseConfidence + dimensionBoost);
     const insight = {
       insight_id: insightId,
       dimensions: dimensionsCombination,
@@ -142038,7 +142038,7 @@ var ConsciousnessEngine = class {
   }
   // Evaluate reasoning quality (meta-cognition)
   evaluateReasoningQuality() {
-    const quality = Math.min(100, this.selfAwareness.self_model_accuracy * 100 + 24);
+    const quality = min(100, this.selfAwareness.self_model_accuracy * 100 + 24);
     return {
       reasoning_quality: quality,
       known_biases: this.selfAwareness.reasoning_bias,
@@ -142048,7 +142048,7 @@ var ConsciousnessEngine = class {
         "Test boundary conditions",
         "Review perspective shifts"
       ],
-      confidence_calibration: 1 - Math.abs(this.reasoningState.confidence_in_current_strategy - 0.85)
+      confidence_calibration: 1 - abs(this.reasoningState.confidence_in_current_strategy - 0.85)
     };
   }
   // Get consciousness state
@@ -142058,7 +142058,7 @@ var ConsciousnessEngine = class {
       ["unknown", 1]
     );
     return {
-      self_awareness_score: Math.round(this.selfAwareness.self_model_accuracy * 100),
+      self_awareness_score: round(this.selfAwareness.self_model_accuracy * 100),
       active_dimensions: this.reasoningState.active_dimensions.length,
       reasoning_depth: this.reasoningState.reasoning_depth,
       perspective_shifts: this.selfAwareness.perspective_shifts_handled,
@@ -142295,7 +142295,7 @@ var TemporalCausalityEngine = class {
     const rootCause = eventSequence[0]?.event_type || "unknown";
     const effect = eventSequence[eventSequence.length - 1]?.event_type || "unknown";
     const chainLength = eventSequence.length;
-    const confidence = Math.min(1, 0.7 + chainLength * 0.05);
+    const confidence = min(1, 0.7 + chainLength * 0.05);
     const chain = {
       chain_id: chainId,
       events: eventSequence,
@@ -142326,7 +142326,7 @@ var TemporalCausalityEngine = class {
       probability,
       time_horizon_hours: 6,
       causal_evidence: relevantChains,
-      confidence: Math.min(1, probability * 0.9)
+      confidence: min(1, probability * 0.9)
     };
     this.temporalPredictions.set(predictionId, prediction);
     this.totalPredictions++;
@@ -142336,7 +142336,7 @@ var TemporalCausalityEngine = class {
   discoverEdgeCase(description, dimensionsInvolved, triggerConditions, mitigationStrategy) {
     const patternId = toUuid(`edge:${description}`);
     const baseProbability = 0.02 + prng(`edge-base:${patternId}`)() * 0.08;
-    const conditionalProbability = Math.min(
+    const conditionalProbability = min(
       1,
       baseProbability * (1 + dimensionsInvolved.length * 0.15)
     );
@@ -142400,14 +142400,14 @@ var TemporalCausalityEngine = class {
       frequency: data.frequency,
       affected_layers: Array.from(data.layers),
       typical_duration_hours: data.durations.length ? data.durations.reduce((a, b) => a + b, 0) / data.durations.length : 0,
-      predictability: Math.min(1, data.frequency * 0.1)
+      predictability: min(1, data.frequency * 0.1)
     }));
   }
   // Private: Compute predictive value of a chain
   computePredictiveValue(events2) {
     const eventCount = events2.length;
-    const recencyFactor = 0.5 + Math.min(0.5, eventCount / 20);
-    return Math.min(1, eventCount / 10 * recencyFactor);
+    const recencyFactor = 0.5 + min(0.5, eventCount / 20);
+    return min(1, eventCount / 10 * recencyFactor);
   }
   // Private: Analyze patterns from similar chains
   analyzePatterns(chains, currentState) {
@@ -142429,7 +142429,7 @@ var TemporalCausalityEngine = class {
     return {
       mostLikelyEvent: mostLikelyEvent || "unknown",
       predictedLayer: predictedLayer || "unknown",
-      confidence: Math.min(1, chains.length * 0.2)
+      confidence: min(1, chains.length * 0.2)
     };
   }
   // Private: Compute prediction probability
@@ -142551,9 +142551,9 @@ var TheoremDrivenOptimizer = class {
   // Apply Riemann Hypothesis for distribution analysis
   applyRiemannForDistribution(dataPoints) {
     const mean = dataPoints.reduce((a, b) => a + b, 0) / dataPoints.length;
-    const variance = dataPoints.reduce((sq, n) => sq + Math.pow(n - mean, 2), 0) / dataPoints.length;
+    const variance = dataPoints.reduce((sq, n) => sq + pow(n - mean, 2), 0) / dataPoints.length;
     const balanceScore = 1 - variance / (mean * mean + 1);
-    const improvementPercent = Math.round(balanceScore * 100);
+    const improvementPercent = round(balanceScore * 100);
     const app = {
       application_id: toUuid("app:riemann:distribution"),
       theorem_name: "Riemann Hypothesis",
@@ -142571,9 +142571,9 @@ var TheoremDrivenOptimizer = class {
   }
   // Apply Goldbach Conjecture for funding allocation decomposition
   applyGoldbachForAllocation(totalAmount) {
-    const primes = this.findPrimes(Math.floor(totalAmount / 100));
+    const primes = this.findPrimes(floor(totalAmount / 100));
     const decompositions = this.goldbachDecompose(
-      Math.floor(totalAmount / 100),
+      floor(totalAmount / 100),
       primes
     );
     const bestDecomposition = decompositions[0] || {
@@ -142591,7 +142591,7 @@ var TheoremDrivenOptimizer = class {
       improvement_metric: "allocation_decomposition_efficiency",
       baseline_value: 85,
       improved_value: coverage7,
-      improvement_percent: Math.round(coverage7 - 85),
+      improvement_percent: round(coverage7 - 85),
       applied_at: (/* @__PURE__ */ new Date()).toISOString()
     };
     this.applications.set(app.application_id, app);
@@ -142599,8 +142599,8 @@ var TheoremDrivenOptimizer = class {
   }
   // Apply Poincaré for dimensional reasoning
   applyPoincar\u00E9ForDimensionality(dimensionCount) {
-    const dimensionalComplexity = Math.pow(2, dimensionCount);
-    const poincar\u00E9Simplification = Math.log2(dimensionCount) + 1;
+    const dimensionalComplexity = pow(2, dimensionCount);
+    const poincar\u00E9Simplification = log2(dimensionCount) + 1;
     const app = {
       application_id: toUuid("app:poincare:dimensions"),
       theorem_name: "Poincar\xE9 Conjecture",
@@ -142610,7 +142610,7 @@ var TheoremDrivenOptimizer = class {
       improvement_metric: "reasoning_complexity_reduction",
       baseline_value: dimensionalComplexity,
       improved_value: poincar\u00E9Simplification,
-      improvement_percent: Math.round(
+      improvement_percent: round(
         (dimensionalComplexity - poincar\u00E9Simplification) / dimensionalComplexity * 100
       ),
       applied_at: (/* @__PURE__ */ new Date()).toISOString()
@@ -142655,7 +142655,7 @@ var TheoremDrivenOptimizer = class {
       improvement_metric: "dimensional_separation_quality",
       baseline_value: 0.6,
       improved_value: decompositionQuality,
-      improvement_percent: Math.round(decompositionQuality * 100 - 60),
+      improvement_percent: round(decompositionQuality * 100 - 60),
       applied_at: (/* @__PURE__ */ new Date()).toISOString()
     };
     this.applications.set(app.application_id, app);
@@ -142723,8 +142723,8 @@ var TheoremDrivenOptimizer = class {
     );
     return {
       total_applications: apps.length,
-      average_improvement: Math.round(avgImprovement),
-      total_improvement_value: Math.round(totalValue * 100) / 100,
+      average_improvement: round(avgImprovement),
+      total_improvement_value: round(totalValue * 100) / 100,
       strategies_active: this.strategies.size,
       insights_discovered: this.insights.size,
       theorems_applied: Object.keys(this.theoremRegistry).length
@@ -142914,22 +142914,22 @@ var HolisticOptimizer = class {
             const interaction_reversed = `${otherDim}\u2194${dim}`;
             const actualInteraction = this.interactions.get(interactionKey) || this.interactions.get(interaction_reversed);
             if (actualInteraction) {
-              const weight = Math.abs(actualInteraction.interaction_strength);
+              const weight = abs(actualInteraction.interaction_strength);
               gradient += actualInteraction.interaction_strength * (otherState.target_value - otherState.current_value) * weight;
               totalWeight += weight;
             }
           }
         }
         const step = gradient / (totalWeight + 1) * 0.01;
-        config[dim] = Math.max(0, Math.min(100, config[dim] + step));
+        config[dim] = max(0, min(100, config[dim] + step));
       }
     }
     const dimensionScores = {};
     let totalScore = 0;
     for (const [dim, state] of this.dimensions.entries()) {
       const value = config[dim];
-      const distance = Math.abs(value - state.target_value);
-      const score = Math.max(0, 100 - distance);
+      const distance = abs(value - state.target_value);
+      const score = max(0, 100 - distance);
       dimensionScores[dim] = score;
       totalScore += score;
     }
@@ -143031,7 +143031,7 @@ var HolisticOptimizer = class {
     }
     for (const tradeoff of tradeoffs.slice(0, 2)) {
       recommendations.push(
-        `Manage tradeoff: ${tradeoff.dimension_a} \u2194 ${tradeoff.dimension_b} (${Math.abs(tradeoff.interaction_strength).toFixed(2)} strength)`
+        `Manage tradeoff: ${tradeoff.dimension_a} \u2194 ${tradeoff.dimension_b} (${abs(tradeoff.interaction_strength).toFixed(2)} strength)`
       );
     }
     const lastOpt = Array.from(this.optimizations.values()).pop();
@@ -143295,8 +143295,8 @@ var FederationCoordinator = class {
     }
     const scores = Array.from(this.nodes.values()).map((n) => n.global_score);
     const meanScore = scores.reduce((a, b) => a + b, 0) / scores.length;
-    const variance = scores.reduce((sum, s) => sum + Math.pow(s - meanScore, 2), 0) / scores.length;
-    const fairness2 = Math.max(0, 100 - Math.sqrt(variance));
+    const variance = scores.reduce((sum, s) => sum + pow(s - meanScore, 2), 0) / scores.length;
+    const fairness2 = max(0, 100 - sqrt(variance));
     const optimization = {
       optimization_id: optId,
       global_configuration: globalConfig,
@@ -143326,16 +143326,16 @@ var FederationCoordinator = class {
     const avgSynergyValue = synergies.length > 0 ? synergies.reduce((sum, s) => sum + s.combined_improvement, 0) / synergies.length : 0;
     const learningFlow = this.federatedLearnings.size + this.causalChainSharing.size + this.federatedSynergies.size;
     const scores = nodes.map((n) => n.global_score);
-    const variance = scores.reduce((sum, s) => sum + Math.pow(s - avgScore, 2), 0) / scores.length;
-    const fairness2 = Math.max(0, 100 - Math.sqrt(variance));
+    const variance = scores.reduce((sum, s) => sum + pow(s - avgScore, 2), 0) / scores.length;
+    const fairness2 = max(0, 100 - sqrt(variance));
     return {
       total_organizations: nodes.length,
-      average_organization_score: Math.round(avgScore * 10) / 10,
+      average_organization_score: round(avgScore * 10) / 10,
       federated_learnings: this.federatedLearnings.size,
       shared_causal_chains: this.causalChainSharing.size,
       cross_org_synergies: this.federatedSynergies.size,
-      ecosystem_health: Math.round((avgScore + fairness2) / 2 * 10) / 10,
-      fairness_score: Math.round(fairness2 * 10) / 10,
+      ecosystem_health: round((avgScore + fairness2) / 2 * 10) / 10,
+      fairness_score: round(fairness2 * 10) / 10,
       knowledge_flow_volume: learningFlow
     };
   }
@@ -143395,7 +143395,7 @@ var CybersecurityFundingEngine = class {
         probability: threat.probability,
         time_to_occurrence_months: threat.months,
         required_research: threat.research,
-        funding_recommendation: Math.round(threat.probability * 5e6),
+        funding_recommendation: round(threat.probability * 5e6),
         discovered_at: (/* @__PURE__ */ new Date()).toISOString()
       };
       this.threatPredictions.set(predictionId, prediction);
@@ -143500,10 +143500,10 @@ var BiotechnologyFundingEngine = class {
       drug_name: drugName,
       indication: "multiple-conditions",
       phase: phase6,
-      patients_enrolled: Math.pow(10, phase6 + 1),
+      patients_enrolled: pow(10, phase6 + 1),
       success_rate: 1 - phase6 * 0.2,
-      regulatory_approval_probability: Math.max(0, 0.9 - phase6 * 0.15),
-      funding_needed: Math.pow(10, 6) * phase6
+      regulatory_approval_probability: max(0, 0.9 - phase6 * 0.15),
+      funding_needed: pow(10, 6) * phase6
     };
     this.trials.set(trialId, trial);
     return trial;
@@ -143611,8 +143611,8 @@ var UniversalDomainFunder = class {
     const acceleration = {
       acceleration_id: accelId,
       domain: domainName,
-      classical_timeline_months: Math.round(classicalTimeline),
-      quantum_timeline_months: Math.round(quantumTimeline),
+      classical_timeline_months: round(classicalTimeline),
+      quantum_timeline_months: round(quantumTimeline),
       speedup_factor: speedupFactor,
       research_approach: `quantum-inspired algorithms for ${domainName}`,
       computing_resources_needed: `quantum-simulator + classical-gpu-cluster`
@@ -143668,7 +143668,7 @@ var UniversalDomainFunder = class {
       let amount = domain.funding_pool_usd;
       amount *= 1 + domain.breakthrough_probability * 0.3;
       amount *= 1 + domain.quantum_acceleration_factor / 10 * 0.2;
-      allocation[domain.name] = Math.round(amount);
+      allocation[domain.name] = round(amount);
     }
     return allocation;
   }
@@ -143746,8 +143746,8 @@ var SequenceResearcher = class {
         downstream: [],
         // computed below
         dimensionality: info.dims,
-        information_flow: Math.pow(2, info.dims) * (num * 100),
-        emergence_level: Math.min(10, Math.floor(num / 5)),
+        information_flow: pow(2, info.dims) * (num * 100),
+        emergence_level: min(10, floor(num / 5)),
         recursion_depth: this.computeRecursionDepth(info.deps)
       };
       this.layerAnalyses.set(num, analysis);
@@ -143766,7 +143766,7 @@ var SequenceResearcher = class {
   // Compute recursion depth
   computeRecursionDepth(deps) {
     if (deps.length === 0) return 0;
-    return 1 + Math.max(...deps.map((d) => Math.floor(d / 10)));
+    return 1 + max(...deps.map((d) => floor(d / 10)));
   }
   // Identify mathematical patterns in the sequence
   discoverSequencePatterns() {
@@ -143834,7 +143834,7 @@ var SequenceResearcher = class {
         dimension_count: group.dims,
         dimension_per_layer: group.dims / group.count,
         scaling_law: group.dims > 10 ? "exponential" : group.dims > 5 ? "quadratic" : "linear",
-        complexity_growth: Math.pow(group.dims, 2)
+        complexity_growth: pow(group.dims, 2)
       };
       scalings.push(scaling);
     }
@@ -143900,7 +143900,7 @@ var SequenceResearcher = class {
         properties_at_end: stage.end,
         novel_properties: stage.novel,
         emergence_threshold: parseInt(stage.range.split("-")[0]),
-        complexity_multiplier: Math.pow(2, parseInt(stage.range.split("-")[1]) / 10)
+        complexity_multiplier: pow(2, parseInt(stage.range.split("-")[1]) / 10)
       };
       emergences.push(emergence);
     }
@@ -144028,7 +144028,7 @@ var AnalyticsDashboard = class {
     if (metrics.payments.confirmed > 0) {
       score += 10;
     }
-    return Math.max(0, Math.min(100, Math.round(score)));
+    return max(0, min(100, round(score)));
   }
   // Identify current bottleneck
   identifyBottleneck(metrics) {

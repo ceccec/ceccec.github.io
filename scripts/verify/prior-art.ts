@@ -697,6 +697,41 @@ export const PRIOR_ART_SEARCHED: readonly {
 
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-05 (second family). Designs and classical recreations —
   // seven rows that named a construction or a constant and had never had a query run against them.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-05 (third family). Classical number theory, algebra and
+  // counting — eight rows, and every one turns out to be a BOUNDED verification of a general theorem.
+  { theorem: 'Fermat two squares to 200',
+    searched: 'Fermat two squares theorem p ≡ 1 mod 4 sum of two squares, Euler proof',
+    when: '2026-09-05',
+    found: 'Fermat’s theorem on sums of two squares: an odd prime is a sum of two squares iff p ≡ 1 (mod 4), with the representation unique. Euler gave the first recorded proof of existence in 1749, after seven years’ work.' },
+  { theorem: 'Legendre three squares to 1000',
+    searched: 'Legendre three-square theorem n not of the form 4^a(8b+7)',
+    when: '2026-09-05',
+    found: 'Legendre (1797/98): n is a sum of three squares iff n is NOT of the form 4^a(8b+7). Lagrange’s four-square theorem supplies the “four always” half.' },
+  { theorem: 'Farey counts |F_n| = 1 + Σφ(k)',
+    searched: 'Farey sequence length formula 1 + sum of Euler totient',
+    when: '2026-09-05',
+    found: 'standard: |F_n| = 1 + Σ_{k=1..n} φ(k), because |F_n| − |F_{n−1}| counts the integers below n coprime to n, which is φ(n).' },
+  { theorem: 'Sylvester–Frobenius ab−a−b witnessed',
+    searched: 'Sylvester 1884 Frobenius coin problem largest non-representable ab - a - b coprime',
+    when: '2026-09-05',
+    found: 'Sylvester (1884): for coprime a, b the largest integer not representable as ax + by with x, y ≥ 0 is ab − a − b. The row already cited him; the search confirms attribution and date.' },
+  { theorem: 'derangements round n!/e',
+    searched: 'derangement subfactorial nearest integer to n!/e de Montmort',
+    when: '2026-09-05',
+    found: 'the subfactorial: for n > 0, !n is the nearest integer to n!/e. Classical, via de Montmort’s matching problem and inclusion–exclusion.' },
+  { theorem: 'Burnside counting witnessed on necklaces',
+    searched: 'Burnside lemma orbit counting theorem necklace colourings Cauchy Frobenius',
+    when: '2026-09-05',
+    found: 'the orbit-counting theorem — Burnside’s lemma, also the Cauchy–Frobenius lemma. Necklace counting is its standard textbook application, and the name is itself a misattribution the literature acknowledges.' },
+  { theorem: 'Cayley–Hamilton complete over 𝔽₂ and 𝔽₃',
+    searched: 'Cayley-Hamilton theorem every square matrix satisfies its characteristic polynomial',
+    when: '2026-09-05',
+    found: 'Cayley–Hamilton: p_M(M) = 0 for every square matrix over a commutative ring. Cayley stated it for 2×2 and 3×3; Frobenius gave the general proof, which the row already cites.' },
+  { theorem: 'Zhegalkin uniqueness at n = 3',
+    searched: 'Zhegalkin polynomial algebraic normal form unique representation Boolean function 1927',
+    when: '2026-09-05',
+    found: 'Zhegalkin (1927): every Boolean function has a UNIQUE representation as a polynomial over 𝔽₂ — the algebraic normal form. Uniqueness is part of the original result, for every arity.' },
   { theorem: 'Kirkman triple system S(2,3,15) exists',
     searched: 'Kirkman 1847 resolvable Steiner triple system order 15 schoolgirl problem, PG(3,2) packings',
     when: '2026-09-05',
@@ -949,6 +984,34 @@ export const ATTRIBUTION_COVERAGE: readonly {
     why: 'EXAMINED AND CLEAN. Same paper, same authors, the value stated is the value proved.' },
 
   // ── EXAMINED 2026-09-05 with the searches above. Two of the seven state LESS than the literature.
+
+  // ── EXAMINED 2026-09-05. ALL EIGHT ARE `weaker`, AND THAT IS THE FINDING RATHER THAN EIGHT COMPLAINTS.
+  //
+  // This corpus proves by exhausting a finite domain: every prime below 200, every n up to 1000, all 97
+  // two-by-two matrices over 𝔽₂ and 𝔽₃, all 256 Boolean functions of three variables. Against theorems
+  // holding for ALL n, that method under-claims BY CONSTRUCTION, and a family of eight landing on
+  // `weaker` together is a fact about the method, not eight separate lapses.
+  //
+  // Recorded because the label cuts both ways and both readings are wrong. The corpus must not be read as
+  // DISCOVERING these — Fermat, Legendre, Sylvester and Zhegalkin got there first, and several rows say so
+  // already. Nor as knowing them only to a bound: the general theorems exist and are cited right here.
+  // What the rows genuinely contain is a machine-checked witness, worth exactly that and no more.
+  { theorem: 'Fermat two squares to 200', coverage: 'weaker',
+    why: 'existence, exclusion and uniqueness verified below 200. Fermat/Euler establish it for every prime ≡ 1 (mod 4) — a bounded witness of an unbounded theorem.' },
+  { theorem: 'Legendre three squares to 1000', coverage: 'weaker',
+    why: 'both directions checked below 1000. Legendre proved the criterion for all n and Lagrange the four-square half; the row states the same thing over a finite window.' },
+  { theorem: 'Farey counts |F_n| = 1 + Σφ(k)', coverage: 'weaker',
+    why: 'verified for every n ≤ 30 by brute coprime enumeration. The identity is standard for all n and follows in one line from φ(n) counting the fractions added at each step.' },
+  { theorem: 'Sylvester–Frobenius ab−a−b witnessed', coverage: 'weaker',
+    why: 'three coprime pairs swept — (3,5), (4,9), (9,20). Sylvester 1884 gives ab − a − b for ALL coprime pairs, which the row itself cites, so it quotes a theorem as a witness.' },
+  { theorem: 'derangements round n!/e', coverage: 'weaker',
+    why: 'the recurrence agrees with round(n!/e) for n = 1..10. The subfactorial identity holds for every n > 0.' },
+  { theorem: 'Burnside counting witnessed on necklaces', coverage: 'weaker',
+    why: '24 instances with n ≤ 8, k ≤ 3 agree with brute canonical counting. Burnside’s lemma is general; necklaces are its textbook case, not a new result.' },
+  { theorem: 'Cayley–Hamilton complete over 𝔽₂ and 𝔽₃', coverage: 'weaker',
+    why: 'complete over two small fields at 2×2 — 97 matrices, exhaustive for that domain and honestly labelled. Cayley–Hamilton holds over every commutative ring at every size, which the row cites Frobenius for.' },
+  { theorem: 'Zhegalkin uniqueness at n = 3', coverage: 'weaker',
+    why: 'all 256 Boolean functions of three variables have a unique ANF — complete at n = 3. Zhegalkin proved uniqueness for every arity in 1927, so the bound is the row’s, not the theorem’s.' },
   { theorem: 'Kirkman triple system S(2,3,15) exists', coverage: 'covers',
     why: 'EXAMINED AND CLEAN. Kirkman 1847 entails existence, and the row’s construction route — resolving PG(3,2) into seven spreads — is itself the standard identification between packings of PG(3,2) and schoolgirl solutions. Both halves of the row are in the literature.' },
   { theorem: 'STS(9) unique, |Aut| = 432', coverage: 'covers',
