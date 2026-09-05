@@ -2343,7 +2343,16 @@ export function proseScience() {
       .map((domain) => ({ field: domain.field, witness: [...new Set(words.filter((word) => domain.tokens.has(word)))] }))
       .filter((hit) => hit.witness.length > 0)
       .sort((a, b) => b.witness.length - a.witness.length)
-    const best = hits[0]
+    // TYPED AS POSSIBLY ABSENT, because it is. Without noUncheckedIndexedAccess, hits[0] is typed as
+    // present, so `best?.field ?? 'UNADDRESSED'` had a fallback the type system believed unreachable —
+    // and the three comparisons against 'UNADDRESSED' below became always-false BY TYPE while working
+    // perfectly at runtime. tsc says so as TS2367. The runtime set is empty today, which is a
+    // measurement and not a guarantee; the type was asserting the guarantee.
+    //
+    // Found by sweeping for erpax-94's shape — a predicate over a field whose type makes it
+    // unreachable, which in its tree was `MILLENNIUM.some(p => p.corpusSolves === true)` over a field
+    // typed as the literal false. Mine is the weaker cousin: the check runs, only the type lies.
+    const best: (typeof hits)[number] | undefined = hits[0]
     return { fold, field: best?.field ?? 'UNADDRESSED', witness: best?.witness.join('·') ?? '', receipt: toUuid(`prose-science:${fold}:${best?.field ?? 'UNADDRESSED'}`) }
   })
   const assigned = rows.filter((row) => row.field !== 'UNADDRESSED')

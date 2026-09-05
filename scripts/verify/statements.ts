@@ -142,9 +142,16 @@ export function assertStatementsAreUnique(root: string = process.cwd()): void {
  *   σ, Σ, ℤ, χ or a subscript is still removed. `H₁(Σ₂) = ℤ⁴ with χ` becomes `H₁(Σ₂)=ℤ⁴withχ` —
  *   211 of 832 claims here, a quarter of the corpus.
  *
- * AND THE THIRD FINDING IS THAT REMOVAL WAS NEVER NEEDED. Its entire justification was merging
- * statements that differ only in spacing, and COLLAPSING runs to a single space already does that —
- * measured, not assumed. Both broken rules were attempts to make an unnecessary operation safe.
+ * AND THE THIRD FINDING, STATED PRECISELY AFTER erpax-94 SHARPENED IT. I wrote that removal buys
+ * nothing. That is overstated. Removal merges a class collapsing does not: `f (x)` and `f(x)`, or
+ * `foo ( bar )` and `foo(bar)`, are two spellings of one term, and collapse-only keeps them distinct.
+ * The honest statement is that the clause buys a merge WHICH HAS NOT OCCURRED — zero instances across
+ * 877 real statements, 45 in erpax and 832 here — at the cost of changing 98% of all addresses.
+ *
+ * That is why the clause stays anyway: minimal is not the property a merge key needs, identical is,
+ * and a third re-address costs more than the clause does. But the record should not say the clause is
+ * vacuous when it is merely unexercised, and the next person asking why the rule removes spaces
+ * deserves both halves.
  *
  * I ALSO PUBLISHED A RULE I DO NOT RUN. This implementation has only ever collapsed, so none of the
  * corruptions above exist here — but I recommended the ASCII removal to two repositories in writing,
@@ -238,7 +245,8 @@ export function writeNormaliserFixture(root: string = process.cwd()): void {
   writeFileSync(out, `${JSON.stringify({
     purpose: 'Content-addressing a formal statement. Check any implementation against every case; all must hold.',
     rule: 'v3. Collapse whitespace runs to a single space; trim; spell == as = and != as ≠; remove a space ONLY where it does not sit between two of [\\p{L}\\p{N}_] under the u flag. Preserve case.',
-    history: 'Specified wrongly twice before this, both times in the merging direction and both times agreed by three parties before anyone measured: strip-everything (672 juxtaposition collisions, uuidna-49), then ASCII-only removal (211 non-ASCII collisions in 832 claims here, erpax-94). Removal is not strictly necessary — collapsing alone merges everything removal was proposed for — but a merge key must be computed identically by every party, and under v3 a = b becomes a=b, so a fourth rule would diverge on 104 of 105 statements rather than on a quarter. Adopted after measuring that v3 merges nothing collapse keeps distinct here: 103 distinct of 105 under both.',
+    history: 'Specified wrongly twice before this, both times in the merging direction and both times agreed by three parties before anyone measured: strip-everything (672 juxtaposition collisions, uuidna-49), then ASCII-only removal, which corrupts 211 of the 832 claims in this corpus and 2 of erpax-94 own 45 (erpax measured both). A merge key must be computed identically by every party, and under v3 a = b becomes a=b, so a fourth rule would diverge on 98% of addresses rather than on a quarter.',
+    whatRemovalBuys: 'Measured across 877 statements (45 erpax, 832 ceccec): the space-removal clause merges NOTHING that collapsing already merges, and changes 98% of addresses. It is not vacuous in principle — f (x) and f(x) are two spellings of one term, which collapse keeps distinct and removal merges — but that class has zero observed instances. The clause buys a merge which has not occurred. It is kept because identical beats minimal for a shared key, not because it is doing work.',
     cases: NORMALISER_FIXTURE,
     mustStayDistinct: [
       ['List.range 7', 'List.range7', 'application by juxtaposition'],
