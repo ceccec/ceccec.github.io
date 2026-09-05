@@ -286,9 +286,22 @@ jobs:
           VERSION: ${{ needs.prepare.outputs.version }}
           RELEASE_URL: ${{ needs.github-release.outputs.release_url }}
         run: |
+          # A SKIPPED DEPOSIT MUST NOT READ AS A COMPLETED ONE. This exited 0 on a warning, so a job named
+          # "Deposit to Zenodo" reported SUCCESS for a deposit it never attempted — and the run summary
+          # said the release had shipped. Nothing downstream could tell the two apart. Skipping stays the
+          # right behaviour (a missing credential is not a build failure, and the token is the author's to
+          # add), but it is now stated where a reader looks: in the job summary, not only in a log warning
+          # that a green tick hides.
           if [ -z "$ZENODO_TOKEN" ]; then
-            echo "::warning::No Zenodo token configured for ${{ needs.prepare.outputs.deposit_type }}. Skipping deposit."
-            echo "Add ZENODO_API_TOKEN (production) or ZENODO_SANDBOX_TOKEN (peer-review) to repository secrets."
+            echo "::warning::NOT DEPOSITED — no Zenodo token for ${{ needs.prepare.outputs.deposit_type }}."
+            {
+              echo "## Zenodo: NOT DEPOSITED"
+              echo ""
+              echo "No \`ZENODO_API_TOKEN\` (production) or \`ZENODO_SANDBOX_TOKEN\` (peer-review) is configured,"
+              echo "so **no deposit was created and no DOI was minted** for \`${VERSION}\`."
+              echo ""
+              echo "The GitHub release exists and carries its assets. The archival record does not."
+            } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
 
@@ -337,7 +350,16 @@ jobs:
           PUBLISHED=$(curl -sf -X POST "$HOST/api/deposit/depositions/$DEPOSIT_ID/actions/publish" \
             -H "Authorization: Bearer $ZENODO_TOKEN")
 
-          DOI=$(echo "$PUBLISHED" | jq -r '.doi // "none"')
+          # AND THE DOI IS ASSERTED, NOT DEFAULTED. `jq -r '.doi // "none"'` turned a failed publish into the
+          # STRING "none" and carried on green, so the one output this entire workflow exists to produce was
+          # never checked for existence. Every downstream line then reported "DOI: none" as though that were
+          # a DOI. A publish that yields no DOI has not published.
+          DOI=$(echo "$PUBLISHED" | jq -r '.doi // empty')
+          if [ -z "$DOI" ]; then
+            echo "::error::Publish returned no DOI — the deposit was created but not published."
+            echo "$PUBLISHED" | jq . || echo "$PUBLISHED"
+            exit 1
+          fi
           echo "Published. DOI: $DOI"
           echo "Record: $HOST/record/$DEPOSIT_ID"
           {
