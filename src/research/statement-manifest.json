@@ -1,0 +1,643 @@
+{
+  "repo": "ceccec.github.io",
+  "spec": "sha256(normalise(s)) first 16 octets; b[6]=(b[6]&0x0f)|0x80; b[8]=(b[8]&0x3f)|0x80; 8-4-4-4-12; bare string preimage, no envelope",
+  "normaliser": "see src/research/normaliser-fixture.json — collapse whitespace runs, remove a space only where it does not sit between two of [\\p{L}\\p{N}_] under the u flag, keep case, == to = and != to ≠",
+  "verifiedAgainst": {
+    "statement": "an API operation carries at least the access its collection's strictest standard demands; an endpoint below its legal floor is a gap named before it can be called.",
+    "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
+    "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
+  },
+  "count": 105,
+  "statements": [
+    {
+      "statementUuid": "07b6d2c8-c011-84ef-98f1-e2a09f45d568",
+      "file": "src/pair/formal/proofs/bsd.lean",
+      "name": "central_point_is_the_fixed_point",
+      "statement": "σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)"
+    },
+    {
+      "statementUuid": "a3095844-8420-8142-832f-9d1fde2f578b",
+      "file": "src/pair/formal/proofs/bsd.lean",
+      "name": "root_number_squares_to_one",
+      "statement": "(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1"
+    },
+    {
+      "statementUuid": "799e7a3e-e9a3-8e41-ae23-58f022c73050",
+      "file": "src/pair/formal/proofs/bsd.lean",
+      "name": "root_number_one_iff_rank_even",
+      "statement": "(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)"
+    },
+    {
+      "statementUuid": "7c440efb-ebd7-888b-8764-3d09eb9d18da",
+      "file": "src/pair/formal/proofs/bsd.lean",
+      "name": "parity_is_an_involution",
+      "statement": "(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧\n    (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)"
+    },
+    {
+      "statementUuid": "69295a42-f914-87f2-93af-fb6d259593ef",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "the_coin_is_an_involution",
+      "statement": "∀ d ∈ digits, σ (σ d) = d"
+    },
+    {
+      "statementUuid": "333eee27-c879-8380-9616-96b9f1a61c8b",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "the_harmonic_is_the_only_fixed_point",
+      "statement": "digits.filter (fun d => σ d == d) = [5]"
+    },
+    {
+      "statementUuid": "e296dc92-9c91-88c7-8c5f-88a9c2caf47d",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "all_that_is_not_harmonic_is_moved",
+      "statement": "(digits.filter (fun d => !(σ d == d))).length = 8"
+    },
+    {
+      "statementUuid": "9d752345-231e-8ac5-be63-fdacb77779e2",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "the_sides_are_equal_and_exchanged",
+      "statement": "below.length = above.length ∧\n    below.map σ = above.reverse ∧\n    above.map σ = below.reverse"
+    },
+    {
+      "statementUuid": "c95d0bbd-b238-82af-8a63-ffd274051f77",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "the_coin_is_two_sides_and_one_edge",
+      "statement": "below.length + above.length + 1 = digits.length"
+    },
+    {
+      "statementUuid": "74fc364f-adcc-8c0b-988b-01e111dedcf9",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "every_bit_of_resistance_drains",
+      "statement": "∀ d ∈ digits, resistance d + resistance (σ d) = 0"
+    },
+    {
+      "statementUuid": "b3ffbb63-ed75-8f20-911d-54b46aca5947",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "the_harmonic_carries_no_resistance",
+      "statement": "resistance 5 = 0"
+    },
+    {
+      "statementUuid": "d8b00e1c-c07a-853c-a8a3-f9fd1c2989a0",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "the_whole_surface_sums_to_zero",
+      "statement": "(digits.map resistance).sum = 0"
+    },
+    {
+      "statementUuid": "33f44eae-9e29-8042-a2f7-71d4af7cb27c",
+      "file": "src/pair/formal/proofs/coin.lean",
+      "name": "the_drain_is_exact_at_every_scale",
+      "statement": "∀ k ∈ [1, 10, 1000, 1000000],\n      (digits.map (fun d => k * resistance d)).sum = 0"
+    },
+    {
+      "statementUuid": "4608ed89-9f0c-88b8-b4d8-0faf77898a5b",
+      "file": "src/pair/formal/proofs/decidability.lean",
+      "name": "verified_at_every_point_below_the_bound",
+      "statement": "(List.range 1000).all holdsBelowAThousand = true"
+    },
+    {
+      "statementUuid": "f2e6874f-4114-84e4-9d0a-384a1db2c08c",
+      "file": "src/pair/formal/proofs/decidability.lean",
+      "name": "and_false_at_the_bound",
+      "statement": "holdsBelowAThousand 1000 = false"
+    },
+    {
+      "statementUuid": "3967b3e0-8271-8d97-ac0b-bd5afbc34520",
+      "file": "src/pair/formal/proofs/decidability.lean",
+      "name": "finite_verification_does_not_entail_the_universal",
+      "statement": "((List.range 1000).all holdsBelowAThousand = true) ∧ (holdsBelowAThousand 1000 = false)"
+    },
+    {
+      "statementUuid": "a527eb5e-8526-8891-a021-6d85b18d8e5d",
+      "file": "src/pair/formal/proofs/decidability.lean",
+      "name": "what_a_finite_check_does_establish",
+      "statement": "∀ n ∈ List.range 1000, holdsBelowAThousand n = true"
+    },
+    {
+      "statementUuid": "19fc6e5b-0dd9-83ff-b5c3-797e2335de82",
+      "file": "src/pair/formal/proofs/decidability.lean",
+      "name": "the_clay_files_quantify_over_finite_lists",
+      "statement": "[(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧\n    [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7"
+    },
+    {
+      "statementUuid": "debf8f5a-e4e5-889f-b1c0-30c5e5f9fdb6",
+      "file": "src/pair/formal/proofs/hodge.lean",
+      "name": "sigma_preserves_degree",
+      "statement": "∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2"
+    },
+    {
+      "statementUuid": "e41db480-87c7-84fe-84ae-990f00100b6e",
+      "file": "src/pair/formal/proofs/hodge.lean",
+      "name": "fixed_type_is_p_equals_q",
+      "statement": "(middleTypes.filter (fun t => σ t == t)) = [(2,2)]"
+    },
+    {
+      "statementUuid": "24780eb2-1fb2-8250-88f9-1a8f3de36bd1",
+      "file": "src/pair/formal/proofs/hodge.lean",
+      "name": "diagonal_is_fixed_at_every_k",
+      "statement": "(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧\n    (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))"
+    },
+    {
+      "statementUuid": "d6d361e8-d180-8c3a-a29b-89d4d0135834",
+      "file": "src/pair/formal/proofs/hodge.lean",
+      "name": "involution_fixes_the_diagonal",
+      "statement": "σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)"
+    },
+    {
+      "statementUuid": "a0c96efe-adea-8346-a214-861d145ae712",
+      "file": "src/pair/formal/proofs/involution.lean",
+      "name": "the_instance_is_an_involution",
+      "statement": "∀ d ∈ carrier, σ (σ d) = d"
+    },
+    {
+      "statementUuid": "5bc4e8f5-e5ac-84d7-a4a6-7b44af71bbea",
+      "file": "src/pair/formal/proofs/involution.lean",
+      "name": "the_instance_cancels_over_every_orbit",
+      "statement": "∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0"
+    },
+    {
+      "statementUuid": "8adc10ea-ec54-8937-89ed-25144d116bd3",
+      "file": "src/pair/formal/proofs/involution.lean",
+      "name": "the_instance_has_one_harmonic_point",
+      "statement": "carrier.filter (fun d => σ d == d) = [5]"
+    },
+    {
+      "statementUuid": "fa405104-65f7-81a7-ad70-3a63ebbef863",
+      "file": "src/pair/formal/proofs/involution.lean",
+      "name": "the_instance_splits_without_loss",
+      "statement": "∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d"
+    },
+    {
+      "statementUuid": "db94b4db-e59e-8bb9-900f-469c8c3626b1",
+      "file": "src/pair/formal/proofs/navier-stokes.lean",
+      "name": "reversal_is_an_involution",
+      "statement": "T (T navierStokes) = navierStokes ∧ T (T euler) = euler"
+    },
+    {
+      "statementUuid": "ed9b254b-49dc-8a6b-b8ed-47f2350fa258",
+      "file": "src/pair/formal/proofs/navier-stokes.lean",
+      "name": "euler_is_time_reversible",
+      "statement": "T euler = euler"
+    },
+    {
+      "statementUuid": "6c893934-7d28-87eb-b517-a0d64909070b",
+      "file": "src/pair/formal/proofs/navier-stokes.lean",
+      "name": "viscosity_breaks_time_reversal",
+      "statement": "T navierStokes ≠ navierStokes ∧\n    (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧\n    (T navierStokes).convective = navierStokes.convective ∧\n    (T navierStokes).pressure = navierStokes.pressure ∧\n    (T navierStokes).viscous ≠ navierStokes.viscous"
+    },
+    {
+      "statementUuid": "79204fc1-b139-80ca-b43f-b0455a4d44d9",
+      "file": "src/pair/formal/proofs/navier-stokes.lean",
+      "name": "fixed_points_are_exactly_the_inviscid",
+      "statement": "(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩"
+    },
+    {
+      "statementUuid": "ce03f161-7058-8a3f-90b8-932832460c34",
+      "file": "src/pair/formal/proofs/p-vs-np.lean",
+      "name": "fixed_points_are_p_and_pspace",
+      "statement": "(classes.filter (fun c => σ c == c)) = [P, PSPACE]"
+    },
+    {
+      "statementUuid": "fbc53f30-218c-874a-9b33-d143148c80a7",
+      "file": "src/pair/formal/proofs/p-vs-np.lean",
+      "name": "np_and_conp_are_swapped",
+      "statement": "σ NP = coNP ∧ σ coNP = NP"
+    },
+    {
+      "statementUuid": "2339aa02-06ed-8aa1-862d-dc3ade18ccd8",
+      "file": "src/pair/formal/proofs/p-vs-np.lean",
+      "name": "if_np_is_fixed_then_np_equals_conp",
+      "statement": "σ NP = NP → NP = coNP"
+    },
+    {
+      "statementUuid": "11515ce7-7e26-8bbb-8714-d917634ef57f",
+      "file": "src/pair/formal/proofs/p-vs-np.lean",
+      "name": "p_is_closed_under_complement",
+      "statement": "σ P = P"
+    },
+    {
+      "statementUuid": "1717d2a1-6ed4-8bd8-937e-ddba05f91a91",
+      "file": "src/pair/formal/proofs/poincare.lean",
+      "name": "chi_and_genus_are_inverse",
+      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g"
+    },
+    {
+      "statementUuid": "21fa0a30-10d4-8e82-8da4-8a7bcffe4f9b",
+      "file": "src/pair/formal/proofs/poincare.lean",
+      "name": "sphere_has_euler_characteristic_two",
+      "statement": "chi 0 = 2"
+    },
+    {
+      "statementUuid": "37399553-937f-8aa3-81c4-c7821489868a",
+      "file": "src/pair/formal/proofs/poincare.lean",
+      "name": "torus_has_euler_characteristic_zero",
+      "statement": "chi 1 = 0"
+    },
+    {
+      "statementUuid": "1b025c6f-9591-8b60-abc5-b8e0b322480e",
+      "file": "src/pair/formal/proofs/poincare.lean",
+      "name": "double_torus_has_chi_minus_two_and_rank_four",
+      "statement": "chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4"
+    },
+    {
+      "statementUuid": "0ff924b2-06cd-84b6-9aa8-6846e6378050",
+      "file": "src/pair/formal/proofs/poincare.lean",
+      "name": "homology_rank_is_twice_the_genus",
+      "statement": "∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g"
+    },
+    {
+      "statementUuid": "9a04b317-96c4-8c86-a1c0-adcec2aa1676",
+      "file": "src/pair/formal/proofs/riemann.lean",
+      "name": "sigma_is_an_involution",
+      "statement": "∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n"
+    },
+    {
+      "statementUuid": "458cdb64-f58b-876d-9852-9eb71ae26e12",
+      "file": "src/pair/formal/proofs/riemann.lean",
+      "name": "critical_line_is_the_fixed_point",
+      "statement": "σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)"
+    },
+    {
+      "statementUuid": "449f66c0-7393-8a71-ab8b-6587ae5155f5",
+      "file": "src/pair/formal/proofs/riemann.lean",
+      "name": "sigma_pairs_the_plane",
+      "statement": "σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2"
+    },
+    {
+      "statementUuid": "9ba2cd62-fd53-87e1-8740-e92ca9993bed",
+      "file": "src/pair/formal/proofs/riemann.lean",
+      "name": "the_fixed_line_is_one_half",
+      "statement": "(2 : Int) * 1 = 2 ∧ σ 1 = 1"
+    },
+    {
+      "statementUuid": "12827b86-08c1-81a6-bdf2-5a9e63ca9b64",
+      "file": "src/pair/formal/proofs/riemann.lean",
+      "name": "involution_fixes_the_critical_line",
+      "statement": "(σ (σ 3) = 3) ∧ (σ 1 = 1)"
+    },
+    {
+      "statementUuid": "7d925937-5680-8f50-a460-1d8fd3cc2c29",
+      "file": "src/pair/formal/proofs/spacetime.lean",
+      "name": "light_is_the_fixed_point",
+      "statement": "∀ v ∈ sample, same (add light v) light = true"
+    },
+    {
+      "statementUuid": "dcee0cdc-ca18-8925-a8d7-36837bc54c45",
+      "file": "src/pair/formal/proofs/spacetime.lean",
+      "name": "light_is_fixed_from_either_side",
+      "statement": "∀ v ∈ sample, same (add v light) light = true"
+    },
+    {
+      "statementUuid": "de0f06ed-b7e5-8177-a6dc-21e7a40a450e",
+      "file": "src/pair/formal/proofs/spacetime.lean",
+      "name": "rest_is_the_identity",
+      "statement": "∀ v ∈ sample, same (add rest v) v = true"
+    },
+    {
+      "statementUuid": "71d89ec1-463f-8db4-a355-508967465dab",
+      "file": "src/pair/formal/proofs/spacetime.lean",
+      "name": "composition_is_symmetric",
+      "statement": "∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true"
+    },
+    {
+      "statementUuid": "b62cf9e8-72c3-86cd-a04a-37fc6e37a8be",
+      "file": "src/pair/formal/proofs/spacetime.lean",
+      "name": "the_boost_preserves_the_interval",
+      "statement": "∀ e ∈ events, ∀ b ∈ boosts,\n      interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2)\n        = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2"
+    },
+    {
+      "statementUuid": "3eff8de7-e298-8f01-b8d7-f9ce704b3e8f",
+      "file": "src/pair/formal/proofs/spacetime.lean",
+      "name": "the_light_cone_is_carried_to_itself",
+      "statement": "∀ e ∈ lightlike, ∀ b ∈ boosts,\n      interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0"
+    },
+    {
+      "statementUuid": "624a4c8d-9ec5-8064-8c95-066f88fdb89b",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "closure_is_one_hundred_sixty_two",
+      "statement": "(cells 18 9).length = 162"
+    },
+    {
+      "statementUuid": "16e82da0-b6f8-817c-8bc8-f7f86a49ccac",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "closure_is_the_product",
+      "statement": "(cells 1 1).length = 1 ∧ (cells 8 8).length = 64 ∧\n    (cells 18 9).length = 162 ∧ (cells 9 18).length = 162 ∧\n    (cells 18 10).length = 180"
+    },
+    {
+      "statementUuid": "f6b76438-2339-8086-90d1-96b52ec7bf16",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "closure_has_no_duplicate",
+      "statement": "(cells 18 9).Nodup"
+    },
+    {
+      "statementUuid": "5a264f9d-4be9-8f4f-874e-d9e9f4dc010c",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "address_inverts",
+      "statement": "∀ p ∈ cells 18 9, row 9 (idx 9 p.1 p.2) = p.1 ∧ col 9 (idx 9 p.1 p.2) = p.2"
+    },
+    {
+      "statementUuid": "8daeff06-3cf9-8ce9-ac9b-0286ce21fe61",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "addresses_are_the_interval",
+      "statement": "(cells 18 9).map (fun p => idx 9 p.1 p.2) = List.range 162"
+    },
+    {
+      "statementUuid": "3c14ee7f-0910-8aca-b894-f71b552b51e8",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "the_compound_fraction_clears",
+      "statement": "(12 : Int) * 10 = 5 * 24"
+    },
+    {
+      "statementUuid": "d2b7a34c-8d86-82b8-bb40-de2e2e007a55",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "focal_plane_is_unit_scale",
+      "statement": "den 0 = 24"
+    },
+    {
+      "statementUuid": "7786fc9d-2e59-83f7-b643-6906f12c0c28",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "depth_is_strictly_monotone",
+      "statement": "∀ k1 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], ∀ k2 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12],\n      k1 < k2 → 24 * den k2 < 24 * den k1"
+    },
+    {
+      "statementUuid": "e43fa422-76e5-8d31-acac-c282f7a7708d",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "frustum_brackets_the_focal_plane",
+      "statement": "(19 : Int) < 24 ∧ (24 : Int) < 29 ∧ (0 : Int) < 19"
+    },
+    {
+      "statementUuid": "eb9c54e4-0c40-8cbe-9eb9-e61e66de2d09",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "denominator_is_positive_on_the_frustum",
+      "statement": "∀ k ∈ [(-5 : Int), -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], 0 < den k"
+    },
+    {
+      "statementUuid": "2e39fd5e-2cd1-8895-ab24-e0e950607d52",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "reflection_is_an_involution",
+      "statement": "reflIsInvolutive 18 9 = true"
+    },
+    {
+      "statementUuid": "d08f13da-ccdf-83c0-8d12-c1edbced8792",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "reflection_closes_on_the_closure",
+      "statement": "reflStaysInside 18 9 = true"
+    },
+    {
+      "statementUuid": "9aecb6ab-754e-8818-a413-8740824fc4b6",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "reflection_has_no_fixed_point",
+      "statement": "reflHasNoFixedPoint 18 9 = true"
+    },
+    {
+      "statementUuid": "2c9fa3c5-cd68-8446-a7d8-0079006ffbf7",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "the_closure_is_eighty_one_orbits",
+      "statement": "(cells 18 9).length = 2 * 81"
+    },
+    {
+      "statementUuid": "87f1ecdc-5965-8271-8adc-8d46daf4839e",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "orbit_positions_cancel",
+      "statement": "orbitPositionsCancel 18 9 = true"
+    },
+    {
+      "statementUuid": "dafb29fb-5ea0-8114-ba83-5ab8ee6d94da",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "reflection_complements_the_address",
+      "statement": "reflComplementsAddress 18 9 = true"
+    },
+    {
+      "statementUuid": "0db4fcb6-b6db-8891-9ae5-6fa727da2106",
+      "file": "src/pair/formal/proofs/three.lean",
+      "name": "the_involution_laws_are_general",
+      "statement": "(reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧\n    (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧\n    (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧\n    (orbitPositionsCancel 3 3 = true) ∧\n    -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does.\n    (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧\n    (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false)"
+    },
+    {
+      "statementUuid": "e5e7dbf8-f519-8781-bf56-554995b591b3",
+      "file": "src/pair/formal/proofs/yang-mills.lean",
+      "name": "middle_forms_have_dimension_six",
+      "statement": "choose 4 2 = 6"
+    },
+    {
+      "statementUuid": "0bc4d9fe-12c7-83ea-99fe-ff240b075560",
+      "file": "src/pair/formal/proofs/yang-mills.lean",
+      "name": "selfdual_and_antiselfdual_split_the_six",
+      "statement": "3 + 3 = choose 4 2"
+    },
+    {
+      "statementUuid": "e7c9a664-4ed2-8617-aebd-36d2a910de03",
+      "file": "src/pair/formal/proofs/yang-mills.lean",
+      "name": "star_is_an_endomorphism_only_in_the_middle",
+      "statement": "(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)"
+    },
+    {
+      "statementUuid": "118650d5-84bc-8653-8566-804b43bf35d6",
+      "file": "src/pair/formal/proofs/yang-mills.lean",
+      "name": "involution_splits_the_middle_forms",
+      "statement": "(1 : Int) * 1 = 1 ∧ 3 + 3 = 6"
+    },
+    {
+      "statementUuid": "2acd5388-fa31-8b88-ade3-02706b285b8e",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "sigma_is_an_involution",
+      "statement": "∀ l : Level, σ (σ l) = l"
+    },
+    {
+      "statementUuid": "e7f70299-2e6e-8409-8458-bb15aedc2ebc",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "exactly_one_fixed_point",
+      "statement": "(levels.filter (fun l => σ l == l)) = [expertise]"
+    },
+    {
+      "statementUuid": "7c020689-1504-8b0b-86a1-f43e227f2352",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "three_pairs_and_a_fixed_point",
+      "statement": "levels.length = 7 ∧ 3 * 2 + 1 = 7"
+    },
+    {
+      "statementUuid": "5f122d7e-0ee6-87cc-a24f-3808d3c04e38",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "sigma_permutes_the_levels",
+      "statement": "(levels.map σ).length = levels.length ∧\n    (∀ l ∈ levels, σ l ∈ levels)"
+    },
+    {
+      "statementUuid": "d8045d38-2724-8c02-a6ea-fbb2f938c28c",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "confidence_is_one_minus_loss_by_definition",
+      "statement": "∀ l ∈ levels, confidencePermille l + lossPermille l = 1000"
+    },
+    {
+      "statementUuid": "ca231561-a3e2-845f-8263-2b183502c779",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "declared_losses_are_not_involution_symmetric",
+      "statement": "lossPermille (σ sensation) ≠ lossPermille sensation"
+    },
+    {
+      "statementUuid": "4461c308-5814-88f4-91e0-775f5c18e5b6",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "inverse_golden_ratio_bounds",
+      "statement": "618 * fib 21 < 1000 * fib 20 ∧ 1000 * fib 20 < 619 * fib 21"
+    },
+    {
+      "statementUuid": "d6878b44-9ba7-81be-8f92-c495016af765",
+      "file": "src/pair/intelligence/harmonisation/lean-proofs.lean",
+      "name": "golden_ratio_bounds",
+      "statement": "1618 * fib 21 < 1000 * fib 22 ∧ 1000 * fib 22 < 1619 * fib 21"
+    },
+    {
+      "statementUuid": "276e3d28-9992-8e5a-aab0-f77de28bccfb",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "census_bands_are_gapless_and_descending",
+      "statement": "fib 10 = 55 ∧ fib 9 = 34 ∧ fib 8 = 21 ∧ fib 7 = 13 ∧\n    fib 10 = fib 9 + fib 8 ∧ fib 9 = fib 8 + fib 7"
+    },
+    {
+      "statementUuid": "2da140c7-7527-8a08-aebd-145d739244e2",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "census_is_one_hundred_twenty_three",
+      "statement": "fib 7 + fib 8 + fib 9 + fib 10 = 123 ∧ fib 12 - fib 8 = 123"
+    },
+    {
+      "statementUuid": "181a5a80-7880-8f3e-80be-5322eaf63ec4",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "fibonacci_partial_sum_identity",
+      "statement": "(fib 1 + fib 2 + fib 3 + fib 4 + fib 5 = fib 7 - fib 2) ∧\n    (fib 3 + fib 4 + fib 5 + fib 6 + fib 7 + fib 8 = fib 10 - fib 4) ∧\n    (fib 7 + fib 8 + fib 9 + fib 10 = fib 12 - fib 8) ∧\n    (fib 2 + fib 3 + fib 4 + fib 5 + fib 6 + fib 7 + fib 8 + fib 9 + fib 10 + fib 11\n       = fib 13 - fib 3)"
+    },
+    {
+      "statementUuid": "7eb22235-73ce-898a-ad7b-0b774e1aec8d",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "folded_census_is_one_hundred_twenty_one",
+      "statement": "(123 : Int) + eulerChi = 121"
+    },
+    {
+      "statementUuid": "685a40e9-9ab8-84f1-872d-f5728ea5677e",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "reflection_is_an_involution",
+      "statement": "reflect (reflect 1) = 1 ∧ reflect (reflect 2) = 2 ∧ reflect (reflect 3) = 3 ∧\n    reflect (reflect 4) = 4 ∧ reflect (reflect 5) = 5 ∧ reflect (reflect 6) = 6 ∧\n    reflect (reflect 7) = 7 ∧ reflect (reflect 8) = 8 ∧ reflect (reflect 9) = 9"
+    },
+    {
+      "statementUuid": "c43bea19-3777-897c-839c-b05336b4b0b1",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "reflection_pairs_and_one_fixed_point",
+      "statement": "reflect 1 = 9 ∧ reflect 2 = 8 ∧ reflect 3 = 7 ∧ reflect 4 = 6 ∧ reflect 5 = 5"
+    },
+    {
+      "statementUuid": "6d0b9c56-47a7-8719-a2e2-8134ccea9fa0",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "reflection_closes_on_the_digits",
+      "statement": "(∀ d ∈ [1,2,3,4,5,6,7,8,9], 1 ≤ reflect d ∧ reflect d ≤ 9) ∧\n    ¬ (11 - 1 ≤ 9)"
+    },
+    {
+      "statementUuid": "d6878b44-9ba7-81be-8f92-c495016af765",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "golden_ratio_bounds",
+      "statement": "1618 * fib 21 < 1000 * fib 22 ∧ 1000 * fib 22 < 1619 * fib 21"
+    },
+    {
+      "statementUuid": "4461c308-5814-88f4-91e0-775f5c18e5b6",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "golden_ratio_minus_one_bounds",
+      "statement": "618 * fib 21 < 1000 * fib 20 ∧ 1000 * fib 20 < 619 * fib 21"
+    },
+    {
+      "statementUuid": "05c69110-212f-83c0-8391-625ffdca2b34",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "water_split_is_an_involution",
+      "statement": "burnYieldTenths - splitCostTenths = 0 ∧\n    (∀ mol ∈ [1, 10, 1000, 1000000], mol * burnYieldTenths - mol * splitCostTenths = 0)"
+    },
+    {
+      "statementUuid": "ec28cc28-6324-878c-b582-f41b7592506f",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "verify_beats_recompute_by_magnitudes",
+      "statement": "((2:Nat) ^ 10 = 1024) ∧ ((2:Nat) ^ 20 = 1048576) ∧\n    (1024 > 100 * 10) ∧ (1048576 > 10000 * 20)"
+    },
+    {
+      "statementUuid": "6f7d22bf-2388-8eab-90a1-b35303c5695d",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "sixty_four_components",
+      "statement": "(2:Nat) ^ 6 = 64 ∧ 8 * 8 = 64"
+    },
+    {
+      "statementUuid": "7e2deba6-4756-8f7c-9580-c12a349f75fa",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "clay_sealed_count_is_zero",
+      "statement": "cmiPrizeSealedCoreIds.length = 0"
+    },
+    {
+      "statementUuid": "76d6fa04-3a01-87af-9dbb-14616b2c655c",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "computable_is_not_solved",
+      "statement": "(7 : Nat) > 0 ∧ cmiPrizeSealedCoreIds.length = 0"
+    },
+    {
+      "statementUuid": "8bb8e79d-f913-86a0-b12e-6e5d25d28857",
+      "file": "src/pair/lean/proofs/rational.lean",
+      "name": "add_comm_sample",
+      "statement": "eq (add ⟨1,2⟩ ⟨1,3⟩) (add ⟨1,3⟩ ⟨1,2⟩) ∧\n    eq (add ⟨3,7⟩ ⟨5,11⟩) (add ⟨5,11⟩ ⟨3,7⟩)"
+    },
+    {
+      "statementUuid": "f856d761-7090-816b-af15-2c6c6049a4e1",
+      "file": "src/pair/lean/proofs/rational.lean",
+      "name": "add_assoc_sample",
+      "statement": "eq (add (add ⟨1,2⟩ ⟨1,3⟩) ⟨1,7⟩) (add ⟨1,2⟩ (add ⟨1,3⟩ ⟨1,7⟩))"
+    },
+    {
+      "statementUuid": "719d2269-28ec-8817-aaf0-86beb5a389c7",
+      "file": "src/pair/lean/proofs/rational.lean",
+      "name": "mul_comm_sample",
+      "statement": "eq (mul ⟨2,3⟩ ⟨5,7⟩) (mul ⟨5,7⟩ ⟨2,3⟩)"
+    },
+    {
+      "statementUuid": "8066aa9f-9366-8164-bd89-b45ec70e2fa8",
+      "file": "src/pair/lean/proofs/rational.lean",
+      "name": "exact_addition",
+      "statement": "eq (add ⟨1,2⟩ ⟨1,3⟩) ⟨5,6⟩"
+    },
+    {
+      "statementUuid": "e5e9e4e0-b69e-806b-872b-638988a486a6",
+      "file": "src/pair/lean/proofs/rational.lean",
+      "name": "amplitude_normalisation",
+      "statement": "3 * 3 + 4 * 4 = 5 * 5"
+    },
+    {
+      "statementUuid": "9a3f1c44-4887-858a-83ab-23339781bdca",
+      "file": "src/pair/lean/proofs/rational.lean",
+      "name": "amplitude_normalisation_rational",
+      "statement": "eq (add ⟨9,25⟩ ⟨16,25⟩) ⟨1,1⟩"
+    },
+    {
+      "statementUuid": "c0416950-a856-84df-a91a-cfb77ea7cd5c",
+      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
+      "name": "first_descent_is_six",
+      "statement": "afterMerges 160 6 = 154"
+    },
+    {
+      "statementUuid": "a41398c3-1ae5-8362-b67c-a50a3055aa3f",
+      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
+      "name": "descent_target_is_the_census",
+      "statement": "fib 7 + fib 8 + fib 9 + fib 10 = 123"
+    },
+    {
+      "statementUuid": "7a57bdfc-8432-8ec4-8600-ea93a1854b93",
+      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
+      "name": "every_recorded_count_is_at_or_above_the_target",
+      "statement": "(∀ n ∈ recorded, 123 ≤ n)"
+    },
+    {
+      "statementUuid": "fab03aaf-c4f8-8f5c-9ccb-d615d00e28ef",
+      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
+      "name": "the_descent_is_strictly_monotone",
+      "statement": "(∀ p ∈ [(139, 142), (142, 146), (146, 148), (148, 153), (153, 154), (154, 160)],\n      p.1 < p.2)"
+    },
+    {
+      "statementUuid": "a36b0dc0-e600-8d9c-b8a3-62b085ad254a",
+      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
+      "name": "merging_strictly_decreases",
+      "statement": "afterMerges 160 6 < 160 ∧ afterMerges 154 1 < 154"
+    },
+    {
+      "statementUuid": "2739e281-4bd3-84e3-b432-c90b2cc531a4",
+      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
+      "name": "line_ceiling_is_fibonacci",
+      "statement": "fib 18 = 2584"
+    }
+  ]
+}
