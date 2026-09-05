@@ -14,7 +14,7 @@
   "limits.always-true": 34,
   "limits.weakest-bar": 60,
   "paths.dead-strings": 51,
-  "prior-art.unclassified": 348,
+  "prior-art.unclassified": 340,
   "purity.core-nondeterminism": 0,
   "scope.boundaries": 2792,
   "scope.narrated": 523,

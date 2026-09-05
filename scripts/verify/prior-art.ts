@@ -145,6 +145,43 @@ export const PRIOR_ART_SEARCHED: readonly {
     // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
     // base classes and a material that throws when drawn. null is what claims this row.
     found: null },
+  // ── Wave tick 2026-09-05 (eighth): the last eight bounded rows, two searches — and one where the
+  // SEARCH WAS WRONG AND THE ARITHMETIC WAS COMPUTED INSTEAD. A search is an arbiter for attribution,
+  // not for arithmetic, and it returned two malformed class equations for S4 and A5. Recording them
+  // would have put a false sum in the ledger with a citation attached, which is worse than an
+  // unsearched row.
+  { theorem: 'Leibniz and Wallis π series',
+    searched: 'Leibniz Gregory series pi/4, Wallis product 1656 Arithmetica Infinitorum, Vandermonde convolution identity, orbit-stabilizer theorem, class equation conjugacy classes S4 A5',
+    when: '2026-09-05',
+    found: 'Two distinct classical results for pi. John Wallis (1656, Arithmetica Infinitorum) gives the product pi/2 = prod 4n^2/(4n^2 - 1). The alternating series pi/4 = 1 - 1/3 + 1/5 - ... is the Gregory-Leibniz series, due to James Gregory before Leibniz and known earlier still to Madhava of Sangamagrama; it converges very slowly.' },
+  { theorem: 'Vandermonde binomial identity',
+    searched: 'Leibniz Gregory series pi/4, Wallis product 1656 Arithmetica Infinitorum, Vandermonde convolution identity, orbit-stabilizer theorem, class equation conjugacy classes S4 A5',
+    when: '2026-09-05',
+    found: 'SEVENTH NAME THIS WEEK THAT UNDERSTATES BY CENTURIES. The identity is properly CHU-Vandermonde: it appears in Chu Shih-chieh, The Precious Mirror of the Four Elements, 1303, and was rediscovered and published by Alexandre-Theophile Vandermonde in 1772 — 469 years later.' },
+  { theorem: 'orbit-stabilizer theorem',
+    searched: 'Leibniz Gregory series pi/4, Wallis product 1656 Arithmetica Infinitorum, Vandermonde convolution identity, orbit-stabilizer theorem, class equation conjugacy classes S4 A5',
+    when: '2026-09-05',
+    found: 'The orbit-stabiliser theorem: the orbit of x has size equal to the index of its stabiliser, |G| / |Stab(x)|. Standard, and the tool the Cauchy-Frobenius counting lemma already attributed in this ledger is proved from.' },
+  { theorem: 'class equation on S₄ and A₅',
+    searched: 'Leibniz Gregory series pi/4, Wallis product 1656 Arithmetica Infinitorum, Vandermonde convolution identity, orbit-stabilizer theorem, class equation conjugacy classes S4 A5',
+    when: '2026-09-05',
+    found: 'The class equation is standard, but THE SEARCH RETURNED WRONG ARITHMETIC FOR BOTH GROUPS and the values here were computed instead. S4 is 1 + 6 + 8 + 3 + 6 = 24; the search gave 1+6+8+6, which is 21 and silently drops the double-transposition class. A5 is 1 + 15 + 20 + 12 + 12 = 60; the search gave 1+60+24, which is not a class equation at all. The 24 five-cycles SPLITTING into two classes of 12 in A5 is precisely why A5 is simple, and it is the part a wrong sum erases.' },
+  { theorem: 'geometric series closed form',
+    searched: 'geometric series closed form, reflected binary Gray code Frank Gray 1947 single bit, Euler pentagonal number theorem partition recurrence, Dirichlet unit theorem real quadratic Pell',
+    when: '2026-09-05',
+    found: 'The closed form: the partial sum is (1 - x^(n+1))/(1 - x) and the infinite sum is 1/(1 - x) for |x| < 1. Elementary and ancient — the finite form is in Euclid IX.35.' },
+  { theorem: 'reflected Gray code single-bit',
+    searched: 'geometric series closed form, reflected binary Gray code Frank Gray 1947 single bit, Euler pentagonal number theorem partition recurrence, Dirichlet unit theorem real quadratic Pell',
+    when: '2026-09-05',
+    found: 'Frank Gray, Bell Labs, patent application 1947 (granted 1953): an ordering of the 2^n binary strings in which consecutive strings differ in exactly one bit, named the REFLECTED binary code for its recursive construction. The single-bit property is what makes it error-tolerant in encoders.' },
+  { theorem: 'partition recurrence from the pentagonal theorem',
+    searched: 'geometric series closed form, reflected binary Gray code Frank Gray 1947 single bit, Euler pentagonal number theorem partition recurrence, Dirichlet unit theorem real quadratic Pell',
+    when: '2026-09-05',
+    found: 'Euler pentagonal number theorem gives the partition recurrence p(n) = p(n-1) + p(n-2) - p(n-5) - p(n-7) + ..., with signs and gaps set by the generalised pentagonal numbers (3m^2 + m)/2. Obtained by multiplying the partition generating function by Euler product.' },
+  { theorem: 'the unit group ℤ[√D]* is infinite',
+    searched: 'geometric series closed form, reflected binary Gray code Frank Gray 1947 single bit, Euler pentagonal number theorem partition recurrence, Dirichlet unit theorem real quadratic Pell',
+    when: '2026-09-05',
+    found: 'Dirichlet unit theorem: the unit group of the ring of integers of a number field has rank r1 + r2 - 1. For a REAL quadratic field that rank is 1, so the unit group is infinite — a fundamental unit and its powers — and the theory is essentially that of Pell equation. For an imaginary quadratic field the rank is 0 and the units are finite, which is the contrast the row rests on.' },
   // ── Wave tick 2026-09-05 (seventh): nine more bounded rows, two searches — four inequalities and
   // five from number theory. One row came out RIGHT where the search was loose: the Eisenstein
   // splitting row says p = 1 (mod 3), and several sources say splits iff p = 3 or p = 1 (mod 3),
@@ -596,22 +633,6 @@ export const PRIOR_ART_POOL: readonly {
   // them says so rather than leaving them to look like unfinished work. The mixed four each pair an
   // external literature with a claim of this corpus — MOND acceleration scale, the cosmic
   // coincidence, patent doctrine, the Open Graph standard — and must be split before searching.
-  { theorem: 'Leibniz and Wallis π series', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the Leibniz and Wallis series for pi — so a search is unambiguously well posed' },
-  { theorem: 'Vandermonde binomial identity', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the Vandermonde convolution identity — so a search is unambiguously well posed' },
-  { theorem: 'orbit-stabilizer theorem', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the orbit-stabiliser theorem for group actions — so a search is unambiguously well posed' },
-  { theorem: 'class equation on S₄ and A₅', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the class equation, instantiated at S4 and A5 — so a search is unambiguously well posed' },
-  { theorem: 'geometric series closed form', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the closed form of a geometric series — so a search is unambiguously well posed' },
-  { theorem: 'reflected Gray code single-bit', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the reflected binary Gray code — so a search is unambiguously well posed' },
-  { theorem: 'partition recurrence from the pentagonal theorem', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — Euler pentagonal number theorem and the partition recurrence — so a search is unambiguously well posed' },
-  { theorem: 'the unit group ℤ[√D]* is infinite', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the Dirichlet unit theorem for real quadratic orders — so a search is unambiguously well posed' },
   { theorem: 'immediate save is reuse — a theorem, not a loop; the identity opens the infinite core', pool: 'unbounded',
     why: 'the subject IS this artifact — a property of this system own save-and-reuse loop — and no literature can restate a claim about this repository' },
   { theorem: 'Theorem of theorems', pool: 'unbounded',
