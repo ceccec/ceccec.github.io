@@ -245,7 +245,7 @@ export function assertLeanArbitrates(): void {
   const rows = censusContradictions()
   const byFile = new Map<string, number>()
   for (const r of rows) byFile.set(r.file, (byFile.get(r.file) ?? 0) + 1)
-  ratchet('lean-arbiter.census-contradictions', rows.length)
+  console.log(ratchet('lean-arbiter.census-contradictions', rows.length))
   for (const [file, count] of [...byFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12)) {
     console.log(`    ${String(count).padStart(4)}  ${file}`)
   }

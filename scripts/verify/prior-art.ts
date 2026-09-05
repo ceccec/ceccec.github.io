@@ -945,5 +945,5 @@ export function assertPriorArtLedger(): void {
   // Ifá odu — so "every theorem has registered prior art" is not merely unproven, it is impossible.
   // The count and the caveat are emitted together so neither can be quoted without the other.
   console.log(`  claimed=${l.claimed.length} does NOT mean everything here has a known author: ${l.unclassified.length} rows have had no search, and much of what IS attributed predates the DOI system`)
-  ratchet('prior-art.unclassified', l.unclassified.length)
+  console.log(ratchet('prior-art.unclassified', l.unclassified.length))
 }

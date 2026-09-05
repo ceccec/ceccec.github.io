@@ -140,5 +140,5 @@ export function assertAxiomIndex(): void {
   if (unindexed.length) throw new Error(`${unindexed.length} axiom(s) in use with no index entry: ${unindexed.join(', ')} — an axiom nobody has explained is a hole`)
 
   const unresearched = index.filter((e) => e.research === null).length
-  ratchet('axiom-index.unresearched', unresearched)
+  console.log(ratchet('axiom-index.unresearched', unresearched))
 }

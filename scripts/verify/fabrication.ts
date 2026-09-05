@@ -160,5 +160,5 @@ export function assertNoNewFabrications(): void {
   for (const r of rows) byFile.set(r.file, (byFile.get(r.file) ?? 0) + 1)
   for (const [f, n] of [...byFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`  ${String(n).padStart(4)}  ${f}`)
   for (const r of rows.slice(0, 6)) console.log(`     ${r.file}:${r.line}  ${r.why}\n        ${r.text}`)
-  ratchet('fabrication.invented-measurements', rows.length)
+  console.log(ratchet('fabrication.invented-measurements', rows.length))
 }

@@ -70,7 +70,10 @@ export function show() {
     if (callers.length) crossed += 1
     else { selfOnly += 1; if (examples.length < 8) examples.push(`${name}  (${home})`) }
   }
-  ratchet('independence.cross-checked', -crossed)   // negated: the ratchet only falls, so crossed only rises
+  // NEGATED, AND PRINTED SAYING SO. Cross-checking is the one figure here that should RISE, and a
+  // ratchet only falls, so the stored floor is its negative. It was recorded silently, which meant the
+  // single number in this file that is good news when it moves reported nothing when it did.
+  console.log(`  ${ratchet('independence.cross-checked', -crossed)}  — stored negated, so ${crossed} cross-checked may only RISE`)
   console.log(`folds carrying facets:            ${folds.size}`)
   console.log(`  constrained by a predicate      ${crossed}  in another file`)
   console.log(`  asserted only by their own      ${selfOnly}  facets, and nothing else`)
