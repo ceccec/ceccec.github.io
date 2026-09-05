@@ -413,3 +413,36 @@ export declare function hexbitRepresentationsAgree(matrix?: MindMatrix): {
     root: string;
     statement: string;
 };
+/** The sibling hashes from a leaf to the root, bottom-up — the receipt a verifier is handed. */
+export declare function hexbitMerklePath(leaves: readonly string[], leaf: string): readonly string[];
+/** Replay a receipt: fold the leaf against each sibling and count what it cost. */
+export declare function hexbitVerifyPath(leaf: string, siblings: readonly string[], leaves: readonly string[]): {
+    root: string;
+    merges: number;
+};
+/** Rebuild the root from scratch, counting every merge — the classical cost of not having a receipt. */
+export declare function hexbitRecomputeCost(leaves: readonly string[]): {
+    root: string;
+    merges: number;
+};
+/** The leaves of an n-line lattice: 2^n addresses, content-addressed like every other leaf here. */
+export declare function hexbitLeaves(lines?: number): readonly string[];
+export declare function hexbitVerifyBeatsRecompute(): {
+    computes: boolean;
+    ladder: {
+        lines: number;
+        leaves: number;
+        rebuild: number;
+        verify: number;
+        parities: number;
+        agrees: boolean;
+    }[];
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+};

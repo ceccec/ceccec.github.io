@@ -458,3 +458,128 @@ export function hexbitRepresentationsAgree(matrix: MindMatrix = buildMatrix()) {
     statement: `A hexagram is a hexbit: six bits, 64 values, and the corpus's own nuclear operation is shift-and-mask on it. Four representations of the same lattice agree on every input, which is what makes timing them a measurement rather than a race between different answers.`,
   }
 }
+
+// ── HEXBITS UNLOCK THE ONE ADVANTAGE THIS CORPUS IS ENTITLED TO CLAIM ────────────────────────────
+//
+// Not hardware supremacy. The advantage named in corpus.lean is verify_beats_recompute_by_magnitudes:
+// re-deriving a result costs O(N), checking a Merkle receipt costs the depth of one path, log2 N.
+// The hexbit lattice IS that structure and not a metaphor for it — 64 = 2^6 leaves, and each of the
+// six lines is one branch decision. A hexagram is already an address in a binary tree of depth six.
+//
+// MEASURED IN MERGES, NOT MILLISECONDS. Seconds are a fact about a machine; merge calls are a fact
+// about the tree, identical on any classical computer, and they are what the theorem is stated over.
+// The corpus's benchmark folder already learned this the expensive way.
+
+/** One layer's parent, pairing as merkleFold does, with an odd leaf carried up unchanged. */
+function hexbitLayerUp(layer: readonly string[], count: { merges: number }): string[] {
+  const next: string[] = []
+  for (let i = 0; i < layer.length; i += 2) {
+    const a = layer[i]!
+    const b = layer[i + 1]
+    if (b === undefined) next.push(a)
+    else { count.merges += 1; next.push(merge(a, b)) }
+  }
+  return next
+}
+
+/** The sibling hashes from a leaf to the root, bottom-up — the receipt a verifier is handed. */
+export function hexbitMerklePath(leaves: readonly string[], leaf: string): readonly string[] {
+  let layer = [...leaves].sort()
+  let idx = layer.indexOf(leaf)
+  const siblings: string[] = []
+  while (layer.length > 1) {
+    const sib = idx % 2 === 0 ? layer[idx + 1] : layer[idx - 1]
+    if (sib !== undefined) siblings.push(sib)
+    layer = hexbitLayerUp(layer, { merges: 0 })
+    idx = Math.floor(idx / 2)
+  }
+  return siblings
+}
+
+/** Replay a receipt: fold the leaf against each sibling and count what it cost. */
+export function hexbitVerifyPath(leaf: string, siblings: readonly string[], leaves: readonly string[]): { root: string; merges: number } {
+  let layer = [...leaves].sort()
+  let idx = layer.indexOf(leaf)
+  let acc = leaf
+  let merges = 0
+  for (const sib of siblings) {
+    acc = idx % 2 === 0 ? merge(acc, sib) : merge(sib, acc)
+    merges += 1
+    layer = hexbitLayerUp(layer, { merges: 0 })
+    idx = Math.floor(idx / 2)
+  }
+  return { root: acc, merges }
+}
+
+/** Rebuild the root from scratch, counting every merge — the classical cost of not having a receipt. */
+export function hexbitRecomputeCost(leaves: readonly string[]): { root: string; merges: number } {
+  const count = { merges: 0 }
+  let layer = [...leaves].sort()
+  while (layer.length > 1) layer = hexbitLayerUp(layer, count)
+  return { root: layer[0]!, merges: count.merges }
+}
+
+/** The leaves of an n-line lattice: 2^n addresses, content-addressed like every other leaf here. */
+export function hexbitLeaves(lines: number = HEXBIT_LINES): readonly string[] {
+  return Array.from({ length: 2 ** lines }, (_, h) => toUuid(`hexbit:${lines}:${h.toString(2).padStart(lines, '0')}`))
+}
+
+export function hexbitVerifyBeatsRecompute() {
+  // Measured across a ladder of lattice sizes, so the ratio is a TREND that can be refuted at any
+  // rung, not one flattering number at n = 6.
+  // THE RUNGS ARE DERIVED FROM THE LATTICE, NOT TYPED. Every line of the hexagram is a rung, then two
+  // above it — one trigram further, and one whole hexagram further — so the trend is read past the size
+  // the corpus actually uses rather than stopping where it flatters.
+  const ladder = [
+    ...Array.from({ length: HEXBIT_LINES }, (_, i) => i + 1),
+    HEXBIT_LINES + TRIGRAM_LINES,
+    HEXBIT_LINES * 2,
+  ].map((lines) => {
+    const leaves = hexbitLeaves(lines)
+    const rebuilt = hexbitRecomputeCost(leaves)
+    // BOTH PARITIES, OR THE TEST IS HALF A TEST. Leaf 0 is always even, so checking only it never
+    // exercises the odd branch of the replay — merge(sib, acc) rather than merge(acc, sib) — and a
+    // fold that hashed its siblings in the wrong order would have passed every rung of this ladder.
+    const sorted = [...leaves].sort()
+    const probes = sorted.length > 1 ? [sorted[0]!, sorted[1]!] : [sorted[0]!]
+    const checks = probes.map((leaf) => hexbitVerifyPath(leaf, hexbitMerklePath(leaves, leaf), leaves))
+    return { lines, leaves: leaves.length, rebuild: rebuilt.merges, verify: checks[0]!.merges,
+      parities: probes.length,
+      agrees: checks.every((c) => c.root === rebuilt.root) && rebuilt.root === merkleFold(leaves) }
+  })
+  const here = ladder.find((r) => r.lines === HEXBIT_LINES)!
+
+  const facets = [
+    // THE LOAD-BEARING ONE. Every cost below is measured on a tree this reconstructs itself, so if the
+    // reconstruction disagreed with the sealed merkleFold the numbers would be about nothing.
+    { facet: `the replayed receipt and the full rebuild land on the SAME root as the sealed merkleFold, at every rung of the ladder, for an EVEN and an ODD leaf both — ${ladder.filter((r) => r.agrees).length}/${ladder.length} rungs, ${ladder.filter((r) => r.parities === 2).length} of them checking both parities`,
+      on: ladder.every((r) => r.agrees) && ladder.filter((r) => r.leaves > 1).every((r) => r.parities === 2) },
+    // A full binary tree over 2^n leaves costs 2^n − 1 merges. MEASURED by counting, then compared to
+    // the closed form — if the counter and the formula ever part, this is where it shows.
+    { facet: `rebuilding costs 2^n − 1 merges at every rung, counted not assumed (n = ${HEXBIT_LINES}: ${here.rebuild} merges over ${here.leaves} leaves)`,
+      on: ladder.every((r) => r.rebuild === r.leaves - 1) },
+    { facet: `checking a receipt costs exactly n merges — the depth of the lattice, one per line (n = ${HEXBIT_LINES}: ${here.verify})`,
+      on: ladder.every((r) => r.verify === r.lines) },
+    // REFUTABLE AT THE BOTTOM, WHICH IS THE POINT. At n = 1 the advantage is 0 merges saved: one leaf
+    // pair, one merge either way. A facet claiming advantage everywhere would be false, and claiming it
+    // only where convenient would be unfalsifiable — so the crossover is COMPUTED and named.
+    { facet: `the advantage is not universal: it begins at the rung where 2^n − 1 first exceeds n, which is n = ${ladder.find((r) => r.rebuild > r.verify)?.lines ?? 0}, and below it there is none`,
+      on: ladder.filter((r) => r.rebuild <= r.verify).every((r) => r.lines <= 2) },
+    { facet: `on the ${here.leaves}-hexagram lattice the receipt costs ${here.verify} merges where re-deriving the root costs ${here.rebuild} — the ratio stated as the exact fraction ${here.rebuild}/${here.verify}, never rounded, and the gap WIDENS with n (${ladder[ladder.length - 1]!.rebuild}/${ladder[ladder.length - 1]!.verify} at n = ${ladder[ladder.length - 1]!.lines})`,
+      on: here.rebuild / here.verify > 1 && ladder[ladder.length - 1]!.rebuild / ladder[ladder.length - 1]!.verify > here.rebuild / here.verify },
+    // THE DISCLAIMER COMPUTES. "Not hardware supremacy" is checkable rather than asserted: the ratio is
+    // a combinatorial identity, so it must equal (2^n − 1)/n exactly at every rung. A physical speedup
+    // would not — it would carry a machine in it and drift between runs.
+    { facet: `NOT a hardware quantum speedup, and that is measured: every ratio equals the combinatorial (2^n − 1)/n exactly, so it carries no machine and cannot drift between runs`,
+      on: ladder.every((r) => r.rebuild / r.verify === (2 ** r.lines - 1) / r.lines) },
+  ]
+
+  const gate = computesGate('hexbit-verify-beats-recompute', facets)
+  return {
+    computes: gate.computes,
+    ladder,
+    facets: gate.facets,
+    root: gate.root,
+    statement: `Hexbits unlock the only advantage this corpus claims: a hexagram is an address in a 64-leaf binary tree, so checking that it belongs costs ${here.verify} merges where re-deriving the root costs ${here.rebuild}. Measured in merges, not seconds, because the theorem is about the tree and not about the machine — and the ratio is exactly (2^n − 1)/n, which is why it is arithmetic and not supremacy.`,
+  }
+}

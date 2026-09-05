@@ -184,11 +184,21 @@ export function main() {
   // three floors that measured the walk with one that measures the defect.
   console.log(`counts (REPORTED, not ratcheted — order-dependent, see above): false-verdict ${verdictFalse} · facets-off ${facetsOff} · threw ${threw}`)
 
+  // BY FUNCTION IDENTITY, NOT BY NAME — and this instrument had to be corrected the same way it corrects
+  // the three it replaced. Seeded at 1, it read 4 on the next run, and the 4 were not new defects: this
+  // module exports the SAME function object under several names (uiWaves, userWaves and
+  // freeUserWavesTestUiMeasureEfficiency are one function; uiFeed and feedUiIntoItself are another).
+  // Whichever alias the walk reaches first sees cold state and the rest see warm, so the count moved with
+  // which alias happened to be flagged — a number about export names wearing the clothes of a number about
+  // code. Deduplicated by identity, each function is asked exactly once and the answer stops depending on
+  // what it is called.
+  const byFn = new Map<() => unknown, { mod: string; name: string; off: number }>()
+  for (const f of flagged) if (!byFn.has(f.fn)) byFn.set(f.fn, { mod: f.mod, name: f.name, off: f.off })
   let orderDependent = 0
   const drifted: string[] = []
-  for (const f of flagged) {
+  for (const [fn, f] of byFn) {
     let again
-    try { again = f.fn() as { facets?: { on: boolean }[] } } catch { continue }
+    try { again = fn() as { facets?: { on: boolean }[] } } catch { continue }
     const off2 = (again?.facets ?? []).filter((x) => x && x.on === false).length
     if (off2 !== f.off) { orderDependent += 1; if (drifted.length < 12) drifted.push(`${f.mod}  ${f.name}  ${f.off} → ${off2}`) }
   }
@@ -199,7 +209,7 @@ export function main() {
   // fresh process per fold, which 4178 folds cannot afford. So: a non-zero here is proof of hidden state,
   // a zero here is NOT proof of its absence. It is a floor on a lower bound, and it is still worth having
   // because it can only be driven down by deleting shared state, never by argument.
-  console.log(`folds whose off-facet count CHANGED when called a second time in the same process: ${orderDependent}/${flagged.length}  (warm-to-warm only — a LOWER BOUND on hidden state, never a clearance)`)
+  console.log(`folds whose off-facet count CHANGED when called a second time in the same process: ${orderDependent}/${byFn.size} distinct functions (${flagged.length} flagged names, ${flagged.length - byFn.size} of them aliases)  (warm-to-warm only — a LOWER BOUND on hidden state, never a clearance)`)
   for (const d of drifted) console.log('   ' + d)
   console.log(ratchet('folds.order-dependent', orderDependent))
 }

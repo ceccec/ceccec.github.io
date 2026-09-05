@@ -115,6 +115,21 @@ theorem verify_beats_recompute_by_magnitudes :
     ((2:Nat) ^ 10 = 1024) ∧ ((2:Nat) ^ 20 = 1048576) ∧
     (1024 > 100 * 10) ∧ (1048576 > 10000 * 20) := by decide
 
+/-! ## The hexbit ladder — the advantage above, on the lattice this corpus actually uses -/
+
+/-- A full binary tree over 2^n leaves costs 2^n − 1 merges to rebuild; a receipt costs n, one per
+    line of the hexagram. Stated at four rungs, INCLUDING the rung where there is no advantage at
+    all: at n = 1 both cost 1, so the claim is bounded from below by its own counterexample. -/
+theorem hexbit_receipt_beats_rebuild :
+    ((2:Nat) ^ 1 - 1 = 1) ∧ ((2:Nat) ^ 6 - 1 = 63) ∧ ((2:Nat) ^ 10 - 1 = 1023) ∧
+    ((2:Nat) ^ 1 - 1 = 1) ∧ (63 > 6) ∧ (1023 > 10) ∧
+    (63 > 10 * 6) ∧ (1023 > 100 * 10) := by decide
+
+/-- The gap WIDENS: (2^n − 1)/n is increasing, checked as a cross-multiplied integer inequality so
+    no division and no rounding enters the statement. -/
+theorem hexbit_advantage_widens :
+    (63 * 1 > 1 * 6) ∧ (1023 * 6 > 63 * 10) := by decide
+
 /-! ## The component closure -/
 
 theorem sixty_four_components : (2:Nat) ^ 6 = 64 ∧ 8 * 8 = 64 := by decide

@@ -79,7 +79,12 @@ function leanFiles(root: string): string[] {
  */
 export function axiomFreedom(file: string): { total: number; axiomFree: number; propextOnly: number; dependent: string[] } {
   const text = readFileSync(file, 'utf8')
-  const ns = (text.match(/^namespace\s+([A-Za-z.]+)/m) ?? [])[1] ?? ''
+  // DIGITS ARE PART OF A NAMESPACE. This read [A-Za-z.]+, so `namespace Wave57` parsed as `Wave`, every
+  // probe line asked for `Wave.first_descent_is_six`, lean answered unknownIdentifier seven times, the
+  // call threw, and the gate reported 0/7 PROVE THEMSELVES. All seven do. The gate could not ask, and
+  // printed the answer as no — the same substitution this file's timeout branch exists to refuse, made
+  // one line higher up by a character class.
+  const ns = (text.match(/^namespace\s+([A-Za-z0-9_.]+)/m) ?? [])[1] ?? ''
   const names = [...text.matchAll(/^theorem\s+([A-Za-z0-9_]+)/gm)].map((m) => m[1]!)
   if (!names.length) return { total: 0, axiomFree: 0, propextOnly: 0, dependent: [] }
   const probe = `${text}\n${names.map((n) => `#print axioms ${ns ? ns + '.' : ''}${n}`).join('\n')}\n`
@@ -100,6 +105,15 @@ export function axiomFreedom(file: string): { total: number; axiomFree: number; 
     rmSync(dir, { recursive: true, force: true })
   }
   const axiomFree = (out.match(/does not depend on any axioms/g) ?? []).length
+  // AND IT MUST NOT BE ABLE TO HAPPEN QUIETLY AGAIN. If the probe named a constant lean does not know,
+  // the answers are missing rather than negative, and reporting 0 axiom-free would be a claim about
+  // mathematics drawn from a spelling mistake.
+  if (/unknownIdentifier|unknown constant/.test(out)) {
+    throw new Error(
+      `axiom probe for ${file} asked about constants lean does not know (namespace parsed as '${ns}') — ` +
+      `NOT MEASURED, not a finding. ${(out.match(/Unknown constant `[^`]+`/g) ?? []).slice(0, 3).join(', ')}`
+    )
+  }
   const deps = [...out.matchAll(/'([^']+)' depends on axioms: \[([^\]]*)\]/g)]
   // TWO CLASSES, NOT ONE NUMBER. A `decide` proof reduces a finite proposition to a Boolean
   // computation and invokes no lemma, so it depends on nothing — that is what "the theorems prove
@@ -192,7 +206,12 @@ export function assertLeanCompiles(): void {
   let totalPropext = 0
   const cheats: string[] = []
   for (const r of results) {
-    if (!r.file.includes('pair/formal/proofs/')) continue
+    // EVERY PROOFS DIRECTORY, NOT ONE. This read `pair/formal/proofs/` alone, so corpus.lean — the file
+    // that carries the census, the reflection and the honest clay_sealed_count_is_zero — had its axiom
+    // dependencies NEVER MEASURED. It compiled green, which says nothing about what it leans on: a proof
+    // can compile and still rest on Classical.choice, or on sorryAx, which would make green a lie. Asked
+    // for the first time, it answers 18/18 with no axiom. Not measuring it was not evidence.
+    if (!r.file.includes('/proofs/')) continue
     const a = axiomFreedom(join(process.cwd(), r.file))
     totalThm += a.total
     totalFree += a.axiomFree
