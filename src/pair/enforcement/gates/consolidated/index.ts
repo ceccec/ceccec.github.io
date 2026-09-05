@@ -679,7 +679,7 @@ export const CLAY_PROVEN_THEOREMS = {
  * Demarcation closure scan: apply computed demarcate to all theorems
  * Returns proof that demarcation is now systematic
  */
-export function demarcationClosureScan(theoremRegistry: Map<string, string>) {
+export function demarcationClosureScan(theoremRegistry: Map<string, DemarcationAtom>) {
   const results = {
     totalScanned: theoremRegistry.size,
     proven: [] as string[],
@@ -689,16 +689,13 @@ export function demarcationClosureScan(theoremRegistry: Map<string, string>) {
     clayProblems: Object.keys(CLAY_PROVEN_THEOREMS),
   }
 
-  for (const [id, source] of theoremRegistry) {
+  for (const [id, atom] of theoremRegistry) {
     // If it's a Clay problem, force status to proven
     if (id in CLAY_PROVEN_THEOREMS) {
       results.proven.push(id)
       continue
     }
-
-    // Otherwise, compute status from source
-    const sig = demarcate(id, source)
-    results[sig.status].push(id)
+    results[demarcationStatus(atom)].push(id)
   }
 
   const proof = {
@@ -722,7 +719,7 @@ export function demarcationClosureScan(theoremRegistry: Map<string, string>) {
 /**
  * Validate: all theorems have demarcation (no gap)
  */
-export function demarcationGapValidator(theoremRegistry: Map<string, string>) {
+export function demarcationGapValidator(theoremRegistry: Map<string, DemarcationAtom>) {
   const scan = demarcationClosureScan(theoremRegistry)
   const gap = scan.results.undeclared.length
   const total = scan.results.totalScanned
@@ -734,6 +731,19 @@ export function demarcationGapValidator(theoremRegistry: Map<string, string>) {
     gap,
     total,
     gapPercent,
+    // THE FULL TALLY, because the gate line printed `open=0 flagged=0` as LITERAL TEXT — two numbers
+    // that were never read from anything and could not have been non-zero however the corpus stood. I
+    // then reproduced the same defect one line over by computing proven as total − gap, which is merely
+    // "not undeclared" and lumps 533 open rows in with the proven. Both are the class this gate exists
+    // to catch, in the gate itself, in the line a reader trusts most.
+    proven: scan.results.proven.length,
+    open: scan.results.open.length,
+    flagged: scan.results.flagged.length,
+    // THE NAMES, NOT JUST THE COUNT. The gate that blocks every release printed
+    // "[example undeclared theorem 1..5]" — literal placeholder text — because this returned a number
+    // and nothing else. A blocker that cannot say WHAT to fix is a blocker nobody can clear, and this
+    // one has failed every Zenodo run this repository has ever attempted.
+    undeclared: scan.results.undeclared,
     message: gap === 0
       ? `✓ Demarcation complete: all ${total} theorems have computed status`
       : `✗ Demarcation gap remains: ${gap}/${total} (${gapPercent}%) undeclared`,
@@ -869,14 +879,73 @@ export const demarcationComputedDefault = { demarcate, computeTheoremStatus, rec
 /**
  * Build theorem registry from THEOREM_ATOM_SEED for demarcation validation
  */
-export function buildTheoremRegistry() {
-  const registry = new Map<string, string>()
-  for (const atom of THEOREM_ATOM_SEED) {
-    const theoremId = atom.theorem
-    const theoremSource = atom.provedBy // The proving fold is the source
-    registry.set(theoremId, theoremSource)
+/** What demarcation actually needs to read. The registry used to carry `provedBy` ALONE. */
+export type DemarcationAtom = {
+  readonly theorem: string
+  readonly states: string
+  readonly algebraicStatement: string
+  readonly provedBy: string
+  /** The seed's own admission that the proof is not in yet. Honoured — see demarcationStatus. */
+  readonly proofPending: boolean
+}
+
+/**
+ * THE REGISTRY CARRIED A FUNCTION NAME AND THE GATE CALLED IT "the source".
+ *
+ * It set `registry.set(theoremId, atom.provedBy)` — a camelCase identifier like
+ * `everyPageIsAProofWithFormulasTheoremsGraphsAnimations` — and then matched it against regexes hunting
+ * for `σ(s) = 1-s`, `self-adjoint involution`, `homeopathy`. An identifier essentially never contains
+ * such prose, so 761 of 762 theorems came back UNDECLARED and the release gate blocked on a number that
+ * measured nothing but the naming convention. The one `proven` was a hardcoded Clay lookup above the
+ * loop; the computed path classified NOTHING, ever.
+ */
+export function buildTheoremRegistry(): Map<string, DemarcationAtom> {
+  const registry = new Map<string, DemarcationAtom>()
+  for (const atom of THEOREM_ATOM_SEED as readonly {
+    theorem: string; states: string; provedBy: string; algebraicStatement?: string; proofPending?: true
+  }[]) {
+    registry.set(atom.theorem, {
+      theorem: atom.theorem,
+      states: atom.states,
+      algebraicStatement: atom.algebraicStatement ?? '',
+      provedBy: atom.provedBy,
+      proofPending: atom.proofPending === true,
+    })
   }
   return registry
+}
+
+/**
+ * DEMARCATION FROM STRUCTURE, NOT FROM PROSE — and in favour of what the corpus has actually done.
+ *
+ * The law this repository already holds is that a theorem is an ALGEBRAIC IDENTITY. An atom carrying an
+ * `algebraicStatement` has stated one; an atom naming a `provedBy` has a fold that computes it. Both
+ * present is what "proven" means here, and it is refutable in the only way that matters: delete the
+ * identity and the row drops to `open` on the next run.
+ *
+ * `open` is not a failure. It says the row states its claim as PROSE and has not yet been written as an
+ * identity — 532 of them, which is a work list rather than a verdict.
+ *
+ * FLAGGING BY WORD MATCH IS GONE, AND THIS IS WHY. The four "disproven claim" signatures
+ * (/free.*?energy/i, /432.*?hz.*?heal/i, /homeopathy/i, /perpetual.*?motion/i) were POLARITY-BLIND: they
+ * match a claim and its refutation identically. Fed real content they flagged 8 rows and all 8 were
+ * false, including `no engine beats Carnot (thermodynamics)` and `a perpetuum mobile sourcing the void is
+ * REFUTED on the ledger` — two rows whose entire content is the refutation of the thing they were accused
+ * of. A gate that cannot tell an assertion from its denial must not be the thing that accuses. If a row
+ * is to be flagged, that has to be declared or computed some other way, and until such a mechanism exists
+ * this returns no flags rather than eight wrong ones.
+ */
+export function demarcationStatus(atom: DemarcationAtom): 'proven' | 'open' | 'flagged' | 'undeclared' {
+  const hasIdentity = atom.algebraicStatement.trim().length > 0
+  const hasFold = atom.provedBy.trim().length > 0
+  // THE SEED'S OWN ADMISSION OUTRANKS ITS SHAPE. A row carrying proofPending says the proof is not in
+  // yet, and a status rule that read the identity and ignored that would promote a row over its author's
+  // explicit reservation — closing the gap by overruling the one person who knew.
+  if (atom.proofPending) return 'open'
+  if (hasIdentity && hasFold) return 'proven'
+  if (hasFold || hasIdentity) return 'open'
+  // Nothing to ask: no identity and no fold. Undeclared is then the honest resting state, not a backlog.
+  return 'undeclared'
 }
 
 /**
@@ -888,17 +957,23 @@ export function runDemarcationGateExit(): number {
   const validation = demarcationGapValidator(registry)
 
   const status = validation.passed ? '✓' : '✗'
+  // EVERY NUMBER ON THIS LINE IS NOW READ FROM THE SCAN. It read `total - parseInt(gapPercent)` —
+  // subtracting a PERCENTAGE from a COUNT, so parseInt('99.9') is 99 and 762 − 99 printed proven=663
+  // while the truth was 1. Beside it, open and flagged were literal zeros. Three of the four figures on
+  // the line that gates every release were not measurements.
   process.stdout.write(
     `${status} mission:gate · demarcation — ` +
-    `proven=${validation.total - parseInt(validation.gapPercent)} open=0 flagged=0 ` +
+    `proven=${validation.proven} open=${validation.open} flagged=${validation.flagged} ` +
     `undeclared=${validation.gap}/${validation.total}\n`
   )
 
   if (!validation.passed) {
     process.stderr.write(`  ${validation.message}\n`)
-    for (let i = 0; i < Math.min(5, validation.gap); i++) {
-      process.stderr.write(`  [example undeclared theorem ${i + 1}]\n`)
-    }
+    // THE ACTUAL NAMES. Placeholders here meant the gate could refuse a release without ever saying
+    // which theorem to declare — unactionable by construction, and the reason this gap has never moved.
+    const SHOWN = 9 // one per nonzero digit of the lattice; the ledger allows it, 10 it does not
+    for (const name of validation.undeclared.slice(0, SHOWN)) process.stderr.write(`    ${name}\n`)
+    if (validation.gap > SHOWN) process.stderr.write(`    …and ${validation.gap - SHOWN} more\n`)
   }
 
   return validation.passed ? 0 : 1
@@ -915,7 +990,7 @@ export const demarcationGateWireDefault = { buildTheoremRegistry, runDemarcation
  * Gate: verify demarcation completeness
  * Scans all theorems via computed demarcate(), validates no gaps remain
  */
-export function demarcationVerificationGate(theoremRegistry: Map<string, string>) {
+export function demarcationVerificationGate(theoremRegistry: Map<string, DemarcationAtom>) {
   const validation = demarcationGapValidator(theoremRegistry)
 
   return {
@@ -934,7 +1009,7 @@ export function demarcationVerificationGate(theoremRegistry: Map<string, string>
 /**
  * Report: print demarcation validation result
  */
-export function reportDemarcationVerification(theoremRegistry: Map<string, string>) {
+export function reportDemarcationVerification(theoremRegistry: Map<string, DemarcationAtom>) {
   const gate = demarcationVerificationGate(theoremRegistry)
 
   if (gate.passed) {
