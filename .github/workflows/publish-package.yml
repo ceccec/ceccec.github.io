@@ -88,7 +88,11 @@ jobs:
           const highest = published.map(core).filter(Boolean).reduce((hi, v) => (hi === null || above(v, hi) ? v : hi), null);
           const advances = highest === null || above(mine, highest);
           console.error('published=' + published.length + ' highest=' + (highest ? highest.join('.') : 'none') + ' this=' + mine.join('.') + ' advances=' + advances);
-          console.log(advances ? 'latest' : 'v' + mine[0]);
+          // NOT 'v' + major. npm REFUSES any dist-tag that parses as a valid SemVer range, and 'v1' is
+          // one (it means 1.x). This fallback was written for the v1.2.0 incident described above and was
+          // never exercised until v1.3.0 tried to use it — the branch that only runs when something has
+          // already gone wrong, wrong itself. 'major-1' cannot parse as a range.
+          console.log(advances ? 'latest' : 'major-' + mine[0]);
           ")"
           echo "dist-tag: ${DIST_TAG} — derived from npm view versions, never npm's implicit latest"
 

@@ -23,7 +23,11 @@ permissions:
   contents: write
 
 env:
-  NODE_VERSION: "20.x"
+  # 24, matching deploy.yml, waves-after-push.yml and publish-package.yml. This said 20.x while the
+  # repo pins pnpm@11.8.0, which requires Node >= 22.13 — so setup-node died on `No such built-in
+  # module: node:sqlite` before a single step of the release ran. The DOI workflow was the only one
+  # left behind on 20, and nothing compared them.
+  NODE_VERSION: "24"
   PNPM_VERSION: "11.8.0"
 
 jobs:
