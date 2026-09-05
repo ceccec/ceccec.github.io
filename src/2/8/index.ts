@@ -3,7 +3,7 @@ import { SQRT1_2, SQRT2, earned, computedLimits } from '../../3/7/index.ts'
 // Export-import fusion: fused local exports only; vault imports are dependency edges until those symbols cut.
 
 import { equivalentNarcoticDepthM, TAU } from '../../3/7/index.ts'
-import { GATES, abs, applyGate, asin, cnot, cos, cz, floor, gcd, grover, humanBreath, hypot, isUuid, max, measure, merkleFold, min, probabilities, qubits, round, seedFromText, sin, sqrt, toUuid, toffoli } from '../../0/index.ts'
+import { GATES, abs, applyGate, asin, ceil, cnot, cos, cz, floor, gcd, grover, humanBreath, hypot, isUuid, log2, max, measure, merkleFold, min, probabilities, qubits, round, seedFromText, sin, sqrt, toUuid, toffoli } from '../../0/index.ts'
 import type { QuantumState } from '../../0/index.ts'
 import { innerProduct, pauliAlgebraCloses, noCloningWitness, deutschJozsa, bernsteinVazirani, simon, ghzMermin, entanglementSwap, bb84, teleportQubit, superdense } from '../../9/1/index.ts'
 
@@ -638,9 +638,9 @@ export function verifyBeatsRecomputeMeasured() {
     const leaves = Array.from({ length: n }, (_, i) => toUuid(`leaf:${i}`))
     const { layers, hashes } = build(leaves)
     const touches = verifyTouches(layers)
-    return { n, recompute: hashes, verify: touches, ratio: Math.round(hashes / touches) }
+    return { n, recompute: hashes, verify: touches, ratio: round(hashes / touches) }
   })
-  const verifyIsLogarithmic = runs.every((r) => r.verify === Math.log2(r.n))
+  const verifyIsLogarithmic = runs.every((r) => r.verify === log2(r.n))
   const recomputeIsLinear = runs.every((r) => r.recompute === r.n - 1)
   const ratioGrows = runs.every((r, i) => i === 0 || r.ratio > runs[i - 1]!.ratio)
   // the sealed theorem's own two data points, recomputed rather than cited
@@ -667,7 +667,7 @@ export function verifyBeatsRecomputeMeasured() {
 // uuidna.com/mcp defines quantum as "the EXACT classical state-vector simulator (Gaussian-integer
 // amplitudes over √(2^scale) — no floats, no decimal drift)" and returns Bell outcomes as the exact
 // fractions 1/2 and 1/2. The corpus's own float path returns 0.5000000000000001 for the same circuit,
-// because 1/√2 has no finite binary representation: Math.SQRT1_2 * Math.SQRT1_2 === 0.5 is FALSE.
+// because 1/√2 has no finite binary representation: SQRT1_2 * SQRT1_2 === 0.5 is FALSE.
 //
 // The representation the definition names removes the drift rather than bounding it. Keep each amplitude as
 // a Gaussian integer (re, im ∈ ℤ) beside a scale k meaning "divide by √2^k". Every Clifford gate maps that
@@ -721,7 +721,7 @@ export function theExactSimulatorMatchesTheDefinition() {
   ])
   const facets = [
     { facet: `THE ENDPOINT'S ANSWER, REPRODUCED EXACTLY — uuidna.com/mcp returns Bell outcomes 1/2 and 1/2; this returns ${exactOutcomes.join(' and ')}, as reduced fractions computed from Gaussian integers over √2^${bell.k}`, on: matchesEndpoint },
-    { facet: `THE FLOAT PATH DRIFTS BY ${driftSize.toExponential(1)} ON THE SAME CIRCUIT — probabilities()[0] is ${floatP[0]}, and 1/√2 · 1/√2 === 1/2 is ${Math.SQRT1_2 * Math.SQRT1_2 === 1 / 2}. The drift is structural: 1/√2 has no finite binary representation, so no tolerance removes it and every EPS in this file is an accommodation of it`, on: floatDrifts },
+    { facet: `THE FLOAT PATH DRIFTS BY ${driftSize.toExponential(1)} ON THE SAME CIRCUIT — probabilities()[0] is ${floatP[0]}, and 1/√2 · 1/√2 === 1/2 is ${SQRT1_2 * SQRT1_2 === 1 / 2}. The drift is structural: 1/√2 has no finite binary representation, so no tolerance removes it and every EPS in this file is an accommodation of it`, on: floatDrifts },
     { facet: `NO IRRATIONAL IS EVER STORED — all ${bell.amps.length} amplitudes are Gaussian integers (re, im ∈ ℤ) beside one scale k = ${bell.k}; the √2 lives in the denominator's exponent and never in a number, which is what "no decimal drift" means as an implementation rather than an aspiration`, on: noIrrationalStored },
   ]
   return {
@@ -746,7 +746,7 @@ export function theExactSimulatorMatchesTheDefinition() {
 // the shape to notice — not that simulation is slower, which is unsurprising, but that it DIVERGES.
 export function privateKeyRecoveryCostsBothRoutes() {
   // conventional: naive trial division needs about √n divisions — the weakest classical attack there is
-  const classicalOps = (n: number) => Math.ceil(Math.sqrt(n))
+  const classicalOps = (n: number) => ceil(sqrt(n))
   // this corpus's simulated Shor: t counting qubits and w work qubits, so 2^(t+w) amplitudes materialised
   const simulatedAmplitudes = (t: number, w: number) => 2 ** (t + w)
   const runs = [
@@ -766,7 +766,7 @@ export function privateKeyRecoveryCostsBothRoutes() {
   ])
   const facets = [
     { facet: `SIMULATED SHOR LOSES AT EVERY SIZE — ${runs.map((r) => `n=${r.N}: ${r.classical} divisions vs ${r.quantum} amplitudes`).join(', ')}; the naive classical attack wins on all three by counting operations, and it wins on wall-clock too`, on: simulatedLosesEverywhere },
-    { facet: `AND THE GAP WIDENS WITH SIZE — the amplitude-to-division ratio rises ${runs.map((r) => Math.round(r.quantum / r.classical)).join(' → ')} across ${runs.map((r) => r.N).join(', ')}; simulating the algorithm does not merely cost more, it diverges from the thing it simulates`, on: gapWidens },
+    { facet: `AND THE GAP WIDENS WITH SIZE — the amplitude-to-division ratio rises ${runs.map((r) => round(r.quantum / r.classical)).join(' → ')} across ${runs.map((r) => r.N).join(', ')}; simulating the algorithm does not merely cost more, it diverges from the thing it simulates`, on: gapWidens },
     { facet: `THE CROSSOVER IS THE HARDWARE, NOT THE MATHEMATICS — Shor is polynomial on a quantum computer and exponential to simulate on a classical one, so this table measures the SIMULATOR and would invert on a device holding real qubits. That device is not this corpus`, on: simulatedLosesEverywhere && gapWidens },
   ]
   return {

@@ -1,7 +1,7 @@
 import { earned } from '../../3/7/index.ts'
 import { haldaneLoad } from '../../3/7/index.ts'
 import { TAU, demarcate } from '../../3/7/index.ts'
-import { abs, ceil, isUuid, log2, min, round, sign, sqrt, toUuid } from '../../0/index.ts'
+import { abs, ceil, floor, isUuid, log2, max, min, round, sign, sqrt, toUuid } from '../../0/index.ts'
 // Pi-train station 8/2 — dissolution sequence order 3 (digit/reverse 8/2).
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
@@ -639,14 +639,14 @@ export function hopfieldEnergyIsALyapunovFunctionSoRecallConvergesAndCapacityIsB
     const descent = hopfieldDescent(W, probe)
     for (let t = 1; t < descent.energies.length; t++) if (descent.energies[t] > descent.energies[t - 1] + 1e-6) everyStepDescends = false
     if (!descent.fixed) everyRunConverges = false
-    longestTrace = Math.max(longestTrace, descent.energies.length)
+    longestTrace = max(longestTrace, descent.energies.length)
   }
   // (B) CAPACITY WALL — αc·N random patterns are fixed points below capacity; far above it, stability collapses.
   const alphaC = 0.138 // NAMED AXIOM (ledgered data): the AGS replica-symmetric critical storage load (Phys Rev A 32:1007, 1985) — measured/derived and cited, NOT fit here
   const M = 2 ** 7 // 128 sites for the capacity sweep — αc·M ≈ 17.7 storable patterns
   const oddHex = '13579bdf' // hex digits of odd value → the content-addressed sign bit: the randomness is toUuid (the corpus's own hash), so NO magic RNG constants and no low-bit period-2 trap
   const stableFraction = (load: number) => {
-    const P = Math.max(1, round(load * M))
+    const P = max(1, round(load * M))
     const pats = Array.from({ length: P }, (_, p) => Array.from({ length: M }, (_, i) => (oddHex.includes(toUuid(`cap:${load}:${p}:${i}`)[0]) ? 1 : -1)))
     const Wc = hopfieldStore(pats)
     return pats.filter((q) => hopfieldIsFixedPoint(Wc, q)).length / P
@@ -654,7 +654,7 @@ export function hopfieldEnergyIsALyapunovFunctionSoRecallConvergesAndCapacityIsB
   const belowCapacity = stableFraction(alphaC / 2) // α ≈ 0.069 < αc — stored patterns stay fixed points
   const aboveCapacity = stableFraction(alphaC * 4) // α ≈ 0.55 ≫ αc — stability collapses
   const capacityWall = belowCapacity > aboveCapacity && belowCapacity === 1 // the wall is real: below capacity ALL stored patterns are fixed points, overload destroys recall
-  const dimsFromCapacity = Math.floor(alphaC * (2 ** 6)) // ⌊0.138·64⌋ = 8 — the exact value the corpus model relies on
+  const dimsFromCapacity = floor(alphaC * (2 ** 6)) // ⌊0.138·64⌋ = 8 — the exact value the corpus model relies on
   const facets = [
     { facet: `ENERGY IS A LYAPUNOV FUNCTION — across ${trials} deterministic corrupted probes, every single async sign update changes energy by ΔE = −(sᵢ′−sᵢ)·hᵢ ≤ 0 (${everyStepDescends}): the per-flip energy trace is monotone non-increasing, the exact algebraic identity that makes E(s)=−½sᵀWs a Lyapunov function, not merely an endpoint drop`, on: everyStepDescends },
     { facet: `RECALL CONVERGES TO AN ATTRACTOR — non-increasing energy on the finite state space forces a fixed point: every one of the ${trials} trajectories settles (${everyRunConverges}), sign(W·s)=s at the end (longest descent ${longestTrace} energies) — pattern completion is guaranteed termination, not a hope`, on: everyRunConverges },
@@ -688,7 +688,7 @@ export function theHopfieldEnergyIsTheIsingHamiltonianTheQuantumComputerSimulate
   const W = hopfieldStore([pattern])
   const isingEnergy = (s: readonly number[]) => { let h = 0; for (let i = 0; i < s.length; i++) for (let j = 0; j < s.length; j++) if (i < j) h -= ((1 / 2) * W[i][j] + (1 / 2) * W[j][i]) * s[i] * s[j]; return h }
   let identityHolds = true
-  for (let m = 0; m < 2 ** N; m++) { const s = Array.from({ length: N }, (_, i) => ((m >> i) & 1 ? 1 : -1)); if (Math.abs(hopfieldEnergy(W, s) - isingEnergy(s)) > 1e-6) identityHolds = false }
+  for (let m = 0; m < 2 ** N; m++) { const s = Array.from({ length: N }, (_, i) => ((m >> i) & 1 ? 1 : -1)); if (abs(hopfieldEnergy(W, s) - isingEnergy(s)) > 1e-6) identityHolds = false }
   // (2) QUANTUM COMPUTER — the proven identity IS the simulator-representable statement; the honest split is SIGNED by demarcate
   const substrateDocumented = demarcate('quantum mechanics') === 'documented' // the src/0 state-vector simulator's physics is real
   const cognitionContested = demarcate('Orch-OR') === 'contested' // quantum COGNITION is contested — no proven recall speedup, warm-brain decoherence
