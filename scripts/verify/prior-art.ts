@@ -700,6 +700,16 @@ export const PRIOR_ART_SEARCHED: readonly {
 
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-05 (third family). Classical number theory, algebra and
   // counting — eight rows, and every one turns out to be a BOUNDED verification of a general theorem.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (fourth family). Graphs and enumeration.
+  { theorem: 'the dodecahedron is Hamiltonian',
+    searched: 'Hamilton icosian game 1857 dodecahedron Hamiltonian cycle',
+    when: '2026-09-06',
+    found: 'W. R. Hamilton’s Icosian Game (1857): find a cycle along dodecahedron edges visiting every vertex once. Hamiltonicity of the dodecahedral graph is the origin of the term "Hamiltonian cycle" itself.' },
+  { theorem: 'shidoku count = 288',
+    searched: 'Shidoku 4x4 sudoku number of solution grids 288',
+    when: '2026-09-06',
+    found: 'the 4×4 Sudoku (Shidoku) has exactly 288 completed grids — 4!·2·2·3, equivalently 24·12. Standard, and derived several independent ways in the recreational-mathematics literature.' },
   { theorem: 'Fermat two squares to 200',
     searched: 'Fermat two squares theorem p ≡ 1 mod 4 sum of two squares, Euler proof',
     when: '2026-09-05',
@@ -996,6 +1006,16 @@ export const ATTRIBUTION_COVERAGE: readonly {
   // DISCOVERING these — Fermat, Legendre, Sylvester and Zhegalkin got there first, and several rows say so
   // already. Nor as knowing them only to a bound: the general theorems exist and are cited right here.
   // What the rows genuinely contain is a machine-checked witness, worth exactly that and no more.
+
+  // ── EXAMINED 2026-09-06 with the searches above.
+  { theorem: 'Heawood graph is the (3,6)-cage', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. Uniqueness as the (3,6)-cage and the 14-vertex Moore bound are both the classical statement, and the Fano incidence construction the row builds from is the standard description of the same graph. Nothing in the row exceeds the citation.' },
+  { theorem: 'the dodecahedron is Hamiltonian', coverage: 'partial',
+    why: 'Hamiltonicity is covered outright — Hamilton’s 1857 Icosian Game is where the word comes from. The row ALSO reports 30 undirected Hamiltonian cycles, a specific enumeration the citation does not supply; it is a known value rather than a novelty, so this is a citation gap, not an uncollected claim.' },
+  { theorem: 'exactly 576 Latin squares of order 4', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. 576 is the tabulated value, and the row’s cross-check against the reduced count times 4!·3! is the standard derivation of it.' },
+  { theorem: 'shidoku count = 288', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. 288 completed 4×4 grids is standard and derived independently several ways in the literature; the row’s complete enumeration lands on the same number over the same domain.' },
   { theorem: 'Fermat two squares to 200', coverage: 'weaker',
     why: 'existence, exclusion and uniqueness verified below 200. Fermat/Euler establish it for every prime ≡ 1 (mod 4) — a bounded witness of an unbounded theorem.' },
   { theorem: 'Legendre three squares to 1000', coverage: 'weaker',
@@ -1138,6 +1158,31 @@ export function assertPriorArtLedger(): void {
   // A CLAIM MUST NAME ITS SEARCH. Silence is not evidence of absence, so a row cannot reach the
   // claimed bucket without one, and this is the check that makes that structural rather than stated.
   //  shadowed nothing here before the record grew a field; naming the row plainly avoids it.
+  // ONE SEARCH ROW PER THEOREM, PER SCOPE. priorArtLedger builds a Map from PRIOR_ART_SEARCHED, so a second
+  // row for the same theorem SILENTLY WINS and the first is never read again — two citations for one
+  // result, with only the later one in force and no sign that the other exists. I created exactly that
+  // today: rows for `Heawood graph is the (3,6)-cage` and `exactly 576 Latin squares of order 4` that had
+  // already been searched on earlier ticks, with different wording and different sources. Nothing
+  // complained, because nothing looked.
+  //
+  // DIRECTION OF FAILURE: red on a repeated (theorem, leanFile) key. The leanFile scope is deliberately
+  // part of the key — `Sigma is an involution` is a DIFFERENT statement in riemann.lean, bsd.lean and
+  // hodge.lean, and those legitimately carry a row each. Same title, different file, is not a duplicate.
+  const searchKeys = new Map<string, number>()
+  for (const r of PRIOR_ART_SEARCHED) {
+    const key = `${r.theorem}::${r.leanFile ?? ''}`
+    searchKeys.set(key, (searchKeys.get(key) ?? 0) + 1)
+  }
+  const duplicated = [...searchKeys.entries()].filter(([, n]) => n > 1).map(([k]) => k.replace(/::$/, ''))
+  if (duplicated.length) {
+    throw new Error(
+      `${duplicated.length} theorem(s) carry MORE THAN ONE search row at the same scope: ${duplicated.join(' · ')}. ` +
+      `The ledger keys by theorem, so the later row silently replaces the earlier and one of the two citations ` +
+      `is in force while the other is dead text. Keep the better row and delete the other, or scope them by leanFile ` +
+      `if they are genuinely different statements sharing a title.`
+    )
+  }
+
   const unsearched = l.claimed.filter((name) => !PRIOR_ART_SEARCHED.some((r) => r.theorem === name && r.found === null))
   if (unsearched.length) throw new Error(`${unsearched.length} claimed row(s) name no search: ${unsearched.slice(0, 5).join(' · ')}`)
   // ZERO CLAIMS IS NOT FULL ATTRIBUTION, and printing the count alone would imply it was. Most of
