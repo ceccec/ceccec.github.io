@@ -470,7 +470,16 @@ export function hexbitRepresentationsAgree(matrix: MindMatrix = buildMatrix()) {
 // about the tree, identical on any classical computer, and they are what the theorem is stated over.
 // The corpus's benchmark folder already learned this the expensive way.
 
-/** One layer's parent, pairing as merkleFold does, with an odd leaf carried up unchanged. */
+/**
+ * One layer's parent, pairing as merkleFold does, with an odd leaf carried up unchanged.
+ *
+ * THE HALVING IS WRITTEN `(idx - (idx % 2)) / 2`, NOT A FLOOR HELPER, and this prose names no namespace
+ * on purpose. Two laws, not taste. This tree permits the standard maths object only inside the src/0
+ * floor, and I put two floor calls here myself when I first wrote this fold — a violation added by the
+ * same hand that reports the backlog. uuidna, which asked for this fold, rejects that namespace outright
+ * with a scanner that cannot tell a MENTION from a USE, so naming it even here would trip their gate on
+ * arrival. The integer form is exact for non-negative idx; nothing is traded for the compliance.
+ */
 function hexbitLayerUp(layer: readonly string[], count: { merges: number }): string[] {
   const next: string[] = []
   for (let i = 0; i < layer.length; i += 2) {
@@ -491,7 +500,7 @@ export function hexbitMerklePath(leaves: readonly string[], leaf: string): reado
     const sib = idx % 2 === 0 ? layer[idx + 1] : layer[idx - 1]
     if (sib !== undefined) siblings.push(sib)
     layer = hexbitLayerUp(layer, { merges: 0 })
-    idx = Math.floor(idx / 2)
+    idx = (idx - (idx % 2)) / 2   // integer halving — see the note above hexbitLayerUp
   }
   return siblings
 }
@@ -506,7 +515,7 @@ export function hexbitVerifyPath(leaf: string, siblings: readonly string[], leav
     acc = idx % 2 === 0 ? merge(acc, sib) : merge(sib, acc)
     merges += 1
     layer = hexbitLayerUp(layer, { merges: 0 })
-    idx = Math.floor(idx / 2)
+    idx = (idx - (idx % 2)) / 2   // integer halving — see the note above hexbitLayerUp
   }
   return { root: acc, merges }
 }
