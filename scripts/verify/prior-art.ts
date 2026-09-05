@@ -145,6 +145,30 @@ export const PRIOR_ART_SEARCHED: readonly {
     // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
     // base classes and a material that throws when drawn. null is what claims this row.
     found: null },
+  // ── Wave tick 2026-09-05 (ninth): FOUR ROWS THAT WERE ALREADY ATTRIBUTED, searched anyway. They sat
+  // in the attributed bucket because the eponym pattern matched a word in their text — no query had
+  // ever been run — and their own citation said so: named in the corpus registry, citation not yet
+  // resolved. The bucket label read stronger than the citation supported.
+  //
+  // This is the under-claim direction at scale: claiming by silence puts a row in `claimed` with
+  // nothing behind it, and ATTRIBUTING BY COINCIDENCE puts one in `attributed` with nothing behind
+  // it. The second is quieter, because a citation is what stops anyone looking.
+  { theorem: 'Tsirelson bound',
+    searched: 'Tsirelson bound 2 root 2 Cirelson 1980 CHSH, no-cloning theorem Wootters Zurek Dieks 1982, GHZ Mermin all-versus-nothing contextuality, Deutsch-Jozsa algorithm 1992',
+    when: '2026-09-05',
+    found: 'Boris Tsirelson (Cirelson, 1980): quantum correlations cap the CHSH value at 2 root 2, above the classical 2 and below the algebraic 4. Derived from algebraic constraints on the observables — Hermiticity, bounded spectra, commutativity at a distance.' },
+  { theorem: 'no-cloning',
+    searched: 'Tsirelson bound 2 root 2 Cirelson 1980 CHSH, no-cloning theorem Wootters Zurek Dieks 1982, GHZ Mermin all-versus-nothing contextuality, Deutsch-Jozsa algorithm 1992',
+    when: '2026-09-05',
+    found: 'Wootters and Zurek, A single quantum cannot be cloned, Nature 299 (1982) 802-803, and independently Dennis Dieks the same year. The obstruction is the LINEARITY of quantum mechanics, not any dynamical detail.' },
+  { theorem: 'GHZ–Mermin',
+    searched: 'Tsirelson bound 2 root 2 Cirelson 1980 CHSH, no-cloning theorem Wootters Zurek Dieks 1982, GHZ Mermin all-versus-nothing contextuality, Deutsch-Jozsa algorithm 1992',
+    when: '2026-09-05',
+    found: 'Greenberger, Horne and Zeilinger, with Mermin sharpening it into what he called an ALL-VERSUS-NOTHING argument: the GHZ state yields a contradiction with local hidden variables on a single run, not statistically. It is a strong-contextuality witness rather than an inequality violation.' },
+  { theorem: 'Deutsch–Jozsa',
+    searched: 'Tsirelson bound 2 root 2 Cirelson 1980 CHSH, no-cloning theorem Wootters Zurek Dieks 1982, GHZ Mermin all-versus-nothing contextuality, Deutsch-Jozsa algorithm 1992',
+    when: '2026-09-05',
+    found: 'David Deutsch and Richard Jozsa (1992): a deterministic quantum algorithm distinguishing constant from balanced with one oracle query, the FIRST separation shown between quantum and classical deterministic difficulty. Of little practical use, and that is the point — it is an existence result about separation.' },
   // ── Wave tick 2026-09-05 (eighth): the last eight bounded rows, two searches — and one where the
   // SEARCH WAS WRONG AND THE ARITHMETIC WAS COMPUTED INSTEAD. A search is an arbiter for attribution,
   // not for arithmetic, and it returned two malformed class equations for S4 and A5. Recording them
@@ -792,6 +816,25 @@ export function assertPriorArtLedger(): void {
   console.log(`    weaker     ${String(weaker.length).padStart(4)}  the ROW states less than the literature establishes — a result quoted as a bound`)
   for (const c of weaker) console.log(`               ${c.theorem.slice(0, 64)}`)
   console.log(`    ${l.attributed.length - coverage.length} attributed rows have had their coverage assumed, not examined — the under-claim remainder`)
+
+  // WHAT THE ATTRIBUTED BUCKET IS ACTUALLY MADE OF. Its label says prior art EXISTS, and only a
+  // minority of it rests on a search. The rest matched the eponym-or-standards pattern: a word in the
+  // row text, never a query. Those rows carry an honest citation — "named in the corpus registry,
+  // citation not yet resolved to a DOI" — but the BUCKET is read as 421 results with prior art, and
+  // that is a stronger statement than the citations support.
+  //
+  // This is the under-claim direction at scale. Claiming by silence puts a row in `claimed` with
+  // nothing behind it; ATTRIBUTING BY COINCIDENCE puts a row in `attributed` with nothing behind it,
+  // and the second is quieter because a citation stops anyone looking.
+  const searchedNames = new Set(PRIOR_ART_SEARCHED.filter((r) => r.found !== null).map((r) => r.theorem))
+  const bySearch = l.attributed.filter((n) => searchedNames.has(n)).length
+  const byPattern = l.attributed.length - bySearch
+  const selfRef = l.attributed.filter((n) => !searchedNames.has(n) && CORPUS_SUBJECT.test(n)).length
+  console.log(`  of the ${l.attributed.length} attributed, by what put them there:`)
+  console.log(`    by SEARCH  ${String(bySearch).padStart(4)}  a query was run and a citation recorded`)
+  console.log(`    by PATTERN ${String(byPattern).padStart(4)}  an eponym or standards word appeared in the row text; no query was ever run`)
+  console.log(`               of those, ~${selfRef} read as statements about THIS TREE — filed as prior-art-exists though no literature can restate them. HEURISTIC, and no row moves on it.`)
+  console.log(ratchet('prior-art.attributed-by-pattern', byPattern))
 
   if (staleCoverage.length) {
     throw new Error(
