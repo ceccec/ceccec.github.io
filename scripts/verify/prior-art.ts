@@ -145,6 +145,33 @@ export const PRIOR_ART_SEARCHED: readonly {
     // criterion at all — the only product figure found anywhere is a naive 21x18 that counts
     // base classes and a material that throws when drawn. null is what claims this row.
     found: null },
+  // ── Wave tick 2026-09-05 (sixth): the last six bounded rows, two searches. bounded reaches zero for
+  // the second time, and again because it was WORKED rather than because none exists — 346 rows remain
+  // undeclared, and a row arriving in bounded is a row somebody should search.
+  { theorem: 'unit group (ℤ/9)*',
+    searched: 'unit group of Z/9Z cyclic order 6, commutativity independent of the group axioms smallest non-abelian S3, rational root theorem, group of prime order is cyclic Lagrange',
+    when: '2026-09-05',
+    found: 'The unit group of Z/9Z is {1,2,4,5,7,8} under multiplication, cyclic of order 6 and isomorphic to Z/6Z. A standard instance of the structure of (Z/nZ)* — cyclic exactly for n = 1, 2, 4, p^k and 2p^k for odd prime p.' },
+  { theorem: 'commutativity independent of group axioms',
+    searched: 'unit group of Z/9Z cyclic order 6, commutativity independent of the group axioms smallest non-abelian S3, rational root theorem, group of prime order is cyclic Lagrange',
+    when: '2026-09-05',
+    found: 'Commutativity is an axiom SEPARATE from the group axioms: closure, associativity, identity and inverses do not entail it, and the smallest witness is the non-abelian group of order 6 — S3, equivalently the dihedral group D3. Standard, and the row is stating an independence result rather than a theorem of group theory.' },
+  { theorem: 'rational root theorem',
+    searched: 'unit group of Z/9Z cyclic order 6, commutativity independent of the group axioms smallest non-abelian S3, rational root theorem, group of prime order is cyclic Lagrange',
+    when: '2026-09-05',
+    found: 'A rational root p/q of an integer polynomial, in lowest terms, has p dividing the constant term and q dividing the leading coefficient. Classical, and the standard first sieve for roots.' },
+  { theorem: 'prime-order groups are cyclic (from Cauchy)',
+    searched: 'unit group of Z/9Z cyclic order 6, commutativity independent of the group axioms smallest non-abelian S3, rational root theorem, group of prime order is cyclic Lagrange',
+    when: '2026-09-05',
+    found: 'For prime p every group of order p is cyclic, and EVERY non-identity element generates: by Lagrange each has order dividing p, hence order p. The row credits Cauchy; the argument needs only Lagrange, and that difference is the kind of thing searching turns up.' },
+  { theorem: 'Schur number S(2) = 4',
+    searched: 'Schur number S(2)=4 sum-free partition Schur 1916, ideal gas law deviation real gases van der Waals compressibility factor',
+    when: '2026-09-05',
+    found: 'Issai Schur introduced these in 1916 — several sources say 1917 — and S(2) = 4: the integers 1..4 split into two sum-free sets and 1..5 do not. See Wolfram MathWorld, Schur Number, and Chappelon on modular Schur numbers.' },
+  { theorem: 'ideal gas law non-universal (chemistry)',
+    searched: 'Schur number S(2)=4 sum-free partition Schur 1916, ideal gas law deviation real gases van der Waals compressibility factor',
+    when: '2026-09-05',
+    found: 'Real gases deviate from PV = nRT, measured by the compressibility factor Z = PV/RT, which is 1 only in the ideal limit. Johannes van der Waals (1873) added constants a for intermolecular attraction and b for molecular volume; deviation grows with pressure and near condensation. The row claim of non-universality is the standard textbook position, not a novel one.' },
   // ── Wave tick 2026-09-05 (fifth): eight more bounded rows, two searches plus one COMPUTATION. The
   // Frobenius row is the interesting one: the search attributed the concept and did NOT confirm the
   // specific value, so the value was computed here instead of cited. A number a search cannot confirm
@@ -528,18 +555,6 @@ export const PRIOR_ART_POOL: readonly {
   // same in shape: the row names a result with a standard attribution, so the search is unambiguously
   // well posed. That is exactly what bounded means, and it is the one judgement a vocabulary scan
   // cannot make, since `reuse graph acyclic` names no eponym and is still general graph theory.
-  { theorem: 'unit group (ℤ/9)*', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — elementary group theory — the multiplicative units mod 9 — so a search is unambiguously well posed' },
-  { theorem: 'commutativity independent of group axioms', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — the independence of commutativity from the group axioms — so a search is unambiguously well posed' },
-  { theorem: 'ideal gas law non-universal (chemistry)', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — physical chemistry — the limits of the ideal gas law — so a search is unambiguously well posed' },
-  { theorem: 'Schur number S(2) = 4', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — Ramsey-type theory, Schur numbers — so a search is unambiguously well posed' },
-  { theorem: 'rational root theorem', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — elementary algebra, the rational root theorem — so a search is unambiguously well posed' },
-  { theorem: 'prime-order groups are cyclic (from Cauchy)', pool: 'bounded',
-    why: 'a NAMED result with a standard attribution — finite group theory, a corollary of Lagrange and Cauchy — so a search is unambiguously well posed' },
   { theorem: 'the publication timeline is measured from public registries — the sequence went public 205 days before the portal', pool: 'mixed',
     why: 'the registries and their dates are external and checkable; which sequence went public is ours' },
   { theorem: 'The circle of fifths is a rosetta', pool: 'mixed',
