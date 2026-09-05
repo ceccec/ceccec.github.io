@@ -11,7 +11,7 @@
   "imports.unresolved": 6,
   "independence.cross-checked": -473,
   "lean-arbiter.census-contradictions": 0,
-  "limits.always-true": 35,
+  "limits.always-true": 34,
   "limits.weakest-bar": 60,
   "paths.dead-strings": 51,
   "prior-art.unclassified": 393,

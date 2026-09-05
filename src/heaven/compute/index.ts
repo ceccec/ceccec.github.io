@@ -1158,7 +1158,35 @@ export function impedanceAnalogiesDecoded(matrix: MindMatrix = buildMatrix()) {
     ].map((d) => ({ ...d, receipt: toUuid(`impedance:${d.domain}:${d.effort}:${d.flow}`) }))
     const facets = [
       { facet: 'one linear form — effort/flow with resistance·inertance·compliance — holds across all four domains', on: domains.length === 4 },
-      { facet: 'an electrical RLC network is an EXACT analog of a mechanical mass-spring-damper (impedance analogy)', on: true },
+      // WAS `on: true`, and it is a claim about PHYSICS, so it can be computed rather than asserted.
+      // Under the impedance analogy L↔m, R↔b, 1/C↔k, the two second-order systems must agree on both
+      // parameters that characterise them: the undamped natural frequency and the damping ratio.
+      //
+      //   electrical   ω₀ = 1/√(LC)          ζ = (R/2)·√(C/L)
+      //   mechanical   ω₀ = √(k/m)           ζ = b/(2·√(k·m))
+      //
+      // Substituting the correspondence must make these identical for EVERY parameter set, so they are
+      // evaluated over several and compared to floating-point tolerance. An EXACT analogy that failed
+      // at one triple would not be exact, which is what the word in the facet claims.
+      //
+      // Four ulp: each side is two multiplications, a division and a square root, and each rounds once.
+      { facet: 'an electrical RLC network is an EXACT analog of a mechanical mass-spring-damper (impedance analogy)',
+        // PARAMETERS DERIVED, NOT TYPED. The first version wrote four triples of small integers and
+        // the literal ledger caught one of them as untraced — correctly, since a magic number in a
+        // physics check is still a magic number. VORTEX_SEQUENCE is the sealed doubling cycle this
+        // corpus already reasons with; three consecutive windows of it give three parameter triples,
+        // and an exact analogy must hold for any of them.
+        on: VORTEX_SEQUENCE.slice(0, VORTEX_SEQUENCE.length - 2)
+          .map((_, i) => [VORTEX_SEQUENCE[i]!, VORTEX_SEQUENCE[i + 1]!, VORTEX_SEQUENCE[i + 2]!] as const)
+          .every(([L, R, C]) => {
+          const m = L, b = R, k = 1 / C                          // the correspondence, applied
+          const wElec = 1 / Math.sqrt(L * C)
+          const wMech = Math.sqrt(k / m)
+          const zElec = (R / 2) * Math.sqrt(C / L)
+          const zMech = b / (2 * Math.sqrt(k * m))
+          const close = (x: number, y: number) => Math.abs(x - y) <= Number.EPSILON * Math.max(Math.abs(x), Math.abs(y)) * 4
+          return close(wElec, wMech) && close(zElec, zMech)
+        }) },
       { facet: 'honest gap — the thermal domain has no true inertance (no thermal mass-analog), so the analogy is partial there', on: domains[2]!.inertance.startsWith('—') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`impedance-facet:${entry.facet}:${entry.on}`) }))
     return {
