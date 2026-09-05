@@ -686,6 +686,55 @@ export const PRIOR_ART_POOL: readonly {
     why: 'the pentagram and the golden ratio are classical; the inverse-meeting claim is ours' },
 ]
 
+
+/**
+ * THE OTHER DIRECTION — because an over-claim involuted IS an under-claim, and this ledger has only
+ * ever guarded one side.
+ *
+ * Every rule here points the same way: a claim needs a search behind it, silence claims nothing,
+ * claimed=0 is reported prominently, and 421 rows are attributed against 3 claimed. That asymmetry is
+ * deliberate and it is half a measurement. ATTRIBUTING A ROW TO PRIOR ART THAT DOES NOT ACTUALLY
+ * COVER IT gives away a claim, and it is the exact reflection of claiming without a search: both put
+ * a row in the wrong bucket, and only one of them has ever had a gate.
+ *
+ * An under-claim is harder to see, and worse in one specific way: a citation is what STOPS anyone
+ * checking. A row with no search invites work; a row with a plausible-looking attribution closes the
+ * question.
+ *
+ * So attributed rows carry a COVERAGE. `covers` is the default and means the cited result entails
+ * what the row states. The other two are leads in the opposite direction:
+ *
+ *   partial  the citation covers the general case and NOT the specific thing this row states — a
+ *            value computed rather than cited, or a strengthening the literature does not entail.
+ *            The row may hold something nobody has claimed.
+ *   weaker   the ROW states less than the literature establishes. Not a lost claim but a lost
+ *            result: the ledger is quoting a bound where a theorem exists.
+ *
+ * These five were not found by a new scan. They were already written into the citations I wrote this
+ * week, in the prose, where nothing could act on them — the same shape as the always-true facets
+ * sitting under a ratchet nobody opened.
+ *
+ * DIRECTION OF FAILURE: reports, does not gate. A partial coverage is work owed, not a defect. What
+ * DOES fail is a coverage declaration naming a row that is not attributed, because that describes a
+ * bucket the row has left — the same rule the pool declarations hold.
+ */
+export const ATTRIBUTION_COVERAGE: readonly {
+  readonly theorem: string
+  readonly coverage: 'partial' | 'weaker'
+  readonly why: string
+}[] = [
+  { theorem: 'Frobenius number of (6,9,20) is 43', coverage: 'partial',
+    why: 'the citation covers the Frobenius number as a concept; the VALUE 43 was computed here and appears in no source found. If the specific triple is unpublished, the row states a small original computation rather than a cited fact.' },
+  { theorem: 'class equation on S₄ and A₅', coverage: 'partial',
+    why: 'the class equation is cited as a standard tool, but the two equations themselves were computed here after the search returned wrong arithmetic for both groups. The row states instances the citation does not supply.' },
+  { theorem: 'prime splits in ℤ[ω] iff p ≡ 1 (mod 3)', coverage: 'partial',
+    why: 'the row is STRICTER than the sources found, several of which fold ramification into splitting and say p = 3 or p = 1 (mod 3). The narrower statement is the correct one, so the row is more precise than what it is attributed to.' },
+  { theorem: 'prime-order groups are cyclic (from Cauchy)', coverage: 'weaker',
+    why: 'the row credits Cauchy theorem, and the result needs only LAGRANGE. Attributing to the heavier tool understates how elementary the row is — an under-claim about its own simplicity rather than about novelty.' },
+  { theorem: 'Catalan conjecture 8 and 9 to 10⁶', coverage: 'weaker',
+    why: 'the row asserts a verification to 10^6, and Mihailescu proved it UNCONDITIONALLY in 2002. The ledger is quoting a computational bound where a theorem exists — the corpus stating less than mathematics knows.' },
+]
+
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
 
 export function priorArtLedger() {
@@ -730,6 +779,26 @@ export function assertPriorArtLedger(): void {
   console.log(`    unbounded  ${String(count('unbounded')).padStart(4)}  the subject IS this artifact or a sibling; no literature can restate it, so unclassified is the correct resting state`)
   console.log(`    mixed      ${String(count('mixed')).padStart(4)}  carries both — split before searching`)
   console.log(`    UNDECLARED ${String(undeclared).padStart(4)}  the honest remainder: nobody has asked whether a search is even well posed`)
+
+  // THE REFLECTION. An over-claim involuted is an under-claim, so the attributed side is reported too.
+  const attributed = new Set(l.attributed)
+  const coverage = ATTRIBUTION_COVERAGE.filter((c) => attributed.has(c.theorem))
+  const staleCoverage = ATTRIBUTION_COVERAGE.filter((c) => !attributed.has(c.theorem))
+  const partial = coverage.filter((c) => c.coverage === 'partial')
+  const weaker = coverage.filter((c) => c.coverage === 'weaker')
+  console.log(`  of the ${l.attributed.length} attributed, coverage examined on ${coverage.length}:`)
+  console.log(`    partial    ${String(partial.length).padStart(4)}  the citation covers the general case and NOT what the row states — a claim may be sitting here uncollected`)
+  for (const c of partial) console.log(`               ${c.theorem.slice(0, 64)}`)
+  console.log(`    weaker     ${String(weaker.length).padStart(4)}  the ROW states less than the literature establishes — a result quoted as a bound`)
+  for (const c of weaker) console.log(`               ${c.theorem.slice(0, 64)}`)
+  console.log(`    ${l.attributed.length - coverage.length} attributed rows have had their coverage assumed, not examined — the under-claim remainder`)
+
+  if (staleCoverage.length) {
+    throw new Error(
+      `${staleCoverage.length} attribution-coverage declaration(s) name rows that are not attributed: ` +
+      `${staleCoverage.map((c) => c.theorem).join(', ')}. Coverage describes a citation, so a row without one does not have it.`
+    )
+  }
 
   // A DECLARATION FOR A ROW THAT IS NO LONGER UNCLASSIFIED IS STALE, and a stale declaration is worse
   // than none: it describes a bucket the row has left. Same rule the deposits ledger holds.
