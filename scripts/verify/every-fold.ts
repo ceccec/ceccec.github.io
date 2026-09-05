@@ -101,6 +101,7 @@ export function main() {
   let called = 0, folds = 0, verdictFalse = 0, threw = 0, facetsOff = 0
   const bad: string[] = []
   const flagged: { mod: string; name: string; off: number; fn: () => unknown }[] = []
+  const allFolds = new Map<() => unknown, { mod: string; name: string; off: number }>()
   let mi = 0
   for (const [mod, ns] of MODULES) {
     mi += 1
@@ -122,6 +123,13 @@ export function main() {
       const verdict = verdictKey ? (r as any)[verdictKey] : undefined
       if (off.length) { facetsOff += off.length }
       if (Date.now() - started > 3000000) { console.log('  TIME BUDGET SPENT at module ' + mi + ' (' + mod + ')'); mi = MODULES.length + 1; break }
+      // EVERY FOLD, NOT THE FLAGGED ONES. The probe set used to be whatever this walk flagged, and that
+      // set MOVES with the environment: standalone this run flags 379 names, inside the chain 374, on a
+      // src/ tree that did not change by one byte — the UI folds read build output, which sibling gates
+      // produce and remove before every-fold runs. A denominator that moves makes the numerator meaningless,
+      // so the second pass now covers every distinct fold that returned facets at all. That set is fixed by
+      // src/ alone, which is the only thing the measurement is supposed to be about.
+      if (!allFolds.has(v as () => unknown)) allFolds.set(v as () => unknown, { mod, name, off: off.length })
       if (verdict === false || off.length) {
         verdictFalse++
         flagged.push({ mod, name, off: off.length, fn: v as () => unknown })
@@ -192,8 +200,7 @@ export function main() {
   // which alias happened to be flagged — a number about export names wearing the clothes of a number about
   // code. Deduplicated by identity, each function is asked exactly once and the answer stops depending on
   // what it is called.
-  const byFn = new Map<() => unknown, { mod: string; name: string; off: number }>()
-  for (const f of flagged) if (!byFn.has(f.fn)) byFn.set(f.fn, { mod: f.mod, name: f.name, off: f.off })
+  const byFn = allFolds
   let orderDependent = 0
   const drifted: string[] = []
   for (const [fn, f] of byFn) {
@@ -209,7 +216,14 @@ export function main() {
   // fresh process per fold, which 4178 folds cannot afford. So: a non-zero here is proof of hidden state,
   // a zero here is NOT proof of its absence. It is a floor on a lower bound, and it is still worth having
   // because it can only be driven down by deleting shared state, never by argument.
-  console.log(`folds whose off-facet count CHANGED when called a second time in the same process: ${orderDependent}/${byFn.size} distinct functions (${flagged.length} flagged names, ${flagged.length - byFn.size} of them aliases)  (warm-to-warm only — a LOWER BOUND on hidden state, never a clearance)`)
+  console.log(`folds whose off-facet count CHANGED when called a second time in the same process: ${orderDependent}/${byFn.size} distinct fold functions (${folds} facet-returning names, ${folds - byFn.size} of them aliases)  (warm-to-warm only — a LOWER BOUND on hidden state, never a clearance)`)
   for (const d of drifted) console.log('   ' + d)
+  // THE FLOOR WAS RE-ESTABLISHED ONCE, DELIBERATELY, AND THIS IS THE RECORD OF IT. Seeded at 1 against
+  // the flagged-only probe set, it read 4 on the next run and 2 on the one after — not because folds
+  // changed, but because the set being probed moved with the environment. Widening the probe to every
+  // distinct fold measures a DIFFERENT and larger population, so 1 → 5 is not a regression and pretending
+  // otherwise would have meant carrying a floor that described a set nobody could reproduce. Two
+  // independent runs — standalone and inside the chain — now report 5/2208 identically, which is the
+  // evidence that justified re-seeding and the thing the old number could never do.
   console.log(ratchet('folds.order-dependent', orderDependent))
 }
