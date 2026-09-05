@@ -136,3 +136,55 @@ export function reportGateCensus(root: string = process.cwd()): void {
   console.log(`  to built artifacts would say more, and at that point I would be tuning an instrument until`)
   console.log(`  its number flattered me, which is the defect this census exists to count. It stops here.`)
 }
+
+/**
+ * THE SECOND CUT, WHICH IS THE BETTER QUESTION — erpax-94's. Not "does the gate reach the corpus"
+ * but CAN IT FAIL FOR A REASON ABOUT THE WORLD THE CORPUS MODELS, rather than because two parts of
+ * this repository disagree with each other?
+ *
+ * WORLD means the gate can go red because a fact OUTSIDE this repository differs from what the corpus
+ * says: a proof does not compile, a kernel reports an axiom, an installed library's catalogue changed,
+ * a public record asserts something a theorem refutes. BOOKKEEPING means it can only ever fail because
+ * this tree contradicts itself — a count drifted, a name stopped resolving, a generated file lagged.
+ *
+ * Bookkeeping gates are not waste and several here caught real defects. But a repository whose gates
+ * are all bookkeeping is fully self-consistent and can still be wrong about everything it describes.
+ *
+ * DECLARED, NOT DERIVED, and for the same reason the prior-art pools are: every mechanical proxy for
+ * this has failed. Reach failed — it filed lean.ts, which runs the kernel over the sealed proofs, as
+ * bookkeeping. A lexical test would fail the other way, since a gate asserting `count > ceiling` on a
+ * subject-domain value reads as bookkeeping while `sealed === true` reads as subject though it may be
+ * the weaker claim. So each is declared with the reason it can go red.
+ *
+ * I PREDICTED THIS NUMBER BEFORE MEASURING IT and said my 49% would not survive the cut. It does not.
+ */
+const WORLD_FACING: readonly { readonly file: string; readonly why: string }[] = [
+  { file: 'lean.ts', why: 'a proof does not compile, or depends on sorryAx or Classical.choice — the arbiter is the Lean kernel and the subject is mathematics' },
+  { file: 'lean-arbiter.ts', why: 'the kernel computes a constant different from the one the TypeScript states; the gate asks and does not retype the answer' },
+  { file: 'axioms.ts', why: 'the kernel reports an axiom in use that the index does not carry — the weak form, since it blames the index, but the trigger is a fact about the proof' },
+  { file: 'three.ts', why: 'the installed library offers a different catalogue, or the camera at fov = 2 arctan(1/FOCAL) stops agreeing with the sealed pinhole to 4 ulp' },
+  { file: 'hexbit.ts', why: 'four independent representations of one lattice disagree on an arithmetic result, or disagree with the sealed nuclear definition' },
+  { file: 'deposit-metadata.ts', why: 'a published record asserts a claim this corpus theorems refute, or grants licence terms the repository does not declare — the subject is a record outside the filesystem' },
+]
+
+export function reportWorldCut(root: string = process.cwd()): void {
+  const shapes = gateShapes(root)
+  const subject = shapes.filter((s) => s.verdict === 'subject')
+  const world = new Map(WORLD_FACING.map((w) => [w.file, w.why]))
+  const stale = WORLD_FACING.filter((w) => !subject.some((s) => s.file === w.file))
+
+  console.log(`\n  ── the second cut: can it fail for a reason ABOUT THE WORLD? ──\n`)
+  for (const w of WORLD_FACING) console.log(`  WORLD        ${w.file.padEnd(22)} ${w.why.slice(0, 96)}`)
+  const bookkeeping = subject.filter((s) => !world.has(s.file))
+  console.log(`\n  BOOKKEEPING among the ${subject.length} subject-reaching gates: ${bookkeeping.length}`)
+  for (const b of bookkeeping) console.log(`      ${b.file}`)
+  const pct = Math.round((WORLD_FACING.length / shapes.length) * 100)
+  console.log(`\n  ${WORLD_FACING.length} of ${shapes.length} — ${pct}% can fail because the world is different`)
+  console.log(`  against ${subject.length} of ${shapes.length} on the reach cut. The gap is the point: most gates that`)
+  console.log(`  reach the corpus assert something about the corpus, not about what the corpus describes.`)
+
+  // A declaration naming a gate that is not even subject-reaching is stale.
+  if (stale.length) {
+    throw new Error(`${stale.length} world-facing declaration(s) name gates that do not reach the subject: ${stale.map((w) => w.file).join(', ')}`)
+  }
+}

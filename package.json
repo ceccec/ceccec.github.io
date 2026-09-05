@@ -1095,6 +1095,7 @@
     "bench:hexbit": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/hexbit.ts runHexbitBenchmark",
     "census:gates": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/census.ts reportGateCensus",
     "verify:normaliser": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/statements.ts assertNormaliserMatchesFixture",
-    "normaliser:fixture": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/statements.ts writeNormaliserFixture"
+    "normaliser:fixture": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/statements.ts writeNormaliserFixture",
+    "census:world": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/census.ts reportWorldCut"
   }
 }
