@@ -2,7 +2,7 @@
 // compare simulation vs physical measurement. Merged flat (hardware-comparison + ibm-qiskit-
 // executor) to satisfy the src index census.
 
-import { abs, max, min, sqrt } from '../../../0/index.ts'
+import { abs, max, min, prng, sqrt } from '../../../0/index.ts'
 import { quantumMeasurement, computeCoherence, applyDecoherence, clay_theorems_quantum } from '../../theorem/stability/detector/index.ts'
 import type { TheoremQuantumState } from '../../theorem/stability/detector/index.ts'
 
@@ -37,9 +37,10 @@ export function runSimulatedTheorems(): Record<
       const noisy_state = applyDecoherence(state, noise)
       let canonical_count = 0
       const trials = 1000
+      const rand = prng(`decoherence:${state.canonical_state}:${noise}`)
 
       for (let i = 0; i < trials; i++) {
-        if (quantumMeasurement(noisy_state)) {
+        if (quantumMeasurement(noisy_state, rand)) {
           canonical_count++
         }
       }
@@ -89,12 +90,18 @@ export function simulateHardwareMeasurements(): Record<
 
     // Add realistic hardware noise (qubit errors, measurement errors)
     const hardware_noise = 0.01 * state.decoherence_rate // ~0.01-0.05% error
+    // SIMULATED, SEEDED, AND SAYING SO. There is no quantum processor behind this file — the seat is
+    // empty here and uuidna's own OS report names its QPU seat empty too. This loop models measurement
+    // noise; it does not observe any. Ambient Math.random made the model irreproducible on top of being
+    // a model, so the two objections compounded: a number that was not measured AND could not be
+    // repeated. Seeded from the state, it is now at least an experiment someone else can run.
+    const rand = prng(`hardware-noise:${state.canonical_state}`)
 
     for (let i = 0; i < shots; i++) {
       // Add hardware noise: occasionally flip measurement
-      const noisy_measurement = Math.random() < hardware_noise
+      const noisy_measurement = rand() < hardware_noise
 
-      const collapse = quantumMeasurement(state)
+      const collapse = quantumMeasurement(state, rand)
       if (collapse !== noisy_measurement) {
         canonical_count++
       }

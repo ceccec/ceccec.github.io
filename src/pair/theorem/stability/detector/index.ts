@@ -1,5 +1,5 @@
 import { TAU } from '../../../../3/7/index.ts'
-import { cos, exp, min, sin, sqrt } from '../../../../0/index.ts'
+import { cos, exp, min, prng, sin, sqrt } from '../../../../0/index.ts'
 // Wave 31: Quantum Coherence Detector
 // Empirically verify Clay theorems through quantum superposition stability
 // Simulate: initialization → measurement collapse → verify canonical always wins
@@ -49,10 +49,19 @@ export function computeCoherence(state: TheoremQuantumState): number {
  * Quantum measurement: collapse superposition to either canonical or off-canonical
  * Returns true if collapsed to canonical (theorem true)
  */
-export function quantumMeasurement(state: TheoremQuantumState): boolean {
-  const random = Math.random()
+export function quantumMeasurement(state: TheoremQuantumState, rand: () => number): boolean {
+  // THE RANDOMNESS IS AN ARGUMENT NOW, AND IT HAD TO BECOME ONE. This read Math.random() from ambient
+  // scope, so a function named quantumMeasurement returning "theorem true" gave a different answer every
+  // run and no caller could reproduce one. A Monte Carlo simulation is a legitimate thing to want; an
+  // IRREPRODUCIBLE one is not, in a package whose description begins "Deterministic".
+  //
+  // Seeding INSIDE would have been worse than leaving it: prng(seed) returns a fresh generator, so every
+  // call in a 1000-trial loop would draw the same first value and the sampling would collapse to a
+  // constant — a fix that looks deterministic and silently destroys the statistic. The caller owns the
+  // generator and threads it through its own loop, which is the only arrangement that is both
+  // reproducible and still sampling.
   const p_canonical = computeCoherence(state)
-  return random < p_canonical // Collapse to canonical with probability |alpha|²
+  return rand() < p_canonical // Collapse to canonical with probability |alpha|²
 }
 
 /**
@@ -103,11 +112,16 @@ export function quantumStabilityProof(state: TheoremQuantumState): {
   const trials = 10000
   const noise_levels = [0, 0.1, 0.2, 0.5, 1.0]
   let total_canonical = 0
+  // ONE GENERATOR FOR THE WHOLE PROOF, seeded from the state it is measuring, so the verdict is
+  // reproducible: the same state yields the same trials on any machine, on any day. The seed is the
+  // state's own canonical description rather than a clock, which is what makes this a fixed experiment
+  // instead of a fresh one each run.
+  const rand = prng(`stability:${state.canonical_state}:${state.off_canonical_state}`)
 
   // Trial 1: Clean superposition (no noise)
   // Measure many times: what fraction collapses to canonical?
   for (let i = 0; i < trials; i++) {
-    if (quantumMeasurement(state)) {
+    if (quantumMeasurement(state, rand)) {
       total_canonical++
     }
   }
@@ -121,7 +135,7 @@ export function quantumStabilityProof(state: TheoremQuantumState): {
     let noisy_canonical = 0
 
     for (let i = 0; i < trials; i++) {
-      if (quantumMeasurement(noisy_state)) {
+      if (quantumMeasurement(noisy_state, rand)) {
         noisy_canonical++
       }
     }

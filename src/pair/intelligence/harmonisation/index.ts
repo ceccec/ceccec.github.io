@@ -1930,16 +1930,26 @@ class QuantumHardwareExecutor {
     // 4. Retrieve measurement results
     // 5. Compute collapse probability
 
-    const measuredAlpha = 0.98 + Math.random() * 0.01 // Simulated measurement
-    const predictedAlpha = 0.975
-    const deviation = abs(measuredAlpha - predictedAlpha)
-
-    return {
-      measuredAlpha,
-      predictedAlpha,
-      deviation,
-      validated: deviation < 0.05,
-    }
+    // IT REFUSES NOW, BECAUSE IT CANNOT MEASURE. This listed ibm_kyoto, ibm_heron and ibmq_jakarta by
+    // name, documented five steps ending "Retrieve measurement results", and then returned
+    //     measuredAlpha = 0.98 + Math.random() * 0.01
+    // with `validated: deviation < 0.05` computed from it. A validation verdict about real quantum
+    // hardware, drawn from a random number, in a variable called measuredAlpha. Nothing was measured and
+    // nothing was submitted anywhere; the 0.98 and the 0.01 were chosen so the answer would always
+    // validate, which is why it never failed.
+    //
+    // A function that cannot measure must REFUSE rather than invent — and refusing is the only option
+    // that stays true if a backend is connected later. The alternative, returning nulls in the same
+    // shape, would let a caller keep treating the result as a measurement that merely happened to be
+    // absent today.
+    void circuit
+    void shots
+    throw new Error(
+      'executeOnIBM: NOT MEASURED — no IBM Quantum backend is connected to this repository, and none of ' +
+      'ibm_kyoto, ibm_heron or ibmq_jakarta has ever been contacted from it. This function previously ' +
+      'returned a validated measurement drawn from Math.random(). It will return a measurement when ' +
+      'something actually measures; until then the absence of a result is the honest result.'
+    )
   }
 
   async executeAllTheorems(): Promise<QuantumTheoremExecution[]> {
@@ -2533,7 +2543,14 @@ export interface AuditTrail {
   sigma: string // Which involution was tested
   result: 'compliant' | 'flagged' | 'barrier_triggered'
   evidence: string
-  barrier_triggered: boolean
+  /**
+   * TRI-STATE, NOT A BOOLEAN, and the compiler is what insisted. This was `boolean`, set from
+   * `Math.random() > requirement.barrier`, so a false here meant EITHER that the barrier held or that a
+   * coin had come up short — indistinguishable in the record. With the coin gone, TypeScript pointed out
+   * that 'triggered' had become unreachable, which is the true state of affairs: nothing in this
+   * repository measures a compliance barrier, so nothing can trip one. A boolean had no room to say that.
+   */
+  barrier_triggered: 'not-triggered' | 'unmeasured'
 }
 
 export interface GovernancePolicy {
@@ -2606,14 +2623,23 @@ export function auditCompliance(
     ? 'compliant'
     : 'flagged'
 
-  // If flagged, check if barrier is triggered
-  const barrierTriggered = !compliesWith && Math.random() > requirement.barrier
+  // THE BARRIER IS NOT MEASURED, AND SAYING SO BEATS FLIPPING A COIN FOR IT. This read
+  //     !compliesWith && Math.random() > requirement.barrier
+  // so whether a non-compliant action tripped a compliance barrier was decided by chance, per call, in an
+  // AuditTrail. The same evidence could be cleared once and flagged the next time, and nothing in the
+  // record would show why. requirement.barrier is a threshold with nothing measured against it.
+  //
+  // The third exit again: could-not-ask is neither yes nor no. A barrier with no measurement behind it is
+  // UNMEASURED, which a reader can act on, rather than a verdict that cannot be reproduced.
+  const barrierTriggered: 'not-triggered' | 'unmeasured' = compliesWith ? 'not-triggered' : 'unmeasured'
 
   return {
     timestamp: new Date().toISOString(),
     action,
     sigma: requirement.involution,
-    result: barrierTriggered ? 'barrier_triggered' : result,
+    // 'barrier_triggered' stays in the result union because a real barrier check would produce it; it is
+    // simply not producible while nothing measures one, and pretending otherwise is what was removed.
+    result,
     evidence,
     barrier_triggered: barrierTriggered,
   }
