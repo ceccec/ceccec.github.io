@@ -1,3 +1,5 @@
+import { readFileSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
 // ☵ Kǎn · Water · millennium prize problems as framework validator
 // The ultimate test: Can verifiable computing framework make progress on unsolved problems?
 // Honesty-first: claySolvedByThisFold === 0 (not solved; advancing comprehension)
@@ -311,3 +313,183 @@ export function recognizedInvolutions(): InvolutionStructure[] {
     // Hodge, Yang-Mills, BSD to follow
   ]
 }
+
+// ── MERGED FROM src/quantum/millennium/rsa/ ──────────────────────────────────────────────────────
+//
+// The census descends toward its derived target of 123 by REDISTRIBUTING into existing folders, not
+// by deleting surface. rsa/ held one file, eight exports and exactly one external consumer, and its
+// parent is right here — so the folder was a directory boundary around nothing that needed one.
+//
+// It also fixed three dead CLI routes. src/pair/enforcement/ops/index.ts sent `rsa:audit`,
+// `crypto:assess` and `migration:plan` to runThinMount('src/quantum/millennium/rsa.ts', …) — a path
+// with no folder and no index, which has never existed. verify:paths did not catch them: its 51 dead
+// strings do not include a runThinMount first argument, so a CLI entry point can name a file that is
+// not there and no gate says so. The three now point at this file, which is.
+/**
+ * Proof Runner — Reusable CLI with I/O handling
+ *
+ * Agnostic: works with any proof module
+ * Composable: receives I/O streams, returns structured results
+ * Extensible: proofMap for new proofs
+ */
+
+
+export type ProofOptions = {
+  verbose?: boolean
+  format?: 'text' | 'json' | 'markdown'
+}
+
+export type ProofIO = {
+  out: (msg: string) => void
+  err: (msg: string) => void
+}
+
+export type ProofResult = {
+  success: boolean
+  proofName: string
+  status: 'sealed' | 'proven' | 'open' | 'error'
+  message: string
+  details?: Record<string, unknown>
+}
+
+// Proof registry — add new proofs here
+const proofMap: Record<string, string> = {
+  'rsa:factored': 'src/quantum/millennium/rsa-is-factored-proof.mjs',
+}
+
+export function listAvailableProofs(): string[] {
+  return Object.keys(proofMap)
+}
+
+export async function runProofExit(
+  root: string,
+  proofName: string = 'rsa:factored',
+  io: ProofIO = { out: console.log, err: console.error },
+  options: ProofOptions = {}
+): Promise<ProofResult> {
+  const proofPath = proofMap[proofName]
+
+  if (!proofPath) {
+    const result: ProofResult = {
+      success: false,
+      proofName,
+      status: 'error',
+      message: `Unknown proof: ${proofName}`,
+      details: { available: listAvailableProofs() },
+    }
+    if (options.format === 'json') {
+      io.out(JSON.stringify(result, null, 2))
+    } else {
+      io.err(result.message)
+      io.err(`Available proofs: ${listAvailableProofs().join(', ')}`)
+    }
+    return result
+  }
+
+  const fullPath = join(root, proofPath)
+  if (!existsSync(fullPath)) {
+    const result: ProofResult = {
+      success: false,
+      proofName,
+      status: 'error',
+      message: `Proof not found: ${fullPath}`,
+    }
+    if (options.format === 'json') {
+      io.out(JSON.stringify(result, null, 2))
+    } else {
+      io.err(result.message)
+    }
+    return result
+  }
+
+  try {
+    // Capture stdout during proof execution
+    const originalLog = console.log
+    const originalError = console.error
+    const output: string[] = []
+
+    console.log = (...args) => {
+      output.push(args.join(' '))
+      if (options.verbose) originalLog(...args)
+    }
+    console.error = (...args) => {
+      output.push(args.join(' '))
+      if (options.verbose) originalError(...args)
+    }
+
+    // Execute proof module
+    await import(`file://${fullPath}`)
+
+    console.log = originalLog
+    console.error = originalError
+
+    const result: ProofResult = {
+      success: true,
+      proofName,
+      status: 'proven',
+      message: `Proof executed successfully`,
+      details: { outputLines: output.length },
+    }
+
+    if (options.format === 'json') {
+      io.out(JSON.stringify(result, null, 2))
+    } else {
+      output.forEach((line) => io.out(line))
+    }
+
+    return result
+  } catch (err) {
+    console.log = console.log
+    console.error = console.error
+
+    const result: ProofResult = {
+      success: false,
+      proofName,
+      status: 'error',
+      message: `Proof execution failed: ${err instanceof Error ? err.message : String(err)}`,
+    }
+
+    if (options.format === 'json') {
+      io.out(JSON.stringify(result, null, 2))
+    } else {
+      io.err(result.message)
+      if (options.verbose) io.err(String(err))
+    }
+
+    return result
+  }
+}
+
+function parseArgs(argv: string[]): { proofName: string; flags: string[]; verbose: boolean; format: 'text' | 'json' | 'markdown' } {
+  const flags = argv.filter((a) => a.startsWith('--'))
+  const proofName = argv.find((a) => !a.startsWith('--')) || 'rsa:factored'
+  const verbose = flags.includes('--verbose')
+  const format = flags.includes('--json')
+    ? 'json'
+    : flags.includes('--markdown')
+      ? 'markdown'
+      : 'text'
+  return { proofName, flags, verbose, format }
+}
+
+/**
+ * One implementation; the two names below are ALIASES. All three were byte-identical
+ * bodies distinguished only by their names — three CLI entry points that did the same
+ * thing. Each is referenced once elsewhere, so the names are kept and the duplication
+ * is not.
+ */
+export async function runSecurityAuditExit(root: string, argv: string[] = []): Promise<number> {
+  const { proofName, verbose, format } = parseArgs(argv)
+  const io: ProofIO = {
+    out: (msg) => console.log(msg),
+    err: (msg) => console.error(msg),
+  }
+  const result = await runProofExit(root, proofName, io, { verbose, format })
+  return result.success ? 0 : 1
+}
+
+/** Alias of runSecurityAuditExit — same proof runner, different CLI name. */
+export const runCryptoAssessExit = runSecurityAuditExit
+
+/** Alias of runSecurityAuditExit — same proof runner, different CLI name. */
+export const runMigrationPlanExit = runSecurityAuditExit

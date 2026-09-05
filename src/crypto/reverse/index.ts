@@ -33,7 +33,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { trinityKey, derivePublicKey, foldPair, toUuid, merkleFold, gcd, gcdBigInt, floor, ceil, sqrt, min, prng, log } from '../../0/index.ts'
-import { runProofExit } from '../../quantum/millennium/rsa/index.ts'
+import { runProofExit } from '../../quantum/millennium/index.ts'
 
 function findOrder(a: number, n: number, maxOrder: number = n): number | null {
   for (let r = 1; r < maxOrder; r++) {

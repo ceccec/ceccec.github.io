@@ -91,7 +91,6 @@ import * as m95 from '../../src/quantum/icons'
 import * as m96 from '../../src/quantum'
 import * as m99 from '../../src/quantum/mesh'
 import * as m100 from '../../src/quantum/millennium'
-import * as m101 from '../../src/quantum/millennium/rsa'
 import * as m102 from '../../src/quantum/mountain/dimensions'
 import * as m103 from '../../src/quantum/os'
 import * as m104 from '../../src/quantum/portal'
@@ -227,7 +226,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/quantum/index.ts', m96 as unknown as Record<string, unknown>],
   ['src/quantum/mesh/index.ts', m99 as unknown as Record<string, unknown>],
   ['src/quantum/millennium/index.ts', m100 as unknown as Record<string, unknown>],
-  ['src/quantum/millennium/rsa/index.ts', m101 as unknown as Record<string, unknown>],
   ['src/quantum/mountain/dimensions/index.ts', m102 as unknown as Record<string, unknown>],
   ['src/quantum/os/index.ts', m103 as unknown as Record<string, unknown>],
   ['src/quantum/portal/index.ts', m104 as unknown as Record<string, unknown>],

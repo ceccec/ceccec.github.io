@@ -49,7 +49,7 @@ theorem first_descent_is_six : afterMerges 160 6 = 154 := by decide
     as the drift detector that declared itself synced. What a theorem CAN hold is the record
     and the law over it, and a gate outside Lean checks the head of this list against the
     tree. Every wave prepends its measurement here. -/
-def recorded : List Nat := [139, 142, 146, 148, 153, 154, 160]
+def recorded : List Nat := [138, 139, 142, 146, 148, 153, 154, 160]
 
 /-- The target is the census theorem, recomputed rather than repeated: ΣF(7..10). -/
 theorem descent_target_is_the_census : fib 7 + fib 8 + fib 9 + fib 10 = 123 := by decide
