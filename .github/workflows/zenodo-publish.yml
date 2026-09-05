@@ -234,11 +234,25 @@ jobs:
           if [ "${{ needs.prepare.outputs.deposit_type }}" = "peer-review" ]; then
             PRERELEASE="--prerelease"
           fi
-          gh release create "${{ needs.prepare.outputs.version }}" \
-            --title "Double Torus ${{ needs.prepare.outputs.version }}" \
-            --notes-file release_notes.md \
-            $PRERELEASE \
-            CHECKSUMS.sha256 CITATION.cff MANIFEST.md RELEASE-AUDIT-uuidna.md HONESTY.md
+          # IDEMPOTENT, BECAUSE workflow_dispatch EXISTS TO RE-RUN THIS. `gh release create` fails outright
+          # when the tag already has a release — so the one input this workflow offers, "Version to publish",
+          # could never be used twice for the same version. Every re-run after any downstream failure died
+          # here, at the last step, on a release that a previous attempt had already made. A publish step
+          # that cannot be repeated is a publish step that cannot be recovered.
+          #
+          # Direction: create when absent, upload assets to the existing release when present. --clobber so a
+          # regenerated MANIFEST or CHECKSUMS replaces the stale copy rather than erroring beside it.
+          ASSETS="CHECKSUMS.sha256 CITATION.cff MANIFEST.md RELEASE-AUDIT-uuidna.md HONESTY.md"
+          if gh release view "${{ needs.prepare.outputs.version }}" >/dev/null 2>&1; then
+            echo "release ${{ needs.prepare.outputs.version }} exists — uploading assets to it rather than failing"
+            gh release upload "${{ needs.prepare.outputs.version }}" $ASSETS --clobber
+          else
+            gh release create "${{ needs.prepare.outputs.version }}" \
+              --title "Double Torus ${{ needs.prepare.outputs.version }}" \
+              --notes-file release_notes.md \
+              $PRERELEASE \
+              $ASSETS
+          fi
           URL=$(gh release view "${{ needs.prepare.outputs.version }}" --json url -q .url)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "Release: $URL"
