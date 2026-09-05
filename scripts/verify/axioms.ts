@@ -22,10 +22,11 @@
  * longer in use is reported, because a stale explanation is how an index stops describing the tree.
  */
 
-import { readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { axiomFreedom } from './lean.ts'
 import { ratchet } from './status.ts'
+import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 
 export type AxiomKind = 'foundational' | 'convention' | 'external-standard' | 'measured-data'
 
@@ -141,4 +142,88 @@ export function assertAxiomIndex(): void {
 
   const unresearched = index.filter((e) => e.research === null).length
   console.log(ratchet('axiom-index.unresearched', unresearched))
+
+  // WHICH THEOREMS REST ON WHICH AXIOM — the index described seven axioms and named no theorem.
+  const fam = theoremAxiomFamilies()
+  const total = (THEOREM_ATOM_SEED as readonly unknown[]).length
+  console.log(`theorem → axiom family, by what each proving fold READS (not by its prose):`)
+  for (const [k, v] of Object.entries(fam.byFamily).sort((a, b) => b[1] - a[1])) console.log(`  ${String(v).padStart(4)}  ${k}`)
+  console.log(`  ${String(fam.unplaced).padStart(4)}  UNPLACED — the fold references none of the indexed artefacts.`)
+  console.log(`         NOT a claim of axiom-freedom: an axiom the index has not named cannot be found by looking for the names it has.`)
+  console.log(`         Axiom-freedom is decided on the Lean side, per theorem, and reported by verify:lean.`)
+  console.log(ratchet('axiom-index.unplaced', fam.unplaced))
+  void total
+}
+
+/**
+ * THEOREM → AXIOM FAMILY, DERIVED FROM WHAT THE PROVING FOLD ACTUALLY READS.
+ *
+ * The axiom index names seven axioms and stood entirely apart from the 762 theorem atoms: nothing said
+ * which theorem rested on which. This places them, and places them STRUCTURALLY — by whether the fold an
+ * atom names in `provedBy` references the artefact an axiom is about (A432_FOLDED, EULER_CHI,
+ * ICHING_NUMBERS, CRACK_LEDGER), not by matching words in its prose.
+ *
+ * THE PROSE VERSION WAS WRITTEN FIRST AND THROWN AWAY. A regex over each atom's text classified 78
+ * convention / 62 measured-data / 439 decided / 183 unassigned, and it was the same defect this
+ * repository's demarcation gate carried until three commits ago: seven phrasings cannot classify 762
+ * general theorems, and a classifier that reads prose is measuring the prose. The module-level version
+ * was thrown away too — testing whether a 7,000-line file mentions A432_FOLDED put 438 of 762 in more
+ * than one family, which is not a classification but a statement that big files mention many things.
+ *
+ * At FOLD granularity nothing lands in two families and nothing fails to locate, which is the shape a
+ * real partition has.
+ *
+ * WHAT `unplaced` DOES NOT MEAN. 724 folds reference none of the seven indexed artefacts. That is NOT a
+ * claim that those theorems are axiom-free — it is the absence of a placement, and the difference is the
+ * one this repository keeps having to relearn. An axiom the index has not named yet cannot be found by
+ * looking for the names it has. The Lean side is where axiom-freedom is actually decided, and it says so
+ * per theorem: 109/113 depend on nothing, 4 on propext alone.
+ *
+ * PERTURBED WITH A NON-AXIOM, DELIBERATELY. Adding TAU as a fifth artefact places 109 theorems and drops
+ * unplaced to 615, and restoring correctly throws. That proves the mechanism responds — and TAU is exactly
+ * the thing that must NOT be kept: τ = 2π is a mathematical CONSTANT, not a choice this corpus made, so
+ * theorems using it rest on nothing chosen. Naming it would have moved the number by 109 while adding no
+ * axiom at all, which is how a placement metric gets gamed. The perturbation is the argument for the
+ * distinction, not for the entry.
+ *
+ * DIRECTION OF FAILURE: `axiom-index.unplaced` ratchets down. It falls when the index grows to name an
+ * axiom the corpus really uses, or when a fold is traced to one it already names. It can only rise by
+ * adding theorems that rest on nothing indexed, which is exactly the drift worth catching.
+ */
+export function theoremAxiomFamilies(): {
+  readonly placed: readonly { theorem: string; family: string }[]
+  readonly unplaced: number
+  readonly byFamily: Record<string, number>
+} {
+  const ARTEFACT: Record<string, RegExp> = {
+    'convention:a432': /\b(A432_FOLDED|DIMENSION_GATES|A432_OCTAVES|A432_HUE)\b/,
+    'convention:genus': /\b(EULER_CHI|HOMOLOGY_LOOPS|DIGIT_LATTICE)\b/,
+    'convention:iching': /\b(ICHING_NUMBERS|DOCUMENTED_HARMONICS)\b/,
+    'measured-data:ledger': /\bCRACK_LEDGER\b/,
+  }
+  const rows = THEOREM_ATOM_SEED as readonly { theorem: string; home?: string; provedBy?: string }[]
+  const cache = new Map<string, string>()
+  const read = (f: string) => {
+    if (!cache.has(f)) cache.set(f, existsSync(f) ? readFileSync(f, 'utf8') : '')
+    return cache.get(f)!
+  }
+  // One fold's body: from its export to the next top-level export. Coarser than a parser and stated as
+  // such — it can over-read a trailing helper, never under-read the fold itself.
+  const foldBody = (text: string, name: string): string => {
+    const m = new RegExp(`^export (?:async )?(?:function|const) ${name}\\b`, 'm').exec(text)
+    if (!m) return ''
+    const rest = text.slice(m.index + 1)
+    const next = /^export (?:async )?(?:function|const|type|interface|class) /m.exec(rest)
+    return next ? rest.slice(0, next.index) : rest
+  }
+  const placed: { theorem: string; family: string }[] = []
+  const byFamily: Record<string, number> = {}
+  let unplaced = 0
+  for (const r of rows) {
+    const body = r.home && r.provedBy ? foldBody(read(`${r.home}/index.ts`), r.provedBy) : ''
+    const hits = Object.entries(ARTEFACT).filter(([, re]) => re.test(body)).map(([k]) => k)
+    if (!hits.length) { unplaced += 1; continue }
+    for (const h of hits) { placed.push({ theorem: r.theorem, family: h }); byFamily[h] = (byFamily[h] ?? 0) + 1 }
+  }
+  return { placed, unplaced, byFamily }
 }
