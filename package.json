@@ -1,6 +1,6 @@
 {
   "name": "@ceccec/double-torus",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "The Double Torus quantum corpus — dependency-free content-address kernel (src/0): toUuid (FNV), toUuidSha256, sha256Sync (NIST-verified), merkleFold, foldPair, the vortex sequence. Deterministic, zero-egress, zero runtime dependency.",
   "license": "CC-BY-NC-ND-4.0",
   "author": {
