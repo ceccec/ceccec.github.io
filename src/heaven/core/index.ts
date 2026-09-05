@@ -2002,7 +2002,7 @@ export function molitvaZaPlodorodieDecoded(matrix: MindMatrix = buildMatrix()) {
     { facet: 'the art-prayer is saved and decoded — five Bulgarian folk fertility symbols (Семето на живота, Ромб, Шевици, Пендари, Здравец), each named to its documented meaning, reusable beside toGlagolitic', on: symbols.length === 5 && documented === 5 },
     { facet: 'the symbols are real heritage — the six-petal rosette (a compass construction, attested at Preslav), the rhombus (union/balance), шевици (protective embroidery), пендари (dowry coin-jewellery), здравец (Geranium macrorrhizum, real astringent compounds)', on: symbols.every((s) => s.meaning.length > (5 * 4)) },
     { facet: 'the creation verses are the seam — the page quotes Genesis 1:1 and 1:3 in Bulgarian, joining the folk prayer to the multilingual scripture pivot (selfTranslate)', on: refs.length === 2 && refs[0] === 'Genesis 1:1' && refs[1] === 'Genesis 1:3' },
-    { facet: 'rendered, not decorated — a symbol name folds into the round script (deterministic, zero tokens), the decode becoming reusable code', on: inGlagolitic !== 'zdravets' && /[^ -]/.test(inGlagolitic) },
+    { facet: 'rendered, not decorated — a symbol name folds into the round script (deterministic, zero tokens), the decode becoming reusable code', on: inGlagolitic !== 'zdravets' && /[^\x00-\x7f]/.test(inGlagolitic) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`molitva:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('molitva-za-plodorodie', facets)
   return {

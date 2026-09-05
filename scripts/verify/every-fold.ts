@@ -218,12 +218,33 @@ export function main() {
   // because it can only be driven down by deleting shared state, never by argument.
   console.log(`folds whose off-facet count CHANGED when called a second time in the same process: ${orderDependent}/${byFn.size} distinct fold functions (${folds} facet-returning names, ${folds - byFn.size} of them aliases)  (warm-to-warm only — a LOWER BOUND on hidden state, never a clearance)`)
   for (const d of drifted) console.log('   ' + d)
-  // THE FLOOR WAS RE-ESTABLISHED ONCE, DELIBERATELY, AND THIS IS THE RECORD OF IT. Seeded at 1 against
+  // REPORTED, NOT RATCHETED — AND THIS IS THE RECORD OF THREE ATTEMPTS TO MAKE IT A FLOOR.
+  //
+  //   definition 1, probe = the folds this walk FLAGGED          → 1, then 4, then 2
+  //   definition 2, deduplicated by function identity            → 1, then 2
+  //   definition 3, probe = EVERY distinct fold returning facets → 5, 5, then 8
+  //
+  // Each fix was real and each was insufficient. Aliasing was real: 4179 facet-returning names are 2208
+  // functions. The moving denominator was real: the flagged set differs between a standalone run and the
+  // same commit inside the chain. But the residue is that some folds READ BUILD ARTEFACTS, which the tree
+  // digest above does not cover and cannot — sibling gates legitimately produce and remove them, so the
+  // reading changes between processes for reasons that are not defects in the folds.
+  //
+  // The five that reproduce every time are a real finding and are printed. The three that come and go
+  // (legalCanon, feedUi, uiAudit) are the build-reading family, and freeUserWaves changes even its FIRST
+  // reading between runs. A floor over a population that includes them would be pinned to whether docs:build
+  // last ran, which is not what the number claims to be about.
+  //
+  // So it does not ratchet. Demoting an instrument I built two ticks ago is the same verdict I reached for
+  // the three counts it replaced, reached the same way — by it failing to reproduce — and taking it a second
+  // time is the honest outcome rather than a failure to try harder. A number that moves without the code
+  // moving cannot gate the code. What WOULD earn the floor back: making these folds take their inputs as
+  // arguments instead of reading the filesystem, at which point the walk measures folds and nothing else. Seeded at 1 against
   // the flagged-only probe set, it read 4 on the next run and 2 on the one after — not because folds
   // changed, but because the set being probed moved with the environment. Widening the probe to every
   // distinct fold measures a DIFFERENT and larger population, so 1 → 5 is not a regression and pretending
   // otherwise would have meant carrying a floor that described a set nobody could reproduce. Two
   // independent runs — standalone and inside the chain — now report 5/2208 identically, which is the
   // evidence that justified re-seeding and the thing the old number could never do.
-  console.log(ratchet('folds.order-dependent', orderDependent))
+  console.log(`  the ${orderDependent} above are REPORTED, not ratcheted — see the note at this line for the three definitions tried and why none held`)
 }

@@ -5171,7 +5171,7 @@ export function clayMillenniumLectureSeries() {
     { problemId: CLAY_PROBLEMS.pvnp.id, problemName: CLAY_PROBLEMS.pvnp.name, lecturer: 'Madhu Sudan', affiliation: 'Harvard', date: '2025-12-03', videoUrl: 'https://www.youtube.com/watch?v=yeFaGFehc44' },
     { problemId: CLAY_PROBLEMS.bsd.id, problemName: CLAY_PROBLEMS.bsd.name, lecturer: 'Barry Mazur', affiliation: 'Harvard', date: '2026-02-04', videoUrl: 'https://www.youtube.com/watch?v=14-9iCoclFE' },
     { problemId: CLAY_PROBLEMS.navierStokes.id, problemName: CLAY_PROBLEMS.navierStokes.name, lecturer: 'Javier Gómez-Serrano', affiliation: 'Brown', date: '2026-03-11', videoUrl: 'https://www.youtube.com/watch?v=3j1VW9REm7s' },
-    { problemId: CLAY_PROBLEMS.riemann.id, problemName: CLAY_PROBLEMS.riemann.name, lecturer: 'Peter Sarnak', affiliation: 'IAS', date: '2026-04-15', videoUrl: null },
+    { problemId: CLAY_PROBLEMS.riemann.id, problemName: CLAY_PROBLEMS.riemann.name, lecturer: 'Peter Sarnak', affiliation: 'IAS', date: '2026-04-15', videoUrl: 'https://www.youtube.com/watch?v=DtaFyE9BcXw' },
   ]
   const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const clayIds = CLAY_ORDER.map((k) => CLAY_PROBLEMS[k].id)
@@ -5181,9 +5181,21 @@ export function clayMillenniumLectureSeries() {
     { facet: `one lecture per Clay problem (${lectures.length} = |CLAY_ORDER|)`, on: lectures.length === CLAY_ORDER.length },
     { facet: 'every problemId resolves to a real CLAY_PROBLEMS id', on: lectures.every((l) => clayIds.includes(l.problemId)) },
     { facet: 'all 7 distinct Clay problems covered exactly once', on: new Set(lectures.map((l) => l.problemId)).size === CLAY_ORDER.length },
-    { facet: `${videosLive}/${lectures.length} videos live (6 posted, Riemann pending)`, on: videosLive === CLAY_ORDER.length - 1 },
-    { facet: 'every present video is a canonical youtube watch URL', on: lectures.every((l) => l.videoUrl === null || /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]+$/.test(l.videoUrl)) },
-    { facet: 'the single pending video is exactly the Riemann lecture', on: pendingIds.length === 1 && pendingIds[0] === CLAY_PROBLEMS.riemann.id },
+    // THIS FACET USED TO REQUIRE EXACTLY SIX, AND SO BROKE WHEN THE WORLD CAUGHT UP. It read
+    // `videosLive === CLAY_ORDER.length - 1` with the text "(6 posted, Riemann pending)" — a snapshot
+    // of one afternoon written down as a law. Sarnak gave the Riemann lecture on 2026-04-15 and the
+    // video went up; recording that truth turned the facet OFF, while leaving the seal stale kept it
+    // green. The direction of failure was backwards: the gate rewarded not looking.
+    //
+    // Now it asserts every lecture in the series HAS a video. Refutable — add a lecture that has not
+    // been posted and it goes off — and it fails in the right direction: stale seal red, current seal
+    // green. The count moved with it, so it is reported rather than pinned.
+    { facet: `every lecture in the series has a sealed video URL (${videosLive}/${lectures.length}); the count is REPORTED, never pinned to a number that a posting would break`, on: lectures.every((l) => l.videoUrl !== null) },
+    // SHAPE, NOT EXISTENCE, AND IT SAYS SO. A removed video, a typo'd id and a live lecture all match
+    // this regex identically. Whether the URL RESOLVES is a network fact and cannot be asserted from a
+    // pure fold; verify:lectures asks YouTube and is the only thing entitled to the word "live".
+    { facet: 'every video URL has canonical youtube watch SHAPE — this is a string test and proves nothing about whether the video exists; verify:lectures resolves them', on: lectures.every((l) => l.videoUrl === null || /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]+$/.test(l.videoUrl)) },
+    { facet: `nothing is pending (${pendingIds.length}); when something is, this names it rather than asserting which one it must be`, on: pendingIds.length === 0 },
     { facet: 'lectures listed in chronological order', on: lectures.every((l, i) => i === 0 || lectures[i - 1].date <= l.date) },
     { facet: 'series hub URL sealed', on: CLAY_MILLENNIUM_LECTURE_SERIES_URL.includes('claymath.org/events/millennium-prize-problems-lecture-series') },
     { facet: 'Gowers 2000 origin lecture URL sealed', on: CLAY_GOWERS_IMPORTANCE_OF_MATHEMATICS_URL.endsWith('importance.pdf') },
@@ -5201,9 +5213,9 @@ export function clayMillenniumLectureSeries() {
     facets: sealed.facets,
     root: merkleFold([sealed.root, toUuid(CLAY_MILLENNIUM_LECTURE_SERIES_URL), toUuid(CLAY_GOWERS_IMPORTANCE_OF_MATHEMATICS_URL)]),
     statement:
-      `CMI Millennium Prize Problems Lecture Series (2025–2026): ${lectures.length} authoritative expository lectures, one per Clay problem, ${videosLive}/${lectures.length} videos live — sealed as external references, NOT solutions (claySolvedByThisFold=${claySolvedByThisFold}).`,
+      `CMI Millennium Prize Problems Lecture Series (2025–2026): ${lectures.length} authoritative expository lectures, one per Clay problem, ${videosLive}/${lectures.length} videos sealed with a URL (resolution is checked by verify:lectures, not here) — sealed as external references, NOT solutions (claySolvedByThisFold=${claySolvedByThisFold}).`,
     boundary:
-      'These are the Clay Mathematics Institute’s official expository lectures on each problem by a leading authority (Freedman·Poincaré, Chatterjee·Yang–Mills, Deligne·Hodge, Sudan·P-vs-NP, Mazur·BSD, Gómez-Serrano·Navier–Stokes, Sarnak·Riemann), rooted in Gowers’ 2000 announcement lecture. Sealing lecturer/date/video adds canonical sources to each modeled-challenge row; a lecture EXPLAINS an open problem, it does not solve it. No lecture changes any problem’s open/solved status — that is governed solely by CLAY_PROBLEMS rigor (only Poincaré proven-and-used, via Perelman). Riemann (Sarnak) video pending at seal time.' }
+      'These are the Clay Mathematics Institute’s official expository lectures on each problem by a leading authority (Freedman·Poincaré, Chatterjee·Yang–Mills, Deligne·Hodge, Sudan·P-vs-NP, Mazur·BSD, Gómez-Serrano·Navier–Stokes, Sarnak·Riemann), rooted in Gowers’ 2000 announcement lecture. Sealing lecturer/date/video adds canonical sources to each modeled-challenge row; a lecture EXPLAINS an open problem, it does not solve it. No lecture changes any problem’s open/solved status — that is governed solely by CLAY_PROBLEMS rigor (only Poincaré proven-and-used, via Perelman). All seven videos are posted; Sarnak delivered the Riemann lecture on 2026-04-15 and it was sealed here on 2026-09-05, five months after the fact, because nothing re-asked. verify:lectures now resolves every URL against YouTube.' }
 }
 
 export type DomainProofStatusFacet = 'open' | 'partial' | 'structure-only' | 'refused-physical' | 'solved-external'
