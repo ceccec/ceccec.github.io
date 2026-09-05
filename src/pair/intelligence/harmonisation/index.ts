@@ -4,7 +4,7 @@
 // wave-60's PatentReformProposal was renamed GlobalPatentReformProposal to avoid colliding
 // with wave-57's PatentReformProposal now that both live in one file scope.
 
-import { gcd, lcm } from '../../../0/index.ts'
+import { gcd, lcm, abs, log, max as oneMax, min, pow, round, sqrt } from '../../../0/index.ts'
 
 // ───── module: autonomousDiscovery ─────
 // Wave 51: Autonomous Theorem Discovery Engine
@@ -66,7 +66,7 @@ export function detectInvolutions<T>(
   // For simple numeric domains, check arithmetic involutions
   if (domain.length > 0 && typeof domain[0] === 'number') {
     const nums = domain as unknown as number[]
-    const max = Math.max(...nums)
+    const max = oneMax(...nums)
 
     // Test: σ(x) = max - x (reflection)
     const σReflect = (x: number) => max - x
@@ -162,8 +162,8 @@ export function measureBarriers<T>(
   }
 ): BarrierMeasurement {
   // Default structure for numeric domains
-  const dist = domainStructure?.distance || ((a: any, b: any) => Math.abs(a - b))
-  const entropy = domainStructure?.entropy || ((x: any) => Math.log(Math.abs(x) + 1))
+  const dist = domainStructure?.distance || ((a: any, b: any) => abs(a - b))
+  const entropy = domainStructure?.entropy || ((x: any) => log(abs(x) + 1))
   const isAdj = domainStructure?.isAdjacent || ((a: any, b: any) => dist(a, b) === 1)
 
   // Memory barrier: How much information must change to escape?
@@ -174,7 +174,7 @@ export function measureBarriers<T>(
   const involutionClosureWeight = involutionStrength / (involutionStrength + 1) // 16:1 ratio
   const baselineHarmonic = 1 / (involutionStrength + 1) // Harmonic baseline
   const memoryBarrier = fixedPoints.length > 0
-    ? Math.min(
+    ? min(
         1,
         (fixedPoints.length / domain.length) * involutionClosureWeight + baselineHarmonic
       )
@@ -190,11 +190,11 @@ export function measureBarriers<T>(
       ? nonFixed.reduce(
           (sum, x) =>
             sum +
-            Math.min(...fixedPoints.map((f) => dist(x, f)), Infinity),
+            min(...fixedPoints.map((f) => dist(x, f)), Infinity),
           0
         ) / nonFixed.length
       : 0
-  const patternBarrier = Math.min(1, 1 - avgDistToFixed / (Math.max(...domain.map(entropy)) + 1))
+  const patternBarrier = min(1, 1 - avgDistToFixed / (oneMax(...domain.map(entropy)) + 1))
 
   // Causal barrier: Temporal ordering (simulated as sequence consistency)
   // If σ respects some ordering, barrier is high
@@ -204,7 +204,7 @@ export function measureBarriers<T>(
   // Hierarchy barrier: Information compression across levels
   // Already computed from fixedPoints when present; default is minimal baseline
   const hierarchyBarrier = fixedPoints.length > 0
-    ? Math.min(1, Math.sqrt((fixedPoints.length + 1) / (domain.length + 1)))
+    ? min(1, sqrt((fixedPoints.length + 1) / (domain.length + 1)))
     : baselineHarmonic * (1 / 2) // Half the baseline when no fixed points
 
   // Feedback barrier: How fast does correction kick in?
@@ -215,7 +215,7 @@ export function measureBarriers<T>(
   const feedbackBarrier = feedbackNumerator / feedbackDenominator // σ² feedback: strong convergence in symmetric systems
 
   // Combined protection: geometric mean (all barriers must hold)
-  const combinedProtection = Math.pow(
+  const combinedProtection = pow(
     memoryBarrier * patternBarrier * causalBarrier * hierarchyBarrier * feedbackBarrier,
     1 / 5
   )
@@ -478,12 +478,12 @@ class TheoryEngine {
     const count = this.theorems.size
     const avgConfidence =
       Array.from(this.theorems.values()).reduce((sum, t) => sum + t.confidence, 0) /
-      Math.max(count, 1)
+      oneMax(count, 1)
     // Score: equal weighting of count and confidence via involution symmetry
     const countDivisor = 10 // Base theorem count for scaling
     const countWeight = 50 // 50% weight to count
     const confidenceWeight = 50 // 50% weight to confidence (σ-symmetric)
-    return Math.min(100, (count / countDivisor) * countWeight + avgConfidence * confidenceWeight)
+    return min(100, (count / countDivisor) * countWeight + avgConfidence * confidenceWeight)
   }
 }
 
@@ -541,12 +541,12 @@ class UIEngine {
     const count = this.uis.size
     const avgEngagement =
       Array.from(this.uis.values()).reduce((sum, u) => sum + u.userEngagement, 0) /
-      Math.max(count, 1)
+      oneMax(count, 1)
     // Score: UI count / 5 dimensions + engagement weight
     const dimensionCount = 5 // UI dimension count (involution tier)
     const countWeight = 50 // 50% to count
     const engagementWeight = 50 // 50% to engagement
-    return Math.min(100, (count / dimensionCount) * countWeight + avgEngagement * engagementWeight)
+    return min(100, (count / dimensionCount) * countWeight + avgEngagement * engagementWeight)
   }
 }
 
@@ -611,13 +611,13 @@ class ToolEngine {
     const count = this.tools.size
     const avgExecutions =
       Array.from(this.tools.values()).reduce((sum, t) => sum + t.executionCount, 0) /
-      Math.max(count, 1)
+      oneMax(count, 1)
     // Score: tool count / 4 dimensions + normalized execution weight
     const dimensionCount = 4 // Tool dimension count (involution tier)
     const countWeight = 50 // 50% to count
     const executionWeight = 50 // 50% to execution
     const executionScale = 100 // Normalize executions per tool
-    return Math.min(100, (count / dimensionCount) * countWeight + Math.min(avgExecutions / executionScale, 1) * executionWeight)
+    return min(100, (count / dimensionCount) * countWeight + min(avgExecutions / executionScale, 1) * executionWeight)
   }
 }
 
@@ -634,10 +634,10 @@ class PatentEngine {
     const generated: PatentAsset[] = []
 
     // Patent value scale: derived from involution fractions of max (10^6)
-    const patentMaxValue = Math.pow(10, 6)
-    const involutionValue = Math.round(patentMaxValue * 0.5) // 50% = involution pair (T, σT)
-    const barrierValue = Math.round(patentMaxValue * 0.75) // 75% = φ × φ ÷ φ
-    const validationValue = Math.round(patentMaxValue * 0.6) // 60% = harmonic tier
+    const patentMaxValue = pow(10, 6)
+    const involutionValue = round(patentMaxValue * 0.5) // 50% = involution pair (T, σT)
+    const barrierValue = round(patentMaxValue * 0.75) // 75% = φ × φ ÷ φ
+    const validationValue = round(patentMaxValue * 0.6) // 60% = harmonic tier
 
     // Patent 1: Involution Detection Method
     generated.push({
@@ -671,7 +671,7 @@ class PatentEngine {
 
     // Patent 4: Auto-Development Framework
     // Patent value scale: 10^6 = involution closure squared (10^3 × 10^3)
-    const maxPatentValue = Math.pow(10, 6) // Derived from system scale (10^6 = φ^n growth)
+    const maxPatentValue = pow(10, 6) // Derived from system scale (10^6 = φ^n growth)
     generated.push({
       id: 'patent-autodevelop',
       title: 'Self-Developing Mathematical Proof System with Balanced Components',
@@ -693,10 +693,10 @@ class PatentEngine {
     const count = this.patents.size
     const avgValue =
       Array.from(this.patents.values()).reduce((sum, p) => sum + p.value, 0) /
-      Math.max(count, 1)
+      oneMax(count, 1)
     const totalValue = avgValue * count
-    const maxPatentValue = Math.pow(10, 6) // Scale derived from system dimensions
-    return Math.min(100, (totalValue / maxPatentValue) * 100)
+    const maxPatentValue = pow(10, 6) // Scale derived from system dimensions
+    return min(100, (totalValue / maxPatentValue) * 100)
   }
 }
 
@@ -745,7 +745,7 @@ class MetaOrchestrator {
 
   async balanceAndDevelop(maxIterations?: number): Promise<SystemBalance[]> {
     // Default iterations derived from involution tiers: φ² × 2 ≈ 10
-    const defaultIterations = Math.round(1.618 * 1.618 * 2) // Golden ratio squared × 2 → 10
+    const defaultIterations = round(1.618 * 1.618 * 2) // Golden ratio squared × 2 → 10
     const maxIter = maxIterations ?? defaultIterations // Use provided or derived default
     const history: SystemBalance[] = []
 
@@ -782,7 +782,7 @@ class MetaOrchestrator {
     const tools = this.tools.score()
     const patents = this.patents.score()
 
-    const overall = Math.pow(theory * ui * tools * patents, 0.25)
+    const overall = pow(theory * ui * tools * patents, 0.25)
 
     return { theory, ui, tools, patents, overall }
   }
@@ -790,8 +790,8 @@ class MetaOrchestrator {
   private getDeviation(balance: SystemBalance): number {
     const scores = [balance.theory, balance.ui, balance.tools, balance.patents]
     const mean = scores.reduce((a, b) => a + b) / 4
-    const variance = scores.reduce((sum, s) => sum + Math.pow(s - mean, 2), 0) / 4
-    return Math.sqrt(variance)
+    const variance = scores.reduce((sum, s) => sum + pow(s - mean, 2), 0) / 4
+    return sqrt(variance)
   }
 
   private async autoImprove(balance: SystemBalance): Promise<void> {
@@ -865,9 +865,9 @@ Iterations to Balance: ${this.iterations}
 
 ✅ READY FOR:
   • Theory: CMI Submission (${balance.theory > 80 ? '✓' : '✗'})
-  • UI: User deployment (${balance.ui > Math.round(100 * 0.7) ? '✓' : '✗'})
+  • UI: User deployment (${balance.ui > round(100 * 0.7) ? '✓' : '✗'})
   • Tools: Production integration (${balance.tools > 75 ? '✓' : '✗'})
-  • Patents: IP filing (${balance.patents > Math.round(100 * 0.7) ? '✓' : '✗'})
+  • Patents: IP filing (${balance.patents > round(100 * 0.7) ? '✓' : '✗'})
 
 🚀 NEXT PHASE: Wave 54+ Quantum Integration
 `
@@ -1009,7 +1009,7 @@ function detectGoldbachInvolution(): {
   const conservationBarrier = 0.91
 
   // Combined: geometric mean
-  const combinedAlpha = Math.pow(
+  const combinedAlpha = pow(
     memoryBarrier * patternBarrier * symmetryBarrier * conservationBarrier,
     1 / 4
   )
@@ -1221,7 +1221,7 @@ function executeDigitDomain(): Wave52Result {
   const theorems = discoverTheorems(domain as any, {
     testIdentity: (a: any, b: any) => a === b,
     structure: {
-      distance: (a: number, b: number) => Math.abs(a - b),
+      distance: (a: number, b: number) => abs(a - b),
       entropy: (x: number) => x,
     },
     domainName: 'ℤ/10 (digits)',
@@ -1358,21 +1358,21 @@ export function executeWave52Complete(): {
   const binaryResult = executeBinaryDomain()
   results.push(binaryResult)
   console.log(`  Theorems discovered: ${binaryResult.theorems.length}`)
-  console.log(`  Avg confidence: ${(binaryResult.theorems.reduce((s, t) => s + t.confidence, 0) / Math.max(binaryResult.theorems.length, 1)).toFixed(3)}`)
+  console.log(`  Avg confidence: ${(binaryResult.theorems.reduce((s, t) => s + t.confidence, 0) / oneMax(binaryResult.theorems.length, 1)).toFixed(3)}`)
   console.log(`  Status: ${binaryResult.deploymentReady ? '✅ Ready' : '⚠️  Needs verification'}`)
 
   console.log('\n📍 Domain 2: Digits (ℤ/10)')
   const digitResult = executeDigitDomain()
   results.push(digitResult)
   console.log(`  Theorems discovered: ${digitResult.theorems.length}`)
-  console.log(`  Avg confidence: ${(digitResult.theorems.reduce((s, t) => s + t.confidence, 0) / Math.max(digitResult.theorems.length, 1)).toFixed(3)}`)
+  console.log(`  Avg confidence: ${(digitResult.theorems.reduce((s, t) => s + t.confidence, 0) / oneMax(digitResult.theorems.length, 1)).toFixed(3)}`)
   console.log(`  Status: ${digitResult.deploymentReady ? '✅ Ready' : '⚠️  Needs verification'}`)
 
   console.log('\n📍 Domain 3: Boolean')
   const boolResult = executeBooleanDomain()
   results.push(boolResult)
   console.log(`  Theorems discovered: ${boolResult.theorems.length}`)
-  console.log(`  Avg confidence: ${(boolResult.theorems.reduce((s, t) => s + t.confidence, 0) / Math.max(boolResult.theorems.length, 1)).toFixed(3)}`)
+  console.log(`  Avg confidence: ${(boolResult.theorems.reduce((s, t) => s + t.confidence, 0) / oneMax(boolResult.theorems.length, 1)).toFixed(3)}`)
   console.log(`  Status: ${boolResult.deploymentReady ? '✅ Ready' : '⚠️  Needs verification'}`)
 
   // Compile unified Lean file
@@ -1394,7 +1394,7 @@ ${results
     (r) => `
   • ${r.domain}
     - Theorems: ${r.theorems.length}
-    - Avg Confidence: ${(r.theorems.reduce((s, t) => s + t.confidence, 0) / Math.max(r.theorems.length, 1)).toFixed(3)}
+    - Avg Confidence: ${(r.theorems.reduce((s, t) => s + t.confidence, 0) / oneMax(r.theorems.length, 1)).toFixed(3)}
     - Status: ${r.deploymentReady ? '✅ Ready' : '⚠️  Review needed'}
 `
   )
@@ -1403,7 +1403,7 @@ ${results
 Summary:
 --------
 Total Theorems Discovered: ${totalTheorems}
-Average Confidence: ${(results.reduce((sum, r) => sum + r.theorems.reduce((s, t) => s + t.confidence, 0) / Math.max(r.theorems.length, 1), 0) / results.length).toFixed(3)}
+Average Confidence: ${(results.reduce((sum, r) => sum + r.theorems.reduce((s, t) => s + t.confidence, 0) / oneMax(r.theorems.length, 1), 0) / results.length).toFixed(3)}
 Domains Tested: ${results.length}
 All Ready: ${deploymentReady ? 'YES' : 'NO'}
 
@@ -1932,7 +1932,7 @@ class QuantumHardwareExecutor {
 
     const measuredAlpha = 0.98 + Math.random() * 0.01 // Simulated measurement
     const predictedAlpha = 0.975
-    const deviation = Math.abs(measuredAlpha - predictedAlpha)
+    const deviation = abs(measuredAlpha - predictedAlpha)
 
     return {
       measuredAlpha,
@@ -2238,7 +2238,7 @@ export function measureValueBarriers(value: AIValue): {
   const feedbackBarrier = 0.95
 
   // Combined protection via geometric mean
-  const combined = Math.pow(
+  const combined = pow(
     memoryBarrier * patternBarrier * causalBarrier * hierarchyBarrier * feedbackBarrier,
     1 / 5
   )
@@ -2351,7 +2351,7 @@ export interface AGISafetyCertificate {
 
 export function certifyAGISafety(theorems: AlignmentTheorem[]): AGISafetyCertificate {
   const allBarriers = theorems.map((t) => t.barrierStrength)
-  const alignmentScore = Math.pow(
+  const alignmentScore = pow(
     allBarriers.reduce((p, b) => p * b, 1),
     1 / allBarriers.length
   )
@@ -2673,7 +2673,7 @@ export function logComplianceAction(
         ? 0.1
         : 0.5
 
-  const newScore = Math.max(0, policy.complianceScore - penalty)
+  const newScore = oneMax(0, policy.complianceScore - penalty)
   policy.complianceScore = newScore
 
   return {
@@ -3035,7 +3035,7 @@ export function detectHiddenMath(patent: PatentMetadata): MathematicalStructure[
     structures.push({
       type: 'involution',
       description: `Possible σ-involution structure detected (${involutionMatches.length} signatures)`,
-      confidence: Math.min(1, involutionMatches.length / 3),
+      confidence: min(1, involutionMatches.length / 3),
       evidence: involutionMatches.map(m => `Contains keyword: "${m}"`),
     })
   }
@@ -3046,7 +3046,7 @@ export function detectHiddenMath(patent: PatentMetadata): MathematicalStructure[
     structures.push({
       type: 'topology',
       description: `Topological barriers or manifold structure likely present`,
-      confidence: Math.min(1, topologyMatches.length / 3),
+      confidence: min(1, topologyMatches.length / 3),
       evidence: topologyMatches.map(m => `Contains keyword: "${m}"`),
     })
   }
@@ -3057,7 +3057,7 @@ export function detectHiddenMath(patent: PatentMetadata): MathematicalStructure[
     structures.push({
       type: 'group',
       description: `Group-theoretic symmetries present in design`,
-      confidence: Math.min(1, groupMatches.length / 3),
+      confidence: min(1, groupMatches.length / 3),
       evidence: groupMatches.map(m => `Contains keyword: "${m}"`),
     })
   }
@@ -3068,7 +3068,7 @@ export function detectHiddenMath(patent: PatentMetadata): MathematicalStructure[
     structures.push({
       type: 'algebra',
       description: `Algebraic operations or identities underlying the system`,
-      confidence: Math.min(1, algebraMatches.length / 4),
+      confidence: min(1, algebraMatches.length / 4),
       evidence: algebraMatches.map(m => `Contains keyword: "${m}"`),
     })
   }
@@ -3454,7 +3454,7 @@ export function scoreClarity(patentText: string): {
     'theorem', 'proof', 'codimension', 'genus'
   ]
   const explicitMathCount = mathKeywords.filter(kw => patentText.toLowerCase().includes(kw)).length
-  factors.explicitMath = Math.min(100, (explicitMathCount / 5) * 100)
+  factors.explicitMath = min(100, (explicitMathCount / 5) * 100)
 
   // Check for mathematical claims
   const hasFormula = /[a-z]\s*=|\^|∀|∃|∩|∪|⊂|⊃|→/.test(patentText)
@@ -3472,7 +3472,7 @@ export function scoreClarity(patentText: string): {
   const hasAbstractMath = /abstract|principle|structure|framework|universal/.test(patentText)
   factors.abstractMath = hasAbstractMath ? 30 : 0
 
-  const totalScore = Math.min(100, Object.values(factors).reduce((a, b) => a + b, 0))
+  const totalScore = min(100, Object.values(factors).reduce((a, b) => a + b, 0))
 
   return { score: totalScore, factors }
 }
@@ -3519,10 +3519,10 @@ export function estimateBarrierStrength(patentText: string, claimsCount: number)
     Claims: ${claimsCount} (+${claimsCount >= 20 ? 0.15 : claimsCount >= 10 ? 0.10 : claimsCount >= 5 ? 0.05 : 0})
     Dependent claims: ${dependentClaimsPattern.test(patentText) ? 'Yes (+0.10)' : 'No'}
     Textual features present (DISCLOSED, contributing 0 — phrase presence is not evidence of barrier strength): ${features.filter((f) => f.present).map((f) => f.feature).join(', ') || 'none'}
-    Estimated barrier strength α = ${Math.min(1, alpha).toFixed(3)}
+    Estimated barrier strength α = ${min(1, alpha).toFixed(3)}
   `
 
-  return { alpha: Math.min(1, alpha), reasoning }
+  return { alpha: min(1, alpha), reasoning }
 }
 
 /**
@@ -3593,9 +3593,9 @@ export function estimatePatentValue(score: PatentScore): number {
   const value = baseValue * clarityMult * barrierMult * licensingMult
 
   // Add ecosystem premium (more peers → higher licensing value)
-  const ecosystemPremium = Math.min(1_000_000, (score.licensingPotential / 100) * 500_000)
+  const ecosystemPremium = min(1_000_000, (score.licensingPotential / 100) * 500_000)
 
-  return Math.round(value + ecosystemPremium)
+  return round(value + ecosystemPremium)
 }
 
 /**
@@ -3622,9 +3622,9 @@ export function generateRecommendations(score: PatentScore): string[] {
   if (score.estimatedValue < 200_000) {
     const improvementPotential = estimatePatentValue({
       ...score,
-      mathematicalClarity: Math.min(100, score.mathematicalClarity + 30),
-      barrierStrength: Math.min(1, score.barrierStrength + 0.15),
-      licensingPotential: Math.min(100, score.licensingPotential + 20),
+      mathematicalClarity: min(100, score.mathematicalClarity + 30),
+      barrierStrength: min(1, score.barrierStrength + 0.15),
+      licensingPotential: min(100, score.licensingPotential + 20),
     })
     recommendations.push(`OPTIMIZATION OPPORTUNITY: +$${(improvementPotential - score.estimatedValue).toLocaleString()} value potential`)
   }
@@ -4081,7 +4081,7 @@ export function adjustValueForEcosystem(
 
   // Ecosystem bonus: if you license the whole structure, you get discount
   // But the ECOSYSTEM total value increases due to network effects
-  const ecosystemBonus = Math.min(0.5, peerCount * 0.05) // Up to 50% bonus
+  const ecosystemBonus = min(0.5, peerCount * 0.05) // Up to 50% bonus
 
   const discountedValue = baseValue * (1 - peerDiscount)
   const ecosystemBoostedValue = discountedValue * (1 + ecosystemBonus)
@@ -4090,7 +4090,7 @@ export function adjustValueForEcosystem(
   const adjustedValue = ecosystemBoostedValue * barrierMultiplier
 
   return {
-    adjustedValue: Math.round(adjustedValue),
+    adjustedValue: round(adjustedValue),
     peerDiscount,
     ecosystemBonus
   }
@@ -4149,8 +4149,8 @@ export function buildEcosystem(
   return {
     sigma,
     patentMembers: membersWithAdjustments,
-    totalEcosystemValue: Math.round(totalValue),
-    licensingVolume: Math.round(licensingVolume),
+    totalEcosystemValue: round(totalValue),
+    licensingVolume: round(licensingVolume),
     averageBarrierStrength: avgBarrier,
     maturityLevel
   }
@@ -4167,7 +4167,7 @@ export function generateLicensingAgreement(
   const basePatentCount = ecosystem.patentMembers.length
   const bundleDiscount = licenseType === 'exclusive' ? 0.3 : 0.15
 
-  const annualFee = Math.round(
+  const annualFee = round(
     ecosystem.totalEcosystemValue * bundleDiscount / basePatentCount
   )
 

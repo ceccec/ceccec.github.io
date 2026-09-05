@@ -7,7 +7,7 @@ import type {
   RepositoryEndpoint, RepositoryApi, ConsciousnessDimensionWire,
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../types/index.ts'
 import { atoms } from '../atoms/index.ts'
-import { DIGEST_BITS, GATES, abs, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, computesGate, coverageCostLog2, floor, fold, foldPair, humanBreath, humanEase, isUuid, log10, log2, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sample, sealFacets, seedFromText, tamperCostLog2, toUuid, uuidHero } from '../../0/index.ts'
+import { DIGEST_BITS, GATES, abs, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, computesGate, coverageCostLog2, floor, fold, foldPair, humanBreath, humanEase, isUuid, log10, log2, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sample, sealFacets, seedFromText, tamperCostLog2, toUuid, uuidHero, sqrt } from '../../0/index.ts'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddress } from '../../0/index.ts'
 import { sha256Sync, toUuidSha256 } from '../../0/index.ts'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6/index.ts'
@@ -1180,11 +1180,11 @@ export function impedanceAnalogiesDecoded(matrix: MindMatrix = buildMatrix()) {
           .map((_, i) => [VORTEX_SEQUENCE[i]!, VORTEX_SEQUENCE[i + 1]!, VORTEX_SEQUENCE[i + 2]!] as const)
           .every(([L, R, C]) => {
           const m = L, b = R, k = 1 / C                          // the correspondence, applied
-          const wElec = 1 / Math.sqrt(L * C)
-          const wMech = Math.sqrt(k / m)
-          const zElec = (R / 2) * Math.sqrt(C / L)
-          const zMech = b / (2 * Math.sqrt(k * m))
-          const close = (x: number, y: number) => Math.abs(x - y) <= Number.EPSILON * Math.max(Math.abs(x), Math.abs(y)) * 4
+          const wElec = 1 / sqrt(L * C)
+          const wMech = sqrt(k / m)
+          const zElec = (R / 2) * sqrt(C / L)
+          const zMech = b / (2 * sqrt(k * m))
+          const close = (x: number, y: number) => abs(x - y) <= Number.EPSILON * max(abs(x), abs(y)) * 4
           return close(wElec, wMech) && close(zElec, zMech)
         }) },
       { facet: 'honest gap — the thermal domain has no true inertance (no thermal mass-analog), so the analogy is partial there', on: domains[2]!.inertance.startsWith('—') },

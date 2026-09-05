@@ -1779,8 +1779,8 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
 
   const gapRatio = nuclearGapJ / acousticQuantumJ
   const protonRatio = (protonJ / H) / 432
-  const ordersToGap = Math.round(Math.log10(gapRatio))
-  const ordersToProton = Math.round(Math.log10(protonRatio))
+  const ordersToGap = round(log10(gapRatio))
+  const ordersToProton = round(log10(protonRatio))
 
   const facets = [
     { facet: `A 432 Hz QUANTUM IS ${(acousticQuantumJ / EV).toExponential(2)} eV — twelve orders below a single visible photon (~2 eV), which is itself six below a nuclear gap`, on: acousticQuantumJ / EV < 1e-11 },
@@ -1798,13 +1798,13 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
       // THE TUNING IS UNTOUCHED, shown by invariance: run the same arithmetic at A440 and the
       // order-of-magnitude verdict is identical, so the refutation is not about 432 at all.
       // Pick a tuning where it differs and this goes off.
-      { facet: `THE CLAIM REFUTED IS A SCALE CLAIM, NOT A TUNING — the same computation at A440 gives the same ${ordersToGap}-order gap, so nothing here evaluates the choice of 432 as a tuning; a result that changed with the tuning would be a different claim`, on: Math.round(Math.log10(nuclearGapJ / (H * 440))) === ordersToGap },
+      { facet: `THE CLAIM REFUTED IS A SCALE CLAIM, NOT A TUNING — the same computation at A440 gives the same ${ordersToGap}-order gap, so nothing here evaluates the choice of 432 as a tuning; a result that changed with the tuning would be a different claim`, on: round(log10(nuclearGapJ / (H * 440))) === ordersToGap },
       // ROBUST TO THE CONSTANTS: perturb h by a part in 10⁶ and the verdict does not move.
       // If the conclusion depended on the constants' precision, this goes off.
-      { facet: 'THE BOUND DOES NOT HIDE IN PRECISION — perturbing h by one part in 10⁶ leaves the order-of-magnitude verdict unchanged, so the conclusion rests on the scale separation and not on the constants being exact', on: Math.round(Math.log10(nuclearGapJ / (H * 1.000001 * 432))) === ordersToGap },
+      { facet: 'THE BOUND DOES NOT HIDE IN PRECISION — perturbing h by one part in 10⁶ leaves the order-of-magnitude verdict unchanged, so the conclusion rests on the scale separation and not on the constants being exact', on: round(log10(nuclearGapJ / (H * 1.000001 * 432))) === ordersToGap },
       // NOT ABOUT ONE NOTE: it holds across the entire audible band, so no mechanism specific
       // to any tone is being refuted — or proposed. A band where it failed would show one.
-      { facet: 'NOTHING IS SHOWN ABOUT COUPLING — the gap exceeds 15 orders for EVERY tone in the audible band (20 Hz to 20 kHz), so this refutes an assertion about scale and offers no mechanism, for or against, at any particular frequency', on: [20, 432, 1000, 20000].every((tone) => Math.log10(nuclearGapJ / (H * tone)) > 15) },
+      { facet: 'NOTHING IS SHOWN ABOUT COUPLING — the gap exceeds 15 orders for EVERY tone in the audible band (20 Hz to 20 kHz), so this refutes an assertion about scale and offers no mechanism, for or against, at any particular frequency', on: [20, 432, 1000, 20000].every((tone) => log10(nuclearGapJ / (H * tone)) > 15) },
     ]
   const sealed = sealFacets('432-is-acoustic-not-nuclear', facets)
   return {
@@ -1833,7 +1833,7 @@ export function fourThirtyTwoHertzIsAcousticNotNuclear() {
  */
 export function merkabaCounterRotationNullsTheAxis() {
   const R = 1
-  const angles = [40, 160, 280, 80, 200, 320].map((d) => (d * Math.PI) / 180)
+  const angles = [40, 160, 280, 80, 200, 320].map((d) => (d * (TAU / 2)) / 180)
   const sign = (i: number) => (i < 3 ? 1 : -1)          // {1,4,7} = +, {2,5,8} = −
   const co = () => 1
 
@@ -1844,9 +1844,9 @@ export function merkabaCounterRotationNullsTheAxis() {
   const corotatingAxis = axialSum(co)
 
   // The in-plane components cancel pairwise too: the six angles are symmetric about the origin.
-  const xSum = angles.reduce((sum, a, i) => sum + sign(i) * Math.cos(a), 0)
-  const ySum = angles.reduce((sum, a, i) => sum + sign(i) * Math.sin(a), 0)
-  const planarNull = Math.abs(xSum) < 1e-12 && Math.abs(ySum) < 1e-12
+  const xSum = angles.reduce((sum, a, i) => sum + sign(i) * cos(a), 0)
+  const ySum = angles.reduce((sum, a, i) => sum + sign(i) * sin(a), 0)
+  const planarNull = abs(xSum) < 1e-12 && abs(ySum) < 1e-12
 
   const facets = [
     { facet: `THE AXIS IS A NULL UNDER COUNTER-ROTATION — the six signed contributions sum to ${merkabaAxis} on the 3-6-9/0 axis, so the field cancels exactly by symmetry rather than approximately`, on: merkabaAxis === 0 },
@@ -1887,18 +1887,18 @@ export function colourMapsAreTwoMapsAndOnlyOneRoundTrips() {
   const notes = [-21, -12, -9, -5, 0, 12].map((semitone) => A432 * 2 ** (semitone / 12))
 
   const angularDistance = (a: number, b: number) => {
-    const d = Math.abs(((a - b) % 360 + 360) % 360)
-    return Math.min(d, 360 - d)
+    const d = abs(((a - b) % 360 + 360) % 360)
+    return min(d, 360 - d)
   }
 
   const divergences = notes.map((f) => angularDistance(frequencyToLight(f).hue, colorFromSound(f).hue))
-  const maxDivergence = Math.max(...divergences)
+  const maxDivergence = max(...divergences)
 
   // The musical wheel has an inverse; feeding its hue back returns the same pitch class.
   const roundTrips = notes.every((f) => {
     const back = soundFromColor(colorFromSound(f).hue).frequency
-    const octaveRatio = Math.log2(Math.max(back, 1) / f)
-    return Math.abs(octaveRatio - Math.round(octaveRatio)) < 1e-6
+    const octaveRatio = log2(max(back, 1) / f)
+    return abs(octaveRatio - round(octaveRatio)) < 1e-6
   })
 
   // σ on audio is self-inverse at the anchor ONLY if it squares the anchor, not 440.

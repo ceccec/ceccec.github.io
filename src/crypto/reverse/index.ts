@@ -32,7 +32,7 @@
 
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { trinityKey, derivePublicKey, foldPair, toUuid, merkleFold, gcd, gcdBigInt, floor, ceil, sqrt, min, prng } from '../../0/index.ts'
+import { trinityKey, derivePublicKey, foldPair, toUuid, merkleFold, gcd, gcdBigInt, floor, ceil, sqrt, min, prng, log } from '../../0/index.ts'
 import { runProofExit } from '../../quantum/millennium/rsa/index.ts'
 
 function findOrder(a: number, n: number, maxOrder: number = n): number | null {
@@ -133,7 +133,7 @@ function primeCountingEstimate(x: bigint): bigint {
   if (!isFinite(xNum)) return x / 10n // fallback for very large numbers
 
   // Approximation: π(x) ≈ x / ln(x) * (1 + 1/ln(x) + 2/ln²(x))
-  const lnX = Math.log(xNum)
+  const lnX = log(xNum)
   if (!isFinite(lnX)) return x / 10n
 
   const estimate = (xNum / lnX) * (1 + 1 / lnX + 2 / (lnX * lnX))

@@ -2,7 +2,7 @@
 // exact-theorems/formal-proof) to satisfy the src index census. Zero floating-point,
 // pure symbolic algebra; proves all 6 Clay theorems with zero deviation exactly.
 
-import { gcdBigInt } from '../../../0/index.ts'
+import { gcdBigInt, floor } from '../../../0/index.ts'
 
 // ───── module: rational ─────
 // Wave 34a: Exact Rational Arithmetic
@@ -100,7 +100,7 @@ export function sym(value: string | number | bigint): SymbolicExpr {
   }
 
   if (typeof value === 'number') {
-    const n = BigInt(Math.floor(value))
+    const n = BigInt(floor(value))
     const d = BigInt(1)
     return { type: 'rational', num: n, den: d }
   }

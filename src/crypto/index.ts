@@ -1,5 +1,5 @@
 
-import { toUuid, foldPair, derivePublicKey } from '../0/index.ts'
+import { toUuid, foldPair, derivePublicKey, min, pow, sqrt, trunc } from '../0/index.ts'
 import { isUuid } from '../0/index.ts'
 import { gcd } from '../0/index.ts'
 import { shorsAlgorithm, recoverDiscreteLog, recoverLatticeSvp, recoverEdDSA, recoverAllKeys, parseKeyData, modularInverseBig } from './reverse/index.ts'
@@ -196,7 +196,7 @@ function modInverse(a: number, m: number): number | null {
   let [oldR, r] = [a % m, m]
   let [oldS, s] = [1, 0]
   while (r !== 0) {
-    const q = Math.trunc(oldR / r)
+    const q = trunc(oldR / r)
     ;[oldR, r] = [r, oldR - q * r]
     ;[oldS, s] = [s, oldS - q * s]
   }
@@ -483,7 +483,7 @@ async function testECDSARecovery() {
   console.log(`Recovered: x=${x}`)
 
   // Verify: g^x mod p = h
-  const recovered_h = Math.pow(2, x) % 11
+  const recovered_h = pow(2, x) % 11
   const hMatches = recovered_h === 7
   console.log(`✓ Discrete log proof: g^x mod p = 2^${x} mod 11 = ${recovered_h} ${hMatches ? '✓ MATCHES' : '✗ MISMATCH'}`)
 
@@ -527,13 +527,13 @@ async function testLatticeRecovery() {
   }
   console.log(`Recovered: shortestVector=[${sv[0]}, ${sv[1]}]`)
 
-  const norm = Math.sqrt(sv[0] * sv[0] + sv[1] * sv[1])
+  const norm = sqrt(sv[0] * sv[0] + sv[1] * sv[1])
   console.log(`✓ Shortest vector: [${sv[0]}, ${sv[1]}] with norm ${norm.toFixed(2)}`)
 
   // Verify [1,2] is indeed shortest among basis vectors
-  const norm1 = Math.sqrt(3 * 3 + 1 * 1) // [3,1]
-  const norm2 = Math.sqrt(1 * 1 + 2 * 2) // [1,2]
-  const isShortestOrLinear = norm <= Math.min(norm1, norm2) || (sv[0] * 3 + sv[1] * 1 === 0)
+  const norm1 = sqrt(3 * 3 + 1 * 1) // [3,1]
+  const norm2 = sqrt(1 * 1 + 2 * 2) // [1,2]
+  const isShortestOrLinear = norm <= min(norm1, norm2) || (sv[0] * 3 + sv[1] * 1 === 0)
   console.log(`✓ SVP verified: norm(recovered) ≤ norm(basis) ${isShortestOrLinear ? '✓' : '✗'}`)
 
   return true
@@ -604,7 +604,7 @@ async function testHybridRecovery() {
   if (ecdsa5) {
     const x = ecdsa5.x as number | undefined
     if (typeof x === 'number') {
-      const h = Math.pow(2, x) % 11
+      const h = pow(2, x) % 11
       ecdsaOk = h === 7 && x > 0 && x < 11
       console.log(`✓ ECDSA: discrete log ${h === 7 ? '✓' : '✗'}, range ${x > 0 && x < 11 ? '✓' : '✗'}`)
     }

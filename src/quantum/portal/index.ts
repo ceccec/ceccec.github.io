@@ -1,7 +1,7 @@
 // ☵ Kǎn · Water · quantum discovery portal — live mesh interface
 // Serves algorithm signatures, contrasts, and Millennium Prize candidates via quantum routing
 
-import { memoByRoot, toUuid, floor } from '../../0/index.ts'
+import { memoByRoot, toUuid, floor, abs } from '../../0/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
 import { comparisonMesh, type AlgorithmSignature, type SolutionCandidate } from '../mesh/index.ts'
@@ -121,7 +121,7 @@ export function exploreContrast(
     const sig1 = mesh.allSignatures.find(s => s.name === algo1)
     const sig2 = mesh.allSignatures.find(s => s.name === algo2)
 
-    const speedupGap = sig1 && sig2 ? Math.abs(sig1.speedup - sig2.speedup) : 0
+    const speedupGap = sig1 && sig2 ? abs(sig1.speedup - sig2.speedup) : 0
 
     const cands1 = new Set(
       Array.from(Object.values(mesh.millenniumCandidates))

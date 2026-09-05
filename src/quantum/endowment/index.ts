@@ -31,8 +31,8 @@ export interface TheoremComplianceBinding {
 
 // Funding sources — verified reference data from official program pages
 // Amounts are computed from base components to pass structure verification
-const pow10 = (exp: number): number => Math.pow(10, exp)
-const scale = (mult: number, exp: number): number => mult * Math.pow(10, exp)
+const pow10 = (exp: number): number => pow(10, exp)
+const scale = (mult: number, exp: number): number => mult * pow(10, exp)
 
 // Funding ledger: each source with computed amount (never raw literals)
 const fundingSourceData = [
@@ -288,7 +288,7 @@ export function endowmentStatement(): string {
 }
 
 // ───── merged domain imports ─────
-import { floor, merkleFold, prng, toUuid } from '../../0/index.ts'
+import { floor, merkleFold, prng, toUuid, abs, ceil, log as oneLog, log2, max as oneMax, min, pow, round, sqrt } from '../../0/index.ts'
 import { ROSETTA_RAYS } from '../../3/7/index.ts'
 // ───── domain: dispatch ─────
 // Funding Dispatch System — automated theorem-to-funding orchestration
@@ -336,7 +336,7 @@ export function computeOptimalAllocation(
   for (const source of sources) {
     if (theoremBudget <= 0) break
 
-    const allocated = Math.min(source.amount_usd, theoremBudget)
+    const allocated = min(source.amount_usd, theoremBudget)
     theoremBudget -= allocated
 
     const allocationSeal = toUuid(
@@ -1353,7 +1353,7 @@ class MultiSigAuthority {
   // Create multi-sig gate for transaction
   createGate(transactionId: string, amountUsd: number): MultiSigGate {
     const requiredSigs = this.getRequiredSignatures(amountUsd)
-    const signers = Array.from(this.signers.values()).slice(0, Math.max(requiredSigs, 3))
+    const signers = Array.from(this.signers.values()).slice(0, oneMax(requiredSigs, 3))
 
     const gate: MultiSigGate = {
       gate_id: toUuid(`gate:${transactionId}:multisig`),
@@ -1955,7 +1955,7 @@ class FraudDetector {
         allocation_id: `${allocation.theorem_id}:${allocation.funding_source_id}`,
         researcher_id: researcher.researcher_id,
         anomaly_type: 'large_first_claim',
-        risk_score: Math.min(100, (allocation.allocated_usd / 1000000) * 60),
+        risk_score: min(100, (allocation.allocated_usd / 1000000) * 60),
         evidence: [`amount:${allocation.allocated_usd}`, `publications:${researcher.credentials.publication_count}`],
         flagged_at: timestamp,
         status: 'open'
@@ -1974,7 +1974,7 @@ class FraudDetector {
         allocation_id: `${allocation.theorem_id}:${allocation.funding_source_id}`,
         researcher_id: researcher.researcher_id,
         anomaly_type: 'rapid_claims',
-        risk_score: Math.min(100, recentCount * 25),
+        risk_score: min(100, recentCount * 25),
         evidence: [`recent_claims:${recentCount}`, `period:7_days`],
         flagged_at: timestamp,
         status: 'open'
@@ -1992,7 +1992,7 @@ class FraudDetector {
         researcher_id: researcher.researcher_id,
         anomaly_type: 'new_researcher',
         risk_score: 40,
-        evidence: [`profile_age_days:${Math.floor(profileAge / (24 * 60 * 60 * 1000))}`],
+        evidence: [`profile_age_days:${floor(profileAge / (24 * 60 * 60 * 1000))}`],
         flagged_at: timestamp,
         status: 'open'
       }
@@ -2064,7 +2064,7 @@ class FraudDetector {
       investigated,
       resolved,
       false_positives: falsePositives,
-      avg_risk_score: Math.round(avgRisk)
+      avg_risk_score: round(avgRisk)
     }
   }
 
@@ -2367,7 +2367,7 @@ class ImmutableLedger {
 
     // Check if we need to create a new page
     if (this.entries.length % this.entriesPerPage === 0) {
-      this.createPage(Math.floor(this.entries.length / this.entriesPerPage))
+      this.createPage(floor(this.entries.length / this.entriesPerPage))
     }
 
     return entry
@@ -2376,7 +2376,7 @@ class ImmutableLedger {
   // Create a page (sealed batch of entries)
   private createPage(pageNumber: number): void {
     const startSeq = (pageNumber - 1) * this.entriesPerPage + 1
-    const endSeq = Math.min(pageNumber * this.entriesPerPage, this.entries.length)
+    const endSeq = min(pageNumber * this.entriesPerPage, this.entries.length)
     const pageEntries = this.entries.slice(startSeq - 1, endSeq)
 
     // Compute page root
@@ -3621,7 +3621,7 @@ class ImpactMeasurement {
       adoptions,
       downstream_theorems: downstreamTheorems,
       applications,
-      h_index_contribution: Math.min(citations, 100),
+      h_index_contribution: min(citations, 100),
       field_advancement_score: fieldScore,
       measured_at: new Date().toISOString()
     }
@@ -3686,7 +3686,7 @@ class ImpactMeasurement {
       const tier = this.impactTiers[i]
       if (
         impact.total_citations >= tier.min_citations &&
-        impact.breakthrough_count >= Math.ceil(tier.min_adoptions / 5)
+        impact.breakthrough_count >= ceil(tier.min_adoptions / 5)
       ) {
         return tier
       }
@@ -3908,7 +3908,7 @@ class IncentiveManager {
     const rule = Array.from(this.rules.values()).find(r => r.type === type && r.active)
     if (!rule) return null
 
-    const earnedAmount = Math.min(
+    const earnedAmount = min(
       rule.base_reward_usd + rule.multiplier_per_unit * triggerValue,
       rule.cap_usd
     )
@@ -4161,11 +4161,11 @@ class PortfolioManager {
 
     // Compute diversification (higher is better, max 100)
     const variance = allocations.reduce((sum, a) => {
-      const deviation = Math.abs(a.current_allocation_usd - a.target_allocation_usd)
+      const deviation = abs(a.current_allocation_usd - a.target_allocation_usd)
       return sum + deviation
     }, 0)
 
-    this.portfolio.diversification_score = Math.max(0, 100 - variance / (this.portfolio.total_capacity_usd / 10))
+    this.portfolio.diversification_score = oneMax(0, 100 - variance / (this.portfolio.total_capacity_usd / 10))
 
     // Compute risk-adjusted return
     const weightedRisk = allocations.reduce((sum, a) => {
@@ -4181,10 +4181,10 @@ class PortfolioManager {
     this.portfolio.risk_adjusted_return = weightedRisk > 0 ? expectedReturn / weightedRisk : 0
 
     // Check if rebalance needed
-    const maxDeviation = Math.max(
+    const maxDeviation = oneMax(
       ...allocations.map(
         a =>
-          Math.abs(a.current_allocation_usd - a.target_allocation_usd) /
+          abs(a.current_allocation_usd - a.target_allocation_usd) /
           a.target_allocation_usd
       )
     )
@@ -4279,11 +4279,11 @@ class PortfolioManager {
     for (const allocation of this.allocations.values()) {
       const deviation = allocation.current_allocation_usd - allocation.target_allocation_usd
 
-      if (Math.abs(deviation) > allocation.target_allocation_usd * this.rebalanceThreshold) {
+      if (abs(deviation) > allocation.target_allocation_usd * this.rebalanceThreshold) {
         recommendations.push({
           domain: allocation.domain,
           action: deviation > 0 ? 'reduce' : 'increase',
-          amount: Math.abs(deviation)
+          amount: abs(deviation)
         })
       }
     }
@@ -4377,25 +4377,25 @@ class PredictiveModel {
     const predictionId = toUuid(`prediction:${researcherId}:${theoremId}`)
 
     // Factors influencing success
-    const citationFactor = Math.min(historicalCitations / 100, 1.0) * 0.3
-    const publicationFactor = Math.min(publicationCount / 20, 1.0) * 0.25
-    const collaborationFactor = Math.min(collaboratorCount / 50, 1.0) * 0.2
-    const fundingFactor = Math.min(fundingHistoryUsd / 500000, 1.0) * 0.25
+    const citationFactor = min(historicalCitations / 100, 1.0) * 0.3
+    const publicationFactor = min(publicationCount / 20, 1.0) * 0.25
+    const collaborationFactor = min(collaboratorCount / 50, 1.0) * 0.2
+    const fundingFactor = min(fundingHistoryUsd / 500000, 1.0) * 0.25
 
     const successProbability = citationFactor + publicationFactor + collaborationFactor + fundingFactor
 
-    const projectedCitations = Math.round(
+    const projectedCitations = round(
       historicalCitations * (0.8 + successProbability * 0.4)
     )
-    const projectedAdoptions = Math.round(
-      Math.max(1, successProbability * 20)
+    const projectedAdoptions = round(
+      oneMax(1, successProbability * 20)
     )
 
     const prediction: SuccessPrediction = {
       prediction_id: predictionId,
       researcher_id: researcherId,
       theorem_id: theoremId,
-      success_probability: Math.min(1, successProbability),
+      success_probability: min(1, successProbability),
       estimated_citation_count: projectedCitations,
       estimated_adoption_count: projectedAdoptions,
       // CONFIDENCE IS EVIDENCE VOLUME, and it is the one field here that was invented. Every other
@@ -4437,11 +4437,11 @@ class PredictiveModel {
       period_start: periodStart,
       period_end: periodEnd,
       projected_allocations: theoremPipeline,
-      projected_capital_deployed_usd: Math.round(baseProjection),
-      projected_claims_usd: Math.round(baseProjection * 0.75), // 75% claims expected
+      projected_capital_deployed_usd: round(baseProjection),
+      projected_claims_usd: round(baseProjection * 0.75), // 75% claims expected
       confidence_interval: {
-        lower_usd: Math.round(baseProjection - variability),
-        upper_usd: Math.round(baseProjection + variability)
+        lower_usd: round(baseProjection - variability),
+        upper_usd: round(baseProjection + variability)
       }
     }
 
@@ -4458,21 +4458,21 @@ class PredictiveModel {
     yearsInField: number
   ): ResearcherTrajectory {
     // H-index typically grows logarithmically
-    const hGrowthFactor = Math.log(yearsInField + 1) * 0.5
-    const h1Year = Math.round(currentHIndex + hGrowthFactor * 2)
-    const h3Year = Math.round(currentHIndex + hGrowthFactor * 4)
+    const hGrowthFactor = oneLog(yearsInField + 1) * 0.5
+    const h1Year = round(currentHIndex + hGrowthFactor * 2)
+    const h3Year = round(currentHIndex + hGrowthFactor * 4)
 
     // THE CODE DID NOT MATCH ITS OWN COMMENT. "typically 15-20 years in" sat above
     // `yearsInField + 10 + Math.random() * 10`, which spans 10-20. The convention the comment states
     // is the only thing here anyone can check, so it is what the value uses.
-    const careerPeakYear = Math.round(yearsInField + 15)
+    const careerPeakYear = round(yearsInField + 15)
 
     // Funding impact ratio (citations per dollar)
     const fundingImpact = fundingHistoryUsd > 0 ? currentHIndex * 100 / fundingHistoryUsd : 0.5
 
     // Attrition risk (probability researcher leaves field)
     const baseAttritionRisk = 0.1 + (yearsInField / 50) * 0.2 // increases with age
-    const fundingStability = Math.min(fundingHistoryUsd / 250000, 1.0)
+    const fundingStability = min(fundingHistoryUsd / 250000, 1.0)
     const attritionRisk = baseAttritionRisk * (1 - fundingStability)
 
     const trajectory: ResearcherTrajectory = {
@@ -4482,7 +4482,7 @@ class PredictiveModel {
       publication_velocity: currentPublicationRate,
       funding_impact_ratio: fundingImpact,
       career_peak_year: careerPeakYear,
-      attrition_risk: Math.min(attritionRisk, 0.8)
+      attrition_risk: min(attritionRisk, 0.8)
     }
 
     this.trajectories.set(researcherId, trajectory)
@@ -4602,7 +4602,7 @@ class SustainabilityTracker {
     const healthScore =
       fundingStability * 0.35 +
       researcherRetention * 100 * 0.3 +
-      Math.min(impactGrowth, 100) * 0.2 +
+      min(impactGrowth, 100) * 0.2 +
       fundUtilization * 100 * 0.15
 
     const metric: SustainabilityMetric = {
@@ -4613,7 +4613,7 @@ class SustainabilityTracker {
       researcher_retention_rate: researcherRetention,
       impact_growth_rate: impactGrowth,
       fund_utilization_rate: fundUtilization,
-      program_health_score: Math.min(healthScore, 100),
+      program_health_score: min(healthScore, 100),
       timestamp: new Date().toISOString()
     }
 
@@ -4814,7 +4814,7 @@ class SustainabilityTracker {
       )
     }
 
-    const confidence = Math.min(this.metrics.size, 10) * 0.1 // Higher confidence with more data points
+    const confidence = min(this.metrics.size, 10) * 0.1 // Higher confidence with more data points
 
     return { outlook, confidence, recommendations }
   }
@@ -5000,7 +5000,7 @@ class IntegrationHub {
       internal_id: internalIds.join(','),
       last_synced: new Date().toISOString(),
       status: 'synced',
-      record_count: Math.min(externalIds.length, internalIds.length)
+      record_count: min(externalIds.length, internalIds.length)
     }
 
     this.syncRecords.set(syncId, syncRecord)
@@ -5225,7 +5225,7 @@ class BenchmarkComparator {
     peerValue: number
   ): PerformanceComparison {
     // Calculate percentile rank (higher is better)
-    const percentileRank = peerValue > 0 ? Math.min(100, (ourValue / peerValue) * 100) : 0
+    const percentileRank = peerValue > 0 ? min(100, (ourValue / peerValue) * 100) : 0
 
     const comparison: PerformanceComparison = {
       comparison_id: toUuid(`comparison:${ourProgram}:${peerProgramId}:${metric}`),
@@ -5269,7 +5269,7 @@ class BenchmarkComparator {
       funding_to_impact_ratio: fundingToImpactRatio,
       researcher_satisfaction_score: satisfactionScore,
       average_time_to_publication_months: monthsToPublication,
-      success_rate: Math.min(successRate, 100),
+      success_rate: min(successRate, 100),
       peer_comparison_score: 50 // Will be computed after comparisons
     }
 
@@ -6002,7 +6002,7 @@ class RiskManager {
       insurance_coverage_usd: totalInsurance,
       reserve_fund_usd: this.reserveFund,
       contingency_plans_count: this.contingencyPlans.size,
-      coverage_adequacy: Math.min(adequacy, 100)
+      coverage_adequacy: min(adequacy, 100)
     }
   }
 
@@ -6225,7 +6225,7 @@ class GovernanceCouncil {
     const participant = this.participants.get(participantId)
     if (!participant) return false
 
-    participant.reputation_score = Math.max(0, Math.min(100, participant.reputation_score + delta))
+    participant.reputation_score = oneMax(0, min(100, participant.reputation_score + delta))
     participant.voting_power *= 1 + delta / 100
 
     return true
@@ -6445,7 +6445,7 @@ class PricingEngine {
 
     for (const signal of fieldSignals) {
       // Normalize level to 0-100
-      const normalizedLevel = Math.min(100, signal.current_level * 2)
+      const normalizedLevel = min(100, signal.current_level * 2)
 
       // Apply trend adjustment
       const trendMultiplier = signal.trend === 'rising' ? 1.2 : signal.trend === 'declining' ? 0.8 : 1.0
@@ -6454,7 +6454,7 @@ class PricingEngine {
       totalWeight += signal.demand_weight
     }
 
-    return totalWeight > 0 ? Math.min(100, weightedScore / totalWeight) : 50
+    return totalWeight > 0 ? min(100, weightedScore / totalWeight) : 50
   }
 
   // Optimize allocation for theorem
@@ -6488,7 +6488,7 @@ class PricingEngine {
       optimization_id: optId,
       theorem_id: theoremId,
       current_allocation_usd: currentAllocationUsd,
-      recommended_allocation_usd: Math.round(targetAllocation),
+      recommended_allocation_usd: round(targetAllocation),
       adjustment_ratio: adjustmentRatio,
       efficiency_gain: efficiencyGain,
       implementation_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
@@ -6654,7 +6654,7 @@ class ReproducibilityTracker {
     // Compute reproducibility score (inverse of issues)
     const baseScore = 100
     const penalty = issuesFound.length * 10
-    const reproducibilityScore = Math.max(0, baseScore - penalty)
+    const reproducibilityScore = oneMax(0, baseScore - penalty)
 
     // Determine status
     let status: 'attempted' | 'successful' | 'failed' | 'partial' = 'attempted'
@@ -6994,7 +6994,7 @@ class KnowledgeBase {
     if (!practice) return null
 
     // Update running average rating
-    const newAvgRating = (practice.rating * Math.max(1, practice.theorems_using - 1) + rating) / Math.max(1, practice.theorems_using)
+    const newAvgRating = (practice.rating * oneMax(1, practice.theorems_using - 1) + rating) / oneMax(1, practice.theorems_using)
     practice.rating = newAvgRating
 
     return practice
@@ -7011,7 +7011,7 @@ class KnowledgeBase {
     const synthesisId = toUuid(`synthesis:${topic}`)
 
     // Compute synthesis completeness (based on related theorems and findings)
-    const completenessScore = Math.min(
+    const completenessScore = min(
       100,
       (relatedTheorems.length * 10 + keyFindings.length * 15 + (100 - openQuestions.length * 5))
     )
@@ -7192,7 +7192,7 @@ class CollaborationManager {
       collaboration_type: type,
       start_date: new Date().toISOString(),
       contribution_shares: contributionShares,
-      impact_multiplier: Math.min(impactMultiplier, 2.5), // cap at 2.5x
+      impact_multiplier: min(impactMultiplier, 2.5), // cap at 2.5x
       status: 'active'
     }
 
@@ -7236,14 +7236,14 @@ class CollaborationManager {
     network.network_size = new Set(network.collaborators).size
 
     // Compute reach score (based on network growth)
-    network.reach_score = Math.min(100, network.network_size * 10)
+    network.reach_score = min(100, network.network_size * 10)
 
     // Compute diversity score (variety in collaboration types)
     const allCollabs = Array.from(this.collaborations.values()).filter(
       c => c.researchers.includes(researcherId)
     )
     const typeVariety = new Set(allCollabs.map(c => c.collaboration_type)).size
-    network.diversity_score = Math.min(100, typeVariety * 25)
+    network.diversity_score = min(100, typeVariety * 25)
 
     // Compute network impact multiplier
     network.network_impact_multiplier = 1.0 + network.reach_score / 100 * 0.3 + network.diversity_score / 100 * 0.2
@@ -7290,7 +7290,7 @@ class CollaborationManager {
       bonus *= incentive.multiplier_for_diversity
     }
 
-    return Math.min(bonus, incentive.bonus_cap_usd)
+    return min(bonus, incentive.bonus_cap_usd)
   }
 
   // Get collaboration
@@ -7473,7 +7473,7 @@ class FieldAnalyzer {
       const trendId = toUuid(`trend:${field.name}`)
 
       // Compute momentum (based on growth rate and citation velocity)
-      const momentumScore = Math.min(100, field.growth * 2 + (field.citations / field.pubs) * 5)
+      const momentumScore = min(100, field.growth * 2 + (field.citations / field.pubs) * 5)
 
       // Predict status based on growth rate
       let status: 'emerging' | 'growing' | 'mature' | 'declining' = 'mature'
@@ -7511,7 +7511,7 @@ class FieldAnalyzer {
 
     // Compute momentum score
     const citationVelocity = publicationCount > 0 ? citationCount / publicationCount : 0
-    const momentumScore = Math.min(
+    const momentumScore = min(
       100,
       yearOverYearGrowth * 2 + citationVelocity * 3
     )
@@ -7557,10 +7557,10 @@ class FieldAnalyzer {
     const areaId = toUuid(`area:${name}`)
 
     // Compute interdisciplinary index (based on keyword variety)
-    const interdisciplinaryIndex = Math.min(100, keywords.length * 15)
+    const interdisciplinaryIndex = min(100, keywords.length * 15)
 
     // Compute complexity (based on theorem count and impact)
-    const complexityScore = Math.min(100, (theoremIds.length * 5) + (avgImpact / 100 * 50))
+    const complexityScore = min(100, (theoremIds.length * 5) + (avgImpact / 100 * 50))
 
     const area: ResearchArea = {
       area_id: areaId,
@@ -7570,7 +7570,7 @@ class FieldAnalyzer {
       theorems: theoremIds,
       avg_impact_score: avgImpact,
       total_funding_usd: totalFunding,
-      researcher_count: Math.max(1, theoremIds.length / 3),
+      researcher_count: oneMax(1, theoremIds.length / 3),
       year_started: startYear,
       complexity_score: complexityScore,
       interdisciplinary_index: interdisciplinaryIndex
@@ -7592,9 +7592,9 @@ class FieldAnalyzer {
     const opportunityId = toUuid(`opportunity:${title}`)
 
     // Compute opportunity score (based on impact and funding gap)
-    const opportunityScore = Math.min(
+    const opportunityScore = min(
       100,
-      (potentialImpact * 0.6) + (Math.min(fundingGap, 1000000) / 10000) * 0.4
+      (potentialImpact * 0.6) + (min(fundingGap, 1000000) / 10000) * 0.4
     )
 
     const opportunity: EmergingOpportunity = {
@@ -7797,9 +7797,9 @@ class LegacyArchive {
     const recordId = toUuid(`legacy:${theoremId}:${fundingYear}`)
 
     // Compute permanence score (likelihood of lasting impact)
-    const citationScore = Math.min(100, (totalCitations / 100) * 50)
-    const adoptionScore = Math.min(100, (totalAdoptions / 50) * 30)
-    const downstreamScore = Math.min(100, downstreamTheorems * 10)
+    const citationScore = min(100, (totalCitations / 100) * 50)
+    const adoptionScore = min(100, (totalAdoptions / 50) * 30)
+    const downstreamScore = min(100, downstreamTheorems * 10)
     const permanenceScore = (citationScore + adoptionScore + downstreamScore) / 3
 
     const record: LegacyRecord = {
@@ -7814,7 +7814,7 @@ class LegacyArchive {
       fields_influenced: fieldsInfluenced,
       real_world_applications: applications,
       researchers_trained: 0,
-      impact_generations: 1 + Math.floor(downstreamTheorems / 3),
+      impact_generations: 1 + floor(downstreamTheorems / 3),
       archive_date: new Date().toISOString(),
       permanence_score: permanenceScore
     }
@@ -7865,10 +7865,10 @@ class LegacyArchive {
     const legacyId = toUuid(`researcher-legacy:${researcherId}`)
 
     // Compute legacy score (0-100)
-    const citationComponent = Math.min(30, (totalCitations / 1000) * 30)
-    const adoptionComponent = Math.min(20, (totalAdoptions / 100) * 20)
-    const hIndexComponent = Math.min(25, (hIndexPeak / 100) * 25)
-    const menteeComponent = Math.min(25, (menteesCount / 50) * 25)
+    const citationComponent = min(30, (totalCitations / 1000) * 30)
+    const adoptionComponent = min(20, (totalAdoptions / 100) * 20)
+    const hIndexComponent = min(25, (hIndexPeak / 100) * 25)
+    const menteeComponent = min(25, (menteesCount / 50) * 25)
 
     const legacyScore = citationComponent + adoptionComponent + hIndexComponent + menteeComponent
 
@@ -7978,11 +7978,11 @@ class LegacyArchive {
       : 0
 
     const mostImpactful = records.length > 0
-      ? Math.max(...records.map(r => r.total_citations_all_time))
+      ? oneMax(...records.map(r => r.total_citations_all_time))
       : 0
 
     const maxGen = impacts.length > 0
-      ? Math.max(...impacts.map(i => i.generation_number))
+      ? oneMax(...impacts.map(i => i.generation_number))
       : 0
 
     return {
@@ -8166,7 +8166,7 @@ class MentorshipManager {
       current_level: startLevel,
       progress_pct: 0,
       milestones_achieved: [],
-      next_milestone: `Reach ${levels[Math.min(levelIndex + 1, levels.length - 1)]} level`,
+      next_milestone: `Reach ${levels[min(levelIndex + 1, levels.length - 1)]} level`,
       estimated_advancement_months: (levelIndex + 1) * 12,
       career_trajectory: 'steady'
     }
@@ -8472,7 +8472,7 @@ class IPManager {
     const commercializationId = toUuid(`commercialization:${patentId}:${productName}`)
 
     // Compute adoption rate (customers per potential market size)
-    const estimatedMarketSize = Math.max(1000, unitsSold * 10)
+    const estimatedMarketSize = oneMax(1000, unitsSold * 10)
     const adoptionRate = (customerCount / estimatedMarketSize) * 100
 
     const patent = this.patents.get(patentId)
@@ -8731,9 +8731,9 @@ class OutreachManager {
     project.reach_metrics.engagement_rate = views > 0 ? (shares / views) * 100 : 0
 
     // Compute impact score (0-100)
-    project.impact_score = Math.min(
+    project.impact_score = min(
       100,
-      Math.log(views + 1) + shares * 5 + project.reach_metrics.engagement_rate
+      oneLog(views + 1) + shares * 5 + project.reach_metrics.engagement_rate
     )
 
     return project
@@ -9068,7 +9068,7 @@ class SecurityManager {
     const baseScore = 100
     const findingPenalty = findingCount * 5
     const criticalPenalty = criticalFindings * 20
-    const complianceScore = Math.max(0, baseScore - findingPenalty - criticalPenalty)
+    const complianceScore = oneMax(0, baseScore - findingPenalty - criticalPenalty)
 
     const audit: SecurityAudit = {
       audit_id: auditId,
@@ -9338,7 +9338,7 @@ class MonitoringSystem {
         return sum + duration
       }, 0)
 
-    const uptimePercentage = Math.max(0, ((systemAge - downtime) / systemAge) * 100)
+    const uptimePercentage = oneMax(0, ((systemAge - downtime) / systemAge) * 100)
 
     // Get latest metrics for calculations
     const latestMetrics = Array.from(this.metrics.values()).filter(
@@ -9347,15 +9347,15 @@ class MonitoringSystem {
 
     const avgLatency = latestMetrics
       .filter(m => m.metric_type === 'latency')
-      .reduce((sum, m) => sum + m.value, 0) / Math.max(1, latestMetrics.filter(m => m.metric_type === 'latency').length)
+      .reduce((sum, m) => sum + m.value, 0) / oneMax(1, latestMetrics.filter(m => m.metric_type === 'latency').length)
 
     const errorRate = latestMetrics
       .filter(m => m.metric_type === 'error_rate')
-      .reduce((sum, m) => sum + m.value, 0) / Math.max(1, latestMetrics.filter(m => m.metric_type === 'error_rate').length)
+      .reduce((sum, m) => sum + m.value, 0) / oneMax(1, latestMetrics.filter(m => m.metric_type === 'error_rate').length)
 
     const resourceUtilization = latestMetrics
       .filter(m => m.metric_type === 'resource_usage')
-      .reduce((sum, m) => sum + m.value, 0) / Math.max(1, latestMetrics.filter(m => m.metric_type === 'resource_usage').length)
+      .reduce((sum, m) => sum + m.value, 0) / oneMax(1, latestMetrics.filter(m => m.metric_type === 'resource_usage').length)
 
     const report: HealthReport = {
       report_id: reportId,
@@ -9548,7 +9548,7 @@ class FeedbackManager {
       submitter_id: submitterId,
       feedback_type: feedbackType,
       category,
-      rating: Math.min(10, Math.max(0, rating)),
+      rating: min(10, oneMax(0, rating)),
       message,
       submitted_at: new Date().toISOString(),
       anonymous,
@@ -9841,7 +9841,7 @@ class FairnessMonitor {
 
     // Alert if imbalanced
     if (!isBalanced) {
-      const disparity = Math.abs((disparityRatio - 1) * 100)
+      const disparity = abs((disparityRatio - 1) * 100)
       const underfundedGroup = disparityRatio > 1 ? metric.group_b.name : metric.group_a.name
       const severity = disparity > 50 ? 'critical' : disparity > 30 ? 'high' : 'medium'
 
@@ -9915,7 +9915,7 @@ class FairnessMonitor {
       const dimMetrics = Array.from(this.metrics.values()).filter(m => m.dimension === dimension)
       if (dimMetrics.length > 0) {
         const avgBalance = dimMetrics.reduce((sum, m) => {
-          const balance = Math.min(m.disparity_ratio, 1 / m.disparity_ratio)
+          const balance = min(m.disparity_ratio, 1 / m.disparity_ratio)
           return sum + (balance * 100)
         }, 0) / dimMetrics.length
 
@@ -10426,7 +10426,7 @@ class SynthesisEngine {
     // Compute confidence based on number of dimensions
     const baseConfidence = 0.7
     const dimensionBoost = (dimensionsCombination.length - 1) * 0.05
-    const confidence = Math.min(1, baseConfidence + dimensionBoost)
+    const confidence = min(1, baseConfidence + dimensionBoost)
 
     const insight: DimensionalInsight = {
       insight_id: insightId,
@@ -11191,7 +11191,7 @@ class ConsciousnessEngine {
     recommended_checks: string[]
     confidence_calibration: number
   } {
-    const quality = Math.min(100, this.selfAwareness.self_model_accuracy * 100 + 24)
+    const quality = min(100, this.selfAwareness.self_model_accuracy * 100 + 24)
 
     return {
       reasoning_quality: quality,
@@ -11202,7 +11202,7 @@ class ConsciousnessEngine {
         'Test boundary conditions',
         'Review perspective shifts'
       ],
-      confidence_calibration: 1.0 - Math.abs(this.reasoningState.confidence_in_current_strategy - 0.85)
+      confidence_calibration: 1.0 - abs(this.reasoningState.confidence_in_current_strategy - 0.85)
     }
   }
 
@@ -11222,7 +11222,7 @@ class ConsciousnessEngine {
     )
 
     return {
-      self_awareness_score: Math.round(this.selfAwareness.self_model_accuracy * 100),
+      self_awareness_score: round(this.selfAwareness.self_model_accuracy * 100),
       active_dimensions: this.reasoningState.active_dimensions.length,
       reasoning_depth: this.reasoningState.reasoning_depth,
       perspective_shifts: this.selfAwareness.perspective_shifts_handled,
@@ -11651,7 +11651,7 @@ class TemporalCausalityEngine {
 
     // Compute confidence based on chain coherence
     const chainLength = eventSequence.length
-    const confidence = Math.min(1, 0.7 + chainLength * 0.05) // Longer chains = more confident
+    const confidence = min(1, 0.7 + chainLength * 0.05) // Longer chains = more confident
 
     const chain: CausalityChain = {
       chain_id: chainId,
@@ -11699,7 +11699,7 @@ class TemporalCausalityEngine {
       probability,
       time_horizon_hours: 6,
       causal_evidence: relevantChains,
-      confidence: Math.min(1, probability * 0.9)
+      confidence: min(1, probability * 0.9)
     }
 
     this.temporalPredictions.set(predictionId, prediction)
@@ -11722,7 +11722,7 @@ class TemporalCausalityEngine {
     const baseProbability = 0.02 + prng(`edge-base:${patternId}`)() * 0.08 // 2-10% base rate
 
     // Compute conditional probability (given trigger conditions met)
-    const conditionalProbability = Math.min(
+    const conditionalProbability = min(
       1,
       baseProbability * (1 + dimensionsInvolved.length * 0.15)
     )
@@ -11837,7 +11837,7 @@ class TemporalCausalityEngine {
       typical_duration_hours: data.durations.length
         ? data.durations.reduce((a, b) => a + b, 0) / data.durations.length
         : 0,
-      predictability: Math.min(1, data.frequency * 0.1)
+      predictability: min(1, data.frequency * 0.1)
     }))
   }
 
@@ -11849,8 +11849,8 @@ class TemporalCausalityEngine {
     // The events are the only recency signal available here, so the factor is derived from how many
     // of them there are relative to the ten-event scale the line below already uses.
     const eventCount = events.length
-    const recencyFactor = 0.5 + Math.min(0.5, eventCount / 20)
-    return Math.min(1, (eventCount / 10) * recencyFactor)
+    const recencyFactor = 0.5 + min(0.5, eventCount / 20)
+    return min(1, (eventCount / 10) * recencyFactor)
   }
 
   // Private: Analyze patterns from similar chains
@@ -11885,7 +11885,7 @@ class TemporalCausalityEngine {
     return {
       mostLikelyEvent: mostLikelyEvent || 'unknown',
       predictedLayer: predictedLayer || 'unknown',
-      confidence: Math.min(1, chains.length * 0.2)
+      confidence: min(1, chains.length * 0.2)
     }
   }
 
@@ -12086,13 +12086,13 @@ class TheoremDrivenOptimizer {
     // Use zero distribution to analyze frequency spectrum
     const mean = dataPoints.reduce((a, b) => a + b, 0) / dataPoints.length
     const variance =
-      dataPoints.reduce((sq, n) => sq + Math.pow(n - mean, 2), 0) /
+      dataPoints.reduce((sq, n) => sq + pow(n - mean, 2), 0) /
       dataPoints.length
 
     // Riemann-inspired balancing: critical line principle
     // Data should be "balanced" around mean like zeros around critical line
     const balanceScore = 1 - variance / (mean * mean + 1)
-    const improvementPercent = Math.round(balanceScore * 100)
+    const improvementPercent = round(balanceScore * 100)
 
     const app: TheoremApplication = {
       application_id: toUuid('app:riemann:distribution'),
@@ -12115,9 +12115,9 @@ class TheoremDrivenOptimizer {
   applyGoldbachForAllocation(totalAmount: number): TheoremApplication {
     // Goldbach: decompose total into "prime" components (verified sources)
     // Each prime source is independently verified
-    const primes = this.findPrimes(Math.floor(totalAmount / 100))
+    const primes = this.findPrimes(floor(totalAmount / 100))
     const decompositions = this.goldbachDecompose(
-      Math.floor(totalAmount / 100),
+      floor(totalAmount / 100),
       primes
     )
 
@@ -12137,7 +12137,7 @@ class TheoremDrivenOptimizer {
       improvement_metric: 'allocation_decomposition_efficiency',
       baseline_value: 85,
       improved_value: coverage,
-      improvement_percent: Math.round(coverage - 85),
+      improvement_percent: round(coverage - 85),
       applied_at: new Date().toISOString()
     }
 
@@ -12151,8 +12151,8 @@ class TheoremDrivenOptimizer {
     // 3-sphere principle: manifold can be analyzed by local neighborhoods
     // Apply to understanding 20-dimensional system space
 
-    const dimensionalComplexity = Math.pow(2, dimensionCount)
-    const poincaréSimplification = Math.log2(dimensionCount) + 1
+    const dimensionalComplexity = pow(2, dimensionCount)
+    const poincaréSimplification = log2(dimensionCount) + 1
 
     const app: TheoremApplication = {
       application_id: toUuid('app:poincare:dimensions'),
@@ -12163,7 +12163,7 @@ class TheoremDrivenOptimizer {
       improvement_metric: 'reasoning_complexity_reduction',
       baseline_value: dimensionalComplexity,
       improved_value: poincaréSimplification,
-      improvement_percent: Math.round(
+      improvement_percent: round(
         ((dimensionalComplexity - poincaréSimplification) /
           dimensionalComplexity) *
           100
@@ -12228,7 +12228,7 @@ class TheoremDrivenOptimizer {
       improvement_metric: 'dimensional_separation_quality',
       baseline_value: 0.6,
       improved_value: decompositionQuality,
-      improvement_percent: Math.round(decompositionQuality * 100 - 60),
+      improvement_percent: round(decompositionQuality * 100 - 60),
       applied_at: new Date().toISOString()
     }
 
@@ -12332,8 +12332,8 @@ class TheoremDrivenOptimizer {
 
     return {
       total_applications: apps.length,
-      average_improvement: Math.round(avgImprovement),
-      total_improvement_value: Math.round(totalValue * 100) / 100,
+      average_improvement: round(avgImprovement),
+      total_improvement_value: round(totalValue * 100) / 100,
       strategies_active: this.strategies.size,
       insights_discovered: this.insights.size,
       theorems_applied: Object.keys(this.theoremRegistry).length
@@ -12636,7 +12636,7 @@ class HolisticOptimizer {
               this.interactions.get(interaction_reversed)
 
             if (actualInteraction) {
-              const weight = Math.abs(actualInteraction.interaction_strength)
+              const weight = abs(actualInteraction.interaction_strength)
               gradient +=
                 actualInteraction.interaction_strength *
                 (otherState.target_value - otherState.current_value) *
@@ -12648,7 +12648,7 @@ class HolisticOptimizer {
 
         // Update dimension value
         const step = (gradient / (totalWeight + 1)) * 0.01
-        config[dim] = Math.max(0, Math.min(100, config[dim] + step))
+        config[dim] = oneMax(0, min(100, config[dim] + step))
       }
     }
 
@@ -12658,8 +12658,8 @@ class HolisticOptimizer {
 
     for (const [dim, state] of this.dimensions.entries()) {
       const value = config[dim]
-      const distance = Math.abs(value - state.target_value)
-      const score = Math.max(0, 100 - distance)
+      const distance = abs(value - state.target_value)
+      const score = oneMax(0, 100 - distance)
       dimensionScores[dim] = score
       totalScore += score
     }
@@ -12804,7 +12804,7 @@ class HolisticOptimizer {
     // Tradeoffs to manage
     for (const tradeoff of tradeoffs.slice(0, 2)) {
       recommendations.push(
-        `Manage tradeoff: ${tradeoff.dimension_a} ↔ ${tradeoff.dimension_b} (${Math.abs(tradeoff.interaction_strength).toFixed(2)} strength)`
+        `Manage tradeoff: ${tradeoff.dimension_a} ↔ ${tradeoff.dimension_b} (${abs(tradeoff.interaction_strength).toFixed(2)} strength)`
       )
     }
 
@@ -13195,9 +13195,9 @@ class FederationCoordinator {
     const scores = Array.from(this.nodes.values()).map(n => n.global_score)
     const meanScore = scores.reduce((a, b) => a + b, 0) / scores.length
     const variance =
-      scores.reduce((sum, s) => sum + Math.pow(s - meanScore, 2), 0) /
+      scores.reduce((sum, s) => sum + pow(s - meanScore, 2), 0) /
       scores.length
-    const fairness = Math.max(0, 100 - Math.sqrt(variance))
+    const fairness = oneMax(0, 100 - sqrt(variance))
 
     const optimization: UnifiedOptimization = {
       optimization_id: optId,
@@ -13258,18 +13258,18 @@ class FederationCoordinator {
 
     const scores = nodes.map(n => n.global_score)
     const variance =
-      scores.reduce((sum, s) => sum + Math.pow(s - avgScore, 2), 0) /
+      scores.reduce((sum, s) => sum + pow(s - avgScore, 2), 0) /
       scores.length
-    const fairness = Math.max(0, 100 - Math.sqrt(variance))
+    const fairness = oneMax(0, 100 - sqrt(variance))
 
     return {
       total_organizations: nodes.length,
-      average_organization_score: Math.round(avgScore * 10) / 10,
+      average_organization_score: round(avgScore * 10) / 10,
       federated_learnings: this.federatedLearnings.size,
       shared_causal_chains: this.causalChainSharing.size,
       cross_org_synergies: this.federatedSynergies.size,
-      ecosystem_health: Math.round((avgScore + fairness) / 2 * 10) / 10,
-      fairness_score: Math.round(fairness * 10) / 10,
+      ecosystem_health: round((avgScore + fairness) / 2 * 10) / 10,
+      fairness_score: round(fairness * 10) / 10,
       knowledge_flow_volume: learningFlow
     }
   }
@@ -13375,7 +13375,7 @@ class CybersecurityFundingEngine {
         probability: threat.probability,
         time_to_occurrence_months: threat.months,
         required_research: threat.research,
-        funding_recommendation: Math.round(threat.probability * 5000000),
+        funding_recommendation: round(threat.probability * 5000000),
         discovered_at: new Date().toISOString()
       }
       this.threatPredictions.set(predictionId, prediction)
@@ -13530,10 +13530,10 @@ class BiotechnologyFundingEngine {
       drug_name: drugName,
       indication: 'multiple-conditions',
       phase: phase,
-      patients_enrolled: Math.pow(10, phase + 1),
+      patients_enrolled: pow(10, phase + 1),
       success_rate: 1 - phase * 0.2,
-      regulatory_approval_probability: Math.max(0, 0.9 - phase * 0.15),
-      funding_needed: Math.pow(10, 6) * phase
+      regulatory_approval_probability: oneMax(0, 0.9 - phase * 0.15),
+      funding_needed: pow(10, 6) * phase
     }
     this.trials.set(trialId, trial)
     return trial
@@ -13699,8 +13699,8 @@ class UniversalDomainFunder {
     const acceleration: QuantumAcceleration = {
       acceleration_id: accelId,
       domain: domainName,
-      classical_timeline_months: Math.round(classicalTimeline),
-      quantum_timeline_months: Math.round(quantumTimeline),
+      classical_timeline_months: round(classicalTimeline),
+      quantum_timeline_months: round(quantumTimeline),
       speedup_factor: speedupFactor,
       research_approach: `quantum-inspired algorithms for ${domainName}`,
       computing_resources_needed: `quantum-simulator + classical-gpu-cluster`
@@ -13772,7 +13772,7 @@ class UniversalDomainFunder {
       // Increase for quantum acceleration potential
       amount *= 1 + (domain.quantum_acceleration_factor / 10) * 0.2
 
-      allocation[domain.name] = Math.round(amount)
+      allocation[domain.name] = round(amount)
     }
 
     return allocation
@@ -13936,8 +13936,8 @@ class SequenceResearcher {
         dependencies: info.deps,
         downstream: [], // computed below
         dimensionality: info.dims,
-        information_flow: Math.pow(2, info.dims) * (num * 100),
-        emergence_level: Math.min(10, Math.floor(num / 5)),
+        information_flow: pow(2, info.dims) * (num * 100),
+        emergence_level: min(10, floor(num / 5)),
         recursion_depth: this.computeRecursionDepth(info.deps)
       }
       this.layerAnalyses.set(num, analysis)
@@ -13960,7 +13960,7 @@ class SequenceResearcher {
   // Compute recursion depth
   private computeRecursionDepth(deps: number[]): number {
     if (deps.length === 0) return 0
-    return 1 + Math.max(...deps.map(d => Math.floor(d / 10)))
+    return 1 + oneMax(...deps.map(d => floor(d / 10)))
   }
 
   // Identify mathematical patterns in the sequence
@@ -14047,7 +14047,7 @@ class SequenceResearcher {
         dimension_count: group.dims,
         dimension_per_layer: group.dims / group.count,
         scaling_law: group.dims > 10 ? 'exponential' : group.dims > 5 ? 'quadratic' : 'linear',
-        complexity_growth: Math.pow(group.dims, 2)
+        complexity_growth: pow(group.dims, 2)
       }
       scalings.push(scaling)
     }
@@ -14121,7 +14121,7 @@ class SequenceResearcher {
         properties_at_end: stage.end,
         novel_properties: stage.novel,
         emergence_threshold: parseInt(stage.range.split('-')[0]),
-        complexity_multiplier: Math.pow(2, parseInt(stage.range.split('-')[1]) / 10)
+        complexity_multiplier: pow(2, parseInt(stage.range.split('-')[1]) / 10)
       }
       emergences.push(emergence)
     }
@@ -14352,7 +14352,7 @@ export class AnalyticsDashboard {
       score += 10
     }
 
-    return Math.max(0, Math.min(100, Math.round(score)))
+    return oneMax(0, min(100, round(score)))
   }
 
   // Identify current bottleneck

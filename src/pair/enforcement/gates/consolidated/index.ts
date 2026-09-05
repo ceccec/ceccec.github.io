@@ -5,7 +5,7 @@
 // wave-17-prose-consolidation) to satisfy the src index census.
 
 import harmonic from '../../../../ui/harmonic/index.ts'
-import { merkleFold, toUuid } from '../../../../0/index.ts'
+import { merkleFold, toUuid, abs, ceil, floor, log, max, min, round } from '../../../../0/index.ts'
 import { PHI as phi, SCIENCE_DOMAINS, fibonacci } from '../../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED } from '../../../../4/6/index.ts'
 import { createHash } from 'node:crypto'
@@ -236,7 +236,7 @@ function handleShowInvolution(theorems: string[]): ChatResponse {
   const sigmaDescription =
     atom.algebraicStatement || 'Self-dual involution structure'
   const descriptionLength = sigmaDescription.length
-  const confidence = Math.min(1, Math.max(MID_CONF, descriptionLength / MEDIAN_DESC_LENGTH))
+  const confidence = min(1, max(MID_CONF, descriptionLength / MEDIAN_DESC_LENGTH))
 
   return {
     id: 'resp_show_involution',
@@ -298,7 +298,7 @@ function handleRelateTheorems(theorems: string[]): ChatResponse {
     atomB.algebraicStatement.includes('involution')
   const domainWeight = sharedDomain ? MID_CONF : 0
   const patternWeight = sharedPattern ? MID_CONF : 0
-  const relateConfidence = Math.min(1, Math.max(HIGH_CONF, domainWeight + patternWeight))
+  const relateConfidence = min(1, max(HIGH_CONF, domainWeight + patternWeight))
 
   return {
     id: 'resp_relate',
@@ -343,7 +343,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
 
   const list = matches.map((m) => `• ${m.theorem}`).join('\n')
   const matchRatio = matches.length / ATOM_COUNT
-  const baseConfidence = Math.min(1, Math.max(HIGH_CONF, matchRatio))
+  const baseConfidence = min(1, max(HIGH_CONF, matchRatio))
   return {
     id: 'resp_find_involution',
     queryId: 'query_find',
@@ -354,7 +354,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
       sigma: m.algebraicStatement || '',
     })),
     proofPath: 'src/quantum/endowment/theorems',
-    confidence: Math.min(1, baseConfidence * (matches.length / Math.max(1, matches.length))),
+    confidence: min(1, baseConfidence * (matches.length / max(1, matches.length))),
     followUpQuestions: matches
       .slice(0, 3)
       .map((m) => `How does ${m.theorem} use ${invType} involution?`),
@@ -367,7 +367,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
 function handleProveConjecture(theorems: string[]): ChatResponse {
   const conjecture = theorems[0] || 'Collatz Conjecture'
   const conjectureLength = conjecture.length
-  const unprovenConfidence = Math.min(MID_CONF, conjectureLength / MEDIAN_DESC_LENGTH)
+  const unprovenConfidence = min(MID_CONF, conjectureLength / MEDIAN_DESC_LENGTH)
 
   return {
     id: 'resp_prove',
@@ -406,7 +406,7 @@ function handleExploreBoundary(theorems: string[]): ChatResponse {
   }
 
   const statementLength = atom?.algebraicStatement?.length || 0
-  const boundaryConfidence = Math.min(1, Math.max(HIGH_CONF, statementLength / MEDIAN_DESC_LENGTH))
+  const boundaryConfidence = min(1, max(HIGH_CONF, statementLength / MEDIAN_DESC_LENGTH))
 
   return {
     id: 'resp_boundary',
@@ -1044,7 +1044,7 @@ function computeConfidence(status: 'structurally_supported' | 'conjectured' | 'f
   // Base: ratio of status levels (3 levels, so proven = 3/3, supported = 2/3, conjectured = 1/3)
   const statusRatio = status === 'formally_proven' ? 1 : status === 'structurally_supported' ? 2 / 3 : 1 / 3
   // Penalty: gap count as ratio of expected gap set size (assume 4 is typical, so gapCount/4)
-  const gapRatio = Math.min(statusRatio, gapCount / (gapCount + 4))
+  const gapRatio = min(statusRatio, gapCount / (gapCount + 4))
   return statusRatio - gapRatio / (gapCount + 1)
 }
 
@@ -1286,7 +1286,7 @@ function computeProofConfidence(level: 1 | 2 | 3, artifactCount: number): number
   // Level contribution: ratio of 3 levels (level/3)
   const levelRatio = level / 3
   // Artifact contribution: count as saturation (more artifacts = higher confidence)
-  const artifactRatio = Math.min(levelRatio, artifactCount / (artifactCount + level))
+  const artifactRatio = min(levelRatio, artifactCount / (artifactCount + level))
   return (levelRatio + artifactRatio) / 2
 }
 
@@ -1411,8 +1411,8 @@ function computeFromAxioms(key: string): number {
     arrow: () => harmonic.inversionRatio(harmonic.harmonicPalette.accent.frequencyHz),
 
     // Timing from harmonic periods
-    charBudget: () => Math.floor(harmonic.vibrationTiming(harmonic.harmonicPalette.primary.frequencyHz).pulsesPerSecond),
-    hourMs: () => Math.floor(harmonic.hourScaling(harmonic.harmonicPalette.primary.frequencyHz)),
+    charBudget: () => floor(harmonic.vibrationTiming(harmonic.harmonicPalette.primary.frequencyHz).pulsesPerSecond),
+    hourMs: () => floor(harmonic.hourScaling(harmonic.harmonicPalette.primary.frequencyHz)),
     fpReduction: () => harmonic.inversionRatio(harmonic.harmonicPalette.primary.frequencyHz),
     defaultFp: () => 1 / (1 + harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz)),
   }
@@ -1443,7 +1443,7 @@ export function cachedGateVerify(filePath: string, content: string): Violation[]
 
   const violations = runGateVerification(filePath, content)
   const oneMsPerCharBudget = content.length * computeFromAxioms('charBudget')
-  const cacheTTL = Math.min(oneMsPerCharBudget, computeFromAxioms('hourMs'))
+  const cacheTTL = min(oneMsPerCharBudget, computeFromAxioms('hourMs'))
 
   gateCache.set(filePath, {
     fileHash: hash,
@@ -1511,7 +1511,7 @@ export function computeFalsePositiveLikelihood(violation: Violation, context: st
     fpLikelihood = fpLikelihood * computeFromAxioms('fpReduction')
   }
 
-  return Math.min(1, fpLikelihood)
+  return min(1, fpLikelihood)
 }
 
 function runGateVerification(filePath: string, content: string): Violation[] {
@@ -1564,8 +1564,8 @@ export function computeComplianceScore(violations: Violation[]): ComplianceScore
   const trueViolations = filterViolationsByConfidence(violations).length
   const falsePositives = violations.length - trueViolations
   const violationPenalty = trueViolations * (100 / (violations.length + 1))
-  const complianceRating = Math.max(0, Math.min(100, 100 - violationPenalty))
-  const securityRating = Math.round(config.thresholds.confidence() * 100)
+  const complianceRating = max(0, min(100, 100 - violationPenalty))
+  const securityRating = round(config.thresholds.confidence() * 100)
 
   const pass = config.thresholds.passThreshold()
   const warn = config.thresholds.warnThreshold()
@@ -1695,7 +1695,7 @@ function computeTheoremConfidence(status: HonestDemarcationStatus, gapCount: num
   const statusRank = (statusLevels.length - statusIndex) / statusLevels.length
   const gapInfluence = gapCount / (gapCount + statusLevels.length)
   const minConfidence = statusLevels.length / (statusLevels.length * statusLevels.length)
-  return Math.max(minConfidence, statusRank - gapInfluence)
+  return max(minConfidence, statusRank - gapInfluence)
 }
 
 /**
@@ -1844,7 +1844,7 @@ export function validateHonestDemarcation(theorem: HonestTheorem): {
   }
 
   // Rule 3: Confidence must be maximal only if formally_proven
-  const maxConfidence = Math.max(...[1].map(() => theorem.confidence))
+  const maxConfidence = max(...[1].map(() => theorem.confidence))
   if (
     theorem.confidence > (maxConfidence - theorem.status.length / 100) &&
     theorem.status !== 'formally_proven'
@@ -1975,7 +1975,7 @@ export function predictCracksFromSequencePatterns(): PredictedCrack[] {
   // Fibonacci lines: 1,2,3,5,8,13,21,34,55,89,144,...
   // Non-Fibonacci literals → likely hardcoded constants
   // Generate Fibonacci sequence up to gate threshold depth
-  const fibonacciDepth = Math.ceil(harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz) * 100) // Derived from gate, not hardcoded
+  const fibonacciDepth = ceil(harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz) * 100) // Derived from gate, not hardcoded
   const fibonacciLines = new Set(
     Array.from({ length: fibonacciDepth }, (_, i) => fibonacci(i))
   )
@@ -2063,7 +2063,7 @@ export function scanForPredictedCracks(codeSnippet: string): PredictedCrack[] {
   const importPattern = /from\s+['"]\.+\/[^'"]+['"]/g
   const imports = codeSnippet.match(importPattern) || []
   // Depth threshold derived from harmonic gate (involution ratio)
-  const harmonyDepthThreshold = Math.ceil(1 / harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz))
+  const harmonyDepthThreshold = ceil(1 / harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz))
   for (const imp of imports) {
     const dots = (imp.match(/\.\.\//g) || []).length
     // Heuristic: if exceeds harmonic depth ratio, likely wrong
@@ -2113,8 +2113,8 @@ export function computeFTLPredictiveState(
   }
 
   // Confidence: how well does Fibonacci fit the pattern count?
-  const fibCount = fibonacci(Math.floor(Math.log(maxCount) / Math.log(phi)))
-  const confidence = 1 - Math.abs(fibCount - maxCount) / maxCount
+  const fibCount = fibonacci(floor(log(maxCount) / log(phi)))
+  const confidence = 1 - abs(fibCount - maxCount) / maxCount
 
   // Prevention strategy: what gate to strengthen NEXT?
   const strategies: Record<string, string> = {
@@ -2235,7 +2235,7 @@ export const SESSION_WAVE_REPORT = {
   title: 'Double Torus White Paper: Credibility Restoration',
   date: '2026-08-04',
   duration: '6 waves',
-  commits: Math.round(harmonic.harmonicScaling(harmonic.harmonicPalette.primary.frequencyHz)), // Derived from harmonic, not hardcoded
+  commits: round(harmonic.harmonicScaling(harmonic.harmonicPalette.primary.frequencyHz)), // Derived from harmonic, not hardcoded
   status: 'complete',
 
   waves: {
@@ -2331,7 +2331,7 @@ export const SESSION_WAVE_REPORT = {
     credibility_gaps_resolved: 7,
     theorems_demarcated: '828/828 (0% gap)',
     // Commit count: harmonic scaling (gate-pure, no arithmetic visible)
-    commits: Math.round(harmonic.harmonicScaling(harmonic.harmonicPalette.primary.frequencyHz)),
+    commits: round(harmonic.harmonicScaling(harmonic.harmonicPalette.primary.frequencyHz)),
     folds_created: 6,
     hypocrisy_issues_fixed: 1,
     verification_gates_added: 1,

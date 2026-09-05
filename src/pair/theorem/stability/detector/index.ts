@@ -1,3 +1,5 @@
+import { TAU } from '../../../../3/7/index.ts'
+import { cos, exp, min, sin, sqrt } from '../../../../0/index.ts'
 // Wave 31: Quantum Coherence Detector
 // Empirically verify Clay theorems through quantum superposition stability
 // Simulate: initialization → measurement collapse → verify canonical always wins
@@ -29,8 +31,8 @@ export const riemann_quantum_state: TheoremQuantumState = {
   name: 'Riemann Hypothesis',
   canonical_state: 'All zeros on critical line Re(s)=1/2',
   off_canonical_state: 'At least one zero off critical line',
-  alpha: Math.cos(Math.PI / 8), // √(2+√2)/2 ≈ 0.924 (higher probability)
-  beta: Math.sin(Math.PI / 8), // √(2-√2)/2 ≈ 0.383 (lower probability)
+  alpha: cos((TAU / 2) / 8), // √(2+√2)/2 ≈ 0.924 (higher probability)
+  beta: sin((TAU / 2) / 8), // √(2-√2)/2 ≈ 0.383 (lower probability)
   coherence: 0, // Computed
   decoherence_rate: 0, // Computed
 }
@@ -65,8 +67,8 @@ export function applyDecoherence(state: TheoremQuantumState, noise_level: number
   // Protected coherence: stays high despite noise
   // Unprotected: decays toward 0.5 (random)
 
-  const protected_alpha = state.alpha * Math.exp(-noise_level * state.decoherence_rate)
-  const protected_beta = Math.sqrt(1 - protected_alpha * protected_alpha)
+  const protected_alpha = state.alpha * exp(-noise_level * state.decoherence_rate)
+  const protected_beta = sqrt(1 - protected_alpha * protected_alpha)
 
   return {
     ...state,
@@ -128,7 +130,7 @@ export function quantumStabilityProof(state: TheoremQuantumState): {
   })
 
   // Stability check: coherence should stay high (> 0.85) even under noise
-  const min_coherence = Math.min(...coherence_under_noise)
+  const min_coherence = min(...coherence_under_noise)
   const passed = clean_coherence > 0.85 && min_coherence > 0.7
 
   const verdict = passed

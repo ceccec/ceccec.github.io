@@ -1,4 +1,4 @@
-import { merkleFold, toUuid } from '../../0/index.ts'
+import { merkleFold, toUuid, round } from '../../0/index.ts'
 import { openTheoremsWithGaps, sealedTheoremsWithProofs } from '../chat/index.ts'
 import { portal } from '../portal/index.ts'
 import type { Theorem } from '../chat/index.ts'
@@ -772,8 +772,8 @@ export async function runWaveCascade(): Promise<WaveOutput> {
     },
     {
       type: 'coverage-analysis',
-      sealed_coverage: `${Math.round((sealed.count / (sealed.count + frontier.count)) * 100)}%`,
-      frontier_coverage: `${Math.round((frontier.count / (sealed.count + frontier.count)) * 100)}%`,
+      sealed_coverage: `${round((sealed.count / (sealed.count + frontier.count)) * 100)}%`,
+      frontier_coverage: `${round((frontier.count / (sealed.count + frontier.count)) * 100)}%`,
       pattern_reach: patterns.map(p => p.theorems.length)
     },
     {

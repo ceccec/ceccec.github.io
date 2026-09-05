@@ -1,7 +1,7 @@
 // ☵ Kǎn · Water · dynamic comparison mesh for solution discovery
 // Comparative analysis across algorithm families to hypothesize undiscovered solution paths
 
-import { memoByRoot, toUuid, floor } from '../../0/index.ts'
+import { memoByRoot, toUuid, floor, abs, min } from '../../0/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
 
@@ -122,7 +122,7 @@ export function contrastAlgorithms(algo1: string, algo2: string): ContrastAnalys
   const sig1 = algorithmSignature(algo1)
   const sig2 = algorithmSignature(algo2)
 
-  const speedupGap = Math.abs(sig1.speedup - sig2.speedup)
+  const speedupGap = abs(sig1.speedup - sig2.speedup)
   const sharedClass = sig1.problemClass === sig2.problemClass
 
   return {
@@ -178,7 +178,7 @@ export function generateMillenniumCandidates(millenniumProblem: string): Solutio
   for (const algo of problemConfig.algorithms) {
     const sig = algorithmSignature(algo)
     const confidence = floor(sig.speedup * 10) / 100 // Speedup→confidence ratio
-    const novelty = Math.min(1, confidence * 0.7) // Higher speedup = more novelty
+    const novelty = min(1, confidence * 0.7) // Higher speedup = more novelty
 
     candidates.push({
       millenniumProblem,

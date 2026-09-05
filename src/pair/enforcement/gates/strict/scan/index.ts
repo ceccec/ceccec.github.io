@@ -7476,7 +7476,7 @@ export function scanHandListedRosters(root: string = enforcementScanRoot()): { f
       if (!/^\s{2,}const \w+(?:: [^=]+)? = \[\s*$/.test(line)) continue
       let entries = 0
       let computedEntries = 0
-      for (let j = i + 1; j < Math.min(i + (8 * 9), lines.length); j += 1) {
+      for (let j = i + 1; j < min(i + (8 * 9), lines.length); j += 1) {
         const row = lines[j]!
         if (/^\s*\]/.test(row)) break
         if (!/^\s*\{\s*\w+:/.test(row)) continue

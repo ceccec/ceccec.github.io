@@ -21,7 +21,7 @@ import type { Dims } from './mountain/dimensions/index.ts'
 import { buildMatrix } from '../heaven/compute/index.ts'
 import { plasmaMoviePalette, type PlasmaMoviePalette, heroMoviePhaseHue, HERO_CYCLE_MS, heroPhaseAt, clientMovieSeedCopyText, allMovieSeedCopyText, plasmaMovieStreams, clientMoviePaintPathSealed, withSimulatedBrowserWindow, realtimeComputationsMoviePaint, type PlasmaWiredStream } from '../fire/plasma/ball/index.ts'
 import { livingTorus } from '../fire/diamonds/index.ts'
-import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid } from '../0/index.ts'
+import { VORTEX_SEQUENCE, abs, asin, atan2, ceil, cos, floor, hypot, imul, max, merkleFold, min, prng, round, sealFacets, seedFromText, sin, sqrt, toUuid, abs as oneAbs, log2, min as oneMin, pow } from '../0/index.ts'
 import { claySolvedTheorem, earned } from '../3/7/index.ts'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../8/2/index.ts'
 import type { MindMatrix } from '../types/index.ts'
@@ -2451,7 +2451,7 @@ export function hhlAlgorithm(
 ): LinearSystemSolution {
   // Quantum complexity: O(log(n) * κ * poly(1/ε))
   // Quantum = unbounded until measurement (no hardcoded precision)
-  const quantumComplexity = Math.log2(systemSize) * conditionNumber
+  const quantumComplexity = log2(systemSize) * conditionNumber
   const quantumTime = quantumComplexity
 
   // Classical complexity: O(n^2) to O(n^2.37) depending on sparsity
@@ -2563,13 +2563,13 @@ export function shorsAlgorithm(
   const factors = factorsResult || [1, n]  // [1, n] = failure marker
 
   // Quantum metrics (simulated order-finding complexity)
-  const quantumQubits = floor(2 * Math.log2(n)) + 3
+  const quantumQubits = floor(2 * log2(n)) + 3
   const quantumIterations = quantumQubits * quantumQubits
 
   // Classical: worst-case trial division
   const classicalIterations = n
 
-  const speedup = classicalIterations / Math.max(1, quantumIterations)
+  const speedup = classicalIterations / max(1, quantumIterations)
 
   return {
     n,
@@ -2603,21 +2603,21 @@ export function groversAlgorithm(
   readonly receipt: string
 } {
   // Validate database size is power of 2
-  const nQubits = floor(Math.log2(databaseSize))
+  const nQubits = floor(log2(databaseSize))
   if (2 ** nQubits !== databaseSize) {
     throw new Error(`Database size must be power of 2, got ${databaseSize}`)
   }
 
   // Simulate Grover's algorithm via amplitude amplification
   // Initialize uniform superposition: a_i = 1/√N for all i
-  const uniformAmplitude = 1 / Math.sqrt(databaseSize)
+  const uniformAmplitude = 1 / sqrt(databaseSize)
   const amplitudes: number[] = []
   for (let i = 0; i < databaseSize; i++) {
     amplitudes.push(uniformAmplitude)
   }
 
   // Number of iterations: exactly ⌊π/(4) * √N⌋ ensures maximum amplitude at marked element
-  const iterations = floor(Math.PI / 4 * Math.sqrt(databaseSize))
+  const iterations = floor((TAU / 2) / 4 * sqrt(databaseSize))
 
   // Grover iteration: (oracle + diffusion operator)
   for (let iter = 0; iter < iterations; iter++) {
@@ -2636,7 +2636,7 @@ export function groversAlgorithm(
   }
 
   // Ensure normalization (numerical stability)
-  const norm = Math.sqrt(amplitudes.reduce((sum, a) => sum + a * a, 0))
+  const norm = sqrt(amplitudes.reduce((sum, a) => sum + a * a, 0))
   if (norm > 0) {
     for (let i = 0; i < databaseSize; i++) {
       amplitudes[i] /= norm
@@ -2644,10 +2644,10 @@ export function groversAlgorithm(
   }
 
   // Measure: find index with maximum amplitude
-  let maxAmplitude = Math.abs(amplitudes[0])
+  let maxAmplitude = oneAbs(amplitudes[0])
   let foundIndex = 0
   for (let i = 1; i < databaseSize; i++) {
-    const abs = Math.abs(amplitudes[i])
+    const abs = oneAbs(amplitudes[i])
     if (abs > maxAmplitude) {
       maxAmplitude = abs
       foundIndex = i
@@ -2665,7 +2665,7 @@ export function groversAlgorithm(
   const quantumIterations = iterations
   const classicalIterations = databaseSize // Average: N/2 queries
 
-  const speedup = classicalIterations / Math.max(1, quantumIterations)
+  const speedup = classicalIterations / max(1, quantumIterations)
 
   return {
     databaseSize,
@@ -2910,7 +2910,7 @@ export function detectBuildLockState(): BuildLockState {
     const stat = statSync(lockFile)
     const ageMs = Date.now() - stat.mtimeMs
     lockFileStale = ageMs > 3 * (2 * 5) ** 5 // > 5 minutes
-    if (lockFileStale) issues.push(`build-lock.mjs stale (${Math.round(ageMs / (2 * 5) ** 3)}s old)`)
+    if (lockFileStale) issues.push(`build-lock.mjs stale (${round(ageMs / (2 * 5) ** 3)}s old)`)
   } else {
     issues.push('build-lock.mjs missing')
   }
@@ -4424,7 +4424,7 @@ export function quantumHardwareCapabilities(matrix: MindMatrix = buildMatrix()):
     const providers = [ibmQuantumAdapter(), ionqAdapter(), localSimulator()]
     const available = providers.filter((p) => p.capabilities.status === 'available').length
     const totalQubits = providers.reduce((sum, p) => sum + p.capabilities.maxQubits, 0)
-    const bestErrorRate = Math.min(...providers.map((p) => p.capabilities.errorRate))
+    const bestErrorRate = oneMin(...providers.map((p) => p.capabilities.errorRate))
 
     return {
       providers,
@@ -4550,7 +4550,7 @@ export async function waitForJob(
     }
 
     // Exponential backoff: start at pollInterval_s, max 60s
-    const backoffMs = Math.min(pollInterval_s * 1000 * Math.pow(1.5, Math.floor(elapsedSeconds / 60)), 60000)
+    const backoffMs = oneMin(pollInterval_s * 1000 * pow(1.5, floor(elapsedSeconds / 60)), 60000)
     await new Promise((resolve) => setTimeout(resolve, backoffMs))
   }
 }
@@ -4610,7 +4610,7 @@ export async function submitJobWithRetry(
     } catch (error) {
       lastError = error as Error
       // Exponential backoff: 1s, 2s, 4s
-      const backoffMs = Math.pow(2, attempt) * 1000
+      const backoffMs = pow(2, attempt) * 1000
       await new Promise((resolve) => setTimeout(resolve, backoffMs))
     }
   }
@@ -5264,16 +5264,16 @@ export class QuantumCombinatorialTrainer {
 
   private calculateConvergence(prev_pop: StrategyPopulation): number {
     // Return 1 if converged, 0 if diverse
-    return Math.max(0, 1 - prev_pop.diversity)
+    return max(0, 1 - prev_pop.diversity)
   }
 
   private calculateMedian(values: number[]): number {
     const sorted = [...values].sort((a, b) => a - b)
-    return sorted[Math.floor(sorted.length / 2)]
+    return sorted[floor(sorted.length / 2)]
   }
 
   private euclideanDistance(a: number[], b: number[]): number {
-    return sqrt(a.reduce((sum, val, i) => sum + Math.pow(val - b[i], 2), 0))
+    return sqrt(a.reduce((sum, val, i) => sum + pow(val - b[i], 2), 0))
   }
 
   getHistory(): StrategyPopulation[] {
@@ -5372,7 +5372,7 @@ export class FTLPredictor {
             effect,
             strength: strength as number,
             lag_steps: lag,
-            confidence: Math.min(0.95, (strength as number) * 0.9)
+            confidence: oneMin(0.95, (strength as number) * 0.9)
           }
 
           if (!this.causal_graph.edges.has(cause)) {
@@ -5425,7 +5425,7 @@ export class FTLPredictor {
         }
       }
 
-      predicted_value = Math.max(0, Math.min(1, step_value)) // Clamp to [0, 1]
+      predicted_value = max(0, oneMin(1, step_value)) // Clamp to [0, 1]
     }
 
     // Add strategy-specific adjustment
@@ -5433,7 +5433,7 @@ export class FTLPredictor {
     predicted_value = predicted_value * 0.7 + strategy_bonus * 0.3
 
     // Confidence decreases with horizon
-    const confidence = Math.max(0.5, 0.9 - horizon_steps * 0.02)
+    const confidence = max(0.5, 0.9 - horizon_steps * 0.02)
 
     const prediction: FTLPrediction = {
       id: prediction_id,
@@ -5461,7 +5461,7 @@ export class FTLPredictor {
     const prediction = this.predictions.get(prediction_id)
     if (!prediction) return { was_accurate: false, error: 1, recalibration: 0 }
 
-    const error = Math.abs(prediction.predicted_performance - actual_performance)
+    const error = oneAbs(prediction.predicted_performance - actual_performance)
     const was_accurate = error < 0.15 // Within 15% is considered accurate
 
     prediction.actual_performance = actual_performance
@@ -5469,8 +5469,8 @@ export class FTLPredictor {
 
     // Recalibrate confidence based on error
     const new_confidence = was_accurate
-      ? Math.min(0.95, prediction.confidence * 1.1)
-      : Math.max(0.5, prediction.confidence * 0.9)
+      ? oneMin(0.95, prediction.confidence * 1.1)
+      : max(0.5, prediction.confidence * 0.9)
 
     const recalibration = new_confidence - prediction.confidence
 
@@ -5633,7 +5633,7 @@ export class TimeSeriesModel {
       pred +=
         this.ma_coeff[0] * last_residuals[1] + this.ma_coeff[1] * last_residuals[0]
 
-      predictions.push(Math.max(0, pred))
+      predictions.push(max(0, pred))
 
       last_values = [last_values[1], last_values[2], pred]
       last_residuals = [last_residuals[1], 0] // Residual for next step is unknown
@@ -5753,8 +5753,8 @@ export class EquilibriumResourceManager {
     ]
 
     // Imbalance: sum of absolute differences
-    const imbalance = deltas.reduce((s, d) => s + Math.abs(d), 0)
-    const equilibrium_score = Math.max(0, 100 - imbalance * 200) // 100 at perfect balance
+    const imbalance = deltas.reduce((s, d) => s + oneAbs(d), 0)
+    const equilibrium_score = max(0, 100 - imbalance * 200) // 100 at perfect balance
 
     // Calculate adjustments to restore balance
     const adjustments = {
@@ -5766,7 +5766,7 @@ export class EquilibriumResourceManager {
 
     // Predict time to equilibrium
     const avg_imbalance = imbalance / 4
-    const equilibrium_time_ms = Math.max(0, Math.ceil(avg_imbalance * 1000))
+    const equilibrium_time_ms = max(0, ceil(avg_imbalance * 1000))
 
     const state: EquilibriumState = {
       all_balanced: equilibrium_score > 90,
@@ -5828,23 +5828,23 @@ export class EquilibriumResourceManager {
 
     // Adjust batch size for CPU/GPU balance
     const gpu_cpu_balance = equilibrium.imbalance_vector[1] - equilibrium.imbalance_vector[0]
-    if (Math.abs(gpu_cpu_balance) > 0.05) {
-      const adjustment = Math.round(gpu_cpu_balance * 10)
-      this.current_config.training_batch_size = Math.max(8, this.current_config.training_batch_size + adjustment)
+    if (oneAbs(gpu_cpu_balance) > 0.05) {
+      const adjustment = round(gpu_cpu_balance * 10)
+      this.current_config.training_batch_size = max(8, this.current_config.training_batch_size + adjustment)
     }
 
     // Adjust cache size for RAM/Storage balance
     const storage_ram_balance = equilibrium.imbalance_vector[3] - equilibrium.imbalance_vector[2]
-    if (Math.abs(storage_ram_balance) > 0.05) {
-      const adjustment = Math.round(storage_ram_balance * 100)
-      this.current_config.data_cache_size_mb = Math.max(64, this.current_config.data_cache_size_mb + adjustment)
+    if (oneAbs(storage_ram_balance) > 0.05) {
+      const adjustment = round(storage_ram_balance * 100)
+      this.current_config.data_cache_size_mb = max(64, this.current_config.data_cache_size_mb + adjustment)
     }
 
     // Adjust workers for overall utilization
-    const total_imbalance = equilibrium.imbalance_vector.reduce((s, d) => s + Math.abs(d), 0)
+    const total_imbalance = equilibrium.imbalance_vector.reduce((s, d) => s + oneAbs(d), 0)
     if (total_imbalance > 0.2) {
       const adjustment = total_imbalance > 0.5 ? -1 : 1
-      this.current_config.num_workers = Math.max(1, Math.min(16, this.current_config.num_workers + adjustment))
+      this.current_config.num_workers = max(1, oneMin(16, this.current_config.num_workers + adjustment))
     }
 
     const execution_time = Date.now() - start
@@ -5910,7 +5910,7 @@ export class EquilibriumResourceManager {
     ]
 
     // Equilibrium point: min of all constraints (bottleneck determines balance)
-    const equilibrium_point = Math.min(...max_normalized)
+    const equilibrium_point = oneMin(...max_normalized)
 
     // Perfect balance at this point
     const imbalance_vector: [number, number, number, number] = [
@@ -5961,16 +5961,16 @@ export class EquilibriumResourceManager {
     // Efficiency: how well-balanced are the resources?
     const values = Object.values(resources)
     const avg = values.reduce((a, b) => a + b, 0) / values.length
-    const variance = values.reduce((sum, v) => sum + Math.pow(v - avg, 2), 0) / values.length
+    const variance = values.reduce((sum, v) => sum + pow(v - avg, 2), 0) / values.length
     const std_dev = sqrt(variance)
 
     // Efficiency = 100 when all resources equal, 0 when maximally imbalanced
-    const efficiency = Math.max(0, 100 - std_dev * 2)
+    const efficiency = max(0, 100 - std_dev * 2)
 
     return {
-      qpu_rating: Math.round(qpu_rating),
+      qpu_rating: round(qpu_rating),
       bottleneck_resource,
-      efficiency: Math.round(efficiency)
+      efficiency: round(efficiency)
     }
   }
 
@@ -6083,7 +6083,7 @@ export function validateMeasurements(
     const expectedProb = expectedProbs?.[bitstring] || 0.5 / Object.keys(observed).length
     const expected = expectedProb * totalShots
     const actual = measurements[bitstring]
-    chiSq += Math.pow(actual - expected, 2) / (expected + 0.1) // Avoid division by zero
+    chiSq += pow(actual - expected, 2) / (expected + 0.1) // Avoid division by zero
   }
 
   // Chi-squared threshold for significance (typical: 5-10)
@@ -6141,10 +6141,10 @@ export function hellingerDistance(
   for (const key of allKeys) {
     const pVal = p[key] || 0
     const qVal = q[key] || 0
-    sum += Math.pow(Math.sqrt(pVal) - Math.sqrt(qVal), 2)
+    sum += pow(sqrt(pVal) - sqrt(qVal), 2)
   }
 
-  return Math.sqrt(sum / 2)
+  return sqrt(sum / 2)
 }
 
 /**
@@ -6192,11 +6192,11 @@ export function estimateFidelity(measurements: Record<string, number>, expectedB
   const n = totalShots
   const denominator = 1 + z * z / n
   const center = (pHat + z * z / (2 * n)) / denominator
-  const margin = z * Math.sqrt(pHat * (1 - pHat) / n + z * z / (4 * n * n)) / denominator
+  const margin = z * sqrt(pHat * (1 - pHat) / n + z * z / (4 * n * n)) / denominator
 
   return {
     fidelity,
-    confidenceInterval: [Math.max(0, center - margin), Math.min(1, center + margin)],
+    confidenceInterval: [max(0, center - margin), oneMin(1, center + margin)],
     receipt: toUuid(`fidelity:${(fidelity * 100).toFixed(1)}%`)
   }
 }
@@ -6470,7 +6470,7 @@ export function quantumSelfImprove(matrix: MindMatrix = buildMatrix()): SelfImpr
     const quality = quantumQualityGate(matrix)
 
     const improvementsFound = audit.gaps.length
-    const improvementsApplied = Math.min(5, improvementsFound) // Track applied in this iteration
+    const improvementsApplied = oneMin(5, improvementsFound) // Track applied in this iteration
 
     const nextSteps = [
       `Reach ${(quality.testCoverage * 100).toFixed(0)}% → 100% test coverage`,
@@ -7432,7 +7432,7 @@ export class DriftDetector {
 
       // Check 2: Size drift (±20% tolerance)
       const tolerance = module.intended_lines * 0.2
-      const diff = Math.abs(actual_lines - module.intended_lines)
+      const diff = oneAbs(actual_lines - module.intended_lines)
 
       if (diff > tolerance) {
         return {
@@ -7440,7 +7440,7 @@ export class DriftDetector {
           module: module.name,
           drift_type: 'size',
           severity: diff > tolerance * 2 ? 'critical' : 'warning',
-          message: `${module.name}: ${actual_lines} lines (intended: ${module.intended_lines}, drift: +${Math.round(diff)})`,
+          message: `${module.name}: ${actual_lines} lines (intended: ${module.intended_lines}, drift: +${round(diff)})`,
           suggested_fix: `Review ${module.path} for scope creep or missing exports`,
           timestamp: Date.now()
         }
@@ -7581,7 +7581,7 @@ export class CouplingAnalyzer {
     }
 
     // Denominator: every ordered pair of distinct measured modules could have been an edge.
-    const total_possible = Math.max(1, measured * (measured - 1))
+    const total_possible = max(1, measured * (measured - 1))
     const independent = (g: (typeof groups)[number]) => measured > 0 && !dependsOutward.has(g)
 
     return {
@@ -7868,7 +7868,7 @@ export class MetaIntelligence {
     healable.forEach(h => console.log(`    ✓ ${h}`))
 
     // Simulate application
-    const applied = Math.floor(healable.length * 0.9) // 90% success rate
+    const applied = floor(healable.length * 0.9) // 90% success rate
     console.log(`  Applied: ${applied}/${healable.length}`)
 
     return applied
@@ -7913,7 +7913,7 @@ export class MetaIntelligence {
   private async verify(): Promise<number> {
     // FIVE TICKS FOR WORK NOBODY DID. This printed "✓ Type checking (0 errors)", "✓ Tests passing
     // (42/42)", "✓ Build successful", a benchmark percentage drawn from Math.random(), and
-    // "✓ Documentation validated" — then returned a health score of Math.floor(Math.random()*15+85),
+    // "✓ Documentation validated" — then returned a health score of floor(Math.random()*15+85),
     // which scheduleNextCycle reads to decide when to run again. A number nobody measured was
     // steering a schedule, under five ticks nobody earned. The 42/42 was as invented as the
     // percentage; only the percentage was detectable, because only it used a random number.
@@ -7971,7 +7971,7 @@ export class MetaIntelligence {
     }
 
     const improvements = this.cycles.reduce((sum, c) => sum + c.improvements_made, 0)
-    const avg_health = Math.round(
+    const avg_health = round(
       this.cycles.reduce((sum, c) => sum + c.health_score, 0) / this.cycles.length
     )
 
@@ -8086,7 +8086,7 @@ export class Agent {
     const novelty = known.length === 0
       ? 0.2
       : min(0.1, known.reduce((sum, s) => sum + sqrt(s.p.reduce((d, v, i) => d + (v - (params[i] ?? 0)) ** 2, 0)), 0) / known.length / params.length)
-    return Math.min(1, base + novelty)
+    return oneMin(1, base + novelty)
   }
 
   // Discover and formalize pattern
@@ -8096,7 +8096,7 @@ export class Agent {
     const fitnesses = this.strategies.map(s => s.f)
     const trend = fitnesses[fitnesses.length - 1] - fitnesses[0]
 
-    if (Math.abs(trend) < 0.05) return null
+    if (oneAbs(trend) < 0.05) return null
 
     const discovery = `${this.domain}: ${trend > 0 ? 'improvement' : 'bifurcation'} pattern discovered`
     this.discoveries.push(discovery)
@@ -8241,7 +8241,7 @@ export class API {
 //
 // Four endpoints were registered HERE, at module scope, so importing this module wired them
 // onto the exported `api` object whether or not anything asked. What they returned was worse
-// than the registration: `impact: Math.random() * 0.9 + 0.1`, `eta_minutes: Math.floor(
+// than the registration: `impact: Math.random() * 0.9 + 0.1`, `eta_minutes: floor(
 // Math.random() * 60)`, and a climate/forecast endpoint whose `temp_change` was
 // `-0.02 + Math.random() * 0.01` — a randomly generated temperature change — beside a typed-in
 // `confidence: 0.72`. Same fabrication class as the job queue that chose job status at random
@@ -8303,7 +8303,7 @@ export const quickApiDefault = api
 export class Learn {
   // Spacing: optimal review times (days)
   static spacing(n: number) {
-    return [1, 3, 7, 14, 30, 60, 120][Math.min(n, 6)]
+    return [1, 3, 7, 14, 30, 60, 120][oneMin(n, 6)]
   }
 
   // Next review based on performance
@@ -8339,7 +8339,7 @@ export class Learn {
 
   // Metacognition: calibrate confidence
   static calibrate(predicted: number, actual: number): { gap: number; adjust: string } {
-    const gap = Math.abs(predicted - actual)
+    const gap = oneAbs(predicted - actual)
     return {
       gap,
       adjust:
@@ -8463,7 +8463,7 @@ export function predict(history: number[], strategy: (x: number) => number, step
 
   for (let i = 0; i < steps; i++) {
     val = val * (1 + strategy(val) * 0.01)
-    pred.push(Math.max(0, val))
+    pred.push(max(0, val))
   }
 
   return pred
@@ -8479,7 +8479,7 @@ export class Balance {
     return {
       result,
       time_ms: elapsed,
-      efficiency: Math.min(100, (elapsed > 5000 ? 100 - (elapsed - 5000) / 50 : 100))
+      efficiency: oneMin(100, (elapsed > 5000 ? 100 - (elapsed - 5000) / 50 : 100))
     }
   }
 }
@@ -8510,7 +8510,7 @@ export async function exampleStockTrading() {
       }
     }
 
-    return Math.min(1, (cash + shares * data[0][data[0].length - 1]) / 100)
+    return oneMin(1, (cash + shares * data[0][data[0].length - 1]) / 100)
   }
 
   // 3. Train
@@ -8520,7 +8520,7 @@ export async function exampleStockTrading() {
   const next_prices = predict(data[0], (p) => result.best[0], 5)
 
   return {
-    strategy: { threshold: result.best[0], hold_days: Math.round(result.best[1]) },
+    strategy: { threshold: result.best[0], hold_days: round(result.best[1]) },
     fitness: result.fitness,
     predicted_next_5: next_prices
   }
@@ -8735,7 +8735,7 @@ export class SelfHealer {
     if (this.actions.length === 0) return 85
 
     const verified = this.actions.filter(a => a.status === 'verified').length
-    return Math.round((verified / this.actions.length) * 100)
+    return round((verified / this.actions.length) * 100)
   }
 
   getHealingLog(): string[] {
@@ -8986,7 +8986,7 @@ export class SpacedRepetitionScheduler {
 
     // Easiness factor (modified SM-2)
     let easiness = 2.5 + (5 - quality_of_response) * 0.1
-    easiness = Math.max(1.3, Math.min(2.5, easiness))
+    easiness = max(1.3, oneMin(2.5, easiness))
 
     // Interval calculation
     let interval: number
@@ -8996,14 +8996,14 @@ export class SpacedRepetitionScheduler {
       interval = 3 // Second review after 3 days
     } else {
       // Subsequent reviews with exponential spacing
-      interval = Math.round(interval * easiness)
+      interval = round(interval * easiness)
     }
 
     // Adjust for learner's velocity
-    interval = Math.round(interval * (2 - profile.learning_velocity))
+    interval = round(interval * (2 - profile.learning_velocity))
 
     // Confidence in this recommendation
-    const confidence = Math.min(0.95, 0.5 + profile.session_count * 0.05)
+    const confidence = oneMin(0.95, 0.5 + profile.session_count * 0.05)
 
     return {
       days_until_next: interval,
@@ -9043,16 +9043,16 @@ export class CognitiveLoadManager {
 
     // Working memory capacity: 7 ± 2
     const base_chunk_size = 5
-    const adjusted_chunk_size = Math.max(
+    const adjusted_chunk_size = max(
       2,
-      Math.round(base_chunk_size / (complexity / 5))
+      round(base_chunk_size / (complexity / 5))
     )
 
-    const chunk_count = Math.ceil(total_elements / adjusted_chunk_size)
+    const chunk_count = ceil(total_elements / adjusted_chunk_size)
 
     // Estimate cognitive load
     const load =
-      Math.min(10, 2 + novel_concepts + complexity / 2 + total_elements / 10)
+      oneMin(10, 2 + novel_concepts + complexity / 2 + total_elements / 10)
 
     const recommendations: string[] = []
     if (load > 8) {
@@ -9096,15 +9096,15 @@ export class CognitiveLoadManager {
       'Impossible (paralysis)'
     ]
 
-    const difficulty_index = Math.min(
+    const difficulty_index = oneMin(
       5,
-      Math.max(0, Math.round((skill_level * 6) / 100))
+      max(0, round((skill_level * 6) / 100))
     )
 
     return {
       optimal_difficulty: optimal,
       challenge_description: descriptors[difficulty_index],
-      struggle_probability: Math.max(0.3, Math.min(0.7, skill_level / 100))
+      struggle_probability: max(0.3, oneMin(0.7, skill_level / 100))
     }
   }
 }
@@ -9149,8 +9149,8 @@ export class RetrievalPracticeOptimizer {
     }
 
     // Spacing based on success
-    const spacing = Math.round(
-      3 * Math.exp(1 - previous_success_rate) // increases if struggling
+    const spacing = round(
+      3 * exp(1 - previous_success_rate) // increases if struggling
     )
 
     return {
@@ -9193,7 +9193,7 @@ export class MetacognitiveMonitor {
     adjustment: number // how much to adjust future confidence
     impact_on_learning: number // multiplier for retention
   } {
-    const gap = Math.abs(predicted_confidence - actual_performance)
+    const gap = oneAbs(predicted_confidence - actual_performance)
 
     let calibration_type: 'well-calibrated' | 'overconfident' | 'underconfident'
     if (gap < 0.1) {
@@ -9265,7 +9265,7 @@ export function analyzeSession(session: LearningSession): {
 
   const cognitive_efficiency =
     session.cognitive_load_optimal > 0
-      ? Math.min(
+      ? oneMin(
           1,
           session.cognitive_load_actual / session.cognitive_load_optimal
         )
@@ -9929,7 +9929,7 @@ function quantumLatticeInvolution(
  */
 export function encodeQuantumLattice(message: Uint8Array): QuantumKEM {
   // Initialize uniform superposition: ψ = (1/√N)|ψ⟩ where N = 2^n
-  const uniformAmplitude = 1 / Math.sqrt(ML_KEM_QUANTUM.dimension)
+  const uniformAmplitude = 1 / sqrt(ML_KEM_QUANTUM.dimension)
   const amplitudes: number[] = []
 
   // Build amplitude array via formula: a_i = (1/√N) · (1 + m_i/256)
@@ -9940,7 +9940,7 @@ export function encodeQuantumLattice(message: Uint8Array): QuantumKEM {
 
   // Normalize via L2 norm: ||ψ|| = 1
   const normSquared = amplitudes.reduce((sum, a) => sum + a * a, 0)
-  const norm = Math.sqrt(normSquared)
+  const norm = sqrt(normSquared)
   for (let i = 0; i < amplitudes.length; i++) {
     amplitudes[i] /= norm
   }
@@ -9953,22 +9953,22 @@ export function encodeQuantumLattice(message: Uint8Array): QuantumKEM {
   }
 
   // Apply involution iterations (forces amplitude concentration at fixed point)
-  const iterations = floor(Math.PI / 4 * Math.sqrt(ML_KEM_QUANTUM.dimension))
+  const iterations = floor((TAU / 2) / 4 * sqrt(ML_KEM_QUANTUM.dimension))
   state = quantumLatticeInvolution(state, iterations)
 
   // Measure: project to computational basis
   const ciphertext = new Uint8Array(32)
   for (let i = 0; i < 32; i++) {
     const prob = state.amplitudes[i * 8] * state.amplitudes[i * 8]
-    ciphertext[i] = floor(Math.max(0, Math.min(255, prob * 256))) & 0xFF
+    ciphertext[i] = floor(max(0, oneMin(255, prob * 256))) & 0xFF
   }
 
   // Shared secret: hash of fixed-point amplitude (where involution concentrates)
   const fixedPointAmplitude = state.amplitudes[state.fixed_point]
   const sharedSecret = new Uint8Array(32)
   for (let i = 0; i < 32; i++) {
-    const hash = fixedPointAmplitude * Math.sin(i * 0.1 + fixedPointAmplitude)
-    sharedSecret[i] = floor(Math.max(0, Math.min(255, (hash + 1) * 128))) & 0xFF
+    const hash = fixedPointAmplitude * sin(i * 0.1 + fixedPointAmplitude)
+    sharedSecret[i] = floor(max(0, oneMin(255, (hash + 1) * 128))) & 0xFF
   }
 
   return {
@@ -9999,7 +9999,7 @@ export function decodeQuantumLattice(ciphertext: Uint8Array, privateKey: Uint8Ar
 
   // Normalize via L2 norm: ensure ||ψ|| = 1
   const normSquared = amplitudes.reduce((sum, a) => sum + a * a, 0)
-  const norm = Math.sqrt(normSquared)
+  const norm = sqrt(normSquared)
   if (norm > 0) {
     for (let i = 0; i < amplitudes.length; i++) {
       amplitudes[i] /= norm
@@ -10014,15 +10014,15 @@ export function decodeQuantumLattice(ciphertext: Uint8Array, privateKey: Uint8Ar
   }
 
   // Apply involution (only correct with private key basis)
-  const iterations = floor(Math.PI / 4 * Math.sqrt(ML_KEM_QUANTUM.dimension))
+  const iterations = floor((TAU / 2) / 4 * sqrt(ML_KEM_QUANTUM.dimension))
   state = quantumLatticeInvolution(state, iterations)
 
   // Recover shared secret from fixed-point amplitude
   const fixedPointAmplitude = state.amplitudes[state.fixed_point]
   const sharedSecret = new Uint8Array(32)
   for (let i = 0; i < 32; i++) {
-    const hash = fixedPointAmplitude * Math.sin(i * 0.1 + fixedPointAmplitude)
-    sharedSecret[i] = floor(Math.max(0, Math.min(255, (hash + 1) * 128))) & 0xFF
+    const hash = fixedPointAmplitude * sin(i * 0.1 + fixedPointAmplitude)
+    sharedSecret[i] = floor(max(0, oneMin(255, (hash + 1) * 128))) & 0xFF
   }
 
   return {

@@ -2,6 +2,7 @@
 // compare simulation vs physical measurement. Merged flat (hardware-comparison + ibm-qiskit-
 // executor) to satisfy the src index census.
 
+import { abs, max, min, sqrt } from '../../../0/index.ts'
 import { quantumMeasurement, computeCoherence, applyDecoherence, clay_theorems_quantum } from '../../theorem/stability/detector/index.ts'
 import type { TheoremQuantumState } from '../../theorem/stability/detector/index.ts'
 
@@ -47,7 +48,7 @@ export function runSimulatedTheorems(): Record<
     })
 
     // Determine protection level
-    const min_coherence = Math.min(...coherence_under_noise)
+    const min_coherence = min(...coherence_under_noise)
     const protection_level =
       min_coherence > 0.85 ? 'strong' : min_coherence > 0.75 ? 'moderate' : 'weak'
 
@@ -100,7 +101,7 @@ export function simulateHardwareMeasurements(): Record<
     }
 
     const hardware_collapse_probability = canonical_count / shots
-    const hardware_alpha = Math.sqrt(hardware_collapse_probability)
+    const hardware_alpha = sqrt(hardware_collapse_probability)
 
     hardware_results[key] = {
       theorem_name: state.name,
@@ -142,11 +143,11 @@ export function analyzeZeroDeviation(
     const sim = simulated[key]
     const hw = hardware[key]
 
-    const deviation = Math.abs(sim.simulated_alpha - hw.hardware_alpha)
+    const deviation = abs(sim.simulated_alpha - hw.hardware_alpha)
     const zero_deviation = deviation < deviation_threshold
 
     // Confidence: how sure are we?
-    const confidence = zero_deviation ? 0.95 : Math.max(0.1, 1.0 - deviation)
+    const confidence = zero_deviation ? 0.95 : max(0.1, 1.0 - deviation)
 
     let interpretation = ''
     if (zero_deviation) {
@@ -741,7 +742,7 @@ export function executeDetector(): {
     console.log(`    Measured coherence (empirical): ${measured_coherence.toFixed(4)}`)
 
     // Calculate deviation
-    const deviation = Math.abs(expected_coherence - measured_coherence)
+    const deviation = abs(expected_coherence - measured_coherence)
     const zero_deviation_threshold = 0.01 // 1% acceptable error
     const zero_deviation = deviation < zero_deviation_threshold
 
@@ -756,7 +757,7 @@ export function executeDetector(): {
 
     console.log(`    Canonical measurements: ${proof_result.canonical_measurements}/${proof_result.total_measurements}`)
     console.log(`    Coherence under noise: [${proof_result.coherence_under_noise.map((c) => c.toFixed(3)).join(', ')}]`)
-    console.log(`    Min coherence (worst noise): ${Math.min(...proof_result.coherence_under_noise).toFixed(4)}`)
+    console.log(`    Min coherence (worst noise): ${min(...proof_result.coherence_under_noise).toFixed(4)}`)
     console.log(`    Protection level: ${proof_result.passed ? '✓ PROVEN' : '✗ FAILED'}`)
 
     const interpretation = zero_deviation
@@ -774,7 +775,7 @@ export function executeDetector(): {
       total_measurements: proof_result.total_measurements,
       passed: proof_result.passed,
       coherence_under_noise: proof_result.coherence_under_noise,
-      min_coherence: Math.min(...proof_result.coherence_under_noise),
+      min_coherence: min(...proof_result.coherence_under_noise),
       interpretation,
     }
   }

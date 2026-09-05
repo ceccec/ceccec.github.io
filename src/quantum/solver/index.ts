@@ -7,7 +7,7 @@
  * No hardcoding. No demos. Real cryptographic recovery.
  */
 
-import { prng, gcd } from '../../0/index.ts'
+import { prng, gcd, pow } from '../../0/index.ts'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { toUuid, floor, ceil, sqrt, min } from '../../0/index.ts'
@@ -165,7 +165,7 @@ export function recoverPrivateFromPublic(publicKey: PublicKey): PrivateKeyRecove
       publicKey,
       detectedInvolution: involution,
       privateKey: { x },
-      verified: (Math.pow(g, x) % p === h),
+      verified: (pow(g, x) % p === h),
       proofOfCorrectness: [
         `Involution σ(y) = -y mod φ(p) detected`,
         `Exponent involution forces x to satisfy g^x ≡ h (mod p)`,
@@ -229,7 +229,7 @@ function findShortestVectorViaInvolution(basis: number[][]): number[] | null {
 function discreteLogViaInvolution(g: number, h: number, p: number): number | null {
   // Brute force for small p; in production use Pollard's rho or quantum DLP
   for (let x = 1; x < p; x++) {
-    if (Math.pow(g, x) % p === h) return x
+    if (pow(g, x) % p === h) return x
   }
   return null
 }
