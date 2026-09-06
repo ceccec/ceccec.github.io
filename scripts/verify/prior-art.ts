@@ -499,6 +499,30 @@ export const PRIOR_ART_SEARCHED: readonly {
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (eighth family). The science rows and two algebra rows.
 
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (ninth family). Number theory, probability, social choice.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (tenth family). Quantum algorithms and enumeration.
+  //
+  // TWO ROWS OF THIS BATCH ARE DELIBERATELY LEFT UNCLASSIFIED. `cube has 10 two-colorings (from Burnside)`
+  // and `Perrin primality signature` were searched and the query returned nothing usable. Recording that
+  // as a search with found: null would move them to CLAIMED, and they are plainly not novel — cube
+  // colourings under Burnside are textbook. A query that failed is not an absence of literature, and
+  // treating it as one is claiming by silence with extra steps. They stay where they are.
+  { theorem: 'Bernstein–Vazirani one-query recovery',
+    searched: 'Bernstein-Vazirani 1992 algorithm recover hidden bit string single query oracle',
+    when: '2026-09-06',
+    found: 'Bernstein and Vazirani (1992), extending Simon: the hidden string s with f(x) = x·s is recovered in ONE quantum query where classical needs n — a proven query-complexity separation.' },
+  { theorem: 'interaction-free measurement',
+    searched: 'Elitzur Vaidman bomb tester 1993 interaction-free measurement Mach-Zehnder dark detector',
+    when: '2026-09-06',
+    found: 'Elitzur and Vaidman (1993): a Mach–Zehnder interferometer whose dark detector never clicks when both arms are clear, but can click when one is blocked — establishing the blockage without a photon interacting with it.' },
+  { theorem: 'surjection count three ways',
+    searched: 'number of surjections k! S(n,k) inclusion exclusion Stirling second kind',
+    when: '2026-09-06',
+    found: 'the number of surjections from an n-set onto a k-set is k!·S(n,k), equal by inclusion–exclusion to Σ_i (−1)^i C(k,i)(k−i)^n. Standard enumerative combinatorics.' },
+  { theorem: 'Stirling first kind row identities',
+    searched: 'Stirling numbers first kind signless permutations by cycle count row sum n factorial',
+    when: '2026-09-06',
+    found: 'the signless Stirling numbers of the first kind c(n,k) count permutations of n with exactly k cycles, so each row sums to n!; the signed row alternates to 0 for n ≥ 2.' },
   { theorem: 'Wolstenholme congruence C(2p,p) ≡ 2 mod p³',
     searched: 'Wolstenholme theorem 1862 central binomial coefficient mod p^3, Babbage mod p^2',
     when: '2026-09-06',
@@ -1169,6 +1193,21 @@ export const ATTRIBUTION_COVERAGE: readonly {
   // Two of them are now examined and CLEAN.
 
   // ── EXAMINED 2026-09-06. Two COVER: one exhausts its own state space, one is another refutation.
+
+  // ── EXAMINED 2026-09-06. One COVERS, and it is a shape the ledger has not met before: an EXISTENCE claim.
+  //
+  // A refutation says "this does not always hold" and one counterexample settles it. Its DUAL says "this
+  // is possible at all", and one witness settles that. Both are complete the moment they are computed, for
+  // the same reason and in opposite directions — which is the involution this repository is named for,
+  // showing up in the shape of its own evidence.
+  { theorem: 'Bernstein–Vazirani one-query recovery', coverage: 'weaker',
+    why: 'every string checked at each n ≤ 8. The separation — one quantum query against n classical — is proved for all n.' },
+  { theorem: 'interaction-free measurement', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The claim is that interaction-free measurement is POSSIBLE, and a single interferometer configuration where the dark detector clicks on a blocked arm establishes exactly that. An existence claim needs one witness, not a family of them — the dual of a refutation, which needs one counterexample. Elitzur–Vaidman 1993 is the source and the row does not claim more than the phenomenon.' },
+  { theorem: 'surjection count three ways', coverage: 'weaker',
+    why: 'three independent computations agree for all n ≤ 7. k!·S(n,k) = Σ_i (−1)^i C(k,i)(k−i)^n is an identity at every n and k.' },
+  { theorem: 'Stirling first kind row identities', coverage: 'weaker',
+    why: 'rows verified to n ≤ 10. The cycle-count interpretation gives Σ_k c(n,k) = n! for every n.' },
   { theorem: 'Wolstenholme congruence C(2p,p) ≡ 2 mod p³', coverage: 'weaker',
     why: 'exact in BigInt to p ≤ 50. Wolstenholme 1862 holds for every prime p ≥ 5 — and the row states that p ≥ 5 bound correctly, which matters, because the congruence genuinely fails at p = 3.' },
   { theorem: 'Josephus survivor J(n)', coverage: 'weaker',
