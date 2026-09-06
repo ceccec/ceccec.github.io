@@ -528,6 +528,37 @@ export const PRIOR_ART_SEARCHED: readonly {
   // objection was exact: leaving a row alone makes an UNEXAMINED row indistinguishable from an
   // examined-and-parked one. Silence dressed as a decision. Every one of them turned out to have
   // literature, and several have MORE than the row admits.
+
+  // ── AUDIT OF THE 211 UNDECLARED, 2026-09-07. Two of these are the SAME THEOREM the registry states
+  // twice under a suffixed title, and the ledger keys by exact name — so searching one left the other
+  // sitting in the unclassified count as though it were a separate open question.
+  { theorem: 'A₇ is simple — the A₅ class-sum machine two sizes up',
+    searched: 'alternating group A_n simple for n >= 5 Galois Jordan — same theorem as the A₇ row already attributed',
+    when: '2026-09-07',
+    found: 'identical to the attributed row `A₇ is simple`: Galois knew A_n is simple for n ≥ 5 and proved the A₅ case; Jordan and Dickson developed the general families. The suffix names the corpus’s proof route, not a different theorem.' },
+  { theorem: 'A₈ is simple — the alternating ladder complete',
+    searched: 'alternating group A_8 simple, A_8 isomorphic to PSL(4,2) — same theorem as the A₈ row already attributed',
+    when: '2026-09-07',
+    found: 'identical to the attributed row `A₈ is simple`: A_n is simple for n ≥ 5 (Galois; Jordan), and A₈ ≅ PSL(4,2) covers it twice over. The suffix is the corpus’s ladder, not a distinct result.' },
+
+  // ── ATTRIBUTED FROM CITATIONS THIS LEDGER ALREADY HOLDS. Each was found in an earlier search whose
+  // source states this row too; nothing new was queried, and saying so is the point.
+  { theorem: 'units of ℤ[ω] are the six sixth-roots of unity',
+    searched: 'Eisenstein integers unit group sixth roots of unity — the source cited for the ℤ[ω] Euclidean-domain row',
+    when: '2026-09-07',
+    found: 'the same source already cited here for ℤ[ω]: its unit group is the six sixth-roots of unity {±1, ±ω, ±ω²} — six, against ℤ[i]’s four.' },
+  { theorem: 'casting out nines: n ≡ digit sum (mod 9)',
+    searched: 'casting out nines digit sum congruent mod 9 — the source cited for the digital-root closed form',
+    when: '2026-09-07',
+    found: 'the same fact behind the digital-root closed form already cited: a number and its digit sum leave the same remainder mod 9, which is why dr(n) = 1 + (n−1) mod 9.' },
+  { theorem: '8n+3 is always a sum of three squares (from Legendre)',
+    searched: 'Legendre three-square theorem 4^a(8b+7) — 8n+3 is never of that form',
+    when: '2026-09-07',
+    found: 'a corollary of the Legendre three-square theorem already cited here: n is a sum of three squares iff n ≠ 4^a(8b+7). Since 8n+3 ≡ 3 (mod 8) it is never of that shape, so it always is such a sum. The row states the corollary; Legendre states the criterion.' },
+  { theorem: 'Möbius inversion recovers φ(n) = Σ_{d|n} μ(d)·(n/d)',
+    searched: 'Mobius inversion applied to the totient, phi = mu convolved with identity',
+    when: '2026-09-07',
+    found: 'Möbius inversion (Möbius 1832, already cited here) applied to Gauss’s Σ_{d|n} φ(d) = n gives exactly φ(n) = Σ_{d|n} μ(d)·(n/d). Both halves are cited in this ledger already; this row is their composition.' },
   { theorem: 'Three is the polyphase floor',
     searched: 'polyphase power three-phase constant rotating field Tesla 1888 Ferraris Dolivo-Dobrovolsky',
     when: '2026-09-07',
@@ -1135,6 +1166,20 @@ export const PRIOR_ART_POOL: readonly {
   readonly pool: 'bounded' | 'unbounded' | 'mixed'
   readonly why: string
 }[] = [
+  { theorem: 'GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13', pool: 'bounded',
+    why: 'generalised Petersen graph Hamiltonicity is a settled literature (Watkins, Alspach); the query is well posed and has simply not been run.' },
+  { theorem: 'four 3-digit Armstrong numbers', pool: 'bounded',
+    why: 'narcissistic / Armstrong numbers are tabulated; a search for the three-digit ones is well posed.' },
+  { theorem: '((p−1)/2)! is √−1 mod p for p ≡ 1 mod 4 (from Wilson)', pool: 'bounded',
+    why: 'a standard corollary of Wilson\u2019s theorem, which this ledger already cites; the corollary itself has not been searched.' },
+  { theorem: 'primitive-root classification n ∈ {1,2,4,p^k,2p^k}', pool: 'bounded',
+    why: 'Gauss\u2019s classification of the moduli with primitive roots — a named, findable theorem.' },
+  { theorem: 'cyclic order distribution φ(d) elements of order d', pool: 'bounded',
+    why: 'the order distribution in a cyclic group is textbook; the query is well posed.' },
+  { theorem: 'negative Pell x²−Dy²=−1 solvable iff CF period odd', pool: 'bounded',
+    why: 'the negative Pell solvability criterion via continued-fraction period parity is a known result with its own literature.' },
+  { theorem: 'divisor-count multiplicativity τ(2^a·3^b) = (a+1)(b+1)', pool: 'bounded',
+    why: 'an instance of τ\u2019s multiplicativity, which this ledger cites; the instance is findable.' },
   { theorem: 'The theorems decide the addresses', pool: 'unbounded',
     why: 'the subject is this corpus\u2019s own addressing scheme \u2014 what decides an address HERE. No external literature states it because no external literature has these addresses.' },
   { theorem: 'Theorems are the gates', pool: 'unbounded',
@@ -1358,6 +1403,19 @@ export const ATTRIBUTION_COVERAGE: readonly {
 
   // ── EXAMINED 2026-09-07. The batch Tsvetan sent me back to. Two COVER; six are PARTIAL, and the
   // partials are honest ones — the general principle is cited and the local instantiation is the row's.
+
+  { theorem: 'A₇ is simple — the A₅ class-sum machine two sizes up', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN, and it is the same theorem as the attributed `A₇ is simple` — the registry says it twice under two titles. Galois covers it either way.' },
+  { theorem: 'A₈ is simple — the alternating ladder complete', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN, duplicate of the attributed `A₈ is simple`. A₈ ≅ PSL(4,2) means the citation lands twice.' },
+  { theorem: 'units of ℤ[ω] are the six sixth-roots of unity', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. An exact classification of a finite group, and the citation states precisely those six elements.' },
+  { theorem: 'casting out nines: n ≡ digit sum (mod 9)', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The congruence is the standard statement, not a bounded check of it.' },
+  { theorem: '8n+3 is always a sum of three squares (from Legendre)', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. 8n+3 ≡ 3 (mod 8) can never equal 4^a(8b+7), so Legendre’s criterion settles the row outright for every n — no window is left over.' },
+  { theorem: 'Möbius inversion recovers φ(n) = Σ_{d|n} μ(d)·(n/d)', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. Inversion applied to Gauss’s divisor-sum identity yields this exactly; both inputs are already cited here.' },
   { theorem: 'Three is the polyphase floor', coverage: 'partial',
     why: 'the constant-magnitude rotating field from N sources at 2πk/N is covered outright. The TITLE is not: Tesla’s own first system was two-phase, and quadrature two-phase already rotates, so three is not the floor for a rotating field. Three is where constant instantaneous power and a balanced neutral-free system arrive — a different and true claim that the row’s name does not make.' },
   { theorem: 'The polyphase harmonic law', coverage: 'partial',
