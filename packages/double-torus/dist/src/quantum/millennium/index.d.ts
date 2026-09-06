@@ -100,3 +100,38 @@ export declare function recognizeInvolution(theoremName: string): InvolutionStru
  * List all recognized involutions (the infinite class starts with these 7)
  */
 export declare function recognizedInvolutions(): InvolutionStructure[];
+/**
+ * Proof Runner — Reusable CLI with I/O handling
+ *
+ * Agnostic: works with any proof module
+ * Composable: receives I/O streams, returns structured results
+ * Extensible: proofMap for new proofs
+ */
+export type ProofOptions = {
+    verbose?: boolean;
+    format?: 'text' | 'json' | 'markdown';
+};
+export type ProofIO = {
+    out: (msg: string) => void;
+    err: (msg: string) => void;
+};
+export type ProofResult = {
+    success: boolean;
+    proofName: string;
+    status: 'sealed' | 'proven' | 'open' | 'error';
+    message: string;
+    details?: Record<string, unknown>;
+};
+export declare function listAvailableProofs(): string[];
+export declare function runProofExit(root: string, proofName?: string, io?: ProofIO, options?: ProofOptions): Promise<ProofResult>;
+/**
+ * One implementation; the two names below are ALIASES. All three were byte-identical
+ * bodies distinguished only by their names — three CLI entry points that did the same
+ * thing. Each is referenced once elsewhere, so the names are kept and the duplication
+ * is not.
+ */
+export declare function runSecurityAuditExit(root: string, argv?: string[]): Promise<number>;
+/** Alias of runSecurityAuditExit — same proof runner, different CLI name. */
+export declare const runCryptoAssessExit: typeof runSecurityAuditExit;
+/** Alias of runSecurityAuditExit — same proof runner, different CLI name. */
+export declare const runMigrationPlanExit: typeof runSecurityAuditExit;
