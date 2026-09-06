@@ -495,6 +495,28 @@ export const PRIOR_ART_SEARCHED: readonly {
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (sixth family). Classical identities and algorithms.
 
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (seventh family). Foundations, geometry, exact counts.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (eighth family). The science rows and two algebra rows.
+  { theorem: 'velocity additivity non-universal (physics)',
+    searched: 'Einstein 1905 relativistic velocity addition Galilean addition invalid Lorentz',
+    when: '2026-09-06',
+    found: 'Einstein (1905) derived the relativistic composition law from the relativity principle and the constancy of c; the Galilean transformations are incorrect and classical kinematics must be modified. The law keeps every composition below c.' },
+  { theorem: 'no engine beats Carnot (thermodynamics)',
+    searched: 'Carnot theorem 1824 maximum efficiency heat engine second law Clausius',
+    when: '2026-09-06',
+    found: 'Carnot (1824): no heat engine between two reservoirs exceeds the efficiency of a reversible one, η ≤ 1 − Tc/Th. Clausius and others later showed the theorem is equivalent to the second law’s entropy statement, which is the ΔS < 0 argument this row also uses.' },
+  { theorem: 'blending inheritance refuted (biology)',
+    searched: 'blending inheritance Fleeming Jenkin objection Mendel particulate inheritance variance halved',
+    when: '2026-09-06',
+    found: 'Fleeming Jenkin argued that under BLENDING inheritance a sexually reproducing population goes phenotypically homogeneous within a few generations — the objection to Darwin. Mendelian inheritance is PARTICULATE, so sexual reproduction does not diminish heritable variation. The variance-halving argument the row computes is Jenkin’s own.' },
+  { theorem: 'determinant multiplicativity over 𝔽₃',
+    searched: 'determinant multiplicative det(AB) = det(A)det(B) Cauchy 1812 Cauchy-Binet',
+    when: '2026-09-06',
+    found: 'Cauchy (1812): det(AB) = det(A)·det(B) for n×n matrices — part of his comprehensive treatment of determinants. The Cauchy–Binet formula generalises it, reducing to this when the factors are square.' },
+  { theorem: '√2 continued-fraction convergents',
+    searched: 'continued fraction convergents best rational approximation Lagrange; Pell equation x^2-2y^2 = ±1',
+    when: '2026-09-06',
+    found: 'Lagrange (1798): a best approximation of the first kind is a convergent or a semiconvergent, and convergents are the best approximations among denominators below a bound. The p² − 2q² = ±1 relation is the Fermat–Pell equation, whose positive solutions are exactly the convergents of √2.' },
   { theorem: 'parallel postulate independent of incidence',
     searched: 'independence of the parallel postulate Beltrami model equiconsistency hyperbolic Euclidean',
     when: '2026-09-06',
@@ -1101,6 +1123,26 @@ export const ATTRIBUTION_COVERAGE: readonly {
 
   // ── EXAMINED 2026-09-06. Five COVER — this family is mostly EXACT statements, and exhausting an exact
   // statement is not a sample of it. One is weaker, and weaker against a RECORD rather than a theorem.
+
+  // ── EXAMINED 2026-09-06. TWO COVER, AND BOTH ARE REFUTATIONS — a new sub-case of the same rule.
+  //
+  // A refutation is a negative existence claim: "this does not hold universally". ONE counterexample
+  // settles it completely, so a finite computation is not a sample of a refutation — it IS the refutation.
+  // The same reason an exact value, a minimum and a generating set came back `covers` on earlier ticks.
+  //
+  // Worth noting where these three rows have been before: they are among the eight that the polarity-blind
+  // pseudoscience signature flagged as disproven claims, because they contain the words they refute.
+  // Two of them are now examined and CLEAN.
+  { theorem: 'velocity additivity non-universal (physics)', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The claim is that additivity is NOT universal, and any single pair where the Galilean sum overshoots settles that; the row computes 49. Einstein 1905 is the general law behind it, and the row does not claim to have derived it — only that additivity fails, which is exactly what the counterexamples show.' },
+  { theorem: 'no engine beats Carnot (thermodynamics)', coverage: 'weaker',
+    why: 'the row scopes its check to a reservoir GRID, and Carnot’s theorem holds for every pair of reservoirs and every engine. The row’s second clause — that a super-Carnot engine forces ΔS < 0 — is the general argument, and it is Carnot’s and Clausius’s rather than the row’s, so the bounded grid is what the row adds.' },
+  { theorem: 'blending inheritance refuted (biology)', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. Refuting blending needs one demonstration that it destroys heritable variance, and halving per generation is that demonstration — it is Fleeming Jenkin’s own objection, computed. Mendelian particulate inheritance is the resolution, cited.' },
+  { theorem: 'determinant multiplicativity over 𝔽₃', coverage: 'weaker',
+    why: 'complete over all 6561 pairs of 2×2 matrices over 𝔽₃, and honestly labelled as that. Cauchy 1812 gives det(AB) = det(A)det(B) at every size over any commutative ring.' },
+  { theorem: '√2 continued-fraction convergents', coverage: 'weaker',
+    why: 'the first 17 convergents checked. Lagrange’s theorem on best approximations and the Fermat–Pell correspondence are both unbounded.' },
   { theorem: 'parallel postulate independent of incidence', coverage: 'covers',
     why: 'EXAMINED AND CLEAN. Independence is established by exhibiting two models of the shared axioms that disagree on the postulate, and that is exactly what the row does with AG(2,2) and PG(2,2). Beltrami used a hyperbolic model rather than finite ones; the logical move, and the claim, are the same.' },
   { theorem: 'Sylvester–Gallai needs order axioms', coverage: 'covers',
