@@ -1143,10 +1143,8 @@ export const PRIOR_ART_POOL: readonly {
     why: 'the rosetta is a structure of this tree; a claim about two of them interacting has no referent outside it.' },
   { theorem: 'The sealed thought precedes the edit', pool: 'unbounded',
     why: 'describes this project\u2019s own working order \u2014 seal, then edit. A statement about a workflow that exists here.' },
-  { theorem: 'The crowd that carries signal is the code', pool: 'unbounded',
-    why: 'a claim about this project\u2019s relationship to its contributors, not a proposition mathematics could restate.' },
-  { theorem: 'digital root closed form validates the sealed src/0 code', pool: 'unbounded',
-    why: 'the subject is src/0 itself — no literature restates a claim about this repository' },
+  { theorem: 'digital root closed form validates the sealed src/0 code', pool: 'mixed',
+    why: 'MIXED, corrected 2026-09-07 from unbounded. The row has two halves and only one is local. The DIGITAL ROOT CLOSED FORM is textbook \u2014 dr(n) = 1 + (n\u22121) mod 9, the same fact as casting out nines \u2014 and calling that unrestatable was wrong. That it VALIDATES src/0\u2019s implementation is the half with no external referent. Split before searching.' },
   { theorem: 'the self-sufficient kernel derives from the corpus — the stack ranks itself by theorem density', pool: 'unbounded',
     why: 'ranks THIS corpus by its own theorem density; there is no outside author' },
   { theorem: 'the waves feed the chat — the wave chain reports itself as computation', pool: 'unbounded',
@@ -1169,14 +1167,14 @@ export const PRIOR_ART_POOL: readonly {
     why: 'the subject IS this artifact — a claim about this corpus own theorem set — and no literature can restate a claim about this repository' },
   { theorem: 'The crowd that carries signal is the code', pool: 'unbounded',
     why: 'the subject IS this artifact — a claim about this project own contributors and code — and no literature can restate a claim about this repository' },
-  { theorem: 'route-independent work computes once — the render transform is O(1) per page', pool: 'unbounded',
-    why: 'the subject IS this artifact — a complexity claim about this site own render transform — and no literature can restate a claim about this repository' },
+  { theorem: 'route-independent work computes once — the render transform is O(1) per page', pool: 'mixed',
+    why: 'MIXED, corrected 2026-09-07 from unbounded. O(1)-per-call work from a cache hit is memoisation, and there is a large literature on it \u2014 the general complexity claim is restatable. That THIS site\u2019s render transform achieves it per page is the local half.' },
   { theorem: 'every animation is itself a unique theorem — content-addressed, refutable, bijective with the corpus', pool: 'unbounded',
     why: 'the subject IS this artifact — a property of the animations this repository generates — and no literature can restate a claim about this repository' },
   { theorem: 'the solved-bit is the binary output per problem (0/1, measured); the published metrics are computable achievements in the quantum development sequence — two separate axes', pool: 'unbounded',
     why: 'the subject IS this artifact — a claim about this corpus own per-problem output — and no literature can restate a claim about this repository' },
-  { theorem: 'the gravity units are real bits of computation — the content-address bit-content of each related theorem (~64/128 bits), summed per problem; the solved-bit center stays 0', pool: 'unbounded',
-    why: 'the subject IS this artifact — a measure defined over this corpus own content addresses — and no literature can restate a claim about this repository' },
+  { theorem: 'the gravity units are real bits of computation — the content-address bit-content of each related theorem (~64/128 bits), summed per problem; the solved-bit center stays 0', pool: 'mixed',
+    why: 'MIXED, corrected 2026-09-07 from unbounded. That a 128-bit content address carries 128 bits of information is Shannon, not this repository \u2014 hash entropy in bits is standard. Summing those bits per problem over THIS corpus\u2019s theorems is the local half.' },
   { theorem: 'learning to use the diamonds in chat — a query content-addresses to a diamond slot that points to the theorem addressing it; the diamonds index, not solve', pool: 'unbounded',
     why: 'the subject IS this artifact — a claim about this project own chat surface — and no literature can restate a claim about this repository' },
   { theorem: 'animation uniqueness is layered — identity unique (no logic gap), but the visible speed collides by the 108-divisor clock law so colour carries the salience (a rendering gap, not logic)', pool: 'unbounded',
@@ -1654,6 +1652,29 @@ export function assertPriorArtLedger(): void {
   // DIRECTION OF FAILURE: red on a repeated (theorem, leanFile) key. The leanFile scope is deliberately
   // part of the key — `Sigma is an involution` is a DIFFERENT statement in riemann.lean, bsd.lean and
   // hodge.lean, and those legitimately carry a row each. Same title, different file, is not a duplicate.
+  // ONE POOL DECLARATION PER THEOREM. PRIOR_ART_SEARCHED has been gated against duplicates since the
+  // tick where I wrote two citations for one row; the POOL had no such check, and I promptly declared
+  // `The crowd that carries signal is the code` a second time without noticing one already existed. Two
+  // declarations of the same row can disagree about which pool it belongs to, and nothing would say so —
+  // the count would simply be wrong by one in whichever direction the second row leaned.
+  //
+  // DIRECTION OF FAILURE: red on a repeated theorem, whatever the pools say. Unlike the searched-row
+  // check there is no scope to key on: a row belongs to exactly one pool or the declaration is undecided.
+  const poolSeen = new Map<string, string[]>()
+  for (const d of PRIOR_ART_POOL) {
+    if (!poolSeen.has(d.theorem)) poolSeen.set(d.theorem, [])
+    poolSeen.get(d.theorem)!.push(d.pool)
+  }
+  const poolDuplicates = [...poolSeen.entries()].filter(([, pools]) => pools.length > 1)
+  if (poolDuplicates.length) {
+    throw new Error(
+      `${poolDuplicates.length} theorem(s) carry MORE THAN ONE pool declaration: ` +
+      `${poolDuplicates.map(([t, pools]) => `${t} [${pools.join(', ')}]`).join(' · ')}. ` +
+      `A row belongs to one pool; two declarations can disagree and the split count silently follows whichever ` +
+      `the reducer reaches last.`
+    )
+  }
+
   const searchKeys = new Map<string, number>()
   for (const r of PRIOR_ART_SEARCHED) {
     const key = `${r.theorem}::${r.leanFile ?? ''}`
