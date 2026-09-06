@@ -519,6 +519,55 @@ export const PRIOR_ART_SEARCHED: readonly {
   // would have pushed both into CLAIMED. They were left unclassified instead, on the grounds that a
   // failed query is not an absent literature. Asked again with better terms, both have citations — which
   // is the outcome that judgement was protecting.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-07. The last two rows of this pool that name mathematics.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-07 (fourteenth family), AFTER A CORRECTION FROM TSVETAN.
+  //
+  // I had set these aside as "arguably philosophical" and left them undeclared. That was wrong, and the
+  // objection was exact: leaving a row alone makes an UNEXAMINED row indistinguishable from an
+  // examined-and-parked one. Silence dressed as a decision. Every one of them turned out to have
+  // literature, and several have MORE than the row admits.
+  { theorem: 'Three is the polyphase floor',
+    searched: 'polyphase power three-phase constant rotating field Tesla 1888 Ferraris Dolivo-Dobrovolsky',
+    when: '2026-09-07',
+    found: 'N sources at 2πk/N produce a constant-magnitude rotating field — the polyphase principle, invented INDEPENDENTLY by Ferraris, Dolivo-Dobrovolsky, Wenström, Hopkinson, Stanley and Tesla in the late 1880s. Tesla’s US 381,968 (filed 1887) is a polyphase motor. CAVEAT ON THE ROW’S TITLE: Tesla’s own original system was TWO-phase, and quadrature two-phase also yields a rotating field, so "three is the floor" is not what the literature says — three is where constant INSTANTANEOUS POWER and a neutral-free balanced system arrive.' },
+  { theorem: 'The polyphase harmonic law',
+    searched: 'triplen harmonics three-phase third harmonic in phase add in neutral, harmonic phase sequence',
+    when: '2026-09-07',
+    found: 'in a three-phase system the 3rd harmonic and every multiple of it (6th, 9th, 12th, …) fall into phase across all three legs, so they ADD in the neutral instead of cancelling — the triplen phenomenon. Standard power-systems engineering.' },
+  { theorem: 'Only theorems can be trusted',
+    searched: 'trusted computing base minimize what must be trusted, proof-carrying code Necula POPL 1997',
+    when: '2026-09-07',
+    found: 'the TCB principle: make the trusted set explicit and as SMALL as possible, since violating a security property requires subverting something inside it. Necula’s proof-carrying code (POPL ’97) is the sharper form — untrusted code ships a machine-checkable proof, and the host validates the proof rather than trusting the source.' },
+  { theorem: 'Security from theorems not axioms',
+    searched: 'provable security reduction to hard problem versus cryptographic assumption critique',
+    when: '2026-09-07',
+    found: 'provable security proves a scheme secure BY REDUCTION to a hard problem — security is never absolute, it rests on the assumption. The critical literature (e.g. Koblitz–Menezes and the IACR "Critical Perspectives on Provable Security") is precisely about the lack of standards for what counts as a reasonable assumption, which is the row’s point about axioms.' },
+  { theorem: 'phase offsets never break global periodicity',
+    searched: 'sum of periodic signals is periodic with period lcm of the component periods',
+    when: '2026-09-07',
+    found: 'if x₁ has period N₁ and x₂ has period N₂ then x₁ + x₂ is periodic with period lcm(N₁, N₂) — and a phase offset changes phase, not period, so it cannot alter that lcm. Standard signals-and-systems.' },
+  { theorem: 'ladder animations are globally periodic',
+    searched: 'least common multiple of periods superposition remains periodic divisor clocks',
+    when: '2026-09-07',
+    found: 'same principle: component periods that all divide a common cycle superpose to something periodic on that cycle, the period being the lcm or a divisor of it.' },
+  { theorem: 'Inverse is not reverse',
+    searched: 'twelve-tone row inversion versus retrograde distinct operations Schoenberg 48 row forms',
+    when: '2026-09-07',
+    found: 'in twelve-tone theory INVERSION reverses the direction of the intervals (reflecting pitch) while RETROGRADE reverses the order of the pitch classes (reflecting time). They are distinct operations, and with transposition they generate the 48 row forms — P, I, R, RI at twelve transpositions.' },
+  { theorem: 'Inversion negates the angle',
+    searched: 'arg(1/z) = -arg(z) complex reciprocal, inverse of a rotation R(theta) is R(-theta)',
+    when: '2026-09-07',
+    found: 'elementary and standard: 1/z = z̄/|z|² so arg(1/z) = −arg(z), and in SO(2) the inverse of R(θ) is R(−θ). No single originator — these are textbook identities rather than a named result.' },
+  { theorem: 'the 7-star IS 𝔽₂³',
+    searched: 'Fano plane as the seven nonzero vectors of F_2^3, lines are 2-dimensional subspaces, |GL(3,2)| = 168',
+    when: '2026-09-07',
+    found: 'the Fano plane IS the projective space of 𝔽₂³: its 7 points are the 1-dimensional subspaces, one per nonzero vector (2³ − 1 = 7), and its lines are the 2-dimensional subspaces, each containing 2² − 1 = 3 nonzero vectors. The collineation group is GL(3,2) of order 168.' },
+  { theorem: 'Zero has no inverse',
+    searched: 'zero has no multiplicative inverse in a ring with 1 != 0, zero ring exception',
+    when: '2026-09-07',
+    found: 'standard: 0·a = 0 for every a, so 0·a = 1 is impossible whenever 1 ≠ 0. The zero ring, where 0 = 1, is the single degenerate exception — which the row names.' },
   { theorem: 'Perrin primality signature',
     searched: 'Perrin sequence pseudoprime Adams Shanks 1982 signature 271441, Grantham infinitely many',
     when: '2026-09-06',
@@ -1086,6 +1135,16 @@ export const PRIOR_ART_POOL: readonly {
   readonly pool: 'bounded' | 'unbounded' | 'mixed'
   readonly why: string
 }[] = [
+  { theorem: 'The theorems decide the addresses', pool: 'unbounded',
+    why: 'the subject is this corpus\u2019s own addressing scheme \u2014 what decides an address HERE. No external literature states it because no external literature has these addresses.' },
+  { theorem: 'Theorems are the gates', pool: 'unbounded',
+    why: 'a claim about how THIS repository enforces itself: its gates are its theorems. Restating it elsewhere would require the gates.' },
+  { theorem: 'Two interacting rosettas are realtime', pool: 'unbounded',
+    why: 'the rosetta is a structure of this tree; a claim about two of them interacting has no referent outside it.' },
+  { theorem: 'The sealed thought precedes the edit', pool: 'unbounded',
+    why: 'describes this project\u2019s own working order \u2014 seal, then edit. A statement about a workflow that exists here.' },
+  { theorem: 'The crowd that carries signal is the code', pool: 'unbounded',
+    why: 'a claim about this project\u2019s relationship to its contributors, not a proposition mathematics could restate.' },
   { theorem: 'digital root closed form validates the sealed src/0 code', pool: 'unbounded',
     why: 'the subject is src/0 itself — no literature restates a claim about this repository' },
   { theorem: 'the self-sufficient kernel derives from the corpus — the stack ranks itself by theorem density', pool: 'unbounded',
@@ -1108,8 +1167,6 @@ export const PRIOR_ART_POOL: readonly {
     why: 'the subject IS this artifact — a property of this system own save-and-reuse loop — and no literature can restate a claim about this repository' },
   { theorem: 'Theorem of theorems', pool: 'unbounded',
     why: 'the subject IS this artifact — a claim about this corpus own theorem set — and no literature can restate a claim about this repository' },
-  { theorem: 'The polyphase harmonic law', pool: 'unbounded',
-    why: 'the subject IS this artifact — a law this repository states about its own harmonic folds — and no literature can restate a claim about this repository' },
   { theorem: 'The crowd that carries signal is the code', pool: 'unbounded',
     why: 'the subject IS this artifact — a claim about this project own contributors and code — and no literature can restate a claim about this repository' },
   { theorem: 'route-independent work computes once — the render transform is O(1) per page', pool: 'unbounded',
@@ -1298,6 +1355,31 @@ export const ATTRIBUTION_COVERAGE: readonly {
   // ── EXAMINED 2026-09-06. One COVERS: the row that states an IDENTITY rather than a range.
 
   // ── EXAMINED 2026-09-06. One COVERS: an exact count whose whole symmetry group is enumerated.
+
+  // ── EXAMINED 2026-09-07. Both COVER, by the two routes the ledger has learned to recognise.
+
+  // ── EXAMINED 2026-09-07. The batch Tsvetan sent me back to. Two COVER; six are PARTIAL, and the
+  // partials are honest ones — the general principle is cited and the local instantiation is the row's.
+  { theorem: 'Three is the polyphase floor', coverage: 'partial',
+    why: 'the constant-magnitude rotating field from N sources at 2πk/N is covered outright. The TITLE is not: Tesla’s own first system was two-phase, and quadrature two-phase already rotates, so three is not the floor for a rotating field. Three is where constant instantaneous power and a balanced neutral-free system arrive — a different and true claim that the row’s name does not make.' },
+  { theorem: 'The polyphase harmonic law', coverage: 'partial',
+    why: 'the N = 3 case is exactly the triplen phenomenon and is textbook. The row states the law for every N — h ≡ 0 (mod N) cancelled, h ≡ ±1 (mod N) passed — and that generalisation is the row’s own; the citation covers the instance the engineering literature cares about.' },
+  { theorem: 'Only theorems can be trusted', coverage: 'partial',
+    why: 'the principle is cited and old: minimise the trusted computing base, and let untrusted code carry a checkable proof (Necula 1997). What the citation does not cover is the row’s specific claim that THIS registry’s theorems are the trusted surface — that half is about this artifact.' },
+  { theorem: 'Security from theorems not axioms', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. Provable security IS reduction-to-a-hard-problem, and the standing critique of it is precisely that everything rests on the assumption chosen. The row’s claim — that vulnerabilities arrive through assumed properties rather than proved ones — is that literature’s central point, not an extension of it.' },
+  { theorem: 'phase offsets never break global periodicity', coverage: 'partial',
+    why: 'the general fact — offsets change phase, not period, so the lcm is untouched — is standard signals theory and covers the row’s reasoning. The 108-second grid it verifies is this corpus’s own, so that half has no external referent.' },
+  { theorem: 'ladder animations are globally periodic', coverage: 'partial',
+    why: 'same citation, same split: the lcm-of-periods principle is general; the ladder and its divisor clocks are local structure.' },
+  { theorem: 'Inverse is not reverse', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN, and the row is making a genuine correction that the literature backs exactly. Inversion reflects pitch, retrograde reverses time; conflating them is a common error, and twelve-tone theory keeps them as separate generators of the 48 row forms.' },
+  { theorem: 'Inversion negates the angle', coverage: 'partial',
+    why: 'arg(1/z) = −arg(z) and R(θ)⁻¹ = R(−θ) are textbook and cover three of the row’s four guises. The fourth — the inverse of 2^k sitting at −k on the vortex 6-cycle of (ℤ/9ℤ)* — is a local instance of the same law rather than something the citation states.' },
+  { theorem: 'the 7-star IS 𝔽₂³', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The row exhausts all 5040 labelings and finds exactly 168 carrying every Fano line to an XOR-triple. That is a complete enumeration of a FINITE space landing on |GL(3,2)|, which is the classical collineation group — the identification of the Fano plane with the projective space of 𝔽₂³ is the citation, and the count is the whole of it.' },
+  { theorem: 'Zero has no inverse', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The row leads with the general argument — 0·a = 0 kills every candidate whenever 1 ≠ 0 — and names the zero ring as the one degenerate exception. The ℤ/nℤ sweep beside it is illustration, not the claim; the claim is stated unscoped and is a one-line consequence of the ring axioms.' },
   { theorem: 'Perrin primality signature', coverage: 'weaker',
     why: 'BOTH HALVES STATE LESS. Necessity is checked for primes ≤ 200 where it holds for all primes; and the row cites ONE counterexample, 271441, where Grantham proved in 2010 that there are INFINITELY many Perrin pseudoprimes. The row is right that the test is necessary-not-sufficient, and understates how thoroughly insufficient it is.' },
   { theorem: 'cube has 10 two-colorings (from Burnside)', coverage: 'covers',
