@@ -509,6 +509,36 @@ export const PRIOR_ART_SEARCHED: readonly {
   // treating it as one is claiming by silence with extra steps. They stay where they are.
 
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (eleventh family). Quadratic rings and primality.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (twelfth family). Divisor functions and figurate sums.
+  { theorem: 'σ and τ are multiplicative',
+    searched: 'sigma sum of divisors tau divisor count multiplicative arithmetic functions',
+    when: '2026-09-06',
+    found: 'both are multiplicative: τ counts divisors, σ sums them, and each factors over the prime-power decomposition. Standard elementary number theory.' },
+  { theorem: 'σ is multiplicative',
+    searched: 'sigma multiplicative sigma(p^k) = (p^(k+1)-1)/(p-1) prime power formula',
+    when: '2026-09-06',
+    found: 'σ is multiplicative with σ(p^k) = (p^(k+1) − 1)/(p − 1). NOTE: this row and `σ and τ are multiplicative` overlap — the second is contained in the first. Both are attributed here, but the registry carries the same fact twice, which the census counts twice.' },
+  { theorem: 'quadratic residues form index-2 subgroup',
+    searched: 'quadratic residues subgroup index 2 of (Z/pZ)* half the elements Legendre symbol multiplicative',
+    when: '2026-09-06',
+    found: 'for an odd prime p the nonzero quadratic residues form a subgroup of (ℤ/p)× of index 2 — exactly (p−1)/2 of them — and the Legendre symbol is the multiplicative character cutting that quotient.' },
+  { theorem: 'Euclid’s construction of perfect numbers',
+    searched: 'Euclid Elements IX.36 perfect number 2^(p-1)(2^p - 1) Mersenne prime',
+    when: '2026-09-06',
+    found: 'Euclid, Elements IX.36: if 2^p − 1 is prime then 2^(p−1)(2^p − 1) is perfect. The sufficiency half of what later became the Euclid–Euler theorem.' },
+  { theorem: 'triangular–square bridge 8T_k+1 = (2k+1)²',
+    searched: 'triangular number identity 8T + 1 is a perfect square (2k+1)^2 proof',
+    when: '2026-09-06',
+    found: 'the standard characterisation: n is triangular iff 8n + 1 is a perfect square, and the identity 8·k(k+1)/2 + 1 = 4k² + 4k + 1 = (2k+1)² is the one-line algebraic proof.' },
+  { theorem: 'power-sum closed forms',
+    searched: 'Faulhaber formula power sums closed form Bernoulli numbers Jacobi 1834',
+    when: '2026-09-06',
+    found: 'ANOTHER SPLIT EPONYM. The formula is named for Faulhaber, but the general expression with Bernoulli numbers was found by Jacob Bernoulli around 1700 and FIRST PROVED by Carl Gustav Jacobi in 1834. The individual closed forms for Σk, Σk² are far older.' },
+  { theorem: 'telescoping sum n/(n+1)',
+    searched: 'telescoping series 1/(k(k+1)) partial fractions sum n/(n+1)',
+    when: '2026-09-06',
+    found: 'standard: 1/(k(k+1)) = 1/k − 1/(k+1), so the partial sums telescope to 1 − 1/(n+1) = n/(n+1).' },
   { theorem: 'units of ℤ[i] are exactly {±1,±i}',
     searched: 'Gaussian integers units plus minus 1 plus minus i norm one',
     when: '2026-09-06',
@@ -1236,6 +1266,22 @@ export const ATTRIBUTION_COVERAGE: readonly {
   // showing up in the shape of its own evidence.
 
   // ── EXAMINED 2026-09-06. One COVERS, and only because its finite grid is PROVABLY exhaustive.
+
+  // ── EXAMINED 2026-09-06. One COVERS: the row that states an IDENTITY rather than a range.
+  { theorem: 'σ and τ are multiplicative', coverage: 'weaker',
+    why: 'coprime pairs to m, n ≤ 60. Multiplicativity holds for every coprime pair.' },
+  { theorem: 'σ is multiplicative', coverage: 'weaker',
+    why: 'coprime pairs to 100 and prime powers to 10⁴. The general statement is unbounded — and this row also duplicates the σ half of the row above it, which is a registry redundancy rather than a coverage fault.' },
+  { theorem: 'quadratic residues form index-2 subgroup', coverage: 'weaker',
+    why: 'the (p−1)/2 count and Legendre multiplicativity checked over a bounded range of primes. The subgroup structure holds for every odd prime.' },
+  { theorem: 'Euclid’s construction of perfect numbers', coverage: 'weaker',
+    why: 'verified at p = 2, 3, 5, 7. Euclid IX.36 is a general implication: EVERY Mersenne prime yields a perfect number, and there is no upper bound in the proposition.' },
+  { theorem: 'triangular–square bridge 8T_k+1 = (2k+1)²', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN, and it is the only row of this family that states an IDENTITY rather than a range. 8·k(k+1)/2 + 1 expands to 4k² + 4k + 1 = (2k+1)² by algebra, for every k, and the row says "every triangular number" without a bound. An identity verified as an identity is the theorem; the same fact checked at k ≤ 1000 would have been weaker.' },
+  { theorem: 'power-sum closed forms', coverage: 'weaker',
+    why: 'the three formulas exact for all n ≤ 1000. Faulhaber/Bernoulli gives closed forms for every exponent, and Jacobi proved the general case in 1834.' },
+  { theorem: 'telescoping sum n/(n+1)', coverage: 'weaker',
+    why: 'verified to n ≤ 1000. The partial-fraction cancellation is an identity at every n — the row could have stated it as one, and states a range instead.' },
   { theorem: 'units of ℤ[i] are exactly {±1,±i}', coverage: 'covers',
     why: 'EXAMINED AND CLEAN, and it is worth saying why a grid suffices here when it does not elsewhere. A unit has norm a² + b² = 1, so any |a| or |b| ≥ 2 already has norm ≥ 4; the search space is bounded BY THE STATEMENT rather than by the row’s patience. Enumerating a small grid is therefore exhaustive over all of ℤ[i], not a sample of it.' },
   { theorem: 'ℤ[i] is a Euclidean domain', coverage: 'weaker',
