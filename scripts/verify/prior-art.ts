@@ -493,6 +493,32 @@ export const PRIOR_ART_SEARCHED: readonly {
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (fifth family). Extremal and probabilistic combinatorics.
 
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (sixth family). Classical identities and algorithms.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (seventh family). Foundations, geometry, exact counts.
+  { theorem: 'parallel postulate independent of incidence',
+    searched: 'independence of the parallel postulate Beltrami model equiconsistency hyperbolic Euclidean',
+    when: '2026-09-06',
+    found: 'Beltrami first established independence by proving the equiconsistency of hyperbolic and Euclidean geometry; the Beltrami–Klein model satisfies all of Tarski’s axioms EXCEPT the Euclidean one. Independence is shown exactly as the row shows it — two models of the shared axioms that disagree on the postulate.' },
+  { theorem: 'Sylvester–Gallai needs order axioms',
+    searched: 'Sylvester-Gallai theorem fails over complex numbers ordered geometry Coxeter Pasch betweenness',
+    when: '2026-09-06',
+    found: 'the Sylvester–Gallai theorem FAILS over ℂ — finite point sets in ℂ² exist with no ordinary line — and Coxeter proved it within ordered geometry using only betweenness and Pasch’s axiom. Order is genuinely required, which is the row’s claim.' },
+  { theorem: '8-puzzle has 9!/2 solvable states',
+    searched: '15 puzzle 8 puzzle parity invariant Johnson Story half of permutations reachable',
+    when: '2026-09-06',
+    found: 'Johnson and Story showed permutation parity is invariant under a legal move, so exactly half the arrangements are reachable from the goal — 9!/2 = 181440 for the 8-puzzle.' },
+  { theorem: 'eight riffles restore 52 cards',
+    searched: 'perfect out-shuffle order multiplicative order of 2 mod 51, Diaconis Graham Kantor 1983',
+    when: '2026-09-06',
+    found: 'THE ROW IS NOT ABOUT THE FAMOUS SEVEN-SHUFFLE RESULT. Out-shuffles send position i to 2i (mod 2n−1), so a 52-card deck returns to order after ord₅₁(2) = 8 of them. Diaconis, Graham and Kantor determined the full shuffle group for all n in 1983 ("The Mathematics of Perfect Shuffles"). Bayer–Diaconis (1992), that seven RANDOM riffle shuffles suffice to randomise, is a different theorem about a different operation.' },
+  { theorem: 'Collatz verified to 10⁴',
+    searched: 'Collatz conjecture computational verification bound 2^68 2^71',
+    when: '2026-09-06',
+    found: 'the conjecture is OPEN. It has been verified computationally for every integer up to roughly 2^68, with recent work extending the bound past 2^71. There is no theorem here to cite — only a verification record, and the record is enormously further out than this row reaches.' },
+  { theorem: 'exactly 5 groups of order 8',
+    searched: 'classification groups of order 8 up to isomorphism C8 C4xC2 C2^3 D4 Q8',
+    when: '2026-09-06',
+    found: 'exactly five groups of order 8 up to isomorphism: ℤ₈, ℤ₄×ℤ₂, ℤ₂³ (abelian) and D₄, Q₈ (non-abelian). Classical and complete.' },
   { theorem: 'Nicomachus sum of cubes is a square',
     searched: 'Nicomachus theorem sum of first n cubes equals square of triangular number',
     when: '2026-09-06',
@@ -1072,6 +1098,21 @@ export const ATTRIBUTION_COVERAGE: readonly {
   // ── EXAMINED 2026-09-06. One COVERS, five WEAKER — the finite-witness pattern again.
 
   // ── EXAMINED 2026-09-06. Two COVER for the reason van der Waerden did: their domain IS the claim.
+
+  // ── EXAMINED 2026-09-06. Five COVER — this family is mostly EXACT statements, and exhausting an exact
+  // statement is not a sample of it. One is weaker, and weaker against a RECORD rather than a theorem.
+  { theorem: 'parallel postulate independent of incidence', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. Independence is established by exhibiting two models of the shared axioms that disagree on the postulate, and that is exactly what the row does with AG(2,2) and PG(2,2). Beltrami used a hyperbolic model rather than finite ones; the logical move, and the claim, are the same.' },
+  { theorem: 'Sylvester–Gallai needs order axioms', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The literature says the theorem fails without order — it fails over ℂ, and Coxeter’s proof runs on betweenness and Pasch. The Fano plane with zero ordinary lines is a valid witness of exactly that necessity.' },
+  { theorem: '8-puzzle has 9!/2 solvable states', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The claim is an exact count, 181440, and a complete breadth-first sweep of the reachable set settles it. The parity invariant is Johnson and Story’s; the count is the same number from both directions.' },
+  { theorem: 'eight riffles restore 52 cards', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN — after correcting what it is about. ord₅₁(2) = 8 is an exact value, and the row computes it AND simulates the shuffle to the same answer. I nearly attributed this to Bayer–Diaconis 1992 because the title says riffles; that is the randomisation theorem for a different operation, and citing it here would have been wrong.' },
+  { theorem: 'Collatz verified to 10⁴', coverage: 'weaker',
+    why: 'WEAKER AGAINST A RECORD, NOT A THEOREM — the only row of this kind so far. Collatz is OPEN, so there is no general result to fall short of; the row is honest about that in its own text. But the world has verified past 2^68, and 10⁴ is a vanishingly small prefix of it. The row states less than is KNOWN, where knowing is computational rather than proved.' },
+  { theorem: 'exactly 5 groups of order 8', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The classification is exactly five — ℤ₈, ℤ₄×ℤ₂, ℤ₂³, D₄, Q₈ — and the row verifies group tables with pairwise-distinct order multisets, which is the standard way to see they are non-isomorphic.' },
   { theorem: 'Nicomachus sum of cubes is a square', coverage: 'weaker',
     why: 'both sides computed independently for every n ≤ 100. The identity holds for all n and has since antiquity.' },
   { theorem: 'Pythagorean parametrization is a bijection', coverage: 'weaker',
