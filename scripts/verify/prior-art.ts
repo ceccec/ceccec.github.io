@@ -511,6 +511,34 @@ export const PRIOR_ART_SEARCHED: readonly {
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (eleventh family). Quadratic rings and primality.
 
   // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (twelfth family). Divisor functions and figurate sums.
+
+  // ── UNCLASSIFIED UNTIL NOW, searched 2026-09-06 (thirteenth family).
+  //
+  // TWO OF THESE ARE THE ROWS I REFUSED TO CLAIM TWO TICKS AGO. `Perrin primality signature` and
+  // `cube has 10 two-colorings` came back empty then, and recording that as "searched, found nothing"
+  // would have pushed both into CLAIMED. They were left unclassified instead, on the grounds that a
+  // failed query is not an absent literature. Asked again with better terms, both have citations — which
+  // is the outcome that judgement was protecting.
+  { theorem: 'Perrin primality signature',
+    searched: 'Perrin sequence pseudoprime Adams Shanks 1982 signature 271441, Grantham infinitely many',
+    when: '2026-09-06',
+    found: 'the Perrin condition P(n) ≡ 0 (mod n) is necessary for primes and NOT sufficient: Adams and Shanks (1982) found the smallest counterexample, 271441 = 521², and conjectured infinitely many. Jon Grantham PROVED there are infinitely many Perrin pseudoprimes in 2010, settling that conjecture.' },
+  { theorem: 'cube has 10 two-colorings (from Burnside)',
+    searched: 'number of distinct 2-colorings of cube faces under rotation Burnside lemma equals 10',
+    when: '2026-09-06',
+    found: 'averaging 2^(face-cycles) over the 24 proper rotations of the cube gives exactly 10 distinct two-colourings, against the 2⁶ = 64 unconstrained ones. A standard Burnside application.' },
+  { theorem: 'gcd·lcm = a·b on the sealed lcm',
+    searched: 'gcd times lcm equals product ab theorem proof prime factorization min max exponents',
+    when: '2026-09-06',
+    found: 'gcd(a,b)·lcm(a,b) = ab for all positive a, b — provable from prime factorisations, since min(e,f) + max(e,f) = e + f at each prime, or via Bézout.' },
+  { theorem: 'the sealed gcd is the maximal common divisor',
+    searched: 'greatest common divisor is the largest common divisor Bezout identity ax + by = d',
+    when: '2026-09-06',
+    found: 'the gcd is by definition the largest of the common divisors, and Bézout’s identity gives integers x, y with ax + by = gcd(a,b) — the standard bridge between the maximality and the algorithm.' },
+  { theorem: 'two triangular numbers ↔ two squares of 4n+1',
+    searched: 'n is a sum of two triangular numbers iff 4n+1 is a sum of two squares, Fermat 4n+1',
+    when: '2026-09-06',
+    found: 'the bridge rests on Fermat’s two-square theorem for primes ≡ 1 (mod 4); the triangular/square correspondence via 4n+1 is classical, and the modern q-series literature on mixed sums of squares and triangular numbers develops the same family.' },
   { theorem: 'σ and τ are multiplicative',
     searched: 'sigma sum of divisors tau divisor count multiplicative arithmetic functions',
     when: '2026-09-06',
@@ -1268,6 +1296,18 @@ export const ATTRIBUTION_COVERAGE: readonly {
   // ── EXAMINED 2026-09-06. One COVERS, and only because its finite grid is PROVABLY exhaustive.
 
   // ── EXAMINED 2026-09-06. One COVERS: the row that states an IDENTITY rather than a range.
+
+  // ── EXAMINED 2026-09-06. One COVERS: an exact count whose whole symmetry group is enumerated.
+  { theorem: 'Perrin primality signature', coverage: 'weaker',
+    why: 'BOTH HALVES STATE LESS. Necessity is checked for primes ≤ 200 where it holds for all primes; and the row cites ONE counterexample, 271441, where Grantham proved in 2010 that there are INFINITELY many Perrin pseudoprimes. The row is right that the test is necessary-not-sufficient, and understates how thoroughly insufficient it is.' },
+  { theorem: 'cube has 10 two-colorings (from Burnside)', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The claim is an exact count under a FINITE symmetry group, and the row averages over all 24 proper rotations — the whole group, not a sample of it. Burnside supplies the averaging principle; enumerating a finite group is the computation the principle asks for, so nothing is left over.' },
+  { theorem: 'gcd·lcm = a·b on the sealed lcm', coverage: 'weaker',
+    why: 'verified for every pair a, b ≤ 200. The identity holds for all positive integers, by min+max at each prime.' },
+  { theorem: 'the sealed gcd is the maximal common divisor', coverage: 'weaker',
+    why: 'the shipped Euclid gcd matched against a brute maximum for pairs ≤ 200. That the gcd IS the maximum is the definition, and Bézout ties it to the algorithm for all inputs.' },
+  { theorem: 'two triangular numbers ↔ two squares of 4n+1', coverage: 'weaker',
+    why: 'verified for every n ≤ 300. The correspondence is a theorem for all n, resting on Fermat’s two-square theorem.' },
   { theorem: 'σ and τ are multiplicative', coverage: 'weaker',
     why: 'coprime pairs to m, n ≤ 60. Multiplicativity holds for every coprime pair.' },
   { theorem: 'σ is multiplicative', coverage: 'weaker',
