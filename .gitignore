@@ -27,3 +27,7 @@
 /tmp
 /docs
 .ssh
+
+# A receipt describes ONE RUN of one tree, not the source. It is written by verify:stream and
+# would dirty the tree on every run; the verdict it carries belongs in the commit message.
+scripts/verify/receipts/

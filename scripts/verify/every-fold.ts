@@ -78,7 +78,7 @@ import { ratchet } from './status.ts'
  * changed the tree has not measured the tree — it has measured a tree that no longer exists, which
  * is the same failure the 455 was blamed on, arriving by the door nobody watched.
  */
-function treeDigest(root: string): string {
+export function treeDigest(root: string): string {
   const h = createHash('sha256')
   const walk = (dir: string) => {
     let entries
@@ -98,7 +98,8 @@ export function main() {
   const root = process.cwd()
   const digestBefore = treeDigest(root)
   const started = Date.now()
-  let called = 0, folds = 0, verdictFalse = 0, threw = 0, facetsOff = 0
+  let called = 0, folds = 0, verdictFalse = 0, threw = 0, facetsOff = 0, aliased = 0
+  const invoked = new Set<() => unknown>()
   const bad: string[] = []
   const flagged: { mod: string; name: string; off: number; fn: () => unknown }[] = []
   const allFolds = new Map<() => unknown, { mod: string; name: string; off: number }>()
@@ -112,8 +113,29 @@ export function main() {
       if (typeof v !== 'function') continue
       if (v.length > 0) continue                       // needs arguments we cannot invent
       if (/^run|Exit$/.test(name)) continue            // CLI entry points, not folds
+      // ONE FUNCTION REACHED THROUGH FIVE BARRELS IS ONE FOLD, NOT FIVE.
+      //
+      // This walked Object.entries per module and called every NAME. A fold re-exported through
+      // several barrels was therefore executed once per path: the timing shows
+      // `lifeAndDeathAreTheTwoBits…` costing 9716ms under src/quantum/heaven/mind and 9363ms again
+      // under src/thunder/waves — the same function, the same work, twice. The second pass below
+      // already knew this and keyed `allFolds` on the function reference; the first pass did not.
+      //
+      // Calling a zero-argument function a second time cannot discover a fold that calling it once
+      // did not, so the skipped calls bought nothing. If a repeat call DISAGREED with the first that
+      // would be non-determinism, which is verify:purity's question and not answerable here anyway,
+      // because this walk never compared the two results it paid for.
+      if (invoked.has(v as () => unknown)) { aliased++; continue }
+      invoked.add(v as () => unknown)
       let r: any
+      // PER-FOLD TIMING, BECAUSE MODULE-LEVEL NAMED A FILE AND NOT A CULPRIT. This gate is 94% of the
+      // parallel verification wall clock and it reported its cost as `SLOW MODULE <path>: 68016ms` —
+      // true, unactionable, and printed to a stdout the fused runner then discarded. A module is not
+      // a thing you can make faster; a fold is.
+      const f0 = Date.now()
       try { r = (v as () => unknown)(); called++ } catch { threw++; continue }
+      const fms = Date.now() - f0
+      if (fms > 2000) console.log(`  SLOW FOLD ${mod} ${name}: ${fms}ms`)
       if (!r || typeof r !== 'object') continue
       const fs = (r as any).facets
       if (!Array.isArray(fs) || !fs.length) continue
@@ -140,6 +162,7 @@ export function main() {
   }
   console.log(`modules walked ${mi}`)
   console.log(`called ${called} zero-arg exports · ${folds} returned facets · ${threw} threw`)
+  console.log(`skipped ${aliased} alias call(s) — the same function reached through another barrel, which cannot discover a fold the first call did not`)
   console.log(`FOLDS WITH A FALSE VERDICT OR AN OFF FACET: ${verdictFalse}  (facets off: ${facetsOff})`)
   for (const b of bad) console.log('   ' + b)
 
