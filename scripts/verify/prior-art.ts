@@ -1187,6 +1187,83 @@ export const PRIOR_ART_POOL: readonly {
   readonly pool: 'bounded' | 'unbounded' | 'mixed'
   readonly why: string
 }[] = [
+  // ── AUDIT OF THE REMAINING 185 UNDECLARED, 2026-09-07. Read every one, no filter.
+  //
+  // THE RESULT IS A CORRECTION TO WHAT THIS POOL ASSUMED. Almost nothing here is purely UNBOUNDED.
+  // Row after row wraps a KNOWN MECHANISM in a local instantiation — a deterministic finite automaton,
+  // a Bloom filter, relevance feedback, OpenGraph, schema.org, a fixed point, centered hexagonal
+  // numbers, 3-smooth lattices, patent subject-matter exclusions, the MCP specification. The corpus's
+  // characteristic shape is not "a claim no literature can restate"; it is "a known thing, applied
+  // here", and that is `mixed`, not `unbounded`.
+  //
+  // Twenty go to mixed on exactly that ground. Twelve go to unbounded, and only where the subject is
+  // unmistakably this artifact with no general mechanism named — the chat's own turns, the movie
+  // surface, the completion stubs. The asymmetry is deliberate: unbounded asserts a NEGATIVE about all
+  // literature everywhere, and this ledger has already been wrong twice in that direction.
+{ theorem: "quantumise regex to pass computationally — deterministic DFA, content-addressed, linear-time-safe", pool: 'mixed',
+    why: "a DETERMINISTIC FINITE AUTOMATON is Kleene, Rabin and Scott — regex-to-DFA is one of the oldest results in computer science. Applying it to this repository’s own patterns is the local half." },
+  { theorem: "search improves by experience — private, deterministic relevance feedback over the BM25 index", pool: 'mixed',
+    why: "RELEVANCE FEEDBACK is Rocchio and the information-retrieval literature; that this corpus does it privately and deterministically is local." },
+  { theorem: "compute the crosslink degree from a 64-bit perspective — a Bloom prefilter, honestly lossy", pool: 'mixed',
+    why: "a BLOOM FILTER is Bloom 1970 with a known false-positive analysis. Using one to prefilter this corpus’s crosslinks is the local half." },
+  { theorem: "all computed possibilities retrievable faster than any scan — structural O(1), not physical FTL", pool: 'mixed',
+    why: "O(1) retrieval by hashing versus O(n) scanning is elementary data structures. That THIS corpus’s possibilities are so retrievable is local." },
+  { theorem: "voice tools for chat are browser-native Web Speech + WebAudio — TTS/FFT local, STT egress-flagged", pool: 'mixed',
+    why: "Web Speech API and Web Audio API are published W3C specifications; the local half is this chat’s use of them." },
+  { theorem: "video tools for chat are browser-native MediaDevices/Canvas — local by default, the chat SHOWS the answer animation", pool: 'mixed',
+    why: "MediaDevices and Canvas are published W3C specifications; the local half is this chat’s use of them." },
+  { theorem: "quantum recompute shares CPU/GPU/memory by content-addressed allocation at quantum speed — O(1) naming, not physical (memoise CPU, on-device GPU, CAM memory)", pool: 'mixed',
+    why: "content-addressed storage and deduplicated allocation have a substantial literature; the scheduling claim over this corpus is local." },
+  { theorem: "feeding the chat in itself closes the self-reference loop — algebraic identities re-query as ranked proofs under algebraic-QC top priority, feeder ≡ fed", pool: 'mixed',
+    why: "SELF-REFERENCE CLOSING TO A FIXED POINT is Kleene’s recursion theorem and Knaster–Tarski territory; that this chat is such a fixed point is local." },
+  { theorem: "every collection is a filterable OpenGraph list; static pages merge into collections of standardised research publications — one template, computed from the corpus", pool: 'mixed',
+    why: "OpenGraph is a published specification; the local half is this site’s collections." },
+  { theorem: "the proofs list is filterable by computed domain tags with OpenGraph meta per proof — generated from the corpus, not hand-curated", pool: 'mixed',
+    why: "OpenGraph again, published; the tag computation over this corpus is local." },
+  { theorem: "quantum microdata — content-addressed schema.org structured data per page", pool: 'mixed',
+    why: "schema.org structured data is a published vocabulary; content-addressing it per page is local." },
+  { theorem: "patent auditors prove foundations free for all — the subject-matter exclusions, find→audit via APIs", pool: 'mixed',
+    why: "SUBJECT-MATTER EXCLUSIONS are statutory — Art. 52 EPC and 35 USC 101 with its case law. Whether THIS corpus falls under them is the local half, and it is a legal question rather than a mathematical one." },
+  { theorem: "the O(1) content-address is faster than any scan — but not physical FTL; fused to the agent brain via MCP", pool: 'mixed',
+    why: "the complexity claim is textbook and the FTL disclaimer is relativity; only the instantiation is local. The row is right to separate them." },
+  { theorem: "theorems grow the flower of life through centered hexagonal rings — the corpus count is how far the flower has grown", pool: 'mixed',
+    why: "CENTERED HEXAGONAL NUMBERS are classical (3n(n−1)+1, OEIS A003215); the growth pattern over this corpus’s theorems is local." },
+  { theorem: "3-smooth counting: 32 rungs to 432 on the log-lattice", pool: 'mixed',
+    why: "3-SMOOTH NUMBERS are classical — the 2^a·3^b lattice, Hamming numbers. The 432 rung count is this corpus’s instance." },
+  { theorem: "the divisor lattice of 108 is the 3-smooth grid", pool: 'mixed',
+    why: "the divisor lattice of any 3-smooth number is elementary arithmetic; 108 is this corpus’s choice." },
+  { theorem: "the double torus clock is 2×12 — the 12 divisors of 108 times the two counter-rotating tori = 24 states; the direction bit selects the torus", pool: 'mixed',
+    why: "the twelve divisors of 108 is a fact about 108; the clock built on it is local." },
+  { theorem: "wire and test resonance on herbal APIs — molecular IR resonance real, healing frequencies flagged", pool: 'mixed',
+    why: "MOLECULAR IR RESONANCE is real spectroscopy with a large literature, and the row itself separates it from the health claim it refuses. Both halves need the split." },
+  { theorem: "the shadcn design system opens theorem dimensions under the quantum lens — a 3·2⁶ variant tensor with ground states", pool: 'mixed',
+    why: "shadcn/ui is a published, documented design system; what it opens over this corpus is local." },
+  { theorem: "the local MCP leak boundary is clean at scale — 24/24 in-corpus resolve, 8/8 external leak, zero false positives", pool: 'mixed',
+    why: "the Model Context Protocol is a published specification with a defined boundary; the 24/24 measurement is local." },
+  { theorem: "the chat develops itself by chatting with itself — a deterministic self-conversation that collides and fills its gaps", pool: 'unbounded',
+    why: "the subject is this chat instance developing itself; there is no external referent, and the self-reference row that DOES name a general mechanism is declared mixed instead." },
+  { theorem: "the chat improves by chatting — each turn is experience, relevance feedback boosts the surfaced fold", pool: 'unbounded',
+    why: "a claim about this chat’s own turns." },
+  { theorem: "the portal defaults to chat as the primary surface — every capability reached through one unified turn", pool: 'unbounded',
+    why: "a product decision about this site." },
+  { theorem: "the site audits itself through chat for usability and accessibility — automatable WCAG subset, manual criteria flagged", pool: 'unbounded',
+    why: "this site auditing itself." },
+  { theorem: "endless background movie", pool: 'unbounded',
+    why: "this project’s movie surface." },
+  { theorem: "auto movies8k", pool: 'unbounded',
+    why: "this project’s movie surface." },
+  { theorem: "screensaver movie computes", pool: 'unbounded',
+    why: "this project’s movie surface." },
+  { theorem: "hero law alignment", pool: 'unbounded',
+    why: "a stub naming this corpus’s own hero law." },
+  { theorem: "archangels dry clean", pool: 'unbounded',
+    why: "this project’s own cleaning wave." },
+  { theorem: "only quantum remains", pool: 'unbounded',
+    why: "a statement of this project’s end state." },
+  { theorem: "collision healing", pool: 'unbounded',
+    why: "this corpus’s own collision handling." },
+  { theorem: "the app finishes in all aspects at once — seven expert lanes fold to one root", pool: 'unbounded',
+    why: "a claim about this app’s completion." },
   { theorem: 'associativity independent of division and norm', pool: 'bounded',
     why: 'the octonions are a normed division algebra that is NOT associative — Hurwitz and the Cayley\u2013Dickson literature settle exactly this independence. Well posed, unrun.' },
   { theorem: 'divisibility by 11 by alternating digit sum', pool: 'bounded',
