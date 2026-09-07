@@ -1,5 +1,6 @@
 # The three.js Combination Closure
 
+<!-- figure: 162 src/pair/formal/proofs/three.lean -->
 **Every combination three.js can actually render from its own primitives — all 162 of them — is enumerated, addressed, rendered, and proved complete in the Lean kernel with no axioms.**
 
 Not a gallery. A **closure**: a space that is finite, measured from the library rather than described, and covered exhaustively enough that the covering is a theorem instead of a claim.
@@ -22,8 +23,10 @@ The criterion is a **construction, not a list**. A geometry is in the closure if
 
 ### The number was wrong twice, and that is the most useful thing on this page
 
+<!-- figure: 64 src/pair/formal/proofs/three.lean -->
 It was **64** first. The original fold declared three.js to have "eight built-in geometries" and "eight built-in materials", so the product landed exactly on the hexagram — the corpus's own component closure, its 64-cell architecture. Nobody had asked the library. The number was pleasing, unchecked, and false, and it was committed in the same session that removed a different unchecked list from this codebase.
 
+<!-- figure: 180 src/pair/formal/proofs/three.lean -->
 Then it was **180**, which was honestly measured and still wrong, because the criterion was wrong. "Does it build itself with no arguments" is a question about a constructor; the question that matters is whether the thing **renders**. `MeshDistanceMaterial` passes the first and fails the second, and including it put a mesh in the scene that threw on the first frame — which, on a site where every animation shares one clock, froze the entire page.
 
 Both errors moved the number in the flattering direction, and neither was caught by reading the code. The first was caught by asking the library; the second by asking the GPU. **A criterion that is easier to check than the property it stands for will quietly substitute itself for that property.**
@@ -133,7 +136,7 @@ The gate measures the installed library, builds the closure, checks all six cove
 npm run verify:lean
 ```
 
-Compiles all 15 Lean files and reports, per file, how many theorems depend on no axiom.
+Compiles all 16 Lean files and reports, per file, how many theorems depend on no axiom.
 
 ---
 
@@ -150,6 +153,7 @@ Nothing was designed to make this true. It follows from the centring, which was 
 - $\sigma$ is an **involution**: $\sigma^2 = \mathrm{id}$ on all 162 cells.
 - $\sigma$ maps the closure **onto itself** — the symmetry never leaves the space.
 - $\sigma$ has **no fixed point** — and **one even side is enough**. A fixed cell would need $g = |\mathcal{G}|-1-g$ *and* $m = |\mathcal{M}|-1-m$, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is $18 \times 9$: the columns *are* odd and $m = 4$ is a fixed column, yet no **cell** is fixed, because 18 is even.
+<!-- figure: 81 src/pair/formal/proofs/three.lean -->
 - Therefore the closure is exactly **81 orbits of two**, with nothing left over.
 - **Reflected positions cancel exactly**: every orbit sums to zero in all three axes.
 - **Row-major reflection *is* address complement**: $\mathrm{idx}(\sigma c) + \mathrm{idx}(c) = 161$ for every cell. The geometric symmetry and the arithmetic one are the same symmetry — and that is not visible from either the layout or the addressing on its own.
