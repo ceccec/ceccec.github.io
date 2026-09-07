@@ -532,6 +532,27 @@ export const PRIOR_ART_SEARCHED: readonly {
   // ── AUDIT OF THE 211 UNDECLARED, 2026-09-07. Two of these are the SAME THEOREM the registry states
   // twice under a suffixed title, and the ledger keys by exact name — so searching one left the other
   // sitting in the unclassified count as though it were a separate open question.
+
+  // ── AUDIT OF THE 198 UNDECLARED, 2026-09-07. Read ALL of them this time, unfiltered, after the last
+  // audit found my own grep was the bottleneck. The great majority are genuinely about this artifact —
+  // the chat, the movie, the MCP, the animations, the site's own routing — but a seam of citable science
+  // runs through them, and these four were sitting in it uncited.
+  { theorem: 'every mixed state has a purification — mixedness is traced-away entanglement',
+    searched: 'purification of a mixed state, Uhlmann theorem, partial trace of a pure state on a larger space',
+    when: '2026-09-07',
+    found: 'the purification postulate: for every mixed ρ there is a unit vector on a larger Hilbert space whose partial trace is ρ, unique up to reversible transformations on the purifying system. Uhlmann’s theorem is the fidelity counterpart — fidelity equals the maximal overlap of purifications.' },
+  { theorem: 'adiabatic quantum computation and annealing — the ground state tracked, the Ising solved',
+    searched: 'adiabatic quantum computation Farhi 2000 quantum annealing ground state Hamiltonian interpolation',
+    when: '2026-09-07',
+    found: 'adiabatic quantum computation was proposed by Farhi et al. in 2000 — a state evolves between an analytically solvable H₀ and a problem Hamiltonian H_p, staying in the ground state if the interpolation is slow enough relative to the gap.' },
+  { theorem: 'the variational quantum eigensolver and QAOA — working hybrid solvers',
+    searched: 'variational quantum eigensolver Peruzzo 2014 photonic processor, QAOA Farhi Goldstone Gutmann 2014',
+    when: '2026-09-07',
+    found: 'VQE is Peruzzo et al. (2014), "A variational eigenvalue solver on a photonic quantum processor" — a parameterised circuit whose energy expectation a classical optimiser minimises. QAOA is Farhi, Goldstone and Gutmann (2014). Both are the named originals for the hybrid pattern this row describes.' },
+  { theorem: 'private search ranked by Okapi BM25 — the industry-standard lexical ranking',
+    searched: 'Okapi BM25 ranking function Robertson Sparck Jones probabilistic retrieval framework',
+    when: '2026-09-07',
+    found: 'BM25 comes from the probabilistic retrieval framework developed by Stephen Robertson, Karen Spärck Jones and others through the 1970s–80s, scoring by term-frequency saturation, document-length normalisation and RSJ inverse document frequency. The row’s "industry-standard" is accurate and now attributed.' },
   { theorem: 'A₇ is simple — the A₅ class-sum machine two sizes up',
     searched: 'alternating group A_n simple for n >= 5 Galois Jordan — same theorem as the A₇ row already attributed',
     when: '2026-09-07',
@@ -1166,6 +1187,24 @@ export const PRIOR_ART_POOL: readonly {
   readonly pool: 'bounded' | 'unbounded' | 'mixed'
   readonly why: string
 }[] = [
+  { theorem: 'associativity independent of division and norm', pool: 'bounded',
+    why: 'the octonions are a normed division algebra that is NOT associative — Hurwitz and the Cayley\u2013Dickson literature settle exactly this independence. Well posed, unrun.' },
+  { theorem: 'divisibility by 11 by alternating digit sum', pool: 'bounded',
+    why: 'the alternating-sum test follows from 10 \u2261 \u22121 (mod 11); an elementary, findable result.' },
+  { theorem: 'Twelve tones is the best approximation of the fifth', pool: 'bounded',
+    why: 'the 12-tone equal temperament / perfect-fifth approximation is a continued-fraction fact about log\u2082(3/2), with a real music-theory and mathematics literature.' },
+  { theorem: 'hardware plan + driver for O(1) content-address retrieval is Content-Addressable Memory — resource-gated', pool: 'bounded',
+    why: 'content-addressable memory is a real hardware category with decades of literature; the query is well posed.' },
+  { theorem: 'how a GPU improves battery life — E = P\u00b7t, race to idle, fixed-function offload (and the drain caveat)', pool: 'bounded',
+    why: 'race-to-idle and fixed-function offload are established energy-efficiency results in computer architecture.' },
+  { theorem: 'quantum cosmology computes its objects — Lorentzian minisuperspace, timeless Wheeler-DeWitt, de Sitter horizon', pool: 'bounded',
+    why: 'minisuperspace quantum cosmology and the Wheeler\u2013DeWitt equation have a large literature; the query is well posed even though the row is ambitious.' },
+  { theorem: 'the Wheeler-DeWitt minisuperspace equation is SOLVED — wavefunction, action, and nucleation amplitude', pool: 'bounded',
+    why: 'the same literature, and this row\u2019s word SOLVED needs checking against it rather than declaring \u2014 minisuperspace solutions are known, the full equation is not.' },
+  { theorem: 'the published surface complies with Google Search Essentials — seven audited requirements', pool: 'bounded',
+    why: 'Google Search Essentials is published documentation; a compliance claim against it is checkable against the source.' },
+  { theorem: 'the hexagram orbit census — twelve fours and eight twos complete the 64', pool: 'bounded',
+    why: 'an orbit count under a finite group action on the 64 hexagrams \u2014 Burnside territory, and this ledger already cites the orbit-counting theorem.' },
   { theorem: 'GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13', pool: 'bounded',
     why: 'generalised Petersen graph Hamiltonicity is a settled literature (Watkins, Alspach); the query is well posed and has simply not been run.' },
   { theorem: 'four 3-digit Armstrong numbers', pool: 'bounded',
@@ -1404,6 +1443,14 @@ export const ATTRIBUTION_COVERAGE: readonly {
   // ── EXAMINED 2026-09-07. The batch Tsvetan sent me back to. Two COVER; six are PARTIAL, and the
   // partials are honest ones — the general principle is cited and the local instantiation is the row's.
 
+  { theorem: 'every mixed state has a purification — mixedness is traced-away entanglement', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. The purification postulate is exactly the row’s statement, quantified over every mixed state, and the row does not scope itself to a range.' },
+  { theorem: 'adiabatic quantum computation and annealing — the ground state tracked, the Ising solved', coverage: 'partial',
+    why: 'the adiabatic model is cited outright. That the ISING problem is "solved" by it is the part the citation does not carry — adiabatic optimisation is a heuristic whose runtime depends on the spectral gap, and hardness results exist. The row states more than Farhi 2000 establishes.' },
+  { theorem: 'the variational quantum eigensolver and QAOA — working hybrid solvers', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. Peruzzo 2014 and Farhi 2014 are the named originals, and "working hybrid solvers" is what both papers demonstrate — a quantum circuit with a classical optimiser in the loop.' },
+  { theorem: 'private search ranked by Okapi BM25 — the industry-standard lexical ranking', coverage: 'covers',
+    why: 'EXAMINED AND CLEAN. BM25 is the probabilistic-retrieval standard and the row claims exactly that, no more.' },
   { theorem: 'A₇ is simple — the A₅ class-sum machine two sizes up', coverage: 'covers',
     why: 'EXAMINED AND CLEAN, and it is the same theorem as the attributed `A₇ is simple` — the registry says it twice under two titles. Galois covers it either way.' },
   { theorem: 'A₈ is simple — the alternating ladder complete', coverage: 'covers',
