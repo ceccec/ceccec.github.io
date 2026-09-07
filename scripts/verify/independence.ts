@@ -73,9 +73,9 @@ export function show() {
   // NEGATED, AND PRINTED SAYING SO. Cross-checking is the one figure here that should RISE, and a
   // ratchet only falls, so the stored floor is its negative. It was recorded silently, which meant the
   // single number in this file that is good news when it moves reported nothing when it did.
-  console.log(`  ${ratchet('independence.cross-checked', -crossed)}  — stored negated, so ${crossed} cross-checked may only RISE`)
   console.log(`folds carrying facets:            ${folds.size}`)
   console.log(`  constrained by a predicate      ${crossed}  in another file`)
+  console.log(`  ${ratchet('independence.cross-checked', -crossed)}  — stored negated, so ${crossed} cross-checked may only RISE`)
   console.log(`  asserted only by their own      ${selfOnly}  facets, and nothing else`)
   console.log(`\nself-asserted sample:`)
   for (const e of examples) console.log('   ', e)

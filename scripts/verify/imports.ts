@@ -115,7 +115,7 @@ export function findUnresolvedImports(root: string = process.cwd()): Unresolved[
 
 export function assertImportsResolve(): void {
   const bad = findUnresolvedImports()
-  console.log(ratchet('imports.unresolved', bad.length))
   for (const b of bad.slice(0, 20)) console.log(`  ${b.file}:${b.line}  ->  ${b.spec}`)
+  console.log(ratchet('imports.unresolved', bad.length))
   if (bad.length > 20) console.log(`  ...and ${bad.length - 20} more`)
 }

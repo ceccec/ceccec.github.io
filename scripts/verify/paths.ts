@@ -20,7 +20,7 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, recordedFloor } from './status.ts'
 
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
@@ -84,8 +84,23 @@ export function assertPathsResolve(): void {
     const ext = d.path.split('.').pop() ?? '?'
     byExt.set(ext, (byExt.get(ext) ?? 0) + 1)
   }
-  console.log(ratchet('paths.dead-strings', dead.length))
+  // THE EVIDENCE PRINTS BEFORE THE RATCHET, BECAUSE THE RATCHET THROWS.
+  //
+  // This listed the dead paths AFTER `ratchet(...)`, so on the one occasion the listing matters — a
+  // regression — the throw happened first and the list never printed. The gate reported "52, above
+  // the recorded 51" and then destroyed the only thing that says WHICH path is the 52nd. That
+  // happened today: identifying it took reconstructing the state by hand, twice, against a gate
+  // that already knew the answer and refused to say it before dying.
   console.log(`  by extension: ${[...byExt].map(([e, n]) => `${e}=${n}`).join(' ')}`)
-  for (const d of dead.slice(0, 12)) console.log(`  ${d.path}  <- ${d.citedBy[0]}${d.citedBy.length > 1 ? ` (+${d.citedBy.length - 1})` : ''}`)
-  if (dead.length > 12) console.log(`  ...and ${dead.length - 12} more`)
+  // WHEN IT IS ABOUT TO FAIL, SHOW EVERYTHING. Twelve of fifty-two sorted by name is a sample, and
+  // the entry that caused the regression sits wherever the alphabet put it — proving the reorder
+  // worked required a perturbation that happened to sort third. A gate that knows it is failing has
+  // no reason to abbreviate.
+  const floor = recordedFloor('paths.dead-strings')
+  const failing = floor !== undefined && dead.length > floor
+  const show = failing ? dead.length : 12
+  for (const d of dead.slice(0, show)) console.log(`  ${d.path}  <- ${d.citedBy[0]}${d.citedBy.length > 1 ? ` (+${d.citedBy.length - 1})` : ''}`)
+  if (dead.length > show) console.log(`  ...and ${dead.length - show} more`)
+  if (failing) console.log(`  ALL ${dead.length} listed above — ${dead.length - floor} more than the recorded ${floor}; the new one is in that list`)
+  console.log(ratchet('paths.dead-strings', dead.length))
 }

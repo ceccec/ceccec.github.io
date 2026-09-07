@@ -144,11 +144,11 @@ export function assertFacetsCanFail(): void {
     const key = v.why.split(' &&')[0]!
     byWhy.set(key, (byWhy.get(key) ?? 0) + 1)
   }
-  console.log(ratchet('limits.always-true', vacuous.length))
   for (const [why, count] of [...byWhy].sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(4)}  ${why}`)
   for (const v of vacuous.slice(0, 6)) console.log(`    ${v.file}:${v.line}  ${v.facet}`)
+  console.log(ratchet('limits.always-true', vacuous.length))
 
   const weak = findWeakestBarFacets()
-  console.log(ratchet('limits.weakest-bar', weak.length))
   for (const w of weak.slice(0, 4)) console.log(`    ${w.file}:${w.line}  [${w.why}]  ${w.facet.slice(0, 62)}`)
+  console.log(ratchet('limits.weakest-bar', weak.length))
 }
