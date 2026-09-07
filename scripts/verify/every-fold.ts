@@ -54,7 +54,7 @@
  *   plus a Born distribution over 761 discoveries summing to 0.7339 rather than 1.
  */
 
-import { readdirSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { join } from 'node:path'
 import { MODULES } from './module-index.ts'
@@ -85,12 +85,44 @@ export function treeDigest(root: string): string {
     try { entries = readdirSync(dir, { withFileTypes: true }) } catch { return }
     for (const e of entries.sort((a, b) => a.name.localeCompare(b.name))) {
       const p = join(dir, e.name)
-      if (e.isDirectory()) { if (!/^(node_modules|dist|\.git)$/.test(e.name)) walk(p); continue }
-      try { const st = statSync(p); h.update(`${p}:${st.size}:${st.mtimeMs}\n`) } catch { /* vanished mid-walk is itself a change */ h.update(`${p}:GONE\n`) }
+      // `receipts` is EXCLUDED and the exclusion is not cosmetic: receipts are written DURING a run,
+      // by the runner that is calling this function to decide whether the tree held still. Including
+      // them would make every run move its own tree at the moment it recorded the result, so every
+      // receipt would report a tree that changed and no two runs could ever be compared.
+      if (e.isDirectory()) { if (!/^(node_modules|dist|receipts|\.git)$/.test(e.name)) walk(p); continue }
+      // CONTENT, NOT size:mtime. The proxy was wrong in BOTH directions: a file restored to its
+      // exact original bytes produced a THIRD digest, because restoring moves mtime — so a
+      // perturb-and-restore, the standard discipline here, made every prior receipt incomparable
+      // for no reason. And a change that preserved size and mtime was invisible. Measured before
+      // switching: 313 files, 20.5MB, 63ms per digest, 2.4s across all 38 gates of a 359s run.
+      // THE CATCH IS NARROW BECAUSE A WIDE ONE TURNED THIS FUNCTION INTO A CONSTANT. `readFileSync`
+      // was not imported; every file threw ReferenceError; every throw landed in a catch meant for
+      // a file vanishing mid-walk; and treeDigest returned a hash of `path:GONE` strings — the same
+      // value for every possible tree. Writing a receipt and restoring a file both still "passed".
+      // Only perturbing a gate and seeing the digest NOT move exposed it. A vanished file is the
+      // only error this is entitled to absorb; anything else is a defect in the instrument and must
+      // reach the caller.
+      try { h.update(p); h.update(readFileSync(p)) } catch (e) {
+        if ((e as NodeJS.ErrnoException)?.code !== 'ENOENT') throw e
+        h.update(`${p}:GONE\n`)
+      }
     }
   }
   walk(join(root, 'src'))
-  try { const st = statSync(join(root, 'package.json')); h.update(`package.json:${st.size}:${st.mtimeMs}`) } catch { h.update('package.json:GONE') }
+  // scripts/ IS THE INSTRUMENT, AND A DIGEST THAT OMITS IT OVERSTATES WHAT IT CHECKED.
+  //
+  // This covered src/ and package.json only, and the receipts written from it called themselves
+  // addressed by "the tree". They were not. The gates live here, so two runs could share a digest
+  // with the gate code rewritten between them — which happened, and is also why four rounds of my
+  // own interference during runs left no trace in any receipt: I was editing a directory the digest
+  // could not see.
+  //
+  // THE COST, WHICH IS REAL: every edit to a gate now invalidates comparison with the receipts
+  // before it. Reproduction across a working session becomes rarer. That is the correct trade — a
+  // comparison between two runs of different instruments was never a reproduction, it only looked
+  // like one.
+  walk(join(root, 'scripts'))
+  try { h.update(readFileSync(join(root, 'package.json'))) } catch { h.update('package.json:GONE') }
   return h.digest('hex').slice(0, 16)
 }
 export function main() {
